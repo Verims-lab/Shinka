@@ -5,6 +5,8 @@ import { CLASS, RUNNER, STATUS } from "../constants";
 import { ev, verdict, blockedResult } from "../evidence";
 import { makeCase } from "../caseFactory";
 import { H13_CONTRACT_CASES } from "./h13contract";
+import { H13_NAV_CASES } from "./h13nav";
+import { H13_STATIC_CASES } from "./h13static";
 
 const c = makeCase("H13");
 const DOM = { runnerType: RUNNER.DOM, classification: CLASS.LIVE_RUNTIME };
@@ -50,4 +52,6 @@ export const H13_CASES = [
     return verdict(DESIGN_TOKENS.status === "APPROVED_UIUX_V1_1" && r.mismatches.length === 0, ev(CLASS.LIVE_RUNTIME, "getComputedStyle(:root)", { status: DESIGN_TOKENS.status, ...r }, { status: "APPROVED_UIUX_V1_1", mismatches: [] }, "Rendered token comparison"));
   }, DOM),
   ...H13_CONTRACT_CASES,
-];
+  ...H13_NAV_CASES,
+  ...H13_STATIC_CASES,
+].sort((a, b) => a.id.localeCompare(b.id));

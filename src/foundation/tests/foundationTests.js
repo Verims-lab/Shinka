@@ -3,10 +3,8 @@
 import { BUILD_MARKER } from "@/foundation/buildMarker";
 import { isValidMarker, nextMarker, validateTransition, validateLedger } from "@/foundation/buildMarkerRules";
 import { BUILD_LEDGER } from "@/foundation/buildLedger";
-import { SOURCE_INVENTORY, AUTHORITY_TABLE, LOGICAL_SOURCE_COUNT, EXPECTED_UIUX_PARTS, UIUX_CONTINUITY, physicalAttachmentCount } from "@/foundation/sourceInventory";
-import { checkSplitSource } from "@/foundation/inspection/sourceIntegrity";
-import { checkNavContract, findDarkVariants } from "@/foundation/inspection/uiRules";
-import { BOTTOM_NAV, PROFILE_ENTRY } from "@/foundation/uiContract";
+import { SOURCE_INVENTORY } from "@/foundation/sourceInventory";
+import { UI_CONTRACT_TESTS } from "@/foundation/tests/uiContractTests";
 import { DESIGN_TOKENS } from "@/foundation/designTokens";
 import { loadSources, loadDocs } from "@/foundation/inspection/sourceScanner";
 import { checkSingleSource, findLegacyImports } from "@/foundation/inspection/sourceRules";
@@ -90,7 +88,7 @@ export const FOUNDATION_TESTS = [
 
 export async function runFoundationTests() {
   const out = [];
-  for (const [id, name, fn] of FOUNDATION_TESTS) {
+  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...UI_CONTRACT_TESTS]) {
     try { await fn(); out.push({ id, name, passed: true, detail: "ok" }); }
     catch (e) { out.push({ id, name, passed: false, detail: String(e?.message || e).slice(0, 160) }); }
   }

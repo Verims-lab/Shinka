@@ -1,4 +1,4 @@
-// Shinka design token authority — reconciled with UI/UX Tasarım v1.1 (SRC-03, Buildmarker-002).
+// Shinka design token authority — reconciled with UI/UX Tasarım v1.1 (SRC-03).
 // CSS variables in src/index.css mirror `color` via `cssVars` (RGB channels). Light-only; no dark target.
 export const DESIGN_TOKENS = Object.freeze({
   status: "APPROVED_UIUX_V1_1",

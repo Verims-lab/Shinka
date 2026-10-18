@@ -17,7 +17,7 @@ const UIUX_PARTS = Object.freeze([
   { part: 4, file: EXPECTED_UIUX_PARTS[3], status: "READ", originalPages: "17–21", firstSection: "§7.4 Withdraw consent", lastSection: "§9 Checklist", url: UI_BASE + "e0c4b8ace_Shinka_UI_UX_v11_Part_4_of_4.docx" },
 ]);
 
-// Continuity verified by reading parts in order 1→2→3→4 (recorded decision, Buildmarker-002).
+// Continuity verified by reading parts in order 1→2→3→4 (recorded decision, UI/UX reconciliation package).
 export const UIUX_CONTINUITY = Object.freeze({
   verified: true,
   boundaries: ["P1 ends ON-02 → P2 starts ON-03", "P2 ends ON-06 → P3 starts §4 Home", "P3 ends §7.3 → P4 starts §7.4"],

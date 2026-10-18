@@ -1,10 +1,10 @@
 // OPEN_DECISION register. Status: OPEN | RESOLVED_BY_PRECEDENCE (documented rule) | NOTED (non-material).
 // Nothing here may be silently marked resolved: RESOLVED_* entries must cite a resolution rule.
 export const OPEN_DECISIONS = Object.freeze([
-  { id: "OD-001", status: "RESOLVED_BY_SOURCE_RECEIPT", blocking: false, sources: ["Task brief (10 files)", "UI/UX v1.1 Part 1–4 (Buildmarker-002)"],
-    conflict: "Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx was listed as authoritative but was not uploaded in Buildmarker-001.",
+  { id: "OD-001", status: "RESOLVED_BY_SOURCE_RECEIPT", blocking: false, sources: ["Task brief (10 files)", "UI/UX v1.1 Part 1–4 (reconciliation package)"],
+    conflict: "Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx was listed as authoritative but was not uploaded in the initial Foundation package.",
     impact: "Tokens were PROVISIONAL until receipt.",
-    resolution_rule: "Logical source received as 4 transport parts, read in order, continuity verified; tokens reconciled (Buildmarker-002).",
+    resolution_rule: "Logical source received as 4 transport parts, read in order, continuity verified; tokens reconciled.",
     recommendation: "Closed." },
   { id: "OD-002", status: "OPEN", blocking: false, sources: ["SRC-05 §6.1", "SRC-07 sheet 10", "SRC-08/09/10"],
     conflict: "category_code values are not defined; workbooks use labels (e.g. 'Dinlenme & Yavaşlama') while DB v1.2 lists TR display names ('Kendine Bir Nefes'…). EN display names are not given.",
@@ -36,7 +36,7 @@ export const OPEN_DECISIONS = Object.freeze([
     conflict: "Admin authority must be platform-native; only 'admin'/'user' roles exist and backend-level protection of immutable records (admin cannot UPDATE/DELETE) is unverified.",
     impact: "Protected-record rules (user_daily_message, consent/protection events, audit log) need verified enforcement.",
     recommendation: "Prove with LIVE_ENFORCEMENT tests in H12 before those entities are created." },
-  { id: "OD-010", status: "OPEN", blocking: false, sources: ["SRC-03 §2, §8.1–8.5, §9 (Part 1/4)", "Package brief (Buildmarker-002)"],
+  { id: "OD-010", status: "OPEN", blocking: false, sources: ["SRC-03 §2, §8.1–8.5, §9 (Part 1/4)", "Reconciliation package brief"],
     conflict: "UI/UX v1.1 design-system tables, the §8 approved copy tables and the §9 checklist are embedded as tables/images and are not machine-readable as text; only headings are extractable. Canonical token values were taken from the package brief that quotes v1.1.",
     impact: "Tokens are applied; the full EN copy dictionary and TR equivalents cannot be verified string-by-string. Foundation TR strings are PENDING_COPY_REVIEW.",
     recommendation: "Before the first customer-screen package, supply the §8 copy tables as text (DOCX table/XLSX) so the copy dictionary is imported verbatim." },
