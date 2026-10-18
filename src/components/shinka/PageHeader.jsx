@@ -1,6 +1,6 @@
 import { BUILD_MARKER } from "@/foundation/buildMarker";
 
-export default function PageHeader({ eyebrow, title, children }) {
+export default function PageHeader({ eyebrow, title, children = undefined }) {
   return (
     <header className="space-y-3">
       <div className="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-shinka-muted">

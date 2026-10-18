@@ -1,8 +1,6 @@
-import { BUILD_MARKER } from "@/foundation/buildMarker";
-import { SOURCE_INVENTORY, AUTHORITY_TABLE, REQUIRED_AUTHORITY_DOMAINS, LOGICAL_SOURCE_COUNT, EXPECTED_UIUX_PARTS, UIUX_CONTINUITY, physicalAttachmentCount } from "@/foundation/sourceInventory";
+import { SOURCE_INVENTORY, AUTHORITY_TABLE, REQUIRED_AUTHORITY_DOMAINS, LOGICAL_SOURCE_COUNT, UIUX_CONTINUITY, physicalAttachmentCount } from "@/foundation/sourceInventory";
 import { checkSplitSource, checkUiuxTables, uiuxTablesInput } from "@/foundation/inspection/sourceIntegrity";
 import { OPEN_DECISIONS } from "@/foundation/openDecisions";
-import { checkDocs } from "@/foundation/inspection/docRules";
 import { CLASS, STATUS } from "../constants";
 import { ev, verdict } from "../evidence";
 import { makeCase } from "../caseFactory";
@@ -11,11 +9,11 @@ const c = makeCase("H02");
 
 export const H02_CASES = [
   c("H02-001", "All canonical MD files exist", "The 12 canonical docs exist under docs/shinka/.", async (ctx) => {
-    const r = checkDocs(await ctx.docs(), BUILD_MARKER);
+    const r = (await ctx.inspection()).docs;
     return verdict(r.missing.length === 0, ev(CLASS.STATIC, "docs/shinka/*.md", { present: r.present, missing: r.missing }, { present: 12, missing: [] }, "Doc file inspection"));
   }),
   c("H02-002", "Canonical MD headers and BuildMarker aligned", "Every doc has the standard header; Current BuildMarker equals the canonical marker.", async (ctx) => {
-    const r = checkDocs(await ctx.docs(), BUILD_MARKER);
+    const r = (await ctx.inspection()).docs;
     return verdict(r.headerGaps.length === 0 && r.misaligned.length === 0, ev(CLASS.STATIC, "docs/shinka/*.md headers", { headerGaps: r.headerGaps, misaligned: r.misaligned }, { headerGaps: [], misaligned: [] }, "Header inspection"));
   }),
   c("H02-003", "Source inventory registers 10 LOGICAL sources", "Inventory contains 10 unique logical sources with version, date, domain and authority (physical parts are not logical sources).", async () => {
@@ -28,7 +26,7 @@ export const H02_CASES = [
     const partsNotRead = SOURCE_INVENTORY.flatMap((s) => (s.parts || []).filter((p) => p.status !== "READ").map((p) => p.file));
     const ok = !notRead.length && !partsNotRead.length;
     const e = ev(ok ? CLASS.STATIC : CLASS.BLOCKED_EXTERNAL, "src/foundation/sourceInventory.js", { logicalRead: LOGICAL_SOURCE_COUNT - notRead.length, notRead, partsNotRead }, { logicalRead: 10, notRead: [], partsNotRead: [] },
-      ok ? "All logical sources and parts read" : "Required source/part not supplied");
+      ok ? "SOURCE_RECEIVED_AND_RECORDED; original artifacts are external, not hash-verified in Git" : "Required source/part not supplied");
     return { status: ok ? STATUS.PASS : STATUS.BLOCKED, evidence: e };
   }),
   c("H02-005", "Source authority table exists", "Every required domain has a registered primary source; DB v1.2 supersedes DB v1.1.", async () => {
@@ -38,23 +36,23 @@ export const H02_CASES = [
     return verdict(uncovered.length === 0 && dbRule, ev(CLASS.STATIC, "AUTHORITY_TABLE", { uncovered, dbV12Wins: dbRule }, { uncovered: [], dbV12Wins: true }, "Authority inspection"));
   }),
   c("H02-006", "No unresolved conflict silently marked resolved", "Resolved decisions cite a rule; OPEN decisions carry impact and are listed in SOURCE_OF_TRUTH.md.", async (ctx) => {
-    const doc = checkDocs(await ctx.docs(), BUILD_MARKER).byName["SHINKA_SOURCE_OF_TRUTH.md"] || "";
+    const doc = (await ctx.inspection()).docs;
     const badResolved = OPEN_DECISIONS.filter((d) => d.status.startsWith("RESOLVED") && !d.resolution_rule).map((d) => d.id);
     const badOpen = OPEN_DECISIONS.filter((d) => d.status === "OPEN" && (!d.impact || !d.recommendation)).map((d) => d.id);
-    const undocumented = OPEN_DECISIONS.filter((d) => !doc.includes(d.id)).map((d) => d.id);
+    const undocumented = doc.undocumentedDecisions;
     return verdict(!badResolved.length && !badOpen.length && !undocumented.length, ev(CLASS.STATIC, "openDecisions.js + SHINKA_SOURCE_OF_TRUTH.md", { badResolved, badOpen, undocumented }, { badResolved: [], badOpen: [], undocumented: [] }, `${OPEN_DECISIONS.length} decisions inspected`));
   }),
   c("H02-007", "Split UI/UX source reconstructed completely", "UI/UX v1.1 = 1 logical source in 4 physical parts: all registered, read, ordered 1→2→3→4, no gap/duplicate, continuity recorded, sole UI/UX authority; machine-readable companion registered as supporting artifact (not a logical source).", async (ctx) => {
     const r = checkSplitSource(SOURCE_INVENTORY, AUTHORITY_TABLE, UIUX_CONTINUITY);
-    const doc = checkDocs(await ctx.docs(), BUILD_MARKER).byName["SHINKA_SOURCE_OF_TRUTH.md"] || "";
-    const documented = EXPECTED_UIUX_PARTS.every((n) => doc.includes(n)) && /Logical source count:\*\*\s*1\b/.test(doc);
+    const doc = (await ctx.inspection()).docs;
+    const documented = doc.splitDocumented;
     return verdict(r.ok && documented, ev(CLASS.STATIC, "sourceInventory.js + SHINKA_SOURCE_OF_TRUTH.md", { ...r, documented, boundaries: UIUX_CONTINUITY.boundaries }, { ok: true, documented: true, partCount: 4, companionPresent: true, companionAsLogicalSource: 0, logicalCount: 10 }, "Logical/physical source integrity by role"));
   }),
   c("H02-008", "UI/UX tables machine-readable (OD-010)", "All 11 UI/UX v1.1 tables represented via the SRC-03 companion: design table = implemented tokens, icon table = nav contract, 5 copy/state groups non-empty, QA checklist complete, logical count unchanged; OD-010 closed.", async (ctx) => {
     const r = checkUiuxTables(uiuxTablesInput());
     const od = OPEN_DECISIONS.find((d) => d.id === "OD-010");
-    const doc = checkDocs(await ctx.docs(), BUILD_MARKER).byName["SHINKA_UI_UX_STANDARDS.md"] || "";
-    const documented = doc.includes("Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx");
+    const doc = (await ctx.inspection()).docs;
+    const documented = doc.companionDocumented;
     return verdict(r.ok && od?.status.startsWith("RESOLVED") && documented, ev(CLASS.STATIC, "uiuxTables.js + designTokens.js + uiContract.js + openDecisions.js", { ...r, od010: od?.status, documented }, { ok: true, tableCount: 11, od010: "RESOLVED_*", documented: true }, "Companion table completeness"));
   }),
 ];

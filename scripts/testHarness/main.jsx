@@ -1,0 +1,30 @@
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HealthCenter from "@/pages/internal/HealthCenter";
+import BuildEnvironment from "@/pages/internal/BuildEnvironment";
+import Login from "@/pages/Login";
+import { runFoundationTests } from "@/foundation/tests/foundationTests";
+import { H03_CASES } from "@/foundation/health/cases/h03";
+import { createHealthContext } from "@/foundation/health/context";
+import { HEALTH_CASES } from "@/foundation/health/catalog";
+import { SUITES } from "@/foundation/health/suites";
+import { HEALTH_CATALOG_VERSION, APPLICABILITY as A } from "@/foundation/health/constants";
+import "@/index.css";
+
+// The harness mounts real pages without claiming that a synthetic admin is a live login.
+createRoot(document.getElementById("root")).render(<BrowserRouter><Routes>
+  <Route path="/internal/health" element={<HealthCenter/>}/>
+  <Route path="/internal/build" element={<BuildEnvironment/>}/>
+  <Route path="/login" element={<Login/>}/>
+  <Route path="*" element={<div>Intentionally missing probe root</div>}/>
+</Routes></BrowserRouter>);
+window.__runFoundationTests = runFoundationTests;
+window.__foundationCatalog = {version:HEALTH_CATALOG_VERSION,suites:SUITES.length,cases:HEALTH_CASES.length,
+  current:HEALTH_CASES.filter(c=>c.applicability===A.CURRENT).length,
+  future:HEALTH_CASES.filter(c=>c.applicability===A.FUTURE).length,
+  external:HEALTH_CASES.filter(c=>c.applicability===A.EXTERNAL).length};
+window.__staticHealthEvidence = async () => {
+  const context = createHealthContext();
+  return Promise.all(H03_CASES.filter((c)=>["H03-001","H03-004","H03-008","H03-009"].includes(c.id)).map(async(c)=>({id:c.id,...await c.run(context)})));
+};

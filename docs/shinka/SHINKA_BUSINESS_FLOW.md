@@ -2,14 +2,14 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary (not implemented)
-**Current BuildMarker:** Buildmarker-004
-**Last Updated:** 2026-10-18
+**Current BuildMarker:** Buildmarker-005
+**Last Updated:** 2026-10-19
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
 **Implemented:** None (foundation package only).
 **Not Implemented:** All sections below.
-**Open Decisions:** OD-002, OD-003
+**Open Decisions:** OD-002 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 ## Account / Authentication (UC-01, KK-01)
 Apple or Google only; no Shinka password; one account per provider identity. 18+ checkbox (initially empty) must be checked before auth starts; age is re-checked from birth date (backend). Sign Out does not change account status.

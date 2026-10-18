@@ -30,6 +30,7 @@ export function validateContentRows(rows) {
   const seen = new Map();
   const duplicateIds = [];
   const missingCells = [];
+  const missingCategory = [];
   const badIdFormat = [];
   const perCategory = {};
   const unknownCategories = new Set();
@@ -39,6 +40,7 @@ export function validateContentRows(rows) {
     if (seen.has(id)) duplicateIds.push(id); else seen.set(id, true);
     idx.forEach((ci, k) => { if (ci < 0 || norm(r[ci]) === "") missingCells.push({ pairId: id || `row${i + 2}`, column: CONTENT_COLUMNS[k] }); });
     const cat = norm(r[idx[1]]);
+    if (!cat) missingCategory.push(id || `row${i + 2}`);
     perCategory[cat] = (perCategory[cat] || 0) + 1;
     if (!(cat in CATEGORY_COUNTS)) unknownCategories.add(cat);
   });
@@ -46,7 +48,7 @@ export function validateContentRows(rows) {
     .filter(([c, n]) => (perCategory[c] || 0) !== n)
     .map(([c, n]) => ({ category: c, expected: n, actual: perCategory[c] || 0 }));
   return {
-    rowCount: body.length, columns, duplicateIds, missingCells: missingCells.slice(0, 50), missingCellCount: missingCells.length,
+    rowCount: body.length, columns, missingCategory, duplicateIds, missingCells: missingCells.slice(0, 50), missingCellCount: missingCells.length,
     badIdFormat, perCategory, unknownCategories: [...unknownCategories], categoryCountMismatches,
     firstId: norm(body[0]?.[idx[0]]), lastId: norm(body[body.length - 1]?.[idx[0]]),
   };
@@ -98,3 +100,31 @@ export function compareBaseAndExtended(base, extended) {
 }
 
 export const stripInternal = ({ _keys, ...rest }) => rest;
+// Canonical decisions shared by Health and deterministic fixtures; no required signal is dropped.
+export function contentIntegrity(content) {
+  return content.rowCount === 260 && content.columns.every((c) => c.present) &&
+    content.missingCategory.length === 0 && content.categoryCountMismatches.length === 0 &&
+    content.unknownCategories.length === 0 && content.duplicateIds.length === 0 &&
+    content.badIdFormat.length === 0 && content.missingCellCount === 0;
+}
+export function mappingIntegrity(mapping) {
+  return mapping.rowCount === mapping.expectedRows && mapping.columns.every((c) => c.present) &&
+    mapping.missingCategory.length === 0 && mapping.invalidValues.length === 0 &&
+    mapping.duplicates.length === 0 && mapping.missingCombinations === 0 && mapping.categoriesUsed.length === 6;
+}
+export function categoryIntegrity(artifacts) {
+  return artifacts.content260.missingCategory.length === 0 && artifacts.content260.categoryCountMismatches.length === 0 &&
+    artifacts.content260.unknownCategories.length === 0 && [artifacts.mapping192, artifacts.mapping240].every((m) =>
+      m.missingCategory.length === 0 && m.invalidValues.length === 0 && m.categoriesUsed.length === 6);
+}
+export function validatorFixtureResult() {
+  const content = validateContentRows([CONTENT_COLUMNS,
+    ["SHF-001", "Dinlenme & Yavaşlama", "a", "b", "c", "d"],
+    ["SHF-001", "Dinlenme & Yavaşlama", "a", "b", "c", "d"],
+    ["SHF-002", "Yenilik & Keşif", "a", "b", "", "d"]]);
+  const mapping = validateMappingRows([MAPPING_COLUMNS,
+    ["Koç", "Yeni Ay", "Menstrüel", "Dinlenme & Yavaşlama"],
+    ["Koç", "Yeni Ay", "Menstrüel", "Yenilik & Keşif"]], false);
+  return { contentDuplicateIds: content.duplicateIds, contentMissingCellCount: content.missingCellCount,
+    mappingDuplicates: mapping.duplicates, mappingMissingCombinations: mapping.missingCombinations };
+}

@@ -9,7 +9,7 @@ export const CAPABILITY_REGISTER = Object.freeze([
   { id: "CAP-06", capability: "Transaction / rollback (multi-record atomicity)", status: "UNVERIFIED", evidence: "Not measured." },
   { id: "CAP-07", capability: "Conditional update", status: "UNVERIFIED", evidence: "Not measured." },
   { id: "CAP-08", capability: "Concurrency safety", status: "UNVERIFIED", evidence: "Not measured." },
-  { id: "CAP-09", capability: "Auth providers (Apple + Google only)", status: "PARTIALLY_VERIFIED", evidence: "Google sign-in present in platform login; Apple not verified; email/password currently enabled (OD-003)." },
+  { id: "CAP-09", capability: "Auth providers (Apple + Google only)", status: "PARTIALLY_VERIFIED", evidence: "Repository policy implemented (OD-003); recorded platform snapshot lists Apple/Google. Current dashboard configuration and live provider sign-in remain unverified." },
   { id: "CAP-10", capability: "Row / owner security (RLS)", status: "PARTIALLY_VERIFIED", evidence: "Admin-only RLS declared on InternalHealthRun; cross-user denial not yet measured with a non-admin account." },
   { id: "CAP-11", capability: "Admin role authorization (platform-native)", status: "PARTIALLY_VERIFIED", evidence: "validateContentArtifacts enforces role==='admin' server-side; non-admin 403 path not yet exercised live." },
   { id: "CAP-12", capability: "Backend function execution", status: "VERIFIED", evidence: "validateContentArtifacts executed 2026-10-18 (live + fixture modes) returning structured results." },

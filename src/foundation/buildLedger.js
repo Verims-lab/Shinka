@@ -62,6 +62,20 @@ export const BUILD_LEDGER = Object.freeze([
     health_changed: false,
     notes: "No product feature started. Health case definitions unchanged; probe and persistence instrumentation fixed.",
   }),
+  Object.freeze({
+    build_marker: "Buildmarker-005",
+    package_name: "Foundation Repository Corrective & Hardening",
+    package_type: "FOUNDATION_AMENDMENT",
+    short_summary: "Provider-only auth and safe errors; syntax-aware legacy firewall; build-time static metadata; execution/evidence gate; category completeness; server-admin internal operations; private verified history; canonical browser/CLI regressions; dependency and type corrections.",
+    created_at: "2026-10-19",
+    health_catalog_version: "HC-004.0",
+    full_health_status: "BASE44_FINAL_FULL_HEALTH_REQUIRED",
+    docs_aligned: true,
+    source_changed: true,
+    tests_changed: true,
+    health_changed: true,
+    notes: "Repository Foundation remains OPEN: unresolved High dependency advisories, no waiver. Final Base44 Full Health, history readback and Authentication panel verification pending. No product features/data or legacy import.",
+  }),
 ]);
 
 export const currentLedgerEntry = () => BUILD_LEDGER[BUILD_LEDGER.length - 1];

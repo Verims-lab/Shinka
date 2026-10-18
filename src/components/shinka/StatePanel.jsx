@@ -12,7 +12,7 @@ const STATES = {
   DISABLED: { Icon: Ban, alert: false }, EMPTY: { Icon: Inbox, alert: false },
 };
 
-export default function StatePanel({ state, message, code, onRetry }) {
+export default function StatePanel({ state, message, code = undefined, onRetry = undefined }) {
   const s = STATES[state] || STATES.EMPTY;
   return (
     <div role={s.alert ? "alert" : "status"} data-state={state} data-error-code={code || undefined}

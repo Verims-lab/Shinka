@@ -104,8 +104,8 @@ export default function OAuthConsent() {
         // bearer token) so the server can list the granted tools for a
         // signed-in user — the same auth the approve/deny call sends; without
         // it the display request is anonymous and shows no tools.
-        const infoHeaders = {};
-        if (appParams.token) infoHeaders.Authorization = "Bearer " + appParams.token;
+        const infoHeaders = new Headers();
+        if (appParams.token) infoHeaders.set("Authorization", "Bearer " + appParams.token);
         const res = await fetch(
           `/api/apps/${appParams.appId}/mcp/consent-info?handle=${encodeURIComponent(ctx)}`,
           { credentials: "include", headers: infoHeaders },
@@ -181,9 +181,7 @@ export default function OAuthConsent() {
         // gone; 400 malformed/handle already used), so retrying can only 404.
         // Show a terminal reconnect state, not an impossible "try again".
         if ([400, 403, 404, 409].includes(res.status)) {
-          let detail = "";
-          try { detail = (await res.json()).detail; } catch (_) { /* keep default */ }
-          setReconnect(detail || "This authorization can no longer be completed. Reconnect from your AI client to try again.");
+          setReconnect( "This authorization can no longer be completed. Reconnect from your AI client to try again.");
           setSubmitting(false);
           return;
         }
@@ -199,7 +197,7 @@ export default function OAuthConsent() {
         setSubmitting(false);
       }
     } catch (e) {
-      setError(e.message);
+      setError("Could not complete authorization. Please try again.");
       setSubmitting(false);
     }
   };

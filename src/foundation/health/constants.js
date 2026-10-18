@@ -1,14 +1,2 @@
-// Health catalog constants — the single source of the Health catalog version.
-export const HEALTH_CATALOG_VERSION = "HC-003.0";
-export const REPORT_SCHEMA_VERSION = "shinka.health.report/1";
-export const CASE_TIMEOUT_MS = 20000;
-
-export const STATUS = { PASS: "PASS", FAIL: "FAIL", WARNING: "WARNING", BLOCKED: "BLOCKED", NOT_RUN: "NOT_RUN", NOT_APPLICABLE: "NOT_APPLICABLE" };
-export const CLASS = {
-  STATIC: "STATIC", SYNTHETIC_RUNTIME: "SYNTHETIC_RUNTIME", LIVE_RUNTIME: "LIVE_RUNTIME", LIVE_ENFORCEMENT: "LIVE_ENFORCEMENT",
-  DEVICE: "DEVICE", RECORDED_DECISION: "RECORDED_DECISION", BLOCKED_EXTERNAL: "BLOCKED_EXTERNAL",
-};
-export const SEVERITY = { CRITICAL: "CRITICAL", HIGH: "HIGH", MEDIUM: "MEDIUM", LOW: "LOW" };
-export const APPLICABILITY = { CURRENT: "CURRENT_PACKAGE", FUTURE: "FUTURE_PACKAGE", EXTERNAL: "EXTERNAL_RELEASE" };
-export const RUNNER = { STATIC: "STATIC", RUNTIME: "RUNTIME", BACKEND: "BACKEND", DOM: "DOM", META: "META", NONE: "NONE" };
-export const GATE = { READY: "READY", NOT_READY: "NOT_READY", BLOCKED: "BLOCKED", INCOMPLETE: "INCOMPLETE", SCOPE_PASS: "SCOPE_PASS" };
+// Shared canonical implementation; browser and backend use identical semantics.
+export * from "../../../base44/shared/healthConstants.js";

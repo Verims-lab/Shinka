@@ -1,3 +1,4 @@
+import { categoryIntegrity, mappingIntegrity } from "../../../../base44/shared/contentArtifactValidator.ts";
 import { CLASS, RUNNER, STATUS } from "../constants";
 import { ev, verdict, blockedResult } from "../evidence";
 import { makeCase } from "../caseFactory";
@@ -24,15 +25,16 @@ export const H05_CASES = [
   c("H05-003", "Six approved categories reconcile", "Category set and counts (30/66/56/32/44/32) match İş Analizi v2.5; mappings use only these six.", withArtifacts((a) => {
     const actual = { mismatches: a.content260.categoryCountMismatches, unknown: a.content260.unknownCategories,
       m192Categories: a.mapping192.categoriesUsed.length, m240Categories: a.mapping240.categoriesUsed.length,
-      invalid: a.mapping192.invalidValues.length + a.mapping240.invalidValues.length };
-    return check(!actual.mismatches.length && !actual.unknown.length && actual.m192Categories === 6 && actual.m240Categories === 6 && actual.invalid === 0, actual, { mismatches: [], unknown: [], categories: 6, invalid: 0 }, "Category reconciliation");
+      invalid: a.mapping192.invalidValues.length + a.mapping240.invalidValues.length,
+      missingCategory: a.content260.missingCategory.length + a.mapping192.missingCategory.length + a.mapping240.missingCategory.length };
+    return check(categoryIntegrity(a), actual, { mismatches: [], unknown: [], categories: 6, invalid: 0, missingCategory: 0 }, "Category reconciliation");
   })),
   c("H05-004", "192 mapping artifact readable and complete", "192 rows covering 12 signs × 4 moon phases × 4 cycle phases.", withArtifacts((a) =>
-    check(a.mapping192.rowCount === 192 && a.mapping192.missingCombinations === 0, { rows: a.mapping192.rowCount, missingCombinations: a.mapping192.missingCombinations }, { rows: 192, missingCombinations: 0 }, "Coverage check"))),
+    check(mappingIntegrity(a.mapping192) && a.mapping192.rowCount === 192, { rows: a.mapping192.rowCount, missingCombinations: a.mapping192.missingCombinations }, { rows: 192, missingCombinations: 0 }, "Coverage check"))),
   c("H05-005", "240 mapping artifact readable and complete", "240 rows covering 12 × 4 × (4 + UNKNOWN); 48 UNKNOWN rows.", withArtifacts((a) =>
-    check(a.mapping240.rowCount === 240 && a.mapping240.missingCombinations === 0 && a.mapping240.unknownRows === 48, { rows: a.mapping240.rowCount, missingCombinations: a.mapping240.missingCombinations, unknownRows: a.mapping240.unknownRows }, { rows: 240, missingCombinations: 0, unknownRows: 48 }, "Coverage check"))),
+    check(mappingIntegrity(a.mapping240) && a.mapping240.rowCount === 240 && a.mapping240.unknownRows === 48, { rows: a.mapping240.rowCount, missingCombinations: a.mapping240.missingCombinations, unknownRows: a.mapping240.unknownRows }, { rows: 240, missingCombinations: 0, unknownRows: 48 }, "Coverage check"))),
   c("H05-006", "192 + UNKNOWN extension relationship", "The 240 file equals the 192 file (same categories) plus 48 UNKNOWN rows.", withArtifacts((a) =>
-    check(a.relation.relationshipHolds, a.relation, { relationshipHolds: true, differenceCount: 0 }, "Row-level comparison"))),
+    check(a.relation.relationshipHolds && mappingIntegrity(a.mapping192) && mappingIntegrity(a.mapping240), a.relation, { relationshipHolds: true, differenceCount: 0 }, "Row-level comparison"))),
   c("H05-007", "No duplicate IDs or mappings", "Pair IDs unique and well-formed; mapping combinations unique.", withArtifacts((a) => {
     const actual = { dupPairIds: a.content260.duplicateIds, badIds: a.content260.badIdFormat, dup192: a.mapping192.duplicates, dup240: a.mapping240.duplicates };
     return check(Object.values(actual).every((v) => v.length === 0), actual, { all: [] }, "Duplicate detection");

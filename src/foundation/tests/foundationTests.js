@@ -6,27 +6,29 @@ import { BUILD_LEDGER } from "@/foundation/buildLedger";
 import { SOURCE_INVENTORY } from "@/foundation/sourceInventory";
 import { UI_CONTRACT_TESTS } from "@/foundation/tests/uiContractTests";
 import { DESIGN_TOKENS } from "@/foundation/designTokens";
-import { loadSources, loadDocs } from "@/foundation/inspection/sourceScanner";
-import { checkSingleSource, findLegacyImports } from "@/foundation/inspection/sourceRules";
-import { checkDocs } from "@/foundation/inspection/docRules";
+import { loadStaticEvidence } from "@/foundation/inspection/sourceScanner";
+import { findLegacyImports } from "@/foundation/inspection/sourceRules";
 import { SUITES } from "@/foundation/health/suites";
 import { summarize, computeGate } from "@/foundation/health/aggregate";
 import { checkCatalog, checkSuiteCoverage } from "@/foundation/health/integrity";
 import { enforceEvidence } from "@/foundation/health/evidence";
 import { buildReport, redact } from "@/foundation/health/report";
 import { STATUS, APPLICABILITY as A, GATE } from "@/foundation/health/constants";
-import { fetchArtifactValidation } from "@/services/internal/artifactService";
+import { validatorFixtureResult } from "../../../base44/shared/contentArtifactValidator.ts";
+import { HARDENING_TESTS } from "./hardeningTests";
+import { ev } from "@/foundation/health/evidence";
 import { findUnlabeledControls, probeMobileOverflow } from "@/foundation/probes/domProbes";
 
 const assert = (cond, msg) => { if (!cond) throw new Error(msg); };
 const r = (id, status, applicability = A.CURRENT, extra = {}) =>
-  ({ id, suiteId: id.slice(0, 3), status, applicability, blocker: true, attempted: applicability === A.CURRENT, executed: applicability === A.CURRENT, ...extra });
+  ({ id, suiteId: id.slice(0, 3), status, applicability, blocker: true, attempted: applicability === A.CURRENT, executed: applicability === A.CURRENT, evidence: ev("SYNTHETIC_RUNTIME", "fixture", true, true, "Deterministic test fixture"), ...extra });
 const okSet = () => [r("H01-001", STATUS.PASS), r("H01-002", STATUS.PASS)];
 const fixtureCases = (ids) => ids.map((id) => ({ id, suiteId: id.slice(0, 3), title: "t", description: "d", severity: "HIGH", applicability: A.CURRENT, runnerType: "STATIC", classification: "STATIC" }));
 
+/** @type {import("./testTypes").FoundationTest[]} */
 export const FOUNDATION_TESTS = [
   ["T01", "BuildMarker format", () => assert(isValidMarker(BUILD_MARKER) && !isValidMarker("buildmarker-001") && !isValidMarker("Buildmarker-01"), "format")],
-  ["T02", "BuildMarker single source", async () => assert(checkSingleSource(await loadSources()).ok, "single source violated")],
+  ["T02", "BuildMarker single source", async () => assert((await loadStaticEvidence()).marker.ok, "single source violated")],
   ["T03", "Next-marker logic", () => assert(nextMarker("Buildmarker-001") === "Buildmarker-002" && nextMarker("Buildmarker-009") === "Buildmarker-010" && nextMarker("Buildmarker-099") === "Buildmarker-100", "next")],
   ["T04", "Marker cannot decrement", () => assert(validateTransition("Buildmarker-005", "Buildmarker-004").code === "BUILD_MARKER_DECREMENT", "decrement allowed")],
   ["T05", "Marker increments by exactly one", () => {
@@ -61,12 +63,12 @@ export const FOUNDATION_TESTS = [
   }],
   ["T16", "No empty applicable suite silently passes", () => assert(!checkSuiteCoverage([{ id: "H01", active: true }], []).ok, "empty suite passed")],
   ["T17", "Health report redaction", () => {
-    const out = JSON.stringify(redact({ token: "abc", nested: { email: "x" }, note: "mail a.b@corp.io Bearer abc.def" }));
-    assert(!out.includes("abc") && !out.includes("corp.io") && out.includes("[REDACTED]"), "not redacted");
+    const out = JSON.stringify(redact({ token: "abc", nested: { email: "x" }, note: "mail a.b@example.test Bearer abc.def" }));
+    assert(!out.includes("abc") && !out.includes("example.test") && out.includes("[REDACTED]"), "not redacted");
   }],
   ["T18", "Source inventory has 10 unique logical sources", () => assert(SOURCE_INVENTORY.length === 10 && new Set(SOURCE_INVENTORY.map((s) => s.file)).size === 10, "inventory")],
-  ["T19", "Canonical docs exist", async () => assert(checkDocs(await loadDocs(), BUILD_MARKER).missing.length === 0, "docs missing")],
-  ["T20", "Docs reference current BuildMarker", async () => assert(checkDocs(await loadDocs(), BUILD_MARKER).misaligned.length === 0, "docs misaligned")],
+  ["T19", "Canonical docs exist", async () => assert((await loadStaticEvidence()).docs.missing.length === 0, "docs missing")],
+  ["T20", "Docs reference current BuildMarker", async () => assert((await loadStaticEvidence()).docs.misaligned.length === 0, "docs misaligned")],
   ["T21", "Legacy-source firewall", async () => {
     // Isolated synthetic module: a real statement-level legacy import must be caught.
     const realImport = ["// synthetic module", "import a from '@/legacy/engine';", "export default a;"].join("\n");
@@ -75,12 +77,12 @@ export const FOUNDATION_TESTS = [
     const quoted = "const s = \"import a from '@/legacy/engine';\";";
     assert(findLegacyImports({ "/fixture/quoted.js": quoted }).length === 0, "string fixture misread as import");
     // Clean source mixed with an injected legacy module → detector fails the set.
-    const sources = await loadSources();
-    assert(findLegacyImports(sources).length === 0, `legacy import present: ${JSON.stringify(findLegacyImports(sources))}`);
-    assert(findLegacyImports({ ...sources, "/src/injected.js": realImport }).length === 1, "injected legacy import not caught");
+    const manifest = await loadStaticEvidence();
+    assert(manifest.legacy.length === 0, "real source legacy finding");
+    assert(findLegacyImports({ "/src/injected.js": realImport }).length === 1, "injected legacy import not caught");
   }],
   ["T22", "Content validator detects duplicates/missing fields", async () => {
-    const { result } = await fetchArtifactValidation("fixture");
+    const result = validatorFixtureResult();
     assert(result.contentDuplicateIds.length === 1 && result.contentMissingCellCount === 1 && result.mappingDuplicates.length === 1, "fixture defects not detected");
   }],
   ["T23", "Design tokens load", () => assert(DESIGN_TOKENS.touchTargetMin === 44 && /Cormorant/.test(DESIGN_TOKENS.typography.heading) && /Inter/.test(DESIGN_TOKENS.typography.body), "tokens")],
@@ -96,7 +98,7 @@ export const FOUNDATION_TESTS = [
 
 export async function runFoundationTests() {
   const out = [];
-  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...UI_CONTRACT_TESTS]) {
+  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...UI_CONTRACT_TESTS, ...HARDENING_TESTS]) {
     try { await fn(); out.push({ id, name, passed: true, detail: "ok" }); }
     catch (e) { out.push({ id, name, passed: false, detail: String(e?.message || e).slice(0, 160) }); }
   }

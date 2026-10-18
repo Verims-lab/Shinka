@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — documented only (no domain entity physically created)
-**Current BuildMarker:** Buildmarker-004
-**Last Updated:** 2026-10-18
+**Current BuildMarker:** Buildmarker-005
+**Last Updated:** 2026-10-19
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
 **Scope:** Product domain entities + separately listed internal tooling storage.
@@ -47,3 +47,6 @@ Relationships: 24 logical links from `21_Iliskiler` (see domainContract.js). Del
 | InternalHealthRun | Health run history (redacted report JSON, counts) | admin-only RLS (read/create/update/delete) |
 
 Build Ledger is SOURCE-based (`src/foundation/buildLedger.js`), not an entity.
+
+## Internal diagnostic storage hardening
+InternalHealthRun remains tooling-only, outside the 20 domain entities. Admin read is declared in RLS; client create/update/delete is denied. The server-admin internalHealth function alone creates summary records after validating the report and creating a private artifact. Compact report_json is bounded to 15,000 UTF-8 bytes; full redacted report_file_uri points to private storage. Stored summaries and signed readback are synthetic-tested; final live RLS/persistence/readback is unverified. OD-004/OD-009 remain future product-model decisions.

@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — validated contract, no import
-**Current BuildMarker:** Buildmarker-004
-**Last Updated:** 2026-10-18
+**Current BuildMarker:** Buildmarker-005
+**Last Updated:** 2026-10-19
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
 **Scope:** Content artifacts and selection rules. No live import in this package.
@@ -34,3 +34,6 @@ Existing local-day record → return. Else mapping category → random Active pa
 
 ## Ownership
 Workbooks are the content authority; any edit to copy/mapping is a source change and requires a new package.
+
+## Mandatory integrity propagation
+The shared validator returns missingCategory for content and both mappings. H05-003 fails missing/unknown categories or missing six-category coverage; H05-004/005 fail missing category cells, missing combinations, invalid values or duplicate mappings; H05-006 also requires valid base/extended mappings. H05-007 checks duplicate/malformed IDs and mappings; H05-008 checks every required TR/EN cell. T61–T67 generate synthetic 260/192/240 fixtures (no product copy) and run the actual H05 decisions for valid and invalid inputs. OD-002 remains a future content-import decision.

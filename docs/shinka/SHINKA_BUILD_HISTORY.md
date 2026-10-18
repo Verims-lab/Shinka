@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_BUILD_HISTORY.md
 **Status:** ACTIVE — append-only
-**Current BuildMarker:** Buildmarker-004
-**Last Updated:** 2026-10-18
+**Current BuildMarker:** Buildmarker-005
+**Last Updated:** 2026-10-19
 **Authoritative Source References:** src/foundation/buildMarker.js (authority), src/foundation/buildLedger.js (ledger)
 **Purpose:** Human-readable build history. Never rewrite old entries.
 **Scope:** All packages.
@@ -34,3 +34,12 @@ No end-user product package implemented. No GitHub work. No AI.
 - T41/H13-004: probe waited for `[data-health-root]`, which only Health Center renders; now `[data-probe-root]` on every internal page, explicit TIMEOUT/ERROR reasons.
 - History: report_json exceeded the entity field size limit; full redacted report now a private file + compact case index; error code HEALTH_HISTORY_PERSIST_FAILED.
 - Tests T49–T51 (51 total). Health catalog HC-003.0 unchanged (81 cases).
+
+## Buildmarker-005 — Foundation Repository Corrective & Hardening (2026-10-19)
+- Provider-only repository auth, localized safe errors, fixed 20px page padding and ≥52px auth controls; OD-003 repository policy implemented. Historical auth configuration evidence preserved; final live sign-in not claimed.
+- Syntax-aware canonical legacy scanner (static/dynamic imports; strings/comments/templates handled); personal-email fixture uses reserved example domain without exempting test files.
+- Safe build-time inspection metadata replaces raw source/document bundling; external source receipt is explicitly distinguished from artifact hash verification.
+- Canonical shared execution/evidence gate and missing-category decisions hardened. Admin-guarded backend operations, private full report with bounded summary, safe failure retention and signed readback added.
+- Same 74 canonical tests in Health and real-browser CLI; lint scope and type coverage expanded. HC-004.0: 16 suites, 82 cases (55 current, 24 future, 3 external); H03-009 added and H16-003 semantics tightened.
+- Repository Foundation OPEN: unresolved High dependency advisories documented in SECURITY_PRIVACY; no waiver. Local checks are not final deployed Base44 Full Health, live history readback or current Authentication configuration proof.
+- No product feature/data/legacy import. Git changes target Test only; main is not modified.

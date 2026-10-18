@@ -1,7 +1,8 @@
 import { forwardRef } from "react";
 
 // UI/UX v1.1 input: white, radius 16, min height 52, horizontal padding 16. Callers must supply a label.
-const ShinkaInput = forwardRef(function ShinkaInput({ className = "", ...props }, ref) {
+const ShinkaInput = forwardRef(/** @param {import("react").InputHTMLAttributes<HTMLInputElement>} props @param {import("react").ForwardedRef<HTMLInputElement>} ref */
+function ShinkaInput({ className = "", ...props }, ref) {
   return (
     <input
       ref={ref}

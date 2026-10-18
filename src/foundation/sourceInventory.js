@@ -1,6 +1,8 @@
 // Internal source inventory — LOGICAL sources (10). A logical source may be transported as several PHYSICAL parts
 // (attachment-size constraint only). Parts never create separate domains, precedence or rules.
-import { UIUX_COMPANION } from "@/foundation/uiuxTables";
+import { UIUX_COMPANION } from "./uiuxTables.js";
+export const SOURCE_PROVENANCE = "SOURCE_RECEIVED_AND_RECORDED";
+export const ORIGINAL_ARTIFACTS_HASH_VERIFIED_IN_REPO = false;
 export const SOURCE_SET_VERSION = "SRC-2026-10-18";
 export const LOGICAL_SOURCE_COUNT = 10;
 const BASE = "https://media.base44.com/files/public/user_69e753d0c5569af165ec5898/";

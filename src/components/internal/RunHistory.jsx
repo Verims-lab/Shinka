@@ -1,10 +1,20 @@
+import { useState } from "react";
+import ShinkaButton from "@/components/shinka/ShinkaButton";
+import { fullReportUrl } from "@/services/internal/healthRunStore";
 import ShinkaCard from "@/components/shinka/ShinkaCard";
 import StatusBadge from "@/components/shinka/StatusBadge";
 import StatePanel from "@/components/shinka/StatePanel";
 
 export default function RunHistory({ history, onRetry }) {
+  const [reportError,setReportError]=useState(false);
+  const openReport=async(run)=>{
+    setReportError(false);
+    try {const url=await fullReportUrl(run);if(typeof url!=="string"||!url.startsWith("https://"))throw new Error("INVALID_REPORT_URL");window.open(url,"_blank","noopener,noreferrer");}
+    catch {setReportError(true);}
+  };
   return (
     <ShinkaCard title="Run history">
+      {reportError && <StatePanel state="LOAD_FAILURE" message="The private report could not be opened." code="HEALTH_HISTORY_READ_FAILED" />}
       {history.state === "LOADING" && <StatePanel state="LOADING" message="Loading runs…" />}
       {history.state === "EMPTY" && <StatePanel state="EMPTY" message="No Health runs recorded yet." />}
       {history.state === "ERROR" && <StatePanel state="LOAD_FAILURE" message="Run history could not be loaded." code={history.code} onRetry={onRetry} />}
@@ -17,6 +27,7 @@ export default function RunHistory({ history, onRetry }) {
               <StatusBadge status={r.status} />
               <span className="text-shinka-muted">P{r.passed} F{r.failed} W{r.warnings} B{r.blocked} NA{r.not_applicable}</span>
               <span className="text-shinka-muted break-all">{r.completed_at}</span>
+              {r.report_file_uri && <ShinkaButton variant="secondary" onClick={()=>openReport(r)}>Open private report</ShinkaButton>}
             </li>
           ))}
         </ul>
