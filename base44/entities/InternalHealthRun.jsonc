@@ -1,0 +1,95 @@
+{
+  "name": "InternalHealthRun",
+  "type": "object",
+  "description": "INTERNAL TOOLING \u2014 Health run history. NOT a Shinka product-domain entity; excluded from the 20-entity contract. Must never contain tokens, secrets, health records, message bodies or PII.",
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "build_marker": {
+      "type": "string"
+    },
+    "health_catalog_version": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string",
+      "description": "FULL or SUITE:<id>"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "description": "Gate status"
+    },
+    "planned": {
+      "type": "number"
+    },
+    "attempted": {
+      "type": "number"
+    },
+    "executed": {
+      "type": "number"
+    },
+    "passed": {
+      "type": "number"
+    },
+    "failed": {
+      "type": "number"
+    },
+    "warnings": {
+      "type": "number"
+    },
+    "blocked": {
+      "type": "number"
+    },
+    "not_run": {
+      "type": "number"
+    },
+    "not_applicable": {
+      "type": "number"
+    },
+    "report_json": {
+      "type": "string",
+      "description": "Redacted structured report"
+    }
+  },
+  "required": [
+    "run_id",
+    "build_marker",
+    "health_catalog_version",
+    "scope",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-// Harmless foundation shell (Buildmarker-001 scope). Contains NO business data.
+// Harmless foundation shell (Foundation package scope). Contains NO business data.
 // Approved future customer navigation: Home · Calendar · Pattern; "You" via top-right profile icon.
 import { UserRound } from "lucide-react";
 
