@@ -1,0 +1,61 @@
+{
+  "name": "UserPatternSummary",
+  "type": "object",
+  "description": "Shinka user_pattern_summary. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "as_of_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "timezone": {
+      "type": "string",
+      "minLength": 1
+    },
+    "primary_category_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "primary_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "secondary_category_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "secondary_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "window_start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "window_end_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "calculated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "user_id",
+    "as_of_date",
+    "timezone",
+    "window_start_date",
+    "window_end_date",
+    "calculated_at"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}

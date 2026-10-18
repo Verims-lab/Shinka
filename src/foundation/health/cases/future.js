@@ -1,6 +1,5 @@
 // FUTURE_PACKAGE placeholders: stable IDs, NOT_APPLICABLE until their package becomes active.
 import { futureCase as f } from "../caseFactory";
-import { APPLICABILITY as A, CLASS as C } from "../constants";
 
 export const FUTURE_CASES = [
   f("H06", "H06-001", "Apple/Google-only sign-in", "No Shinka password; provider identity maps to one account."),
@@ -20,9 +19,6 @@ export const FUTURE_CASES = [
   f("H11", "H11-001", "Consent withdrawal deletes health data (verified)", "Success shown only after verified deletion."),
   f("H11", "H11-002", "No re-consent during open deletion job", "GRANTED not activated until job COMPLETED."),
   f("H11", "H11-003", "Delete Account → INACTIVE without routine deletion", "Access, generation and push stop."),
-  f("H12", "H12-001", "User row isolation", "A user cannot read another user's records.", A.FUTURE, C.LIVE_ENFORCEMENT),
-  f("H12", "H12-002", "Admin cannot modify immutable records", "Snapshots, consent/protection events and audit log are protected.", A.FUTURE, C.LIVE_ENFORCEMENT),
-  f("H12", "H12-003", "Internal tooling denied to non-admins", "InternalHealthRun and internal routes reject role 'user'.", A.FUTURE, C.LIVE_ENFORCEMENT),
   f("H14", "H14-001", "06:00 local generation is idempotent", "Scheduler and app-open use the same unique key."),
   f("H14", "H14-002", "One delivery record per message and type", "Retries update the same notification_delivery row."),
   f("H15", "H15-001", "Bounded external timeouts", "GeoNames/Moon failures never fabricate data."),

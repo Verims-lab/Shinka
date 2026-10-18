@@ -1,0 +1,52 @@
+{
+  "name": "UserCyclePhaseDay",
+  "type": "object",
+  "description": "Shinka user_cycle_phase_day. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phase_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "phase_code": {
+      "type": "string",
+      "enum": [
+        "MENSTRUAL",
+        "FOLLICULAR",
+        "OVULATION",
+        "LUTEAL"
+      ]
+    },
+    "calculation_basis": {
+      "type": "string",
+      "enum": [
+        "RECORDED_START",
+        "PREDICTED"
+      ]
+    },
+    "reference_period_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "calculated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "user_id",
+    "phase_date",
+    "phase_code",
+    "calculation_basis",
+    "calculated_at"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}

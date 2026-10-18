@@ -1,0 +1,63 @@
+{
+  "name": "HealthDataDeletionJob",
+  "type": "object",
+  "description": "Shinka health_data_deletion_job. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "protection_event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "job_status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "PROCESSING",
+        "RETRYING",
+        "COMPLETED",
+        "FAILED"
+      ]
+    },
+    "requested_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "retry_count": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
+    },
+    "last_retry_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "error_code": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "user_id",
+    "protection_event_id",
+    "job_status",
+    "requested_at",
+    "retry_count"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}

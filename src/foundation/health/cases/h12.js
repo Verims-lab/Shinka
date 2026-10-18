@@ -1,0 +1,17 @@
+import { SECURITY_TESTS } from '@/foundation/tests/securityTests';
+import { CLASS, RUNNER, APPLICABILITY } from '../constants';
+import { ev, blockedResult } from '../evidence';
+import { makeCase } from '../caseFactory';
+import { syntheticProbe } from './domainProbe';
+const c=makeCase('H12',{classification:CLASS.SYNTHETIC_RUNTIME,runnerType:RUNNER.RUNTIME});
+// First three stable IDs preserve the previous conceptual contract; others expand it.
+const groups=[
+ ['H12-001','User row isolation',['S01','S03','S04','S24']],
+ ['H12-002','Admin cannot modify immutable records',['S12','S14']],
+ ['H12-003','Internal tooling denied to non-admins',['S08']],
+ ...SECURITY_TESTS.filter(([id])=>!['S01','S03','S04','S24','S12','S14','S08'].includes(id)).map(([id,title],i)=>[`H12-${String(i+4).padStart(3,'0')}`,title,[id]]),
+];
+export const H12_CASES=[
+ ...groups.map(([id,title,ids])=>c(id,title,'Executes canonical backend/security helpers with isolated synthetic identities.',syntheticProbe(SECURITY_TESTS.filter(([testId])=>ids.includes(testId))))),
+ c('H12-901','LIVE_ENFORCEMENT_REQUIRED','Separate deployed anonymous / owner A / owner B / admin evidence is mandatory.',async()=>blockedResult(ev(CLASS.LIVE_ENFORCEMENT,'Base44 deployed enforcement',{verified:false},'Independent identity denials, protected mutation rejection, timestamp/readback proof','No synthetic result can close live enforcement')),{classification:CLASS.LIVE_ENFORCEMENT,runnerType:RUNNER.NONE,applicability:APPLICABILITY.EXTERNAL,blocker:false}),
+];

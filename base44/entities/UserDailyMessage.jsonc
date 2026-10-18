@@ -1,0 +1,65 @@
+{
+  "name": "UserDailyMessage",
+  "type": "object",
+  "description": "Shinka user_daily_message. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "shinka_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "timezone": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "message_pair_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "message_tr_snapshot": {
+      "type": "string",
+      "minLength": 1
+    },
+    "suggestion_tr_snapshot": {
+      "type": "string",
+      "minLength": 1
+    },
+    "message_en_snapshot": {
+      "type": "string",
+      "minLength": 1
+    },
+    "suggestion_en_snapshot": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "user_id",
+    "shinka_date",
+    "timezone",
+    "category_id",
+    "message_pair_id",
+    "message_tr_snapshot",
+    "suggestion_tr_snapshot",
+    "message_en_snapshot",
+    "suggestion_en_snapshot",
+    "generated_at"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "MessagePair",
+  "type": "object",
+  "description": "Shinka message_pair. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "category_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "message_tr": {
+      "type": "string",
+      "minLength": 1
+    },
+    "suggestion_tr": {
+      "type": "string",
+      "minLength": 1
+    },
+    "message_en": {
+      "type": "string",
+      "minLength": 1
+    },
+    "suggestion_en": {
+      "type": "string",
+      "minLength": 1
+    },
+    "is_active": {
+      "type": "string",
+      "enum": [
+        "Active"
+      ],
+      "default": "Active"
+    }
+  },
+  "required": [
+    "category_id",
+    "message_tr",
+    "suggestion_tr",
+    "message_en",
+    "suggestion_en",
+    "is_active"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}

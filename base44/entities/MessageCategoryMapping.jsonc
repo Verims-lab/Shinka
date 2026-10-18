@@ -1,0 +1,59 @@
+{
+  "name": "MessageCategoryMapping",
+  "type": "object",
+  "description": "Shinka message_category_mapping. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "sun_sign_code": {
+      "type": "string",
+      "enum": [
+        "ARIES",
+        "TAURUS",
+        "GEMINI",
+        "CANCER",
+        "LEO",
+        "VIRGO",
+        "LIBRA",
+        "SCORPIO",
+        "SAGITTARIUS",
+        "CAPRICORN",
+        "AQUARIUS",
+        "PISCES"
+      ]
+    },
+    "moon_phase_code": {
+      "type": "string",
+      "enum": [
+        "NEW",
+        "WAXING",
+        "FULL",
+        "WANING"
+      ]
+    },
+    "cycle_phase_code": {
+      "type": "string",
+      "enum": [
+        "MENSTRUAL",
+        "FOLLICULAR",
+        "OVULATION",
+        "LUTEAL",
+        "UNKNOWN"
+      ]
+    },
+    "category_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "sun_sign_code",
+    "moon_phase_code",
+    "cycle_phase_code",
+    "category_id"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}

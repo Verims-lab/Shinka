@@ -1,0 +1,35 @@
+{
+  "name": "MoonPhaseLookup",
+  "type": "object",
+  "description": "Shinka moon_phase_lookup. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "phase_code": {
+      "type": "string",
+      "enum": [
+        "NEW",
+        "WAXING",
+        "FULL",
+        "WANING"
+      ]
+    },
+    "start_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "phase_code",
+    "start_at_utc",
+    "end_at_utc"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}

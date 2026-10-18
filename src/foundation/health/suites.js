@@ -11,7 +11,7 @@ export const SUITES = Object.freeze([
   { id: "H09", name: "Daily Content Engine", active: false },
   { id: "H10", name: "Pattern / Astronomy / GeoNames", active: false },
   { id: "H11", name: "Consent / Account / Data Protection", active: false },
-  { id: "H12", name: "Security & Ownership", active: false },
+  { id: "H12", name: "Security & Ownership", active: true },
   { id: "H13", name: "UI / UX / Accessibility", active: true },
   { id: "H14", name: "Notifications & Scheduler", active: false },
   { id: "H15", name: "Resilience & Performance", active: false },

@@ -1,0 +1,66 @@
+{
+  "name": "NotificationDelivery",
+  "type": "object",
+  "description": "Shinka notification_delivery. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "daily_message_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "notification_type": {
+      "type": "string",
+      "enum": [
+        "DAILY_SHINKA"
+      ],
+      "default": "DAILY_SHINKA"
+    },
+    "scheduled_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "delivery_status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "SENT",
+        "FAILED",
+        "SKIPPED"
+      ]
+    },
+    "attempt_count": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
+    },
+    "last_attempt_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sent_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "error_code": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "user_id",
+    "daily_message_id",
+    "notification_type",
+    "scheduled_at",
+    "delivery_status",
+    "attempt_count"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}

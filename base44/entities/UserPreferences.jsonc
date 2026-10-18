@@ -1,0 +1,47 @@
+{
+  "name": "UserPreferences",
+  "type": "object",
+  "description": "Shinka user_preferences. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language_code": {
+      "type": "string",
+      "enum": [
+        "tr",
+        "en"
+      ]
+    },
+    "notifications_enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "notification_time": {
+      "type": "string",
+      "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$",
+      "enum": [
+        "06:00"
+      ],
+      "default": "06:00"
+    },
+    "timezone": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "user_id",
+    "language_code",
+    "notifications_enabled",
+    "notification_time",
+    "timezone"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}
