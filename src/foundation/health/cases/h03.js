@@ -28,5 +28,5 @@ export const H03_CASES = [
     const results = await runFoundationTests();
     const failed = results.filter((t) => !t.passed).map((t) => `${t.id}:${t.detail}`);
     return verdict(failed.length === 0, ev(CLASS.SYNTHETIC_RUNTIME, "src/foundation/tests/foundationTests.js", { total: results.length, failed }, { failed: [] }, "In-app foundation test run"));
-  }, { runnerType: RUNNER.RUNTIME, classification: CLASS.SYNTHETIC_RUNTIME, timeoutMs: 60000 }),
+  }, { runnerType: RUNNER.RUNTIME, classification: CLASS.SYNTHETIC_RUNTIME, timeoutMs: 90000 }),
 ];

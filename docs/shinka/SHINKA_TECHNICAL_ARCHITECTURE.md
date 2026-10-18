@@ -2,12 +2,12 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-001
+**Current BuildMarker:** Buildmarker-002
 **Last Updated:** 2026-10-18
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
-**Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` backend function, `InternalHealthRun` internal storage.
+**Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` backend function, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** All product engines.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 

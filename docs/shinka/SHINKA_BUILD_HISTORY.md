@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUILD_HISTORY.md
 **Status:** ACTIVE — append-only
-**Current BuildMarker:** Buildmarker-001
+**Current BuildMarker:** Buildmarker-002
 **Last Updated:** 2026-10-18
 **Authoritative Source References:** src/foundation/buildMarker.js (authority), src/foundation/buildLedger.js (ledger)
 **Purpose:** Human-readable build history. Never rewrite old entries.
@@ -12,3 +12,11 @@
 Scope: source-of-truth framework · BuildMarker · incremental build governance · Health Center · regression architecture · canonical documentation · code/UI standards · internal Build & Environment surface.
 Health catalog: HC-001.0. Expected gate: BLOCKED (H02-004, H13-006 — UI/UX v1.1 not received).
 No end-user product package implemented. No GitHub work. No AI.
+
+## Buildmarker-002 — UI/UX v1.1 Split-Source Reconciliation (2026-10-18)
+- The original UI/UX v1.1 DOCX exceeded the Base44 attachment size limit; it was supplied as four transport parts (Part 1–4 of 4).
+- Parts read in order; continuity verified; reconstructed as ONE logical source (SRC-03). Logical sources 10, physical attachments 13.
+- Source inventory corrected (logical vs physical model); OD-001 resolved by source receipt; OD-010/OD-011 recorded.
+- Visual standards reconciled: v1.1 colors, typography, spacing, radii, card/button/input, 200 ms motion, light-only; navigation + Lucide icon contract; centralized UI states and EN/TR localization infrastructure.
+- Health catalog HC-002.0: split-source integrity (H02-007) and UI/UX contract cases (H13-006…011); tests T26–T45.
+- No end-user product package started. No product data imported. No GitHub work.

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — validated contract, no import
-**Current BuildMarker:** Buildmarker-001
+**Current BuildMarker:** Buildmarker-002
 **Last Updated:** 2026-10-18
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.

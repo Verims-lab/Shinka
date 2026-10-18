@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary (not implemented)
-**Current BuildMarker:** Buildmarker-001
+**Current BuildMarker:** Buildmarker-002
 **Last Updated:** 2026-10-18
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -12,7 +12,7 @@
 **Open Decisions:** OD-002, OD-003
 
 ## Account / Authentication (UC-01, KK-01)
-Apple or Google only; no Shinka password; one account per provider identity. 18+ checkbox (initially empty) must be checked before auth starts; age is re-checked from birth date (backend). Logout does not change account status.
+Apple or Google only; no Shinka password; one account per provider identity. 18+ checkbox (initially empty) must be checked before auth starts; age is re-checked from birth date (backend). Sign Out does not change account status.
 
 ## Onboarding (UC-02…06)
 Intro → optional name (trim, ≤50) → sign-in → birth date (required, valid, not future, 18+) → optional birth time (HH:mm 24h) and GeoNames-selected birthplace (no free text) → optional period info with explicit health consent → first pair prepared immediately. Sun sign: always one of 12; missing time ⇒ 00:00 for calculation only, birth_time stays NULL; no UNCERTAIN.
@@ -27,7 +27,7 @@ Only distinguishes recorded vs predicted period days. Selecting a date never sav
 Recurring Themes: 1–29 days use all history, ≥30 rolling last 30; based on user_daily_message.category_id actually assigned; max two categories; ties → most recently seen; no inference. Lunar Timeline: previous New Moon → next New Moon, proportional, local dd.MM HH:mm, no horizontal scroll.
 
 ## You (UC-18…24)
-Edit name, birth date, time, birthplace in one screen; Sun sign read-only. Language TR/EN. Notifications on/off; time fixed 06:00 (notification_time stored, not editable). Privacy Policy, Terms of Service, Health Data Consent, Logout, Delete Account (→ INACTIVE, no routine deletion; no separate Deactivate screen).
+Edit name, birth date, time, birthplace in one screen; Sun sign read-only. Language TR/EN. Notifications on/off; time fixed 06:00 (notification_time stored, not editable). Privacy Policy, Terms of Service, Health Data Consent, Sign Out, Delete Account (→ INACTIVE via "Deactivate account" confirmation, no routine deletion; no separate Deactivate screen). Presentation per SRC-03 §7 (see SHINKA_UI_UX_STANDARDS.md).
 
 ## Health Consent (UC-05/22, KK-25/26/36)
 Explicit separate consent with version + time. Withdrawal: warning + confirmation → processing stops immediately → settings, records, predictions, phase days deleted and verified → success only after verification; retries automatic; one open job per user; re-consent only after completion; deleted data never returns.
