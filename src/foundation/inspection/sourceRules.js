@@ -1,3 +1,7 @@
+import { Parser } from "acorn";
+import jsx from "acorn-jsx";
+const parser = Parser.extend(jsx());
+
 // Pure static-inspection rules shared by Health and foundation tests (single implementation).
 const MARKER_LITERAL = /Buildmarker-\d{3}/g;
 export const MARKER_ROLES = {
@@ -14,15 +18,26 @@ export function checkSingleSource(sources) {
   return { ok, authorityExports, literalFiles, unexpected };
 }
 
-// Static import/export statements are only recognised at statement start (line start), so an import-like text
-// inside a string literal (e.g. a synthetic test fixture) is not a real import. Dynamic import() is matched anywhere.
-const IMPORT_RE = /^[ \t]*(?:import|export)\s[^'";]*?from\s*['"]([^'"]+)['"]|import\s*\(\s*['"]([^'"]+)['"]\s*\)|^[ \t]*import\s+['"]([^'"]+)['"]/gm;
+// Parse syntax, not source text: comments/string fixtures cannot become imports. Test files stay in scope.
+export function syntaxNodes(code) {
+  const ast = parser.parse(code, { ecmaVersion: "latest", sourceType: "module" });
+  const nodes = [];
+  const visit = (node) => {
+    if (!node || typeof node !== "object") return;
+    if (typeof node.type === "string") nodes.push(node);
+    for (const [key, value] of Object.entries(node)) {
+      if (key === "start" || key === "end") continue;
+      if (Array.isArray(value)) value.forEach(visit);
+      else if (value && typeof value === "object") visit(value);
+    }
+  };
+  visit(ast);
+  return nodes;
+}
 export function importsOf(code) {
-  const out = [];
-  let m;
-  IMPORT_RE.lastIndex = 0;
-  while ((m = IMPORT_RE.exec(code))) out.push(m[1] || m[2] || m[3]);
-  return out;
+  return syntaxNodes(code).filter((n) => ["ImportDeclaration", "ExportNamedDeclaration", "ExportAllDeclaration", "ImportExpression"].includes(n.type))
+    .map((n) => n.source?.type === "TemplateLiteral" && n.source.expressions.length === 0 ? n.source.quasis[0].value.cooked : n.source?.value)
+    .filter((value) => typeof value === "string");
 }
 
 const LEGACY_IMPORT_PATTERNS = [/legacy/i, /shinka[-_]?(old|prev|v0)/i, /check-?in/i, /symptom/i, /premium/i, /openai|anthropic/i];
@@ -30,7 +45,7 @@ export function findLegacyImports(sources) {
   const hits = [];
   for (const [p, code] of Object.entries(sources)) {
     for (const spec of importsOf(code)) if (LEGACY_IMPORT_PATTERNS.some((re) => re.test(spec))) hits.push({ file: p, spec });
-    if (/integrations\.Core\.InvokeLLM/.test(code)) hits.push({ file: p, spec: "AI_CALL" });
+    if (syntaxNodes(code).some((n) => n.type === "CallExpression" && n.callee?.property?.name === "InvokeLLM")) hits.push({ file: p, spec: "AI_CALL" });
   }
   return hits;
 }
@@ -43,11 +58,10 @@ export const findSecrets = (sources) =>
   Object.entries(sources).filter(([, c]) => SECRET_PATTERNS.some((re) => re.test(c))).map(([p]) => p);
 
 const EMAIL_RE = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}/g;
-const ALLOWED_EMAIL_DOMAINS = /@example\.(com|org|net)$/i;
+const ALLOWED_EMAIL_DOMAINS = /@(?:[A-Za-z0-9-]+\.)*example\.(com|org|net|test|invalid)$/i;
 export function findPersonalEmails(sources) {
   const hits = [];
   for (const [p, c] of Object.entries(sources)) {
-    if (MARKER_ROLES[p] === "FIXTURE") continue; // synthetic redaction fixtures only
     for (const m of c.match(EMAIL_RE) || []) if (!ALLOWED_EMAIL_DOMAINS.test(m)) hits.push({ file: p });
   }
   return hits;
@@ -71,4 +85,18 @@ export function checkInternalUiPurity(sources) {
     if (UI_FORBIDDEN_TOKENS.test(sources[p])) violations.push({ file: p, spec: "FORBIDDEN_TOKEN" });
   }
   return { files: files.length, violations };
+}
+// Customer/auth application policy; fixtures are parsed as data, never blanket-exempted from source scans.
+export function checkAuthSurface(sources) {
+  const violations = [];
+  const passwordCalls = /^(loginViaEmailPassword|register|resetPasswordRequest|resetPassword|verifyOtp|resendOtp)$/;
+  for (const [file, code] of Object.entries(sources)) {
+    for (const node of syntaxNodes(code)) {
+      if (node.type === "CallExpression" && passwordCalls.test(node.callee?.property?.name || "") && node.callee?.object?.property?.name === "auth") violations.push({ file, kind: "PASSWORD_OPERATION" });
+      if (node.type === "CallExpression" && node.callee?.property?.name === "loginWithProvider" && typeof node.arguments[0]?.value === "string" && !["apple", "google"].includes(node.arguments[0].value)) violations.push({ file, kind: "UNAPPROVED_PROVIDER" });
+      if (node.type === "JSXAttribute" && node.name?.name === "path" && /^\/(register|forgot-password|reset-password)$/.test(node.value?.value || "")) violations.push({ file, kind: "PASSWORD_ROUTE" });
+      if (node.type === "JSXAttribute" && node.name?.name === "type" && node.value?.value === "password") violations.push({ file, kind: "PASSWORD_FIELD" });
+    }
+  }
+  return { ok: violations.length === 0, violations };
 }

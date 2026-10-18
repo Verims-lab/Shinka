@@ -27,6 +27,7 @@ export function checkResults(results) {
     badStatus: results.filter((r) => !inEnum(STATUS, r.status)).map((r) => r.id),
     badEvidenceClass: results.filter((r) => r.evidence && !inEnum(CLASS, r.evidence.classification)).map((r) => r.id),
     passWithoutEvidence: results.filter((r) => r.status === STATUS.PASS && !hasEvidence(r.evidence)).map((r) => r.id),
+    passWithoutExecution: results.filter((r) => r.applicability === APPLICABILITY.CURRENT && r.status === STATUS.PASS && (r.attempted !== true || r.executed !== true)).map((r) => r.id),
     executedNotAttempted: results.filter((r) => r.executed && !r.attempted).map((r) => r.id),
   };
   return { ok: Object.values(issues).every((v) => v.length === 0), issues };

@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-004
-**Last Updated:** 2026-10-18
+**Current BuildMarker:** Buildmarker-005
+**Last Updated:** 2026-10-19
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
@@ -55,7 +55,7 @@ Continuity (read in order 1→2→3→4): P1 ends ON-02 → P2 starts ON-03; P2 
 | Technical architecture | SRC-04 | SRC-05 | DOĞRULANACAK → UNVERIFIED_PLATFORM_CAPABILITY. |
 | Data model | SRC-05 + SRC-07 | SRC-06 | v1.2 wins over v1.1 on conflict. |
 | Content copy | SRC-08 | — | Not imported. |
-| Content mapping | SRC-09 + SRC-10 | — | 240 = 192 + 48 UNKNOWN (validated live). |
+| Content mapping | SRC-09 + SRC-10 | — | 240 = 192 + 48 UNKNOWN (prior recorded validation; final deployed validator must be rerun). |
 
 Illustrative UI mockups never override written business/data rules; the written UI specification overrides mockups.
 
@@ -69,7 +69,7 @@ Illustrative UI mockups never override written business/data rules; the written 
 |---|---|---|
 | OD-001 | RESOLVED_BY_SOURCE_RECEIPT | UI/UX v1.1 received as 4 transport parts; continuity verified; tokens reconciled. |
 | OD-002 | OPEN — FUTURE_PACKAGE | TR display mapping confirmed (SRC-03 table 4); category_code values + EN display names undefined. |
-| OD-003 | RESOLVED_BY_CONFIGURATION | Platform login methods re-read: Google + Apple only. Live sign-in proof remains EXTERNAL_RELEASE. |
+| OD-003 | RESOLVED_BY_REPOSITORY_POLICY | Apple/Google-only repository surface implemented; historical platform snapshot preserved. Current dashboard configuration and live sign-in remain external verification. |
 | OD-004 | OPEN — FUTURE_PACKAGE | Explicit created_at/updated_at vs Base44 built-ins. |
 | OD-005 | NOTED | "Büyüyen Ay (Hilal)" label mapped to WAXING; UI/UX v1.1 does not redefine it. |
 | OD-006 | RESOLVED_BY_PRECEDENCE | notification_delivery uniqueness → DB v1.2. |
@@ -78,3 +78,8 @@ Illustrative UI mockups never override written business/data rules; the written 
 | OD-009 | OPEN — FUTURE_PACKAGE | Platform-native enforcement of admin-immutable records unverified (H12). |
 | OD-010 | RESOLVED_BY_SOURCE_RECEIPT | Machine-readable companion exposes all 11 UI/UX tables. |
 | OD-011 | NOTED | Onboarding step names (§3 "Welcome/Login", "Cycle Details") vs screen titles; screen titles canonical. |
+
+## Evidence provenance
+Inventory READ/continuity/table records mean **SOURCE_RECEIVED_AND_RECORDED**. The original DOCX/XLSX artifacts are external and are not versioned/hash-verified in this repository. This package does not claim **SOURCE_ARTIFACT_HASH_VERIFIED_IN_REPO**. Build-time SHA-256 values cover current repository code/config/canonical Markdown only; they do not authenticate original external files. External artifact hashing is not an additional Foundation blocker.
+
+OD-003 closes repository policy implementation only. The recorded Authentication panel snapshot is historical evidence, not a fresh panel inspection or successful Apple/Google sign-in. OD-002, OD-004 and OD-009 remain OPEN — FUTURE_PACKAGE.

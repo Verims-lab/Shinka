@@ -7,14 +7,14 @@ import { listHealthRuns } from "@/services/internal/healthRunStore";
 import { classifyError } from "@/foundation/errors";
 
 export default function LatestHealthCard() {
-  const [state, setState] = useState({ s: "LOADING" });
+  const [state, setState] = useState({ s: "LOADING", run: null, code: null });
   const load = async () => {
-    setState({ s: "LOADING" });
+    setState({ s: "LOADING", run: null, code: null });
     try {
       const runs = await listHealthRuns(20);
       const full = runs.find((r) => r.scope === "FULL");
-      setState(full ? { s: "SUCCESS", run: full } : { s: "EMPTY" });
-    } catch (e) { setState({ s: "ERROR", code: classifyError(e) }); }
+      setState(full ? { s: "SUCCESS", run: full, code: null } : { s: "EMPTY", run: null, code: null });
+    } catch (e) { setState({ s: "ERROR", run: null, code: classifyError(e) }); }
   };
   useEffect(() => { load(); }, []);
   const r = state.run;

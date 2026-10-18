@@ -30,6 +30,7 @@ async function executeCase(def, ctx) {
   }
 }
 
+/** @param {{suiteId?: string|null, onProgress?: (done: number, total: number) => void}} [options] */
 export async function runHealth({ suiteId = null, onProgress } = {}) {
   const scope = suiteId ? `SUITE:${suiteId}` : "FULL";
   const started = new Date();

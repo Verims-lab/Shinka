@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-004
-**Last Updated:** 2026-10-18
+**Current BuildMarker:** Buildmarker-005
+**Last Updated:** 2026-10-19
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
@@ -25,3 +25,8 @@
 - Do NOT increment for read-only investigation, Health execution only, doc inspection without tracked change, or external manual testing.
 - Never decrement or skip (`validateTransition`). Every doc's `Current BuildMarker` header is updated in the same package.
 - Ledger (`src/foundation/buildLedger.js`) is append-only history; it is not a competing authority.
+
+## Git and closure workflow
+Fetch before each task. Compare origin/main and origin/Test: safely fast-forward Test from main only when main is ahead without divergence; if Test is ahead, continue and report. Stop for divergent branches, local-only commits, or unexpected dirty state. Bring a behind local Test forward before work. Work/commit/push only Test; never force or update main. At completion verify local Test equals origin/Test.
+
+Repository closure is REPO_CLOSED_PENDING_BASE44_VERIFICATION only after repository/local checks pass with zero Critical/High. FULLY_CLOSED additionally requires deployed current-marker Full Health and required live history readback. Current package remains OPEN for the dependency blockers documented in SECURITY_PRIVACY. No next product package is started.

@@ -17,7 +17,7 @@ export const H16_CASES = [
     const r = checkSummaryReconciles(ctx.results);
     return verdict(r.ok, ev(CLASS.SYNTHETIC_RUNTIME, "current run results", r.checks, "all true", `${ctx.results.length} results reconciled`));
   }),
-  c("H16-003", "No PASS without evidence; valid statuses", "Every PASS carries complete evidence; all statuses and classifications are valid.", async (ctx) => {
+  c("H16-003", "No PASS without execution/evidence; valid statuses", "Every current PASS was attempted and executed with complete evidence; statuses and classifications are valid.", async (ctx) => {
     const r = checkResults(ctx.results);
     return verdict(r.ok, ev(CLASS.SYNTHETIC_RUNTIME, "current run results", r.issues, "all issue lists empty", "Result self-test"));
   }),

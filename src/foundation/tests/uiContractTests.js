@@ -4,13 +4,11 @@ import { BUILD_LEDGER } from "@/foundation/buildLedger";
 import { SOURCE_INVENTORY, AUTHORITY_TABLE, LOGICAL_SOURCE_COUNT, EXPECTED_UIUX_PARTS, UIUX_CONTINUITY, physicalAttachmentCount } from "@/foundation/sourceInventory";
 import { checkSplitSource, checkUiuxTables, uiuxTablesInput } from "@/foundation/inspection/sourceIntegrity";
 import { checkAuthPolicy } from "@/foundation/authPolicy";
-import { checkNavContract, findDarkVariants } from "@/foundation/inspection/uiRules";
+import { checkNavContract } from "@/foundation/inspection/uiRules";
 import { BOTTOM_NAV, PROFILE_ENTRY } from "@/foundation/uiContract";
 import { DESIGN_TOKENS } from "@/foundation/designTokens";
 import { iconExports } from "@/foundation/probes/iconProbe";
-import { loadSources, loadDocs } from "@/foundation/inspection/sourceScanner";
-import { findLegacyImports } from "@/foundation/inspection/sourceRules";
-import { checkDocs } from "@/foundation/inspection/docRules";
+import { loadStaticEvidence } from "@/foundation/inspection/sourceScanner";
 import { findUnlabeledControls, probeMobileOverflow } from "@/foundation/probes/domProbes";
 import { HEALTH_CATALOG_VERSION } from "@/foundation/health/constants";
 import { buildHistoryRecord, HISTORY_FIELD_LIMIT } from "@/foundation/health/historyRecord";
@@ -21,6 +19,7 @@ const uiParts = () => SOURCE_INVENTORY.find((s) => s.id === "SRC-03")?.parts || 
 const split = (inv) => checkSplitSource(inv, AUTHORITY_TABLE, UIUX_CONTINUITY);
 const COLORS = { primaryPlum: "#6F415A", deepPlumText: "#4C263F", mutedMauve: "#93637B", dustyRose: "#D8A5AA", blushPink: "#F2D7D4", softLavender: "#E7DCE8", warmIvory: "#FFF8F3", softCream: "#F9EEE8", mutedTaupe: "#87757D", divider: "#EDE3E3", white: "#FFFFFF" };
 
+/** @type {import("./testTypes").FoundationTest[]} */
 export const UI_CONTRACT_TESTS = [
   ["T26", "Logical source count = 10", () => assert(SOURCE_INVENTORY.length === LOGICAL_SOURCE_COUNT && LOGICAL_SOURCE_COUNT === 10, "logical count")],
   ["T27", "Physical UI/UX parts = 4", () => assert(uiParts().length === 4, "part count")],
@@ -50,7 +49,7 @@ export const UI_CONTRACT_TESTS = [
     assert(k.primaryMinHeight === 52 && k.inputMinHeight === 52 && k.inputPaddingX === 16 && k.primaryRadius === 16 && k.disabledOpacity === 0.45 && DESIGN_TOKENS.pagePaddingX === 20, "geometry");
     assert(JSON.stringify(DESIGN_TOKENS.spacing) === "[4,8,12,16,20,24,32,40]" && JSON.stringify(DESIGN_TOKENS.radii) === '{"sm":12,"md":16,"lg":20,"pill":999}', "scale");
   }],
-  ["T39", "No dark-theme target", async () => assert(DESIGN_TOKENS.theme === "light-only" && findDarkVariants(await loadSources(), ["/src/components/shinka/", "/src/pages/Home.jsx"]).length === 0, "dark target")],
+  ["T39", "No dark-theme target", async () => assert(DESIGN_TOKENS.theme === "light-only" && (await loadStaticEvidence()).ui.darkFiles.length === 0, "dark target")],
   ["T40", "Icon-only controls require accessible labels", () => {
     const d = document.createElement("div");
     const btn = document.createElement("button");
@@ -65,18 +64,16 @@ export const UI_CONTRACT_TESTS = [
     const p = await probeMobileOverflow("/internal/build?probe=1", 360, 15000);
     assert(p.state === "MEASURED" && !p.overflow, `probe ${JSON.stringify(p)}`);
   }],
-  ["T42", "SHINKA_UI_UX_STANDARDS BuildMarker aligned", async () => assert(!checkDocs(await loadDocs(), BUILD_MARKER).misaligned.some((m) => m.doc === "SHINKA_UI_UX_STANDARDS.md"), "ui/ux doc misaligned")],
+  ["T42", "SHINKA_UI_UX_STANDARDS BuildMarker aligned", async () => assert(!(await loadStaticEvidence()).docs.misaligned.some((m) => m.doc === "SHINKA_UI_UX_STANDARDS.md"), "ui/ux doc misaligned")],
   ["T43", "No legacy UI import", async () => {
-    const ui = Object.fromEntries(Object.entries(await loadSources()).filter(([p]) => /\/src\/(components|pages)\//.test(p)));
-    assert(findLegacyImports(ui).length === 0, "legacy UI import");
+    assert((await loadStaticEvidence()).legacy.filter((hit)=>/\/src\/(components|pages)\//.test(hit.file)).length===0,"legacy UI import");
   }],
   ["T44", "Health BuildMarker / catalog synchronization", () => {
     const last = BUILD_LEDGER[BUILD_LEDGER.length - 1];
     assert(last.build_marker === BUILD_MARKER && last.health_catalog_version === HEALTH_CATALOG_VERSION, "marker/catalog out of sync");
   }],
   ["T45", "Build History records each package exactly once", async () => {
-    const hist = checkDocs(await loadDocs(), BUILD_MARKER).byName["SHINKA_BUILD_HISTORY.md"] || "";
-    const bad = BUILD_LEDGER.filter((e) => hist.split(`## ${e.build_marker} — ${e.package_name}`).length !== 2).map((e) => e.build_marker);
+    const bad = (await loadStaticEvidence()).docs.buildHistoryMismatches;
     assert(!bad.length, `history mismatch: ${bad.join(",")}`);
   }],
   ["T46", "All 11 UI/UX tables machine-readable and consistent", () => {
@@ -98,10 +95,10 @@ export const UI_CONTRACT_TESTS = [
     const rep = { runId: "r1", buildMarker: BUILD_MARKER, healthCatalogVersion: HEALTH_CATALOG_VERSION, environment: "t", scope: "FULL",
       startedAt: "2026-01-01T00:00:00Z", completedAt: "2026-01-01T00:01:00Z", gate: { status: "READY" },
       summary: { planned: 2, attempted: 2, executed: 2, passed: 2, failed: 0, warnings: 0, blocked: 0, notRun: 0, notApplicable: 0 },
-      cases: [{ id: "H01-001", status: "PASS", evidence: { email: "person@realmail.io" } }, { id: "H01-002", status: "PASS" }] };
+      cases: [{ id: "H01-001", status: "PASS", evidence: { email: "person@example.test" } }, { id: "H01-002", status: "PASS" }] };
     const rec = buildHistoryRecord(rep, "uri://x");
     assert(rec.passed === 2 && rec.status === "READY" && rec.run_id === "r1" && rec.report_file_uri === "uri://x", "summary mismatch");
-    assert(rec.report_json.length < HISTORY_FIELD_LIMIT && !/realmail/.test(rec.report_json), "compact report unsafe");
+    assert(rec.report_json.length < HISTORY_FIELD_LIMIT && !/person/.test(rec.report_json), "compact report unsafe");
   }],
   ["T51", "History persistence failure has its own error code", () => {
     assert(classifyError(new ShinkaError(ERROR_CODES.HEALTH_HISTORY_PERSIST_FAILED, "x")) === "HEALTH_HISTORY_PERSIST_FAILED", "code");

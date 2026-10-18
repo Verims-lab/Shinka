@@ -7,8 +7,9 @@ export const OBSERVED_AUTH_METHODS = Object.freeze({
   methods: ["google", "apple"],
 });
 
+/** @param {{methods: string[], observedAt?: string, source?: string}} [observed] */
 export function checkAuthPolicy(observed = OBSERVED_AUTH_METHODS) {
   const unapproved = observed.methods.filter((m) => !APPROVED_AUTH_METHODS.includes(m));
-  return { ok: unapproved.length === 0, passwordEnabled: observed.methods.includes("password"), unapproved,
+  return { ok: unapproved.length === 0 && APPROVED_AUTH_METHODS.every((m) => observed.methods.includes(m)), passwordEnabled: observed.methods.includes("password"), unapproved,
     appleConfigured: observed.methods.includes("apple"), googleConfigured: observed.methods.includes("google") };
 }

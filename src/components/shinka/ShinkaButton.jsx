@@ -5,6 +5,7 @@ const VARIANTS = {
 };
 
 // UI/UX v1.1: primary CTA ≥52px, radius 16, disabled ≈.45; every control ≥44×44; transition 200ms.
+/** @param {import("react").ButtonHTMLAttributes<HTMLButtonElement> & {variant?: "primary"|"secondary"|"ghost"}} props */
 export default function ShinkaButton({ variant = "primary", className = "", children, ...props }) {
   return (
     <button

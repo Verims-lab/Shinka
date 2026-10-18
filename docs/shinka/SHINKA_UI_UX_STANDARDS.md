@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-004
-**Last Updated:** 2026-10-18
+**Current BuildMarker:** Buildmarker-005
+**Last Updated:** 2026-10-19
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
@@ -92,3 +92,8 @@ Withdraw bottom sheet opens only when triggered: "Withdraw health data consent?"
 
 ## Future package boundaries
 Onboarding (H07), Home/content (H09), Calendar (H08), Pattern (H10), You/consent/account (H11), notifications (H14). No customer screens in Foundation.
+
+## Foundation auth shell alignment
+`PageContainer` now uses fixed 20px horizontal padding at mobile and desktop widths. `/login` uses ShinkaCard/ShinkaButton with Apple and Google only, primary controls at least 52px, localized safe error codes and no password fields/links. T74 measures actual 360px/1024px rendered layouts. This shell does not implement ON-03 onboarding/age consent or claim live sign-in.
+
+Shinka application components do not activate a dark theme, expose a toggle or use dark variants. Unused generic library `.dark` selectors remain outside the application policy scan; they are not evidence of a Shinka dark target.
