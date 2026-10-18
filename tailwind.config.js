@@ -41,6 +41,16 @@ module.exports = {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
+  			shinka: {
+  				ivory: 'hsl(var(--shinka-ivory))',
+  				surface: 'hsl(var(--shinka-surface))',
+  				plum: 'hsl(var(--shinka-plum))',
+  				'plum-deep': 'hsl(var(--shinka-plum-deep))',
+  				'plum-soft': 'hsl(var(--shinka-plum-soft))',
+  				ink: 'hsl(var(--shinka-ink))',
+  				muted: 'hsl(var(--shinka-muted))',
+  				line: 'hsl(var(--shinka-line))'
+  			},
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
