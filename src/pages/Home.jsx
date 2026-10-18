@@ -1,36 +1,36 @@
-// Harmless foundation shell (Foundation package scope). Contains NO business data.
-// Approved future customer navigation: Home · Calendar · Pattern; "You" via top-right profile icon.
-import { UserRound } from "lucide-react";
+// Harmless foundation shell (Foundation scope). Contains NO business data and no daily content.
+// Navigation follows the UI/UX v1.1 contract (uiContract): Home · Calendar · Pattern; You via top-right profile icon.
+import { House, CalendarDays, Moon, UserRound } from "lucide-react";
+import { BOTTOM_NAV } from "@/foundation/uiContract";
+import { t } from "@/foundation/i18n/strings";
+
+const ICONS = { House, CalendarDays, Moon };
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-shinka-ivory text-shinka-ink flex flex-col">
-      <header className="flex items-center justify-between px-6 pt-6">
-        <span className="font-heading text-2xl tracking-wide text-shinka-plum">Shinka</span>
-        <button
-          type="button"
-          aria-label="You (profile) — not available in this build"
-          disabled
-          className="h-11 w-11 rounded-full border border-shinka-line flex items-center justify-center text-shinka-muted"
-        >
-          <UserRound className="h-5 w-5" />
+    <div className="min-h-screen bg-shinka-ivory text-shinka-ink font-body flex flex-col">
+      <header className="flex items-center justify-between px-5 pt-6">
+        <span className="font-heading font-medium text-shinka-h3 text-shinka-plum">Shinka</span>
+        <button type="button" aria-label={t("nav.youUnavailable")} disabled
+          className="h-11 w-11 rounded-full border border-shinka-line flex items-center justify-center text-shinka-taupe">
+          <UserRound className="h-5 w-5" aria-hidden="true" />
         </button>
       </header>
-      <main className="flex-1 flex flex-col items-center justify-center px-8 text-center">
-        <p className="text-xs uppercase tracking-[0.3em] text-shinka-muted mb-6">Foundation build</p>
-        <h1 className="font-heading text-5xl leading-tight text-shinka-plum-deep max-w-md">
-          Shinka is being prepared.
-        </h1>
-        <p className="mt-6 text-sm text-shinka-muted max-w-xs leading-relaxed">
-          Daily content, Calendar and Pattern arrive in later packages. Nothing here is personalised yet.
-        </p>
+      <main className="flex-1 flex flex-col items-center justify-center px-5 text-center">
+        <p className="text-shinka-caption uppercase tracking-[0.3em] text-shinka-taupe mb-6">{t("shell.eyebrow")}</p>
+        <h1 className="font-heading font-medium text-shinka-h1 text-shinka-plum-deep max-w-md">{t("shell.title")}</h1>
+        <p className="mt-6 text-shinka-body text-shinka-taupe max-w-xs">{t("shell.body")}</p>
       </main>
-      <nav aria-label="Future navigation (inactive)" className="grid grid-cols-3 border-t border-shinka-line bg-shinka-surface">
-        {["Home", "Calendar", "Pattern"].map((label) => (
-          <span key={label} className="h-14 flex items-center justify-center text-xs tracking-wide text-shinka-muted">
-            {label}
-          </span>
-        ))}
+      <nav aria-label={t("nav.inactive")} className="grid grid-cols-3 border-t border-shinka-line bg-shinka-white">
+        {BOTTOM_NAV.map((item) => {
+          const Icon = ICONS[item.component];
+          return (
+            <span key={item.key} aria-disabled="true" className="min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-taupe">
+              <Icon className="h-5 w-5" aria-hidden="true" />
+              {t(item.labelKey)}
+            </span>
+          );
+        })}
       </nav>
     </div>
   );

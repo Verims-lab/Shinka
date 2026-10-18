@@ -8,7 +8,10 @@ module.exports = {
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
+  			sm: 'calc(var(--radius) - 4px)',
+  			'shinka-sm': '12px',
+  			'shinka-md': '16px',
+  			'shinka-lg': '20px'
   		},
   		colors: {
   			background: 'hsl(var(--background))',
@@ -42,14 +45,21 @@ module.exports = {
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
   			shinka: {
-  				ivory: 'hsl(var(--shinka-ivory))',
-  				surface: 'hsl(var(--shinka-surface))',
-  				plum: 'hsl(var(--shinka-plum))',
-  				'plum-deep': 'hsl(var(--shinka-plum-deep))',
-  				'plum-soft': 'hsl(var(--shinka-plum-soft))',
-  				ink: 'hsl(var(--shinka-ink))',
-  				muted: 'hsl(var(--shinka-muted))',
-  				line: 'hsl(var(--shinka-line))'
+  				plum: 'rgb(var(--shinka-plum) / <alpha-value>)',
+  				'plum-deep': 'rgb(var(--shinka-plum-deep) / <alpha-value>)',
+  				'plum-soft': 'rgb(var(--shinka-plum-soft) / <alpha-value>)',
+  				ink: 'rgb(var(--shinka-ink) / <alpha-value>)',
+  				mauve: 'rgb(var(--shinka-mauve) / <alpha-value>)',
+  				rose: 'rgb(var(--shinka-rose) / <alpha-value>)',
+  				blush: 'rgb(var(--shinka-blush) / <alpha-value>)',
+  				lavender: 'rgb(var(--shinka-lavender) / <alpha-value>)',
+  				ivory: 'rgb(var(--shinka-ivory) / <alpha-value>)',
+  				cream: 'rgb(var(--shinka-cream) / <alpha-value>)',
+  				taupe: 'rgb(var(--shinka-taupe) / <alpha-value>)',
+  				muted: 'rgb(var(--shinka-muted) / <alpha-value>)',
+  				line: 'rgb(var(--shinka-line) / <alpha-value>)',
+  				white: 'rgb(var(--shinka-white) / <alpha-value>)',
+  				surface: 'rgb(var(--shinka-surface) / <alpha-value>)'
   			},
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
@@ -71,6 +81,18 @@ module.exports = {
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
   			}
+  		},
+  		fontSize: {
+  			'shinka-h1': ['34px', { lineHeight: '40px' }],
+  			'shinka-h2': ['28px', { lineHeight: '34px' }],
+  			'shinka-h3': ['24px', { lineHeight: '30px' }],
+  			'shinka-h4': ['20px', { lineHeight: '26px' }],
+  			'shinka-body-lg': ['17px', { lineHeight: '25px' }],
+  			'shinka-body': ['15px', { lineHeight: '22px' }],
+  			'shinka-caption': ['13px', { lineHeight: '18px' }]
+  		},
+  		boxShadow: {
+  			'shinka-card': '0 2px 10px rgba(76,38,63,.05)'
   		},
   		fontFamily: {
   			heading: ['var(--font-heading)'],

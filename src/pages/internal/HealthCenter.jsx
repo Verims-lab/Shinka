@@ -26,7 +26,7 @@ export default function HealthCenter() {
       </PageHeader>
       <HealthControls running={running} report={report} onRun={run} />
       {running && <StatePanel state="LOADING" message={`Running ${progress[0]}/${progress[1]}…`} />}
-      {saveError && <StatePanel state="ERROR" message="Run finished but could not be saved to history." code={saveError} />}
+      {saveError && <StatePanel state="ACTION_ERROR" message="Run finished but could not be saved to history." code={saveError} />}
       {report && !running && <HealthSummary report={report} />}
       {suites.map((s) => <SuiteSection key={s.id} suite={s} cases={cases.filter((c) => c.suiteId === s.id)} />)}
       <TestsPanel />

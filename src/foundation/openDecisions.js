@@ -1,10 +1,11 @@
 // OPEN_DECISION register. Status: OPEN | RESOLVED_BY_PRECEDENCE (documented rule) | NOTED (non-material).
 // Nothing here may be silently marked resolved: RESOLVED_* entries must cite a resolution rule.
 export const OPEN_DECISIONS = Object.freeze([
-  { id: "OD-001", status: "OPEN", blocking: true, sources: ["Task brief (10 files)", "Uploaded set (9 files)"],
-    conflict: "Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx is listed as authoritative but was not uploaded.",
-    impact: "Exact colors, typography scale, spacing, copy and error texts cannot be verified; tokens are PROVISIONAL.",
-    recommendation: "Upload UI/UX v1.1; next package reconciles tokens and closes H02-004/H13-006." },
+  { id: "OD-001", status: "RESOLVED_BY_SOURCE_RECEIPT", blocking: false, sources: ["Task brief (10 files)", "UI/UX v1.1 Part 1–4 (Buildmarker-002)"],
+    conflict: "Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx was listed as authoritative but was not uploaded in Buildmarker-001.",
+    impact: "Tokens were PROVISIONAL until receipt.",
+    resolution_rule: "Logical source received as 4 transport parts, read in order, continuity verified; tokens reconciled (Buildmarker-002).",
+    recommendation: "Closed." },
   { id: "OD-002", status: "OPEN", blocking: false, sources: ["SRC-05 §6.1", "SRC-07 sheet 10", "SRC-08/09/10"],
     conflict: "category_code values are not defined; workbooks use labels (e.g. 'Dinlenme & Yavaşlama') while DB v1.2 lists TR display names ('Kendine Bir Nefes'…). EN display names are not given.",
     impact: "message_category_lookup cannot be seeded until codes and TR/EN display names are confirmed.",
@@ -26,7 +27,7 @@ export const OPEN_DECISIONS = Object.freeze([
     impact: "Delivery idempotency key.", resolution_rule: "DB v1.2 supersedes DB v1.1 (Source-of-truth rule).",
     recommendation: "Use v1.2." },
   { id: "OD-007", status: "NOTED", blocking: false, sources: ["SRC-02 header", "SRC-04 §16"],
-    conflict: "Use Case v1.4 cites UI/UX v1.0, Teknik v1.0, DB v1.0; Teknik v1.1 precedence chain cites DB v1.0.",
+    conflict: "Use Case v1.4 cites UI/UX v1.0, Teknik v1.0, DB v1.0; Teknik v1.1 precedence chain cites DB v1.0; UI/UX v1.1 header cites Teknik v1.0 and DB v1.0.",
     impact: "Stale version references only; no rule difference found.", recommendation: "Update references in next document revision." },
   { id: "OD-008", status: "NOTED", blocking: false, sources: ["SRC-08 SHF-002"],
     conflict: "Probable typo 'dakikeleri' (dakikaları) in Your Shinka (TR).",
@@ -35,4 +36,11 @@ export const OPEN_DECISIONS = Object.freeze([
     conflict: "Admin authority must be platform-native; only 'admin'/'user' roles exist and backend-level protection of immutable records (admin cannot UPDATE/DELETE) is unverified.",
     impact: "Protected-record rules (user_daily_message, consent/protection events, audit log) need verified enforcement.",
     recommendation: "Prove with LIVE_ENFORCEMENT tests in H12 before those entities are created." },
+  { id: "OD-010", status: "OPEN", blocking: false, sources: ["SRC-03 §2, §8.1–8.5, §9 (Part 1/4)", "Package brief (Buildmarker-002)"],
+    conflict: "UI/UX v1.1 design-system tables, the §8 approved copy tables and the §9 checklist are embedded as tables/images and are not machine-readable as text; only headings are extractable. Canonical token values were taken from the package brief that quotes v1.1.",
+    impact: "Tokens are applied; the full EN copy dictionary and TR equivalents cannot be verified string-by-string. Foundation TR strings are PENDING_COPY_REVIEW.",
+    recommendation: "Before the first customer-screen package, supply the §8 copy tables as text (DOCX table/XLSX) so the copy dictionary is imported verbatim." },
+  { id: "OD-011", status: "NOTED", blocking: false, sources: ["SRC-03 §3", "SRC-03 ON-03"],
+    conflict: "Onboarding sequence names step 3 'Welcome/Login' and step 5 'Cycle Details'; screen titles are 'Welcome / Sign In' and 'Your cycle, your choice'.",
+    impact: "Naming only; sequence identical.", recommendation: "Use screen titles (ON-03, ON-05) as canonical names." },
 ]);

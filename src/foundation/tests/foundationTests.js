@@ -3,7 +3,10 @@
 import { BUILD_MARKER } from "@/foundation/buildMarker";
 import { isValidMarker, nextMarker, validateTransition, validateLedger } from "@/foundation/buildMarkerRules";
 import { BUILD_LEDGER } from "@/foundation/buildLedger";
-import { SOURCE_INVENTORY } from "@/foundation/sourceInventory";
+import { SOURCE_INVENTORY, AUTHORITY_TABLE, LOGICAL_SOURCE_COUNT, EXPECTED_UIUX_PARTS, UIUX_CONTINUITY, physicalAttachmentCount } from "@/foundation/sourceInventory";
+import { checkSplitSource } from "@/foundation/inspection/sourceIntegrity";
+import { checkNavContract, findDarkVariants } from "@/foundation/inspection/uiRules";
+import { BOTTOM_NAV, PROFILE_ENTRY } from "@/foundation/uiContract";
 import { DESIGN_TOKENS } from "@/foundation/designTokens";
 import { loadSources, loadDocs } from "@/foundation/inspection/sourceScanner";
 import { checkSingleSource, findLegacyImports } from "@/foundation/inspection/sourceRules";
@@ -63,7 +66,7 @@ export const FOUNDATION_TESTS = [
     const out = JSON.stringify(redact({ token: "abc", nested: { email: "x" }, note: "mail a.b@corp.io Bearer abc.def" }));
     assert(!out.includes("abc") && !out.includes("corp.io") && out.includes("[REDACTED]"), "not redacted");
   }],
-  ["T18", "Source inventory has 10 required files", () => assert(SOURCE_INVENTORY.length === 10 && new Set(SOURCE_INVENTORY.map((s) => s.file)).size === 10, "inventory")],
+  ["T18", "Source inventory has 10 unique logical sources", () => assert(SOURCE_INVENTORY.length === 10 && new Set(SOURCE_INVENTORY.map((s) => s.file)).size === 10, "inventory")],
   ["T19", "Canonical docs exist", async () => assert(checkDocs(await loadDocs(), BUILD_MARKER).missing.length === 0, "docs missing")],
   ["T20", "Docs reference current BuildMarker", async () => assert(checkDocs(await loadDocs(), BUILD_MARKER).misaligned.length === 0, "docs misaligned")],
   ["T21", "Legacy-source firewall", async () => {

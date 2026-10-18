@@ -22,7 +22,7 @@ export default function LatestHealthCard() {
     <ShinkaCard title="Latest Full Health">
       {state.s === "LOADING" && <StatePanel state="LOADING" message="Loading…" />}
       {state.s === "EMPTY" && <StatePanel state="EMPTY" message="No Full Health run recorded yet." />}
-      {state.s === "ERROR" && <StatePanel state="ERROR" message="Could not load Health history." code={state.code} onRetry={load} />}
+      {state.s === "ERROR" && <StatePanel state="LOAD_FAILURE" message="Could not load Health history." code={state.code} onRetry={load} />}
       {r && (
         <>
           <div className="mb-3"><StatusBadge status={r.status} /></div>

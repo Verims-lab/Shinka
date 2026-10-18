@@ -7,7 +7,7 @@ export default function RunHistory({ history, onRetry }) {
     <ShinkaCard title="Run history">
       {history.state === "LOADING" && <StatePanel state="LOADING" message="Loading runs…" />}
       {history.state === "EMPTY" && <StatePanel state="EMPTY" message="No Health runs recorded yet." />}
-      {history.state === "ERROR" && <StatePanel state="ERROR" message="Run history could not be loaded." code={history.code} onRetry={onRetry} />}
+      {history.state === "ERROR" && <StatePanel state="LOAD_FAILURE" message="Run history could not be loaded." code={history.code} onRetry={onRetry} />}
       {history.state === "SUCCESS" && (
         <ul className="space-y-2">
           {history.items.map((r) => (
