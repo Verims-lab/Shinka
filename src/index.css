@@ -1,6 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss" source(none);
+@import "./styles/theme.css";
+@source "./";
+@source "../index.html";
+@plugin "tailwindcss-animate";
+
+/* Library variants stay opt-in by class; OS preference never activates dark. */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   :root {
@@ -29,9 +34,6 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-    --font-heading: "Cormorant Garamond", Georgia, serif;
-    --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
-    --font-display: "Cormorant Garamond", Georgia, serif;
     /* Shinka tokens — UI/UX v1.1 (RGB channels). Authority: src/foundation/designTokens.js. Light-only. */
     --shinka-plum: 111 65 90;
     --shinka-plum-deep: 76 38 63;
@@ -48,7 +50,6 @@
     --shinka-line: 237 227 227;
     --shinka-white: 255 255 255;
     --shinka-surface: 255 255 255;
-    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -105,4 +106,9 @@
   body {
     @apply bg-background text-foreground font-body;
   }
+}
+/* Retain the existing interaction/placeholder affordances across CSS engines. */
+@layer base {
+  button:not(:disabled), [role="button"]:not(:disabled) { cursor: pointer; }
+  input::placeholder, textarea::placeholder { color: var(--color-gray-400); }
 }

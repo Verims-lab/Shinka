@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-005
+**Current BuildMarker:** Buildmarker-006
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -47,3 +47,12 @@ H06 Auth → H07 Onboarding → H04 entity creation + H12 enforcement → H09 co
 - `internalHealth` owns list/save/report/probe operations. Direct entity create/update/delete is denied by RLS; read is admin-only. Product entity probes return presence metadata only. Artifact validation remains read-only.
 - Health save recomputes summary/gate, redacts the report, uploads a private JSON artifact, then stores a bounded compact index. Report readback selects the URI from the stored record and issues a 300-second signed link. Synthetic tests prove repository behavior; deployed RLS/functions/private-file enforcement requires live two-user verification.
 - The CLI builds an isolated temporary harness using actual internal/auth components and canonical tests. Only its test configuration substitutes the SDK; network requests outside loopback are blocked. This is not the Base44 deployment or an authenticated live session.
+
+## CSS architecture — Buildmarker-006
+Tailwind 3.4.19/PostCSS migrated to Tailwind 4.3.3 and `@tailwindcss/vite` 4.3.3. Application and isolated CLI builds use the same Vite plugin. `src/index.css` imports Tailwind with automatic scanning disabled, explicitly scans `src/` and root `index.html`, and imports native `@theme` mappings from `src/styles/theme.css`. CSS files now participate in static source hashes. `designTokens.js` remains the design authority; runtime RGB variables remain unchanged.
+
+The used `tailwindcss-animate` 1.0.7 plugin is retained via supported `@plugin` and moved to devDependencies; its peer range accepts Tailwind 4. No `@config` bridge or second pipeline remains. Removed root `postcss.config.js`, `tailwind.config.js`, direct PostCSS/Autoprefixer and the obsolete direct Chokidar 4 optional-peer workaround. PostCSS can remain transitively required by Vite.
+
+Ported custom colors/fonts/radii/typography/shadow/keyframes exactly. Used neutral/status palette values and fixed inherited standard line heights are explicit to avoid new defaults changing existing components. Utility changes preserve old shadow/outline behavior and replace CSS-variable shorthand, gradient and shrink aliases. Explicit desktop PageHeader line height preserves 40px. Generic dark variants require an explicit `.dark` ancestor; OS dark preference does not activate them.
+
+The migration follows the [official Vite integration](https://tailwindcss.com/docs/installation/using-vite) and [upgrade guide](https://tailwindcss.com/docs/upgrade-guide). Tailwind 4 targets Safari 16.4+, Chrome 111+ and Firefox 128+; supported device/browser proof, real hosted font loading and Base44 deployment remain external verification. No product/browser support beyond those targets is claimed.

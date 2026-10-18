@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUILD_HISTORY.md
 **Status:** ACTIVE — append-only
-**Current BuildMarker:** Buildmarker-005
+**Current BuildMarker:** Buildmarker-006
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** src/foundation/buildMarker.js (authority), src/foundation/buildLedger.js (ledger)
 **Purpose:** Human-readable build history. Never rewrite old entries.
@@ -43,3 +43,11 @@ No end-user product package implemented. No GitHub work. No AI.
 - Same 74 canonical tests in Health and real-browser CLI; lint scope and type coverage expanded. HC-004.0: 16 suites, 82 cases (55 current, 24 future, 3 external); H03-009 added and H16-003 semantics tightened.
 - Repository Foundation OPEN: unresolved High dependency advisories documented in SECURITY_PRIVACY; no waiver. Local checks are not final deployed Base44 Full Health, live history readback or current Authentication configuration proof.
 - No product feature/data/legacy import. Git changes target Test only; main is not modified.
+
+## Buildmarker-006 — Foundation Dependency Security Closure (2026-10-19)
+- Fresh graph/advisory audit confirmed the Tailwind 3.4.19 → braces High chain, with no patched braces or supported 3.x parent fix. Controlled migration to Tailwind 4.3.3 / `@tailwindcss/vite` removed all five High affected packages and two Moderate affected packages.
+- Native CSS theme/source/plugin integration replaces obsolete Tailwind/PostCSS configs; direct Autoprefixer/PostCSS/Chokidar removed, animation plugin retained as dev-only. No override or forced audit fix.
+- Preserved canonical Shinka tokens, light-only mode and measured mobile/desktop Foundation layouts; original 74 tests plus six CSS regressions in the same runner. Native `security:deps` blocks Critical/High.
+- HC-004.0 unchanged (16 suites / 82 cases); BuildMarker incremented exactly once. Canonical document headers aligned.
+- REPO_CLOSED_PENDING_BASE44_VERIFICATION: 0 Critical / 0 High / 2 Moderate / 0 Low; remaining router advisories have documented exposure/fix reasons. Final live Full Health, history readback and Authentication configuration proof still required.
+- Test synchronized from main before work; final package targets only Test. No product features, product data or legacy source imported.

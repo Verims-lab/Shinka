@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-005
+**Current BuildMarker:** Buildmarker-006
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -97,3 +97,8 @@ Onboarding (H07), Home/content (H09), Calendar (H08), Pattern (H10), You/consent
 `PageContainer` now uses fixed 20px horizontal padding at mobile and desktop widths. `/login` uses ShinkaCard/ShinkaButton with Apple and Google only, primary controls at least 52px, localized safe error codes and no password fields/links. T74 measures actual 360px/1024px rendered layouts. This shell does not implement ON-03 onboarding/age consent or claim live sign-in.
 
 Shinka application components do not activate a dark theme, expose a toggle or use dark variants. Unused generic library `.dark` selectors remain outside the application policy scan; they are not evidence of a Shinka dark target.
+
+## CSS migration preservation — Buildmarker-006
+Native Tailwind 4 theme mappings preserve all eleven canonical colors, fifteen RGB variables, Cormorant Garamond/Inter families and weights, fixed typography line heights, 20px page padding, spacing/radii, 200ms transitions, ≥44px touch targets and ≥52px primary controls. Existing neutral/status colors are also pinned. The product stays light with OS dark preference; retained generic library dark variables require a class the application does not apply.
+
+T75–T80 measure real computed styles/primitives and existing H13 cases in the same canonical suite. Existing T24/T41/T49/T74 retain internal 360px overflow, missing-root and Apple/Google auth coverage. Before/after local captures at 360px/1280px for Health, Build and login showed identical sampled heading/control/card geometry and colors after fixing inherited label and desktop heading line heights. External font requests are blocked in the isolated harness; declared families are verified, live font/device rendering is still required.
