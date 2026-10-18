@@ -52,7 +52,7 @@ function decodeXml(s) {
 
 function textRuns(xml) {
   const parts = [];
-  const re = /<t(?:\s[^>]*)?>([\s\S]*?)<\/t>/g;
+  const re = /<(?:\w+:)?t(?:\s[^>]*)?>([\s\S]*?)<\/(?:\w+:)?t>/g;
   let m;
   while ((m = re.exec(xml))) parts.push(decodeXml(m[1]));
   return parts.join("");
@@ -71,7 +71,7 @@ export async function readFirstSheet(bytes) {
   const shared = [];
   if (entries["xl/sharedStrings.xml"]) {
     const xml = await readEntry(buf, view, entries["xl/sharedStrings.xml"]);
-    const re = /<si>([\s\S]*?)<\/si>/g;
+    const re = /<(?:\w+:)?si>([\s\S]*?)<\/(?:\w+:)?si>/g;
     let m;
     while ((m = re.exec(xml))) shared.push(textRuns(m[1]));
   }
@@ -79,19 +79,20 @@ export async function readFirstSheet(bytes) {
   if (!sheetName) throw new Error("XLSX_NO_WORKSHEET");
   const xml = await readEntry(buf, view, entries[sheetName]);
   const rows = [];
-  const rowRe = /<row\b[^>]*?(?:\/>|>([\s\S]*?)<\/row>)/g;
+  // Optional namespace prefixes (e.g. <x:row>) are supported.
+  const rowRe = /<(?:\w+:)?row\b[^>]*?(?:\/>|>([\s\S]*?)<\/(?:\w+:)?row>)/g;
   let rm;
   while ((rm = rowRe.exec(xml))) {
     const inner = rm[1] || "";
     const row = [];
-    const cellRe = /<c\b([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g;
+    const cellRe = /<(?:\w+:)?c\b([^>]*?)(?:\/>|>([\s\S]*?)<\/(?:\w+:)?c>)/g;
     let cm;
     while ((cm = cellRe.exec(inner))) {
       const attrs = cm[1];
       const body = cm[2] || "";
       const ref = (attrs.match(/\br="([A-Z]+\d+)"/) || [])[1] || "A1";
       const type = (attrs.match(/\bt="([^"]+)"/) || [])[1];
-      const v = (body.match(/<v>([\s\S]*?)<\/v>/) || [])[1];
+      const v = (body.match(/<(?:\w+:)?v>([\s\S]*?)<\/(?:\w+:)?v>/) || [])[1];
       let value = "";
       if (type === "s" && v !== undefined) value = shared[Number(v)] ?? "";
       else if (type === "inlineStr") value = textRuns(body);
