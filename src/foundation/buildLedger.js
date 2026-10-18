@@ -32,6 +32,21 @@ export const BUILD_LEDGER = Object.freeze([
     health_changed: true,
     notes: "No end-user product package started. No product data imported. OD-001 resolved by source receipt; OD-010 (copy tables not text-extractable) opened.",
   }),
+  Object.freeze({
+    build_marker: "Buildmarker-003",
+    package_name: "Foundation Final Closure",
+    package_type: "FOUNDATION_AMENDMENT",
+    short_summary:
+      "UI/UX v1.1 machine-readable table companion registered as a supporting artifact of SRC-03 (logical sources stay 10); 11 tables mirrored; OD-010 resolved; auth policy recorded and checked; open decisions reclassified; Health HC-003.0 (H02-008, H03-008); tests T46–T48.",
+    created_at: "2026-10-18",
+    health_catalog_version: "HC-003.0",
+    full_health_status: "RECORDED_IN_HEALTH_RUN_HISTORY",
+    docs_aligned: true,
+    source_changed: true,
+    tests_changed: true,
+    health_changed: true,
+    notes: "No product feature started. OD-003 remains FOUNDATION_BLOCKING until email/password, Microsoft and Facebook are disabled in the Authentication dashboard.",
+  }),
 ]);
 
 export const currentLedgerEntry = () => BUILD_LEDGER[BUILD_LEDGER.length - 1];

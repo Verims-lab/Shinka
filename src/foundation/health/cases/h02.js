@@ -1,6 +1,6 @@
 import { BUILD_MARKER } from "@/foundation/buildMarker";
 import { SOURCE_INVENTORY, AUTHORITY_TABLE, REQUIRED_AUTHORITY_DOMAINS, LOGICAL_SOURCE_COUNT, EXPECTED_UIUX_PARTS, UIUX_CONTINUITY, physicalAttachmentCount } from "@/foundation/sourceInventory";
-import { checkSplitSource } from "@/foundation/inspection/sourceIntegrity";
+import { checkSplitSource, checkUiuxTables, uiuxTablesInput } from "@/foundation/inspection/sourceIntegrity";
 import { OPEN_DECISIONS } from "@/foundation/openDecisions";
 import { checkDocs } from "@/foundation/inspection/docRules";
 import { CLASS, STATUS } from "../constants";
@@ -44,10 +44,17 @@ export const H02_CASES = [
     const undocumented = OPEN_DECISIONS.filter((d) => !doc.includes(d.id)).map((d) => d.id);
     return verdict(!badResolved.length && !badOpen.length && !undocumented.length, ev(CLASS.STATIC, "openDecisions.js + SHINKA_SOURCE_OF_TRUTH.md", { badResolved, badOpen, undocumented }, { badResolved: [], badOpen: [], undocumented: [] }, `${OPEN_DECISIONS.length} decisions inspected`));
   }),
-  c("H02-007", "Split UI/UX source reconstructed completely", "UI/UX v1.1 = 1 logical source in 4 physical parts: all registered, read, ordered 1→2→3→4, no gap/duplicate, continuity recorded, sole UI/UX authority; 13 physical files total.", async (ctx) => {
+  c("H02-007", "Split UI/UX source reconstructed completely", "UI/UX v1.1 = 1 logical source in 4 physical parts: all registered, read, ordered 1→2→3→4, no gap/duplicate, continuity recorded, sole UI/UX authority; machine-readable companion registered as supporting artifact (not a logical source).", async (ctx) => {
     const r = checkSplitSource(SOURCE_INVENTORY, AUTHORITY_TABLE, UIUX_CONTINUITY);
     const doc = checkDocs(await ctx.docs(), BUILD_MARKER).byName["SHINKA_SOURCE_OF_TRUTH.md"] || "";
     const documented = EXPECTED_UIUX_PARTS.every((n) => doc.includes(n)) && /Logical source count:\*\*\s*1\b/.test(doc);
-    return verdict(r.ok && documented, ev(CLASS.STATIC, "sourceInventory.js + SHINKA_SOURCE_OF_TRUTH.md", { ...r, documented, boundaries: UIUX_CONTINUITY.boundaries }, { ok: true, documented: true, partCount: 4, physicalCount: 13, logicalCount: 10 }, "Logical/physical source integrity"));
+    return verdict(r.ok && documented, ev(CLASS.STATIC, "sourceInventory.js + SHINKA_SOURCE_OF_TRUTH.md", { ...r, documented, boundaries: UIUX_CONTINUITY.boundaries }, { ok: true, documented: true, partCount: 4, companionPresent: true, companionAsLogicalSource: 0, logicalCount: 10 }, "Logical/physical source integrity by role"));
+  }),
+  c("H02-008", "UI/UX tables machine-readable (OD-010)", "All 11 UI/UX v1.1 tables represented via the SRC-03 companion: design table = implemented tokens, icon table = nav contract, 5 copy/state groups non-empty, QA checklist complete, logical count unchanged; OD-010 closed.", async (ctx) => {
+    const r = checkUiuxTables(uiuxTablesInput());
+    const od = OPEN_DECISIONS.find((d) => d.id === "OD-010");
+    const doc = checkDocs(await ctx.docs(), BUILD_MARKER).byName["SHINKA_UI_UX_STANDARDS.md"] || "";
+    const documented = doc.includes("Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx");
+    return verdict(r.ok && od?.status.startsWith("RESOLVED") && documented, ev(CLASS.STATIC, "uiuxTables.js + designTokens.js + uiContract.js + openDecisions.js", { ...r, od010: od?.status, documented }, { ok: true, tableCount: 11, od010: "RESOLVED_*", documented: true }, "Companion table completeness"));
   }),
 ];

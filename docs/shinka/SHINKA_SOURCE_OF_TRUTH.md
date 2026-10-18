@@ -2,18 +2,19 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-002
+**Current BuildMarker:** Buildmarker-003
 **Last Updated:** 2026-10-18
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-011 (see register below)
-**External Verification Required:** OD-010 (UI/UX copy tables as text)
+**External Verification Required:** OD-003 (dashboard login methods)
 
 ## 1. Logical vs physical sources
 - A **logical source** is one authoritative document (one version, one domain authority).
 - A **physical attachment** is an uploaded file. A logical source may be transported in several physical parts **only** because of the Base44 attachment size limit (5 MB). The split is transport-only: parts never create separate domains, design systems, document records, rules or precedence.
-- **Authoritative logical source count: 10.** Physical attachment count: **13** (UI/UX = 4 parts; the other nine = 1 file each).
+- **Authoritative logical source count: 10.** Physical artifacts: **14**, validated by role (UI/UX = 4 transport parts + 1 machine-readable table companion; the other nine = 1 file each).
+- A **supporting artifact** (e.g. the machine-readable companion) mirrors a logical source for ingestion only; it is never a new source.
 
 ## 2. Registered logical sources (set `SRC-2026-10-18`)
 
@@ -42,7 +43,7 @@
 | 3 of 4 | Shinka_UI_UX_v1.1_Part_3_of_4.docx | 10–16 | §4 Home | §7.3 Account & Privacy | READ |
 | 4 of 4 | Shinka_UI_UX_v1.1_Part_4_of_4.docx | 17–21 | §7.4 Withdraw consent | §9 Checklist | READ |
 
-Continuity (read in order 1→2→3→4): P1 ends ON-02 → P2 starts ON-03; P2 ends ON-06 → P3 starts §4; P3 ends §7.3 → P4 starts §7.4. No duplicated or missing section; sections 1–9 all present. Tables/images inside sections (§2 token tables, §8 copy tables, §9 checklist) are not text-extractable → OD-010.
+Continuity (read in order 1→2→3→4): P1 ends ON-02 → P2 starts ON-03; P2 ends ON-06 → P3 starts §4; P3 ends §7.3 → P4 starts §7.4. No duplicated or missing section; sections 1–9 all present. Tables/visual-reference notes are exposed by the supporting artifact **Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx** (mirrors SRC-03; all 11 tables read; no conflict with the written parts) → OD-010 resolved.
 
 ## 3. Domain precedence
 
@@ -67,13 +68,13 @@ Illustrative UI mockups never override written business/data rules; the written 
 | ID | Status | Summary |
 |---|---|---|
 | OD-001 | RESOLVED_BY_SOURCE_RECEIPT | UI/UX v1.1 received as 4 transport parts; continuity verified; tokens reconciled. |
-| OD-002 | OPEN | category_code values + EN display names undefined. |
-| OD-003 | OPEN | Apple/Google-only auth vs platform email/password + Google; Apple unverified. |
-| OD-004 | OPEN | Explicit created_at/updated_at vs Base44 built-ins. |
+| OD-002 | OPEN — FUTURE_PACKAGE | TR display mapping confirmed (SRC-03 table 4); category_code values + EN display names undefined. |
+| OD-003 | OPEN — FOUNDATION_BLOCKING | Apple/Google-only policy vs platform login methods (email/password, Google, Microsoft, Facebook, Apple); change in Authentication dashboard. |
+| OD-004 | OPEN — FUTURE_PACKAGE | Explicit created_at/updated_at vs Base44 built-ins. |
 | OD-005 | NOTED | "Büyüyen Ay (Hilal)" label mapped to WAXING; UI/UX v1.1 does not redefine it. |
 | OD-006 | RESOLVED_BY_PRECEDENCE | notification_delivery uniqueness → DB v1.2. |
 | OD-007 | NOTED | Stale version references (Use Case v1.4, Teknik v1.1, UI/UX v1.1 header cites Teknik/DB v1.0). |
 | OD-008 | NOTED | Probable typo "dakikeleri" in SHF-002 (TR). |
-| OD-009 | OPEN | Platform-native enforcement of admin-immutable records unverified. |
-| OD-010 | OPEN | UI/UX §2/§8/§9 tables not text-extractable; copy dictionary + TR copy unverifiable string-by-string. |
+| OD-009 | OPEN — FUTURE_PACKAGE | Platform-native enforcement of admin-immutable records unverified (H12). |
+| OD-010 | RESOLVED_BY_SOURCE_RECEIPT | Machine-readable companion exposes all 11 UI/UX tables. |
 | OD-011 | NOTED | Onboarding step names (§3 "Welcome/Login", "Cycle Details") vs screen titles; screen titles canonical. |

@@ -2,7 +2,8 @@
 import { BUILD_MARKER } from "@/foundation/buildMarker";
 import { BUILD_LEDGER } from "@/foundation/buildLedger";
 import { SOURCE_INVENTORY, AUTHORITY_TABLE, LOGICAL_SOURCE_COUNT, EXPECTED_UIUX_PARTS, UIUX_CONTINUITY, physicalAttachmentCount } from "@/foundation/sourceInventory";
-import { checkSplitSource } from "@/foundation/inspection/sourceIntegrity";
+import { checkSplitSource, checkUiuxTables, uiuxTablesInput } from "@/foundation/inspection/sourceIntegrity";
+import { checkAuthPolicy } from "@/foundation/authPolicy";
 import { checkNavContract, findDarkVariants } from "@/foundation/inspection/uiRules";
 import { BOTTOM_NAV, PROFILE_ENTRY } from "@/foundation/uiContract";
 import { DESIGN_TOKENS } from "@/foundation/designTokens";
@@ -29,7 +30,7 @@ export const UI_CONTRACT_TESTS = [
   }],
   ["T30", "UI/UX logical source authority valid", () => assert(AUTHORITY_TABLE.find((a) => a.domain === "UI_UX_COPY_DESIGN").primary === "SRC-03" && split(SOURCE_INVENTORY).ok, "authority")],
   ["T31", "UI/UX not counted as four logical sources", () => {
-    assert(!SOURCE_INVENTORY.some((s) => /Part_\d_of_\d/.test(s.file)) && physicalAttachmentCount() === 13, "parts counted as logical");
+    assert(!SOURCE_INVENTORY.some((s) => /Part_\d_of_\d/.test(s.file)) && physicalAttachmentCount() === 14, "parts counted as logical");
     assert(!split([...SOURCE_INVENTORY, { id: "SRC-11", file: EXPECTED_UIUX_PARTS[0] }]).ok, "inflated inventory accepted");
   }],
   ["T32", "Design colors exact", () => assert(JSON.stringify(DESIGN_TOKENS.color) === JSON.stringify(COLORS), "colors")],
@@ -75,5 +76,16 @@ export const UI_CONTRACT_TESTS = [
     const hist = checkDocs(await loadDocs(), BUILD_MARKER).byName["SHINKA_BUILD_HISTORY.md"] || "";
     const bad = BUILD_LEDGER.filter((e) => hist.split(`## ${e.build_marker} — ${e.package_name}`).length !== 2).map((e) => e.build_marker);
     assert(!bad.length, `history mismatch: ${bad.join(",")}`);
+  }],
+  ["T46", "All 11 UI/UX tables machine-readable and consistent", () => {
+    const r = checkUiuxTables(uiuxTablesInput());
+    assert(r.ok, `tables: ${JSON.stringify(r)}`);
+  }],
+  ["T47", "Companion is a supporting artifact, not a logical source", () => {
+    const r = split(SOURCE_INVENTORY);
+    assert(r.companionPresent && r.companionAsLogicalSource === 0 && SOURCE_INVENTORY.length === 10, "companion modelled as logical source");
+  }],
+  ["T48", "Auth policy detects unapproved methods", () => {
+    assert(!checkAuthPolicy({ methods: ["password", "google"] }).ok && checkAuthPolicy({ methods: ["apple", "google"] }).ok, "auth policy check");
   }],
 ];

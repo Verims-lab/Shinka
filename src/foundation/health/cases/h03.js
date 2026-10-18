@@ -23,6 +23,11 @@ export const H03_CASES = [
     scan((s) => missingBoundaries(Object.keys(s)), "module path inventory", [], "Boundary inventory")),
   c("H03-006", "No business logic in Health UI", "Internal UI imports only components/foundation/internal services; no direct data access.",
     scan((s) => { const r = checkInternalUiPurity(s); return { ok: r.files > 0 && r.violations.length === 0, ...r }; }, "src/pages|components/internal", { violations: [] }, "UI purity scan")),
+  c("H03-008", "Auth configuration exposes only approved providers (OD-003)", "Recorded platform login-method configuration contains only Apple/Google; email/password disabled. CONFIGURATION POLICY only — not live Apple/Google sign-in proof.", async () => {
+    const { checkAuthPolicy, OBSERVED_AUTH_METHODS } = await import("@/foundation/authPolicy");
+    const r = checkAuthPolicy();
+    return verdict(r.ok, ev(CLASS.RECORDED_DECISION, OBSERVED_AUTH_METHODS.source, { ...r, observedAt: OBSERVED_AUTH_METHODS.observedAt }, { ok: true, passwordEnabled: false, unapproved: [] }, "Configuration policy (not live auth)"));
+  }),
   c("H03-007", "Foundation automated tests pass", "All foundation tests execute and pass against real helpers with synthetic fixtures.", async () => {
     const { runFoundationTests } = await import("@/foundation/tests/foundationTests");
     const results = await runFoundationTests();

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — working notes (does not override sources)
-**Current BuildMarker:** Buildmarker-002
+**Current BuildMarker:** Buildmarker-003
 **Last Updated:** 2026-10-18
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Current state, findings, constraints, debt.
@@ -16,7 +16,8 @@ Foundation only. Routes: `/` (neutral shell aligned to the v1.1 navigation contr
 - Unknown entity → HTTP 404 "Entity schema … not found" (used by the entity probe).
 - Uploaded workbooks use namespaced XML (`<x:row>`); reader supports prefixes.
 - Attachment limit 5 MB: large DOCX sources must be split into transport parts (UI/UX v1.1 → 4 parts).
-- DOCX text extraction drops embedded tables/images (UI/UX §2, §8, §9) → OD-010.
+- Attachment text preview drops DOCX tables; reading the DOCX XML directly exposes them (companion: 13 tables incl. 2 metadata tables, 11 source tables). OD-010 resolved.
+- App login methods are not readable from the client at runtime (public settings expose only visibility); auth policy evidence is a recorded platform-state snapshot.
 
 ## Known constraints
 - Foundation tests run in-app (no CLI test runner); results appear in Health Center and H03-007.
@@ -25,8 +26,8 @@ Foundation only. Routes: `/` (neutral shell aligned to the v1.1 navigation contr
 
 ## Technical debt
 - Add a CLI test runner for CI-style execution.
-- TR Foundation strings PENDING_COPY_REVIEW until the §8 copy tables are available as text (OD-010).
-- Email/password login still enabled (OD-003).
+- TR equivalents of approved EN copy are produced per customer-screen package.
+- Email/password, Microsoft and Facebook login still enabled in the dashboard (OD-003, FOUNDATION_BLOCKING).
 - Base shadcn `.dark` variables remain in `src/index.css` for library components; no dark class is ever applied (light-only).
 
 ## Future package notes

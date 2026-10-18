@@ -2,7 +2,8 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — principles; nothing certified
-**Current BuildMarker:** Buildmarker-002
+**Current BuildMarker:** Buildmarker-003
+**Auth policy (OD-003):** Approved login methods Apple + Google only. Recorded platform state 2026-10-18: email/password, Google, Microsoft, Facebook, Apple enabled → H03-008 FAIL until the Authentication dashboard is changed. Configuration policy ≠ live Apple/Google proof (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-18
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
