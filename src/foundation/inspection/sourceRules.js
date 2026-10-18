@@ -14,7 +14,9 @@ export function checkSingleSource(sources) {
   return { ok, authorityExports, literalFiles, unexpected };
 }
 
-const IMPORT_RE = /(?:import|export)\s[^'";]*?from\s*['"]([^'"]+)['"]|import\s*\(\s*['"]([^'"]+)['"]\s*\)|import\s+['"]([^'"]+)['"]/g;
+// Static import/export statements are only recognised at statement start (line start), so an import-like text
+// inside a string literal (e.g. a synthetic test fixture) is not a real import. Dynamic import() is matched anywhere.
+const IMPORT_RE = /^[ \t]*(?:import|export)\s[^'";]*?from\s*['"]([^'"]+)['"]|import\s*\(\s*['"]([^'"]+)['"]\s*\)|^[ \t]*import\s+['"]([^'"]+)['"]/gm;
 export function importsOf(code) {
   const out = [];
   let m;

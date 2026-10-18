@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-003
+**Current BuildMarker:** Buildmarker-004
 **Last Updated:** 2026-10-18
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -20,4 +20,6 @@
 - **J. Localization:** TR/EN strings centralized; business enums locale-independent.
 - **K. Maintainability:** remove obsolete code, no hidden mutable globals, small focused modules, no copy/paste engines.
 - **L. Tests:** contract-changing code requires tests; Health is not a substitute for tests.
-- **M. Legacy firewall:** no legacy Shinka import (H03-001).
+- **M. Legacy firewall:** no legacy Shinka import (H03-001). The scanner reads statement-level imports (line start) and dynamic `import()`; import-like text inside string literals is a fixture, not an import. Synthetic legacy fixtures are passed to `findLegacyImports` as isolated in-memory modules; no path or specifier is whitelisted.
+- **N. Internal-page probe:** every internal page renders through `PageContainer` (`[data-probe-root]`) on first paint; optional data loads afterward. Probe result: MEASURED | TIMEOUT (`PROBE_ROOT_NOT_RENDERED`, landedPath) | ERROR (`FRAME_INACCESSIBLE`); unmeasured results carry `scrollWidth: null` and never PASS.
+- **O. Health history:** `buildHistoryRecord` maps a completed run; full redacted report → private file (`report_file_uri`), `report_json` = compact case index. Persistence failure → `HEALTH_HISTORY_PERSIST_FAILED`; the completed result stays displayed.

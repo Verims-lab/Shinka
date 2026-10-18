@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUILD_HISTORY.md
 **Status:** ACTIVE — append-only
-**Current BuildMarker:** Buildmarker-003
+**Current BuildMarker:** Buildmarker-004
 **Last Updated:** 2026-10-18
 **Authoritative Source References:** src/foundation/buildMarker.js (authority), src/foundation/buildLedger.js (ledger)
 **Purpose:** Human-readable build history. Never rewrite old entries.
@@ -28,3 +28,9 @@ No end-user product package implemented. No GitHub work. No AI.
 - Open decisions reclassified: OD-002/OD-004/OD-009 FUTURE_PACKAGE.
 - Health HC-003.0 (81 cases: +H02-008, +H03-008); tests T46–T48 (48 total).
 - Tests and Full Health: executed only by an admin from Health Center; results recorded in run history.
+
+## Buildmarker-004 — Foundation Health Closure (2026-10-18)
+- H03-001/T21: false positive — scanner matched import text inside a test string literal; now statement-level only. No real legacy import existed.
+- T41/H13-004: probe waited for `[data-health-root]`, which only Health Center renders; now `[data-probe-root]` on every internal page, explicit TIMEOUT/ERROR reasons.
+- History: report_json exceeded the entity field size limit; full redacted report now a private file + compact case index; error code HEALTH_HISTORY_PERSIST_FAILED.
+- Tests T49–T51 (51 total). Health catalog HC-003.0 unchanged (81 cases).

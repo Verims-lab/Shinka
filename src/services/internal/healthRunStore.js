@@ -1,18 +1,26 @@
 // INTERNAL TOOLING storage boundary for Health run history (InternalHealthRun, admin-only RLS).
 import { base44 } from "@/api/base44Client";
 import { redact } from "@/foundation/health/report";
+import { buildHistoryRecord } from "@/foundation/health/historyRecord";
+import { ShinkaError, ERROR_CODES } from "@/foundation/errors";
 
 export async function saveHealthRun(report) {
-  const s = report.summary;
-  return base44.entities.InternalHealthRun.create({
-    run_id: report.runId, build_marker: report.buildMarker, health_catalog_version: report.healthCatalogVersion,
-    environment: report.environment, scope: report.scope, started_at: report.startedAt, completed_at: report.completedAt,
-    status: report.gate.status, planned: s.planned, attempted: s.attempted, executed: s.executed, passed: s.passed,
-    failed: s.failed, warnings: s.warnings, blocked: s.blocked, not_run: s.notRun, not_applicable: s.notApplicable,
-    report_json: JSON.stringify(redact(report)),
-  });
+  try {
+    const blob = new Blob([JSON.stringify(redact(report))], { type: "application/json" });
+    const file = new File([blob], `health-${report.runId}.json`, { type: "application/json" });
+    const { file_uri } = await base44.integrations.Core.UploadPrivateFile({ file });
+    return await base44.entities.InternalHealthRun.create(buildHistoryRecord(report, file_uri));
+  } catch (e) {
+    throw new ShinkaError(ERROR_CODES.HEALTH_HISTORY_PERSIST_FAILED, e?.response?.data?.message || e?.message || "unknown");
+  }
 }
 
 export async function listHealthRuns(limit = 20) {
   return base44.entities.InternalHealthRun.list("-created_date", limit);
+}
+
+export async function fullReportUrl(run) {
+  if (!run.report_file_uri) return null;
+  const { signed_url } = await base44.integrations.Core.CreateFileSignedUrl({ file_uri: run.report_file_uri });
+  return signed_url;
 }

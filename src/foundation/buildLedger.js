@@ -45,7 +45,22 @@ export const BUILD_LEDGER = Object.freeze([
     source_changed: true,
     tests_changed: true,
     health_changed: true,
-    notes: "No product feature started. OD-003 remains FOUNDATION_BLOCKING until email/password, Microsoft and Facebook are disabled in the Authentication dashboard.",
+    notes: "No product feature started. OD-003 later resolved by configuration (Google + Apple only).",
+  }),
+  Object.freeze({
+    build_marker: "Buildmarker-004",
+    package_name: "Foundation Health Closure",
+    package_type: "FOUNDATION_AMENDMENT",
+    short_summary:
+      "Legacy scanner reads statement-level imports only (fixture text in string literals no longer a false positive); internal-page probe waits for [data-probe-root] with explicit TIMEOUT/ERROR reasons; Health history stores full redacted report as a private file + compact case index (field size limit); tests T49–T51.",
+    created_at: "2026-10-18",
+    health_catalog_version: "HC-003.0",
+    full_health_status: "RECORDED_IN_HEALTH_RUN_HISTORY",
+    docs_aligned: true,
+    source_changed: true,
+    tests_changed: true,
+    health_changed: false,
+    notes: "No product feature started. Health case definitions unchanged; probe and persistence instrumentation fixed.",
   }),
 ]);
 

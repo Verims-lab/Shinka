@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-003
+**Current BuildMarker:** Buildmarker-004
 **Last Updated:** 2026-10-18
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
@@ -45,5 +45,6 @@ H16-901/902/903 (device push, device sign-in, restore) remain EXTERNAL_RELEASE u
 
 ## Gate history
 - Buildmarker-001: BLOCKED by H02-004 and H13-006 (UI/UX v1.1 not received).
-- Buildmarker-003: H03-008 FAILs (NOT_READY) until email/password, Microsoft and Facebook are disabled and the snapshot re-recorded.
+- Buildmarker-003: measured Full Health 51 PASS / 2 FAIL (H03-001, H03-007) / 1 BLOCKED (H13-004) / 27 N/A → NOT_READY; history save failed (report_json exceeded field size limit).
+- Buildmarker-004: fixes — legacy scanner statement-level imports; probe waits for `[data-probe-root]` (Build & Environment had no Health root marker); history stores full report as private file. Closure result recorded in Health history.
 - Buildmarker-002: expected READY for applicable Foundation cases once an admin Full Health run records it; future suites NOT_APPLICABLE.

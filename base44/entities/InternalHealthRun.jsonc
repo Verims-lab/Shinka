@@ -60,7 +60,11 @@
     },
     "report_json": {
       "type": "string",
-      "description": "Redacted structured report"
+      "description": "Compact case index [[id,status],...] (fits the field size limit)"
+    },
+    "report_file_uri": {
+      "type": "string",
+      "description": "Private file URI of the full redacted report JSON"
     }
   },
   "required": [

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — documented only (no domain entity physically created)
-**Current BuildMarker:** Buildmarker-003
+**Current BuildMarker:** Buildmarker-004
 **Last Updated:** 2026-10-18
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.

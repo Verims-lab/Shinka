@@ -41,16 +41,18 @@ export function probeMobileOverflow(path, width = 360, timeoutMs = 15000) {
       done = true; clearInterval(poll); clearTimeout(timer); iframe.remove();
       resolve({ ...r, width, ms: Math.round(performance.now() - t0) });
     };
-    const timer = setTimeout(() => finish({ state: "TIMEOUT" }), timeoutMs);
+    // Lifecycle: LOADING → MEASURED (page root [data-probe-root] rendered) | TIMEOUT (with reason + landed path) | ERROR.
+    const landed = () => { try { return iframe.contentWindow?.location?.pathname ?? null; } catch { return null; } };
+    const timer = setTimeout(() => finish({ state: "TIMEOUT", reason: "PROBE_ROOT_NOT_RENDERED", path, landedPath: landed(), scrollWidth: null, overflow: null }), timeoutMs);
     const poll = setInterval(() => {
       try {
         const d = iframe.contentDocument;
-        if (d?.querySelector("[data-health-root]")) {
+        if (d?.querySelector("[data-probe-root]")) {
           const scrollWidth = Math.max(d.documentElement.scrollWidth, d.body.scrollWidth);
-          finish({ state: "MEASURED", scrollWidth, overflow: scrollWidth > width + 1 });
+          finish({ state: "MEASURED", path, scrollWidth, overflow: scrollWidth > width + 1 });
         }
-      } catch { finish({ state: "ERROR" }); }
-    }, 400);
+      } catch (e) { finish({ state: "ERROR", reason: "FRAME_INACCESSIBLE", path, detail: String(e?.name || e), scrollWidth: null, overflow: null }); }
+    }, 200);
     iframe.src = path;
     document.body.appendChild(iframe);
   });

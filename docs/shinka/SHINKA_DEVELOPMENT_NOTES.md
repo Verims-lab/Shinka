@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — working notes (does not override sources)
-**Current BuildMarker:** Buildmarker-003
+**Current BuildMarker:** Buildmarker-004
 **Last Updated:** 2026-10-18
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Current state, findings, constraints, debt.
@@ -31,4 +31,7 @@ Foundation only. Routes: `/` (neutral shell aligned to the v1.1 navigation contr
 - Base shadcn `.dark` variables remain in `src/index.css` for library components; no dark class is ever applied (light-only).
 
 ## Future package notes
-Next likely package: Auth & Identity (H06), after OD-003 decision.
+Next likely package: Auth & Identity (H06).
+
+## Measured platform limits (Buildmarker-004)
+- Entity text field: 16KB accepted, 24KB rejected ("exceeds the maximum allowed size"). Large internal reports go to private file storage.

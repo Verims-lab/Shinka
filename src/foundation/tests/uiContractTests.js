@@ -13,6 +13,8 @@ import { findLegacyImports } from "@/foundation/inspection/sourceRules";
 import { checkDocs } from "@/foundation/inspection/docRules";
 import { findUnlabeledControls, probeMobileOverflow } from "@/foundation/probes/domProbes";
 import { HEALTH_CATALOG_VERSION } from "@/foundation/health/constants";
+import { buildHistoryRecord, HISTORY_FIELD_LIMIT } from "@/foundation/health/historyRecord";
+import { ShinkaError, ERROR_CODES, classifyError } from "@/foundation/errors";
 
 const assert = (cond, msg) => { if (!cond) throw new Error(msg); };
 const uiParts = () => SOURCE_INVENTORY.find((s) => s.id === "SRC-03")?.parts || [];
@@ -61,7 +63,7 @@ export const UI_CONTRACT_TESTS = [
   }],
   ["T41", "Build & Environment has no horizontal overflow at 360px", async () => {
     const p = await probeMobileOverflow("/internal/build?probe=1", 360, 15000);
-    assert(p.state === "MEASURED" && !p.overflow, `probe ${p.state} sw=${p.scrollWidth}`);
+    assert(p.state === "MEASURED" && !p.overflow, `probe ${JSON.stringify(p)}`);
   }],
   ["T42", "SHINKA_UI_UX_STANDARDS BuildMarker aligned", async () => assert(!checkDocs(await loadDocs(), BUILD_MARKER).misaligned.some((m) => m.doc === "SHINKA_UI_UX_STANDARDS.md"), "ui/ux doc misaligned")],
   ["T43", "No legacy UI import", async () => {
@@ -87,5 +89,21 @@ export const UI_CONTRACT_TESTS = [
   }],
   ["T48", "Auth policy detects unapproved methods", () => {
     assert(!checkAuthPolicy({ methods: ["password", "google"] }).ok && checkAuthPolicy({ methods: ["apple", "google"] }).ok, "auth policy check");
+  }],
+  ["T49", "Probe timeout is explicit and machine-readable (no false PASS)", async () => {
+    const p = await probeMobileOverflow("/internal/__probe_missing_route", 360, 3000);
+    assert(p.state === "TIMEOUT" && p.reason === "PROBE_ROOT_NOT_RENDERED" && p.overflow === null && p.scrollWidth === null, `probe ${JSON.stringify(p)}`);
+  }],
+  ["T50", "History record matches the run, fits storage, carries no sensitive data", () => {
+    const rep = { runId: "r1", buildMarker: BUILD_MARKER, healthCatalogVersion: HEALTH_CATALOG_VERSION, environment: "t", scope: "FULL",
+      startedAt: "2026-01-01T00:00:00Z", completedAt: "2026-01-01T00:01:00Z", gate: { status: "READY" },
+      summary: { planned: 2, attempted: 2, executed: 2, passed: 2, failed: 0, warnings: 0, blocked: 0, notRun: 0, notApplicable: 0 },
+      cases: [{ id: "H01-001", status: "PASS", evidence: { email: "person@realmail.io" } }, { id: "H01-002", status: "PASS" }] };
+    const rec = buildHistoryRecord(rep, "uri://x");
+    assert(rec.passed === 2 && rec.status === "READY" && rec.run_id === "r1" && rec.report_file_uri === "uri://x", "summary mismatch");
+    assert(rec.report_json.length < HISTORY_FIELD_LIMIT && !/realmail/.test(rec.report_json), "compact report unsafe");
+  }],
+  ["T51", "History persistence failure has its own error code", () => {
+    assert(classifyError(new ShinkaError(ERROR_CODES.HEALTH_HISTORY_PERSIST_FAILED, "x")) === "HEALTH_HISTORY_PERSIST_FAILED", "code");
   }],
 ];

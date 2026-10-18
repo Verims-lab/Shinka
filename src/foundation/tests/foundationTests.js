@@ -68,8 +68,16 @@ export const FOUNDATION_TESTS = [
   ["T19", "Canonical docs exist", async () => assert(checkDocs(await loadDocs(), BUILD_MARKER).missing.length === 0, "docs missing")],
   ["T20", "Docs reference current BuildMarker", async () => assert(checkDocs(await loadDocs(), BUILD_MARKER).misaligned.length === 0, "docs misaligned")],
   ["T21", "Legacy-source firewall", async () => {
-    assert(findLegacyImports({ "/x.js": "import a from '@/legacy/engine';" }).length === 1, "fixture not caught");
-    assert(findLegacyImports(await loadSources()).length === 0, "legacy import present");
+    // Isolated synthetic module: a real statement-level legacy import must be caught.
+    const realImport = ["// synthetic module", "import a from '@/legacy/engine';", "export default a;"].join("\n");
+    assert(findLegacyImports({ "/fixture/real.js": realImport }).length === 1, "real legacy import not caught");
+    // Import-like text inside a string literal is not an import (this test file's own fixture must not pollute the scan).
+    const quoted = "const s = \"import a from '@/legacy/engine';\";";
+    assert(findLegacyImports({ "/fixture/quoted.js": quoted }).length === 0, "string fixture misread as import");
+    // Clean source mixed with an injected legacy module → detector fails the set.
+    const sources = await loadSources();
+    assert(findLegacyImports(sources).length === 0, `legacy import present: ${JSON.stringify(findLegacyImports(sources))}`);
+    assert(findLegacyImports({ ...sources, "/src/injected.js": realImport }).length === 1, "injected legacy import not caught");
   }],
   ["T22", "Content validator detects duplicates/missing fields", async () => {
     const { result } = await fetchArtifactValidation("fixture");
