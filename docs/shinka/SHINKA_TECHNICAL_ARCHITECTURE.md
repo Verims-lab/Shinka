@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-007
+**Current BuildMarker:** Buildmarker-008
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -38,7 +38,7 @@ Machine codes in `src/foundation/errors.js` (AUTH_REQUIRED, FORBIDDEN, NOT_FOUND
 Canonical list: `src/foundation/capabilityRegister.js` (24 items after Buildmarker-007). Historical counts at Buildmarker-001: VERIFIED 1 (backend function execution), PARTIALLY_VERIFIED 4 (field types, auth providers, RLS, admin role), UNVERIFIED 15, UNSUPPORTED 0. Items: field types, UNIQUE, compound UNIQUE, indexes, FK, transaction/rollback, conditional update, concurrency, auth providers, row/owner security, admin role, backend execution, scheduler, secrets, GeoNames proxy, Astronomy library, push, backup, restore, deployment rollback.
 
 ## Future package boundaries
-H04/H12 repository foundation implemented; live verification required → H06 Auth → H07 Onboarding → H09 content import/engine → H08 cycle → H10 Pattern/astronomy/GeoNames → H11 consent/account → H14 notifications → H15 resilience.
+H04/H12 foundation and H06/H07 onboarding contracts are present; GeoNames and onboarding consent are scoped current work. Remaining sequence: H09 content import/engine, H08 cycle, H10 Pattern/astronomy, H11 withdrawal/account, H14 notifications, H15 resilience. Live verification remains separate.
 
 ## Repository hardening boundaries
 - `scripts/staticEvidence.mjs` reads repository files only during Vite build/dev on the host. The virtual module exports safe findings, counts, paths and SHA-256 hashes. Raw source and canonical document bodies are not imported with `?raw` or shipped as a source/document registry. H01/H02/H03/H04/H13 declare build-time inspection, not live server inspection.
@@ -60,8 +60,18 @@ The migration follows the [official Vite integration](https://tailwindcss.com/do
 ## Data/security foundation — Buildmarker-007
 `domainSchemas.js` owns the 20 field contracts and emits the equivalent JSONC structures checked by `scripts/domainEvidence.mjs`. PascalCase filenames match physical names. `domainSourceReceipt.js` is an independent field-name extraction from the primary workbook, not generated from schemas. `domainValidation.js` owns wire/null/time/enum/range checks; `domainSecurity.js` owns the full access matrix and worker grants; `domainAtomic.js` owns canonical unique keys, create-if-absent/CAS protocol, safe readback and reference prechecks. Native unsupported uniqueness is never declared as a fake schema constraint.
 
-`domainAccess` creates the SDK from its incoming request, authenticates through the common guard, then performs only scoped reads or audited admin reads. Private reads are capped at 100, admin reads require an exact id. All product mutation workflows remain disabled. A future paginated product read API must retain owner predicates and active/consent checks for every page.
+`domainAccess` creates the SDK from its incoming request, authenticates through the common guard, then performs only scoped reads or audited admin reads. Private reads are capped at 100, admin reads require an exact id. Generic product mutation workflows remain disabled; the specific onboarding endpoint now uses the required fail-closed adapter contract. A future paginated product read API must retain owner predicates and active/consent checks for every page.
 
 There is no production atomic adapter and no implied transaction rollback. Future adapters must atomically check reference ownership, active account/consent/deletion predicates and unique keys across instances, use compare-and-set revisions and prove crash/retry behavior. Completing deletion cannot rely on a user-supplied status or unverified count. Schema-only null adaptation and timestamp aliases remain capability evidence boundaries, detailed in DATA_MODEL.
 
 `npm run health:repo` checks physical schemas, access policies, docs/marker/ledger and safe source findings. H04/H12 execute the same pure/backend contracts as the canonical browser runner; no second test framework or live test seed is introduced. All new shared backend modules are imported by typechecked tests. Current capability counts are derived from capabilityRegister.js (24 entries); detailed statuses in DATA_MODEL/RELEASE_HEALTH_CHECK.
+
+## Authentication/onboarding architecture — current package
+
+`src/pages/Onboarding.jsx` coordinates existing AuthContext hydration, preferences initialization and state presentation. `onboardingRoute.js` is the canonical eight-state resolver; private backend state is authoritative. `OnboardingScreen` uses shared primitives, centralized copy and bounded services. `authService.beginProviderAuth` checks an explicit true 18+ flag before any provider call; provider initiation is not successful authentication. AuthContext still hydrates the canonical Base44 user.
+
+The `onboarding` backend entry creates a request-scoped SDK client, uses shared authenticated ownership guards and a closed action/field allowlist. Hydration uses owner-filtered queries, singleton duplicate detection and normalized projections. `onboardingValidation.js` shares date-only, age, time, name and cycle validation with UX; server date is calculated from server clock in persisted IANA timezone. The backend revalidates DOB even when client validation is bypassed.
+
+GeoNames uses backend-only GEONAMES_USERNAME, fixed HTTPS searchJSON/getJSON endpoints, 8-second abort, 8-result cap, 80-character normalized query, 100KB response limit and five-field projection. Frontend sends only a selected numeric identifier; backend resolves it again. Editing/clearing a query invalidates previous selection and outstanding results. No credentials, geolocation, query history or arbitrary provider objects reach persistent product data. Official API references: https://www.geonames.org/export/geonames-search.html and https://www.geonames.org/export/web-services.html#get . Live availability is unmeasured.
+
+`commitOwnerAction` extends the canonical domainAtomic boundary. A future adapter must serialize by authenticated owner, enforce all unique keys/account/consent/deletion predicates, atomically commit every row plus a durable owner/action/fingerprint receipt, and return confirmed rows. Infrastructure action receipts must not become an unapproved product entity. New profile/preferences bootstrap may allow an absent profile, never an INACTIVE one. Completing an incomplete profile replaces the full optional birthplace group; usable profiles are not edited by onboarding. Append-only event and period actions are deduplicated by action receipt; existing onboarding period state prevents page-retry duplicates. No production implementation, SDK check/create fallback, or transaction guarantee is claimed.

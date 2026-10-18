@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUILD_HISTORY.md
 **Status:** ACTIVE — append-only
-**Current BuildMarker:** Buildmarker-007
+**Current BuildMarker:** Buildmarker-008
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** src/foundation/buildMarker.js (authority), src/foundation/buildLedger.js (ledger)
 **Purpose:** Human-readable build history. Never rewrite old entries.
@@ -58,3 +58,11 @@ No end-user product package implemented. No GitHub work. No AI.
 - Canonical uniqueness keys, idempotent create, revision-based update and readback contracts fail closed without a proven durable atomic adapter. Native UNIQUE is unsupported; native FK/index/transaction/rollback remain unverified.
 - OD-004 and OD-009 partially verified; no duplicate timestamp fields and no synthetic-to-live evidence promotion. H04/H12 activated/expanded in HC-005.0; 46 new canonical data/security tests; BuildMarker incremented exactly once.
 - Baseline live read-only inventory found 0/20 product schemas. Repository now represents 20/20; deployed Full Health/enforcement remain required. Package targets only Test, main unchanged; no user-facing product package or seed.
+
+## Buildmarker-008 — Authentication & Onboarding (2026-10-19)
+
+- Apple/Google-only provider boundary with unchecked pre-auth 18+ declaration; backend DOB/age enforcement and owner-derived identity.
+- ON-01…ON-05 screens and safe persistence contracts: optional name, NULL time, structured optional GeoNames, optional cycle and explicit consent. Durable adapter unavailable; production writes fail closed.
+- ON-06 finite FIRST_SHINKA_ENGINE_REQUIRED shell; no UC-06 generation, content import, Daily Content Engine, daily row, scheduler or unrelated product feature.
+- H06/H07 activated, H10 GeoNames and H11 onboarding consent scoped in HC-006.0. Existing Foundation/Data/Security tests retained; new auth/onboarding/UI tests use the same runner. All 12 document headers aligned.
+- OPEN: missing approved Sun resolver, TR onboarding copy, consent text/version, durable skip-resume model and verified production atomic adapter. Live Base44 Full Health/auth/GeoNames/enforcement still required separately. Test only; main unchanged.

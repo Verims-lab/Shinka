@@ -84,8 +84,8 @@ export const HARDENING_TESTS = [
   ["T55","Provider errors sanitized; unsupported methods never call SDK",async()=>{
     const calls = [];
     const auth = {loginWithProvider:async(provider)=>{ calls.push(provider); throw {message:"private payload",stack:"private stack",token:"private token"}; }};
-    for (const p of ["apple","google"]) assert((await beginProviderAuth(p,"/",auth)).code==="AUTH_PROVIDER_FAILED","unsafe provider failure");
-    assert((await beginProviderAuth("password","/",auth)).code==="AUTH_UNSUPPORTED_METHOD" && calls.join() === "apple,google","unapproved SDK call");
+    for (const p of ["apple","google"]) assert((await beginProviderAuth(p,"/",true,auth)).code==="AUTH_PROVIDER_FAILED","unsafe provider failure");
+    assert((await beginProviderAuth("password","/",true,auth)).code==="AUTH_UNSUPPORTED_METHOD" && calls.join() === "apple,google","unapproved SDK call");
     assert(safeAuthError({code:"access_denied"})==="AUTH_CANCELLED" && safeAuthError({message:"private"},"session")==="AUTH_SESSION_FAILED","safe error mapping");
   }],
   ["T56","PASS without execution cannot make gate READY",()=>assert(computeGate([passCase({executed:false})]).status==="NOT_READY","unexecuted PASS accepted")],

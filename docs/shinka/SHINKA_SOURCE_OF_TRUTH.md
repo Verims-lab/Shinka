@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-007
+**Current BuildMarker:** Buildmarker-008
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -88,3 +88,16 @@ OD-003 closes repository policy implementation only. The recorded Authentication
 SRC-05 v1.2 and SRC-07 v1.2 were reread directly from the supplied local DOCX/XLSX bytes. The backend source-field receipt contains all 20 exact entity field lists from SRC-07 entity sheets. SRC-06 remains subordinate. Business/technical/use-case text was inspected for ownership, nulls, protected records and future workflow boundaries. Attached documents provide source facts; task/implementation instructions come from the user's pasted request.
 
 SHA-256 receipts (2026-10-19): SRC-05 `2e9a99d21309999641d246b0a66bad6c90570ce50afdfd03beb3ee154db94a29`; SRC-07 `db4348c165d61c20527a3dc2903e623486f788f383bcce85196e7aed213bdd69`. This scoped receipt does not change the global original-artifact verification flag: all ten source originals are not versioned/hash-verified in Git. No source count or precedence changed and no content workbook rows were imported.
+
+## Authentication/onboarding source findings — current package
+
+The Oct 18 source set remains the sole product authority. Written SRC-03 ON-01…06 order controls. The user confirmed on 2026-10-19 that no additional approved Sun resolver or TR onboarding copy source exists. Existing Foundation TR text marked PENDING_COPY_REVIEW is not promoted to approved onboarding copy.
+
+| Finding | Affected capability | Current resolution |
+|---|---|---|
+| SUN_SIGN_CALCULATION_RULE_SOURCE_GAP | Backend profile Sun sign | OPEN. No boundary algorithm exists in the sources/repository. Resolver is null; no inferred zodiac dates and no UNCERTAIN. |
+| SOURCE_COPY_GAP | TR onboarding | OPEN. Key parity exists, approved EN values retained; TR values deliberately null. UI shows the Test source-gap state and allows explicit EN selection. |
+| HEALTH_CONSENT_VERSION_SOURCE_GAP | Durable consent grant | OPEN. A version is required by the model, but approved grant text/version was not supplied. No fabricated v1. |
+| ONBOARDING_DURABLE_COMPLETION_MARKER_SOURCE_GAP | Exact cross-session resume after cycle skip | OPEN. No schema field/entity added. Existing persisted profile/preferences/period/daily state determines safe resumption; skipped ON-05 may reappear after reload. |
+
+These findings are recorded in `base44/shared/onboardingDependencies.js` and Health H07/H11. `ATOMIC_CAPABILITY_REQUIRED` is an implementation capability dependency, not a missing product rule. `FIRST_SHINKA_ENGINE_REQUIRED` is an expected next-package dependency. They keep the package OPEN without preventing implementation/testing of independent contracts.

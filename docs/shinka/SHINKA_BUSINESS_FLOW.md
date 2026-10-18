@@ -1,14 +1,14 @@
 # SHINKA — Business Flow Contracts
 
 **Document:** SHINKA_BUSINESS_FLOW.md
-**Status:** ACTIVE — contract summary (not implemented)
-**Current BuildMarker:** Buildmarker-007
+**Status:** ACTIVE — contract summary with scoped implementation
+**Current BuildMarker:** Buildmarker-008
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
-**Implemented:** Data/security foundation only; none of the user flows below.
-**Not Implemented:** All sections below.
+**Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; production writes/source gaps remain OPEN.
+**Not Implemented:** UC-06/Daily Content, Calendar, Pattern, You editing, withdrawal/deactivation and notifications.
 **Open Decisions:** OD-002 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 ## Account / Authentication (UC-01, KK-01)
@@ -43,3 +43,11 @@ Delete Account ⇒ INACTIVE + ACCOUNT_DEACTIVATION event. Admin cannot modify/de
 
 ## Foundation readiness — Buildmarker-007
 All 20 physical schemas now represent these contracts. Backend read boundaries derive owner from auth.me().id and check ACTIVE/consent state; protected mutations are denied. No Calendar, onboarding, Home, Pattern, daily-generation, scheduler, push or deletion execution flow has begun. Future Calendar mutations still require ≥15-day inter-record validation and atomic derived-state replacement; future withdrawal must stop processing first, create minimal protection/job metadata, verify physical deletion and permit re-consent only after completion. Account deactivation retains records and closes normal access. No current schema or synthetic test constitutes implementation of those business flows.
+
+## Authentication/onboarding implementation boundary — current package
+
+ON-01 Introduction → ON-02 optional trimmed name → ON-03 Apple/Google with a separate unchecked 18+ declaration → ON-04 required DOB / optional time / optional structured birthplace → ON-05 optional cycle and independent explicit health consent → ON-06 finite dependency shell. Existing users with usable profile/preferences and actual daily data retain Home shell access; INACTIVE wins over all onboarding paths.
+
+Pre-auth name is transient only (same-tab session storage, versioned, 30-minute expiry, max 50 Unicode characters). No pre-auth profile or identity is created. Backend identity always comes from Base44 auth.me(). Profile/preferences and health persistence are implemented as guarded adapter contracts, tested synthetically; production writes fail closed because no durable adapter is verified. Sun and consent source gaps additionally prevent the affected saves. No failed write is presented as completion.
+
+Cycle skip creates no health/consent/settings rows. A start date requires separate consent; settings require a start date. Empty settings never materialize 5/28. Exact screen resume after skip is not durably representable; current session can reach ON-06, reload safely derives state again. UC-06 generation remains unimplemented and explicitly FIRST_SHINKA_ENGINE_REQUIRED.

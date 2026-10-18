@@ -3,6 +3,7 @@ import { DOMAIN_SCHEMAS, HEALTH_ENTITIES } from './domainSchemas.js';
 import { validateDomainRecord } from './domainValidation.js';
 import { assertProtectedRecordMutationAllowed, SYSTEM_AUTHORITIES } from './domainSecurity.js';
 import { RELATIONSHIPS } from './domainContract.js';
+import { assertAuthenticatedPrincipal } from './internalAuthorization.js';
 const fail = (code,status=409) => {throw new InternalError(code,status);};
 // Adapter contract: all unique keys + owner/state/reference predicates are checked in
 // the SAME durable, cross-instance atomic operation. A local mutex, list/create or
@@ -84,4 +85,27 @@ export async function assertReferenceTargets(entity,record,resolve) {
     if(ref.target==='User.id' && record.user_id && ref.id!==record.user_id && entity!=='admin_audit_log') fail('REFERENCE_OWNER_MISMATCH',403);
     if(target.user_id && record.user_id && target.user_id!==record.user_id) fail('REFERENCE_OWNER_MISMATCH',403);
   }
+}
+
+// Onboarding extends the same adapter boundary. The implementation must serialize
+// by authenticated owner, recheck account/deletion predicates, atomically commit
+// every row and its durable action receipt, and reject reuse with another payload.
+// Neither an SDK list/create sequence nor a process-local lock satisfies this.
+export async function commitOwnerAction(principal, actionId, fingerprint, writes, adapter) {
+  assertAuthenticatedPrincipal(principal);
+  if(typeof actionId!=='string'||!/^[a-zA-Z0-9_-]{16,80}$/.test(actionId))fail('ACTION_ID_REQUIRED',400);
+  if(typeof adapter?.commitOwnerAction!=='function')fail('ATOMIC_CAPABILITY_REQUIRED',503);
+  const operations=writes.map(({entity,record,authority,mode})=>{
+    assertProtectedRecordMutationAllowed(entity,'create',authority);
+    if(record.user_id!==principal.id)fail('FORGED_OWNER',403);
+    const validated=validateDomainRecord(entity,record);
+    return {entity,record:validated,keys:canonicalUniqueKeys(entity,validated),requirements:{...requirements(entity,validated),allowAbsentProfile:['user_profile','user_preferences'].includes(entity)},mode:mode||'CREATE_ONCE'};
+  });
+  const outcome=await adapter.commitOwnerAction({owner:principal.id,actionId,fingerprint,operations});
+  if(!outcome||!['COMMITTED','REPLAYED'].includes(outcome.status)||!Array.isArray(outcome.records)||outcome.records.length!==operations.length)fail('ATOMIC_RESULT_INVALID');
+  operations.forEach((op,index)=>{
+    const saved=outcome.records[index];
+    if(!saved?.id||saved.user_id!==principal.id||Object.keys(DOMAIN_SCHEMAS[op.entity].properties).some(key=>!(outcome.status==='REPLAYED'&&['granted_at','occurred_at'].includes(key))&&(op.record[key]===undefined?saved[key]!=null:saved[key]!==op.record[key])))fail('ATOMIC_READBACK_CONFLICT');
+  });
+  return outcome;
 }

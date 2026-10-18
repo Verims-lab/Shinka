@@ -1,0 +1,98 @@
+import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
+import { resolveAuthenticatedOwner, assertOwner, assertActiveAccount, SYSTEM_AUTHORITIES as S } from './domainSecurity.js';
+import { normalizeDomainRead } from './domainValidation.js';
+import { physicalName, SUN_SIGN_CODES } from './domainSchemas.js';
+import { commitOwnerAction } from './domainAtomic.js';
+import { resolveOnboardingState } from './onboardingRoute.js';
+import { optionalName, optionalBirthTime, validateBirthDate, validateCycleInput, resolveTimezone, serverLocalDate, emptyBirthplace, OnboardingError } from './onboardingValidation.js';
+import { SUN_SIGN_RESOLVER, HEALTH_CONSENT_VERSION } from './onboardingDependencies.js';
+const fail=(code,status=400)=>{throw new OnboardingError(code,null,status);};
+const allowed={hydrate:[],initialize:['language_code','timezone','action_id'],saveProfile:['display_name','birth_date','birth_time','birthplace_geonames_id','action_id'],saveCycle:['period_start_date','period_duration_days','initial_cycle_length_days','health_consent','action_id'],skipCycle:[],searchPlaces:['query','language_code']};
+// Dependencies are server configuration/injected contract fixtures, never request fields.
+export async function onboardingOperation(client,body,dependencies={}) {
+  const {atomic=null,geoNames=null,sunSign=SUN_SIGN_RESOLVER,consentVersion=HEALTH_CONSENT_VERSION,now=()=>new Date()}=dependencies;
+  const principal=await requireAuthenticatedUser(client),owner=resolveAuthenticatedOwner(principal,body);
+  const fields=allowed[body.action];
+  if(!fields||Object.keys(body).some(k=>!['action','user_id',...fields].includes(k)))fail('INVALID_REQUEST');
+  const store=client.asServiceRole.entities;
+  const rows=async(entity,limit=2,extra={})=>{
+    const result=await store[physicalName(entity)].filter({user_id:owner,...extra},'-created_date',limit);
+    if(!Array.isArray(result))fail('ONBOARDING_READ_FAILED',503);
+    result.forEach(row=>assertOwner(principal,row));return result;
+  };
+  const singleton=async(entity)=>{const result=await rows(entity);if(result.length>1)fail('DUPLICATE_OWNER_STATE',409);return result[0]?normalizeDomainRead(entity,result[0]):null;};
+  const profile=await singleton('user_profile');
+  if(profile?.account_status==='INACTIVE')return {state:'INACTIVE_ACCOUNT'};
+  const preferences=await singleton('user_preferences');
+  const today=preferences?serverLocalDate(now(),resolveTimezone(null,preferences.timezone)):null;
+  const state=async(cycleStepConfirmed=false)=>{
+    const consent=profile?await singleton('user_health_consent'):null;
+    const period=consent?.consent_status==='GRANTED'?await rows('user_period_record',1):[];
+    const daily=profile?await rows('user_daily_message',1):[];
+    return {state:resolveOnboardingState({authenticated:true,profile,preferences,today,hasHealthData:period.length>0,hasDailyMessage:daily.length>0,cycleStepConfirmed}),profile,preferences,today};
+  };
+  if(body.action==='hydrate')return state();
+  if(body.action==='searchPlaces') {
+    if(!geoNames)fail('GEONAMES_UNAVAILABLE',503);
+    return {places:await geoNames.search(body.query,body.language_code)};
+  }
+  const commit=async(writes)=>{
+    // Stable canonical request excludes timestamps (retry timestamps must not fork actions).
+    const canonical=JSON.stringify(Object.fromEntries(Object.keys(body).filter(k=>k!=='action_id'&&k!=='user_id').sort().map(k=>[k,body[k]])));
+    const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(canonical))),b=>b.toString(16).padStart(2,'0')).join('');
+    return commitOwnerAction(principal,body.action_id,hash,writes,atomic);
+  };
+  if(body.action==='initialize') {
+    if(!['en','tr'].includes(body.language_code))fail('LANGUAGE_INVALID');
+    const timezone=resolveTimezone(body.timezone,preferences?.timezone);
+    if(preferences)return state(); // Hydration does not overwrite established preferences.
+    await commit([{entity:'user_preferences',authority:S.PROFILE,record:{user_id:owner,language_code:body.language_code,timezone,notifications_enabled:false,notification_time:'06:00'}}]);
+    return {state:'AUTHENTICATED_PROFILE_REQUIRED',persisted:true};
+  }
+  if(!preferences)fail('PREFERENCES_INITIALIZATION_REQUIRED',409);
+  if(body.action==='saveProfile') {
+    if(profile&&resolveOnboardingState({authenticated:true,profile,preferences,today})!=='AUTHENTICATED_PROFILE_REQUIRED')return state();
+    const birth_date=validateBirthDate(body.birth_date,today),birth_time=optionalBirthTime(body.birth_time),display_name=optionalName(body.display_name);
+    if(typeof sunSign!=='function')fail('SUN_SIGN_CALCULATION_RULE_SOURCE_GAP',503);
+    const sun_sign_code=await sunSign({birth_date,birth_time:birth_time??'00:00'});
+    if(!SUN_SIGN_CODES.includes(sun_sign_code))fail('SUN_SIGN_RESOLVER_INVALID',503);
+    let birthplace=emptyBirthplace();
+    if(body.birthplace_geonames_id!=null) {
+      if(!geoNames)fail('GEONAMES_UNAVAILABLE',503);
+      birthplace=await geoNames.resolve(body.birthplace_geonames_id);
+    }
+    await commit([{entity:'user_profile',authority:S.PROFILE,mode:'COMPLETE_PROFILE',record:{user_id:owner,display_name,birth_date,birth_time,...birthplace,sun_sign_code,account_status:'ACTIVE'}}]);
+    return {state:'AUTHENTICATED_CYCLE_STEP',persisted:true};
+  }
+  assertActiveAccount(owner,profile);
+  if(resolveOnboardingState({authenticated:true,profile,preferences,today})==='AUTHENTICATED_PROFILE_REQUIRED')fail('PROFILE_COMPLETION_REQUIRED',409);
+  if(body.action==='skipCycle')return {state:'FIRST_SHINKA_DEPENDENCY',persisted:false};
+  const cycle=validateCycleInput(body,today);
+  if(!cycle.hasHealthData)return {state:'FIRST_SHINKA_DEPENDENCY',persisted:false};
+  if(!consentVersion)fail('HEALTH_CONSENT_VERSION_SOURCE_GAP',503);
+  const jobs=await rows('health_data_deletion_job',1,{job_status:{$ne:'COMPLETED'}});
+  if(jobs.length)fail('HEALTH_DELETION_PENDING',409);
+  const consent=await singleton('user_health_consent');
+  // Re-consent after withdrawal belongs to its own future workflow.
+  if(consent?.consent_status==='WITHDRAWN')fail('CONSENT_REGRANT_WORKFLOW_REQUIRED',409);
+  if((await rows('user_period_record',1)).length)return state(true);
+  const occurred_at=consent?.granted_at||now().toISOString();
+  /** @type {{entity:string,authority:any,record:Record<string,any>}[]} */
+  const writes=[
+    {entity:'user_health_consent',authority:S.CONSENT,record:{user_id:owner,consent_status:'GRANTED',consent_version:consentVersion,granted_at:occurred_at,withdrawn_at:null}},
+    {entity:'user_health_consent_event',authority:S.CONSENT,record:{user_id:owner,event_type:'GRANTED',consent_version:consentVersion,occurred_at}},
+    {entity:'user_period_record',authority:S.CYCLE,record:{user_id:owner,period_start_date:cycle.period_start_date}},
+  ];
+  if(cycle.period_duration_days!==null||cycle.initial_cycle_length_days!==null)writes.push({entity:'user_cycle_settings',authority:S.CYCLE,record:{user_id:owner,period_duration_days:cycle.period_duration_days,initial_cycle_length_days:cycle.initial_cycle_length_days}});
+  await commit(writes);
+  return {state:'FIRST_SHINKA_DEPENDENCY',persisted:true};
+}
+export async function handleOnboardingRequest(req,createClient,dependencies={}) {
+  try {
+    if(req.method!=='POST')fail('METHOD_NOT_ALLOWED',405);
+    const text=await req.text();if(new TextEncoder().encode(text).length>8000)fail('REQUEST_TOO_LARGE',413);
+    let body;try{body=JSON.parse(text);}catch{fail('INVALID_REQUEST');}
+    if(!body||typeof body!=='object'||Array.isArray(body))fail('INVALID_REQUEST');
+    return Response.json(await onboardingOperation(createClient(req),body,dependencies));
+  }catch(error){return Response.json({error_code:error instanceof InternalError?error.code:'ONBOARDING_OPERATION_FAILED',field:error instanceof OnboardingError?error.field:null},{status:error instanceof InternalError?error.status:500});}
+}

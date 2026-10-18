@@ -2,16 +2,19 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-007
+**Current BuildMarker:** Buildmarker-008
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-005.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-006.0; repository, synthetic and external evidence separated.
 
-## Catalog (HC-005.0) — 16 suites, 109 cases
-Active: H01 Environment & Build (6), H02 Source & Documentation Integrity (8), H03 Architecture & Code Quality (9), H04 Data Model Contract (14 current + 1 external), H05 Content Artifact Integrity (9), H12 Security & Ownership (20 current + 1 external), H13 UI/UX/Accessibility (11), H16 Release Gate (6 + 3 external).
-Future (FUTURE_PACKAGE → NOT_APPLICABLE): H06 (2), H07 (3), H08 (3), H09 (3), H10 (3), H11 (3), H14 (2), H15 (2).
-Registry-derived counts: 83 applicable, 21 future, 5 external. Counts come from the same catalog imported by the canonical runner; no independent fixed counter exists.
+## Catalog (HC-006.0) — 16 suites, 126 cases
+
+Registry-derived totals: 104 current, 15 future, 7 external. H06 has 6 current + 1 external; H07 has 12 current; H10 has 1 current GeoNames + 2 future Pattern/Moon + 1 external; H11 has 2 current onboarding-consent + 3 future withdrawal/account cases. H08 remains entirely future. Existing H01…H05/H12/H13/H16 scopes are preserved.
+
+H06's six current cases exercise the real auth/identity helpers with synthetic providers/principals. H07 has eight executable contract cases plus four explicit BLOCKED capabilities (Sun resolver, approved TR copy, production atomic adapter, durable skipped-step resume). H10-003 measures the structured GeoNames adapter contract; H10-004 requires live provider evidence. H11-004 exercises grant/history/immutability/retry contracts; H11-005 remains BLOCKED for approved consent text/version. No future withdrawal/deletion/Moon/cycle engine behavior is promoted to PASS.
+
+CLI output separates executable regression PASS/FAIL from onboarding Health BLOCKED findings. Required repository tests must all pass, while the package gate remains OPEN/BLOCKED on the named capability gaps. No arbitrary failing case is waived: CLI rejects onboarding Health FAIL or any status other than PASS/BLOCKED; named gaps are visible in the complete output. Final live Full Health remains required after merge/deploy.
 
 ## Logical vs physical source model
 H02-003 counts LOGICAL sources (must be 10). H02-004 requires every logical source and every physical part READ. H02-007 verifies the split UI/UX source: 4 parts, expected names, order 1→2→3→4, no gap/duplicate, continuity recorded, sole UI/UX authority, machine-readable companion present as supporting artifact (not a logical source), and documentation in SHINKA_SOURCE_OF_TRUTH.md. Artifacts are validated by role, never by a fixed physical total. H02-008 verifies all 11 UI/UX tables (design = tokens, icons = nav contract, 5 copy groups, QA checklist) and OD-010 closed. H03-008 verifies repository auth syntax plus the recorded Apple/Google policy; H03-009 exercises the actual server-admin request guard with injected anonymous/user/admin principals. Neither is LIVE_ENFORCEMENT.
@@ -82,3 +85,19 @@ A regular Full Health run marks external cases NOT_APPLICABLE and lists the requ
 Canonical CLI: **126 PASS / 0 FAIL**, no browser exceptions; existing 80 preserved, 22 data-model + 24 security tests added, none removed. Local H04: 14 PASS / 0 FAIL / 0 BLOCKED current cases; H12: 20 PASS / 0 FAIL / 0 BLOCKED current cases. H04-006 and H12-901 are external requirements, excluded from those current counts and not certified. Registry: **HC-005.0 / 16 suites / 109 cases / 83 current / 21 future / 5 external**. Repository health confirms 20/20 schemas, zero extras, complete policy matrix and no unexpected seed/import call.
 
 REPOSITORY VERIFIED and SYNTHETIC_RUNTIME VERIFIED. LIVE_RUNTIME evidence covers only the read-only baseline inventory and tooling timestamp availability. LIVE_ENFORCEMENT remains REQUIRED. Internal package blockers: 0. Package: **CLOSED_PENDING_BASE44_VERIFICATION**. Final deployed Full Health, live enforcement and the capability dependencies above remain external; no product flows or imported/seeded data.
+
+## Authentication/onboarding evidence boundary
+
+Repository checks prove source/catalog/docs alignment and no unexpected product schemas or seed/import calls. STATIC evidence covers the auth surface and copy/proxy scanner. SYNTHETIC_RUNTIME covers shared validators, server guards, injected atomic action protocol and real rendered screen interactions. Fixtures use isolated in-memory records/name state and fake providers; no live OAuth, GeoNames or product mutation occurs. LIVE_RUNTIME and LIVE_ENFORCEMENT are not claimed. Physical mobile keyboard and provider callbacks remain EXTERNAL/DEVICE REQUIRED.
+
+The package is OPEN despite passing deterministic tests because required implementation/source capabilities remain unavailable. ON-06's FIRST_SHINKA_ENGINE_REQUIRED is an additional expected next-package dependency; UC-06 is not implemented.
+
+## Final repository verification — Buildmarker-008 (2026-10-19)
+
+Executed after clean `npm ci`: `npm ls --depth=0`, `security:deps`, `typecheck`, canonical `test:foundation`, `lint`, `build`, and `health:repo` all exited 0. Audit: **0 Critical / 0 High / 2 Moderate / 0 Low**; the two previously documented React Router package findings remain. No dependency version/lockfile change was introduced. Build retains non-fatal shared-test chunk/dynamic-import size warnings; these are not live performance evidence.
+
+Canonical regressions: **171 PASS / 0 FAIL**, zero browser exceptions. Existing Foundation 80 + Data 22 + Security 24 preserved; added Auth 9 + Onboarding 31 + rendered UI 5. One existing provider-boundary test updated for the mandatory declaration argument; none removed. Actual screen captures and DOM probes covered 360px and 430px; input font/focus issues found during implementation were corrected. External fonts and physical keyboards/providers are not certified by the isolated harness.
+
+Registry: **HC-006.0 / 16 suites / 126 cases / 104 current / 15 future / 7 external**. Current H06 **6 PASS / 0 FAIL / 0 BLOCKED** (plus one external case); H07 **8 PASS / 0 FAIL / 4 BLOCKED**. H10-003 GeoNames contract PASS; H10-004 live availability external. H11-004 onboarding consent contract PASS; H11-005 approved consent text/version BLOCKED. Other future cases remain inactive/NOT_APPLICABLE. The five named current capability blocks are not converted into test failures or successful live verification; **package OPEN**.
+
+Repository health confirms 20 physical product schemas, no extras, unchanged source fields/direct SDK deny rules, complete access matrix, copy/proxy policy, no seed/legacy/credential findings, one marker/ledger transition and all 12 aligned document headers. Evidence is REPOSITORY / STATIC / SYNTHETIC_RUNTIME only. BASE44_FULL_HEALTH_REQUIRED, BASE44_LIVE_AUTH_REQUIRED, BASE44_LIVE_GEONAMES_REQUIRED and BASE44_LIVE_ENFORCEMENT_REQUIRED remain pending after merge/deploy. FIRST_SHINKA_ENGINE_REQUIRED is explicitly next-package work.

@@ -1,5 +1,5 @@
 // UI/UX v1.1 (SRC-03) structural contract — navigation, icons, screens, flows. Documented contract;
-// product screens are FUTURE_PACKAGE. Lucide names are kebab-case; `component` is the lucide-react export.
+// onboarding screens are implemented with explicit source/adapter gaps; other product screens remain FUTURE_PACKAGE. Lucide names are kebab-case; `component` is the lucide-react export.
 export const BOTTOM_NAV = Object.freeze([
   { key: "home", labelKey: "nav.home", lucide: "house", component: "House" },
   { key: "calendar", labelKey: "nav.calendar", lucide: "calendar-days", component: "CalendarDays" },

@@ -6,7 +6,7 @@ function ShinkaInput({ className = "", ...props }, ref) {
   return (
     <input
       ref={ref}
-      className={`min-h-[52px] w-full rounded-shinka-md bg-shinka-white border border-shinka-line px-4 text-shinka-body text-shinka-ink placeholder:text-shinka-taupe transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum ${className}`}
+      className={`min-h-[52px] w-full rounded-shinka-md bg-shinka-white border border-shinka-line px-4 text-[17px] leading-[25px] text-shinka-ink placeholder:text-shinka-taupe transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum ${className}`}
       {...props}
     />
   );
