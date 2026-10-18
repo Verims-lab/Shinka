@@ -68,6 +68,7 @@ npm ci
 npx playwright install chromium # one-time browser setup per machine/CI image
 npm ls --all
 npm audit --json
+npm run security:deps
 npm run typecheck
 npm run test:foundation
 npm run lint
@@ -75,5 +76,9 @@ npm run build
 ```
 
 The CLI executes the same `src/foundation/tests` definitions as Health Center in a temporary local Chromium harness. It renders real pages for DOM probes and substitutes only backend access with synthetic fixtures; it never contacts live Base44. Any failed test, Health evidence check or browser exception returns a non-zero exit code. Node must permit a loopback listener and Chromium execution. Standard Playwright browser-cache configuration is supported.
+
+`security:deps` uses npm's native High threshold, including development dependencies: Critical/High or registry errors fail non-zero; remaining Moderate/Low findings still print. Run it for every package. Use `npm ci` for reproducible validation; do not edit the lockfile manually.
+
+CSS is compiled by `@tailwindcss/vite` (Tailwind 4), with `src/index.css` as entry and `src/styles/theme.css` as native theme. There is no separate PostCSS/Tailwind JavaScript config. The same plugin runs in the CLI harness. Optional `FOUNDATION_VISUAL_DIR=/absolute/output/path npm run test:foundation` records Health, Build and login screenshots/layout measurements at 360px and 1280px using synthetic data. The runner emulates OS dark preference to verify the light-only target; it blocks external requests, including hosted fonts, so device font loading still needs live verification.
 
 Current Foundation status and exact remaining advisories are in `docs/shinka/SHINKA_SECURITY_PRIVACY.md` and `SHINKA_RELEASE_HEALTH_CHECK.md`. A successful local run does not certify deployed authentication, server enforcement or history readback.

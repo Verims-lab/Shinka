@@ -2,6 +2,7 @@
 // No Base44 credentials, platform calls, or live enforcement claims.
 import { build } from "vite";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 import { chromium } from "playwright";
 import { createServer } from "node:http";
 import { mkdtemp, readFile, rm } from "node:fs/promises";
@@ -9,12 +10,13 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { staticEvidencePlugin } from "./staticEvidence.mjs";
+import { captureFoundationVisuals } from "./captureFoundationVisuals.mjs";
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
 const output=await mkdtemp(path.join(tmpdir(),"shinka-foundation-tests-"));
 let server,browser;
 try {
-  await build({root,configFile:false,plugins:[staticEvidencePlugin(root),react()],logLevel:"warn",
+  await build({root,configFile:false,plugins:[staticEvidencePlugin(root),tailwindcss(),react()],logLevel:"warn",
     resolve:{alias:[{find:"@/api/base44Client",replacement:path.join(root,"scripts/testHarness/fakeBase44.js")},{find:"@",replacement:path.join(root,"src")}]},
     build:{outDir:output,emptyOutDir:true,rollupOptions:{input:path.join(root,"scripts/testHarness/index.html")}}});
   const html=await readFile(path.join(output,"scripts/testHarness/index.html"));
@@ -32,8 +34,10 @@ try {
   const origin=`http://127.0.0.1:${server.address().port}`;
   browser=await chromium.launch({headless:true});
   const page=await browser.newPage({viewport:{width:1280,height:900}});
+  await page.emulateMedia({colorScheme:"dark"}); // Product stays light even when the OS prefers dark.
   await page.route("**/*",route=>new URL(route.request().url()).origin===origin?route.continue():route.abort());
   const pageErrors=[];page.on("pageerror",error=>pageErrors.push(error.message));
+  if(process.env.FOUNDATION_VISUAL_DIR){await captureFoundationVisuals(page,origin,path.resolve(process.env.FOUNDATION_VISUAL_DIR));await page.setViewportSize({width:1280,height:900});}
   await page.goto(`${origin}/internal/health`);
   await page.waitForSelector("[data-health-root]");
   const results=await page.evaluate(()=>window.__runFoundationTests());

@@ -16,6 +16,7 @@ import { buildReport, redact } from "@/foundation/health/report";
 import { STATUS, APPLICABILITY as A, GATE } from "@/foundation/health/constants";
 import { validatorFixtureResult } from "../../../base44/shared/contentArtifactValidator.ts";
 import { HARDENING_TESTS } from "./hardeningTests";
+import { CSS_CONTRACT_TESTS } from "./cssContractTests";
 import { ev } from "@/foundation/health/evidence";
 import { findUnlabeledControls, probeMobileOverflow } from "@/foundation/probes/domProbes";
 
@@ -98,7 +99,7 @@ export const FOUNDATION_TESTS = [
 
 export async function runFoundationTests() {
   const out = [];
-  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...UI_CONTRACT_TESTS, ...HARDENING_TESTS]) {
+  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...UI_CONTRACT_TESTS, ...HARDENING_TESTS, ...CSS_CONTRACT_TESTS]) {
     try { await fn(); out.push({ id, name, passed: true, detail: "ok" }); }
     catch (e) { out.push({ id, name, passed: false, detail: String(e?.message || e).slice(0, 160) }); }
   }

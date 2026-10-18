@@ -76,6 +76,20 @@ export const BUILD_LEDGER = Object.freeze([
     health_changed: true,
     notes: "Repository Foundation remains OPEN: unresolved High dependency advisories, no waiver. Final Base44 Full Health, history readback and Authentication panel verification pending. No product features/data or legacy import.",
   }),
+  Object.freeze({
+    build_marker: "Buildmarker-006",
+    package_name: "Foundation Dependency Security Closure",
+    package_type: "FOUNDATION_AMENDMENT",
+    short_summary: "Verified vulnerable dependency graph; native Tailwind 4/Vite migration removes High chain and obsolete CSS pipeline; preserved visual tokens/layouts; six canonical CSS regressions and native npm security guard.",
+    created_at: "2026-10-19",
+    health_catalog_version: "HC-004.0",
+    full_health_status: "BASE44_FINAL_FULL_HEALTH_REQUIRED",
+    docs_aligned: true,
+    source_changed: true,
+    tests_changed: true,
+    health_changed: false,
+    notes: "REPO_CLOSED_PENDING_BASE44_VERIFICATION: 0 Critical / 0 High; two Moderate router package findings documented. HC-004.0 semantics unchanged. Final live Full Health, history readback and Authentication configuration verification pending. No product features/data or legacy import.",
+  }),
 ]);
 
 export const currentLedgerEntry = () => BUILD_LEDGER[BUILD_LEDGER.length - 1];

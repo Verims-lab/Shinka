@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-005
+**Current BuildMarker:** Buildmarker-006
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
@@ -49,9 +49,16 @@ H16-901/902/903 (device push, device sign-in, restore) remain EXTERNAL_RELEASE u
 - Buildmarker-004: fixes — legacy scanner statement-level imports; probe waits for `[data-probe-root]` (Build & Environment had no Health root marker); history stores full report as private file. Latest user-supplied baseline: 81 total, 54 planned/attempted/executed, 53 PASS, 1 FAIL (H03-004), 27 N/A; NOT_READY. This is prior-marker evidence.
 - Buildmarker-002: expected READY for applicable Foundation cases once an admin Full Health run records it; future suites NOT_APPLICABLE.
 
-## Current package evidence boundary
+## Corrective package evidence boundary — Buildmarker-005
 Buildmarker-005 / HC-004.0: 74 canonical tests (T01–T74) run from Health Center or `npm run test:foundation`. CLI uses a real local Chromium for DOM probes and synthetic backend principals; it does not contact live Base44. H03-004 fixture now uses a reserved example domain; T53 still detects an injected personal-email shape in app/config/test paths. H03-001/T21/T52 preserve real static/dynamic import detection without excluding tests.
 
 H16-003 now verifies execution as well as evidence. T56–T60 cover unexecuted/unattempted PASS, complete PASS, future/external isolation and invalid evidence. H05 category propagation is tested with actual case runners.
 
-Final deployed Full Health on this marker, live private history save/list/open, current Authentication panel and real non-admin/direct invocation enforcement remain required. Repository status is OPEN because unresolved High dependency advisories remain; a local test or Health PASS cannot override that security blocker.
+At Buildmarker-005, unresolved High dependencies kept repository status OPEN. Local test or Health PASS could not override that blocker. Deployed Full Health, live private history save/list/open, current Authentication panel and real non-admin/direct invocation enforcement were not verified.
+
+## Current package evidence boundary — Buildmarker-006
+HC-004.0 remains unchanged: no case definition, applicability, gate or evidence semantics changed. H03-007 runs the expanded canonical 80-test suite (original T01–T74 plus CSS T75–T80) in Health Center and CLI. BuildMarker, design tokens, responsive internal routes, auth policy, legacy firewall and source integrity remain covered; static source hashes now include CSS.
+
+Repository Foundation status: **REPO_CLOSED_PENDING_BASE44_VERIFICATION**. Fresh audit: 0 Critical / 0 High / 2 Moderate / 0 Low. Native `npm run security:deps` must pass alongside clean install/tree, zero-error typecheck, all 80 tests, lint and build. Moderate router dispositions are recorded in SECURITY_PRIVACY; no Critical/High waiver exists.
+
+BASE44_FINAL_FULL_HEALTH_REQUIRED, BASE44_HISTORY_READBACK_REQUIRED and BASE44_AUTH_CONFIG_VERIFICATION_REQUIRED remain YES. Run deployed current-marker Full Health and save/list/open its private history report, then verify current providers and real user/admin boundaries. Repository/local results do not establish FULLY_CLOSED.
