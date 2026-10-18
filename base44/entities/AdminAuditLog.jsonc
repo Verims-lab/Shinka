@@ -1,0 +1,59 @@
+{
+  "name": "AdminAuditLog",
+  "type": "object",
+  "description": "Shinka admin_audit_log. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "admin_user_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_user_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_entity": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_record_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "action_type": {
+      "type": "string",
+      "enum": [
+        "VIEW",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "action_status": {
+      "type": "string",
+      "enum": [
+        "SUCCESS",
+        "FAILED"
+      ]
+    },
+    "performed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "error_code": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "admin_user_id",
+    "target_entity",
+    "action_type",
+    "action_status",
+    "performed_at"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}

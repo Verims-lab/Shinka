@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — working notes (does not override sources)
-**Current BuildMarker:** Buildmarker-006
+**Current BuildMarker:** Buildmarker-007
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Current state, findings, constraints, debt.
@@ -31,7 +31,7 @@ Foundation only. Routes: `/` (neutral shell aligned to the v1.1 navigation contr
 - Base shadcn `.dark` variables remain in `src/index.css` for library components; no dark class is ever applied (light-only).
 
 ## Future package notes
-Next likely package: Auth & Identity (H06).
+Next user-facing package remains to be requested; data/security foundation is Buildmarker-007.
 
 ## Measured platform limits (Buildmarker-004)
 - Entity text field: 16KB accepted, 24KB rejected ("exceeds the maximum allowed size"). Large internal reports go to private file storage.
@@ -70,3 +70,19 @@ Required post-push evidence: BASE44_FINAL_FULL_HEALTH_REQUIRED, BASE44_HISTORY_R
 - `npm run typecheck`: PASS / 0 errors; `npm run test:foundation`: 80 PASS / 0 FAIL / 0 browser exceptions; `npm run lint`: PASS; `npm run build`: PASS.
 - CSS snapshots/measurements were local synthetic browser evidence at 360px/1280px. Original 74 tests remained passing before and after migration. Canonical CSS tests also passed on Tailwind 3 before replacing the pipeline; final coverage additionally pins the two measured line-height regressions.
 - Existing npm configuration, large-chunk and mixed-import warnings remain. This checkout lacks live Base44 app environment values, so successful compilation does not prove API connectivity or deployment. The production bundle includes safe static metadata (including CSS hashes), not source/document bodies.
+
+## Data Model & Security Foundation — Buildmarker-007 (2026-10-19)
+Preflight: starting local/origin Test 28dba276f07ff10cb75207857e779b8d6ecac6bc; main be2a72d82a80cbaa7f4e127378ec32f6408cd447 was one merge commit ahead with identical files. Safely fast-forwarded remote/local Test to main before implementation; main unchanged. Clean starting tree, marker 006, catalog HC-004.0, 80 baseline tests passed; fresh dependency guard passed with 0 Critical/High, 2 Moderate.
+
+Actual Base44 inspection used the Greenfield app (not the legacy app): dashboard Data had only InternalHealthRun. Read-only authenticated SDK calls returned 404 for every approved product entity. Native timestamp metadata on one existing tooling row was readable; UTC suffix/update/immutability not proven. No live entity mutation, seed, deployment or protected-record cleanup was performed.
+
+20 physical schema files and 25 source-backed relationships; one shared owner/admin implementation, deny-direct RLS, guarded reads, protected record checks, audit allowlist, conditional deletion-state contract and fail-closed atomic adapter primitives. Native UNIQUE is documented unsupported; no production adapter or rollback guarantee invented. OD-004/OD-009 partial, OD-002 open. CLI and Health use the same 46 added domain/security tests. All 12 canonical headers updated, with UI/UX content unchanged.
+
+Final status is CLOSED_PENDING_BASE44_VERIFICATION only after required repository checks. External requirements: Test deployment, Base44 Full Health, history readback, Apple/Google configuration/device evidence, owner A/B/admin/anonymous enforcement, native timestamp behavior, durable concurrency/conditional-write/reference/index/transaction/rollback capabilities before dependent workflows. No product features, product data or legacy import.
+
+## Final repository verification — Buildmarker-007
+2026-10-19: `npm ci`, `npm ls --all`, `security:deps`, typecheck, lint, build and `health:repo` PASS. Fresh npm audit: 0 Critical / 0 High / 2 Moderate / 0 Low (native JSON audit exit 1 for Moderate, High-threshold guard exit 0). No dependency versions/lockfile changed; Tailwind remains 4.3.3. Existing npm configuration and build chunk/mixed-import warnings remain non-blocking.
+
+Canonical CLI: **126 PASS / 0 FAIL**, no browser exceptions; existing 80 preserved, 22 data-model + 24 security tests added, none removed. Local H04: 14 PASS / 0 FAIL / 0 BLOCKED current cases; H12: 20 PASS / 0 FAIL / 0 BLOCKED current cases. H04-006 and H12-901 are external requirements, excluded from those current counts and not certified. Registry: **HC-005.0 / 16 suites / 109 cases / 83 current / 21 future / 5 external**. Repository health confirms 20/20 schemas, zero extras, complete policy matrix and no unexpected seed/import call.
+
+REPOSITORY VERIFIED and SYNTHETIC_RUNTIME VERIFIED. LIVE_RUNTIME evidence covers only the read-only baseline inventory and tooling timestamp availability. LIVE_ENFORCEMENT remains REQUIRED. Internal package blockers: 0. Package: **CLOSED_PENDING_BASE44_VERIFICATION**. Final deployed Full Health, live enforcement and the capability dependencies above remain external; no product flows or imported/seeded data.

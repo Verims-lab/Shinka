@@ -2,12 +2,12 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary (not implemented)
-**Current BuildMarker:** Buildmarker-006
+**Current BuildMarker:** Buildmarker-007
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
-**Implemented:** None (foundation package only).
+**Implemented:** Data/security foundation only; none of the user flows below.
 **Not Implemented:** All sections below.
 **Open Decisions:** OD-002 (OD-003 repository auth policy implemented; live provider proof remains external)
 
@@ -40,3 +40,6 @@ Existing record for local day ⇒ return it. Else category from 240 mapping (sig
 
 ## Data Protection (KK-35/37)
 Delete Account ⇒ INACTIVE + ACCOUNT_DEACTIVATION event. Admin cannot modify/delete daily message history, consent events, protection events, audit log; deletion job status backend-only.
+
+## Foundation readiness — Buildmarker-007
+All 20 physical schemas now represent these contracts. Backend read boundaries derive owner from auth.me().id and check ACTIVE/consent state; protected mutations are denied. No Calendar, onboarding, Home, Pattern, daily-generation, scheduler, push or deletion execution flow has begun. Future Calendar mutations still require ≥15-day inter-record validation and atomic derived-state replacement; future withdrawal must stop processing first, create minimal protection/job metadata, verify physical deletion and permit re-consent only after completion. Account deactivation retains records and closes normal access. No current schema or synthetic test constitutes implementation of those business flows.

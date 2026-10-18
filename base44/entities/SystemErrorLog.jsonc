@@ -1,0 +1,67 @@
+{
+  "name": "SystemErrorLog",
+  "type": "object",
+  "description": "Shinka system_error_log. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "error_code": {
+      "type": "string",
+      "minLength": 1
+    },
+    "process_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "INFO",
+        "WARNING",
+        "ERROR",
+        "CRITICAL"
+      ]
+    },
+    "error_status": {
+      "type": "string",
+      "enum": [
+        "OPEN",
+        "RETRYING",
+        "RESOLVED"
+      ]
+    },
+    "retry_count": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
+    },
+    "last_retry_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "resolved_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "alert_sent_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "error_code",
+    "process_name",
+    "severity",
+    "error_status",
+    "retry_count",
+    "correlation_id"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}

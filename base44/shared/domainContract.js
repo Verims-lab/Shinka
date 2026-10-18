@@ -1,9 +1,9 @@
-// Authoritative 20 Shinka product-domain entities (DB v1.2 + Entity_Iliskiler v1.2). DOCUMENTED ONLY in this package.
-// plannedName = future Base44 entity name convention (PascalCase). Constraint verification stays UNVERIFIED until measured.
+// Authoritative 20 Shinka product-domain entities (DB v1.2 + Entity_Iliskiler v1.2). Physically represented by repository schemas; deployment unverified.
+// plannedName = canonical physical Base44 entity name (PascalCase); field retained for probe compatibility. Constraint verification stays UNVERIFIED until measured.
 const U = "UNVERIFIED";
 const e = (name, group, owner, constraints, lifecycle, deletion) => ({
   name, plannedName: name.split("_").map((w) => w[0].toUpperCase() + w.slice(1)).join(""),
-  group, owner, constraints: constraints.map((c) => ({ rule: c, verification: U })), lifecycle, deletion, physicallyCreated: false,
+  group, owner, constraints: constraints.map((c) => ({ rule: c, verification: U })), lifecycle, deletion, physicallyCreated: true, physicalEvidence: "REPOSITORY_SCHEMA_ONLY", liveVerified: false,
 });
 
 export const DOMAIN_ENTITIES = Object.freeze([
@@ -42,6 +42,7 @@ export const RELATIONSHIPS = Object.freeze([
   ["admin_audit_log.admin_user_id", "User.id"], ["admin_audit_log.target_user_id", "User.id"],
   ["user_pattern_summary.primary_category_id", "message_category_lookup.id"], ["user_pattern_summary.secondary_category_id", "message_category_lookup.id"],
   ["data_protection_event.user_id", "User.id"],
+  ["health_data_deletion_job.user_id", "User.id"], // SRC-05 §8.3 + SRC-07 entity sheet 19; supplements 21_Iliskiler.
 ].map(([from, to]) => ({ from, to, verification: U })));
 
 // INTERNAL TOOLING storage — explicitly EXCLUDED from the 20-entity product contract.

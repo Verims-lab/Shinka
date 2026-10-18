@@ -2,12 +2,12 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — validated contract, no import
-**Current BuildMarker:** Buildmarker-006
+**Current BuildMarker:** Buildmarker-007
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
 **Scope:** Content artifacts and selection rules. No live import in this package.
-**Implemented:** Read-only live validator `validateContentArtifacts` + H05 cases.
+**Implemented:** Read-only live validator `validateContentArtifacts` + H05 cases; empty content entity schema definitions.
 **Not Implemented:** Import, selection engine.
 **Open Decisions:** OD-002, OD-005, OD-008
 
@@ -37,3 +37,6 @@ Workbooks are the content authority; any edit to copy/mapping is a source change
 
 ## Mandatory integrity propagation
 The shared validator returns missingCategory for content and both mappings. H05-003 fails missing/unknown categories or missing six-category coverage; H05-004/005 fail missing category cells, missing combinations, invalid values or duplicate mappings; H05-006 also requires valid base/extended mappings. H05-007 checks duplicate/malformed IDs and mappings; H05-008 checks every required TR/EN cell. T61–T67 generate synthetic 260/192/240 fixtures (no product copy) and run the actual H05 decisions for valid and invalid inputs. OD-002 remains a future content-import decision.
+
+## Empty data foundation — Buildmarker-007
+MessageCategoryLookup, MessageCategoryMapping, MessagePair and immutable UserDailyMessage are physically represented in repository JSONC. No 260/192/240 data was imported and no daily engine was implemented. Category codes remain text until OD-002 is authoritatively closed; no guessed EN names or categories are seeded. MessagePair is_active has only the approved Active state. Required TR/EN strings have no invented editorial length cap. Only a future trusted importer may author shared content through the guarded backend path; normal users cannot write it. No Moon/Cycle lookup population was performed.

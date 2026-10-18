@@ -1,8 +1,8 @@
 # SHINKA — Security & Privacy
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
-**Status:** ACTIVE — principles; nothing certified
-**Current BuildMarker:** Buildmarker-006
+**Status:** ACTIVE — repository guards and synthetic tests; live certification pending
+**Current BuildMarker:** Buildmarker-007
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -13,13 +13,13 @@
 | Topic | PRODUCT REQUIREMENT | BASE44 VERIFIED CAPABILITY |
 |---|---|---|
 | OAuth ownership | Provider identity → one account; no duplicates | UNVERIFIED (Apple unknown, OD-003) |
-| User row isolation | User sees only own rows; owner from auth context | UNVERIFIED (RLS declared on internal entity only) |
+| User row isolation | User sees only own rows; owner from auth context | REPOSITORY + SYNTHETIC verified; 20 direct SDK deny policies and backend owner scoping; live pending |
 | Admin boundary | Platform role; audited; no email-based authority | REPOSITORY_IMPLEMENTED / SYNTHETIC_TESTED; deployed two-user enforcement unverified |
-| Sensitive health access | Only with explicit valid consent | UNVERIFIED |
+| Sensitive health access | Only with explicit valid consent | Shared backend consent/open-job checks; live pending |
 | Consent | Versioned, timestamped, event history | UNVERIFIED |
 | Health-data deletion | Immediate stop, verified deletion, retries, no re-consent mid-job | UNVERIFIED |
-| Protected immutable records | Admin cannot UPDATE/DELETE snapshots/events/audit (OD-009) | UNVERIFIED |
-| Audit metadata minimization | No health content in audit log | UNVERIFIED |
+| Protected immutable records | Admin cannot UPDATE/DELETE snapshots/events/audit (OD-009) | Repository deny rules + shared guards + negative tests; PARTIALLY_VERIFIED |
+| Audit metadata minimization | No health content in audit log | Validated allowlist helper + negative tests |
 | Log redaction | No tokens, health data, message bodies | Health reports redacted (`redact()`), T17 test |
 | Secrets | Server-side only | UNVERIFIED (none configured yet) |
 | INACTIVE account | No login, generation, push | UNVERIFIED |
@@ -69,3 +69,48 @@ Two npm affected packages share the runtime path **root → react-router-dom 6.3
 | [GHSA-337j-9hxr-rhxg](https://github.com/advisories/GHSA-337j-9hxr-rhxg), SSR deserializeErrors constructor injection; affected ≥6.4.0 <7.18.0 | App uses declarative BrowserRouter and client createRoot, without SSR/manual hydration. The advisory excludes declarative mode; the vulnerable SSR error path is not used here. | The same separate major upgrade is required. Reassess before enabling SSR, data/framework routing or untrusted serialized error hydration. |
 
 These Moderate findings remain visible in npm audit and are documented non-blocking debt under the requested Foundation policy. They are not described as patched. The guard was verified against the real High baseline (non-zero) and the remediated tree (zero); standalone `npm audit --json` still exits 1 because Moderate findings remain.
+
+## Buildmarker-007 canonical access boundary
+Owner identity is always authenticated Base44 User.id. `requireAuthenticatedUser`, `requireAdmin` and the tooling wrapper share one implementation. Only auth.me() can mint an accepted principal; client user_id is verified against it, never used to select a different owner. Client role/admin/process/authority flags are rejected. `assertOwner`, `assertActiveAccount`, `assertHealthConsent` and `assertProtectedRecordMutationAllowed` are shared backend helpers, not JSX rules.
+
+All 20 entities deny direct read/create/update/delete in RLS, including application admins. `domainAccess` exposes bounded backend reads only: active own rows; consent and no unfinished deletion job for health rows; active authenticated shared lookup reads; explicit adminRead by id with mandatory audit. INACTIVE/missing/ambiguous profiles fail closed. Readback rechecks private ownership and removes native creator email/internal properties. Anonymous read/write fails. No public lookup authoring or product CRUD flow is enabled.
+
+The platform service role bypasses RLS/FLS (official documented behavior), so every repository entry point must apply guards before using it. Module-owned non-serializable grants name future workers; a JSON process flag cannot create a grant. No HTTP endpoint accepts a system grant. Workspace owners and credential holders can bypass application code at the platform management layer; this package does not claim protection against that platform authority. Access to those credentials remains an operational responsibility.
+
+### Complete current access matrix
+Each cell describes the current package. DENY_IN_007 means the corresponding future product/admin workflow has not been implemented; it does not redefine the approved future business operation. BACKEND grant cells require the named trusted worker, validation, references and proven atomic predicates. No worker is scheduled or writable product API enabled. `CONDITIONAL_PROTECTION` is further blocked pending its approved verified transition workflow. Shared reads use the same ACTIVE backend gate. Health reads additionally require consent and no unfinished deletion job.
+
+| entity | anonymousRead | userOwnRead | userOwnCreate | userOwnUpdate | userOwnDelete | adminRead | adminCreate | adminUpdate | adminDelete | backendCreate | backendUpdate | backendDelete |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| user_profile | DENY | ACTIVE_OWNER_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | GUARDED_PROFILE | CONDITIONAL_PROFILE | DENY |
+| user_preferences | DENY | ACTIVE_OWNER_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | GUARDED_PROFILE | CONDITIONAL_PROFILE | DENY |
+| user_health_consent | DENY | ACTIVE_OWNER_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | GUARDED_CONSENT | CONDITIONAL_CONSENT | DENY |
+| user_health_consent_event | DENY | ACTIVE_OWNER_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_PROTECTED | DENY_PROTECTED | GUARDED_CONSENT | DENY_IMMUTABLE | DENY |
+| user_cycle_settings | DENY | ACTIVE_OWNER_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | GUARDED_CYCLE | CONDITIONAL_CYCLE | VERIFIED_DELETION_WORKER |
+| user_period_record | DENY | ACTIVE_OWNER_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | GUARDED_CYCLE | CONDITIONAL_CYCLE | VERIFIED_DELETION_WORKER |
+| user_cycle_prediction | DENY | ACTIVE_OWNER_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | GUARDED_CYCLE | CONDITIONAL_CYCLE | VERIFIED_DELETION_WORKER |
+| user_cycle_phase_day | DENY | ACTIVE_OWNER_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | GUARDED_CYCLE | CONDITIONAL_CYCLE | VERIFIED_DELETION_WORKER |
+| cycle_phase_lookup | DENY | ACTIVE_SHARED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | GUARDED_REFERENCE | CONDITIONAL_REFERENCE | DENY |
+| message_category_lookup | DENY | ACTIVE_SHARED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | GUARDED_REFERENCE | CONDITIONAL_REFERENCE | DENY |
+| message_category_mapping | DENY | ACTIVE_SHARED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | GUARDED_REFERENCE | CONDITIONAL_REFERENCE | DENY |
+| message_pair | DENY | ACTIVE_SHARED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | GUARDED_REFERENCE | CONDITIONAL_REFERENCE | DENY |
+| user_daily_message | DENY | ACTIVE_OWNER_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_PROTECTED | DENY_PROTECTED | GUARDED_DAILY_MESSAGE | DENY_IMMUTABLE | DENY |
+| notification_delivery | DENY | ACTIVE_OWNER_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | GUARDED_NOTIFICATION | CONDITIONAL_NOTIFICATION | DENY |
+| user_pattern_summary | DENY | ACTIVE_OWNER_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | GUARDED_PATTERN | CONDITIONAL_PATTERN | DENY |
+| moon_phase_lookup | DENY | ACTIVE_SHARED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | GUARDED_REFERENCE | CONDITIONAL_REFERENCE | DENY |
+| admin_audit_log | DENY | DENY | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_PROTECTED | DENY_PROTECTED | GUARDED_AUDIT | DENY_IMMUTABLE | DENY |
+| system_error_log | DENY | DENY | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | GUARDED_ERROR | CONDITIONAL_ERROR | DENY |
+| health_data_deletion_job | DENY | ACTIVE_OWNER_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_PROTECTED | DENY_PROTECTED | GUARDED_DELETION | CONDITIONAL_DELETION | DENY |
+| data_protection_event | DENY | ACTIVE_OWNER_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_PROTECTED | DENY_PROTECTED | GUARDED_PROTECTION | CONDITIONAL_PROTECTION | DENY |
+
+### Protected records and admin audit
+user_daily_message: own read, only future DAILY_MESSAGE grant create, no update/delete even by that grant. user_health_consent_event and admin_audit_log: append-only. data_protection_event: no human update/delete; backend status progression remains closed until a verified transition workflow is supplied. health_data_deletion_job: only DELETION grant progresses approved states, never deletes history or changes owner/event/request metadata. COMPLETED requires a module-issued proof bound to the job/user after all four health collections have zero remaining records; request booleans cannot substitute. Terminal jobs cannot regress. Future worker must couple deletion verification and state publication with proven atomicity; a proof object alone is not a platform transaction.
+
+`withAdminAudit` records successful/failed privileged VIEW/UPDATE/DELETE attempts with actor, target, action, outcome, time and safe code. It prevents returning privileged data if audit persistence fails. No normal user action is written to admin_audit_log. No admin UI or generic admin mutation route exists. `createAdminAuditEntry` and `createSystemErrorEntry` accept only declared metadata, bounded identifiers and machine codes; unknown/nested fields, credentials, health data and message snapshots are rejected. Existing recursive Health redaction is preserved. Email alert delivery and error retry/dedup workers are future scope.
+
+OD-009 = PARTIALLY_VERIFIED. Repository policy and synthetic negative tests are implemented, including the HTTP/service boundary; direct SDK RLS deployment and multi-identity enforcement must still be measured. H12-901 is LIVE_ENFORCEMENT_REQUIRED, not a synthetic PASS. Verify anonymous, owner A, owner B and app admin direct reads/writes plus service-role entry points after deployment. Never modify real immutable history for a test; use disposable mutable fixtures and deny attempts without successful protected writes.
+
+### Buildmarker-007 dependency and evidence status
+Dependencies and Tailwind 4.3.3 remain unchanged. Fresh final audit must retain 0 Critical / 0 High; two Moderate router findings above remain visible. Product content, Cycle and Moon lookup seeds: NONE. Repository closure does not mean live enforcement is certified.
+
+Official platform evidence (read 2026-10-19): [entity schemas](https://docs.base44.com/developers/backend/resources/entities/entity-schemas), [RLS and service-role semantics](https://docs.base44.com/developers/backend/resources/entities/security). Native simple/compound uniqueness is unsupported; undocumented FK/index/transaction/conditional guarantees are not claimed.

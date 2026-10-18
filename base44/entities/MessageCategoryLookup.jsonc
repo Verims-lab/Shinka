@@ -1,0 +1,30 @@
+{
+  "name": "MessageCategoryLookup",
+  "type": "object",
+  "description": "Shinka message_category_lookup. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "category_code": {
+      "type": "string",
+      "minLength": 1
+    },
+    "display_name_tr": {
+      "type": "string",
+      "minLength": 1
+    },
+    "display_name_en": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "category_code",
+    "display_name_tr",
+    "display_name_en"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}

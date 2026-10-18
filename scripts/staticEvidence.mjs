@@ -1,5 +1,7 @@
 // Build/server-only inspection. Only allowlisted results + hashes enter the virtual module.
 import fs from "node:fs";
+import { inspectProductWriteSurface } from "../src/foundation/inspection/domainRules.js";
+import { inspectDomainSchemas } from "./domainEvidence.mjs";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import ts from "typescript";
@@ -31,6 +33,7 @@ export function buildStaticEvidence(root = process.cwd()) {
     schema: "shinka.static-evidence/1", buildMarker: BUILD_MARKER, generatedAt: new Date().toISOString(),
     evidenceScope: "BUILD_TIME_REPOSITORY_INSPECTION", originalArtifactProvenance: SOURCE_PROVENANCE,
     originalArtifactsHashVerifiedInRepo: ORIGINAL_ARTIFACTS_HASH_VERIFIED_IN_REPO, hashes, sourceCount: files.length, docCount: docFiles.length,
+    domain: { ...inspectDomainSchemas(root), writeSurface: inspectProductWriteSurface(syntax) },
     marker: checkSingleSource(syntax), legacy: findLegacyImports(syntax), secretFiles: findSecrets(raw), emailFiles: findPersonalEmails(raw),
     boundaries: missingBoundaries(Object.keys(raw)), internalUi: checkInternalUiPurity(syntax), authSurface: checkAuthSurface(syntax),
     ui: { darkFiles, hardcoded, shellUsesContract: raw["/src/pages/Home.jsx"].includes("BOTTOM_NAV.map") },

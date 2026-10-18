@@ -11,7 +11,8 @@
     "typecheck": "tsc -p ./jsconfig.json",
     "preview": "vite preview",
     "test:foundation": "node scripts/runFoundationTests.mjs",
-    "security:deps": "npm audit --audit-level=high --include=dev"
+    "security:deps": "npm audit --audit-level=high --include=dev",
+    "health:repo": "node scripts/repoHealth.mjs"
   },
   "dependencies": {
     "@base44/sdk": "^0.8.54",

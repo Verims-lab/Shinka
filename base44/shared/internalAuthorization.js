@@ -2,11 +2,31 @@
 export class InternalError extends Error {
   constructor(code, status = 500) { super(code); this.code = code; this.status = status; }
 }
+// Trusted principals are minted only by server auth.me(), never by request data.
+const authenticatedPrincipals = new WeakSet();
+export async function requireAuthenticatedUser(client) {
+  let me;
+  try { me = await client.auth.me(); } catch { throw new InternalError("AUTH_REQUIRED", 401); }
+  if (!me?.id || typeof me.id !== "string") throw new InternalError("AUTH_REQUIRED", 401);
+  const principal = Object.freeze({ id: me.id, role: me.role });
+  authenticatedPrincipals.add(principal);
+  return principal;
+}
+export function assertAuthenticatedPrincipal(principal) {
+  if (!principal || !authenticatedPrincipals.has(principal)) throw new InternalError("AUTH_REQUIRED", 401);
+}
+export function assertAdmin(principal, code = "ADMIN_REQUIRED") {
+  assertAuthenticatedPrincipal(principal);
+  if (principal.role !== "admin") throw new InternalError(code, 403);
+}
+export async function requireAdmin(client) {
+  const principal = await requireAuthenticatedUser(client);
+  assertAdmin(principal);
+  return principal;
+}
 export async function requireInternalAdmin(client) {
-  let principal;
-  try { principal = await client.auth.me(); } catch { throw new InternalError("AUTH_REQUIRED", 401); }
-  if (!principal?.id) throw new InternalError("AUTH_REQUIRED", 401);
-  if (principal.role !== "admin") throw new InternalError("FORBIDDEN_INTERNAL_TOOLING", 403);
+  const principal = await requireAuthenticatedUser(client);
+  assertAdmin(principal, "FORBIDDEN_INTERNAL_TOOLING");
   return principal;
 }
 export async function handleInternalRequest(req, createClient, operation) {

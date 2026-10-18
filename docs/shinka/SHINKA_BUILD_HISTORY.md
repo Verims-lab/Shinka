@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUILD_HISTORY.md
 **Status:** ACTIVE — append-only
-**Current BuildMarker:** Buildmarker-006
+**Current BuildMarker:** Buildmarker-007
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** src/foundation/buildMarker.js (authority), src/foundation/buildLedger.js (ledger)
 **Purpose:** Human-readable build history. Never rewrite old entries.
@@ -51,3 +51,10 @@ No end-user product package implemented. No GitHub work. No AI.
 - HC-004.0 unchanged (16 suites / 82 cases); BuildMarker incremented exactly once. Canonical document headers aligned.
 - REPO_CLOSED_PENDING_BASE44_VERIFICATION: 0 Critical / 0 High / 2 Moderate / 0 Low; remaining router advisories have documented exposure/fix reasons. Final live Full Health, history readback and Authentication configuration proof still required.
 - Test synchronized from main before work; final package targets only Test. No product features, product data or legacy source imported.
+
+## Buildmarker-007 — Data Model & Security Foundation (2026-10-19)
+- 20 physical source-aligned product schema files; explicit logical/PascalCase mapping and independent workbook field receipt. Built-in User and InternalHealthRun remain separate; no extra product entity or data import.
+- Common authenticated owner/admin guards, active/consent checks, backend-only reads, deny-direct RLS and protected snapshot/event/audit/job policies. Minimal audit/system-error metadata helpers reject sensitive content.
+- Canonical uniqueness keys, idempotent create, revision-based update and readback contracts fail closed without a proven durable atomic adapter. Native UNIQUE is unsupported; native FK/index/transaction/rollback remain unverified.
+- OD-004 and OD-009 partially verified; no duplicate timestamp fields and no synthetic-to-live evidence promotion. H04/H12 activated/expanded in HC-005.0; 46 new canonical data/security tests; BuildMarker incremented exactly once.
+- Baseline live read-only inventory found 0/20 product schemas. Repository now represents 20/20; deployed Full Health/enforcement remain required. Package targets only Test, main unchanged; no user-facing product package or seed.

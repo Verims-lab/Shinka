@@ -1,0 +1,46 @@
+{
+  "name": "DataProtectionEvent",
+  "type": "object",
+  "description": "Shinka data_protection_event. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "HEALTH_DATA_DELETION",
+        "ACCOUNT_DEACTIVATION"
+      ]
+    },
+    "event_status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "COMPLETED",
+        "FAILED"
+      ]
+    },
+    "requested_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "user_id",
+    "event_type",
+    "event_status",
+    "requested_at"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}

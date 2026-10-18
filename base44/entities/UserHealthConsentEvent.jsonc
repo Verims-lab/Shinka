@@ -1,0 +1,38 @@
+{
+  "name": "UserHealthConsentEvent",
+  "type": "object",
+  "description": "Shinka user_health_consent_event. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "GRANTED",
+        "WITHDRAWN"
+      ]
+    },
+    "consent_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "user_id",
+    "event_type",
+    "consent_version",
+    "occurred_at"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}

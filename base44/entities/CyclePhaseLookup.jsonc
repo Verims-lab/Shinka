@@ -1,0 +1,43 @@
+{
+  "name": "CyclePhaseLookup",
+  "type": "object",
+  "description": "Shinka cycle_phase_lookup. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "cycle_length_days": {
+      "type": "integer",
+      "minimum": 15,
+      "maximum": 60
+    },
+    "period_duration_days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "cycle_day": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 60
+    },
+    "phase_code": {
+      "type": "string",
+      "enum": [
+        "MENSTRUAL",
+        "FOLLICULAR",
+        "OVULATION",
+        "LUTEAL"
+      ]
+    }
+  },
+  "required": [
+    "cycle_length_days",
+    "period_duration_days",
+    "cycle_day",
+    "phase_code"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}

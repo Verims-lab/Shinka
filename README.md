@@ -69,6 +69,7 @@ npx playwright install chromium # one-time browser setup per machine/CI image
 npm ls --all
 npm audit --json
 npm run security:deps
+npm run health:repo
 npm run typecheck
 npm run test:foundation
 npm run lint
@@ -82,3 +83,5 @@ The CLI executes the same `src/foundation/tests` definitions as Health Center in
 CSS is compiled by `@tailwindcss/vite` (Tailwind 4), with `src/index.css` as entry and `src/styles/theme.css` as native theme. There is no separate PostCSS/Tailwind JavaScript config. The same plugin runs in the CLI harness. Optional `FOUNDATION_VISUAL_DIR=/absolute/output/path npm run test:foundation` records Health, Build and login screenshots/layout measurements at 360px and 1280px using synthetic data. The runner emulates OS dark preference to verify the light-only target; it blocks external requests, including hosted fonts, so device font loading still needs live verification.
 
 Current Foundation status and exact remaining advisories are in `docs/shinka/SHINKA_SECURITY_PRIVACY.md` and `SHINKA_RELEASE_HEALTH_CHECK.md`. A successful local run does not certify deployed authentication, server enforcement or history readback.
+
+Data/security foundation: `health:repo` verifies the 20 physical product schemas against canonical field contracts and independent source field receipts, the complete access matrix, direct SDK deny rules and docs/marker/ledger alignment. `domainAccess` exposes guarded reads only; product mutation workflows and the production atomic adapter remain inactive. Native timestamps and deployed RLS require separate Base44 verification. No product data is seeded by these commands.

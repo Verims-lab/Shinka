@@ -1,0 +1,81 @@
+{
+  "name": "UserProfile",
+  "type": "object",
+  "description": "Shinka user_profile. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "display_name": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "birth_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "birth_time": {
+      "type": "string",
+      "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+    },
+    "birthplace_geonames_id": {
+      "type": "number"
+    },
+    "birthplace_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "birthplace_country_code": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "birthplace_latitude": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90
+    },
+    "birthplace_longitude": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180
+    },
+    "sun_sign_code": {
+      "type": "string",
+      "enum": [
+        "ARIES",
+        "TAURUS",
+        "GEMINI",
+        "CANCER",
+        "LEO",
+        "VIRGO",
+        "LIBRA",
+        "SCORPIO",
+        "SAGITTARIUS",
+        "CAPRICORN",
+        "AQUARIUS",
+        "PISCES"
+      ]
+    },
+    "account_status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE"
+      ],
+      "default": "ACTIVE"
+    }
+  },
+  "required": [
+    "user_id",
+    "birth_date",
+    "account_status"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}
