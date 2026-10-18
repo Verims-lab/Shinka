@@ -8,7 +8,7 @@
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-011 (see register below)
-**External Verification Required:** OD-003 (dashboard login methods)
+**External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 ## 1. Logical vs physical sources
 - A **logical source** is one authoritative document (one version, one domain authority).
@@ -69,7 +69,7 @@ Illustrative UI mockups never override written business/data rules; the written 
 |---|---|---|
 | OD-001 | RESOLVED_BY_SOURCE_RECEIPT | UI/UX v1.1 received as 4 transport parts; continuity verified; tokens reconciled. |
 | OD-002 | OPEN — FUTURE_PACKAGE | TR display mapping confirmed (SRC-03 table 4); category_code values + EN display names undefined. |
-| OD-003 | OPEN — FOUNDATION_BLOCKING | Apple/Google-only policy vs platform login methods (email/password, Google, Microsoft, Facebook, Apple); change in Authentication dashboard. |
+| OD-003 | RESOLVED_BY_CONFIGURATION | Platform login methods re-read: Google + Apple only. Live sign-in proof remains EXTERNAL_RELEASE. |
 | OD-004 | OPEN — FUTURE_PACKAGE | Explicit created_at/updated_at vs Base44 built-ins. |
 | OD-005 | NOTED | "Büyüyen Ay (Hilal)" label mapped to WAXING; UI/UX v1.1 does not redefine it. |
 | OD-006 | RESOLVED_BY_PRECEDENCE | notification_delivery uniqueness → DB v1.2. |

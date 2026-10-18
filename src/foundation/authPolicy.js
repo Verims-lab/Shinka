@@ -3,8 +3,8 @@
 // Update OBSERVED_AUTH_METHODS only after re-reading the platform state; never edit it to force a PASS.
 export const APPROVED_AUTH_METHODS = Object.freeze(["apple", "google"]);
 export const OBSERVED_AUTH_METHODS = Object.freeze({
-  observedAt: "2026-10-18T23:05:00+03:00", source: "Base44 platform state (login_methods)",
-  methods: ["password", "google", "microsoft", "facebook", "apple"],
+  observedAt: "2026-10-18T23:11:00+03:00", source: "Base44 platform state (login_methods)",
+  methods: ["google", "apple"],
 });
 
 export function checkAuthPolicy(observed = OBSERVED_AUTH_METHODS) {
