@@ -13,6 +13,9 @@ import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
 import ResetPassword from '@/pages/ResetPassword';
 import Home from '@/pages/Home';
+import AdminGate from '@/components/internal/AdminGate';
+import BuildEnvironment from '@/pages/internal/BuildEnvironment';
+import HealthCenter from '@/pages/internal/HealthCenter';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -42,6 +45,10 @@ const AuthenticatedApp = () => {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>
         <Route path="/" element={<Home />} />
+        <Route element={<AdminGate />}>
+          <Route path="/internal/build" element={<BuildEnvironment />} />
+          <Route path="/internal/health" element={<HealthCenter />} />
+        </Route>
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

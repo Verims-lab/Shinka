@@ -44,7 +44,10 @@ const EMAIL_RE = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{
 const ALLOWED_EMAIL_DOMAINS = /@example\.(com|org|net)$/i;
 export function findPersonalEmails(sources) {
   const hits = [];
-  for (const [p, c] of Object.entries(sources)) for (const m of c.match(EMAIL_RE) || []) if (!ALLOWED_EMAIL_DOMAINS.test(m)) hits.push({ file: p });
+  for (const [p, c] of Object.entries(sources)) {
+    if (MARKER_ROLES[p] === "FIXTURE") continue; // synthetic redaction fixtures only
+    for (const m of c.match(EMAIL_RE) || []) if (!ALLOWED_EMAIL_DOMAINS.test(m)) hits.push({ file: p });
+  }
   return hits;
 }
 
