@@ -1,0 +1,142 @@
+{
+  "scope": "REPOSITORY_AND_SYNTHETIC_NOT_LIVE_INCIDENT_CLOSURE",
+  "baseline": "9e6473d",
+  "buildMarker": "Buildmarker-009",
+  "healthCatalog": "HC-009.0",
+  "oldAdapterReproduction": {
+    "code": "NATIVE_CONSENT_TIMESTAMP_REQUIRED",
+    "validPersistedBusinessTimestamp": true,
+    "zoneLessNativeMetadata": true,
+    "writes": 0
+  },
+  "browsers": {
+    "chromium": {
+      "evidenceScope": "LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "catalog": {
+        "version": "HC-009.0",
+        "suites": 16,
+        "cases": 130,
+        "current": 106,
+        "future": 15,
+        "external": 9
+      },
+      "tests": 310,
+      "passed": 310,
+      "failed": 0,
+      "pageErrors": [],
+      "health": {
+        "count": 52,
+        "passed": 52,
+        "failedIds": []
+      },
+      "onboardingHealth": {
+        "count": 21,
+        "passed": 21,
+        "failedIds": []
+      },
+      "productionRouting": {
+        "count": 5,
+        "passed": 5,
+        "failedIds": []
+      },
+      "previewProbes": {
+        "count": 3,
+        "passed": 3,
+        "failedIds": []
+      },
+      "mobile": {
+        "count": 5,
+        "passed": 5,
+        "failedIds": []
+      }
+    },
+    "webkit": {
+      "evidenceScope": "LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "catalog": {
+        "version": "HC-009.0",
+        "suites": 16,
+        "cases": 130,
+        "current": 106,
+        "future": 15,
+        "external": 9
+      },
+      "tests": 310,
+      "passed": 310,
+      "failed": 0,
+      "pageErrors": [],
+      "health": {
+        "count": 52,
+        "passed": 52,
+        "failedIds": []
+      },
+      "onboardingHealth": {
+        "count": 21,
+        "passed": 21,
+        "failedIds": []
+      },
+      "productionRouting": {
+        "count": 5,
+        "passed": 5,
+        "failedIds": []
+      },
+      "previewProbes": {
+        "count": 3,
+        "passed": 3,
+        "failedIds": []
+      },
+      "mobile": {
+        "count": 5,
+        "passed": 5,
+        "failedIds": []
+      }
+    }
+  },
+  "dependencyAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 2,
+    "high": 0,
+    "critical": 0,
+    "total": 2
+  },
+  "liveClosure": "OPEN_PENDING_LIVE_SAVE_AND_READBACK",
+  "maintenanceGuard": {
+    "exitCode": 0,
+    "initialJS": {
+      "raw": 447080,
+      "gzip": 146566
+    },
+    "css": {
+      "raw": 84474,
+      "gzip": 14494
+    },
+    "staticCycles": [],
+    "lazyRetry": {
+      "passed": true,
+      "scope": "Synthetic network asset failure and full-reload retry, real App route"
+    },
+    "initialTestModules": 0
+  },
+  "requiredChecks": {
+    "npm ci": "PASS",
+    "npm ls --all": "PASS",
+    "npm ls --depth=0": "PASS",
+    "security:deps": "PASS",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS",
+    "health:repo (16/16)": "PASS",
+    "recordBuild --check": "PASS",
+    "measureMaintenance": "PASS"
+  }
+}

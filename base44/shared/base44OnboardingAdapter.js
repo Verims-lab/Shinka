@@ -5,6 +5,9 @@ import { validateDomainRecord, normalizeDomainRead } from './domainValidation.js
 import { validateBirthDate, optionalName, optionalBirthTime, resolveTimezone, serverLocalDate } from './onboardingValidation.js';
 import { isOnboardingProfileReady } from './onboardingRoute.js';
 import { HEALTH_CONSENT_VERSION } from './onboardingDependencies.js';
+import { createOnboardingCyclePersistence } from './onboardingCyclePersistence.js';
+import { onboardingCycleGate } from './onboardingCycleGate.js';
+import { validatedOnboardingGrant, onboardingGrantEvent } from './onboardingConsent.js';
 
 export const PRODUCTION_ONBOARDING_ADAPTER = Object.freeze({
   status:'IMPLEMENTED', strategy:'BASE44_KEYED_UPSERT_VERIFIED_READBACK',
@@ -15,7 +18,7 @@ const FIELDS=Object.fromEntries(Object.entries(DOMAIN_SCHEMAS).map(([entity,spec
 const identical=(entity,row,expected)=>FIELDS[entity].every(k=>(row[k]??null)===(expected[k]??null));
 // A real, request-scoped service-role adapter. It deliberately does NOT implement
 // domainAtomic.commitOwnerAction: Base44 upsert is not a multi-entity transaction.
-export function createBase44OnboardingAdapter(client,principal,{now=()=>new Date(),consentVersion=HEALTH_CONSENT_VERSION}={}) {
+export function createBase44OnboardingAdapter(client,principal,{now=()=>new Date(),consentVersion=HEALTH_CONSENT_VERSION,cycleGate=onboardingCycleGate}={}) {
   assertAuthenticatedPrincipal(principal);
   const owner=principal.id,store=client.asServiceRole.entities;
   const read=async(entity,query={})=>{
@@ -92,57 +95,31 @@ export function createBase44OnboardingAdapter(client,principal,{now=()=>new Date
     await active();
     if(await read('health_data_deletion_job',{job_status:{$ne:'COMPLETED'}}))fail('HEALTH_DELETION_PENDING');
   };
-  const saveCycle=async cycle=>{
-    await healthAllowed();
-    if(cycle.health_consent!==true)fail('CONSENT_REQUIRED',400);
-    const previous=await read('user_health_consent');
-    if(previous?.consent_status==='WITHDRAWN')fail('CONSENT_REGRANT_WORKFLOW_REQUIRED');
-    if(previous&&previous.consent_version!==consentVersion)fail('CONSENT_VERSION_CONFLICT');
-    // A timestamp persisted in current consent identifies this onboarding grant.
-    // Retry/reload reuses it; action IDs and client timestamps are not authorities.
-    const grant=record('user_health_consent',{consent_status:'GRANTED',consent_version:consentVersion,granted_at:previous?.granted_at||now().toISOString(),withdrawn_at:null});
-    if(!previous){
-      await upsert('user_health_consent',grant,'user_id',S.CONSENT);
-    }
-    let current=await read('user_health_consent');
-    if(!current?.granted_at||current.consent_status!=='GRANTED'||current.consent_version!==consentVersion)fail('ONBOARDING_READBACK_CONFLICT');
-    // First server-created consent timestamp is stable across racing upserts.
-    // Do not reinterpret the platform's timezone-less timestamps as UTC.
-    const created=current.created_at;
-    if(typeof created!=='string'||!/^\d{4}-\d{2}-\d{2}T.*(?:Z|[+-]\d{2}:\d{2})$/.test(created)||!Number.isFinite(Date.parse(created)))fail('NATIVE_CONSENT_TIMESTAMP_REQUIRED',503);
-    const granted_at=new Date(created).toISOString();
-    if(current.granted_at!==granted_at){
-      assertProtectedRecordMutationAllowed('user_health_consent','update',S.CONSENT);
-      try {await store.UserHealthConsent.updateMany({id:current.id,user_id:owner,consent_status:'GRANTED',consent_version:consentVersion},{$set:{granted_at}});}
-      catch{fail('ONBOARDING_WRITE_UNCONFIRMED',503);}
-      current=await read('user_health_consent');
-      if(current?.granted_at!==granted_at)fail('ONBOARDING_READBACK_CONFLICT');
-    }
-    await healthAllowed();
-    const event=record('user_health_consent_event',{event_type:'GRANTED',consent_version:consentVersion,occurred_at:current.granted_at});
-    const eventKey={event_type:event.event_type,consent_version:event.consent_version,occurred_at:event.occurred_at};
-    const existingEvent=await read('user_health_consent_event',eventKey);
-    if(existingEvent){if(!identical('user_health_consent_event',existingEvent,event))fail('IMMUTABLE_RECORD');}
-    else {
-      // Every immutable domain field is part of the natural key. A retry cannot
-      // replace event content; no update/delete API is exposed for events.
-      // Native system timestamp behavior still requires live verification.
-      await upsert('user_health_consent_event',event,FIELDS.user_health_consent_event,S.CONSENT);
-    }
-    await verify('user_health_consent_event',event,eventKey);
-    const settings=record('user_cycle_settings',{period_duration_days:cycle.period_duration_days,initial_cycle_length_days:cycle.initial_cycle_length_days});
-    if(cycle.period_duration_days!=null||cycle.initial_cycle_length_days!=null){
-      await healthAllowed();await upsert('user_cycle_settings',settings,'user_id',S.CYCLE);await verify('user_cycle_settings',settings);
-    }
-    // Period is the final completion evidence. Partial grants/settings never
-    // cause the route resolver to claim that the cycle step completed.
-    const existingPeriod=await read('user_period_record');
-    const period=record('user_period_record',{period_start_date:cycle.period_start_date});
-    if(existingPeriod&&!identical('user_period_record',existingPeriod,period))fail('ONBOARDING_ALREADY_SAVED');
-    if(!existingPeriod){await healthAllowed();await upsert('user_period_record',period,['user_id','period_start_date'],S.CYCLE);}
-    await verify('user_period_record',period);
-    await healthAllowed();
-    return {consent:current};
+  const insert=async(entity,expected,authority)=>{
+    assertProtectedRecordMutationAllowed(entity,'create',authority);
+    try {await store[physicalName(entity)].create(expected);}
+    catch {fail('ONBOARDING_WRITE_UNCONFIRMED',503);}
   };
-  return {kind:PRODUCTION_ONBOARDING_ADAPTER.strategy,read,saveProfile,savePreferences,saveCycle};
+  const saveCycle=createOnboardingCyclePersistence({
+    owner,now,consentVersion,gate:cycleGate,read,record,verify,insert,upsert,
+    identical,fields:FIELDS,healthAllowed,
+  });
+  const hasVerifiedCycle=async()=>{
+    const consent=await read('user_health_consent');
+    if(!consent||consent.consent_status==='WITHDRAWN')return false;
+    const grant=validatedOnboardingGrant(consent,consentVersion);
+    await healthAllowed();
+    const period=await read('user_period_record');
+    if(!period)return false;
+    const event=await read('user_health_consent_event');
+    if(!event)return false; // Partial legacy state must return to ON-05.
+    await verify('user_health_consent_event',onboardingGrantEvent(grant));
+    record('user_period_record',{period_start_date:period.period_start_date});
+    const settings=await read('user_cycle_settings');
+    if(settings)record('user_cycle_settings',{period_duration_days:settings.period_duration_days,initial_cycle_length_days:settings.initial_cycle_length_days});
+    await healthAllowed();
+    await verify('user_health_consent',grant);
+    return true;
+  };
+  return {kind:PRODUCTION_ONBOARDING_ADAPTER.strategy,read,saveProfile,savePreferences,saveCycle,hasVerifiedCycle};
 }

@@ -8,7 +8,7 @@ const ICONS = { House, CalendarDays, Moon };
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-shinka-ivory text-shinka-ink font-body flex flex-col">
+    <div className="shinka-viewport shinka-safe-shell bg-shinka-ivory text-shinka-ink font-body flex flex-col">
       <header className="flex items-center justify-between px-5 pt-6">
         <span className="font-heading font-medium text-shinka-h3 text-shinka-plum">Shinka</span>
         <button type="button" aria-label={t("nav.youUnavailable")} disabled

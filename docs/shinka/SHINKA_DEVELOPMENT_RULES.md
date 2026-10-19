@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-008
+**Current BuildMarker:** Buildmarker-009
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -24,7 +24,7 @@
 - Never increment separately for UI/backend/docs/tests/Health of the same package.
 - Do NOT increment for read-only investigation, Health execution only, doc inspection without tracked change, or external manual testing.
 - Never decrement or skip (`validateTransition`). Every doc's `Current BuildMarker` header is updated in the same package.
-- Ledger (`src/foundation/buildLedger.js`) is append-only history; it is not a competing authority.
+- Active ledger is the latest five unique packages including current, generated through `scripts/recordBuild.mjs`; it is not a second marker authority. Older history remains in Git.
 
 ## Git and closure workflow
 Fetch before each task. Compare origin/main and origin/Test: safely fast-forward Test from main only when main is ahead without divergence; if Test is ahead, continue and report. Stop for divergent branches, local-only commits, or unexpected dirty state. Bring a behind local Test forward before work. Work/commit/push only Test; never force or update main. At completion verify local Test equals origin/Test.
@@ -37,7 +37,7 @@ Inspect fresh `npm audit --json` and full dependency paths before choosing remov
 ## Data/security package closure
 Run branch preflight before implementation; do not overwrite unexpected local work. For Buildmarker-007, advance the marker once and Health catalog to HC-005.0 once because H04/H12 semantics changed. Verify physical repository representation, canonical source field receipt, owner/admin/protected guards, audit minimization, 12-cell access matrix and no seed/import. Run `health:repo` and the existing native dependency/type/lint/build/browser checks. Record REPOSITORY and SYNTHETIC_RUNTIME separately from LIVE_RUNTIME/LIVE_ENFORCEMENT. Missing external deployment/identity/timestamp proof remains explicit; it cannot be converted into PASS by a synthetic fixture or by suppressing a capability check. Push only Test; final Base44 Full Health runs separately.
 
-## Authentication/onboarding closure rule — current package
+## Historical authentication/onboarding closure rule — package 008
 
 The initial package incremented the marker once to 008 and the catalog once to HC-006.0. Its technical continuation retains both and updates the existing ledger entry only. The production SDK persistence adapter and approved Sun/TR/consent/durable derivation decisions are implemented. Existing source-gap Health cases now have executed PASS evidence; their IDs, intent and applicability are unchanged, so HC-006.0 is retained. The subsequent measured Health closure advances only the catalog to HC-007.0 because H05-009 changes from schema absence to package-aware live row counts. No second 008 ledger entry is added. Passing repository regressions verifies adapter behavior using an isolated SDK transport; it does not prove deployed writes, cross-instance enforcement or native transactions. Restart before a real daily message may resume at the earliest unresolved safe step, by approved decision. FIRST_SHINKA_ENGINE_REQUIRED is a next-package dependency, not an 008 blocker. No extra entity/field, content import, scheduler or live deployment is authorized by this package.
 
@@ -45,4 +45,16 @@ Before each prompt fetch and compare main/Test/local Test; stop on divergence, l
 
 ## ON-04 decision continuation — explicit same-package authorization
 
-The user's country-led selection request explicitly retains Buildmarker-008 / HC-007.0 despite replacing the earlier interaction. Record the decision and update the existing 008 ledger entry, never create a duplicate or begin 009. H10-003 retains its structured-provider-boundary intent with expanded regressions; H10-004 remains external. Reconcile all 12 canonical documents; CONTENT_MODEL requires no edit because no content flow or source changed. User-reported old Preview search success is accepted with provenance, not promoted to new hosted cascade/save/Full Health success. Deliver only to Test; user merge/sync/publish and device/live verification remain separate.
+The user's country-led selection request explicitly retains Buildmarker-008 / HC-007.0 despite replacing the earlier interaction. Record the decision and update the existing 008 ledger entry, never create a duplicate or begin 009 within that selection continuation. The later maintenance request starts a new package under the normal +1 rule. H10-003 retains its structured-provider-boundary intent with expanded regressions; H10-004 remains external. Reconcile all 12 canonical documents; CONTENT_MODEL requires no edit because no content flow or source changed. User-reported old Preview search success is accepted with provenance, not promoted to new hosted cascade/save/Full Health success. Deliver only to Test; user merge/sync/publish and device/live verification remain separate.
+
+## Permanent active package retention — maintenance decision 2026-10-20
+
+Use `node scripts/recordBuild.mjs /absolute/package.json` to add the next package or update current. The JSON uses the existing ledger fields. The command validates a same-marker update or exact +1 transition, merges duplicate package identities with the latest concise fields, sorts numerically, retains the newest five including current, and rewrites the bounded source plus generated BUILD_HISTORY. Summaries are limited to 600 characters and notes to 1,600. Keep current verification and open issues in that summary. Use `node scripts/recordBuild.mjs --check` to detect drift. Do not hand-append an unbounded ledger or hide it with a UI slice. Fewer than five retains all; continuations replace one summary, never add a package for each commit or test run.
+
+`buildLedgerData.js` → frozen `BUILD_LEDGER` → Internal Build is the sole active history path. No history database query exists. The generated Markdown has exactly the same retained package set. Security/audit rows, user data, Health reports and Git history are outside this policy; no rewrite or bulk deletion is authorized. Necessary older product decisions remain in canonical standards; prior live evidence is retained in the supporting evidence report.
+
+This maintenance request advances the marker once to 009 and catalog once to HC-008.0 for changed/new cases. It does not import content. Both browser engines, the measurement budget and retention check join the existing final validation commands. Local PASS still requires deployed Full Health/history readback and separate physical-device evidence for full closure.
+
+## ON-05 prioritized correction within maintenance
+
+The user's instruction to preserve current work and prioritize the live ON-05 defect is treated as a correction within the active maintenance package, not a new feature/package. Retain Buildmarker-009 and consolidate its existing ledger entry. Advance the catalog once to HC-009.0 because H07-007/H11-004 semantics change and H11-006 adds the explicit live incident closure requirement. No case is removed or downgraded to hide a failure. P17 now states worker-local coalescing; P18 changes its obsolete native-clock blocking expectation to preservation of valid durable consent. P28 explicitly tests the unproven distributed boundary. ON-05 remains OPEN_PENDING_LIVE_SAVE_AND_READBACK until the same partial account succeeds after user sync/publish.

@@ -5,7 +5,8 @@ export function contentStatePolicy(buildMarker) {
   const match=/^Buildmarker-(\d{3})$/.exec(buildMarker);
   if(!match)return 'UNRECOGNIZED_PACKAGE';
   const version=Number(match[1]);
-  return version>=7&&version<9?'PRE_CONTENT_ZERO_ROWS':'APPROVED_CONTENT_VALIDATION_REQUIRED';
+  // Package 009 is maintenance only; it does not authorize content imports.
+  return [7,8,9].includes(version)?'PRE_CONTENT_ZERO_ROWS':'APPROVED_CONTENT_VALIDATION_REQUIRED';
 }
 
 export function evaluateContentState(buildMarker, counts, importPerformed) {

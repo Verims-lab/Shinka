@@ -7,6 +7,7 @@ const MARKER_LITERAL = /Buildmarker-\d{3}/g;
 export const MARKER_ROLES = {
   "/src/foundation/buildMarker.js": "AUTHORITY",
   "/src/foundation/buildLedger.js": "HISTORY",
+  "/src/foundation/buildLedgerData.js": "HISTORY",
   "/src/foundation/tests/foundationTests.js": "FIXTURE",
   "/src/foundation/tests/healthClosureTests.js": "FIXTURE",
 };

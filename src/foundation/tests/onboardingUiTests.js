@@ -14,7 +14,7 @@ import { createGeoNamesAdapter } from '../../../base44/shared/geonamesAdapter.js
 const pause=()=>new Promise(resolve=>setTimeout(resolve,50));
 async function probe(step,width,run,props={}){
   const frame=document.createElement('iframe');frame.title='Onboarding synthetic UI probe';
-  Object.assign(frame.style,{position:'fixed',left:'-10000px',width:`${width}px`,height:'640px',border:'0'});
+  Object.assign(frame.style,{position:'fixed',left:'-10000px',width:`${width}px`,height:`${props.probeHeight || 640}px`,border:'0'});
   document.body.appendChild(frame);
   const doc=frame.contentDocument;
   doc.open();doc.write('<!doctype html><html><head></head><body></body></html>');doc.close();
@@ -151,5 +151,28 @@ export const ONBOARDING_UI_TESTS=[
     for(const el of doc.querySelectorAll('select')){check(doc.querySelector(`label[for="${el.id}"]`)&&el.getBoundingClientRect().height>=44&&parseFloat(win.getComputedStyle(el).fontSize)>=16);if(!el.disabled){el.focus();check(doc.activeElement===el);}}
     button(doc,language==='tr'?'EN':'TR').click();await pause();check(doc.querySelector('#place-countries').value==='100'&&doc.querySelector('#place-0').value==='1001');
   },{language});
+ }],
+ ['U13','Small portrait, landscape, reduced viewport and enlarged text keep fields and submit reachable',async()=>{
+  for(const [width,height] of [[320,568],[844,390],[390,320]])for(const language of ['tr','en'])await probe('AUTHENTICATED_PROFILE_REQUIRED',width,async(doc,win)=>{
+    await pause();
+    for(const el of doc.querySelectorAll('label,p,button'))el.style.fontSize=`${parseFloat(win.getComputedStyle(el).fontSize)*2}px`;
+    check(doc.documentElement.scrollWidth<=width+1,`enlarged text overflow ${width}`);
+    input(doc,'birth_date','1990-01-01');input(doc,'birth_time','08:30');await pause();
+    for(const el of [...doc.querySelectorAll('input:not([type=checkbox]),button[type=submit]')]){
+      el.focus();el.scrollIntoView({block:'center'});await pause();
+      const rect=el.getBoundingClientRect();check(doc.activeElement===el&&rect.bottom>0&&rect.top<height,`unreachable ${el.id}`);
+    }
+    check(doc.querySelector('#birth_date').value==='1990-01-01'&&doc.querySelector('#birth_time').value==='08:30');
+  },{language,probeHeight:height});
+ }],
+ ['U14','Long Turkish homonyms keep identity context, ID disambiguation, labels and bounded DOM',async()=>{
+  const long='İğdır Şişli Çeşme Ömerli Uzun Yer Adı '.repeat(5);
+  const requestOverride=async()=>({options:Array.from({length:300},(_,i)=>({id:i+1,country:'TR',name:long,context:'Türkiye'})),total:300,offset:0,next_offset:null,previous_offset:null});
+  await probe('AUTHENTICATED_PROFILE_REQUIRED',320,async doc=>{
+    await pause();check(doc.documentElement.scrollWidth<=321);
+    const options=[...doc.querySelectorAll('#place-countries option')];
+    check(options.length===301&&options[1].textContent.endsWith('#1')&&options[300].textContent.endsWith('#300'));
+    check(doc.querySelectorAll('*').length<450&&findUnlabeledControls(doc.querySelector('main')).length===0);
+  },{language:'tr',requestOverride});
  }],
 ];

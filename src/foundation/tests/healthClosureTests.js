@@ -55,6 +55,7 @@ export const HEALTH_CLOSURE_TESTS=[
   ['HC08','H05-009 accepts all three present empty schemas with live counts',async()=>{
     const r=await H05_CASES.find(c=>c.id==='H05-009').run({contentCounts:async()=>counts(),artifacts:async()=>({importPerformed:false})});
     assert(r.status==='PASS'&&decide().code==='PRE_CONTENT_EMPTY_VERIFIED','schema presence treated as import');
+    assert(decide(counts(),false,'Buildmarker-009').status==='PASS','maintenance package must still reject imported content');
   }],
   ['HC09','Any positive content count fails with entity/count provenance',()=>{
     for(let i=0;i<3;i++){
@@ -75,8 +76,8 @@ export const HEALTH_CLOSURE_TESTS=[
     assert(decide(data,null).code==='UNEXPECTED_PRODUCT_CONTENT_PRESENT','positive rows concealed by another unavailable dependency');
   }],
   ['HC12','Future content package requires approved imported-content validation',()=>{
-    for(const marker of ['Buildmarker-009','Buildmarker-010','Buildmarker-006','invalid'])assert(decide(counts(),false,marker).status==='BLOCKED','zero rows permanently hardcoded');
-    assert(decide(counts(),false,'Buildmarker-009').code==='APPROVED_CONTENT_VALIDATION_REQUIRED','content transition not explicit');
+    for(const marker of ['Buildmarker-010','Buildmarker-011','Buildmarker-006','invalid'])assert(decide(counts(),false,marker).status==='BLOCKED','zero rows permanently hardcoded');
+    assert(decide(counts(),false,'Buildmarker-010').code==='APPROVED_CONTENT_VALIDATION_REQUIRED','content transition not explicit');
   }],
   ['HC13','Admin count action uses only three exact unfiltered aggregates',async()=>{
     const calls=[];

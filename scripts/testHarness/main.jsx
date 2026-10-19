@@ -8,6 +8,7 @@ import App from '@/App';
 import { isAuthProbePath, createAuthProbeFrame, waitForAuthProbe, measureAuthShell } from '@/foundation/probes/authProbeContract';
 import { runFoundationTests } from "@/foundation/tests/foundationTests";
 import { ONBOARDING_HEALTH_CASES } from '@/foundation/health/cases/onboarding';
+import { H01_CASES } from "@/foundation/health/cases/h01";
 import { H04_CASES } from "@/foundation/health/cases/h04";
 import { H12_CASES } from "@/foundation/health/cases/h12";
 import { H03_CASES } from "@/foundation/health/cases/h03";
@@ -34,7 +35,7 @@ window.__foundationCatalog = {version:HEALTH_CATALOG_VERSION,suites:SUITES.lengt
   external:HEALTH_CASES.filter(c=>c.applicability===A.EXTERNAL).length};
 window.__staticHealthEvidence = async () => {
   const context = createHealthContext();
-  return Promise.all([...H03_CASES.filter((c)=>["H03-001","H03-004","H03-008","H03-009"].includes(c.id)),...H04_CASES.filter(c=>c.applicability===A.CURRENT),...H12_CASES.filter(c=>c.applicability===A.CURRENT),...H13_CASES.filter(c=>c.applicability===A.CURRENT)].map(async(c)=>({id:c.id,...await c.run(context)})));
+  return Promise.all([...H01_CASES.filter(c=>c.id==="H01-006"),...H03_CASES.filter((c)=>["H03-001","H03-004","H03-008","H03-009","H03-010"].includes(c.id)),...H04_CASES.filter(c=>c.applicability===A.CURRENT),...H12_CASES.filter(c=>c.applicability===A.CURRENT),...H13_CASES.filter(c=>c.applicability===A.CURRENT)].map(async(c)=>({id:c.id,...await c.run(context)})));
 };
 
 window.__onboardingHealthEvidence = async () => Promise.all(ONBOARDING_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT).map(async c=>({id:c.id,...await c.run({})})));

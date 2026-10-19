@@ -1,4 +1,5 @@
 // Incremental Build contract helpers (pure). No marker literals live here.
+export const ACTIVE_PACKAGE_LIMIT = 5;
 export const MARKER_PATTERN = /^Buildmarker-(\d{3})$/;
 
 export const isValidMarker = (m) => typeof m === "string" && MARKER_PATTERN.test(m);
@@ -23,9 +24,12 @@ export function validateTransition(prev, next) {
   return { ok: true };
 }
 
-// Ledger is history/evidence: unique, valid, strictly +1 sequence, last entry == canonical marker.
+// Active ledger: at most five unique, consecutive packages; head equals canonical marker.
+// Older packages live in Git, so the retained sequence need not start at 001.
 export function validateLedger(ledger, canonical) {
   const errors = [];
+  if (!ledger.length) errors.push("LEDGER_EMPTY");
+  if (ledger.length > ACTIVE_PACKAGE_LIMIT) errors.push("LEDGER_RETENTION_EXCEEDED");
   const seen = new Set();
   ledger.forEach((e, i) => {
     if (!isValidMarker(e.build_marker)) errors.push(`INVALID_FORMAT@${i}`);

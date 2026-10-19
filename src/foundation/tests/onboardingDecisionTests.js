@@ -18,7 +18,7 @@ const boundaries=[
  ['LIBRA','09-23','10-22'],['SCORPIO','10-23','11-21'],['SAGITTARIUS','11-22','12-21'],
 ];
 const shifted=(date,delta)=>{const value=new Date(`${date}T12:00:00Z`);value.setUTCDate(value.getUTCDate()+delta);return value.toISOString().slice(0,10);};
-const call=(f,body,dependencies={})=>onboardingOperation(f.client,body,{now:()=>new Date(NOW),...dependencies});
+const call=(f,body,dependencies={})=>onboardingOperation(f.client,body,{now:()=>new Date(NOW),cycleGate:f.cycleGate,...dependencies});
 const profile={action:'saveProfile',birth_date:'1990-01-01',birth_time:null,display_name:null,birthplace_geonames_id:null};
 const cycle={action:'saveCycle',period_start_date:'2026-10-01',period_duration_days:null,initial_cycle_length_days:null,health_consent:true};
 async function fresh(){const f=sdkOnboardingFixture();await call(f,{action:'initialize',language_code:'tr',timezone:'Europe/Istanbul'});return f;}

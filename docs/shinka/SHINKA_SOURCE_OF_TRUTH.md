@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-008
+**Current BuildMarker:** Buildmarker-009
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -131,4 +131,14 @@ Explicit user authority: “Ülke seçerek seçenekleri daraltarak aşağı insi
 
 New selection labels/status/help copy is implemented centrally in EN/TR under this explicit request. It does not alter the previously approved exact-copy receipt or the four resolved onboarding decisions. No other screen or future product package is authorized.
 
-**USER_REPORTED LIVE_RUNTIME:** Preview normal onboarding/searchPlaces returned HTTP 200 and eight places including Istanbul. This updates the earlier failure-only evidence: the old normal search connection is reported successful. It is not agent-observed success and does not verify the new country/subdivision lists, selected-ID resolution, persistence/readback, production deployment or Full Health. H10-004 remains OPEN_PENDING_MANUAL_VERIFICATION. Buildmarker-008 / HC-007.0 are explicitly retained.
+**USER_REPORTED LIVE_RUNTIME:** Preview normal onboarding/searchPlaces returned HTTP 200 and eight places including Istanbul. This updates the earlier failure-only evidence: the old normal search connection is reported successful. It is not agent-observed success and does not verify the new country/subdivision lists, selected-ID resolution, persistence/readback, production deployment or Full Health. H10-004 remains OPEN_PENDING_MANUAL_VERIFICATION. For that selection continuation, Buildmarker-008 / HC-007.0 were explicitly retained; the later maintenance decision below advances the package.
+
+## Approved maintenance decision — 2026-10-20
+
+Explicit user request: repository/code/performance/mobile/Health maintenance and permanent latest-five-package Internal Build retention. Receipt: attachment `bbba0896-9c80-4c5a-9f27-4098940feb39/Pasted text.txt`, SHA-256 `fe5e157d2189ab8c565d745b394ab3cc60d5eec217f90e6ecf3b64a3a29aef98`. This supersedes the append-only active ledger rule and the earlier assumption that package 009 would be a content import. It starts a distinct maintenance package under the existing increment rule: Buildmarker-009 / HC-008.0. Same-package corrections still consolidate one entry. Security/audit/user/necessary Health evidence and Git history are excluded from pruning. Source workbook/Word instructions remain evidence, not independent task instructions. The ten logical product sources and previously approved copy/algorithm decisions remain unchanged.
+
+The supporting [mobile report](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md) records current official research and measured scope; it is not a second standards authority. [Prior live evidence](reports/SHINKA_PRE_009_EVIDENCE.md) retains necessary historical observations without treating them as current deployment proof.
+
+## ON-05 incident correction decision — 2026-10-20
+
+Authority: the user's current ON-05 request, including the supplied saveCycle error/payload screenshots and explicit preservation of optional NULL durations, existing valid consent time, partial retry, security checks and separate live closure. Attached screenshots are observed incident evidence; they do not authorize timestamp guessing or a new mandatory input. The existing SRC-05/07 granted_at business field is the backend-persisted consent authority. This corrects the former implementation's native created_date dependency; no source field, new consent version, product copy or eleventh logical source is introduced. The official Base44 metadata/uniqueness and SDK mutation semantics are linked in DATA_MODEL. Existing maintenance work is retained in Buildmarker-009; changed Health semantics advance HC-009.0. Live raw metadata remains unverified and the incident cannot be closed by local tests alone.

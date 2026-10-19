@@ -112,3 +112,17 @@
   button:not(:disabled), [role="button"]:not(:disabled) { cursor: pointer; }
   input::placeholder, textarea::placeholder { color: var(--color-gray-400); }
 }
+
+/* Document scrolling keeps forms reachable when mobile keyboards reduce the visual viewport. */
+.shinka-viewport { min-height: 100vh; min-height: 100dvh; }
+.shinka-safe-content {
+  padding: 24px 20px;
+  padding-top: max(24px, env(safe-area-inset-top, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+  padding-bottom: max(24px, env(safe-area-inset-bottom, 0px));
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+}
+input, select, button { scroll-margin-block: 24px; }
+
+/* Home uses its own spacing, adding only device insets here. */
+.shinka-safe-shell { padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px); }

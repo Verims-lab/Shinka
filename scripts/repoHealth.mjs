@@ -8,6 +8,8 @@ import { HEALTH_CATALOG_VERSION } from '../base44/shared/healthConstants.js';
 import { validateLedger } from '../src/foundation/buildMarkerRules.js';
 const e=buildStaticEvidence();
 const checks={
+  dependencyBoundaries:e.dependencies.ok,
+  boundedGeneratedHistory:e.activeBuildHistory.generatedMatches,
   twentyPhysicalProductSchemas:e.domain.expected===20&&e.domain.present===20&&e.domain.mismatches.length===0,
   noUnexpectedProductSchemas:e.domain.unexpected.length===0,
   separateBuiltinUserAndTooling:e.domain.builtinUserSeparate&&e.domain.internal===1,

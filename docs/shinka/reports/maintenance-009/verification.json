@@ -1,0 +1,456 @@
+{
+  "scope": "LOCAL_SYNTHETIC_AND_STATIC_NOT_DEPLOYMENT_OR_PHYSICAL_DEVICE",
+  "baseline": {
+    "revision": "63906f42a14e99f36f8934e9b42164c9b2ba24c7",
+    "chromium": {
+      "tests": 287,
+      "passed": 287,
+      "failed": 0
+    },
+    "webkit": {
+      "tests": 287,
+      "passed": 285,
+      "failed": 2,
+      "failures": [
+        "T80: H13-002 Health suite select height 22px (<44)",
+        "U12: native ON-04 selects height 25px (<44)"
+      ]
+    }
+  },
+  "final": {
+    "chromium": {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "catalog": {
+        "version": "HC-008.0",
+        "suites": 16,
+        "cases": 129,
+        "current": 106,
+        "future": 15,
+        "external": 8
+      },
+      "tests": 298,
+      "passed": 298,
+      "failed": 0,
+      "mobile": [
+        {
+          "scenario": "touch-viewport-320x568",
+          "width": 320,
+          "scrollWidth": 320,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-390x844",
+          "width": 390,
+          "scrollWidth": 390,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-844x390",
+          "width": 844,
+          "scrollWidth": 844,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "back-forward-reload-session-routing",
+          "passed": true
+        },
+        {
+          "scenario": "javascript-errors",
+          "passed": true,
+          "errors": []
+        }
+      ],
+      "pageErrors": [],
+      "health": {
+        "total": 52,
+        "passed": 52,
+        "failures": []
+      },
+      "onboardingHealth": {
+        "total": 21,
+        "passed": 21,
+        "failures": []
+      },
+      "routingAndPreview": {
+        "total": 8,
+        "passed": 8
+      },
+      "entrySubstitution": {
+        "geoNamesEntry": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "requests": 3,
+          "secretReadsAtModuleLoad": 0,
+          "passed": true
+        },
+        "geoNamesRuntimeProbeEntry": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "deniedRequests": 3,
+          "authorizedRequests": 2,
+          "secretReadsBeforeAuthorization": 0,
+          "workerFactories": 1,
+          "passed": true
+        }
+      }
+    },
+    "webkit": {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "catalog": {
+        "version": "HC-008.0",
+        "suites": 16,
+        "cases": 129,
+        "current": 106,
+        "future": 15,
+        "external": 8
+      },
+      "tests": 298,
+      "passed": 298,
+      "failed": 0,
+      "mobile": [
+        {
+          "scenario": "touch-viewport-320x568",
+          "width": 320,
+          "scrollWidth": 320,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-390x844",
+          "width": 390,
+          "scrollWidth": 390,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-844x390",
+          "width": 844,
+          "scrollWidth": 844,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "back-forward-reload-session-routing",
+          "passed": true
+        },
+        {
+          "scenario": "javascript-errors",
+          "passed": true,
+          "errors": []
+        }
+      ],
+      "pageErrors": [],
+      "health": {
+        "total": 52,
+        "passed": 52,
+        "failures": []
+      },
+      "onboardingHealth": {
+        "total": 21,
+        "passed": 21,
+        "failures": []
+      },
+      "routingAndPreview": {
+        "total": 8,
+        "passed": 8
+      },
+      "entrySubstitution": {
+        "geoNamesEntry": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "requests": 3,
+          "secretReadsAtModuleLoad": 0,
+          "passed": true
+        },
+        "geoNamesRuntimeProbeEntry": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "deniedRequests": 3,
+          "authorizedRequests": 2,
+          "secretReadsBeforeAuthorization": 0,
+          "workerFactories": 1,
+          "passed": true
+        }
+      }
+    }
+  },
+  "audit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 2,
+    "high": 0,
+    "critical": 0,
+    "total": 2
+  }
+}

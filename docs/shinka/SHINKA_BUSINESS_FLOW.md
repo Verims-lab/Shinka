@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-008
+**Current BuildMarker:** Buildmarker-009
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -59,3 +59,11 @@ FIRST_SHINKA_ENGINE_REQUIRED remains YES. UC-06 generation, imports, engines, Ca
 Country is chosen by the user, then available administrative levels narrow the settlement list. TR targets country → province → district → settlement; other countries can skip absent levels or have none. Any explicit valid populated-place selection completes birthplace without forcing deeper regions. Country/administrative selection alone never becomes a birthplace or supplies center coordinates. Lists are authenticated and read-only; only Continue invokes existing saveProfile with a selected numeric ID resolved again on the backend.
 
 Changing a parent clears its descendants and final selection. Partial paths require completion or explicit clearing. Empty and service-error states permit Clear / Leave empty for now, which saves all five optional fields as NULL. Existing saved birthplace survives initial display, missing hierarchy and beginning an edit until the user actually replaces/clears it. DOB/time/name, Sun, cycle/consent and durable onboarding routing are unchanged. User-reported Preview search success is historical connection evidence; new hosted selection → save → readback remains required.
+
+## Maintenance preservation
+
+Package 009 preserves ON-04 country→region→settlement selection, explicit Clear, optional NULL behavior, TR/EN copy, backend selected-ID resolution and durable onboarding decisions. Short-lived cached public lists can satisfy repeated selections; expiry or explicit Retry reads the provider again. No inferred selection, new product flow, content import or successful First Shinka state is introduced. See [mobile validation](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md) for browser versus device evidence.
+
+## ON-05 partial-write recovery
+
+An existing valid consent without its event/period is a resumable partial operation. Continue with the same intended inputs keeps the saved consent time and creates only missing matching records after verification. Retry/reload/double tap in one worker does not issue another grant time; confirmed matching rows are not written again. Conflicting settings, period start, version/history or withdrawn consent is refused; onboarding cannot silently become a health editing/regrant flow. All required records must be read back before Continue succeeds. Reload cannot infer cycle completion from period alone when its consent event is absent. Skip writes nothing, including when an earlier failed attempt left consent behind; it neither revokes nor deletes that consent. Live success with the same partial account remains required.

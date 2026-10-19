@@ -1,19 +1,28 @@
-import { Toaster } from "@/components/ui/toaster"
-import { QueryClientProvider } from '@tanstack/react-query'
-import { queryClientInstance } from '@/lib/query-client'
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import PageNotFound from './lib/PageNotFound';
-import { AuthProvider, useAuth } from '@/lib/AuthContext';
-import UserNotRegisteredError from '@/components/UserNotRegisteredError';
-import ScrollToTop from './components/ScrollToTop';
-import ProtectedRoute from '@/components/ProtectedRoute';
+import { lazy } from "react";
+import RouteBoundary from "@/components/RouteBoundary";
+import { Toaster } from "@/components/ui/toaster";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClientInstance } from "@/lib/query-client";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import PageNotFound from "./lib/PageNotFound";
+import { AuthProvider, useAuth } from "@/lib/AuthContext";
+import UserNotRegisteredError from "@/components/UserNotRegisteredError";
+import ScrollToTop from "./components/ScrollToTop";
+import ProtectedRoute from "@/components/ProtectedRoute";
 // Add page imports here
-import Onboarding from '@/pages/Onboarding';
-import AdminGate from '@/components/internal/AdminGate';
-import BuildEnvironment from '@/pages/internal/BuildEnvironment';
-import HealthCenter from '@/pages/internal/HealthCenter';
-import AuthShellProbe from '@/foundation/probes/AuthShellProbe';
-import { isAuthProbePath } from '@/foundation/probes/authProbeContract';
+import Onboarding from "@/pages/Onboarding";
+import AdminGate from "@/components/internal/AdminGate";
+const BuildEnvironment = lazy(
+  () => import("@/pages/internal/BuildEnvironment"),
+);
+const HealthCenter = lazy(() => import("@/pages/internal/HealthCenter"));
+const AuthShellProbe = lazy(() => import("@/foundation/probes/AuthShellProbe"));
+import { isAuthProbePath } from "@/foundation/probes/authProbeRoute";
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError } = useAuth();
@@ -27,20 +36,43 @@ const AuthenticatedApp = () => {
   }
 
   if (authError) {
-    if (authError.type === 'user_not_registered') {
+    if (authError.type === "user_not_registered") {
       return <UserNotRegisteredError />;
     }
   }
 
   return (
     <Routes>
-      <Route path="/login" element={<Onboarding initialEntry="UNAUTHENTICATED_SIGN_IN" />} />
+      <Route
+        path="/login"
+        element={<Onboarding initialEntry="UNAUTHENTICATED_SIGN_IN" />}
+      />
       <Route path="/" element={<Onboarding />} />
       <Route path="/onboarding" element={<Onboarding />} />
-      <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>
+      <Route
+        element={
+          <ProtectedRoute
+            unauthenticatedElement={<Navigate to="/login" replace />}
+          />
+        }
+      >
         <Route element={<AdminGate />}>
-          <Route path="/internal/build" element={<BuildEnvironment />} />
-          <Route path="/internal/health" element={<HealthCenter />} />
+          <Route
+            path="/internal/build"
+            element={
+              <RouteBoundary>
+                <BuildEnvironment />
+              </RouteBoundary>
+            }
+          />
+          <Route
+            path="/internal/health"
+            element={
+              <RouteBoundary>
+                <HealthCenter />
+              </RouteBoundary>
+            }
+          />
         </Route>
       </Route>
       <Route path="*" element={<PageNotFound />} />
@@ -49,7 +81,12 @@ const AuthenticatedApp = () => {
 };
 
 function App() {
-  if (isAuthProbePath(window.location.pathname)) return <AuthShellProbe />;
+  if (isAuthProbePath(window.location.pathname))
+    return (
+      <RouteBoundary>
+        <AuthShellProbe />
+      </RouteBoundary>
+    );
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
@@ -60,7 +97,7 @@ function App() {
         <Toaster />
       </QueryClientProvider>
     </AuthProvider>
-  )
+  );
 }
 
-export default App
+export default App;
