@@ -46,6 +46,6 @@ try {
   const onboardingHealth=await page.evaluate(()=>window.__onboardingHealthEvidence());
   const catalog=await page.evaluate(()=>window.__foundationCatalog);
   console.log(JSON.stringify({evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",catalog,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,health,onboardingHealth,pageErrors},null,2));
-  if(results.length===0||results.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>!["PASS","BLOCKED"].includes(c.status))||pageErrors.length) process.exitCode=1;
+  if(results.length===0||results.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
 } catch(error){console.error(error);process.exitCode=1;}
 finally {await browser?.close();if(server) await new Promise(resolve=>server.close(resolve));await rm(output,{recursive:true,force:true});}

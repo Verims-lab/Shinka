@@ -1,4 +1,5 @@
 // Contract simulator only. Never imported by a product route, server entry or SDK client.
+import { resolveSunSign } from '../../../base44/shared/sunSign.js';
 import { DOMAIN_SCHEMAS, physicalName, SUN_SIGN_CODES } from '../../../base44/shared/domainSchemas.js';
 import { InternalError } from '../../../base44/shared/internalAuthorization.js';
 import { NOW } from './dataModelTests';
@@ -7,7 +8,7 @@ export const fixturePlace={geonameId:123,name:'Fixture City',countryCode:'TR',la
 export function onboardingFixture({complete=false,preferences=true,role='user',owner='ownerA'}={}) {
   const data=Object.fromEntries(Object.keys(DOMAIN_SCHEMAS).map(k=>[k,[]]));
   if(preferences)data.user_preferences.push({id:'prefA',user_id:owner,language_code:'en',timezone:'Europe/Istanbul',notifications_enabled:false,notification_time:'06:00'});
-  if(complete)data.user_profile.push({id:'profileA',user_id:owner,birth_date:'1990-01-01',birth_time:null,sun_sign_code:'ARIES',account_status:'ACTIVE'});
+  if(complete)data.user_profile.push({id:'profileA',user_id:owner,birth_date:'1990-01-01',birth_time:null,sun_sign_code:'CAPRICORN',account_status:'ACTIVE'});
   const entities=Object.fromEntries(Object.keys(data).map(entity=>[physicalName(entity),{filter:async(query,_sort,limit)=>data[entity].filter(row=>Object.entries(query).every(([k,v])=>typeof v==='object'?row[k]!==v.$ne:row[k]===v)).slice(0,limit)}]));
   const client={auth:{me:async()=>owner?{id:owner,role}:null},asServiceRole:{entities}};
   const actions=new Map();let sequence=0,failAt=-1;
@@ -36,6 +37,6 @@ export function onboardingFixture({complete=false,preferences=true,role='user',o
     const outcome={status:'COMMITTED',records:saved};actions.set(key,{fingerprint,outcome});return outcome;
   }};
   const calculationInputs=[];
-  const dependencies={atomic,now:()=>new Date(NOW),consentVersion:'SYNTHETIC_TEST_ONLY',sunSign:async input=>{calculationInputs.push(input);return 'ARIES';},geoNames:{search:async()=>[normalizeGeoNamesPlace(fixturePlace)],resolve:async()=>normalizeGeoNamesPlace(fixturePlace)}};
+  const dependencies={atomic,now:()=>new Date(NOW),consentVersion:'SYNTHETIC_TEST_ONLY',sunSign:async input=>{calculationInputs.push(input);return resolveSunSign(input);},geoNames:{search:async()=>[normalizeGeoNamesPlace(fixturePlace)],resolve:async()=>normalizeGeoNamesPlace(fixturePlace)}};
   return {client,data,dependencies,calculationInputs,failAt:index=>{failAt=index;}};
 }

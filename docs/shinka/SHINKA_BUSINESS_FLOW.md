@@ -7,7 +7,7 @@
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
-**Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; production writes/source gaps remain OPEN.
+**Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
 **Not Implemented:** UC-06/Daily Content, Calendar, Pattern, You editing, withdrawal/deactivation and notifications.
 **Open Decisions:** OD-002 (OD-003 repository auth policy implemented; live provider proof remains external)
 
@@ -15,7 +15,7 @@
 Apple or Google only; no Shinka password; one account per provider identity. 18+ checkbox (initially empty) must be checked before auth starts; age is re-checked from birth date (backend). Sign Out does not change account status.
 
 ## Onboarding (UC-02…06)
-Intro → optional name (trim, ≤50) → sign-in → birth date (required, valid, not future, 18+) → optional birth time (HH:mm 24h) and GeoNames-selected birthplace (no free text) → optional period info with explicit health consent → first pair prepared immediately. Sun sign: always one of 12; missing time ⇒ 00:00 for calculation only, birth_time stays NULL; no UNCERTAIN.
+Intro → optional name (trim, ≤50) → sign-in → birth date (required, valid, not future, 18+) → optional birth time (HH:mm 24h) and GeoNames-selected birthplace (no free text) → optional period info with explicit health consent → ON-06 preparation dependency (first pair generation belongs to the next package). Sun sign uses only birth_date and the fixed tropical mapping in SOURCE_OF_TRUTH; birth_time stays NULL when missing, with no 00:00 fallback and no UNCERTAIN.
 
 ## Home (UC-11, KK-11/14)
 Shows the pair for the device's current local calendar day. Reopen/Retry/profile/language changes never create a second Pair ID. Greeting adapts to time and name; does not affect selection.
@@ -42,12 +42,14 @@ Existing record for local day ⇒ return it. Else category from 240 mapping (sig
 Delete Account ⇒ INACTIVE + ACCOUNT_DEACTIVATION event. Admin cannot modify/delete daily message history, consent events, protection events, audit log; deletion job status backend-only.
 
 ## Foundation readiness — Buildmarker-007
-All 20 physical schemas now represent these contracts. Backend read boundaries derive owner from auth.me().id and check ACTIVE/consent state; protected mutations are denied. No Calendar, onboarding, Home, Pattern, daily-generation, scheduler, push or deletion execution flow has begun. Future Calendar mutations still require ≥15-day inter-record validation and atomic derived-state replacement; future withdrawal must stop processing first, create minimal protection/job metadata, verify physical deletion and permit re-consent only after completion. Account deactivation retains records and closes normal access. No current schema or synthetic test constitutes implementation of those business flows.
+All 20 physical schemas now represent these contracts. Backend read boundaries derive owner from auth.me().id and check ACTIVE/consent state; protected mutations are denied. At the 007 checkpoint no Calendar, onboarding, Home, Pattern, daily-generation, scheduler, push or deletion execution flow had begun; the current onboarding implementation is described below. Future Calendar mutations still require ≥15-day inter-record validation and atomic derived-state replacement; future withdrawal must stop processing first, create minimal protection/job metadata, verify physical deletion and permit re-consent only after completion. Account deactivation retains records and closes normal access. No current schema or synthetic test constitutes implementation of those business flows.
 
 ## Authentication/onboarding implementation boundary — current package
 
-ON-01 Introduction → ON-02 optional trimmed name → ON-03 Apple/Google with a separate unchecked 18+ declaration → ON-04 required DOB / optional time / optional structured birthplace → ON-05 optional cycle and independent explicit health consent → ON-06 finite dependency shell. Existing users with usable profile/preferences and actual daily data retain Home shell access; INACTIVE wins over all onboarding paths.
+ON-01 Introduction → ON-02 optional trimmed name → ON-03 Apple/Google with a separate unchecked 18+ declaration → ON-04 required adult DOB / optional time / optional structured birthplace → ON-05 optional cycle and independent explicit health consent → ON-06 finite dependency shell. The shared server resolver denies INACTIVE, returns incomplete profiles to ON-04 and only returns Home when ready profile/preferences and actual owner daily data exist.
 
-Pre-auth name is transient only (same-tab session storage, versioned, 30-minute expiry, max 50 Unicode characters). No pre-auth profile or identity is created. Backend identity always comes from Base44 auth.me(). Profile/preferences and health persistence are implemented as guarded adapter contracts, tested synthetically; production writes fail closed because no durable adapter is verified. Sun and consent source gaps additionally prevent the affected saves. No failed write is presented as completion.
+Pre-auth name is transient only (same-tab session storage, versioned, 30-minute expiry, max 50 Unicode characters). No pre-auth profile/identity is created. Identity comes from auth.me(). Approved fixed-date Sun and EN/TR copy are integrated. Profile/preferences persist through the production SDK adapter; readback must succeed before progression. Restarted partial profiles retain existing optional birthplace/name/time while finishing their derived Sun.
 
-Cycle skip creates no health/consent/settings rows. A start date requires separate consent; settings require a start date. Empty settings never materialize 5/28. Exact screen resume after skip is not durably representable; current session can reach ON-06, reload safely derives state again. UC-06 generation remains unimplemented and explicitly FIRST_SHINKA_ENGINE_REQUIRED.
+Valid cycle data and explicit consent persist health-consent-v1.0 to current consent and immutable event, optional settings and the actual period start. Missing settings remain NULL; no fabricated 5/28. Skip/empty input creates no health records. Approved restart behavior may return skipped users to ON-05 until their first real user_daily_message exists; no Skip flag is added. The daily record is the final durable completion marker.
+
+FIRST_SHINKA_ENGINE_REQUIRED remains YES. UC-06 generation, imports, engines, Calendar, Pattern, scheduler, push and withdrawal are outside 008. Package: CLOSED_PENDING_BASE44_VERIFICATION.

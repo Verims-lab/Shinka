@@ -41,9 +41,9 @@ export const OPEN_DECISIONS = Object.freeze([
   { id: "OD-010", status: "RESOLVED_BY_SOURCE_RECEIPT", blocking: false, sources: ["SRC-03 §2, §8.1–8.5, §9 (Part 1/4)", "SRC-03 machine-readable companion"],
     resolution_rule: "Machine-readable companion (supporting artifact of SRC-03, not a new source) exposes all 11 tables and visual-reference notes; tables mirrored in src/foundation/uiuxTables.js; no conflict with the written split source.",
     conflict: "UI/UX v1.1 design-system tables, the §8 approved copy tables and the §9 checklist are embedded as tables/images and are not machine-readable as text; only headings are extractable. Canonical token values were taken from the package brief that quotes v1.1.",
-    impact: "Tokens are applied; the full EN copy dictionary and TR equivalents cannot be verified string-by-string. Foundation TR strings are PENDING_COPY_REVIEW.",
-    recommendation: "Closed. TR equivalents of the approved EN copy remain a localization task of each customer-screen package." },
+    impact: "Tokens are applied; the full EN copy dictionary and TR equivalents cannot be verified string-by-string. Non-onboarding Foundation TR strings retain their review scope; onboarding TR and helper copy are APPROVED_PRODUCT_COPY by the explicit Final Closure decisions.",
+    recommendation: "Closed. Onboarding EN/TR is approved and integrated; other customer-screen localization remains future package scope." },
   { id: "OD-011", status: "NOTED", blocking: false, sources: ["SRC-03 §3", "SRC-03 ON-03"],
     conflict: "Onboarding sequence names step 3 'Welcome/Login' and step 5 'Cycle Details'; screen titles are 'Welcome / Sign In' and 'Your cycle, your choice'.",
-    impact: "Naming only; sequence identical.", recommendation: "Use screen titles (ON-03, ON-05) as canonical names." },
+    impact: "Naming only; sequence identical.", recommendation: "Use screen titles; the explicit Final Closure product decision supersedes ON-03 with Welcome / Hoş geldin. ON-05 remains unchanged." },
 ]);

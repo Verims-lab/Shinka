@@ -61,8 +61,8 @@ No end-user product package implemented. No GitHub work. No AI.
 
 ## Buildmarker-008 — Authentication & Onboarding (2026-10-19)
 
-- Apple/Google-only provider boundary with unchecked pre-auth 18+ declaration; backend DOB/age enforcement and owner-derived identity.
-- ON-01…ON-05 screens and safe persistence contracts: optional name, NULL time, structured optional GeoNames, optional cycle and explicit consent. Technical continuation adds a real Base44 keyed-upsert/readback adapter for profile/preferences; health writes remain source-gated. No native transaction/rollback claim.
-- ON-06 finite FIRST_SHINKA_ENGINE_REQUIRED shell; no UC-06 generation, content import, Daily Content Engine, daily row, scheduler or unrelated product feature.
-- H06/H07 activated, H10 GeoNames and H11 onboarding consent scoped in HC-006.0. Existing Foundation/Data/Security tests retained; new auth/onboarding/UI tests use the same runner. All 12 document headers aligned.
-- OPEN: missing approved Sun resolver, TR onboarding copy, consent text/version, durable skip-resume model. Repository adapter implementation gap is closed; native concurrency, conditional writes, NULL and event timestamp behavior still need live verification. Live Base44 Full Health/auth/GeoNames/enforcement still required separately. Test only; main unchanged.
+- Apple/Google-only auth, independent pre-auth 18+, ON-01…05, finite ON-06 and owner-safe production SDK persistence with verified readback.
+- Same-package continuations: actual SDK adapter added, then approved fixed tropical Sun, exact EN/TR product copy/helpers, health-consent-v1.0 and derived durable onboarding rule integrated. Missing birth_time stays NULL, no 00:00 Sun fallback. Existing product schemas unchanged.
+- Actual owner user_daily_message is the final durable completion marker. Skip may safely resume ON-05 before that record exists. No generated daily content or new completion field.
+- HC-006.0 retained (16 suites / 126 cases). Existing H06/H07/H11 cases now have clean repository evidence; live cases remain external. 215/215 tests; Critical/High 0; all native checks PASS.
+- CLOSED_PENDING_BASE44_VERIFICATION. Four source gaps RESOLVED_BY_PRODUCT_DECISION; internal blockers 0. First Shinka is an explicit next-package dependency. Native storage/enforcement and deployed Full Health/auth/GeoNames remain unverified. Test only; main unchanged. Existing ledger entry updated, not duplicated.
