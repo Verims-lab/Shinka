@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-007
+**Current BuildMarker:** Buildmarker-008
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -81,7 +81,7 @@ PascalCase schema filenames match the existing repository and exact SDK entity n
 
 Native `id` is the unique platform identifier. All references are ID strings plus the canonical relationship registry; strings do not establish a native FK. `assertReferenceTargets` rejects missing and cross-owner targets; the atomic adapter must repeat referential checks in the same atomic operation. No cascading delete is assumed.
 
-`validateDomainRecord` enforces required fields, unknown-field rejection, ranges, enum values, valid local dates, UTC `Z` event instants, HH:mm, IANA timezone, coherent birthplace fields, consent timestamps, Pattern category/count pairs and positive Moon intervals. Age, ≥15-day inter-record spacing, Moon continuity, calculation/fallback and restore workflows remain in their future packages; current product mutation routes are disabled.
+`validateDomainRecord` enforces required fields, unknown-field rejection, ranges, enum values, valid local dates, UTC `Z` event instants, HH:mm, IANA timezone, coherent birthplace fields, consent timestamps, Pattern category/count pairs and positive Moon intervals. Age validation is implemented by the onboarding backend. ≥15-day inter-record spacing, Moon continuity, calculation/fallback and restore workflows remain future. Generic mutation routes stay disabled; onboarding uses its specific fail-closed atomic contract.
 
 Optional fields use documented primitive types without `required`. Logical NULL writes omit the field; reads normalize absence to NULL. No `nullable`, unsupported type union or invented unique/index syntax is asserted. Native explicit-null acceptance remains unverified. No 00:00/5/28 calculation default is persisted. These are wire/storage adaptations, not entered values. Required schema fields with declared defaults are filled by the backend validator.
 
@@ -350,3 +350,17 @@ Counts: VERIFIED 1; PARTIALLY_VERIFIED 8; UNVERIFIED 13; UNSUPPORTED 2. Native a
 | CAP-23 | Native timestamp mapping (OD-004) | PARTIALLY_VERIFIED | 2026-10-19 read-only InternalHealthRun response includes created_date/updated_date. UTC offset absent; product timestamps, mutability and immutable updated timestamp semantics not live-proven. |
 | CAP-24 | Nullable / optional field representation | PARTIALLY_VERIFIED | Optional fields declared using documented schema types; backend omits null values on write and normalizes absent values to logical NULL on read. Native explicit null storage remains unverified. |
 | CAP-20 | Deployment rollback | UNVERIFIED | Not measured. |
+
+## Onboarding persistence mapping — current package
+
+Exactly 20 product entities remain. No onboarding entity, progress field, calculation default, synthetic user, or uniqueness schema extension was added. Built-in User remains canonical identity.
+
+| Step | Approved records | Semantics |
+|---|---|---|
+| Preferences | user_preferences | owner singleton; tr/en; valid device IANA or existing valid zone; false; 06:00. Missing new-user timezone produces retry. |
+| Profile | user_profile | required adult DOB; trimmed optional name; optional genuine HH:mm; coherent five-field birthplace or all NULL; approved Sun resolver required. |
+| Cycle grant | user_health_consent + user_health_consent_event + user_period_record | current GRANTED, immutable GRANTED event and actual date in one required durable owner action; consent text/version source absent. |
+| Optional settings | user_cycle_settings | created only when at least one setting was entered; the other stays NULL. Start-only creates no settings row (logical values absent/NULL). |
+| Skip | none | no fake health values, consent, predictions or phase rows. |
+
+Canonical validation omits nullable fields on physical write and normalizes them to NULL on read. 00:00 is only a resolver input when time is absent; 5/28 are UI placeholders. Existing direct SDK deny policies and generic mutation denials remain. The action adapter contract requires whole-row replacement for incomplete profile completion, conflict detection, durable idempotency and confirmed readback; it is synthetic-tested and unavailable in production. Required source/capability gaps remain OPEN.

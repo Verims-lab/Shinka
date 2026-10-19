@@ -8,8 +8,7 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ScrollToTop from './components/ScrollToTop';
 import ProtectedRoute from '@/components/ProtectedRoute';
 // Add page imports here
-import Login from '@/pages/Login';
-import Home from '@/pages/Home';
+import Onboarding from '@/pages/Onboarding';
 import AdminGate from '@/components/internal/AdminGate';
 import BuildEnvironment from '@/pages/internal/BuildEnvironment';
 import HealthCenter from '@/pages/internal/HealthCenter';
@@ -33,9 +32,10 @@ const AuthenticatedApp = () => {
 
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<Onboarding initialEntry="UNAUTHENTICATED_SIGN_IN" />} />
+      <Route path="/" element={<Onboarding />} />
+      <Route path="/onboarding" element={<Onboarding />} />
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>
-        <Route path="/" element={<Home />} />
         <Route element={<AdminGate />}>
           <Route path="/internal/build" element={<BuildEnvironment />} />
           <Route path="/internal/health" element={<HealthCenter />} />

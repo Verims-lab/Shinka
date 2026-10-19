@@ -2,11 +2,6 @@
 import { futureCase as f } from "../caseFactory";
 
 export const FUTURE_CASES = [
-  f("H06", "H06-001", "Apple/Google-only sign-in", "No Shinka password; provider identity maps to one account."),
-  f("H06", "H06-002", "18+ declaration before authentication", "Auth does not start until 18+ box is checked."),
-  f("H07", "H07-001", "Birth date required and 18+", "Onboarding blocks missing/future/under-18 dates."),
-  f("H07", "H07-002", "Display name ≤ 50 characters", "Trimmed name over 50 chars is rejected."),
-  f("H07", "H07-003", "birth_time stays NULL when not entered", "00:00 is used only for Sun-sign calculation."),
   f("H08", "H08-001", "Phase lookup 28/5 → 1–5, 6–12, 13–15, 16–28", "Standard cycle phase lookup correctness."),
   f("H08", "H08-002", "≥15 days between period starts", "Conflicting starts rejected; state preserved."),
   f("H08", "H08-003", "Outlier rule 26/27/45 → 27", "Single outlier excluded from prediction average."),
@@ -15,7 +10,6 @@ export const FUTURE_CASES = [
   f("H09", "H09-003", "Fallback chain and immutable TR/EN snapshot", "Category → other categories → least-recently shown."),
   f("H10", "H10-001", "Pattern uses actual category_id", "Top two themes, tie broken by most recent."),
   f("H10", "H10-002", "Moon lookup [start, end) continuous", "No gaps or overlaps; boundary selects new phase."),
-  f("H10", "H10-003", "GeoNames structured selection only", "Free text never saved as birthplace."),
   f("H11", "H11-001", "Consent withdrawal deletes health data (verified)", "Success shown only after verified deletion."),
   f("H11", "H11-002", "No re-consent during open deletion job", "GRANTED not activated until job COMPLETED."),
   f("H11", "H11-003", "Delete Account → INACTIVE without routine deletion", "Access, generation and push stop."),

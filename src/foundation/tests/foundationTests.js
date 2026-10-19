@@ -18,6 +18,8 @@ import { validatorFixtureResult } from "../../../base44/shared/contentArtifactVa
 import { HARDENING_TESTS } from "./hardeningTests";
 import { CSS_CONTRACT_TESTS } from "./cssContractTests";
 import { DATA_MODEL_TESTS } from "./dataModelTests";
+import { ONBOARDING_UI_TESTS } from './onboardingUiTests';
+import { AUTH_TESTS, ONBOARDING_TESTS } from './onboardingTests';
 import { SECURITY_TESTS } from "./securityTests";
 import { ev } from "@/foundation/health/evidence";
 import { findUnlabeledControls, probeMobileOverflow } from "@/foundation/probes/domProbes";
@@ -101,7 +103,7 @@ export const FOUNDATION_TESTS = [
 
 export async function runFoundationTests() {
   const out = [];
-  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...UI_CONTRACT_TESTS, ...HARDENING_TESTS, ...CSS_CONTRACT_TESTS, ...DATA_MODEL_TESTS, ...SECURITY_TESTS]) {
+  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...UI_CONTRACT_TESTS, ...HARDENING_TESTS, ...CSS_CONTRACT_TESTS, ...DATA_MODEL_TESTS, ...SECURITY_TESTS, ...AUTH_TESTS, ...ONBOARDING_TESTS, ...ONBOARDING_UI_TESTS]) {
     try { await fn(); out.push({ id, name, passed: true, detail: "ok" }); }
     catch (e) { out.push({ id, name, passed: false, detail: String(e?.message || e).slice(0, 160) }); }
   }

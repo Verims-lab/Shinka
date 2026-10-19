@@ -2,14 +2,14 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — working notes (does not override sources)
-**Current BuildMarker:** Buildmarker-007
+**Current BuildMarker:** Buildmarker-008
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Current state, findings, constraints, debt.
 **Scope:** Implementation notes only.
 
 ## Current state
-Foundation only. Routes: `/` (neutral shell aligned to the v1.1 navigation contract, no business data), `/internal/build`, `/internal/health` (admin-only). `/login` exposes only Apple/Google; password routes have been removed (OD-003 repository policy implemented).
+Routes `/` and `/onboarding` resolve the canonical onboarding/account state; `/login` starts at provider sign-in and resolves authenticated users. `/internal/build` and `/internal/health` remain admin-only. Home business behavior is unchanged. Current authentication/onboarding package is OPEN due to explicit source/adapter gaps.
 
 ## Base44 findings (measured 2026-10-18)
 - Backend function execution works; Deno `DecompressionStream` used to parse XLSX without dependencies.
@@ -31,7 +31,7 @@ Foundation only. Routes: `/` (neutral shell aligned to the v1.1 navigation contr
 - Base shadcn `.dark` variables remain in `src/index.css` for library components; no dark class is ever applied (light-only).
 
 ## Future package notes
-Next user-facing package remains to be requested; data/security foundation is Buildmarker-007.
+Authentication/onboarding is the current package. Daily Content/First Shinka remains a later package.
 
 ## Measured platform limits (Buildmarker-004)
 - Entity text field: 16KB accepted, 24KB rejected ("exceeds the maximum allowed size"). Large internal reports go to private file storage.
@@ -86,3 +86,19 @@ Final status is CLOSED_PENDING_BASE44_VERIFICATION only after required repositor
 Canonical CLI: **126 PASS / 0 FAIL**, no browser exceptions; existing 80 preserved, 22 data-model + 24 security tests added, none removed. Local H04: 14 PASS / 0 FAIL / 0 BLOCKED current cases; H12: 20 PASS / 0 FAIL / 0 BLOCKED current cases. H04-006 and H12-901 are external requirements, excluded from those current counts and not certified. Registry: **HC-005.0 / 16 suites / 109 cases / 83 current / 21 future / 5 external**. Repository health confirms 20/20 schemas, zero extras, complete policy matrix and no unexpected seed/import call.
 
 REPOSITORY VERIFIED and SYNTHETIC_RUNTIME VERIFIED. LIVE_RUNTIME evidence covers only the read-only baseline inventory and tooling timestamp availability. LIVE_ENFORCEMENT remains REQUIRED. Internal package blockers: 0. Package: **CLOSED_PENDING_BASE44_VERIFICATION**. Final deployed Full Health, live enforcement and the capability dependencies above remain external; no product flows or imported/seeded data.
+
+## Authentication & Onboarding — current package
+
+Branch preflight started clean at local/origin Test fde7979b007947ed59e43aec3045dffb23ea9924. origin/main 16182593062fea8eead3b2616a170d89cf1c1ef5 was two commits ahead with no divergence; origin/Test was safely fast-forwarded and local Test synchronized before edits. Main was not modified. Baseline marker 007 / HC-005.0 and all 126 existing tests were verified before implementation.
+
+Implemented ON-01…05 UI and guarded backend contracts, Apple/Google-only pre-auth 18+, date-only adult DOB, optional name/time/GeoNames/cycle, explicit consent, finite ON-06 and canonical routing. No production persistence success is claimed: the inherited durable atomic adapter is absent. User confirmed no extra approved Sun/TR sources. Consent grant text/version also absent. These source/capability gaps keep package OPEN; exact skipped-step cross-session resume remains a model gap. No deployment/live login/provider test was performed.
+
+## Final repository verification — Buildmarker-008 (2026-10-19)
+
+Executed after clean `npm ci`: `npm ls --depth=0`, `security:deps`, `typecheck`, canonical `test:foundation`, `lint`, `build`, and `health:repo` all exited 0. Audit: **0 Critical / 0 High / 2 Moderate / 0 Low**; the two previously documented React Router package findings remain. No dependency version/lockfile change was introduced. Build retains non-fatal shared-test chunk/dynamic-import size warnings; these are not live performance evidence.
+
+Canonical regressions: **171 PASS / 0 FAIL**, zero browser exceptions. Existing Foundation 80 + Data 22 + Security 24 preserved; added Auth 9 + Onboarding 31 + rendered UI 5. One existing provider-boundary test updated for the mandatory declaration argument; none removed. Actual screen captures and DOM probes covered 360px and 430px; input font/focus issues found during implementation were corrected. External fonts and physical keyboards/providers are not certified by the isolated harness.
+
+Registry: **HC-006.0 / 16 suites / 126 cases / 104 current / 15 future / 7 external**. Current H06 **6 PASS / 0 FAIL / 0 BLOCKED** (plus one external case); H07 **8 PASS / 0 FAIL / 4 BLOCKED**. H10-003 GeoNames contract PASS; H10-004 live availability external. H11-004 onboarding consent contract PASS; H11-005 approved consent text/version BLOCKED. Other future cases remain inactive/NOT_APPLICABLE. The five named current capability blocks are not converted into test failures or successful live verification; **package OPEN**.
+
+Repository health confirms 20 physical product schemas, no extras, unchanged source fields/direct SDK deny rules, complete access matrix, copy/proxy policy, no seed/legacy/credential findings, one marker/ledger transition and all 12 aligned document headers. Evidence is REPOSITORY / STATIC / SYNTHETIC_RUNTIME only. BASE44_FULL_HEALTH_REQUIRED, BASE44_LIVE_AUTH_REQUIRED, BASE44_LIVE_GEONAMES_REQUIRED and BASE44_LIVE_ENFORCEMENT_REQUIRED remain pending after merge/deploy. FIRST_SHINKA_ENGINE_REQUIRED is explicitly next-package work.

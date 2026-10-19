@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — validated contract, no import
-**Current BuildMarker:** Buildmarker-007
+**Current BuildMarker:** Buildmarker-008
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
@@ -40,3 +40,7 @@ The shared validator returns missingCategory for content and both mappings. H05-
 
 ## Empty data foundation — Buildmarker-007
 MessageCategoryLookup, MessageCategoryMapping, MessagePair and immutable UserDailyMessage are physically represented in repository JSONC. No 260/192/240 data was imported and no daily engine was implemented. Category codes remain text until OD-002 is authoritatively closed; no guessed EN names or categories are seeded. MessagePair is_active has only the approved Active state. Required TR/EN strings have no invented editorial length cap. Only a future trusted importer may author shared content through the guarded backend path; normal users cannot write it. No Moon/Cycle lookup population was performed.
+
+## First-Shinka boundary — current package
+
+Authentication/onboarding introduces only the ON-06 preparation/dependency screen. FIRST_SHINKA_ENGINE_REQUIRED remains open. No content/category/mapping workbook is imported, no Moon or cycle phase is calculated, no Pair is chosen, and no user_daily_message is generated. Existing legitimate daily data may route an authenticated active user to the unchanged Home shell. UC-06 and the complete Daily Content Engine belong to the next package.

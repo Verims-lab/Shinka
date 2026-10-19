@@ -14,6 +14,7 @@ const checks={
   exactAuthoritativeFields:Object.keys(SOURCE_FIELD_NAMES).length===20&&Object.entries(SOURCE_FIELD_NAMES).every(([entity,fields])=>JSON.stringify([...fields].sort())===JSON.stringify(Object.keys(DOMAIN_SCHEMAS[entity].properties).sort())),
   completeAccessMatrix:e.domain.accessMatrixComplete&&e.domain.accessMatrixRows===20,
   directSdkOperationsDenied:e.domain.directOperationsDenied,
+  onboardingCopyAndProxy:e.onboarding.ok,
   noProductSeedCalls:e.domain.writeSurface.ok,
   canonicalMarker:e.marker.ok&&validateLedger(BUILD_LEDGER,BUILD_MARKER).ok&&BUILD_LEDGER.at(-1).health_catalog_version===HEALTH_CATALOG_VERSION,
   docsAligned:e.docs.present===12&&e.docs.headerGaps.length===0&&e.docs.misaligned.length===0&&e.docs.missingDomainEntities.length===0&&e.docs.buildHistoryMismatches.length===0,

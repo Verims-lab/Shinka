@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-007
+**Current BuildMarker:** Buildmarker-008
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -114,3 +114,15 @@ OD-009 = PARTIALLY_VERIFIED. Repository policy and synthetic negative tests are 
 Dependencies and Tailwind 4.3.3 remain unchanged. Fresh final audit must retain 0 Critical / 0 High; two Moderate router findings above remain visible. Product content, Cycle and Moon lookup seeds: NONE. Repository closure does not mean live enforcement is certified.
 
 Official platform evidence (read 2026-10-19): [entity schemas](https://docs.base44.com/developers/backend/resources/entities/entity-schemas), [RLS and service-role semantics](https://docs.base44.com/developers/backend/resources/entities/security). Native simple/compound uniqueness is unsupported; undocumented FK/index/transaction/conditional guarantees are not claimed.
+
+## Onboarding security and capability boundary — current package
+
+Existing 20-schema direct SDK deny rules, common principal branding, owner/admin guards, protected-record policy and immutable consent event restrictions are preserved. The generic domainAccess endpoint still offers no product CRUD. The specific onboarding endpoint derives identity from auth.me(), rejects forged role/owner and unknown fields, denies INACTIVE recreation, validates adult DOB on server clock, resolves GeoNames independently and never accepts client consent_status/account_status/Sun sign.
+
+Pending name is a minimal versioned same-tab session item with 30-minute expiry; it is cleared on confirmed profile persistence. No health form values enter storage, URLs, analytics or error logs. Unexpected backend/provider exceptions become allowlisted codes; query/results are bounded and credentials stay in server environment. No client geolocation is used. UI/provider callbacks do not create Base44 identities manually.
+
+Consent is independent of age/auth. Health writes require explicit true consent, approved text/version, active owner and no open deletion job; withdrawn consent requires a future regrant workflow. The durable adapter must recheck these predicates under its owner transaction and preserve immutable history. Synthetic concurrent/retry/rollback tests are protocol evidence only. With no verified adapter the backend refuses writes; no partially committed health data or fabricated success is claimed. Consent text/version source is missing, so production grant remains blocked.
+
+Dependency versions are unchanged in this package. The required fresh audit retains the previously documented router Moderate findings; final execution totals are recorded in Development Notes. Real Apple/Google, deployed ownership/authorization and GeoNames availability remain EXTERNAL/DEVICE REQUIRED.
+
+Final clean-install audit for Buildmarker-008: 0 Critical, 0 High, 2 Moderate, 0 Low; `security:deps` exited 0. All 24 existing security tests and new authenticated-owner/consent/idempotency refusal tests pass. No live enforcement claim.

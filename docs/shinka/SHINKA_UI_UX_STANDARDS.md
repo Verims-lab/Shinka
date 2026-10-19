@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-007
+**Current BuildMarker:** Buildmarker-008
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -91,10 +91,10 @@ Opened from top-right icon only. **My Profile** (inline edit: optional name, req
 Withdraw bottom sheet opens only when triggered: "Withdraw health data consent?" / "Your cycle records, predictions, and calculated phases will be deleted. Your account will remain active." Processing stops immediately; success only after verified deletion; re-consent blocked while in progress; historic health data never restored. Distinct from Delete Account.
 
 ## Future package boundaries
-Onboarding (H07), Home/content (H09), Calendar (H08), Pattern (H10), You/consent/account (H11), notifications (H14). No customer screens in Foundation.
+Onboarding H06/H07, GeoNames H10 and onboarding-consent H11 are current with explicit gaps. Home/content, Calendar, Pattern, account/withdrawal and notifications remain future.
 
 ## Foundation auth shell alignment
-`PageContainer` now uses fixed 20px horizontal padding at mobile and desktop widths. `/login` uses ShinkaCard/ShinkaButton with Apple and Google only, primary controls at least 52px, localized safe error codes and no password fields/links. T74 measures actual 360px/1024px rendered layouts. This shell does not implement ON-03 onboarding/age consent or claim live sign-in.
+`PageContainer` now uses fixed 20px horizontal padding at mobile and desktop widths. `/login` uses ShinkaCard/ShinkaButton with Apple and Google only, primary controls at least 52px, localized safe error codes and no password fields/links. T74 measures actual 360px/1024px rendered layouts. The earlier Foundation shell has been replaced by ON-03 with a pre-auth age boundary. Live sign-in is still unverified.
 
 Shinka application components do not activate a dark theme, expose a toggle or use dark variants. Unused generic library `.dark` selectors remain outside the application policy scan; they are not evidence of a Shinka dark target.
 
@@ -102,3 +102,11 @@ Shinka application components do not activate a dark theme, expose a toggle or u
 Native Tailwind 4 theme mappings preserve all eleven canonical colors, fifteen RGB variables, Cormorant Garamond/Inter families and weights, fixed typography line heights, 20px page padding, spacing/radii, 200ms transitions, ≥44px touch targets and ≥52px primary controls. Existing neutral/status colors are also pinned. The product stays light with OS dark preference; retained generic library dark variables require a class the application does not apply.
 
 T75–T80 measure real computed styles/primitives and existing H13 cases in the same canonical suite. Existing T24/T41/T49/T74 retain internal 360px overflow, missing-root and Apple/Google auth coverage. Before/after local captures at 360px/1280px for Health, Build and login showed identical sampled heading/control/card geometry and colors after fixing inherited label and desktop heading line heights. External font requests are blocked in the isolated harness; declared families are verified, live font/device rendering is still required.
+
+## Authentication/onboarding screens — current package
+
+ON-01…05 now use PageContainer/ShinkaCard/ShinkaButton/ShinkaInput and source-written order. Exact approved English copy is centralized in `onboardingCopy.js`, reusing companion validation strings. TR keys intentionally have null values because no approved translations exist; selecting TR shows SOURCE_COPY_GAP, with explicit EN preview available. Identity and stored profile values do not change when preview language changes.
+
+Name is optional; whitespace becomes NULL, >50 characters produces inline canonical error. The 18+ checkbox starts unchecked and is separate from health consent. DOB is required; optional time stays visibly blank; optional birthplace uses selectable provider results and can be cleared. Cycle inputs start blank with faded 5/28 placeholders, not values. ON-06 displays source preparation copy and FIRST_SHINKA_ENGINE_REQUIRED with no endless spinner or fabricated content.
+
+Controls retain ≥44px touch regions / ≥52px inputs and primary CTAs, 20px outer padding, light palette, Cormorant headings and Inter controls. Shared text inputs now explicitly use 17px/25px to avoid mobile focus zoom. Field errors are associated via aria-describedby/aria-invalid; validation focuses the field after disabled/loading state clears. Normal document scrolling keeps forms and CTAs reachable with a reduced viewport. Canonical browser probes cover every step at 360px/430px, long errors, focus, empty values and provider controls. Physical mobile keyboard/device verification remains external.
