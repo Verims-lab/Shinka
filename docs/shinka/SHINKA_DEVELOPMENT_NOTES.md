@@ -189,3 +189,52 @@ Deployment: `base44/config.jsonc` has no functionsDir override, so the default `
 Regression coverage: updated O11 verifies the HTTPS host/path/username/maxRows; O32 inspects the actual entry's exact server secret binding and rejects frontend provider URLs; O33 checks encoding, five-field normalization, server detail lookup, no search writes, safe malformed/provider errors and no credential in responses/stored data. U09–U11 exercise real React UI → onboarding service → HTTP handler → real GeoNames adapter → production persistence adapter, with only SDK transport/provider HTTP simulated: short query, explicit button, loading, unselected text, results/selection, empty/error retry, optional empty save, late-result suppression and clearing all five stored fields. H10-003 consumes these regressions under its existing structured-boundary semantics. BuildMarker 008, HC-007.0 and 126 Health cases stay unchanged.
 
 Measured final GeoNames regression result: **244/244 canonical PASS**, **0 FAIL**, **8/8 routing/Preview scenarios**, zero browser exceptions. H10-003 executed all 12 selected regressions including O32/O33/U09–U11 and passed; 49 static/general Health checks and 21 onboarding Health checks passed locally. Typecheck, lint, production build and Repo Health PASS. Dependency audit: 0 High/Critical, the same two Moderate router advisories; no dependency changes. Build warnings remain the existing large-chunk/mixed dynamic-import warnings. These are repository/synthetic results; updated deployed GeoNames success remains unverified.
+
+
+## GeoNames live diagnostics after configured-secret rebuild — same package 008
+
+User evidence: GeoNames account exists, Web Services enabled, GEONAMES_USERNAME configured, application rebuilt/published, and public query Istanbul still returns `{error_code:"GEONAMES_UNAVAILABLE",field:null}` from onboarding. This evidence is accepted; no username was requested/read/printed. Initial local/origin Test was clean at `4ca595f6d73b137c10be59cf964de260ada07024`; main `f7eb61df9c2e9953aa8f922fc0672eefd15337e0` was one merge commit ahead without divergence. Remote/local Test were safely fast-forwarded before work. Main remains a non-write target.
+
+Confirmed implementation defects: the adapter caught network/timeout/HTTP/provider/JSON failures under one generic error, and non-2xx responses were rejected before examining provider JSON. The entry also used module-load Deno.env.get instead of the current documented request-scoped Base44 secrets API. The secure HTTPS host from the previous correction was already present and is unchanged. No wrong search/save wiring was found. The old adapter's missing-value path produced GEONAMES_CONFIGURATION_REQUIRED, so the reported generic response alone is not grounds to diagnose missing GEONAMES_USERNAME. Neither provider authorization/quota nor a deployed runtime mismatch is asserted as the proven live root cause without new runtime evidence.
+
+Current implementation uses `secrets` from `base44:runtime` within a default exported request handler, following [Base44's current function/runtime documentation](https://docs.base44.com/developers/backend/resources/backend-functions/overview#read-secrets). No unrelated functions were migrated. Backend trims surrounding username whitespace and explicitly rejects empty configuration. Search/body deadline is bounded even for a stalled transport, abort is signalled, UTF-8 payload cap is 100,000 bytes, and only normalized fields survive. [GeoNames error documentation](https://www.geonames.org/export/webservice-exception.html) defines authorization 10, no result 15 and quota 18/19/20; these are handled independently of raw messages.
+
+Exact call graph:
+
+| Stage | File / function |
+|---|---|
+| Authenticated screen | src/pages/Onboarding.jsx renders OnboardingScreen with its production default service |
+| Input / explicit search | src/features/onboarding/OnboardingScreen.jsx: changeQuery invalidates selection; search invokes searchPlaces; minimum 2 trimmed characters; no debounce/typeahead |
+| Frontend request | src/services/onboardingService.js: onboardingRequest → existing src/api/base44Client.js → functions.invoke('onboarding', payload) |
+| Actual SDK wire path | Installed @base44/sdk/dist/modules/functions.js uses axios.post('/apps/<app-id>/functions/onboarding'); SDK client base URL is /api, so JSON POST /api/apps/<app-id>/functions/onboarding |
+| Secret / handler | base44/functions/onboarding/entry.ts: default onboarding(req), per-request secrets.get('GEONAMES_USERNAME'), real createGeoNamesAdapter, handleOnboardingRequest |
+| Read-only action | base44/shared/onboardingOperations.js: require authenticated owner, validate action fields, owner-scoped profile/preferences reads, searchPlaces branch; no save/initialize/commit |
+| Provider request | base44/shared/geonamesAdapter.js: sanitizePlaceQuery → searchJSON with URLSearchParams q/username/maxRows=8/lang=en-or-tr/style=FULL/featureClass=P; no authorization header; fixed secure.geonames.org; redirects rejected |
+| Status / JSON handling | Same adapter: read bounded body, parse JSON, inspect provider status before generic HTTP classification, safe machine failures; successful empty results remain empty |
+| Normalize / render | onboardingValidation.normalizeGeoNamesPlace → {places:[five canonical birthplace fields]} → OnboardingScreen selectable name/country buttons |
+| Selection / persistence | Explicit Continue passes selected birthplace_geonames_id; backend saveProfile → geoNames.resolve/getJSON → base44OnboardingAdapter.saveProfile; raw typed query never persists |
+
+Safe response contract (public error_code stays GEONAMES_UNAVAILABLE and field stays null):
+
+| diagnostic.code | App HTTP | Additional evidence |
+|---|---|---|
+| GEONAMES_SECRET_MISSING | 503 | No outbound request; blank/undefined runtime value, not an assertion about dashboard configuration |
+| GEONAMES_REQUEST_TIMEOUT | 504 | 8-second deadline; provider HTTP status only if headers arrived |
+| GEONAMES_NETWORK_ERROR | 503 | Transport/body failure; no raw exception |
+| GEONAMES_HTTP_ERROR | 502 | Provider HTTP status without a valid provider-status envelope |
+| GEONAMES_PROVIDER_REJECTED | 502 | Provider HTTP status + documented numeric status + AUTHORIZATION/QUOTA/SERVICE/REQUEST/NOT_FOUND class |
+| GEONAMES_INVALID_RESPONSE | 502 | Invalid JSON/envelope/fields, oversized UTF-8 body or selected-ID mismatch |
+| Successful empty lookup | 200 | `{ "places": [] }`, canonical GEONAMES_EMPTY UI; successful search status 15 also maps here |
+
+### Manual verification without Base44 AI
+
+1. Ensure this Test revision is the code being built by the intended Builder branch, then use the existing Git sync → Publish workflow. A Test push alone is not proof of a Main-based deployment. Do not copy the username into frontend settings or DevTools. This task does not merge/push main, deploy functions separately, or invoke Base44 AI.
+2. Open the authenticated Personal Details page. In Chrome DevTools → Network → Fetch/XHR, clear existing entries, enter the public city name Istanbul and click the Birthplace search button. Merely typing does not send a lookup. Inspect the request named onboarding.
+3. Headers should show POST `/api/apps/<app-id>/functions/onboarding` on the app origin. Payload must be `{"query":"Istanbul","language_code":"tr","action":"searchPlaces"}` (en is also allowed). There is no saveProfile action, action_id, username or provider URL in this request. The provider URL is server-side and should not appear as a browser GeoNames request.
+4. Successful lookup: HTTP 200 and `{ "places": [...] }`, with each item containing ONLY `birthplace_geonames_id` (number), `birthplace_name` (string), `birthplace_country_code` (string), `birthplace_latitude` (number), `birthplace_longitude` (number). Results must be selectable. Empty legitimate lookup: HTTP 200 and `{"places":[]}` with approved no-results copy.
+5. Failed lookup: inspect only app HTTP status and `diagnostic`, for example `{"error_code":"GEONAMES_UNAVAILABLE","field":null,"diagnostic":{"code":"GEONAMES_PROVIDER_REJECTED","http_status":200,"provider_status":10,"provider_class":"AUTHORIZATION"}}`. This is an illustrative error shape, not an observed provider result. Code 10 requires checking provider authorization; 18/19/20 indicate quota; timeout/network differ from these. A response without diagnostic means the updated handler/adapter revision is not yet evidenced by that request. Do not copy/share authorization headers, cookies, full HAR files, usernames or provider bodies.
+6. Before selecting a result, typed text must not save. Select a result and explicitly save only in the intended test account to verify structured persistence. For a failure, use X to clear and continue without birthplace; all five fields must be NULL. Search alone must create/update no profile/preferences/health/cycle data. No live profile mutation was performed by this task.
+
+Existing H10-003 semantics remain the structured provider boundary; it now includes G01–G08. H10-004 stays external and is not promoted to PASS. No live-capable Health probe, product scope, logical source, marker increment or catalog increment was added. GeoNames status is FIXED_PENDING_MANUAL_LIVE_VERIFICATION, with final local checks PASS. The manual provider response is still required to identify and close the remaining live failure.
+
+Measured final verification: npm ci and npm ls --depth=0 PASS; security:deps PASS with **0 Critical / 0 High / 2 existing Moderate** findings. Baseline **244/244 PASS**; final **252/252 PASS / 0 FAIL**, **8/8 routing/Preview scenarios**, actual-entry platform-substitution probe PASS (3 request reads, 0 module-load reads), zero browser exceptions. All 49 static/general Health checks and 21 onboarding Health checks PASS; H10-003 executed its 20 selected regressions. Typecheck, lint, build and Repo Health PASS. Existing build chunk/mixed-import warnings remain; dependencies are unchanged. Manual hosted provider verification is still required; these results do not establish live H10-004 PASS.

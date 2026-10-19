@@ -2,14 +2,18 @@ import { syntaxNodes } from './sourceRules.js';
 // Build-time inspection returns a boolean, never backend source or environment values.
 export function inspectGeoNamesEntry(code) {
   const nodes=syntaxNodes(code);
-  const adapter=nodes.find(n=>n.type==='VariableDeclarator'&&n.id?.name==='geoNames')?.init;
+  const handler=nodes.find(n=>n.type==='ExportDefaultDeclaration')?.declaration;
+  if(handler?.type!=='FunctionDeclaration')return false;
+  const inside=n=>n.start>handler.body.start&&n.end<handler.body.end;
+  const adapter=nodes.find(n=>inside(n)&&n.type==='VariableDeclarator'&&n.id?.name==='geoNames')?.init;
   const secret=adapter?.arguments?.[0]?.properties?.find(p=>p.key?.name==='username')?.value;
+  const reads=nodes.filter(n=>n.type==='CallExpression'&&n.callee?.object?.name==='secrets'&&n.callee?.property?.name==='get');
   return adapter?.callee?.name==='createGeoNamesAdapter'
-    && secret?.type==='CallExpression'&&secret.callee?.object?.object?.name==='Deno'
-    && secret.callee?.object?.property?.name==='env'&&secret.callee?.property?.name==='get'
+    && secret?.type==='CallExpression'&&reads.length===1&&reads[0]===secret
     && secret.arguments?.length===1&&secret.arguments[0]?.value==='GEONAMES_USERNAME'
+    && nodes.some(n=>n.type==='ImportDeclaration'&&n.source.value==='base44:runtime'&&n.specifiers.some(s=>s.imported?.name==='secrets'&&s.local?.name==='secrets'))
     && nodes.some(n=>n.type==='ImportDeclaration'&&n.source.value==='../../shared/geonamesAdapter.js')
-    && nodes.some(n=>n.type==='CallExpression'&&n.callee?.name==='handleOnboardingRequest'
+    && nodes.some(n=>inside(n)&&n.type==='CallExpression'&&n.callee?.name==='handleOnboardingRequest'
       && n.arguments?.[2]?.properties?.some(p=>p.key?.name==='geoNames'&&p.value?.name==='geoNames'));
 }
 export function inspectOnboardingSurface(sources,approvedCopy) {
