@@ -44,3 +44,9 @@ MessageCategoryLookup, MessageCategoryMapping, MessagePair and immutable UserDai
 ## First-Shinka boundary — current package
 
 Authentication/onboarding introduces only the ON-06 preparation/dependency screen. FIRST_SHINKA_ENGINE_REQUIRED remains open. No content/category/mapping workbook is imported, no Moon or cycle phase is calculated, no Pair is chosen, and no user_daily_message is generated. Existing legitimate daily data may route an authenticated active user to the unchanged Home shell. UC-06 and the complete Daily Content Engine belong to the next package.
+
+## HC-007.0 pre-content live-state contract
+
+Physical content schemas were intentionally established in 007; the previous H05-009 ABSENT-schema expectation is obsolete. Schema presence is distinct from seeded/imported rows. For 008, H05-009 requires live unfiltered counts of 0 for MessageCategoryLookup, MessageCategoryMapping and MessagePair, together with the read-only validator's importPerformed=false. Admin Data panel measurements on 2026-10-19 confirmed all three at 0; no data was changed. The new admin-only server aggregate returns counts/measurement metadata, never row contents. Missing or invalid measurements block; positive rows fail with UNEXPECTED_PRODUCT_CONTENT_PRESENT and are not automatically removed.
+
+This is a staged package policy, not a permanent empty-content requirement. From 009 onward the case requires a new approved imported-count/content-validation policy and blocks until it exists. H05-001…008 retain all workbook integrity checks. No content import, category/mapping/pair population or Daily Content Engine is added by this closure.

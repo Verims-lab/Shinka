@@ -12,6 +12,8 @@ import Onboarding from '@/pages/Onboarding';
 import AdminGate from '@/components/internal/AdminGate';
 import BuildEnvironment from '@/pages/internal/BuildEnvironment';
 import HealthCenter from '@/pages/internal/HealthCenter';
+import AuthShellProbe from '@/foundation/probes/AuthShellProbe';
+import { isAuthProbePath } from '@/foundation/probes/authProbeContract';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError } = useAuth();
@@ -47,6 +49,7 @@ const AuthenticatedApp = () => {
 };
 
 function App() {
+  if (isAuthProbePath(window.location.pathname)) return <AuthShellProbe />;
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>

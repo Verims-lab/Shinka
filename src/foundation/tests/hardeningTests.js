@@ -14,6 +14,7 @@ import { CONTENT_COLUMNS, MAPPING_COLUMNS, CATEGORY_COUNTS, SIGNS, MOONS, PHASES
   validateContentRows, validateMappingRows, compareBaseAndExtended, contentIntegrity, mappingIntegrity } from "../../../base44/shared/contentArtifactValidator.ts";
 import { normalizeStoredReport, buildHistoryRecord, compactCases, HISTORY_FIELD_LIMIT } from "../../../base44/shared/healthHistoryContract.js";
 import { internalHealthOperation } from "../../../base44/shared/internalHealthOperations.js";
+import { measureAuthShell } from "@/foundation/probes/authProbeContract";
 import { BUILD_MARKER } from "@/foundation/buildMarker";
 import { HEALTH_CATALOG_VERSION } from "@/foundation/health/constants";
 
@@ -42,22 +43,6 @@ const reportFixture = () => {
   return {runId:"synthetic-run", buildMarker:BUILD_MARKER, healthCatalogVersion:HEALTH_CATALOG_VERSION, environment:"LOCAL",
     scope:"SUITE:H01",startedAt:"2026-01-01T00:00:00Z",completedAt:"2026-01-01T00:01:00Z",cases,summary:summarize(cases),gate:computeGate(cases,{fullScope:false})};
 };
-async function authGeometry(width) {
-  const frame=document.createElement("iframe");frame.title="auth layout fixture";frame.setAttribute("aria-hidden","true");
-  Object.assign(frame.style,{position:"fixed",left:"-10000px",width:`${width}px`,height:"720px",border:"0",visibility:"hidden"});
-  frame.src="/login?probe=1";document.body.appendChild(frame);
-  try {
-    const deadline=Date.now()+15000;
-    while(Date.now()<deadline){
-      const doc=frame.contentDocument,shell=doc?.querySelector("[data-auth-shell]");
-      if(shell){const buttons=Array.from(shell.querySelectorAll("[data-provider]")),container=doc.querySelector("[data-probe-root]").firstElementChild,style=frame.contentWindow.getComputedStyle(container);
-        return {providers:buttons.map(b=>b.getAttribute("data-provider")).sort().join(),heights:buttons.map(b=>b.getBoundingClientRect().height),padding:[style.paddingLeft,style.paddingRight],passwords:doc.querySelectorAll('input[type="password"]').length};}
-      await new Promise(resolve=>setTimeout(resolve,100));
-    }
-    throw new Error("AUTH_PROBE_ROOT_TIMEOUT");
-  } finally {frame.remove();}
-}
-
 /** @type {import("./testTypes").FoundationTest[]} */
 export const HARDENING_TESTS = [
   ["T52","Legacy dynamic imports detected; strings/comments/templates remain data",()=>{
@@ -160,6 +145,8 @@ export const HARDENING_TESTS = [
     assert(Object.keys(m.hashes).length>0&&Object.values(m.hashes).every((h)=>/^[a-f0-9]{64}$/.test(h))&&!Object.hasOwn(m,"sources")&&!Object.hasOwn(m,"raw")&&!Object.hasOwn(m,"rawDocs"),"raw manifest or invalid hashes");
   }],
   ["T74","Rendered auth shell uses only Apple/Google, 52px controls and 20px padding",async()=>{
-    for(const width of [360,1024]){const r=await authGeometry(width);assert(r.providers==="apple,google"&&r.heights.every(h=>h>=52)&&r.padding.every(p=>p==="20px")&&r.passwords===0,`auth geometry ${JSON.stringify(r)}`);}
+    const probes=[];
+    for(const width of [360,1024]){const result=await measureAuthShell(width);assert(result.state==="READY",JSON.stringify(result));probes.push({width,...result});const r=result.geometry;assert(r.providers==="apple,google"&&r.heights.every(h=>h>=52)&&r.padding.every(p=>p==="20px")&&r.passwords===0,`auth geometry ${JSON.stringify(r)}`);}
+    return {evidence:{probes}};
   }],
 ];

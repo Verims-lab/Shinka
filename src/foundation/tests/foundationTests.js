@@ -16,6 +16,7 @@ import { buildReport, redact } from "@/foundation/health/report";
 import { STATUS, APPLICABILITY as A, GATE } from "@/foundation/health/constants";
 import { validatorFixtureResult } from "../../../base44/shared/contentArtifactValidator.ts";
 import { HARDENING_TESTS } from "./hardeningTests";
+import { HEALTH_CLOSURE_TESTS } from "./healthClosureTests";
 import { CSS_CONTRACT_TESTS } from "./cssContractTests";
 import { DATA_MODEL_TESTS } from "./dataModelTests";
 import { ONBOARDING_DECISION_TESTS } from './onboardingDecisionTests';
@@ -105,8 +106,8 @@ export const FOUNDATION_TESTS = [
 
 export async function runFoundationTests() {
   const out = [];
-  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...UI_CONTRACT_TESTS, ...HARDENING_TESTS, ...CSS_CONTRACT_TESTS, ...DATA_MODEL_TESTS, ...SECURITY_TESTS, ...AUTH_TESTS, ...ONBOARDING_TESTS, ...ONBOARDING_UI_TESTS, ...PRODUCTION_ONBOARDING_TESTS, ...ONBOARDING_DECISION_TESTS]) {
-    try { await fn(); out.push({ id, name, passed: true, detail: "ok" }); }
+  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...UI_CONTRACT_TESTS, ...HARDENING_TESTS, ...CSS_CONTRACT_TESTS, ...DATA_MODEL_TESTS, ...SECURITY_TESTS, ...AUTH_TESTS, ...ONBOARDING_TESTS, ...ONBOARDING_UI_TESTS, ...PRODUCTION_ONBOARDING_TESTS, ...ONBOARDING_DECISION_TESTS, ...HEALTH_CLOSURE_TESTS]) {
+    try { const result=await fn(); out.push({ id, name, passed: true, detail: "ok", ...(result&&typeof result==="object"&&"evidence" in result?{evidence:result.evidence}:{}) }); }
     catch (e) { out.push({ id, name, passed: false, detail: String(e?.message || e).slice(0, 160) }); }
   }
   return out;
