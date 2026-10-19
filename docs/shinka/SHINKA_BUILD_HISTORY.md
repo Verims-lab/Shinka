@@ -62,7 +62,7 @@ No end-user product package implemented. No GitHub work. No AI.
 ## Buildmarker-008 — Authentication & Onboarding (2026-10-19)
 
 - Apple/Google-only provider boundary with unchecked pre-auth 18+ declaration; backend DOB/age enforcement and owner-derived identity.
-- ON-01…ON-05 screens and safe persistence contracts: optional name, NULL time, structured optional GeoNames, optional cycle and explicit consent. Durable adapter unavailable; production writes fail closed.
+- ON-01…ON-05 screens and safe persistence contracts: optional name, NULL time, structured optional GeoNames, optional cycle and explicit consent. Technical continuation adds a real Base44 keyed-upsert/readback adapter for profile/preferences; health writes remain source-gated. No native transaction/rollback claim.
 - ON-06 finite FIRST_SHINKA_ENGINE_REQUIRED shell; no UC-06 generation, content import, Daily Content Engine, daily row, scheduler or unrelated product feature.
 - H06/H07 activated, H10 GeoNames and H11 onboarding consent scoped in HC-006.0. Existing Foundation/Data/Security tests retained; new auth/onboarding/UI tests use the same runner. All 12 document headers aligned.
-- OPEN: missing approved Sun resolver, TR onboarding copy, consent text/version, durable skip-resume model and verified production atomic adapter. Live Base44 Full Health/auth/GeoNames/enforcement still required separately. Test only; main unchanged.
+- OPEN: missing approved Sun resolver, TR onboarding copy, consent text/version, durable skip-resume model. Repository adapter implementation gap is closed; native concurrency, conditional writes, NULL and event timestamp behavior still need live verification. Live Base44 Full Health/auth/GeoNames/enforcement still required separately. Test only; main unchanged.

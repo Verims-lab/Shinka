@@ -327,7 +327,7 @@ Counts: VERIFIED 1; PARTIALLY_VERIFIED 8; UNVERIFIED 13; UNSUPPORTED 2. Native a
 | ID | Capability | Status | Evidence / remaining proof |
 |---|---|---|---|
 | CAP-01 | Entity field types (Date, Time, Enum, Long Text, Number) | PARTIALLY_VERIFIED | InternalHealthRun schema (string/number/date-time) accepted; Date/Time/Enum semantics not measured. |
-| CAP-02 | Single-field UNIQUE | UNSUPPORTED | Base44 official entity-schemas documentation (2026-10-19): native unique constraints unsupported; unknown unique_fields ignored. Canonical atomic adapter required; no production adapter proven. |
+| CAP-02 | Single-field UNIQUE | UNSUPPORTED | Base44 official entity-schemas documentation (2026-10-19): native unique constraints unsupported; unknown unique_fields ignored. Generic atomic adapter remains unproven. Onboarding uses SDK keyed upsert; live cross-instance uniqueness is not established. |
 | CAP-03 | Compound UNIQUE | UNSUPPORTED | Same official native UNIQUE limitation. Synthetic createIfAbsent protocol tests do not establish platform atomicity. |
 | CAP-04 | Indexes | UNVERIFIED | No declarative index mechanism proven. |
 | CAP-05 | FK / reference integrity | UNVERIFIED | No FK declaration proven; backend equivalent required. |
@@ -348,7 +348,7 @@ Counts: VERIFIED 1; PARTIALLY_VERIFIED 8; UNVERIFIED 13; UNSUPPORTED 2. Native a
 | CAP-21 | Backend-only writes / service-role bypass | PARTIALLY_VERIFIED | Official security docs: service role bypasses RLS/FLS. Schemas deny direct writes; specific non-serializable server grants guard future workers. No live mutation enforcement test. |
 | CAP-22 | Immutable / protected record enforcement | PARTIALLY_VERIFIED | Deployed enforcement pending. Repository RLS and shared guard deny protected human mutations and immutable system updates; synthetic negative tests cover all five protected entities. |
 | CAP-23 | Native timestamp mapping (OD-004) | PARTIALLY_VERIFIED | 2026-10-19 read-only InternalHealthRun response includes created_date/updated_date. UTC offset absent; product timestamps, mutability and immutable updated timestamp semantics not live-proven. |
-| CAP-24 | Nullable / optional field representation | PARTIALLY_VERIFIED | Optional fields declared using documented schema types; backend omits null values on write and normalizes absent values to logical NULL on read. Native explicit null storage remains unverified. |
+| CAP-24 | Nullable / optional field representation | PARTIALLY_VERIFIED | Optional fields use documented types; canonical validation normalizes absent values to logical NULL. Onboarding sends explicit NULLs to clear merging SDK updates and verifies readback; native NULL storage remains unverified. |
 | CAP-20 | Deployment rollback | UNVERIFIED | Not measured. |
 
 ## Onboarding persistence mapping — current package
@@ -358,9 +358,9 @@ Exactly 20 product entities remain. No onboarding entity, progress field, calcul
 | Step | Approved records | Semantics |
 |---|---|---|
 | Preferences | user_preferences | owner singleton; tr/en; valid device IANA or existing valid zone; false; 06:00. Missing new-user timezone produces retry. |
-| Profile | user_profile | required adult DOB; trimmed optional name; optional genuine HH:mm; coherent five-field birthplace or all NULL; approved Sun resolver required. |
-| Cycle grant | user_health_consent + user_health_consent_event + user_period_record | current GRANTED, immutable GRANTED event and actual date in one required durable owner action; consent text/version source absent. |
+| Profile | user_profile | required adult DOB; trimmed optional name; optional genuine HH:mm; coherent five-field birthplace or all NULL; Sun remains NULL until an approved resolver exists; details persist but final completion stays blocked. |
+| Cycle grant | user_health_consent + user_health_consent_event + user_period_record | sequential verified current GRANTED, immutable event payload and actual period date last; production path blocked by absent consent text/version; no transaction claim. |
 | Optional settings | user_cycle_settings | created only when at least one setting was entered; the other stays NULL. Start-only creates no settings row (logical values absent/NULL). |
 | Skip | none | no fake health values, consent, predictions or phase rows. |
 
-Canonical validation omits nullable fields on physical write and normalizes them to NULL on read. 00:00 is only a resolver input when time is absent; 5/28 are UI placeholders. Existing direct SDK deny policies and generic mutation denials remain. The action adapter contract requires whole-row replacement for incomplete profile completion, conflict detection, durable idempotency and confirmed readback; it is synthetic-tested and unavailable in production. Required source/capability gaps remain OPEN.
+Canonical validation normalizes absent values to logical NULL. The production onboarding adapter explicitly sends NULL for absent optional fields because SDK updates merge, and verifies the cleared values on readback; native NULL support remains a live obligation. 00:00 is only a resolver input when time is absent; 5/28 are UI placeholders. Existing direct SDK deny policies and generic mutation denials remain. Production singleton keys are user_id; consent-event keys include all four domain fields; period keys use user_id + period_start_date. Existing period state rejects a different onboarding start. No action-receipt field/entity is added. The generic atomic protocol remains unchanged and synthetic-only; onboarding uses a separate sequential SDK adapter with explicit partial-failure behavior. Required source decisions and live capabilities remain OPEN.
