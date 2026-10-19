@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-009
+**Current BuildMarker:** Buildmarker-010
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -142,3 +142,9 @@ The supporting [mobile report](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md) reco
 ## ON-05 incident correction decision — 2026-10-20
 
 Authority: the user's current ON-05 request, including the supplied saveCycle error/payload screenshots and explicit preservation of optional NULL durations, existing valid consent time, partial retry, security checks and separate live closure. Attached screenshots are observed incident evidence; they do not authorize timestamp guessing or a new mandatory input. The existing SRC-05/07 granted_at business field is the backend-persisted consent authority. This corrects the former implementation's native created_date dependency; no source field, new consent version, product copy or eleventh logical source is introduced. The official Base44 metadata/uniqueness and SDK mutation semantics are linked in DATA_MODEL. Existing maintenance work is retained in Buildmarker-009; changed Health semantics advance HC-009.0. Live raw metadata remains unverified and the incident cannot be closed by local tests alone.
+
+## Admin Profile/You access decision — 2026-10-20
+
+Explicit user request: attachment `d4eaa1c4-92b9-4b3e-a24c-970b6b20f9da/Pasted text.txt`, SHA-256 `b1dcb89f52849d087791e14ea833baf473b4e722f553ddff186ea1b17d65e99e`. It authorizes the small verified-admin Profile/You menu, `/internal` panel with exactly the two existing tools, access before onboarding completion, shared return navigation and centralized TR/EN copy. The supplied Turkish descriptions are exact product copy; corresponding English/new navigation copy is scoped to this implementation request.
+
+This updates the implemented navigation/screen inventory only. It does not authorize full You/profile/account editing, change onboarding completion, import product content, add a role model, or certify deployed enforcement. The ten logical sources and original 11 UI/UX source tables remain unchanged. Buildmarker-010 is expressly pre-content, so its live zero-row expectation remains; the next unapproved marker cannot inherit that rule automatically.

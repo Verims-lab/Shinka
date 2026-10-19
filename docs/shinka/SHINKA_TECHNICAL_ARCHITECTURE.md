@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-009
+**Current BuildMarker:** Buildmarker-010
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -129,3 +129,11 @@ Health runner now locks a run through report persistence and ignores stale histo
 `onboardingCycleGate` coalesces identical pending requests for an owner in one warm worker; different payloads fail ACTION_CONFLICT. It holds at most 256 pending entries, releases on success/error, stores nothing durably, and does not time out/release a still-running write. It is explicitly not a distributed lock. Other workers can race between read/create: duplicate current-consent rows then fail closed without overwriting either time. There is no native unique constraint, cross-record transaction, rollback or proven cross-instance serializability. The independent-worker regression demonstrates this limitation instead of claiming convergence.
 
 Preflight rejects conflicting consent/event/settings/period before mutations. Each subsequent health write rechecks ACTIVE, no open deletion job and the same GRANTED consent id/version/time with withdrawn_at NULL. The final success re-verifies event, settings (including absence), period and consent. Hydration verifies a matching event and valid settings/period before accepting persisted cycle completion; a period without its event returns to ON-05 for recovery. Skip retains its explicit no-write, session-only transition. No new entity, field, receipt, automatic retry or repair endpoint was added.
+
+## Admin navigation and session lifecycle — Buildmarker-010
+
+`ProfileMenu` owns the small controlled menu, keyboard/focus and outside dismissal; `ProfileAccess` consumes the single `AuthContext.isAdmin` decision. `OnboardingScreen` receives a presentation slot, preserving standalone isolated probes; Home uses the same profile presentation. `internalNavigation.js` owns the three fixed internal destinations and locale validation. Lazy `AdminPanel` renders two cards; `InternalNav` connects the existing tools and app entry. Internal data operations remain in their existing services/backend guards.
+
+`ProtectedRoute` handles authentication; `AdminGate` awaits fresh SDK identity on internal pathname changes. AuthContext derives privilege only from successful `auth.me()` with an id and exact admin role. Refresh occurs on window focus/visible-tab return, internal navigation and every 60 seconds for visible admin sessions. Pending checks hide/inert the already-authorized same-route tool without discarding an active Health run; initial checks never mount it. A denied role or session removes it. Refresh does not unmount onboarding or clear its unsaved form. Generation tickets ignore obsolete responses; logout immediately invalidates identity and pending results, even when transport fails. No platform push/instant remote revocation guarantee is claimed; each backend operation independently checks the current authenticated admin.
+
+CLI-only SDK controls live under `scripts/testHarness` and are substituted only by isolated build configuration. Production contains neither fixture query authority nor those controls. Canonical tests inject fake clients and cannot contact the live SDK. Existing lazy-route/byte budgets and backend-to-frontend boundaries remain enforced.

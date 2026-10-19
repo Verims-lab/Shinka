@@ -17,6 +17,7 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 // Add page imports here
 import Onboarding from "@/pages/Onboarding";
 import AdminGate from "@/components/internal/AdminGate";
+const AdminPanel = lazy(() => import("@/pages/internal/AdminPanel"));
 const BuildEnvironment = lazy(
   () => import("@/pages/internal/BuildEnvironment"),
 );
@@ -57,6 +58,7 @@ const AuthenticatedApp = () => {
         }
       >
         <Route element={<AdminGate />}>
+          <Route path="/internal" element={<RouteBoundary><AdminPanel /></RouteBoundary>} />
           <Route
             path="/internal/build"
             element={

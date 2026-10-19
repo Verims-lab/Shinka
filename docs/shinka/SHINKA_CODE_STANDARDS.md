@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-009
+**Current BuildMarker:** Buildmarker-010
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -59,3 +59,7 @@ Active build history obeys the permanent five-package rule in DEVELOPMENT_RULES.
 ## Consent business-clock regression
 
 Never equate native row creation with user consent time. Preserve validated persisted UTC granted_at and reuse it for immutable history. Tests must include zone-less/missing/invalid native metadata, invalid business instants, post-write lost responses, partial recovery, conflicting rows, independent-worker limitations, consent/account/deletion changes, NULL durations and no-write Skip. Coalescing is explicit, bounded and worker-local, never described as durable atomicity. SDK mutations remain in the adapter; reconciliation and grant validation are separate responsibilities.
+
+## Admin navigation regression boundary
+
+Keep destination inventory/localization, role decision, menu interaction and panel presentation separate. Do not repeat `role === admin` authorization in navigation components; AuthContext exposes the derived decision while backend guards remain authoritative for operations. Never add profile-related product writes to navigation handlers. Keep the panel lazy and the single-link profile entry small; its route and lightweight entry must not eagerly load Health/tests. AN01…AN08 join the canonical runner and H12/H13; `checkAdminNavigation.mjs` exercises the real App with CLI-only SDK substitution, TR/EN, keyboard/Escape/focus, 360/1280 layout, both tools and return, denied direct routes and zero product writes. The ordinary disabled icon is intentional until the full You workflow is authorized.

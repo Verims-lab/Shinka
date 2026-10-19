@@ -33,7 +33,7 @@ const TITLES = {
   INACTIVE_ACCOUNT: "inactive",
 };
 const STEPS = Object.keys(TITLES);
-/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,onState?:Function,onLanguage?:Function,pending?:typeof DEFAULT_PENDING,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
+/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,onState?:Function,onLanguage?:Function,pending?:typeof DEFAULT_PENDING,authenticate?:typeof beginProviderAuth,dependencies?:string[],renderProfileAccess?:(language:string)=>import("react").ReactNode}} props */
 export default function OnboardingScreen({
   state,
   initialLanguage = "en",
@@ -45,6 +45,7 @@ export default function OnboardingScreen({
   pending = DEFAULT_PENDING,
   authenticate = beginProviderAuth,
   dependencies = [],
+  renderProfileAccess = () => null,
 }) {
   const [language, setLanguage] = useState(initialLanguage),
     [name, setName] = useState(
@@ -246,6 +247,7 @@ export default function OnboardingScreen({
                 {lang.toUpperCase()}
               </ShinkaButton>
             ))}
+            {renderProfileAccess(language)}
           </div>
         </div>
         <>

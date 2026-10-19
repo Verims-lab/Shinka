@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-009
+**Current BuildMarker:** Buildmarker-010
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -161,3 +161,11 @@ No dependencies/lockfile, RLS, schemas, live product data or audit retention cha
 Only explicit health_consent=true, authenticated owner, ACTIVE profile and no open deletion job authorize a new backend UTC granted_at. Client timestamps/version/status remain rejected. Existing valid time is never updated by onboarding. Current consent requires GRANTED, approved version, valid canonical UTC business instant and no withdrawn_at. The same consent is re-read before each health mutation and after final readback; detected withdrawal/deactivation/deletion or changed consent fails. No generic event mutation or RLS relaxation was added.
 
 The same-worker bounded in-flight gate reduces duplicate taps, not distributed races. Insert-only consent/settings prevents silent replacement; independent-worker duplicate inserts can still occur and are explicitly rejected on readback. No rollback, deletion/restart fix or repair of conflicting history is offered. Minimal live observation recorded only build context, counts and timestamp presence; no tokens, owner identifiers, full records or health dates are logged. The Data UI formats dates, so live raw timestamp type/offset remains unverified. No live saveCycle mutation was performed by this correction.
+
+## Admin entry and revocation — Buildmarker-010
+
+The profile menu and internal gate consume one derived AuthContext privilege from verified Base44 `auth.me()` identity. URL/localStorage/email/name/body role never grant access. All three internal paths are behind ProtectedRoute and AdminGate: anonymous returns to existing sign-in, ordinary user receives FORBIDDEN. Initial/pending checks expose no interactive admin UI. Refresh conceals and makes an existing tool inert; a completed denied check removes it. Logout clears local identity before invoking the SDK and invalidates old requests, so a failed logout transport or delayed admin response cannot restore local access.
+
+Remote changes are observed on internal navigation, focus/visibility return and visible-admin 60-second polling; a continuously visible tab has this bounded refresh cadence, not immediate server-push revocation. Independently, every server operation still uses request-derived auth and the existing admin guard. No RLS, service-role exposure, domain guard, role model or entity policy changes. An active run may finish its already-authorized server call; no cancellation or rollback is asserted. The fresh response cannot reopen a removed component.
+
+AN02…AN07 exercise loading, direct-route denials, logout failure and stale/revoked identities. Existing S08/T68/H03-009 and H12-901 remain; synthetic UI checks do not replace live backend enforcement. New screenshots use isolated synthetic identities, not customer records.

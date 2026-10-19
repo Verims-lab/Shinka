@@ -1,0 +1,396 @@
+{
+  "evidenceScope": "LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",
+  "browser": {
+    "engine": "chromium",
+    "version": "156.0.8078.4",
+    "physicalDevice": false
+  },
+  "catalog": {
+    "version": "HC-010.0",
+    "suites": 16,
+    "cases": 132,
+    "current": 108,
+    "future": 15,
+    "external": 9
+  },
+  "tests": 318,
+  "passed": 318,
+  "failed": 0,
+  "adminNavigation": [
+    {
+      "scenario": "admin-menu-panel-tools-return-360-tr",
+      "passed": true,
+      "menu": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 44,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 190,
+            "height": 44,
+            "named": true
+          }
+        ]
+      },
+      "panel": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 141.1875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 132,
+            "named": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        }
+      ]
+    },
+    {
+      "scenario": "user-no-menu-360-tr",
+      "passed": true
+    },
+    {
+      "scenario": "admin-menu-panel-tools-return-360-en",
+      "passed": true,
+      "menu": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 44,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 190,
+            "height": 44,
+            "named": true
+          }
+        ]
+      },
+      "panel": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 129.296875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 132,
+            "named": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        }
+      ]
+    },
+    {
+      "scenario": "user-no-menu-360-en",
+      "passed": true
+    },
+    {
+      "scenario": "admin-menu-panel-tools-return-1280-tr",
+      "passed": true,
+      "menu": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 44,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 190,
+            "height": 44,
+            "named": true
+          }
+        ]
+      },
+      "panel": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 141.1875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 482,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 482,
+            "height": 110,
+            "named": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        }
+      ]
+    },
+    {
+      "scenario": "user-no-menu-1280-tr",
+      "passed": true
+    },
+    {
+      "scenario": "admin-menu-panel-tools-return-1280-en",
+      "passed": true,
+      "menu": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 44,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 190,
+            "height": 44,
+            "named": true
+          }
+        ]
+      },
+      "panel": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 129.296875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 482,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 482,
+            "height": 110,
+            "named": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        }
+      ]
+    },
+    {
+      "scenario": "user-no-menu-1280-en",
+      "passed": true
+    },
+    {
+      "scenario": "user-direct-/internal",
+      "passed": true
+    },
+    {
+      "scenario": "user-direct-/internal/health",
+      "passed": true
+    },
+    {
+      "scenario": "user-direct-/internal/build",
+      "passed": true
+    },
+    {
+      "scenario": "anonymous-direct-/internal",
+      "passed": true
+    },
+    {
+      "scenario": "anonymous-direct-/internal/health",
+      "passed": true
+    },
+    {
+      "scenario": "anonymous-direct-/internal/build",
+      "passed": true
+    },
+    {
+      "scenario": "focus-refresh-pending-then-revoked",
+      "passed": true
+    },
+    {
+      "scenario": "existing-user-home-entry-and-return",
+      "passed": true
+    },
+    {
+      "scenario": "pending-onboarding-admin-entry-no-late-write",
+      "passed": true,
+      "actions": [
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "productionRouting": {
+    "total": 5,
+    "passed": 5
+  },
+  "previewProbes": {
+    "total": 3,
+    "passed": 3
+  },
+  "health": {
+    "total": 54,
+    "passed": 54
+  },
+  "onboardingHealth": {
+    "total": 21,
+    "passed": 21
+  },
+  "mobile": {
+    "total": 5,
+    "passed": 5
+  }
+}

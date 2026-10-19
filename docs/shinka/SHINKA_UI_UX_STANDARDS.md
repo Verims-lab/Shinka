@@ -2,13 +2,13 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-009
+**Current BuildMarker:** Buildmarker-010
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
-**Implemented:** Tokens (`src/foundation/designTokens.js` ↔ `src/index.css`), contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), primitives (`src/components/shinka/`), Foundation shell aligned.
-**Not Implemented:** Home business behavior, Calendar, Pattern and You/account workflows (FUTURE_PACKAGE); ON-01…06 current scope is described below.
+**Implemented:** Tokens (`src/foundation/designTokens.js` ↔ `src/index.css`), contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), primitives (`src/components/shinka/`), Foundation shell aligned; scoped Profile/You admin menu and internal panel.
+**Not Implemented:** Home business behavior, Calendar, Pattern and full You/account workflows (FUTURE_PACKAGE); ON-01…06 current scope is described below.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
@@ -179,3 +179,19 @@ Visual QA inspected empty/selected EN/TR ON-04 at 360px and 1280px. Rendered tes
 Shared native select uses `appearance:none` with a decorative noninteractive chevron to enforce the existing 52px/17px tokens in WebKit; native selection semantics remain. Inputs have shrinkable width, PageContainer uses 100dvh with a 100vh fallback, and safe-area padding preserves the existing 20px/24px minimum. Home adds only device insets to its own spacing. Viewport permits user zoom; there is no zoom cap or keyboard scroll lock. The missing manifest link was removed: this checkout is a responsive web app, not an implemented PWA or native WebView shell.
 
 Browser-level layout, focus, localized long options, date/time and network retry evidence is in [Android/iOS compatibility](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md). Native keyboard/date/select sheets, VoiceOver/TalkBack, pinch zoom, real insets and background eviction require physical-device evidence (H13-013); desktop WebKit is not Safari certification. Product copy is unchanged.
+
+## Admin profile access — Buildmarker-010
+
+Explicit current user decision adds a small Profile/You menu for verified admins, including before onboarding completion. The existing top-right `user-round` trigger is 44×44; the ordinary user's trigger remains disabled and opens no empty profile. This implements admin access only. Full My Profile, preferences, account/privacy editing and other You workflows remain FUTURE_PACKAGE. Bottom navigation stays Home · Calendar · Pattern.
+
+The executable internal route inventory is `src/foundation/internalNavigation.js`:
+
+| Screen | Route | Access / contents |
+|---|---|---|
+| Admin Panel | `/internal` | Verified admin; exactly two tool cards below |
+| Health Center | `/internal/health` | Existing admin tool; unchanged purpose |
+| Build & Environment | `/internal/build` | Existing admin tool; unchanged purpose |
+
+Health description: “Sağlık kontrolleri, testler ve sonuçlar.” / “Health checks, tests and results.” Build description: “Güncel sürüm, ortam bilgileri ve paket geçmişi.” / “Current version, environment details and package history.” New labels, descriptions, access status and return copy live in `strings.js`; language passed between internal routes is display state only. A direct visit falls back to device language. Existing tool body copy is unchanged.
+
+Shared navigation links to the panel, both tools and the existing `/` app resolver. The small controlled navigation menu supports keyboard opening, Escape, trigger focus restoration and outside dismissal. Cards and links are at least 44px, use visible keyboard focus and existing Shinka cards/tokens. Responsive and keyboard proof is synthetic/local; physical device and deployed admin/user evidence remain separate.

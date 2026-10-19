@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-009
+**Current BuildMarker:** Buildmarker-010
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -67,3 +67,9 @@ Package 009 preserves ON-04 country→region→settlement selection, explicit Cl
 ## ON-05 partial-write recovery
 
 An existing valid consent without its event/period is a resumable partial operation. Continue with the same intended inputs keeps the saved consent time and creates only missing matching records after verification. Retry/reload/double tap in one worker does not issue another grant time; confirmed matching rows are not written again. Conflicting settings, period start, version/history or withdrawn consent is refused; onboarding cannot silently become a health editing/regrant flow. All required records must be read back before Continue succeeds. Reload cannot infer cycle completion from period alone when its consent event is absent. Skip writes nothing, including when an earlier failed attempt left consent behind; it neither revokes nor deletes that consent. Live success with the same partial account remains required.
+
+## Admin access during onboarding — Buildmarker-010
+
+A verified Base44 admin may open top-right Profile/You → Admin Panel → Health Center / Build & Environment while onboarding is incomplete, ready or loading/failed. This is independent of product onboarding completion. Ordinary users keep their existing onboarding flow and cannot enter internal routes.
+
+Menu/panel/tool navigation invokes no product mutation, consent grant, period save, Skip, completion flag or daily engine. Return goes to `/`, which rehydrates through the existing backend resolver (and retains existing first-login preferences initialization when needed). Navigation adds no initialization or write path of its own. A stale hydrate result after leaving onboarding cannot start a later initialization; an already-issued backend operation is not claimed canceled. Incomplete users return to the server-resolved onboarding state; only existing durable data can resolve Home. No new storage/entity or full You workflow is introduced.

@@ -1,14 +1,14 @@
 # SHINKA — Development Notes
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
-**Status:** ACTIVE — repository maintenance; live closure pending
-**Current BuildMarker:** Buildmarker-009
+**Status:** ACTIVE — admin navigation feature; live closure pending
+**Current BuildMarker:** Buildmarker-010
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
-**Scope:** Maintenance only; no new product engine, content import or live deployment.
+**Scope:** Current admin navigation feature and retained maintenance evidence; no product engine, content import or live deployment.
 
-## Baseline and changes
+## Buildmarker-009 maintenance baseline and changes
 
 Preflight: clean local Test = origin/Test at `63906f42a14e99f36f8934e9b42164c9b2ba24c7`. Main `b33c001fe30cceb0ad392aa38146ddbedc2c2461` was one commit behind Test with no divergence. No main merge was needed. Baseline was Buildmarker-008 / HC-007.0; the distinct maintenance package advances once to 009 / HC-008.0. Test-only delivery remains required.
 
@@ -21,7 +21,7 @@ Before editing, npm ci/tree/security/type/lint/build/Repo Health and Chromium ca
 | Repeated provider path reads, unnecessary preferences query | Per-picker TTL/LRU/byte-bounded public list cache; list operations read owner profile only. Server resolve/save contract unchanged. |
 | History refresh races, repeat clicks, clipboard timer | Health run lock through persistence, latest-history ticket, disposed UI checks; completed audit save preserved; clipboard/test runner cleanup. |
 | Browser viewport and intrinsic input sizing | 100dvh fallback, safe-area padding, shrinkable inputs/selects, zoom allowed. |
-| Eight active package entries and repeated continuation prose | Generated latest-five source/Markdown, update-or-next writer, source/Health/Repo guards; current five are 005…009. |
+| Eight active package entries and repeated continuation prose | Generated latest-five source/Markdown, update-or-next writer, source/Health/Repo guards; at that delivery the five were 005…009. |
 | Unregistered generated OAuthConsent/AuthLayout | Removed after App route, dynamic/action/test callsite and production graph checks. Not part of baseline bundle; no byte savings attributed to this removal. |
 | Broken manifest reference without PWA implementation | Removed dangling link; no service worker, installed PWA or native WebView claim. |
 
@@ -89,3 +89,11 @@ LIVE_RUNTIME observation: published UI is still 008 / HC-007.0; Preview Main poi
 Verification: clean install and both dependency-tree checks, native High-threshold security guard, typecheck, lint, build, Repo Health 16/16 and generated five-entry history check PASS. Fresh audit 0 Critical/High, 2 existing Moderate router findings. Chromium 156.0.8078.4 and WebKit 27.2 each pass **310/310 canonical tests**, **52 general + 21 onboarding Health**, **8 routing/Preview + 5 mobile scenarios**, zero page exceptions. P21…P32 cover native metadata variants, preserved/invalid business time, partial/lost writes, conflicts/guards, bounded duplicate requests and Skip; P28 deliberately demonstrates independent-worker duplicate detection without a uniqueness claim. No Health case was removed. [Compact verification](reports/ON05_VERIFICATION.json).
 
 Previous performance guard also passes: initial production JS 447,080 raw / 146,566 gzip bytes; CSS 84,474 / 14,494; no initial test modules or static cycles; lazy reload/retry passes. The small JS increase comes from safe error-code handling. No physical-device or live performance claim. Cross-worker first-insert races remain possible under Base44's unsupported UNIQUE capability; detected ambiguity fails closed, neither record is silently rewritten. This correction does not certify distributed transactions or rollback.
+
+## Buildmarker-010 — admin entry delivery
+
+Preflight: clean Test/local `771db78`; main `848e073`, Test three commits ahead. Existing ON-05 correction retained. Added the top-right verified-admin menu, lazy two-card `/internal` panel and shared return navigation; ordinary profile stays disabled. Auth generation tickets prevent stale identity restoration, with guarded route/focus/visibility/periodic refresh and no onboarding form reset. The small single-link menu needs no additional library or menu chunk, preserving the initial-bundle budget. The new navigation adds no product writes or completion state.
+
+Catalog advances to HC-010.0; H12-025/H13-014 add session/navigation coverage without removing backend/security cases. AN01…AN08 plus real-App CLI routing/keyboard/responsive fixtures are included. All eight requested standards are reconciled; 010 remains explicitly pre-content. Generated active ledger/history retains 006…010. Verification results and synthetic screenshots are recorded in [admin access evidence](reports/SHINKA_ADMIN_ACCESS_010.md). Live admin verification and ON-05 same-account saveCycle/readback remain unverified; no deployment performed.
+
+Final 010 verification: **318/318 canonical tests in Chromium 156.0.8078.4 and WebKit 27.2**, each with **17/17 admin**, **8/8 routing/Preview**, **5/5 mobile**, **54/54 general Health**, **21/21 onboarding Health**, zero page exceptions. Clean install/tree, typecheck/lint/build, Repo Health 16/16, history and security guard passed; audit 0 Critical/High, 2 existing Moderate. Initial JS **454,513 raw / 148,104 gzip** bytes and CSS **85,018 / 14,572** stay within existing budgets. During delivery main advanced to PR #15 merge `3e663fe` with the same file tree; Test/local were fast-forwarded and origin/Test synchronized while working changes were preserved. Feature commit targets Test only.
