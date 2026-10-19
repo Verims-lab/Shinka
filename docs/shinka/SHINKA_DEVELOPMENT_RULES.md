@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-010
+**Current BuildMarker:** Buildmarker-011
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -62,3 +62,8 @@ The user's instruction to preserve current work and prioritize the live ON-05 de
 ## Admin navigation feature package — 2026-10-20
 
 The new explicitly requested Profile/You admin entry and panel form one distinct feature package: advance 009 → 010 once and catalog HC-009.0 → HC-010.0 for added H12/H13 coverage. Consolidate corrections in the same package. Retain active packages 006…010 through recordBuild; do not remove security evidence or unresolved ON-05 live closure. This is another pre-content package: extend only the explicit zero-row allowlist through 010; unapproved 011+ remains blocked until its own content policy is authorized. Deliver Test only; user sync/publish and deployed/physical verification remain separate.
+
+
+## First Shinka package — Buildmarker-011 / HC-011.0
+
+This explicit feature request advances 010 → 011 once and updates the catalog for staged content readiness and scoped daily/phase cases. Active ledger retains 007…011. Category approval and verified production daily persistence are real blockers; do not claim live completion or change a failing prerequisite to PASS. Repository regressions may verify correct refusal while deployed Full Health remains BLOCKED. No CLI deployment, merge to main or live product import is part of Test delivery. H08 Calendar mutation, H10 Pattern, H11 withdrawal, H14 scheduler/push and physical-device requirements remain deferred/external.

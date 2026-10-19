@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-010
+**Current BuildMarker:** Buildmarker-011
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -11,7 +11,7 @@
 **Open Decisions:** OD-002, OD-004, OD-009
 **External Verification Required:** Native UNIQUE/compound UNIQUE are UNSUPPORTED by official documentation. Index/FK/conditional update/transaction/rollback remain UNVERIFIED. Deployed enforcement pending.
 
-Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are future cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
 
 ## PRODUCT DOMAIN ENTITIES (20)
 | # | Entity | Purpose | Owner | Lifecycle | Uniqueness / index | Deletion |
@@ -81,7 +81,7 @@ PascalCase schema filenames match the existing repository and exact SDK entity n
 
 Native `id` is the unique platform identifier. All references are ID strings plus the canonical relationship registry; strings do not establish a native FK. `assertReferenceTargets` rejects missing and cross-owner targets; the atomic adapter must repeat referential checks in the same atomic operation. No cascading delete is assumed.
 
-`validateDomainRecord` enforces required fields, unknown-field rejection, ranges, enum values, valid local dates, UTC `Z` event instants, HH:mm, IANA timezone, coherent birthplace fields, consent timestamps, Pattern category/count pairs and positive Moon intervals. Age validation is implemented by the onboarding backend. ≥15-day inter-record spacing, Moon continuity, calculation/fallback and restore workflows remain future. Generic mutation routes stay disabled; onboarding uses its specific fail-closed atomic contract.
+`validateDomainRecord` enforces required fields, unknown-field rejection, ranges, enum values, valid local dates, UTC `Z` event instants, HH:mm, IANA timezone, coherent birthplace fields, consent timestamps, Pattern category/count pairs and positive Moon intervals. Age validation is implemented by the onboarding backend. Current-day interval validation, Moon continuity and daily calculation/fallback now have scoped implementations. Calendar mutation/recompute and restore workflows remain future. Generic mutation routes stay disabled; onboarding uses its specific fail-closed atomic contract.
 
 Optional fields use documented primitive types without `required`. Canonical logical NULL validation omits absent fields; reads normalize absence to NULL. The scoped onboarding adapter sends explicit NULLs when clearing merging SDK updates (see current-package mapping below). No `nullable`, unsupported type union or invented unique/index syntax is asserted. Native explicit-null acceptance remains unverified. No synthetic time or 5/28 calculation default is persisted. These are wire/storage adaptations, not entered values. Required schema fields with declared defaults are filled by the backend validator.
 
@@ -322,7 +322,7 @@ Required fields are listed in each JSONC; optional fields are marked NULL below.
 
 ## Capability evidence register at package completion
 
-Current counts: VERIFIED 1; PARTIALLY_VERIFIED 10; UNVERIFIED 11; UNSUPPORTED 2. Native and repository evidence are distinguished per row.
+Current counts: VERIFIED 1; PARTIALLY_VERIFIED 11; UNVERIFIED 10; UNSUPPORTED 2. Native and repository evidence are distinguished per row.
 
 | ID | Capability | Status | Evidence / remaining proof |
 |---|---|---|---|
@@ -341,7 +341,7 @@ Current counts: VERIFIED 1; PARTIALLY_VERIFIED 10; UNVERIFIED 11; UNSUPPORTED 2.
 | CAP-13 | Scheduler (06:00 local, rolling jobs) | UNVERIFIED | Not measured. |
 | CAP-14 | Secrets | PARTIALLY_VERIFIED | Request-scoped backend secret binding and synthetic entry tests; user reports configured secret and Preview search HTTP 200. Secret value not inspected; independent hosted list/save verification pending. |
 | CAP-15 | GeoNames backend proxy | PARTIALLY_VERIFIED | Search/resolve and cascading lists implemented with synthetic boundary tests; user-reported Preview search HTTP 200 returned eight places. New hosted selection/resolve/save/readback remains unverified. |
-| CAP-16 | Astronomy Engine execution in backend | UNVERIFIED | Not implemented. |
+| CAP-16 | Astronomy Engine execution in backend | PARTIALLY_VERIFIED | Repository backend generator and local Node/browser reference tests implemented; hosted execution/import unverified. |
 | CAP-17 | Native push (iOS/Android) | UNVERIFIED | Requires DEVICE evidence. |
 | CAP-18 | Backup | UNVERIFIED | Not measured. |
 | CAP-19 | Restore (deleted health data must not reappear) | UNVERIFIED | Not measured. |
@@ -380,3 +380,14 @@ The initial package 009 maintenance changed no product schema, field or persiste
 The [official schema documentation](https://docs.base44.com/developers/backend/resources/entities/entity-schemas) defines created_date as record creation time and supplies no explicit serialized timezone guarantee; it also explicitly disclaims unique constraints. [SDK entities documentation](https://docs.base44.com/developers/references/sdk/docs/type-aliases/entities) describes upsert as merging supplied fields into existing matches. Therefore upsert by owner must not be used to replace consent business time under racing initial grants. Insert-only and readback preserve existing rows but cannot establish distributed uniqueness. OD-004 remains PARTIALLY_VERIFIED for native audit metadata.
 
 The agent observed one live consent row with visible granted_at and Created values, and zero consent-event/period rows in the Greenfield Data UI. These formatted cells do not establish raw API type/timezone or owner-specific identity correlation. See the minimized [incident evidence](reports/SHINKA_ON05_CONSENT_RECOVERY.md).
+
+
+## Daily content persistence and import — Buildmarker-011
+
+No product field/entity/RLS declaration changes. Source Pair ID → native pair ID is reconstructed by exact canonical content identity and verified in the controlled import result; the native id remains platform-owned. Source hash/version/counts live in the repository manifest/receipt and returned verification, not invented entity fields. Admin apply audit uses existing metadata-only admin_audit_log; dry-run and verify do not write.
+
+Daily snapshot fields are precisely the existing source contract: authenticated user_id, backend-derived shinka_date, validated timezone, actual category_id, message_pair_id, all four TR/EN text snapshots and backend UTC generated_at. Existing same-day rows are returned unchanged regardless of locale/profile/library changes. A legitimate earlier daily row remains the completion signal even if today's generation fails.
+
+Native compound uniqueness remains UNSUPPORTED. `createOnce` is used with its documented atomic requirements, now including an exact consent input predicate when health data influenced selection. Production has no accepted adapter and new daily writes are disabled. The SDK's upsert merge semantics cannot implement immutable winner selection. A native platform conditional-create guarantee, or an approved authoritative transactional store with UNIQUE(user_id,shinka_date) and a crash-safe integration/guard protocol, is required before enabling production. In-memory fixture concurrency is protocol proof only. No transaction/rollback/distributed-lock guarantee is claimed.
+
+Current-day cycle inputs are calculated in memory. NULL settings stay NULL; no predictions/phase-day/lookup rows are fabricated to mark onboarding complete. Moon reference import is explicit admin work, with at least two future years and strict UTC continuity; no scheduler is active.

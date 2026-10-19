@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-010
+**Current BuildMarker:** Buildmarker-011
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -34,7 +34,7 @@
 
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Missing production primitives fail closed. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
-- **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, no product seeds and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+- **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 ## Onboarding boundaries and regression
 
@@ -63,3 +63,8 @@ Never equate native row creation with user consent time. Preserve validated pers
 ## Admin navigation regression boundary
 
 Keep destination inventory/localization, role decision, menu interaction and panel presentation separate. Do not repeat `role === admin` authorization in navigation components; AuthContext exposes the derived decision while backend guards remain authoritative for operations. Never add profile-related product writes to navigation handlers. Keep the panel lazy and the single-link profile entry small; its route and lightweight entry must not eagerly load Health/tests. AN01…AN08 join the canonical runner and H12/H13; `checkAdminNavigation.mjs` exercises the real App with CLI-only SDK substitution, TR/EN, keyboard/Escape/focus, 360/1280 layout, both tools and return, denied direct routes and zero product writes. The ordinary disabled icon is intentional until the full You workflow is authorized.
+
+
+## Daily implementation boundaries
+
+Keep source manifest/backend astronomy out of the initial frontend graph. Import planning, SDK batches, phase calculation, selection, persistence and UI have separate modules. The write-surface tripwire adds exactly one upsert call in base44ContentLibrary and one in moonImport, both reachable only through strict admin apply dispatch; arbitrary writers remain rejected. Dry-run and Home must never trigger import. No native atomicity can be inferred from SDK method naming, synthetic concurrency or a local lock. Tests must assert production refusal until a verified adapter is explicitly added. Preserve actual selected category, immutable bilingual snapshots, bounded history and distinction between source/technical failures and UNKNOWN.

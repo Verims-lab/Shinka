@@ -8,6 +8,7 @@ import { resolveOnboardingState, isOnboardingProfileReady } from './onboardingRo
 import { optionalName, optionalBirthTime, validateBirthDate, validateCycleInput, resolveTimezone, serverLocalDate, emptyBirthplace, validTimezone, OnboardingError } from './onboardingValidation.js';
 import { SUN_SIGN_RESOLVER, HEALTH_CONSENT_VERSION } from './onboardingDependencies.js';
 import { geoNamesDiagnostic } from './geonamesDiagnostics.js';
+import { verifiedDailyRecord } from './dailyRecord.js';
 const fail=(code,status=400)=>{throw new OnboardingError(code,null,status);};
 const allowed={hydrate:[],initialize:['language_code','timezone','action_id'],saveProfile:['display_name','birth_date','birth_time','birthplace_geonames_id','action_id'],saveCycle:['period_start_date','period_duration_days','initial_cycle_length_days','health_consent','action_id'],skipCycle:[],listPlaceCountries:['language_code'],listPlaceRegions:['country','parent_id','offset','language_code'],listPlaceSettlements:['country','parent_id','offset','language_code'],searchPlaces:['query','language_code']};
 // Dependencies are server configuration/injected contract fixtures, never request fields.
@@ -39,15 +40,18 @@ export async function onboardingOperation(client,body,dependencies={}) {
   const preferences=await singleton('user_preferences');
   const today=preferences&&validTimezone(preferences.timezone)?serverLocalDate(now(),preferences.timezone):null;
   const state=async(cycleStepConfirmed=false)=>{
+    // A previous daily record is durable completion, independent of today's
+    // generation/health dependencies. Avoid fetching health data for Home routing.
+    const daily=profile?await rows('user_daily_message',1):[];
+    if(daily.length)verifiedDailyRecord(daily[0],owner);
     let hasHealthData=false;
-    if(profile&&!cycleStepConfirmed){
+    if(profile&&!cycleStepConfirmed&&!daily.length){
       if(persistence)hasHealthData=await persistence.hasVerifiedCycle();
       else {
         const consent=await singleton('user_health_consent');
         hasHealthData=consent?.consent_status==='GRANTED'&&(await rows('user_period_record',1)).length>0;
       }
     }
-    const daily=profile?await rows('user_daily_message',1):[];
     const dependencies=profile&&!SUN_SIGN_CODES.includes(profile.sun_sign_code)?['SUN_SIGN_RULE_REQUIRED']:[];
     const route=resolveOnboardingState({authenticated:true,profile,preferences,today,hasHealthData,hasDailyMessage:daily.length>0,cycleStepConfirmed});
     return {dependencies,completionReady:route==='ACTIVE_EXISTING_USER',state:route,profile,preferences,today};

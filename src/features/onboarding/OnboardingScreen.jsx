@@ -18,6 +18,7 @@ import {
   OnboardingError,
 } from "../../../base44/shared/onboardingValidation.js";
 import { onboardingRequest } from "@/services/onboardingService";
+import FirstShinka from '@/features/daily/FirstShinka';
 const DEFAULT_PENDING = {
   read: readPendingName,
   save: savePendingName,
@@ -33,13 +34,14 @@ const TITLES = {
   INACTIVE_ACCOUNT: "inactive",
 };
 const STEPS = Object.keys(TITLES);
-/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,onState?:Function,onLanguage?:Function,pending?:typeof DEFAULT_PENDING,authenticate?:typeof beginProviderAuth,dependencies?:string[],renderProfileAccess?:(language:string)=>import("react").ReactNode}} props */
+/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,onLanguage?:Function,pending?:typeof DEFAULT_PENDING,authenticate?:typeof beginProviderAuth,dependencies?:string[],renderProfileAccess?:(language:string)=>import("react").ReactNode}} props */
 export default function OnboardingScreen({
   state,
   initialLanguage = "en",
   today = null,
   profile = null,
   request = onboardingRequest,
+  dailyRequest = undefined,
   onState = () => {},
   onLanguage = () => {},
   pending = DEFAULT_PENDING,
@@ -206,16 +208,7 @@ export default function OnboardingScreen({
       );
     if (state === "FIRST_SHINKA_DEPENDENCY")
       return (
-        <>
-          <p>{t("preparing")}</p>
-          <p
-            role="status"
-            className="break-words text-shinka-small"
-            data-dependency="FIRST_SHINKA_ENGINE_REQUIRED"
-          >
-            FIRST_SHINKA_ENGINE_REQUIRED
-          </p>
-        </>
+        <FirstShinka language={language} request={dailyRequest} onReady={result => onState(result.state, { ...result, uiLanguage: language })}/>
       );
     return null;
   };

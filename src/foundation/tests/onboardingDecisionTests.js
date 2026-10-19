@@ -1,3 +1,4 @@
+import { dailyRecordFixture } from './dailyRecordFixture';
 import { check, rejects, NOW } from './dataModelTests';
 import { sdkOnboardingFixture } from './base44OnboardingFixture';
 import { fixturePlace } from './onboardingFixture';
@@ -68,7 +69,7 @@ export const ONBOARDING_DECISION_TESTS=[
    await rejects(()=>call(f,{action:'hydrate',cycleStepConfirmed:true}),'INVALID_REQUEST');
    // Existing daily data is injected only into isolated test transport. Never generate product content.
    f.rows.user_daily_message.push({id:'other-test-record',user_id:'ownerB'});check((await call(f,{action:'hydrate'})).state==='AUTHENTICATED_CYCLE_STEP');
-   f.rows.user_daily_message.push({id:'existing-owner-test-record',user_id:'ownerA'});const hydrated=await call(f,{action:'hydrate'});check(hydrated.state==='ACTIVE_EXISTING_USER'&&hydrated.completionReady);
+   f.rows.user_daily_message.push(dailyRecordFixture('existing-owner-test-record'));const hydrated=await call(f,{action:'hydrate'});check(hydrated.state==='ACTIVE_EXISTING_USER'&&hydrated.completionReady);
    f.rows.user_profile[0].account_status='INACTIVE';check((await call(f,{action:'hydrate'})).state==='INACTIVE_ACCOUNT');
    check(!f.calls.some(c=>c.entity==='user_daily_message'&&['upsert','updateMany'].includes(c.method)));
  }],

@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-006",
-    "package_name": "Foundation Dependency Security Closure",
-    "package_type": "FOUNDATION_AMENDMENT",
-    "short_summary": "Verified vulnerable dependency graph; native Tailwind 4/Vite migration removes High chain and obsolete CSS pipeline; preserved visual tokens/layouts; six canonical CSS regressions and native npm security guard.",
-    "created_at": "2026-10-19",
-    "health_catalog_version": "HC-004.0",
-    "full_health_status": "BASE44_FINAL_FULL_HEALTH_REQUIRED",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": false,
-    "notes": "REPO_CLOSED_PENDING_BASE44_VERIFICATION: 0 Critical / 0 High; two Moderate router package findings documented. HC-004.0 semantics unchanged. Final live Full Health, history readback and Authentication configuration verification pending. No product features/data or legacy import."
-  },
-  {
     "build_marker": "Buildmarker-007",
     "package_name": "Data Model & Security Foundation",
     "package_type": "PRODUCT_FOUNDATION",
@@ -66,5 +52,19 @@ export default [
     "short_summary": "Verified admin Profile/You menu → Admin Panel → existing Health and Build tools; guarded before onboarding completion with localized return navigation.",
     "full_health_status": "LOCAL_PASS_PENDING_LIVE_VERIFICATION",
     "notes": "Chromium/WebKit: 318 canonical tests, 17 admin routes/keyboard/locale/responsive scenarios, 8 routing/Preview, 5 mobile, 54 general Health + 21 onboarding Health; zero page exceptions. Clean install/tree, type/lint/build, Repo Health 16/16, history and production budgets pass. Audit: 0 Critical/High, 2 existing Moderate. Main PR #15 fast-forwarded into Test with identical tree before feature delivery. No deployment/live identity proof; ON-05 remains pending same-account live saveCycle/readback. Five active packages 006–010; no content import."
+  },
+  {
+    "build_marker": "Buildmarker-011",
+    "package_name": "First Shinka and Home",
+    "package_type": "FEATURE",
+    "created_at": "2026-10-19T23:27:39.496462+00:00",
+    "health_catalog_version": "HC-011.0",
+    "short_summary": "Exact 260-pair/240-mapping source preparation, controlled admin content/Moon imports, daily calculations/selection and ON-06 to Home with immutable bilingual snapshots. Production creation blocked by OD-002 and unverified durable uniqueness.",
+    "full_health_status": "BLOCKED",
+    "notes": "Chromium/WebKit each 346/346 canonical; 54 general + 21 onboarding + 9 daily synthetic Health; 5 daily, 17 admin, 8 routing/Preview and 5 mobile scenarios; zero page errors. Clean install/tree/security/type/lint/build, Repo Health 16/16 and five-package retention pass; audit 0 Critical/High, 2 existing Moderate. Initial JS 459,519 raw / 149,604 gzip bytes within budget; source/import/test data excluded from initial graph. No hosted import or first daily write/readback; no physical-device proof. New daily writes fail closed without a verified cross-instance adapter; existing valid rows remain readable. OD-002 proposals remain unapproved. ON-05 live same-account recovery remains open. Details: reports/SHINKA_FIRST_SHINKA_011.md and first-shinka-011/verification.json.",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true
   }
 ];

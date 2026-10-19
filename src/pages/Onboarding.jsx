@@ -31,6 +31,6 @@ export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO'}){
   if(!snapshot)return <PageContainer><header className="flex items-center justify-between mx-auto max-w-md pt-6"><span className="font-heading text-2xl">Shinka</span><ProfileAccess language={language}/></header><main className="mx-auto max-w-md space-y-5 py-10" aria-busy={!error}>
     {error?<><p role="alert">{onboardingCopy('systemError',language)}</p><p className="break-words text-shinka-small">{error}</p><ShinkaButton onClick={load}>{onboardingCopy('retry',language)}</ShinkaButton></>:<p role="status" aria-label="Shinka">…</p>}
   </main></PageContainer>;
-  if(snapshot.state==='ACTIVE_EXISTING_USER')return <Home language={snapshot.preferences?.language_code||language} profileAccess={<ProfileAccess language={snapshot.preferences?.language_code||language}/>}/>;
+  if(snapshot.state==='ACTIVE_EXISTING_USER')return <Home language={snapshot.uiLanguage||snapshot.preferences?.language_code||language} initialDaily={snapshot.daily?snapshot:null} profile={snapshot.profile} renderProfileAccess={lang=><ProfileAccess language={lang}/>} />;
   return <OnboardingScreen renderProfileAccess={lang=><ProfileAccess language={lang}/>} key={user.id} state={snapshot.state} initialLanguage={snapshot.preferences?.language_code||language} today={snapshot.today} profile={snapshot.profile} dependencies={snapshot.dependencies||[]} onState={(state,result)=>setSnapshot(s=>({...s,...result,state}))}/>;
 }

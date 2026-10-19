@@ -4,6 +4,7 @@ let session = params.get('sdkSession') || 'anonymous';
 let delayed = null;
 const calls = [];
 let releaseHydration;
+let dailyAttempts = 0;
 const hydration = params.has('holdHydration') ? new Promise(resolve => { releaseHydration = resolve; }) : Promise.resolve();
 export const authFixture = {
   calls,
@@ -29,9 +30,16 @@ export const base44 = {
     if (name === 'onboarding' && body.action === 'hydrate' && session !== 'anonymous') {
       await hydration; authFixture.hydrationReturned = true;
       return { data: {
-      state: ['AUTHENTICATED_CYCLE_STEP', 'ACTIVE_EXISTING_USER'].includes(params.get('onboardingState')) ? params.get('onboardingState') : 'AUTHENTICATED_PROFILE_REQUIRED',
+      state: ['AUTHENTICATED_CYCLE_STEP', 'FIRST_SHINKA_DEPENDENCY', 'ACTIVE_EXISTING_USER'].includes(params.get('onboardingState')) ? params.get('onboardingState') : 'AUTHENTICATED_PROFILE_REQUIRED',
       preferences: params.has('uninitialized') ? null : { language_code: params.get('language') === 'tr' ? 'tr' : 'en', timezone: 'UTC' }, today: '2026-10-20',
     } };
+    }
+    if (name === 'dailyMessage') {
+      dailyAttempts++;
+      if (params.get('dailyScenario') === 'notReady' || params.get('dailyScenario') === 'retry' && dailyAttempts === 1) return { data: { error_code: 'DAILY_ATOMIC_CAPABILITY_REQUIRED' } };
+      const fixture = globalThis.__dailyFixture;
+      if (fixture) return { data: structuredClone(fixture) };
+      return { data: { error_code: 'DAILY_ATOMIC_CAPABILITY_REQUIRED' } };
     }
     if (body.action === 'list') return { data: { runs: [] } };
     throw new Error('LIVE_OPERATION_UNAVAILABLE_IN_CLI');

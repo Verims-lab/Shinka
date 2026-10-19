@@ -79,3 +79,18 @@ Record device model, OS/build, browser/version, app revision, environment, netwo
 6. After explicit test-account save, verify backend-selected ID/five-field readback and Clear→NULL. Record new deployed Full Health and private report readback. These remain H06-007/H10-004/live enforcement obligations even if layout passes.
 
 No release/device PASS is asserted until these physical and hosted checks have evidence.
+
+## Buildmarker-011 Home and ON-06 extension
+
+Local evidence only: Chromium 156.0.8078.4 and WebKit 27.2, Playwright 1.64.0 on the same macOS host. Both engines passed 346 canonical tests, 17 admin, 8 routing/Preview, 5 existing mobile and 5 new daily-flow scenarios; 54 general + 21 onboarding + 9 daily synthetic Health cases also passed, with no page exceptions. No Android OS, physical iPhone, real sign-in, hosted import or daily persistence was exercised.
+
+The new actual-App scenarios cover ON-06 failure → explicit Retry → confirmed fixture readback → Home, TR/EN at 360×900 and 1280×900, same Pair/snapshots and no new daily request on language switch, and completed-account errors staying on Home. Controls measure at least 44×44 and no horizontal overflow; existing Profile/admin paths remain available. Canonical DU cases also check offline/failure distinction, unmounted responses and day/timezone changes in flight. Captures use the original SHF-001 copy, a synthetic name and isolated transport; they are not real user records. Hosted font loading and native UI remain unverified.
+
+| Engine | Mobile TR | Mobile EN | Desktop TR | Desktop EN | ON-06 Retry |
+|---|---|---|---|---|---|
+| Chromium | [Home 360 TR](first-shinka-011/chromium/home-360-tr.png) | [Home 360 EN](first-shinka-011/chromium/home-360-en.png) | [Home 1280 TR](first-shinka-011/chromium/home-1280-tr.png) | [Home 1280 EN](first-shinka-011/chromium/home-1280-en.png) | [Retry TR](first-shinka-011/chromium/on06-retry-360-tr.png), [Retry EN](first-shinka-011/chromium/on06-retry-1280-en.png) |
+| WebKit | [Home 360 TR](first-shinka-011/webkit/home-360-tr.png) | [Home 360 EN](first-shinka-011/webkit/home-360-en.png) | [Home 1280 TR](first-shinka-011/webkit/home-1280-tr.png) | [Home 1280 EN](first-shinka-011/webkit/home-1280-en.png) | [Retry TR](first-shinka-011/webkit/on06-retry-360-tr.png), [Retry EN](first-shinka-011/webkit/on06-retry-1280-en.png) |
+
+Production initial JS is 459,519 raw / 149,604 gzip bytes (+5,006 / +1,500 versus 010); CSS 84,916 / 14,553. Existing budgets pass and source/import/test modules are not in the initial graph. Three cold 360px Home lab samples have 56 DOM nodes, DCL 15.3–20.4 ms, CLS 0, no recorded long task or page error. These are loopback samples with stubbed SDK and blocked external fonts, not field Web Vitals or device speed claims. [Structured verification](first-shinka-011/verification.json).
+
+After OD-002 and durable persistence closure, extend physical acceptance with first real ON-06 → Home, reload twice, TR/EN switch, lost-network Retry, background/OS-eviction restore and local midnight/timezone change. Verify a single owner/day record and unchanged four snapshots through the backend, then deployed Full Health/private report readback. Preserve all earlier native keyboard/sheet/assistive-technology requirements. [Exact import and live acceptance steps](SHINKA_FIRST_SHINKA_011.md).

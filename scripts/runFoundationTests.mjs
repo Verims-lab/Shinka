@@ -1,4 +1,5 @@
 import { checkAdminNavigation } from './checkAdminNavigation.mjs';
+import { checkDailyFlow } from './checkDailyFlow.mjs';
 import { verifyDependencyRules } from './verifyDependencyRules.mjs';
 import { checkMobile } from './checkMobile.mjs';
 // One canonical test set, executed in a real browser for the existing DOM probes.
@@ -65,6 +66,7 @@ try {
   for(const result of results) console.log(`${result.passed?"PASS":"FAIL"} ${result.id} ${result.name}${result.passed?"":` — ${result.detail}`}`);
   const health=await page.evaluate(()=>window.__staticHealthEvidence());
   const onboardingHealth=await page.evaluate(()=>window.__onboardingHealthEvidence());
+  const dailyHealth=await page.evaluate(()=>window.__dailyHealthEvidence());
   const catalog=await page.evaluate(()=>window.__foundationCatalog);
   // Exercise the real App -> AuthProvider -> Onboarding route with only SDK transport substituted.
   const productionRouting=[];
@@ -100,8 +102,9 @@ try {
   });
   const adminNavigation = await checkAdminNavigation(page, origin, process.env.FOUNDATION_ADMIN_DIR);
   const mobile = await checkMobile(browser, origin, process.env.FOUNDATION_MOBILE_DIR);
-  console.log(JSON.stringify({adminNavigation,mobile,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,pageErrors},null,2));
-  if(mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
+  const dailyFlow = await checkDailyFlow(page, origin, process.env.FOUNDATION_DAILY_DIR);
+  console.log(JSON.stringify({adminNavigation,mobile,dailyFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,pageErrors},null,2));
+  if(mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
   }
 } catch(error){console.error(error);process.exitCode=1;}
 finally {await browser?.close();if(server) await new Promise(resolve=>server.close(resolve));await rm(output,{recursive:true,force:true});}
