@@ -2,10 +2,11 @@ import { base44 } from '@/api/base44Client';
 import { ONBOARDING_ERROR_KEYS } from '@/foundation/i18n/onboardingCopy';
 import { ONBOARDING_DEPENDENCIES } from '../../base44/shared/onboardingDependencies.js';
 const SAFE_CODES=new Set([...ONBOARDING_ERROR_KEYS,...Object.values(ONBOARDING_DEPENDENCIES),'TIMEZONE_INITIALIZATION_REQUIRED','PREFERENCES_INITIALIZATION_REQUIRED','AUTH_REQUIRED','HEALTH_DELETION_PENDING','CONSENT_REGRANT_WORKFLOW_REQUIRED','DUPLICATE_OWNER_STATE','ACTION_CONFLICT','ONBOARDING_ALREADY_SAVED','ONBOARDING_WRITE_UNCONFIRMED','ONBOARDING_READBACK_CONFLICT','SUN_SIGN_RULE_REQUIRED','HEALTH_CONSENT_SOURCE_REQUIRED','NATIVE_CONSENT_TIMESTAMP_REQUIRED']);
-export async function onboardingRequest(action,payload={}) {
+/** @param {{functions:{invoke:(name:string,payload:object)=>Promise<{data:any}>}}} client */
+export async function onboardingRequest(action,payload={},client=base44) {
   let timer;
   try {
-    const response=await Promise.race([base44.functions.invoke('onboarding',{...payload,action}),new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('timeout')),15000);})]);
+    const response=await Promise.race([client.functions.invoke('onboarding',{...payload,action}),new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('timeout')),15000);})]);
     if(response.data?.error_code)throw {response:{data:response.data}};
     return response.data;
   }catch(error){

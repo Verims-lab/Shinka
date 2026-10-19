@@ -1,5 +1,5 @@
 import { loadStaticEvidence } from '../inspection/sourceScanner';
-import { inspectOnboardingSurface } from '../inspection/onboardingRules';
+import { inspectGeoNamesEntry, inspectOnboardingSurface } from '../inspection/onboardingRules';
 import { check, rejects } from './dataModelTests';
 import { onboardingFixture, fixturePlace } from './onboardingFixture';
 import { onboardingOperation, handleOnboardingRequest } from '../../../base44/shared/onboardingOperations.js';
@@ -41,7 +41,7 @@ export const ONBOARDING_TESTS=[
  ['O08','Optional birthplace empty is coherent NULL; client free text rejected',async()=>{const f=onboardingFixture();await run(f,profileBody);const profile=normalizeDomainRead('user_profile',f.data.user_profile[0]);check(Object.keys(emptyBirthplace()).every(k=>profile[k]===null));await rejects(()=>run(onboardingFixture(),{...profileBody,birthplace_name:'free text'}),'INVALID_REQUEST');}],
  ['O09','Structured selection maps only approved fields and is backend-resolved',async()=>{const f=onboardingFixture();await run(f,{...profileBody,birthplace_geonames_id:123});const row=f.data.user_profile[0];check(row.birthplace_geonames_id===123&&row.birthplace_name==='Fixture City'&&row.birthplace_country_code==='TR'&&row.birthplace_latitude===40&&row.birthplace_longitude===29);check(Object.keys(normalizeGeoNamesPlace({...fixturePlace,secret:'not persisted'})).length===5);}],
  ['O10','Incomplete profile completion clears entire old birthplace group',async()=>{const f=onboardingFixture();f.data.user_profile.push({id:'incomplete',user_id:'ownerA',birth_date:'1990-01-01',account_status:'ACTIVE',...normalizeGeoNamesPlace(fixturePlace)});await run(f,profileBody);check(f.data.user_profile.length===1&&Object.keys(emptyBirthplace()).every(k=>normalizeDomainRead('user_profile',f.data.user_profile[0])[k]===null));}],
- ['O11','GeoNames query bounded/sanitized, empty results and safe mapping',async()=>{check(sanitizePlaceQuery('  Fixture   City  ')==='Fixture City');for(const q of ['', 'x'.repeat(81),'<script>'])await rejects(()=>sanitizePlaceQuery(q),'GEONAMES_QUERY_INVALID');let captured=new URL('https://fixture.invalid');const adapter=createGeoNamesAdapter({username:'fixture-secret',fetcher:async url=>{captured=url;return new Response(JSON.stringify({geonames:[]}));}});check((await adapter.search('Fixture','en')).length===0&&captured.hostname==='api.geonames.org'&&captured.searchParams.get('maxRows')==='8');}],
+ ['O11','GeoNames query bounded/sanitized, empty results and safe mapping',async()=>{check(sanitizePlaceQuery('  Fixture   City  ')==='Fixture City');for(const q of ['', 'a', 'x'.repeat(81),'<script>'])await rejects(()=>sanitizePlaceQuery(q),'GEONAMES_QUERY_INVALID');let captured=new URL('https://fixture.invalid');const adapter=createGeoNamesAdapter({username:'fixture-secret',fetcher:async url=>{captured=url;return new Response(JSON.stringify({geonames:[]}));}});check((await adapter.search('Fixture','en')).length===0&&captured.origin==='https://secure.geonames.org'&&captured.pathname==='/searchJSON'&&captured.searchParams.get('username')==='fixture-secret'&&captured.searchParams.get('maxRows')==='8');}],
  ['O12','GeoNames failure is sanitized; no birthplace remains allowed',async()=>{const adapter=createGeoNamesAdapter({username:'fixture',fetcher:async()=>{throw new Error('private credential');}});await rejects(()=>adapter.search('Fixture','en'),'GEONAMES_UNAVAILABLE');const f=onboardingFixture();f.dependencies.geoNames=null;await run(f,profileBody);check(f.data.user_profile.length===1);}],
  ['O13','Malformed GeoNames records and mismatched detail identity rejected',async()=>{for(const extra of [{lat:''},{lng:181},{countryCode:'INVALID'},{geonameId:0}])await rejects(()=>normalizeGeoNamesPlace({...fixturePlace,...extra}),'GEONAMES_INVALID_RESULT');const adapter=createGeoNamesAdapter({username:'fixture',fetcher:async()=>new Response(JSON.stringify(fixturePlace))});await rejects(()=>adapter.resolve(456),'GEONAMES_INVALID_RESULT');}],
  ['O14','Empty cycle / Skip produces no health rows or grant',async()=>{const f=onboardingFixture({complete:true});check((await run(f,{action:'skipCycle'})).state==='FIRST_SHINKA_DEPENDENCY');await run(f,{...cycleBody,period_start_date:null,health_consent:false});for(const entity of ['user_period_record','user_cycle_settings','user_health_consent','user_health_consent_event'])check(f.data[entity].length===0);}],
@@ -62,4 +62,28 @@ export const ONBOARDING_TESTS=[
  ['O29','Atomic readback owner mismatch cannot claim successful onboarding',async()=>{const f=onboardingFixture();f.dependencies.atomic.commitOwnerAction=async()=>({status:'COMMITTED',records:[{id:'wrong',user_id:'ownerB'}]});await rejects(()=>run(f,profileBody),'ATOMIC_READBACK_CONFLICT');}],
  ['O30','Initialization preserves existing preference and identity on language change',async()=>{const f=onboardingFixture({complete:true});await run(f,{action:'initialize',action_id:ID,language_code:'tr',timezone:'Europe/Istanbul'});check(f.data.user_preferences[0].language_code==='en'&&f.data.user_profile[0].birth_date==='1990-01-01');}],
  ['O31','Cleared birthplace requires actual NULL readback, not merge-only success',async()=>{const f=onboardingFixture();f.dependencies.atomic.commitOwnerAction=async({operations})=>({status:'COMMITTED',records:[{...operations[0].record,id:'profile',...normalizeGeoNamesPlace(fixturePlace)}]});await rejects(()=>run(f,profileBody),'ATOMIC_READBACK_CONFLICT');}],
+ ['O32','Production GeoNames entry uses exact backend secret; client provider calls rejected',async()=>{
+  check((await loadStaticEvidence()).geoNamesEntry);
+  const entry="import {createGeoNamesAdapter} from '../../shared/geonamesAdapter.js'; const geoNames=createGeoNamesAdapter({username:Deno.env.get('GEONAMES_USERNAME')}); Deno.serve(req=>handleOnboardingRequest(req,createClientFromRequest,{geoNames}));";
+  check(inspectGeoNamesEntry(entry));
+  for(const broken of [entry.replace('GEONAMES_USERNAME','VITE_GEONAMES_USERNAME'),entry.replace('Deno.env','window.env'),entry.replace('{geoNames}', '{geoNames:mockAdapter}')])check(!inspectGeoNamesEntry(broken));
+  for(const host of ['api','secure'])check(!inspectOnboardingSurface({'/src/services/onboardingService.js':`fetch('https://${host}.geonames.org/searchJSON')`},[]).ok);
+ }],
+ ['O33','GeoNames search/detail normalize only five fields and suppress provider secrets',async()=>{
+  const requests=[],fixtureUsername='synthetic-geonames-credential';
+  const adapter=createGeoNamesAdapter({username:fixtureUsername,fetcher:async url=>{requests.push(url);return Response.json(url.pathname==='/searchJSON'?{geonames:[{...fixturePlace,username:fixtureUsername,extra:'discard'}]}:{...fixturePlace,username:fixtureUsername});}});
+  const f=onboardingFixture();f.dependencies.geoNames=adapter;
+  const search=await run(f,{action:'searchPlaces',query:'  İzmir,  TR  ',language_code:'tr'});
+  check(search.places.length===1&&JSON.stringify(search.places[0])===JSON.stringify(normalizeGeoNamesPlace(fixturePlace)));
+  check(!JSON.stringify(search).includes(fixtureUsername)&&f.data.user_profile.length===0);
+  check(requests[0].searchParams.get('q')==='İzmir, TR'&&requests[0].searchParams.get('lang')==='tr'&&requests[0].searchParams.get('featureClass')==='P'&&requests[0].href.includes('%C4%B0zmir'));
+  await run(f,{...profileBody,birthplace_geonames_id:123});
+  check(requests[1].origin==='https://secure.geonames.org'&&requests[1].pathname==='/getJSON'&&requests[1].searchParams.get('geonameId')==='123');
+  check(requests.every(url=>url.searchParams.get('username')===fixtureUsername)&&!JSON.stringify(f.data).includes(fixtureUsername)&&!JSON.stringify(f.data).includes('İzmir'));
+  for(const response of [()=>Response.json({status:{value:10,message:fixtureUsername}}),()=>new Response(fixtureUsername,{status:503}),()=>new Response('invalid json'),()=>Response.json({geonames:[{...fixturePlace,lat:''}]})]){
+    f.dependencies.geoNames=createGeoNamesAdapter({username:fixtureUsername,fetcher:async()=>response()});
+    const result=await handleOnboardingRequest(new Request('https://fixture.invalid',{method:'POST',body:JSON.stringify({action:'searchPlaces',query:'Fixture'})}),()=>f.client,f.dependencies);
+    const body=await result.text();check(!result.ok&&!body.includes(fixtureUsername)&&!body.includes('message'));
+  }
+ }],
 ];

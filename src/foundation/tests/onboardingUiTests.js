@@ -3,11 +3,13 @@ import { createRoot } from 'react-dom/client';
 import OnboardingFixture from './OnboardingTestScreen';
 import { check, NOW } from './dataModelTests';
 import { ONBOARDING_COPY } from '../i18n/onboardingCopy';
-import { normalizeGeoNamesPlace } from '../../../base44/shared/onboardingValidation.js';
+import { normalizeGeoNamesPlace, BIRTHPLACE_FIELDS } from '../../../base44/shared/onboardingValidation.js';
 import { fixturePlace } from './onboardingFixture';
 import { sdkOnboardingFixture } from './base44OnboardingFixture';
-import { onboardingOperation } from '../../../base44/shared/onboardingOperations.js';
+import { onboardingOperation, handleOnboardingRequest } from '../../../base44/shared/onboardingOperations.js';
 import { findUnlabeledControls } from '../probes/domProbes';
+import { onboardingRequest } from '@/services/onboardingService';
+import { createGeoNamesAdapter } from '../../../base44/shared/geonamesAdapter.js';
 const pause=()=>new Promise(resolve=>setTimeout(resolve,50));
 async function probe(step,width,run,props={}){
   const frame=document.createElement('iframe');frame.title='Onboarding synthetic UI probe';
@@ -27,6 +29,21 @@ async function probe(step,width,run,props={}){
 }
 function input(doc,id,value){const el=doc.getElementById(id);Object.getOwnPropertyDescriptor(doc.defaultView.HTMLInputElement.prototype,'value').set.call(el,value);el.dispatchEvent(new doc.defaultView.Event('input',{bubbles:true}));}
 const button=(doc,text)=>Array.from(doc.querySelectorAll('button')).find(b=>b.textContent===text);
+// Real UI -> service -> HTTP handler -> provider adapter -> production persistence;
+// only the SDK transport and outbound provider HTTP response are synthetic.
+async function geoNamesUiFixture(fetcher){
+  const f=sdkOnboardingFixture(),calls=[];
+  await onboardingOperation(f.client,{action:'initialize',language_code:'en',timezone:'Europe/Istanbul'});
+  const dependencies={now:()=>new Date(NOW),geoNames:createGeoNamesAdapter({username:'synthetic-ui-credential',fetcher})};
+  const client={functions:{invoke:async(name,body)=>{
+    check(name==='onboarding','frontend invocation target');calls.push(body);
+    const response=await handleOnboardingRequest(new Request('https://fixture.invalid',{method:'POST',body:JSON.stringify(body)}),()=>f.client,dependencies);
+    const data=await response.json();if(!response.ok)throw {response:{data}};return {data};
+  }}};
+  return {f,calls,requestOverride:(action,payload={})=>onboardingRequest(action,payload,client)};
+}
+const searchButton=doc=>doc.querySelector(`button[aria-label="${ONBOARDING_COPY.en.birthplace}"]`);
+const clearButton=doc=>doc.querySelector(`button[aria-label="${ONBOARDING_COPY.en.skip}"]`);
 /** @type {import('./testTypes').FoundationTest[]} */
 export const ONBOARDING_UI_TESTS=[
  ['U01','EN/TR six screens fit 360/430px with named controls and 17px inputs',async()=>{
@@ -74,5 +91,46 @@ export const ONBOARDING_UI_TESTS=[
     check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP');
     check(f.rows.user_profile.length===1&&saved.sun_sign_code==='CAPRICORN'&&saved.birthplace_geonames_id===123&&saved.display_name==='Ada');
   },{profileOverride:saved,requestOverride});
+ }],
+ ['U09','Valid search invokes onboarding; short query blocked; selected result saves structured fields',async()=>{
+  let release;const requests=[];
+  const {f,calls,requestOverride}=await geoNamesUiFixture(async url=>{requests.push(url);return url.pathname==='/searchJSON'?new Promise(resolve=>{release=()=>resolve(Response.json({geonames:[fixturePlace]}));}):Response.json(fixturePlace);});
+  await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
+    for(const query of ['', 'a']){input(doc,'birthplace',query);await pause();check(searchButton(doc).disabled);searchButton(doc).click();await pause();check(calls.length===0);}
+    input(doc,'birthplace','  Fixture   City  ');await pause();check(!searchButton(doc).disabled&&calls.length===0,'typing waits for explicit search');
+    searchButton(doc).click();await pause();check(calls.length===1&&calls[0].action==='searchPlaces'&&searchButton(doc).disabled&&searchButton(doc).getAttribute('aria-busy')==='true');
+    check(!JSON.stringify(calls).includes('username')&&requests[0].searchParams.get('q')==='Fixture City');
+    release();await pause();check(searchButton(doc).getAttribute('aria-busy')==='false'&&button(doc,'Fixture City, TR'));
+    input(doc,'birth_date','1990-01-01');await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('#birthplace-error')&&f.rows.user_profile.length===0,'unselected text cannot persist');
+    button(doc,'Fixture City, TR').click();await pause();check(doc.querySelector('#birthplace').value==='Fixture City'&&!doc.querySelector('ul'));
+    button(doc,'Continue').click();await pause();check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP');
+    const saved=f.rows.user_profile[0],expected=normalizeGeoNamesPlace(fixturePlace);check(BIRTHPLACE_FIELDS.every(key=>saved[key]===expected[key]));
+    const payload=calls.find(call=>call.action==='saveProfile');check(payload.birthplace_geonames_id===123&&!('query' in payload)&&!('birthplace_name' in payload));
+    check(!JSON.stringify(saved).includes('synthetic-ui-credential'));
+  },{requestOverride});
+ }],
+ ['U10','Empty/error search shows approved status; clear permits optional empty persistence',async()=>{
+  for(const failed of [false,true]){
+    const {f,requestOverride}=await geoNamesUiFixture(async()=>failed?Response.json({status:{value:10,message:'private provider text'}}):Response.json({geonames:[]}));
+    await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
+      input(doc,'birthplace','Fixture');await pause();searchButton(doc).click();await pause();
+      check(doc.querySelector('[role=status]').textContent===ONBOARDING_COPY.en[failed?'GEONAMES_UNAVAILABLE':'GEONAMES_EMPTY']);
+      check(!doc.querySelector('ul')&&!searchButton(doc).disabled&&!doc.body.textContent.includes('private provider text'));
+      clearButton(doc).click();input(doc,'birth_date','1990-01-01');await pause();button(doc,'Continue').click();await pause();
+      check(BIRTHPLACE_FIELDS.every(key=>f.rows.user_profile[0][key]===null));
+      check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP');
+    },{requestOverride});
+  }
+ }],
+ ['U11','Clear removes saved selection and ignores late results before clearing all persisted fields',async()=>{
+  let release;
+  const {f,requestOverride}=await geoNamesUiFixture(async()=>new Promise(resolve=>{release=()=>resolve(Response.json({geonames:[fixturePlace]}));}));
+  const saved={id:'partial-place-fixture',user_id:'ownerA',account_status:'ACTIVE',birth_date:'1990-01-01',birth_time:null,sun_sign_code:null,...normalizeGeoNamesPlace(fixturePlace)};f.rows.user_profile.push(saved);
+  await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
+    searchButton(doc).click();await pause();clearButton(doc).click();await pause();release();await pause();
+    check(doc.querySelector('#birthplace').value===''&&!doc.querySelector('ul')&&searchButton(doc).disabled);
+    button(doc,'Continue').click();await pause();check(BIRTHPLACE_FIELDS.every(key=>saved[key]===null));
+    check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP');
+  },{requestOverride,profileOverride:saved});
  }],
 ];
