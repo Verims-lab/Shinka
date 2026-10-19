@@ -15,6 +15,7 @@ const checks={
   completeAccessMatrix:e.domain.accessMatrixComplete&&e.domain.accessMatrixRows===20,
   directSdkOperationsDenied:e.domain.directOperationsDenied,
   onboardingCopyAndProxy:e.onboarding.ok,
+  onboardingGeoNamesEntry:e.geoNamesEntry,
   noProductSeedCalls:e.domain.writeSurface.ok,
   canonicalMarker:e.marker.ok&&validateLedger(BUILD_LEDGER,BUILD_MARKER).ok&&BUILD_LEDGER.at(-1).health_catalog_version===HEALTH_CATALOG_VERSION,
   docsAligned:e.docs.present===12&&e.docs.headerGaps.length===0&&e.docs.misaligned.length===0&&e.docs.missingDomainEntities.length===0&&e.docs.buildHistoryMismatches.length===0,

@@ -8,7 +8,8 @@ export function sanitizePlaceQuery(input) {
 export function createGeoNamesAdapter({username,fetcher=fetch,timeoutMs=8000}) {
   const request=async(path,params)=>{
     if(!username)throw new OnboardingError('GEONAMES_CONFIGURATION_REQUIRED',null,503);
-    const url=new URL(`https://api.geonames.org/${path}`);
+    // GeoNames serves valid HTTPS certificates on its secure host.
+    const url=new URL(`https://secure.geonames.org/${path}`);
     Object.entries({...params,username}).forEach(([key,value])=>url.searchParams.set(key,String(value)));
     const abort=new AbortController(),timer=setTimeout(()=>abort.abort(),timeoutMs);
     try {
