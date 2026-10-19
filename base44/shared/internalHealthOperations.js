@@ -4,7 +4,12 @@ import { DOMAIN_ENTITIES } from "./domainContract.js";
 import { CONTENT_ENTITY_NAMES } from "./contentStateContract.js";
 
 // Called only inside handleInternalRequest, after server auth.me() succeeds.
-export async function internalHealthOperation(client, body) {
+export async function internalHealthOperation(client, body, {geoNamesTransportProbe=null}={}) {
+  if(body.action==='geoNamesTransportProbe'){
+    if(Object.keys(body).length!==1)throw new InternalError('INVALID_REQUEST',400);
+    if(!geoNamesTransportProbe)throw new InternalError('GEONAMES_PROBE_UNAVAILABLE',503);
+    return geoNamesTransportProbe();
+  }
   const service = client.asServiceRole;
   const store = service.entities.InternalHealthRun;
   if (body.action === "list") return { runs: await store.list("-created_date", 20) };

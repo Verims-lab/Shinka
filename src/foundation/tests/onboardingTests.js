@@ -1,4 +1,5 @@
 import { GEONAMES_DIAGNOSTIC_TESTS } from './geonamesDiagnosticTests';
+import { GEONAMES_RUNTIME_PROBE_TESTS } from './geonamesRuntimeProbeTests';
 import { loadStaticEvidence } from '../inspection/sourceScanner';
 import { inspectGeoNamesEntry, inspectOnboardingSurface } from '../inspection/onboardingRules';
 import { check, rejects } from './dataModelTests';
@@ -88,4 +89,5 @@ export const ONBOARDING_TESTS=[
   }
  }],
  ...GEONAMES_DIAGNOSTIC_TESTS,
+ ...GEONAMES_RUNTIME_PROBE_TESTS,
 ];
