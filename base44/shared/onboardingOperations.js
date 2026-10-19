@@ -7,6 +7,7 @@ import { commitOwnerAction } from './domainAtomic.js';
 import { resolveOnboardingState, isOnboardingProfileReady } from './onboardingRoute.js';
 import { optionalName, optionalBirthTime, validateBirthDate, validateCycleInput, resolveTimezone, serverLocalDate, emptyBirthplace, validTimezone, OnboardingError } from './onboardingValidation.js';
 import { SUN_SIGN_RESOLVER, HEALTH_CONSENT_VERSION } from './onboardingDependencies.js';
+import { geoNamesDiagnostic } from './geonamesDiagnostics.js';
 const fail=(code,status=400)=>{throw new OnboardingError(code,null,status);};
 const allowed={hydrate:[],initialize:['language_code','timezone','action_id'],saveProfile:['display_name','birth_date','birth_time','birthplace_geonames_id','action_id'],saveCycle:['period_start_date','period_duration_days','initial_cycle_length_days','health_consent','action_id'],skipCycle:[],searchPlaces:['query','language_code']};
 // Dependencies are server configuration/injected contract fixtures, never request fields.
@@ -102,5 +103,8 @@ export async function handleOnboardingRequest(req,createClient,dependencies={}) 
     let body;try{body=JSON.parse(text);}catch{fail('INVALID_REQUEST');}
     if(!body||typeof body!=='object'||Array.isArray(body))fail('INVALID_REQUEST');
     return Response.json(await onboardingOperation(createClient(req),body,dependencies));
-  }catch(error){return Response.json({error_code:error instanceof InternalError?error.code:'ONBOARDING_OPERATION_FAILED',field:error instanceof OnboardingError?error.field:null},{status:error instanceof InternalError?error.status:500});}
+  }catch(error){
+    const diagnostic=geoNamesDiagnostic(error);
+    return Response.json({error_code:error instanceof InternalError?error.code:'ONBOARDING_OPERATION_FAILED',field:error instanceof OnboardingError?error.field:null,...(diagnostic?{diagnostic}:{})},{status:error instanceof InternalError?error.status:500});
+  }
 }

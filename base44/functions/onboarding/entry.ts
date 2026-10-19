@@ -1,7 +1,10 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.54';
+import { secrets } from 'base44:runtime';
 import { handleOnboardingRequest } from '../../shared/onboardingOperations.js';
 import { createGeoNamesAdapter } from '../../shared/geonamesAdapter.js';
-// Server-only credential. The operation binds a request-scoped Base44 persistence adapter.
-// Approved consent version enables cycle writes; native transactions are not assumed.
-const geoNames=createGeoNamesAdapter({username:Deno.env.get('GEONAMES_USERNAME')});
-Deno.serve(req=>handleOnboardingRequest(req,createClientFromRequest,{geoNames}));
+// Base44 secrets resolve per request, never at module load or in a browser module.
+/** @param {Request} req */
+export default function onboarding(req) {
+  const geoNames=createGeoNamesAdapter({username:secrets.get('GEONAMES_USERNAME')});
+  return handleOnboardingRequest(req,createClientFromRequest,{geoNames});
+}

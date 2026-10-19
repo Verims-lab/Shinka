@@ -71,3 +71,5 @@ No end-user product package implemented. No GitHub work. No AI.
 - Final Health closure checks: 231/231 canonical tests and 3/3 production-route scenarios, H06 6/6, H07 12/12, H10 contract, H11 onboarding 2/2 and H12 20/20 preserved; Critical/High 0; clean install/tree, security guard, typecheck, lint, build and Repo Health PASS. Status remains CLOSED_PENDING_BASE44_VERIFICATION.
 
 - GeoNames same-package correction: HTTPS provider host changed to secure.geonames.org after credential-free TLS mismatch reproduction; exact server secret binding and complete UI/service/provider/persistence regression coverage added. Test-only delivery; new deployed provider success remains external. BuildMarker 008 / HC-007.0 unchanged.
+
+- Configured-secret live follow-up retains 008/HC-007.0: request-scoped Base44 runtime secret access, safe provider/HTTP/network/timeout diagnostics and read-only lookup regressions. Secure host retained; generic live failure does not establish a missing-secret cause. Manual runtime verification remains external; Test only.

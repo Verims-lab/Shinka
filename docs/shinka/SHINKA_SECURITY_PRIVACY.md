@@ -21,7 +21,7 @@
 | Protected immutable records | Admin cannot UPDATE/DELETE snapshots/events/audit (OD-009) | Repository deny rules + shared guards + negative tests; PARTIALLY_VERIFIED |
 | Audit metadata minimization | No health content in audit log | Validated allowlist helper + negative tests |
 | Log redaction | No tokens, health data, message bodies | Health reports redacted (`redact()`), T17 test |
-| Secrets | Server-side only | UNVERIFIED (none configured yet) |
+| Secrets | Server-side only | GEONAMES_USERNAME key present in masked dashboard / user-confirmed; value never read by tooling. Request-scoped runtime adapter implemented; deployed resolution/provider success still requires manual evidence. |
 | INACTIVE account | No login, generation, push | UNVERIFIED |
 | Restore protection | Deleted health data never reappears; INACTIVE stays INACTIVE | UNVERIFIED |
 
@@ -126,3 +126,12 @@ Consent is independent of age/auth. Health writes require explicit true consent,
 Dependency versions are unchanged in this package. The required fresh audit retains the previously documented router Moderate findings; final execution totals are recorded in Development Notes. Real Apple/Google, deployed ownership/authorization and GeoNames availability remain EXTERNAL/DEVICE REQUIRED.
 
 Final clean-install audit for Buildmarker-008: 0 Critical, 0 High, 2 Moderate, 0 Low; `security:deps` exited 0. All 24 existing security tests and new authenticated-owner/consent/idempotency refusal tests pass. No live enforcement claim.
+
+
+## GeoNames live diagnostic boundary — same package 008
+
+Only the hosted onboarding entry imports `secrets` from `base44:runtime`; `secrets.get('GEONAMES_USERNAME')` runs inside its default request handler. Backend values are never bundled, copied into test fixtures, printed or read through frontend code. The entry-wiring test substitutes the platform module and verifies zero module-load reads plus fresh reads across missing/configured/rotated synthetic values. Build-time inspection exports a boolean only, never backend source or an environment value.
+
+Errors retain no original exception, URL, username, provider message/body or query. The HTTP boundary constructs an explicit diagnostic allowlist: code, http_status (100–599 or null), documented provider_status (or null), provider_class (AUTHORIZATION/QUOTA/SERVICE/REQUEST/NOT_FOUND or null). Forged diagnostic objects are ignored. Frontend still renders only canonical copy. No GeoNames console logging, trace output or product-record diagnostics were added. The fixed provider host/path cannot be supplied or overridden by request data; redirects are rejected.
+
+Authenticated searchPlaces is read-only, including with no preferences, and never invokes initialize/saveProfile/saveCycle. Regressions snapshot every product entity and assert that all SDK calls during successful/empty/error lookup are reads. Owner/auth checks and unknown-field rejection continue to protect the multiplexed endpoint. Selected-ID persistence, optional empty continuation and coherent five-field NULL clearing are unchanged. A provider authorization response is not proof that the Base44 secret is absent; live cause is established only by the new safe runtime diagnostics.
