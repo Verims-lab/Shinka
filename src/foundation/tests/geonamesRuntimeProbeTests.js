@@ -18,11 +18,11 @@ export const GEONAMES_RUNTIME_PROBE_TESTS=[
     const response=await post({auth:{me:async()=>me}},probe,{...body,role:'admin'});
     check(response.status===(me?403:401));
   }
-  for(const extra of [{url:'https://fixture.invalid'},{host:'fixture.invalid'},{username:'fixture'},{headers:{}},{timeoutMs:1},{role:'admin'},{query:'Private City'},{variants:['B']},{signal:null}])check((await post(admin,probe,{...body,...extra})).status===400);
+  for(const extra of [{url:'https://fixture.invalid'},{host:'fixture.invalid'},{username:'fixture'},{headers:{}},{timeoutMs:1},{role:'admin'},{query:'Private City'},{variants:['B']},{redirect:'follow'},{fetchOwner:{}},{signal:null}])check((await post(admin,probe,{...body,...extra})).status===400);
   check(calls===0);check((await post(admin,probe)).status===200&&calls===1);
   check((await post(admin,null)).status===503);
  }],
- ['G14','Baseline preserves actual adapter URL/options and successful baseline needs only two observations',async()=>{
+ ['G14','Four credentialed policy samples preserve actual adapter URL, input form and all other options',async()=>{
   let baseline;await createGeoNamesAdapter({username:' fixture ',fetcher:async(url,options)=>{baseline=snapshot(url,options);return Response.json({geonames:[]});}}).search('Istanbul','tr');
   const seen=[],signals=[];let cancelled=0;
   const run=createGeoNamesRuntimeProbe({getFetch:()=>async(input,options)=>{
@@ -30,53 +30,50 @@ export const GEONAMES_RUNTIME_PROBE_TESTS=[
     return new Response(new ReadableStream({cancel(){cancelled++;}}),{status:401});
   }});
   const result=await run({username:' fixture '});
-  check(result.results.map(r=>r.probe_id).join()==='A1,A2'&&result.request_count===2);
-  check(seen.every(s=>JSON.stringify(s)===JSON.stringify(baseline))&&signals.every(s=>s.aborted)&&cancelled===2);
+  check(result.results.map(r=>r.probe_id).join()==='ERROR_1,MANUAL_1,ERROR_2,MANUAL_2'&&result.request_count===4);
+  check(seen.every(s=>JSON.stringify({...s,redirect:'manual'})===JSON.stringify(baseline))&&signals.every(s=>s.aborted)&&cancelled===4);
+  check(new Set(signals).size===4&&seen.map(s=>s.redirect).join()==='error,manual,error,manual');
   check(result.results.every(r=>r.http_response_received&&r.http_status===401&&r.failure_stage===null&&r.cleanup_confirmed));
-  check(result.scope==='TRANSPORT_ONLY_NOT_PROVIDER_SUCCESS');
+  check(result.scope==='TRANSPORT_ONLY_NOT_PROVIDER_SUCCESS'&&result.probe_version==='geonames-redirect-policy-v2');
+  check(result.stop_reason==='PLAN_COMPLETE'&&result.limits.max_requests===8&&result.limits.request_timeout_ms===3000&&result.limits.total_timeout_ms===30000&&result.limits.cleanup_grace_ms===250&&result.limits.cooldown_ms===60000);
  }],
- ['G15','String comparison changes only input form and repeats baseline/string before any conclusion',async()=>{
-  const seen=[];
-  const run=createGeoNamesRuntimeProbe({getFetch:()=>async(input,options)=>{
-    seen.push(snapshot(input,options));if(typeof input!=='string')throw new TypeError('fixture');return new Response(null);
-  }});
+ ['G15','Unsupported error policy compares against manual twice with the same captured detached fetch',async()=>{
+  const seen=[],receivers=[];let captures=0;
+  const fetcher=async function(input,options){
+    receivers.push(this);seen.push(snapshot(input,options));
+    if(options.redirect==='error')throw new TypeError('fixture');return new Response(null,{status:200});
+  };
+  const run=createGeoNamesRuntimeProbe({getFetch:()=>{captures++;return fetcher;}});
   const result=await run({username:'fixture'});
-  check(result.results.map(r=>r.probe_id).join()==='A1,B1,A2,B2');
-  check(seen.every(s=>s.url===seen[0].url&&s.redirect==='error'&&s.keys==='redirect,signal'));
-  check(seen.map(s=>s.isURL).join()==='true,false,true,false');
+  check(captures===1&&receivers.every(r=>r===undefined));
+  check(seen.every(s=>s.url===seen[0].url&&s.isURL&&s.keys==='redirect,signal'));
+  check(seen.map(s=>s.redirect).join()==='error,manual,error,manual');
   check(result.results.map(r=>r.http_response_received).join()==='false,true,false,true');
+  check(result.results.filter(r=>!r.http_response_received).every(r=>r.transport_class==='UNKNOWN'&&r.failure_stage==='FETCH'));
+  check(result.results.map(r=>r.comparison_to).join()===',ERROR_1,ERROR_1,ERROR_2');
+  check(result.results.map(r=>r.changed_variable).join()==='BASELINE,REDIRECT_POLICY,REPEAT,REDIRECT_POLICY');
  }],
- ['G16','Receiver comparison invokes the same captured fetch with the same URL/options and repeats',async()=>{
-  const owner={},seen=[];let captures=0;
-  const fetcher=async function(input,options){seen.push({...snapshot(input,options),bound:this===owner});if(this!==owner)throw new TypeError('fixture');return new Response(null);};
-  const run=createGeoNamesRuntimeProbe({getFetch:()=>{captures++;return fetcher;},fetchOwner:owner});
+ ['G16','Comparison completes both pairs despite inconsistent responses and never asserts a runtime identity or root cause',async()=>{
+  let count=0;
+  const run=createGeoNamesRuntimeProbe({getFetch:()=>async()=>{count++;if(count===2)throw new TypeError('fixture');return new Response(null,{status:503});}});
   const result=await run({username:'fixture'});
-  check(captures===1&&result.results.map(r=>r.probe_id).join()==='A1,B1,A2,C1,A3,C2');
-  check(seen.every(s=>s.url===seen[0].url&&s.redirect==='error'&&s.keys==='redirect,signal'));
-  check(seen.map(s=>s.bound).join()==='false,false,false,true,false,true');
-  check(seen.filter(s=>s.bound).every(s=>s.isURL));
+  check(count===4&&result.request_count===4&&result.stop_reason==='PLAN_COMPLETE');
+  check(result.results.map(r=>r.http_response_received).join()==='true,false,true,true');
+  check(result.results[1].transport_class==='UNKNOWN');
+  check(!('root_cause' in result)&&!('runtime_identity' in result)&&!('provider_success' in result));
  }],
- ['G17','All failed variants select only fixed credential-free controls and never follow redirects',async()=>{
-  const seen=[];
-  const run=createGeoNamesRuntimeProbe({getFetch:()=>async(input,options)=>{
-    seen.push(snapshot(input,options));
-    if(new URL(input).hostname==='example.com')return new Response(null,{status:200});
-    if(options.redirect==='manual')return new Response(null,{status:302,headers:{Location:'https://fixture.invalid/private'}});
-    throw new TypeError('fixture');
-  }});
-  const result=await run({username:'fixture'});
-  check(result.results.map(r=>r.probe_id).join()==='A1,B1,A2,C1,A3,D1,E1,F1'&&result.request_count===8);
-  const d=new URL(seen[5].url),e=new URL(seen[6].url),f=new URL(seen[7].url),a=new URL(seen[0].url);a.searchParams.delete('username');
-  check(d.href===a.href&&f.href===d.href&&!d.searchParams.has('username'));
-  check(e.href==='https://example.com/'&&!e.search&&!e.username&&seen[6].keys==='redirect,signal');
-  check(seen.every(s=>s.redirect==='error'||s.redirect==='manual')&&seen[7].redirect==='manual');
-  check(result.results[7].redirect_observed&&!JSON.stringify(result).includes('Location')&&!JSON.stringify(result).includes('fixture.invalid'));
-  const opaque=createGeoNamesRuntimeProbe({getFetch:()=>async(_input,options)=>{if(options.redirect==='manual')return Object.defineProperties(new Response(null),{status:{value:0},type:{value:'opaqueredirect'}});throw new TypeError('fixture');}});
-  const last=(await opaque({username:'fixture'})).results.at(-1);check(last.redirect_observed&&last.http_status===null);
-  const credentialDifference=createGeoNamesRuntimeProbe({getFetch:()=>async input=>{if(new URL(input).searchParams.has('username'))throw new TypeError('fixture');return new Response(null,{status:401});}});
-  const compared=await credentialDifference({username:'fixture'});
-  check(compared.results.map(r=>r.probe_id).join()==='A1,B1,A2,C1,A3,D1,A4,D2');
-  check(compared.results.filter(r=>r.probe_id.startsWith('D')).every(r=>r.http_status===401));
+ ['G17','Manual probe samples observe redirects without following or reading headers/body/Location',async()=>{
+  for(const opaque of [false,true]){
+    let calls=0,cancelled=0;
+    const run=createGeoNamesRuntimeProbe({getFetch:()=>async(input,options)=>{
+      calls++;check(input instanceof URL&&input.origin==='https://secure.geonames.org'&&input.pathname==='/searchJSON'&&input.searchParams.get('username')==='fixture');
+      if(options.redirect==='error')throw new TypeError('fixture');
+      const response=new Response(new ReadableStream({cancel(){cancelled++;}}),{status:302});
+      return Object.defineProperties(response,{headers:{get(){throw new Error('must not inspect headers');}},text:{value:()=>{throw new Error('must not read body');}},...(opaque?{status:{value:0},type:{value:'opaqueredirect'}}:{})});
+    }});
+    const result=await run({username:'fixture'});
+    check(calls===4&&cancelled===2&&result.results.filter(r=>r.probe_id.startsWith('MANUAL')).every(r=>r.redirect_observed&&r.http_status===(opaque?null:302)&&r.cleanup_confirmed));
+  }
  }],
  ['G18','Probe deadlines abort sequential requests, clear timers, reject concurrent/cooldown runs and do not leak rejections',async()=>{
   const signals=[];let active=0,peak=0,unhandled=0;
@@ -88,7 +85,7 @@ export const GEONAMES_RUNTIME_PROBE_TESTS=[
       try{return await new Promise((_,reject)=>options.signal.addEventListener('abort',()=>reject(new DOMException('fixture','AbortError')),{once:true}));}finally{active--;}
     }});
     const pending=run({username:'fixture'});await rejects(()=>run({username:'fixture'}),'GEONAMES_PROBE_BUSY');
-    const result=await pending;check(result.request_count===8&&peak===1&&active===0&&signals.every(s=>s.aborted)&&handles.size===0);
+    const result=await pending;check(result.request_count===4&&peak===1&&active===0&&signals.every(s=>s.aborted)&&handles.size===0);
     check(result.results.every(r=>r.transport_class==='TIMEOUT'&&r.cleanup_confirmed));
     await rejects(()=>run({username:'fixture'}),'GEONAMES_PROBE_BUSY');
     for(const fails of [false,true]){
@@ -121,7 +118,7 @@ export const GEONAMES_RUNTIME_PROBE_TESTS=[
       throw Object.assign(new TypeError(detail,{cause:{message:detail,name:detail,code:detail}}),{stack:detail});
     }});
     const response=await post(admin,()=>run({username:marker})),result=await response.json(),text=JSON.stringify(result);
-    check(response.status===200&&calls===8&&logs===0);
+    check(response.status===200&&calls===4&&logs===0);
     for(const value of [marker,'https://','Istanbul','stack','cause','message','username'])check(!text.includes(value),'probe data leak');
     check(result.results.every(r=>r.transport_class==='UNKNOWN'&&Object.keys(r).sort().join()==='changed_variable,cleanup_confirmed,comparison_to,elapsed_ms,failure_stage,http_response_received,http_status,probe_id,redirect_observed,transport_class'));
     let fetched=0;const missing=createGeoNamesRuntimeProbe({getFetch:()=>async()=>{fetched++;return new Response(null);}});

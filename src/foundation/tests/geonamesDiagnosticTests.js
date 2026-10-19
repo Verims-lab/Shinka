@@ -29,7 +29,7 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
   const adapter=createGeoNamesAdapter({username:'  fixture-configured \n',fetcher:async(url,options)=>{
     check(url.origin==='https://secure.geonames.org'&&url.pathname==='/searchJSON');
     check(url.searchParams.get('username')==='fixture-configured'&&url.searchParams.get('q')==='İstanbul City');
-    check(url.searchParams.get('lang')==='tr'&&url.searchParams.get('maxRows')==='8'&&options.redirect==='error'&&!('headers' in options));
+    check(url.searchParams.get('lang')==='tr'&&url.searchParams.get('maxRows')==='8'&&options.redirect==='manual'&&!('headers' in options));
     return Response.json({geonames:[{...fixturePlace,username:'discard-provider-field'}]});
   }});
   const response=await post(sdkOnboardingFixture(),adapter);
@@ -143,7 +143,7 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
   await failure(()=>body.search('City','en'),'GEONAMES_NETWORK_ERROR',200,null,null,'RESPONSE_BODY','CONNECTION');
   const paths=[];
   const success=createGeoNamesAdapter({username:'fixture',fetcher:async(url,options)=>{
-    check(url instanceof URL&&options.redirect==='error');paths.push(url.pathname);
+    check(url instanceof URL&&options.redirect==='manual');paths.push(url.pathname);
     if(url.pathname==='/getJSON')check(url.searchParams.get('geonameId')===String(fixturePlace.geonameId));
     return Response.json(url.pathname==='/searchJSON'?{geonames:[fixturePlace]}:fixturePlace);
   }});
@@ -206,5 +206,80 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
     const safe=geoNamesDiagnostic(unsafe);check(safe.failure_stage==='UNKNOWN'&&safe.transport_class===null);
     check(logs===0,'transport errors must not log');
   }finally{methods.forEach((method,index)=>{console[method]=originals[index];});}
+ }],
+ ['G21','Manual compatibility processes search and selected-ID resolution when error mode is unsupported',async()=>{
+  const seen=[],receivers=[];
+  const fetcher=async function(input,options){
+    receivers.push(this);seen.push({url:input,options});
+    if(options.redirect==='error')throw new TypeError('unsupported fixture');
+    check(options.redirect==='manual'&&input instanceof URL&&Object.keys(options).sort().join()==='redirect,signal');
+    check(input.origin==='https://secure.geonames.org'&&input.searchParams.get('username')==='fixture');
+    return Response.json(input.pathname==='/searchJSON'?{geonames:[fixturePlace]}:fixturePlace);
+  };
+  const adapter=createGeoNamesAdapter({username:'fixture',fetcher});
+  const [place]=await adapter.search('City','tr');
+  check(JSON.stringify(await adapter.resolve(place.birthplace_geonames_id))===JSON.stringify(place));
+  check(seen.length===2&&seen.map(s=>s.url.pathname).join()==='/searchJSON,/getJSON'&&receivers.every(r=>r===undefined));
+ }],
+ ['G22','Every 3xx and opaque redirect is rejected before parsing; search and resolve never send a second request',async()=>{
+  for(const status of [300,301,302,303,304,305,306,307,308,399,0])for(const resolve of [false,true]){
+    let calls=0,reads=0,cancels=0;
+    const adapter=createGeoNamesAdapter({username:'fixture',fetcher:async(_url,options)=>{
+      calls++;check(options.redirect==='manual');
+      // Some statuses forbid a body in the Response constructor; vary the exposed
+      // status so even an unexpected unread stream exercises our rejection path.
+      const response=new Response(new ReadableStream({cancel(){cancels++;}}),{status:302});
+      return Object.defineProperties(response,{
+        status:{value:status},
+        headers:{get(){reads++;throw new Error('headers forbidden');}},
+        text:{value:async()=>{reads++;return JSON.stringify({geonames:[fixturePlace]});}},
+        ...(status===0?{type:{value:'opaqueredirect'}}:{}),
+      });
+    }});
+    await failure(()=>resolve?adapter.resolve(fixturePlace.geonameId):adapter.search('City','en'),'GEONAMES_HTTP_ERROR',status||null,null,null,'RESPONSE_VALIDATION','REDIRECT_REJECTION');
+    check(calls===1&&reads===0&&cancels===1);
+  }
+ }],
+ ['G23','Redirect cleanup is deadline-bounded; late responses are cancelled unread without unhandled rejection',async()=>{
+  const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));let unhandled=0;
+  const listener=()=>{unhandled++;};window.addEventListener('unhandledrejection',listener);
+  try{
+    let signal=new AbortController().signal,cancels=0;
+    /** @type {(reason:unknown)=>void} */ let rejectCleanup=()=>{};
+    const cleanup=new Promise((_,reject)=>{rejectCleanup=reject;});
+    const stalled=createGeoNamesAdapter({username:'fixture',timeoutMs:5,fetcher:async(_url,options)=>{
+      signal=options.signal;
+      return new Response(new ReadableStream({cancel(){cancels++;return cleanup;}}),{status:302});
+    }});
+    await failure(()=>stalled.search('City','en'),'GEONAMES_REQUEST_TIMEOUT',302,null,null,'RESPONSE_VALIDATION','TIMEOUT');
+    check(signal.aborted&&cancels===1);rejectCleanup(new Error('private cleanup fixture'));
+    let resolveLate=(_response)=>{};let reads=0,lateCancels=0;
+    const late=createGeoNamesAdapter({username:'fixture',timeoutMs:5,fetcher:()=>new Promise(resolve=>{resolveLate=resolve;})});
+    await failure(()=>late.search('City','en'),'GEONAMES_REQUEST_TIMEOUT');
+    resolveLate(Object.assign(new Response(new ReadableStream({cancel(){lateCancels++;throw new Error('private late cleanup');}})),{text:async()=>{reads++;return '{}';}}));
+    await delay(15);check(reads===0&&lateCancels===1&&unhandled===0);
+  }finally{window.removeEventListener('unhandledrejection',listener);}
+ }],
+ ['G24','Redirect projection discards Location, body and cancellation errors without logs or product writes',async()=>{
+  const marker='synthetic-redirect-sensitive',methods=['log','info','warn','error','debug','trace'];
+  const originals=methods.map(k=>console[k]);let logs=0;
+  methods.forEach(k=>{console[k]=()=>{logs++;};});
+  try{
+    for(const status of [301,302,303,307,308,0]){
+      const f=sdkOnboardingFixture(),before=JSON.stringify(f.rows);let calls=0;
+      const adapter=createGeoNamesAdapter({username:marker,fetcher:async(input)=>{
+        calls++;
+        const response=new Response(new ReadableStream({start(c){c.enqueue(new TextEncoder().encode(marker));},cancel(){throw new TypeError(`${String(input)} ${marker}`,{cause:{message:marker,stack:marker}});}}),{status:status||200,headers:{Location:`https://fixture.invalid/${marker}`}});
+        return status?response:Object.defineProperties(response,{status:{value:0},type:{value:'opaqueredirect'}});
+      }});
+      const response=await post(f,adapter),result=await response.json(),serialized=JSON.stringify(result);
+      check(response.status===502&&result.error_code==='GEONAMES_UNAVAILABLE'&&result.field===null&&calls===1);
+      check(result.diagnostic.code==='GEONAMES_HTTP_ERROR'&&result.diagnostic.http_status===(status||null)&&result.diagnostic.transport_class==='REDIRECT_REJECTION');
+      check(Object.keys(result.diagnostic).sort().join()==='code,failure_stage,http_status,provider_class,provider_status,transport_class');
+      for(const value of [marker,'https://','Location','username','stack','cause','message','İstanbul'])check(!serialized.includes(value),'redirect disclosure');
+      check(JSON.stringify(f.rows)===before&&f.calls.every(c=>c.method==='filter'));
+    }
+    check(logs===0);
+  }finally{methods.forEach((k,i)=>{console[k]=originals[i];});}
  }],
 ];
