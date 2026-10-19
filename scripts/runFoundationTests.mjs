@@ -45,7 +45,19 @@ try {
   const health=await page.evaluate(()=>window.__staticHealthEvidence());
   const onboardingHealth=await page.evaluate(()=>window.__onboardingHealthEvidence());
   const catalog=await page.evaluate(()=>window.__foundationCatalog);
-  console.log(JSON.stringify({evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",catalog,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,health,onboardingHealth,pageErrors},null,2));
-  if(results.length===0||results.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
+  // Exercise the real App -> AuthProvider -> Onboarding route with only SDK transport substituted.
+  const productionRouting=[];
+  for(const session of ['anonymous','admin']) {
+    await page.goto(`${origin}/login?probe=1&sdkSession=${session}`);
+    const expected=session==='admin'?'AUTHENTICATED_PROFILE_REQUIRED':'UNAUTHENTICATED_SIGN_IN';
+    await page.waitForSelector(`[data-onboarding-state="${expected}"]`);
+    const state=await page.locator('[data-onboarding-state]').getAttribute('data-onboarding-state');
+    productionRouting.push({session,state,passed:state===expected&&await page.locator('[data-auth-probe]').count()===0});
+  }
+  await page.goto(`${origin}/auth-shell-probe?sdkSession=admin`);
+  await page.waitForSelector('[data-auth-probe][data-probe-status="READY"]');
+  productionRouting.push({session:'admin-isolated-probe',passed:await page.locator('[data-onboarding-state]').getAttribute('data-onboarding-state')==='UNAUTHENTICATED_SIGN_IN'});
+  console.log(JSON.stringify({evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",catalog,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,health,onboardingHealth,pageErrors},null,2));
+  if(results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
 } catch(error){console.error(error);process.exitCode=1;}
 finally {await browser?.close();if(server) await new Promise(resolve=>server.close(resolve));await rm(output,{recursive:true,force:true});}

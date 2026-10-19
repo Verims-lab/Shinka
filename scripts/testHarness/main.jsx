@@ -4,7 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HealthCenter from "@/pages/internal/HealthCenter";
 import BuildEnvironment from "@/pages/internal/BuildEnvironment";
 import OnboardingFixture from './OnboardingFixture';
-import Login from "@/pages/Login";
+import App from '@/App';
+import { isAuthProbePath } from '@/foundation/probes/authProbeContract';
 import { runFoundationTests } from "@/foundation/tests/foundationTests";
 import { ONBOARDING_HEALTH_CASES } from '@/foundation/health/cases/onboarding';
 import { H04_CASES } from "@/foundation/health/cases/h04";
@@ -17,11 +18,11 @@ import { HEALTH_CATALOG_VERSION, APPLICABILITY as A } from "@/foundation/health/
 import "@/index.css";
 
 // The harness mounts real pages without claiming that a synthetic admin is a live login.
-createRoot(document.getElementById("root")).render(<BrowserRouter><Routes>
+const productionRoute=isAuthProbePath(window.location.pathname)||window.location.pathname==='/login';
+createRoot(document.getElementById("root")).render(productionRoute?<App/>:<BrowserRouter><Routes>
   <Route path="/internal/health" element={<HealthCenter/>}/>
   <Route path="/internal/build" element={<BuildEnvironment/>}/>
   <Route path="/onboarding-fixture" element={<OnboardingFixture/>}/>
-  <Route path="/login" element={<Login/>}/>
   <Route path="*" element={<div>Intentionally missing probe root</div>}/>
 </Routes></BrowserRouter>);
 window.__runFoundationTests = runFoundationTests;

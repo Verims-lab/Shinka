@@ -6,13 +6,13 @@
 **Last Updated:** 2026-10-19
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-006.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-007.0; repository, synthetic and external evidence separated.
 
-## Catalog (HC-006.0) — 16 suites, 126 cases
+## Catalog (HC-007.0) — 16 suites, 126 cases
 
 Registry-derived totals: 104 current, 15 future, 7 external. H06 has 6 current + 1 external; H07 has 12 current; H10 has 1 current GeoNames + 2 future Pattern/Moon + 1 external; H11 has 2 current onboarding-consent + 3 future withdrawal/account cases. H08 remains entirely future. Existing H01…H05/H12/H13/H16 scopes are preserved.
 
-H06's six current cases exercise the real auth/identity helpers with synthetic providers/principals. H07 has eight executable contract cases plus four explicit BLOCKED capabilities (Sun resolver, approved TR copy, production atomic adapter, durable skipped-step resume). H10-003 measures the structured GeoNames adapter contract; H10-004 requires live provider evidence. H11-004 exercises grant/history/immutability/retry contracts; H11-005 remains BLOCKED for approved consent text/version. No future withdrawal/deletion/Moon/cycle engine behavior is promoted to PASS.
+H06's six current cases exercise the real auth/identity helpers with synthetic providers/principals. H07 has 12 executable current cases, including approved Sun/TR decisions, the production persistence adapter and durable resume semantics. H10-003 measures the structured GeoNames adapter contract; H10-004 requires live provider evidence. H11-004 exercises grant/history/immutability/retry contracts; H11-005 verifies the approved consent text/version and persistence contract. No future withdrawal/deletion/Moon/cycle engine behavior is promoted to PASS.
 
 CLI output includes executable regression and current onboarding Health evidence. Every test and current onboarding Health case must PASS; BLOCKED/FAIL or another non-PASS status exits non-zero. The four approved product decisions close the earlier source gaps. Final live Full Health remains required after merge/deploy.
 
@@ -90,7 +90,7 @@ REPOSITORY VERIFIED and SYNTHETIC_RUNTIME VERIFIED. LIVE_RUNTIME evidence covers
 
 Repository checks prove alignment and source-backed schema boundaries. The actual production adapter is exercised against an isolated SDK transport; original synthetic atomic-contract tests remain separate. Rendered UI tests use real components. No live OAuth/GeoNames/provider success or live mutation enforcement is claimed. The four product decisions are resolved by the user's explicit Final Closure request and helper-copy reply.
 
-## Final repository verification — Buildmarker-008 (2026-10-19)
+## Prior final repository verification — Buildmarker-008 / HC-006.0 (2026-10-19)
 
 After clean npm ci: npm ls --depth=0, security:deps, typecheck, test:foundation, lint, build and health:repo all PASS. Audit: **0 Critical / 0 High / 2 Moderate / 0 Low**. Existing React Router Moderate dispositions remain in SECURITY_PRIVACY; no dependency/lockfile changes. Non-fatal existing npm-config and shared-test chunk/mixed-import build warnings remain.
 
@@ -103,3 +103,21 @@ Repository inspection: 20 product schemas, no extras/undocumented fields, unchan
 All four source gaps are RESOLVED_BY_PRODUCT_DECISION. Internal package blockers: **0**. Package: **CLOSED_PENDING_BASE44_VERIFICATION**. FIRST_SHINKA_ENGINE_REQUIRED remains YES / NEXT_PACKAGE_DEPENDENCY; no content import, generated user_daily_message, Calendar, Pattern, scheduler, push or withdrawal implementation.
 
 BASE44_FULL_HEALTH_REQUIRED, BASE44_LIVE_AUTH_REQUIRED, BASE44_LIVE_GEONAMES_REQUIRED and BASE44_LIVE_ENFORCEMENT_REQUIRED remain YES. Native keyed uniqueness, conditional updates, NULL clearing, timestamp offsets and immutable native event metadata require deployed evidence. NATIVE_CONSENT_TIMESTAMP_REQUIRED still fails closed for ambiguous native timestamps; no fabricated UTC, transaction or rollback guarantee is claimed.
+
+## Measured Base44 Health closure — same Buildmarker-008
+
+The supplied HC-006.0 live baseline had 126 total / 104 executed / 102 PASS / 2 FAIL / 22 N/A. This continuation addresses only H03-007/T74 and H05-009. Health advances to **HC-007.0** because H05-009 changes meaning; BuildMarker stays 008 and its single ledger entry is updated. Counts remain **16 suites / 126 cases / 104 current / 15 future / 7 external**.
+
+T74 was reproduced read-only in the authenticated live browser at `https://shinka-rhythm-flow.base44.app/login?probe=1`. After hydration the path remained `/login`; `[data-probe-root]` existed, `[data-auth-shell]` did not, provider count was 0, and `data-onboarding-state` was `AUTHENTICATED_PROFILE_REQUIRED`. There was no observed URL redirect or missing PageContainer. App -> AuthProvider -> Onboarding hydrated the existing admin session, superseding the sign-in initial entry; `probe=1` had no isolation semantics. The old CLI directly mounted Login, hiding the production route-state difference. The old poll waited 15 seconds for a shell that could never appear and emitted only AUTH_PROBE_ROOT_TIMEOUT.
+
+T74 now uses the exact `/auth-shell-probe` presentation route outside AuthProvider. It renders the real OnboardingScreen/SignIn with `UNAUTHENTICATED_SIGN_IN`, an isolated empty pending-name reader, unchanged Apple/Google service and unchecked 18+ boundary. It creates no authenticated principal, never hydrates/writes onboarding data and does not need an OAuth response. Normal `/login`, `/onboarding` and protected routing are unchanged. Root contract: `[data-auth-probe="unauthenticated-shell"]`, `data-probe-status=LOADING|READY|ERROR`, canonical route attribute, real `[data-probe-root]`/`[data-auth-shell]` and expected onboarding state. READY is emitted after commit/layout; a render boundary signals ERROR. The observer retains the existing 15-second bound and distinguishes READY, ERROR and TIMEOUT with route/path/state/elapsed evidence. Missing root/readiness, inaccessible documents, unexpected routes/redirect loops and malformed READY never pass. H03-007 retains successful T74 geometry evidence as well as failures.
+
+H05-009's obsolete ABSENT-entity rule predated the 20 physical schemas deliberately introduced in 007. **Schema presence does not mean product data was imported.** H05-009 now requires exact unfiltered live counts of zero for MessageCategoryLookup, MessageCategoryMapping and MessagePair plus the read-only artifact validator's `importPerformed=false`. The admin-only internalHealth `contentCounts` action uses SDK `count()` on only those three entities; no product rows reach the browser. Missing/invalid/failed counts block, any positive count fails with `UNEXPECTED_PRODUCT_CONTENT_PRESENT`, entity/count and non-sensitive provenance. No rows are deleted. The validator flag describes its current read-only operation; it is not an invented global historical import log. Zero live rows plus this flag verify the current pre-content state, including absence of fake/demo rows.
+
+Live read-only evidence on 2026-10-19 (15:40–15:49 UTC observation window): Base44 admin Data panel, app `6ad5190f4845d4e3af03b420`, unfiltered tables displayed **MessageCategoryLookup (0), MessageCategoryMapping (0), MessagePair (0)** and no records. The supplied live artifact result is `importPerformed:false`. These are measured live UI counts, not inferred from repository schemas and not execution of the newly added backend action. No product data was written. After Git/Builder publication the new action and Full Health must be re-run; this evidence does not certify a new deployed HC-007.0 result.
+
+The zero-row policy applies only to the pre-content 007/008 stage. At 009 or later H05-009 blocks with `APPROVED_CONTENT_VALIDATION_REQUIRED` until an approved imported-count/content-validation policy replaces it. Unknown packages block. H05-001…008 workbook integrity checks are unchanged; no content package or importer is implemented here.
+
+Canonical tests retain all 215 and add HC01…HC16 for real probe readiness, negative probe states, package-aware content counts and server authorization. The CLI also mounts the real App/AuthProvider/Onboarding route with isolated SDK transports, checking anonymous sign-in, authenticated profile hydration even with `probe=1`, and the isolated probe with an existing session. These three extra route scenarios are separate from the canonical test count. Final validation results follow. Final live HC-007.0 Full Health remains required; First Shinka stays a next-package dependency.
+
+Final validation for this Health closure: **231 canonical PASS / 0 FAIL**, plus **3/3 real App routing scenarios**, zero browser exceptions. T74 measured READY in 53ms at 360px and 52ms at 1024px (15,000ms bound); Apple/Google only, both 52px controls, 20px padding, zero passwords, age unchecked. Preserved current Health evidence: H06 6/6, H07 12/12, H10-003 1/1, H11 onboarding 2/2, H12 20/20 PASS. npm ci, npm ls --depth=0, security:deps, typecheck, lint, build and Repo Health PASS. Audit: 0 Critical / 0 High / 2 existing Moderate findings. All 20 schemas and 12 document headers remain aligned. Internal 008 blockers: 0; **CLOSED_PENDING_BASE44_VERIFICATION**. This is not a new deployed Full Health result.

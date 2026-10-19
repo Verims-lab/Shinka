@@ -1,6 +1,6 @@
 import { loadStaticEvidence } from "@/foundation/inspection/sourceScanner";
 import { fetchArtifactValidation } from "@/services/internal/artifactService";
-import { probeDomainEntities } from "@/services/internal/entityProbeService";
+import { probeDomainEntities, countLiveContentRows } from "@/services/internal/entityProbeService";
 
 const memo = (fn) => { let p; return () => (p ??= fn()); };
 
@@ -10,6 +10,7 @@ export function createHealthContext() {
     inspection: memo(loadStaticEvidence),
     artifacts: memo(() => fetchArtifactValidation("live")),
     entityProbe: memo(probeDomainEntities),
+    contentCounts: memo(countLiveContentRows),
     results: [],
   };
 }

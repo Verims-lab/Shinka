@@ -1,5 +1,7 @@
 import { categoryIntegrity, mappingIntegrity } from "../../../../base44/shared/contentArtifactValidator.ts";
-import { CLASS, RUNNER, STATUS } from "../constants";
+import { CLASS, RUNNER } from "../constants";
+import { BUILD_MARKER } from '@/foundation/buildMarker';
+import { evaluateContentState } from '../../../../base44/shared/contentStateContract.js';
 import { ev, verdict, blockedResult } from "../evidence";
 import { makeCase } from "../caseFactory";
 
@@ -41,13 +43,13 @@ export const H05_CASES = [
   })),
   c("H05-008", "No missing mandatory language cells", "All TR and EN Your Shinka / Suggestion cells are filled.", withArtifacts((a) =>
     check(a.content260.missingCellCount === 0, { missingCellCount: a.content260.missingCellCount }, { missingCellCount: 0 }, "Cell completeness"))),
-  c("H05-009", "No live content import performed", "Validator reports no import and content entities do not exist.", async (ctx) => {
-    const probe = await ctx.entityProbe();
-    const content = probe.filter((p) => ["MessagePair", "MessageCategoryMapping", "MessageCategoryLookup"].includes(p.plannedName));
-    if (content.some((p) => p.state === "INCONCLUSIVE")) return { status: STATUS.BLOCKED, evidence: ev(CLASS.LIVE_RUNTIME, "entity probe", content, "ABSENT", "Probe inconclusive") };
+  c("H05-009", "No product content seeded/imported before content package", "Package-aware live row counts and read-only validator import evidence; schema existence is not an import.", async (ctx) => {
+    let counts=null;
+    try { counts=await ctx.contentCounts(); } catch { /* No inferred zero on an unavailable live probe. */ }
     let importPerformed = null;
     try { importPerformed = (await ctx.artifacts()).importPerformed; } catch { importPerformed = null; }
-    if (importPerformed === null) return blockedResult(ev(CLASS.LIVE_RUNTIME, SRC, "UNAVAILABLE", false, "Validator unavailable"));
-    return check(importPerformed === false && content.every((p) => p.state === "ABSENT"), { importPerformed, contentEntities: content.map((p) => `${p.plannedName}:${p.state}`) }, { importPerformed: false, contentEntities: "ABSENT" }, "Import absence check");
+    const result=evaluateContentState(BUILD_MARKER,counts,importPerformed);
+    return {status:result.status,evidence:ev(CLASS.LIVE_RUNTIME,'internalHealth contentCounts + validateContentArtifacts (live, read-only)',
+      {buildMarker:BUILD_MARKER,counts,importPerformed,unexpected:result.unexpected||[]},result.expected,result.code)};
   }),
 ];

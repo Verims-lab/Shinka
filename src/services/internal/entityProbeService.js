@@ -3,3 +3,6 @@ import { base44 } from "@/api/base44Client";
 export async function probeDomainEntities() {
   return (await base44.functions.invoke("internalHealth", { action:"probe" })).data.results;
 }
+export async function countLiveContentRows() {
+  return (await base44.functions.invoke("internalHealth", { action:"contentCounts" })).data;
+}
