@@ -1,0 +1,728 @@
+{
+  "label": "baseline",
+  "measuredAt": "2026-10-19T21:48:27.839Z",
+  "environment": {
+    "node": "v26.0.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "browser": "Playwright Chromium, headless, cold context, 360x740, loopback, no throttling; SDK transport stubbed, external fonts blocked; not user metrics"
+  },
+  "production": {
+    "initialJS": {
+      "raw": 1026028,
+      "gzip": 328023
+    },
+    "allJS": {
+      "raw": 1026028,
+      "gzip": 328023
+    },
+    "css": {
+      "raw": 84726,
+      "gzip": 14449
+    },
+    "initialModules": [
+      "/src/components/ui/use-toast.jsx",
+      "/src/lib/utils.js",
+      "/src/components/ui/toast.jsx",
+      "/src/components/ui/toaster.jsx",
+      "/src/lib/query-client.js",
+      "/src/lib/app-params.js",
+      "/src/api/base44Client.js",
+      "/src/lib/PageNotFound.jsx",
+      "/src/foundation/authErrors.js",
+      "/src/lib/AuthContext.jsx",
+      "/src/components/UserNotRegisteredError.jsx",
+      "/src/components/ScrollToTop.jsx",
+      "/src/components/ProtectedRoute.jsx",
+      "/src/foundation/uiuxTables.js",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/sunSign.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/src/services/onboardingService.js",
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/components/shinka/ShinkaInput.jsx",
+      "/src/components/GoogleIcon.jsx",
+      "/src/foundation/authPolicy.js",
+      "/src/services/authService.js",
+      "/src/lib/authReturnTo.js",
+      "/src/features/onboarding/SignIn.jsx",
+      "/src/components/shinka/ShinkaSelect.jsx",
+      "/src/features/onboarding/birthplaceSelection.js",
+      "/src/features/onboarding/BirthplacePicker.jsx",
+      "/src/features/onboarding/pendingName.js",
+      "/src/features/onboarding/OnboardingScreen.jsx",
+      "/src/pages/Home.jsx",
+      "/src/pages/Onboarding.jsx",
+      "/src/components/shinka/StatePanel.jsx",
+      "/src/components/internal/AdminGate.jsx",
+      "/src/foundation/buildMarker.js",
+      "/src/components/shinka/PageHeader.jsx",
+      "/src/components/shinka/KeyValueGrid.jsx",
+      "/src/components/internal/InternalNav.jsx",
+      "/src/components/shinka/StatusBadge.jsx",
+      "/src/foundation/errors.js",
+      "/src/services/internal/healthRunStore.js",
+      "/src/components/internal/LatestHealthCard.jsx",
+      "/src/foundation/buildLedger.js",
+      "/src/components/internal/LedgerList.jsx",
+      "/src/foundation/capabilityRegister.js",
+      "/src/components/internal/CapabilityList.jsx",
+      "/src/foundation/environment.js",
+      "/base44/shared/healthConstants.js",
+      "/src/foundation/sourceInventory.js",
+      "/src/pages/internal/BuildEnvironment.jsx",
+      "/src/foundation/health/suites.js",
+      "/src/foundation/openDecisions.js",
+      "/base44/shared/healthEvidence.js",
+      "/base44/shared/healthAggregate.js",
+      "/base44/shared/reportPrivacy.js",
+      "/src/foundation/health/report.js",
+      "/src/foundation/health/reportExport.js",
+      "/src/components/internal/HealthControls.jsx",
+      "/src/components/internal/HealthSummary.jsx",
+      "/src/components/internal/CaseRow.jsx",
+      "/src/components/internal/SuiteSection.jsx",
+      "/src/components/internal/RunHistory.jsx",
+      "/src/foundation/buildMarkerRules.js",
+      "/src/foundation/inspection/sourceIntegrity.js",
+      "/src/foundation/probes/iconProbe.js",
+      "/src/foundation/inspection/sourceScanner.js",
+      "/src/foundation/probes/domProbes.js",
+      "/base44/shared/healthHistoryContract.js",
+      "/src/foundation/tests/uiContractTests.js",
+      "/src/foundation/inspection/sourceRules.js",
+      "/src/foundation/health/integrity.js",
+      "/base44/shared/contentArtifactValidator.ts",
+      "/src/foundation/health/completion.js",
+      "/base44/shared/contentStateContract.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/health/cases/h05.js",
+      "/base44/shared/domainContract.js",
+      "/base44/shared/internalHealthOperations.js",
+      "/src/foundation/tests/securityScenarios.js",
+      "/src/foundation/probes/authProbeContract.js",
+      "/src/foundation/tests/hardeningTests.js",
+      "/src/foundation/tests/healthClosureTests.js",
+      "/src/foundation/probes/AuthShellProbe.jsx",
+      "/src/foundation/tests/authProbeTests.jsx",
+      "/src/foundation/probes/uiProbes.js",
+      "/src/foundation/health/cases/h13contract.js",
+      "/src/foundation/health/cases/h13nav.js",
+      "/src/foundation/health/cases/h13static.js",
+      "/src/foundation/health/cases/h13.js",
+      "/src/services/internal/artifactService.js",
+      "/src/services/internal/entityProbeService.js",
+      "/src/foundation/health/context.js",
+      "/src/foundation/tests/cssContractTests.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/domainSourceReceipt.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/domainAtomic.js",
+      "/src/foundation/inspection/domainRules.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/base44OnboardingFixture.js",
+      "/base44/shared/geonamesDiagnostics.js",
+      "/base44/shared/geonamesHierarchy.js",
+      "/base44/shared/geonamesAdapter.js",
+      "/src/foundation/tests/geonamesHierarchyFixture.js",
+      "/src/foundation/tests/onboardingFixture.js",
+      "/base44/shared/onboardingRoute.js",
+      "/base44/shared/base44OnboardingAdapter.js",
+      "/base44/shared/onboardingOperations.js",
+      "/src/foundation/inspection/onboardingRules.js",
+      "/src/foundation/tests/onboardingCopyReceipt.json",
+      "/src/foundation/tests/onboardingDecisionTests.js",
+      "/src/foundation/tests/productionOnboardingTests.js",
+      "/src/foundation/tests/OnboardingTestScreen.jsx",
+      "/src/foundation/tests/onboardingUiTests.js",
+      "/src/foundation/tests/birthplaceSelectionTests.js",
+      "/src/foundation/tests/geonamesDiagnosticTests.js",
+      "/base44/shared/geonamesRuntimeProbe.js",
+      "/src/foundation/tests/geonamesRuntimeProbeTests.js",
+      "/src/foundation/tests/onboardingTests.js",
+      "/base44/shared/domainAudit.js",
+      "/base44/shared/domainAccess.js",
+      "/src/foundation/tests/securityTests.js",
+      "/src/foundation/tests/foundationTests.js",
+      "/src/components/internal/TestsPanel.jsx",
+      "/src/foundation/health/cases/h01.js",
+      "/src/foundation/health/cases/h02.js",
+      "/src/foundation/health/cases/h03.js",
+      "/src/foundation/domainContract.js",
+      "/src/foundation/health/cases/domainProbe.js",
+      "/src/foundation/health/cases/h04.js",
+      "/src/foundation/health/cases/h12.js",
+      "/src/foundation/health/cases/h16.js",
+      "/src/foundation/health/cases/onboarding.js",
+      "/src/foundation/health/cases/future.js",
+      "/src/foundation/health/catalog.js",
+      "/src/foundation/health/runner.js",
+      "/src/foundation/health/useHealthRunner.js",
+      "/src/pages/internal/HealthCenter.jsx",
+      "/src/App.jsx",
+      "/src/index.css",
+      "/src/main.jsx",
+      "/index.html",
+      "/src/foundation/i18n/strings.js",
+      "/src/foundation/uiContract.js",
+      "/src/foundation/designTokens.js",
+      "/src/foundation/inspection/uiRules.js"
+    ],
+    "chunkCount": 2
+  },
+  "lab": {
+    "initialJS": {
+      "raw": 893528,
+      "gzip": 284737
+    },
+    "allJS": {
+      "raw": 893528,
+      "gzip": 284737
+    },
+    "css": {
+      "raw": 84726,
+      "gzip": 14449
+    },
+    "initialModules": [
+      "/src/components/ui/use-toast.jsx",
+      "/src/lib/utils.js",
+      "/src/components/ui/toast.jsx",
+      "/src/components/ui/toaster.jsx",
+      "/src/lib/query-client.js",
+      "/scripts/testHarness/fakeBase44.js",
+      "/src/lib/PageNotFound.jsx",
+      "/src/foundation/authErrors.js",
+      "/src/lib/AuthContext.jsx",
+      "/src/components/UserNotRegisteredError.jsx",
+      "/src/components/ScrollToTop.jsx",
+      "/src/components/ProtectedRoute.jsx",
+      "/src/foundation/uiuxTables.js",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/sunSign.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/src/services/onboardingService.js",
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/components/shinka/ShinkaInput.jsx",
+      "/src/components/GoogleIcon.jsx",
+      "/src/foundation/authPolicy.js",
+      "/src/services/authService.js",
+      "/src/lib/authReturnTo.js",
+      "/src/features/onboarding/SignIn.jsx",
+      "/src/components/shinka/ShinkaSelect.jsx",
+      "/src/features/onboarding/birthplaceSelection.js",
+      "/src/features/onboarding/BirthplacePicker.jsx",
+      "/src/features/onboarding/pendingName.js",
+      "/src/features/onboarding/OnboardingScreen.jsx",
+      "/src/pages/Home.jsx",
+      "/src/pages/Onboarding.jsx",
+      "/src/components/shinka/StatePanel.jsx",
+      "/src/components/internal/AdminGate.jsx",
+      "/src/foundation/buildMarker.js",
+      "/src/components/shinka/PageHeader.jsx",
+      "/src/components/shinka/KeyValueGrid.jsx",
+      "/src/components/internal/InternalNav.jsx",
+      "/src/components/shinka/StatusBadge.jsx",
+      "/src/foundation/errors.js",
+      "/src/services/internal/healthRunStore.js",
+      "/src/components/internal/LatestHealthCard.jsx",
+      "/src/foundation/buildLedger.js",
+      "/src/components/internal/LedgerList.jsx",
+      "/src/foundation/capabilityRegister.js",
+      "/src/components/internal/CapabilityList.jsx",
+      "/src/foundation/environment.js",
+      "/base44/shared/healthConstants.js",
+      "/src/foundation/sourceInventory.js",
+      "/src/pages/internal/BuildEnvironment.jsx",
+      "/src/foundation/health/suites.js",
+      "/src/foundation/openDecisions.js",
+      "/base44/shared/healthEvidence.js",
+      "/base44/shared/healthAggregate.js",
+      "/base44/shared/reportPrivacy.js",
+      "/src/foundation/health/report.js",
+      "/src/foundation/health/reportExport.js",
+      "/src/components/internal/HealthControls.jsx",
+      "/src/components/internal/HealthSummary.jsx",
+      "/src/components/internal/CaseRow.jsx",
+      "/src/components/internal/SuiteSection.jsx",
+      "/src/components/internal/RunHistory.jsx",
+      "/src/foundation/buildMarkerRules.js",
+      "/src/foundation/inspection/sourceIntegrity.js",
+      "/src/foundation/probes/iconProbe.js",
+      "/src/foundation/inspection/sourceScanner.js",
+      "/src/foundation/probes/domProbes.js",
+      "/base44/shared/healthHistoryContract.js",
+      "/src/foundation/tests/uiContractTests.js",
+      "/src/foundation/inspection/sourceRules.js",
+      "/src/foundation/health/integrity.js",
+      "/base44/shared/contentArtifactValidator.ts",
+      "/src/foundation/health/completion.js",
+      "/base44/shared/contentStateContract.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/health/cases/h05.js",
+      "/base44/shared/domainContract.js",
+      "/base44/shared/internalHealthOperations.js",
+      "/src/foundation/tests/securityScenarios.js",
+      "/src/foundation/probes/authProbeContract.js",
+      "/src/foundation/tests/hardeningTests.js",
+      "/src/foundation/tests/healthClosureTests.js",
+      "/src/foundation/probes/AuthShellProbe.jsx",
+      "/src/foundation/tests/authProbeTests.jsx",
+      "/src/foundation/probes/uiProbes.js",
+      "/src/foundation/health/cases/h13contract.js",
+      "/src/foundation/health/cases/h13nav.js",
+      "/src/foundation/health/cases/h13static.js",
+      "/src/foundation/health/cases/h13.js",
+      "/src/services/internal/artifactService.js",
+      "/src/services/internal/entityProbeService.js",
+      "/src/foundation/health/context.js",
+      "/src/foundation/tests/cssContractTests.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/domainSourceReceipt.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/domainAtomic.js",
+      "/src/foundation/inspection/domainRules.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/base44OnboardingFixture.js",
+      "/base44/shared/geonamesDiagnostics.js",
+      "/base44/shared/geonamesHierarchy.js",
+      "/base44/shared/geonamesAdapter.js",
+      "/src/foundation/tests/geonamesHierarchyFixture.js",
+      "/src/foundation/tests/onboardingFixture.js",
+      "/base44/shared/onboardingRoute.js",
+      "/base44/shared/base44OnboardingAdapter.js",
+      "/base44/shared/onboardingOperations.js",
+      "/src/foundation/inspection/onboardingRules.js",
+      "/src/foundation/tests/onboardingCopyReceipt.json",
+      "/src/foundation/tests/onboardingDecisionTests.js",
+      "/src/foundation/tests/productionOnboardingTests.js",
+      "/src/foundation/tests/OnboardingTestScreen.jsx",
+      "/src/foundation/tests/onboardingUiTests.js",
+      "/src/foundation/tests/birthplaceSelectionTests.js",
+      "/src/foundation/tests/geonamesDiagnosticTests.js",
+      "/base44/shared/geonamesRuntimeProbe.js",
+      "/src/foundation/tests/geonamesRuntimeProbeTests.js",
+      "/src/foundation/tests/onboardingTests.js",
+      "/base44/shared/domainAudit.js",
+      "/base44/shared/domainAccess.js",
+      "/src/foundation/tests/securityTests.js",
+      "/src/foundation/tests/foundationTests.js",
+      "/src/components/internal/TestsPanel.jsx",
+      "/src/foundation/health/cases/h01.js",
+      "/src/foundation/health/cases/h02.js",
+      "/src/foundation/health/cases/h03.js",
+      "/src/foundation/domainContract.js",
+      "/src/foundation/health/cases/domainProbe.js",
+      "/src/foundation/health/cases/h04.js",
+      "/src/foundation/health/cases/h12.js",
+      "/src/foundation/health/cases/h16.js",
+      "/src/foundation/health/cases/onboarding.js",
+      "/src/foundation/health/cases/future.js",
+      "/src/foundation/health/catalog.js",
+      "/src/foundation/health/runner.js",
+      "/src/foundation/health/useHealthRunner.js",
+      "/src/pages/internal/HealthCenter.jsx",
+      "/src/App.jsx",
+      "/src/index.css",
+      "/src/main.jsx",
+      "/index.html",
+      "/src/foundation/i18n/strings.js",
+      "/src/foundation/uiContract.js",
+      "/src/foundation/designTokens.js",
+      "/src/foundation/inspection/uiRules.js"
+    ],
+    "chunkCount": 2
+  },
+  "pages": [
+    {
+      "route": "/",
+      "samples": [
+        {
+          "domNodes": 38,
+          "js": [
+            {
+              "url": "/assets/uiRules-DtGCfuh9.js",
+              "bytes": 6826
+            },
+            {
+              "url": "/assets/index-CB0UUxcn.js",
+              "bytes": 886658
+            }
+          ],
+          "css": 84714,
+          "domContentLoaded": 73.89999997615814,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 44
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 128
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 38,
+          "js": [
+            {
+              "url": "/assets/uiRules-DtGCfuh9.js",
+              "bytes": 6826
+            },
+            {
+              "url": "/assets/index-CB0UUxcn.js",
+              "bytes": 886658
+            }
+          ],
+          "css": 84714,
+          "domContentLoaded": 34.10000002384186,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 16
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 60
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 38,
+          "js": [
+            {
+              "url": "/assets/uiRules-DtGCfuh9.js",
+              "bytes": 6826
+            },
+            {
+              "url": "/assets/index-CB0UUxcn.js",
+              "bytes": 886658
+            }
+          ],
+          "css": 84714,
+          "domContentLoaded": 26.19999998807907,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 48
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/login",
+      "samples": [
+        {
+          "domNodes": 42,
+          "js": [
+            {
+              "url": "/assets/uiRules-DtGCfuh9.js",
+              "bytes": 6826
+            },
+            {
+              "url": "/assets/index-CB0UUxcn.js",
+              "bytes": 886658
+            }
+          ],
+          "css": 84714,
+          "domContentLoaded": 27.80000001192093,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 52
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 42,
+          "js": [
+            {
+              "url": "/assets/index-CB0UUxcn.js",
+              "bytes": 886658
+            },
+            {
+              "url": "/assets/uiRules-DtGCfuh9.js",
+              "bytes": 6826
+            }
+          ],
+          "css": 84714,
+          "domContentLoaded": 29.5,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 56
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 42,
+          "js": [
+            {
+              "url": "/assets/uiRules-DtGCfuh9.js",
+              "bytes": 6826
+            },
+            {
+              "url": "/assets/index-CB0UUxcn.js",
+              "bytes": 886658
+            }
+          ],
+          "css": 84714,
+          "domContentLoaded": 26.899999976158142,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 52
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/internal/build?sdkSession=admin",
+      "samples": [
+        {
+          "domNodes": 215,
+          "js": [
+            {
+              "url": "/assets/index-CB0UUxcn.js",
+              "bytes": 886658
+            },
+            {
+              "url": "/assets/uiRules-DtGCfuh9.js",
+              "bytes": 6826
+            }
+          ],
+          "css": 84714,
+          "domContentLoaded": 37.80000001192093,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 16
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 100
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 215,
+          "js": [
+            {
+              "url": "/assets/uiRules-DtGCfuh9.js",
+              "bytes": 6826
+            },
+            {
+              "url": "/assets/index-CB0UUxcn.js",
+              "bytes": 886658
+            }
+          ],
+          "css": 84714,
+          "domContentLoaded": 25.600000023841858,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 76
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 215,
+          "js": [
+            {
+              "url": "/assets/uiRules-DtGCfuh9.js",
+              "bytes": 6826
+            },
+            {
+              "url": "/assets/index-CB0UUxcn.js",
+              "bytes": 886658
+            }
+          ],
+          "css": 84714,
+          "domContentLoaded": 30.30000001192093,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 68
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/internal/health?sdkSession=admin",
+      "samples": [
+        {
+          "domNodes": 1165,
+          "js": [
+            {
+              "url": "/assets/index-CB0UUxcn.js",
+              "bytes": 886658
+            },
+            {
+              "url": "/assets/uiRules-DtGCfuh9.js",
+              "bytes": 6826
+            }
+          ],
+          "css": 84714,
+          "domContentLoaded": 32.299999952316284,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 80
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 1165,
+          "js": [
+            {
+              "url": "/assets/index-CB0UUxcn.js",
+              "bytes": 886658
+            },
+            {
+              "url": "/assets/uiRules-DtGCfuh9.js",
+              "bytes": 6826
+            }
+          ],
+          "css": 84714,
+          "domContentLoaded": 30.900000035762787,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 68
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 1165,
+          "js": [
+            {
+              "url": "/assets/uiRules-DtGCfuh9.js",
+              "bytes": 6826
+            },
+            {
+              "url": "/assets/index-CB0UUxcn.js",
+              "bytes": 886658
+            }
+          ],
+          "css": 84714,
+          "domContentLoaded": 45.90000003576279,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 20
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 96
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "cycles": []
+}

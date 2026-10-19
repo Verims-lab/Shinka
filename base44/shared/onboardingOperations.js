@@ -26,6 +26,16 @@ export async function onboardingOperation(client,body,dependencies={}) {
   const singleton=async(entity)=>{const result=await rows(entity);if(result.length>1)fail('DUPLICATE_OWNER_STATE',409);return result[0]?normalizeDomainRead(entity,result[0]):null;};
   const profile=await singleton('user_profile');
   if(profile?.account_status==='INACTIVE')return {state:'INACTIVE_ACCOUNT'};
+  if(body.action==='searchPlaces') {
+    if(!geoNames)fail('GEONAMES_UNAVAILABLE',503);
+    return {places:await geoNames.search(body.query,body.language_code)};
+  }
+  if(['listPlaceCountries','listPlaceRegions','listPlaceSettlements'].includes(body.action)) {
+    if(!geoNames)fail('GEONAMES_UNAVAILABLE',503);
+    if(body.action==='listPlaceCountries')return geoNames.countries(body.language_code);
+    const input={country:body.country,parent_id:body.parent_id??null,offset:body.offset??0,language_code:body.language_code};
+    return body.action==='listPlaceRegions'?geoNames.regions(input):geoNames.places(input);
+  }
   const preferences=await singleton('user_preferences');
   const today=preferences&&validTimezone(preferences.timezone)?serverLocalDate(now(),preferences.timezone):null;
   const state=async(cycleStepConfirmed=false)=>{
@@ -37,16 +47,6 @@ export async function onboardingOperation(client,body,dependencies={}) {
     return {dependencies,completionReady:route==='ACTIVE_EXISTING_USER',state:route,profile,preferences,today};
   };
   if(body.action==='hydrate')return state();
-  if(body.action==='searchPlaces') {
-    if(!geoNames)fail('GEONAMES_UNAVAILABLE',503);
-    return {places:await geoNames.search(body.query,body.language_code)};
-  }
-  if(['listPlaceCountries','listPlaceRegions','listPlaceSettlements'].includes(body.action)) {
-    if(!geoNames)fail('GEONAMES_UNAVAILABLE',503);
-    if(body.action==='listPlaceCountries')return geoNames.countries(body.language_code);
-    const input={country:body.country,parent_id:body.parent_id??null,offset:body.offset??0,language_code:body.language_code};
-    return body.action==='listPlaceRegions'?geoNames.regions(input):geoNames.places(input);
-  }
   const commit=async(writes)=>{
     // Stable canonical request excludes timestamps (retry timestamps must not fork actions).
     const canonical=JSON.stringify(Object.fromEntries(Object.keys(body).filter(k=>k!=='action_id'&&k!=='user_id').sort().map(k=>[k,body[k]])));

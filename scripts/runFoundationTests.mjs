@@ -1,9 +1,11 @@
+import { verifyDependencyRules } from './verifyDependencyRules.mjs';
+import { checkMobile } from './checkMobile.mjs';
 // One canonical test set, executed in a real browser for the existing DOM probes.
 // No Base44 credentials, platform calls, or live enforcement claims.
 import { build } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
-import { chromium } from "playwright";
+import { chromium, webkit } from "playwright";
 import { createServer } from "node:http";
 import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
@@ -15,8 +17,12 @@ import { verifyGeoNamesEntry, verifyGeoNamesRuntimeProbeEntry } from "./verifyGe
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
 const output=await mkdtemp(path.join(tmpdir(),"shinka-foundation-tests-"));
+const browserName = process.env.FOUNDATION_BROWSER || 'chromium';
+const engine = { chromium, webkit }[browserName];
+if (!engine) throw new Error('FOUNDATION_BROWSER must be chromium or webkit');
 let server,browser;
 try {
+  verifyDependencyRules();
   const geoNamesEntry=await verifyGeoNamesEntry(root);
   const geoNamesRuntimeProbeEntry=await verifyGeoNamesRuntimeProbeEntry(root);
   await build({root,configFile:false,plugins:[staticEvidencePlugin(root),tailwindcss(),react()],logLevel:"warn",
@@ -41,7 +47,7 @@ try {
   const origin=`http://127.0.0.1:${server.address().port}`;
   const previewOrigin=`http://localhost:${server.address().port}`;
   // Preserve normal Chromium background/frame scheduling, which Playwright otherwise disables.
-  browser=await chromium.launch({headless:true,ignoreDefaultArgs:['--disable-background-timer-throttling','--disable-backgrounding-occluded-windows','--disable-renderer-backgrounding']});
+  browser=await engine.launch({headless:true,ignoreDefaultArgs:['--disable-background-timer-throttling','--disable-backgrounding-occluded-windows','--disable-renderer-backgrounding']});
   const page=await browser.newPage({viewport:{width:1280,height:900}});
   await page.emulateMedia({colorScheme:"dark"}); // Product stays light even when the OS prefers dark.
   await page.route("**/*",route=>[origin,previewOrigin].includes(new URL(route.request().url()).origin)?route.continue():route.abort());
@@ -86,7 +92,8 @@ try {
     }finally{late.dispose();}
     return results;
   });
-  console.log(JSON.stringify({evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",catalog,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,pageErrors},null,2));
-  if(results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
+  const mobile = await checkMobile(browser, origin, process.env.FOUNDATION_MOBILE_DIR);
+  console.log(JSON.stringify({mobile,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,pageErrors},null,2));
+  if(mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
 } catch(error){console.error(error);process.exitCode=1;}
 finally {await browser?.close();if(server) await new Promise(resolve=>server.close(resolve));await rm(output,{recursive:true,force:true});}

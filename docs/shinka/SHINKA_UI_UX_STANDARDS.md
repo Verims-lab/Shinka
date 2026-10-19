@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-008
+**Current BuildMarker:** Buildmarker-009
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -173,3 +173,9 @@ Parent changes clear descendants and the final place. Language changes reload li
 Each list distinguishes loading, empty results, no further administrative subdivisions, incomplete hierarchy data and service failure with an explicit Retry. No automatic retry. Counts and previous/next page controls expose incomplete lists; the provider window warning requests a narrower region. All new labels/help/status/error text comes from onboardingCopy.js. The exact earlier approved copy and Terms of Service are unchanged.
 
 Visual QA inspected empty/selected EN/TR ON-04 at 360px and 1280px. Rendered tests verify labels, focus, control sizes, language changes and overflow; the screenshot runner also exercises Tab movement. Native popup arrow/Enter selection could not be verified through the local automation surface (events did not change the value; native-app automation timed out). Physical keyboard and assistive-technology verification remain explicit device checks, not claimed PASS. Hosted fonts are not covered by isolated fixture screenshots.
+
+## Mobile maintenance implementation
+
+Shared native select uses `appearance:none` with a decorative noninteractive chevron to enforce the existing 52px/17px tokens in WebKit; native selection semantics remain. Inputs have shrinkable width, PageContainer uses 100dvh with a 100vh fallback, and safe-area padding preserves the existing 20px/24px minimum. Home adds only device insets to its own spacing. Viewport permits user zoom; there is no zoom cap or keyboard scroll lock. The missing manifest link was removed: this checkout is a responsive web app, not an implemented PWA or native WebView shell.
+
+Browser-level layout, focus, localized long options, date/time and network retry evidence is in [Android/iOS compatibility](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md). Native keyboard/date/select sheets, VoiceOver/TalkBack, pinch zoom, real insets and background eviction require physical-device evidence (H13-013); desktop WebKit is not Safari certification. Product copy is unchanged.

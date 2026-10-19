@@ -1,10 +1,9 @@
-export const AUTH_PROBE_PATH = '/auth-shell-probe';
+import { AUTH_PROBE_PATH } from './authProbeRoute';
+export { AUTH_PROBE_PATH, isAuthProbePath } from './authProbeRoute';
 export const AUTH_PROBE_ROOT = '[data-auth-probe="unauthenticated-shell"]';
 export const AUTH_PROBE_SCREEN = 'UNAUTHENTICATED_SIGN_IN';
 export const AUTH_PROBE_TIMEOUT_MS = 15000;
 
-// An exact, presentation-only route; query parameters cannot override normal auth routing.
-export const isAuthProbePath = path => path === AUTH_PROBE_PATH;
 
 // Read only the committed probe subtree. No account, URL query, token or product data.
 /** @param {Element|null} root */

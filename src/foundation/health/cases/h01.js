@@ -28,8 +28,9 @@ export const H01_CASES = [
   }, { runnerType: RUNNER.RUNTIME, classification: CLASS.LIVE_RUNTIME }),
   c("H01-005", "Health catalog version present", "Health catalog version constant exists and is well-formed.", async () =>
     verdict(/^HC-\d{3}\.\d+$/.test(HEALTH_CATALOG_VERSION), ev(CLASS.STATIC, "src/foundation/health/constants.js", HEALTH_CATALOG_VERSION, "/^HC-\\d{3}\\.\\d+$/", "Constant inspection"))),
-  c("H01-006", "Build Ledger consistent with canonical marker", "Ledger entries are unique, +1 sequential and the head equals the canonical marker.", async () => {
+  c("H01-006", "Build Ledger consistent with canonical marker", "Active source holds at most five unique +1 sequential packages including current; generated history matches.", async (ctx) => {
+    const history = (await ctx.inspection()).activeBuildHistory;
     const r = validateLedger(BUILD_LEDGER, BUILD_MARKER);
-    return verdict(r.ok, ev(CLASS.STATIC, "src/foundation/buildLedger.js", { entries: BUILD_LEDGER.length, errors: r.errors }, { errors: [] }, "Ledger validation"));
+    return verdict(r.ok && history.generatedMatches, ev(CLASS.STATIC, "src/foundation/buildLedgerData.js + generated history", { entries: BUILD_LEDGER.length, generatedMatches: history.generatedMatches, errors: r.errors }, { errors: [] }, "Ledger validation"));
   }),
 ];

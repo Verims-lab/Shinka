@@ -1,0 +1,80 @@
+[
+  {
+    "label": "baseline",
+    "steps": [
+      {
+        "name": "start",
+        "providerRequests": 1,
+        "serviceRequests": 1
+      },
+      {
+        "name": "country",
+        "providerRequests": 4,
+        "serviceRequests": 2
+      },
+      {
+        "name": "province",
+        "providerRequests": 6,
+        "serviceRequests": 2
+      },
+      {
+        "name": "district",
+        "providerRequests": 8,
+        "serviceRequests": 2
+      },
+      {
+        "name": "language",
+        "providerRequests": 14,
+        "serviceRequests": 5
+      },
+      {
+        "name": "same-language country + province + district revisit",
+        "providerRequests": 18,
+        "serviceRequests": 6
+      }
+    ],
+    "total": {
+      "outbound": 51,
+      "service": 18
+    }
+  },
+  {
+    "label": "after",
+    "steps": [
+      {
+        "name": "start",
+        "providerRequests": 1,
+        "serviceRequests": 1
+      },
+      {
+        "name": "country",
+        "providerRequests": 4,
+        "serviceRequests": 2
+      },
+      {
+        "name": "province",
+        "providerRequests": 6,
+        "serviceRequests": 2
+      },
+      {
+        "name": "district",
+        "providerRequests": 8,
+        "serviceRequests": 2
+      },
+      {
+        "name": "language",
+        "providerRequests": 14,
+        "serviceRequests": 5
+      },
+      {
+        "name": "same-language country + province + district revisit",
+        "providerRequests": 5,
+        "serviceRequests": 2
+      }
+    ],
+    "total": {
+      "outbound": 38,
+      "service": 14
+    }
+  }
+]

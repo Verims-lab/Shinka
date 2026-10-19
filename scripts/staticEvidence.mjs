@@ -1,3 +1,5 @@
+import { inspectDependencies } from './dependencyEvidence.mjs';
+import { renderBuildHistory } from '../src/foundation/buildHistoryPolicy.js';
 // Build/server-only inspection. Only allowlisted results + hashes enter the virtual module.
 import { inspectGeoNamesEntry, inspectOnboardingSurface } from '../src/foundation/inspection/onboardingRules.js';
 import { ONBOARDING_COPY } from '../src/foundation/i18n/onboardingCopy.js';
@@ -36,6 +38,8 @@ export function buildStaticEvidence(root = process.cwd()) {
     schema: "shinka.static-evidence/1", buildMarker: BUILD_MARKER, generatedAt: new Date().toISOString(),
     evidenceScope: "BUILD_TIME_REPOSITORY_INSPECTION", originalArtifactProvenance: SOURCE_PROVENANCE,
     originalArtifactsHashVerifiedInRepo: ORIGINAL_ARTIFACTS_HASH_VERIFIED_IN_REPO, hashes, sourceCount: files.length, docCount: docFiles.length,
+    dependencies: inspectDependencies(syntax),
+    activeBuildHistory: { generatedMatches: history === renderBuildHistory(BUILD_LEDGER, BUILD_MARKER), entries: BUILD_LEDGER.length },
     domain: { ...inspectDomainSchemas(root), writeSurface: inspectProductWriteSurface(syntax) },
     onboarding: inspectOnboardingSurface(syntax,[...Object.values(APPROVED_COPY).flat(),...Object.values(ONBOARDING_COPY.en),...Object.values(ONBOARDING_COPY.tr)]),
     geoNamesEntry: inspectGeoNamesEntry(syntax['/base44/functions/onboarding/entry.ts']||''),

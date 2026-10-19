@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-008
+**Current BuildMarker:** Buildmarker-009
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -149,3 +149,9 @@ The redirect-policy compatibility change is supported by user-supplied preview/i
 The three list actions reuse request-scoped secrets, authenticated owner/ACTIVE checks and a strict field allowlist; they never write entities. Country must be uppercase ISO-shaped two letters and validated by the provider scope; parent must be a positive safe integer or null, language en/tr, offset a multiple of 100 within 0…5000. Client URL/endpoint/username/filter/page-size/owner overrides are rejected. Parent country/admin hierarchy and returned child code prefixes are validated independently. Only populated records may pass final resolution; client names/coordinates/path never authorize persistence.
 
 All four provider paths use the fixed secure HTTPS host and existing redirect:manual rejection/abort/cleanup contract. Bounded streamed list responses (512 KiB countries, 1 MiB pages) and the 20-second action budget extend rather than remove limits; small detail/hierarchy payloads remain 100,000 bytes. There is no shared location cache, geolocation inference, free-text fallback, analytics/logging of the selected path, provider raw-error disclosure or new UI dependency. B01…B18 exercise malformed/cross-country/parent mismatches, paging limits, same-name types, read-only auth boundaries and cleanup. CAP-14/15 are PARTIALLY_VERIFIED with repository plus user-reported Preview search evidence; neither claims independently verified hosted selection/save success.
+
+## Maintenance security review (2026-10-20)
+
+Lazy loading changes delivery timing only; ProtectedRoute/AdminGate and server authorization remain. Read-only GeoNames list optimization still reads/authenticates the owner profile and refuses inactive accounts before provider access. Selected-ID save re-resolves the provider record. Cache contains only public list projections, never owner profile/consent/credential data; it expires after 60 seconds and is cleared on disposal/Clear. Existing manual redirect rejection, runtime secret read, bounds, timeouts and strict payload guards are unchanged.
+
+No dependencies/lockfile, RLS, schemas, live product data or audit retention changed. Native audit still reports two Moderate React Router findings; their existing exposure/disposition applies. No High/Critical waiver. Package-history pruning cannot delete security/audit or Health evidence. The admin-only temporary transport probe is retained for the documented unresolved hosted validation; normal app/Full Health never runs it automatically.

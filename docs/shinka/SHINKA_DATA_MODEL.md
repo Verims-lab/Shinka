@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-008
+**Current BuildMarker:** Buildmarker-009
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -368,3 +368,7 @@ Canonical validation normalizes absent values to logical NULL. The production on
 ## ON-04 cascade persistence invariant
 
 Country, administrative path, page offsets and list state exist only in the in-memory picker. No schema, entity, seed or profile field is added. Final selection must be a populated GeoNames record (featureClass P); administrative A/ADM records only narrow lists and are rejected by selected-ID resolution. Continue sends birthplace_geonames_id only. The backend resolves it independently and persists exactly birthplace_geonames_id, birthplace_name, birthplace_country_code, birthplace_latitude, birthplace_longitude, together or all NULL. Existing stored birthplace is displayed without requiring its hierarchy; loading failure cannot silently clear it. Native hosted NULL clearing and readback remain external proof requirements.
+
+## Maintenance data impact
+
+Package 009 changes no product schema, field or persistence contract. Read-only place actions skip the unused preferences read after owner/profile checks. Public list cache is memory-only, per picker and bounded; no selected path/cache is stored in entities. Internal Build's five-package policy affects generated repository history only. InternalHealthRun, protected audit/history and user rows are not deleted or subject to that policy. New package 009 remains pre-content; H05-009 still requires real zero counts and no import.

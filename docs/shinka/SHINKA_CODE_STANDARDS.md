@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-008
+**Current BuildMarker:** Buildmarker-009
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -45,3 +45,13 @@ Keep copy in the canonical onboarding catalog; do not invent translations or an 
 ## ON-04 selection regression contract
 
 The explicit 2026-10-20 product decision is recorded in SOURCE_OF_TRUTH; its new selector/help/status copy is centralized in onboardingCopy.js. Preserve the earlier exact-copy receipt. Keep provider hierarchy validation in the existing backend adapter and transient UI races in birthplaceSelection.js. Do not persist the path, infer a country, autoselect a result, accept an administrative record as a settlement, assume childrenJSON pagination, silently truncate lists or add a new UI dependency. B01…B18 and U09…U12 run through the existing canonical runner and H10-003; fixtures remain synthetic and cannot close H10-004. Native keyboard/device observations must be recorded separately from programmatic selectOption tests.
+
+## Maintenance regression boundaries
+
+Internal Build/Health and probe implementations load through lazy routes after existing access guards. The exact probe route constant and lightweight AdminGate stay eager; tests/catalogs/measurement code must not enter the normal entry closure. H03-010 inspects actual static import/re-export edges, cycles and forbidden backend→frontend imports; the production measurement checks emitted bytes. Tests exercise injected bad edges as well as the real graph.
+
+`node scripts/measureMaintenance.mjs /tmp/shinka-measure` enforces new measured regression budgets: initial production JS ≤500,000 raw / 165,000 gzip bytes; CSS ≤90,000 raw / 16,000 gzip bytes; no initial test modules, static cycles or page exceptions. These allow modest headroom over the measured fix and are not LCP/INP targets. Keep field performance separate. Preserve the shared 44px touch minimum; test Chromium and WebKit after form/layout changes. See [mobile evidence](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md).
+
+Prefer cohesive forms, resource-list presentation and controllers; no artificial line-count cap or compressed long-line application code. Generated data and fixtures are assessed separately. List labels use one linear count pass for duplicate context, not repeated nested scans. Cache public place lists per picker only: 16 entries, 1 MiB serialized values, 60 seconds, language/parent/page scoped; clear on Clear/dispose; explicit Retry bypasses cache. Never cache owner profiles or writes. Ignore late SDK completions; do not claim invoke cancellation that its API cannot provide. User-started completed Health runs retain audit persistence after navigation, with duplicate starts and stale UI updates prevented.
+
+Active build history obeys the permanent five-package rule in DEVELOPMENT_RULES. Run `recordBuild.mjs --check`; source and generated output must agree. H01-006 and M01…M05 cover this policy. No security or evidence check may be removed solely to make the result green.

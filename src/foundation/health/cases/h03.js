@@ -10,6 +10,7 @@ const scan = (key, title, ok) => async (ctx) => {
   return verdict(ok(result), ev(CLASS.STATIC, `build-time manifest:${key}`, result, "no violations", `${title}; repository hash metadata, not live enforcement`));
 };
 export const H03_CASES = [
+  c("H03-010", "Initial dependency and layer boundaries", "No eager internal tooling/test modules, static cycles or backend-to-frontend imports; emitted bytes checked by measurement CLI.", scan("dependencies", "Dependency graph", x=>x.ok)),
   c("H03-001", "No legacy Shinka source/module import", "Syntax-aware production and test scan; strings/comments are not imports.", scan("legacy", "Legacy firewall", (x)=>x.length===0)),
   c("H03-002", "No duplicate BuildMarker authority", "Only the canonical module exports BUILD_MARKER.", scan("marker", "Marker authority", (x)=>x.ok)),
   c("H03-003", "No hardcoded secret", "Build-time source/config secret scan returns paths only.", scan("secretFiles", "Secret scan", (x)=>x.length===0)),

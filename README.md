@@ -65,18 +65,21 @@ Support: [https://app.base44.com/support](https://app.base44.com/support)
 
 ```bash
 npm ci
-npx playwright install chromium # one-time browser setup per machine/CI image
+npx playwright install chromium webkit # one-time browser setup per machine/CI image
 npm ls --all
 npm audit --json
 npm run security:deps
 npm run health:repo
 npm run typecheck
 npm run test:foundation
+FOUNDATION_BROWSER=webkit npm run test:foundation
+node scripts/recordBuild.mjs --check
+node scripts/measureMaintenance.mjs /tmp/shinka-measure
 npm run lint
 npm run build
 ```
 
-The CLI executes the same `src/foundation/tests` definitions as Health Center in a temporary local Chromium harness. It renders real pages for DOM probes and substitutes only backend access with synthetic fixtures; it never contacts live Base44. Any failed test, Health evidence check or browser exception returns a non-zero exit code. Node must permit a loopback listener and Chromium execution. Standard Playwright browser-cache configuration is supported.
+The CLI executes the same `src/foundation/tests` definitions as Health Center in a temporary local Chromium or WebKit harness. It renders real pages for DOM probes and substitutes only backend access with synthetic fixtures; it never contacts live Base44. Any failed test, Health evidence check or browser exception returns a non-zero exit code. Node must permit a loopback listener and the selected browser execution. Standard Playwright browser-cache configuration is supported.
 
 `security:deps` uses npm's native High threshold, including development dependencies: Critical/High or registry errors fail non-zero; remaining Moderate/Low findings still print. Run it for every package. Use `npm ci` for reproducible validation; do not edit the lockfile manually.
 
@@ -85,3 +88,7 @@ CSS is compiled by `@tailwindcss/vite` (Tailwind 4), with `src/index.css` as ent
 Current Foundation status and exact remaining advisories are in `docs/shinka/SHINKA_SECURITY_PRIVACY.md` and `SHINKA_RELEASE_HEALTH_CHECK.md`. A successful local run does not certify deployed authentication, server enforcement or history readback.
 
 Data/security foundation: `health:repo` verifies the 20 physical product schemas against canonical field contracts and independent source field receipts, the complete access matrix, direct SDK deny rules and docs/marker/ledger alignment. `domainAccess` exposes guarded reads only; generic product mutation workflows remain inactive. The specific onboarding route uses a production Base44 SDK adapter with keyed upsert, owner-scoped conditional updates and verified readback. Profile/preferences use the approved birth-date-only Sun resolver; valid explicit consent enables cycle persistence with health-consent-v1.0. This adapter has no native multi-record transaction or rollback guarantee. The four approved Sun/TR/consent/durable-route decisions are integrated; a real owner daily message is the final completion marker, and Skip may resume safely before it exists. Native timestamps and deployed RLS require separate Base44 verification. No product data is seeded by these commands. The same canonical test command now includes auth/onboarding/UI regressions and requires every current onboarding Health case to PASS; the package is CLOSED_PENDING_BASE44_VERIFICATION, with First Shinka deferred.
+
+Active Internal Build history is generated, latest five unique packages including current. Add/update a complete ledger entry with `node scripts/recordBuild.mjs /absolute/package.json`; the command retains the bounded source and rewrites BUILD_HISTORY. See DEVELOPMENT_RULES for required fields and policy. It does not delete Health/audit/user data or rewrite Git.
+
+`FOUNDATION_BROWSER=webkit FOUNDATION_MOBILE_DIR=/tmp/shinka-mobile npm run test:foundation` adds mobile viewport screenshots to the same canonical checks. These are desktop engine/touch emulations, not physical iOS/Android proof. `measureMaintenance.mjs` builds the production graph and a separate real-App lab with stubbed SDK, measures three cold loads per route, enforces byte budgets, and checks lazy-chunk failure/reload retry. Output must be outside the checkout. See [mobile compatibility](docs/shinka/reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md) and [maintenance findings](docs/shinka/SHINKA_DEVELOPMENT_NOTES.md).
