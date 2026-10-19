@@ -3,7 +3,7 @@
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
 **Current BuildMarker:** Buildmarker-008
-**Last Updated:** 2026-10-19
+**Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
@@ -53,3 +53,9 @@ Pre-auth name is transient only (same-tab session storage, versioned, 30-minute 
 Valid cycle data and explicit consent persist health-consent-v1.0 to current consent and immutable event, optional settings and the actual period start. Missing settings remain NULL; no fabricated 5/28. Skip/empty input creates no health records. Approved restart behavior may return skipped users to ON-05 until their first real user_daily_message exists; no Skip flag is added. The daily record is the final durable completion marker.
 
 FIRST_SHINKA_ENGINE_REQUIRED remains YES. UC-06 generation, imports, engines, Calendar, Pattern, scheduler, push and withdrawal are outside 008. Package: CLOSED_PENDING_BASE44_VERIFICATION.
+
+## ON-04 birthplace selection — explicit current product decision
+
+Country is chosen by the user, then available administrative levels narrow the settlement list. TR targets country → province → district → settlement; other countries can skip absent levels or have none. Any explicit valid populated-place selection completes birthplace without forcing deeper regions. Country/administrative selection alone never becomes a birthplace or supplies center coordinates. Lists are authenticated and read-only; only Continue invokes existing saveProfile with a selected numeric ID resolved again on the backend.
+
+Changing a parent clears its descendants and final selection. Partial paths require completion or explicit clearing. Empty and service-error states permit Clear / Leave empty for now, which saves all five optional fields as NULL. Existing saved birthplace survives initial display, missing hierarchy and beginning an edit until the user actually replaces/clears it. DOB/time/name, Sun, cycle/consent and durable onboarding routing are unchanged. User-reported Preview search success is historical connection evidence; new hosted selection → save → readback remains required.

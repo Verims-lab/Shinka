@@ -3,7 +3,7 @@
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
 **Current BuildMarker:** Buildmarker-008
-**Last Updated:** 2026-10-19
+**Last Updated:** 2026-10-20
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
@@ -124,3 +124,11 @@ TR onboarding catalog status is APPROVED_PRODUCT_COPY. Exact EN/TR values, inclu
 Canonical consent version: `health-consent-v1.0`. EN: “I consent to Shinka processing my cycle data to provide cycle-based features and personalization.” TR: “Shinka’nın döngü verilerimi döngüye dayalı özellikler ve kişiselleştirme sunmak amacıyla işlemesine açık rıza veriyorum”. The checkbox is explicit, unchecked, and separate from 18+, auth, Privacy Policy and Terms of Service. No cycle input creates no consent record/event. Valid cycle input plus consent uses the authenticated backend owner and writes the exact version to current consent and immutable grant history.
 
 FIRST_SHINKA_ENGINE_REQUIRED remains YES / NEXT_PACKAGE_DEPENDENCY; it does not keep package 008 open. Production SDK persistence is implemented with verified readback. Cross-instance enforcement/native metadata and deployed Full Health remain external verification; no native transaction guarantee is asserted. Package: CLOSED_PENDING_BASE44_VERIFICATION.
+
+## ON-04 cascading birthplace decision — 2026-10-20
+
+Explicit user authority: “Ülke seçerek seçenekleri daraltarak aşağı insin. Search ederek değil, seçe seçe ilerleyelim.” Request SHA-256: `80f5f4d30ec070cdfdb3365564fc308fd55c9c588e9a4a5bbe5b66cc382f6cda`. This is a product decision within the existing ON-04 closure, not an eleventh logical source. It supersedes only the previous ON-04 typed search/debounce/search-button interaction in SRC-03 and subsequent implementation notes. Country → available administrative subdivisions → explicit populated settlement replaces it; no automatic country or first-result selection. A valid settlement can finish the flow at any available level. Administrative records only filter lists. The optional field, server selected-ID resolution and SRC-05/07 five-field persistence contract remain authoritative.
+
+New selection labels/status/help copy is implemented centrally in EN/TR under this explicit request. It does not alter the previously approved exact-copy receipt or the four resolved onboarding decisions. No other screen or future product package is authorized.
+
+**USER_REPORTED LIVE_RUNTIME:** Preview normal onboarding/searchPlaces returned HTTP 200 and eight places including Istanbul. This updates the earlier failure-only evidence: the old normal search connection is reported successful. It is not agent-observed success and does not verify the new country/subdivision lists, selected-ID resolution, persistence/readback, production deployment or Full Health. H10-004 remains OPEN_PENDING_MANUAL_VERIFICATION. Buildmarker-008 / HC-007.0 are explicitly retained.

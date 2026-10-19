@@ -1,10 +1,12 @@
+import { createGeoNamesAdapter } from '../../../base44/shared/geonamesAdapter.js';
+import { hierarchyFetch, fixtureProviderPlace } from './geonamesHierarchyFixture';
 // Contract simulator only. Never imported by a product route, server entry or SDK client.
 import { resolveSunSign } from '../../../base44/shared/sunSign.js';
 import { DOMAIN_SCHEMAS, physicalName, SUN_SIGN_CODES } from '../../../base44/shared/domainSchemas.js';
 import { InternalError } from '../../../base44/shared/internalAuthorization.js';
 import { NOW } from './dataModelTests';
 import { normalizeGeoNamesPlace } from '../../../base44/shared/onboardingValidation.js';
-export const fixturePlace={geonameId:123,name:'Fixture City',countryCode:'TR',lat:'40',lng:'29'};
+export const fixturePlace=fixtureProviderPlace;
 export function onboardingFixture({complete=false,preferences=true,role='user',owner='ownerA'}={}) {
   const data=Object.fromEntries(Object.keys(DOMAIN_SCHEMAS).map(k=>[k,[]]));
   if(preferences)data.user_preferences.push({id:'prefA',user_id:owner,language_code:'en',timezone:'Europe/Istanbul',notifications_enabled:false,notification_time:'06:00'});
@@ -37,6 +39,6 @@ export function onboardingFixture({complete=false,preferences=true,role='user',o
     const outcome={status:'COMMITTED',records:saved};actions.set(key,{fingerprint,outcome});return outcome;
   }};
   const calculationInputs=[];
-  const dependencies={atomic,now:()=>new Date(NOW),consentVersion:'SYNTHETIC_TEST_ONLY',sunSign:async input=>{calculationInputs.push(input);return resolveSunSign(input);},geoNames:{search:async()=>[normalizeGeoNamesPlace(fixturePlace)],resolve:async()=>normalizeGeoNamesPlace(fixturePlace)}};
+  const dependencies={atomic,now:()=>new Date(NOW),consentVersion:'SYNTHETIC_TEST_ONLY',sunSign:async input=>{calculationInputs.push(input);return resolveSunSign(input);},geoNames:{...createGeoNamesAdapter({username:'fixture',fetcher:hierarchyFetch}),search:async()=>[normalizeGeoNamesPlace(fixturePlace)],resolve:async()=>normalizeGeoNamesPlace(fixturePlace)}};
   return {client,data,dependencies,calculationInputs,failAt:index=>{failAt=index;}};
 }

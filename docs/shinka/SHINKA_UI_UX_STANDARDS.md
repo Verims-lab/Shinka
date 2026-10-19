@@ -3,12 +3,12 @@
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
 **Current BuildMarker:** Buildmarker-008
-**Last Updated:** 2026-10-19
+**Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
 **Implemented:** Tokens (`src/foundation/designTokens.js` ↔ `src/index.css`), contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), primitives (`src/components/shinka/`), Foundation shell aligned.
-**Not Implemented:** All customer screens (FUTURE_PACKAGE).
+**Not Implemented:** Home business behavior, Calendar, Pattern and You/account workflows (FUTURE_PACKAGE); ON-01…06 current scope is described below.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
@@ -71,7 +71,7 @@ Introduction → Optional name → Welcome / Sign In → Personal Details → Yo
 - ON-01: "A gentle guide to your daily rhythm"; "Your birth chart" kept verbatim; primary Begin; no input.
 - ON-02: optional name ≤50; Continue / Prefer not to say; blank not stored.
 - ON-03: 18+ checkbox default empty; Apple/Google auth not started until checked; no warning on user cancel.
-- ON-04: DOB required; Birth time optional 24h HH:mm; Birthplace optional GeoNames select (typed text invalid); birth_date alone determines Sun; missing time stays NULL, no 00:00 fallback; no UNCERTAIN.
+- ON-04: DOB required; Birth time optional 24h HH:mm; Birthplace optional country-led cascading GeoNames selection (no text search); birth_date alone determines Sun; missing time stays NULL, no 00:00 fallback; no UNCERTAIN.
 - ON-05: Last period start date, Period duration, Cycle length; 5/28 faint placeholders only; Skip for now; independent explicit consent checkbox when data entered.
 - ON-06: "A little moment, just for you" / "We’re preparing your first Shinka insight"; first pair prepared once, then Home.
 
@@ -161,3 +161,15 @@ Approved product copy (the exact additional source decision):
 | We couldn’t save your changes. Please try again | Değişikliklerin kaydedilemedi. Lütfen tekrar dene |
 | Your account is inactive | Hesabın aktif değil |
 | Terms of Service | Terms of Service |
+
+## ON-04 selection presentation — current decision
+
+The SOURCE_OF_TRUTH decision replaces search with visible Country, State/Province/Region, District/County or Subregion, and Birth settlement native selection controls. Turkish labels are Ülke, İl / Bölge / Eyalet, İlçe / İdari bölge, Alt bölge and Doğduğun yerleşim. No search input, magnifier, debounce, inferred country or automatic first choice remains. TR normally follows country → province → district → settlement. Other countries use their available ADM levels; no-subdivision countries can select a settlement directly. Settlement selection remains available within any selected scope without requiring unnecessary lower levels.
+
+ShinkaSelect uses existing input tokens, 52px height, 17px text, visible focus, visible linked labels and native keyboard semantics. The single-column layout has no horizontal overflow at 360px/1280px in measured EN/TR fixtures. Long selected labels/context wrap below the control; country/administrative context distinguishes same-name records, with ID disambiguation when labels/context are identical. The selected birthplace has an explicit summary. Native option menus remain browser/OS UI; the application does not introduce a custom menu dependency.
+
+Parent changes clear descendants and the final place. Language changes reload lists while retaining the explicit path/selection; late responses cannot replace newer state. Saved birthplace initially shows its summary without requesting hierarchy. Change opens editing without erasing it; only an explicit parent replacement or Clear discards it. Clear / Leave empty for now resets the whole optional selection. Partial country/region selection blocks Continue with a localized complete-or-clear message. Service failure never prevents explicitly leaving this optional field empty.
+
+Each list distinguishes loading, empty results, no further administrative subdivisions, incomplete hierarchy data and service failure with an explicit Retry. No automatic retry. Counts and previous/next page controls expose incomplete lists; the provider window warning requests a narrower region. All new labels/help/status/error text comes from onboardingCopy.js. The exact earlier approved copy and Terms of Service are unchanged.
+
+Visual QA inspected empty/selected EN/TR ON-04 at 360px and 1280px. Rendered tests verify labels, focus, control sizes, language changes and overflow; the screenshot runner also exercises Tab movement. Native popup arrow/Enter selection could not be verified through the local automation surface (events did not change the value; native-app automation timed out). Physical keyboard and assistive-technology verification remain explicit device checks, not claimed PASS. Hosted fonts are not covered by isolated fixture screenshots.

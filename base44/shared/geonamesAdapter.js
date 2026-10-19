@@ -1,3 +1,4 @@
+import { createGeoNamesHierarchy } from './geonamesHierarchy.js';
 import { OnboardingError, normalizeGeoNamesPlace } from './onboardingValidation.js';
 import { GeoNamesError, classifyGeoNamesTransport } from './geonamesDiagnostics.js';
 export function sanitizePlaceQuery(input) {
@@ -8,7 +9,7 @@ export function sanitizePlaceQuery(input) {
 }
 export function createGeoNamesAdapter({username,fetcher=fetch,timeoutMs=8000}) {
   const configuredUsername=typeof username==='string'?username.trim():'';
-  const request=async(path,params)=>{
+  const request=async(path,params,{maxBytes=100000,deadlineMs=timeoutMs}={})=>{
     if(!configuredUsername)throw new GeoNamesError('GEONAMES_SECRET_MISSING',null,null,'CONFIGURATION');
     // Server-owned HTTPS destination. Client input can never override its host/path.
     const url=new URL(`https://secure.geonames.org/${path}`);
@@ -28,9 +29,20 @@ export function createGeoNamesAdapter({username,fetcher=fetch,timeoutMs=8000}) {
               throw new GeoNamesError('GEONAMES_HTTP_ERROR',httpStatus,null,stage,'REDIRECT_REJECTION');
             }
             stage='RESPONSE_BODY';
-            const text=await response.text();
+            let text;
+            if(maxBytes>100000&&response.body){
+              // Larger list envelopes are streamed with an actual allocation bound.
+              const reader=response.body.getReader(),decoder=new TextDecoder();let bytes=0;const parts=[];
+              try{
+                for(;;){const {done,value}=await reader.read();if(done)break;bytes+=value.byteLength;
+                  if(bytes>maxBytes){try{await reader.cancel();}catch{/* Preserve the bounded-response error. */}throw new GeoNamesError('GEONAMES_INVALID_RESPONSE',response.status,null,'RESPONSE_VALIDATION');}
+                  parts.push(decoder.decode(value,{stream:true}));
+                }
+                parts.push(decoder.decode());text=parts.join('');
+              }finally{reader.releaseLock();}
+            }else text=await response.text();
             stage='RESPONSE_VALIDATION';
-            if(new TextEncoder().encode(text).byteLength>100000)throw new GeoNamesError('GEONAMES_INVALID_RESPONSE',response.status);
+            if(new TextEncoder().encode(text).byteLength>maxBytes)throw new GeoNamesError('GEONAMES_INVALID_RESPONSE',response.status);
             let data;
             try{data=JSON.parse(text);}catch{throw new GeoNamesError(response.ok?'GEONAMES_INVALID_RESPONSE':'GEONAMES_HTTP_ERROR',response.status);}
             if(!data||typeof data!=='object'||Array.isArray(data))throw new GeoNamesError(response.ok?'GEONAMES_INVALID_RESPONSE':'GEONAMES_HTTP_ERROR',response.status);
@@ -38,7 +50,7 @@ export function createGeoNamesAdapter({username,fetcher=fetch,timeoutMs=8000}) {
               if(!data.status||!Number.isInteger(data.status.value))throw new GeoNamesError('GEONAMES_INVALID_RESPONSE',response.status);
               // GeoNames documents status 15 as "no result found". It is empty only
               // for a successful search, never a valid selected-ID lookup.
-              if(response.ok&&path==='searchJSON'&&data.status.value===15)return {data:{geonames:[]},httpStatus:response.status};
+              if(response.ok&&path==='searchJSON'&&data.status.value===15)return {data:{geonames:[],totalResultsCount:0},httpStatus:response.status};
               throw new GeoNamesError('GEONAMES_PROVIDER_REJECTED',response.status,data.status.value);
             }
             if(!response.ok)throw new GeoNamesError('GEONAMES_HTTP_ERROR',response.status);
@@ -49,7 +61,7 @@ export function createGeoNamesAdapter({username,fetcher=fetch,timeoutMs=8000}) {
             try{if(response.body&&!response.bodyUsed&&!response.body.locked)await response.body.cancel();}catch{/* No raw cleanup error or replacement of the primary failure. */}
           }
         })(),
-        new Promise((_,reject)=>{timer=setTimeout(()=>{abort.abort();reject(new GeoNamesError('GEONAMES_REQUEST_TIMEOUT',httpStatus,null,stage,'TIMEOUT'));},timeoutMs);}),
+        new Promise((_,reject)=>{timer=setTimeout(()=>{abort.abort();reject(new GeoNamesError('GEONAMES_REQUEST_TIMEOUT',httpStatus,null,stage,'TIMEOUT'));},Math.min(timeoutMs,deadlineMs));}),
       ]);
     }catch(error){
       if(error instanceof GeoNamesError){
@@ -63,6 +75,7 @@ export function createGeoNamesAdapter({username,fetcher=fetch,timeoutMs=8000}) {
     try{return normalizeGeoNamesPlace(raw);}catch{throw new GeoNamesError('GEONAMES_INVALID_RESPONSE',httpStatus,null,'RESPONSE_VALIDATION');}
   };
   return {
+    ...createGeoNamesHierarchy(request),
     search:async(query,language)=>{
       const {data,httpStatus}=await request('searchJSON',{q:sanitizePlaceQuery(query),maxRows:8,lang:language==='tr'?'tr':'en',style:'FULL',featureClass:'P'});
       if(!Array.isArray(data.geonames))throw new GeoNamesError('GEONAMES_INVALID_RESPONSE',httpStatus,null,'RESPONSE_VALIDATION');
@@ -71,6 +84,7 @@ export function createGeoNamesAdapter({username,fetcher=fetch,timeoutMs=8000}) {
     resolve:async(id)=>{
       if(!Number.isSafeInteger(id)||id<=0)throw new OnboardingError('BIRTHPLACE_SELECTION_REQUIRED','birthplace');
       const {data,httpStatus}=await request('getJSON',{geonameId:id,style:'FULL'});
+      if(data.fcl!=='P')throw new GeoNamesError('GEONAMES_INVALID_RESPONSE',httpStatus,null,'RESPONSE_VALIDATION');
       const place=normalize(data,httpStatus);
       if(place.birthplace_geonames_id!==id)throw new GeoNamesError('GEONAMES_INVALID_RESPONSE',httpStatus,null,'RESPONSE_VALIDATION');
       return place;

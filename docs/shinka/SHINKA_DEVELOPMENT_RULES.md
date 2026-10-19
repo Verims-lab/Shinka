@@ -3,7 +3,7 @@
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
 **Current BuildMarker:** Buildmarker-008
-**Last Updated:** 2026-10-19
+**Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
@@ -42,3 +42,7 @@ Run branch preflight before implementation; do not overwrite unexpected local wo
 The initial package incremented the marker once to 008 and the catalog once to HC-006.0. Its technical continuation retains both and updates the existing ledger entry only. The production SDK persistence adapter and approved Sun/TR/consent/durable derivation decisions are implemented. Existing source-gap Health cases now have executed PASS evidence; their IDs, intent and applicability are unchanged, so HC-006.0 is retained. The subsequent measured Health closure advances only the catalog to HC-007.0 because H05-009 changes from schema absence to package-aware live row counts. No second 008 ledger entry is added. Passing repository regressions verifies adapter behavior using an isolated SDK transport; it does not prove deployed writes, cross-instance enforcement or native transactions. Restart before a real daily message may resume at the earliest unresolved safe step, by approved decision. FIRST_SHINKA_ENGINE_REQUIRED is a next-package dependency, not an 008 blocker. No extra entity/field, content import, scheduler or live deployment is authorized by this package.
 
 Before each prompt fetch and compare main/Test/local Test; stop on divergence, local-ahead or unexpected changes. A clean main-ahead state may fast-forward Test; Test-ahead may proceed with final reporting. Complete work is committed/pushed only to Test. After the user merges Test to main and publishes, run the separate Base44 Full Health/live auth/GeoNames/enforcement verification.
+
+## ON-04 decision continuation — explicit same-package authorization
+
+The user's country-led selection request explicitly retains Buildmarker-008 / HC-007.0 despite replacing the earlier interaction. Record the decision and update the existing 008 ledger entry, never create a duplicate or begin 009. H10-003 retains its structured-provider-boundary intent with expanded regressions; H10-004 remains external. Reconcile all 12 canonical documents; CONTENT_MODEL requires no edit because no content flow or source changed. User-reported old Preview search success is accepted with provenance, not promoted to new hosted cascade/save/Full Health success. Deliver only to Test; user merge/sync/publish and device/live verification remain separate.

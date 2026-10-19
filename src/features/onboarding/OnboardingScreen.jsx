@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { Search, X, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import PageContainer from '@/components/shinka/PageContainer';
 import ShinkaCard from '@/components/shinka/ShinkaCard';
 import ShinkaButton from '@/components/shinka/ShinkaButton';
 import ShinkaInput from '@/components/shinka/ShinkaInput';
 import SignIn from './SignIn';
+import BirthplacePicker from './BirthplacePicker';
 import { beginProviderAuth } from '@/services/authService';
 import { readPendingName, savePendingName, clearPendingName } from './pendingName';
 import { onboardingCopy } from '@/foundation/i18n/onboardingCopy';
@@ -16,11 +17,11 @@ const STEPS=Object.keys(TITLES);
 /** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,onState?:Function,onLanguage?:Function,pending?:typeof DEFAULT_PENDING,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
 export default function OnboardingScreen({state,initialLanguage='en',today=null,profile=null,request=onboardingRequest,onState=()=>{},onLanguage=()=>{},pending=DEFAULT_PENDING,authenticate=beginProviderAuth,dependencies=[]}) {
   const [language,setLanguage]=useState(initialLanguage),[name,setName]=useState(()=>pending.read()??profile?.display_name??''),[form,setForm]=useState({birth_date:profile?.birth_date||'',birth_time:profile?.birth_time||'',period_start_date:'',period_duration_days:'',initial_cycle_length_days:'',health_consent:false});
-  const [query,setQuery]=useState(profile?.birthplace_name||''),[selection,setSelection]=useState(()=>profile?.birthplace_geonames_id?{birthplace_geonames_id:profile.birthplace_geonames_id,birthplace_name:profile.birthplace_name}:null),[places,setPlaces]=useState([]),[placeStatus,setPlaceStatus]=useState(''),[busy,setBusy]=useState(false),[searching,setSearching]=useState(false),[error,setError]=useState(null);
-  const title=useRef(null),lock=useRef(false),sequence=useRef(0),action=useRef(null);
+  const [birthplace,setBirthplace]=useState({selection:profile?.birthplace_geonames_id?profile:null,incomplete:false});
+  const [busy,setBusy]=useState(false),[error,setError]=useState(null);
+  const title=useRef(null),lock=useRef(false),action=useRef(null);
   const t=key=>onboardingCopy(key,language);
   useEffect(()=>{setError(null);title.current?.focus();},[state]);
-  useEffect(()=>()=>{sequence.current++;},[]);
   useEffect(()=>{if(error?.field&&!busy)title.current?.ownerDocument.getElementById(error.field)?.focus();},[error,busy]);
   const showError=e=>{setError({code:e.code||'ONBOARDING_OPERATION_FAILED',field:e.field||null});};
   const run=async(fn)=>{if(lock.current)return;lock.current=true;setBusy(true);setError(null);try{await fn();}catch(e){showError(e);}finally{lock.current=false;setBusy(false);}};
@@ -35,27 +36,18 @@ export default function OnboardingScreen({state,initialLanguage='en',today=null,
   const update=(key,value)=>{setForm(v=>({...v,[key]:value}));setError(null);};
   const fieldError=key=>error?.field===key?<p id={`${key}-error`} role="alert" className="text-shinka-small text-shinka-ink">{t(error.code)}</p>:null;
   const field=(key,type='text',extra={})=><div className="space-y-2" key={key}><label htmlFor={key}>{t(key)}</label><ShinkaInput id={key} type={type} value={form[key]} onChange={e=>update(key,e.target.value)} aria-invalid={error?.field===key} aria-describedby={error?.field===key?`${key}-error`:undefined} disabled={busy} {...extra}/>{fieldError(key)}</div>;
-  const changeQuery=value=>{sequence.current++;setQuery(value);setSelection(null);setPlaces([]);setPlaceStatus('');setSearching(false);};
-  const search=async()=>{
-    if(searching||busy||query.trim().length<2)return;
-    const ticket=++sequence.current;setSearching(true);setPlaceStatus('');setPlaces([]);
-    try {const result=await request('searchPlaces',{query,language_code:language});if(ticket===sequence.current){setPlaces(result.places);setPlaceStatus(result.places.length?'':'GEONAMES_EMPTY');}}
-    catch{if(ticket===sequence.current)setPlaceStatus('GEONAMES_UNAVAILABLE');}
-    finally{if(ticket===sequence.current)setSearching(false);}
-  };
   const body=()=>{
     if(state==='UNAUTHENTICATED_INTRO')return <><div aria-hidden="true" className="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-shinka-lavender"><Sparkles className="h-12 w-12 text-shinka-plum"/></div><p className="text-center text-shinka-taupe">{t('birthChart')}</p><ShinkaButton className="w-full" onClick={()=>onState('UNAUTHENTICATED_NAME')}>{t('begin')}</ShinkaButton></>;
     if(state==='UNAUTHENTICATED_NAME')return <><label htmlFor="display_name">{t('display_name')}</label><ShinkaInput id="display_name" autoComplete="given-name" value={name} onChange={e=>{setName(e.target.value);setError(null);}} aria-invalid={error?.field==='display_name'} aria-describedby={error?.field==='display_name'?'display_name-error':undefined}/>{fieldError('display_name')}<ShinkaButton className="w-full" onClick={()=>run(async()=>{const value=optionalName(name);if(!pending.save(value)&&value)throw new OnboardingError('TRANSIENT_STORAGE_UNAVAILABLE');onState('UNAUTHENTICATED_SIGN_IN');})}>{t('continue')}</ShinkaButton><ShinkaButton variant="ghost" className="w-full" onClick={()=>{pending.clear();setName('');onState('UNAUTHENTICATED_SIGN_IN');}}>{t('preferNot')}</ShinkaButton></>;
     if(state==='UNAUTHENTICATED_SIGN_IN')return <SignIn language={language} authenticate={authenticate}/>;
     if(state==='AUTHENTICATED_PROFILE_REQUIRED')return <form className="space-y-5" noValidate onSubmit={e=>{e.preventDefault();run(async()=>{
       validateBirthDate(form.birth_date,today);optionalBirthTime(form.birth_time);
-      if(query.trim()&&!selection)throw new OnboardingError('PLACE_SELECTION_REQUIRED','birthplace');
-      await submit('saveProfile',{display_name:optionalName(name),birth_date:form.birth_date,birth_time:form.birth_time||null,birthplace_geonames_id:selection?.birthplace_geonames_id??null});
+      if(birthplace.incomplete)throw new OnboardingError('PLACE_SELECTION_INCOMPLETE','birthplace');
+      await submit('saveProfile',{display_name:optionalName(name),birth_date:form.birth_date,birth_time:form.birth_time||null,birthplace_geonames_id:birthplace.selection?.birthplace_geonames_id??null});
     });}}>
       {field('birth_date','date',{required:true,max:today||undefined})}{field('birth_time','time')}
-      <div className="space-y-2"><label htmlFor="birthplace">{t('birthplace')}</label><div className="flex gap-2"><ShinkaInput id="birthplace" value={query} onChange={e=>changeQuery(e.target.value)} disabled={busy} autoComplete="off" aria-invalid={error?.field==='birthplace'} aria-describedby={error?.field==='birthplace'?'birthplace-error':undefined}/><ShinkaButton variant="secondary" aria-label={t('birthplace')} aria-busy={searching} onClick={search} disabled={searching||busy||query.trim().length<2}><Search aria-hidden="true" className="h-5 w-5"/></ShinkaButton><ShinkaButton variant="ghost" aria-label={t('skip')} onClick={()=>changeQuery('')} disabled={busy}><X aria-hidden="true" className="h-5 w-5"/></ShinkaButton></div>
-      {fieldError('birthplace')}{placeStatus&&<p role="status">{t(placeStatus)}</p>}
-      {places.length>0&&<ul className="space-y-2">{places.map(place=><li key={place.birthplace_geonames_id}><ShinkaButton variant="secondary" className="w-full text-left" onClick={()=>{sequence.current++;setSelection(place);setQuery(place.birthplace_name);setPlaces([]);setPlaceStatus('');setError(null);}}>{place.birthplace_name}, {place.birthplace_country_code}</ShinkaButton></li>)}</ul>}</div>
+      <BirthplacePicker language={language} request={request} selection={birthplace.selection} disabled={busy} error={error?.field==='birthplace'} onChange={value=>{setBirthplace(value);setError(null);}}/>
+      {fieldError('birthplace')}
       <ShinkaButton type="submit" className="w-full" disabled={busy}>{t('continue')}</ShinkaButton>
     </form>;
     if(state==='AUTHENTICATED_CYCLE_STEP')return <form className="space-y-5" noValidate onSubmit={e=>{e.preventDefault();run(async()=>{validateCycleInput(form,today);await submit('saveCycle',{period_start_date:form.period_start_date||null,period_duration_days:form.period_duration_days||null,initial_cycle_length_days:form.initial_cycle_length_days||null,health_consent:form.health_consent});});}}>
