@@ -105,11 +105,11 @@ export const BUILD_LEDGER = Object.freeze([
     build_marker: "Buildmarker-008",
     package_name: "Authentication & Onboarding",
     package_type: "PRODUCT_FOUNDATION",
-    short_summary: "Apple/Google-only auth with pre-auth 18+, ON-01..05 screens and guarded backend contracts, optional GeoNames/cycle consent, finite ON-06 dependency shell and H06/H07 coverage.",
+    short_summary: "Apple/Google-only auth with pre-auth 18+, ON-01..05 screens and guarded backend contracts, optional GeoNames/cycle consent, production SDK persistence with verified readback, finite ON-06 dependency shell and H06/H07 coverage.",
     created_at: "2026-10-19", health_catalog_version: "HC-006.0",
     full_health_status: "BASE44_FULL_HEALTH_REQUIRED",
     docs_aligned: true, source_changed: true, tests_changed: true, health_changed: true,
-    notes: "OPEN: approved Sun resolver, TR copy, consent text/version, exact skipped-step resume and verified production atomic adapter remain unavailable. No first-Shinka engine, content import or daily generation. Repository/synthetic evidence only; live auth, GeoNames and enforcement require deployment verification.",
+    notes: "OPEN: production onboarding adapter implemented in the same 008 package; profile/preferences persist with verified readback, health writes remain source-gated. Approved Sun resolver, TR copy, consent text/version and exact skipped-step resume remain unavailable. No native transaction/rollback claimed. No first-Shinka engine, content import or daily generation. Repository/synthetic evidence only; live auth, GeoNames and enforcement require deployment verification.",
   }),
 ]);
 

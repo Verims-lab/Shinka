@@ -1,10 +1,12 @@
 import { createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import OnboardingFixture from './OnboardingTestScreen';
-import { check } from './dataModelTests';
+import { check, NOW } from './dataModelTests';
+import { sdkOnboardingFixture } from './base44OnboardingFixture';
+import { onboardingOperation } from '../../../base44/shared/onboardingOperations.js';
 import { findUnlabeledControls } from '../probes/domProbes';
 const pause=()=>new Promise(resolve=>setTimeout(resolve,50));
-async function probe(step,width,run){
+async function probe(step,width,run,props={}){
   const frame=document.createElement('iframe');frame.title='Onboarding synthetic UI probe';
   Object.assign(frame.style,{position:'fixed',left:'-10000px',width:`${width}px`,height:'640px',border:'0'});
   document.body.appendChild(frame);
@@ -12,7 +14,7 @@ async function probe(step,width,run){
   doc.open();doc.write('<!doctype html><html><head></head><body></body></html>');doc.close();
   for(const style of Array.from(document.querySelectorAll('style,link[rel=stylesheet]')))doc.head.appendChild(style.cloneNode(true));
   const host=doc.createElement('div');doc.body.appendChild(host);const root=createRoot(host);
-  root.render(createElement(OnboardingFixture,{step}));
+  root.render(createElement(OnboardingFixture,{step,...props}));
   try{
     const deadline=Date.now()+15000;
     while(!frame.contentDocument?.querySelector('[data-onboarding-state]')){if(Date.now()>deadline)throw new Error('ONBOARDING_PROBE_TIMEOUT');await pause();}
@@ -42,4 +44,14 @@ export const ONBOARDING_UI_TESTS=[
  ['U05','Cycle placeholders stay blank; consent unchecked; skip reaches finite dependency',async()=>{await probe('AUTHENTICATED_CYCLE_STEP',430,async doc=>{
   check(doc.querySelector('#period_duration_days').value===''&&doc.querySelector('#period_duration_days').placeholder==='5');check(doc.querySelector('#initial_cycle_length_days').value===''&&doc.querySelector('#initial_cycle_length_days').placeholder==='28');check(!doc.querySelector('#health_consent').checked);button(doc,'Skip for now').click();await pause();check(doc.querySelector('[data-dependency]')?.textContent==='FIRST_SHINKA_ENGINE_REQUIRED'&&!doc.querySelector('.animate-spin'));
  });}],
+ ['U06','Real adapter storage failure keeps UI/form pending; verified retry advances once',async()=>{
+  const f=sdkOnboardingFixture();await onboardingOperation(f.client,{action:'initialize',action_id:'ui-production-fixture',language_code:'en',timezone:'Europe/Istanbul'});f.fail('user_profile',true);
+  let pendingName='Ada';const pendingOverride={read:()=>pendingName,save:value=>{pendingName=value;return true;},clear:()=>{pendingName=null;}};
+  const requestOverride=(action,payload={})=>onboardingOperation(f.client,{...payload,action},{now:()=>new Date(NOW)});
+  await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
+    input(doc,'birth_date','1990-01-01');await pause();button(doc,'Continue').click();await pause();
+    check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_PROFILE_REQUIRED');check(doc.querySelector('[data-onboarding-error]').textContent==='ONBOARDING_WRITE_UNCONFIRMED'&&pendingName==='Ada');
+    f.fail(null);button(doc,'Continue').click();await pause();check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP');check(pendingName===null&&f.rows.user_profile.length===1&&doc.body.textContent.includes('SUN_SIGN_RULE_REQUIRED'));
+  },{requestOverride,pendingOverride});
+ }],
 ];

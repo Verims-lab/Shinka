@@ -96,8 +96,8 @@ The Oct 18 source set remains the sole product authority. Written SRC-03 ON-01â€
 | Finding | Affected capability | Current resolution |
 |---|---|---|
 | SUN_SIGN_CALCULATION_RULE_SOURCE_GAP | Backend profile Sun sign | OPEN. No boundary algorithm exists in the sources/repository. Resolver is null; no inferred zodiac dates and no UNCERTAIN. |
-| SOURCE_COPY_GAP | TR onboarding | OPEN. Key parity exists, approved EN values retained; TR values deliberately null. UI shows the Test source-gap state and allows explicit EN selection. |
+| TR_ONBOARDING_COPY_SOURCE_GAP | TR onboarding (UI catalog: SOURCE_COPY_GAP) | OPEN. Key parity exists, approved EN values retained; TR values deliberately null. UI shows the Test source-gap state and allows explicit EN selection. |
 | HEALTH_CONSENT_VERSION_SOURCE_GAP | Durable consent grant | OPEN. A version is required by the model, but approved grant text/version was not supplied. No fabricated v1. |
 | ONBOARDING_DURABLE_COMPLETION_MARKER_SOURCE_GAP | Exact cross-session resume after cycle skip | OPEN. No schema field/entity added. Existing persisted profile/preferences/period/daily state determines safe resumption; skipped ON-05 may reappear after reload. |
 
-These findings are recorded in `base44/shared/onboardingDependencies.js` and Health H07/H11. `ATOMIC_CAPABILITY_REQUIRED` is an implementation capability dependency, not a missing product rule. `FIRST_SHINKA_ENGINE_REQUIRED` is an expected next-package dependency. They keep the package OPEN without preventing implementation/testing of independent contracts.
+These findings are recorded in `base44/shared/onboardingDependencies.js` and Health H07/H11. The production onboarding adapter is implemented using the installed SDK upsert/updateMany APIs and verified readback. The separate generic `domainAtomic` contract remains fail-closed with `ATOMIC_CAPABILITY_REQUIRED`; no transaction receipt or product schema was invented. `FIRST_SHINKA_ENGINE_REQUIRED` is an expected next-package dependency. They keep the package OPEN without preventing implementation/testing of independent contracts.

@@ -2,7 +2,7 @@
 // VERIFIED requires evidence. Statuses: VERIFIED | PARTIALLY_VERIFIED | UNVERIFIED | UNSUPPORTED.
 export const CAPABILITY_REGISTER = Object.freeze([
   { id: "CAP-01", capability: "Entity field types (Date, Time, Enum, Long Text, Number)", status: "PARTIALLY_VERIFIED", evidence: "InternalHealthRun schema (string/number/date-time) accepted; Date/Time/Enum semantics not measured." },
-  { id: "CAP-02", capability: "Single-field UNIQUE", status: "UNSUPPORTED", evidence: "Base44 official entity-schemas documentation (2026-10-19): native unique constraints unsupported; unknown unique_fields ignored. Canonical atomic adapter required; no production adapter proven." },
+  { id: "CAP-02", capability: "Single-field UNIQUE", status: "UNSUPPORTED", evidence: "Base44 official entity-schemas documentation (2026-10-19): native unique constraints unsupported; unknown unique_fields ignored. Generic atomic adapter remains unproven. Onboarding uses SDK keyed upsert; live cross-instance uniqueness is not established." },
   { id: "CAP-03", capability: "Compound UNIQUE", status: "UNSUPPORTED", evidence: "Same official native UNIQUE limitation. Synthetic createIfAbsent protocol tests do not establish platform atomicity." },
   { id: "CAP-04", capability: "Indexes", status: "UNVERIFIED", evidence: "No declarative index mechanism proven." },
   { id: "CAP-05", capability: "FK / reference integrity", status: "UNVERIFIED", evidence: "No FK declaration proven; backend equivalent required." },
@@ -23,7 +23,7 @@ export const CAPABILITY_REGISTER = Object.freeze([
   { id: "CAP-21", capability: "Backend-only writes / service-role bypass", status: "PARTIALLY_VERIFIED", evidence: "Official security docs: service role bypasses RLS/FLS. Schemas deny direct writes; specific non-serializable server grants guard future workers. No live mutation enforcement test." },
   { id: "CAP-22", capability: "Immutable / protected record enforcement", status: "PARTIALLY_VERIFIED", evidence: "Deployed enforcement pending. Repository RLS and shared guard deny protected human mutations and immutable system updates; synthetic negative tests cover all five protected entities." },
   { id: "CAP-23", capability: "Native timestamp mapping (OD-004)", status: "PARTIALLY_VERIFIED", evidence: "2026-10-19 read-only InternalHealthRun response includes created_date/updated_date. UTC offset absent; product timestamps, mutability and immutable updated timestamp semantics not live-proven." },
-  { id: "CAP-24", capability: "Nullable / optional field representation", status: "PARTIALLY_VERIFIED", evidence: "Optional fields declared using documented schema types; backend omits null values on write and normalizes absent values to logical NULL on read. Native explicit null storage remains unverified." },
+  { id: "CAP-24", capability: "Nullable / optional field representation", status: "PARTIALLY_VERIFIED", evidence: "Optional fields use documented types; canonical validation normalizes absent values to logical NULL. Onboarding sends explicit NULLs to clear merging SDK updates and verifies readback; native NULL storage remains unverified." },
   { id: "CAP-20", capability: "Deployment rollback", status: "UNVERIFIED", evidence: "Not measured." },
 ]);
 

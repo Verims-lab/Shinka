@@ -7,6 +7,7 @@ import OnboardingScreen from '@/features/onboarding/OnboardingScreen';
 import PageContainer from '@/components/shinka/PageContainer';
 import ShinkaButton from '@/components/shinka/ShinkaButton';
 import Home from './Home';
+import { validTimezone } from '../../base44/shared/onboardingValidation.js';
 export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO'}){
   const {user,isAuthenticated}=useAuth();
   const [snapshot,setSnapshot]=useState(null),[entry,setEntry]=useState(initialEntry),[error,setError]=useState(''),[language,setLanguage]=useState(resolveLanguage);
@@ -15,7 +16,7 @@ export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO'}){
     const ticket=++generation.current;setError('');setSnapshot(null);
     try {
       let value=await onboardingRequest('hydrate');
-      if(value.state!=='INACTIVE_ACCOUNT'&&!value.preferences){
+      if(value.state!=='INACTIVE_ACCOUNT'&&(!value.preferences||!validTimezone(value.preferences.timezone))){
         let timezone=null;try{timezone=Intl.DateTimeFormat().resolvedOptions().timeZone;}catch{/* Backend requires retry; no fake timezone. */}
         await onboardingRequest('initialize',{language_code:language,timezone,action_id:initialization.current});
         value=await onboardingRequest('hydrate');
@@ -29,5 +30,5 @@ export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO'}){
     {error?<><p role="alert">{onboardingCopy('systemError',language)}</p><p className="break-words text-shinka-small">{error}</p><ShinkaButton onClick={load}>{onboardingCopy('retry',language)}</ShinkaButton></>:<p role="status" aria-label="Shinka">…</p>}
   </main></PageContainer>;
   if(snapshot.state==='ACTIVE_EXISTING_USER')return <Home/>;
-  return <OnboardingScreen key={user.id} state={snapshot.state} initialLanguage={snapshot.preferences?.language_code||language} today={snapshot.today} profile={snapshot.profile} onState={state=>setSnapshot(s=>({...s,state}))}/>;
+  return <OnboardingScreen key={user.id} state={snapshot.state} initialLanguage={snapshot.preferences?.language_code||language} today={snapshot.today} profile={snapshot.profile} dependencies={snapshot.dependencies||[]} onState={(state,result)=>setSnapshot(s=>({...s,...result,state}))}/>;
 }
