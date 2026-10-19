@@ -8,11 +8,13 @@ import { normalizeGeoNamesPlace } from '../../../base44/shared/onboardingValidat
 
 const lookup={action:'searchPlaces',query:'  İstanbul   City ',language_code:'tr'};
 const post=(f,geoNames,body=lookup)=>handleOnboardingRequest(new Request('https://fixture.invalid/onboarding',{method:'POST',body:JSON.stringify(body)}),()=>f.client,{geoNames,now:()=>new Date(NOW)});
-async function failure(run,code,httpStatus=null,providerStatus=null,providerClass=null){
+async function failure(run,code,httpStatus=null,providerStatus=null,providerClass=null,
+  stage=code==='GEONAMES_SECRET_MISSING'?'CONFIGURATION':code==='GEONAMES_NETWORK_ERROR'||code==='GEONAMES_REQUEST_TIMEOUT'?(httpStatus===null?'FETCH':'RESPONSE_BODY'):'RESPONSE_VALIDATION',
+  transportClass=code==='GEONAMES_REQUEST_TIMEOUT'?'TIMEOUT':code==='GEONAMES_NETWORK_ERROR'?'UNKNOWN':null){
   let caught;try{await run();}catch(error){caught=error;}
   check(caught instanceof GeoNamesError,`expected ${code}`);
   check(caught.code==='GEONAMES_UNAVAILABLE');
-  check(JSON.stringify(geoNamesDiagnostic(caught))===JSON.stringify({code,http_status:httpStatus,provider_status:providerStatus,provider_class:providerClass}),`diagnostic ${code}`);
+  check(JSON.stringify(geoNamesDiagnostic(caught))===JSON.stringify({code,http_status:httpStatus,provider_status:providerStatus,provider_class:providerClass,failure_stage:stage,transport_class:transportClass}),`diagnostic ${code}`);
 }
 /** @type {import('./testTypes').FoundationTest[]} */
 export const GEONAMES_DIAGNOSTIC_TESTS=[
@@ -99,12 +101,110 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
   const adapter=createGeoNamesAdapter({username:marker,fetcher:async()=>{calls++;return Response.json({status:{value:10,message:marker},username:marker,stack:marker});}});
   const response=await post(f,adapter),body=await response.json();
   check(response.status===502&&body.error_code==='GEONAMES_UNAVAILABLE'&&body.field===null);
-  check(JSON.stringify(body.diagnostic)==='{"code":"GEONAMES_PROVIDER_REJECTED","http_status":200,"provider_status":10,"provider_class":"AUTHORIZATION"}');
+  check(JSON.stringify(body.diagnostic)==='{"code":"GEONAMES_PROVIDER_REJECTED","http_status":200,"provider_status":10,"provider_class":"AUTHORIZATION","failure_stage":"RESPONSE_VALIDATION","transport_class":null}');
   check(!JSON.stringify(body).includes(marker)&&Object.keys(body).sort().join()==='diagnostic,error_code,field');
   const before=calls;
   for(const extra of [{url:'https://fixture.invalid/override'},{username:marker},{user_id:'other-owner'}])check(!(await post(f,adapter,{...lookup,...extra})).ok);
   check((await post(sdkOnboardingFixture({owner:null}),adapter)).status===401&&calls===before);
   check(geoNamesDiagnostic({diagnosticCode:marker,httpStatus:marker})===null);
   const unsafe=new GeoNamesError(marker,marker,marker);check(!JSON.stringify(geoNamesDiagnostic(unsafe)).includes(marker));
+ }],
+ ['G09','Pre-response transport causes classify only explicit runtime evidence; ambiguity stays UNKNOWN',async()=>{
+  /** @type {Array<[unknown,string]>} */
+  const signatures=[
+    [{code:'ENOTFOUND'},'DNS'],[{code:'EAI_AGAIN'},'DNS'],
+    [{code:'CERT_HAS_EXPIRED'},'TLS_CERTIFICATE'],[{code:'ERR_TLS_CERT_ALTNAME_INVALID'},'TLS_CERTIFICATE'],
+    [{code:'ECONNRESET'},'CONNECTION'],[{name:'ConnectionRefused'},'CONNECTION'],
+    [{code:'ERR_INVALID_ARG_TYPE'},'INVOCATION_INPUT'],[{code:'ERR_INVALID_THIS'},'INVOCATION_INPUT'],
+    [{code:'ETIMEDOUT'},'TIMEOUT'],[{name:'TimeoutError'},'TIMEOUT'],
+    [new TypeError("Fetch failed: Encountered redirect while redirect mode is set to 'error'"),'REDIRECT_REJECTION'],
+    [new Error('unexpected redirect'),'REDIRECT_REJECTION'],
+    [new Error('error sending request for url (https://fixture.invalid/): client error (Connect): dns error: fixture'),'DNS'],
+    [new TypeError('Failed to fetch'),'UNKNOWN'],[new TypeError('DNS TLS connection redirect'),'UNKNOWN'],
+    [{name:'NotFound'},'UNKNOWN'],[{name:'Http'},'UNKNOWN'],[{name:'AbortError'},'UNKNOWN'],
+    [{code:'NEW_RUNTIME_CODE'},'UNKNOWN'],[{code:'ECONNRESET',cause:{code:'ENOTFOUND'}},'UNKNOWN'],
+    [null,'UNKNOWN'],['DNS','UNKNOWN'],
+  ];
+  for(const [cause,expected] of signatures)for(const wrapped of [false,true]){
+    const error=wrapped?new TypeError('fetch failed',{cause}):cause;
+    const adapter=createGeoNamesAdapter({username:'fixture',fetcher:async()=>{throw error;}});
+    await failure(()=>adapter.search('City','en'),'GEONAMES_NETWORK_ERROR',null,null,null,'FETCH',expected);
+  }
+  const cycle={cause:null};cycle.cause=cycle;
+  for(const error of [cycle,{cause:{cause:{cause:{cause:{code:'ENOTFOUND'}}}}},{get cause(){throw new Error('inaccessible');}}]){
+    const adapter=createGeoNamesAdapter({username:'fixture',fetcher:async()=>{throw error;}});
+    await failure(()=>adapter.search('City','en'),'GEONAMES_NETWORK_ERROR');
+  }
+ }],
+ ['G10','Fetch invocation versus body-read stage is precise; successful search and ID resolve preserved',async()=>{
+  const invocation=createGeoNamesAdapter({username:'fixture',fetcher:()=>{throw Object.assign(new TypeError('fixture'),{code:'ERR_INVALID_THIS'});}});
+  await failure(()=>invocation.search('City','en'),'GEONAMES_NETWORK_ERROR',null,null,null,'FETCH','INVOCATION_INPUT');
+  const body=createGeoNamesAdapter({username:'fixture',fetcher:async()=>Object.assign(new Response('fixture'),{text:async()=>{throw Object.assign(new Error('fixture'),{code:'ECONNRESET'});}})});
+  await failure(()=>body.search('City','en'),'GEONAMES_NETWORK_ERROR',200,null,null,'RESPONSE_BODY','CONNECTION');
+  const paths=[];
+  const success=createGeoNamesAdapter({username:'fixture',fetcher:async(url,options)=>{
+    check(url instanceof URL&&options.redirect==='error');paths.push(url.pathname);
+    if(url.pathname==='/getJSON')check(url.searchParams.get('geonameId')===String(fixturePlace.geonameId));
+    return Response.json(url.pathname==='/searchJSON'?{geonames:[fixturePlace]}:fixturePlace);
+  }});
+  const [place]=await success.search('City','en');
+  check(JSON.stringify(await success.resolve(place.birthplace_geonames_id))===JSON.stringify(place));
+  check(paths.join()==='/searchJSON,/getJSON');
+ }],
+ ['G11','Settled requests clear deadlines; abort and late fetch/body rejection never escape unhandled',async()=>{
+  let unhandled=0;const listener=()=>{unhandled++;};
+  const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+  window.addEventListener('unhandledrejection',listener);
+  try{
+    for(const outcome of ['success','rejection','http']){
+      let signal=new AbortController().signal;
+      const adapter=createGeoNamesAdapter({username:'fixture',timeoutMs:5,fetcher:async(_url,options)=>{
+        signal=options.signal;
+        if(outcome==='rejection')throw new TypeError('fixture');
+        return outcome==='http'?new Response('',{status:503}):Response.json({geonames:[]});
+      }});
+      if(outcome==='success')await adapter.search('City','en');
+      else await failure(()=>adapter.search('City','en'),outcome==='http'?'GEONAMES_HTTP_ERROR':'GEONAMES_NETWORK_ERROR',outcome==='http'?503:null);
+      await delay(15);check(!signal.aborted,'settled request deadline was not cleared');
+    }
+    for(const bodyPending of [false,true])for(const rejectOnAbort of [false,true]){
+      let signal=new AbortController().signal,aborts=0;
+      /** @type {(reason:unknown)=>void} */ let rejectLate=()=>{};
+      const pending=new Promise((_,reject)=>{rejectLate=reject;});
+      const adapter=createGeoNamesAdapter({username:'fixture',timeoutMs:5,fetcher:async(_url,options)=>{
+        signal=options.signal;signal.addEventListener('abort',()=>{aborts++;if(rejectOnAbort)rejectLate(new DOMException('fixture','AbortError'));});
+        return bodyPending?{status:200,ok:true,text:()=>pending}:pending;
+      }});
+      await failure(()=>adapter.search('City','en'),'GEONAMES_REQUEST_TIMEOUT',bodyPending?200:null);
+      check(signal.aborted&&aborts===1);rejectLate(new TypeError('late fixture rejection'));await delay(15);
+    }
+    check(unhandled===0,'unhandled transport rejection');
+  }finally{window.removeEventListener('unhandledrejection',listener);}
+ }],
+ ['G12','Sensitive exceptions/cause/stack and unknown names/codes never reach response, console or entities',async()=>{
+  const fixtureUsername='synthetic-sensitive-username',fixtureQuery='Synthetic Private City';
+  const fixtureUrl=`https://secure.geonames.org/searchJSON?username=${fixtureUsername}&q=${encodeURIComponent(fixtureQuery)}`;
+  const methods=['log','info','warn','error','debug','trace','dir','table'];
+  const originals=methods.map(method=>console[method]);let logs=0;
+  methods.forEach(method=>{console[method]=()=>{logs++;};});
+  try{
+    for(const signature of ['unknown','code','message']){
+      const message=signature==='message'?`error sending request for url (${fixtureUrl}): client error (Connect): dns error: ${fixtureQuery}`:`${fixtureUrl} ${fixtureQuery}`;
+      const cause=Object.assign(new Error(message),{code:signature==='code'?'ENOTFOUND':fixtureUsername,name:fixtureQuery,stack:fixtureUrl});
+      const error=Object.assign(new TypeError(`${fixtureUsername} ${fixtureQuery}`,{cause}),{stack:fixtureUrl});
+      const f=sdkOnboardingFixture(),before=JSON.stringify(f.rows);
+      const adapter=createGeoNamesAdapter({username:fixtureUsername,fetcher:async()=>{throw error;}});
+      const response=await post(f,adapter,{action:'searchPlaces',query:fixtureQuery,language_code:'en'}),body=await response.json();
+      check(response.status===503&&body.diagnostic.failure_stage==='FETCH'&&body.diagnostic.transport_class===(signature==='unknown'?'UNKNOWN':'DNS'));
+      const serialized=JSON.stringify(body);
+      for(const value of [fixtureUsername,fixtureQuery,fixtureUrl,'stack','cause','message'])check(!serialized.includes(value),'sensitive error projection');
+      check(Object.keys(body.diagnostic).sort().join()==='code,failure_stage,http_status,provider_class,provider_status,transport_class');
+      check(JSON.stringify(f.rows)===before&&f.calls.every(call=>call.method==='filter'));
+    }
+    const unsafe=new GeoNamesError('GEONAMES_NETWORK_ERROR',null,null,fixtureUsername,fixtureQuery);
+    unsafe.failureStage=fixtureUsername;unsafe.transportClass=fixtureQuery;
+    const safe=geoNamesDiagnostic(unsafe);check(safe.failure_stage==='UNKNOWN'&&safe.transport_class===null);
+    check(logs===0,'transport errors must not log');
+  }finally{methods.forEach((method,index)=>{console[method]=originals[index];});}
  }],
 ];
