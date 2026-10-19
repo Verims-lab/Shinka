@@ -14,7 +14,7 @@ const allowed={hydrate:[],initialize:['language_code','timezone','action_id'],sa
 export async function onboardingOperation(client,body,dependencies={}) {
   const {atomic=null,geoNames=null,sunSign=SUN_SIGN_RESOLVER,consentVersion=HEALTH_CONSENT_VERSION,now=()=>new Date()}=dependencies;
   const principal=await requireAuthenticatedUser(client),owner=resolveAuthenticatedOwner(principal,body);
-  const persistence=dependencies.persistence??(atomic?null:createBase44OnboardingAdapter(client,principal,{now,consentVersion}));
+  const persistence=dependencies.persistence??(atomic?null:createBase44OnboardingAdapter(client,principal,{now,consentVersion,cycleGate:dependencies.cycleGate}));
   const fields=allowed[body.action];
   if(!fields||Object.keys(body).some(k=>!['action','user_id',...fields].includes(k)))fail('INVALID_REQUEST');
   const store=client.asServiceRole.entities;
@@ -39,11 +39,17 @@ export async function onboardingOperation(client,body,dependencies={}) {
   const preferences=await singleton('user_preferences');
   const today=preferences&&validTimezone(preferences.timezone)?serverLocalDate(now(),preferences.timezone):null;
   const state=async(cycleStepConfirmed=false)=>{
-    const consent=profile?await singleton('user_health_consent'):null;
-    const period=consent?.consent_status==='GRANTED'?await rows('user_period_record',1):[];
+    let hasHealthData=false;
+    if(profile&&!cycleStepConfirmed){
+      if(persistence)hasHealthData=await persistence.hasVerifiedCycle();
+      else {
+        const consent=await singleton('user_health_consent');
+        hasHealthData=consent?.consent_status==='GRANTED'&&(await rows('user_period_record',1)).length>0;
+      }
+    }
     const daily=profile?await rows('user_daily_message',1):[];
     const dependencies=profile&&!SUN_SIGN_CODES.includes(profile.sun_sign_code)?['SUN_SIGN_RULE_REQUIRED']:[];
-    const route=resolveOnboardingState({authenticated:true,profile,preferences,today,hasHealthData:period.length>0,hasDailyMessage:daily.length>0,cycleStepConfirmed});
+    const route=resolveOnboardingState({authenticated:true,profile,preferences,today,hasHealthData,hasDailyMessage:daily.length>0,cycleStepConfirmed});
     return {dependencies,completionReady:route==='ACTIVE_EXISTING_USER',state:route,profile,preferences,today};
   };
   if(body.action==='hydrate')return state();

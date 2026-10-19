@@ -44,8 +44,8 @@ CLOSED_PENDING_BASE44_VERIFICATION. Approved fixed-date Sun, exact EN/TR copy, h
 
 ## Buildmarker-009 — Maintenance, Performance & Mobile Compatibility (2026-10-20)
 
-Bounded five-package Internal Build history, deferred internal routes, readable onboarding forms, bounded selection caching and mobile/WebKit controls with reproducible performance evidence.
+Preserved loading/mobile/history maintenance; ON-05 correction separates persisted consent business time from native metadata, resumes partial writes and verifies history before advancement.
 
-Health: HC-008.0. Verification: BASE44_FULL_HEALTH_REQUIRED.
+Health: HC-009.0. Verification: BASE44_FULL_HEALTH_REQUIRED.
 
-REPO_CLOSED_PENDING_BASE44_VERIFICATION. Chromium and WebKit each: 298/298 canonical, 8/8 routing/Preview, 5/5 mobile, 52 general + 21 onboarding Health PASS. Clean install/tree, typecheck, lint, build, Repo Health and byte/retention guards PASS; 0 Critical/High, 2 existing Moderate advisories. Initial production JS 1,026,028 to 447,024 bytes. No content import. Physical Android/iOS, hosted Apple/Google, GeoNames cascade/resolve/save, native enforcement and current deployed Full Health/history readback remain required. Prior live observations remain separate evidence.
+REPO_CLOSED_PENDING_BASE44_VERIFICATION; ON05_OPEN_PENDING_LIVE_SAVE_AND_READBACK. Existing loading/mobile/cache/history work preserved. UTC granted_at is durable business authority; insert-only consent/settings, bounded worker coalescing, conflict checks and verified event/period recovery. Chromium/WebKit each 310/310 canonical, 52 general + 21 onboarding Health, 8 routing/Preview + 5 mobile PASS. Clean install/tree/security/type/lint/build/Repo Health/retention/byte guards PASS; 0 Critical/High, 2 existing Moderate. Initial JS 447,080 raw / 146,566 gzip bytes. Published UI observed 008/HC-007.0; Preview main 848e073; live table counts 1/0/0, raw timestamp type/offset and function hash unverified. Cross-worker uniqueness, hosted save/readback, Full Health/history and prior external obligations remain open; no native transaction/rollback, product deletion or live closure claimed.

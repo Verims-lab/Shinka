@@ -6,11 +6,11 @@
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-008.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-009.0; repository, synthetic and external evidence separated.
 
-## Catalog (HC-008.0) — 16 suites, 129 cases
+## Catalog (HC-009.0) — 16 suites, 130 cases
 
-Registry-derived totals: 106 current, 15 future, 8 external. H06 has 6 current + 1 external; H07 has 12 current; H10 has 1 current GeoNames + 2 future Pattern/Moon + 1 external; H11 has 2 current onboarding-consent + 3 future withdrawal/account cases. H08 remains entirely future. Existing H01…H05/H12/H13/H16 scopes are preserved.
+Registry-derived totals: 106 current, 15 future, 9 external. H06 has 6 current + 1 external; H07 has 12 current; H10 has 1 current GeoNames + 2 future Pattern/Moon + 1 external; H11 has 2 current onboarding-consent + 3 future withdrawal/account cases + 1 external ON-05 recovery case. H08 remains entirely future. Existing H01…H05/H12/H13/H16 scopes are preserved.
 
 H06's six current cases exercise the real auth/identity helpers with synthetic providers/principals. H07 has 12 executable current cases, including approved Sun/TR decisions, the production persistence adapter and durable resume semantics. H10-003 measures the structured GeoNames adapter contract; H10-004 requires live provider evidence. H11-004 exercises grant/history/immutability/retry contracts; H11-005 verifies the approved consent text/version and persistence contract. No future withdrawal/deletion/Moon/cycle engine behavior is promoted to PASS.
 
@@ -63,6 +63,12 @@ Final local results and exact environment are recorded in [Development Notes](SH
 
 ## Required external closure
 
-Run the deployed **current** marker/catalog Full Health and save/list/open its private report. Verify both function bundles, live Apple/Google callbacks, new GeoNames country/region/settlement/resolve/save, owner A/B/admin/anonymous boundaries, explicit NULLs, native timestamp offsets, keyed uniqueness/conditional updates and protected-history behavior. H04-006, H06-007, H10-004, H12-901, H13-013 and H16-901/902/903 remain eight explicit external requirements. First Shinka and future engines remain unimplemented.
+Run the deployed **current** marker/catalog Full Health and save/list/open its private report. Verify both function bundles, live Apple/Google callbacks, new GeoNames country/region/settlement/resolve/save, owner A/B/admin/anonymous boundaries, explicit NULLs, native timestamp offsets, keyed uniqueness/conditional updates and protected-history behavior. H04-006, H06-007, H10-004, H12-901, H13-013 and H16-901/902/903 plus H11-006 remain nine explicit external requirements. First Shinka and future engines remain unimplemented.
 
 The 2026-10-19 live zero counts, historical readiness and transport evidence are retained once in [prior evidence](reports/SHINKA_PRE_009_EVIDENCE.md). They do not certify package 009. Package retention only bounds Internal Build; it does not prune necessary Health evidence or security records. External cases remain listed N/A in normal runs and cannot be promoted to PASS by local fixtures.
+
+## HC-009.0 ON-05 corrective coverage
+
+H07-007 adds production partial-write/reload evidence. H07-011 automatically includes P21…P32; H11-004 explicitly checks business-clock authority, ambiguous native metadata, preserved grants, event/period failures, conflicts, consent withdrawal/account/deletion guards and worker-local versus independent-worker concurrency. P17's former synthetic native-clock convergence claim is replaced with bounded worker coalescing. P18's expectation to block valid consent because native metadata lacks timezone is invalid under the corrected business contract; it now requires safe recovery with unchanged granted_at. No test/Health case was deleted.
+
+H11-006 is a new LIVE_RUNTIME external requirement: deploy current repository code, retry the same partial account, confirm saveCycle success and read current consent/event/period/settings back. Missing evidence remains NOT_APPLICABLE (EXTERNAL_RELEASE) with an explicit external requirement under existing catalog policy; it does not mean the incident passed. ON-05 closure remains OPEN_PENDING_LIVE_SAVE_AND_READBACK regardless of the synthetic gate. This semantic change requires HC-009.0, while the same maintenance package retains Buildmarker-009.

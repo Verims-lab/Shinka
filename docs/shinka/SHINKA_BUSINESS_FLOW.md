@@ -63,3 +63,7 @@ Changing a parent clears its descendants and final selection. Partial paths requ
 ## Maintenance preservation
 
 Package 009 preserves ON-04 country→region→settlement selection, explicit Clear, optional NULL behavior, TR/EN copy, backend selected-ID resolution and durable onboarding decisions. Short-lived cached public lists can satisfy repeated selections; expiry or explicit Retry reads the provider again. No inferred selection, new product flow, content import or successful First Shinka state is introduced. See [mobile validation](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md) for browser versus device evidence.
+
+## ON-05 partial-write recovery
+
+An existing valid consent without its event/period is a resumable partial operation. Continue with the same intended inputs keeps the saved consent time and creates only missing matching records after verification. Retry/reload/double tap in one worker does not issue another grant time; confirmed matching rows are not written again. Conflicting settings, period start, version/history or withdrawn consent is refused; onboarding cannot silently become a health editing/regrant flow. All required records must be read back before Continue succeeds. Reload cannot infer cycle completion from period alone when its consent event is absent. Skip writes nothing, including when an earlier failed attempt left consent behind; it neither revokes nor deletes that consent. Live success with the same partial account remains required.

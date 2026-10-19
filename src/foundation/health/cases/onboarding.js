@@ -24,7 +24,7 @@ export const ONBOARDING_HEALTH_CASES=[
  c('H07')('H07-004','Canonical eight-state route resolver','No Home success without actual daily existence.',probe(['O24','A07','A08'])),
  c('H07')('H07-005','Optional cycle input and no fake 5/28','Start dependency, ranges, separate consent and skip.',probe(['O14','O15','O16','O17','O18'])),
  c('H07')('H07-006','Preferences initialization','TR/EN, device IANA / persisted fallback, false and 06:00.',probe(['A05','O23','O30'])),
- c('H07')('H07-007','Retry and partial failure contract','Synthetic atomic action protocol; failure never advances UI.',probe(['A04','O19','O20','O21','O29','O31'])),
+ c('H07')('H07-007','Retry and partial failure contract','Production partial writes and synthetic atomic protocol; verified records before advancement.',probe(['A04','O19','O20','O21','O29','O31','P23','P24','P30','P31'])),
  c('H07')('H07-008','Source copy contract','Exact approved EN/TR catalog and centralized copy.',probe(['O25','O27','C19'])),
  c('H07')('H07-009','Approved Sun calculation','Fixed tropical birth-date rule and all 12 boundaries.',probe(ONBOARDING_DECISION_TESTS.slice(0,16).map(([id])=>id))),
  c('H07')('H07-010','Approved TR onboarding copy','Exact decision receipt, parity and nonempty approved values.',probe(['C19'])),
@@ -32,6 +32,7 @@ export const ONBOARDING_HEALTH_CASES=[
  c('H07')('H07-012','Approved durable onboarding derivation','Safe restart; actual owner daily record is final completion; no new schema.',probe(['C16','C18','C20'])),
  c('H10')('H10-003','Optional structured GeoNames boundary','Bounded proxy/cache, owner-only read count, sanitization, selection, coherent NULL and outage.',probe(['M06','M07','M08','O08','O09','O10','O11','O12','O13','O28','O32','O33','U09','U10','U11','U12','G01','G02','G03','G04','G05','G06','G07','G08','G09','G10','G11','G12','G13','G14','G15','G16','G17','G18','G19','G20','G21','G22','G23','G24','B01','B02','B03','B04','B05','B06','B07','B08','B09','B10','B11','B12','B13','B14','B15','B16','B17','B18'])),
  futureCase('H10','H10-004','Live GeoNames credentials and provider','Real deployed proxy/provider availability unmeasured.',APPLICABILITY.EXTERNAL,CLASS.LIVE_RUNTIME),
- c('H11')('H11-004','Onboarding consent grant and immutable history','Source gate, explicit grant, owner, verified retry, immutable domain payload and deletion guard.',probe(['O17','O18','O19','O20','O22','S12','S14','P09','P15','P16','P17','P18','C17','C21'])),
+ c('H11')('H11-004','Onboarding consent grant and immutable history','Backend-persisted UTC grant authority; native metadata independent; partial retry, conflicts, bounded worker coalescing and consent/deletion guards.',probe(['O17','O18','O19','O20','O22','S12','S14','P09','P15','P16','P17','P18','C17','C21','P21','P22','P23','P24','P25','P26','P27','P28','P29','P30','P31','P32'])),
  c('H11')('H11-005','Approved consent text/version and persistence','health-consent-v1.0, exact EN/TR copy and real adapter path using isolated transport.',probe(['C17','C19','C21'])),
+ futureCase('H11','H11-006','Live ON-05 partial grant recovery and readback','After sync/publish, same partial account saveCycle and verified grant/event/period/optional NULL readback; fixture PASS cannot close the incident.',APPLICABILITY.EXTERNAL,CLASS.LIVE_RUNTIME),
 ];
