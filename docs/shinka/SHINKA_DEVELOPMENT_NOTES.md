@@ -130,3 +130,34 @@ Canonical tests retain all 215 and add HC01…HC16 for real probe readiness, neg
 Final validation for this Health closure: **231 canonical PASS / 0 FAIL**, plus **3/3 real App routing scenarios**, zero browser exceptions. T74 measured READY in 53ms at 360px and 52ms at 1024px (15,000ms bound); Apple/Google only, both 52px controls, 20px padding, zero passwords, age unchecked. Preserved current Health evidence: H06 6/6, H07 12/12, H10-003 1/1, H11 onboarding 2/2, H12 20/20 PASS. npm ci, npm ls --depth=0, security:deps, typecheck, lint, build and Repo Health PASS. Audit: 0 Critical / 0 High / 2 existing Moderate findings. All 20 schemas and 12 document headers remain aligned. Internal 008 blockers: 0; **CLOSED_PENDING_BASE44_VERIFICATION**. This is not a new deployed Full Health result.
 
 Health closure branch preflight: local and origin Test started clean at 05a4c128e722e49201897d27a99b3550e21910c0; main 17d44e21acb237b108f9d4df4cdfaa93bda8ad71 was one merge commit ahead without divergence. Remote Test and local Test were fast-forwarded to main before edits. Changes and final push target Test only; main is not modified.
+
+## Preview readiness correction — same 008 / HC-007.0
+
+The supplied deployed HC-007.0 result was 126 cases / 104 applicable / 103 PASS / 1 FAIL / 22 N/A, with only H03-007 failing through T74 and HC01 `AUTH_PROBE_READY_TIMEOUT`. The prior route-state fix was already correct: `/auth-shell-probe` resolved `UNAUTHENTICATED_SIGN_IN`. H05-009 had live zero-count/importPerformed=false proof and is unchanged by this correction.
+
+Reproduction (2026-10-19): the Base44 Preview Foundation test button reproduced 229/231 PASS, with T74 and HC01 timing out around 15 seconds. The same Preview `/auth-shell-probe` opened top-level showed document.readyState=complete, the expected root and real auth shell, and READY. A local equivalent cross-site Preview parent -> Health iframe -> hidden auth iframe reproduced the unmodified failure with normal Chromium frame scheduling: document complete, root/shell present, correct screen, two 52px provider controls, but status LOADING. A diagnostic animation-frame callback was not delivered during a 1,000ms timer observation; the old probe's sole READY transition depended on that animation callback. The existing 15-second deadline then removed the frame. The issue is the hidden nested-frame animation scheduling dependency, not a missing route, SDK hydration, OAuth, base path, message target/origin or listener ordering. There are no postMessage/event readiness messages in this implementation. Earlier default Playwright scheduling flags and a top-level-only harness did not cover the failing Preview topology.
+
+Fix: useLayoutEffect verifies the committed real DOM and synchronously resolved layout, then commits the durable data-probe-status attribute. `inspectAuthShell` requires the connected root, expected unauthenticated screen, actual auth shell/container, two measurable provider controls and nonzero container width. An absent or unmeasurable shell cannot become READY. No requestAnimationFrame, animation/painter availability, provider request, parent/top assumption or new auth/session state is required. Parent polling stays bounded at a 50ms interval / 15,000ms timeout; frame/listener disposal is explicit. Late observation reads the durable state, so no READY event can be lost. StrictMode plus explicit unmount/remount and observation before/after commit are covered. An observed root disappearing or a detached frame produces an explicit ERROR.
+
+ERROR/TIMEOUT diagnostics include route/pathname, expectedSelector, selectorFound, documentReadyState, resolvedScreen, elapsedMs, frameState, readinessState and lastObservedProbeState. T74/HC01 propagate this as structured evidence through the canonical runner and H03-007 instead of losing it to the short UI error-text limit. No query strings, tokens, account values or user data are captured.
+
+Regression matrix:
+
+| Scenario | Evidence |
+|---|---|
+| A: unauthenticated top-level | Real App route, anonymous SDK transport: READY |
+| B: unauthenticated iframe | Real hidden route, normal and nested cross-site Preview: READY |
+| C: parent observes before child commit | AP03 plus normal iframe observer: READY |
+| D: child commits before parent observes | AP04 and nested late-parent scenario: READY |
+| E: authenticated session outside probe | Parent stays AUTHENTICATED_PROFILE_REQUIRED; isolated child READY |
+| F: expected root absent | HC03 / AP07: bounded TIMEOUT, never PASS |
+| G: redirect loop | HC05: ERROR |
+| H: unmount / frame disposal before ready | AP05 / AP06: ERROR, fixtures/frames cleaned |
+| I: 360px | Nested hidden Preview READY in 53ms |
+| J: 1024px | Nested hidden Preview READY in 52ms |
+
+Final repository validation: **239 canonical PASS / 0 FAIL** (all prior 231 retained, AP01…AP08 added), **8/8 actual routing/Preview scenarios**, zero browser exceptions. The harness preserves normal Chromium background/frame scheduling and nests the app cross-site before creating the actual hidden probe route. Late-parent observation sees READY immediately. H05-009 regressions remain PASS; H06 6/6, H07 12/12, H10-003 1/1, H11 onboarding 2/2, H12 20/20 and H13 11/11 current local checks PASS. npm ci, npm ls --depth=0, security:deps, typecheck, lint, build and Repo Health PASS; 0 Critical / 0 High, the same two Moderate router findings.
+
+BuildMarker stays 008; catalog stays HC-007.0 / 16 suites / 126 cases / 104 current / 15 future / 7 external. This repairs the existing READY contract implementation, not case semantics; no ledger row, H05 change or product scope is added. The fix has not been deployed by this task. Internal blockers: 0; CLOSED_PENDING_BASE44_VERIFICATION. BASE44_FULL_HEALTH_REQUIRED=YES and FIRST_SHINKA_ENGINE_REQUIRED=YES remain. No content/daily/Moon/cycle engine, daily message generation, scheduler, Calendar or Pattern.
+
+Branch preflight: local/origin Test clean at b4a2128f99da5b17e8ddde031ff49153364b7131; main 056dc07a1471123bd70027c7756adeee06c31c91 was one merge commit ahead without divergence. Test was fast-forwarded remotely and locally before edits. Work and push target Test only; main is not modified.

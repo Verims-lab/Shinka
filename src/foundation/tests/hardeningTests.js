@@ -14,7 +14,7 @@ import { CONTENT_COLUMNS, MAPPING_COLUMNS, CATEGORY_COUNTS, SIGNS, MOONS, PHASES
   validateContentRows, validateMappingRows, compareBaseAndExtended, contentIntegrity, mappingIntegrity } from "../../../base44/shared/contentArtifactValidator.ts";
 import { normalizeStoredReport, buildHistoryRecord, compactCases, HISTORY_FIELD_LIMIT } from "../../../base44/shared/healthHistoryContract.js";
 import { internalHealthOperation } from "../../../base44/shared/internalHealthOperations.js";
-import { measureAuthShell } from "@/foundation/probes/authProbeContract";
+import { measureAuthShell, requireAuthProbeReady } from "@/foundation/probes/authProbeContract";
 import { BUILD_MARKER } from "@/foundation/buildMarker";
 import { HEALTH_CATALOG_VERSION } from "@/foundation/health/constants";
 
@@ -146,7 +146,7 @@ export const HARDENING_TESTS = [
   }],
   ["T74","Rendered auth shell uses only Apple/Google, 52px controls and 20px padding",async()=>{
     const probes=[];
-    for(const width of [360,1024]){const result=await measureAuthShell(width);assert(result.state==="READY",JSON.stringify(result));probes.push({width,...result});const r=result.geometry;assert(r.providers==="apple,google"&&r.heights.every(h=>h>=52)&&r.padding.every(p=>p==="20px")&&r.passwords===0,`auth geometry ${JSON.stringify(r)}`);}
+    for(const width of [360,1024]){const result=await measureAuthShell(width);requireAuthProbeReady(result);probes.push({width,...result});const r=result.geometry;assert(r.providers==="apple,google"&&r.heights.every(h=>h>=52)&&r.padding.every(p=>p==="20px")&&r.passwords===0,`auth geometry ${JSON.stringify(r)}`);}
     return {evidence:{probes}};
   }],
 ];

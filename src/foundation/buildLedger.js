@@ -109,7 +109,7 @@ export const BUILD_LEDGER = Object.freeze([
     created_at: "2026-10-19", health_catalog_version: "HC-007.0",
     full_health_status: "BASE44_FULL_HEALTH_REQUIRED",
     docs_aligned: true, source_changed: true, tests_changed: true, health_changed: true,
-    notes: "CLOSED_PENDING_BASE44_VERIFICATION: same-package production adapter plus approved fixed-date Sun, exact TR copy/helpers, health-consent-v1.0 and durable daily-record completion rule. Four source gaps RESOLVED_BY_PRODUCT_DECISION; Measured Health closure: isolated auth shell probe and package-aware live content counts; HC-007.0, 231 canonical tests pass. First Shinka remains next-package work. No native transaction/rollback claimed. No first-Shinka engine, content import or daily generation. Repository/synthetic evidence only; live auth, GeoNames and enforcement require deployment verification.",
+    notes: "CLOSED_PENDING_BASE44_VERIFICATION: same-package production adapter plus approved fixed-date Sun, exact TR copy/helpers, health-consent-v1.0 and durable daily-record completion rule. Four source gaps RESOLVED_BY_PRODUCT_DECISION; Measured Health closure: isolated auth shell probe and package-aware live content counts; HC-007.0 retained; hidden Preview readiness now verifies committed DOM without animation-frame dependency; 239 canonical tests pass. First Shinka remains next-package work. No native transaction/rollback claimed. No first-Shinka engine, content import or daily generation. Repository/synthetic evidence only; live auth, GeoNames and enforcement require deployment verification.",
   }),
 ]);
 
