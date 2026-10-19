@@ -29,7 +29,7 @@ export const ONBOARDING_HEALTH_CASES=[
  c('H07')('H07-010','Approved TR onboarding copy','Exact decision receipt, parity and nonempty approved values.',probe(['C19'])),
  c('H07')('H07-011','Repository production persistence adapter','Real SDK adapter with key-based retry, conditional updates and verified readback; no native transaction claim.',probe(PRODUCTION_ONBOARDING_TESTS.map(([id])=>id))),
  c('H07')('H07-012','Approved durable onboarding derivation','Safe restart; actual owner daily record is final completion; no new schema.',probe(['C16','C18','C20'])),
- c('H10')('H10-003','Optional structured GeoNames boundary','Bounded proxy, sanitization, selection, coherent NULL and outage.',probe(['O08','O09','O10','O11','O12','O13','O28','O32','O33','U09','U10','U11','G01','G02','G03','G04','G05','G06','G07','G08'])),
+ c('H10')('H10-003','Optional structured GeoNames boundary','Bounded proxy, sanitization, selection, coherent NULL and outage.',probe(['O08','O09','O10','O11','O12','O13','O28','O32','O33','U09','U10','U11','G01','G02','G03','G04','G05','G06','G07','G08','G09','G10','G11','G12'])),
  futureCase('H10','H10-004','Live GeoNames credentials and provider','Real deployed proxy/provider availability unmeasured.',APPLICABILITY.EXTERNAL,CLASS.LIVE_RUNTIME),
  c('H11')('H11-004','Onboarding consent grant and immutable history','Source gate, explicit grant, owner, verified retry, immutable domain payload and deletion guard.',probe(['O17','O18','O19','O20','O22','S12','S14','P09','P15','P16','P17','P18','C17','C21'])),
  c('H11')('H11-005','Approved consent text/version and persistence','health-consent-v1.0, exact EN/TR copy and real adapter path using isolated transport.',probe(['C17','C19','C21'])),
