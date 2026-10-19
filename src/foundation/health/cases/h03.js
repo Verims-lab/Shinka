@@ -20,7 +20,7 @@ export const H03_CASES = [
     const { runFoundationTests } = await import("@/foundation/tests/foundationTests");
     const results=await runFoundationTests();
     const failed=results.filter((t)=>!t.passed).map((t)=>`${t.id}:${t.detail}`);
-    return verdict(results.length>0&&failed.length===0,ev(CLASS.SYNTHETIC_RUNTIME,"canonical Foundation tests",{total:results.length,failed,authProbe:results.find(t=>t.id==="T74")?.evidence},{failed:[]},"Local/browser regression; not live backend enforcement"));
+    return verdict(results.length>0&&failed.length===0,ev(CLASS.SYNTHETIC_RUNTIME,"canonical Foundation tests",{total:results.length,failed,authProbe:results.find(t=>t.id==="T74")?.evidence,probeFailures:results.filter(t=>!t.passed&&t.evidence).map(t=>({id:t.id,evidence:t.evidence}))},{failed:[]},"Local/browser regression; not live backend enforcement"));
   }, {runnerType:RUNNER.RUNTIME,classification:CLASS.SYNTHETIC_RUNTIME,timeoutMs:90000}),
   c("H03-008", "Repository auth policy: Apple and Google only", "No password routes/operations/fields or unapproved provider literals; recorded platform config is not live proof.", async (ctx) => {
     const surface=(await ctx.inspection()).authSurface;

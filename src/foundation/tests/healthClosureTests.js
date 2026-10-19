@@ -1,5 +1,5 @@
 // FIXTURE role: package literals exercise policy transitions, never declare marker authority.
-import { AUTH_PROBE_PATH, AUTH_PROBE_SCREEN, isAuthProbePath, measureAuthShell, waitForAuthProbe } from '../probes/authProbeContract';
+import { AUTH_PROBE_PATH, AUTH_PROBE_SCREEN, isAuthProbePath, measureAuthShell, waitForAuthProbe, requireAuthProbeReady } from '../probes/authProbeContract';
 import { CONTENT_ENTITY_NAMES, evaluateContentState } from '../../../base44/shared/contentStateContract.js';
 import { internalHealthOperation } from '../../../base44/shared/internalHealthOperations.js';
 import { handleInternalRequest } from '../../../base44/shared/internalAuthorization.js';
@@ -9,7 +9,7 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};
 const counts=()=>({source:'LIVE_BASE44_COUNT',measuredAt:new Date().toISOString(),results:CONTENT_ENTITY_NAMES.map(entity=>({entity,state:'MEASURED',count:0}))});
 /** @param {any} [data] @param {any} [imported] @param {string} [marker] */
 const decide=(data=counts(),imported=false,marker='Buildmarker-008')=>evaluateContentState(marker,data,imported);
-const snapshot=(extra={})=>({path:AUTH_PROBE_PATH,root:true,screen:AUTH_PROBE_SCREEN,ready:'LOADING',loads:1,...extra});
+const snapshot=(extra={})=>({path:AUTH_PROBE_PATH,root:true,screen:AUTH_PROBE_SCREEN,ready:'LOADING',loads:1,rendered:true,...extra});
 const observe=async snapshots=>{
   let time=0,index=0;
   return waitForAuthProbe(()=>snapshots[Math.min(index++,snapshots.length-1)],{timeoutMs:100,now:()=>time,pause:async()=>{time+=25;}});
@@ -19,6 +19,7 @@ const observe=async snapshots=>{
 export const HEALTH_CLOSURE_TESTS=[
   ['HC01','Real isolated auth root is READY within deadline without age or OAuth grant',async()=>{
     const r=await measureAuthShell(360);
+    requireAuthProbeReady(r);
     assert(r.state==='READY'&&r.route===AUTH_PROBE_PATH&&r.path===AUTH_PROBE_PATH&&r.screen===AUTH_PROBE_SCREEN&&r.elapsedMs<15000,'auth contract '+JSON.stringify(r));
     assert(r.geometry.providers==='apple,google'&&r.geometry.ageChecked===false&&r.geometry.passwords===0,'auth/age boundary changed');
   }],
