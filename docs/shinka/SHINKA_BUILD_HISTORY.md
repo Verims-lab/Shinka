@@ -3,7 +3,7 @@
 **Document:** SHINKA_BUILD_HISTORY.md
 **Status:** ACTIVE — append-only
 **Current BuildMarker:** Buildmarker-008
-**Last Updated:** 2026-10-19
+**Last Updated:** 2026-10-20
 **Authoritative Source References:** src/foundation/buildMarker.js (authority), src/foundation/buildLedger.js (ledger)
 **Purpose:** Human-readable build history. Never rewrite old entries.
 **Scope:** All packages.
@@ -79,3 +79,6 @@ No end-user product package implemented. No GitHub work. No AI.
 - FETCH/UNKNOWN isolation continuation: matched the supplied invocation ID in the correct app's Logs Explorer. Authenticated CLI preview/prod runtime queries returned no rows; event metadata contains no exception or timezone. Normal adapter/classifier unchanged. Added a strictly admin-only, manually invoked comparison on existing internalHealth, with adaptive/repeated URL/receiver/credential controls, fixed credential-free HTTPS/redirect controls, bounded requests/deadlines and safe output. G13–G20 extend existing H10-003 synthetic coverage; no catalog-semantic/marker increment. REPO_PROBE_READY_PENDING_USER_DEPLOYMENT; live GeoNames remains OPEN_PENDING_MANUAL_VERIFICATION. User retains Test → main merge and Base44 sync/publish.
 
 - Redirect-policy compatibility continuation: user-supplied v1 preview/internalHealth F1 reached HTTP 401 without credentials; D1/F1 source differs only in redirect policy. Hypothesis supported, no definitive root cause or live product success. Shared normal adapter uses manual with pre-parse 3xx/opaque rejection and bounded unused/late-body cleanup. Existing admin probe narrowed to four credentialed error/manual/error/manual samples, version geonames-redirect-policy-v2; guards/limits unchanged. G21–G24 extend H10-003; 008/HC-007.0 retained. REPO_FIX_READY_PENDING_USER_DEPLOYMENT; H10/live GeoNames OPEN_PENDING_MANUAL_VERIFICATION. Test-only delivery; user controls merge/sync/publish.
+
+- 2026-10-20 ON-04 continuation, same 008 entry / HC-007.0: explicit user decision replaces text search with country → available administrative levels → populated-settlement selection. Added authenticated read-only country/hierarchy/filtered-page actions, bounded payloads/pages, parent/child validation, race-safe transient selection, clear/retry/saved-place behavior and central TR/EN copy. Five persisted fields and all product schemas stay unchanged. Old Preview search HTTP 200/eight places is user-reported live evidence; new hosted cascade/resolve/save/readback remains open. B01…B18 plus U12 extend canonical/H10 coverage; device popup keyboard check remains pending. Test-only delivery; no deployment or main write.
+- ON-04 final local evidence: 287/287 canonical tests, 8/8 routing/Preview, 49/49 general Health, 21/21 onboarding Health, H10-003 55 regressions PASS; required install/tree/security/type/lint/build/repo checks PASS. Critical/High 0; two existing Moderate findings. 12/12 canonical docs aligned, 20 schemas unchanged. New hosted selection/save and native device keyboard evidence remain open.

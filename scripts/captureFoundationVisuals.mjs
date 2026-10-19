@@ -18,5 +18,26 @@ export async function captureFoundationVisuals(page, origin, directory) {
     await page.setViewportSize({width,height:740});await page.goto(`${origin}/onboarding-fixture?step=${step}&language=${language}`);await page.waitForSelector('[data-onboarding-state]');
     await page.screenshot({path:path.join(directory,`${step}-${language}-${width}.png`),fullPage:true,animations:'disabled'});
   }
+  // Current ON-04 selection flow using real components and isolated fixtures.
+  // selectOption exercises selection; native popup keyboard navigation needs device QA.
+  for(const language of ['en','tr'])for(const width of [360,1280]){
+    await page.setViewportSize({width,height:900});
+    await page.goto(`${origin}/onboarding-fixture?step=AUTHENTICATED_PROFILE_REQUIRED&language=${language}`);
+    await page.waitForFunction(()=>document.querySelector('#place-countries option[value="100"]'));
+    await page.screenshot({path:path.join(directory,`birthplace-empty-${language}-${width}.png`),fullPage:true,animations:'disabled'});
+    await page.locator('#place-countries').selectOption('100');
+    await page.waitForFunction(()=>document.querySelector('#place-countries').value==='100');
+    for(const [id,value] of [['place-0','1001'],['place-1','1002'],['place-places','123']]){
+      await page.waitForFunction(({id,value})=>!!document.querySelector(`#${id} option[value="${value}"]`)&&!document.getElementById(id).disabled,{id,value});
+      await page.locator(`#${id}`).selectOption(value);
+      await page.waitForFunction(({id,value})=>document.getElementById(id).value===value,{id,value});
+    }
+    await page.waitForSelector('[data-place-summary]');
+    await page.locator('#place-places').focus();await page.keyboard.press('Tab');
+    const metrics=await page.locator('[data-birthplace-picker]').evaluate(root=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,selects:[...root.querySelectorAll('select')].map(el=>({id:el.id,value:el.value,height:el.getBoundingClientRect().height,label:!!root.querySelector(`label[for="${el.id}"]`)})),focused:document.activeElement?.id,focusStyle:getComputedStyle(document.activeElement).outlineStyle}));
+    if(metrics.scrollWidth>width+1||metrics.selects.some(s=>s.height<44||!s.label))throw new Error('ON04_VISUAL_LAYOUT_FAILURE');
+    measurements.push({key:`birthplace-selection-${language}-${width}`,metrics});
+    await page.screenshot({path:path.join(directory,`birthplace-selected-${language}-${width}.png`),fullPage:true,animations:'disabled'});
+  }
   await writeFile(path.join(directory,"layouts.json"),JSON.stringify(measurements,null,2));
 }

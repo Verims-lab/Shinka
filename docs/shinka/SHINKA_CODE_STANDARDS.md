@@ -3,7 +3,7 @@
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
 **Current BuildMarker:** Buildmarker-008
-**Last Updated:** 2026-10-19
+**Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
 **Scope:** All source (client, backend, internal tooling).
@@ -41,3 +41,7 @@
 Keep copy in the canonical onboarding catalog; do not invent translations or an algorithm for unresolved source rules. Keep transient name only in the bounded session helper and health form state only in memory. No URL/analytics/log payload may contain name, DOB, place query or cycle data. Never infer owner from a client field. Use the same backend validation, route resolver, shared guards and domainAtomic adapter contract rather than parallel rules or generic service-role CRUD.
 
 `AUTH_TESTS`, `ONBOARDING_TESTS` and `ONBOARDING_UI_TESTS` join the existing canonical Foundation runner. The UI fixture injects fake provider and persistence adapters and a private in-memory name store; Health execution cannot initiate real OAuth or write product rows. Static inspection rejects duplicated approved onboarding validation copy and frontend GeoNames credential/host/geolocation use. Missing live dependencies are Health BLOCKED/external states, never green by fixture substitution.
+
+## ON-04 selection regression contract
+
+The explicit 2026-10-20 product decision is recorded in SOURCE_OF_TRUTH; its new selector/help/status copy is centralized in onboardingCopy.js. Preserve the earlier exact-copy receipt. Keep provider hierarchy validation in the existing backend adapter and transient UI races in birthplaceSelection.js. Do not persist the path, infer a country, autoselect a result, accept an administrative record as a settlement, assume childrenJSON pagination, silently truncate lists or add a new UI dependency. B01…B18 and U09…U12 run through the existing canonical runner and H10-003; fixtures remain synthetic and cannot close H10-004. Native keyboard/device observations must be recorded separately from programmatic selectOption tests.

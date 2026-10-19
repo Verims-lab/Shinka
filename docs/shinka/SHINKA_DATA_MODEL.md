@@ -3,7 +3,7 @@
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
 **Current BuildMarker:** Buildmarker-008
-**Last Updated:** 2026-10-19
+**Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
 **Scope:** Product domain entities + separately listed internal tooling storage.
@@ -322,7 +322,7 @@ Required fields are listed in each JSONC; optional fields are marked NULL below.
 
 ## Capability evidence register at package completion
 
-Counts: VERIFIED 1; PARTIALLY_VERIFIED 8; UNVERIFIED 13; UNSUPPORTED 2. Native and repository evidence are distinguished per row.
+Current counts: VERIFIED 1; PARTIALLY_VERIFIED 10; UNVERIFIED 11; UNSUPPORTED 2. Native and repository evidence are distinguished per row.
 
 | ID | Capability | Status | Evidence / remaining proof |
 |---|---|---|---|
@@ -339,8 +339,8 @@ Counts: VERIFIED 1; PARTIALLY_VERIFIED 8; UNVERIFIED 13; UNSUPPORTED 2. Native a
 | CAP-11 | Admin role authorization (platform-native) | PARTIALLY_VERIFIED | One shared auth.me()/admin guard for tooling and domain access; read-only CLI confirms current principal role admin. Separate non-admin live 403 evidence pending. |
 | CAP-12 | Backend function execution | VERIFIED | validateContentArtifacts executed 2026-10-18 (live + fixture modes) returning structured results. |
 | CAP-13 | Scheduler (06:00 local, rolling jobs) | UNVERIFIED | Not measured. |
-| CAP-14 | Secrets | UNVERIFIED | No secret configured or read yet. |
-| CAP-15 | GeoNames backend proxy | UNVERIFIED | Not implemented. |
+| CAP-14 | Secrets | PARTIALLY_VERIFIED | Request-scoped backend secret binding and synthetic entry tests; user reports configured secret and Preview search HTTP 200. Secret value not inspected; independent hosted list/save verification pending. |
+| CAP-15 | GeoNames backend proxy | PARTIALLY_VERIFIED | Search/resolve and cascading lists implemented with synthetic boundary tests; user-reported Preview search HTTP 200 returned eight places. New hosted selection/resolve/save/readback remains unverified. |
 | CAP-16 | Astronomy Engine execution in backend | UNVERIFIED | Not implemented. |
 | CAP-17 | Native push (iOS/Android) | UNVERIFIED | Requires DEVICE evidence. |
 | CAP-18 | Backup | UNVERIFIED | Not measured. |
@@ -364,3 +364,7 @@ Exactly 20 product entities remain. No onboarding entity, progress field, calcul
 | Skip | none | no fake health values, consent, predictions or phase rows. |
 
 Canonical validation normalizes absent values to logical NULL. The production onboarding adapter explicitly sends NULL for absent optional fields because SDK updates merge, and verifies the cleared values on readback; native NULL support remains a live obligation. No 00:00 fallback reaches the Sun resolver; 5/28 remain UI placeholders and future calculation defaults only. Existing direct SDK deny policies and generic mutation denials remain. Production singleton keys are user_id; consent-event keys include all four domain fields; period keys use user_id + period_start_date. Existing period state rejects a different onboarding start. No action-receipt field/entity is added. The generic atomic protocol remains unchanged and synthetic-only; onboarding uses a separate sequential SDK adapter with explicit partial-failure behavior. All four onboarding source decisions are RESOLVED_BY_PRODUCT_DECISION. A real owner user_daily_message is the final completion marker; before it exists Skip may resume at ON-05 after restart. No product schema changed. Native live capabilities remain unverified.
+
+## ON-04 cascade persistence invariant
+
+Country, administrative path, page offsets and list state exist only in the in-memory picker. No schema, entity, seed or profile field is added. Final selection must be a populated GeoNames record (featureClass P); administrative A/ADM records only narrow lists and are rejected by selected-ID resolution. Continue sends birthplace_geonames_id only. The backend resolves it independently and persists exactly birthplace_geonames_id, birthplace_name, birthplace_country_code, birthplace_latitude, birthplace_longitude, together or all NULL. Existing stored birthplace is displayed without requiring its hierarchy; loading failure cannot silently clear it. Native hosted NULL clearing and readback remain external proof requirements.

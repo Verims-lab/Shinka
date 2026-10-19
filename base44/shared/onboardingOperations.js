@@ -9,7 +9,7 @@ import { optionalName, optionalBirthTime, validateBirthDate, validateCycleInput,
 import { SUN_SIGN_RESOLVER, HEALTH_CONSENT_VERSION } from './onboardingDependencies.js';
 import { geoNamesDiagnostic } from './geonamesDiagnostics.js';
 const fail=(code,status=400)=>{throw new OnboardingError(code,null,status);};
-const allowed={hydrate:[],initialize:['language_code','timezone','action_id'],saveProfile:['display_name','birth_date','birth_time','birthplace_geonames_id','action_id'],saveCycle:['period_start_date','period_duration_days','initial_cycle_length_days','health_consent','action_id'],skipCycle:[],searchPlaces:['query','language_code']};
+const allowed={hydrate:[],initialize:['language_code','timezone','action_id'],saveProfile:['display_name','birth_date','birth_time','birthplace_geonames_id','action_id'],saveCycle:['period_start_date','period_duration_days','initial_cycle_length_days','health_consent','action_id'],skipCycle:[],listPlaceCountries:['language_code'],listPlaceRegions:['country','parent_id','offset','language_code'],listPlaceSettlements:['country','parent_id','offset','language_code'],searchPlaces:['query','language_code']};
 // Dependencies are server configuration/injected contract fixtures, never request fields.
 export async function onboardingOperation(client,body,dependencies={}) {
   const {atomic=null,geoNames=null,sunSign=SUN_SIGN_RESOLVER,consentVersion=HEALTH_CONSENT_VERSION,now=()=>new Date()}=dependencies;
@@ -40,6 +40,12 @@ export async function onboardingOperation(client,body,dependencies={}) {
   if(body.action==='searchPlaces') {
     if(!geoNames)fail('GEONAMES_UNAVAILABLE',503);
     return {places:await geoNames.search(body.query,body.language_code)};
+  }
+  if(['listPlaceCountries','listPlaceRegions','listPlaceSettlements'].includes(body.action)) {
+    if(!geoNames)fail('GEONAMES_UNAVAILABLE',503);
+    if(body.action==='listPlaceCountries')return geoNames.countries(body.language_code);
+    const input={country:body.country,parent_id:body.parent_id??null,offset:body.offset??0,language_code:body.language_code};
+    return body.action==='listPlaceRegions'?geoNames.regions(input):geoNames.places(input);
   }
   const commit=async(writes)=>{
     // Stable canonical request excludes timestamps (retry timestamps must not fork actions).

@@ -1,3 +1,4 @@
+import { BIRTHPLACE_SELECTION_TESTS } from './birthplaceSelectionTests';
 import { GEONAMES_DIAGNOSTIC_TESTS } from './geonamesDiagnosticTests';
 import { GEONAMES_RUNTIME_PROBE_TESTS } from './geonamesRuntimeProbeTests';
 import { loadStaticEvidence } from '../inspection/sourceScanner';
@@ -89,5 +90,6 @@ export const ONBOARDING_TESTS=[
   }
  }],
  ...GEONAMES_DIAGNOSTIC_TESTS,
+ ...BIRTHPLACE_SELECTION_TESTS,
  ...GEONAMES_RUNTIME_PROBE_TESTS,
 ];
