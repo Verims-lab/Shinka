@@ -1,0 +1,198 @@
+{
+  "source": "User approved Buildmarker-008 Final Closure plus helper-copy reply",
+  "requestSha256": "a00eee2a8e22e74a1dc645e342b6baca7bd7ed17b6006520faa160cd8c2bedf2",
+  "mappings": [
+    {
+      "en": "A gentle guide to your daily rhythm",
+      "tr": "Günlük ritmine nazik bir rehber"
+    },
+    {
+      "en": "Your birth chart",
+      "tr": "Doğum haritan"
+    },
+    {
+      "en": "Begin",
+      "tr": "Başla"
+    },
+    {
+      "en": "What should we call you?",
+      "tr": "Sana nasıl hitap edelim?"
+    },
+    {
+      "en": "Name",
+      "tr": "Adın"
+    },
+    {
+      "en": "Continue",
+      "tr": "Devam et"
+    },
+    {
+      "en": "Prefer not to say",
+      "tr": "Belirtmek istemiyorum"
+    },
+    {
+      "en": "Welcome",
+      "tr": "Hoş geldin"
+    },
+    {
+      "en": "Continue with Apple",
+      "tr": "Apple ile devam et"
+    },
+    {
+      "en": "Continue with Google",
+      "tr": "Google ile devam et"
+    },
+    {
+      "en": "I confirm that I am 18 or older",
+      "tr": "18 yaşında veya daha büyük olduğumu onaylıyorum"
+    },
+    {
+      "en": "Personal Details",
+      "tr": "Kişisel bilgilerin"
+    },
+    {
+      "en": "Date of birth",
+      "tr": "Doğum tarihi"
+    },
+    {
+      "en": "Birth time",
+      "tr": "Doğum saati"
+    },
+    {
+      "en": "Birthplace",
+      "tr": "Doğum yeri"
+    },
+    {
+      "en": "Continue",
+      "tr": "Devam et"
+    },
+    {
+      "en": "Your cycle, your choice",
+      "tr": "Döngün, senin seçimin"
+    },
+    {
+      "en": "Last period start date",
+      "tr": "Son regl başlangıç tarihi"
+    },
+    {
+      "en": "Period duration",
+      "tr": "Regl süresi"
+    },
+    {
+      "en": "Cycle length",
+      "tr": "Döngü uzunluğu"
+    },
+    {
+      "en": "Skip for now",
+      "tr": "Şimdilik geç"
+    },
+    {
+      "en": "Continue",
+      "tr": "Devam et"
+    },
+    {
+      "en": "A little moment, just for you",
+      "tr": "Sana özel küçük bir an"
+    },
+    {
+      "en": "We’re preparing your first Shinka insight",
+      "tr": "İlk Shinka içgörünü hazırlıyoruz"
+    },
+    {
+      "en": "Please enter a shorter name",
+      "tr": "Lütfen daha kısa bir isim gir"
+    },
+    {
+      "en": "Please confirm that you are 18 or older",
+      "tr": "Lütfen 18 yaşında veya daha büyük olduğunu onayla"
+    },
+    {
+      "en": "We couldn’t sign you in. Please try again",
+      "tr": "Giriş yapılamadı. Lütfen tekrar dene"
+    },
+    {
+      "en": "Please enter your date of birth",
+      "tr": "Lütfen doğum tarihini gir"
+    },
+    {
+      "en": "Please enter a valid date",
+      "tr": "Lütfen geçerli bir tarih gir"
+    },
+    {
+      "en": "Date of birth cannot be in the future",
+      "tr": "Doğum tarihi gelecekte olamaz"
+    },
+    {
+      "en": "Shinka is available for users aged 18 and over",
+      "tr": "Shinka yalnızca 18 yaş ve üzeri kullanıcılar içindir"
+    },
+    {
+      "en": "Please enter a valid time",
+      "tr": "Lütfen geçerli bir saat gir"
+    },
+    {
+      "en": "Please select a place from the list",
+      "tr": "Lütfen listeden bir yer seç"
+    },
+    {
+      "en": "No places found",
+      "tr": "Yer bulunamadı"
+    },
+    {
+      "en": "We couldn’t load places. Please try again",
+      "tr": "Yerler yüklenemedi. Lütfen tekrar dene"
+    },
+    {
+      "en": "Please enter your last period start date",
+      "tr": "Lütfen son regl başlangıç tarihini gir"
+    },
+    {
+      "en": "Period start date cannot be in the future",
+      "tr": "Regl başlangıç tarihi gelecekte olamaz"
+    },
+    {
+      "en": "Please enter a whole number of days",
+      "tr": "Lütfen gün sayısını tam sayı olarak gir"
+    },
+    {
+      "en": "Please enter a valid period duration",
+      "tr": "Lütfen geçerli bir regl süresi gir"
+    },
+    {
+      "en": "Please enter a duration within the supported range",
+      "tr": "Lütfen desteklenen aralıkta bir regl süresi gir"
+    },
+    {
+      "en": "Please enter a valid cycle length",
+      "tr": "Lütfen geçerli bir döngü uzunluğu gir"
+    },
+    {
+      "en": "Please enter a cycle length within the supported range (15-60)",
+      "tr": "Lütfen 15–60 gün arasında bir döngü uzunluğu gir"
+    },
+    {
+      "en": "Please consent to the use of your cycle data to continue",
+      "tr": "Devam etmek için döngü verilerinin kullanılmasına açık rıza vermelisin"
+    },
+    {
+      "en": "I consent to Shinka processing my cycle data to provide cycle-based features and personalization.",
+      "tr": "Shinka’nın döngü verilerimi döngüye dayalı özellikler ve kişiselleştirme sunmak amacıyla işlemesine açık rıza veriyorum"
+    },
+    {
+      "en": "Something went wrong. Please try again",
+      "tr": "Bir şeyler ters gitti. Lütfen tekrar dene"
+    },
+    {
+      "en": "We couldn’t save your changes. Please try again",
+      "tr": "Değişikliklerin kaydedilemedi. Lütfen tekrar dene"
+    },
+    {
+      "en": "Your account is inactive",
+      "tr": "Hesabın aktif değil"
+    },
+    {
+      "en": "Terms of Service",
+      "tr": "Terms of Service"
+    }
+  ]
+}

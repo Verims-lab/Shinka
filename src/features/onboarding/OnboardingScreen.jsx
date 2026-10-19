@@ -16,7 +16,7 @@ const STEPS=Object.keys(TITLES);
 /** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,onState?:Function,onLanguage?:Function,pending?:typeof DEFAULT_PENDING,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
 export default function OnboardingScreen({state,initialLanguage='en',today=null,profile=null,request=onboardingRequest,onState=()=>{},onLanguage=()=>{},pending=DEFAULT_PENDING,authenticate=beginProviderAuth,dependencies=[]}) {
   const [language,setLanguage]=useState(initialLanguage),[name,setName]=useState(()=>pending.read()??profile?.display_name??''),[form,setForm]=useState({birth_date:profile?.birth_date||'',birth_time:profile?.birth_time||'',period_start_date:'',period_duration_days:'',initial_cycle_length_days:'',health_consent:false});
-  const [query,setQuery]=useState(''),[selection,setSelection]=useState(null),[places,setPlaces]=useState([]),[placeStatus,setPlaceStatus]=useState(''),[busy,setBusy]=useState(false),[searching,setSearching]=useState(false),[error,setError]=useState(null);
+  const [query,setQuery]=useState(profile?.birthplace_name||''),[selection,setSelection]=useState(()=>profile?.birthplace_geonames_id?{birthplace_geonames_id:profile.birthplace_geonames_id,birthplace_name:profile.birthplace_name}:null),[places,setPlaces]=useState([]),[placeStatus,setPlaceStatus]=useState(''),[busy,setBusy]=useState(false),[searching,setSearching]=useState(false),[error,setError]=useState(null);
   const title=useRef(null),lock=useRef(false),sequence=useRef(0),action=useRef(null);
   const t=key=>onboardingCopy(key,language);
   useEffect(()=>{setError(null);title.current?.focus();},[state]);
@@ -59,20 +59,20 @@ export default function OnboardingScreen({state,initialLanguage='en',today=null,
     </form>;
     if(state==='AUTHENTICATED_CYCLE_STEP')return <form className="space-y-5" noValidate onSubmit={e=>{e.preventDefault();run(async()=>{validateCycleInput(form,today);await submit('saveCycle',{period_start_date:form.period_start_date||null,period_duration_days:form.period_duration_days||null,initial_cycle_length_days:form.initial_cycle_length_days||null,health_consent:form.health_consent});});}}>
       {field('period_start_date','date',{max:today||undefined})}{field('period_duration_days','number',{placeholder:'5',min:1,max:10,step:1})}{field('initial_cycle_length_days','number',{placeholder:'28',min:15,max:60,step:1})}
-      <label className="flex min-h-11 items-center gap-3" htmlFor="health_consent"><input id="health_consent" type="checkbox" checked={form.health_consent} onChange={e=>update('health_consent',e.target.checked)} disabled={busy} className="h-6 w-6 accent-shinka-plum" aria-describedby={error?.field==='health_consent'?'health_consent-error':undefined}/>{t('health_consent')}</label>{fieldError('health_consent')}
+      <label className="flex min-h-11 items-center gap-3" htmlFor="health_consent"><input id="health_consent" type="checkbox" checked={form.health_consent} onChange={e=>update('health_consent',e.target.checked)} disabled={busy} className="h-6 w-6 shrink-0 accent-shinka-plum" aria-describedby={error?.field==='health_consent'?'health_consent-error':undefined}/>{t('health_consent')}</label>{fieldError('health_consent')}
       <ShinkaButton type="submit" className="w-full" disabled={busy}>{t('continue')}</ShinkaButton><ShinkaButton variant="ghost" className="w-full" disabled={busy} onClick={()=>run(async()=>{const result=await request('skipCycle');onState(result.state,result);})}>{t('skip')}</ShinkaButton>
     </form>;
     if(state==='FIRST_SHINKA_DEPENDENCY')return <><p>{t('preparing')}</p><p role="status" className="break-words text-shinka-small" data-dependency="FIRST_SHINKA_ENGINE_REQUIRED">FIRST_SHINKA_ENGINE_REQUIRED</p></>;
     return null;
   };
-  const message=error?(t(error.code)==='SOURCE_COPY_GAP'?t('saveError'):t(error.code)):null;
+  const message=error?(t(error.code)==='COPY_KEY_MISSING'?t('saveError'):t(error.code)):null;
   return <PageContainer><main className="mx-auto max-w-md space-y-6 py-6" data-onboarding-state={state} lang={language}>
     <div className="flex items-center justify-between"><span className="font-heading text-2xl">Shinka</span><div className="flex gap-1">{['tr','en'].map(lang=><ShinkaButton key={lang} variant="ghost" aria-pressed={language===lang} onClick={()=>{setLanguage(lang);onLanguage(lang);}}>{lang.toUpperCase()}</ShinkaButton>)}</div></div>
-    {language==='tr'?<ShinkaCard><p role="status" className="break-words">SOURCE_COPY_GAP · TR</p></ShinkaCard>:<>
+    <>
       {dependencies.length>0&&<div role="status" className="break-words text-shinka-small">{dependencies.join(' · ')}</div>}
       <p aria-hidden="true" className="text-shinka-small text-shinka-taupe">{Math.min(STEPS.indexOf(state)+1,6)} / 6</p>
       <h1 ref={title} tabIndex={-1} className="font-heading text-[34px] leading-10 text-shinka-plum-deep outline-none">{t(TITLES[state])}</h1>
       <ShinkaCard><div className="space-y-5" aria-busy={busy}>{body()}{error&&!error.field&&<div role="alert"><p>{message}</p><p className="mt-2 break-words text-shinka-small" data-onboarding-error={error.code}>{error.code}</p></div>}</div></ShinkaCard>
-    </>}
+    </>
   </main></PageContainer>;
 }

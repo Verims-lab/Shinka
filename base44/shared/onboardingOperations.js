@@ -4,7 +4,7 @@ import { normalizeDomainRead } from './domainValidation.js';
 import { physicalName, SUN_SIGN_CODES } from './domainSchemas.js';
 import { createBase44OnboardingAdapter } from './base44OnboardingAdapter.js';
 import { commitOwnerAction } from './domainAtomic.js';
-import { resolveOnboardingState } from './onboardingRoute.js';
+import { resolveOnboardingState, isOnboardingProfileReady } from './onboardingRoute.js';
 import { optionalName, optionalBirthTime, validateBirthDate, validateCycleInput, resolveTimezone, serverLocalDate, emptyBirthplace, validTimezone, OnboardingError } from './onboardingValidation.js';
 import { SUN_SIGN_RESOLVER, HEALTH_CONSENT_VERSION } from './onboardingDependencies.js';
 const fail=(code,status=400)=>{throw new OnboardingError(code,null,status);};
@@ -56,9 +56,9 @@ export async function onboardingOperation(client,body,dependencies={}) {
   }
   if(!preferences)fail('PREFERENCES_INITIALIZATION_REQUIRED',409);
   if(body.action==='saveProfile') {
-    if(profile&&SUN_SIGN_CODES.includes(profile.sun_sign_code)&&resolveOnboardingState({authenticated:true,profile,preferences,today})!=='AUTHENTICATED_PROFILE_REQUIRED')return state();
+    if(profile&&SUN_SIGN_CODES.includes(profile.sun_sign_code)&&resolveOnboardingState({authenticated:true,profile,preferences,today})!=='AUTHENTICATED_PROFILE_REQUIRED')return {...await state(),persisted:true};
     const birth_date=validateBirthDate(body.birth_date,today),birth_time=optionalBirthTime(body.birth_time),display_name=optionalName(body.display_name);
-    const sun_sign_code=typeof sunSign==='function'?await sunSign({birth_date,birth_time:birth_time??'00:00'}):null;
+    const sun_sign_code=typeof sunSign==='function'?await sunSign(birth_date):null;
     if(sun_sign_code!==null&&!SUN_SIGN_CODES.includes(sun_sign_code))fail('SUN_SIGN_RESOLVER_INVALID',503);
     let birthplace=emptyBirthplace();
     if(body.birthplace_geonames_id!=null) {
@@ -69,7 +69,7 @@ export async function onboardingOperation(client,body,dependencies={}) {
     let saved;
     if(persistence)saved=await persistence.saveProfile(input);
     else {const result=await commit([{entity:'user_profile',authority:S.PROFILE,mode:'COMPLETE_PROFILE',record:{user_id:owner,...input}}]);saved=normalizeDomainRead('user_profile',result.records[0]);}
-    return {state:'AUTHENTICATED_CYCLE_STEP',persisted:true,profile:saved,completionReady:false,dependencies:sun_sign_code?[]:['SUN_SIGN_RULE_REQUIRED']};
+    return {state:isOnboardingProfileReady(saved,preferences,today)?'AUTHENTICATED_CYCLE_STEP':'AUTHENTICATED_PROFILE_REQUIRED',persisted:true,profile:saved,completionReady:false,dependencies:sun_sign_code?[]:['SUN_SIGN_RULE_REQUIRED']};
   }
   assertActiveAccount(owner,profile);
   if(resolveOnboardingState({authenticated:true,profile,preferences,today})==='AUTHENTICATED_PROFILE_REQUIRED')fail('PROFILE_COMPLETION_REQUIRED',409);

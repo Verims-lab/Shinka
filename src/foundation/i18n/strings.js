@@ -1,5 +1,5 @@
 // Centralized localization catalog (minimal Foundation infrastructure — NOT the production translation dataset).
-// EN strings follow UI/UX v1.1 where defined; TR equivalents are PENDING_COPY_REVIEW (OD-010).
+// Shared Foundation TR review is separate from the APPROVED_PRODUCT_COPY onboarding catalog.
 export const SUPPORTED_LANGUAGES = ["en", "tr"];
 
 export const STRINGS = Object.freeze({

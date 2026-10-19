@@ -22,7 +22,7 @@ Screenshots are representative mockups; sample dates/names and icon deviations a
 Bottom navigation: **Home · Calendar · Pattern** only. **You** opens from the top-right profile icon (44×44) and is never a bottom-nav item. Back via top back arrow.
 
 ## Screen inventory
-ON-01 Introduction · ON-02 What should we call you? · ON-03 Welcome / Sign In · ON-04 Personal Details · ON-05 Your cycle, your choice · ON-06 First Shinka preparation · Home · Calendar · Pattern · You · Withdraw consent bottom sheet.
+ON-01 Introduction · ON-02 What should we call you? · ON-03 Welcome · ON-04 Personal Details · ON-05 Your cycle, your choice · ON-06 First Shinka preparation · Home · Calendar · Pattern · You · Withdraw consent bottom sheet.
 
 ## Colors (light-only, no dark target)
 Primary Plum #6F415A · Deep Plum Text #4C263F · Muted Mauve #93637B · Dusty Rose #D8A5AA · Blush Pink #F2D7D4 · Soft Lavender #E7DCE8 · Warm Ivory #FFF8F3 · Soft Cream #F9EEE8 · Muted Taupe #87757D · Divider #EDE3E3 · White #FFFFFF.
@@ -71,7 +71,7 @@ Introduction → Optional name → Welcome / Sign In → Personal Details → Yo
 - ON-01: "A gentle guide to your daily rhythm"; "Your birth chart" kept verbatim; primary Begin; no input.
 - ON-02: optional name ≤50; Continue / Prefer not to say; blank not stored.
 - ON-03: 18+ checkbox default empty; Apple/Google auth not started until checked; no warning on user cancel.
-- ON-04: DOB required; Birth time optional 24h HH:mm; Birthplace optional GeoNames select (typed text invalid); 00:00 only for Sun-sign calculation, never shown as entered; no UNCERTAIN.
+- ON-04: DOB required; Birth time optional 24h HH:mm; Birthplace optional GeoNames select (typed text invalid); birth_date alone determines Sun; missing time stays NULL, no 00:00 fallback; no UNCERTAIN.
 - ON-05: Last period start date, Period duration, Cycle length; 5/28 faint placeholders only; Skip for now; independent explicit consent checkbox when data entered.
 - ON-06: "A little moment, just for you" / "We’re preparing your first Shinka insight"; first pair prepared once, then Home.
 
@@ -91,7 +91,7 @@ Opened from top-right icon only. **My Profile** (inline edit: optional name, req
 Withdraw bottom sheet opens only when triggered: "Withdraw health data consent?" / "Your cycle records, predictions, and calculated phases will be deleted. Your account will remain active." Processing stops immediately; success only after verified deletion; re-consent blocked while in progress; historic health data never restored. Distinct from Delete Account.
 
 ## Future package boundaries
-Onboarding H06/H07, GeoNames H10 and onboarding-consent H11 are current with explicit gaps. Home/content, Calendar, Pattern, account/withdrawal and notifications remain future.
+Onboarding H06/H07, GeoNames H10 and onboarding-consent H11 are current with the four approved decisions implemented; deployed verification remains separate. Home/content, Calendar, Pattern, account/withdrawal and notifications remain future.
 
 ## Foundation auth shell alignment
 `PageContainer` now uses fixed 20px horizontal padding at mobile and desktop widths. `/login` uses ShinkaCard/ShinkaButton with Apple and Google only, primary controls at least 52px, localized safe error codes and no password fields/links. T74 measures actual 360px/1024px rendered layouts. The earlier Foundation shell has been replaced by ON-03 with a pre-auth age boundary. Live sign-in is still unverified.
@@ -105,8 +105,59 @@ T75–T80 measure real computed styles/primitives and existing H13 cases in the 
 
 ## Authentication/onboarding screens — current package
 
-ON-01…05 now use PageContainer/ShinkaCard/ShinkaButton/ShinkaInput and source-written order. Exact approved English copy is centralized in `onboardingCopy.js`, reusing companion validation strings. TR keys intentionally have null values because no approved translations exist; selecting TR shows SOURCE_COPY_GAP, with explicit EN preview available. Identity and stored profile values do not change when preview language changes.
+ON-01…05 use shared primitives and approved order. EN/TR onboarding copy is centralized; TR status is APPROVED_PRODUCT_COPY. The Final Closure decision supplies title, age declaration and explicit consent copy; the subsequent helper reply approves the three helper translations. Terms of Service remains identical in both languages. Unrelated Foundation copy is unchanged. Existing canonical EN validation punctuation remains, including range(15-60); the receipt's space before parentheses is normalized only for that existing EN item.
 
-Name is optional; whitespace becomes NULL, >50 characters produces inline canonical error. The 18+ checkbox starts unchecked and is separate from health consent. DOB is required; optional time stays visibly blank; optional birthplace uses selectable provider results and can be cleared. Cycle inputs start blank with faded 5/28 placeholders, not values. ON-06 displays source preparation copy and FIRST_SHINKA_ENGINE_REQUIRED with no endless spinner or fabricated content.
+Name is optional; whitespace becomes NULL, >50 characters gives the approved inline error. Age and health consent are separate unchecked checkboxes. DOB is required; time/place remain optional; existing structured place survives interrupted profile completion. Sun uses birth_date only. Cycle inputs are blank with 5/28 placeholders; no fabricated defaults are stored. ON-06 shows approved preparation copy plus FIRST_SHINKA_ENGINE_REQUIRED without an endless spinner or fake content. Before a real daily record exists, restart can return a skipped user to ON-05; once the real owner record exists, onboarding is durably complete.
 
-Controls retain ≥44px touch regions / ≥52px inputs and primary CTAs, 20px outer padding, light palette, Cormorant headings and Inter controls. Shared text inputs now explicitly use 17px/25px to avoid mobile focus zoom. Field errors are associated via aria-describedby/aria-invalid; validation focuses the field after disabled/loading state clears. Normal document scrolling keeps forms and CTAs reachable with a reduced viewport. Canonical browser probes cover every step at 360px/430px, long errors, focus, empty values and provider controls. Physical mobile keyboard/device verification remains external.
+All six screens have rendered EN/TR layout, named-control, input-size and touch-target tests at 360px and 430px. Long consent/age labels wrap and their checkboxes retain size. Physical keyboard, hosted fonts and provider callbacks still need live/device evidence.
+
+Approved product copy (the exact additional source decision):
+
+| EN | TR |
+|---|---|
+| A gentle guide to your daily rhythm | Günlük ritmine nazik bir rehber |
+| Your birth chart | Doğum haritan |
+| Begin | Başla |
+| What should we call you? | Sana nasıl hitap edelim? |
+| Name | Adın |
+| Continue | Devam et |
+| Prefer not to say | Belirtmek istemiyorum |
+| Welcome | Hoş geldin |
+| Continue with Apple | Apple ile devam et |
+| Continue with Google | Google ile devam et |
+| I confirm that I am 18 or older | 18 yaşında veya daha büyük olduğumu onaylıyorum |
+| Personal Details | Kişisel bilgilerin |
+| Date of birth | Doğum tarihi |
+| Birth time | Doğum saati |
+| Birthplace | Doğum yeri |
+| Your cycle, your choice | Döngün, senin seçimin |
+| Last period start date | Son regl başlangıç tarihi |
+| Period duration | Regl süresi |
+| Cycle length | Döngü uzunluğu |
+| Skip for now | Şimdilik geç |
+| A little moment, just for you | Sana özel küçük bir an |
+| We’re preparing your first Shinka insight | İlk Shinka içgörünü hazırlıyoruz |
+| Please enter a shorter name | Lütfen daha kısa bir isim gir |
+| Please confirm that you are 18 or older | Lütfen 18 yaşında veya daha büyük olduğunu onayla |
+| We couldn’t sign you in. Please try again | Giriş yapılamadı. Lütfen tekrar dene |
+| Please enter your date of birth | Lütfen doğum tarihini gir |
+| Please enter a valid date | Lütfen geçerli bir tarih gir |
+| Date of birth cannot be in the future | Doğum tarihi gelecekte olamaz |
+| Shinka is available for users aged 18 and over | Shinka yalnızca 18 yaş ve üzeri kullanıcılar içindir |
+| Please enter a valid time | Lütfen geçerli bir saat gir |
+| Please select a place from the list | Lütfen listeden bir yer seç |
+| No places found | Yer bulunamadı |
+| We couldn’t load places. Please try again | Yerler yüklenemedi. Lütfen tekrar dene |
+| Please enter your last period start date | Lütfen son regl başlangıç tarihini gir |
+| Period start date cannot be in the future | Regl başlangıç tarihi gelecekte olamaz |
+| Please enter a whole number of days | Lütfen gün sayısını tam sayı olarak gir |
+| Please enter a valid period duration | Lütfen geçerli bir regl süresi gir |
+| Please enter a duration within the supported range | Lütfen desteklenen aralıkta bir regl süresi gir |
+| Please enter a valid cycle length | Lütfen geçerli bir döngü uzunluğu gir |
+| Please enter a cycle length within the supported range (15-60) | Lütfen 15–60 gün arasında bir döngü uzunluğu gir |
+| Please consent to the use of your cycle data to continue | Devam etmek için döngü verilerinin kullanılmasına açık rıza vermelisin |
+| I consent to Shinka processing my cycle data to provide cycle-based features and personalization. | Shinka’nın döngü verilerimi döngüye dayalı özellikler ve kişiselleştirme sunmak amacıyla işlemesine açık rıza veriyorum |
+| Something went wrong. Please try again | Bir şeyler ters gitti. Lütfen tekrar dene |
+| We couldn’t save your changes. Please try again | Değişikliklerin kaydedilemedi. Lütfen tekrar dene |
+| Your account is inactive | Hesabın aktif değil |
+| Terms of Service | Terms of Service |

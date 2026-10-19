@@ -14,9 +14,9 @@ export async function captureFoundationVisuals(page, origin, directory) {
     }));
     measurements.push({key,layout});
   }
-  for(const width of [360,430]) for(const step of ['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_NAME','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP','FIRST_SHINKA_DEPENDENCY']){
-    await page.setViewportSize({width,height:740});await page.goto(`${origin}/onboarding-fixture?step=${step}`);await page.waitForSelector('[data-onboarding-state]');
-    await page.screenshot({path:path.join(directory,`${step}-${width}.png`),fullPage:true,animations:'disabled'});
+  for(const language of ['en','tr']) for(const width of [360,430]) for(const step of ['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_NAME','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP','FIRST_SHINKA_DEPENDENCY']){
+    await page.setViewportSize({width,height:740});await page.goto(`${origin}/onboarding-fixture?step=${step}&language=${language}`);await page.waitForSelector('[data-onboarding-state]');
+    await page.screenshot({path:path.join(directory,`${step}-${language}-${width}.png`),fullPage:true,animations:'disabled'});
   }
   await writeFile(path.join(directory,"layouts.json"),JSON.stringify(measurements,null,2));
 }

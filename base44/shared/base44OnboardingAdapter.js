@@ -1,8 +1,9 @@
 import { InternalError, assertAuthenticatedPrincipal } from './internalAuthorization.js';
 import { assertOwner, assertActiveAccount, assertProtectedRecordMutationAllowed, SYSTEM_AUTHORITIES as S } from './domainSecurity.js';
-import { DOMAIN_SCHEMAS, physicalName, SUN_SIGN_CODES } from './domainSchemas.js';
+import { DOMAIN_SCHEMAS, physicalName } from './domainSchemas.js';
 import { validateDomainRecord, normalizeDomainRead } from './domainValidation.js';
 import { validateBirthDate, optionalName, optionalBirthTime, resolveTimezone, serverLocalDate } from './onboardingValidation.js';
+import { isOnboardingProfileReady } from './onboardingRoute.js';
 import { HEALTH_CONSENT_VERSION } from './onboardingDependencies.js';
 
 export const PRODUCTION_ONBOARDING_ADAPTER = Object.freeze({
@@ -12,7 +13,6 @@ export const PRODUCTION_ONBOARDING_ADAPTER = Object.freeze({
 const fail=(code,status=409)=>{throw new InternalError(code,status);};
 const FIELDS=Object.fromEntries(Object.entries(DOMAIN_SCHEMAS).map(([entity,spec])=>[entity,Object.keys(spec.properties)]));
 const identical=(entity,row,expected)=>FIELDS[entity].every(k=>(row[k]??null)===(expected[k]??null));
-const ready=profile=>profile&&SUN_SIGN_CODES.includes(profile.sun_sign_code);
 // A real, request-scoped service-role adapter. It deliberately does NOT implement
 // domainAtomic.commitOwnerAction: Base44 upsert is not a multi-entity transaction.
 export function createBase44OnboardingAdapter(client,principal,{now=()=>new Date(),consentVersion=HEALTH_CONSENT_VERSION}={}) {
@@ -72,7 +72,7 @@ export function createBase44OnboardingAdapter(client,principal,{now=()=>new Date
       birth_time:optionalBirthTime(input.birth_time),account_status:'ACTIVE',
     });
     if(before&&identical('user_profile',before,expected))return before;
-    if(ready(before))fail('PROFILE_ALREADY_READY'); // Onboarding is not the You editing endpoint.
+    if(isOnboardingProfileReady(before,preferences,today))fail('PROFILE_ALREADY_READY'); // Onboarding is not the You editing endpoint.
     if(before){
       assertProtectedRecordMutationAllowed('user_profile','update',S.PROFILE);
       const patch={...expected};delete patch.account_status;

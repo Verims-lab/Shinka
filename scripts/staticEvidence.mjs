@@ -1,5 +1,6 @@
 // Build/server-only inspection. Only allowlisted results + hashes enter the virtual module.
 import { inspectOnboardingSurface } from '../src/foundation/inspection/onboardingRules.js';
+import { ONBOARDING_COPY } from '../src/foundation/i18n/onboardingCopy.js';
 import { APPROVED_COPY } from '../src/foundation/uiuxTables.js';
 import fs from "node:fs";
 import { inspectProductWriteSurface } from "../src/foundation/inspection/domainRules.js";
@@ -36,7 +37,7 @@ export function buildStaticEvidence(root = process.cwd()) {
     evidenceScope: "BUILD_TIME_REPOSITORY_INSPECTION", originalArtifactProvenance: SOURCE_PROVENANCE,
     originalArtifactsHashVerifiedInRepo: ORIGINAL_ARTIFACTS_HASH_VERIFIED_IN_REPO, hashes, sourceCount: files.length, docCount: docFiles.length,
     domain: { ...inspectDomainSchemas(root), writeSurface: inspectProductWriteSurface(syntax) },
-    onboarding: inspectOnboardingSurface(syntax,Object.values(APPROVED_COPY).flat()),
+    onboarding: inspectOnboardingSurface(syntax,[...Object.values(APPROVED_COPY).flat(),...Object.values(ONBOARDING_COPY.en),...Object.values(ONBOARDING_COPY.tr)]),
     marker: checkSingleSource(syntax), legacy: findLegacyImports(syntax), secretFiles: findSecrets(raw), emailFiles: findPersonalEmails(raw),
     boundaries: missingBoundaries(Object.keys(raw)), internalUi: checkInternalUiPurity(syntax), authSurface: checkAuthSurface(syntax),
     ui: { darkFiles, hardcoded, shellUsesContract: raw["/src/pages/Home.jsx"].includes("BOTTOM_NAV.map") },

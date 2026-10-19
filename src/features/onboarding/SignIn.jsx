@@ -20,7 +20,7 @@ export default function SignIn({language='en',authenticate=beginProviderAuth}) {
   };
   return <div className="space-y-4" data-auth-shell>
     <label className="flex min-h-11 items-center gap-3" htmlFor="age-declaration">
-      <input ref={checkbox} id="age-declaration" type="checkbox" checked={checked} onChange={e=>{setChecked(e.target.checked);setError('');}} aria-describedby={error==='AGE_DECLARATION_REQUIRED'?'age-error':undefined} className="h-6 w-6 accent-shinka-plum" />{t('age')}
+      <input ref={checkbox} id="age-declaration" type="checkbox" checked={checked} onChange={e=>{setChecked(e.target.checked);setError('');}} aria-describedby={error==='AGE_DECLARATION_REQUIRED'?'age-error':undefined} className="h-6 w-6 shrink-0 accent-shinka-plum" />{t('age')}
     </label>
     {error==='AGE_DECLARATION_REQUIRED'&&<p id="age-error" role="alert">{t(error)}</p>}
     <ShinkaButton className="w-full" disabled={busy} onClick={()=>signIn('apple')} data-provider="apple"><Apple aria-hidden="true" className="h-5 w-5"/>{t('apple')}</ShinkaButton>

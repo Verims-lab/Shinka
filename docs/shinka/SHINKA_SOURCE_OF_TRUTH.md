@@ -89,15 +89,38 @@ SRC-05 v1.2 and SRC-07 v1.2 were reread directly from the supplied local DOCX/XL
 
 SHA-256 receipts (2026-10-19): SRC-05 `2e9a99d21309999641d246b0a66bad6c90570ce50afdfd03beb3ee154db94a29`; SRC-07 `db4348c165d61c20527a3dc2903e623486f788f383bcce85196e7aed213bdd69`. This scoped receipt does not change the global original-artifact verification flag: all ten source originals are not versioned/hash-verified in Git. No source count or precedence changed and no content workbook rows were imported.
 
-## Authentication/onboarding source findings — current package
+## Authentication/onboarding approved product decisions — current package
 
-The Oct 18 source set remains the sole product authority. Written SRC-03 ON-01…06 order controls. The user confirmed on 2026-10-19 that no additional approved Sun resolver or TR onboarding copy source exists. Existing Foundation TR text marked PENDING_COPY_REVIEW is not promoted to approved onboarding copy.
+Authority: the user's explicit “Shinka Greenfield — Buildmarker-008 Final Closure” request, followed by the approved helper-copy reply. These decisions supersede the earlier missing-source findings and conflicting Sun-time fallback in SRC-03; they do not add an eleventh source document to the original inventory. Request SHA-256: `a00eee2a8e22e74a1dc645e342b6baca7bd7ed17b6006520faa160cd8c2bedf2`. An independent copy receipt is stored in `src/foundation/tests/onboardingCopyReceipt.json`; approved runtime copy remains centralized in `onboardingCopy.js`.
 
-| Finding | Affected capability | Current resolution |
-|---|---|---|
-| SUN_SIGN_CALCULATION_RULE_SOURCE_GAP | Backend profile Sun sign | OPEN. No boundary algorithm exists in the sources/repository. Resolver is null; no inferred zodiac dates and no UNCERTAIN. |
-| TR_ONBOARDING_COPY_SOURCE_GAP | TR onboarding (UI catalog: SOURCE_COPY_GAP) | OPEN. Key parity exists, approved EN values retained; TR values deliberately null. UI shows the Test source-gap state and allows explicit EN selection. |
-| HEALTH_CONSENT_VERSION_SOURCE_GAP | Durable consent grant | OPEN. A version is required by the model, but approved grant text/version was not supplied. No fabricated v1. |
-| ONBOARDING_DURABLE_COMPLETION_MARKER_SOURCE_GAP | Exact cross-session resume after cycle skip | OPEN. No schema field/entity added. Existing persisted profile/preferences/period/daily state determines safe resumption; skipped ON-05 may reappear after reload. |
+| Previous finding | Current resolution |
+|---|---|
+| SUN_SIGN_CALCULATION_RULE_SOURCE_GAP | RESOLVED_BY_PRODUCT_DECISION |
+| TR_ONBOARDING_COPY_SOURCE_GAP | RESOLVED_BY_PRODUCT_DECISION |
+| HEALTH_CONSENT_VERSION_SOURCE_GAP | RESOLVED_BY_PRODUCT_DECISION |
+| ONBOARDING_DURABLE_COMPLETION_MARKER_SOURCE_GAP | RESOLVED_BY_PRODUCT_DECISION |
 
-These findings are recorded in `base44/shared/onboardingDependencies.js` and Health H07/H11. The production onboarding adapter is implemented using the installed SDK upsert/updateMany APIs and verified readback. The separate generic `domainAtomic` contract remains fail-closed with `ATOMIC_CAPABILITY_REQUIRED`; no transaction receipt or product schema was invented. `FIRST_SHINKA_ENGINE_REQUIRED` is an expected next-package dependency. They keep the package OPEN without preventing implementation/testing of independent contracts.
+The canonical pure backend Sun resolver is `base44/shared/sunSign.js`. It uses birth_date alone, independent of locale/timezone/time/place, with no API or UNCERTAIN. Missing birth_time remains NULL; the previous 00:00 Sun-calculation fallback is explicitly superseded. Other future astrology calculations require a separate decision.
+
+| Sun code | Inclusive birth-date range |
+|---|---|
+| CAPRICORN | 22 December – 19 January |
+| AQUARIUS | 20 January – 18 February |
+| PISCES | 19 February – 20 March |
+| ARIES | 21 March – 19 April |
+| TAURUS | 20 April – 20 May |
+| GEMINI | 21 May – 20 June |
+| CANCER | 21 June – 22 July |
+| LEO | 23 July – 22 August |
+| VIRGO | 23 August – 22 September |
+| LIBRA | 23 September – 22 October |
+| SCORPIO | 23 October – 21 November |
+| SAGITTARIUS | 22 November – 21 December |
+
+Durable completion is the authenticated owner's first REAL user_daily_message, alongside a valid ACTIVE profile. Profile readiness requires adult valid DOB, the derived Sun, optional valid time/structured place and initialized preferences. Before that daily record exists, Skip can reach ON-06 for the current session and restart may safely return to ON-05. No extra product entity/field/flag is authorized; existing records determine state. No daily message is generated in this package.
+
+TR onboarding catalog status is APPROVED_PRODUCT_COPY. Exact EN/TR values, including the separately approved helper strings, are recorded in UI_UX_STANDARDS and tested against the independent receipt. Terms of Service is intentionally untranslated in both languages. Existing EN validation text retains its original short-copy punctuation; only explicitly approved title, age, consent and helper replacements change onboarding EN.
+
+Canonical consent version: `health-consent-v1.0`. EN: “I consent to Shinka processing my cycle data to provide cycle-based features and personalization.” TR: “Shinka’nın döngü verilerimi döngüye dayalı özellikler ve kişiselleştirme sunmak amacıyla işlemesine açık rıza veriyorum”. The checkbox is explicit, unchecked, and separate from 18+, auth, Privacy Policy and Terms of Service. No cycle input creates no consent record/event. Valid cycle input plus consent uses the authenticated backend owner and writes the exact version to current consent and immutable grant history.
+
+FIRST_SHINKA_ENGINE_REQUIRED remains YES / NEXT_PACKAGE_DEPENDENCY; it does not keep package 008 open. Production SDK persistence is implemented with verified readback. Cross-instance enforcement/native metadata and deployed Full Health remain external verification; no native transaction guarantee is asserted. Package: CLOSED_PENDING_BASE44_VERIFICATION.

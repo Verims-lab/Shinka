@@ -2,6 +2,9 @@ import { createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import OnboardingFixture from './OnboardingTestScreen';
 import { check, NOW } from './dataModelTests';
+import { ONBOARDING_COPY } from '../i18n/onboardingCopy';
+import { normalizeGeoNamesPlace } from '../../../base44/shared/onboardingValidation.js';
+import { fixturePlace } from './onboardingFixture';
 import { sdkOnboardingFixture } from './base44OnboardingFixture';
 import { onboardingOperation } from '../../../base44/shared/onboardingOperations.js';
 import { findUnlabeledControls } from '../probes/domProbes';
@@ -26,12 +29,12 @@ function input(doc,id,value){const el=doc.getElementById(id);Object.getOwnProper
 const button=(doc,text)=>Array.from(doc.querySelectorAll('button')).find(b=>b.textContent===text);
 /** @type {import('./testTypes').FoundationTest[]} */
 export const ONBOARDING_UI_TESTS=[
- ['U01','Six onboarding screens fit 360/430px with named controls and 17px inputs',async()=>{
-  for(const width of [360,430])for(const step of ['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_NAME','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP','FIRST_SHINKA_DEPENDENCY'])await probe(step,width,async(doc,win)=>{
+ ['U01','EN/TR six screens fit 360/430px with named controls and 17px inputs',async()=>{
+  for(const language of ['en','tr'])for(const width of [360,430])for(const step of ['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_NAME','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP','FIRST_SHINKA_DEPENDENCY'])await probe(step,width,async(doc,win)=>{
     check(doc.documentElement.scrollWidth<=width+1,`${step} overflow ${width}`);check(findUnlabeledControls(doc.querySelector('main')).length===0,`${step} labels`);
     for(const el of doc.querySelectorAll('button'))check(el.getBoundingClientRect().height>=44,'touch target');
     for(const el of doc.querySelectorAll('input:not([type=checkbox])')){check(parseFloat(win.getComputedStyle(el).fontSize)>=16,`${step} ${el.id} input font ${win.getComputedStyle(el).fontSize}`);el.focus();el.scrollIntoView({block:'center'});check(doc.activeElement===el,'focus');}
-  });}],
+  },{language});}],
  ['U02','Introduction → name → sign-in; invalid name stays inline; skip clears it',async()=>{await probe('UNAUTHENTICATED_INTRO',360,async doc=>{
   button(doc,'Begin').click();await pause();input(doc,'display_name','x'.repeat(51));await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('#display_name-error')?.textContent==='Please enter a shorter name');button(doc,'Prefer not to say').click();await pause();check(doc.querySelectorAll('[data-provider]').length===2&&!doc.querySelector('#age-declaration').checked);
  });}],
@@ -51,7 +54,25 @@ export const ONBOARDING_UI_TESTS=[
   await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
     input(doc,'birth_date','1990-01-01');await pause();button(doc,'Continue').click();await pause();
     check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_PROFILE_REQUIRED');check(doc.querySelector('[data-onboarding-error]').textContent==='ONBOARDING_WRITE_UNCONFIRMED'&&pendingName==='Ada');
-    f.fail(null);button(doc,'Continue').click();await pause();check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP');check(pendingName===null&&f.rows.user_profile.length===1&&doc.body.textContent.includes('SUN_SIGN_RULE_REQUIRED'));
+    f.fail(null);button(doc,'Continue').click();await pause();check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP');check(pendingName===null&&f.rows.user_profile.length===1&&!doc.body.textContent.includes('SUN_SIGN_RULE_REQUIRED'));
   },{requestOverride,pendingOverride});
+ }],
+ ['U07','Approved TR consent is explicit, unchecked and separate from age',async()=>{
+  await probe('UNAUTHENTICATED_SIGN_IN',360,async doc=>{check(doc.querySelector('label[for=age-declaration]').textContent===ONBOARDING_COPY.tr.age&&!doc.querySelector('#age-declaration').checked);},{language:'tr'});
+  await probe('AUTHENTICATED_CYCLE_STEP',360,async doc=>{
+    check(doc.querySelector('label[for=health_consent]').textContent===ONBOARDING_COPY.tr.health_consent&&!doc.querySelector('#health_consent').checked);
+    input(doc,'period_start_date','2026-10-01');await pause();button(doc,'Devam et').click();await pause();check(doc.querySelector('#health_consent-error').textContent===ONBOARDING_COPY.tr.CONSENT_REQUIRED);
+    doc.querySelector('#health_consent').click();await pause();button(doc,'Devam et').click();await pause();check(doc.querySelector('[data-dependency]'));
+  },{language:'tr'});
+ }],
+ ['U08','Reloaded partial profile preserves structured birthplace through Sun completion',async()=>{
+  const f=sdkOnboardingFixture();await onboardingOperation(f.client,{action:'initialize',language_code:'en',timezone:'Europe/Istanbul'});
+  const saved={id:'partial-fixture',user_id:'ownerA',account_status:'ACTIVE',display_name:'Ada',birth_date:'1990-01-01',birth_time:null,sun_sign_code:null,...normalizeGeoNamesPlace(fixturePlace)};f.rows.user_profile.push(saved);
+  const requestOverride=(action,payload={})=>onboardingOperation(f.client,{...payload,action},{now:()=>new Date(NOW),geoNames:{resolve:async()=>normalizeGeoNamesPlace(fixturePlace)}});
+  await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
+    check(doc.querySelector('#birthplace').value==='Fixture City'&&doc.querySelector('#birth_time').value==='');button(doc,'Continue').click();await pause();
+    check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP');
+    check(f.rows.user_profile.length===1&&saved.sun_sign_code==='CAPRICORN'&&saved.birthplace_geonames_id===123&&saved.display_name==='Ada');
+  },{profileOverride:saved,requestOverride});
  }],
 ];
