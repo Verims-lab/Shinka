@@ -1,3 +1,4 @@
+import { healthUploadSigner } from '../../../base44/shared/healthPersistence.js';
 // All inputs are generated synthetic fixtures. No product workbook content is imported.
 import { findLegacyImports, findPersonalEmails, checkAuthSurface, checkInternalUiPurity } from "@/foundation/inspection/sourceRules";
 import { loadStaticEvidence } from "@/foundation/inspection/sourceScanner";
@@ -150,8 +151,8 @@ export const HARDENING_TESTS = [
   }],
   ["T72","Private save/readback selects stored URI and limited signed lifetime",async()=>{
     let upload={runId:""},record={run_id:""},signing={file_uri:"",expires_in:0};
-    const client={asServiceRole:{entities:{InternalHealthRun:{create:async(r)=>{record=r;return{id:"stored-id"};},list:async()=>[record],get:async()=>record}},integrations:{Core:{UploadPrivateFile:async({file})=>{upload=JSON.parse(await file.text());return{file_uri:"private://stored-report"};},CreateFileSignedUrl:async(args)=>{signing=args;return{signed_url:"https://example.test/private-report"};}}}}};
-    await internalHealthOperation(client,{action:"save",report:reportFixture()});
+    const client={asServiceRole:{entities:{InternalHealthRun:{filter:async()=>record.run_id?[{...record,id:"stored-id"}]:[],create:async(r)=>{record=r;return{id:"stored-id"};},list:async()=>[record],get:async()=>record}},integrations:{Core:{UploadPrivateFile:async({file})=>{upload=JSON.parse(await file.text());return{file_uri:"private://stored-report"};},CreateFileSignedUrl:async(args)=>{signing=args;return{signed_url:"https://example.test/private-report"};}}}}};
+    await internalHealthOperation(client,{action:"save",report:reportFixture()},{uploadSigner:healthUploadSigner("synthetic-health-signing-key-at-least-32-characters")});
     assert(upload.runId===record.run_id&&(await internalHealthOperation(client,{action:"list"})).runs.length===1,"save/readback mismatch");
     await internalHealthOperation(client,{action:"report",runId:"stored-id",file_uri:"private://attacker-selected"});
     assert(signing.file_uri==="private://stored-report"&&signing.expires_in===300,"caller controlled artifact URI");

@@ -26,7 +26,7 @@ export function validateTestRequest(body) {
   if (Object.keys(body).some(key => !['action', ...actions[body.action]].includes(key)) || !validToolId(body.target_id)) testToolError('INVALID_REQUEST', 400);
   if (['preview', 'execute'].includes(body.action) && !TEST_OPERATIONS.includes(body.operation)) testToolError('INVALID_REQUEST', 400);
   if (['status', 'resume'].includes(body.action) && !validToolId(body.operation_id)) testToolError('INVALID_REQUEST', 400);
-  if (body.action === 'execute' && (!validToolId(body.request_id) || body.request_id.length < 16 || body.confirmation !== body.target_id || typeof body.preview_token !== 'string' || body.preview_token.length > 4000)) testToolError('CONFIRMATION_INVALID', 400);
+  if (body.action === 'execute' && (!validToolId(body.request_id) || body.request_id.length < 16 || body.confirmation !== true || typeof body.preview_token !== 'string' || body.preview_token.length > 4000)) testToolError('CONFIRMATION_INVALID', 400);
 }
 export function projectOperation(row) {
   if (!row || !validToolId(row.operation_id) || !validToolId(row.target_id) || !validToolId(row.actor_id) || !TEST_OPERATIONS.includes(row.operation) || !OPERATION_STATUSES.includes(row.status)) testToolError('TEST_OPERATION_STATE_INVALID');

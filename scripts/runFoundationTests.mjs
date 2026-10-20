@@ -1,3 +1,4 @@
+import { collectBrowserMeasurements } from './browserMeasurements.mjs';
 import { verifyNativeEntries } from './verifyNativeEntries.mjs';
 import { checkAdminTestTools } from './checkAdminTestTools.mjs';
 import { checkAdminNavigation } from './checkAdminNavigation.mjs';
@@ -38,11 +39,7 @@ try {
   server=createServer(async(req,res)=>{
     try {
       const pathname=new URL(req.url,"http://localhost").pathname;
-      if(pathname==='/preview-frame-fixture'){
-        res.setHeader('Content-Type','text/html');
-        res.end(`<iframe title="Cross-site Preview fixture" style="width:1200px;height:850px" src="http://127.0.0.1:${server.address().port}/internal/health"></iframe>`);return;
-      }
-      if(!pathname.startsWith("/assets/")){res.setHeader("Content-Type","text/html");res.end(html);return;}
+      if(!pathname.startsWith("/assets/")){res.setHeader("Content-Type","text/html");res.setHeader("X-Frame-Options","DENY");res.end(html);return;}
       const file=path.resolve(output,`.${pathname}`);
       if(!file.startsWith(`${output}${path.sep}`)){res.writeHead(403).end();return;}
       res.setHeader("Content-Type",file.endsWith(".js")?"application/javascript":file.endsWith(".css")?"text/css":"application/octet-stream");
@@ -51,13 +48,18 @@ try {
   });
   await new Promise((resolve,reject)=>{server.once("error",reject);server.listen(0,"127.0.0.1",resolve);});
   const origin=`http://127.0.0.1:${server.address().port}`;
-  const previewOrigin=`http://localhost:${server.address().port}`;
   // Preserve normal Chromium background/frame scheduling, which Playwright otherwise disables.
   browser=await engine.launch({headless:true,ignoreDefaultArgs:['--disable-background-timer-throttling','--disable-backgrounding-occluded-windows','--disable-renderer-backgrounding']});
   const page=await browser.newPage({viewport:{width:1280,height:900}});
   await page.emulateMedia({colorScheme:"dark"}); // Product stays light even when the OS prefers dark.
-  await page.route("**/*",route=>[origin,previewOrigin].includes(new URL(route.request().url()).origin)?route.continue():route.abort());
+  await page.route("**/*",route=>new URL(route.request().url()).origin===origin?route.continue():route.abort());
   const pageErrors=[];page.on("pageerror",error=>pageErrors.push(error.message));
+  await page.goto(`${origin}/internal/health`);
+  await page.waitForFunction(()=>!!window.__probeIdentity);
+  const identity = await page.evaluate(()=>window.__probeIdentity());
+  const probeBundle = await collectBrowserMeasurements(browser, origin, identity, browserName);
+  await page.addInitScript(bundle=>sessionStorage.setItem('shinka.browser-evidence.v1',JSON.stringify(bundle)),probeBundle);
+  await page.evaluate(bundle=>window.__acceptBrowserEvidence(bundle),probeBundle);
   if (process.env.FOUNDATION_ADMIN_ONLY === '1') {
     const adminNavigation = await checkAdminNavigation(page, origin, process.env.FOUNDATION_ADMIN_DIR);
     console.log(JSON.stringify({ diagnosticOnly: true, adminNavigation, pageErrors }, null, 2));
@@ -84,28 +86,13 @@ try {
     productionRouting.push({session,state,passed:state===expected&&await page.locator('[data-auth-probe]').count()===0});
   }
   const fromAdmin=await page.evaluate(()=>window.__authProbeTools.measureAuthShell(360));
-  productionRouting.push({session:'admin-outside-iframe',probe:fromAdmin,passed:fromAdmin.state==='READY'&&await page.locator('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_PROFILE_REQUIRED'});
+  productionRouting.push({session:'admin-session-preserved-with-external-evidence',probe:fromAdmin,passed:fromAdmin.state==='READY'&&await page.locator('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_PROFILE_REQUIRED'});
   for(const session of ['anonymous','admin']){
     await page.goto(`${origin}/auth-shell-probe?sdkSession=${session}`);
     await page.waitForSelector('[data-auth-probe][data-probe-status="READY"]');
     productionRouting.push({session:`${session}-top-level-probe`,passed:await page.locator('[data-onboarding-state]').getAttribute('data-onboarding-state')==='UNAUTHENTICATED_SIGN_IN'});
   }
-  // Preview embeds the application cross-site; Health then creates a hidden same-origin child.
-  await page.goto(`${previewOrigin}/preview-frame-fixture`);
-  const app=page.frames().find(frame=>frame.url().startsWith(`${origin}/internal/health`));
-  await app.waitForFunction(()=>!!window.__authProbeTools);
-  const previewProbes=await app.evaluate(async()=>{
-    const {measureAuthShell,createAuthProbeFrame,waitForAuthProbe}=window.__authProbeTools,results=[];
-    for(const width of [360,1024]){const probe=await measureAuthShell(width);results.push({scenario:`nested-hidden-${width}`,probe,passed:probe.state==='READY'&&probe.frameState.visibility==='hidden'});}
-    const late=createAuthProbeFrame(360);
-    try {
-      const deadline=performance.now()+15000;
-      while(performance.now()<deadline&&late.read().ready!=='READY')await new Promise(r=>setTimeout(r,50));
-      const before=late.read(),probe=await waitForAuthProbe(late.read);
-      results.push({scenario:'nested-late-parent',readinessBeforeObservation:before.ready,probe,passed:before.ready==='READY'&&probe.state==='READY'});
-    }finally{late.dispose();}
-    return results;
-  });
+  const previewProbes = probeBundle.measurements.map(probe=>({probe,passed:['READY','MEASURED'].includes(probe.state)}));
   const adminNavigation = await checkAdminNavigation(page, origin, process.env.FOUNDATION_ADMIN_DIR);
   const mobile = await checkMobile(browser, origin, process.env.FOUNDATION_MOBILE_DIR);
   const dailyFlow = await checkDailyFlow(page, origin, process.env.FOUNDATION_DAILY_DIR);

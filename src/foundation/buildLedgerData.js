@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-012",
-    "package_name": "Calendar and cycle management",
-    "package_type": "FEATURE",
-    "created_at": "2026-10-20T11:29:12.456370+00:00",
-    "health_catalog_version": "HC-012.0",
-    "short_summary": "Monthly Calendar, shared source cycle calculation and guarded mutation/consent protocol. Production writes remain blocked without a durable atomic adapter; observed intervals over 60 days await the user’s separate product rule.",
-    "full_health_status": "BLOCKED",
-    "notes": "Chromium/WebKit each 376/376 canonical, 89/89 local Health, 17 admin/8 routing-Preview/5 mobile/5 daily/6 Calendar UI scenarios; zero page exceptions. Clean install/tree, type/lint/build, Repo Health 16/16, five-package history and performance budgets pass. Fresh npm audit/security is BLOCKED by TLS issuer verification; previous audit is not current proof. Production Calendar writes remain disabled pending durable atomicity; OD-012 awaits the separate >60-day product rule. H09, ON-05 same-account recovery, hosted Full Health and devices remain open. No live product writes or deployment. Evidence: reports/SHINKA_CALENDAR_012.md and calendar-012/verification.json.",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true
-  },
-  {
     "build_marker": "Buildmarker-013",
     "package_name": "Admin Test Tools",
     "package_type": "FEATURE",
@@ -68,5 +54,19 @@ export default [
     "full_health_status": "HOSTED_PARTIAL_HEALTH_BLOCKED",
     "notes": "016 hosted closure: admin nativeReadiness BASE44_NATIVE_V1/native-continuation/1; three operational stores readable; 24 remote schema sources match. Existing shared app/prod and two synthetic accounts explicitly authorized, three Test Tools settings installed. Exact 6/260/240 references + current Moon coverage imported/verified; original source unchanged. Selected admin Home concurrent same-day reuse, Calendar partial-500 recovery/edit/delete/retry and reset across client restarts verified; original product hashes preserved, owner forgery 403. No account deletion/drain or worker-kill proof. New hosted HC-016.0 Full Health: 133 PASS/2 FAIL/1 BLOCKED; H09-004 PASS, iframe timeouts with published X-Frame-Options:DENY, save failed; old history still readable. H03-006 exact Test Tools boundary correction + HB01/HB02, HC-016.1, no case removed. Chromium/WebKit 439/439 + 100/100 local Health; quality/budgets pass, 0 Critical/High, 2 Moderate. Main publish, normal-user session, new Health save/open, original ON-05 and devices remain open. Reports/SHINKA_HOSTED_CLOSURE_016.md; evidence base44-016/hosted-closure/. Active 012–016.",
     "updated_at": "2026-10-20T18:47:16.690Z"
+  },
+  {
+    "build_marker": "Buildmarker-017",
+    "package_name": "Health recovery and in-app target deletion",
+    "package_type": "CORRECTIVE",
+    "created_at": "2026-10-20T19:25:04.803800+00:00",
+    "health_catalog_version": "HC-017.0",
+    "short_summary": "Remove regenerated password templates; real viewport evidence contract; retry Health save without rerun; target-scoped bounded deletion with resume and retention.",
+    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
+    "notes": "Chromium/WebKit each 454/454 canonical + 101/101 local Health PASS, zero page errors; native single-confirmation TR/EN delete and 30s preparation/retry budget regression pass. Required repository quality and byte budgets verified locally; audit 0 Critical/High, 2 existing Moderate router findings. HC-017.0:156 cases,137 current; no failing case retired. Only schema delta: optional InternalHealthRun.report_digest. User-supplied HC-016.1 NOT_READY evidence preserved; H03-006/H09-004 PASS retained. No live app/API diagnostic, Full Health, import, reset/deletion, schema push or publish. Owner sync/publish, viewport evidence/manual Health save-list-open, selected disposable target deletion, normal-user boundaries, original ON-05 and physical devices remain MANUAL_USER_VALIDATION_PENDING. See reports/SHINKA_HEALTH_RECOVERY_017.md and health-recovery-017/verification.json. Active history 013–017.",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true
   }
 ];

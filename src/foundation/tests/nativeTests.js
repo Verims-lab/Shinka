@@ -74,8 +74,12 @@ export const NATIVE_TESTS = [
  ['NA19','Reset Skip creates no health data and final step reuses same-day snapshot',async()=>{
   const f=nativeFixture();const first=await f.today();await f.execute(await f.preview());f.tables.AdminTestOperation[0].stage='CYCLE';const count=f.tables.UserHealthConsentEvent.length;await onboardingOperation(f.client(),{action:'skipCycle'});const last=await f.today();check(last.daily.id===first.daily.id&&f.tables.AdminTestOperation[0].status==='COMPLETED'&&f.tables.UserHealthConsentEvent.length===count);
  }],
- ['NA20','Native deletion requires operator maintenance attestation; reset remains independently available',async()=>{
-  const f=nativeFixture();check((await f.preview('DELETE_USER')).blockers.includes('TEST_OPERATOR_MAINTENANCE_REQUIRED'));check((await f.preview()).enabled);f.state.paused=true;check((await f.preview('DELETE_USER')).enabled);f.maintenance.drainAck='invalid';check(!(await f.preview('DELETE_USER')).enabled);
+ ['NA20','Native target deletion needs no operator maintenance and leaves other users writable',async()=>{
+  const f=nativeFixture();check((await f.preview('DELETE_USER')).enabled);check((await f.preview()).enabled);
+  await f.execute(await f.preview('DELETE_USER'));
+  check((await f.client('ownerB').auth.me()).id==='ownerB');
+  await f.client('adminA').asServiceRole.entities.UserPreferences.create({user_id:'ownerB',language_code:'tr'});
+  await rejects(()=>f.client('adminA').asServiceRole.entities.UserPreferences.create({user_id:'ownerA',language_code:'tr'}),'ACCOUNT_DELETION_IN_PROGRESS');
  }],
  ['NA21','Deletion staged failure resumes with fresh client and retains consent/audit evidence',async()=>{
   const f=nativeFixture();await add(f);const grant=JSON.stringify(f.tables.UserHealthConsent);f.state.paused=true;f.once('after',c=>c.name==='UserPeriodRecord'&&c.method==='delete');await rejects(()=>f.preview('DELETE_USER').then(f.execute));check(f.tables.AdminTestOperation[0].status==='RETRY_REQUIRED');const result=await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id});check(result.job.status==='COMPLETED'&&!f.tables.User.some(r=>r.id==='ownerA')&&!f.tables.UserCalendarAction.length&&JSON.stringify(f.tables.UserHealthConsent)===grant);await rejects(()=>f.today(),'AUTH_REQUIRED');
@@ -83,19 +87,19 @@ export const NATIVE_TESTS = [
  ['NA22','Write pause catches an already-started SDK write after return; no invented rollback',async()=>{
   const f=nativeFixture();f.state.after=async c=>{if(c.name==='UserDailyMessage'&&c.method==='create')f.state.paused=true;};await rejects(f.today,'MAINTENANCE_WRITE_PAUSED');check(f.tables.UserDailyMessage.length===1);
  }],
- ['NA23','Fresh role revocation and maintenance cancellation stop destructive stages',async()=>{
-  const f=nativeFixture();f.state.paused=true;const view=await f.preview('DELETE_USER');f.state.after=async c=>{if(c.name==='AdminTestOperation'&&c.method==='create')f.state.paused=false;};await rejects(()=>f.execute(view));check(f.tables.User.some(r=>r.id==='ownerA')&&f.tables.UserProfile.length===1);
+ ['NA23','Fresh admin role revocation stops destructive stages',async()=>{
+  const f=nativeFixture();f.state.paused=true;const view=await f.preview('DELETE_USER');f.state.after=async c=>{if(c.name==='AdminTestOperation'&&c.method==='create')f.tables.User.find(row=>row.id==='adminA').role='user';};await rejects(()=>f.execute(view));check(f.tables.User.some(r=>r.id==='ownerA')&&f.tables.UserProfile.length===1);
  }],
  ['NA24','Native regrant never skips withdrawal cleanup proof',async()=>{
   const f=nativeFixture();Object.assign(f.tables.UserHealthConsent[0],{consent_status:'WITHDRAWN',withdrawn_at:'2026-10-20T11:00:00Z',granted_at:'2026-10-01T12:00:00Z',consent_version:HEALTH_CONSENT_VERSION});await rejects(()=>f.change('add',{date:'2026-10-01',health_consent:true}),'HEALTH_DELETION_UNCONFIRMED');check(!f.tables.UserPeriodRecord.length);
  }],
  ['NA25','Late residual write before final deletion verification cannot be success',async()=>{
   const f=nativeFixture();f.state.paused=true;const view=await f.preview('DELETE_USER');f.state.after=async c=>{if(c.name==='User'&&c.method==='delete'){f.state.after=null;f.tables.UserPeriodRecord.push({id:'late',user_id:'ownerA',period_start_date:'2026-10-01'});}};
-  await rejects(()=>f.execute(view),'TEST_JOB_RETRY_REQUIRED');check(f.tables.AdminTestOperation[0].status==='RETRY_REQUIRED');await rejects(()=>f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id}),'TEST_JOB_RETRY_REQUIRED');
+  await rejects(()=>f.execute(view),'TEST_JOB_RETRY_REQUIRED');check(f.tables.AdminTestOperation[0].status==='RETRY_REQUIRED');check((await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id})).job.status==='COMPLETED');
  }],
  ['NA26','Final VERIFY reruns after audit failure even with a persisted checkpoint',async()=>{
   const f=nativeFixture();f.state.paused=true;f.once('before',c=>c.name==='AdminAuditLog'&&c.method==='create'&&c.args[0].action_status==='SUCCESS'&&c.args[0].error_code==='TEST_OPERATION_COMPLETED');await rejects(()=>f.preview('DELETE_USER').then(f.execute));check(f.tables.AdminTestOperation[0].checkpoints.includes('VERIFY'));
-  f.tables.UserPeriodRecord.push({id:'residual',user_id:'ownerA',period_start_date:'2026-10-01'});await rejects(()=>f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id}),'TEST_JOB_RETRY_REQUIRED');check(f.tables.AdminTestOperation[0].status!=='COMPLETED');
+  f.tables.UserPeriodRecord.push({id:'residual',user_id:'ownerA',period_start_date:'2026-10-01'});check((await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id})).job.status==='COMPLETED');check(f.tables.AdminTestOperation[0].status==='COMPLETED'&&!f.tables.UserPeriodRecord.length);
  }],
  ['NA27','Reset pending step rejects changed input without replacing first saved input',async()=>{
   const f=nativeFixture();await f.execute(await f.preview());const body={action:'saveProfile',birth_date:'1990-01-01',display_name:'First',birth_time:null,birthplace_geonames_id:null};f.once('before',c=>c.name==='AdminTestOperation'&&c.method==='update'&&c.args[1].stage==='CYCLE');await rejects(()=>onboardingOperation(f.client(),body));await rejects(()=>onboardingOperation(f.client(),{...body,display_name:'Second'}),'TEST_RESET_STEP_CONFLICT');check(f.tables.UserProfile[0].display_name==='First');

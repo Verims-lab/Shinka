@@ -26,34 +26,9 @@ export function findSmallTargets(root, min) {
   }).map((el) => `${describe(el)}:${Math.round(el.getBoundingClientRect().width)}x${Math.round(el.getBoundingClientRect().height)}`);
 }
 
-// Loads a same-origin route in a hidden fixed-width iframe and measures horizontal overflow. Bounded by timeout.
-export function probeMobileOverflow(path, width = 360, timeoutMs = 15000) {
-  return new Promise((resolve) => {
-    const iframe = document.createElement("iframe");
-    iframe.setAttribute("aria-hidden", "true");
-    iframe.setAttribute("title", "layout probe");
-    iframe.tabIndex = -1;
-    Object.assign(iframe.style, { position: "fixed", left: "-10000px", top: "0", width: `${width}px`, height: "720px", border: "0", visibility: "hidden" });
-    const t0 = performance.now();
-    let done = false;
-    const finish = (r) => {
-      if (done) return;
-      done = true; clearInterval(poll); clearTimeout(timer); iframe.remove();
-      resolve({ ...r, width, ms: Math.round(performance.now() - t0) });
-    };
-    // Lifecycle: LOADING → MEASURED (page root [data-probe-root] rendered) | TIMEOUT (with reason + landed path) | ERROR.
-    const landed = () => { try { return iframe.contentWindow?.location?.pathname ?? null; } catch { return null; } };
-    const timer = setTimeout(() => finish({ state: "TIMEOUT", reason: "PROBE_ROOT_NOT_RENDERED", path, landedPath: landed(), scrollWidth: null, overflow: null }), timeoutMs);
-    const poll = setInterval(() => {
-      try {
-        const d = iframe.contentDocument;
-        if (d?.querySelector("[data-probe-root]")) {
-          const scrollWidth = Math.max(d.documentElement.scrollWidth, d.body.scrollWidth);
-          finish({ state: "MEASURED", path, scrollWidth, overflow: scrollWidth > width + 1 });
-        }
-      } catch (e) { finish({ state: "ERROR", reason: "FRAME_INACCESSIBLE", path, detail: String(e?.name || e), scrollWidth: null, overflow: null }); }
-    }, 200);
-    iframe.src = path;
-    document.body.appendChild(iframe);
-  });
+// A real top-level browser viewport measurement is supplied by the browser runner.
+// No hidden frames, iframe timers, CSP changes or container-width substitutions.
+export async function probeMobileOverflow(path, width = 360, _timeoutMs = 15000) {
+  const { browserMeasurement } = await import('./browserEvidence');
+  return browserMeasurement('layout', path.split('?')[0], width);
 }

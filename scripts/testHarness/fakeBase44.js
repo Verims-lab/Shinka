@@ -43,10 +43,10 @@ export const base44 = {
     calls.push({ name, action: body.action }); // Action names only; no user payload.
     if (name === 'applicationSession') return { data: { ...await base44.auth.me(), authority: 'BASE44_NATIVE_V1' } };
     if (name === 'adminTestTools') {
-      if (!testToolsLab) testToolsLab = import('@/foundation/tests/adminTestFixture').then(({ adminTestFixture }) => adminTestFixture());
+      if (!testToolsLab) testToolsLab = import('@/foundation/tests/nativeFixture').then(({nativeFixture})=>{const fixture=nativeFixture();fixture.state.time=new Date().toISOString();Object.assign(fixture.tables.User.find(row=>row.id==='ownerA'),{full_name:'Synthetic Target',email:'target@example.invalid'});return fixture;});
       const f = await testToolsLab;
-      f.state.actor = session === 'admin' ? 'adminA' : session === 'user' ? 'ownerA' : null;
-      try { return { data: await f.request(body, { ...f.dependencies, coordinator: null }) }; }
+      const actor = session === 'admin' ? 'adminA' : session === 'user' ? 'ownerA' : null;
+      try { return { data: await f.tools(body, actor) }; }
       catch (error) { return { data: { error_code: error.code || 'TEST_TOOLS_FAILED' } }; }
     }
     if (name === 'calendar') {

@@ -1,3 +1,4 @@
+import { CLOSURE017_TESTS } from './closure017Tests';
 import { NATIVE_TESTS } from './nativeTests';
 import { ADMIN_TEST_TOOLS_TESTS } from './adminTestToolsTests';
 import { ADMIN_TEST_UI_TESTS } from './adminTestToolsUiTests';
@@ -107,6 +108,7 @@ export const FOUNDATION_TESTS = [
   ["T23", "Design tokens load", () => assert(DESIGN_TOKENS.touchTargetMin === 44 && /Cormorant/.test(DESIGN_TOKENS.typography.heading) && /Inter/.test(DESIGN_TOKENS.typography.body), "tokens")],
   ["T24", "Health page has no horizontal overflow at 360px", async () => {
     const p = await probeMobileOverflow("/internal/health?probe=1", 360, 15000);
+    if (p.state === 'BLOCKED') throw Object.assign(new Error(p.code), {code:p.code});
     assert(p.state === "MEASURED" && !p.overflow, `probe ${p.state} sw=${p.scrollWidth}`);
   }],
   ["T25", "Interactive Health controls have accessible labels", () => {
@@ -115,11 +117,12 @@ export const FOUNDATION_TESTS = [
   }],
 ];
 
-export async function runFoundationTests() {
+export async function runFoundationTests({ signal = undefined } = {}) {
   const out = [];
-  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...UI_CONTRACT_TESTS, ...HARDENING_TESTS, ...CSS_CONTRACT_TESTS, ...DATA_MODEL_TESTS, ...SECURITY_TESTS, ...AUTH_TESTS, ...ONBOARDING_TESTS, ...ONBOARDING_UI_TESTS, ...PRODUCTION_ONBOARDING_TESTS, ...ONBOARDING_DECISION_TESTS, ...HEALTH_CLOSURE_TESTS, ...AUTH_PROBE_TESTS, ...MAINTENANCE_TESTS, ...ADMIN_NAV_TESTS, ...DAILY_TESTS, ...DAILY_UI_TESTS, ...CALENDAR_TESTS, ...CALENDAR_UI_TESTS, ...ADMIN_TEST_TOOLS_TESTS, ...ADMIN_TEST_UI_TESTS]) {
-    try { const result=await fn(); out.push({ id, name, passed: true, detail: "ok", ...(result&&typeof result==="object"&&"evidence" in result?{evidence:result.evidence}:{}) }); }
-    catch (e) { out.push({ id, name, passed: false, detail: String(e?.message || e).slice(0, 160), ...(e?.probeEvidence?{evidence:{probe:e.probeEvidence}}:{}) }); }
+  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...CLOSURE017_TESTS, ...UI_CONTRACT_TESTS, ...HARDENING_TESTS, ...CSS_CONTRACT_TESTS, ...DATA_MODEL_TESTS, ...SECURITY_TESTS, ...AUTH_TESTS, ...ONBOARDING_TESTS, ...ONBOARDING_UI_TESTS, ...PRODUCTION_ONBOARDING_TESTS, ...ONBOARDING_DECISION_TESTS, ...HEALTH_CLOSURE_TESTS, ...AUTH_PROBE_TESTS, ...MAINTENANCE_TESTS, ...ADMIN_NAV_TESTS, ...DAILY_TESTS, ...DAILY_UI_TESTS, ...CALENDAR_TESTS, ...CALENDAR_UI_TESTS, ...ADMIN_TEST_TOOLS_TESTS, ...ADMIN_TEST_UI_TESTS]) {
+    if (signal?.aborted) break;
+    try { const result=await fn(); if(signal?.aborted)break; out.push({ id, name, passed: true, blocked:false, detail: "ok", ...(result&&typeof result==="object"&&"evidence" in result?{evidence:result.evidence}:{}) }); }
+    catch (e) { out.push({ id, name, passed: false, blocked: e?.code?.startsWith('BROWSER_') || e?.probeEvidence?.state==='BLOCKED', detail: String(e?.message || e).slice(0, 160), ...(e?.probeEvidence?{evidence:{probe:e.probeEvidence}}:{}) }); }
   }
   return out;
 }

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-016
+**Current BuildMarker:** Buildmarker-017
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -11,7 +11,11 @@
 **Not Implemented:** Hosted acceptance for native daily/Calendar writes, Pattern, You editing, withdrawal/deactivation and notifications.
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
-## Current Base44 behavior — 016
+## Current corrective behavior — 017
+
+Admin Test Tools: enter User ID → lookup current ID/name/email/role/account state → inspect deleted/retained scope → one explicit “Kullanıcıyı sil” confirmation → persisted result. No second typed ID or operator/window/drain steps. Signed preview remains bound to actor/target/action/app/scope. Self-delete/last-admin removal/open health job are refused. Deletion journal is durable and read back before cleanup; target app writes are denied while others continue. Partial deletion remains blocked for target and resumes the same operation. A repeated/completed operation rechecks scopes and removes late residual rows before verified success; retained consent/events/daily/protection/audit histories are unchanged. This is app User removal with operational cleanup, not provider-account deletion, withdrawal or normal self-service deactivation. Reset retains its existing verified-step semantics.
+
+## Historical Base44 behavior — 016
 
 Home reuses valid saved daily content. Competing physical candidates are retained and reconciled by persisted generated_at then ID; a differing candidate displays a notice. All candidates count in the 40-day history. Late visibility can change the chosen display on refresh; no random deletion or snapshot update.
 

@@ -3,8 +3,8 @@ import { testToolError } from './adminTestPolicy.js';
 import { InternalError } from './internalAuthorization.js';
 import { nativeResetStep } from './nativeResetStep.js';
 
-// Additional early admission guard, NOT a distributed write fence. Destructive
-// operations require an operator-controlled maintenance window in native mode.
+// Fresh actor admission; completed DELETE remains a permanent target tombstone.
+// Per-write target admission is separate and is not a distributed fence.
 export function withUserLifecycle(client) {
   const repository = createTestRepository(client);
   const wrapped = { ...client };

@@ -6,5 +6,5 @@ export async function nativeReadiness(client) {
     try { await client.asServiceRole.entities[name].filter({}, 'id', 1, 0, ['id']); return { name, readable: true }; }
     catch { return { name, readable: false }; }
   }));
-  return { authority: 'BASE44_NATIVE_V1', strategyVersion: 'native-continuation/1', schemas, daily: 'IMMUTABLE_CANDIDATES', calendar: 'OBSERVATIONS_AND_RECEIPTS', reset: 'VERIFIED_STEPS', deletion: 'OPERATOR_MAINTENANCE_ONLY', distributedFence: false, hostedMutationVerified: false };
+  return { authority: 'BASE44_NATIVE_V1', strategyVersion: 'native-continuation/2', schemas, daily: 'IMMUTABLE_CANDIDATES', calendar: 'OBSERVATIONS_AND_RECEIPTS', reset: 'VERIFIED_STEPS', deletion: 'TARGET_LIFECYCLE_RESUMABLE', distributedFence: false, hostedMutationVerified: false };
 }

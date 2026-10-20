@@ -1,7 +1,7 @@
 // New Test Tools product copy, scoped to the explicit 2026-10-20 request.
 export const TEST_TOOLS_COPY = Object.freeze({
   tr: {
-    UserCalendarAction: 'Takvim işlem kayıtları', calendar_actions: 'Takvim işlem kayıtları', TEST_OPERATOR_MAINTENANCE_REQUIRED: 'Silme için yetkili operatör bakım penceresi açmalı, yeni yazmaları durdurmalı ve başlamış isteklerin bittiğini doğrulamalı',
+    identity: 'Mevcut kimlik', calendar_actions: 'Takvim işlem kayıtları',
     PROFILE: "Kişisel bilgiler", CYCLE: "Döngü", FIRST_SHINKA: "İlk Shinka", DONE: "Tamamlandı", START: "Başlangıç kaydedildi", NOTIFICATIONS: "Bekleyen bildirimler durduruldu", USER: "User kaydı kaldırıldı", VERIFY: "Son doğrulama",
     resetCompleted: 'Yeniden başlatılan onboarding tamamlandı.',
     title: 'Test Araçları', description: 'Kullanıcı bazında onboarding ve hesap testleri.',
@@ -10,7 +10,7 @@ export const TEST_TOOLS_COPY = Object.freeze({
     resetDescription: 'Hesap, giriş bağlantısı, rol, profil, döngü ve geçmiş korunur. Onboarding ilerlemesi yeniden başlar.',
     deleteDescription: 'Geri alınamaz. User kaydı ve aşağıdaki operasyonel veriler kaldırılır. Korunan geçmiş silinmez.',
     preview: 'Etki önizlemesi', environment: 'Hedef uygulama ve ortam', sharedDatabase: 'Preview veya Test branch, ayrı bir veritabanı olduğu anlamına gelmez.',
-    confirm: 'Onaylamak için hedef User ID’sini yeniden yaz', execute: 'Onaylanan işlemi başlat', cancel: 'Vazgeç',
+    execute: 'Onaylanan işlemi başlat', cancel: 'Vazgeç',
     deleted: 'Kaldırılacak kayıtlar', retained: 'Korunacak kayıtlar', count: 'Kayıt sayısı',
     shared: 'Ortak içerik ve referans tabloları değişmez.',
     notifications: 'Bekleyen veya başarısız bildirimler durdurulur; bildirim geçmişi korunur.',
@@ -46,7 +46,7 @@ export const TEST_TOOLS_COPY = Object.freeze({
     unknownCount: 'Hedefe göre sayılmaz; korunur',
   },
   en: {
-    UserCalendarAction: 'Calendar operation records', calendar_actions: 'Calendar operation records', TEST_OPERATOR_MAINTENANCE_REQUIRED: 'Deletion requires an authorized operator maintenance window, stopped new writes and confirmation that existing requests have drained',
+    identity: 'Current identity', calendar_actions: 'Calendar operation records',
     PROFILE: "Personal details", CYCLE: "Cycle", FIRST_SHINKA: "First Shinka", DONE: "Completed", START: "Start recorded", NOTIFICATIONS: "Pending notifications stopped", USER: "User record removed", VERIFY: "Final verification",
     resetCompleted: 'The restarted onboarding is complete.',
     title: 'Test Tools', description: 'Per-user onboarding and account tests.',
@@ -55,7 +55,7 @@ export const TEST_TOOLS_COPY = Object.freeze({
     resetDescription: 'The account, sign-in connection, role, profile, cycle data and history stay intact. Onboarding progress restarts.',
     deleteDescription: 'Irreversible. The User and the operational records listed below are removed. Retained history is preserved.',
     preview: 'Impact preview', environment: 'Target application and environment', sharedDatabase: 'Preview or the Test branch does not imply a separate database.',
-    confirm: 'Retype the target User ID to confirm', execute: 'Start confirmed operation', cancel: 'Cancel',
+    execute: 'Start confirmed operation', cancel: 'Cancel',
     deleted: 'Records to remove', retained: 'Records to retain', count: 'Record count',
     shared: 'Shared content and reference tables stay unchanged.',
     notifications: 'Pending or failed notifications are stopped; notification history is retained.',

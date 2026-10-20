@@ -33,7 +33,7 @@ export function nativeTestJournal(client, guard, now = () => new Date()) {
       await audit(testAuditRecord(job, 'SUCCESS', job.started_at, 'TEST_OPERATION_STARTED'));
       return projectOperation(job);
     },
-    async isDone(job, stage) { await guard(); return (await read(job)).checkpoints.includes(stage); },
+    async reopen(job) { return patch(job,{status:'RUNNING',stage:'START',completed_at:null,error_code:null}); },
     async checkpoint(job, stage) {
       const saved = await read(job);
       return patch(job, { stage, checkpoints: [...new Set([...saved.checkpoints, stage])] });

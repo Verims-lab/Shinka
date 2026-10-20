@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-016
+**Current BuildMarker:** Buildmarker-017
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -10,7 +10,13 @@
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
-## Current authority — Base44 continuation (016)
+## Authoritative corrective decision — 017
+
+The user's request `32a2a68b-8223-45ea-8285-56d4e91cafdb/Pasted text.txt` supersedes operator-maintenance deletion and routine agent-run hosted Health. Base44 sole authority, approved shared app/prod, content/Moon/OD-012 and retention stay. Test is code, not a separate database. New active contract: explicit target preview + single confirmation, durable target tombstone, bounded resumable cleanup; unrelated users remain admitted. Existing per-operation owner/ACTIVE/consent/open-job validation remains mandatory. Manual hosted acceptance does not block Test delivery. See DEVELOPMENT_RULES and [017 delivery](reports/SHINKA_HEALTH_RECOVERY_017.md).
+
+Git proves password templates were reintroduced by `base44-builder[bot]` in `ac3e7e9` (2026-10-20T18:58:47Z, “chore: add boilerplate auth templates”) after prior removal. No active route/import registers these files. Removal retains the unmodified auth scanner and Apple/Google policy. This demonstrates regeneration occurred, but not which platform event/settings caused it. No fresh Authentication dashboard observation was made; OD-003's old timestamp is unchanged. User must inspect the next synced diff and current platform provider settings; no claim that deleting files permanently disables platform template generation.
+
+## Historical authority — Base44 continuation (016)
 
 The latest user instruction replaces the 015 SQL approval. Base44 is the sole product/identity/admin authority; existing OAuth/User IDs stay. The user explicitly confirmed no SQL installation or transfer occurred. Independent read-only inspection found no SQL secrets or SQL session/admin endpoints in the known Base44 app; account-wide Supabase inspection was unavailable. No reconciliation, remote deletion, provisioning or migration occurred. Historical 014/015 decisions are superseded, not erased.
 

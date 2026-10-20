@@ -62,6 +62,7 @@ export const UI_CONTRACT_TESTS = [
   }],
   ["T41", "Build & Environment has no horizontal overflow at 360px", async () => {
     const p = await probeMobileOverflow("/internal/build?probe=1", 360, 15000);
+    if (p.state === 'BLOCKED') throw Object.assign(new Error(p.code), {code:p.code});
     assert(p.state === "MEASURED" && !p.overflow, `probe ${JSON.stringify(p)}`);
   }],
   ["T42", "SHINKA_UI_UX_STANDARDS BuildMarker aligned", async () => assert(!(await loadStaticEvidence()).docs.misaligned.some((m) => m.doc === "SHINKA_UI_UX_STANDARDS.md"), "ui/ux doc misaligned")],
@@ -87,9 +88,9 @@ export const UI_CONTRACT_TESTS = [
   ["T48", "Auth policy detects unapproved methods", () => {
     assert(!checkAuthPolicy({ methods: ["password", "google"] }).ok && checkAuthPolicy({ methods: ["apple", "google"] }).ok, "auth policy check");
   }],
-  ["T49", "Probe timeout is explicit and machine-readable (no false PASS)", async () => {
+  ["T49", "Missing external viewport measurement is explicitly BLOCKED (no false PASS)", async () => {
     const p = await probeMobileOverflow("/internal/__probe_missing_route", 360, 3000);
-    assert(p.state === "TIMEOUT" && p.reason === "PROBE_ROOT_NOT_RENDERED" && p.overflow === null && p.scrollWidth === null, `probe ${JSON.stringify(p)}`);
+    assert(p.state === "BLOCKED" && p.code === "BROWSER_MEASUREMENT_UNCONFIRMED" && p.overflow === null && p.scrollWidth === null, `probe ${JSON.stringify(p)}`);
   }],
   ["T50", "History record matches the run, fits storage, carries no sensitive data", () => {
     const rep = { runId: "r1", buildMarker: BUILD_MARKER, healthCatalogVersion: HEALTH_CATALOG_VERSION, environment: "t", scope: "FULL",

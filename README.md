@@ -4,9 +4,9 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Any change pushed to the repo will also be reflected in the Base44 Builder.
 
-## Current Test data authority (Buildmarker-016)
+## Current Test data authority (Buildmarker-017)
 
-Base44 is the single product-data, identity and admin-role authority. Browser calls Base44 backend functions; no SQL secret, service, database setup or second login is required. Home reconciles immutable daily candidates; Calendar calculates from actual dates; reset verifies each step; deletion requires an operator-controlled maintenance window.
+Base44 is the single product-data, identity and admin-role authority. Browser calls Base44 backend functions; no SQL secret, service, database setup or second login is required. Home reconciles immutable daily candidates; Calendar calculates from actual dates; reset verifies each step; deletion uses a durable target lifecycle with bounded resumable cleanup.
 
 Read [Base44 continuation and rollout](docs/shinka/SHINKA_BASE44_CONTINUATION.md) before syncing. UserCalendarAction, AdminTestOperation.step_fingerprints and applicationSession must stay aligned with all native function entries/shared code. A frontend-only sync is insufficient. Approved content and Moon references were imported and verified on the explicitly authorized existing app/prod target; this is not an isolated Test database. See the [016 hosted closure evidence and remaining acceptance](docs/shinka/reports/SHINKA_HOSTED_CLOSURE_016.md). Main merge/publish remains with the owner. Historical 014/015 reports are retained as superseded evidence.
 
@@ -102,3 +102,5 @@ Active Internal Build history is generated, latest five unique packages includin
 `FOUNDATION_BROWSER=webkit FOUNDATION_MOBILE_DIR=/tmp/shinka-mobile npm run test:foundation` adds mobile viewport screenshots to the same canonical checks. These are desktop engine/touch emulations, not physical iOS/Android proof. `measureMaintenance.mjs` builds the production graph and a separate real-App lab with stubbed SDK, measures three cold loads per route, enforces byte budgets, and checks lazy-chunk failure/reload retry. Output must be outside the checkout. See [mobile compatibility](docs/shinka/reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md) and [maintenance findings](docs/shinka/SHINKA_DEVELOPMENT_NOTES.md).
 
 First Shinka source preparation (read-only workbooks): `node scripts/prepareFirstContent.mjs /absolute/source-directory`. The generated backend manifest is never imported by normal frontend code. Controlled live admin import instructions and production blockers: [011 handoff](docs/shinka/reports/SHINKA_FIRST_SHINKA_011.md). `FOUNDATION_DAILY_DIR=/tmp/shinka-daily npm run test:foundation` adds ON-06/Home TR/EN mobile/desktop captures using an isolated transport.
+
+Package 017: no routine agent-run hosted Health. User performs published acceptance; pending status does not block Test delivery. See [017 handoff](docs/shinka/reports/SHINKA_HEALTH_RECOVERY_017.md) for real viewport evidence, save retry and in-app deletion.

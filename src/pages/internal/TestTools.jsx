@@ -23,12 +23,12 @@ export default function TestTools({ request = undefined }) {
       <ShinkaCard title={text('target')}>
         <form className="space-y-4" onSubmit={e => { e.preventDefault(); tools.lookup(); }}>
           <label className="block space-y-2" htmlFor="test-user-id"><span>{text('userId')}</span>
-            <ShinkaInput ref={lookupButton} id="test-user-id" autoComplete="off" spellCheck={false} maxLength={100} value={tools.input} onChange={e => tools.changeInput(e.target.value)} />
+            <ShinkaInput ref={lookupButton} id="test-user-id" autoComplete="off" spellCheck={false} maxLength={100} disabled={tools.busy && !!tools.pendingId} value={tools.input} onChange={e => tools.changeInput(e.target.value)} />
           </label>
           <ShinkaButton id="test-lookup-button" type="submit" disabled={tools.busy || !/^[a-zA-Z0-9_-]{1,100}$/.test(tools.input.trim())}>{tools.busy ? text('busy') : text('lookup')}</ShinkaButton>
         </form>
         {target && <dl className="mt-5 space-y-2" data-test-target>
-          {[[text('userId'), target.id], [text('role'), text(target.role)], [text('account'), text(target.account_status)]].map(([label, value]) => <div key={label} className="min-w-0"><dt className="font-medium">{label}</dt><dd className="break-all">{value}</dd></div>)}
+          {[[text('userId'), target.id], [text('identity'), [target.full_name, target.email].filter(Boolean).join(' · ') || '—'], [text('role'), text(target.role)], [text('account'), text(target.account_status)]].map(([label, value]) => <div key={label} className="min-w-0"><dt className="font-medium">{label}</dt><dd className="break-all">{value}</dd></div>)}
         </dl>}
       </ShinkaCard>
       {environment && <ShinkaCard title={text('environment')}>
@@ -51,7 +51,7 @@ export default function TestTools({ request = undefined }) {
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
           <ShinkaButton variant="secondary" onClick={tools.status} disabled={tools.busy}>{text('check')}</ShinkaButton>
-          {tools.job && ['RETRY_REQUIRED', 'AUDIT_PENDING', 'RUNNING'].includes(tools.job.status) && <ShinkaButton variant="secondary" onClick={tools.resume} disabled={tools.busy || !tools.value?.resume_enabled}>{text('retry')}</ShinkaButton>}
+          {tools.job && (['RETRY_REQUIRED', 'AUDIT_PENDING', 'RUNNING'].includes(tools.job.status) || tools.job.operation==='DELETE_USER' && tools.job.status==='COMPLETED') && <ShinkaButton variant="secondary" onClick={tools.resume} disabled={tools.busy || !tools.value?.resume_enabled}>{text('retry')}</ShinkaButton>}
         </div>
         {tools.job && ['RETRY_REQUIRED', 'AUDIT_PENDING', 'RUNNING'].includes(tools.job.status) && tools.value?.mutation_blocker && <p className="mt-3">{text(tools.value.mutation_blocker)}</p>}
       </ShinkaCard>}

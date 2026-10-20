@@ -5,19 +5,7 @@ export const AUTH_PROBE_SCREEN = 'UNAUTHENTICATED_SIGN_IN';
 export const AUTH_PROBE_TIMEOUT_MS = 15000;
 
 
-// Read only the committed probe subtree. No account, URL query, token or product data.
-/** @param {Element|null} root */
-export function inspectAuthShell(root) {
-  const screen=root?.querySelector('[data-onboarding-state]')?.getAttribute('data-onboarding-state')??null;
-  const shell=root?.querySelector('[data-auth-shell]'),container=root?.querySelector('[data-probe-root]')?.firstElementChild;
-  let geometry=null;
-  if(shell&&container){
-    const buttons=Array.from(shell.querySelectorAll('[data-provider]')),win=root.ownerDocument.defaultView,style=win.getComputedStyle(container);
-    geometry={providers:buttons.map(b=>b.getAttribute('data-provider')).sort().join(),heights:buttons.map(b=>b.getBoundingClientRect().height),padding:[style.paddingLeft,style.paddingRight],passwords:root.querySelectorAll('input[type="password"]').length,ageChecked:root.querySelector('input')?.checked};
-  }
-  const rendered=!!root?.isConnected&&screen===AUTH_PROBE_SCREEN&&!!geometry&&geometry.heights.length===2&&geometry.heights.every(h=>h>0)&&container.getBoundingClientRect().width>0;
-  return {screen,geometry,rendered};
-}
+export { inspectAuthShell } from './inspectAuthShell.js';
 
 // Bounded observer shared by the iframe runner and deterministic failure regressions.
 /** @returns {Promise<any>} */
@@ -47,31 +35,11 @@ export async function waitForAuthProbe(read, {timeoutMs=AUTH_PROBE_TIMEOUT_MS, n
   return result('TIMEOUT',last.root?'AUTH_PROBE_READY_TIMEOUT':'AUTH_PROBE_ROOT_TIMEOUT');
 }
 
-export function createAuthProbeFrame(width) {
-  const frame=document.createElement('iframe');
-  frame.title='Isolated unauthenticated auth shell probe';frame.setAttribute('aria-hidden','true');
-  Object.assign(frame.style,{position:'fixed',left:'-10000px',width:`${width}px`,height:'720px',border:'0',visibility:'hidden'});
-  let loads=0;
-  const onLoad=()=>{loads++;};frame.addEventListener('load',onLoad);
-  frame.src=AUTH_PROBE_PATH;document.body.appendChild(frame);
-  return {
-    read:()=>{
-      const win=frame.contentWindow,doc=frame.contentDocument,root=doc?.querySelector(AUTH_PROBE_ROOT);
-      const path=win?.location.pathname==='blank'?'about:blank':win?.location.pathname??'about:blank';
-      return {path,root:!!root,...inspectAuthShell(root),ready:root?.getAttribute('data-probe-status')||'LOADING',code:root?.getAttribute('data-probe-error'),loads,
-        documentReadyState:doc?.readyState??'unavailable',lifecycle:root?.getAttribute('data-probe-lifecycle')??null,
-        frameState:{connected:frame.isConnected,loads,visibility:window.getComputedStyle(frame).visibility,documentVisibility:doc?.visibilityState??'unavailable'}};
-    },
-    dispose:()=>{frame.removeEventListener('load',onLoad);frame.remove();},
-  };
-}
-
 export async function measureAuthShell(width) {
-  const probe=createAuthProbeFrame(width);
-  try { return await waitForAuthProbe(probe.read); }
-  finally { probe.dispose(); }
+  const { browserMeasurement } = await import('./browserEvidence');
+  return browserMeasurement('auth', AUTH_PROBE_PATH, width);
 }
 
 export function requireAuthProbeReady(result) {
-  if(result.state!=='READY')throw Object.assign(new Error(`${result.code};route=${result.route};path=${result.path}`),{probeEvidence:result});
+  if(result.state!=='READY')throw Object.assign(new Error(`${result.code};route=${result.route};path=${result.path}`),{probeEvidence:result, code:result.code});
 }

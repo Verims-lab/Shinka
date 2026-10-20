@@ -3,7 +3,7 @@ import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 
 // Real App and service, SDK transport substituted by isolated metadata fixtures.
-// Production capability is absent in this fixture, exactly as in the entry.
+// Uses the actual native handler over isolated SDK rows; preview/cancel writes nothing.
 export async function checkAdminTestTools(page, origin, directory) {
   const results = [];
   if (directory) await mkdir(directory, { recursive: true });
@@ -21,7 +21,8 @@ export async function checkAdminTestTools(page, origin, directory) {
     await page.waitForSelector('[data-test-target]');
     await page.locator('[data-destructive="true"]').click();
     await page.waitForSelector('[data-test-preview]');
-    assert(await page.locator('[data-test-preview] [data-variant="primary"]').isDisabled());
+    assert(await page.locator('[data-test-preview] [data-variant="primary"]').isEnabled());
+    assert.equal(await page.locator('#test-confirmation').count(),0);
     assert(await page.locator('[data-test-preview] h2').evaluate(node => node === document.activeElement));
     const metrics = await page.evaluate(() => ({
       width: innerWidth, scrollWidth: document.documentElement.scrollWidth,

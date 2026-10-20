@@ -1,0 +1,108 @@
+{
+  "schema": "shinka.schema-stage/1",
+  "baselineCommit": "ac3e7e9c560364b84964e176386e14baa051022a",
+  "schemaDelta": true,
+  "patchSha256": "315928cfeb58b5dfe340b8d9b139fe4fd159b4917298fdd7ecd15a204e7dd8ff",
+  "files": [
+    {
+      "name": "AdminAuditLog.jsonc",
+      "sha256": "c2e896683b83957f5b6128d33d91533bbc48c49599415d3abe613d022eab958d"
+    },
+    {
+      "name": "AdminTestOperation.jsonc",
+      "sha256": "57ca036b47ae3c23eaf077338571e2b17049c4b8500ec20cd49c8dacf0cce16b"
+    },
+    {
+      "name": "CyclePhaseLookup.jsonc",
+      "sha256": "2977fc893b956031d567d1bcf9c8c81c924ee42c7aab67e46e2dbcaa2f7bd628"
+    },
+    {
+      "name": "DataProtectionEvent.jsonc",
+      "sha256": "8784aeecfb0a36063e6f037498e205dabff578f503edec962c2fd5957a9ecae1"
+    },
+    {
+      "name": "HealthDataDeletionJob.jsonc",
+      "sha256": "b3f86af9ea09e4add0be09fb43ac46283c78b18067f73e7f20abb38e42e6806e"
+    },
+    {
+      "name": "InternalHealthRun.jsonc",
+      "sha256": "ff0df9f892745a5ab2f972a0a310763f26647a676dce0dceb16ae0e29f847367"
+    },
+    {
+      "name": "MessageCategoryLookup.jsonc",
+      "sha256": "744bf94cfa06083e6b610a3232733747ab27bd44e2a36fb282a46b529e1f468f"
+    },
+    {
+      "name": "MessageCategoryMapping.jsonc",
+      "sha256": "1f1e8a1b6348d5c039736bd3a8cc5583416888ca45b4b45dc84df1efebfefdac"
+    },
+    {
+      "name": "MessagePair.jsonc",
+      "sha256": "ba03694920032a5b225934d54e08306b357b65db2c0faf4cdad93bfec0798ecd"
+    },
+    {
+      "name": "MoonPhaseLookup.jsonc",
+      "sha256": "e86da2c11ccdba7d98a7a023137cfc7130da54f4bbb679641b922b4485acff2a"
+    },
+    {
+      "name": "NotificationDelivery.jsonc",
+      "sha256": "19962ddacd67b019b75ac828c0a7465fc6cfd3579e7f4f241b831b2301e7d1ca"
+    },
+    {
+      "name": "SystemErrorLog.jsonc",
+      "sha256": "273c75b530471bf82be343d39ebba659944a8066b243e1ee50ead36c07734750"
+    },
+    {
+      "name": "User.jsonc",
+      "sha256": "4de38108e89f3bb0c1c7411eabdd47f8899238f1580428a167de47b10c5b3a31"
+    },
+    {
+      "name": "UserCalendarAction.jsonc",
+      "sha256": "481dc122ec58a27e7c03ec06d7796d304b319d51ab281ada26d44bcbd0d0c843"
+    },
+    {
+      "name": "UserCyclePhaseDay.jsonc",
+      "sha256": "802b6ef34b6ae59759371c1c541e510fdbeccc428d92def785ad71b7822bf51c"
+    },
+    {
+      "name": "UserCyclePrediction.jsonc",
+      "sha256": "68ea03867cf3ed7a5f6934aedab8c1c0a0d9388190756ac77d62a27958d477da"
+    },
+    {
+      "name": "UserCycleSettings.jsonc",
+      "sha256": "e70891545028e26dc22460b957ce5b4dbfd238ed0cb5883df21c583dcebea32b"
+    },
+    {
+      "name": "UserDailyMessage.jsonc",
+      "sha256": "6b845066e391b6a99f668dd7bf05127ff7a537fa2ab65706c62d4250276898bd"
+    },
+    {
+      "name": "UserHealthConsent.jsonc",
+      "sha256": "f53d48f44e74d2e0c0e88033c741644bba4eb139d2f98ed66bf00eb862773f0f"
+    },
+    {
+      "name": "UserHealthConsentEvent.jsonc",
+      "sha256": "c687de99fc18cffca408b318345b8d1f2f3727aecdcf778b37fd4d8802e70bc0"
+    },
+    {
+      "name": "UserPatternSummary.jsonc",
+      "sha256": "527a45c366780e75566f4dd9f0406327d29c3bb301519413da782a92f29002ca"
+    },
+    {
+      "name": "UserPeriodRecord.jsonc",
+      "sha256": "6ca8a894180730f7b40a15250519820fdb22e9abde9c05c5a592f3c8af796f70"
+    },
+    {
+      "name": "UserPreferences.jsonc",
+      "sha256": "b1d4b7808ce3a0f680d21dd91e411249d00f44b2546d59774c03aa1b44b6891a"
+    },
+    {
+      "name": "UserProfile.jsonc",
+      "sha256": "cc8b3bbc1b272968085acd5b7eb487ddf9e7e6d83239c3697746ff4287e667c9"
+    }
+  ],
+  "includesFunctions": false,
+  "includesCredentials": false,
+  "executesDeployment": false,
+  "warning": "entities push fully synchronizes ALL schemas. Compare full remote inventory first. Do not use deploy from this schema-only directory."
+}

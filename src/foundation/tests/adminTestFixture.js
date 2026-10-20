@@ -132,7 +132,7 @@ export function adminTestFixture() {
   const dependencies = { coordinator: worker(), signer: createPreviewSigner('isolated-test-signing-key-at-least-32-characters', now), policy: { appId: 'fixture-app', label: 'TEST' }, now };
   const request = (body, deps = dependencies) => adminTestOperation(client, body, deps);
   const preview = (operation = 'DELETE_USER', target_id = 'ownerA') => request({ action: 'preview', operation, target_id });
-  const execute = async (view, request_id = crypto.randomUUID()) => request({ action: 'execute', target_id: view.target.id, operation: view.operation, confirmation: view.target.id, preview_token: view.preview_token, request_id });
+  const execute = async (view, request_id = crypto.randomUUID()) => request({ action: 'execute', target_id: view.target.id, operation: view.operation, confirmation: true, preview_token: view.preview_token, request_id });
   const resume = id => request({ action: 'resume', target_id: 'ownerA', operation_id: id });
   const ownerClient = () => withUserLifecycle({ ...client, auth: { me: async () => ({ id: 'ownerA', role: 'user' }) } });
   return { state, tables, client, worker, dependencies, request, preview, execute, resume, ownerClient, now };

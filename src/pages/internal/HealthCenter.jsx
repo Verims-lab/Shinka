@@ -1,3 +1,8 @@
+import BrowserEvidenceControl from '@/components/internal/BrowserEvidenceControl';
+import ShinkaButton from '@/components/shinka/ShinkaButton';
+import { useLocation } from 'react-router-dom';
+import { internalLanguage } from '@/foundation/internalNavigation';
+import { healthCopy } from '@/foundation/i18n/healthCopy';
 import PageContainer from "@/components/shinka/PageContainer";
 import PageHeader from "@/components/shinka/PageHeader";
 import StatePanel from "@/components/shinka/StatePanel";
@@ -15,7 +20,8 @@ import { pendingCase } from "@/foundation/health/reportExport";
 import { resolveEnvironment } from "@/foundation/environment";
 
 export default function HealthCenter() {
-  const { report, running, progress, saveError, history, run, loadHistory } = useHealthRunner();
+  const language=internalLanguage(useLocation().state);
+  const { report, running, progress, saveError, history, run, loadHistory, retrySave } = useHealthRunner();
   const cases = report ? report.cases : HEALTH_CASES.map(pendingCase);
   const suites = report ? SUITES.filter((s) => report.suites.some((x) => x.id === s.id)) : SUITES;
   return (
@@ -24,9 +30,11 @@ export default function HealthCenter() {
       <PageHeader eyebrow="Internal · Health Center" title="Health Center">
         <p className="text-sm text-shinka-muted">Catalog {HEALTH_CATALOG_VERSION} · {HEALTH_CASES.length} cases · {resolveEnvironment().id}</p>
       </PageHeader>
+      <BrowserEvidenceControl />
       <HealthControls running={running} report={report} onRun={run} />
       {running && <StatePanel state="LOADING" message={`Running ${progress[0]}/${progress[1]}…`} />}
-      {saveError && <StatePanel state="ACTION_ERROR" message="Run finished but could not be saved to history." code={saveError} />}
+      {saveError && <StatePanel state="ACTION_ERROR" message={healthCopy('saveFailed',language)} code={saveError} />}
+      {saveError && report && <ShinkaButton onClick={retrySave} disabled={running}>{healthCopy('retrySave',language)}</ShinkaButton>}
       {report && !running && <HealthSummary report={report} />}
       {suites.map((s) => <SuiteSection key={s.id} suite={s} cases={cases.filter((c) => c.suiteId === s.id)} />)}
       <TestsPanel />

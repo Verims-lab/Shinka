@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-016
+**Current BuildMarker:** Buildmarker-017
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -35,6 +35,14 @@
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+
+## Current probe/history/deletion standard — 017
+
+This section supersedes old N/O and maintenance deletion wording below. Use one browser measurement contract with actual top-level viewport, exact build/source/environment and freshness binding. Unmeasured => BLOCKED, never PASS/N/A. Do not weaken frame security or raise timeouts to hide failures. Close measurement pages in finally; abort runners at deadlines/navigation and reject stale UI completions.
+
+Keep Health persistence separate from dispatch: validate, lookup existing run, reuse signed uploaded artifact on retry, create once where observed absent, read back exact fields/digest. No silent catch-all loss of stage/request ID, no raw provider logs, no rewrite of historical reports. Native uniqueness/upload atomicity are not inferred.
+
+Delete target admission is distinct from actor admin admission. Keep cleanup bounded and resumable, preserve signed target/scope binding and retention, and verify actual absence after reconciling old checkpoints. Do not reintroduce mandatory operator/window/global-pause UX. Existing code-path auth/consent/ACTIVE/open-job guards stay; future background target writers must use the same lifecycle boundary before activation.
 
 ## Native persistence standards — 016
 

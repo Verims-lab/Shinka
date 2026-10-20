@@ -15,6 +15,7 @@ export async function verifyGeoNamesRuntimeProbeEntry(root) {
   const imports={
     "../../shared/userLifecycle.js":{withUserLifecycle:client=>client},
     '../../shared/nativeClient.ts':{createNativeClient:()=>client},
+    '../../shared/healthPersistence.js':{healthUploadSigner:()=>{throw new Error('health signer accessed by transport probe');}},
     'base44:runtime':{secrets:{get:key=>{assert.equal(role,'admin');assert.equal(key,'GEONAMES_USERNAME');reads++;return currentValue;}}},
     '../../shared/internalAuthorization.js':{handleInternalRequest},
     '../../shared/internalHealthOperations.js':{internalHealthOperation},

@@ -5,31 +5,26 @@ import { targetGuard, testEnvironment } from './adminTestOperation.js';
 import { executeTestJob } from './adminTestExecution.js';
 import { nativeTestJournal } from './nativeTestJournal.js';
 
-export async function nativeAdminTestOperation(client, body, { policy = {}, signer = null, maintenance = { paused: false, actorId: null, windowId: null, drainAck: null }, now = () => new Date() } = {}) {
+export async function nativeAdminTestOperation(client, body, { policy = {}, signer = null, now = () => new Date() } = {}) {
   const actor = await requireInternalAdmin(client);
   validateTestRequest(body);
   const repository = createTestRepository(client), environment = testEnvironment(client, policy);
   const freshAdmin = async () => {
     const fresh = await requireInternalAdmin(client);
-    if (fresh.id !== actor.id || (await repository.user(actor.id))?.role !== 'admin') testToolError('FORBIDDEN_INTERNAL_TOOLING', 403);
+    if (fresh.id !== actor.id) testToolError('FORBIDDEN_INTERNAL_TOOLING', 403);
   };
   await freshAdmin();
-  // Operator attests that ingress/schedulers/other editors are stopped and
-  // already-started writes have drained. The flag itself proves no such drain.
-  const maintenanceReady = () => maintenance.paused === true && maintenance.actorId === actor.id &&
-    typeof maintenance.windowId === 'string' && /^[a-zA-Z0-9_-]{16,100}$/.test(maintenance.windowId) &&
-    maintenance.drainAck === `${maintenance.windowId}:${actor.id}`;
   const recovery = { resume_enabled: environment.authorized, mutation_blocker: environment.authorized ? null : 'TEST_ENVIRONMENT_UNVERIFIED' };
   if (body.action === 'status') {
     const job = await repository.operation(body.target_id, body.operation_id);
     if (!job) testToolError('TEST_OPERATION_NOT_FOUND', 404);
-    return { job, environment, ...recovery, resume_enabled: recovery.resume_enabled && (job.operation !== 'DELETE_USER' || maintenanceReady()) };
+    return { job, environment, ...recovery, resume_enabled: recovery.resume_enabled };
   }
   if (body.action === 'lookup') {
     const job = await repository.lifecycle(body.target_id), identity = await repository.user(body.target_id);
     if (!identity && job?.operation !== 'DELETE_USER') testToolError('TEST_USER_NOT_FOUND', 404);
     return { target: identity ? await repository.target(body.target_id) : null, job, environment, ...recovery,
-      resume_enabled: recovery.resume_enabled && (job?.operation !== 'DELETE_USER' || maintenanceReady()) };
+      resume_enabled: recovery.resume_enabled };
   }
   const binding = { actor: actor.id, target: body.target_id, operation: body.operation, app: environment.app_id };
   if (body.action === 'preview') {
@@ -40,9 +35,8 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
     if (active) blockers.push('TEST_TARGET_BUSY');
     if (!environment.authorized) blockers.push('TEST_ENVIRONMENT_UNVERIFIED');
     if (!signer) blockers.push('TEST_PREVIEW_SIGNER_REQUIRED');
-    if (body.operation === 'DELETE_USER' && !maintenanceReady()) blockers.push('TEST_OPERATOR_MAINTENANCE_REQUIRED');
     return { target, environment, operation: body.operation, counts: impact.counts, pending_notifications: impact.pending_notifications,
-      scope: { deleted: body.operation === 'DELETE_USER' ? [...DELETED_ENTITIES, 'UserCalendarAction', 'User'] : [], retained: RETAINED_ENTITIES, shared: SHARED_ENTITIES },
+      scope: { deleted: body.operation === 'DELETE_USER' ? [...DELETED_ENTITIES, 'calendar_actions', 'User'] : [], retained: RETAINED_ENTITIES, shared: SHARED_ENTITIES },
       blockers, enabled: !blockers.length, preview_token: blockers.length ? null : await signer.sign({ ...binding, scope_hash: impact.hash }),
       expires_at: new Date(now().getTime() + 300000).toISOString(), active_operation: active };
   }
@@ -54,9 +48,10 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
   if (previous && body.operation && previous.operation !== body.operation) testToolError('TEST_OPERATION_CONFLICT');
   const guard = async () => {
     await freshAdmin();
-    if (operation === 'DELETE_USER' && !maintenanceReady()) testToolError('TEST_OPERATOR_MAINTENANCE_REQUIRED');
+    const active=await repository.lifecycle(body.target_id);
+    if(active && active.operation_id !== (previous?.operation_id || body.request_id))testToolError('TEST_OPERATION_CONFLICT');
     const identity = await repository.user(body.target_id);
-    if (identity) targetGuard(actor, await repository.target(body.target_id), operation);
+    if (identity) targetGuard(actor, await repository.target(body.target_id, identity), operation);
   };
   await guard();
   let scopeHash = previous?.preview_hash;
@@ -70,8 +65,8 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
   const identity = await repository.user(body.target_id);
   if (!identity && !previous) testToolError('TEST_USER_NOT_FOUND', 404);
   if (operation === 'RESET_ONBOARDING' && (await repository.target(body.target_id)).account_status !== 'ACTIVE') testToolError('TEST_INACTIVE_ACCOUNT');
-  // Every destructive step repeats role/target/maintenance checks. A controlled
-  // maintenance window, not this function, excludes privileged out-of-band writes.
+  // Every destructive call repeats actor/target checks. The durable target journal
+  // blocks app writers; native Entity calls do not provide distributed exclusion.
   const mutationMethods = new Set(['create', 'update', 'delete']);
   const guardedClient = { ...client, asServiceRole: { ...client.asServiceRole, entities: new Proxy(client.asServiceRole.entities, {
     get(target, name) { return new Proxy(target[name], { get(entity, method) {

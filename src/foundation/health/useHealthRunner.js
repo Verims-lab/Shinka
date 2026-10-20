@@ -24,7 +24,7 @@ export function useHealthRunner(operations = DEFAULT_OPERATIONS) {
   });
   const mounted = useRef(false),
     lock = useRef(false),
-    historyTicket = useRef(0);
+    historyTicket = useRef(0), generation = useRef(0), recovery = useRef({}), controller = useRef(null);
   const loadHistory = useCallback(async () => {
     if (!mounted.current) return;
     const ticket = ++historyTicket.current;
@@ -47,39 +47,49 @@ export function useHealthRunner(operations = DEFAULT_OPERATIONS) {
     void loadHistory();
     return () => {
       mounted.current = false;
-      historyTicket.current++;
+      historyTicket.current++; generation.current++; controller.current?.abort();
     };
   }, [loadHistory]);
   const run = useCallback(
     async (suiteId = null) => {
       if (lock.current || !mounted.current) return;
       lock.current = true;
+      const ticket=++generation.current; recovery.current={}; controller.current=new AbortController();
       setRunning(true);
       setSaveError(null);
       try {
         const completed = await operations.run({
-          suiteId,
+          suiteId, signal:controller.current.signal,
           onProgress: (done, total) => {
-            if (mounted.current) setProgress([done, total]);
+            if (mounted.current && ticket===generation.current) setProgress([done, total]);
           },
         });
-        if (mounted.current) setReport(completed);
+        if (mounted.current && ticket===generation.current) setReport(completed);
         // A user-started run may finish after navigation. Preserve its audit record,
         // but never update a disposed screen or start another history request there.
         const outcome = await persistCompletedRun(
           completed,
-          operations.save,
+          value=>operations.save(value,recovery.current),
           loadHistory,
         );
-        if (mounted.current) setSaveError(outcome.saveError);
+        if (mounted.current && ticket===generation.current) setSaveError([outcome.saveError,outcome.detail].filter(Boolean).join(" · ")||null);
       } catch (error) {
-        if (mounted.current) setSaveError(classifyError(error));
+        if (mounted.current && ticket===generation.current) setSaveError(classifyError(error));
       } finally {
         lock.current = false;
-        if (mounted.current) setRunning(false);
+        if (mounted.current && ticket===generation.current) setRunning(false);
       }
     },
     [loadHistory, operations],
   );
-  return { report, running, progress, saveError, history, run, loadHistory };
+  const retrySave=useCallback(async()=>{
+    if(lock.current||!report||!mounted.current)return;
+    lock.current=true;setRunning(true);
+    const ticket=generation.current;
+    try {const outcome=await persistCompletedRun(report,value=>operations.save(value,recovery.current),loadHistory);
+      if(mounted.current&&ticket===generation.current)setSaveError([outcome.saveError,outcome.detail].filter(Boolean).join(' · ')||null);
+    } finally {lock.current=false;if(mounted.current&&ticket===generation.current)setRunning(false);}
+  },[report,operations,loadHistory]);
+  return { report, running, progress, saveError, history, run, loadHistory, retrySave };
+
 }

@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { flushSync } from 'react-dom';
 import AuthShellProbe from '../probes/AuthShellProbe';
-import { AUTH_PROBE_PATH, AUTH_PROBE_ROOT, inspectAuthShell, createAuthProbeFrame, waitForAuthProbe, requireAuthProbeReady } from '../probes/authProbeContract';
+import { AUTH_PROBE_PATH, AUTH_PROBE_ROOT, inspectAuthShell, waitForAuthProbe, requireAuthProbeReady } from '../probes/authProbeContract';
 
 const assert=(ok,message)=>{if(!ok)throw new Error(message);};
 const fixture=()=>{
@@ -40,9 +40,11 @@ export const AUTH_PROBE_TESTS=[
       assert(r.state==='ERROR'&&r.code==='AUTH_PROBE_UNMOUNTED'&&!r.selectorFound,'unmount silently passed');
     }finally{f.dispose();assert(!f.host.isConnected,'fixture leaked');}
   }],
-  ['AP06','Disposal before iframe readiness terminates with ERROR and cleans up',async()=>{
-    const selector='iframe[title="Isolated unauthenticated auth shell probe"]',before=document.querySelectorAll(selector).length,probe=createAuthProbeFrame(360);
-    try{const pending=waitForAuthProbe(probe.read,{timeoutMs:1000});probe.dispose();const r=await pending;assert(r.state==='ERROR'&&r.code==='AUTH_PROBE_FRAME_DETACHED'&&document.querySelectorAll(selector).length===before,'detached frame passed/leaked');}finally{probe.dispose();}
+  ['AP06','Missing external browser measurement blocks immediately without creating a frame',async()=>{
+    const {browserMeasurement}=await import('../probes/browserEvidence');
+    const before=document.querySelectorAll('iframe').length;
+    const r=await browserMeasurement('layout','/unmeasured',360);
+    assert(r.state==='BLOCKED'&&document.querySelectorAll('iframe').length===before,'unmeasured layout passed or frame leaked');
   }],
   ['AP07','Timeout and propagated failures retain complete non-sensitive probe diagnostics',async()=>{
     const f=fixture();try{
