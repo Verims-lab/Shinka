@@ -2,13 +2,13 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-009
+**Current BuildMarker:** Buildmarker-011
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
-**Implemented:** Tokens (`src/foundation/designTokens.js` ↔ `src/index.css`), contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), primitives (`src/components/shinka/`), Foundation shell aligned.
-**Not Implemented:** Home business behavior, Calendar, Pattern and You/account workflows (FUTURE_PACKAGE); ON-01…06 current scope is described below.
+**Implemented:** Tokens (`src/foundation/designTokens.js` ↔ `src/index.css`), contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), primitives (`src/components/shinka/`), Foundation shell aligned; scoped Profile/You admin menu and internal panel.
+**Not Implemented:** Calendar, Pattern and full You/account workflows; new daily persistence remains blocked. ON-06/Home rendering and request states are implemented.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
@@ -91,7 +91,7 @@ Opened from top-right icon only. **My Profile** (inline edit: optional name, req
 Withdraw bottom sheet opens only when triggered: "Withdraw health data consent?" / "Your cycle records, predictions, and calculated phases will be deleted. Your account will remain active." Processing stops immediately; success only after verified deletion; re-consent blocked while in progress; historic health data never restored. Distinct from Delete Account.
 
 ## Future package boundaries
-Onboarding H06/H07, GeoNames H10 and onboarding-consent H11 are current with the four approved decisions implemented; deployed verification remains separate. Home/content, Calendar, Pattern, account/withdrawal and notifications remain future.
+Onboarding H06/H07, GeoNames H10 and onboarding-consent H11 are current with the four approved decisions implemented; deployed verification remains separate. Home/content modules are implemented with production capability/import blockers. Calendar, Pattern, account/withdrawal and notifications remain future.
 
 ## Foundation auth shell alignment
 `PageContainer` now uses fixed 20px horizontal padding at mobile and desktop widths. `/login` uses ShinkaCard/ShinkaButton with Apple and Google only, primary controls at least 52px, localized safe error codes and no password fields/links. T74 measures actual 360px/1024px rendered layouts. The earlier Foundation shell has been replaced by ON-03 with a pre-auth age boundary. Live sign-in is still unverified.
@@ -103,7 +103,7 @@ Native Tailwind 4 theme mappings preserve all eleven canonical colors, fifteen R
 
 T75–T80 measure real computed styles/primitives and existing H13 cases in the same canonical suite. Existing T24/T41/T49/T74 retain internal 360px overflow, missing-root and Apple/Google auth coverage. Before/after local captures at 360px/1280px for Health, Build and login showed identical sampled heading/control/card geometry and colors after fixing inherited label and desktop heading line heights. External font requests are blocked in the isolated harness; declared families are verified, live font/device rendering is still required.
 
-## Authentication/onboarding screens — current package
+## Authentication/onboarding screens — package 008 checkpoint
 
 ON-01…05 use shared primitives and approved order. EN/TR onboarding copy is centralized; TR status is APPROVED_PRODUCT_COPY. The Final Closure decision supplies title, age declaration and explicit consent copy; the subsequent helper reply approves the three helper translations. Terms of Service remains identical in both languages. Unrelated Foundation copy is unchanged. Existing canonical EN validation punctuation remains, including range(15-60); the receipt's space before parentheses is normalized only for that existing EN item.
 
@@ -179,3 +179,32 @@ Visual QA inspected empty/selected EN/TR ON-04 at 360px and 1280px. Rendered tes
 Shared native select uses `appearance:none` with a decorative noninteractive chevron to enforce the existing 52px/17px tokens in WebKit; native selection semantics remain. Inputs have shrinkable width, PageContainer uses 100dvh with a 100vh fallback, and safe-area padding preserves the existing 20px/24px minimum. Home adds only device insets to its own spacing. Viewport permits user zoom; there is no zoom cap or keyboard scroll lock. The missing manifest link was removed: this checkout is a responsive web app, not an implemented PWA or native WebView shell.
 
 Browser-level layout, focus, localized long options, date/time and network retry evidence is in [Android/iOS compatibility](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md). Native keyboard/date/select sheets, VoiceOver/TalkBack, pinch zoom, real insets and background eviction require physical-device evidence (H13-013); desktop WebKit is not Safari certification. Product copy is unchanged.
+
+## Admin profile access — Buildmarker-010
+
+Explicit current user decision adds a small Profile/You menu for verified admins, including before onboarding completion. The existing top-right `user-round` trigger is 44×44; the ordinary user's trigger remains disabled and opens no empty profile. This implements admin access only. Full My Profile, preferences, account/privacy editing and other You workflows remain FUTURE_PACKAGE. Bottom navigation stays Home · Calendar · Pattern.
+
+The executable internal route inventory is `src/foundation/internalNavigation.js`:
+
+| Screen | Route | Access / contents |
+|---|---|---|
+| Admin Panel | `/internal` | Verified admin; exactly two tool cards below |
+| Health Center | `/internal/health` | Existing admin tool; unchanged purpose |
+| Build & Environment | `/internal/build` | Existing admin tool; unchanged purpose |
+
+Health description: “Sağlık kontrolleri, testler ve sonuçlar.” / “Health checks, tests and results.” Build description: “Güncel sürüm, ortam bilgileri ve paket geçmişi.” / “Current version, environment details and package history.” New labels, descriptions, access status and return copy live in `strings.js`; language passed between internal routes is display state only. A direct visit falls back to device language. Existing tool body copy is unchanged.
+
+Shared navigation links to the panel, both tools and the existing `/` app resolver. The small controlled navigation menu supports keyboard opening, Escape, trigger focus restoration and outside dismissal. Cards and links are at least 44px, use visible keyboard focus and existing Shinka cards/tokens. Responsive and keyboard proof is synthetic/local; physical device and deployed admin/user evidence remain separate.
+
+
+## Daily preparation and Home presentation — Buildmarker-011
+
+ON-06 retains the approved EN/TR title/preparation text and starts the real daily service. Loading is bounded by the client deadline; error/not-ready/offline have localized Retry. Technical codes are DOM diagnostics, not added product instructions. No successful advancement occurs without id and both language snapshots in the backend's confirmed persisted response.
+
+Home has the existing Shinka header/Profile access, local greeting with optional name, exactly Your Shinka and Today’s Suggestion cards, and the three-item bottom navigation. Calendar/Pattern remain inactive. Greeting presentation uses before 12:00 morning, 12:00–17:59 afternoon and 18:00 onward evening; it never changes selection. `dailyCopy.js` centralizes original SRC-03 English state copy and scoped Turkish translations under this request; existing approved onboarding strings are unchanged. The selected preparation language carries into Home. Home language switches only the displayed snapshot; preference editing/persistence remains outside this scope.
+
+Local date/timezone changes trigger a backend refresh; stale previous-day content is cleared while loading. Existing-user errors retain Home/Profile access. Existing safe area, typography, 44px controls and card tokens are preserved. Local browser captures use source copy with an isolated fixture transport; they are not hosted or physical-device evidence. See the updated Android/iOS report.
+
+## OD-002 category display-name approval — 2026-10-20
+
+The user's explicit six-row approval supplies the English category display names and preserves the source Turkish names exactly. The [canonical category table](SHINKA_CONTENT_MODEL.md#approved-category-definition--od-002-continuation) and `contentCategoryDecision.js` carry all six pairs. These English names are product-decision copy, not strings from the original UI/UX document. Home still shows the two existing snapshot cards; this decision adds no category widget, translates no other text and changes no Pair/mapping. Any future category display must select the stored display_name_tr/display_name_en; codes remain locale-independent.

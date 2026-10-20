@@ -2,20 +2,20 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-009
+**Current BuildMarker:** Buildmarker-011
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
-**Not Implemented:** UC-06/Daily Content, Calendar, Pattern, You editing, withdrawal/deactivation and notifications.
-**Open Decisions:** OD-002 (OD-003 repository auth policy implemented; live provider proof remains external)
+**Not Implemented:** Verified hosted daily writes (atomic capability blocked), Calendar, Pattern, You editing, withdrawal/deactivation and notifications.
+**Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 ## Account / Authentication (UC-01, KK-01)
 Apple or Google only; no Shinka password; one account per provider identity. 18+ checkbox (initially empty) must be checked before auth starts; age is re-checked from birth date (backend). Sign Out does not change account status.
 
 ## Onboarding (UC-02…06)
-Intro → optional name (trim, ≤50) → sign-in → birth date (required, valid, not future, 18+) → optional birth time (HH:mm 24h) and GeoNames-selected birthplace (no free text) → optional period info with explicit health consent → ON-06 preparation dependency (first pair generation belongs to the next package). Sun sign uses only birth_date and the fixed tropical mapping in SOURCE_OF_TRUTH; birth_time stays NULL when missing, with no 00:00 fallback and no UNCERTAIN.
+Intro → optional name (trim, ≤50) → sign-in → birth date (required, valid, not future, 18+) → optional birth time (HH:mm 24h) and GeoNames-selected birthplace (no free text) → optional period info with explicit health consent → ON-06 real preparation/readback flow (production new writes currently blocked by durable uniqueness). Sun sign uses only birth_date and the fixed tropical mapping in SOURCE_OF_TRUTH; birth_time stays NULL when missing, with no 00:00 fallback and no UNCERTAIN.
 
 ## Home (UC-11, KK-11/14)
 Shows the pair for the device's current local calendar day. Reopen/Retry/profile/language changes never create a second Pair ID. Greeting adapts to time and name; does not affect selection.
@@ -44,7 +44,7 @@ Delete Account ⇒ INACTIVE + ACCOUNT_DEACTIVATION event. Admin cannot modify/de
 ## Foundation readiness — Buildmarker-007
 All 20 physical schemas now represent these contracts. Backend read boundaries derive owner from auth.me().id and check ACTIVE/consent state; protected mutations are denied. At the 007 checkpoint no Calendar, onboarding, Home, Pattern, daily-generation, scheduler, push or deletion execution flow had begun; the current onboarding implementation is described below. Future Calendar mutations still require ≥15-day inter-record validation and atomic derived-state replacement; future withdrawal must stop processing first, create minimal protection/job metadata, verify physical deletion and permit re-consent only after completion. Account deactivation retains records and closes normal access. No current schema or synthetic test constitutes implementation of those business flows.
 
-## Authentication/onboarding implementation boundary — current package
+## Authentication/onboarding implementation boundary — package 008 checkpoint
 
 ON-01 Introduction → ON-02 optional trimmed name → ON-03 Apple/Google with a separate unchecked 18+ declaration → ON-04 required adult DOB / optional time / optional structured birthplace → ON-05 optional cycle and independent explicit health consent → ON-06 finite dependency shell. The shared server resolver denies INACTIVE, returns incomplete profiles to ON-04 and only returns Home when ready profile/preferences and actual owner daily data exist.
 
@@ -67,3 +67,16 @@ Package 009 preserves ON-04 country→region→settlement selection, explicit Cl
 ## ON-05 partial-write recovery
 
 An existing valid consent without its event/period is a resumable partial operation. Continue with the same intended inputs keeps the saved consent time and creates only missing matching records after verification. Retry/reload/double tap in one worker does not issue another grant time; confirmed matching rows are not written again. Conflicting settings, period start, version/history or withdrawn consent is refused; onboarding cannot silently become a health editing/regrant flow. All required records must be read back before Continue succeeds. Reload cannot infer cycle completion from period alone when its consent event is absent. Skip writes nothing, including when an earlier failed attempt left consent behind; it neither revokes nor deletes that consent. Live success with the same partial account remains required.
+
+## Admin access during onboarding — Buildmarker-010
+
+A verified Base44 admin may open top-right Profile/You → Admin Panel → Health Center / Build & Environment while onboarding is incomplete, ready or loading/failed. This is independent of product onboarding completion. Ordinary users keep their existing onboarding flow and cannot enter internal routes.
+
+Menu/panel/tool navigation invokes no product mutation, consent grant, period save, Skip, completion flag or daily engine. Return goes to `/`, which rehydrates through the existing backend resolver (and retains existing first-login preferences initialization when needed). Navigation adds no initialization or write path of its own. A stale hydrate result after leaving onboarding cannot start a later initialization; an already-issued backend operation is not claimed canceled. Incomplete users return to the server-resolved onboarding state; only existing durable data can resolve Home. No new storage/entity or full You workflow is introduced.
+
+
+## First Shinka and Home — Buildmarker-011
+
+ON-06 invokes today's guarded backend operation and opens Home only after a real validated persisted result. Failure remains an explicit retryable state with approved preparation copy; no arbitrary pair/completion flag is synthesized. Once any real daily row exists, hydration stays on Home; missing today's content shows Home loading/not-ready/failure and Retry, rather than returning to onboarding. Reopen, Retry, language and profile changes preserve an existing day's pair and both immutable snapshots.
+
+Absent/withdrawn health consent or no real start follows UNKNOWN without fabricating health data. Valid consent requires its persisted business time/version and matching history; open deletion or malformed/inconsistent inputs fail rather than masquerading as UNKNOWN. Optional 5/28 are computation-only. Existing ON-05 recovery, no-write Skip and GeoNames flows remain unchanged. Production daily creation is explicitly blocked until the durable adapter is verified, while existing valid daily rows can be read. No live creation/import is recorded in this package.

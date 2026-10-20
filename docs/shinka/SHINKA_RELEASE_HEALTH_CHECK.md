@@ -2,17 +2,17 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-009
+**Current BuildMarker:** Buildmarker-011
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-009.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-011.0; repository, synthetic and external evidence separated.
 
-## Catalog (HC-009.0) — 16 suites, 130 cases
+## Catalog (HC-011.0) — 16 suites, 137 cases
 
-Registry-derived totals: 106 current, 15 future, 9 external. H06 has 6 current + 1 external; H07 has 12 current; H10 has 1 current GeoNames + 2 future Pattern/Moon + 1 external; H11 has 2 current onboarding-consent + 3 future withdrawal/account cases + 1 external ON-05 recovery case. H08 remains entirely future. Existing H01…H05/H12/H13/H16 scopes are preserved.
+Registry-derived totals: 118 current, 9 future, 10 external. H06 has 6 current + 1 external; H07 has 13 current; H10 has 2 current GeoNames/Moon + 1 future Pattern + 1 external; H11 has 2 current onboarding-consent + 3 future withdrawal/account cases + 1 external ON-05 recovery case. H08 current-day phase/outlier cases are active; Calendar mutation stays future. Existing H01…H05/H12/H13/H16 scopes are preserved.
 
-H06's six current cases exercise the real auth/identity helpers with synthetic providers/principals. H07 has 12 executable current cases, including approved Sun/TR decisions, the production persistence adapter and durable resume semantics. H10-003 measures the structured GeoNames adapter contract; H10-004 requires live provider evidence. H11-004 exercises grant/history/immutability/retry contracts; H11-005 verifies the approved consent text/version and persistence contract. No future withdrawal/deletion/Moon/cycle engine behavior is promoted to PASS.
+H06's six current cases exercise the real auth/identity helpers with synthetic providers/principals. H07 has 13 executable current cases, including approved Sun/TR decisions, the production persistence adapter and durable resume semantics. H10-003 measures the structured GeoNames adapter contract; H10-004 requires live provider evidence. H11-004 exercises grant/history/immutability/retry contracts; H11-005 verifies the approved consent text/version and persistence contract. Withdrawal/deletion/Calendar workflows remain future. Scoped Moon/current-day cycle tests are now active; synthetic PASS is not hosted capability proof.
 
 CLI output includes executable regression and current onboarding Health evidence. Every test and current onboarding Health case must PASS; BLOCKED/FAIL or another non-PASS status exits non-zero. The four approved product decisions close the earlier source gaps. Final live Full Health remains required after merge/deploy.
 
@@ -20,7 +20,7 @@ CLI output includes executable regression and current onboarding Health evidence
 H02-003 counts LOGICAL sources (must be 10). H02-004 requires every logical source and every physical part READ. H02-007 verifies the split UI/UX source: 4 parts, expected names, order 1→2→3→4, no gap/duplicate, continuity recorded, sole UI/UX authority, machine-readable companion present as supporting artifact (not a logical source), and documentation in SHINKA_SOURCE_OF_TRUTH.md. Artifacts are validated by role, never by a fixed physical total. H02-008 verifies all 11 UI/UX tables (design = tokens, icons = nav contract, 5 copy groups, QA checklist) and OD-010 closed. H03-008 verifies repository auth syntax plus the recorded Apple/Google policy; H03-009 exercises the actual server-admin request guard with injected anonymous/user/admin principals. Neither is LIVE_ENFORCEMENT.
 
 ## UI/UX contract cases (H13)
-001 token module · 002 44×44 rendered · 003 font families rendered · 004 no overflow at 360 (Health + Build pages) · 005 accessible names · 006 rendered CSS colors = v1.1 · 007 Medium headings / Inter-500 labels · 008 nav + Lucide icons · 009 primary ≥52 rendered · 010 light-only · 011 centralized EN/TR localization · 012 mobile form/long-list regression · 013 physical Android/iOS external acceptance.
+001 token module · 002 44×44 rendered · 003 font families rendered · 004 no overflow at 360 (Health + Build pages) · 005 accessible names · 006 rendered CSS colors = v1.1 · 007 Medium headings / Inter-500 labels · 008 nav + Lucide icons · 009 primary ≥52 rendered · 010 light-only · 011 centralized EN/TR localization · 012 mobile form/long-list regression · 013 physical Android/iOS external acceptance · 014 admin navigation/localized inventory.
 
 ## Case schema
 `{ id, suiteId, title, description, severity, blocker, runnerType, applicability, status, attempted, executed, durationMs, evidence }`; evidence `{ classification, source, actual, expected, reason, timestamp }`.
@@ -52,7 +52,7 @@ H16-901/902/903 (device push, device sign-in, restore) remain EXTERNAL_RELEASE u
 |---|---|---|
 | Update | H01-006 | Bounded unique consecutive source including current and exact generated history; M01…M05 cover fewer/exact/more than five, sorting, replacement, missing/future current and drift. |
 | Add | H03-010 | Initial import closure excludes tooling/tests; no static cycle or backend→frontend edge. Node negative fixtures detect injected violations; production measurement guards actual byte sizes. |
-| Update | H05-009 | 009 is expressly maintenance-only: still require live zero counts/no import; 010+ remains unapproved/blocked, never inferred zero. HC08/HC12 cover both. |
+| Update | H05-009 | 009 is expressly maintenance-only: still require live zero counts/no import; At that package 010+ remained unapproved; the explicit 010 admin decision below extends only 010, leaving 011+ blocked. HC08/HC12 cover both. |
 | Update | H10-003 | Existing GeoNames security/redirect/selection coverage retained; M06…M08 add bounded cache, scoped revisits and one-profile-read/no-preferences with inactive/anonymous denial. |
 | Add | H13-012 | U12…U14: selects ≥44px, 320px/landscape/reduced viewport, 200% text, focus/date/time/submit reachability, long Turkish homonyms and bounded list DOM. Synthetic DOM evidence only. |
 | Add | H13-013 | DEVICE / EXTERNAL_RELEASE, no runner. Real OS keyboard, native sheets, zoom, insets, background return and callbacks require physical Android/iOS evidence. |
@@ -63,7 +63,7 @@ Final local results and exact environment are recorded in [Development Notes](SH
 
 ## Required external closure
 
-Run the deployed **current** marker/catalog Full Health and save/list/open its private report. Verify both function bundles, live Apple/Google callbacks, new GeoNames country/region/settlement/resolve/save, owner A/B/admin/anonymous boundaries, explicit NULLs, native timestamp offsets, keyed uniqueness/conditional updates and protected-history behavior. H04-006, H06-007, H10-004, H12-901, H13-013 and H16-901/902/903 plus H11-006 remain nine explicit external requirements. First Shinka and future engines remain unimplemented.
+Run the deployed **current** marker/catalog Full Health and save/list/open its private report. Verify both function bundles, live Apple/Google callbacks, new GeoNames country/region/settlement/resolve/save, owner A/B/admin/anonymous boundaries, explicit NULLs, native timestamp offsets, keyed uniqueness/conditional updates and protected-history behavior. H04-006, H06-007, H10-004, H12-901, H13-013 and H16-901/902/903 plus H11-006 plus H09-901 remain ten explicit external requirements. First Shinka modules/UI are implemented; production creation remains blocked by durable persistence and current import prerequisites.
 
 The 2026-10-19 live zero counts, historical readiness and transport evidence are retained once in [prior evidence](reports/SHINKA_PRE_009_EVIDENCE.md). They do not certify package 009. Package retention only bounds Internal Build; it does not prune necessary Health evidence or security records. External cases remain listed N/A in normal runs and cannot be promoted to PASS by local fixtures.
 
@@ -72,3 +72,31 @@ The 2026-10-19 live zero counts, historical readiness and transport evidence are
 H07-007 adds production partial-write/reload evidence. H07-011 automatically includes P21…P32; H11-004 explicitly checks business-clock authority, ambiguous native metadata, preserved grants, event/period failures, conflicts, consent withdrawal/account/deletion guards and worker-local versus independent-worker concurrency. P17's former synthetic native-clock convergence claim is replaced with bounded worker coalescing. P18's expectation to block valid consent because native metadata lacks timezone is invalid under the corrected business contract; it now requires safe recovery with unchanged granted_at. No test/Health case was deleted.
 
 H11-006 is a new LIVE_RUNTIME external requirement: deploy current repository code, retry the same partial account, confirm saveCycle success and read current consent/event/period/settings back. Missing evidence remains NOT_APPLICABLE (EXTERNAL_RELEASE) with an explicit external requirement under existing catalog policy; it does not mean the incident passed. ON-05 closure remains OPEN_PENDING_LIVE_SAVE_AND_READBACK regardless of the synthetic gate. This semantic change requires HC-009.0, while the same maintenance package retains Buildmarker-009.
+
+## HC-010.0 admin navigation reconciliation
+
+Add H12-025 (real AuthContext/ProtectedRoute/AdminGate with injected identities: pending/anonymous/user, role loss, logout failure, obsolete responses) and H13-014 (fixed two-tool inventory, exact TR/EN copy and panel/tool/app navigation). Retain H12-003/S08, T68/H03-009 server guard coverage and H13-008's three-item bottom navigation contract. No case is removed or downgraded. H05-009/HC08/HC12 now explicitly cover pre-content package 010; 011+ is still blocked pending an approved content validation policy.
+
+AN01…AN08 are canonical synthetic tests. CLI additionally drives actual App routes with a test-only SDK replacement, 360/1280 viewports, TR/EN, keyboard menu/Escape/focus restoration, incomplete onboarding and existing Home entry, shared returns, no product writes and pending/revoked access. Screenshot evidence is local, not live identity/device proof. Run both browser engines plus existing Preview/mobile, repository, dependency/security, type/lint/build, history and production budget checks. Deployed current marker/catalog, admin/user/anonymous direct routes, backend denials and Full Health report readback remain manual release evidence. ON-05 retains its separate same-account live requirement.
+
+
+## HC-011.0 daily/content reconciliation
+
+| Change | Cases | Reason |
+|---|---|---|
+| Update | H05-007 | Exact SHF-001…260 identity set, including missing and well-formed out-of-range IDs. Old deployed validator responses without those fields cannot PASS. |
+| Update | H05-009 | Explicit package-011 PRE_IMPORT versus exact source-hash/row/relationship/crosswalk verification. Positive partial counts fail; missing verification blocks. |
+| Add current | H05-010 | Controlled importer dry-run, sequential retries, conflicts, partial writes and readiness. |
+| Add current | H07-013 | Actual ON-06/Home components with failed write, verified retry, locale continuity and late-response cleanup. |
+| Activate scoped | H08-001, H08-003 | Current-day phase lookup, computation-only defaults and approved outlier average. No Calendar save/recompute claim. |
+| Activate scoped | H09-001…003 | Synthetic atomic protocol plus production refusal, local day/DST, day 40/41, fallbacks, immutable snapshots. |
+| Add current blocker | H09-004 | Production creation prerequisites remain BLOCKED: no verified durable adapter. This is intentionally not converted to PASS by local tests or positive imported counts. |
+| Add external | H09-901 | Real first daily creation/readback, reload/retry/locale and independent-client proof after blockers close. |
+| Activate scoped | H10-002 | Astronomy Engine UTC continuity, USNO reference sample, boundaries and controlled Moon import. |
+| Add current | H12-026 | Daily/import authorization, consent-gated reads, UNKNOWN distinction, no-write Skip and safe errors. |
+
+No case is deleted or downgraded. Six formerly future cases move to executed synthetic coverage; nine future and ten external requirements remain. DM01…DM25 and DU01…DU03 join the canonical runner. The CLI also executes nine new current synthetic Health cases plus five real-App daily UI scenarios; H09-004 is not run with fake live evidence. Deployed Full Health remains BLOCKED until its actual prerequisite is resolved, even when every local regression passes. OD-002 is now RESOLVED_BY_PRODUCT_DECISION by the explicit user approval of 2026-10-20; the original pre-approval snapshot remains historical. The existing ON-05 external incident remains open.
+
+## OD-002 approval verification within HC-011.0
+
+H02-006 now records the explicit user source and resolution rule. H05-010 additionally executes DM26 (independent exact six-row approval receipt/provenance), DM27 (unique codes, bijective source-label mapping, required bilingual names) and DM28 (approved definition through dry-run/batched import/readback/retry with unchanged Pair text/mapping). These expand the same exact-import contract; HC-011.0 and its 137 cases/118 current/9 future/10 external remain unchanged. H05-009 still requires real counts/hash/crosswalk; approval alone is not VERIFIED_IMPORTED. H09-004 remains BLOCKED and H09-901/ON-05/physical requirements remain external. No case is removed, relaxed or promoted by the approval.

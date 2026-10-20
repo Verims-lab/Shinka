@@ -113,7 +113,7 @@ export const HARDENING_TESTS = [
   }],
   ["T67","Missing EN/TR and malformed Pair ID fail appropriate Health",async()=>{
     for(const column of [2,3,4,5]){const rows=contentRows();rows[1][column]="";const a=artifacts(rows);assert(!contentIntegrity(a.content260)&&await healthStatus("H05-008",a)==="FAIL","missing language accepted");}
-    const rows=contentRows();rows[1][0]="bad-id";const a=artifacts(rows);assert(!contentIntegrity(a.content260)&&await healthStatus("H05-007",a)==="FAIL","malformed Pair ID accepted");
+    for(const id of ["bad-id","SHF-999"]){const rows=contentRows();rows[1][0]=id;const a=artifacts(rows);assert(!contentIntegrity(a.content260)&&await healthStatus("H05-007",a)==="FAIL","malformed or unexpected Pair ID accepted");}
   }],
   ["T68","Server request guard denies anonymous/user/forged roles",async()=>assert((await guardScenarios()).ok,"server guard failed")],
   ["T69","Completed result survives save failure with explicit safe code",async()=>{

@@ -4,6 +4,17 @@ export const SUPPORTED_LANGUAGES = ["en", "tr"];
 
 export const STRINGS = Object.freeze({
   en: {
+    "profile.open": "You",
+    "admin.panel": "Admin Panel",
+    "admin.health": "Health Center",
+    "admin.build": "Build & Environment",
+    "admin.healthDescription": "Health checks, tests and results.",
+    "admin.buildDescription": "Current version, environment details and package history.",
+    "admin.returnApp": "Back to Shinka",
+    "admin.navigation": "Admin navigation",
+    "admin.checking": "Checking access…",
+    "admin.unavailable": "This area is not available.",
+
     "auth.title": "Welcome to Shinka", "auth.intro": "Sign in with Apple or Google",
     "auth.apple": "Continue with Apple", "auth.google": "Continue with Google",
     "auth.AUTH_PROVIDER_FAILED": "We couldn’t sign you in. Please try again",
@@ -17,6 +28,17 @@ export const STRINGS = Object.freeze({
     "state.retry": "Retry",
   },
   tr: {
+    "profile.open": "Profil",
+    "admin.panel": "Admin Panel",
+    "admin.health": "Health Center",
+    "admin.build": "Build & Environment",
+    "admin.healthDescription": "Sağlık kontrolleri, testler ve sonuçlar.",
+    "admin.buildDescription": "Güncel sürüm, ortam bilgileri ve paket geçmişi.",
+    "admin.returnApp": "Uygulamaya dön",
+    "admin.navigation": "Yönetim gezinmesi",
+    "admin.checking": "Erişim kontrol ediliyor…",
+    "admin.unavailable": "Bu alana erişilemiyor.",
+
     "auth.title": "Shinka’ya hoş geldin", "auth.intro": "Apple veya Google ile giriş yap",
     "auth.apple": "Apple ile devam et", "auth.google": "Google ile devam et",
     "auth.AUTH_PROVIDER_FAILED": "Giriş yapılamadı. Lütfen tekrar dene",

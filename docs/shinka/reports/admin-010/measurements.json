@@ -1,0 +1,666 @@
+{
+  "lazyRetry": {
+    "passed": true,
+    "scope": "Synthetic network asset failure and full-reload retry, real App route"
+  },
+  "label": "maintenance",
+  "measuredAt": "2026-10-19T22:51:37.243Z",
+  "environment": {
+    "node": "v26.0.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "browser": "Playwright Chromium, headless, cold context, 360x740, loopback, no throttling; SDK transport stubbed, external fonts blocked; not user metrics"
+  },
+  "production": {
+    "initialJS": {
+      "raw": 454513,
+      "gzip": 148104
+    },
+    "allJS": {
+      "raw": 1067008,
+      "gzip": 348879
+    },
+    "css": {
+      "raw": 85018,
+      "gzip": 14572
+    },
+    "initialModules": [
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/foundation/i18n/strings.js",
+      "/src/components/shinka/StatePanel.jsx",
+      "/src/foundation/uiuxTables.js",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/src/components/RouteBoundary.jsx",
+      "/src/components/ui/use-toast.jsx",
+      "/src/lib/utils.js",
+      "/src/components/ui/toast.jsx",
+      "/src/components/ui/toaster.jsx",
+      "/src/lib/query-client.js",
+      "/src/lib/app-params.js",
+      "/src/api/base44Client.js",
+      "/src/lib/PageNotFound.jsx",
+      "/src/foundation/authErrors.js",
+      "/src/lib/AuthContext.jsx",
+      "/src/components/UserNotRegisteredError.jsx",
+      "/src/components/ScrollToTop.jsx",
+      "/src/components/ProtectedRoute.jsx",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/sunSign.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/src/services/onboardingService.js",
+      "/src/components/shinka/ShinkaInput.jsx",
+      "/src/components/GoogleIcon.jsx",
+      "/src/foundation/authPolicy.js",
+      "/src/services/authService.js",
+      "/src/lib/authReturnTo.js",
+      "/src/features/onboarding/SignIn.jsx",
+      "/src/components/shinka/ShinkaSelect.jsx",
+      "/src/features/onboarding/BirthplaceList.jsx",
+      "/src/features/onboarding/placeListCache.js",
+      "/src/features/onboarding/birthplaceSelection.js",
+      "/src/features/onboarding/BirthplacePicker.jsx",
+      "/src/features/onboarding/OnboardingForms.jsx",
+      "/src/features/onboarding/pendingName.js",
+      "/src/features/onboarding/OnboardingScreen.jsx",
+      "/src/foundation/uiContract.js",
+      "/src/foundation/internalNavigation.js",
+      "/src/components/profile/ProfileMenu.jsx",
+      "/src/pages/Home.jsx",
+      "/src/components/profile/ProfileAccess.jsx",
+      "/src/pages/Onboarding.jsx",
+      "/src/components/internal/AdminGate.jsx",
+      "/src/foundation/probes/authProbeRoute.js",
+      "/src/App.jsx",
+      "/src/index.css",
+      "/src/main.jsx",
+      "/index.html",
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/ShinkaCard.jsx"
+    ],
+    "chunkCount": 14
+  },
+  "lab": {
+    "initialJS": {
+      "raw": 322391,
+      "gzip": 104910
+    },
+    "allJS": {
+      "raw": 934886,
+      "gzip": 305671
+    },
+    "css": {
+      "raw": 85018,
+      "gzip": 14572
+    },
+    "initialModules": [
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/foundation/i18n/strings.js",
+      "/src/components/shinka/StatePanel.jsx",
+      "/src/foundation/uiuxTables.js",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/src/components/RouteBoundary.jsx",
+      "/src/components/ui/use-toast.jsx",
+      "/src/lib/utils.js",
+      "/src/components/ui/toast.jsx",
+      "/src/components/ui/toaster.jsx",
+      "/src/lib/query-client.js",
+      "/scripts/testHarness/fakeBase44.js",
+      "/src/lib/PageNotFound.jsx",
+      "/src/foundation/authErrors.js",
+      "/src/lib/AuthContext.jsx",
+      "/src/components/UserNotRegisteredError.jsx",
+      "/src/components/ScrollToTop.jsx",
+      "/src/components/ProtectedRoute.jsx",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/sunSign.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/src/services/onboardingService.js",
+      "/src/components/shinka/ShinkaInput.jsx",
+      "/src/components/GoogleIcon.jsx",
+      "/src/foundation/authPolicy.js",
+      "/src/services/authService.js",
+      "/src/lib/authReturnTo.js",
+      "/src/features/onboarding/SignIn.jsx",
+      "/src/components/shinka/ShinkaSelect.jsx",
+      "/src/features/onboarding/BirthplaceList.jsx",
+      "/src/features/onboarding/placeListCache.js",
+      "/src/features/onboarding/birthplaceSelection.js",
+      "/src/features/onboarding/BirthplacePicker.jsx",
+      "/src/features/onboarding/OnboardingForms.jsx",
+      "/src/features/onboarding/pendingName.js",
+      "/src/features/onboarding/OnboardingScreen.jsx",
+      "/src/foundation/uiContract.js",
+      "/src/foundation/internalNavigation.js",
+      "/src/components/profile/ProfileMenu.jsx",
+      "/src/pages/Home.jsx",
+      "/src/components/profile/ProfileAccess.jsx",
+      "/src/pages/Onboarding.jsx",
+      "/src/components/internal/AdminGate.jsx",
+      "/src/foundation/probes/authProbeRoute.js",
+      "/src/App.jsx",
+      "/src/index.css",
+      "/src/main.jsx",
+      "/index.html",
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/ShinkaCard.jsx"
+    ],
+    "chunkCount": 14
+  },
+  "pages": [
+    {
+      "route": "/",
+      "samples": [
+        {
+          "domNodes": 37,
+          "js": [
+            {
+              "url": "/assets/index-iA6svIKT.js",
+              "bytes": 314511
+            },
+            {
+              "url": "/assets/ShinkaCard-B4oAGE66.js",
+              "bytes": 8368
+            }
+          ],
+          "css": 85006,
+          "domContentLoaded": 21.30000001192093,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 16
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 48
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 37,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-B4oAGE66.js",
+              "bytes": 8368
+            },
+            {
+              "url": "/assets/index-iA6svIKT.js",
+              "bytes": 314511
+            }
+          ],
+          "css": 85006,
+          "domContentLoaded": 16.5,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 44
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 37,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-B4oAGE66.js",
+              "bytes": 8368
+            },
+            {
+              "url": "/assets/index-iA6svIKT.js",
+              "bytes": 314511
+            }
+          ],
+          "css": 85006,
+          "domContentLoaded": 14.800000011920929,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 36
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/login",
+      "samples": [
+        {
+          "domNodes": 41,
+          "js": [
+            {
+              "url": "/assets/index-iA6svIKT.js",
+              "bytes": 314511
+            },
+            {
+              "url": "/assets/ShinkaCard-B4oAGE66.js",
+              "bytes": 8368
+            }
+          ],
+          "css": 85006,
+          "domContentLoaded": 14,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 40
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 41,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-B4oAGE66.js",
+              "bytes": 8368
+            },
+            {
+              "url": "/assets/index-iA6svIKT.js",
+              "bytes": 314511
+            }
+          ],
+          "css": 85006,
+          "domContentLoaded": 14.199999988079071,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 36
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 41,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-B4oAGE66.js",
+              "bytes": 8368
+            },
+            {
+              "url": "/assets/index-iA6svIKT.js",
+              "bytes": 314511
+            }
+          ],
+          "css": 85006,
+          "domContentLoaded": 13.699999988079071,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 36
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/internal/build?sdkSession=admin",
+      "samples": [
+        {
+          "domNodes": 199,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-B4oAGE66.js",
+              "bytes": 8368
+            },
+            {
+              "url": "/assets/index-iA6svIKT.js",
+              "bytes": 314511
+            },
+            {
+              "url": "/assets/BuildEnvironment-BfAevhXv.js",
+              "bytes": 3244
+            },
+            {
+              "url": "/assets/InternalNav-DeE8JsOA.js",
+              "bytes": 1261
+            },
+            {
+              "url": "/assets/StatusBadge-afMjT5To.js",
+              "bytes": 18073
+            }
+          ],
+          "css": 85006,
+          "domContentLoaded": 14.300000011920929,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 32
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 199,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-B4oAGE66.js",
+              "bytes": 8368
+            },
+            {
+              "url": "/assets/index-iA6svIKT.js",
+              "bytes": 314511
+            },
+            {
+              "url": "/assets/BuildEnvironment-BfAevhXv.js",
+              "bytes": 3244
+            },
+            {
+              "url": "/assets/InternalNav-DeE8JsOA.js",
+              "bytes": 1261
+            },
+            {
+              "url": "/assets/StatusBadge-afMjT5To.js",
+              "bytes": 18073
+            }
+          ],
+          "css": 85006,
+          "domContentLoaded": 13.5,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 32
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 199,
+          "js": [
+            {
+              "url": "/assets/index-iA6svIKT.js",
+              "bytes": 314511
+            },
+            {
+              "url": "/assets/ShinkaCard-B4oAGE66.js",
+              "bytes": 8368
+            },
+            {
+              "url": "/assets/BuildEnvironment-BfAevhXv.js",
+              "bytes": 3244
+            },
+            {
+              "url": "/assets/InternalNav-DeE8JsOA.js",
+              "bytes": 1261
+            },
+            {
+              "url": "/assets/StatusBadge-afMjT5To.js",
+              "bytes": 18073
+            }
+          ],
+          "css": 85006,
+          "domContentLoaded": 14.5,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 32
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/internal/health?sdkSession=admin",
+      "samples": [
+        {
+          "domNodes": 1224,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-B4oAGE66.js",
+              "bytes": 8368
+            },
+            {
+              "url": "/assets/index-iA6svIKT.js",
+              "bytes": 314511
+            },
+            {
+              "url": "/assets/HealthCenter-DlKRrmRk.js",
+              "bytes": 12931
+            },
+            {
+              "url": "/assets/InternalNav-DeE8JsOA.js",
+              "bytes": 1261
+            },
+            {
+              "url": "/assets/uiRules--yrdZFzj.js",
+              "bytes": 2793
+            },
+            {
+              "url": "/assets/StatusBadge-afMjT5To.js",
+              "bytes": 18073
+            },
+            {
+              "url": "/assets/onboardingTests-DizIfT9e.js",
+              "bytes": 506888
+            },
+            {
+              "url": "/assets/completion-Vzg1NLEg.js",
+              "bytes": 1794
+            },
+            {
+              "url": "/assets/AdminPanel-CVFRO3Fg.js",
+              "bytes": 858
+            },
+            {
+              "url": "/assets/catalog-BLO_QXpd.js",
+              "bytes": 24370
+            }
+          ],
+          "css": 85006,
+          "domContentLoaded": 12.900000035762787,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 8
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 32
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 1224,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-B4oAGE66.js",
+              "bytes": 8368
+            },
+            {
+              "url": "/assets/index-iA6svIKT.js",
+              "bytes": 314511
+            },
+            {
+              "url": "/assets/HealthCenter-DlKRrmRk.js",
+              "bytes": 12931
+            },
+            {
+              "url": "/assets/InternalNav-DeE8JsOA.js",
+              "bytes": 1261
+            },
+            {
+              "url": "/assets/StatusBadge-afMjT5To.js",
+              "bytes": 18073
+            },
+            {
+              "url": "/assets/uiRules--yrdZFzj.js",
+              "bytes": 2793
+            },
+            {
+              "url": "/assets/onboardingTests-DizIfT9e.js",
+              "bytes": 506888
+            },
+            {
+              "url": "/assets/AdminPanel-CVFRO3Fg.js",
+              "bytes": 858
+            },
+            {
+              "url": "/assets/catalog-BLO_QXpd.js",
+              "bytes": 24370
+            },
+            {
+              "url": "/assets/completion-Vzg1NLEg.js",
+              "bytes": 1794
+            }
+          ],
+          "css": 85006,
+          "domContentLoaded": 13.699999988079071,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 32
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 1224,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-B4oAGE66.js",
+              "bytes": 8368
+            },
+            {
+              "url": "/assets/index-iA6svIKT.js",
+              "bytes": 314511
+            },
+            {
+              "url": "/assets/InternalNav-DeE8JsOA.js",
+              "bytes": 1261
+            },
+            {
+              "url": "/assets/HealthCenter-DlKRrmRk.js",
+              "bytes": 12931
+            },
+            {
+              "url": "/assets/StatusBadge-afMjT5To.js",
+              "bytes": 18073
+            },
+            {
+              "url": "/assets/uiRules--yrdZFzj.js",
+              "bytes": 2793
+            },
+            {
+              "url": "/assets/AdminPanel-CVFRO3Fg.js",
+              "bytes": 858
+            },
+            {
+              "url": "/assets/onboardingTests-DizIfT9e.js",
+              "bytes": 506888
+            },
+            {
+              "url": "/assets/completion-Vzg1NLEg.js",
+              "bytes": 1794
+            },
+            {
+              "url": "/assets/catalog-BLO_QXpd.js",
+              "bytes": 24370
+            }
+          ],
+          "css": 85006,
+          "domContentLoaded": 15.399999976158142,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 32
+            }
+          ],
+          "cls": 0,
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "cycles": []
+}

@@ -3,6 +3,7 @@ import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { createServer } from "node:http";
 import { gzipSync } from "node:zlib";
 import path from "node:path";
+import { FIRST_CONTENT_SOURCE } from '../base44/shared/firstContentSource.js';
 const root = process.cwd(),
   label = "maintenance",
   directory = path.resolve(
@@ -160,6 +161,7 @@ try {
   for (const route of [
     "/",
     "/login",
+    "/?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr",
     "/internal/build?sdkSession=admin",
     "/internal/health?sdkSession=admin",
   ]) {
@@ -170,6 +172,13 @@ try {
       });
       const page = await context.newPage();
       const errors = [];
+      if (route.includes('ACTIVE_EXISTING_USER')) {
+        const pair = FIRST_CONTENT_SOURCE.pairs[0];
+        await page.addInitScript(value => { window.__dailyFixture = value; }, {
+          persisted: true, state: 'ACTIVE_EXISTING_USER', profile: { display_name: 'Ada' },
+          daily: { id: 'local-measurement-only', shinka_date: '2026-10-20', message_tr_snapshot: pair[2], suggestion_tr_snapshot: pair[3], message_en_snapshot: pair[4], suggestion_en_snapshot: pair[5] },
+        });
+      }
       page.on("pageerror", (e) => errors.push(e.message));
       await page.route("**/*", (r) =>
         new URL(r.request().url()).origin === origin ? r.continue() : r.abort(),
@@ -194,7 +203,7 @@ try {
         } catch {}
       });
       await page.goto(origin + route);
-      await page.waitForSelector("[data-probe-root]");
+      await page.waitForSelector(route.includes('ACTIVE_EXISTING_USER') ? '[data-daily-id="local-measurement-only"]' : '[data-probe-root]');
       await page.waitForLoadState("networkidle");
       const metrics = await page.evaluate(() => ({
         domNodes: document.querySelectorAll("*").length,
@@ -290,7 +299,7 @@ const passed =
   production.css.raw <= budget.cssRaw &&
   production.css.gzip <= budget.cssGzip &&
   !production.initialModules.some((file) =>
-    /\/foundation\/tests\//.test(file),
+    /\/foundation\/tests\/|firstContentSource|contentImportPlan|moonImport/.test(file),
   ) &&
   !cycles.size &&
   pages.every((p) => p.samples.every((s) => !s.errors.length));

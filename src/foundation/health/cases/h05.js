@@ -1,7 +1,7 @@
 import { categoryIntegrity, mappingIntegrity } from "../../../../base44/shared/contentArtifactValidator.ts";
 import { CLASS, RUNNER } from "../constants";
 import { BUILD_MARKER } from '@/foundation/buildMarker';
-import { evaluateContentState } from '../../../../base44/shared/contentStateContract.js';
+import { evaluateContentState, contentStatePolicy } from '../../../../base44/shared/contentStateContract.js';
 import { ev, verdict, blockedResult } from "../evidence";
 import { makeCase } from "../caseFactory";
 
@@ -38,18 +38,20 @@ export const H05_CASES = [
   c("H05-006", "192 + UNKNOWN extension relationship", "The 240 file equals the 192 file (same categories) plus 48 UNKNOWN rows.", withArtifacts((a) =>
     check(a.relation.relationshipHolds && mappingIntegrity(a.mapping192) && mappingIntegrity(a.mapping240), a.relation, { relationshipHolds: true, differenceCount: 0 }, "Row-level comparison"))),
   c("H05-007", "No duplicate IDs or mappings", "Pair IDs unique and well-formed; mapping combinations unique.", withArtifacts((a) => {
-    const actual = { dupPairIds: a.content260.duplicateIds, badIds: a.content260.badIdFormat, dup192: a.mapping192.duplicates, dup240: a.mapping240.duplicates };
-    return check(Object.values(actual).every((v) => v.length === 0), actual, { all: [] }, "Duplicate detection");
+    const actual = { dupPairIds: a.content260.duplicateIds, badIds: a.content260.badIdFormat, missingIds:a.content260.missingIds, unexpectedIds:a.content260.unexpectedIds, dup192: a.mapping192.duplicates, dup240: a.mapping240.duplicates };
+    return check(Object.values(actual).every((v) => Array.isArray(v)&&v.length === 0), actual, { all: [] }, "Exact SHF-001…260 set and duplicate detection");
   })),
   c("H05-008", "No missing mandatory language cells", "All TR and EN Your Shinka / Suggestion cells are filled.", withArtifacts((a) =>
     check(a.content260.missingCellCount === 0, { missingCellCount: a.content260.missingCellCount }, { missingCellCount: 0 }, "Cell completeness"))),
-  c("H05-009", "No product content seeded/imported before content package", "Package-aware live row counts and read-only validator import evidence; schema existence is not an import.", async (ctx) => {
+  c("H05-009", "Content import stage and exact verified readiness", "Pre-import is distinct from complete source-verified import; partial/conflicting rows fail.", async (ctx) => {
     let counts=null;
     try { counts=await ctx.contentCounts(); } catch { /* No inferred zero on an unavailable live probe. */ }
     let importPerformed = null;
     try { importPerformed = (await ctx.artifacts()).importPerformed; } catch { importPerformed = null; }
-    const result=evaluateContentState(BUILD_MARKER,counts,importPerformed);
+    let verification=null;
+    if(contentStatePolicy(BUILD_MARKER)==='VERIFIED_CONTENT_IMPORT_STAGES')try{verification=await ctx.contentLibrary();}catch{/* Verification unavailable is never ready. */}
+    const result=evaluateContentState(BUILD_MARKER,counts,importPerformed,verification);
     return {status:result.status,evidence:ev(CLASS.LIVE_RUNTIME,'internalHealth contentCounts + validateContentArtifacts (live, read-only)',
-      {buildMarker:BUILD_MARKER,counts,importPerformed,unexpected:result.unexpected||[]},result.expected,result.code)};
+      {buildMarker:BUILD_MARKER,counts,importPerformed,phase:verification?.phase,ready:verification?.ready,sourceHash:verification?.sourceHash,unexpected:result.unexpected||[]},result.expected,result.code)};
   }),
 ];

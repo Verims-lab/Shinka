@@ -2,13 +2,13 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-009
+**Current BuildMarker:** Buildmarker-011
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
-**Not Implemented:** All product engines.
+**Not Implemented:** Production daily atomic persistence, Calendar/Pattern workflows, notifications/scheduler; implemented pure daily/phase components are described below.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 ## Responsibilities
@@ -129,3 +129,26 @@ Health runner now locks a run through report persistence and ignores stale histo
 `onboardingCycleGate` coalesces identical pending requests for an owner in one warm worker; different payloads fail ACTION_CONFLICT. It holds at most 256 pending entries, releases on success/error, stores nothing durably, and does not time out/release a still-running write. It is explicitly not a distributed lock. Other workers can race between read/create: duplicate current-consent rows then fail closed without overwriting either time. There is no native unique constraint, cross-record transaction, rollback or proven cross-instance serializability. The independent-worker regression demonstrates this limitation instead of claiming convergence.
 
 Preflight rejects conflicting consent/event/settings/period before mutations. Each subsequent health write rechecks ACTIVE, no open deletion job and the same GRANTED consent id/version/time with withdrawn_at NULL. The final success re-verifies event, settings (including absence), period and consent. Hydration verifies a matching event and valid settings/period before accepting persisted cycle completion; a period without its event returns to ON-05 for recovery. Skip retains its explicit no-write, session-only transition. No new entity, field, receipt, automatic retry or repair endpoint was added.
+
+## Admin navigation and session lifecycle — Buildmarker-010
+
+`ProfileMenu` owns the small controlled menu, keyboard/focus and outside dismissal; `ProfileAccess` consumes the single `AuthContext.isAdmin` decision. `OnboardingScreen` receives a presentation slot, preserving standalone isolated probes; Home uses the same profile presentation. `internalNavigation.js` owns the three fixed internal destinations and locale validation. Lazy `AdminPanel` renders two cards; `InternalNav` connects the existing tools and app entry. Internal data operations remain in their existing services/backend guards.
+
+`ProtectedRoute` handles authentication; `AdminGate` awaits fresh SDK identity on internal pathname changes. AuthContext derives privilege only from successful `auth.me()` with an id and exact admin role. Refresh occurs on window focus/visible-tab return, internal navigation and every 60 seconds for visible admin sessions. Pending checks hide/inert the already-authorized same-route tool without discarding an active Health run; initial checks never mount it. A denied role or session removes it. Refresh does not unmount onboarding or clear its unsaved form. Generation tickets ignore obsolete responses; logout immediately invalidates identity and pending results, even when transport fails. No platform push/instant remote revocation guarantee is claimed; each backend operation independently checks the current authenticated admin.
+
+CLI-only SDK controls live under `scripts/testHarness` and are substituted only by isolated build configuration. Production contains neither fixture query authority nor those controls. Canonical tests inject fake clients and cannot contact the live SDK. Existing lazy-route/byte budgets and backend-to-frontend boundaries remain enforced.
+
+
+## First Shinka / Home responsibilities — Buildmarker-011
+
+`dailyCycle` implements the approved current-day phase lookup and last-three observed intervals (single outlier exclusion, half-up mean). No real start → UNKNOWN; NULL settings use 28/5 in computation only. It does not write Calendar predictions/phase caches. `moonIntervals` generates and validates Astronomy Engine 2.1.19 UTC intervals, NEW/WAXING/FULL/WANING, [start,end), contiguous and ordered. The admin Moon importer prepares at least two future years with a stable next-month horizon and exact event timestamps. DM09 compares the first January 2026 full moon with the USNO 10:03 UT reference within a declared 120-second sample tolerance; this is not universal astronomical certification. Rolling automatic renewal is not scheduled in this scope; gaps/expired coverage fail, and the controlled admin mechanism can extend it.
+
+`dailyMessageOperation` derives owner from auth.me(), validates ACTIVE/profile/preferences, computes the day from backend time plus validated device IANA or stored fallback, and returns an existing validated daily row first. It never accepts a client date, owner, category, pair or phase. New generation requires an injected verified durable adapter; the production entry currently supplies none and returns DAILY_ATOMIC_CAPABILITY_REQUIRED before content/health loading. The pure pipeline is implemented and executed with isolated adapters; no hosted first generation is claimed.
+
+For new generation, source-verified content is bounded to this manifest; Moon lookup is bounded to 1,200 rows; at most four latest actual starts yield the last three completed cycles; daily history is at most 40 dates plus one overflow sentinel. No owner cache is introduced and no full-history query exists. Consent/current event and no open deletion job precede health reads; absent/withdrawn consent selects UNKNOWN without reading settings/periods. Malformed grants/events, provider/storage failure or invalid cycles throw explicit errors. Atomic requirements carry the exact health-input grant identity/time/version for the adapter to recheck, alongside owner/account/references. Return rechecks active and consent/deletion state. Calendar writes, scheduler and push remain absent.
+
+`contentImportPlan` owns source-to-schema planning and conflict detection; `base44ContentLibrary` owns bounded SDK reads and full-value insert-or-identical batches; `contentLibraryOperation` owns strict admin dispatch/audit. `dailySelection` owns 40-day selection and snapshots; `domainAtomic.createOnce` remains the sole daily commit/readback protocol. Official Base44 schemas explicitly exclude UNIQUE, and installed SDK 0.8.54 upsert merges matching records without a documented cross-instance create-if-absent guarantee. Neither upsert nor Actors' storage examples prove an atomic Entity insertion or crash-safe cross-store commit. No new speculative storage backend is connected.
+
+`dailyMessageService` has a 20-second client deadline and safe error projection. `useDailyMessage` discards late results, prevents duplicate pending UI requests and checks local date/timezone changes every 30 seconds while visible plus focus/visibility return. The local clock only triggers refresh; it never determines the saved day. ON-06 advances only on persisted/readback success. Home renders two snapshots, changes language locally without a generation request and preserves admin access during failures. No new completion flag is stored. Existing durable daily history routes to Home before any cycle hydration, so today's engine failure cannot restart onboarding.
+
+Source manifest and astronomy runtime stay backend-only; Astronomy in the internal test suite loads only when its test executes. They do not enter the normal application entry bundle. Existing byte budgets remain unchanged.

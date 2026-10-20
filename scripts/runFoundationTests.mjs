@@ -1,3 +1,5 @@
+import { checkAdminNavigation } from './checkAdminNavigation.mjs';
+import { checkDailyFlow } from './checkDailyFlow.mjs';
 import { verifyDependencyRules } from './verifyDependencyRules.mjs';
 import { checkMobile } from './checkMobile.mjs';
 // One canonical test set, executed in a real browser for the existing DOM probes.
@@ -52,6 +54,11 @@ try {
   await page.emulateMedia({colorScheme:"dark"}); // Product stays light even when the OS prefers dark.
   await page.route("**/*",route=>[origin,previewOrigin].includes(new URL(route.request().url()).origin)?route.continue():route.abort());
   const pageErrors=[];page.on("pageerror",error=>pageErrors.push(error.message));
+  if (process.env.FOUNDATION_ADMIN_ONLY === '1') {
+    const adminNavigation = await checkAdminNavigation(page, origin, process.env.FOUNDATION_ADMIN_DIR);
+    console.log(JSON.stringify({ diagnosticOnly: true, adminNavigation, pageErrors }, null, 2));
+    if (pageErrors.length) process.exitCode = 1;
+  } else {
   if(process.env.FOUNDATION_VISUAL_DIR){await captureFoundationVisuals(page,origin,path.resolve(process.env.FOUNDATION_VISUAL_DIR));await page.setViewportSize({width:1280,height:900});}
   await page.goto(`${origin}/internal/health`);
   await page.waitForSelector("[data-health-root]");
@@ -59,6 +66,7 @@ try {
   for(const result of results) console.log(`${result.passed?"PASS":"FAIL"} ${result.id} ${result.name}${result.passed?"":` — ${result.detail}`}`);
   const health=await page.evaluate(()=>window.__staticHealthEvidence());
   const onboardingHealth=await page.evaluate(()=>window.__onboardingHealthEvidence());
+  const dailyHealth=await page.evaluate(()=>window.__dailyHealthEvidence());
   const catalog=await page.evaluate(()=>window.__foundationCatalog);
   // Exercise the real App -> AuthProvider -> Onboarding route with only SDK transport substituted.
   const productionRouting=[];
@@ -92,8 +100,11 @@ try {
     }finally{late.dispose();}
     return results;
   });
+  const adminNavigation = await checkAdminNavigation(page, origin, process.env.FOUNDATION_ADMIN_DIR);
   const mobile = await checkMobile(browser, origin, process.env.FOUNDATION_MOBILE_DIR);
-  console.log(JSON.stringify({mobile,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,pageErrors},null,2));
-  if(mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
+  const dailyFlow = await checkDailyFlow(page, origin, process.env.FOUNDATION_DAILY_DIR);
+  console.log(JSON.stringify({adminNavigation,mobile,dailyFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,pageErrors},null,2));
+  if(mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
+  }
 } catch(error){console.error(error);process.exitCode=1;}
 finally {await browser?.close();if(server) await new Promise(resolve=>server.close(resolve));await rm(output,{recursive:true,force:true});}

@@ -6,3 +6,6 @@ export async function probeDomainEntities() {
 export async function countLiveContentRows() {
   return (await base44.functions.invoke("internalHealth", { action:"contentCounts" })).data;
 }
+export async function verifyLiveContentLibrary() {
+  return (await base44.functions.invoke('contentLibrary', { action: 'verify' })).data;
+}

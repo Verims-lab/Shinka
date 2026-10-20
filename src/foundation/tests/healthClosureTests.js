@@ -4,6 +4,7 @@ import { CONTENT_ENTITY_NAMES, evaluateContentState } from '../../../base44/shar
 import { internalHealthOperation } from '../../../base44/shared/internalHealthOperations.js';
 import { handleInternalRequest } from '../../../base44/shared/internalAuthorization.js';
 import { H05_CASES } from '../health/cases/h05';
+import { CONTENT_SOURCE_SHA256 } from '../../../base44/shared/contentSourceReceipt.js';
 
 const assert=(ok,message)=>{if(!ok)throw new Error(message);};
 const counts=()=>({source:'LIVE_BASE44_COUNT',measuredAt:new Date().toISOString(),results:CONTENT_ENTITY_NAMES.map(entity=>({entity,state:'MEASURED',count:0}))});
@@ -53,9 +54,9 @@ export const HEALTH_CLOSURE_TESTS=[
     }
   }],
   ['HC08','H05-009 accepts all three present empty schemas with live counts',async()=>{
-    const r=await H05_CASES.find(c=>c.id==='H05-009').run({contentCounts:async()=>counts(),artifacts:async()=>({importPerformed:false})});
+    const r=await H05_CASES.find(c=>c.id==='H05-009').run({contentCounts:async()=>counts(),artifacts:async()=>({importPerformed:false}),contentLibrary:async()=>({phase:'PRE_IMPORT',ready:false,sourceHash:CONTENT_SOURCE_SHA256})});
     assert(r.status==='PASS'&&decide().code==='PRE_CONTENT_EMPTY_VERIFIED','schema presence treated as import');
-    assert(decide(counts(),false,'Buildmarker-009').status==='PASS','maintenance package must still reject imported content');
+    for(const marker of ['Buildmarker-009','Buildmarker-010'])assert(decide(counts(),false,marker).status==='PASS','non-content package must still reject imported content');
   }],
   ['HC09','Any positive content count fails with entity/count provenance',()=>{
     for(let i=0;i<3;i++){
@@ -76,8 +77,8 @@ export const HEALTH_CLOSURE_TESTS=[
     assert(decide(data,null).code==='UNEXPECTED_PRODUCT_CONTENT_PRESENT','positive rows concealed by another unavailable dependency');
   }],
   ['HC12','Future content package requires approved imported-content validation',()=>{
-    for(const marker of ['Buildmarker-010','Buildmarker-011','Buildmarker-006','invalid'])assert(decide(counts(),false,marker).status==='BLOCKED','zero rows permanently hardcoded');
-    assert(decide(counts(),false,'Buildmarker-010').code==='APPROVED_CONTENT_VALIDATION_REQUIRED','content transition not explicit');
+    for(const marker of ['Buildmarker-012','Buildmarker-006','invalid'])assert(decide(counts(),false,marker).status==='BLOCKED','zero rows permanently hardcoded');
+    assert(decide(counts(),false,'Buildmarker-012').code==='APPROVED_CONTENT_VALIDATION_REQUIRED','content transition not explicit');
   }],
   ['HC13','Admin count action uses only three exact unfiltered aggregates',async()=>{
     const calls=[];

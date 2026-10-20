@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-009
+**Current BuildMarker:** Buildmarker-011
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -54,7 +54,7 @@ Continuity (read in order 1→2→3→4): P1 ends ON-02 → P2 starts ON-03; P2 
 | UI / UX / copy / design | SRC-03 (combined Part 1–4) | — | Screen inventory, navigation, visible copy, tokens, typography, icons, spacing, components, interaction, loading/error/empty/validation states, accessibility, EN/TR UI behavior. |
 | Technical architecture | SRC-04 | SRC-05 | DOĞRULANACAK → UNVERIFIED_PLATFORM_CAPABILITY. |
 | Data model | SRC-05 + SRC-07 | SRC-06 | v1.2 wins over v1.1 on conflict. |
-| Content copy | SRC-08 | — | Not imported. |
+| Content copy | SRC-08 | — | Exact repository manifest prepared; no live import performed. |
 | Content mapping | SRC-09 + SRC-10 | — | 240 = 192 + 48 UNKNOWN (prior recorded validation; final deployed validator must be rerun). |
 
 Illustrative UI mockups never override written business/data rules; the written UI specification overrides mockups.
@@ -68,7 +68,7 @@ Illustrative UI mockups never override written business/data rules; the written 
 | ID | Status | Summary |
 |---|---|---|
 | OD-001 | RESOLVED_BY_SOURCE_RECEIPT | UI/UX v1.1 received as 4 transport parts; continuity verified; tokens reconciled. |
-| OD-002 | OPEN — FUTURE_PACKAGE | TR display mapping confirmed (SRC-03 table 4); category_code values + EN display names undefined. |
+| OD-002 | RESOLVED_BY_PRODUCT_DECISION | User approval in this conversation, 2026-10-20: six codes and EN names approved exactly; source TR names preserved. No mapping/copy changes or live closure. |
 | OD-003 | RESOLVED_BY_REPOSITORY_POLICY | Apple/Google-only repository surface implemented; historical platform snapshot preserved. Current dashboard configuration and live sign-in remain external verification. |
 | OD-004 | PARTIALLY_VERIFIED — EXTERNAL_RELEASE | Native created_date/updated_date observed read-only; aliases implemented without duplicate fields. UTC/update/immutable behavior remains unverified. |
 | OD-005 | NOTED | "Büyüyen Ay (Hilal)" label mapped to WAXING; UI/UX v1.1 does not redefine it. |
@@ -82,7 +82,7 @@ Illustrative UI mockups never override written business/data rules; the written 
 ## Evidence provenance
 Inventory READ/continuity/table records mean **SOURCE_RECEIVED_AND_RECORDED**. The original DOCX/XLSX artifacts are external and are not versioned/hash-verified in this repository. This package does not claim **SOURCE_ARTIFACT_HASH_VERIFIED_IN_REPO**. Build-time SHA-256 values cover current repository code/config/canonical Markdown only; they do not authenticate original external files. External artifact hashing is not an additional Foundation blocker.
 
-OD-003 closes repository policy implementation only. The recorded Authentication panel snapshot is historical evidence, not a fresh panel inspection or successful Apple/Google sign-in. OD-002 remains OPEN — FUTURE_PACKAGE. OD-004 and OD-009 are PARTIALLY_VERIFIED — EXTERNAL_RELEASE; neither is resolved.
+OD-003 closes repository policy implementation only. The recorded Authentication panel snapshot is historical evidence, not a fresh panel inspection or successful Apple/Google sign-in. OD-002 is RESOLVED_BY_PRODUCT_DECISION by the separately recorded user approval below. OD-004 and OD-009 are PARTIALLY_VERIFIED — EXTERNAL_RELEASE; neither is resolved.
 
 ## Data-model source receipt — Buildmarker-007
 SRC-05 v1.2 and SRC-07 v1.2 were reread directly from the supplied local DOCX/XLSX bytes. The backend source-field receipt contains all 20 exact entity field lists from SRC-07 entity sheets. SRC-06 remains subordinate. Business/technical/use-case text was inspected for ownership, nulls, protected records and future workflow boundaries. Attached documents provide source facts; task/implementation instructions come from the user's pasted request.
@@ -117,13 +117,13 @@ The canonical pure backend Sun resolver is `base44/shared/sunSign.js`. It uses b
 | SCORPIO | 23 October – 21 November |
 | SAGITTARIUS | 22 November – 21 December |
 
-Durable completion is the authenticated owner's first REAL user_daily_message, alongside a valid ACTIVE profile. Profile readiness requires adult valid DOB, the derived Sun, optional valid time/structured place and initialized preferences. Before that daily record exists, Skip can reach ON-06 for the current session and restart may safely return to ON-05. No extra product entity/field/flag is authorized; existing records determine state. No daily message is generated in this package.
+Durable completion is the authenticated owner's first REAL user_daily_message, alongside a valid ACTIVE profile. Profile readiness requires adult valid DOB, the derived Sun, optional valid time/structured place and initialized preferences. Before that daily record exists, Skip can reach ON-06 for the current session and restart may safely return to ON-05. No extra product entity/field/flag is authorized; existing records determine state. Package 008 did not generate daily messages; current implementation and remaining production blockers are documented in the 011 section.
 
 TR onboarding catalog status is APPROVED_PRODUCT_COPY. Exact EN/TR values, including the separately approved helper strings, are recorded in UI_UX_STANDARDS and tested against the independent receipt. Terms of Service is intentionally untranslated in both languages. Existing EN validation text retains its original short-copy punctuation; only explicitly approved title, age, consent and helper replacements change onboarding EN.
 
 Canonical consent version: `health-consent-v1.0`. EN: “I consent to Shinka processing my cycle data to provide cycle-based features and personalization.” TR: “Shinka’nın döngü verilerimi döngüye dayalı özellikler ve kişiselleştirme sunmak amacıyla işlemesine açık rıza veriyorum”. The checkbox is explicit, unchecked, and separate from 18+, auth, Privacy Policy and Terms of Service. No cycle input creates no consent record/event. Valid cycle input plus consent uses the authenticated backend owner and writes the exact version to current consent and immutable grant history.
 
-FIRST_SHINKA_ENGINE_REQUIRED remains YES / NEXT_PACKAGE_DEPENDENCY; it does not keep package 008 open. Production SDK persistence is implemented with verified readback. Cross-instance enforcement/native metadata and deployed Full Health remain external verification; no native transaction guarantee is asserted. Package: CLOSED_PENDING_BASE44_VERIFICATION.
+At the package-008 checkpoint FIRST_SHINKA_ENGINE_REQUIRED was a next-package dependency. In 011 the implementation exists, but production atomic persistence remains blocked; the dependency is retained on that failed path. Production SDK persistence is implemented with verified readback. Cross-instance enforcement/native metadata and deployed Full Health remain external verification; no native transaction guarantee is asserted. Package: CLOSED_PENDING_BASE44_VERIFICATION.
 
 ## ON-04 cascading birthplace decision — 2026-10-20
 
@@ -142,3 +142,33 @@ The supporting [mobile report](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md) reco
 ## ON-05 incident correction decision — 2026-10-20
 
 Authority: the user's current ON-05 request, including the supplied saveCycle error/payload screenshots and explicit preservation of optional NULL durations, existing valid consent time, partial retry, security checks and separate live closure. Attached screenshots are observed incident evidence; they do not authorize timestamp guessing or a new mandatory input. The existing SRC-05/07 granted_at business field is the backend-persisted consent authority. This corrects the former implementation's native created_date dependency; no source field, new consent version, product copy or eleventh logical source is introduced. The official Base44 metadata/uniqueness and SDK mutation semantics are linked in DATA_MODEL. Existing maintenance work is retained in Buildmarker-009; changed Health semantics advance HC-009.0. Live raw metadata remains unverified and the incident cannot be closed by local tests alone.
+
+## Admin Profile/You access decision — 2026-10-20
+
+Explicit user request: attachment `d4eaa1c4-92b9-4b3e-a24c-970b6b20f9da/Pasted text.txt`, SHA-256 `b1dcb89f52849d087791e14ea833baf473b4e722f553ddff186ea1b17d65e99e`. It authorizes the small verified-admin Profile/You menu, `/internal` panel with exactly the two existing tools, access before onboarding completion, shared return navigation and centralized TR/EN copy. The supplied Turkish descriptions are exact product copy; corresponding English/new navigation copy is scoped to this implementation request.
+
+This updates the implemented navigation/screen inventory only. It does not authorize full You/profile/account editing, change onboarding completion, import product content, add a role model, or certify deployed enforcement. The ten logical sources and original 11 UI/UX source tables remain unchanged. Buildmarker-010 is expressly pre-content, so its live zero-row expectation remains; the next unapproved marker cannot inherit that rule automatically.
+
+
+## First Shinka / Home request and source receipt — Buildmarker-011
+
+Authority: current user attachment `cc51dad9-1fa5-423f-a865-3be824e53172/Pasted text.txt`. It explicitly authorizes controlled content preparation/import tooling, the necessary phase/selection backend, ON-06/Home, tests/Health/docs, and honest production blocking if durable uniqueness cannot be proven. Original workbook/Word statements remain source evidence, not separate operational instructions.
+
+SRC-01/02/03/04/05 originals and SRC-07 were reread for this scope. SRC-08/09/10 exact bytes were read and hashed; the manifest preserves punctuation and bilingual pairing. The 011 report records hashes/counts and the six-row OD-002 decision. Category codes and EN names are absent from the original documents; the explicit user approval on 2026-10-20 supplies them. TR names and content/mapping source bytes remain unchanged. This does not change the original ten logical sources or the global original-files-in-Git flag.
+
+Approved astronomy authority is Astronomy Engine JavaScript; Moon phase boundaries and cycle/outlier rules come directly from SRC-01 §§4–6 and SRC-04 §§4–6. The earlier user-approved birth-date-only Sun resolver still overrides legacy source time fallbacks. No legacy implementation or AI product text is introduced. New Home TR/helper presentation copy is scoped to this request; original English state/preparation text is retained. No hosted first Shinka or live import has been observed.
+
+## OD-002 product approval receipt — 2026-10-20
+
+Status: **RESOLVED_BY_PRODUCT_DECISION**. Authority is the user's explicit reply to the OD-002 question in this conversation: “Evet, sunduğun altı satırlık tabloyu aynen ürün kararı olarak onaylıyorum.” The user approved all six proposed category_code values and all six EN visible names, required the original TR names to remain exact, and expressly excluded changes to category mappings, 260 Pairs or their text. This is a product decision, not content discovered in SRC-01…10; the logical-source inventory remains ten.
+
+| Source category | Approved category_code | Preserved TR name | Approved EN name |
+|---|---|---|---|
+| Dinlenme & Yavaşlama | REST_AND_SLOW_DOWN | Kendine Bir Nefes | Take a Breath |
+| Öz Bakım & İyi Hissetme | SELF_CARE_AND_WELLBEING | Kendine İyi Gel | Be Kind to Yourself |
+| Yenilik & Keşif | NOVELTY_AND_DISCOVERY | Yeniye Yer Aç | Make Room for the New |
+| Odaklanma & İlerleme | FOCUS_AND_PROGRESS | Küçük Adımlarla İlerle | Move Forward in Small Steps |
+| Bağ Kurma & Paylaşım | CONNECTION_AND_SHARING | Bağlarını Güçlendir | Strengthen Your Connections |
+| Sadeleşme & Bırakma | SIMPLICITY_AND_LETTING_GO | Hafiflemeye İzin Ver | Allow Yourself to Feel Lighter |
+
+Canonical executable receipt: `base44/shared/contentCategoryDecision.js`. Import preparation and runtime `contentBlueprint` use this same definition; unique codes and a one-to-one match to the six source labels are mandatory. The source manifest hash remains `83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91`; the reviewed import digest includes the separate decision. No live import is implied. Production daily uniqueness, hosted Full Health, physical-device evidence and the ON-05 live incident remain open.

@@ -51,6 +51,8 @@ export function validateContentRows(rows) {
     rowCount: body.length, columns, missingCategory, duplicateIds, missingCells: missingCells.slice(0, 50), missingCellCount: missingCells.length,
     badIdFormat, perCategory, unknownCategories: [...unknownCategories], categoryCountMismatches,
     firstId: norm(body[0]?.[idx[0]]), lastId: norm(body[body.length - 1]?.[idx[0]]),
+    missingIds: Array.from({length:260},(_,i)=>`SHF-${String(i+1).padStart(3,'0')}`).filter(id=>!seen.has(id)),
+    unexpectedIds: [...seen.keys()].filter(id=>!/^SHF-(?:0[0-9]{2}|1[0-9]{2}|2[0-5][0-9]|260)$/.test(id)||id==='SHF-000'),
   };
 }
 
@@ -105,7 +107,7 @@ export function contentIntegrity(content) {
   return content.rowCount === 260 && content.columns.every((c) => c.present) &&
     content.missingCategory.length === 0 && content.categoryCountMismatches.length === 0 &&
     content.unknownCategories.length === 0 && content.duplicateIds.length === 0 &&
-    content.badIdFormat.length === 0 && content.missingCellCount === 0;
+    content.badIdFormat.length === 0 && content.missingCellCount === 0 && content.missingIds.length===0 && content.unexpectedIds.length===0;
 }
 export function mappingIntegrity(mapping) {
   return mapping.rowCount === mapping.expectedRows && mapping.columns.every((c) => c.present) &&

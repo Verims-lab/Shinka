@@ -1,14 +1,14 @@
 # SHINKA — Development Notes
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
-**Status:** ACTIVE — repository maintenance; live closure pending
-**Current BuildMarker:** Buildmarker-009
+**Status:** ACTIVE — First Shinka repository work; production persistence and live closure blocked
+**Current BuildMarker:** Buildmarker-011
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
-**Scope:** Maintenance only; no new product engine, content import or live deployment.
+**Scope:** First Shinka/Home preparation and retained maintenance/admin evidence; no live import or deployment.
 
-## Baseline and changes
+## Buildmarker-009 maintenance baseline and changes
 
 Preflight: clean local Test = origin/Test at `63906f42a14e99f36f8934e9b42164c9b2ba24c7`. Main `b33c001fe30cceb0ad392aa38146ddbedc2c2461` was one commit behind Test with no divergence. No main merge was needed. Baseline was Buildmarker-008 / HC-007.0; the distinct maintenance package advances once to 009 / HC-008.0. Test-only delivery remains required.
 
@@ -21,7 +21,7 @@ Before editing, npm ci/tree/security/type/lint/build/Repo Health and Chromium ca
 | Repeated provider path reads, unnecessary preferences query | Per-picker TTL/LRU/byte-bounded public list cache; list operations read owner profile only. Server resolve/save contract unchanged. |
 | History refresh races, repeat clicks, clipboard timer | Health run lock through persistence, latest-history ticket, disposed UI checks; completed audit save preserved; clipboard/test runner cleanup. |
 | Browser viewport and intrinsic input sizing | 100dvh fallback, safe-area padding, shrinkable inputs/selects, zoom allowed. |
-| Eight active package entries and repeated continuation prose | Generated latest-five source/Markdown, update-or-next writer, source/Health/Repo guards; current five are 005…009. |
+| Eight active package entries and repeated continuation prose | Generated latest-five source/Markdown, update-or-next writer, source/Health/Repo guards; at that delivery the five were 005…009. |
 | Unregistered generated OAuthConsent/AuthLayout | Removed after App route, dynamic/action/test callsite and production graph checks. Not part of baseline bundle; no byte savings attributed to this removal. |
 | Broken manifest reference without PWA implementation | Removed dangling link; no service worker, installed PWA or native WebView claim. |
 
@@ -74,7 +74,7 @@ Health changes: update H01-006, H05-009, H10-003; add H03-010, H13-012, H13-013;
 2. Run deployed Full Health, save/list/open the private report. Exercise Apple and Google on intended test accounts/devices; check session return/refresh and inactive/non-admin boundaries.
 3. In ON-04 verify empty start, TR/EN, country/province/district/settlement, missing intermediate levels, large pages, outage/Retry, parent reset, and Clear. Explicitly save only a test account's chosen place, then read back its server-resolved five fields; Clear saves all NULL. Do not share credentials or personal place/DOB payloads.
 4. Complete H13-013 physical Android/iPhone checklist in the mobile report. No physical device was accessible here (`adb` absent; `xcrun --find devicectl` unavailable). Native keyboard/sheets, browser bars/insets, zoom/assistive technology, background eviction and real mobile-network/fonts remain open.
-5. Keep native timestamp, uniqueness/conditional-write/concurrency and protected-history enforcement obligations. FIRST_SHINKA_ENGINE_REQUIRED is a future engine dependency. Remove the temporary GeoNames admin diagnostic only after its documented hosted success condition is evidenced; it is not automatically run by Health or onboarding.
+5. Keep native timestamp, uniqueness/conditional-write/concurrency and protected-history enforcement obligations. FIRST_SHINKA_ENGINE_REQUIRED now represents the unresolved production persistence boundary; current implementation status is in the 011 section. Remove the temporary GeoNames admin diagnostic only after its documented hosted success condition is evidenced; it is not automatically run by Health or onboarding.
 
 No live product rows, security/audit records or Git history were deleted; no main push, CLI deployment, provider sign-in or real-secret probe was performed during maintenance.
 
@@ -89,3 +89,35 @@ LIVE_RUNTIME observation: published UI is still 008 / HC-007.0; Preview Main poi
 Verification: clean install and both dependency-tree checks, native High-threshold security guard, typecheck, lint, build, Repo Health 16/16 and generated five-entry history check PASS. Fresh audit 0 Critical/High, 2 existing Moderate router findings. Chromium 156.0.8078.4 and WebKit 27.2 each pass **310/310 canonical tests**, **52 general + 21 onboarding Health**, **8 routing/Preview + 5 mobile scenarios**, zero page exceptions. P21…P32 cover native metadata variants, preserved/invalid business time, partial/lost writes, conflicts/guards, bounded duplicate requests and Skip; P28 deliberately demonstrates independent-worker duplicate detection without a uniqueness claim. No Health case was removed. [Compact verification](reports/ON05_VERIFICATION.json).
 
 Previous performance guard also passes: initial production JS 447,080 raw / 146,566 gzip bytes; CSS 84,474 / 14,494; no initial test modules or static cycles; lazy reload/retry passes. The small JS increase comes from safe error-code handling. No physical-device or live performance claim. Cross-worker first-insert races remain possible under Base44's unsupported UNIQUE capability; detected ambiguity fails closed, neither record is silently rewritten. This correction does not certify distributed transactions or rollback.
+
+## Buildmarker-010 — admin entry delivery
+
+Preflight: clean Test/local `771db78`; main `848e073`, Test three commits ahead. Existing ON-05 correction retained. Added the top-right verified-admin menu, lazy two-card `/internal` panel and shared return navigation; ordinary profile stays disabled. Auth generation tickets prevent stale identity restoration, with guarded route/focus/visibility/periodic refresh and no onboarding form reset. The small single-link menu needs no additional library or menu chunk, preserving the initial-bundle budget. The new navigation adds no product writes or completion state.
+
+Catalog advances to HC-010.0; H12-025/H13-014 add session/navigation coverage without removing backend/security cases. AN01…AN08 plus real-App CLI routing/keyboard/responsive fixtures are included. All eight requested standards are reconciled; 010 remains explicitly pre-content. Generated active ledger/history retains 006…010. Verification results and synthetic screenshots are recorded in [admin access evidence](reports/SHINKA_ADMIN_ACCESS_010.md). Live admin verification and ON-05 same-account saveCycle/readback remain unverified; no deployment performed.
+
+Final 010 verification: **318/318 canonical tests in Chromium 156.0.8078.4 and WebKit 27.2**, each with **17/17 admin**, **8/8 routing/Preview**, **5/5 mobile**, **54/54 general Health**, **21/21 onboarding Health**, zero page exceptions. Clean install/tree, typecheck/lint/build, Repo Health 16/16, history and security guard passed; audit 0 Critical/High, 2 existing Moderate. Initial JS **454,513 raw / 148,104 gzip** bytes and CSS **85,018 / 14,572** stay within existing budgets. During delivery main advanced to PR #15 merge `3e663fe` with the same file tree; Test/local were fast-forwarded and origin/Test synchronized while working changes were preserved. Feature commit targets Test only.
+
+## Buildmarker-011 — First Shinka / Home delivery, 2026-10-20
+
+Preflight and pre-delivery fetch: local Test = origin/Test `ec63cae`, main `3e663fe`; Test one commit ahead, no main-only commits. Existing ON-05 recovery, GeoNames, maintenance and admin changes were preserved in the same checkout. Only Test is the delivery target; no deployment or live product mutation occurred.
+
+Read the original business/use-case/UI/technical/database/entity sources and all three original content workbooks. Reproducible manifest: 260 exact SHF IDs with four language cells, six categories, 240 mappings = identical 192 base + 48 UNKNOWN; no missing/duplicate/unrecognized content. The manifest digest is `83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91`. At the initial 011 delivery, source hashes and the pending OD-002 proposal table were recorded in [the implementation/handoff report](reports/SHINKA_FIRST_SHINKA_011.md). At that checkpoint proposed category codes/English names were not marked approved or inserted; the user approval continuation below supersedes only that pending decision.
+
+Added bounded, admin-only dry-run/reviewed-batch/exact-readback content and Moon import; partial/conflicting data never becomes ready and retry preserves exact matches. No product schema/RLS fields were added. Source/native Pair ID crosswalk is verified from unique exact copy. Moon intervals use source-approved Astronomy Engine 2.1.19, continuous UTC boundaries and at least two future years; controlled renewal is manual. Current-day cycle rules, last-three/outlier average, computation-only 5/28, UNKNOWN and guarded consent reads follow the sources. Selection implements backend local day, 40/41 boundary, all fallback stages, actual category and immutable TR/EN snapshots.
+
+ON-06 invokes the daily service with a bounded deadline and explicit Retry; only verified persisted readback advances. Home shows the two snapshot cards, optional-name local greeting, language switch and preserved Profile/admin access. Existing users remain on Home when today's request fails. A malformed historical row cannot falsely complete onboarding; late/unmounted or previous-day/timezone responses cannot advance. Scoped Home TR localization is centralized; existing approved onboarding copy is unchanged.
+
+**Production creation is BLOCKED.** Base44's documented unsupported UNIQUE and merging upsert do not prove durable cross-instance create-if-absent. The existing atomic protocol is implemented only by an isolated test fixture; production supplies no adapter and refuses new writes. Existing valid rows remain readable. H09-004 deliberately stays BLOCKED. OD-002 blocked content import at that checkpoint and is now resolved by the explicit approval below. No invented transaction/rollback or fixture-as-live claim. The handoff gives concrete conditional-insert/transactional-store closure options. ON-05 remains OPEN_PENDING_LIVE_SAVE_AND_READBACK.
+
+Final local verification: Chromium 156.0.8078.4 and WebKit 27.2 each **346/346 canonical tests**, **54 general + 21 onboarding + 9 daily synthetic Health**, **17 admin + 8 routing/Preview + 5 mobile + 5 daily-flow scenarios**, zero page exceptions. DM01…DM25/DU01…DU03 add source/import, phase/timezone/DST, fallback, concurrency protocol, failure/recovery, privacy, offline and UI coverage. Clean install, direct/full dependency trees, security guard, typecheck, lint, build, Repo Health **16/16**, generated five-package retention and byte budgets pass. Audit: **0 Critical / 0 High / 2 existing Moderate** router findings. Astronomy Engine is the only added dependency and is pinned to 2.1.19. The npm configuration and intentionally lazy Health-chunk size/mixed-import warnings remain; missing local Base44 settings do not prove hosted connectivity.
+
+Measured production entry: **459,519 raw / 149,604 gzip bytes**, versus 454,513 / 148,104 in 010; delta +5,006 / +1,500. CSS **84,916 / 14,553**; all below unchanged 500,000 / 165,000 JS and 90,000 / 16,000 CSS budgets. Source/import/test payloads are excluded from the initial graph; no static cycles. Home cold lab samples: 56 DOM nodes, DCL 15.3–20.4 ms, CLS 0 and no recorded long task, no horizontal overflow at 360px. Loopback/stubbed transport/blocked remote fonts are not hosted or user performance. [Structured evidence and measurements](reports/first-shinka-011/verification.json); [mobile/desktop captures and device limits](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md).
+
+HC-011.0 has 137 cases: 118 current / 9 future / 10 external. Six scoped future cases were activated, five cases added and H05-007/009 updated; none deleted or downgraded. All twelve canonical documents and generated history align with the implemented-but-blocked state. Active packages are 007…011. Deployed Full Health/private report readback, real import/daily creation, independent-worker guarantees and physical Android/iPhone acceptance remain unexecuted requirements; local subsets are not Full Health PASS.
+
+## OD-002 user approval continuation — 2026-10-20
+
+Preflight: clean local Test = origin/Test `9e0de86`; Test two commits ahead of main, no main-only commits. The user approved the exact six codes/EN names and retained source TR names, explicitly excluding all Pair text and category-association changes. Registered RESOLVED_BY_PRODUCT_DECISION with this conversation as authority. Canonical executable table, preparation/import validation, SOURCE_OF_TRUTH, CONTENT_MODEL, DATA_MODEL and UI_UX_STANDARDS are reconciled. Manifest/source-receipt files remain byte-identical; digest remains `83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91`. DM26…DM28 cover exact receipt, code/label bijection, required names and approved importer retry/readback. Buildmarker-011/HC-011.0 are retained as the same Home package. The executed continuation results follow. No live import/deployment or daily capability closure is implied.
+
+Approval continuation verification: **349/349 canonical tests in each of Chromium and WebKit**, **54/54 general + 21/21 onboarding + 9/9 daily synthetic Health**, existing 17 admin/8 routing-Preview/5 mobile/5 daily scenarios, zero page exceptions. Typecheck/lint/build, Repo Health 16/16, dependency tree/security guard and byte budgets pass; no dependency/lock changes, 0 Critical/High and 2 existing Moderate findings. Initial JS 459,519 / 149,604 gzip bytes and CSS 84,916 / 14,553 are unchanged. [Approval receipt and executed evidence](reports/first-shinka-011/od002-approval.json). H09-004 remains BLOCKED; no live import, hosted Full Health or physical-device claim. The original verification.json retains the historical pre-approval snapshot.

@@ -1,0 +1,303 @@
+{
+  "recordedAt": "2026-10-20T06:51:53.366445+00:00",
+  "scope": "REPOSITORY_AND_LOCAL_FIXTURES_ONLY",
+  "decision": {
+    "id": "OD-002",
+    "status": "RESOLVED_BY_PRODUCT_DECISION",
+    "source": "Explicit user approval of the six-row category table in this conversation",
+    "rows": [
+      {
+        "source_label": "Dinlenme & Yavaşlama",
+        "category_code": "REST_AND_SLOW_DOWN",
+        "display_name_tr": "Kendine Bir Nefes",
+        "display_name_en": "Take a Breath"
+      },
+      {
+        "source_label": "Öz Bakım & İyi Hissetme",
+        "category_code": "SELF_CARE_AND_WELLBEING",
+        "display_name_tr": "Kendine İyi Gel",
+        "display_name_en": "Be Kind to Yourself"
+      },
+      {
+        "source_label": "Yenilik & Keşif",
+        "category_code": "NOVELTY_AND_DISCOVERY",
+        "display_name_tr": "Yeniye Yer Aç",
+        "display_name_en": "Make Room for the New"
+      },
+      {
+        "source_label": "Odaklanma & İlerleme",
+        "category_code": "FOCUS_AND_PROGRESS",
+        "display_name_tr": "Küçük Adımlarla İlerle",
+        "display_name_en": "Move Forward in Small Steps"
+      },
+      {
+        "source_label": "Bağ Kurma & Paylaşım",
+        "category_code": "CONNECTION_AND_SHARING",
+        "display_name_tr": "Bağlarını Güçlendir",
+        "display_name_en": "Strengthen Your Connections"
+      },
+      {
+        "source_label": "Sadeleşme & Bırakma",
+        "category_code": "SIMPLICITY_AND_LETTING_GO",
+        "display_name_tr": "Hafiflemeye İzin Ver",
+        "display_name_en": "Allow Yourself to Feel Lighter"
+      }
+    ]
+  },
+  "sourceManifest": {
+    "sha256": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+    "gitBlob": "0eef02bae47e61116d57c41db25fbe76b654f598",
+    "unchangedFromCommit": "9e0de8648f21cb864519a1ee2ad727c5cf5bb1d6",
+    "pairs": 260,
+    "mappings": 240,
+    "categories": 6,
+    "allFourTextsAndCategoryAssociationsVerified": true
+  },
+  "browsers": {
+    "chromium": {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "catalog": {
+        "version": "HC-011.0",
+        "suites": 16,
+        "cases": 137,
+        "current": 118,
+        "future": 9,
+        "external": 10
+      },
+      "tests": 349,
+      "passed": 349,
+      "failed": 0,
+      "pageErrors": [],
+      "healthSubsets": {
+        "health": {
+          "passed": 54,
+          "total": 54
+        },
+        "onboardingHealth": {
+          "passed": 21,
+          "total": 21
+        },
+        "dailyHealth": {
+          "passed": 9,
+          "total": 9
+        }
+      },
+      "approvedCategoryHealth": {
+        "id": "H05-010",
+        "status": "PASS",
+        "evidence": {
+          "classification": "SYNTHETIC_RUNTIME",
+          "source": "canonical domain/security helpers",
+          "actual": {
+            "executed": [
+              "DM01",
+              "DM02",
+              "DM03",
+              "DM04",
+              "DM05",
+              "DM23",
+              "DM26",
+              "DM27",
+              "DM28"
+            ],
+            "failed": []
+          },
+          "expected": {
+            "failed": []
+          },
+          "reason": "Isolated fixtures; not LIVE_ENFORCEMENT evidence",
+          "timestamp": "2026-10-20T06:49:52.147Z"
+        }
+      },
+      "otherScenarioCounts": {
+        "adminNavigation": 17,
+        "mobile": 5,
+        "dailyFlow": 5,
+        "productionRouting": 5,
+        "previewProbes": 3
+      }
+    },
+    "webkit": {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "catalog": {
+        "version": "HC-011.0",
+        "suites": 16,
+        "cases": 137,
+        "current": 118,
+        "future": 9,
+        "external": 10
+      },
+      "tests": 349,
+      "passed": 349,
+      "failed": 0,
+      "pageErrors": [],
+      "healthSubsets": {
+        "health": {
+          "passed": 54,
+          "total": 54
+        },
+        "onboardingHealth": {
+          "passed": 21,
+          "total": 21
+        },
+        "dailyHealth": {
+          "passed": 9,
+          "total": 9
+        }
+      },
+      "approvedCategoryHealth": {
+        "id": "H05-010",
+        "status": "PASS",
+        "evidence": {
+          "classification": "SYNTHETIC_RUNTIME",
+          "source": "canonical domain/security helpers",
+          "actual": {
+            "executed": [
+              "DM01",
+              "DM02",
+              "DM03",
+              "DM04",
+              "DM05",
+              "DM23",
+              "DM26",
+              "DM27",
+              "DM28"
+            ],
+            "failed": []
+          },
+          "expected": {
+            "failed": []
+          },
+          "reason": "Isolated fixtures; not LIVE_ENFORCEMENT evidence",
+          "timestamp": "2026-10-20T06:49:54.126Z"
+        }
+      },
+      "otherScenarioCounts": {
+        "adminNavigation": 17,
+        "mobile": 5,
+        "dailyFlow": 5,
+        "productionRouting": 5,
+        "previewProbes": 3
+      }
+    }
+  },
+  "verification": {
+    "typecheck": true,
+    "lint": true,
+    "build": true,
+    "repoHealth": "16/16",
+    "dependencyTree": true,
+    "securityHighThreshold": true,
+    "audit": {
+      "critical": 0,
+      "high": 0,
+      "moderate": 2
+    },
+    "dependencyFilesChanged": false,
+    "fivePackageHistory": true
+  },
+  "performance": {
+    "measuredAt": "2026-10-20T06:50:41.195Z",
+    "environment": {
+      "node": "v26.0.0",
+      "platform": "darwin",
+      "arch": "arm64",
+      "browser": "Playwright Chromium, headless, cold context, 360x740, loopback, no throttling; SDK transport stubbed, external fonts blocked; not user metrics"
+    },
+    "production": {
+      "initialJS": {
+        "raw": 459519,
+        "gzip": 149604
+      },
+      "allJS": {
+        "raw": 1221987,
+        "gzip": 407687
+      },
+      "css": {
+        "raw": 84916,
+        "gzip": 14553
+      },
+      "initialModules": [
+        "/src/components/shinka/ShinkaButton.jsx",
+        "/src/foundation/i18n/strings.js",
+        "/src/components/shinka/StatePanel.jsx",
+        "/src/foundation/uiuxTables.js",
+        "/src/foundation/i18n/onboardingCopy.js",
+        "/src/components/RouteBoundary.jsx",
+        "/src/components/ui/use-toast.jsx",
+        "/src/lib/utils.js",
+        "/src/components/ui/toast.jsx",
+        "/src/components/ui/toaster.jsx",
+        "/src/lib/query-client.js",
+        "/src/lib/app-params.js",
+        "/src/api/base44Client.js",
+        "/src/lib/PageNotFound.jsx",
+        "/src/foundation/authErrors.js",
+        "/src/lib/AuthContext.jsx",
+        "/src/components/UserNotRegisteredError.jsx",
+        "/src/components/ScrollToTop.jsx",
+        "/src/components/ProtectedRoute.jsx",
+        "/base44/shared/internalAuthorization.js",
+        "/base44/shared/onboardingValidation.js",
+        "/base44/shared/sunSign.js",
+        "/base44/shared/onboardingDependencies.js",
+        "/src/services/onboardingService.js",
+        "/src/components/shinka/ShinkaInput.jsx",
+        "/src/components/GoogleIcon.jsx",
+        "/src/foundation/authPolicy.js",
+        "/src/services/authService.js",
+        "/src/lib/authReturnTo.js",
+        "/src/features/onboarding/SignIn.jsx",
+        "/src/components/shinka/ShinkaSelect.jsx",
+        "/src/features/onboarding/BirthplaceList.jsx",
+        "/src/features/onboarding/placeListCache.js",
+        "/src/features/onboarding/birthplaceSelection.js",
+        "/src/features/onboarding/BirthplacePicker.jsx",
+        "/src/features/onboarding/OnboardingForms.jsx",
+        "/src/features/onboarding/pendingName.js",
+        "/src/services/dailyMessageService.js",
+        "/src/features/daily/useDailyMessage.js",
+        "/src/foundation/i18n/dailyCopy.js",
+        "/src/features/daily/DailyStatus.jsx",
+        "/src/features/daily/FirstShinka.jsx",
+        "/src/features/onboarding/OnboardingScreen.jsx",
+        "/src/foundation/uiContract.js",
+        "/src/foundation/internalNavigation.js",
+        "/src/components/profile/ProfileMenu.jsx",
+        "/src/pages/Home.jsx",
+        "/src/components/profile/ProfileAccess.jsx",
+        "/src/pages/Onboarding.jsx",
+        "/src/components/internal/AdminGate.jsx",
+        "/src/foundation/probes/authProbeRoute.js",
+        "/src/App.jsx",
+        "/src/index.css",
+        "/src/main.jsx",
+        "/index.html",
+        "/src/components/shinka/PageContainer.jsx",
+        "/src/components/shinka/ShinkaCard.jsx"
+      ],
+      "chunkCount": 15
+    },
+    "cycles": [],
+    "lazyRetry": {
+      "passed": true,
+      "scope": "Synthetic network asset failure and full-reload retry, real App route"
+    }
+  },
+  "remaining": {
+    "liveImport": "NOT_EXECUTED",
+    "productionDailyAtomicAdapter": "UNVERIFIED_BLOCKED",
+    "hostedFullHealth": "NOT_EXECUTED",
+    "firstDailyWriteReadback": "NOT_EXECUTED",
+    "physicalDevice": "NOT_TESTED",
+    "on05": "OPEN_PENDING_LIVE_SAVE_AND_READBACK"
+  }
+}

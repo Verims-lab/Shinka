@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-009
+**Current BuildMarker:** Buildmarker-011
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -58,3 +58,16 @@ This maintenance request advances the marker once to 009 and catalog once to HC-
 ## ON-05 prioritized correction within maintenance
 
 The user's instruction to preserve current work and prioritize the live ON-05 defect is treated as a correction within the active maintenance package, not a new feature/package. Retain Buildmarker-009 and consolidate its existing ledger entry. Advance the catalog once to HC-009.0 because H07-007/H11-004 semantics change and H11-006 adds the explicit live incident closure requirement. No case is removed or downgraded to hide a failure. P17 now states worker-local coalescing; P18 changes its obsolete native-clock blocking expectation to preservation of valid durable consent. P28 explicitly tests the unproven distributed boundary. ON-05 remains OPEN_PENDING_LIVE_SAVE_AND_READBACK until the same partial account succeeds after user sync/publish.
+
+## Admin navigation feature package — 2026-10-20
+
+The new explicitly requested Profile/You admin entry and panel form one distinct feature package: advance 009 → 010 once and catalog HC-009.0 → HC-010.0 for added H12/H13 coverage. Consolidate corrections in the same package. Retain active packages 006…010 through recordBuild; do not remove security evidence or unresolved ON-05 live closure. This is another pre-content package: extend only the explicit zero-row allowlist through 010; unapproved 011+ remains blocked until its own content policy is authorized. Deliver Test only; user sync/publish and deployed/physical verification remain separate.
+
+
+## First Shinka package — Buildmarker-011 / HC-011.0
+
+This explicit feature request advances 010 → 011 once and updates the catalog for staged content readiness and scoped daily/phase cases. Active ledger retains 007…011. At the initial 011 delivery, category approval and verified production daily persistence were blockers; category approval is now resolved by the user continuation below. Production persistence remains blocked; do not claim live completion or change a failing prerequisite to PASS. Repository regressions may verify correct refusal while deployed Full Health remains BLOCKED. No CLI deployment, merge to main or live product import is part of Test delivery. H08 Calendar mutation, H10 Pattern, H11 withdrawal, H14 scheduler/push and physical-device requirements remain deferred/external.
+
+## OD-002 approval continuation within Home
+
+The explicit 2026-10-20 reply completes the pending category decision within package 011. Retain Buildmarker-011 and update its single ledger entry; active history remains 007…011. Retain HC-011.0: H02-006's provenance contract and H05-010's exact-import contract are unchanged, with three added canonical regressions supplying the newly approved data; no case ID, applicability, severity or gate is changed. Source content/mapping hashes must stay unchanged. The decision does not authorize live import, deployment, a main push or removal of H09-004's unverified-production-adapter blocker.
