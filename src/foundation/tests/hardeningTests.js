@@ -1,5 +1,5 @@
 // All inputs are generated synthetic fixtures. No product workbook content is imported.
-import { findLegacyImports, findPersonalEmails, checkAuthSurface } from "@/foundation/inspection/sourceRules";
+import { findLegacyImports, findPersonalEmails, checkAuthSurface, checkInternalUiPurity } from "@/foundation/inspection/sourceRules";
 import { loadStaticEvidence } from "@/foundation/inspection/sourceScanner";
 import { checkAuthPolicy } from "@/foundation/authPolicy";
 import { safeAuthError } from "@/foundation/authErrors";
@@ -45,6 +45,22 @@ const reportFixture = () => {
 };
 /** @type {import("./testTypes").FoundationTest[]} */
 export const HARDENING_TESTS = [
+  ["HB01","Internal Test Tools presentation modules pass the actual repository boundary scan",async()=>{
+    const result=(await loadStaticEvidence()).internalUi;
+    assert(result.files>=18&&result.violations.length===0,"internal presentation boundary failed");
+  }],
+  ["HB02","Internal feature UI cannot hide direct SDK calls or unreviewed imports",()=>{
+    const page="/src/pages/internal/TestTools.jsx", hook="/src/features/adminTestTools/useTestTools.js";
+    for(const spec of ["@/features/adminTestTools/unreviewed","@/features/calendar/useCalendar","@/api/base44Client","../../../base44/shared/nativeClient"]){
+      assert(checkInternalUiPurity({[page]:`import x from '${spec}';`}).violations.length===1,"unreviewed import escaped");
+    }
+    for(const file of [page,hook,"/src/features/adminTestTools/ImpactPreview.jsx","/src/features/adminTestTools/catalog.js"]){
+      for(const code of ["client.entities.User.list();","client.functions.invoke('onboarding');","const cycle_length=28;","import x from '@/api/base44Client';"]){
+        assert(checkInternalUiPurity({[file]:code}).violations.length>0,"direct access escaped feature boundary");
+      }
+    }
+    assert(checkInternalUiPurity({[hook]:"import {adminTestRequest} from '@/services/internal/adminTestTools';"}).violations.length===0,"guarded service rejected");
+  }],
   ["T52","Legacy dynamic imports detected; strings/comments/templates remain data",()=>{
     const fixtures = {
       "/src/tests/dynamic.js":"export const f = () => import('@/legacy/engine');",

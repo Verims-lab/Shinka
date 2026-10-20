@@ -1,0 +1,72 @@
+{
+  "schema": "shinka.synthetic-record-snapshot/1",
+  "measuredAt": "2026-10-20T18:33:57.157Z",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "targetSha256": "eee3ec9d4738e434a248948c54be02040669b2c7aa7e69e433d3b2af3b2526dd",
+  "scope": "PRIVILEGED_READBACK_ONLY_NOT_OWNER_AUTHORIZATION_PROOF",
+  "tables": {
+    "UserProfile": {
+      "count": 1,
+      "digest": "0bbc4b9861595beb32f29aa37dd32af6094d14bbad41f900613c17448d978db5",
+      "idDigests": [
+        "8a6d29ccbeaef790a53f66134c51f9921e9c58873754aae54a7507cb0d014d12"
+      ]
+    },
+    "UserPreferences": {
+      "count": 1,
+      "digest": "a3b8fc7216039628c78dcaa11b6a4e700b65df448274374596eabfff8b7a4ec8",
+      "idDigests": [
+        "2cbdada4beec2e53bd49e92691d45cac09296556911a2ed5219a9e33c138e155"
+      ]
+    },
+    "UserHealthConsent": {
+      "count": 1,
+      "digest": "2f7927fc4fb8e6fb8c3c0a5a13414651ea91409881e67fb4f2fbc04a164eb5d0",
+      "idDigests": [
+        "3f7b8a4234087b5ee37766a265f7a6d41b26e0656b14afc2dfb6c087c6f84240"
+      ]
+    },
+    "UserHealthConsentEvent": {
+      "count": 1,
+      "digest": "f0ebf1874d4801beb92246c57665f1f6abe3b5618489053e763030201d679a68",
+      "idDigests": [
+        "6b2e62fa9b2147417b294bdd1d991f407ed50b300ddf314bfffaa247296ed835"
+      ]
+    },
+    "UserPeriodRecord": {
+      "count": 2,
+      "digest": "3471b15a77afa3b2c225bb3f8213669fc0235ae6379f24f19ec99ab43c585dfc",
+      "idDigests": [
+        "4eea455a6e8334805614b53ea54f14e90e89887469a88ee9576add74ef74fe3a",
+        "f3f1453ee232f40147ae59106d4c1e238d47d3062d8507fdca20c7b7dafad469"
+      ],
+      "optionalDurationsNull": true
+    },
+    "UserCycleSettings": {
+      "count": 0,
+      "digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "idDigests": [],
+      "optionalInitialLengthNull": true
+    },
+    "UserDailyMessage": {
+      "count": 1,
+      "digest": "77892693f1af68b46868c26f458030b958e47c7561b2fe3a73e957f4460890c1",
+      "idDigests": [
+        "f3fed9a5f3533692839fe61611aff426a7be4631b095cc0b09898748b5ad5d64"
+      ],
+      "days": [
+        "2026-10-20"
+      ]
+    },
+    "UserCalendarAction": {
+      "count": 1,
+      "digest": "521c301784da515e587ae1d636d4a0906d281b8e0d6d34f96516249c3075a61d",
+      "idDigests": [
+        "1785d6ad556bf034f613ca2565f9064910c2beea02a32d9d98e05f0b4422c44a"
+      ],
+      "statuses": [
+        "PENDING"
+      ]
+    }
+  }
+}

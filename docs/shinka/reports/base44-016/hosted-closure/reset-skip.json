@@ -1,0 +1,11 @@
+{
+  "schema": "shinka.hosted-reset-resume/1",
+  "measuredAt": "2026-10-20T18:43:02.915Z",
+  "privileged": false,
+  "resumedState": "AUTHENTICATED_CYCLE_STEP",
+  "result": {
+    "state": "FIRST_SHINKA_DEPENDENCY",
+    "persisted": false
+  },
+  "status": "FIRST_SHINKA_STAGE_VERIFIED_CLIENT_STOPPED"
+}

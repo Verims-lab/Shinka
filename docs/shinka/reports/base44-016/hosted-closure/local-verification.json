@@ -1,0 +1,178 @@
+{
+  "scope": "LOCAL_SYNTHETIC_ONLY",
+  "healthCatalogVersion": "HC-016.1",
+  "engines": {
+    "chromium": {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "catalog": {
+        "version": "HC-016.1",
+        "suites": 16,
+        "cases": 155,
+        "current": 136,
+        "future": 7,
+        "external": 12
+      },
+      "tests": 439,
+      "passed": 439,
+      "failed": 0,
+      "pageErrors": [],
+      "health": {
+        "count": 60,
+        "failed": []
+      },
+      "onboardingHealth": {
+        "count": 21,
+        "failed": []
+      },
+      "dailyHealth": {
+        "count": 9,
+        "failed": []
+      },
+      "calendarHealth": {
+        "count": 6,
+        "failed": []
+      },
+      "adminTestHealth": {
+        "count": 4,
+        "failed": []
+      },
+      "adminNavigation": {
+        "count": 19,
+        "failed": []
+      },
+      "productionRouting": {
+        "count": 5,
+        "failed": []
+      },
+      "previewProbes": {
+        "count": 3,
+        "failed": []
+      },
+      "mobile": {
+        "count": 5,
+        "failed": []
+      },
+      "dailyFlow": {
+        "count": 5,
+        "failed": []
+      },
+      "calendarFlow": {
+        "count": 8,
+        "failed": []
+      },
+      "adminTestFlow": {
+        "count": 4,
+        "failed": []
+      }
+    },
+    "webkit": {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "catalog": {
+        "version": "HC-016.1",
+        "suites": 16,
+        "cases": 155,
+        "current": 136,
+        "future": 7,
+        "external": 12
+      },
+      "tests": 439,
+      "passed": 439,
+      "failed": 0,
+      "pageErrors": [],
+      "health": {
+        "count": 60,
+        "failed": []
+      },
+      "onboardingHealth": {
+        "count": 21,
+        "failed": []
+      },
+      "dailyHealth": {
+        "count": 9,
+        "failed": []
+      },
+      "calendarHealth": {
+        "count": 6,
+        "failed": []
+      },
+      "adminTestHealth": {
+        "count": 4,
+        "failed": []
+      },
+      "adminNavigation": {
+        "count": 19,
+        "failed": []
+      },
+      "productionRouting": {
+        "count": 5,
+        "failed": []
+      },
+      "previewProbes": {
+        "count": 3,
+        "failed": []
+      },
+      "mobile": {
+        "count": 5,
+        "failed": []
+      },
+      "dailyFlow": {
+        "count": 5,
+        "failed": []
+      },
+      "calendarFlow": {
+        "count": 8,
+        "failed": []
+      },
+      "adminTestFlow": {
+        "count": 4,
+        "failed": []
+      }
+    }
+  },
+  "checks": {
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "build": "PASS",
+    "repoHealth": "PASS",
+    "buildHistory": "PASS",
+    "securityHighThreshold": "PASS"
+  },
+  "audit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 2,
+    "high": 0,
+    "critical": 0,
+    "total": 2
+  },
+  "performance": {
+    "passed": true,
+    "budget": {
+      "initialRaw": 500000,
+      "initialGzip": 165000,
+      "cssRaw": 90000,
+      "cssGzip": 16000
+    },
+    "cycles": [],
+    "production": {
+      "initialJS": {
+        "raw": 453164,
+        "gzip": 147877
+      },
+      "css": {
+        "raw": 86276,
+        "gzip": 14810
+      },
+      "chunkCount": 17
+    },
+    "scope": "Local real-App lab with stubbed SDK; not hosted latency or physical devices"
+  }
+}

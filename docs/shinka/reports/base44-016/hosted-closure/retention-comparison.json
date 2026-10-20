@@ -1,0 +1,28 @@
+{
+  "schema": "shinka.hosted-retention-comparison/1",
+  "baseline": "admin-baseline.json",
+  "afterPreparation": "admin-after-reset-prepare.json",
+  "afterCompletion": "admin-final.json",
+  "retainedDomainData": {
+    "UserProfile": true,
+    "UserPreferences": true,
+    "UserHealthConsent": true,
+    "UserHealthConsentEvent": true,
+    "UserPeriodRecord": true,
+    "UserCycleSettings": true,
+    "UserDailyMessage": true
+  },
+  "allRetained": true,
+  "newCalendarReceipts": 3,
+  "receiptStatuses": [
+    "APPLIED",
+    "APPLIED",
+    "APPLIED"
+  ],
+  "reset": "COMPLETED_DONE",
+  "limitations": [
+    "Client processes ended/restarted between confirmed stages, not a killed backend worker",
+    "One selected synthetic admin identity, not normal-user denial proof",
+    "No account deletion or operator drain performed"
+  ]
+}

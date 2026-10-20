@@ -1,0 +1,11 @@
+{
+  "url": "https://shinka-rhythm-flow.base44.app/auth-shell-probe",
+  "method": "HEAD",
+  "status": 200,
+  "headers": {
+    "x-frame-options": "DENY",
+    "content-type": "text/html; charset=utf-8"
+  },
+  "finding": "Hosted iframe probes timed out at about:blank. DENY prevents framing; no header was weakened. Underlying top-level layout/auth behavior is not measured by this failed iframe run.",
+  "recordedAt": "2026-10-20T18:38:38.243660+00:00"
+}

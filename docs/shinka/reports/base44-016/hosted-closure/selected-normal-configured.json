@@ -1,0 +1,23 @@
+{
+  "schema": "shinka.selected-test-target/1",
+  "measuredAt": "2026-10-20T18:25:43.439Z",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "targetSelectedByUser": true,
+  "caller": {
+    "role": "admin",
+    "matchesSelectedTarget": false
+  },
+  "target": {
+    "exists": true,
+    "role": "user",
+    "account_status": "ACTIVE"
+  },
+  "environment": {
+    "app_id": "6ad5190f4845d4e3af03b420",
+    "server": "https://shinka-rhythm-flow.base44.app",
+    "label": "TEST",
+    "authorized": true
+  },
+  "mutation_blocker": null,
+  "activeOperation": null
+}

@@ -1,21 +1,23 @@
 # SHINKA — Content Model
 
 **Document:** SHINKA_CONTENT_MODEL.md
-**Status:** ACTIVE — source prepared; controlled import and engine implemented; production daily persistence blocked
+**Status:** ACTIVE — approved references imported; native daily snapshot observed; hosted acceptance remains partial
 **Current BuildMarker:** Buildmarker-016
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
-**Scope:** Source preparation, controlled import, daily selection and Home. No live import has been executed.
+**Scope:** Source preparation, controlled import, daily selection and Home; shared app/prod explicitly authorized for synthetic acceptance.
 **Implemented:** Workbook validator, exact backend manifest, dry-run/apply/verify importer, Moon preparation, daily selection and snapshot protocol, ON-06/Home integration.
-**Not Implemented:** Verified production daily create-if-absent adapter; live import/generation proof; scheduled lookup renewal.
+**Not Implemented:** Distributed physical uniqueness guarantee; scheduled lookup renewal. Remaining hosted/device evidence is tracked separately.
 **Open Decisions:** OD-005, OD-008 (noted); OD-002 RESOLVED_BY_PRODUCT_DECISION
 
 ## Base44 reference readiness and snapshots — 016
 
 The six approved category codes/TR/EN names, 240 mappings, 260 bilingual pairs and source hash remain unchanged. Native admin dry-run/reviewed digest/bounded apply/readback is the current import path; operator serializes imports. Home never imports or overwrites content. Ordinary keyed upsert is not unique under independent workers.
 
-Fresh read-only check 2026-10-20T17:02:37.305Z: missing 6/260/240, same/conflicts zero; Moon missing 103, planned coverage 2026-10-03T13:25:33.710Z to 2028-11-02T09:17:57.674Z, no stored coverage. No import executed into the known shared environment. Explicit content-phase policy includes 016 and LIVE_BASE44_COUNT only. Daily candidates are immutable; earliest persisted generated_at then ID wins, conflicting candidates trigger notice and all candidates remain in the repeat window. [Evidence and acceptance](SHINKA_BASE44_CONTINUATION.md).
+Historical read-only check 2026-10-20T17:02:37.305Z found missing 6/260/240 and 103 planned Moon intervals. Following explicit target approval, serial bounded reviewed-digest imports completed. At 18:20:41.517Z, full verify is VERIFIED_IMPORTED: same=6/260/240, missing/conflicts=0, source hash unchanged and all 260 source/native Pair IDs bijective. Moon ready=true with stored validated coverage 2026-10-03T13:25:33.710Z → 2028-11-02T09:17:57.674Z, beyond the current required 2028-11-01 horizon; 103 is observed, not a fixed target. Initial 500/502 attempts and resumed import journals are preserved in [hosted closure evidence](reports/SHINKA_HOSTED_CLOSURE_016.md).
+
+Explicit content-phase policy includes 016 and LIVE_BASE44_COUNT only. Daily candidates are immutable; earliest persisted generated_at then ID wins, conflicting candidates trigger notice and all candidates remain in the repeat window. The selected synthetic admin's daily ID/full snapshot stayed identical across concurrent authenticated requests; this does not prove global physical uniqueness under independent workers.
 
 ## Pair model
 One Pair ID (`SHF-001`…`SHF-260`) = Your Shinka + Today's Suggestion, TR and EN. Never selected one-sided. 260 is the starting library, not a cap. All pairs Active; no deactivate/delete in this version.
@@ -35,7 +37,7 @@ One Pair ID (`SHF-001`…`SHF-260`) = Your Shinka + Today's Suggestion, TR and E
 - 48 UNKNOWN rows ("Bilinmiyor").
 - 240 total. Live validation: 240 file = 192 file row-for-row (same categories) + 48 UNKNOWN; 0 duplicates; 0 missing combinations; 0 missing TR/EN cells.
 
-## Selection rules (implemented H09; production persistence blocked)
+## Selection rules (implemented H09; native acceptance evidence bounded above)
 Existing local-day record → return. Else mapping category → random Active pair not shown in last 40 days (first show day counts; day 41 eligible) → other categories → least-recently-shown Active (ties random; only here 40-day rule may be exceeded). Store actual category_id; TR/EN snapshots immutable; language switch shows the other snapshot of the same pair.
 
 ## Ownership
@@ -66,7 +68,7 @@ OD-002 is resolved by the explicit user approval of 2026-10-20. `contentCategory
 
 No source Pair ID field was added to the 20-entity contract. Exact category plus all four text cells uniquely identify each original pair. Verification returns its SHF ID → native MessagePair.id crosswalk. An edited/unrecognized/duplicated row or broken relationship is a conflict. Initial-package bounds are 6 categories, 240 mappings and 260 pairs, with one extra row queried to detect overflow. A later source expansion requires a new manifest/package; 260 is not a permanent domain limit.
 
-H05-009 now distinguishes PRE_IMPORT (or SOURCE_DECISION_REQUIRED) with verified zero counts from VERIFIED_IMPORTED with exact expected source hash, counts, every relation/text and a complete one-to-one crosswalk. Partial/conflicting data fails; absent evidence blocks. Pre-import PASS does not mean production-ready. H09-004 remains BLOCKED until production persistence is verified.
+H05-009 now distinguishes PRE_IMPORT (or SOURCE_DECISION_REQUIRED) with verified zero counts from VERIFIED_IMPORTED with exact expected source hash, counts, every relation/text and a complete one-to-one crosswalk. Partial/conflicting data fails; absent evidence blocks. Pre-import PASS does not mean production-ready. Current native H09-004 verifies read-only reference prerequisites and now passes on the approved target; hosted mutation acceptance remains separate.
 
 The pure engine implements mapped-category random selection, other-category fallback, then least-recent active/ties random. History query is only [today−39,today], at most 41 rows to detect duplicate-day overflow. A showing on day 1 is eligible on day 41 (difference 40). Final fallback needs no older history: when every active pair is protected, each latest showing is necessarily in the bounded window. Saved category is the chosen pair's category. Both language snapshots are immutable.
 

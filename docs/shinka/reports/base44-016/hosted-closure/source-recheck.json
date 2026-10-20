@@ -1,0 +1,84 @@
+{
+  "sha256": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+  "sources": [
+    {
+      "name": "Shinka_Free_260_YS_Suggestion_TR_EN.xlsx",
+      "sha256": "34e37e6edbc57d603d8cb3836dfccbc5645451501963649629b17931f4320dcb",
+      "worksheet": "xl/worksheets/sheet1.xml",
+      "rows": 260
+    },
+    {
+      "name": "Shinka_Free_240_Eslestirme_40Gun_Test_Sade.xlsx",
+      "sha256": "dff0c919b58cd7daf678f9d18cb3af3d72c9173e147680bd80d1e0158acb35d4",
+      "worksheet": "xl/worksheets/sheet1.xml",
+      "rows": 240
+    },
+    {
+      "name": "Shinka_Free_192_Kategori_Eslestirme.xlsx",
+      "sha256": "76c99ac217945889f5245aa0470ef2bdee7c024d049f60745bccc48aadc3d31d",
+      "worksheet": "xl/worksheets/sheet1.xml",
+      "rows": 192
+    }
+  ],
+  "categories": {
+    "Dinlenme & Yavaşlama": 30,
+    "Öz Bakım & İyi Hissetme": 66,
+    "Yenilik & Keşif": 56,
+    "Odaklanma & İlerleme": 32,
+    "Bağ Kurma & Paylaşım": 44,
+    "Sadeleşme & Bırakma": 32
+  },
+  "categoryDecision": {
+    "id": "OD-002",
+    "status": "RESOLVED_BY_PRODUCT_DECISION",
+    "source": "Explicit user approval of the six-row category table in this conversation",
+    "rows": [
+      {
+        "source_label": "Dinlenme & Yavaşlama",
+        "category_code": "REST_AND_SLOW_DOWN",
+        "display_name_tr": "Kendine Bir Nefes",
+        "display_name_en": "Take a Breath"
+      },
+      {
+        "source_label": "Öz Bakım & İyi Hissetme",
+        "category_code": "SELF_CARE_AND_WELLBEING",
+        "display_name_tr": "Kendine İyi Gel",
+        "display_name_en": "Be Kind to Yourself"
+      },
+      {
+        "source_label": "Yenilik & Keşif",
+        "category_code": "NOVELTY_AND_DISCOVERY",
+        "display_name_tr": "Yeniye Yer Aç",
+        "display_name_en": "Make Room for the New"
+      },
+      {
+        "source_label": "Odaklanma & İlerleme",
+        "category_code": "FOCUS_AND_PROGRESS",
+        "display_name_tr": "Küçük Adımlarla İlerle",
+        "display_name_en": "Move Forward in Small Steps"
+      },
+      {
+        "source_label": "Bağ Kurma & Paylaşım",
+        "category_code": "CONNECTION_AND_SHARING",
+        "display_name_tr": "Bağlarını Güçlendir",
+        "display_name_en": "Strengthen Your Connections"
+      },
+      {
+        "source_label": "Sadeleşme & Bırakma",
+        "category_code": "SIMPLICITY_AND_LETTING_GO",
+        "display_name_tr": "Hafiflemeye İzin Ver",
+        "display_name_en": "Allow Yourself to Feel Lighter"
+      }
+    ]
+  },
+  "exactPairIds": true,
+  "relationship": {
+    "baseRowsMatching": 192,
+    "differences": [],
+    "differenceCount": 0,
+    "extendedNonUnknown": 192,
+    "unknownRows": 48,
+    "relationshipHolds": true
+  },
+  "scope": "REPOSITORY_PREPARATION_NOT_LIVE_IMPORT"
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "shinka.hosted-calendar-delete/1",
+  "measuredAt": "2026-10-20T18:44:35.706Z",
+  "privileged": false,
+  "result": {
+    "mutationConfirmed": true,
+    "pendingReview": false,
+    "count": 1,
+    "testRecordAbsent": true,
+    "revision": "8d8f2ee2c51129b938d5a3b118b416856593a5b9f79fefe40278cd9c4fc03fbf"
+  },
+  "status": "VERIFIED"
+}

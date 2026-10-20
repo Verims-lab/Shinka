@@ -1,0 +1,11 @@
+{
+  "schema": "shinka.hosted-health-history-read/1",
+  "measuredAt": "2026-10-20T18:33:22.901Z",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "dataEnvironment": "prod",
+  "privileged": false,
+  "error": {
+    "status": 503,
+    "error_code": "TEST_LIFECYCLE_UNAVAILABLE"
+  }
+}

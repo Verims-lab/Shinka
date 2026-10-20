@@ -1,12 +1,24 @@
 # SHINKA — Development Notes
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
-**Status:** ACTIVE — First Shinka repository work; production persistence and live closure blocked
+**Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
 **Current BuildMarker:** Buildmarker-016
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
-**Scope:** First Shinka/Home preparation and retained maintenance/admin evidence; no live import or deployment.
+**Scope:** Current Base44 hosted verification and approved reference/synthetic writes; retained historical maintenance evidence. No agent main merge/publish.
+
+## Buildmarker-016 hosted continuation / HC-016.1 — 2026-10-20
+
+Main's identical-file PR #19 merge was fast-forwarded into Test; baseline main/Test/local `c6eca26`. User explicitly approved the existing shared app/prod target, three server Test Tools settings and both named synthetic accounts. Test/Preview never imply database isolation. Full remote source inventory matches all 24 regenerated schemas; no entities push or backend/frontend publish was performed. Actual admin nativeReadiness confirms BASE44_NATIVE_V1/native-continuation/1 and all three operational stores readable, retaining hostedMutationVerified=false.
+
+Exact 6 categories/260 bilingual pairs/240 mappings imported using fresh reviewed digests and bounded serial batches; source hash/copy/mapping unchanged, zero conflicts. Current Moon coverage passes through 2028-11-02, beyond the required horizon; 103 is an observed interval count. Initial 500/502 errors and partial import continuation remain recorded.
+
+Selected synthetic admin: ON-06/Home displayed, concurrent same-day requests preserved the same daily ID/snapshot. Calendar experienced a genuine partial-write 500, resumed its PENDING receipt, edited and deleted only the new test record; all three receipts finish APPLIED and the initial revision returns. Stale add replay after edit is rejected. Reset preparation retains all seven product-table hashes; separate clients resume PROFILE/CYCLE/FIRST_SHINKA to COMPLETED/DONE with Skip and the same daily row. Final original profile/preferences/consent/event/period/settings/daily hashes all match baseline. Forged owner payload returns 403. These are bounded real backend results, not worker-kill, normal-user denial or distributed uniqueness guarantees. No account deletion or maintenance drain was run.
+
+New published HC-016.0 Full Health: 133 PASS / 2 FAIL / 1 BLOCKED / 19 NA; H09-004 passes after import. H03-006's reviewed Test Tools imports failed the old source whitelist. The narrow correction scans those three modules as well; HB01/HB02 and local H03-006 coverage added, catalog HC-016.1, no case removed. H03-007/H13-004 iframe timeouts remain separate; the published probe returns X-Frame-Options:DENY. New run save failed with HEALTH_HISTORY_PERSIST_FAILED; subsequent list/private report read succeeds but returns the older saved run, not the unsaved new result.
+
+Chromium/WebKit each 439/439 canonical + 100/100 local Health PASS, no page errors. Required code checks and byte budgets pass; 0 Critical/High, 2 existing Moderate dependency findings. No dependencies changed. Main sync/publish, new Full Health/save/open, normal-user session, original ON-05 and physical Android/iOS remain explicit follow-ups. Active Internal Build retains 012–016. [Detailed evidence and executable handoff](reports/SHINKA_HOSTED_CLOSURE_016.md).
 
 ## Buildmarker-016 — Base44 continuation
 

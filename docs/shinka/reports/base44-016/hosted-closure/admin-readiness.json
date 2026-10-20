@@ -1,0 +1,93 @@
+{
+  "schema": "shinka.hosted-admin-readiness/1",
+  "measuredAt": "2026-10-20T18:05:39.646Z",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "dataEnvironment": "prod",
+  "privileged": false,
+  "identity": {
+    "authenticated": true,
+    "role": "admin"
+  },
+  "applicationSession": {
+    "authority": "BASE44_NATIVE_V1",
+    "role": "admin"
+  },
+  "nativeReadiness": {
+    "authority": "BASE44_NATIVE_V1",
+    "strategyVersion": "native-continuation/1",
+    "schemas": [
+      {
+        "name": "AdminTestOperation",
+        "readable": true
+      },
+      {
+        "name": "UserCalendarAction",
+        "readable": true
+      },
+      {
+        "name": "InternalHealthRun",
+        "readable": true
+      }
+    ],
+    "daily": "IMMUTABLE_CANDIDATES",
+    "calendar": "OBSERVATIONS_AND_RECEIPTS",
+    "reset": "VERIFIED_STEPS",
+    "deletion": "OPERATOR_MAINTENANCE_ONLY",
+    "distributedFence": false,
+    "hostedMutationVerified": false
+  },
+  "dryRun": {
+    "phase": "PRE_IMPORT",
+    "ready": false,
+    "digest": "59b961e8d13f048f1f873c15e3b880bf189cd7bb00771fe7d978223acc5ff9a0",
+    "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+    "sourceSet": "SRC-2026-10-18",
+    "counts": {
+      "message_category_lookup": {
+        "create": 6,
+        "same": 0,
+        "conflicts": 0
+      },
+      "message_pair": {
+        "create": 260,
+        "same": 0,
+        "conflicts": 0
+      },
+      "message_category_mapping": {
+        "create": 240,
+        "same": 0,
+        "conflicts": 0
+      }
+    },
+    "conflicts": [],
+    "pairIds": [],
+    "dailyPersistence": {
+      "strategy": "IMMUTABLE_CANDIDATES",
+      "transaction": false,
+      "duplicates": "RECONCILE_AND_RETAIN",
+      "hostedMutationVerified": false
+    }
+  },
+  "moonDryRun": {
+    "status": 502,
+    "error_code": "REQUEST_FAILED"
+  },
+  "app": {
+    "id": "6ad5190f4845d4e3af03b420",
+    "visibility": "public_without_login"
+  },
+  "directAdminReads": {
+    "AdminTestOperation": {
+      "outcome": "FILTERED_RESULT",
+      "returned": 0
+    },
+    "UserCalendarAction": {
+      "outcome": "FILTERED_RESULT",
+      "returned": 0
+    },
+    "InternalHealthRun": {
+      "outcome": "FILTERED_RESULT",
+      "returned": 0
+    }
+  }
+}

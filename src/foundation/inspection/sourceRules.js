@@ -78,12 +78,18 @@ export const BOUNDARY_MODULES = [
 export const missingBoundaries = (paths) => BOUNDARY_MODULES.filter((m) => !paths.includes(m));
 
 const UI_ALLOWED = [/^react$/, /^react-router-dom$/, /^lucide-react$/, /^framer-motion$/, /^@\/components\//, /^@\/foundation\//, /^@\/services\/internal\//, /^@\/lib\/AuthContext$/];
+// Reviewed presentation/controller boundaries, not a blanket feature-directory exemption.
+const INTERNAL_FEATURE_UI = {
+  "@/features/adminTestTools/catalog": "/src/features/adminTestTools/catalog.js",
+  "@/features/adminTestTools/useTestTools": "/src/features/adminTestTools/useTestTools.js",
+  "@/features/adminTestTools/ImpactPreview": "/src/features/adminTestTools/ImpactPreview.jsx",
+};
 const UI_FORBIDDEN_TOKENS = /\.entities\.|functions\.invoke|shinka_date|cycle_length|sun_sign|moon_phase_code/;
 export function checkInternalUiPurity(sources) {
-  const files = Object.keys(sources).filter((p) => p.startsWith("/src/pages/internal/") || p.startsWith("/src/components/internal/"));
+  const files = Object.keys(sources).filter((p) => p.startsWith("/src/pages/internal/") || p.startsWith("/src/components/internal/") || Object.values(INTERNAL_FEATURE_UI).includes(p));
   const violations = [];
   for (const p of files) {
-    for (const spec of importsOf(sources[p])) if (!UI_ALLOWED.some((re) => re.test(spec))) violations.push({ file: p, spec });
+    for (const spec of importsOf(sources[p])) if (!UI_ALLOWED.some((re) => re.test(spec)) && !Object.hasOwn(INTERNAL_FEATURE_UI, spec)) violations.push({ file: p, spec });
     if (UI_FORBIDDEN_TOKENS.test(sources[p])) violations.push({ file: p, spec: "FORBIDDEN_TOKEN" });
   }
   return { files: files.length, violations };

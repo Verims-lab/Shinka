@@ -1,0 +1,18 @@
+{
+  "schema": "shinka.hosted-reset-finish/1",
+  "measuredAt": "2026-10-20T18:43:39.497Z",
+  "privileged": false,
+  "resumedState": "FIRST_SHINKA_DEPENDENCY",
+  "home": {
+    "state": "ACTIVE_EXISTING_USER",
+    "persisted": true,
+    "created": false,
+    "dailyHash": "e20abb218d38334a04a1048a23385ba9a19e8ddc826689a15e438c4a71c5782f",
+    "idHash": "f3fed9a5f3533692839fe61611aff426a7be4631b095cc0b09898748b5ad5d64"
+  },
+  "job": {
+    "status": "COMPLETED",
+    "stage": "DONE"
+  },
+  "status": "VERIFIED"
+}

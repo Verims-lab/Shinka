@@ -1,0 +1,34 @@
+{
+  "schema": "shinka.hosted-owner-acceptance/1",
+  "measuredAt": "2026-10-20T18:32:52.506Z",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "privileged": false,
+  "targetSha256": "eee3ec9d4738e434a248948c54be02040669b2c7aa7e69e433d3b2af3b2526dd",
+  "steps": [
+    {
+      "step": "hydrate",
+      "state": "ACTIVE_EXISTING_USER"
+    },
+    {
+      "step": "same_day_concurrent_requests",
+      "passed": true,
+      "dailyHash": "e20abb218d38334a04a1048a23385ba9a19e8ddc826689a15e438c4a71c5782f",
+      "idHash": "f3fed9a5f3533692839fe61611aff426a7be4631b095cc0b09898748b5ad5d64",
+      "created": false,
+      "concurrentResponses": 2,
+      "allSameSnapshot": true
+    },
+    {
+      "step": "calendar_baseline",
+      "count": 1,
+      "revision": "8d8f2ee2c51129b938d5a3b118b416856593a5b9f79fefe40278cd9c4fc03fbf",
+      "startsHash": "a876b1a0cabe2049aacbbef57759a875e45667c2c3324cc96eb9c9443f1f8c56",
+      "predictionsHash": "302028799599b7f91eeeac6d44b6832364aef8efb8374699cd57eb01e9820735"
+    }
+  ],
+  "status": "STOPPED",
+  "error": {
+    "code": "CALENDAR_OPERATION_FAILED",
+    "status": 500
+  }
+}

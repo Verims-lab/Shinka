@@ -1,0 +1,39 @@
+{
+  "schema": "shinka.hosted-reset-prepare/1",
+  "measuredAt": "2026-10-20T18:40:39.550Z",
+  "privileged": false,
+  "preview": {
+    "enabled": true,
+    "blockers": [],
+    "counts": {
+      "user_cycle_phase_day": 0,
+      "user_cycle_prediction": 0,
+      "user_cycle_settings": 0,
+      "user_period_record": 1,
+      "user_pattern_summary": 0,
+      "user_preferences": 1,
+      "user_profile": 1,
+      "user_health_consent": 1,
+      "user_health_consent_event": 1,
+      "user_daily_message": 1,
+      "notification_delivery": 0,
+      "health_data_deletion_job": 0,
+      "data_protection_event": 0,
+      "admin_audit_log": 26,
+      "calendar_actions": 3
+    },
+    "environment": {
+      "app_id": "6ad5190f4845d4e3af03b420",
+      "server": "https://shinka-rhythm-flow.base44.app",
+      "label": "TEST",
+      "authorized": true
+    }
+  },
+  "job": {
+    "status": "RESET_ACTIVE",
+    "stage": "PROFILE",
+    "operation": "RESET_ONBOARDING"
+  },
+  "route": "AUTHENTICATED_PROFILE_REQUIRED",
+  "status": "PREPARED_VERIFIED"
+}

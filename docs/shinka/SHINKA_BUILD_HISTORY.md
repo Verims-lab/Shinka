@@ -3,7 +3,7 @@
 **Document:** SHINKA_BUILD_HISTORY.md
 **Status:** ACTIVE — latest five unique packages
 **Current BuildMarker:** Buildmarker-016
-**Last Updated:** 2026-10-20T17:45:22Z
+**Last Updated:** 2026-10-20T18:47:16.690Z
 **Authoritative Source References:** src/foundation/buildMarker.js, src/foundation/buildLedgerData.js
 **Purpose:** Generated, bounded active package history.
 **Scope:** Latest five packages including current; Git retains older history.
@@ -46,6 +46,6 @@ Test-only approval: Supabase Free Frankfurt, $0; account access pending, no proj
 
 Restores Base44 as sole product/identity/admin authority; immutable Home candidate reconciliation, actual-date Calendar with recovery receipts, verified-step reset and operator-maintenance deletion. Removes unused SQL runtime while preserving historical evidence.
 
-Health: HC-016.0. Verification: LOCAL_VERIFIED_HOSTED_ACCEPTANCE_PENDING.
+Health: HC-016.1. Verification: HOSTED_PARTIAL_HEALTH_BLOCKED.
 
-Chromium/WebKit each 437/437 canonical regressions and 99/99 local Health, zero page errors. 30 native handler fault/race tests and actual session/entry checks; local synthetic transport, not hosted enforcement. Clean install/tree, lint/type/build, Repo Health, last-five history and mobile budgets pass. Audit: 0 Critical/High, 2 existing Moderate router findings. Fresh read-only Base44: lifecycle readable; new receipt schema/native strategy unconfirmed; content missing 6/260/240 and Moon 103. User confirms no SQL setup/transfer. No remote mutation, main merge/publish or paid service. Hosted original ON-05 account, Full Health and physical Android/iOS remain open. Decision: SHINKA_BASE44_CONTINUATION.md; evidence: reports/base44-016/verification.json. Supersedes 014/015 direction; active packages 012–016.
+016 hosted closure: admin nativeReadiness BASE44_NATIVE_V1/native-continuation/1; three operational stores readable; 24 remote schema sources match. Existing shared app/prod and two synthetic accounts explicitly authorized, three Test Tools settings installed. Exact 6/260/240 references + current Moon coverage imported/verified; original source unchanged. Selected admin Home concurrent same-day reuse, Calendar partial-500 recovery/edit/delete/retry and reset across client restarts verified; original product hashes preserved, owner forgery 403. No account deletion/drain or worker-kill proof. New hosted HC-016.0 Full Health: 133 PASS/2 FAIL/1 BLOCKED; H09-004 PASS, iframe timeouts with published X-Frame-Options:DENY, save failed; old history still readable. H03-006 exact Test Tools boundary correction + HB01/HB02, HC-016.1, no case removed. Chromium/WebKit 439/439 + 100/100 local Health; quality/budgets pass, 0 Critical/High, 2 Moderate. Main publish, normal-user session, new Health save/open, original ON-05 and devices remain open. Reports/SHINKA_HOSTED_CLOSURE_016.md; evidence base44-016/hosted-closure/. Active 012–016.
