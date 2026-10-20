@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-020
+**Current BuildMarker:** Buildmarker-021
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -14,6 +14,10 @@
 - NO SILENT SOURCE-CONTRACT CHANGE
 - NO FUTURE FEATURE IMPLEMENTATION WITHOUT PACKAGE SCOPE
 - NO LEGACY SHINKA IMPORT — NO LEGACY SHINKA CONTRACT MAY ENTER THIS PROJECT WITHOUT AN EXPLICIT CHANGE REQUEST.
+
+## Pattern package — 021
+
+Explicit request advances Buildmarker-020 → 021 and HC-020.0 → HC-021.0 once. H10-001 moves from future to executable, targeted H12/H13/H15 coverage joins existing suites, and Internal Build retains 017–021 through recordBuild. Prior Health/audit/Git evidence and ON-05/live acceptances remain. Local mandatory gates, both browser engines and byte budgets precede Test-only push. No live Full Health, content import, user mutation, main merge/publish or new service. Source states/date metadata are not silently altered to make a check pass.
 
 ## Current package governance — 020 targeted fix
 

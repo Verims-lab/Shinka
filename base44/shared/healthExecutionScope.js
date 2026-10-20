@@ -1,5 +1,6 @@
 // User-approved 018/019 scope separation. IDs and acceptance coverage are retained.
 export const HEALTH_SCOPE_TRANSFERS = Object.freeze([
+  {id:'H13-017',localOnly:true,tests:'PU01–PU05, scripts/checkPatternFlow.mjs',coverage:'Pattern TR/EN, isolated section retry, stale response, mobile timeline labels and product routes'},
   {id:'H15-002',localOnly:true,tests:'scripts/measureMaintenance.mjs',coverage:'Production emitted bundle budgets and loopback route lab; field p75 is not inferred'},
   {id:'H03-007', localOnly:true, tests:'All canonical Foundation regressions', coverage:'Chromium/WebKit, auth, contracts, security and UI'},
   {id:'H07-013', localOnly:true, tests:'DU01–DU05', coverage:'ON-06/Home components, locale and late navigation'},

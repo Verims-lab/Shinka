@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-020
+**Current BuildMarker:** Buildmarker-021
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## Buildmarker-021 — Pattern delivery (2026-10-21)
+
+Branch preflight: clean local Test equaled origin/Test at 9b47440; origin/main was one merge commit ahead (c602061). Fast-forwarded Test to c602061 and pushed only Test before implementation. New feature uses read-only owner-scoped native backend, shared Home candidate ordering, existing summary shape and independent localized themes/timeline UI. No schema or source content change. H10-001 activated; H12-037/H13-017 added, H15-004 and common UI checks extended; HC-021.0. Initial focused run exposed next-New boundary fixture/selection and deletion-fixture state mismatches; corrected without weakening authorization or dropping tests. Final Chromium/WebKit: 507/507 each, 22 Pattern route/layout checks and 87 existing mobile checks each; zero page exceptions. Local Health 126 PASS/13 BLOCKED (hosted dependencies absent), new Pattern cases PASS. Mandatory install/tree/type/lint/repo/build/history and byte-budget checks pass; security 0 Critical/High, two existing Moderate router findings. Initial JS 453106/149772 gzip; CSS 86467/14914. Generic native summary reads share current calculation, never stale cache; PT19 verifies both allowed/rejected routes. No hosted or physical execution. Full evidence and remaining hosted/device acceptance: [021 delivery](reports/SHINKA_PATTERN_021.md), [verification](reports/pattern-021/verification.json).
 
 ## Buildmarker-020 — targeted readiness/removal closure
 

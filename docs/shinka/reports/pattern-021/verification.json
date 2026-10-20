@@ -1,0 +1,3909 @@
+{
+  "buildMarker": "Buildmarker-021",
+  "healthCatalog": "HC-021.0",
+  "date": "2026-10-21",
+  "timezone": "Europe/Istanbul",
+  "scope": "REPOSITORY_AND_LOCAL_SYNTHETIC_ONLY",
+  "baseCommit": "c602061",
+  "branchPreflight": {
+    "initialLocalAndTest": "9b47440",
+    "mainAhead": 1,
+    "fastForwardedAndPushedOnlyTest": true,
+    "beforeDeliveryMainTestLocalEqual": true
+  },
+  "browsers": {
+    "chromium": {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "tests": 507,
+      "passed": 507,
+      "failed": 0,
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 7,
+        "nativeRoutes": 3,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true
+      },
+      "pageErrors": [],
+      "patternFlow": [
+        {
+          "scenario": "pattern-320-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "labels": [
+              {
+                "left": 41,
+                "right": 279,
+                "top": 532.625,
+                "bottom": 572.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 584.625,
+                "bottom": 624.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 636.625,
+                "bottom": 694.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 706.625,
+                "bottom": 746.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 758.625,
+                "bottom": 798.625
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-320-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "labels": [
+              {
+                "left": 41,
+                "right": 279,
+                "top": 997.625,
+                "bottom": 1077.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1089.625,
+                "bottom": 1169.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1181.625,
+                "bottom": 1297.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1309.625,
+                "bottom": 1389.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1401.625,
+                "bottom": 1481.625
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-320-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "labels": [
+              {
+                "left": 41,
+                "right": 279,
+                "top": 532.625,
+                "bottom": 572.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 584.625,
+                "bottom": 624.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 636.625,
+                "bottom": 694.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 706.625,
+                "bottom": 746.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 758.625,
+                "bottom": 798.625
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-320-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "labels": [
+              {
+                "left": 41,
+                "right": 279,
+                "top": 947.625,
+                "bottom": 1027.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1039.625,
+                "bottom": 1119.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1131.625,
+                "bottom": 1247.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1259.625,
+                "bottom": 1339.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1351.625,
+                "bottom": 1431.625
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-360-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "labels": [
+              {
+                "left": 41,
+                "right": 319,
+                "top": 513.828125,
+                "bottom": 553.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 565.828125,
+                "bottom": 605.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 617.828125,
+                "bottom": 675.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 687.828125,
+                "bottom": 727.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 739.828125,
+                "bottom": 779.828125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-360-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "labels": [
+              {
+                "left": 41,
+                "right": 319,
+                "top": 898.828125,
+                "bottom": 978.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 990.828125,
+                "bottom": 1070.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 1082.828125,
+                "bottom": 1198.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 1210.828125,
+                "bottom": 1290.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 1302.828125,
+                "bottom": 1382.828125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-360-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "labels": [
+              {
+                "left": 41,
+                "right": 319,
+                "top": 513.828125,
+                "bottom": 553.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 565.828125,
+                "bottom": 605.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 617.828125,
+                "bottom": 675.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 687.828125,
+                "bottom": 727.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 739.828125,
+                "bottom": 779.828125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-360-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "labels": [
+              {
+                "left": 41,
+                "right": 319,
+                "top": 958.828125,
+                "bottom": 1038.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 1050.828125,
+                "bottom": 1130.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 1142.828125,
+                "bottom": 1258.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 1270.828125,
+                "bottom": 1350.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 1362.828125,
+                "bottom": 1442.828125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-390-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "labels": [
+              {
+                "left": 41,
+                "right": 349,
+                "top": 522.234375,
+                "bottom": 562.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 574.234375,
+                "bottom": 614.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 626.234375,
+                "bottom": 684.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 696.234375,
+                "bottom": 736.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 748.234375,
+                "bottom": 788.234375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-390-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "labels": [
+              {
+                "left": 41,
+                "right": 349,
+                "top": 855.234375,
+                "bottom": 935.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 947.234375,
+                "bottom": 1027.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 1039.234375,
+                "bottom": 1155.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 1167.234375,
+                "bottom": 1247.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 1259.234375,
+                "bottom": 1339.234375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-390-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "labels": [
+              {
+                "left": 41,
+                "right": 349,
+                "top": 522.234375,
+                "bottom": 562.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 574.234375,
+                "bottom": 614.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 626.234375,
+                "bottom": 684.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 696.234375,
+                "bottom": 736.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 748.234375,
+                "bottom": 788.234375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-390-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "labels": [
+              {
+                "left": 41,
+                "right": 349,
+                "top": 915.234375,
+                "bottom": 995.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 1007.234375,
+                "bottom": 1087.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 1099.234375,
+                "bottom": 1215.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 1227.234375,
+                "bottom": 1307.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 1319.234375,
+                "bottom": 1399.234375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-430-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "labels": [
+              {
+                "left": 41,
+                "right": 389,
+                "top": 533.4375,
+                "bottom": 573.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 585.4375,
+                "bottom": 625.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 637.4375,
+                "bottom": 695.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 707.4375,
+                "bottom": 747.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 759.4375,
+                "bottom": 799.4375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-430-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "labels": [
+              {
+                "left": 41,
+                "right": 389,
+                "top": 830.4375,
+                "bottom": 910.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 922.4375,
+                "bottom": 1002.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 1014.4375,
+                "bottom": 1130.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 1142.4375,
+                "bottom": 1222.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 1234.4375,
+                "bottom": 1314.4375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-430-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "labels": [
+              {
+                "left": 41,
+                "right": 389,
+                "top": 533.4375,
+                "bottom": 573.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 585.4375,
+                "bottom": 625.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 637.4375,
+                "bottom": 695.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 707.4375,
+                "bottom": 747.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 759.4375,
+                "bottom": 799.4375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-430-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "labels": [
+              {
+                "left": 41,
+                "right": 389,
+                "top": 806.4375,
+                "bottom": 886.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 898.4375,
+                "bottom": 978.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 990.4375,
+                "bottom": 1106.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 1118.4375,
+                "bottom": 1198.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 1210.4375,
+                "bottom": 1290.4375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-844-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "labels": [
+              {
+                "left": 175,
+                "right": 669,
+                "top": 574.3125,
+                "bottom": 614.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 626.3125,
+                "bottom": 666.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 678.3125,
+                "bottom": 736.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 748.3125,
+                "bottom": 788.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 800.3125,
+                "bottom": 840.3125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-844-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "labels": [
+              {
+                "left": 175,
+                "right": 669,
+                "top": 751.3125,
+                "bottom": 831.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 843.3125,
+                "bottom": 923.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 935.3125,
+                "bottom": 1051.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 1063.3125,
+                "bottom": 1143.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 1155.3125,
+                "bottom": 1235.3125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-844-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "labels": [
+              {
+                "left": 175,
+                "right": 669,
+                "top": 574.3125,
+                "bottom": 614.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 626.3125,
+                "bottom": 666.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 678.3125,
+                "bottom": 736.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 748.3125,
+                "bottom": 788.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 800.3125,
+                "bottom": 840.3125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-844-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "labels": [
+              {
+                "left": 175,
+                "right": 669,
+                "top": 811.3125,
+                "bottom": 891.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 903.3125,
+                "bottom": 983.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 995.3125,
+                "bottom": 1111.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 1123.3125,
+                "bottom": 1203.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 1215.3125,
+                "bottom": 1295.3125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-route-anonymous-incomplete-denied",
+          "passed": true,
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-route-user-incomplete-denied",
+          "passed": true,
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        }
+      ],
+      "mobile": [
+        {
+          "scenario": "touch-viewport-320x568",
+          "width": 320,
+          "scrollWidth": 320,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-360x740",
+          "width": 360,
+          "scrollWidth": 360,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-390x844",
+          "width": 390,
+          "scrollWidth": 390,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-430x900",
+          "width": 430,
+          "scrollWidth": 430,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-844x390",
+          "width": 844,
+          "scrollWidth": 844,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "back-forward-reload-session-routing",
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-320",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-320",
+          "focusInside": true,
+          "width": 250,
+          "scrollWidth": 248,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-360",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-360",
+          "focusInside": true,
+          "width": 290,
+          "scrollWidth": 288,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-390",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-390",
+          "focusInside": true,
+          "width": 320,
+          "scrollWidth": 318,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-430",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-430",
+          "focusInside": true,
+          "width": 360,
+          "scrollWidth": 358,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-844",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-844",
+          "focusInside": true,
+          "width": 440,
+          "scrollWidth": 438,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-320",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-320",
+          "focusInside": true,
+          "width": 250,
+          "scrollWidth": 248,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-360",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-360",
+          "focusInside": true,
+          "width": 290,
+          "scrollWidth": 288,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-390",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-390",
+          "focusInside": true,
+          "width": 320,
+          "scrollWidth": 318,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-430",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-430",
+          "focusInside": true,
+          "width": 360,
+          "scrollWidth": 358,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-844",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-844",
+          "focusInside": true,
+          "width": 440,
+          "scrollWidth": 438,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "javascript-errors",
+          "passed": true,
+          "errors": []
+        }
+      ],
+      "productionRouting": [
+        {
+          "session": "anonymous",
+          "state": "UNAUTHENTICATED_SIGN_IN",
+          "passed": true
+        },
+        {
+          "session": "admin",
+          "state": "AUTHENTICATED_PROFILE_REQUIRED",
+          "passed": true
+        },
+        {
+          "session": "admin-session-preserved-with-external-evidence",
+          "probe": {
+            "kind": "auth",
+            "path": "/auth-shell-probe",
+            "width": 360,
+            "viewport": {
+              "width": 360,
+              "height": 800
+            },
+            "topLevel": true,
+            "landedPath": "/auth-shell-probe",
+            "state": "READY",
+            "route": "/auth-shell-probe",
+            "screen": "UNAUTHENTICATED_SIGN_IN",
+            "geometry": {
+              "providers": "apple,google",
+              "heights": [
+                52,
+                52
+              ],
+              "padding": [
+                "20px",
+                "20px"
+              ],
+              "passwords": 0,
+              "ageChecked": false
+            },
+            "elapsedMs": 76,
+            "provenance": {
+              "contract": "shinka.browser-probes/1",
+              "buildMarker": "Buildmarker-021",
+              "sourceDigest": "2b394da9fca4a0f0c50df90e00ce6712794d1f25823d5904955bec883fe21d36",
+              "origin": "http://127.0.0.1:51118",
+              "environment": "LOCAL",
+              "measuredAt": "2026-10-20T22:50:04.324Z",
+              "engine": "chromium",
+              "browserVersion": "156.0.8078.4",
+              "evidenceBoundary": "ADMIN_SUPPLIED_BROWSER_MEASUREMENT",
+              "physicalDevice": false
+            }
+          },
+          "passed": true
+        },
+        {
+          "session": "anonymous-top-level-probe",
+          "passed": true
+        },
+        {
+          "session": "admin-top-level-probe",
+          "passed": true
+        }
+      ],
+      "health": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "counts": {
+          "PASS": 126,
+          "BLOCKED": 13
+        },
+        "blocked": [
+          {
+            "id": "H04-019",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H05-001",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-002",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-003",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-004",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-005",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-006",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-007",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-008",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-009",
+            "status": "BLOCKED",
+            "reason": "LIVE_CONTENT_COUNT_UNAVAILABLE"
+          },
+          {
+            "id": "H08-005",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H09-004",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H12-031",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          }
+        ],
+        "patternCases": [
+          {
+            "id": "H10-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-037",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H15-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          }
+        ],
+        "saveState": "SAVED",
+        "live": false
+      },
+      "healthSubset": {
+        "total": 61,
+        "counts": {
+          "PASS": 61
+        }
+      },
+      "onboardingHealthSubset": {
+        "total": 21,
+        "counts": {
+          "PASS": 21
+        }
+      },
+      "dailyHealthSubset": {
+        "total": 8,
+        "counts": {
+          "PASS": 8
+        }
+      },
+      "calendarHealthSubset": {
+        "total": 5,
+        "counts": {
+          "PASS": 5
+        }
+      },
+      "adminTestHealthSubset": {
+        "total": 3,
+        "counts": {
+          "PASS": 3
+        }
+      }
+    },
+    "webkit": {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "tests": 507,
+      "passed": 507,
+      "failed": 0,
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 7,
+        "nativeRoutes": 3,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true
+      },
+      "pageErrors": [],
+      "patternFlow": [
+        {
+          "scenario": "pattern-320-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "labels": [
+              {
+                "left": 41,
+                "right": 279,
+                "top": 532.625,
+                "bottom": 572.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 584.625,
+                "bottom": 624.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 636.625,
+                "bottom": 694.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 706.625,
+                "bottom": 746.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 758.625,
+                "bottom": 798.625
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-320-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "labels": [
+              {
+                "left": 41,
+                "right": 279,
+                "top": 997.625,
+                "bottom": 1077.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1089.625,
+                "bottom": 1169.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1181.625,
+                "bottom": 1297.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1309.625,
+                "bottom": 1389.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1401.625,
+                "bottom": 1481.625
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-320-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "labels": [
+              {
+                "left": 41,
+                "right": 279,
+                "top": 532.625,
+                "bottom": 572.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 584.625,
+                "bottom": 624.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 636.625,
+                "bottom": 694.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 706.625,
+                "bottom": 746.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 758.625,
+                "bottom": 798.625
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-320-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "labels": [
+              {
+                "left": 41,
+                "right": 279,
+                "top": 947.625,
+                "bottom": 1027.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1039.625,
+                "bottom": 1119.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1131.625,
+                "bottom": 1247.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1259.625,
+                "bottom": 1339.625
+              },
+              {
+                "left": 41,
+                "right": 279,
+                "top": 1351.625,
+                "bottom": 1431.625
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-360-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "labels": [
+              {
+                "left": 41,
+                "right": 319,
+                "top": 513.828125,
+                "bottom": 553.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 565.828125,
+                "bottom": 605.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 617.828125,
+                "bottom": 675.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 687.828125,
+                "bottom": 727.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 739.828125,
+                "bottom": 779.828125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-360-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "labels": [
+              {
+                "left": 41,
+                "right": 319,
+                "top": 898.828125,
+                "bottom": 978.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 990.828125,
+                "bottom": 1070.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 1082.828125,
+                "bottom": 1198.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 1210.828125,
+                "bottom": 1290.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 1302.828125,
+                "bottom": 1382.828125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-360-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "labels": [
+              {
+                "left": 41,
+                "right": 319,
+                "top": 513.828125,
+                "bottom": 553.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 565.828125,
+                "bottom": 605.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 617.828125,
+                "bottom": 675.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 687.828125,
+                "bottom": 727.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 739.828125,
+                "bottom": 779.828125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-360-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "labels": [
+              {
+                "left": 41,
+                "right": 319,
+                "top": 958.828125,
+                "bottom": 1038.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 1050.828125,
+                "bottom": 1130.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 1142.828125,
+                "bottom": 1258.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 1270.828125,
+                "bottom": 1350.828125
+              },
+              {
+                "left": 41,
+                "right": 319,
+                "top": 1362.828125,
+                "bottom": 1442.828125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-390-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "labels": [
+              {
+                "left": 41,
+                "right": 349,
+                "top": 522.234375,
+                "bottom": 562.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 574.234375,
+                "bottom": 614.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 626.234375,
+                "bottom": 684.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 696.234375,
+                "bottom": 736.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 748.234375,
+                "bottom": 788.234375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-390-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "labels": [
+              {
+                "left": 41,
+                "right": 349,
+                "top": 855.234375,
+                "bottom": 935.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 947.234375,
+                "bottom": 1027.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 1039.234375,
+                "bottom": 1155.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 1167.234375,
+                "bottom": 1247.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 1259.234375,
+                "bottom": 1339.234375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-390-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "labels": [
+              {
+                "left": 41,
+                "right": 349,
+                "top": 522.234375,
+                "bottom": 562.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 574.234375,
+                "bottom": 614.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 626.234375,
+                "bottom": 684.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 696.234375,
+                "bottom": 736.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 748.234375,
+                "bottom": 788.234375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-390-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "labels": [
+              {
+                "left": 41,
+                "right": 349,
+                "top": 915.234375,
+                "bottom": 995.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 1007.234375,
+                "bottom": 1087.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 1099.234375,
+                "bottom": 1215.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 1227.234375,
+                "bottom": 1307.234375
+              },
+              {
+                "left": 41,
+                "right": 349,
+                "top": 1319.234375,
+                "bottom": 1399.234375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-430-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "labels": [
+              {
+                "left": 41,
+                "right": 389,
+                "top": 533.4375,
+                "bottom": 573.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 585.4375,
+                "bottom": 625.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 637.4375,
+                "bottom": 695.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 707.4375,
+                "bottom": 747.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 759.4375,
+                "bottom": 799.4375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-430-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "labels": [
+              {
+                "left": 41,
+                "right": 389,
+                "top": 830.4375,
+                "bottom": 910.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 922.4375,
+                "bottom": 1002.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 1014.4375,
+                "bottom": 1130.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 1142.4375,
+                "bottom": 1222.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 1234.4375,
+                "bottom": 1314.4375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-430-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "labels": [
+              {
+                "left": 41,
+                "right": 389,
+                "top": 533.4375,
+                "bottom": 573.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 585.4375,
+                "bottom": 625.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 637.4375,
+                "bottom": 695.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 707.4375,
+                "bottom": 747.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 759.4375,
+                "bottom": 799.4375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-430-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "labels": [
+              {
+                "left": 41,
+                "right": 389,
+                "top": 806.4375,
+                "bottom": 886.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 898.4375,
+                "bottom": 978.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 990.4375,
+                "bottom": 1106.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 1118.4375,
+                "bottom": 1198.4375
+              },
+              {
+                "left": 41,
+                "right": 389,
+                "top": 1210.4375,
+                "bottom": 1290.4375
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-844-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "labels": [
+              {
+                "left": 175,
+                "right": 669,
+                "top": 574.3125,
+                "bottom": 614.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 626.3125,
+                "bottom": 666.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 678.3125,
+                "bottom": 736.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 748.3125,
+                "bottom": 788.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 800.3125,
+                "bottom": 840.3125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-844-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "labels": [
+              {
+                "left": 175,
+                "right": 669,
+                "top": 751.3125,
+                "bottom": 831.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 843.3125,
+                "bottom": 923.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 935.3125,
+                "bottom": 1051.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 1063.3125,
+                "bottom": 1143.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 1155.3125,
+                "bottom": 1235.3125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-844-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "labels": [
+              {
+                "left": 175,
+                "right": 669,
+                "top": 574.3125,
+                "bottom": 614.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 626.3125,
+                "bottom": 666.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 678.3125,
+                "bottom": 736.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 748.3125,
+                "bottom": 788.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 800.3125,
+                "bottom": 840.3125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-844-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "labels": [
+              {
+                "left": 175,
+                "right": 669,
+                "top": 811.3125,
+                "bottom": 891.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 903.3125,
+                "bottom": 983.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 995.3125,
+                "bottom": 1111.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 1123.3125,
+                "bottom": 1203.3125
+              },
+              {
+                "left": 175,
+                "right": 669,
+                "top": 1215.3125,
+                "bottom": 1295.3125
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-route-anonymous-incomplete-denied",
+          "passed": true,
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "pattern-route-user-incomplete-denied",
+          "passed": true,
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        }
+      ],
+      "mobile": [
+        {
+          "scenario": "touch-viewport-320x568",
+          "width": 320,
+          "scrollWidth": 320,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-360x740",
+          "width": 360,
+          "scrollWidth": 360,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-390x844",
+          "width": 390,
+          "scrollWidth": 390,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-430x900",
+          "width": 430,
+          "scrollWidth": 430,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-844x390",
+          "width": 844,
+          "scrollWidth": 844,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "back-forward-reload-session-routing",
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-320",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-320",
+          "focusInside": true,
+          "width": 250,
+          "scrollWidth": 248,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-360",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-360",
+          "focusInside": true,
+          "width": 290,
+          "scrollWidth": 288,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-390",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-390",
+          "focusInside": true,
+          "width": 320,
+          "scrollWidth": 318,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-430",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-430",
+          "focusInside": true,
+          "width": 360,
+          "scrollWidth": 358,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-844",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-844",
+          "focusInside": true,
+          "width": 440,
+          "scrollWidth": 438,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-320",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-320",
+          "focusInside": true,
+          "width": 250,
+          "scrollWidth": 248,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-360",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-360",
+          "focusInside": true,
+          "width": 290,
+          "scrollWidth": 288,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-390",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-390",
+          "focusInside": true,
+          "width": 320,
+          "scrollWidth": 318,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-430",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-430",
+          "focusInside": true,
+          "width": 360,
+          "scrollWidth": 358,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-844",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-844",
+          "focusInside": true,
+          "width": 440,
+          "scrollWidth": 438,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "javascript-errors",
+          "passed": true,
+          "errors": []
+        }
+      ],
+      "productionRouting": [
+        {
+          "session": "anonymous",
+          "state": "UNAUTHENTICATED_SIGN_IN",
+          "passed": true
+        },
+        {
+          "session": "admin",
+          "state": "AUTHENTICATED_PROFILE_REQUIRED",
+          "passed": true
+        },
+        {
+          "session": "admin-session-preserved-with-external-evidence",
+          "probe": {
+            "kind": "auth",
+            "path": "/auth-shell-probe",
+            "width": 360,
+            "viewport": {
+              "width": 360,
+              "height": 800
+            },
+            "topLevel": true,
+            "landedPath": "/auth-shell-probe",
+            "state": "READY",
+            "route": "/auth-shell-probe",
+            "screen": "UNAUTHENTICATED_SIGN_IN",
+            "geometry": {
+              "providers": "apple,google",
+              "heights": [
+                52,
+                52
+              ],
+              "padding": [
+                "20px",
+                "20px"
+              ],
+              "passwords": 0,
+              "ageChecked": false
+            },
+            "elapsedMs": 107,
+            "provenance": {
+              "contract": "shinka.browser-probes/1",
+              "buildMarker": "Buildmarker-021",
+              "sourceDigest": "2b394da9fca4a0f0c50df90e00ce6712794d1f25823d5904955bec883fe21d36",
+              "origin": "http://127.0.0.1:51153",
+              "environment": "LOCAL",
+              "measuredAt": "2026-10-20T22:50:08.096Z",
+              "engine": "webkit",
+              "browserVersion": "27.2",
+              "evidenceBoundary": "ADMIN_SUPPLIED_BROWSER_MEASUREMENT",
+              "physicalDevice": false
+            }
+          },
+          "passed": true
+        },
+        {
+          "session": "anonymous-top-level-probe",
+          "passed": true
+        },
+        {
+          "session": "admin-top-level-probe",
+          "passed": true
+        }
+      ],
+      "health": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "counts": {
+          "PASS": 126,
+          "BLOCKED": 13
+        },
+        "blocked": [
+          {
+            "id": "H04-019",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H05-001",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-002",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-003",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-004",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-005",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-006",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-007",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-008",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-009",
+            "status": "BLOCKED",
+            "reason": "LIVE_CONTENT_COUNT_UNAVAILABLE"
+          },
+          {
+            "id": "H08-005",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H09-004",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H12-031",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          }
+        ],
+        "patternCases": [
+          {
+            "id": "H10-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-037",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H15-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          }
+        ],
+        "saveState": "SAVED",
+        "live": false
+      },
+      "healthSubset": {
+        "total": 61,
+        "counts": {
+          "PASS": 61
+        }
+      },
+      "onboardingHealthSubset": {
+        "total": 21,
+        "counts": {
+          "PASS": 21
+        }
+      },
+      "dailyHealthSubset": {
+        "total": 8,
+        "counts": {
+          "PASS": 8
+        }
+      },
+      "calendarHealthSubset": {
+        "total": 5,
+        "counts": {
+          "PASS": 5
+        }
+      },
+      "adminTestHealthSubset": {
+        "total": 3,
+        "counts": {
+          "PASS": 3
+        }
+      }
+    }
+  },
+  "catalog": {
+    "registered": 163,
+    "inApp": 139,
+    "local": 8,
+    "external": 12,
+    "future": 4
+  },
+  "commands": {
+    "npm ci": 0,
+    "npm ls --depth=0": 0,
+    "npm ls --all": 0,
+    "npm run security:deps": 0,
+    "npm audit --json": 1,
+    "npm run typecheck": 0,
+    "npm run lint": 0,
+    "npm run health:repo": 0,
+    "npm run build": 0,
+    "node scripts/recordBuild.mjs --check": 0,
+    "node scripts/measureMaintenance.mjs": 0
+  },
+  "dependencyAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 2,
+    "high": 0,
+    "critical": 0,
+    "total": 2
+  },
+  "initialFindings": {
+    "focusedFailures": [
+      {
+        "id": "PT07",
+        "name": "Unequal actual Moon intervals, five proportional nodes and half-open phase boundaries",
+        "passed": false,
+        "blocked": false,
+        "detail": "PT07:START:MOON_LOOKUP_COVERAGE_REQUIRED"
+      },
+      {
+        "id": "PT11",
+        "name": "Anonymous, other user, forged authority, inactive, reset and deletion are denied",
+        "passed": false,
+        "blocked": false,
+        "detail": "PT11:START:ACCOUNT_DELETION_IN_PROGRESS expected; TEST_OPERATION_STATE_INVALID received"
+      }
+    ],
+    "resolution": "Moon uses the exact WANING end as the next New node; invalid deletion fixture was corrected to a valid RUNNING/VERIFY tombstone. Subsequent runs pass. Offline invalidation now presents section errors/retry. Generic native summary access now computes current authority rather than returning a stale cache.",
+    "validationHarness": "An early repository check accidentally overlapped npm ci and failed ERR_MODULE_NOT_FOUND for acorn; rerun after installation passed. Initial test resolver annotation type errors were fixed, without weakening type checking. 200% text sizing now snapshots all original sizes before applying, preventing inherited compounding."
+  },
+  "afterReview": {
+    "firstDayMetadata": "Reject malformed earliest-date row rather than EMPTY; PT18",
+    "genericSummary": "PT19 actual owner projection and rejected cache ID/admin read",
+    "englishCount": "PU01 asserts 1 day",
+    "textScaling": "Final real-App 22 scenarios per engine use exact 200% original computed sizes"
+  },
+  "performance": {
+    "file": "performance.json",
+    "initialJS": {
+      "raw": 453106,
+      "gzip": 149772
+    },
+    "css": {
+      "raw": 86467,
+      "gzip": 14914
+    },
+    "budgetPassed": true,
+    "cycles": [],
+    "fieldVitals": "NOT_MEASURED"
+  },
+  "hosted": {
+    "executed": false,
+    "status": "MANUAL_USER_VALIDATION_PENDING",
+    "fullHealth": false,
+    "import": false,
+    "userMutation": false,
+    "mainMergePublish": false
+  },
+  "physicalDevices": {
+    "android": "NOT_RUN",
+    "ios": "NOT_RUN"
+  },
+  "remaining": [
+    "Original ON-05 same-account saveCycle/readback",
+    "Current-build hosted identity/flows and Full Health save/list/open",
+    "Physical Android/iOS and field p75/INP"
+  ]
+}

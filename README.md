@@ -4,9 +4,11 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Any change pushed to the repo will also be reflected in the Base44 Builder.
 
-## Current Test data authority (Buildmarker-018)
+## Current Test data authority (Buildmarker-021)
 
 Base44 is the single product-data, identity and admin-role authority. Browser calls Base44 backend functions; no SQL secret, service, database setup or second login is required. Home reconciles immutable daily candidates; Calendar calculates from actual dates; reset verifies each step; deletion uses a durable target lifecycle with bounded resumable cleanup.
+
+Pattern is now a read-only native route using assigned daily categories and verified Moon intervals. It generates no daily message and writes no summary cache. Sync the new `pattern` function with shared backend code and frontend through the normal owner publish flow. See [Pattern delivery](docs/shinka/reports/SHINKA_PATTERN_021.md).
 
 Read [Base44 continuation and rollout](docs/shinka/SHINKA_BASE44_CONTINUATION.md) before syncing. UserCalendarAction, AdminTestOperation.step_fingerprints and applicationSession must stay aligned with all native function entries/shared code. A frontend-only sync is insufficient. Approved content and Moon references were imported and verified on the explicitly authorized existing app/prod target; this is not an isolated Test database. See the [016 hosted closure evidence and remaining acceptance](docs/shinka/reports/SHINKA_HOSTED_CLOSURE_016.md). Main merge/publish remains with the owner. Historical 014/015 reports are retained as superseded evidence.
 

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-020
+**Current BuildMarker:** Buildmarker-021
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -28,6 +28,16 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+## Dependency scan — 021
+
+Fresh unchanged-lock npm ci/tree/audit completed: 0 Critical / 0 High / 2 Moderate / 0 Low. security:deps exits 0; full audit exits 1 for the existing react-router/react-router-dom advisories documented below. Pattern destinations are fixed internal routes; no untrusted redirect or SSR hydration path was added. No dependency upgrade/suppression or new service. Exact [audit](reports/pattern-021/dependency-audit.json).
+
+## Pattern read boundary — 021
+
+Closed themes/lunar payloads accept only action and timezone. Client owner/role/process/derived data is rejected. createNativeClient rechecks native User and deletion tombstone; guardDomainOwner checks ACTIVE and reset lifecycle at admission and before response. Returned themes belong only to the session owner. Themes read retained assigned categories, not cycle/consent records, so a missing/withdrawn health grant does not authorize health access and does not erase retained history. Existing health-data consent/open-job controls remain unchanged on their relevant operations; Pattern performs none of those operations.
+
+Only minimal daily/category/timezone fields are fetched; no full health/profile/message rows, tokens or raw provider errors are logged or exported. UI clears data on privacy denial/session replacement, hidden/offline state and unmount; obsolete requests cannot revive it. There is no persistent personal cache. Normal H10/H12/H15 checks exercise isolated in-memory stores only, including successful and denied actual handler paths; no live mutation or reference import occurs. Hosted owner/RLS proof remains H12-901 and physical proof H13-013.
 
 ## 020 removal verification and platform boundary
 

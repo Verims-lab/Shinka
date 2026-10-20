@@ -2,11 +2,17 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-020
+**Current BuildMarker:** Buildmarker-021
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## Pattern native continuation — 021
+
+Pattern is a read-only native feature. Reuse the existing 24-schema inventory; this package has **no schema delta**. In the owner's normal Git→Base44 flow, sync the complete shared backend plus new `pattern/entry.ts` and updated Home comparator, applicationSession and other native entries together, then frontend/route assets. A frontend-only publish cannot supply the new pattern function. Main merge/publish remains owner-owned; this delivery performs no hosted call, Full Health, import or user mutation.
+
+Actual backend tests use SDK-shaped isolated fixtures, successful HTTP responses and negative/lifecycle/timeout paths. They do not attest hosted identity, installed function version or physical devices. Existing original ON-05, concurrent writes/reset/removal and Health history acceptance remain unchanged. After sync/publish use the five in-app steps in [Pattern delivery](reports/SHINKA_PATTERN_021.md); no terminal or test-data creation is required for normal Health.
 
 ## 020 targeted completion clarification
 

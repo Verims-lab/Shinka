@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — approved references imported; native daily snapshot observed; hosted acceptance remains partial
-**Current BuildMarker:** Buildmarker-020
+**Current BuildMarker:** Buildmarker-021
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
@@ -10,6 +10,12 @@
 **Implemented:** Workbook validator, exact backend manifest, dry-run/apply/verify importer, Moon preparation, daily selection and snapshot protocol, ON-06/Home integration.
 **Not Implemented:** Distributed physical uniqueness guarantee; scheduled lookup renewal. Remaining hosted/device evidence is tracked separately.
 **Open Decisions:** OD-005, OD-008 (noted); OD-002 RESOLVED_BY_PRODUCT_DECISION
+
+## Pattern historical assignment — 021
+
+Pattern counts assigned native category IDs from immutable daily candidates. It never consults present Sun/Moon/cycle mapping to reconstruct history, does not import or select a new Pair, and does not rewrite snapshots. Shared dailyCandidateSelection chooses the same observed user/day winner as Home; unlike Home's repeat exclusion (all candidates), Pattern counts each logical day once. Current lookup must match all six OD-002 codes and exact TR/EN names. Locale changes only presentation, never counts/rank.
+
+Package 021 explicitly continues VERIFIED_CONTENT_IMPORT_STAGES without changing six categories, 240 mappings, 260 pairs or source hash. No live content/Moon import or fresh reference acceptance is claimed.
 
 ## 020 package continuity
 

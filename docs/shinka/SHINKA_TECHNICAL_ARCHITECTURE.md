@@ -2,14 +2,22 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-020
+**Current BuildMarker:** Buildmarker-021
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
-**Not Implemented:** Pattern, full You/withdrawal/account product workflows and notifications/scheduler. Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
+**Not Implemented:** full You/withdrawal/account product workflows and notifications/scheduler. Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## Pattern responsibility boundary — 021
+
+Native generic domainAccess also returns this same calculated summary; recordId-based owner/admin reads refuse with DERIVED_PATTERN_READ_REQUIRED rather than exposing an obsolete physical cache. Generic mutations remain denied.
+
+`pattern/entry.ts` uses createNativeClient and the common lifecycle wrapper. `patternOperation` admits the current owner and dispatches only themes/lunar, performs fresh post-read admission and returns safe error codes. `patternReader` owns bounded projected SDK reads; `patternCalculation` is the single summary/timeline/time-format authority; `dailyCandidateSelection` is shared with Home. `patternService` owns deadline/strict response validation, controller owns independent section generations and privacy invalidation, hook owns lifecycle events, and lazy Pattern/LunarTimeline own presentation only.
+
+No server cache, parallel summary model, direct browser CRUD, new transaction coordinator or external database is introduced. API calls already sent cannot be canceled by the SDK; timeout/unmount/refresh generations discard obsolete completions. Memory is component-scoped; no personal storage/URL/report/log data. Focus/visibility/online/access refresh and visible 60s refresh use the existing product lifecycle convention. A language switch needs no request. Local process restart simply rereads authority, with no persistent summary cache to recover.
 
 ## 019 corrective boundaries
 
@@ -64,7 +72,7 @@ Machine codes in `src/foundation/errors.js` (AUTH_REQUIRED, FORBIDDEN, NOT_FOUND
 Canonical list: `src/foundation/capabilityRegister.js` (24 items after Buildmarker-007). Historical counts at Buildmarker-001: VERIFIED 1 (backend function execution), PARTIALLY_VERIFIED 4 (field types, auth providers, RLS, admin role), UNVERIFIED 15, UNSUPPORTED 0. Items: field types, UNIQUE, compound UNIQUE, indexes, FK, transaction/rollback, conditional update, concurrency, auth providers, row/owner security, admin role, backend execution, scheduler, secrets, GeoNames proxy, Astronomy library, push, backup, restore, deployment rollback.
 
 ## Future package boundaries
-H04/H12 foundation and H06/H07 onboarding contracts are present; GeoNames and onboarding consent are scoped current work. H08 Calendar and H09 content/Home are implemented under native continuation. Remaining product features: H10 Pattern, H11 withdrawal/account and H14 notifications. H15 executable resilience is active in 019; field performance remains external. Live verification remains separate.
+H04/H12 foundation and H06/H07 onboarding contracts are present; GeoNames and onboarding consent are scoped current work. H08 Calendar and H09 content/Home are implemented under native continuation. Remaining product features: H11 withdrawal/account and H14 notifications. H15 executable resilience is active in 019; field performance remains external. Live verification remains separate.
 
 ## Repository hardening boundaries
 - `scripts/staticEvidence.mjs` reads repository files only during Vite build/dev on the host. The virtual module exports safe findings, counts, paths and SHA-256 hashes. Raw source and canonical document bodies are not imported with `?raw` or shipped as a source/document registry. H01/H02/H03/H04/H13 declare build-time inspection, not live server inspection.
@@ -184,7 +192,7 @@ Source manifest and astronomy runtime stay backend-only; Astronomy in the intern
 
 `calendarCalculation` owns strict date/neighbor validation, complete-history phase projection, traceable observation/estimate separation and month projection. It reuses `dailyCycle.cycleEstimate`/`cyclePhaseAtDay`; no engine runs inside JSX. `calendarState` owns guarded pure replacement and commit verification. `base44CalendarReader` is read-only, bounded and owner-scoped. `calendarOperation` authenticates and dispatches closed read/add/edit/delete actions; `domainAtomic.commitCalendarAction` owns the unavailable durable transaction boundary. Production `calendar/entry.ts` passes no adapter and cannot execute mutations. No SDK write tripwire allowance is added.
 
-`calendarService` uses the existing SDK with a 20-second deadline, strict response shape and safe errors. `calendarController` separates selected date, editing ID, confirmation, in-flight action receipt and confirmed data; the hook handles disposal/privacy invalidation. Retry reuses the same action ID/payload/revision; an expired revision requires refresh. Requests are not claimed canceled. Calendar stays lazy behind the existing auth/onboarding resolver; shared `ProductNavigation` enables Home/Calendar and leaves Pattern inactive. Locale-only query values select display language, not authority.
+`calendarService` uses the existing SDK with a 20-second deadline, strict response shape and safe errors. `calendarController` separates selected date, editing ID, confirmation, in-flight action receipt and confirmed data; the hook handles disposal/privacy invalidation. Retry reuses the same action ID/payload/revision; an expired revision requires refresh. Requests are not claimed canceled. Calendar stays lazy behind the existing auth/onboarding resolver; shared `ProductNavigation` enables Home/Calendar and enables Pattern in 021. Locale-only query values select display language, not authority.
 
 Owner data is memory-only, no persistent browser cache. Every month read fetches bounded complete observations, never one request per day. Two passes detect changing observations/access, with explicit conflict instead of mixed publication; no native snapshot isolation is claimed. Pure recomputation is bounded by 2,500 starts/40,000 days. Unchanged derived rows use indexed reuse rather than quadratic scans. The read response contains only the requested month. Rolling projection refresh is on reads/mutations; autonomous scheduler remains deferred and persisted-cache renewal cannot be claimed while writes are blocked.
 

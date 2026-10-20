@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-020
+**Current BuildMarker:** Buildmarker-021
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -35,6 +35,10 @@
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+
+## Pattern implementation rules — 021
+
+One shared candidate comparator for Home/Pattern; one calculation module for window/rank/timeline. Keep SDK bounds and projection validation in the reader, auth/dispatch in handler, deadline/response in service, stale completion in controller and display in components. A limit sentinel/invalid row produces an error, never partial EMPTY. Never persist a summary merely from opening a read-only screen, interpret current mappings as old assignments or claim native uniqueness/transaction isolation. PT/PU and actual-App tests execute actual modules, not source-string-only behavioral assertions; published and physical acceptance stays separate.
 
 ## 019 corrective rules
 

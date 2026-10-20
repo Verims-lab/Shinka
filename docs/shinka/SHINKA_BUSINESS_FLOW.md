@@ -2,14 +2,22 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-020
+**Current BuildMarker:** Buildmarker-021
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
-**Not Implemented:** Hosted acceptance for native daily/Calendar writes, Pattern, You editing, withdrawal/deactivation and notifications.
+**Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern flows, You editing, withdrawal/deactivation and notifications.
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+## Current Pattern flow — 021
+
+Home · Calendar · Pattern share navigation and the existing authenticated/onboarding resolver. Pattern never calls daily generation. Backend derives owner from the current session, requires ACTIVE and checks reset/deletion lifecycle before and after reads.
+
+Themes use saved `UserDailyMessage.category_id` and saved local `shinka_date`. The effective start is max(first recorded day, today−29), end today inclusive. Thus first 1–29 calendar days use existing history, then a rolling 30-day window; gaps do not pull older messages forward. Query only that window plus one earliest-date metadata row. Each day uses Home's generated_at ascending / codepoint ID ascending winner; losing physical candidates remain untouched. Count assigned categories, sort count descending then latest assigned day descending, return at most two approved lookup names. No history is EMPTY; malformed rows, missing lookup and service failures are errors.
+
+Lunar Timeline uses four continuous validated NEW→WAXING→FULL→WANING intervals; the fifth NEW node is the last interval's exact UTC end. Coordinates and Today use actual elapsed instants; intervals are half-open, so an exact boundary activates the new phase. Device IANA timezone falls back to saved preference under the existing resolver, without rewriting historical dates. Independent requests allow one section to remain useful while the other fails. Explicit retry reads only; normal refresh never writes.
 
 ## Current implemented flow — 019
 
@@ -107,7 +115,7 @@ Absent/withdrawn health consent or no real start follows UNKNOWN without fabrica
 
 ## Historical checkpoint — Calendar implementation — Buildmarker-012
 
-Calendar is reachable from Home's shared three-item bottom navigation; completed users retain Profile/admin access and return to the same saved Home snapshot. Direct Calendar entry still passes the authenticated onboarding resolver. Pattern and full You/withdrawal/notification workflows remain out of scope.
+Calendar is reachable from Home's shared three-item bottom navigation; completed users retain Profile/admin access and return to the same saved Home snapshot. Direct Calendar entry still passes the authenticated onboarding resolver. Pattern was outside 012; it is implemented in 021. Full You/withdrawal/notification workflows remain outside scope.
 
 Selecting a date never writes. Selecting an actual start establishes the editing ID independently of the new date; month navigation retains that draft. Explicit Mark period start adds or updates that same ID. Only the selected actual start exposes deletion, with date, consequence, Cancel and busy protection. Backend rechecks valid local date, not-future, duplicate, both neighbors across complete history, ≥15 days and owner/ACTIVE/consent/no-open-job.
 

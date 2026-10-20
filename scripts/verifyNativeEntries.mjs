@@ -45,5 +45,10 @@ export async function verifyNativeEntries(root) {
   });
   const calendar = await load('base44/functions/calendar/entry.ts', { '../../shared/nativeClient.ts': native, '../../shared/calendarOperation.js': { handleCalendarRequest: handler } });
   assert.equal(await daily.default({}), 'native-route'); assert.equal(await calendar.default({}), 'native-route');
-  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 7, nativeRoutes: 2, loginSecretReads: secretReads, hostedVerified: false, passed: true };
+  const pattern = await load('base44/functions/pattern/entry.ts', {
+    '../../shared/nativeClient.ts': native,
+    '../../shared/patternOperation.js': { handlePatternRequest: (_req, createClient) => { assert.equal(createClient, native.createNativeClient); return 'pattern-read-route'; } },
+  });
+  assert.equal(await pattern.default({}), 'pattern-read-route');
+  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 7, nativeRoutes: 3, loginSecretReads: secretReads, hostedVerified: false, passed: true };
 }

@@ -10,6 +10,7 @@ import ShinkaButton from '@/components/shinka/ShinkaButton';
 import Home from './Home';
 import ProfileAccess from '@/components/profile/ProfileAccess';
 import { validTimezone } from '../../base44/shared/onboardingValidation.js';
+const Pattern = lazy(() => import('./Pattern'));
 const Calendar = lazy(() => import('./Calendar'));
 export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destination='home'}){
   const {user,isAuthenticated}=useAuth();
@@ -36,6 +37,7 @@ export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destina
   if(snapshot.state==='ACTIVE_EXISTING_USER') {
     const requestedLanguage = new URLSearchParams(window.location.search).get('lang');
     const displayLanguage = ['tr','en'].includes(requestedLanguage) ? requestedLanguage : snapshot.uiLanguage||snapshot.preferences?.language_code||language;
+    if(destination==='pattern')return <RouteBoundary><Pattern key={user.id} language={displayLanguage} renderProfileAccess={lang=><ProfileAccess language={lang}/>} /></RouteBoundary>;
     if(destination==='calendar')return <RouteBoundary><Calendar key={user.id} language={displayLanguage} renderProfileAccess={lang=><ProfileAccess language={lang}/>} /></RouteBoundary>;
     return <Home key={user.id} language={displayLanguage} initialDaily={snapshot.daily?snapshot:null} profile={snapshot.profile} renderProfileAccess={lang=><ProfileAccess language={lang}/>} />;
   }

@@ -1,3 +1,4 @@
+import { patternOperation } from './patternOperation.js';
 import { guardDomainOwner } from './nativeDomainGuard.js';
 import { calendarReader } from './base44CalendarReader.js';
 import { calculateCalendar } from './calendarCalculation.js';
@@ -20,6 +21,7 @@ export async function domainAccessOperation(client, body) {
     assertAdminAccess(principal);
     if(!body.recordId) throw new InternalError('RECORD_ID_REQUIRED',400);
     return withAdminAudit(client,principal,{target_entity:entity,target_record_id:body.recordId,action_type:'VIEW'},async()=>{
+      if (entity === 'user_pattern_summary') throw new InternalError('DERIVED_PATTERN_READ_REQUIRED',409);
       if (['user_cycle_prediction','user_cycle_phase_day'].includes(entity)) throw new InternalError('DERIVED_CALENDAR_READ_REQUIRED',409);
       const row=await store[physicalName(entity)].get(body.recordId);
       if (row?.user_id && client.shinkaNative) await guardDomainOwner(client,row.user_id,entity);
@@ -37,6 +39,11 @@ export async function domainAccessOperation(client, body) {
   if(entity==='admin_audit_log'||entity==='system_error_log') throw new InternalError('DOMAIN_ACCESS_DENIED',403);
   const ownerId=principal.id;
   if (client.shinkaNative) await guardDomainOwner(client,ownerId,entity);
+  if (client.shinkaNative && entity === 'user_pattern_summary') {
+    if (body.recordId) throw new InternalError('DERIVED_PATTERN_READ_REQUIRED',409);
+    const value = await patternOperation(client, { action: 'themes' });
+    return { records: [value.summary], derived: true };
+  }
   if (client.shinkaNative && ['user_cycle_prediction','user_cycle_phase_day'].includes(entity)) {
     const snapshot=await calendarReader(client,principal).confirmedSnapshot();
     const today=serverLocalDate(new Date(),resolveTimezone(null,snapshot.preferences?.timezone));

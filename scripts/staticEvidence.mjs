@@ -30,11 +30,11 @@ export function buildStaticEvidence(root = process.cwd()) {
   const { byName, ...docResult } = checkDocs(docs, BUILD_MARKER);
   const truth = byName["SHINKA_SOURCE_OF_TRUTH.md"] || "";
   const history = byName["SHINKA_BUILD_HISTORY.md"] || "";
-  const uiPrefixes = ["/src/components/shinka/", "/src/components/internal/", "/src/pages/internal/", "/src/pages/Home.jsx", "/src/pages/Calendar.jsx", "/src/features/calendar/", "/src/pages/Login.jsx", "/src/lib/AuthContext.jsx"];
+  const uiPrefixes = ["/src/components/shinka/", "/src/components/internal/", "/src/pages/internal/", "/src/pages/Home.jsx", "/src/pages/Calendar.jsx", "/src/pages/Pattern.jsx", "/src/features/calendar/", "/src/features/pattern/", "/src/pages/Login.jsx", "/src/lib/AuthContext.jsx"];
   const darkFiles = Object.entries(raw).filter(([p,c]) => uiPrefixes.some((prefix) => p.startsWith(prefix)) && (/\bdark:/.test(c) || /classList\.(?:add|toggle)\(["']dark["']/.test(c))).map(([p]) => p);
-  const hardcoded = ["/src/pages/Home.jsx", "/src/pages/Calendar.jsx", "/src/components/shinka/ProductNavigation.jsx", "/src/components/shinka/StatePanel.jsx"].flatMap((file) => ["Home", "Calendar", "Pattern", "Retry"].filter((s) => raw[file]?.includes(`>${s}<`) || raw[file]?.includes(`"${s}"`)).map(() => ({ file })));
+  const hardcoded = ["/src/pages/Home.jsx", "/src/pages/Calendar.jsx", "/src/pages/Pattern.jsx", "/src/components/shinka/ProductNavigation.jsx", "/src/components/shinka/StatePanel.jsx"].flatMap((file) => ["Home", "Calendar", "Pattern", "Retry"].filter((s) => raw[file]?.includes(`>${s}<`) || raw[file]?.includes(`"${s}"`)).map(() => ({ file })));
   const shellUsesContract = raw["/src/components/shinka/ProductNavigation.jsx"]?.includes("BOTTOM_NAV.map") &&
-    ["Home", "Calendar"].every(page => {
+    ["Home", "Calendar", "Pattern"].every(page => {
       const source = raw[`/src/pages/${page}.jsx`] || "";
       return source.includes("@/components/shinka/ProductNavigation") && source.includes("<ProductNavigation");
     });

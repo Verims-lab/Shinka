@@ -1,5 +1,9 @@
 # Shinka Android / iOS compatibility evidence
 
+## Pattern addition — Buildmarker-021 / HC-021.0
+
+Local Pattern evidence extends this primary report: actual components/App at 320/360/390/430 and 844×390, TR/EN, 100%/200% computed text, five non-overlapping lunar labels, 44px controls, route/onboarding guards and section retry/unmount. Chromium 156.0.8078.4 and WebKit 27.2 each passed 507 canonical tests, 22 Pattern route/layout scenarios and the existing 87 mobile checks with zero page errors. Original computed sizes are captured before doubling to avoid inheritance compounding. [320px screenshot](pattern-021/pattern-tr-320.png), [200% WebKit](pattern-021/pattern-tr-320-200percent.png). Exact engine/count/results are in [021 verification](pattern-021/verification.json). Dedicated screenshots/geometry supplement the existing 87-scenario mobile matrix; old evidence below remains historical. Physical Android/iOS, browser-bar/notch insets, OS text scaling, VoiceOver/TalkBack and hosted font/network remain **NOT RUN**; no device PASS is inferred.
+
 ## Current acceptance — Buildmarker-019 / HC-019.0, 2026-10-21
 
 This is the single primary Android/iOS report. The package 009/011/012 material below is historical; old atomic-capability/maintenance prerequisites are superseded by [Base44 continuation](../SHINKA_BASE44_CONTINUATION.md). The repository is **mobile web**, with no PWA service worker/manifest or native Android/iOS WebView wrapper. No wrapper was added. Vite is now 8.2.4; no claim that every browser at the historical toolchain floor was exercised.

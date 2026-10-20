@@ -7,6 +7,7 @@ globalThis.__sdkLabCalls = calls; // CLI-only action-name counters; never reques
 let releaseHydration;
 let dailyAttempts = 0;
 let calendarLab;
+let patternLab;
 let testToolsLab;
 const healthRuns=[];
 async function loadCalendarLab() {
@@ -50,6 +51,12 @@ export const base44 = {
       const actor = session === 'admin' ? 'adminA' : session === 'user' ? 'ownerA' : null;
       try { return { data: await f.tools(body, actor) }; }
       catch (error) { return { data: { error_code: error.code || 'TEST_TOOLS_FAILED' } }; }
+    }
+    if (name === 'pattern') {
+      if (!patternLab) patternLab = import('@/foundation/tests/patternFixture').then(({patternFixture,patternRow})=>{const f=patternFixture();f.tables.UserDailyMessage.push(patternRow('2026-10-19'));globalThis.__patternLab=f;return f;});
+      const f=await patternLab;
+      try { return {data:await f.request(body.action)}; }
+      catch(error) { return {data:{error_code:error.code||'PATTERN_READ_FAILED'}}; }
     }
     if (name === 'calendar') {
       const f = await loadCalendarLab();
