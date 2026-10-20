@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-017",
-    "package_name": "Health recovery and in-app target deletion",
-    "package_type": "CORRECTIVE",
-    "created_at": "2026-10-20T19:25:04.803800+00:00",
-    "health_catalog_version": "HC-017.0",
-    "short_summary": "Remove regenerated password templates; real viewport evidence contract; retry Health save without rerun; target-scoped bounded deletion with resume and retention.",
-    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
-    "notes": "Chromium/WebKit each 454/454 canonical + 101/101 local Health PASS, zero page errors; native single-confirmation TR/EN delete and 30s preparation/retry budget regression pass. Required repository quality and byte budgets verified locally; audit 0 Critical/High, 2 existing Moderate router findings. HC-017.0:156 cases,137 current; no failing case retired. Only schema delta: optional InternalHealthRun.report_digest. User-supplied HC-016.1 NOT_READY evidence preserved; H03-006/H09-004 PASS retained. No live app/API diagnostic, Full Health, import, reset/deletion, schema push or publish. Owner sync/publish, viewport evidence/manual Health save-list-open, selected disposable target deletion, normal-user boundaries, original ON-05 and physical devices remain MANUAL_USER_VALIDATION_PENDING. See reports/SHINKA_HEALTH_RECOVERY_017.md and health-recovery-017/verification.json. Active history 013–017.",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true
-  },
-  {
     "build_marker": "Buildmarker-018",
     "package_name": "In-app Health scope and deletion outcome recovery",
     "package_type": "CORRECTIVE",
@@ -69,5 +55,19 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "notes": "Chromium/WebKit 507/507 each; 22 Pattern and 87 mobile checks each; local Health 126 PASS/13 BLOCKED (hosted dependencies absent). Mandatory gates and JS/CSS budgets pass; zero Critical/High, two existing Moderate router findings. H10-001 activated; H12-037/H13-017 added; H15 extended. No live Health/import/mutation or main publish. Original ON-05, hosted acceptance and physical devices remain open."
+  },
+  {
+    "build_marker": "Buildmarker-022",
+    "package_name": "You/Profile and Preferences",
+    "package_type": "FEATURE",
+    "created_at": "2026-10-21T02:21:11+03:00",
+    "health_catalog_version": "HC-022.0",
+    "short_summary": "You profile/preferences with verified owner-only updates, shared GeoNames/Sun rules, unknown-result check/retry and current native-admin access. Pattern and protected history preserved. Chromium/WebKit 526/526 each; local Health 128 PASS/13 BLOCKED; 0 Critical/High; byte budgets pass. Hosted/device acceptance remains manual.",
+    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "No schema delta, live mutation/Full Health, main merge/publish, reference import or new service. Actual profile/preference readback, lost-response recovery, conflict, null/name and locale regressions pass. Canonical docs and case audit aligned; Internal Build retains 018–022. Legal destinations/content remain unpublished. Notification delivery, withdrawal and deactivation are separate packages. Original ON-05 same-account acceptance remains open."
   }
 ];

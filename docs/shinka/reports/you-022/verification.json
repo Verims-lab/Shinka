@@ -1,0 +1,3523 @@
+{
+  "buildMarker": "Buildmarker-022",
+  "healthCatalog": "HC-022.0",
+  "status": "REPO_CLOSED_PENDING_MANUAL_USER_VALIDATION",
+  "authority": "BASE44_NATIVE_V1",
+  "gitPreflight": {
+    "localAndOriginTest": "d5906b7b098e97b4da7baa009e46ea1cb170f5a5",
+    "main": "c602061",
+    "testAheadBy": 1,
+    "localOnlyCommits": 0,
+    "workingTreeClean": true
+  },
+  "schemaDelta": [],
+  "sourceDataChanged": false,
+  "engines": [
+    {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "tests": 526,
+      "passed": 526,
+      "failed": 0,
+      "pageErrors": [],
+      "flows": {
+        "youFlow": 24,
+        "patternFlow": 22,
+        "mobile": 87,
+        "dailyFlow": 5,
+        "calendarFlow": 8,
+        "adminNavigation": 19,
+        "adminTestFlow": 4
+      },
+      "youFlow": [
+        {
+          "scenario": "you-320-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "controls": [
+              {
+                "width": 119.171875,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 117.0625,
+                "height": 44
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 220.96875,
+                "height": 44
+              },
+              {
+                "width": 80.65625,
+                "height": 52
+              },
+              {
+                "width": 85.203125,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 80.65625,
+                "height": 52
+              },
+              {
+                "width": 97.109375,
+                "height": 44
+              },
+              {
+                "width": 106.65625,
+                "height": 56
+              },
+              {
+                "width": 106.671875,
+                "height": 56
+              },
+              {
+                "width": 106.65625,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-320-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "controls": [
+              {
+                "width": 228.609375,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 188.890625,
+                "height": 46
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 132
+              },
+              {
+                "width": 124.921875,
+                "height": 52
+              },
+              {
+                "width": 131.109375,
+                "height": 46
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 124.921875,
+                "height": 52
+              },
+              {
+                "width": 154.328125,
+                "height": 46
+              },
+              {
+                "width": 106.65625,
+                "height": 96
+              },
+              {
+                "width": 106.671875,
+                "height": 96
+              },
+              {
+                "width": 106.65625,
+                "height": 96
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-320-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "controls": [
+              {
+                "width": 125.3125,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 71.515625,
+                "height": 44
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 226.40625,
+                "height": 44
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 82.15625,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 94.5,
+                "height": 44
+              },
+              {
+                "width": 106.65625,
+                "height": 56
+              },
+              {
+                "width": 106.671875,
+                "height": 56
+              },
+              {
+                "width": 106.65625,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-320-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "controls": [
+              {
+                "width": 239.578125,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 105.078125,
+                "height": 46
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 88
+              },
+              {
+                "width": 97.421875,
+                "height": 52
+              },
+              {
+                "width": 126.78125,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 97.421875,
+                "height": 52
+              },
+              {
+                "width": 149.203125,
+                "height": 46
+              },
+              {
+                "width": 106.65625,
+                "height": 60
+              },
+              {
+                "width": 106.671875,
+                "height": 60
+              },
+              {
+                "width": 106.65625,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-360-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "controls": [
+              {
+                "width": 119.171875,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 117.0625,
+                "height": 44
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 220.96875,
+                "height": 44
+              },
+              {
+                "width": 80.65625,
+                "height": 52
+              },
+              {
+                "width": 85.203125,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 80.65625,
+                "height": 52
+              },
+              {
+                "width": 97.109375,
+                "height": 44
+              },
+              {
+                "width": 120,
+                "height": 56
+              },
+              {
+                "width": 120,
+                "height": 56
+              },
+              {
+                "width": 120,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-360-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "controls": [
+              {
+                "width": 228.609375,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 188.890625,
+                "height": 46
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 88
+              },
+              {
+                "width": 124.921875,
+                "height": 52
+              },
+              {
+                "width": 131.109375,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 124.921875,
+                "height": 52
+              },
+              {
+                "width": 154.328125,
+                "height": 46
+              },
+              {
+                "width": 120,
+                "height": 60
+              },
+              {
+                "width": 120,
+                "height": 60
+              },
+              {
+                "width": 120,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-360-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "controls": [
+              {
+                "width": 125.3125,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 71.515625,
+                "height": 44
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 226.40625,
+                "height": 44
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 82.15625,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 94.5,
+                "height": 44
+              },
+              {
+                "width": 120,
+                "height": 56
+              },
+              {
+                "width": 120,
+                "height": 56
+              },
+              {
+                "width": 120,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-360-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "controls": [
+              {
+                "width": 239.578125,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 105.078125,
+                "height": 46
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 88
+              },
+              {
+                "width": 97.421875,
+                "height": 52
+              },
+              {
+                "width": 126.78125,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 97.421875,
+                "height": 52
+              },
+              {
+                "width": 149.203125,
+                "height": 46
+              },
+              {
+                "width": 120,
+                "height": 60
+              },
+              {
+                "width": 120,
+                "height": 60
+              },
+              {
+                "width": 120,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-390-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "controls": [
+              {
+                "width": 119.171875,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 117.0625,
+                "height": 44
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 220.96875,
+                "height": 44
+              },
+              {
+                "width": 80.65625,
+                "height": 52
+              },
+              {
+                "width": 85.203125,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 80.65625,
+                "height": 52
+              },
+              {
+                "width": 97.109375,
+                "height": 44
+              },
+              {
+                "width": 130,
+                "height": 56
+              },
+              {
+                "width": 130,
+                "height": 56
+              },
+              {
+                "width": 130,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-390-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "controls": [
+              {
+                "width": 228.609375,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 188.890625,
+                "height": 46
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 88
+              },
+              {
+                "width": 124.921875,
+                "height": 52
+              },
+              {
+                "width": 131.109375,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 124.921875,
+                "height": 52
+              },
+              {
+                "width": 154.328125,
+                "height": 46
+              },
+              {
+                "width": 130,
+                "height": 60
+              },
+              {
+                "width": 130,
+                "height": 60
+              },
+              {
+                "width": 130,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-390-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "controls": [
+              {
+                "width": 125.3125,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 71.515625,
+                "height": 44
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 226.40625,
+                "height": 44
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 82.15625,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 94.5,
+                "height": 44
+              },
+              {
+                "width": 130,
+                "height": 56
+              },
+              {
+                "width": 130,
+                "height": 56
+              },
+              {
+                "width": 130,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-390-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "controls": [
+              {
+                "width": 239.578125,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 105.078125,
+                "height": 46
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 88
+              },
+              {
+                "width": 97.421875,
+                "height": 52
+              },
+              {
+                "width": 126.78125,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 97.421875,
+                "height": 52
+              },
+              {
+                "width": 149.203125,
+                "height": 46
+              },
+              {
+                "width": 130,
+                "height": 60
+              },
+              {
+                "width": 130,
+                "height": 60
+              },
+              {
+                "width": 130,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-430-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "controls": [
+              {
+                "width": 119.171875,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 117.0625,
+                "height": 44
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 220.96875,
+                "height": 44
+              },
+              {
+                "width": 80.65625,
+                "height": 52
+              },
+              {
+                "width": 85.203125,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 80.65625,
+                "height": 52
+              },
+              {
+                "width": 97.109375,
+                "height": 44
+              },
+              {
+                "width": 143.328125,
+                "height": 56
+              },
+              {
+                "width": 143.328125,
+                "height": 56
+              },
+              {
+                "width": 143.328125,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-430-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "controls": [
+              {
+                "width": 228.609375,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 188.890625,
+                "height": 46
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 88
+              },
+              {
+                "width": 124.921875,
+                "height": 52
+              },
+              {
+                "width": 131.109375,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 124.921875,
+                "height": 52
+              },
+              {
+                "width": 154.328125,
+                "height": 46
+              },
+              {
+                "width": 143.328125,
+                "height": 60
+              },
+              {
+                "width": 143.328125,
+                "height": 60
+              },
+              {
+                "width": 143.328125,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-430-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "controls": [
+              {
+                "width": 125.3125,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 71.515625,
+                "height": 44
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 226.40625,
+                "height": 44
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 82.15625,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 94.5,
+                "height": 44
+              },
+              {
+                "width": 143.328125,
+                "height": 56
+              },
+              {
+                "width": 143.328125,
+                "height": 56
+              },
+              {
+                "width": 143.328125,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-430-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "controls": [
+              {
+                "width": 239.578125,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 105.078125,
+                "height": 46
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 88
+              },
+              {
+                "width": 97.421875,
+                "height": 52
+              },
+              {
+                "width": 126.78125,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 97.421875,
+                "height": 52
+              },
+              {
+                "width": 149.203125,
+                "height": 46
+              },
+              {
+                "width": 143.328125,
+                "height": 60
+              },
+              {
+                "width": 143.328125,
+                "height": 60
+              },
+              {
+                "width": 143.328125,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-844-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "controls": [
+              {
+                "width": 119.171875,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 117.0625,
+                "height": 44
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 220.96875,
+                "height": 44
+              },
+              {
+                "width": 80.65625,
+                "height": 52
+              },
+              {
+                "width": 85.203125,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 80.65625,
+                "height": 52
+              },
+              {
+                "width": 97.109375,
+                "height": 44
+              },
+              {
+                "width": 281.328125,
+                "height": 56
+              },
+              {
+                "width": 281.328125,
+                "height": 56
+              },
+              {
+                "width": 281.34375,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-844-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "controls": [
+              {
+                "width": 228.609375,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 188.890625,
+                "height": 46
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 386.1875,
+                "height": 44
+              },
+              {
+                "width": 124.921875,
+                "height": 52
+              },
+              {
+                "width": 131.109375,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 124.921875,
+                "height": 52
+              },
+              {
+                "width": 154.328125,
+                "height": 46
+              },
+              {
+                "width": 281.328125,
+                "height": 60
+              },
+              {
+                "width": 281.328125,
+                "height": 60
+              },
+              {
+                "width": 281.34375,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-844-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "controls": [
+              {
+                "width": 125.3125,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 71.515625,
+                "height": 44
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 226.40625,
+                "height": 44
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 82.15625,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 94.5,
+                "height": 44
+              },
+              {
+                "width": 281.328125,
+                "height": 56
+              },
+              {
+                "width": 281.328125,
+                "height": 56
+              },
+              {
+                "width": 281.34375,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-844-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "controls": [
+              {
+                "width": 239.578125,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 105.078125,
+                "height": 46
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 398.5,
+                "height": 44
+              },
+              {
+                "width": 97.421875,
+                "height": 52
+              },
+              {
+                "width": 126.78125,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 97.421875,
+                "height": 52
+              },
+              {
+                "width": 149.203125,
+                "height": 46
+              },
+              {
+                "width": 281.328125,
+                "height": 60
+              },
+              {
+                "width": 281.328125,
+                "height": 60
+              },
+              {
+                "width": 281.34375,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-save-reopen-all-product-locales-name-snapshot-and-logout",
+          "passed": true,
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-current-admin-revoke",
+          "passed": true,
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-route-anonymous-incomplete",
+          "passed": true,
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-route-user-incomplete",
+          "passed": true,
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        }
+      ],
+      "health": {
+        "counts": {
+          "PASS": 128,
+          "BLOCKED": 13
+        },
+        "blocked": [
+          "H04-019",
+          "H05-001",
+          "H05-002",
+          "H05-003",
+          "H05-004",
+          "H05-005",
+          "H05-006",
+          "H05-007",
+          "H05-008",
+          "H05-009",
+          "H08-005",
+          "H09-004",
+          "H12-031"
+        ],
+        "saveState": "SAVED",
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT"
+      }
+    },
+    {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "tests": 526,
+      "passed": 526,
+      "failed": 0,
+      "pageErrors": [],
+      "flows": {
+        "youFlow": 24,
+        "patternFlow": 22,
+        "mobile": 87,
+        "dailyFlow": 5,
+        "calendarFlow": 8,
+        "adminNavigation": 19,
+        "adminTestFlow": 4
+      },
+      "youFlow": [
+        {
+          "scenario": "you-320-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "controls": [
+              {
+                "width": 119.171875,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 117.078125,
+                "height": 44
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 220.984375,
+                "height": 44
+              },
+              {
+                "width": 80.640625,
+                "height": 52
+              },
+              {
+                "width": 85.203125,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 80.640625,
+                "height": 52
+              },
+              {
+                "width": 97.125,
+                "height": 44
+              },
+              {
+                "width": 106.65625,
+                "height": 56
+              },
+              {
+                "width": 106.671875,
+                "height": 56
+              },
+              {
+                "width": 106.671875,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-320-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "controls": [
+              {
+                "width": 228.609375,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 188.875,
+                "height": 46
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 132
+              },
+              {
+                "width": 124.90625,
+                "height": 52
+              },
+              {
+                "width": 131.109375,
+                "height": 46
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 124.90625,
+                "height": 52
+              },
+              {
+                "width": 154.3125,
+                "height": 46
+              },
+              {
+                "width": 106.65625,
+                "height": 96
+              },
+              {
+                "width": 106.671875,
+                "height": 96
+              },
+              {
+                "width": 106.671875,
+                "height": 96
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-320-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "controls": [
+              {
+                "width": 125.3125,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 71.515625,
+                "height": 44
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 226.40625,
+                "height": 44
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 82.15625,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 94.5,
+                "height": 44
+              },
+              {
+                "width": 106.65625,
+                "height": 56
+              },
+              {
+                "width": 106.671875,
+                "height": 56
+              },
+              {
+                "width": 106.671875,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-320-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "scroll": 320,
+            "controls": [
+              {
+                "width": 239.578125,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 105.0625,
+                "height": 46
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 88
+              },
+              {
+                "width": 97.40625,
+                "height": 52
+              },
+              {
+                "width": 126.765625,
+                "height": 52
+              },
+              {
+                "width": 238,
+                "height": 52
+              },
+              {
+                "width": 97.40625,
+                "height": 52
+              },
+              {
+                "width": 149.1875,
+                "height": 46
+              },
+              {
+                "width": 106.65625,
+                "height": 60
+              },
+              {
+                "width": 106.671875,
+                "height": 60
+              },
+              {
+                "width": 106.671875,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-360-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "controls": [
+              {
+                "width": 119.171875,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 117.078125,
+                "height": 44
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 220.984375,
+                "height": 44
+              },
+              {
+                "width": 80.640625,
+                "height": 52
+              },
+              {
+                "width": 85.203125,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 80.640625,
+                "height": 52
+              },
+              {
+                "width": 97.125,
+                "height": 44
+              },
+              {
+                "width": 120,
+                "height": 56
+              },
+              {
+                "width": 120,
+                "height": 56
+              },
+              {
+                "width": 120,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-360-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "controls": [
+              {
+                "width": 228.609375,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 188.875,
+                "height": 46
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 88
+              },
+              {
+                "width": 124.90625,
+                "height": 52
+              },
+              {
+                "width": 131.109375,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 124.90625,
+                "height": 52
+              },
+              {
+                "width": 154.3125,
+                "height": 46
+              },
+              {
+                "width": 120,
+                "height": 60
+              },
+              {
+                "width": 120,
+                "height": 60
+              },
+              {
+                "width": 120,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-360-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "controls": [
+              {
+                "width": 125.3125,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 71.515625,
+                "height": 44
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 226.40625,
+                "height": 44
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 82.15625,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 94.5,
+                "height": 44
+              },
+              {
+                "width": 120,
+                "height": 56
+              },
+              {
+                "width": 120,
+                "height": 56
+              },
+              {
+                "width": 120,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-360-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "scroll": 360,
+            "controls": [
+              {
+                "width": 239.578125,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 105.0625,
+                "height": 46
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 88
+              },
+              {
+                "width": 97.40625,
+                "height": 52
+              },
+              {
+                "width": 126.765625,
+                "height": 52
+              },
+              {
+                "width": 278,
+                "height": 52
+              },
+              {
+                "width": 97.40625,
+                "height": 52
+              },
+              {
+                "width": 149.1875,
+                "height": 46
+              },
+              {
+                "width": 120,
+                "height": 60
+              },
+              {
+                "width": 120,
+                "height": 60
+              },
+              {
+                "width": 120,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-390-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "controls": [
+              {
+                "width": 119.171875,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 117.078125,
+                "height": 44
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 220.984375,
+                "height": 44
+              },
+              {
+                "width": 80.640625,
+                "height": 52
+              },
+              {
+                "width": 85.203125,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 80.640625,
+                "height": 52
+              },
+              {
+                "width": 97.125,
+                "height": 44
+              },
+              {
+                "width": 130,
+                "height": 56
+              },
+              {
+                "width": 130,
+                "height": 56
+              },
+              {
+                "width": 130,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-390-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "controls": [
+              {
+                "width": 228.609375,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 188.875,
+                "height": 46
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 88
+              },
+              {
+                "width": 124.90625,
+                "height": 52
+              },
+              {
+                "width": 131.109375,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 124.90625,
+                "height": 52
+              },
+              {
+                "width": 154.3125,
+                "height": 46
+              },
+              {
+                "width": 130,
+                "height": 60
+              },
+              {
+                "width": 130,
+                "height": 60
+              },
+              {
+                "width": 130,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-390-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "controls": [
+              {
+                "width": 125.3125,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 71.515625,
+                "height": 44
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 226.40625,
+                "height": 44
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 82.15625,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 94.5,
+                "height": 44
+              },
+              {
+                "width": 130,
+                "height": 56
+              },
+              {
+                "width": 130,
+                "height": 56
+              },
+              {
+                "width": 130,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-390-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "scroll": 390,
+            "controls": [
+              {
+                "width": 239.578125,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 105.0625,
+                "height": 46
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 88
+              },
+              {
+                "width": 97.40625,
+                "height": 52
+              },
+              {
+                "width": 126.765625,
+                "height": 52
+              },
+              {
+                "width": 308,
+                "height": 52
+              },
+              {
+                "width": 97.40625,
+                "height": 52
+              },
+              {
+                "width": 149.1875,
+                "height": 46
+              },
+              {
+                "width": 130,
+                "height": 60
+              },
+              {
+                "width": 130,
+                "height": 60
+              },
+              {
+                "width": 130,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-430-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "controls": [
+              {
+                "width": 119.171875,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 117.078125,
+                "height": 44
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 220.984375,
+                "height": 44
+              },
+              {
+                "width": 80.640625,
+                "height": 52
+              },
+              {
+                "width": 85.203125,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 80.640625,
+                "height": 52
+              },
+              {
+                "width": 97.125,
+                "height": 44
+              },
+              {
+                "width": 143.328125,
+                "height": 56
+              },
+              {
+                "width": 143.328125,
+                "height": 56
+              },
+              {
+                "width": 143.34375,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-430-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "controls": [
+              {
+                "width": 228.609375,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 188.875,
+                "height": 46
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 88
+              },
+              {
+                "width": 124.90625,
+                "height": 52
+              },
+              {
+                "width": 131.109375,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 124.90625,
+                "height": 52
+              },
+              {
+                "width": 154.3125,
+                "height": 46
+              },
+              {
+                "width": 143.328125,
+                "height": 60
+              },
+              {
+                "width": 143.328125,
+                "height": 60
+              },
+              {
+                "width": 143.34375,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-430-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "controls": [
+              {
+                "width": 125.3125,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 71.515625,
+                "height": 44
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 226.40625,
+                "height": 44
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 82.15625,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 94.5,
+                "height": 44
+              },
+              {
+                "width": 143.328125,
+                "height": 56
+              },
+              {
+                "width": 143.328125,
+                "height": 56
+              },
+              {
+                "width": 143.34375,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-430-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "scroll": 430,
+            "controls": [
+              {
+                "width": 239.578125,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 105.0625,
+                "height": 46
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 88
+              },
+              {
+                "width": 97.40625,
+                "height": 52
+              },
+              {
+                "width": 126.765625,
+                "height": 52
+              },
+              {
+                "width": 348,
+                "height": 52
+              },
+              {
+                "width": 97.40625,
+                "height": 52
+              },
+              {
+                "width": 149.1875,
+                "height": 46
+              },
+              {
+                "width": 143.328125,
+                "height": 60
+              },
+              {
+                "width": 143.328125,
+                "height": 60
+              },
+              {
+                "width": 143.34375,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-844-tr-1x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "controls": [
+              {
+                "width": 119.171875,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 117.078125,
+                "height": 44
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 220.984375,
+                "height": 44
+              },
+              {
+                "width": 80.640625,
+                "height": 52
+              },
+              {
+                "width": 85.203125,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 80.640625,
+                "height": 52
+              },
+              {
+                "width": 97.125,
+                "height": 44
+              },
+              {
+                "width": 281.328125,
+                "height": 56
+              },
+              {
+                "width": 281.328125,
+                "height": 56
+              },
+              {
+                "width": 281.328125,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-844-tr-2x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "controls": [
+              {
+                "width": 228.609375,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 188.875,
+                "height": 46
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 386.15625,
+                "height": 44
+              },
+              {
+                "width": 124.90625,
+                "height": 52
+              },
+              {
+                "width": 131.109375,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 124.90625,
+                "height": 52
+              },
+              {
+                "width": 154.3125,
+                "height": 46
+              },
+              {
+                "width": 281.328125,
+                "height": 60
+              },
+              {
+                "width": 281.328125,
+                "height": 60
+              },
+              {
+                "width": 281.328125,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-844-en-1x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "controls": [
+              {
+                "width": 125.3125,
+                "height": 44
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 71.515625,
+                "height": 44
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 226.40625,
+                "height": 44
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 82.15625,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 65.71875,
+                "height": 52
+              },
+              {
+                "width": 94.5,
+                "height": 44
+              },
+              {
+                "width": 281.328125,
+                "height": 56
+              },
+              {
+                "width": 281.328125,
+                "height": 56
+              },
+              {
+                "width": 281.328125,
+                "height": 56
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-844-en-2x",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "scroll": 844,
+            "controls": [
+              {
+                "width": 239.578125,
+                "height": 48
+              },
+              {
+                "width": 44,
+                "height": 44
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 105.0625,
+                "height": 46
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 398.46875,
+                "height": 44
+              },
+              {
+                "width": 97.40625,
+                "height": 52
+              },
+              {
+                "width": 126.765625,
+                "height": 52
+              },
+              {
+                "width": 494,
+                "height": 52
+              },
+              {
+                "width": 97.40625,
+                "height": 52
+              },
+              {
+                "width": 149.1875,
+                "height": 46
+              },
+              {
+                "width": 281.328125,
+                "height": 60
+              },
+              {
+                "width": 281.328125,
+                "height": 60
+              },
+              {
+                "width": 281.328125,
+                "height": 60
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-save-reopen-all-product-locales-name-snapshot-and-logout",
+          "passed": true,
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-current-admin-revoke",
+          "passed": true,
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-route-anonymous-incomplete",
+          "passed": true,
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "you-route-user-incomplete",
+          "passed": true,
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        }
+      ],
+      "health": {
+        "counts": {
+          "PASS": 128,
+          "BLOCKED": 13
+        },
+        "blocked": [
+          "H04-019",
+          "H05-001",
+          "H05-002",
+          "H05-003",
+          "H05-004",
+          "H05-005",
+          "H05-006",
+          "H05-007",
+          "H05-008",
+          "H05-009",
+          "H08-005",
+          "H09-004",
+          "H12-031"
+        ],
+        "saveState": "SAVED",
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT"
+      }
+    }
+  ],
+  "quality": {
+    "npmCi": true,
+    "npmLsAll": true,
+    "npmLsDirect": true,
+    "typecheck": true,
+    "lint": true,
+    "productionBuild": true,
+    "repoChecks": 17,
+    "securityDeps": true,
+    "critical": 0,
+    "high": 0,
+    "moderate": 2,
+    "low": 0
+  },
+  "performance": {
+    "initialJS": {
+      "raw": 467644,
+      "gzip": 155412
+    },
+    "css": {
+      "raw": 86583,
+      "gzip": 14929
+    },
+    "cycles": [],
+    "lazyRetry": {
+      "passed": true,
+      "scope": "Synthetic network asset failure and full-reload retry, real App route"
+    },
+    "fieldVitals": {
+      "status": "NOT_MEASURED",
+      "reason": "No field p75 or INP; local LCP/CLS only, not a production acceptance gate"
+    }
+  },
+  "hosted": {
+    "invoked": false,
+    "fullHealthRun": false,
+    "userMutation": false,
+    "publish": false
+  },
+  "physicalDevices": {
+    "android": "NOT_RUN",
+    "ios": "NOT_RUN"
+  },
+  "remaining": [
+    "Owner sync/publish and in-app acceptance",
+    "Approved Privacy Policy and Terms destinations/content",
+    "Physical Android/iOS keyboard/screen-reader/safe-area/OS text scaling",
+    "Original ON-05 same-account save/readback",
+    "Future withdrawal/deactivation and notification delivery"
+  ],
+  "validationCorrections": [
+    "Completed-user mobile menu expectation migrated to You keyboard/heading; incomplete-admin menu tests retained",
+    "Profile Save/Cancel focus now uses actual forwarded button ref",
+    "Verified cleared Home name does not reuse stale hydration name",
+    "Header lost language write plus failed verification remains unknown; no blind resubmit"
+  ]
+}

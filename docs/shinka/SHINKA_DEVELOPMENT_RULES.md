@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-021
+**Current BuildMarker:** Buildmarker-022
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -14,6 +14,10 @@
 - NO SILENT SOURCE-CONTRACT CHANGE
 - NO FUTURE FEATURE IMPLEMENTATION WITHOUT PACKAGE SCOPE
 - NO LEGACY SHINKA IMPORT — NO LEGACY SHINKA CONTRACT MAY ENTER THIS PROJECT WITHOUT AN EXPLICIT CHANGE REQUEST.
+
+## You package governance — 022
+
+The explicit You request advances 021 → 022 and HC-021.0 → HC-022.0 once. Internal Build retains 018–022 through recordBuild; historical audits/Health/Git remain. Update H06/H10 common identity/GeoNames coverage, add executable profile/preferences and privacy/recovery cases plus local UI acceptance; preserve future withdrawal/deactivation/notification cases. Approved staged content policy continues through 022 without import/text changes. Deliver Test only after required local gates, both engines and performance budgets. Live Full Health and user mutations are expressly prohibited; the owner handles main sync/publish and hosted acceptance.
 
 ## Pattern package — 021
 

@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-021
+**Current BuildMarker:** Buildmarker-022
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## You/Profile package — 022
+
+Started from clean Test/origin Test `d5906b7`, with Test one commit ahead of main `c602061`; Pattern 021 preserved. Implemented owner-only You profile/preferences, shared profile input and relocated shared picker, read-only consent/unpublished legal status, logout and verified native-admin navigation. No schema/content/consent/cycle/history mutation or new service. Local tests exercise actual positive handlers and components, unknown writes, retry/conflict, field/role/lifecycle boundaries and protected-table equality. Hosted acceptance remains MANUAL_USER_VALIDATION_PENDING. Final Chromium/WebKit 526/526 each, 24 You flows, 128 PASS/13 BLOCKED local Health, zero Critical/High and byte-budget PASS are recorded. Empty-name Home fallback and header unknown-write handling received explicit regressions. Measured gates and limitations are in [022 delivery](reports/SHINKA_YOU_022.md); no live Health/mutation/main publish.
 
 ## Buildmarker-021 — Pattern delivery (2026-10-21)
 

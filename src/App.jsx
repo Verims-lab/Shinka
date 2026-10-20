@@ -58,6 +58,7 @@ const AuthenticatedApp = () => {
           />
         }
       >
+        <Route path="/you" element={<Onboarding destination="you" />} />
         <Route path="/pattern" element={<Onboarding destination="pattern" />} />
         <Route path="/calendar" element={<Onboarding destination="calendar" />} />
         <Route element={<AdminGate />}>

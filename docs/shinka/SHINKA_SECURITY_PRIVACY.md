@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-021
+**Current BuildMarker:** Buildmarker-022
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -28,6 +28,16 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+## You security boundary — 022
+
+Native session determines owner; every action uses fresh identity/ACTIVE/lifecycle admission before and after, with completed profile/preferences and actual daily record required. Updates additionally refuse open health deletion and use the existing native write checks. Client user_id/role/status/consent/Sun and extra fields are rejected. Backend updates only the owner profile/preferences singleton; no frontend generic CRUD or direct policy change. Existing onboarding/admin privileges are unaffected.
+
+Readback/conflict errors never imply rollback. A post-write admission/read failure is marked unconfirmed; privacy denial still clears personal UI immediately. Protected history/consent/cycle data is neither written nor logged. Only the current consent's validated status is projected, without grant event/time/body. Personal drafts and observation revisions remain component memory only; logout/session replacement invalidates responses and old-owner hydration. Normal Health runs actual handlers over isolated fixtures only, never current user/profile preferences. No live mutation, legal text generation, consent grant/withdrawal, scheduler or new identity/service.
+
+## Dependency scan — 022
+
+Fresh npm ci, direct/full dependency tree and npm audit completed against the unchanged lock: 0 Critical / 0 High / 2 Moderate / 0 Low. Native security:deps gate exits 0; full audit exits 1 for the existing React Router findings. Same fixed internal navigation and no SSR/untrusted external redirect exposure; no dependency change, suppression or service. [022 audit receipt](reports/you-022/dependency-audit.json). The Moderate vendor-major-upgrade disposition below remains open.
 
 ## Dependency scan — 021
 

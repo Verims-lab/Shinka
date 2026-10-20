@@ -2,11 +2,17 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-021
+**Current BuildMarker:** Buildmarker-022
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## You native continuation — 022
+
+Schema delta: **none**; keep the complete existing inventory. Owner's normal Git flow: merge Test when ready, wait for Base44 Git sync, confirm new `you/entry.ts`, shared `youOperation`, `youRepository`, `profileInput` plus updated onboarding/shared native entries/applicationSession are synced together, then matching frontend assets and Publish. Do not publish frontend-only against an older backend. No CLI deploy/entity push, live invocation, live Full Health, user mutation or main update is performed by this delivery.
+
+Pattern 021 remains intact. You uses native single-owner updateMany predicates/count/readback with observable conflicts and same-desired-state recovery, not native CAS/transactions. Current write wrapper and reset/deletion guards remain. User-owned hosted acceptance includes profile reopen, optional NULL/GeoNames, language across routes, original snapshots unchanged, current admin role and unknown retry. Physical devices and original ON-05 same-account closure remain separate. [You delivery](reports/SHINKA_YOU_022.md).
 
 ## Pattern native continuation — 021
 

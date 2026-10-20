@@ -2,11 +2,26 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-021
+**Current BuildMarker:** Buildmarker-022
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Scope:** Health catalog HC-021.0; repository, synthetic and external evidence separated.
+
+## HC-022.0 — You/Profile and preferences
+
+Adds H11-007 (profile/preferences only), H12-038 (authority/conflict/retry) and H13-018 (local component/App/mobile acceptance). Updates H06-004 with actual You forged-owner/role/status refusals and H10-003 with changed/preserved/cleared place assertions. H13-012 mobile Home entry now verifies keyboard navigation to You and heading focus; the retired completed-user menu expectation is replaced, while incomplete-admin menu/Escape tests remain. No case deletion, forced N/A or future withdrawal/deactivation/delivery activation. H13-018 is explicitly local-only; normal Health performs no user mutation. Backend closed server plan and scope transfer inventory update together.
+
+| Requirement → case | Actual runner/assertion | Evidence / environment |
+|---|---|---|
+| Owner profile open/update/reopen; optional/DOB/18+/Sun; preferences/timezone | H11-007 → YT01,03,05 | Actual HTTP success and SDK-shaped persisted readback; SYNTHETIC_RUNTIME |
+| Saved place/resolve/clear | H10-003 + H11-007 → YT04; local YU02 | resolve call count, all five fields, unchanged saved place through outage; no live provider proof |
+| Owner/role/status/ACTIVE/reset/deletion | H06-004 + H12-038 → YT02,09 | closed payload failures and fresh guard rejection; SYNTHETIC_RUNTIME |
+| Immutable daily/Pattern/consent/cycle history | H11-007 → YT01,05,09 | full protected fixture-table equality; preference-only writes; SYNTHETIC_RUNTIME |
+| Lost response/readback/retry/double click/conflict/late session | H12-038 → YT06–13 | actual failure before/after write, no rewrite on same desired state, controller invalidation; SYNTHETIC_RUNTIME, no native CAS claim |
+| TR/EN form/focus/status/current admin/mobile | H13-018 → YU01–06 + checkYouFlow | real component/App, 320/360/390/430/landscape, 200% text, keyboard and named controls; LOCAL_BROWSER Chromium/WebKit |
+
+Registered count is 166: 141 in-app executable and 25 separate acceptance (9 local, 12 external, 4 future). Existing failures and historical plan identities remain unchanged. Hosted two-owner/native predicate/null behavior, Health save/list/open, physical H13-013 and original ON-05 H11-006 stay manual. [Results and acceptance](reports/SHINKA_YOU_022.md); [current case audit](reports/you-022/case-audit.md).
 
 ## Current HC-021.0 — Pattern
 

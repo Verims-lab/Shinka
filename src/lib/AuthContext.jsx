@@ -81,6 +81,7 @@ export const AuthProvider = ({ children, client = base44 }) => {
 
   const logout = async (shouldRedirect = true) => {
     signedOut.current = true; generation.current++;
+    window.dispatchEvent(new Event('shinka-session-ended'));
     setUser(null); setIsAuthenticated(false); setAuthChecked(true);
     setIsLoadingAuth(false); setIsRefreshingAuth(false); setIsLoadingPublicSettings(false);
     try { await client.auth.logout(shouldRedirect ? `${window.location.origin}/login` : undefined); }

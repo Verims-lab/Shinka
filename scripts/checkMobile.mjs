@@ -141,9 +141,9 @@ async function auditMobileSurfaces(page, origin, directory) {
       rows.push({scenario:`modal-focus-${language}-${width}`, ...modal,restored,passed:modal.focusInside&&restored&&modal.scrollWidth<=modal.width+1});
     }
     if(surface==='home'){
-      await page.locator('[data-profile-trigger]:not(:disabled)').click();await page.locator('[role=menuitem]').waitFor();
-      await page.keyboard.press('Escape');
-      rows.push({scenario:`profile-menu-focus-${language}-${width}`,passed:await page.evaluate(()=>document.activeElement?.matches('[data-profile-trigger]')&&!document.querySelector('[role=menu]'))});
+      await page.locator('[data-profile-trigger]').focus();await page.keyboard.press('Enter');await page.locator('[data-you-heading]').waitFor();
+      await page.waitForFunction(()=>document.activeElement?.matches('[data-you-heading]'));
+      rows.push({scenario:`profile-you-keyboard-focus-${language}-${width}`,passed:await page.evaluate(()=>document.activeElement?.matches('[data-you-heading]')&&!document.querySelector('[role=menu]'))});
     }
   }
   return rows;

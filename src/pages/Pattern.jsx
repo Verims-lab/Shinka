@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import ProductLanguageControls from '@/components/profile/ProductLanguageControls';
+import { useEffect, useState } from 'react';
 import ProfileMenu from '@/components/profile/ProfileMenu';
 import ShinkaButton from '@/components/shinka/ShinkaButton';
 import ShinkaCard from '@/components/shinka/ShinkaCard';
@@ -6,13 +7,14 @@ import ProductNavigation from '@/components/shinka/ProductNavigation';
 import { patternCopy } from '@/foundation/i18n/patternCopy';
 import { usePattern } from '@/features/pattern/usePattern';
 import LunarTimeline from '@/features/pattern/LunarTimeline';
-export default function Pattern({ language: initialLanguage = 'en', renderProfileAccess = undefined, request = undefined }) {
+export default function Pattern({ language: initialLanguage = 'en', renderProfileAccess = undefined, onLanguageChange = undefined, request = undefined }) {
   const [language, setLanguage] = useState(initialLanguage);
+  useEffect(() => { if(initialLanguage) setLanguage(initialLanguage); }, [initialLanguage]);
   const state = usePattern(request), copy = key => patternCopy(key, language);
   return <div lang={language} data-pattern-root className="shinka-viewport shinka-safe-shell bg-shinka-ivory text-shinka-ink font-body flex flex-col">
     <header className="flex flex-wrap items-center justify-between px-5 pt-6 gap-2">
       <span className="font-heading font-medium text-shinka-h3 text-shinka-plum">Shinka</span>
-      <div className="flex flex-wrap items-center gap-1">{['tr', 'en'].map(lang => <ShinkaButton key={lang} variant="ghost" aria-pressed={lang === language} onClick={() => setLanguage(lang)}>{lang.toUpperCase()}</ShinkaButton>)}
+      <div className="flex flex-wrap items-center gap-1"><ProductLanguageControls language={language} onChange={async lang => { if (onLanguageChange) await onLanguageChange(lang); else setLanguage(lang); }}/>
         {renderProfileAccess?.(language) || <ProfileMenu language={language}/>}</div>
     </header>
     <main className="flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6">

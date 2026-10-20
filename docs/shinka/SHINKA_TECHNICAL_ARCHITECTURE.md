@@ -2,14 +2,22 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-021
+**Current BuildMarker:** Buildmarker-022
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
-**Not Implemented:** full You/withdrawal/account product workflows and notifications/scheduler. Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
+**Not Implemented:** withdrawal/deactivation product workflows and notification delivery/scheduler. Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## You responsibilities — 022
+
+`you/entry.ts` creates the existing native client and request-scoped GeoNames adapter. `youOperation` owns closed actions, current identity/ACTIVE/reset/deletion/complete-profile+daily admission, shared validation and safe response; `youRepository` owns singleton projection, revision, filtered update/count/readback. `profileInput` is shared with onboarding: one DOB/name/time/Sun/place rule. The ready-profile guard in the onboarding adapter remains intact.
+
+The existing picker/controller/cache/list files move unchanged to `features/profile/`, shared by ON-04 and You, with all imports updated; no second provider/search adapter. `youService` owns response shape/deadline and unknown outcome; `youController` owns draft, section result, pending intent, duplicate suppression and disposal; `useYou` owns lifecycle/focus; `ProfileEditor` and lazy `You` render only. Onboarding preserves its resolver, keys product pages by current owner and refuses an old-owner hydrate snapshot. Header language changes use the same closed preference backend. No personal persistent cache or browser CRUD is introduced.
+
+SDK invocation already sent cannot be canceled. In-memory generations prevent obsolete UI completion after logout/unmount/session switch; server guards remain authoritative. Field revision/predicate/readback is best-effort conflict detection, not transaction, distributed exclusion, rollback or guaranteed unique update. A verified read is an observation at that instant. Protected snapshots/history are outside all You write paths.
 
 ## Pattern responsibility boundary — 021
 

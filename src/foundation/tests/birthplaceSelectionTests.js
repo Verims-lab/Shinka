@@ -3,7 +3,7 @@ import { createGeoNamesAdapter } from '../../../base44/shared/geonamesAdapter.js
 import { geoNamesDiagnostic } from '../../../base44/shared/geonamesDiagnostics.js';
 import { onboardingOperation, handleOnboardingRequest } from '../../../base44/shared/onboardingOperations.js';
 import { BIRTHPLACE_FIELDS } from '../../../base44/shared/onboardingValidation.js';
-import { createBirthplacePicker } from '@/features/onboarding/birthplaceSelection';
+import { createBirthplacePicker } from '@/features/profile/birthplaceSelection';
 import { sdkOnboardingFixture } from './base44OnboardingFixture';
 import { hierarchyFetch, fixtureCountries, fixtureRegions, fixtureProviderPlace } from './geonamesHierarchyFixture';
 const input={country:'TR',parent_id:null,offset:0,language_code:'tr'};

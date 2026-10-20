@@ -1,3 +1,4 @@
+import { checkYouFlow } from './checkYouFlow.mjs';
 import { checkPatternFlow } from './checkPatternFlow.mjs';
 import { checkInAppHealth } from './verifyHealthFlow.mjs';
 import { writeHealthAudit } from './auditHealthCatalog.mjs';
@@ -67,6 +68,10 @@ try {
     const mobile=await checkMobile(browser,origin,process.env.FOUNDATION_MOBILE_DIR);
     console.log(JSON.stringify({diagnosticOnly:true,mobile,pageErrors},null,2));
     if(mobile.some(row=>!row.passed)||pageErrors.length)process.exitCode=1;
+  } else if (process.env.FOUNDATION_YOU_ONLY === '1') {
+    const youFlow = await checkYouFlow(page, origin, process.env.FOUNDATION_YOU_DIR);
+    console.log(JSON.stringify({diagnosticOnly:true,youFlow,pageErrors},null,2));
+    if(pageErrors.length)process.exitCode=1;
   } else if (process.env.FOUNDATION_PATTERN_ONLY === '1') {
     const patternFlow = await checkPatternFlow(page, origin, process.env.FOUNDATION_PATTERN_DIR);
     console.log(JSON.stringify({diagnosticOnly:true,patternFlow,pageErrors},null,2));
@@ -112,6 +117,7 @@ try {
   const mobile = await checkMobile(browser, origin, process.env.FOUNDATION_MOBILE_DIR);
   const dailyFlow = await checkDailyFlow(page, origin, process.env.FOUNDATION_DAILY_DIR);
   const patternFlow = await checkPatternFlow(page, origin, process.env.FOUNDATION_PATTERN_DIR);
+  const youFlow = await checkYouFlow(page, origin, process.env.FOUNDATION_YOU_DIR);
   const calendarFlow = await checkCalendarFlow(page, origin, process.env.FOUNDATION_CALENDAR_DIR);
   const adminTestFlow = await checkAdminTestTools(page, origin, process.env.FOUNDATION_TEST_TOOLS_DIR);
   const inAppHealth=await checkInAppHealth(page,origin);
@@ -119,7 +125,7 @@ try {
     const audit=await page.evaluate(()=>({registry:window.__healthAuditRegistry,report:window.__savedHealthReport}));
     await writeHealthAudit(root,process.env.FOUNDATION_AUDIT_DIR,audit.registry,audit.report,results);
   }
-  console.log(JSON.stringify({inAppHealth,adminNavigation,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
+  console.log(JSON.stringify({youFlow,inAppHealth,adminNavigation,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
   if(mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||calendarHealth.some(c=>c.status!=="PASS")||adminTestHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
   }
   }

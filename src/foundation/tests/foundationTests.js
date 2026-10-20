@@ -1,3 +1,5 @@
+import { YOU_TESTS } from './youTests';
+import { YOU_UI_TESTS } from './youUiTests';
 import { PATTERN_TESTS } from './patternTests';
 import { PATTERN_UI_TESTS } from './patternUiTests';
 import { CLOSURE020_READINESS_TESTS, CLOSURE020_REMOVAL_TESTS } from './closure020Tests';
@@ -53,6 +55,7 @@ const fixtureCases = (ids) => ids.map((id) => ({ id, suiteId: id.slice(0, 3), ti
 
 /** @type {import("./testTypes").FoundationTest[]} */
 export const FOUNDATION_TESTS = [
+  ...YOU_TESTS, ...YOU_UI_TESTS,
   ...PATTERN_TESTS, ...PATTERN_UI_TESTS,
   ...NATIVE_TESTS,
   ["T01", "BuildMarker format", () => assert(isValidMarker(BUILD_MARKER) && !isValidMarker("buildmarker-001") && !isValidMarker("Buildmarker-01"), "format")],

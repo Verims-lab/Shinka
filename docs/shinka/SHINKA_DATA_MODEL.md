@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-021
+**Current BuildMarker:** Buildmarker-022
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -12,6 +12,14 @@
 **External Verification Required:** Base44 native UNIQUE is unsupported; no multi-record transaction/CAS guarantee is claimed. Native handler tests use synthetic transport; hosted schema/authorization/mutation recovery remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+
+## You update contract — 022
+
+No entity/field/RLS delta. Existing UserProfile and UserPreferences remain owner singletons; ready users are updated only, never recreated/upserted by You. Backend allows profile inputs display_name, birth_date, birth_time and birthplace_geonames_id; server derives the five-place fields and Sun. account_status/user_id/role/consent/derived Sun are never caller-owned. The profile patch excludes account_status. Preference patch contains language_code, notifications_enabled, fixed notification_time 06:00 and validated automatic timezone. Optional NULL values are explicit for merge updates.
+
+The opaque SHA-256 revision binds row ID, native update metadata and canonical editable field projection; it is an observation token, not a native lock. Native timestamp strings are compared as supplied, never reparsed/appended with Z. Pre-write comparison plus exact previous-value/owner/ACTIVE filter, one-row result and exact readback detect observable conflict. Same desired state verifies without writing even after response loss. No new receipt/cache/table or multi-record transaction/CAS guarantee. Actual one-row SDK predicate/count behavior and concurrent remote visibility remain hosted acceptance.
+
+Profile/Preference saves never modify UserDailyMessage, UserPatternSummary/history, consent/event/cycle/notification records or reset progress. Onam time/version authority is unchanged. Read-only consent status is taken from the existing current record after validation; missing record means NOT_GIVEN, not an inferred grant. Malformed/duplicate records produce an error.
 
 ## Pattern projection — 021
 

@@ -50,5 +50,12 @@ export async function verifyNativeEntries(root) {
     '../../shared/patternOperation.js': { handlePatternRequest: (_req, createClient) => { assert.equal(createClient, native.createNativeClient); return 'pattern-read-route'; } },
   });
   assert.equal(await pattern.default({}), 'pattern-read-route');
-  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 7, nativeRoutes: 3, loginSecretReads: secretReads, hostedVerified: false, passed: true };
+  const you = await load('base44/functions/you/entry.ts', {
+    '../../shared/nativeClient.ts': native,
+    'base44:runtime': { secrets: { get: name => { assert.equal(name, 'GEONAMES_USERNAME'); return 'synthetic-public-provider-name'; } } },
+    '../../shared/geonamesAdapter.js': { createGeoNamesAdapter: config => ({ fixture: config.username }) },
+    '../../shared/youOperation.js': { handleYouRequest: (_req, createClient, deps) => { assert.equal(createClient, native.createNativeClient); assert.equal(deps.geoNames.fixture,'synthetic-public-provider-name'); return 'you-route'; } },
+  });
+  assert.equal(await you.default({}), 'you-route');
+  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 7, nativeRoutes: 4, loginSecretReads: secretReads, hostedVerified: false, passed: true };
 }

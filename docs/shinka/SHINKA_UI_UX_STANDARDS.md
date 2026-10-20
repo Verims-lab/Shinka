@@ -2,15 +2,23 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-021
+**Current BuildMarker:** Buildmarker-022
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
 **Implemented:** Tokens (`src/foundation/designTokens.js` ↔ `src/index.css`), contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), primitives (`src/components/shinka/`), Foundation shell aligned; scoped Profile/You admin menu and internal panel.
-**Not Implemented:** Current-build hosted/device acceptance and full You/account workflows. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
+**Not Implemented:** Current-build hosted/device acceptance, approved legal destinations, withdrawal and deactivation. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+## Implemented You UX — 022
+
+Top-right profile opens You for completed users, including normal users. Incomplete users retain onboarding and its verified-admin tools. You has My Profile, App Preferences, Account & Privacy, top Back and unchanged three-item bottom navigation. Admin Panel appears only under the existing fresh AuthContext.isAdmin decision. Shared ShinkaCard/Button/Input/Select, relative line heights, minimum 44px controls and 52px primary actions remain. ShinkaButton now forwards a DOM ref for proper focus return after Save/Cancel.
+
+Inline profile edit opens with name focus; field validation moves focus to the failing field. Save failure preserves draft; success follows exact backend readback and returns focus to Edit. Current persisted Sun is read-only; its value changes after verified profile save, not client calculation. Saved birthplace remains visible independently of picker lists. Provider error, Clear and incomplete selection reuse the existing localized selector states. Profile and preferences have separate Save and success results; no blanket partial-success message.
+
+Unknown write has Check saved result and explicit same-save Retry; edits are locked while outcome is unknown. A conflict retains the draft and offers explicit Reopen saved values. Notifications show fixed local 06:00 plus a clear preference-only/delivery-unavailable explanation. No new device permission/timezone/time selector. Legal headings show unpublished status, with no invented links. Current consent is text only; withdrawal/deactivation remain absent future actions. TR/EN source and scoped-copy provenance is in SOURCE_OF_TRUTH.
 
 ## Implemented Pattern UX — 021
 
