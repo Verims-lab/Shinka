@@ -2,11 +2,18 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — First Shinka repository work; production persistence and live closure blocked
-**Current BuildMarker:** Buildmarker-014
+**Current BuildMarker:** Buildmarker-015
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** First Shinka/Home preparation and retained maintenance/admin evidence; no live import or deployment.
+
+## Buildmarker-015 — approved PostgreSQL Test implementation
+
+User approved a single SQL product authority with unchanged Base44 identity, Supabase Free Frankfurt and zero external spend. Branch preflight found main two commits ahead; clean Test fast-forwarded to c9a0fc3 and was synchronized before work. Implemented schema/constraints, server SQL routing, roster/bootstrap, daily/Calendar transactions, reset receipts and durable delete stages. Local PostgreSQL 17.11 was compiled from official source after the installed Homebrew could not supply a bottle; tests use a temporary cluster and synthetic identity service only. No external project, real profile/health migration, publish or live deletion/reset occurred.
+
+The reintroduced unreferenced AuthLayout/Register/ResetPassword/ForgotPassword/OAuthConsent boilerplate was removed after route/import inspection; approved OAuth remains unchanged. Added pinned server PostgreSQL driver with native lockfile regeneration. Final measured scope: 25 real PostgreSQL groups; Chromium/WebKit each 405 canonical and 99 local Health PASS; zero page errors; Repo Health 18/18. Security remains 0 Critical/High and 2 Moderate; required local quality and performance checks pass. Exact verification, advisory disposition and hosted limitations are recorded in [015 delivery](reports/SHINKA_POSTGRESQL_TEST_015.md) and its evidence directory; no unexecuted check is claimed here.
+
 
 ## Buildmarker-009 maintenance baseline and changes
 

@@ -4,7 +4,7 @@ import { safeAuthError } from "@/foundation/authErrors";
 
 const AuthContext = createContext(null);
 // Isolated canonical tests inject a client; production uses the existing SDK.
-/** @param {{children?:import("react").ReactNode,client?:{app:{getPublicSettings:()=>Promise<any>},auth:{me:()=>Promise<any>,logout:(redirect?:string)=>void|Promise<any>}}}} props */
+/** @param {{children?:import("react").ReactNode,client?:{app:{getPublicSettings:()=>Promise<any>},functions:{invoke:(name:string,body:object)=>Promise<any>},auth:{logout:(redirect?:string)=>void|Promise<any>}}}} props */
 export const AuthProvider = ({ children, client = base44 }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -21,7 +21,9 @@ export const AuthProvider = ({ children, client = base44 }) => {
     const ticket = ++generation.current;
     setIsRefreshingAuth(true);
     try {
-      const currentUser = await client.auth.me();
+      const response = await client.functions.invoke('applicationSession', {});
+      const currentUser = response?.data;
+      if (currentUser?.authority !== 'POSTGRESQL_TEST_V1' || !['admin','user'].includes(currentUser?.role)) throw new Error('APPLICATION_SESSION_UNVERIFIED');
       if (ticket !== generation.current) return false;
       if (!currentUser?.id) throw new Error("AUTH_SESSION_REQUIRED");
       setUser(currentUser); setIsAuthenticated(true); setAuthError(null);

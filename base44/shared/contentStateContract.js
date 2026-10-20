@@ -7,7 +7,7 @@ export function contentStatePolicy(buildMarker) {
   if(!match)return 'UNRECOGNIZED_PACKAGE';
   const version=Number(match[1]);
   // Packages 009 (maintenance) and 010 (admin navigation) are pre-content; it does not authorize content imports.
-  return [7,8,9,10].includes(version)?'PRE_CONTENT_ZERO_ROWS':[11,12,13,14].includes(version)?'VERIFIED_CONTENT_IMPORT_STAGES':'APPROVED_CONTENT_VALIDATION_REQUIRED';
+  return [7,8,9,10].includes(version)?'PRE_CONTENT_ZERO_ROWS':[11,12,13,14,15].includes(version)?'VERIFIED_CONTENT_IMPORT_STAGES':'APPROVED_CONTENT_VALIDATION_REQUIRED';
 }
 
 export function evaluateContentState(buildMarker, counts, importPerformed, verification=null) {
@@ -30,7 +30,7 @@ export function evaluateContentState(buildMarker, counts, importPerformed, verif
 function evaluateImportStage(counts, verification) {
   const expected={policy:'VERIFIED_CONTENT_IMPORT_STAGES',preImport:[0,0,0],imported:[6,240,260],exactSourceAndRelations:true};
   const rows=counts?.results;
-  if(counts?.source!=='LIVE_BASE44_COUNT'||!Number.isFinite(Date.parse(counts.measuredAt))||!Array.isArray(rows)||rows.length!==3||CONTENT_ENTITY_NAMES.some(entity=>rows.filter(row=>row.entity===entity&&row.state==='MEASURED'&&Number.isSafeInteger(row.count)&&row.count>=0).length!==1))return {status:'BLOCKED',code:'LIVE_CONTENT_COUNT_UNAVAILABLE',expected};
+  if(!['LIVE_BASE44_COUNT','LIVE_POSTGRESQL_COUNT'].includes(counts?.source)||!Number.isFinite(Date.parse(counts.measuredAt))||!Array.isArray(rows)||rows.length!==3||CONTENT_ENTITY_NAMES.some(entity=>rows.filter(row=>row.entity===entity&&row.state==='MEASURED'&&Number.isSafeInteger(row.count)&&row.count>=0).length!==1))return {status:'BLOCKED',code:'LIVE_CONTENT_COUNT_UNAVAILABLE',expected};
   if(!verification||verification.sourceHash!==CONTENT_SOURCE_SHA256)return {status:'BLOCKED',code:'CONTENT_VERIFICATION_UNAVAILABLE',expected};
   const empty=rows.every(row=>row.count===0);
   if(empty&&['SOURCE_DECISION_REQUIRED','PRE_IMPORT'].includes(verification.phase)&&verification.ready===false)return {status:'PASS',code:'PRE_IMPORT_VERIFIED_NOT_PRODUCTION_READY',expected};

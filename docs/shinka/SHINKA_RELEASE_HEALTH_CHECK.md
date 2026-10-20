@@ -2,11 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-014
+**Current BuildMarker:** Buildmarker-015
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Scope:** Health catalog HC-014.0; repository, synthetic and external evidence separated.
+
+## Current catalog — HC-015.0 / Buildmarker-015
+
+Added H04-016, H07-014, H09-005, H08-007 and H12-032 consume **executed local real PostgreSQL** reports with current-source digest verification; identities are synthetic. H04-017 probes the connected Test schema/role read-only and never implies mutation/recovery proof. Catalog version advances once because current case semantics and scope change. H07-011 is explicitly historical Base44 persistence regression. No failing case was removed. H09-004/H08-005/H12-031 now state the actual remaining condition: SQL implementation exists locally, hosted Supabase/Base44 acceptance is missing.
+
+Required repository sequence includes `npm run test:postgres`, both browser engines, Health source digest check, dependency tree/audit, lint/type/build and performance budgets. Local PG report and separate hosted acceptance checklist: [015 Test report](reports/SHINKA_POSTGRESQL_TEST_015.md). Supabase access/project provisioning, Base44 Test sync, verified TLS/pooler execution, real signed-in synthetic identities, multi-worker/lost-response native lifecycle acceptance, current-marker Full Health save/list/readback, old ON-05 partial-account incident and physical devices remain separate open obligations. No real-data migration or automatic destructive Health action is performed.
+
 
 ## Previous catalog checkpoint (HC-011.0) — 16 suites, 137 cases
 

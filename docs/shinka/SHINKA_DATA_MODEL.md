@@ -2,16 +2,29 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-014
+**Current BuildMarker:** Buildmarker-015
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
 **Scope:** Product domain entities + separately listed internal tooling storage.
 **Implemented:** 20 JSONC schemas in `base44/entities/`, canonical definitions in `base44/shared/domainSchemas.js`, source field receipt, validation and guarded backend access.
 **Open Decisions:** OD-004, OD-009; OD-002 RESOLVED_BY_PRODUCT_DECISION
-**External Verification Required:** Native UNIQUE/compound UNIQUE are UNSUPPORTED by official documentation. Index/FK/conditional update/transaction/rollback remain UNVERIFIED. Deployed enforcement pending.
+**External Verification Required:** The historical Base44 Entity store has no native UNIQUE and no verified multi-record transaction. Current Test PostgreSQL constraints/transactions are locally executed; hosted Supabase/Base44 enforcement remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+
+## Active Test physical contract — PostgreSQL 015
+
+The 20 logical product entities and their approved domain fields remain. PostgreSQL physically stores 18; `user_cycle_prediction` and `user_cycle_phase_day` are validated read-time projections of actual periods/settings and the common calculation rules. They are not independent authorities, mutable caches or migrated observations. `shinka_private` also contains four infrastructure tables: application, owner (same Base44 User ID plus SQL role/generation/fence), request_receipt and test_operation. These 22 SQL tables all have app-scoped RLS. Legacy Base44 JSON schemas remain deny-all compatibility/rollout artifacts; no active Test product path reads/writes them. InternalHealthRun remains redacted Base44 tooling only, with direct CRUD denied and SQL-admin backend access.
+
+Native SQL PK/UNIQUE/FKs, owner-composite references, enums/checks, one open health job, one active target operation and a 15-day period-spacing trigger supplement canonical server validation. Three immutable entities (daily, consent event, admin audit) deny UPDATE/DELETE in both privileges and triggers. No FK points into Base44 auth: verified Base44 IDs are recorded in the SQL owner registry and checked at every request; retained owner/fence rows survive native User deletion.
+
+SQL `date` preserves YYYY-MM-DD; instants use `timestamptz` and explicit UTC/offset input validation, serialized in UTC. SQL `created_at`/`updated_at` describe storage metadata. `granted_at`, event `occurred_at` and job times are persisted backend business times; they never derive from Base44 `created_date`. Retries preserve a committed grant time. A rolled-back transaction has no accepted grant, so retry may generate its first durable time. NULL optional durations remain NULL/absent settings; 5/28 stay calculation-only.
+
+Request receipts are private application data, keyed by app/owner/reset-generation/action and bound to canonical input fingerprints. They contain the bounded result needed for replay, so may contain profile/state fields; they are not audit logs or exported Health evidence. Reset increments generation and prevents replay of prior workflow receipts; delete clears target receipts. The separate test_operation journal contains only safe metadata and checkpoints, never profile/health payloads. Daily record IDs and stored snapshots remain immutable during reset/delete retention.
+
+No existing real Base44 record was migrated. Invalid/naive timestamps, duplicate logical keys, partial legacy ON-05 states and reference conflicts require explicit migration exceptions; never choose an arbitrary winner or append `Z`. Earlier Base44 constraint/mapping sections below document historical limitations; PostgreSQL guarantees are separately evidenced by [local database tests](reports/postgres-015/local-postgres.json), not attributed to Base44.
+
 
 ## PRODUCT DOMAIN ENTITIES (20)
 | # | Entity | Purpose | Owner | Lifecycle | Uniqueness / index | Deletion |

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — source prepared; controlled import and engine implemented; production daily persistence blocked
-**Current BuildMarker:** Buildmarker-014
+**Current BuildMarker:** Buildmarker-015
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
@@ -10,6 +10,13 @@
 **Implemented:** Workbook validator, exact backend manifest, dry-run/apply/verify importer, Moon preparation, daily selection and snapshot protocol, ON-06/Home integration.
 **Not Implemented:** Verified production daily create-if-absent adapter; live import/generation proof; scheduled lookup renewal.
 **Open Decisions:** OD-005, OD-008 (noted); OD-002 RESOLVED_BY_PRODUCT_DECISION
+
+## Test reference preparation — 015
+
+The explicit PostgreSQL Test approval permits only the already approved six categories, 240 mappings, 260 bilingual content pairs and current Moon references. `scripts/postgres/referenceData.mjs` verifies the canonical source SHA-256, builds the approved category crosswalk, imports insert-or-identical inside a locked SQL transaction and validates full readback/relations. Any changed text, mapping or duplicate conflict aborts; no silent update or regenerated product text. Moon generation reuses pinned Astronomy Engine and validates contiguous UTC coverage for the current horizon plus two future years. Local report contains counts/hash/coverage only.
+
+SQL is the sole Test reference and daily snapshot authority. Base44 content rows are never a fallback. Hosted import has not run. H05's staged policy explicitly includes 015 and accepts provenance-tagged PostgreSQL counts; exact source/crosswalk readiness remains required. Daily immutable snapshots and the existing 40-day selection rule are unchanged.
+
 
 ## Pair model
 One Pair ID (`SHF-001`…`SHF-260`) = Your Shinka + Today's Suggestion, TR and EN. Never selected one-sided. 260 is the starting library, not a cap. All pairs Active; no deactivate/delete in this version.

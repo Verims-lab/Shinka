@@ -1,7 +1,4 @@
-import { withUserLifecycle } from '../../shared/userLifecycle.js';
-import { createClientFromRequest } from 'npm:@base44/sdk@0.8.54';
-import { handleContentLibraryRequest } from '../../shared/contentLibraryOperation.js';
+import {handleSqlRequest} from '../../shared/postgres/http.js';
+import {openHostedSql} from '../../shared/postgres/hosted.ts';
 import * as astronomy from 'npm:astronomy-engine@2.1.19';
-import { FIRST_CONTENT_SOURCE as source } from '../../shared/firstContentSource.js';
-import { CONTENT_CATEGORY_DECISION as decision } from '../../shared/contentCategoryDecision.js';
-export default (req) => handleContentLibraryRequest(req, request => withUserLifecycle(createClientFromRequest(request)), { astronomy, source, decision });
+export default req => handleSqlRequest(req,'contentLibrary',openHostedSql,{astronomy});

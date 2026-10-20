@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-014
+**Current BuildMarker:** Buildmarker-015
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -10,6 +10,17 @@
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
 **Not Implemented:** Verified hosted daily/Calendar writes (atomic capability blocked), Pattern, You editing, withdrawal/deactivation and notifications.
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+## Current Test persistence behavior — 015
+
+The approved execution order is implemented on one PostgreSQL authority: verified identity/SQL role → immutable Home day → coherent Calendar → onboarding reset → durable delete/recovery. Product copy, approved categories, ON-04 selection and optional ON-05 durations are unchanged. New unaffiliated Test identities must be explicitly allowlisted; only authenticated actor identities register in SQL, with no copied legacy product data.
+
+Onboarding grants, event, period and optional settings commit together with a receipt; failure before commit leaves none of that attempt. Existing valid durable grants and exact time are preserved. Skip creates no consent/health rows. A lost response is retried with the same action; different input under the same key conflicts. Home returns the existing immutable day after retry/reload, including during reset completion. Calendar checks the expected revision under lock, writes actual dates atomically, then recalculates using approved OD-012; stale revisions/changed receipt state are explicit errors, never silent overwrites.
+
+Reset preserves identity/role/history, increments receipt generation, and gates PROFILE → CYCLE → FIRST_SHINKA → DONE. Each normal write and progress transition is one SQL transaction. A failed transition cannot leave a newer profile with an older stage. Existing same-day daily record completes ON-06 without a second snapshot. Reset is denied for missing/INACTIVE profile or open health deletion.
+
+Delete commits target fence, SQL admin removal, job and start audit before cleanup. Each cleanup stage/checkpoint commits together. Pending/failed notifications become SKIPPED; scoped operational rows are removed and approved protected histories retained. External Base44 User deletion cannot share a SQL rollback: if response/process is lost, the permanent fence remains and a new current SQL admin can resume, verify native absence and finish. Recovery by a different admin is audited. No automatic retry loop or automatic destructive Health test exists. This flow has local real-PG proof with a synthetic identity service; hosted acceptance remains outstanding.
+
 
 ## Account / Authentication (UC-01, KK-01)
 Apple or Google only; no Shinka password; one account per provider identity. 18+ checkbox (initially empty) must be checked before auth starts; age is re-checked from birth date (backend). Sign Out does not change account status.

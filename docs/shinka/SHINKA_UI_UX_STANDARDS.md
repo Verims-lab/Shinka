@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-014
+**Current BuildMarker:** Buildmarker-015
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -11,6 +11,13 @@
 **Not Implemented:** Verified hosted Calendar mutations, Pattern and full You/account workflows; new daily persistence remains blocked. ON-06/Home rendering and request states are implemented.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+## Application authority in Test — 015
+
+Profile/You and AdminGate now consume `applicationSession` from Base44 functions; its role comes from SQL and requires an ACTIVE profile. The UI never falls back to native Base44 role or a cached caller flag. Admin access is still possible before ON-05/ON-06 completion once the ACTIVE profile and explicit SQL grant exist. Pending/failed refresh hides protected content; backend authorization is independent on each call. Existing copy, colors, menu/cards, OAuth buttons and routes stay unchanged. No Supabase sign-in UI is added.
+
+When Test SQL configuration is absent, the existing auth/error boundary fails closed. No legacy product state is displayed as a fallback. Existing Calendar/Test Tools enabled/disabled states reflect the new backend capability; destructive execution additionally requires a configured synthetic-only Test scope and signed confirmation. Old auth boilerplate reintroduced by main was unreferenced by the approved Apple/Google route graph and removed; the actual Base44 OAuth flow is preserved.
+
 
 ## Authority
 SRC-03 v1.1 governs presentation, copy and interaction. Business rules: SRC-01; flows: SRC-02; data: SRC-05/07.

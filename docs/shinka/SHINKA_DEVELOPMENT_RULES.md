@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-014
+**Current BuildMarker:** Buildmarker-015
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -14,6 +14,13 @@
 - NO SILENT SOURCE-CONTRACT CHANGE
 - NO FUTURE FEATURE IMPLEMENTATION WITHOUT PACKAGE SCOPE
 - NO LEGACY SHINKA IMPORT — NO LEGACY SHINKA CONTRACT MAY ENTER THIS PROJECT WITHOUT AN EXPLICIT CHANGE REQUEST.
+
+## Approved Test implementation package — 015
+
+Advance once to Buildmarker-015 / HC-015.0 and retain packages 011…015. The latest user approval replaces 014's architecture approval blocker only for isolated Test, Supabase Free Frankfurt and zero external spend. Continue local PostgreSQL work while account/organization/access is pending. Do not create a paid/Production resource, migrate real profiles/consent/cycles, merge main, publish or reset/delete a live user under this authorization.
+
+Run real local PostgreSQL concurrency, rollback, lost-response, process restart, role/fence tests in addition to existing repository/browser/dependency checks. Bind saved local evidence to current code; separately report hosted Supabase/Base44, real identity and physical-device proof. H09-004/H08-005/H12-031 remain hosted acceptance blockers; an implementation or read-only schema probe cannot close them. Update the 014 decision and all affected canonical contracts together. Prepare the Production environment/backup/cost/cutover proposal for a later explicit budget/window decision.
+
 
 ## Mandatory workflow
 1. Read current source contracts. 2. Identify affected domains. 3. Implement. 4. Add/update tests. 5. Add/update Health. 6. Reconcile canonical docs. 7. Run regression (Full Health). 8. Increment BuildMarker exactly once. 9. Record build (ledger + BUILD_HISTORY). 10. Report remaining live/external verification honestly.

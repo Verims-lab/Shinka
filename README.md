@@ -4,6 +4,12 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Any change pushed to the repo will also be reflected in the Base44 Builder.
 
+## Current Test data authority (Buildmarker-015)
+
+All product data and application-admin roles now use PostgreSQL through the existing Base44 functions. Base44 login/OAuth/User IDs stay unchanged; no Supabase Auth or legacy product fallback exists. Missing SQL Test configuration fails closed. Do not publish this branch to a shared Production backend.
+
+Local real-database regression: `SHINKA_PG_BIN=/absolute/postgresql/bin npm run test:postgres`. It owns a disposable loopback cluster and synthetic identities. Hosted Supabase Free Frankfurt setup and acceptance are pending account access. Follow [015 Test setup and Production proposal](docs/shinka/reports/SHINKA_POSTGRESQL_TEST_015.md) for migration, restricted runtime role, explicit admin bootstrap and verification. Existing Base44 setup commands below still describe the host tooling; old package persistence notes are historical.
+
 ## Prerequisites
 
 1. Clone the repository using the project's Git URL.

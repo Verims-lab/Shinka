@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-014
+**Current BuildMarker:** Buildmarker-015
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -35,6 +35,13 @@
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Missing production primitives fail closed. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+
+## PostgreSQL implementation standards — 015
+
+Use parameterized SQL and the request transaction context in `base44/shared/postgres`; do not open independent product connections or use raw Base44 product entities from an entry. The checked-in migration is the only initial SQL schema; checksum drift fails. Schema generation is an authoring step, never runtime migration. Keep app/owner lock order, receipt fingerprints, generation and readback coupled to writes. No product authority fallback. SQL driver errors are private; only bounded domain codes reach clients.
+
+Real database tests are mandatory for changes to these guarantees: `npm run test:postgres` with `SHINKA_PG_BIN` pointing to PostgreSQL 17 binaries. The runner owns a disposable loopback cluster and synthetic identities; no hosted URL can be substituted. Its report is bound to the current server/migration/test source digest. Browser tests retain historical Base44 adapter fixtures solely to preserve earlier incident regressions; passing those is not SQL or hosted proof. Connection pool accounting is explicitly module-scoped infrastructure, not a business mutex. Hosted pooler mode requires `prepare:false`, `max_pipeline:1` and certificate verification.
+
 
 ## Onboarding boundaries and regression
 

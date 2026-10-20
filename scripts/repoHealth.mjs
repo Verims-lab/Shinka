@@ -8,10 +8,12 @@ import { HEALTH_CATALOG_VERSION } from '../base44/shared/healthConstants.js';
 import { validateLedger } from '../src/foundation/buildMarkerRules.js';
 const e=buildStaticEvidence();
 const checks={
+  postgresExecutedSourceMatch:e.postgres.fresh,
   dependencyBoundaries:e.dependencies.ok,
   boundedGeneratedHistory:e.activeBuildHistory.generatedMatches,
   twentyPhysicalProductSchemas:e.domain.expected===20&&e.domain.present===20&&e.domain.mismatches.length===0,
   noUnexpectedProductSchemas:e.domain.unexpected.length===0,
+  sqlAuthorizedHealthHistory:e.domain.healthHistoryPolicy,
   separateBuiltinUserAndTooling:e.domain.builtinUserSeparate&&e.domain.internal===2&&e.domain.testOperationPolicy,
   exactAuthoritativeFields:Object.keys(SOURCE_FIELD_NAMES).length===20&&Object.entries(SOURCE_FIELD_NAMES).every(([entity,fields])=>JSON.stringify([...fields].sort())===JSON.stringify(Object.keys(DOMAIN_SCHEMAS[entity].properties).sort())),
   completeAccessMatrix:e.domain.accessMatrixComplete&&e.domain.accessMatrixRows===20,

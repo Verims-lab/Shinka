@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-014
+**Current BuildMarker:** Buildmarker-015
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -14,7 +14,7 @@
 |---|---|---|
 | OAuth ownership | Provider identity → one account; no duplicates | UNVERIFIED (Apple unknown, OD-003) |
 | User row isolation | User sees only own rows; owner from auth context | REPOSITORY + SYNTHETIC verified; 20 direct SDK deny policies and backend owner scoping; live pending |
-| Admin boundary | Platform role; audited; no email-based authority | REPOSITORY_IMPLEMENTED / SYNTHETIC_TESTED; deployed two-user enforcement unverified |
+| Admin boundary | SQL application roster; fresh native identity; audited; no email authority | LOCAL_POSTGRESQL_VERIFIED; hosted two-user enforcement unverified |
 | Sensitive health access | Only with explicit valid consent | Shared backend consent/open-job checks; live pending |
 | Consent | Versioned, timestamped, event history | UNVERIFIED |
 | Health-data deletion | Immediate stop, verified deletion, retries, no re-consent mid-job | UNVERIFIED |
@@ -28,6 +28,17 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS allows admin read and denies client create/update/delete; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+## Active Test security boundary — 015
+
+Base44 authenticates the existing User ID. Its dashboard/admin role does not confer or revoke SQL application-admin access. `applicationSession` and every privileged endpoint derive role from the same SQL roster and require an ACTIVE SQL profile for admin authority. Initial bootstrap is operator-only, compares the explicit confirmed ID with fresh native authentication/User existence, requires the synthetic Test allowlist and ACTIVE profile, audits the grant and permanently closes the bootstrap marker. No email-based role or automatic native-admin import exists. Later grant/revoke uses an exclusive app roster lock, exact target identity, audit and durable receipt; removing the last ACTIVE unfenced admin is denied. SQL revoke affects the next backend transaction; an already authorized transaction may finish before revoke obtains its lock. UI hides privilege while refreshing and on next focus/visibility/60-second admin refresh; no instantaneous browser push claim.
+
+Hosted runtime uses a restricted LOGIN role inheriting `shinka_runtime`, never the database owner. SQL RLS is **application isolation for the trusted server credential**, not end-user browser RLS: only the backend can set the app GUC. Owner/ACTIVE/consent/deletion/reset checks remain mandatory in server operations. Runtime credentials can administer authorized application rows and therefore must stay server-only; this design does not claim protection against a compromised privileged server/operator. `anon`, `authenticated` and PUBLIC receive no private schema access; no Supabase Auth/Data API product path is used.
+
+All product operations share SQL owner locks. Persisted deletion fence denies stale native tokens even while User deletion is pending; native absence also denies access. Normal reset requires an ACTIVE target and no open health job; Calendar/domain reads cannot bypass active reset. Health access checks the current consent and unfinished deletion jobs; explicit audited admin health reads also validate the target. Admin history readback and GeoNames diagnostic callbacks require the current SQL role. InternalHealthRun direct read is now false, preventing the Base44 native role from bypassing SQL revocation.
+
+SQL errors/connection details never cross HTTP; reports contain counts, case IDs, hashes and statuses only. No real user reset/delete/migration is authorized in this package. The native identity provider in local PG tests is a synthetic fixture. Historical Base44 guards/evidence below are retained as history, not the active Test product authority. Hosted role/TLS/direct SDK denial, Base44 User removal and restore proof remain open.
+
 
 ## Dependency security policy
 Every package must run `npm run security:deps` (`npm audit --audit-level=high --include=dev`). Native npm exit status blocks Critical/High and audit/registry failures without parsing or hiding findings. Moderate/Low output stays visible and requires a documented path, exposure and fix disposition. Runtime and build dependencies are both included; **no Critical/High exceptions or waivers**. Regenerate lockfiles through npm, validate with `npm ci` and full `npm ls`, preserve release-age controls, and never apply unsupported overrides or blind forced audit fixes.
@@ -208,3 +219,7 @@ Fresh `npm audit --json` completed on the unchanged lockfile (SHA-256 `98542fb2e
 Prior 012/013 scans failed certificate-chain verification. The failure was not reproducible in this run: direct Node TLS to registry.npmjs.org reports authorized=true, TLSv1.2, issuer Google Trust Services; strict-ssl=true, no NODE_TLS_REJECT_UNAUTHORIZED override, no extra CA configured. No trust, TLS or npm configuration was changed. The old connection's chain/root cause was not captured and cannot now be proven; transient network/chain presentation is a hypothesis, not a repaired application defect. Current scan is complete, so the current security-scan status is no longer BLOCKED. Historical blocked results remain recorded as historical.
 
 Live read-only CLI evidence confirms lifecycle schema readability and PRE_IMPORT/Moon missing data only. Privileged inspection does not prove user RLS or mutation safety. The proposed SQL authority/region/identity/admin-roster/migration changes require user approval per [decision 014](reports/SHINKA_PERSISTENCE_DECISION_014.md); no external service, credential, data movement or live account operation occurred. The missing-schema guard remains fail-closed and AT17 verifies no product writes before failure. Live ON-05 save/readback and hosted multi-identity enforcement remain outstanding.
+
+## Dependency scan — Buildmarker-015
+
+Fresh TLS-verified npm audit after `npm ci`: 0 Critical, 0 High, 2 Moderate, 0 Low. Added pinned `postgres` 3.4.9 for server/operator/local database tests; no driver in the frontend graph. `security:deps` passes the native High threshold. Remaining router paths are `react-router-dom@6.30.6 → react-router@6.30.6`: GHSA-wrjc-x8rr-h8h6 (untrusted backslash navigation) and GHSA-337j-9hxr-rhxg (SSR hydration deserialization). Existing mitigation remains static/internal navigation plus validated auth return path; app uses BrowserRouter without SSR hydration. A major migration to fixed v7 is the vendor fix and remains separate scoped work, not suppressed by an override. The audit JSON and exact lock hash are recorded with 015 evidence.

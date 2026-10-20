@@ -15,6 +15,7 @@ export function inspectDomainSchemas(root) {
   }
   return {expected:expected.length,present:all.filter(({entity})=>expected.includes(entity.name)).length,unexpected,mismatches,
     internal:all.filter(({entity})=>['InternalHealthRun','AdminTestOperation'].includes(entity.name)).length,builtinUserSeparate:all.filter(({entity})=>entity.name==='User').length===1,
+    healthHistoryPolicy:all.filter(({entity})=>entity.name==='InternalHealthRun').every(({entity})=>['read','create','update','delete'].every(op=>entity.rls?.[op]===false)),
     testOperationPolicy:all.filter(({entity})=>entity.name==='AdminTestOperation').length===1&&all.filter(({entity})=>entity.name==='AdminTestOperation').every(({entity})=>['read','create','update','delete'].every(op=>entity.rls?.[op]===false)&&!Object.hasOwn(entity,'unique_fields')&&!Object.hasOwn(entity.properties,'birth_date')&&!Object.hasOwn(entity.properties,'payload')),
     accessMatrixRows:ACCESS_MATRIX.length,accessMatrixComplete:ACCESS_MATRIX.every(row=>Object.keys(row).length===13),
     directOperationsDenied:all.filter(({entity})=>expected.includes(entity.name)).every(({entity})=>['read','create','update','delete'].every(op=>entity.rls?.[op]===false)),

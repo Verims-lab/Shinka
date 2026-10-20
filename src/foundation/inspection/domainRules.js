@@ -2,8 +2,8 @@ import { syntaxNodes } from './sourceRules.js';
 // Repository import/seed tripwire. Fixtures are isolated in the canonical test tree;
 // ordinary application/backend/scripts stay in scope. This is not a live row count.
 export function inspectProductWriteSurface(sources) {
-  const allowed={'/base44/shared/domainAudit.js':2,'/base44/shared/internalHealthOperations.js':1,'/base44/shared/base44OnboardingAdapter.js':2,'/base44/shared/base44ContentLibrary.js':1,'/base44/shared/moonImport.js':1};
-  const methods={'/base44/shared/base44OnboardingAdapter.js':['upsert','create'],'/base44/shared/base44ContentLibrary.js':['upsert'],'/base44/shared/moonImport.js':['upsert']};
+  const allowed={'/base44/shared/postgres/onboarding.js':1,'/scripts/postgres/referenceData.mjs':2,'/base44/shared/domainAudit.js':2,'/base44/shared/internalHealthOperations.js':1,'/base44/shared/base44OnboardingAdapter.js':2,'/base44/shared/base44ContentLibrary.js':1,'/base44/shared/moonImport.js':1};
+  const methods={'/base44/shared/postgres/onboarding.js':['upsert'],'/scripts/postgres/referenceData.mjs':['upsert'],'/base44/shared/base44OnboardingAdapter.js':['upsert','create'],'/base44/shared/base44ContentLibrary.js':['upsert'],'/base44/shared/moonImport.js':['upsert']};
   const writes=[];
   for(const [file,code] of Object.entries(sources)) {
     if(file.startsWith('/src/foundation/tests/')) continue;

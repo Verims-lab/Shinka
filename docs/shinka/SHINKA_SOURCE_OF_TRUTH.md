@@ -2,13 +2,22 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-014
+**Current BuildMarker:** Buildmarker-015
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## Current authority — approved PostgreSQL Test scope (015)
+
+Source: the user's explicit approval in this conversation on 2026-10-20. This supersedes 014's architecture-approval blocker **for Test only**. Base44 auth/OAuth/User IDs remain authoritative for identity; PostgreSQL is the sole application-data and application-admin authority. Supabase Auth, dual writing and fallback reads from old Base44 product entities are prohibited. Approved destination: Supabase Free, proposed `shinka-test`, Frankfurt `eu-central-1`, maximum authorized external spend **0 USD**. Account/organization/access is pending. No hosted resource has been created and no real profile, consent or cycle data is imported.
+
+The implementation refines the 014 gateway proposal to Base44 server functions connecting directly to PostgreSQL's transaction pooler. Identity is verified inside Base44; no second service or signed cross-service identity envelope is needed. Hosted TCP/TLS/npm compatibility remains an explicit acceptance item. SQL application-admin bootstrap uses a confirmed native identity plus ACTIVE SQL profile; subsequent grants/revocations share the same locked roster. This approval adds no product content, authentication provider or logical source. Existing six category decisions, 240 mappings, 260 pairs and Moon rules are preserved.
+
+Current implementation and exact handoff: [015 Test report](reports/SHINKA_POSTGRESQL_TEST_015.md). Earlier package sections below record their historical mechanisms and evidence; their Base44 product-store/native-role/no-adapter statements do not describe the active 015 Test path. Production budget, region, backups, migration window, main merge and publish remain unapproved.
+
 
 ## 1. Logical vs physical sources
 - A **logical source** is one authoritative document (one version, one domain authority).

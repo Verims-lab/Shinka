@@ -9,3 +9,7 @@ export async function countLiveContentRows() {
 export async function verifyLiveContentLibrary() {
   return (await base44.functions.invoke('contentLibrary', { action: 'verify' })).data;
 }
+
+export async function probeSqlAuthority() {
+  return (await base44.functions.invoke('internalHealth', { action: 'sqlAuthority' })).data;
+}

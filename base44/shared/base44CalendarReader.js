@@ -8,6 +8,7 @@ import { validateCalendarAccess, validateCalendarHealth, calendarRevision } from
 const fail = code => { throw new InternalError(code, 409); };
 // Read-only SDK boundary. No SDK mutation method can implement the transaction.
 export function calendarReader(client, principal) {
+  if (client.shinkaCalendarReader) return client.shinkaCalendarReader(principal);
   const owner = principal.id;
   const read = async (entity, limit, offset = 0, filter = {}, sort = 'id') => {
     const fields = Object.keys(DOMAIN_SCHEMAS[entity].properties);

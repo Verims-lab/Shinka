@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-010",
-    "package_name": "Admin profile access",
-    "package_type": "FEATURE",
-    "created_at": "2026-10-19T22:52:27Z",
-    "health_catalog_version": "HC-010.0",
-    "short_summary": "Verified admin Profile/You menu → Admin Panel → existing Health and Build tools; guarded before onboarding completion with localized return navigation.",
-    "full_health_status": "LOCAL_PASS_PENDING_LIVE_VERIFICATION",
-    "notes": "Chromium/WebKit: 318 canonical tests, 17 admin routes/keyboard/locale/responsive scenarios, 8 routing/Preview, 5 mobile, 54 general Health + 21 onboarding Health; zero page exceptions. Clean install/tree, type/lint/build, Repo Health 16/16, history and production budgets pass. Audit: 0 Critical/High, 2 existing Moderate. Main PR #15 fast-forwarded into Test with identical tree before feature delivery. No deployment/live identity proof; ON-05 remains pending same-account live saveCycle/readback. Five active packages 006–010; no content import."
-  },
-  {
     "build_marker": "Buildmarker-011",
     "package_name": "First Shinka and Home",
     "package_type": "FEATURE",
@@ -67,5 +57,20 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "notes": "AWAITING_USER_ARCHITECTURE_APPROVAL. Chromium/WebKit each 405/405 canonical, 94/94 local Health; zero page errors. Clean install/tree, lint/type/build, Repo Health 16/16, five-package history and performance budgets pass. Fresh security 0 Critical/High, 2 Moderate; TLS verification enabled, no dependency changes. OD-012 resolved with behavioral regressions. Actual read-only Base44: lifecycle schema readable; content PRE_IMPORT missing 6/240/260 and Moon 103. Home/Calendar/Admin production writes stay blocked; no hosted concurrency/restart proof. Concrete single-authority PostgreSQL decision and executable schema rollout prepared. ON-05/live Full Health remain open. No main merge/publish, import, external provisioning/migration or live user mutations. Evidence: reports/SHINKA_CLOSURE_014.md and closure-014/verification.json. Latest five packages 010–014."
+  },
+  {
+    "build_marker": "Buildmarker-015",
+    "package_name": "PostgreSQL single-authority Test foundation",
+    "package_type": "ARCHITECTURE",
+    "created_at": "2026-10-20T18:00:00Z",
+    "health_catalog_version": "HC-015.0",
+    "short_summary": "Approved Test-only SQL product authority with preserved Base44 identity; concrete schema, transactions, daily uniqueness, Calendar recalculation, SQL admin roster and reset/delete recovery. Hosted Supabase access pending.",
+    "full_health_status": "REPO_CLOSED_PENDING_HOSTED_TEST",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "Test-only approval: Supabase Free Frankfurt, $0; account access pending, no project created or real product migration. Real local PostgreSQL 17.11: 25/25 test groups with restricted role, independent processes, response loss, killed worker, DB restart, SQL admin/last-admin, reset and durable delete recovery; Base44 identity transport synthetic. Chromium/WebKit each 405/405 canonical and 99/99 local Health; zero page errors. HC-015.0: 155 cases; hosted H09-004/H08-005/H12-031 and connected SQL probe remain separately unverified. Clean install/tree, lint/type/build, Repo Health 18/18, history and performance budgets pass. Fresh security: 0 Critical/High, 2 existing Moderate router findings. No main merge/publish or live user mutation. Reports: SHINKA_POSTGRESQL_TEST_015.md, postgres-015/local-postgres.json and verification.json. Latest five packages 011–015.",
+    "updated_at": "2026-10-20T16:36:15.851521+00:00"
   }
 ];

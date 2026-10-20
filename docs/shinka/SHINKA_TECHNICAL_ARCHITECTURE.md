@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-014
+**Current BuildMarker:** Buildmarker-015
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -10,6 +10,17 @@
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** Production daily/Calendar atomic persistence, Pattern workflows, notifications/scheduler; implemented pure daily/phase components are described below.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## Active Test execution architecture — 015
+
+Browser → existing Base44 function names → verified native `auth.me()` and current User existence → SQL application/owner locks → PostgreSQL product state. `applicationSession` returns the SQL application role used by both Profile/You and AdminGate; `applicationAdmin` is a closed grant/revoke route. No SQL URL/key/driver is shipped in the frontend. Base44 remains identity/OAuth plus redacted internal Health artifact storage only.
+
+`base44/shared/postgres/` separates connection/HTTP, authorization/session, store, receipts, onboarding, Calendar, roles, reset, delete stages and Health metadata. `001_test_authority.sql` contains native constraints and tenant RLS. Every request has an app-bound TEST configuration and explicit synthetic-principal allowlist. Missing configuration fails closed. A shared application row lock protects stable roster/reference inputs; exclusive roster/import/delete admission takes the same row exclusively. Sorted actor/target owner locks serialize related data reads, calculation, writes and receipts in one SQL transaction. This correctness lock order is a deliberate small-Test throughput tradeoff.
+
+Postgres.js 3.4.9 uses one connection per active warm-worker configuration, `prepare:false`, `max_pipeline:1`, transaction-local GUCs and verified TLS for hosted connections. Runtime role is not superuser/owner/BYPASSRLS. Local tests use an isolated loopback PostgreSQL 17.11 cluster. Base44 Deno + Supabase transaction pooler execution is not yet measured. No distributed guarantee is inferred from a worker-local mutex.
+
+Daily creation locks before reading selection inputs and has UNIQUE(app_id,user_id,shinka_date), append-only DB enforcement and readback before commit/return. Calendar actual records + grant/event + receipt commit together; phases/predictions are recalculated from that locked revision, not separately persisted caches. Reset normal writes + stage + receipt commit together. User deletion is a durable SQL-fenced saga around the external Base44 User deletion: no cross-store rollback claim. See [015 report](reports/SHINKA_POSTGRESQL_TEST_015.md) for failure and rollout details. Historical Base44 persistence sections below remain provenance only for the prior deployments.
+
 
 ## Responsibilities
 - **Client (React):** presentation, local UX validation only, device IANA timezone detection. No business engine in JSX.
