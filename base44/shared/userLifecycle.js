@@ -1,9 +1,10 @@
 import { createTestRepository } from './adminTestRepository.js';
 import { testToolError } from './adminTestPolicy.js';
 import { InternalError } from './internalAuthorization.js';
+import { nativeResetStep } from './nativeResetStep.js';
 
 // Additional early admission guard, NOT a distributed write fence. Destructive
-// operations remain disabled until all writers share a verified coordinator.
+// operations require an operator-controlled maintenance window in native mode.
 export function withUserLifecycle(client) {
   const repository = createTestRepository(client);
   const wrapped = { ...client };
@@ -36,16 +37,15 @@ export const resetRoute = row => ({
   FIRST_SHINKA: 'FIRST_SHINKA_DEPENDENCY',
 })[row.stage];
 
-// The durable adapter atomically commits normal validated writes + progress +
-// request receipt. It must recheck current identity, ACTIVE/deletion/consent
-// predicates and operation revision inside its transaction. Not implemented by
-// SDK list/update. No health payload is stored in the operation journal.
+// Native steps verify normal writes before advancing progress, and retain an
+// intent fingerprint for recovery. The legacy coordinator remains a protocol
+// test fixture only. Neither native path claims a transaction.
 export async function resetOnboardingStep({ client, reset, owner, body, coordinator, perform }) {
-  if (typeof coordinator?.resetStep !== 'function') testToolError('ADMIN_TEST_DURABLE_CAPABILITY_REQUIRED', 503);
+  if (!client.shinkaNative && typeof coordinator?.resetStep !== 'function') testToolError('ADMIN_TEST_DURABLE_CAPABILITY_REQUIRED', 503);
   const expected = { initialize: 'PROFILE', saveProfile: 'PROFILE', saveCycle: 'CYCLE', skipCycle: 'CYCLE', today: 'FIRST_SHINKA' }[body.action];
   if (!expected || reset.status !== 'RESET_ACTIVE') testToolError('TEST_RESET_STEP_CONFLICT');
   const nextStage = body.action === 'initialize' ? 'PROFILE' : { PROFILE: 'CYCLE', CYCLE: 'FIRST_SHINKA', FIRST_SHINKA: 'DONE' }[expected];
-  const result = await coordinator.resetStep({ owner, operationId: reset.operation_id, expectedStage: expected, body }, async context => {
+  const performStep = async context => {
     const method = { initialize: 'savePreferences', saveProfile: 'saveProfile', saveCycle: 'saveCycle' }[body.action];
     if (method && typeof context?.persistence?.[method] !== 'function') testToolError('TEST_RESET_PERSISTENCE_REQUIRED', 503);
     const result = await perform(context);
@@ -54,7 +54,10 @@ export async function resetOnboardingStep({ client, reset, owner, body, coordina
     if (['saveCycle', 'skipCycle'].includes(body.action) && result.state !== 'FIRST_SHINKA_DEPENDENCY') testToolError('TEST_RESET_STEP_UNCONFIRMED');
     if (body.action === 'today' && (!result.persisted || !result.daily?.id || result.state !== 'ACTIVE_EXISTING_USER')) testToolError('TEST_RESET_STEP_UNCONFIRMED');
     return { result, nextStage };
-  });
+  };
+  const result = client.shinkaNative
+    ? await nativeResetStep({ client, reset, owner, body, perform: performStep, expected, nextStage })
+    : await coordinator.resetStep({ owner, operationId: reset.operation_id, expectedStage: expected, body }, performStep);
   const repository = createTestRepository(client);
   const saved = await repository.operation(owner, reset.operation_id);
   const current = await repository.lifecycle(owner);

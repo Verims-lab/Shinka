@@ -24,6 +24,7 @@ export function adminTestFixture() {
   const tables = Object.fromEntries(Object.keys(DOMAIN_SCHEMAS).map(name => [physicalName(name), clone(daily.rows[name])]));
   tables.User = [{ id: 'adminA', role: 'admin' }, { id: 'adminB', role: 'admin' }, { id: 'ownerA', role: 'user' }, { id: 'ownerB', role: 'user' }];
   tables.AdminTestOperation = [];
+  tables.UserCalendarAction = [];
   const state = { tables, actor: 'adminA', fail: null, time: DAILY_NOW, calls: [], audit: [], serial: Promise.resolve(), resetReceipts: new Map() };
   const fault = name => { if (state.fail === name) { state.fail = null; throw new Error('synthetic hidden exception'); } };
   /** @type {Record<string, any>} */
@@ -67,7 +68,7 @@ export function adminTestFixture() {
       async checkpoint(job, stage) {
         fault(`checkpoint:${stage}`);
         const saved = tables.AdminTestOperation.find(row => row.id === job.id);
-        saved.checkpoints.push(stage); saved.stage = stage;
+        saved.checkpoints = [...new Set([...saved.checkpoints, stage])]; saved.stage = stage;
       },
       async finish(job, patch, audit) {
         fault('finish');

@@ -1,5 +1,7 @@
 # Production persistence decision — Buildmarker-014
 
+> **SUPERSEDED_BY_BUILDMARKER_016:** Historical decision/implementation evidence only. The user replaced the SQL direction with Base44 continuation and confirmed no SQL setup or transfer. Do not execute the setup/migration instructions below. See [current continuation](../SHINKA_BASE44_CONTINUATION.md).
+
 Status: **APPROVED_FOR_ISOLATED_TEST — 2026-10-20 user decision; implementation in 015**. Supabase Free, proposed shinka-test, Frankfurt eu-central-1, 0 USD maximum authorized spend. Base44 auth/OAuth/User IDs preserved; PostgreSQL sole product/admin authority; no dual write or legacy fallback. Account/org access pending; no hosted provisioning or real-data migration performed. Production remains unapproved.
 
 Implementation refinement: the existing Base44 server function owns both verified native identity and the SQL transaction, connecting directly via the Supabase transaction pooler. This removes the proposed separate gateway/signature service without weakening the server-only boundary. SQL application-admin bootstrap/last-admin/revocation and local real-PG recovery are implemented in 015; hosted runtime/pooler/native identity acceptance remains open. [015 implementation and Production proposal](SHINKA_POSTGRESQL_TEST_015.md) is the current handoff. The remaining sections preserve the original alternatives/rationale; requests for architecture approval below are historical, while Production migration/budget/window approval is still required.

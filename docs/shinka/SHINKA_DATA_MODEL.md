@@ -2,29 +2,24 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-015
+**Current BuildMarker:** Buildmarker-016
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
 **Scope:** Product domain entities + separately listed internal tooling storage.
 **Implemented:** 20 JSONC schemas in `base44/entities/`, canonical definitions in `base44/shared/domainSchemas.js`, source field receipt, validation and guarded backend access.
 **Open Decisions:** OD-004, OD-009; OD-002 RESOLVED_BY_PRODUCT_DECISION
-**External Verification Required:** The historical Base44 Entity store has no native UNIQUE and no verified multi-record transaction. Current Test PostgreSQL constraints/transactions are locally executed; hosted Supabase/Base44 enforcement remains pending.
+**External Verification Required:** Base44 native UNIQUE is unsupported; no multi-record transaction/CAS guarantee is claimed. Native handler tests use synthetic transport; hosted schema/authorization/mutation recovery remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
 
-## Active Test physical contract — PostgreSQL 015
+## Current physical contract — Base44 016
 
-The 20 logical product entities and their approved domain fields remain. PostgreSQL physically stores 18; `user_cycle_prediction` and `user_cycle_phase_day` are validated read-time projections of actual periods/settings and the common calculation rules. They are not independent authorities, mutable caches or migrated observations. `shinka_private` also contains four infrastructure tables: application, owner (same Base44 User ID plus SQL role/generation/fence), request_receipt and test_operation. These 22 SQL tables all have app-scoped RLS. Legacy Base44 JSON schemas remain deny-all compatibility/rollout artifacts; no active Test product path reads/writes them. InternalHealthRun remains redacted Base44 tooling only, with direct CRUD denied and SQL-admin backend access.
+The original 20 product Entity schemas, native User extension and three internal/operational schemas are the active Base44 model. Native metadata id/created_date/updated_date is not redeclared; normalization is not consent-time authority. Consent granted_at and event occurred_at remain persisted backend business instants, validated and preserved on retry; no timezone suffix is invented. Optional durations stay null/absent, 5/28 calculation-only.
 
-Native SQL PK/UNIQUE/FKs, owner-composite references, enums/checks, one open health job, one active target operation and a 15-day period-spacing trigger supplement canonical server validation. Three immutable entities (daily, consent event, admin audit) deny UPDATE/DELETE in both privileges and triggers. No FK points into Base44 auth: verified Base44 IDs are recorded in the SQL owner registry and checked at every request; retained owner/fence rows survive native User deletion.
+Additional UserCalendarAction is an owner-scoped **health-data receipt**, all direct CRUD false: user_id/action_id/fingerprint/base_revision/result_revision/operation/period_id/desired_date/previous_date/initial_grant/grant_at/status/started_at. Status PENDING/APPLIED/CANCELLED; no uniqueness guarantee. It retains intent after failures; it is included in test-user cleanup and required future health-withdrawal cleanup. Never export dates/receipt bodies to audit or Health. AdminTestOperation gains optional step_fingerprints (intent hashes only) for reset continuation. InternalHealthRun remains closed to direct SDK access, with current native admin backend reads.
 
-SQL `date` preserves YYYY-MM-DD; instants use `timestamptz` and explicit UTC/offset input validation, serialized in UTC. SQL `created_at`/`updated_at` describe storage metadata. `granted_at`, event `occurred_at` and job times are persisted backend business times; they never derive from Base44 `created_date`. Retries preserve a committed grant time. A rolled-back transaction has no accepted grant, so retry may generate its first durable time. NULL optional durations remain NULL/absent settings; 5/28 stay calculation-only.
-
-Request receipts are private application data, keyed by app/owner/reset-generation/action and bound to canonical input fingerprints. They contain the bounded result needed for replay, so may contain profile/state fields; they are not audit logs or exported Health evidence. Reset increments generation and prevents replay of prior workflow receipts; delete clears target receipts. The separate test_operation journal contains only safe metadata and checkpoints, never profile/health payloads. Daily record IDs and stored snapshots remain immutable during reset/delete retention.
-
-No existing real Base44 record was migrated. Invalid/naive timestamps, duplicate logical keys, partial legacy ON-05 states and reference conflicts require explicit migration exceptions; never choose an arbitrary winner or append `Z`. Earlier Base44 constraint/mapping sections below document historical limitations; PostgreSQL guarantees are separately evidenced by [local database tests](reports/postgres-015/local-postgres.json), not attributed to Base44.
-
+UserDailyMessage may have multiple physical candidates; ordering and conflict notice replace physical one/day as a prerequisite. Logical user/day selection uses generated_at then ID and retains every row. UserPeriodRecord is Calendar authority. Existing prediction/phase entities remain compatible schema artifacts but current readers calculate projections and writers do not maintain those caches. No SQL schema/runtime, second store, transaction or CAS is active. [Full contract and recovery](SHINKA_BASE44_CONTINUATION.md).
 
 ## PRODUCT DOMAIN ENTITIES (20)
 | # | Entity | Purpose | Owner | Lifecycle | Uniqueness / index | Deletion |
@@ -58,14 +53,15 @@ Relationships: 25 logical links (see domainContract.js): 24 from `21_Iliskiler`,
 | Entity | Purpose | Access |
 |---|---|---|
 | AdminTestOperation | Test-operation journal, restart state, deletion tombstone | All direct CRUD denied |
-| InternalHealthRun | Health run history (redacted report JSON, counts) | admin read; direct create/update/delete denied |
+| InternalHealthRun | Health run history (redacted report JSON, counts) | All direct CRUD denied; current admin backend read |
+| UserCalendarAction | Owner-scoped health intent/result receipt for Calendar recovery | All direct CRUD denied; backend only |
 
 Build Ledger is SOURCE-based (`src/foundation/buildLedger.js`), not an entity.
 
 ## Internal diagnostic storage hardening
-InternalHealthRun remains tooling-only, outside the 20 domain entities. Admin read is declared in RLS; client create/update/delete is denied. The server-admin internalHealth function alone creates summary records after validating the report and creating a private artifact. Compact report_json is bounded to 15,000 UTF-8 bytes; full redacted report_file_uri points to private storage. Stored summaries and signed readback are synthetic-tested; final live RLS/persistence/readback is unverified. OD-004/OD-009 are PARTIALLY_VERIFIED with external live evidence required.
+InternalHealthRun remains tooling-only, outside the 20 domain entities. All direct CRUD, including read, is denied; the current native admin is checked by the backend for list/report access. The server-admin internalHealth function alone creates summary records after validating the report and creating a private artifact. Compact report_json is bounded to 15,000 UTF-8 bytes; full redacted report_file_uri points to private storage. Stored summaries and signed readback are synthetic-tested; final live RLS/persistence/readback is unverified. OD-004/OD-009 are PARTIALLY_VERIFIED with external live evidence required.
 
-## Buildmarker-007 physical mapping and field contract
+## Historical checkpoint — Buildmarker-007 physical mapping and field contract
 Baseline inspected in the Greenfield app on 2026-10-19: dashboard Data listed only InternalHealthRun; SDK reads returned schema 404 for all 20 product names. Built-in User is separate. Repository after implementation: 20 product schemas, one InternalHealthRun, one built-in User extension, zero unexpected product schemas. This is not evidence that Test has been deployed. No CLI deployment bypasses the Git integration.
 
 PascalCase schema filenames match the existing repository and exact SDK entity names. One snake_case logical name maps to one physical name; no aliases create duplicate tables.
@@ -107,7 +103,7 @@ Semantic created_at → native created_date; semantic updated_at → native upda
 ### Canonical uniqueness / atomicity strategy
 11 logical UNIQUE contracts plus one-open-deletion-job-per-user use `canonicalUniqueKeys` and one `createOnce` primitive. JSON tuple encoding avoids concatenation collisions. A durable adapter must atomically reserve every key, validate references/owner/account/consent/deletion predicates, commit the record, and support safe readback. Existing daily snapshots are returned unchanged. `mutateConditionally` requires an opaque revision, forbids owner/key changes, rejects conflicts and validates readback. No in-memory lock, check-then-insert, unverified upsert or declared JSON property is accepted as a production guarantee.
 
-There is NO production atomic adapter. Calls requiring it return ATOMIC_CAPABILITY_REQUIRED. Synthetic concurrent tests use an isolated map and prove helper protocol behavior only. Future daily generation, singleton writes, deletion scheduling and multi-record cycle recomputation stay disabled until durable cross-instance contention/crash/retry proof exists. Multi-record atomicity additionally needs a verified transaction or an approved durable coordinator with fenced ownership, a recoverable commit journal, atomic publication and failure recovery; no journal entity or rollback engine is introduced here. Native transaction/rollback/index support is not claimed.
+Historical 007 atomic protocol: no native atomic adapter was proven; calls to that protocol return ATOMIC_CAPABILITY_REQUIRED. The current 016 entry paths use approved sequential reconciliation/recovery instead. Synthetic concurrent tests use an isolated map and prove helper protocol behavior only. Future daily generation, singleton writes, deletion scheduling and multi-record cycle recomputation stay disabled until durable cross-instance contention/crash/retry proof exists. Multi-record atomicity additionally needs a verified transaction or an approved durable coordinator with fenced ownership, a recoverable commit journal, atomic publication and failure recovery; no journal entity or rollback engine is introduced here. Native transaction/rollback/index support is not claimed.
 
 ### Schema field dictionary
 Required fields are listed in each JSONC; optional fields are marked NULL below. Native id/created_date/updated_date are omitted from the product property dictionaries.
@@ -396,13 +392,14 @@ The [official schema documentation](https://docs.base44.com/developers/backend/r
 The agent observed one live consent row with visible granted_at and Created values, and zero consent-event/period rows in the Greenfield Data UI. These formatted cells do not establish raw API type/timezone or owner-specific identity correlation. See the minimized [incident evidence](reports/SHINKA_ON05_CONSENT_RECOVERY.md).
 
 
-## Daily content persistence and import — Buildmarker-011
+## Historical checkpoint — Daily content persistence and import — Buildmarker-011
 
 No product field/entity/RLS declaration changes. Source Pair ID → native pair ID is reconstructed by exact canonical content identity and verified in the controlled import result; the native id remains platform-owned. Source hash/version/counts live in the repository manifest/receipt and returned verification, not invented entity fields. Admin apply audit uses existing metadata-only admin_audit_log; dry-run and verify do not write.
 
 Daily snapshot fields are precisely the existing source contract: authenticated user_id, backend-derived shinka_date, validated timezone, actual category_id, message_pair_id, all four TR/EN text snapshots and backend UTC generated_at. Existing same-day rows are returned unchanged regardless of locale/profile/library changes. A legitimate earlier daily row remains the completion signal even if today's generation fails.
 
-Native compound uniqueness remains UNSUPPORTED. `createOnce` is used with its documented atomic requirements, now including an exact consent input predicate when health data influenced selection. Production has no accepted adapter and new daily writes are disabled. The SDK's upsert merge semantics cannot implement immutable winner selection. A native platform conditional-create guarantee, or an approved authoritative transactional store with UNIQUE(user_id,shinka_date) and a crash-safe integration/guard protocol, is required before enabling production. In-memory fixture concurrency is protocol proof only. No transaction/rollback/distributed-lock guarantee is claimed.
+> Historical contract (superseded by the current 016 native contract above):
+> Native compound uniqueness remains UNSUPPORTED. `createOnce` is used with its documented atomic requirements, now including an exact consent input predicate when health data influenced selection. Production has no accepted adapter and new daily writes are disabled. The SDK's upsert merge semantics cannot implement immutable winner selection. A native platform conditional-create guarantee, or an approved authoritative transactional store with UNIQUE(user_id,shinka_date) and a crash-safe integration/guard protocol, is required before enabling production. In-memory fixture concurrency is protocol proof only. No transaction/rollback/distributed-lock guarantee is claimed.
 
 Current-day cycle inputs are calculated in memory. NULL settings stay NULL; no predictions/phase-day/lookup rows are fabricated to mark onboarding complete. Moon reference import is explicit admin work, with at least two future years and strict UTC continuity; no scheduler is active.
 
@@ -411,19 +408,20 @@ Current-day cycle inputs are calculated in memory. NULL settings stay NULL; no p
 The approved six-row definition populates only existing `message_category_lookup.category_code`, `display_name_tr`, `display_name_en` through the controlled importer. No entity, field, RLS policy or native ID contract changes. Codes are REST_AND_SLOW_DOWN, SELF_CARE_AND_WELLBEING, NOVELTY_AND_DISCOVERY, FOCUS_AND_PROGRESS, CONNECTION_AND_SHARING and SIMPLICITY_AND_LETTING_GO, each associated with exactly one source label in the [approval table](SHINKA_CONTENT_MODEL.md#approved-category-definition--od-002-continuation). Pair/mapping category references resolve through these source labels to verified native category IDs; the source associations and four language text cells are unchanged. Business uniqueness validation is not native Base44 uniqueness evidence.
 
 
-## Calendar data and atomic adapter contract — Buildmarker-012
+## Historical checkpoint — Calendar data and atomic adapter contract — Buildmarker-012
 
 Exactly 20 product schemas remain; no speculative receipt/revision/journal entity, timestamp alias or RLS relaxation is added. Actual starts retain native ID on edit. `user_cycle_prediction` stores full predicted cycle intervals (inclusive end); Calendar colors their menstrual portion through shared phase calculation. `user_cycle_phase_day` stores one owner/date, RECORDED_START or PREDICTED, valid actual reference and backend UTC calculated_at. Recompute reuses unchanged rows; last-start deletion clears derived collections only, keeping settings and consent. Historical daily records are immutable and excluded entirely.
 
 `domainAtomic.commitCalendarAction` requires a server-owned `transactCalendar` implementation. It must serialize by authenticated owner across workers, read complete authoritative state, check ACTIVE/current consent/open deletion/references and expected revision, and atomically publish the actual change, derived replacement, consent/event when needed, and durable owner/action receipt. Receipt binds operation/target/date/explicit consent; same receipt with another payload conflicts. Replay returns current state without reapplying old writes or replacing the grant time, including after response loss. If current state differs from the receipt's committed revision, return CALENDAR_STATE_CHANGED rather than report a stale save as success. The adapter retains the projection's calculationDay alongside its transaction metadata so later-day replay verifies the committed projection rather than pretending a rolling cache was refreshed. These are adapter prerequisites, not added Base44 product fields.
 
-No production implementation or external store is configured. A compliant store must also be the source used by Calendar, Home, onboarding, consent and deletion readers/writers; a shadow store plus separate Base44 updates cannot supply the guarantee. Native UNIQUE remains unsupported; cross-collection transaction/CAS/rollback remain unverified. [Official schemas](https://docs.base44.com/developers/backend/resources/entities/entity-schemas#uniqueness), [SDK merge behavior](https://docs.base44.com/developers/references/sdk/docs/type-aliases/entities#upsert) and [Actors overview](https://docs.base44.com/developers/backend/resources/actors/overview) were rechecked 2026-10-20. None supplies evidence of an atomic commit across these Entity collections. Native documented transaction support or an approved authoritative transactional store with migration/guard/recovery design is needed.
+> Historical contract (superseded by the current 016 native contract above):
+> No production implementation or external store is configured. A compliant store must also be the source used by Calendar, Home, onboarding, consent and deletion readers/writers; a shadow store plus separate Base44 updates cannot supply the guarantee. Native UNIQUE remains unsupported; cross-collection transaction/CAS/rollback remain unverified. [Official schemas](https://docs.base44.com/developers/backend/resources/entities/entity-schemas#uniqueness), [SDK merge behavior](https://docs.base44.com/developers/references/sdk/docs/type-aliases/entities#upsert) and [Actors overview](https://docs.base44.com/developers/backend/resources/actors/overview) were rechecked 2026-10-20. None supplies evidence of an atomic commit across these Entity collections. Native documented transaction support or an approved authoritative transactional store with migration/guard/recovery design is needed.
 
 Read-only Calendar uses owner-filtered pages of 100 starts, maximum 2,500 plus overflow detection; it never truncates and calculates success. A 40,000-day computation safety ceiling fails explicitly. Access and complete observation snapshots are re-read to detect changes; this is best-effort race detection, not snapshot isolation. Returned month contains only actual IDs/dates, recorded/predicted days and safe status/revision; no complete history, grant time, native metadata or tokens. Missing persisted derived rows after onboarding do not cause writes: the response is a read-time projection.
 
 OD-012 now preserves >60-day observations and excludes them only from estimation within the fixed last-three window; see the 014 contract below. Settings are never clamped or filled with 5/28. No live data migration, import or write occurred.
 
-## Admin Test Tools operational state — 013 user decision
+## Historical checkpoint — Admin Test Tools operational state — 013 user decision
 
 `AdminTestOperation` is a second internal tooling entity, outside the unchanged 20 product entities and built-in User. It stores operation/request ID, actor ID, target ID, closed operation/status enums, stage/checkpoints, preview fingerprint, server UTC started_at/progressed_at/completed_at business times and safe error code. Native created_date/updated_date are not duplicated or interpreted as workflow time. It stores no profile/health values, message snapshots, provider IDs or tokens. Direct read/create/update/delete RLS are false; the admin endpoint returns a bounded metadata projection. Operation identity, target exclusivity and conditional progress are required adapter constraints, **not** JSON-schema unique/FK declarations.
 
@@ -432,8 +430,10 @@ DELETE_USER stages: stop PENDING/FAILED notifications as SKIPPED; remove phase/p
 Retained actor/target/user references after physical deletion are historical identifiers, never reassigned or cascade-deleted. A COMPLETED DELETE operation is a permanent tombstone. RESET_ACTIVE stages PROFILE → CYCLE → FIRST_SHINKA → COMPLETED/DONE override old daily-based completion; reset creates no consent event and changes no grant time or existing product row by itself. Normal validated writes and stage advancement must commit with a durable receipt. Same-day daily snapshots are reused. Failed/start/result records are retained indefinitely under current policy; the five-package UI history rule does not apply.
 
 
-## OD-012 and proposed physical authority — 014
+## Historical checkpoint — OD-012 and proposed physical authority — 014
 
 No entity/RLS/field change in this package. `dailyCycle.cycleEstimate` returns nullable length when the last-three completed window contains no 15–60 interval. Empty completed history still uses entered initial length or computation-only 28. `calculateCalendar` preserves all actual observations, emits no phase rows for unsupported closed intervals, keeps supported historical phases, and emits no current/future phases or predictions without an estimate. `planCalendarChange` replaces derived sets, so stale rows are removed in the same proposed commit. No default is written into settings; existing daily rows are untouched.
 
-The PostgreSQL proposal in [decision 014](reports/SHINKA_PERSISTENCE_DECISION_014.md) changes physical authority and derived storage only after approval/migration. Until then the 20 product schemas, two tooling schemas and native User extension remain authoritative as currently implemented. Actor storage is not treated as an Entity transaction. A full 23-schema release snapshot and schema-only Git patch can be prepared with `scripts/prepareSchemaStage.mjs`; it executes no deployment. Missing lifecycle schema still fails closed.
+> Historical contract (superseded by the current 016 native contract above):
+> The PostgreSQL proposal in [decision 014](reports/SHINKA_PERSISTENCE_DECISION_014.md) changes physical authority and derived storage only after approval/migration. Until then the 20 product schemas, two tooling schemas and native User extension remain authoritative as currently implemented. Actor storage is not treated as an Entity transaction. A full 23-schema release snapshot and schema-only Git patch can be prepared with `scripts/prepareSchemaStage.mjs`; it executes no deployment. Missing lifecycle schema still fails closed.
+>

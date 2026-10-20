@@ -1,9 +1,11 @@
-import {secrets} from 'base44:runtime';
-import {handleSqlRequest} from '../../shared/postgres/http.js';
-import {openHostedSql} from '../../shared/postgres/hosted.ts';
-import {createGeoNamesRuntimeProbe} from '../../shared/geonamesRuntimeProbe.js';
+import { createNativeClient } from '../../shared/nativeClient.ts';
+import { secrets } from 'base44:runtime';
+import { handleInternalRequest } from "../../shared/internalAuthorization.js";
+import { internalHealthOperation } from "../../shared/internalHealthOperations.js";
+import { createGeoNamesRuntimeProbe } from '../../shared/geonamesRuntimeProbe.js';
 const runGeoNamesProbe=createGeoNamesRuntimeProbe();
-export default req => handleSqlRequest(req,'internalHealth',openHostedSql,{
-  // SQL admin authorization precedes this secret read and outbound fetch.
+// The existing guard runs before operation dispatch, secret access and any fetch.
+/** @param {Request} req */
+export default (req) => handleInternalRequest(req, createNativeClient,(client,body)=>internalHealthOperation(client,body,{
   geoNamesTransportProbe:()=>runGeoNamesProbe({username:secrets.get('GEONAMES_USERNAME'),signal:req.signal}),
-});
+}));

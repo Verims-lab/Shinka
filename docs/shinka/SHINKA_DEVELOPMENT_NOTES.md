@@ -2,13 +2,20 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — First Shinka repository work; production persistence and live closure blocked
-**Current BuildMarker:** Buildmarker-015
+**Current BuildMarker:** Buildmarker-016
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** First Shinka/Home preparation and retained maintenance/admin evidence; no live import or deployment.
 
-## Buildmarker-015 — approved PostgreSQL Test implementation
+## Buildmarker-016 — Base44 continuation
+
+User replaced SQL authority with Base44 and explicitly confirmed no SQL setup/transfer. Fresh known-app inspection found no SQL secrets or session/admin SQL functions; current content 6/260/240 and Moon 103 remain missing. Removed SQL runtime/driver/migrations/scripts, preserved historical reports and unrelated fixes. Restored native current User role across UI/backend, kept closed direct SDK policies. Implemented immutable Home candidate reconciliation, actual-date Calendar with private recovery receipts, verified-step reset and operator-maintenance delete stages. No native transaction/rollback/CAS claim; no remote mutation or publish.
+
+HC-016.0 retires SQL-only cases with business-rule replacements. New ordinary-CRUD fault/race tests cover duplicate requests, independent clients, lost replies, reopened partial grants, reset write/progress separation, late writes and final deletion verification. Existing ON-05 clock/null/Skip coverage remains. Verified: Chromium and WebKit each 437/437 canonical regressions + 99/99 local Health, zero page errors; 30 native fault/race tests and seven actual session-entry checks. Clean install/tree, lint/type/build, Repo Health and five-package history pass. Current audit: zero Critical/High, two existing Moderate router findings. Mobile initial bundle budgets pass; exact bytes/environment in reports/base44-016/verification.json. H04-015 was updated to verify all three closed operational schemas; final-audit event identity and repeat VERIFY received regressions. Read-only recheck at 2026-10-20T17:43:40.836Z: UserCalendarAction and nativeReadiness unavailable in the known hosted app; content/Moon remain unchanged PRE_IMPORT. No new deployment claimed. Authoritative implementation and risks: [continuation](SHINKA_BASE44_CONTINUATION.md). Hosted original ON-05 account, synced Full Health and physical Android/iOS remain open. Internal Build retains 012–016 only; no user/audit/Git history pruning.
+
+
+## Historical Buildmarker-015 — superseded PostgreSQL Test implementation
 
 User approved a single SQL product authority with unchanged Base44 identity, Supabase Free Frankfurt and zero external spend. Branch preflight found main two commits ahead; clean Test fast-forwarded to c9a0fc3 and was synchronized before work. Implemented schema/constraints, server SQL routing, roster/bootstrap, daily/Calendar transactions, reset receipts and durable delete stages. Local PostgreSQL 17.11 was compiled from official source after the installed Homebrew could not supply a bottle; tests use a temporary cluster and synthetic identity service only. No external project, real profile/health migration, publish or live deletion/reset occurred.
 

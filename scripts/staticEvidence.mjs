@@ -1,4 +1,3 @@
-import {inspectSqlEvidence} from './postgres/evidence.mjs';
 import { inspectDependencies } from './dependencyEvidence.mjs';
 import { renderBuildHistory } from '../src/foundation/buildHistoryPolicy.js';
 // Build/server-only inspection. Only allowlisted results + hashes enter the virtual module.
@@ -45,7 +44,6 @@ export function buildStaticEvidence(root = process.cwd()) {
     evidenceScope: "BUILD_TIME_REPOSITORY_INSPECTION", originalArtifactProvenance: SOURCE_PROVENANCE,
     originalArtifactsHashVerifiedInRepo: ORIGINAL_ARTIFACTS_HASH_VERIFIED_IN_REPO, hashes, sourceCount: files.length, docCount: docFiles.length,
     dependencies: inspectDependencies(syntax),
-    postgres: inspectSqlEvidence(root),
     activeBuildHistory: { generatedMatches: history === renderBuildHistory(BUILD_LEDGER, BUILD_MARKER), entries: BUILD_LEDGER.length },
     domain: { ...inspectDomainSchemas(root), writeSurface: inspectProductWriteSurface(syntax) },
     onboarding: inspectOnboardingSurface(syntax,[...Object.values(APPROVED_COPY).flat(),...Object.values(ONBOARDING_COPY.en),...Object.values(ONBOARDING_COPY.tr)]),

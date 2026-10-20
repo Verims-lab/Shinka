@@ -1,6 +1,7 @@
 // New Test Tools product copy, scoped to the explicit 2026-10-20 request.
 export const TEST_TOOLS_COPY = Object.freeze({
   tr: {
+    UserCalendarAction: 'Takvim işlem kayıtları', calendar_actions: 'Takvim işlem kayıtları', TEST_OPERATOR_MAINTENANCE_REQUIRED: 'Silme için yetkili operatör bakım penceresi açmalı, yeni yazmaları durdurmalı ve başlamış isteklerin bittiğini doğrulamalı',
     PROFILE: "Kişisel bilgiler", CYCLE: "Döngü", FIRST_SHINKA: "İlk Shinka", DONE: "Tamamlandı", START: "Başlangıç kaydedildi", NOTIFICATIONS: "Bekleyen bildirimler durduruldu", USER: "User kaydı kaldırıldı", VERIFY: "Son doğrulama",
     resetCompleted: 'Yeniden başlatılan onboarding tamamlandı.',
     title: 'Test Araçları', description: 'Kullanıcı bazında onboarding ve hesap testleri.',
@@ -45,6 +46,7 @@ export const TEST_TOOLS_COPY = Object.freeze({
     unknownCount: 'Hedefe göre sayılmaz; korunur',
   },
   en: {
+    UserCalendarAction: 'Calendar operation records', calendar_actions: 'Calendar operation records', TEST_OPERATOR_MAINTENANCE_REQUIRED: 'Deletion requires an authorized operator maintenance window, stopped new writes and confirmation that existing requests have drained',
     PROFILE: "Personal details", CYCLE: "Cycle", FIRST_SHINKA: "First Shinka", DONE: "Completed", START: "Start recorded", NOTIFICATIONS: "Pending notifications stopped", USER: "User record removed", VERIFY: "Final verification",
     resetCompleted: 'The restarted onboarding is complete.',
     title: 'Test Tools', description: 'Per-user onboarding and account tests.',

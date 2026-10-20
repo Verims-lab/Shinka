@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-015
+**Current BuildMarker:** Buildmarker-016
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -14,7 +14,7 @@
 |---|---|---|
 | OAuth ownership | Provider identity → one account; no duplicates | UNVERIFIED (Apple unknown, OD-003) |
 | User row isolation | User sees only own rows; owner from auth context | REPOSITORY + SYNTHETIC verified; 20 direct SDK deny policies and backend owner scoping; live pending |
-| Admin boundary | SQL application roster; fresh native identity; audited; no email authority | LOCAL_POSTGRESQL_VERIFIED; hosted two-user enforcement unverified |
+| Admin boundary | Fresh native User.role and identity; audited; no email authority | LOCAL_NATIVE_SYNTHETIC; hosted two-user enforcement unverified |
 | Sensitive health access | Only with explicit valid consent | Shared backend consent/open-job checks; live pending |
 | Consent | Versioned, timestamped, event history | UNVERIFIED |
 | Health-data deletion | Immediate stop, verified deletion, retries, no re-consent mid-job | UNVERIFIED |
@@ -29,16 +29,13 @@ Internal route gates are UX only. Both `validateContentArtifacts` and `internalH
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
 
-## Active Test security boundary — 015
+## Active security boundary — Base44 016
 
-Base44 authenticates the existing User ID. Its dashboard/admin role does not confer or revoke SQL application-admin access. `applicationSession` and every privileged endpoint derive role from the same SQL roster and require an ACTIVE SQL profile for admin authority. Initial bootstrap is operator-only, compares the explicit confirmed ID with fresh native authentication/User existence, requires the synthetic Test allowlist and ACTIVE profile, audits the grant and permanently closes the bootstrap marker. No email-based role or automatic native-admin import exists. Later grant/revoke uses an exclusive app roster lock, exact target identity, audit and durable receipt; removing the last ACTIVE unfenced admin is denied. SQL revoke affects the next backend transaction; an already authorized transaction may finish before revoke obtains its lock. UI hides privilege while refreshing and on next focus/visibility/60-second admin refresh; no instantaneous browser push claim.
+Native Base44 User.role is the single application-admin source. Verified SDK identity plus current User read defeats caller flags/cached roles; no SQL bootstrap/roster or second identity exists. Native role management controls grants/revocations. UI session refresh and backend checks use the same source; role changes do not roll back already-started external calls. Admin tooling remains reachable before onboarding completion, while product/health operations require owner/ACTIVE/current consent and no open deletion/reset conflict.
 
-Hosted runtime uses a restricted LOGIN role inheriting `shinka_runtime`, never the database owner. SQL RLS is **application isolation for the trusted server credential**, not end-user browser RLS: only the backend can set the app GUC. Owner/ACTIVE/consent/deletion/reset checks remain mandatory in server operations. Runtime credentials can administer authorized application rows and therefore must stay server-only; this design does not claim protection against a compromised privileged server/operator. `anon`, `authenticated` and PUBLIC receive no private schema access; no Supabase Auth/Data API product path is used.
+All product direct SDK policies remain closed. UserCalendarAction is backend-only health data, owner-bound, never logged/exported; delete cleanup includes it and future health withdrawal must include it. AdminTestOperation contains safe IDs/status/checkpoints/fingerprint hashes, not profile/health bodies. InternalHealthRun direct CRUD remains false and backend requires current native admin. No secrets in frontend/reports.
 
-All product operations share SQL owner locks. Persisted deletion fence denies stale native tokens even while User deletion is pending; native absence also denies access. Normal reset requires an ACTIVE target and no open health job; Calendar/domain reads cannot bypass active reset. Health access checks the current consent and unfinished deletion jobs; explicit audited admin health reads also validate the target. Admin history readback and GeoNames diagnostic callbacks require the current SQL role. InternalHealthRun direct read is now false, preventing the Base44 native role from bypassing SQL revocation.
-
-SQL errors/connection details never cross HTTP; reports contain counts, case IDs, hashes and statuses only. No real user reset/delete/migration is authorized in this package. The native identity provider in local PG tests is a synthetic fixture. Historical Base44 guards/evidence below are retained as history, not the active Test product authority. Hosted role/TLS/direct SDK denial, Base44 User removal and restore proof remain open.
-
+Deletion requires explicit Test config, signed preview, exact typed target, same current initiating admin, self/last-admin protections and operator pause/drain/roster freeze. Pre/post-write checks are **not** a distributed fence. Cannot verify drain ⇒ do not delete. Final audit/readback and empty/native-absence verification precede SUCCESS; historical consent/daily/protection/audit retention scope stays. No real reset/delete in this delivery. [Runbook and risk register](SHINKA_BASE44_CONTINUATION.md).
 
 ## Dependency security policy
 Every package must run `npm run security:deps` (`npm audit --audit-level=high --include=dev`). Native npm exit status blocks Critical/High and audit/registry failures without parsing or hiding findings. Moderate/Low output stays visible and requires a documented path, exposure and fix disposition. Runtime and build dependencies are both included; **no Critical/High exceptions or waivers**. Regenerate lockfiles through npm, validate with `npm ci` and full `npm ls`, preserve release-age controls, and never apply unsupported overrides or blind forced audit fixes.
@@ -81,7 +78,7 @@ Two npm affected packages share the runtime path **root → react-router-dom 6.3
 
 These Moderate findings remain visible in npm audit and are documented non-blocking debt under the requested Foundation policy. They are not described as patched. The guard was verified against the real High baseline (non-zero) and the remediated tree (zero); standalone `npm audit --json` still exits 1 because Moderate findings remain.
 
-## Buildmarker-007 canonical access boundary
+## Historical checkpoint — Buildmarker-007 canonical access boundary
 Owner identity is always authenticated Base44 User.id. `requireAuthenticatedUser`, `requireAdmin` and the tooling wrapper share one implementation. Only auth.me() can mint an accepted principal; client user_id is verified against it, never used to select a different owner. Client role/admin/process/authority flags are rejected. `assertOwner`, `assertActiveAccount`, `assertHealthConsent` and `assertProtectedRecordMutationAllowed` are shared backend helpers, not JSX rules.
 
 All 20 entities deny direct read/create/update/delete in RLS, including application admins. `domainAccess` exposes bounded backend reads only: active own rows; consent and no unfinished deletion job for health rows; active authenticated shared lookup reads; explicit adminRead by id with mandatory audit. INACTIVE/missing/ambiguous profiles fail closed. Readback rechecks private ownership and removes native creator email/internal properties. Anonymous read/write fails. No public lookup authoring or generic product CRUD flow is enabled. The scoped onboarding profile/preferences write path is documented below.
@@ -173,7 +170,7 @@ Only explicit health_consent=true, authenticated owner, ACTIVE profile and no op
 
 The same-worker bounded in-flight gate reduces duplicate taps, not distributed races. Insert-only consent/settings prevents silent replacement; independent-worker duplicate inserts can still occur and are explicitly rejected on readback. No rollback, deletion/restart fix or repair of conflicting history is offered. Minimal live observation recorded only build context, counts and timestamp presence; no tokens, owner identifiers, full records or health dates are logged. The Data UI formats dates, so live raw timestamp type/offset remains unverified. No live saveCycle mutation was performed by this correction.
 
-## Admin entry and revocation — Buildmarker-010
+## Historical checkpoint — Admin entry and revocation — Buildmarker-010
 
 The profile menu and internal gate consume one derived AuthContext privilege from verified Base44 `auth.me()` identity. URL/localStorage/email/name/body role never grant access. All three internal paths are behind ProtectedRoute and AdminGate: anonymous returns to existing sign-in, ordinary user receives FORBIDDEN. Initial/pending checks expose no interactive admin UI. Refresh conceals and makes an existing tool inert; a completed denied check removes it. Logout clears local identity before invoking the SDK and invalidates old requests, so a failed logout transport or delayed admin response cannot restore local access.
 
@@ -182,7 +179,7 @@ Remote changes are observed on internal navigation, focus/visibility return and 
 AN02…AN07 exercise loading, direct-route denials, logout failure and stale/revoked identities. Existing S08/T68/H03-009 and H12-901 remain; synthetic UI checks do not replace live backend enforcement. New screenshots use isolated synthetic identities, not customer records.
 
 
-## Daily generation and controlled imports — Buildmarker-011
+## Historical checkpoint — Daily generation and controlled imports — Buildmarker-011
 
 `dailyMessage` authenticates first, derives owner, denies inactive/forged authority and only accepts action=today plus optional IANA timezone. Shared domain validation/guards remain canonical. Existing immutable rows require active owner; new calculation reads health rows only after valid current grant, matching consent event and no open deletion job. Missing/withdrawn consent does not read health settings or periods. Technical errors are never converted to UNKNOWN. The durable adapter must enforce account/reference and exact consent-input predicates at commit; none is configured in production, so new writes fail closed. Same-day readback projects only declared daily fields and optional display name, never native creator metadata, tokens or health inputs.
 
@@ -191,7 +188,7 @@ AN02…AN07 exercise loading, direct-route denials, logout failure and stale/rev
 Astronomy Engine 2.1.19 is the only added dependency, pinned to the approved source's library and excluded from the app entry bundle. Required fresh security results are recorded in Development Notes; the two existing Moderate router findings remain separately documented. No live import, live generation, RLS relaxation, external datastore connection or physical device test occurred.
 
 
-## Calendar security boundary — Buildmarker-012
+## Historical checkpoint — Calendar security boundary — Buildmarker-012
 
 Authenticated owner is derived from the shared branded principal; client owner/role/phase/prediction/time/version fields are rejected. Every read checks ACTIVE, consent and no open deletion job before health collection access and rechecks afterward. A current grant needs canonical UTC time/version and exactly one matching grant event; historic withdrawn/regranted events are retained. No consent returns no health data and does not query health collections. Settings/start/derived writes remain behind the unavailable transaction boundary; no direct SDK or admin CRUD path is opened.
 
@@ -201,7 +198,7 @@ UI invalidates health and pending responses before focus/visible-tab refresh, of
 
 The local atomic fixture models one serializable store shared by two workers. It proves protocol behavior only. No live mutation, independent hosted-worker test, native rollback or production-ready claim is made. Existing Moderate router advisory disposition remains applicable because navigation destinations are fixed internal paths.
 
-## Admin test deletion/restart — 013 explicit user authorization
+## Historical checkpoint — Admin test deletion/restart — 013 explicit user authorization
 
 The new endpoint requires authenticated current admin for lookup, preview, execute, resume and status; it rereads the actor's User role before privileged work and again inside the required durable exclusion boundary. Target identity is separate. Payloads are closed; service-role calls stay in shared backend persistence. Preview uses projected row IDs, owner/reference IDs, states and revision metadata only. Profile values, birth/period dates, consent contents/times, email, message text and raw exceptions are neither returned nor logged. Health counts are limited to the exact admin-selected target. No bulk user listing or generic entity mutation console exists.
 
@@ -223,3 +220,7 @@ Live read-only CLI evidence confirms lifecycle schema readability and PRE_IMPORT
 ## Dependency scan — Buildmarker-015
 
 Fresh TLS-verified npm audit after `npm ci`: 0 Critical, 0 High, 2 Moderate, 0 Low. Added pinned `postgres` 3.4.9 for server/operator/local database tests; no driver in the frontend graph. `security:deps` passes the native High threshold. Remaining router paths are `react-router-dom@6.30.6 → react-router@6.30.6`: GHSA-wrjc-x8rr-h8h6 (untrusted backslash navigation) and GHSA-337j-9hxr-rhxg (SSR hydration deserialization). Existing mitigation remains static/internal navigation plus validated auth return path; app uses BrowserRouter without SSR hydration. A major migration to fixed v7 is the vendor fix and remains separate scoped work, not suppressed by an override. The audit JSON and exact lock hash are recorded with 015 evidence.
+
+## Current dependency scan — 016
+
+Clean npm lockfile install after removing Postgres.js: zero Critical/High, two existing Moderate React Router advisories. No forced major-router migration. Existing static internal navigation/no SSR mitigation and remaining limits remain documented above. Exact fresh audit is retained in reports/base44-016/npm-audit.json. No SQL driver or runtime secret dependency remains.

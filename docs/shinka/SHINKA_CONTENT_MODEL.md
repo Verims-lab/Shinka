@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — source prepared; controlled import and engine implemented; production daily persistence blocked
-**Current BuildMarker:** Buildmarker-015
+**Current BuildMarker:** Buildmarker-016
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
@@ -11,12 +11,11 @@
 **Not Implemented:** Verified production daily create-if-absent adapter; live import/generation proof; scheduled lookup renewal.
 **Open Decisions:** OD-005, OD-008 (noted); OD-002 RESOLVED_BY_PRODUCT_DECISION
 
-## Test reference preparation — 015
+## Base44 reference readiness and snapshots — 016
 
-The explicit PostgreSQL Test approval permits only the already approved six categories, 240 mappings, 260 bilingual content pairs and current Moon references. `scripts/postgres/referenceData.mjs` verifies the canonical source SHA-256, builds the approved category crosswalk, imports insert-or-identical inside a locked SQL transaction and validates full readback/relations. Any changed text, mapping or duplicate conflict aborts; no silent update or regenerated product text. Moon generation reuses pinned Astronomy Engine and validates contiguous UTC coverage for the current horizon plus two future years. Local report contains counts/hash/coverage only.
+The six approved category codes/TR/EN names, 240 mappings, 260 bilingual pairs and source hash remain unchanged. Native admin dry-run/reviewed digest/bounded apply/readback is the current import path; operator serializes imports. Home never imports or overwrites content. Ordinary keyed upsert is not unique under independent workers.
 
-SQL is the sole Test reference and daily snapshot authority. Base44 content rows are never a fallback. Hosted import has not run. H05's staged policy explicitly includes 015 and accepts provenance-tagged PostgreSQL counts; exact source/crosswalk readiness remains required. Daily immutable snapshots and the existing 40-day selection rule are unchanged.
-
+Fresh read-only check 2026-10-20T17:02:37.305Z: missing 6/260/240, same/conflicts zero; Moon missing 103, planned coverage 2026-10-03T13:25:33.710Z to 2028-11-02T09:17:57.674Z, no stored coverage. No import executed into the known shared environment. Explicit content-phase policy includes 016 and LIVE_BASE44_COUNT only. Daily candidates are immutable; earliest persisted generated_at then ID wins, conflicting candidates trigger notice and all candidates remain in the repeat window. [Evidence and acceptance](SHINKA_BASE44_CONTINUATION.md).
 
 ## Pair model
 One Pair ID (`SHF-001`…`SHF-260`) = Your Shinka + Today's Suggestion, TR and EN. Never selected one-sided. 260 is the starting library, not a cap. All pairs Active; no deactivate/delete in this version.
@@ -45,7 +44,7 @@ Workbooks are the content authority; any edit to copy/mapping is a source change
 ## Mandatory integrity propagation
 The shared validator returns missingCategory for content and both mappings. H05-003 fails missing/unknown categories or missing six-category coverage; H05-004/005 fail missing category cells, missing combinations, invalid values or duplicate mappings; H05-006 also requires valid base/extended mappings. H05-007 checks duplicate/malformed/missing/out-of-range IDs and mappings; H05-008 checks every required TR/EN cell. T61–T67 generate synthetic 260/192/240 fixtures (no product copy) and run the actual H05 decisions for valid and invalid inputs. OD-002 is RESOLVED_BY_PRODUCT_DECISION; the category definition gap is closed by the user approval of 2026-10-20.
 
-## Empty data foundation — Buildmarker-007
+## Historical checkpoint — Empty data foundation — Buildmarker-007
 MessageCategoryLookup, MessageCategoryMapping, MessagePair and immutable UserDailyMessage are physically represented in repository JSONC. No 260/192/240 data was imported and no daily engine was implemented. Category codes remain text until OD-002 is authoritatively closed; no guessed EN names or categories are seeded. MessagePair is_active has only the approved Active state. Required TR/EN strings have no invented editorial length cap. Only a future trusted importer may author shared content through the guarded backend path; normal users cannot write it. No Moon/Cycle lookup population was performed.
 
 ## Historical First-Shinka boundary — packages 008–010
@@ -59,7 +58,7 @@ Physical content schemas were intentionally established in 007; the previous H05
 This is a staged package policy, not a permanent empty-content requirement. Package 009 is explicitly maintenance-only, so it retains zero-row/no-import enforcement. Other future packages require an approved policy and block until one exists; no future package is automatically treated as imported content. H05-001…008 retain all workbook integrity checks. No content import, category/mapping/pair population or Daily Content Engine is added by this closure.
 
 
-## Buildmarker-011 source and import contract
+## Historical checkpoint — Buildmarker-011 source and import contract
 
 The three original workbook files were read and hash-verified locally. `firstContentSource.js` contains the exact 260 Pair IDs/four text cells and 240 mappings; `contentSourceReceipt.js` contains only the digest. `prepareFirstContent.mjs` reuses the canonical XLSX reader/validators, requires SHF-001…SHF-260 exactly, six approved category counts, no missing texts/duplicate identity tuples, and 240 = identical 192 + 48 UNKNOWN. No punctuation correction is made, including OD-008. Sources, SHA-256 values and operational steps are in [the 011 handoff](reports/SHINKA_FIRST_SHINKA_011.md). This is repository preparation, not live data insertion.
 
@@ -85,16 +84,17 @@ The pure engine implements mapped-category random selection, other-category fall
 Source and scope: explicit user approval in this conversation on 2026-10-20, recorded in SOURCE_OF_TRUTH. All 260 four-cell Pair tuples and all 240 source mapping rows remain byte-identical in the manifest. No category reassignment or text edit is authorized. Import validation rejects duplicate codes, duplicate/unknown/missing source labels and missing TR/EN names. Sequential admin dry-run/apply/readback uses these same six definitions; a source approval does not execute live import or close the production atomic-storage blocker.
 
 
-## Calendar integration — Buildmarker-012
+## Historical checkpoint — Calendar integration — Buildmarker-012
 
-No Pair text, mapping, category, manifest hash or import behavior changes. Explicit staged content validation now covers packages 011 and 012 at that checkpoint; later explicit 013/014 policy follows. Calendar mutation never reads/writes daily snapshots. Shared `dailyCycle` supplies both Home and Calendar estimation/phase rules; an empty real history remains UNKNOWN even when settings survive last-start deletion. Daily generation accepts the matching current grant event after a completed withdrawal/regrant history rather than incorrectly requiring only one lifetime event. Production daily atomic persistence and live import/readback remain open.
+> Historical contract (superseded by the current 016 native contract above):
+> No Pair text, mapping, category, manifest hash or import behavior changes. Explicit staged content validation now covers packages 011 and 012 at that checkpoint; later explicit 013/014 policy follows. Calendar mutation never reads/writes daily snapshots. Shared `dailyCycle` supplies both Home and Calendar estimation/phase rules; an empty real history remains UNKNOWN even when settings survive last-start deletion. Daily generation accepts the matching current grant event after a completed withdrawal/regrant history rather than incorrectly requiring only one lifetime event. Production daily atomic persistence and live import/readback remain open.
 
 ## Package 013 preservation
 
 Test Tools is an explicit non-content feature. The staged content validation policy extends to 013; 014 receives its separate scoped policy below. The six approved category decisions, 260 Pairs, 240 mappings and source manifest hash remain unchanged. Delete/reset never mutate shared content or immutable user daily snapshots; completed reset reuses an existing same-day snapshot. No content import or live Pair generation was performed for this package.
 
 
-## Closure readiness — 014
+## Historical checkpoint — Closure readiness — 014
 
 Staged PRE_IMPORT/VERIFIED_IMPORTED validation explicitly includes 014; 015+ requires its own scope. Manifest/source hash, six category definitions, 260 four-cell Pairs and 240 mapping rows are unchanged. Live read-only `contentLibrary.verify` on 2026-10-20 reports PRE_IMPORT: missing 6/260/240, zero same/conflicts. `moonDryRun` reports 103 missing intervals, zero same/conflicts, planned coverage 2026-10-03T13:25:33.710Z through 2028-11-02T09:17:57.674Z. These are planned intervals, **not stored coverage**. Data UI independently shows all four tables at zero. No import was run.
 

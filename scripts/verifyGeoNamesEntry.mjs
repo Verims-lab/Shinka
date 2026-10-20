@@ -4,8 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { runInNewContext } from 'node:vm';
 import ts from 'typescript';
 import assert from 'node:assert/strict';
-import { requireInternalAdmin } from '../base44/shared/internalAuthorization.js';
-import { handleSqlRequest } from '../base44/shared/postgres/http.js';
+import { handleInternalRequest } from '../base44/shared/internalAuthorization.js';
 import { internalHealthOperation } from '../base44/shared/internalHealthOperations.js';
 
 export async function verifyGeoNamesRuntimeProbeEntry(root) {
@@ -14,9 +13,11 @@ export async function verifyGeoNamesRuntimeProbeEntry(root) {
   const exports={};let role=null,reads=0,runs=0,factories=0,currentValue='fixture-first',currentSignal;
   const client={auth:{me:async()=>role?{id:'fixture-admin',role}:null},get asServiceRole(){throw new Error('no entity access in probe');}};
   const imports={
+    "../../shared/userLifecycle.js":{withUserLifecycle:client=>client},
+    '../../shared/nativeClient.ts':{createNativeClient:()=>client},
     'base44:runtime':{secrets:{get:key=>{assert.equal(role,'admin');assert.equal(key,'GEONAMES_USERNAME');reads++;return currentValue;}}},
-    '../../shared/postgres/http.js':{handleSqlRequest},
-    '../../shared/postgres/hosted.ts':{openHostedSql:async(_req,options)=>({runtime:{execute:async(route,body)=>{assert.equal(route,'internalHealth');await requireInternalAdmin(client);return internalHealthOperation(client,body,options);}},close:async()=>{}})},
+    '../../shared/internalAuthorization.js':{handleInternalRequest},
+    '../../shared/internalHealthOperations.js':{internalHealthOperation},
     '../../shared/geonamesRuntimeProbe.js':{createGeoNamesRuntimeProbe:()=>{
       factories++;return async({username,signal})=>{runs++;assert.equal(username,currentValue);assert.equal(signal,currentSignal);return {probe_version:'fixture'};};
     }},
@@ -40,21 +41,26 @@ export async function verifyGeoNamesEntry(root) {
   const output=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
   const exports={},reads=[],bindings=[];
   let active=false,currentValue;
+  const createClient=()=>{};
   const imports={
+    "../../shared/userLifecycle.js":{withUserLifecycle:client=>client},
+    '../../shared/nativeClient.ts':{createNativeClient:createClient},
     'base44:runtime':{secrets:{get:key=>{
       assert.equal(active,true,'secret read outside request');
       assert.equal(key,'GEONAMES_USERNAME');reads.push(key);return currentValue;
     }}},
     '../../shared/geonamesAdapter.js':{createGeoNamesAdapter:({username})=>{bindings.push(username);return {binding:bindings.length};}},
-    '../../shared/postgres/http.js':{handleSqlRequest},
-    '../../shared/postgres/hosted.ts':{openHostedSql:async(_req,{geoNames})=>({runtime:{execute:async route=>{assert.equal(route,'onboarding');assert.equal(geoNames.binding,bindings.length);return {bound:true};}},close:async()=>{}})},
+    '../../shared/onboardingOperations.js':{handleOnboardingRequest:(req,client,{geoNames})=>{
+      assert.equal(client(req),createClient(req));assert.equal(geoNames.binding,bindings.length);
+      return {request:req};
+    }},
   };
   runInNewContext(output,{exports,require:name=>{assert.ok(Object.hasOwn(imports,name),'unexpected platform import');return imports[name];}},{timeout:1000});
   assert.equal(reads.length,0,'no module-load secret cache');
   assert.equal(typeof exports.default,'function');
   for(const value of [undefined,'fixture-first','fixture-rotated']){
-    active=true;currentValue=value;const req=new Request('https://fixture.invalid',{method:'POST',body:'{}'});
-    try{assert.equal((await (await exports.default(req)).json()).bound,true);}finally{active=false;}
+    active=true;currentValue=value;const req={};
+    try{assert.equal((await exports.default(req)).request,req);}finally{active=false;}
     assert.equal(bindings.at(-1),value,'current request secret must reach adapter');
   }
   assert.equal(reads.length,3);

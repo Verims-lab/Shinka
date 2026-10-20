@@ -1,0 +1,47 @@
+{
+  "schema": "shinka.release-readiness/1",
+  "measuredAt": "2026-10-20T17:43:40.836Z",
+  "evidence": "LIVE_SCHEMA_AND_IMPORT_READS_ONLY",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "repositoryExpectation": {
+    "home": "NATIVE_CANDIDATES_REQUIRES_REFERENCES",
+    "calendar": "NATIVE_OBSERVATIONS_RECEIPTS",
+    "reset": "VERIFIED_STEPS",
+    "deletion": "TEST_OPERATOR_MAINTENANCE"
+  },
+  "lifecycleSchema": "READABLE",
+  "calendarReceiptSchema": "UNAVAILABLE",
+  "nativeRuntime": {
+    "state": "UNAVAILABLE"
+  },
+  "verify": {
+    "ready": false,
+    "phase": "PRE_IMPORT",
+    "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+    "counts": {
+      "message_category_lookup": {
+        "create": 6,
+        "same": 0,
+        "conflicts": 0
+      },
+      "message_pair": {
+        "create": 260,
+        "same": 0,
+        "conflicts": 0
+      },
+      "message_category_mapping": {
+        "create": 240,
+        "same": 0,
+        "conflicts": 0
+      }
+    }
+  },
+  "moonDryRun": {
+    "ready": false,
+    "missing": 103,
+    "same": 0,
+    "conflictCount": 0,
+    "coverageStart": "2026-10-03T13:25:33.710Z",
+    "coverageEnd": "2028-11-02T09:17:57.674Z"
+  }
+}

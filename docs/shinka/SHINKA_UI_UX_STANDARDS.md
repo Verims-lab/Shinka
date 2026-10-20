@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-015
+**Current BuildMarker:** Buildmarker-016
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,12 +12,11 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
-## Application authority in Test — 015
+## Current native authority and recovery UI — 016
 
-Profile/You and AdminGate now consume `applicationSession` from Base44 functions; its role comes from SQL and requires an ACTIVE profile. The UI never falls back to native Base44 role or a cached caller flag. Admin access is still possible before ON-05/ON-06 completion once the ACTIVE profile and explicit SQL grant exist. Pending/failed refresh hides protected content; backend authorization is independent on each call. Existing copy, colors, menu/cards, OAuth buttons and routes stay unchanged. No Supabase sign-in UI is added.
+Profile/You and AdminGate use applicationSession backed by current native User.role; no SQL availability dependency or Supabase login. Onboarding completeness does not decide admin membership. Pending/failed authorization hides privileged UI.
 
-When Test SQL configuration is absent, the existing auth/error boundary fails closed. No legacy product state is displayed as a fallback. Existing Calendar/Test Tools enabled/disabled states reflect the new backend capability; destructive execution additionally requires a configured synthetic-only Test scope and signed confirmation. Old auth boilerplate reintroduced by main was unreferenced by the approved Apple/Google route graph and removed; the actual Base44 OAuth flow is preserved.
-
+Home localized duplicate-reconciliation notice accompanies the selected stored snapshot. Calendar retains explicit save/delete confirmation, date editing ID, focus/privacy invalidation and responsive controls. Pending conflict suppresses predictions and offers refresh/review; clearing pending attempts never changes actual dates. A partial explicit grant exposes a Retry recovery view. Do not claim unchanged saved state after an unconfirmed write; already-sent calls may have persisted. Reset conflicts direct the user to review/retry matching input or use Calendar for history edits. Deletion disabled preview explains the required operator maintenance window; normal Home/Calendar/reset are not disabled by its missing attestation. [Behavior and limits](SHINKA_BASE44_CONTINUATION.md).
 
 ## Authority
 SRC-03 v1.1 governs presentation, copy and interaction. Business rules: SRC-01; flows: SRC-02; data: SRC-05/07.
@@ -86,7 +85,7 @@ Introduction → Optional name → Welcome / Sign In → Personal Details → Yo
 Greeting Good morning/afternoon/evening by local time (+ optional name); only **Your Shinka** and **Today’s Suggestion** cards from the day's immutable snapshot; no new pair on reload; IANA timezone auto-detected (fallback last saved); Loading / offline / load failure / not-ready / Retry states.
 
 ## Calendar UX
-Monthly view; actual period pastel pink, predicted light lavender, selected day ring; legend Period / Predicted / Selected; phases not color-split. Mark period start (select date → validate → save). Correction: select existing start → new date → same action updates. Delete period start only on actual starts, with confirmation (date + prediction update explained; Cancel changes nothing); busy state blocks re-taps; success only after atomic recompute; error keeps prior state + Retry; last start deleted → empty state, mark action available. Health display hidden without consent.
+Monthly view; actual period pastel pink, predicted light lavender, selected day ring; legend Period / Predicted / Selected; phases not color-split. Mark period start (select date → validate → save). Correction: select existing start → new date → same action updates. Delete period start only on actual starts, with confirmation (date + prediction update explained; Cancel changes nothing); busy state blocks re-taps; success only after actual-date readback and recalculation; error keeps prior state + Retry; last start deleted → empty state, mark action available. Health display hidden without consent.
 
 ## Pattern UX
 Read-only: **Your Recurring Themes** (assigned categories, ≤2 themes) and **Lunar Timeline** (previous New → next New Moon, five proportional nodes, active phase + Today marker, local dd.MM HH:mm, no horizontal scroll).
@@ -187,7 +186,7 @@ Shared native select uses `appearance:none` with a decorative noninteractive che
 
 Browser-level layout, focus, localized long options, date/time and network retry evidence is in [Android/iOS compatibility](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md). Native keyboard/date/select sheets, VoiceOver/TalkBack, pinch zoom, real insets and background eviction require physical-device evidence (H13-013); desktop WebKit is not Safari certification. Product copy is unchanged.
 
-## Admin profile access — Buildmarker-010
+## Historical checkpoint — Admin profile access — Buildmarker-010
 
 Explicit current user decision adds a small Profile/You menu for verified admins, including before onboarding completion. The existing top-right `user-round` trigger is 44×44; the ordinary user's trigger remains disabled and opens no empty profile. This implements admin access only. Full My Profile, preferences, account/privacy editing and other You workflows remain FUTURE_PACKAGE. Bottom navigation stays Home · Calendar · Pattern.
 
@@ -204,7 +203,7 @@ Health description: “Sağlık kontrolleri, testler ve sonuçlar.” / “Healt
 Shared navigation links to the panel, both tools and the existing `/` app resolver. The small controlled navigation menu supports keyboard opening, Escape, trigger focus restoration and outside dismissal. Cards and links are at least 44px, use visible keyboard focus and existing Shinka cards/tokens. Responsive and keyboard proof is synthetic/local; physical device and deployed admin/user evidence remain separate.
 
 
-## Daily preparation and Home presentation — Buildmarker-011
+## Historical checkpoint — Daily preparation and Home presentation — Buildmarker-011
 
 ON-06 retains the approved EN/TR title/preparation text and starts the real daily service. Loading is bounded by the client deadline; error/not-ready/offline have localized Retry. Technical codes are DOM diagnostics, not added product instructions. No successful advancement occurs without id and both language snapshots in the backend's confirmed persisted response.
 
@@ -217,7 +216,7 @@ Local date/timezone changes trigger a backend refresh; stale previous-day conten
 The user's explicit six-row approval supplies the English category display names and preserves the source Turkish names exactly. The [canonical category table](SHINKA_CONTENT_MODEL.md#approved-category-definition--od-002-continuation) and `contentCategoryDecision.js` carry all six pairs. These English names are product-decision copy, not strings from the original UI/UX document. Home still shows the two existing snapshot cards; this decision adds no category widget, translates no other text and changes no Pair/mapping. Any future category display must select the stored display_name_tr/display_name_en; codes remain locale-independent.
 
 
-## Calendar presentation — Buildmarker-012
+## Historical checkpoint — Calendar presentation — Buildmarker-012
 
 The real monthly Calendar uses existing tokens: Blush Pink recorded days, Soft Lavender predicted days and Plum selection ring. Source Period / Predicted / Selected English legend is exact; scoped TR equivalents are Regl / Tahmini / Seçili. Accessible day labels include full local calendar date and each applicable state; actual starts also have a small marker. No new phase color layer is introduced. Monday-first month presentation, previous/next named buttons, arrow/Home/End focus and native labeled date input are implemented. Choosing a day or moving focus never writes.
 
@@ -227,14 +226,14 @@ Selected existing ID/date and destination date remain separate across month navi
 
 Shared bottom navigation enables Home/Calendar and keeps Pattern inactive; Profile/admin behavior is unchanged. The route is lazy and only resolves for durably completed active users. Controls retain ≥44px, native date text 17px, dialog scrolling, safe-area/page padding and no fixed keyboard-obscuring save bar. Browser screenshots and physical-device limits are recorded in the existing mobile report.
 
-## Test Tools — 013 user-requested extension
+## Historical checkpoint — Test Tools — 013 user-requested extension
 
 Admin inventory now has three destinations: Health Center, Build & Environment, Test Tools. Existing top-right Profile/You access, shared navigation, route guards and return path remain. Test Tools copy is centralized in `testToolsCopy.js`; it is new copy for this explicit feature, not attributed to the original UI/UX tables. Catalog parity is tested.
 
 User ID lookup must precede operation preview. ID edits discard target/preview/typed confirmation and invalidate late responses. Delete has its own irreversible-action description and complete removal/retention preview. Both operations show actual destination app/server and environment uncertainty; blocked prerequisites remain visible with the execute control disabled. An exact typed ID is required when execution is available. Preview receives heading focus; cancel restores the lookup input. Single-flight submit, status/recovery controls, live region results, mobile wrapping and ≥44px controls use existing primitives. A result never says all data were deleted. No second OAuth requirement or localStorage reset is introduced.
 
 
-## OD-012 information state — 014
+## Historical checkpoint — OD-012 information state — 014
 
 Calendar keeps actual dates and uses a status live region when the completed sample window cannot support a current estimate. Central `calendarCopy.estimateUnavailable` EN: “Your recorded dates are preserved. A prediction or current phase cannot be calculated because the latest completed intervals are longer than 60 days”. TR: “Kayıtlı tarihlerin korunuyor. Son tamamlanmış aralıklar 60 günden uzun olduğu için tahmin ve güncel evre hesaplanamıyor”. This helper copy is scoped to the user's 014 request; original approved onboarding copy is unchanged.
 

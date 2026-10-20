@@ -12,7 +12,7 @@ async function rejects(run, code) {
   try { await run(); } catch (e) { assert(!code || e.code === code, `expected ${code}, got ${e.code}`); return; }
   throw new Error(`expected refusal ${code}`);
 }
-const bytes = f => JSON.stringify(f.tables);
+const bytes = f => JSON.stringify(Object.fromEntries(Object.entries(f.tables).sort(([a], [b]) => a.localeCompare(b))));
 const noMutations = f => assert(f.state.calls.every(row => row.method === 'filter'), 'unexpected mutation');
 const deleted = f => !f.tables.User.some(row => row.id === 'ownerA');
 const retained = f => JSON.stringify(Object.fromEntries([...RETAINED_ENTITIES, ...SHARED_ENTITIES].filter(e => e !== 'notification_delivery').map(e => [e, f.tables[physicalName(e)].filter(row => e !== 'admin_audit_log' || row.target_entity !== 'AdminTestOperation')])));

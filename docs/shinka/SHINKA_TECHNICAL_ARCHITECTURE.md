@@ -2,25 +2,20 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-015
+**Current BuildMarker:** Buildmarker-016
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
-**Not Implemented:** Production daily/Calendar atomic persistence, Pattern workflows, notifications/scheduler; implemented pure daily/phase components are described below.
+**Not Implemented:** Hosted acceptance for native daily/Calendar persistence, Pattern workflows, notifications/scheduler; implemented pure daily/phase components are described below.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
-## Active Test execution architecture — 015
+## Active execution architecture — Base44 016
 
-Browser → existing Base44 function names → verified native `auth.me()` and current User existence → SQL application/owner locks → PostgreSQL product state. `applicationSession` returns the SQL application role used by both Profile/You and AdminGate; `applicationAdmin` is a closed grant/revoke route. No SQL URL/key/driver is shipped in the frontend. Base44 remains identity/OAuth plus redacted internal Health artifact storage only.
+Browser → existing Base44 functions → native SDK authentication + current User/lifecycle → service-role Entity readers/writers. applicationSession and internal routes share fresh native User.role; applicationAdmin SQL role writer is removed. No SQL secret, connection, external auth or fallback. The native write boundary checks pause/identity/lifecycle before and after each product SDK mutation, without claiming recall of an in-flight write.
 
-`base44/shared/postgres/` separates connection/HTTP, authorization/session, store, receipts, onboarding, Calendar, roles, reset, delete stages and Health metadata. `001_test_authority.sql` contains native constraints and tenant RLS. Every request has an app-bound TEST configuration and explicit synthetic-principal allowlist. Missing configuration fails closed. A shared application row lock protects stable roster/reference inputs; exclusive roster/import/delete admission takes the same row exclusively. Sorted actor/target owner locks serialize related data reads, calculation, writes and receipts in one SQL transaction. This correctness lock order is a deliberate small-Test throughput tradeoff.
-
-Postgres.js 3.4.9 uses one connection per active warm-worker configuration, `prepare:false`, `max_pipeline:1`, transaction-local GUCs and verified TLS for hosted connections. Runtime role is not superuser/owner/BYPASSRLS. Local tests use an isolated loopback PostgreSQL 17.11 cluster. Base44 Deno + Supabase transaction pooler execution is not yet measured. No distributed guarantee is inferred from a worker-local mutex.
-
-Daily creation locks before reading selection inputs and has UNIQUE(app_id,user_id,shinka_date), append-only DB enforcement and readback before commit/return. Calendar actual records + grant/event + receipt commit together; phases/predictions are recalculated from that locked revision, not separately persisted caches. Reset normal writes + stage + receipt commit together. User deletion is a durable SQL-fenced saga around the external Base44 User deletion: no cross-store rollback claim. See [015 report](reports/SHINKA_POSTGRESQL_TEST_015.md) for failure and rollout details. Historical Base44 persistence sections below remain provenance only for the prior deployments.
-
+Responsibilities: nativeDailyPersistence (bounded immutable-candidate reconciliation), nativeCalendarPersistence/Grant/Recovery (intent, actual dates, consent repair), shared calendarCalculation (read-time projections), nativeResetStep (normal write then verified progress), nativeTestJournal/nativeAdminTestOperation (guarded maintenance stages). NativeReadiness is read-only strategy/schema metadata. Legacy atomic helpers remain executable historical protocol fixtures, never a deployed coordinator. SDK result counts/readback detect conflicts but do not prove linearizable CAS. Actors were evaluated and are unnecessary; no new distributed component. [Continuation decision](SHINKA_BASE44_CONTINUATION.md) records options, limits and rollout.
 
 ## Responsibilities
 - **Client (React):** presentation, local UX validation only, device IANA timezone detection. No business engine in JSX.
@@ -68,7 +63,7 @@ Ported custom colors/fonts/radii/typography/shadow/keyframes exactly. Used neutr
 
 The migration follows the [official Vite integration](https://tailwindcss.com/docs/installation/using-vite) and [upgrade guide](https://tailwindcss.com/docs/upgrade-guide). Tailwind 4 targets Safari 16.4+, Chrome 111+ and Firefox 128+; supported device/browser proof, real hosted font loading and Base44 deployment remain external verification. No product/browser support beyond those targets is claimed.
 
-## Data/security foundation — Buildmarker-007
+## Historical checkpoint — Data/security foundation — Buildmarker-007
 `domainSchemas.js` owns the 20 field contracts and emits the equivalent JSONC structures checked by `scripts/domainEvidence.mjs`. PascalCase filenames match physical names. `domainSourceReceipt.js` is an independent field-name extraction from the primary workbook, not generated from schemas. `domainValidation.js` owns wire/null/time/enum/range checks; `domainSecurity.js` owns the full access matrix and worker grants; `domainAtomic.js` owns canonical unique keys, create-if-absent/CAS protocol, safe readback and reference prechecks. Native unsupported uniqueness is never declared as a fake schema constraint.
 
 `domainAccess` creates the SDK from its incoming request, authenticates through the common guard, then performs only scoped reads or audited admin reads. Private reads are capped at 100, admin reads require an exact id. Generic product mutation workflows remain disabled; the specific onboarding endpoint now uses its request-scoped production SDK adapter and confirmed readback. A future paginated product read API must retain owner predicates and active/consent checks for every page.
@@ -141,7 +136,7 @@ Health runner now locks a run through report persistence and ignores stale histo
 
 Preflight rejects conflicting consent/event/settings/period before mutations. Each subsequent health write rechecks ACTIVE, no open deletion job and the same GRANTED consent id/version/time with withdrawn_at NULL. The final success re-verifies event, settings (including absence), period and consent. Hydration verifies a matching event and valid settings/period before accepting persisted cycle completion; a period without its event returns to ON-05 for recovery. Skip retains its explicit no-write, session-only transition. No new entity, field, receipt, automatic retry or repair endpoint was added.
 
-## Admin navigation and session lifecycle — Buildmarker-010
+## Historical checkpoint — Admin navigation and session lifecycle — Buildmarker-010
 
 `ProfileMenu` owns the small controlled menu, keyboard/focus and outside dismissal; `ProfileAccess` consumes the single `AuthContext.isAdmin` decision. `OnboardingScreen` receives a presentation slot, preserving standalone isolated probes; Home uses the same profile presentation. `internalNavigation.js` owns the three fixed internal destinations and locale validation. Lazy `AdminPanel` renders two cards; `InternalNav` connects the existing tools and app entry. Internal data operations remain in their existing services/backend guards.
 
@@ -150,7 +145,7 @@ Preflight rejects conflicting consent/event/settings/period before mutations. Ea
 CLI-only SDK controls live under `scripts/testHarness` and are substituted only by isolated build configuration. Production contains neither fixture query authority nor those controls. Canonical tests inject fake clients and cannot contact the live SDK. Existing lazy-route/byte budgets and backend-to-frontend boundaries remain enforced.
 
 
-## First Shinka / Home responsibilities — Buildmarker-011
+## Historical checkpoint — First Shinka / Home responsibilities — Buildmarker-011
 
 `dailyCycle` implements the approved current-day phase lookup and last-three observed intervals (single outlier exclusion, half-up mean). No real start → UNKNOWN; NULL settings use 28/5 in computation only. It does not write Calendar predictions/phase caches. `moonIntervals` generates and validates Astronomy Engine 2.1.19 UTC intervals, NEW/WAXING/FULL/WANING, [start,end), contiguous and ordered. The admin Moon importer prepares at least two future years with a stable next-month horizon and exact event timestamps. DM09 compares the first January 2026 full moon with the USNO 10:03 UT reference within a declared 120-second sample tolerance; this is not universal astronomical certification. Rolling automatic renewal is not scheduled in this scope; gaps/expired coverage fail, and the controlled admin mechanism can extend it.
 
@@ -165,7 +160,7 @@ For new generation, source-verified content is bounded to this manifest; Moon lo
 Source manifest and astronomy runtime stay backend-only; Astronomy in the internal test suite loads only when its test executes. They do not enter the normal application entry bundle. Existing byte budgets remain unchanged.
 
 
-## Calendar responsibilities and limits — Buildmarker-012
+## Historical checkpoint — Calendar responsibilities and limits — Buildmarker-012
 
 `calendarCalculation` owns strict date/neighbor validation, complete-history phase projection, traceable observation/estimate separation and month projection. It reuses `dailyCycle.cycleEstimate`/`cyclePhaseAtDay`; no engine runs inside JSX. `calendarState` owns guarded pure replacement and commit verification. `base44CalendarReader` is read-only, bounded and owner-scoped. `calendarOperation` authenticates and dispatches closed read/add/edit/delete actions; `domainAtomic.commitCalendarAction` owns the unavailable durable transaction boundary. Production `calendar/entry.ts` passes no adapter and cannot execute mutations. No SDK write tripwire allowance is added.
 
@@ -175,7 +170,7 @@ Owner data is memory-only, no persistent browser cache. Every month read fetches
 
 The main fast-forward introduced five unreachable generic auth templates; route/import inspection found no application registrations. AuthLayout, Register, ForgotPassword, ResetPassword and OAuthConsent were removed together. Their password/registration surfaces conflicted with the existing Apple/Google contract and reintroduced type errors. Active auth behavior is unchanged.
 
-## Admin Test Tools boundaries — 013
+## Historical checkpoint — Admin Test Tools boundaries — 013
 
 Lazy `TestTools` page → `useTestTools` → one narrow service → `adminTestTools` function. Catalog/copy, preview UI, strict request policy, metadata-only paginated repository, HMAC preview signer, job executor and lifecycle/reset integration have separate modules. No client entity name, role, owner authority or environment override is accepted. SDK 0.8.54 supports the positional filter pagination and service-role User.delete(id) used by the repository. No cascade, token revocation or transaction is inferred.
 
@@ -184,10 +179,11 @@ All seven existing function entries and the new entry wrap the request-scoped SD
 `shinka.target-lifecycle/1` requires durable target exclusion shared by every current/future product writer (including notifications/import-triggered work), global admin-roster exclusion, unique operation/receipt keys, persisted start audit, resumable checkpoints and verified final audit. Worker restart must preserve receipts/fences; failed operations keep their fence. The repository has **no production implementation**. The entry always supplies no coordinator: configuring environment/signing secrets cannot unlock it. The in-memory two-worker fixture is only an executable model. See [adapter and rollout contract](reports/SHINKA_ADMIN_TEST_TOOLS.md).
 
 
-## Production closure investigation — 014
+## Historical checkpoint — Production closure investigation — 014
 
 Reviewed SDK 0.8.54 and current official Entity/Actor/CLI documentation. Entity UNIQUE is explicitly unsupported; reviewed APIs do not establish immutable conditional create, CAS publication or a cross-Entity transaction. A single owner aggregate/read-time derived projection reduces Calendar coordination, but without verified conditional replacement still loses concurrent writes. Moving every owner operation into Actor storage would change authority and still requires verified storage/interleaving/retry/roster semantics; it is not enabled on the strength of persistent storage alone.
 
-[Decision 014](reports/SHINKA_PERSISTENCE_DECISION_014.md) specifies the recommended PostgreSQL authority, Base44 identity bridge, distinct Home transaction/Calendar snapshot/Admin saga mechanisms, migration and rollback. It awaits user approval; no new interface is represented as its implementation. Actual entry wiring remains unchanged and all three writers stay independently blocked. Existing onboarding sequential persistence and its known limitations remain visible.
+> Historical contract (superseded by the current 016 native contract above):
+> [Decision 014](reports/SHINKA_PERSISTENCE_DECISION_014.md) specifies the recommended PostgreSQL authority, Base44 identity bridge, distinct Home transaction/Calendar snapshot/Admin saga mechanisms, migration and rollback. It awaits user approval; no new interface is represented as its implementation. Actual entry wiring remains unchanged and all three writers stay independently blocked. Existing onboarding sequential persistence and its known limitations remain visible.
 
 OD-012 is implemented once in `dailyCycle`, consumed by Home and `calendarCalculation`. Window selection precedes filtering. Calendar returns `calculationNotice=CYCLE_ESTIMATE_UNAVAILABLE` separately from technical `calculationError`; its service rejects contradictory notice/predicted-day responses. Missing schema never bypasses lifecycle checks. `prepareSchemaStage.mjs` produces a full hashed schema inventory and a schema-only delta; `base44ReleaseReadiness.ts` is a read-only official-CLI operator script. Neither introduces a product endpoint or starts deployment.

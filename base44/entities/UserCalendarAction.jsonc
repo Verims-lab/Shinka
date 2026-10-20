@@ -1,0 +1,76 @@
+{
+  "name": "UserCalendarAction",
+  "type": "object",
+  "description": "Private health operation receipt; sequential recovery, not a lock. Include in withdrawal/admin cleanup.",
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "action_id": {
+      "type": "string"
+    },
+    "fingerprint": {
+      "type": "string"
+    },
+    "base_revision": {
+      "type": "string"
+    },
+    "result_revision": {
+      "type": "string"
+    },
+    "operation": {
+      "type": "string",
+      "enum": [
+        "add",
+        "edit",
+        "delete"
+      ]
+    },
+    "period_id": {
+      "type": "string"
+    },
+    "desired_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "previous_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "initial_grant": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "APPLIED",
+        "CANCELLED"
+      ]
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "grant_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "user_id",
+    "action_id",
+    "fingerprint",
+    "base_revision",
+    "operation",
+    "initial_grant",
+    "status",
+    "started_at"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}

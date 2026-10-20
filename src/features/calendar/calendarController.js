@@ -23,9 +23,9 @@ export function createCalendarController(request) {
     if (mutationPending || state.loading || !state.value) return;
     let payload = replay ? retry?.payload : null;
     if (!payload) {
-      if (action !== 'delete' && !isCalendarDate(state.selected)) { set({ error: state.selected ? 'PERIOD_DATE_INVALID' : 'PERIOD_DATE_REQUIRED', action }); return; }
+      if (!['delete','acknowledge','resume'].includes(action) && !isCalendarDate(state.selected)) { set({ error: state.selected ? 'PERIOD_DATE_INVALID' : 'PERIOD_DATE_REQUIRED', action }); return; }
       payload = { month: state.month, action_id: crypto.randomUUID(), revision: state.value.revision,
-        ...(action === 'delete' ? { period_id: state.editing?.id } : { date: state.selected, ...(action === 'edit' ? { period_id: state.editing?.id } : { health_consent: state.consent }) }) };
+        ...(action === 'resume' ? { action_id: state.value.recovery.action_id, revision: state.value.recovery.revision } : action === 'acknowledge' ? {} : action === 'delete' ? { period_id: state.editing?.id } : { date: state.selected, ...(action === 'edit' ? { period_id: state.editing?.id } : { health_consent: state.consent }) }) };
       retry = { action, payload };
     }
     mutationPending = true;
@@ -35,7 +35,7 @@ export function createCalendarController(request) {
       const value = await request(action, payload);
       if (ticket !== generation || disposed) return;
       retry = null;
-      set({ value, month: value.month, editing: null, confirmDelete: false, consent: false, success: action === 'delete' ? 'deleted' : 'saved' });
+      set({ value, month: value.month, editing: null, confirmDelete: false, consent: false, success: action === 'acknowledge' ? 'reviewed' : action === 'delete' ? 'deleted' : 'saved' });
     } catch (e) {
       if (ticket !== generation || disposed) return;
       set({ error: e.code, ...(isCalendarPrivacyError(e.code) ? { value: null, editing: null, selected: '', consent: false, confirmDelete: false } : {}) });

@@ -1,3 +1,7 @@
-import {handleSqlRequest} from '../../shared/postgres/http.js';
-import {openHostedSql} from '../../shared/postgres/hosted.ts';
-export default req => handleSqlRequest(req,'dailyMessage',openHostedSql);
+import { createNativeClient } from '../../shared/nativeClient.ts';
+import { handleDailyMessageRequest } from '../../shared/dailyMessageOperation.js';
+import { inspectContentLibrary } from '../../shared/base44ContentLibrary.js';
+import { FIRST_CONTENT_SOURCE } from '../../shared/firstContentSource.js';
+import { CONTENT_CATEGORY_DECISION } from '../../shared/contentCategoryDecision.js';
+// Sequential Entity persistence; duplicates are retained and reconciled explicitly.
+export default (req) => handleDailyMessageRequest(req, createNativeClient, { native: true, library: client => inspectContentLibrary(client, FIRST_CONTENT_SOURCE, CONTENT_CATEGORY_DECISION) });

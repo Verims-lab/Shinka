@@ -1,6 +1,6 @@
-import {handleSqlRequest} from '../../shared/postgres/http.js';
-import {openHostedSql} from '../../shared/postgres/hosted.ts';
+import { handleInternalRequest } from "../../shared/internalAuthorization.js";
 // INTERNAL TOOLING — admin-only, read-only content artifact validation. Performs NO import.
+import { createNativeClient } from '../../shared/nativeClient.ts';
 import { readFirstSheet } from "../../shared/xlsxReader.ts";
 import { ARTIFACT_URLS } from "../../shared/contentArtifactSources.ts";
 import {
@@ -33,4 +33,4 @@ async function artifactOperation(_client, { mode }) {
       relation,
     };
 }
-export default req => handleSqlRequest(req,'validateContentArtifacts',openHostedSql,{artifactOperation});
+export default (req) => handleInternalRequest(req, createNativeClient, artifactOperation);

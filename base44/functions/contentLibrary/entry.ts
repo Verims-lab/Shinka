@@ -1,4 +1,6 @@
-import {handleSqlRequest} from '../../shared/postgres/http.js';
-import {openHostedSql} from '../../shared/postgres/hosted.ts';
+import { createNativeClient } from '../../shared/nativeClient.ts';
+import { handleContentLibraryRequest } from '../../shared/contentLibraryOperation.js';
 import * as astronomy from 'npm:astronomy-engine@2.1.19';
-export default req => handleSqlRequest(req,'contentLibrary',openHostedSql,{astronomy});
+import { FIRST_CONTENT_SOURCE as source } from '../../shared/firstContentSource.js';
+import { CONTENT_CATEGORY_DECISION as decision } from '../../shared/contentCategoryDecision.js';
+export default (req) => handleContentLibraryRequest(req, createNativeClient, { astronomy, source, decision });

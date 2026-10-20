@@ -41,7 +41,7 @@ export const base44 = {
   },
   functions: { invoke: async (name, body) => {
     calls.push({ name, action: body.action }); // Action names only; no user payload.
-    if (name === 'applicationSession') return { data: { ...await base44.auth.me(), authority: 'POSTGRESQL_TEST_V1' } };
+    if (name === 'applicationSession') return { data: { ...await base44.auth.me(), authority: 'BASE44_NATIVE_V1' } };
     if (name === 'adminTestTools') {
       if (!testToolsLab) testToolsLab = import('@/foundation/tests/adminTestFixture').then(({ adminTestFixture }) => adminTestFixture());
       const f = await testToolsLab;

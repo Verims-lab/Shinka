@@ -1,3 +1,7 @@
+import { guardDomainOwner } from './nativeDomainGuard.js';
+import { calendarReader } from './base44CalendarReader.js';
+import { calculateCalendar } from './calendarCalculation.js';
+import { resolveTimezone, serverLocalDate } from './onboardingValidation.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
 import { DOMAIN_SCHEMAS, SHARED_ENTITIES, HEALTH_ENTITIES, physicalName } from './domainSchemas.js';
 import { resolveAuthenticatedOwner, assertOwner, assertActiveAccount, assertHealthConsent, assertAdminAccess, assertProtectedRecordMutationAllowed } from './domainSecurity.js';
@@ -15,7 +19,13 @@ export async function domainAccessOperation(client, body) {
   if(body.action==='adminRead') {
     assertAdminAccess(principal);
     if(!body.recordId) throw new InternalError('RECORD_ID_REQUIRED',400);
-    return withAdminAudit(client,principal,{target_entity:entity,target_record_id:body.recordId,action_type:'VIEW'},async()=>({records:[normalizeDomainRead(entity,await store[physicalName(entity)].get(body.recordId))]}));
+    return withAdminAudit(client,principal,{target_entity:entity,target_record_id:body.recordId,action_type:'VIEW'},async()=>{
+      if (['user_cycle_prediction','user_cycle_phase_day'].includes(entity)) throw new InternalError('DERIVED_CALENDAR_READ_REQUIRED',409);
+      const row=await store[physicalName(entity)].get(body.recordId);
+      if (row?.user_id && client.shinkaNative) await guardDomainOwner(client,row.user_id,entity);
+      if (client.shinkaNative) { assertAdminAccess(await requireAuthenticatedUser(client)); if (row?.user_id) await guardDomainOwner(client,row.user_id,entity); }
+      return {records:[normalizeDomainRead(entity,row)]};
+    });
   }
   if(body.action!=='read') {
     const attempt=()=>assertProtectedRecordMutationAllowed(entity,body.action,principal);
@@ -26,6 +36,16 @@ export async function domainAccessOperation(client, body) {
   }
   if(entity==='admin_audit_log'||entity==='system_error_log') throw new InternalError('DOMAIN_ACCESS_DENIED',403);
   const ownerId=principal.id;
+  if (client.shinkaNative) await guardDomainOwner(client,ownerId,entity);
+  if (client.shinkaNative && ['user_cycle_prediction','user_cycle_phase_day'].includes(entity)) {
+    const snapshot=await calendarReader(client,principal).confirmedSnapshot();
+    const today=serverLocalDate(new Date(),resolveTimezone(null,snapshot.preferences?.timezone));
+    const calculated=calculateCalendar({periods:snapshot.periods,settings:snapshot.settings,today});
+    if ((await store.UserCalendarAction.filter({user_id:ownerId,status:'PENDING'},'id',1,0,['id'])).length) throw new InternalError('CALENDAR_PENDING_REVIEW',409);
+    await guardDomainOwner(client,ownerId,entity);
+    const key=entity==='user_cycle_prediction'?'predictions':'phases';
+    return {records:calculated[key].slice(0,100).map(row=>({...row,user_id:ownerId})),derived:true,truncated:calculated[key].length>100};
+  }
   const profile=one(await store.UserProfile.filter({user_id:ownerId},'-created_date',2));
   assertActiveAccount(ownerId,profile);
   if(HEALTH_ENTITIES.includes(entity)) {
@@ -38,6 +58,7 @@ export async function domainAccessOperation(client, body) {
   const query={...(shared?{}:{user_id:ownerId}),...(body.recordId?{id:body.recordId}:{})};
   const rows=await store[physicalName(entity)].filter(query,'-created_date',100);
   if(!shared) rows.forEach(row=>assertOwner(principal,row));
+  if(client.shinkaNative) await guardDomainOwner(client,ownerId,entity);
   return {records:rows.map(row=>normalizeDomainRead(entity,row))};
 }
 export async function handleDomainRequest(req,createClient) {

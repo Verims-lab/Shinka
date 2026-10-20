@@ -18,7 +18,7 @@ const FIELDS=Object.fromEntries(Object.entries(DOMAIN_SCHEMAS).map(([entity,spec
 const identical=(entity,row,expected)=>FIELDS[entity].every(k=>(row[k]??null)===(expected[k]??null));
 // A real, request-scoped service-role adapter. It deliberately does NOT implement
 // domainAtomic.commitOwnerAction: Base44 upsert is not a multi-entity transaction.
-export function createBase44OnboardingAdapter(client,principal,{now=()=>new Date(),consentVersion=HEALTH_CONSENT_VERSION,cycleGate=onboardingCycleGate}={}) {
+export function createBase44OnboardingAdapter(client,principal,{now=()=>new Date(),consentVersion=HEALTH_CONSENT_VERSION,cycleGate=onboardingCycleGate,allowReadyProfile=false}={}) {
   assertAuthenticatedPrincipal(principal);
   const owner=principal.id,store=client.asServiceRole.entities;
   const read=async(entity,query={})=>{
@@ -75,7 +75,7 @@ export function createBase44OnboardingAdapter(client,principal,{now=()=>new Date
       birth_time:optionalBirthTime(input.birth_time),account_status:'ACTIVE',
     });
     if(before&&identical('user_profile',before,expected))return before;
-    if(isOnboardingProfileReady(before,preferences,today))fail('PROFILE_ALREADY_READY'); // Onboarding is not the You editing endpoint.
+    if(!allowReadyProfile&&isOnboardingProfileReady(before,preferences,today))fail('PROFILE_ALREADY_READY'); // Onboarding is not the You editing endpoint.
     if(before){
       assertProtectedRecordMutationAllowed('user_profile','update',S.PROFILE);
       const patch={...expected};delete patch.account_status;

@@ -1,3 +1,7 @@
-import {handleSqlRequest} from '../../shared/postgres/http.js';
-import {openHostedSql} from '../../shared/postgres/hosted.ts';
-export default req => handleSqlRequest(req,'calendar',openHostedSql);
+import { createNativeClient } from '../../shared/nativeClient.ts';
+import { handleCalendarRequest } from '../../shared/calendarOperation.js';
+
+export default async function (req) {
+  // Actual dates are authoritative; projections are computed at read time.
+  return handleCalendarRequest(req, createNativeClient, { native: true });
+}

@@ -2,18 +2,17 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-015
+**Current BuildMarker:** Buildmarker-016
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Scope:** Health catalog HC-014.0; repository, synthetic and external evidence separated.
 
-## Current catalog — HC-015.0 / Buildmarker-015
+## Current catalog — HC-016.0 / Buildmarker-016
 
-Added H04-016, H07-014, H09-005, H08-007 and H12-032 consume **executed local real PostgreSQL** reports with current-source digest verification; identities are synthetic. H04-017 probes the connected Test schema/role read-only and never implies mutation/recovery proof. Catalog version advances once because current case semantics and scope change. H07-011 is explicitly historical Base44 persistence regression. No failing case was removed. H09-004/H08-005/H12-031 now state the actual remaining condition: SQL implementation exists locally, hosted Supabase/Base44 acceptance is missing.
+SQL-only H04-016/H04-017/H07-014/H09-005/H08-007/H12-032 are retired because the authority/runtime was removed by user decision. Their business concerns continue in native identity/manifest/consent/daily/Calendar/lifecycle regressions. Added H04-018/H04-019, H07-015, H09-006, H08-008, H12-033. H04-015 now checks the canonical three-entry operational inventory and all closed tooling policies. Catalog: 16 suites / 155 cases (136 current, 7 future, 12 external). H09-004 checks native strategy plus approved content/Moon; H08-005/H12-031 check native read-only prerequisites, not historical transaction requirements. No mutation acceptance is inferred.
 
-Required repository sequence includes `npm run test:postgres`, both browser engines, Health source digest check, dependency tree/audit, lint/type/build and performance budgets. Local PG report and separate hosted acceptance checklist: [015 Test report](reports/SHINKA_POSTGRESQL_TEST_015.md). Supabase access/project provisioning, Base44 Test sync, verified TLS/pooler execution, real signed-in synthetic identities, multi-worker/lost-response native lifecycle acceptance, current-marker Full Health save/list/readback, old ON-05 partial-account incident and physical devices remain separate open obligations. No real-data migration or automatic destructive Health action is performed.
-
+Native NA tests use actual handlers and ordinary SDK-shaped CRUD, injected concurrent clients, response loss and reconstructed clients; they are SYNTHETIC_RUNTIME. Older D/CA/AT protocol tests remain explicitly historical synthetic specifications. ON-05 metadata/null/Skip tests remain. Hosted H08-901/H09-901/H12-902, actual Full Health save/list/readback and physical devices are separate. Current source must pass repository/static/canonical browser checks; SQL test script/report freshness is no longer a current gate. Exact retirement and PG behavior mapping: [continuation](SHINKA_BASE44_CONTINUATION.md).
 
 ## Previous catalog checkpoint (HC-011.0) — 16 suites, 137 cases
 
@@ -128,7 +127,7 @@ Update H13-014/AN01/AN08 for the authorized three-tool inventory, H04-003/D02 an
 After user sync/publish: first verify the new schema denies direct CRUD, actual app identity, read-only admin lookup/preview and user/anonymous denial. Mutations remain unavailable until H12-031 is truly resolved. Then run H12-902 only on an admin-explicit test target, including recovery/tokens/two workers and reset on two clients. Save/list/open current-marker Full Health; other blockers (H09-004, H08-005/006), ON-05 incident and device evidence are independent.
 
 
-## Current catalog — HC-014.0 / Buildmarker-014
+## Historical catalog — HC-014.0 / Buildmarker-014
 
 149 cases / 130 current / 7 future / 12 external, 16 suites. Earlier numbered sections are historical checkpoints, not current catalog declarations. H08-006 changes from a recorded source-gap blocker to an executed SYNTHETIC_RUNTIME behavioral test (CR01…CR07): >60 acceptance, fixed window/filter, no backfill/clamp, unsupported vs absent history, stale derived removal, Home UNKNOWN and error preservation. The status is computed by execution, never by OD-012's label. H13-015 adds CU05/current App information state; H12-028 adds AT17 missing-schema failure/recovery. H05-009/HC12 explicitly stage 014, leaving unapproved 015 blocked. No cases removed or downgraded to hide production failure.
 

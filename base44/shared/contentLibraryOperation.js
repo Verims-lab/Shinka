@@ -2,7 +2,7 @@ import { requireAdmin, InternalError, handleInternalRequest } from './internalAu
 import { withAdminAudit } from './domainAudit.js';
 import { inspectContentLibrary, librarySummary, applyContentBatch } from './base44ContentLibrary.js';
 import { inspectMoonImport, applyMoonBatch } from './moonImport.js';
-import { ATOMIC_ADAPTER_STATUS } from './domainAtomic.js';
+const DAILY_PERSISTENCE = { strategy: 'IMMUTABLE_CANDIDATES', transaction: false, duplicates: 'RECONCILE_AND_RETAIN', hostedMutationVerified: false };
 
 export async function contentLibraryOperation(client, body, { astronomy = null, source = null, decision = null } = {}) {
   const principal = await requireAdmin(client);
@@ -18,9 +18,9 @@ export async function contentLibraryOperation(client, body, { astronomy = null, 
     });
   }
   if (!source || !decision) throw new InternalError('CONTENT_NOT_READY', 503);
-  if (decision.status !== 'APPROVED_PRODUCT_DECISION' && body.action !== 'applyBatch') return { phase: 'SOURCE_DECISION_REQUIRED', ready: false, sourceHash: source.sha256, sourceSet: source.sourceSet, dailyPersistence: ATOMIC_ADAPTER_STATUS };
+  if (decision.status !== 'APPROVED_PRODUCT_DECISION' && body.action !== 'applyBatch') return { phase: 'SOURCE_DECISION_REQUIRED', ready: false, sourceHash: source.sha256, sourceSet: source.sourceSet, dailyPersistence: DAILY_PERSISTENCE };
   const inspection = await inspectContentLibrary(client, source, decision);
-  if (body.action !== 'applyBatch') return { ...librarySummary(inspection), dailyPersistence: ATOMIC_ADAPTER_STATUS };
+  if (body.action !== 'applyBatch') return { ...librarySummary(inspection), dailyPersistence: DAILY_PERSISTENCE };
   return withAdminAudit(client, principal, { target_entity: 'message_pair', action_type: 'UPDATE' }, async () => {
     const batch = await applyContentBatch(client, inspection, body.reviewed_digest);
     return { ...librarySummary(await inspectContentLibrary(client, source, decision)), batch };

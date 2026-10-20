@@ -23,7 +23,7 @@ export const AuthProvider = ({ children, client = base44 }) => {
     try {
       const response = await client.functions.invoke('applicationSession', {});
       const currentUser = response?.data;
-      if (currentUser?.authority !== 'POSTGRESQL_TEST_V1' || !['admin','user'].includes(currentUser?.role)) throw new Error('APPLICATION_SESSION_UNVERIFIED');
+      if (currentUser?.authority !== 'BASE44_NATIVE_V1' || !['admin','user'].includes(currentUser?.role)) throw new Error('APPLICATION_SESSION_UNVERIFIED');
       if (ticket !== generation.current) return false;
       if (!currentUser?.id) throw new Error("AUTH_SESSION_REQUIRED");
       setUser(currentUser); setIsAuthenticated(true); setAuthError(null);

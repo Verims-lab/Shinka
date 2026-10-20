@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-015
+**Current BuildMarker:** Buildmarker-016
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -33,15 +33,14 @@
 - **U. Dependency guard:** `npm run security:deps` invokes `npm audit --audit-level=high --include=dev`; use native npm failure semantics, no suppression or arbitrary override. A registry/audit failure is not a clean result. Document each remaining Moderate/Low advisory with exposure and fix path.
 
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
-- **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Missing production primitives fail closed. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
+- **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
-## PostgreSQL implementation standards — 015
+## Native persistence standards — 016
 
-Use parameterized SQL and the request transaction context in `base44/shared/postgres`; do not open independent product connections or use raw Base44 product entities from an entry. The checked-in migration is the only initial SQL schema; checksum drift fails. Schema generation is an authoring step, never runtime migration. Keep app/owner lock order, receipt fingerprints, generation and readback coupled to writes. No product authority fallback. SQL driver errors are private; only bounded domain codes reach clients.
+Keep mutation responsibility in narrow native modules and reuse existing validation/calculation. Ordinary Entity create/update/updateMany are not transaction/UNIQUE/CAS evidence. For immutable daily snapshots use insert and deterministic reconciliation, never upsert. For date mutation bind receipt/owner/intent, compare revision, verify affected counts and reread actual state. Persist business consent time once; preserve it on retry. No fallback clock/naive-Z patch.
 
-Real database tests are mandatory for changes to these guarantees: `npm run test:postgres` with `SHINKA_PG_BIN` pointing to PostgreSQL 17 binaries. The runner owns a disposable loopback cluster and synthetic identities; no hosted URL can be substituted. Its report is bound to the current server/migration/test source digest. Browser tests retain historical Base44 adapter fixtures solely to preserve earlier incident regressions; passing those is not SQL or hosted proof. Connection pool accounting is explicitly module-scoped infrastructure, not a business mutex. Hosted pooler mode requires `prepare:false`, `max_pipeline:1` and certificate verification.
-
+Normal write/readback must precede reset progress. Deletion is permitted only under the explicit operator-maintenance contract; pre/post admission is not distributed fencing. Tests exercise actual native handlers with ordinary SDK-shaped CRUD, faults and independent reconstructed clients; label those synthetic, separate hosted evidence. Existing historical atomic protocol fixtures do not enable production behavior. No SQL tooling/driver/CI requirement. [Current contract](SHINKA_BASE44_CONTINUATION.md).
 
 ## Onboarding boundaries and regression
 
@@ -74,22 +73,24 @@ Keep destination inventory/localization, role decision, menu interaction and pan
 
 ## Daily implementation boundaries
 
-Keep source manifest/backend astronomy out of the initial frontend graph. Import planning, SDK batches, phase calculation, selection, persistence and UI have separate modules. The write-surface tripwire adds exactly one upsert call in base44ContentLibrary and one in moonImport, both reachable only through strict admin apply dispatch; arbitrary writers remain rejected. Dry-run and Home must never trigger import. No native atomicity can be inferred from SDK method naming, synthetic concurrency or a local lock. Tests must assert production refusal until a verified adapter is explicitly added. Preserve actual selected category, immutable bilingual snapshots, bounded history and distinction between source/technical failures and UNKNOWN.
+> Historical contract (superseded by the current 016 native contract above):
+> Keep source manifest/backend astronomy out of the initial frontend graph. Import planning, SDK batches, phase calculation, selection, persistence and UI have separate modules. The write-surface tripwire adds exactly one upsert call in base44ContentLibrary and one in moonImport, both reachable only through strict admin apply dispatch; arbitrary writers remain rejected. Dry-run and Home must never trigger import. No native atomicity can be inferred from SDK method naming, synthetic concurrency or a local lock. Tests must assert production refusal until a verified adapter is explicitly added. Preserve actual selected category, immutable bilingual snapshots, bounded history and distinction between source/technical failures and UNKNOWN.
 
 
-## Calendar engineering requirements — Buildmarker-012
+## Historical checkpoint — Calendar engineering requirements — Buildmarker-012
 
 Keep date selection, editing identity, validation, cycle calculation, authorized snapshot reading and transaction publication separate. Reuse the shared Home cycle engine. Dates remain YYYY-MM-DD; UTC arithmetic is only integer calendar-day arithmetic, never conversion of an entered local day. A production mutation must never be enabled merely because a method named transaction/upsert exists: verify cross-worker owner serialization, crash recovery, receipts, guards and atomic publication to every authoritative reader.
 
 Canonical CA/CU tests cover actual lifecycle, both neighbors, 14/15, local dates/DST, full pagination, NULLs/source examples, lost response, independent workers, no-consent/regrant/deletion, stale UI, unchanged Home and live-capability refusal. H08/H11/H12/H13 execute the same isolated contracts. Native evidence remains separate. Strict typecheck/lint remain enabled; no exclusions were added for Calendar or unused auth templates.
 
-## Test Tools implementation rules — 013
+## Historical checkpoint — Test Tools implementation rules — 013
 
 Keep UI/catalog/authorization/preview/persistence/execution separate. Only the two declared actions reach the executor. Server-controlled persistence scans target-filtered pages with explicit metadata fields, rejects malformed/duplicate pagination and foreign indirect references, and fails rather than truncates above the bounded 20,000-row safety ceiling. Cleanup snapshots IDs before deleting so offset pagination cannot skip shrinking pages. No unbounded parallel deletes.
 
-A coordinator interface is not a production guarantee. Do not enable delete/reset with an environment flag, SDK upsert, local mutex or schema assertion. Prove shared writer/roster fencing, durable job uniqueness/receipts and crash recovery before supplying a production coordinator. No persistent job stores normal profile/cycle request bodies. Fixture-only transactions remain under the canonical test tree. Hosted function entry wiring, current-User admission, reset override, protected-history scope and both browsers are part of regression coverage.
+> Historical contract (superseded by the current 016 native contract above):
+> A coordinator interface is not a production guarantee. Do not enable delete/reset with an environment flag, SDK upsert, local mutex or schema assertion. Prove shared writer/roster fencing, durable job uniqueness/receipts and crash recovery before supplying a production coordinator. No persistent job stores normal profile/cycle request bodies. Fixture-only transactions remain under the canonical test tree. Hosted function entry wiring, current-User admission, reset override, protected-history scope and both browsers are part of regression coverage.
 
 
-## OD-012 and release tooling — 014
+## Historical checkpoint — OD-012 and release tooling — 014
 
 Filter supported observations only after fixing the last-three window. Preserve valid dates and distinguish no observations from all unsupported observations; never catch general technical/access failures as UNKNOWN. Keep unavailable calculation copy central. Release scripts must produce reviewable metadata/artifacts, never automatically deploy, import, reset or delete. Entity-only full sync requires complete inventory comparison; a directory with only the new schema is unsafe. Read-only CLI evidence must omit records, credentials and raw exceptions.

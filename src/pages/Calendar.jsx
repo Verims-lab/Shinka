@@ -29,9 +29,11 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
       {value && <>
         <CalendarMonth value={value} selected={state.selected} disabled={state.busy} language={language} onSelect={controller.select} onMonth={controller.load}/>
         {!value.writable && <p role="status" data-calendar-blocked>{copy('unavailable')}</p>}
-        {value.calculationError && <p role="alert">{copy('calculation')}</p>}
+        {value.calculationError && <p role="alert">{copy(value.pendingReview ? 'pendingReview' : 'calculation')}</p>}
+        {value.recovery && <div role="alert"><p>{copy('resumePending')}</p><ShinkaButton disabled={state.busy} onClick={() => controller.submit('resume')}>{copy('retry')}</ShinkaButton></div>}
+        {value.pendingReview && !value.recovery && <ShinkaButton variant="secondary" disabled={state.busy} onClick={() => controller.submit('acknowledge')}>{copy('keepDates')}</ShinkaButton>}
         {value.calculationNotice && <p role="status" data-calendar-estimate-unavailable>{copy('estimateUnavailable')}</p>}
-        {!needsConsent && !value.hasPeriods && <p role="status">{copy('empty')}</p>}
+        {!value.recovery && !needsConsent && !value.hasPeriods && <p role="status">{copy('empty')}</p>}
         <ShinkaCard>
           <form noValidate className="space-y-4" onSubmit={event => { event.preventDefault(); controller.submit(state.editing ? 'edit' : 'add'); }}>
             {state.editing && <div><p>{copy('editing')}: {formatCalendarDate(state.editing.date, language)}</p><ShinkaButton variant="ghost" disabled={state.busy} onClick={controller.cancelEdit}>{copy('stopEditing')}</ShinkaButton></div>}

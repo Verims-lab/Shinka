@@ -1,3 +1,5 @@
+import { calendarRequest } from '@/services/calendarService';
+import { nativeFixture } from './nativeFixture';
 import { createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import Calendar from '@/pages/Calendar';
@@ -12,6 +14,26 @@ async function probe(run) {
 const button=(host,text)=>[...host.querySelectorAll('button')].find(row=>row.textContent===text);
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CALENDAR_UI_TESTS = [
+ ['CU06','Partial native grant reopens in TR/EN and Retry uses saved consent intent',async()=>probe(async(root,host)=>{
+   const f=nativeFixture({granted:false}),view=await f.cal();
+   f.once('before',c=>c.name==='UserHealthConsentEvent'&&c.method==='create');
+   try {await f.cal({action:'add',date:'2026-10-01',health_consent:true,action_id:crypto.randomUUID(),revision:view.revision});}catch{/* injected write interruption */}
+   const stamp=f.tables.UserHealthConsent[0].granted_at;
+   root.render(createElement(Calendar,{language:'tr',request:(action,body)=>calendarRequest(action,body,{functions:{invoke:async(_name,payload)=>({data:await f.cal(payload)})}})}));
+   await until(()=>host.textContent.includes('Önceki kayıt işlemin'));
+   check(host.querySelector('button[type="submit"]').disabled&&!host.querySelector('input[type="checkbox"]'));
+   button(host,'EN').click();await until(()=>host.textContent.includes('Your previous save is incomplete'));
+   button(host,'Retry').click();await until(()=>f.tables.UserPeriodRecord.length===1);await pause();
+   check(!host.textContent.includes('Your previous save is incomplete')&&f.tables.UserHealthConsent[0].granted_at===stamp&&f.tables.UserHealthConsentEvent.length===1);
+ })],
+ ['CU07','Native conflict review clears intent without changing actual dates',async()=>probe(async(root,host)=>{
+   const f=nativeFixture(),view=await f.cal();f.once('before',c=>c.name==='UserPeriodRecord'&&c.method==='create');
+   try {await f.cal({action:'add',date:'2026-10-01',action_id:crypto.randomUUID(),revision:view.revision});}catch{/* injected interruption */}
+   root.render(createElement(Calendar,{language:'en',request:(action,body)=>calendarRequest(action,body,{functions:{invoke:async(_name,payload)=>({data:await f.cal(payload)})}})}));
+   await until(()=>button(host,'Keep these dates and clear pending attempts'));
+   button(host,'Keep these dates and clear pending attempts').click();await until(()=>f.tables.UserCalendarAction[0].status==='CANCELLED');await pause();
+   check(!f.tables.UserPeriodRecord.length&&host.textContent.includes('Current dates confirmed'));
+ })],
  ['CU05','Unsupported estimate is central TR/EN information with real dates and no stale predicted days',async()=>probe(async(root,host)=>{
    const f=calendarFixture();await f.change('add',{date:'2026-01-01'});await f.change('add',{date:'2026-04-01'});
    root.render(createElement(Calendar,{language:'tr',request:f.request}));

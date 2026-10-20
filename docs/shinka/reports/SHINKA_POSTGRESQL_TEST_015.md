@@ -1,5 +1,7 @@
 # PostgreSQL Test implementation — Buildmarker-015
 
+> **SUPERSEDED_BY_BUILDMARKER_016:** Historical decision/implementation evidence only. The user replaced the SQL direction with Base44 continuation and confirmed no SQL setup or transfer. Do not execute the setup/migration instructions below. See [current continuation](../SHINKA_BASE44_CONTINUATION.md).
+
 Status: **REPO_CLOSED_PENDING_HOSTED_TEST — LOCAL_CHECKS_PASS; HOSTED_ACCEPTANCE_PENDING_ACCESS**. This report concerns the approved isolated Test stage. No Supabase project, paid resource, Production migration, live reset/delete, main merge or publish was performed. Authorized external spend remains **0 USD**.
 
 ## What changed

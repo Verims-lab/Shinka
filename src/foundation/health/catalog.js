@@ -1,4 +1,4 @@
-import {POSTGRES_HEALTH_CASES} from './cases/postgres';
+import {NATIVE_HEALTH_CASES} from './cases/native';
 import { ADMIN_TEST_HEALTH_CASES } from './cases/adminTestTools';
 // Health catalog assembly — ordered by suite.
 import { H01_CASES } from "./cases/h01";
@@ -15,6 +15,6 @@ import { CALENDAR_HEALTH_CASES } from './cases/calendar';
 import { FUTURE_CASES } from "./cases/future";
 import { SUITES } from "./suites";
 
-const ALL = [...POSTGRES_HEALTH_CASES, ...H01_CASES, ...H02_CASES, ...H03_CASES, ...H04_CASES, ...H05_CASES, ...FUTURE_CASES, ...ONBOARDING_HEALTH_CASES, ...DAILY_HEALTH_CASES, ...CALENDAR_HEALTH_CASES, ...ADMIN_TEST_HEALTH_CASES, ...H12_CASES, ...H13_CASES, ...H16_CASES];
+const ALL = [...NATIVE_HEALTH_CASES, ...H01_CASES, ...H02_CASES, ...H03_CASES, ...H04_CASES, ...H05_CASES, ...FUTURE_CASES, ...ONBOARDING_HEALTH_CASES, ...DAILY_HEALTH_CASES, ...CALENDAR_HEALTH_CASES, ...ADMIN_TEST_HEALTH_CASES, ...H12_CASES, ...H13_CASES, ...H16_CASES];
 const order = (id) => SUITES.findIndex((s) => s.id === id);
 export const HEALTH_CASES = Object.freeze([...ALL].sort((a, b) => order(a.suiteId) - order(b.suiteId)));

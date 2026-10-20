@@ -1,21 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-011",
-    "package_name": "First Shinka and Home",
-    "package_type": "FEATURE",
-    "created_at": "2026-10-19T23:27:39.496462+00:00",
-    "health_catalog_version": "HC-011.0",
-    "short_summary": "First Shinka/Home with exact source content, controlled import and daily snapshot flow. OD-002 resolved by explicit user approval of six category codes/EN names; source TR names, 260 Pairs and 240 mappings preserved. Production daily persistence remains blocked.",
-    "full_health_status": "BLOCKED",
-    "notes": "OD-002 RESOLVED_BY_PRODUCT_DECISION, user reply 2026-10-20; no attribution of new codes/EN names to original documents. Same package/catalog; source manifest hash and Pair/mapping bytes unchanged. Chromium/WebKit each 349/349 canonical, 54 general + 21 onboarding + 9 daily synthetic Health, 17 admin/8 routing-Preview/5 mobile/5 daily scenarios; zero page errors. Type/lint/build, Repo Health 16/16, dependency tree/security and five-package retention pass; 0 Critical/High, 2 existing Moderate. Initial JS 459,519 raw / 149,604 gzip unchanged. No live import, hosted daily write/readback, Full Health or device proof. H09-004 and ON-05 live recovery remain open. Approval evidence: reports/first-shinka-011/od002-approval.json; handoff: reports/SHINKA_FIRST_SHINKA_011.md.",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "updated_at": "2026-10-20T06:51:53.551Z"
-  },
-  {
     "build_marker": "Buildmarker-012",
     "package_name": "Calendar and cycle management",
     "package_type": "FEATURE",
@@ -72,5 +57,15 @@ export default [
     "health_changed": true,
     "notes": "Test-only approval: Supabase Free Frankfurt, $0; account access pending, no project created or real product migration. Real local PostgreSQL 17.11: 25/25 test groups with restricted role, independent processes, response loss, killed worker, DB restart, SQL admin/last-admin, reset and durable delete recovery; Base44 identity transport synthetic. Chromium/WebKit each 405/405 canonical and 99/99 local Health; zero page errors. HC-015.0: 155 cases; hosted H09-004/H08-005/H12-031 and connected SQL probe remain separately unverified. Clean install/tree, lint/type/build, Repo Health 18/18, history and performance budgets pass. Fresh security: 0 Critical/High, 2 existing Moderate router findings. No main merge/publish or live user mutation. Reports: SHINKA_POSTGRESQL_TEST_015.md, postgres-015/local-postgres.json and verification.json. Latest five packages 011–015.",
     "updated_at": "2026-10-20T16:36:15.851521+00:00"
+  },
+  {
+    "build_marker": "Buildmarker-016",
+    "package_name": "Base44 continuation and recoverable native flows",
+    "package_type": "ARCHITECTURE_CORRECTION",
+    "created_at": "2026-10-20T17:45:22Z",
+    "health_catalog_version": "HC-016.0",
+    "short_summary": "Restores Base44 as sole product/identity/admin authority; immutable Home candidate reconciliation, actual-date Calendar with recovery receipts, verified-step reset and operator-maintenance deletion. Removes unused SQL runtime while preserving historical evidence.",
+    "full_health_status": "LOCAL_VERIFIED_HOSTED_ACCEPTANCE_PENDING",
+    "notes": "Chromium/WebKit each 437/437 canonical regressions and 99/99 local Health, zero page errors. 30 native handler fault/race tests and actual session/entry checks; local synthetic transport, not hosted enforcement. Clean install/tree, lint/type/build, Repo Health, last-five history and mobile budgets pass. Audit: 0 Critical/High, 2 existing Moderate router findings. Fresh read-only Base44: lifecycle readable; new receipt schema/native strategy unconfirmed; content missing 6/260/240 and Moon 103. User confirms no SQL setup/transfer. No remote mutation, main merge/publish or paid service. Hosted original ON-05 account, Full Health and physical Android/iOS remain open. Decision: SHINKA_BASE44_CONTINUATION.md; evidence: reports/base44-016/verification.json. Supersedes 014/015 direction; active packages 012–016."
   }
 ];

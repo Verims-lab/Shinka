@@ -1,3 +1,4 @@
-import {handleSqlRequest} from '../../shared/postgres/http.js';
-import {openHostedSql} from '../../shared/postgres/hosted.ts';
-export default req => handleSqlRequest(req,'domainAccess',openHostedSql);
+import { createNativeClient } from '../../shared/nativeClient.ts';
+import { handleDomainRequest } from '../../shared/domainAccess.js';
+// No generic service-role CRUD endpoint and no request-supplied system authority.
+export default (req) => handleDomainRequest(req, createNativeClient);
