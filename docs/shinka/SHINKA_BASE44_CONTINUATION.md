@@ -2,11 +2,21 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-017
-**Last Updated:** 2026-10-20
+**Current BuildMarker:** Buildmarker-019
+**Last Updated:** 2026-10-21
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## 019 active continuation — Audit + Fix
+
+This section governs the current delivery; package-numbered sections below preserve historical decisions. Base44 remains the sole data/identity authority. The approved existing app/prod is shared, not an isolated Test database. No schema change, external service, import, live reset/delete/resume or hosted Full Health is part of 019. User performs main merge/sync/publish and application acceptance. Reference import was verified in 016 (6 categories, 240 mappings, 260 pairs; Moon coverage through 2028-11-02), not newly measured or reloaded here.
+
+Current deletion UX: enter ID → fetch target → inspect one explicit confirmation → visible progress → verified result. Acknowledged partial passes may continue the **same** authorized operation automatically, bounded to 12 requests / 60 seconds between request starts. An unknown response ends writes and allows at most two read-only status checks; reload only looks up the retained operation. Limits leave a visible same-operation Continue action, never a new deletion. Actor/target/self/last-admin/open-job checks remain fresh around each mutation. Final native User and operational-data absence, retained notification disposition, final audit and status readback are all required. Checkpoints record earlier progress but do not exempt a scope from reconciliation. No operator terminal, global drain or JSON step is required.
+
+Fresh limited read-only observation, 2026-10-20T21:01:36.454Z: the existing DELETE_USER is RUNNING at **user_preferences**, seven checkpoints, no safe error code/completion timestamp, native User still present. Bounded logs returned no matching rows. This disproves the assumption that it is still at user_cycle_prediction; it does **not** identify the SDK call or prove function termination/timeouts. New per-stage duration/call counts and sanitized SDK failures provide that evidence after publish. The source-proven generic-error loss, repeated read/checkpoint cost and whole-collection cleanup scans are corrected and tested locally. Live deletion is still MANUAL_USER_VALIDATION_PENDING.
+
+Publish the Test changes through the existing user workflow: schema delta **none** (keep existing 017+ inventory), then sync/deploy the current backend entries **with all shared modules**, then publish the matching frontend. applicationSession/native identity boundary remains in force. Do not publish frontend-only Health against older report-validation code. Current report and acceptance: [Audit + Fix 019](reports/SHINKA_AUDIT_FIX_019.md).
 
 ## 018 active continuation
 

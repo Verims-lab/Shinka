@@ -18,9 +18,9 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
   const realSelected = value?.starts.find(row => row.id === state.editing?.id && row.date === state.selected);
   const validationError = /^PERIOD_(DATE_|START_FUTURE|DUPLICATE|CONFLICT)/.test(state.error || '');
   return <div lang={language} data-calendar-root className="shinka-viewport shinka-safe-shell bg-shinka-ivory text-shinka-ink font-body flex flex-col">
-    <header className="flex items-center justify-between px-5 pt-6 gap-2">
+    <header className="flex flex-wrap items-center justify-between px-5 pt-6 gap-2">
       <span className="font-heading font-medium text-shinka-h3 text-shinka-plum">Shinka</span>
-      <div className="flex gap-1">{['tr', 'en'].map(lang => <ShinkaButton key={lang} variant="ghost" aria-pressed={lang === language} onClick={() => setLanguage(lang)}>{lang.toUpperCase()}</ShinkaButton>)}
+      <div className="flex flex-wrap items-center gap-1">{['tr', 'en'].map(lang => <ShinkaButton key={lang} variant="ghost" aria-pressed={lang === language} onClick={() => setLanguage(lang)}>{lang.toUpperCase()}</ShinkaButton>)}
         {renderProfileAccess?.(language) || <ProfileMenu language={language}/>}</div>
     </header>
     <main className="flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6">
@@ -45,7 +45,7 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
               <span className="text-shinka-body">{onboardingCopy('health_consent', language)}</span>
             </label></>}
             <ShinkaButton type="submit" className="w-full" disabled={state.busy || !value.writable || (needsConsent && !state.consent)}>{copy(state.busy ? 'saving' : 'mark')}</ShinkaButton>
-            {realSelected && <ShinkaButton variant="ghost" className="w-full" disabled={state.busy || !value.writable} onClick={() => controller.deletePrompt(true)}>{copy('delete')}</ShinkaButton>}
+            {realSelected && <ShinkaButton variant="ghost" className="w-full" disabled={state.busy || !value.writable} onClick={event => { event.currentTarget.focus(); controller.deletePrompt(true); }}>{copy('delete')}</ShinkaButton>}
           </form>
         </ShinkaCard>
       </>}

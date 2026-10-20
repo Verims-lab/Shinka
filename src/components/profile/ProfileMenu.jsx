@@ -45,7 +45,7 @@ export default function ProfileMenu({ enabled = false, language = undefined }) {
     {enabled && open && <div id={menuId} role="menu" aria-label={t("profile.open", language)} onKeyDown={menuKey}
       className="absolute right-0 top-full mt-2 z-50 w-52 max-w-[calc(100vw-40px)] rounded-shinka-md border border-shinka-line bg-shinka-white p-2 font-body text-shinka-plum shadow-shinka-card">
       <Link ref={item} role="menuitem" tabIndex={-1} to={ADMIN_PANEL_PATH} state={{ language }} onClick={() => setOpen(false)}
-        className="flex items-center min-h-11 rounded-shinka-sm px-4 text-shinka-small focus-visible:outline-2 focus-visible:outline-shinka-plum focus:bg-shinka-cream focus:text-shinka-plum-deep">
+        className="flex items-center min-h-11 rounded-shinka-sm px-4 text-shinka-small break-words focus-visible:outline-2 focus-visible:outline-shinka-plum focus:bg-shinka-cream focus:text-shinka-plum-deep">
         {t("admin.panel", language)}
       </Link>
     </div>}

@@ -20,7 +20,7 @@ import { H03_CASES } from "@/foundation/health/cases/h03";
 import {NATIVE_HEALTH_CASES} from '@/foundation/health/cases/native';
 import { H13_CASES } from '@/foundation/health/cases/h13';
 import { createHealthContext } from "@/foundation/health/context";
-import { HEALTH_CASES } from "@/foundation/health/catalog";
+import { HEALTH_CASES, IN_APP_HEALTH_CASES } from "@/foundation/health/catalog";
 import { DAILY_HEALTH_CASES } from '@/foundation/health/cases/daily';
 import { CALENDAR_HEALTH_CASES } from '@/foundation/health/cases/calendar';
 import { SUITES } from "@/foundation/health/suites";
@@ -38,6 +38,7 @@ createRoot(document.getElementById("root")).render(productionRoute?<App/>:<Brows
 </Routes></BrowserRouter>);
 window.__authFixture = authFixture;
 window.__runFoundationTests = runFoundationTests;
+window.__healthAuditRegistry = HEALTH_CASES.map(c=>({id:c.id,title:c.title,description:c.description,runnerType:c.runnerType,classification:c.classification,applicability:c.applicability,executionLocation:c.executionLocation,active:IN_APP_HEALTH_CASES.includes(c),hasRunner:typeof c.run==='function'}));
 window.__authProbeTools = {waitForAuthProbe,measureAuthShell};
 window.__foundationCatalog = {version:HEALTH_CATALOG_VERSION,suites:SUITES.length,cases:HEALTH_CASES.length,
   localRegression:HEALTH_CASES.filter(c=>LOCAL_HEALTH_IDS.has(c.id)).length,

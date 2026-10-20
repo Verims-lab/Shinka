@@ -1,4 +1,5 @@
 // Read-only repository guard. Local findings do not certify a deployed Base44 app.
+import { REQUIRED_DOCS } from '../src/foundation/inspection/docRules.js';
 import { buildStaticEvidence } from './staticEvidence.mjs';
 import { DOMAIN_SCHEMAS } from '../base44/shared/domainSchemas.js';
 import { SOURCE_FIELD_NAMES } from '../base44/shared/domainSourceReceipt.js';
@@ -21,7 +22,7 @@ const checks={
   onboardingGeoNamesEntry:e.geoNamesEntry,
   noProductSeedCalls:e.domain.writeSurface.ok,
   canonicalMarker:e.marker.ok&&validateLedger(BUILD_LEDGER,BUILD_MARKER).ok&&BUILD_LEDGER.at(-1).health_catalog_version===HEALTH_CATALOG_VERSION,
-  docsAligned:e.docs.present===12&&e.docs.headerGaps.length===0&&e.docs.misaligned.length===0&&e.docs.missingDomainEntities.length===0&&e.docs.buildHistoryMismatches.length===0,
+  docsAligned:e.docs.present===REQUIRED_DOCS.length&&e.docs.headerGaps.length===0&&e.docs.misaligned.length===0&&e.docs.missingDomainEntities.length===0&&e.docs.buildHistoryMismatches.length===0,
   noLegacyImport:e.legacy.length===0,noCredentialFindings:e.secretFiles.length===0,noPersonalEmails:e.emailFiles.length===0,
 };
 console.log(JSON.stringify({scope:'REPOSITORY_ONLY',buildMarker:BUILD_MARKER,healthCatalog:HEALTH_CATALOG_VERSION,checks,failed:Object.keys(checks).filter(k=>!checks[k]),domain:e.domain},null,2));

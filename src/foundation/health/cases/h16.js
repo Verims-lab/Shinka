@@ -4,6 +4,11 @@ import { SUITES } from "../suites";
 import { CLASS, RUNNER, STATUS, APPLICABILITY } from "../constants";
 import { ev, verdict } from "../evidence";
 import { makeCase, futureCase } from "../caseFactory";
+import { expectedHealthIds } from '../../../../base44/shared/healthPlan.js';
+import { HEALTH_CATALOG_VERSION } from '../constants';
+import { checkExecutionResults } from '../../../../base44/shared/healthExecutionEvidence.js';
+import { AUDIT019_INTEGRITY_TESTS } from '../../tests/audit019Tests';
+import { syntheticProbe } from './domainProbe';
 
 const c = makeCase("H16", { runnerType: RUNNER.META, classification: CLASS.SYNTHETIC_RUNTIME });
 const catalog = async () => (await import("../catalog")).HEALTH_CASES;
@@ -19,16 +24,22 @@ export const H16_CASES = [
   }),
   c("H16-003", "No PASS without execution/evidence; valid statuses", "Every current PASS was attempted and executed with complete evidence; statuses and classifications are valid.", async (ctx) => {
     const r = checkResults(ctx.results);
-    return verdict(r.ok, ev(CLASS.SYNTHETIC_RUNTIME, "current run results", r.issues, "all issue lists empty", "Result self-test"));
+    const execution = checkExecutionResults(ctx.results,ctx.expectedCaseIds,ctx.executionIdentity);
+    return verdict(r.ok && execution.ok, ev(CLASS.SYNTHETIC_RUNTIME, "current run results", {issues:r.issues,execution}, "all issue lists empty", "Predicate, result and build binding self-test"));
   }),
   c("H16-004", "No empty applicable suite silently passes", "Every active suite has applicable cases; inactive suites hold none.", async () => {
     const r = checkSuiteCoverage(SUITES, await catalog());
     return verdict(r.ok, ev(CLASS.STATIC, "suites × cases", r, { emptyActive: [], currentInInactive: [] }, "Coverage self-test"));
   }, { classification: CLASS.STATIC }),
-  c("H16-005", "Future suites do not fake PASS", "Every non-current case in the run is NOT_APPLICABLE.", async (ctx) => {
-    const fake = ctx.results.filter((r) => r.applicability !== APPLICABILITY.CURRENT && r.status !== STATUS.NOT_APPLICABLE).map((r) => r.id);
-    return verdict(fake.length === 0, ev(CLASS.SYNTHETIC_RUNTIME, "current run results", { fake, futureCases: ctx.results.filter((r) => r.applicability !== APPLICABILITY.CURRENT).length }, { fake: [] }, "Future status check"));
+  c("H16-005", "Acceptance requirements stay outside active execution", "Future, local and external IDs remain tracked without fake execution statuses.", async (ctx) => {
+    const {ACCEPTANCE_REQUIREMENTS,IN_APP_HEALTH_CASES}=await import('../catalog');
+    const fake = ctx.results.filter(r=>r.applicability!==APPLICABILITY.CURRENT).map(r=>r.id);
+    const overlap=ACCEPTANCE_REQUIREMENTS.filter(r=>IN_APP_HEALTH_CASES.some(c=>c.id===r.id)).map(r=>r.id);
+    const plan=expectedHealthIds('FULL',HEALTH_CATALOG_VERSION);
+    const planAligned=plan.length===IN_APP_HEALTH_CASES.length && plan.every(id=>IN_APP_HEALTH_CASES.some(c=>c.id===id));
+    return verdict(planAligned && fake.length===0 && overlap.length===0 && ACCEPTANCE_REQUIREMENTS.length>0,ev(CLASS.SYNTHETIC_RUNTIME,'execution/acceptance inventories',{fake,overlap,planAligned,tracked:ACCEPTANCE_REQUIREMENTS.map(r=>r.id)},'disjoint and retained','No N/A placeholders dispatched'));
   }),
+  c('H16-007','Negative evidence integrity regressions','Missing runners/assertions/results/measurements, wrong builds and incorrect supplied totals cannot pass.',syntheticProbe(AUDIT019_INTEGRITY_TESTS)),
   c("H16-006", "Gate reflects only applicable cases", "Gate is unchanged when future cases are removed or a synthetic future FAIL is injected.", async (ctx) => {
     const base = computeGate(ctx.results).status;
     const onlyCurrent = computeGate(ctx.results.filter((r) => r.applicability === APPLICABILITY.CURRENT)).status;

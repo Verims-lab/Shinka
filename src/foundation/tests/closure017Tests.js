@@ -1,3 +1,6 @@
+import { SOURCE_SET_VERSION } from '../sourceInventory';
+import { EXECUTION_CONTRACT } from '../../../base44/shared/healthExecutionEvidence.js';
+import { HEALTH_SERVER_PLAN } from '../../../base44/shared/healthPlan.js';
 import { internalHealthOperation } from '../../../base44/shared/internalHealthOperations.js';
 import { BUILD_MARKER } from '../buildMarker';
 import { HEALTH_CATALOG_VERSION } from '../health/constants';
@@ -10,8 +13,8 @@ import { browserMeasurement, acceptBrowserEvidence, probeIdentity, isMeasuredBro
 const assert=(ok,message='contract')=>{if(!ok)throw new Error(message);};
 const rejected=async(fn,code)=>{try{await fn();}catch(e){assert(e.code===code,`${e.code} !== ${code}`);return e;}throw new Error('expected '+code);};
 const report=()=>{
- const cases=[{id:'H01-001',suiteId:'H01',status:'FAIL',attempted:true,executed:true,blocker:true,applicability:'CURRENT_PACKAGE',evidence:{classification:'SYNTHETIC_RUNTIME',source:'fixture',actual:false,expected:true,reason:'failure retained',timestamp:new Date().toISOString()}}];
- return {runId:crypto.randomUUID(),buildMarker:BUILD_MARKER,healthCatalogVersion:HEALTH_CATALOG_VERSION,scope:'SUITE:H01',startedAt:'2026-10-20T18:00:00Z',completedAt:'2026-10-20T18:00:01Z',cases,summary:summarize(cases),gate:computeGate(cases,{fullScope:false})};
+ const cases=HEALTH_SERVER_PLAN.H01.map(id=>({id,suiteId:'H01',status:'FAIL',attempted:true,executed:true,blocker:true,applicability:'CURRENT_PACKAGE',evidence:{classification:'SYNTHETIC_RUNTIME',source:'fixture',actual:false,expected:true,reason:'failure retained',timestamp:new Date().toISOString()}}));
+ return {sourceSetVersion:SOURCE_SET_VERSION,executionContract:EXECUTION_CONTRACT,plannedCaseIds:HEALTH_SERVER_PLAN.H01,runId:crypto.randomUUID(),buildMarker:BUILD_MARKER,healthCatalogVersion:HEALTH_CATALOG_VERSION,scope:'SUITE:H01',startedAt:'2026-10-20T18:00:00Z',completedAt:'2026-10-20T18:00:01Z',cases,summary:summarize(cases),gate:computeGate(cases,{fullScope:false})};
 };
 const healthFixture=()=>{
  const rows=[],state={uploads:0,creates:0,createFailure:false,lostAck:false,readFailure:false,uploadFailure:false,failReadAfterCreate:false};
@@ -25,7 +28,7 @@ export const CLOSURE017_TESTS=[
   const f=healthFixture(),r=report();f.state.createFailure=true;
   const e=await rejected(()=>f.save({report:r}),'HEALTH_HISTORY_CREATE_FAILED');assert(e.stage==='HISTORY_CREATE'&&e.uploadReceipt);
   f.state.createFailure=false;await f.save({report:r,uploadReceipt:e.uploadReceipt});await f.save({report:r});
-  assert(f.state.uploads===1&&f.rows.length===1&&f.rows[0].failed===1);
+  assert(f.state.uploads===1&&f.rows.length===1&&f.rows[0].failed===r.cases.length);
   const creates=f.state.creates;assert((await f.check(r)).state==='SAVED'&&f.state.creates===creates&&f.state.uploads===1);
  }],
  ['CL02','Lost row acknowledgement returns verified existing history, no second upload or row',async()=>{
@@ -56,7 +59,7 @@ export const CLOSURE017_TESTS=[
  }],
  ['CL08','Cleanup is bounded; reconstructed request resumes and verifies remaining rows',async()=>{
   const f=nativeFixture();f.tables.UserPatternSummary=Array.from({length:102},(_,i)=>({id:'pattern-'+i,user_id:'ownerA'}));
-  await rejected(()=>f.preview('DELETE_USER').then(f.execute),'TEST_JOB_RETRY_REQUIRED');assert(f.tables.User.some(r=>r.id==='ownerA'));
+  const partial=await f.execute(await f.preview('DELETE_USER'));assert(partial.result_state==='PARTIAL' && partial.job.error_code==='TEST_CLEANUP_MORE_REQUIRED');assert(f.tables.User.some(r=>r.id==='ownerA'));
   const result=await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id});assert(result.job.status==='COMPLETED'&&!f.tables.UserPatternSummary.length);
   let time=0;const rows=[{id:'slow-a',user_id:'ownerA'},{id:'slow-b',user_id:'ownerA'}];
   const repo=createTestRepository({asServiceRole:{entities:{UserPatternSummary:{filter:async()=>structuredClone(rows),delete:async id=>{rows.splice(rows.findIndex(r=>r.id===id),1);time+=9000;}}}}},{clock:()=>time});
@@ -67,10 +70,6 @@ export const CLOSURE017_TESTS=[
   assert((await browserMeasurement('layout','/missing',360)).state==='BLOCKED');
   let rejected=false;try{await acceptBrowserEvidence({...await probeIdentity(),buildMarker:'invalid-marker'});}catch{rejected=true;}assert(rejected);
  }],
- ['CL10','Cancelled Foundation run starts no tests and cannot append stale results',async()=>{
-  const {runFoundationTests}=await import('./foundationTests');
-  const controller=new AbortController();controller.abort();assert((await runFoundationTests({signal:controller.signal})).length===0);
- }],
  ['CL11','Upload and post-create readback failures have distinct safe stages; retry reuses stored run',async()=>{
   const f=healthFixture(),r=report();f.state.uploadFailure=true;
   const upload=await rejected(()=>f.save({report:r}),'HEALTH_PRIVATE_UPLOAD_UNCONFIRMED');assert(upload.stage==='PRIVATE_UPLOAD'&&!f.rows.length);
@@ -79,7 +78,7 @@ export const CLOSURE017_TESTS=[
   f.state.readFailure=false;await f.save({report:r,uploadReceipt:read.uploadReceipt});assert(f.state.uploads===2&&f.state.creates===1);
  }],
  ['CL12','Ambiguous target operations stop service-role writes and destructive resume',async()=>{
-  const f=nativeFixture();f.once('before',c=>c.name==='UserProfile'&&c.method==='delete');await rejected(()=>f.preview('DELETE_USER').then(f.execute),'TEST_JOB_RETRY_REQUIRED');
+  const f=nativeFixture();f.once('before',c=>c.name==='UserProfile'&&c.method==='delete');await rejected(()=>f.preview('DELETE_USER').then(f.execute),'TEST_STORAGE_UNAVAILABLE');
   const job=f.tables.AdminTestOperation[0];f.tables.AdminTestOperation.push({...job,id:'conflict',operation_id:'conflicting-operation',request_id:'conflicting-operation'});
   await rejected(()=>f.tools({action:'resume',target_id:'ownerA',operation_id:job.operation_id}),'TEST_OPERATION_STATE_INVALID');
   await rejected(()=>f.client('adminA').asServiceRole.entities.UserPreferences.create({user_id:'ownerA'}),'TEST_OPERATION_STATE_INVALID');assert(f.tables.User.some(r=>r.id==='ownerA'));

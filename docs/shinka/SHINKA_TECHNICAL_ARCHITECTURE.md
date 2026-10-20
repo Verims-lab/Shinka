@@ -2,18 +2,24 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-018
-**Last Updated:** 2026-10-20
+**Current BuildMarker:** Buildmarker-019
+**Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
-**Not Implemented:** Hosted acceptance for native daily/Calendar persistence, Pattern workflows, notifications/scheduler; implemented pure daily/phase components are described below.
+**Not Implemented:** Pattern, full You/withdrawal/account product workflows and notifications/scheduler. Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## 019 corrective boundaries
+
+Deletion diagnostics are request-local in adminTestDiagnostics; they retain stage, operationId, safe SDK method/error code, elapsed time and call/write counts only. Repository owns bounded first-page cleanup and verified missing-row handling; executor owns stage reconciliation/journal outcomes; hook owns limited acknowledged continuation and read-only unknown-result recovery. Independent authorization reads run concurrently but finish before mutation; current actor/target guards remain before and after writes. Function execution limit, 8-second cleanup admission budget, 12-request/60-second UI continuation limit, and client request timeout are separate. None aborts an already-issued SDK write or proves transaction/rollback/fencing.
+
+Health's runtime catalog dispatches only executable current in-app cases. Future/external/local IDs remain in a separate acceptance registry. Shared healthExecutionEvidence validates evaluated assertions, measurements and build identity; healthPlan is the backend's closed case inventory and H16 checks it against the real catalog. Current persisted reports cannot shrink their own plan. Historical reports keep their original results. Static checks prove source/config properties; synthetic ordinary-CRUD handlers prove local fault behavior; neither proves hosted deletion. No Health import/terminal prerequisite returns. [Measured audit](reports/SHINKA_AUDIT_FIX_019.md).
 
 ## 018 execution locations and operation outcomes
 
-HEALTH_CASES retains the catalog; IN_APP_HEALTH_CASES excludes only documented LOCAL_BROWSER cases. Reports add IN_APP_HEALTH and canonical transfer metadata. Local regressions and real viewport measurements run through existing Playwright; no external test service. In-app current-viewport DOM checks and pure synthetic/backend prerequisites keep their original evidence classifications. No local result is represented as deployed enforcement.
+HEALTH_CASES retains the catalog; IN_APP_HEALTH_CASES now excludes all non-current requirements and documented LOCAL_BROWSER cases (019). Reports add IN_APP_HEALTH and canonical transfer metadata. Local regressions and real viewport measurements run through existing Playwright; no external test service. In-app current-viewport DOM checks and pure synthetic/backend prerequisites keep their original evidence classifications. No local result is represented as deployed enforcement.
 
 Admin tools separate command submission from read-only outcome reconciliation. A pending target/operation pointer survives tab reload; no auth tokens or health data are stored. status/lookup recheck native User plus all operational scopes for a completed delete; a residual means PARTIAL without silent mutation. Resuming reuses that operation. Guarded SDK writes still revalidate actor and target. Existing stage/audit checkpoints are read rather than redundantly rewritten. The first cleanup-write budget and per-stage elapsed yield bound admission, not server execution time or transaction semantics. Health saveStatus validates the same report digest and reads metadata only; saved vs unknown is visible separately from history loading.
 
@@ -44,7 +50,7 @@ Responsibilities: nativeDailyPersistence (bounded immutable-candidate reconcilia
 | Astronomy Engine | backend function + scheduled rolling job | ≥2 years UTC lookup, [start,end). |
 | Scheduler / jobs | Base44 workflows (scheduled) | 06:00 local generation, retries. |
 | Content engine | single backend module | Pair selection + snapshot. |
-| Cycle engine | single backend module | Atomic recompute. |
+| Cycle engine | shared pure backend module | Current native actual-date/read-time OD-012 projection; historical atomic protocol is not a native guarantee. |
 | Notification | backend + external push provider | Delivery idempotency. |
 | Internal tooling | `src/foundation/**`, `src/services/internal/**`, `/internal/*`, `Internal*` entities | Admin-only. |
 
@@ -58,7 +64,7 @@ Machine codes in `src/foundation/errors.js` (AUTH_REQUIRED, FORBIDDEN, NOT_FOUND
 Canonical list: `src/foundation/capabilityRegister.js` (24 items after Buildmarker-007). Historical counts at Buildmarker-001: VERIFIED 1 (backend function execution), PARTIALLY_VERIFIED 4 (field types, auth providers, RLS, admin role), UNVERIFIED 15, UNSUPPORTED 0. Items: field types, UNIQUE, compound UNIQUE, indexes, FK, transaction/rollback, conditional update, concurrency, auth providers, row/owner security, admin role, backend execution, scheduler, secrets, GeoNames proxy, Astronomy library, push, backup, restore, deployment rollback.
 
 ## Future package boundaries
-H04/H12 foundation and H06/H07 onboarding contracts are present; GeoNames and onboarding consent are scoped current work. Remaining sequence: H09 content import/engine, H08 cycle, H10 Pattern/astronomy, H11 withdrawal/account, H14 notifications, H15 resilience. Live verification remains separate.
+H04/H12 foundation and H06/H07 onboarding contracts are present; GeoNames and onboarding consent are scoped current work. H08 Calendar and H09 content/Home are implemented under native continuation. Remaining product features: H10 Pattern, H11 withdrawal/account and H14 notifications. H15 executable resilience is active in 019; field performance remains external. Live verification remains separate.
 
 ## Repository hardening boundaries
 - `scripts/staticEvidence.mjs` reads repository files only during Vite build/dev on the host. The virtual module exports safe findings, counts, paths and SHA-256 hashes. Raw source and canonical document bodies are not imported with `?raw` or shipped as a source/document registry. H01/H02/H03/H04/H13 declare build-time inspection, not live server inspection.

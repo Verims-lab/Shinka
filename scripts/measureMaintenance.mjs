@@ -51,6 +51,7 @@ const summarize = (bundle) => {
       { raw: 0, gzip: 0 },
     );
   return {
+    chunks: chunks.filter(c=>c.type==='chunk').map(c=>({file:c.fileName,entry:c.isEntry,...size([c])})),
     initialJS: size(chunks.filter((c) => initial.has(c.fileName))),
     allJS: size(chunks.filter((c) => c.type === "chunk")),
     css: size(chunks.filter((c) => c.fileName.endsWith(".css"))),
@@ -177,7 +178,7 @@ try {
         const pair = FIRST_CONTENT_SOURCE.pairs[0];
         await page.addInitScript(value => { window.__dailyFixture = value; }, {
           persisted: true, state: 'ACTIVE_EXISTING_USER', profile: { display_name: 'Ada' },
-          daily: { id: 'local-measurement-only', shinka_date: '2026-10-20', message_tr_snapshot: pair[2], suggestion_tr_snapshot: pair[3], message_en_snapshot: pair[4], suggestion_en_snapshot: pair[5] },
+          daily: { id: 'local-measurement-only', message_pair_id:'local-measurement-pair', shinka_date: '2026-10-20', message_tr_snapshot: pair[2], suggestion_tr_snapshot: pair[3], message_en_snapshot: pair[4], suggestion_en_snapshot: pair[5] },
         });
       }
       page.on("pageerror", (e) => errors.push(e.message));
@@ -185,6 +186,8 @@ try {
         new URL(r.request().url()).origin === origin ? r.continue() : r.abort(),
       );
       await page.addInitScript(() => {
+        window.__metricSupport={cls:PerformanceObserver.supportedEntryTypes.includes('layout-shift'),lcp:PerformanceObserver.supportedEntryTypes.includes('largest-contentful-paint')};
+        window.__lcp=[];
         window.__shifts = [];
         window.__longTasks = [];
         try {
@@ -196,6 +199,7 @@ try {
                 .map((e) => e.value),
             ),
           ).observe({ type: "layout-shift", buffered: true });
+          if(window.__metricSupport.lcp)new PerformanceObserver(list=>window.__lcp.push(...list.getEntries().map(e=>e.startTime))).observe({type:'largest-contentful-paint',buffered:true});
           new PerformanceObserver((list) =>
             window.__longTasks.push(
               ...list.getEntries().map((e) => e.duration),
@@ -225,7 +229,11 @@ try {
         paint: performance
           .getEntriesByType("paint")
           .map((p) => ({ name: p.name, start: p.startTime })),
-        cls: window.__shifts.reduce((a, b) => a + b, 0),
+        cls: window.__metricSupport.cls ? window.__shifts.reduce((a, b) => a + b, 0) : null,
+        lcpMs:window.__lcp.at(-1) ?? null,
+        inpMs:null,
+        vitalsScope:'LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED',
+        sdkCalls:window.__sdkLabCalls?.reduce((counts,c)=>{const key=`${c.name}.${c.action}`;counts[key]=(counts[key]||0)+1;return counts;},{}) ?? null,
         longTaskTotal: window.__longTasks.reduce((a, b) => a + b, 0),
         scrollWidth: document.documentElement.scrollWidth,
         viewport: innerWidth,
@@ -265,6 +273,7 @@ try {
 }
 const report = {
   lazyRetry,
+  vitalsAcceptance:{status:'NOT_MEASURED',reason:'No field p75 or INP; local LCP/CLS only, not a production acceptance gate'},
   label,
   measuredAt: new Date().toISOString(),
   environment: {
@@ -300,7 +309,7 @@ const passed =
   production.css.raw <= budget.cssRaw &&
   production.css.gzip <= budget.cssGzip &&
   !production.initialModules.some((file) =>
-    /\/foundation\/tests\/|firstContentSource|contentImportPlan|moonImport/.test(file),
+    /\/foundation\/(tests|health)\/|\/pages\/internal\/|firstContentSource|contentImportPlan|moonImport/.test(file),
   ) &&
   !cycles.size &&
   pages.every((p) => p.samples.every((s) => !s.errors.length));
@@ -319,6 +328,8 @@ console.log(
         dom: s.domNodes,
         dcl: s.domContentLoaded,
         cls: s.cls,
+        lcpMs:s.lcpMs,
+        sdkCalls:s.sdkCalls,
         errors: s.errors,
       })),
     })),

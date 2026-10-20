@@ -3,7 +3,10 @@ import { STATUS, CLASS } from "./healthConstants.js";
 export const ev = (classification, source, actual, expected, reason) =>
   ({ classification, source, actual, expected, reason, timestamp: new Date().toISOString() });
 
-export const verdict = (ok, evidence, failStatus = STATUS.FAIL) => ({ status: ok ? STATUS.PASS : failStatus, evidence });
+export const verdict = (ok, evidence, failStatus = STATUS.FAIL) => ({
+  status: ok === true ? STATUS.PASS : failStatus, evidence,
+  assertion: { evaluated: typeof ok === 'boolean', passed: ok === true },
+});
 export const blockedResult = (evidence) => ({ status: STATUS.BLOCKED, evidence });
 
 export const hasEvidence = (e) =>

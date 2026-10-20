@@ -8,7 +8,7 @@ export default function PageHeader({ eyebrow, title, children = undefined }) {
         <span aria-hidden="true">·</span>
         <span data-build-marker className="font-mono normal-case tracking-normal text-shinka-plum">{BUILD_MARKER}</span>
       </div>
-      <h1 className="font-heading font-medium text-shinka-h2 sm:text-shinka-h1 text-shinka-plum-deep leading-tight sm:leading-[40px]">{title}</h1>
+      <h1 className="font-heading font-medium text-shinka-h2 sm:text-shinka-h1 text-shinka-plum-deep leading-tight sm:leading-[calc(40/34*1em)]">{title}</h1>
       {children}
     </header>
   );

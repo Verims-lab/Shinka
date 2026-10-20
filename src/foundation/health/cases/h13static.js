@@ -10,7 +10,7 @@ import { makeCase } from "../caseFactory";
 
 const c = makeCase("H13");
 export const H13_STATIC_CASES = [
-  localCase('H13','H13-012','Mobile forms and localized list regression','Preserved in local Chromium/WebKit regression and the separate acceptance list; not executed in-app.'),
+  localCase('H13','H13-012','Mobile forms and localized list regression','Local Chromium/WebKit: TR/EN onboarding, Home, Calendar, Profile menu and Admin; 320/360/390/430/landscape, 200% text, 44px targets and dialog/menu focus. Separate from physical keyboard/safe-area acceptance.'),
   futureCase('H13','H13-013','Physical Android Chrome and iOS Safari acceptance','Real keyboard, safe-area/browser bars, native date/time/select, zoom, background return and provider callbacks need paired devices. Playwright is not physical Safari.',APPLICABILITY.EXTERNAL,CLASS.DEVICE),
   c("H13-010", "Light-only target", "Theme token is light-only, no dark class is active and Shinka/internal UI uses no dark variants.", async (ctx) => {
     const darkFiles = (await ctx.inspection()).ui.darkFiles;

@@ -2,13 +2,21 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-018
-**Last Updated:** 2026-10-20
+**Current BuildMarker:** Buildmarker-019
+**Last Updated:** 2026-10-21
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## 019 authority and evidence provenance
+
+User request `c5b380d7-656a-4a92-a6d6-3151cc35bb8a/Pasted text.txt` authorizes audit/fixes of implemented features, bounded same-operation continuation, executable Health scope, local mobile/performance checks, and Test-only delivery. It prohibits live deletion/reset/resume/new operation and routine hosted Full Health in this task. This changes no content, Moon, Sun, consent, OD-012 or retention decision.
+
+The user-supplied published 018 run `780aebf1-ff0b-4a6d-8c20-12b746509d53` remains **131 PASS / 1 FAIL / 0 BLOCKED / 19 NOT_APPLICABLE, 5250 ms**; H03-008 failed. This later observation supersedes the earlier PASS observation for current status without rewriting it. Git `68efa0c` shows Base44 bot auth-template regeneration after the prior fix. The reintroduction trigger is unproven. A fresh read-only Dashboard → Settings → Authentication inspection on 2026-10-21 observed Google/Apple ON and email/password/Microsoft/Facebook OFF. No settings were changed; this is configuration evidence, not provider-login proof. Reserved Register/ForgotPassword/ResetPassword modules now forward to the approved onboarding page, contain no password UI/operation, and are not registered routes. Unreferenced OAuthConsent/AuthLayout were removed. The unchanged H03-008 scanner still rejects password code even in reserved files; future platform overwrite remains detectable.
+
+Current source-to-case and runtime evidence mapping is [019 case audit](reports/audit-019/case-audit.md). Historical package descriptions below are evidence of those deliveries, not current release instructions.
 
 ## 018 explicit product decision provenance
 
@@ -70,8 +78,8 @@ Continuity (read in order 1→2→3→4): P1 ends ON-02 → P2 starts ON-03; P2 
 | UI / UX / copy / design | SRC-03 (combined Part 1–4) | — | Screen inventory, navigation, visible copy, tokens, typography, icons, spacing, components, interaction, loading/error/empty/validation states, accessibility, EN/TR UI behavior. |
 | Technical architecture | SRC-04 | SRC-05 | DOĞRULANACAK → UNVERIFIED_PLATFORM_CAPABILITY. |
 | Data model | SRC-05 + SRC-07 | SRC-06 | v1.2 wins over v1.1 on conflict. |
-| Content copy | SRC-08 | — | Exact repository manifest prepared; no live import performed. |
-| Content mapping | SRC-09 + SRC-10 | — | 240 = 192 + 48 UNKNOWN (prior recorded validation; final deployed validator must be rerun). |
+| Content copy | SRC-08 | — | Exact repository manifest; approved 016 hosted import verified 260 pairs (historical receipt). No 019 import. |
+| Content mapping | SRC-09 + SRC-10 | — | 240 = 192 + 48 UNKNOWN; approved 016 exact import verification retained; new deployment checks remain separate. |
 
 Illustrative UI mockups never override written business/data rules; the written UI specification overrides mockups.
 
@@ -85,7 +93,7 @@ Illustrative UI mockups never override written business/data rules; the written 
 |---|---|---|
 | OD-001 | RESOLVED_BY_SOURCE_RECEIPT | UI/UX v1.1 received as 4 transport parts; continuity verified; tokens reconciled. |
 | OD-002 | RESOLVED_BY_PRODUCT_DECISION | User approval in this conversation, 2026-10-20: six codes and EN names approved exactly; source TR names preserved. No mapping/copy changes or live closure. |
-| OD-003 | RESOLVED_BY_REPOSITORY_POLICY | Apple/Google-only repository surface implemented; historical platform snapshot preserved. Current dashboard configuration and live sign-in remain external verification. |
+| OD-003 | RESOLVED_BY_REPOSITORY_POLICY | Apple/Google-only repository surface implemented; historical platform snapshot preserved. Current dashboard configuration observed in 019; live provider sign-in remains external verification. |
 | OD-004 | PARTIALLY_VERIFIED — EXTERNAL_RELEASE | Native created_date/updated_date observed read-only; aliases implemented without duplicate fields. UTC/update/immutable behavior remains unverified. |
 | OD-005 | NOTED | "Büyüyen Ay (Hilal)" label mapped to WAXING; UI/UX v1.1 does not redefine it. |
 | OD-006 | RESOLVED_BY_PRECEDENCE | notification_delivery uniqueness → DB v1.2. |
@@ -99,7 +107,7 @@ Illustrative UI mockups never override written business/data rules; the written 
 ## Evidence provenance
 Inventory READ/continuity/table records mean **SOURCE_RECEIVED_AND_RECORDED**. The original DOCX/XLSX artifacts are external and are not versioned/hash-verified in this repository. This package does not claim **SOURCE_ARTIFACT_HASH_VERIFIED_IN_REPO**. Build-time SHA-256 values cover current repository code/config/canonical Markdown only; they do not authenticate original external files. External artifact hashing is not an additional Foundation blocker.
 
-OD-003 closes repository policy implementation only. The recorded Authentication panel snapshot is historical evidence, not a fresh panel inspection or successful Apple/Google sign-in. OD-002 is RESOLVED_BY_PRODUCT_DECISION by the separately recorded user approval below. OD-004 and OD-009 are PARTIALLY_VERIFIED — EXTERNAL_RELEASE; neither is resolved.
+OD-003 closes repository policy implementation only. The 019 panel inspection updates configuration evidence but proves no successful Apple/Google sign-in. OD-002 is RESOLVED_BY_PRODUCT_DECISION by the separately recorded user approval below. OD-004 and OD-009 are PARTIALLY_VERIFIED — EXTERNAL_RELEASE; neither is resolved.
 
 ## Historical checkpoint — Data-model source receipt — Buildmarker-007
 SRC-05 v1.2 and SRC-07 v1.2 were reread directly from the supplied local DOCX/XLSX bytes. The backend source-field receipt contains all 20 exact entity field lists from SRC-07 entity sheets. SRC-06 remains subordinate. Business/technical/use-case text was inspected for ownership, nulls, protected records and future workflow boundaries. Attached documents provide source facts; task/implementation instructions come from the user's pasted request.

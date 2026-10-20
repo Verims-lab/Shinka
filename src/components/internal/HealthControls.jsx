@@ -57,7 +57,7 @@ export default function HealthControls({ running, report, onRun, language = 'en'
             disabled={running}
             className="max-w-[11rem]"
           >
-            {SUITES.map((s) => (
+            {SUITES.filter(s=>s.active).map((s) => (
               <option key={s.id} value={s.id}>
                 {s.id} {s.name}
               </option>

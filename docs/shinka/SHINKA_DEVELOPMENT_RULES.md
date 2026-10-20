@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-018
-**Last Updated:** 2026-10-20
+**Current BuildMarker:** Buildmarker-019
+**Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
@@ -14,6 +14,12 @@
 - NO SILENT SOURCE-CONTRACT CHANGE
 - NO FUTURE FEATURE IMPLEMENTATION WITHOUT PACKAGE SCOPE
 - NO LEGACY SHINKA IMPORT — NO LEGACY SHINKA CONTRACT MAY ENTER THIS PROJECT WITHOUT AN EXPLICIT CHANGE REQUEST.
+
+## Current package governance — 019
+
+Advance once to Buildmarker-019 / HC-019.0; the Internal Build source/output must contain exactly packages 015–019. Preserve Git, security and historical Health evidence. This task permits only targeted read-only live diagnostics and local isolated mutations; no live deletion/reset/resume/new operation or hosted Full Health. The user performs publish/acceptance in the app. Test delivery remains MANUAL_USER_VALIDATION_PENDING for hosted/device behavior.
+
+Required local checks include the full executable regression in Chromium and WebKit, current browser text-resize/focus matrix, typecheck/lint/build, Repo Health, dependency clean install/tree/audit, last-five ledger and production-bundle/laboratory performance budgets. Do not rerun adequate checks without a new change/failure. Case inventory audit must map requirement → real runner/predicate or measurement → actual evidence → environment for every current ID. Add/update/move decisions retain IDs/reasons and old failures. [019 delivery](reports/SHINKA_AUDIT_FIX_019.md) is the current handoff; older package-specific commands/rules below are historical.
 
 ## 018 Health scope and delivery decision
 

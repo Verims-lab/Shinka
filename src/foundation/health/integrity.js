@@ -18,6 +18,7 @@ export function checkCatalog(suites, cases) {
     badApplicability: cases.filter((c) => !inEnum(APPLICABILITY, c.applicability)).map((c) => c.id),
     badRunner: cases.filter((c) => !inEnum(RUNNER, c.runnerType)).map((c) => c.id),
     badClassification: cases.filter((c) => !inEnum(CLASS, c.classification)).map((c) => c.id),
+    missingRunner: cases.filter(c => c.applicability === APPLICABILITY.CURRENT && c.executionLocation !== 'LOCAL_BROWSER' && typeof c.run !== 'function').map(c => c.id),
   };
   return { ok: Object.values(issues).every((v) => v.length === 0), issues };
 }
@@ -39,8 +40,8 @@ export function checkSuiteCoverage(suites, cases) {
   return { ok: emptyActive.length === 0 && currentInInactive.length === 0, emptyActive, currentInInactive };
 }
 
-export function checkSummaryReconciles(results) {
-  const s = summarize(results);
+export function checkSummaryReconciles(results, summary = summarize(results)) {
+  const s = summary;
   const tally = (st) => results.filter((r) => r.status === st).length;
   const statusSum = s.passed + s.failed + s.warnings + s.blocked + s.notRun + s.notApplicable;
   const checks = {
@@ -49,6 +50,7 @@ export function checkSummaryReconciles(results) {
     attemptedGteExecuted: s.attempted >= s.executed,
     plannedEqualsApplicable: s.planned === results.filter((r) => r.applicability === APPLICABILITY.CURRENT).length,
     blockerCount: s.applicableBlockers === results.filter((r) => r.blocker && r.applicability === APPLICABILITY.CURRENT).length,
+    exactTotals: Object.entries(summarize(results)).every(([key,value]) => s[key] === value),
   };
   return { ok: Object.values(checks).every(Boolean), checks, summary: s };
 }

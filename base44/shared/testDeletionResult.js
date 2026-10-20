@@ -3,7 +3,8 @@ import { DELETED_ENTITIES } from './adminTestPolicy.js';
 export async function verifyTestDeletion(repository, target) {
   if (await repository.user(target)) return false;
   if (repository.calendarActions && (await repository.calendarActions(target)).length) return false;
-  for (const entity of DELETED_ENTITIES) if ((await repository.owned(entity, target)).length) return false;
+  for (const entity of DELETED_ENTITIES) if (repository.hasOwned ? await repository.hasOwned(entity, target) : (await repository.owned(entity, target)).length) return false;
+  if (repository.hasPendingNotifications) return !await repository.hasPendingNotifications(target);
   return !(await repository.owned('notification_delivery', target)).some(row => ['PENDING','FAILED'].includes(row.delivery_status));
 }
 export async function testOperationOutcome(repository, job) {

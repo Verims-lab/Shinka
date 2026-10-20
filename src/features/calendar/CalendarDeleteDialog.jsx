@@ -7,9 +7,23 @@ export default function CalendarDeleteDialog({ date, busy, language, onCancel, o
   useEffect(() => {
     const previous = document.activeElement;
     dialog.current.showModal();
+    dialog.current.querySelector('button:not(:disabled)')?.focus();
     return () => { if (previous instanceof HTMLElement && previous.isConnected) previous.focus(); };
   }, []);
-  return <dialog ref={dialog} aria-labelledby="calendar-delete-title" aria-describedby="calendar-delete-description"
+  const keys = event => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      if (!busy) onCancel();
+    } else if (event.key === 'Tab') {
+      // Safari's button tab preference must not move focus out of a modal.
+      event.preventDefault();
+      const controls = [...dialog.current.querySelectorAll('button:not(:disabled)')];
+      const index = controls.indexOf(document.activeElement);
+      const next = (index + (event.shiftKey ? -1 : 1) + controls.length) % controls.length;
+      (controls[next] || dialog.current).focus();
+    }
+  };
+  return <dialog ref={dialog} tabIndex={-1} onKeyDown={keys} aria-labelledby="calendar-delete-title" aria-describedby="calendar-delete-description"
     onCancel={event => { event.preventDefault(); if (!busy) onCancel(); }}
     className="shinka-calendar-dialog rounded-shinka-lg border border-shinka-line bg-shinka-white p-5 text-shinka-ink">
     <h2 id="calendar-delete-title" className="font-heading text-shinka-h3">{copy('deleteTitle')}</h2>

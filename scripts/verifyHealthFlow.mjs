@@ -10,6 +10,8 @@ export async function checkInAppHealth(page, origin) {
     const r=window.__savedHealthReport;
     return {scope:r.assessmentScope,runIdPresent:!!r.runId,transfers:r.localRegressionRequirements.map(x=>x.id),cases:r.cases.map(c=>({id:c.id,status:c.status,reason:c.evidence?.reason,actual:c.id==='H13-004'?c.evidence.actual:undefined})),frames:document.querySelectorAll('[data-onboarding-fixture]').length};
   });
+  const unavailable=new Set(['H04-019','H08-005','H09-004','H12-031',...Array.from({length:9},(_,i)=>`H05-${String(i+1).padStart(3,'0')}`)]);
+  for(const row of result.cases)assert.equal(row.status,unavailable.has(row.id)?'BLOCKED':'PASS',`${row.id}: ${row.reason}`);
   assert.equal(result.scope,'IN_APP_HEALTH');assert.equal(result.frames,0);
   for(const id of ['H03-007','H13-012']){assert(!result.cases.some(c=>c.id===id));assert(result.transfers.includes(id));}
   assert.equal(result.cases.find(c=>c.id==='H10-003').status,'PASS');

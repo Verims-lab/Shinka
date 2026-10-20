@@ -1,5 +1,29 @@
 # Shinka Android / iOS compatibility evidence
 
+## Current acceptance — Buildmarker-019 / HC-019.0, 2026-10-21
+
+This is the single primary Android/iOS report. The package 009/011/012 material below is historical; old atomic-capability/maintenance prerequisites are superseded by [Base44 continuation](../SHINKA_BASE44_CONTINUATION.md). The repository is **mobile web**, with no PWA service worker/manifest or native Android/iOS WebView wrapper. No wrapper was added. Vite is now 8.2.4; no claim that every browser at the historical toolchain floor was exercised.
+
+| Current scenario | Actual environment and evidence | Result / limit |
+|---|---|---|
+| Onboarding personal/cycle forms, Home, Calendar, Profile menu, Admin/Test Tools | Playwright Chromium 156.0.8078.4 and WebKit 27.2 on macOS/arm64; real App, isolated SDK; 320/360/390/430px and 844×390 landscape; both TR/EN, 200% computed text sizes | Structured final results: [verification](audit-019/verification.json). 87 mobile/keyboard checks per engine; physicalDevice=false. This is neither Android nor iPhone execution. |
+| Text resize and reflow | Every rendered text element enlarged from measured base style; newly opened modal also remeasured/resized without compounding inherited sizes; overflow and visible ≥44px controls asserted | Found/fixed header Profile/language overlap and long Admin card overflow at 320px. Visual QA additionally exposed text overlap from fixed line-height, missed by width-only checks; proportional line boxes preserve normal geometry and scale at 200%, now asserted in T76 and every matrix surface. Approved copy remains unchanged. Text-resize is not native pinch zoom or OS text scaling. |
+| Calendar modal keyboard | Open actual delete confirmation; Tab remains inside, Escape closes and returns to the initiating delete button; 200% modal remains scrollable within viewport | WebKit initially failed 10 focus scenarios across both languages/five widths. Explicit initial focus and bounded Tab/Escape behavior fix it. Original failure retained in verification.json; no forced Playwright click hides overlap. |
+| Profile/You | Existing one-item Admin menu, Escape returns to its trigger | Full You/settings profile editor is not implemented; no such flow is claimed tested. |
+| Native date/time/select, country hierarchy, long TR labels and reduced-height scrolling | Existing input round-trip, optional NULL, 300-country list, clear/retry/race tests retained; browser focus/scroll observed | Actual mobile keyboard/picker sheets remain physical acceptance. |
+| Status and authorization | AU06–AU09 and CU regressions exercise visible progress, role=status/alert, uncertain/partial/completed outcomes, reload and same-operation continuation | Semantics and DOM outcomes checked. VoiceOver/TalkBack spoken output not executed. Normal Health does not mutate live product data. |
+| Safe-area / viewport | Existing 100dvh fallback, viewport-fit=cover and env safe-area padding inspected; layout/reduced heights tested | Physical notch, browser bars and keyboard overlay remain untested. No Android WebView-insets claim. |
+| Performance | Emitted production bytes + isolated cold browser LCP/CLS samples; external font/network services blocked | [Measurements](audit-019/performance.json). INP and real-user mobile/desktop p75 NOT_MEASURED; no field acceptance implied. |
+
+Current screenshots contain synthetic data only: [320px profile at 200%](audit-019/profile-tr-320-200percent.png), [320px Home](audit-019/home-tr-320-200percent.png), [Calendar modal](audit-019/calendar-modal-tr-320-200percent.png), [Admin](audit-019/admin-tr-320-200percent.png). Automated dimensions are in the structured report; screenshots supplement assertions.
+
+Official controls: [WCAG 2.2](https://www.w3.org/TR/WCAG22/) 1.4.4/1.4.10, 2.1.1/2.4.3/2.4.7, 2.5.8 and 4.1.3 inform resize, reflow, focus, touch and status checks. Shinka retains its stricter 44×44 and 52px control standards; this is not a full conformance audit. [Playwright isolation](https://playwright.dev/docs/best-practices) governs separate contexts/visible interactions; [WebKit safe-area guidance](https://webkit.org/blog/7929/designing-websites-for-iphone-x/) governs existing inset styles; [Web Vitals](https://web.dev/articles/vitals) requires field p75 LCP ≤2.5s, INP ≤200ms, CLS ≤0.1 separately for mobile/desktop.
+
+Physical acceptance still needed: record one Android Chrome and one iPhone Safari's exact device/OS/browser versions; test real keyboard/date/select sheets, OS text size/pinch zoom, notch/browser-bar scrolling and orientation, spoken live status/modal focus, Apple/Google callback and background return. No paired physical device was available. These items stay H13-013 / external acceptance, not PASS or suppressed failure.
+
+## Historical package evidence (009–012)
+
+
 Research and execution date: **2026-10-20**. Latest extension: **Buildmarker-012 / HC-012.0**, at the end of this report. The initial sections retain the **Buildmarker-009 / HC-008.0** evidence against baseline `63906f42a14e99f36f8934e9b42164c9b2ba24c7`, Buildmarker-008 / HC-007.0; the Home section records package 011. This report supports [UI/UX standards](../SHINKA_UI_UX_STANDARDS.md), [code standards](../SHINKA_CODE_STANDARDS.md) and [Release Health](../SHINKA_RELEASE_HEALTH_CHECK.md); it is not another product authority.
 
 ## Target versus executed matrix

@@ -6,7 +6,7 @@ import { CALENDAR_TESTS } from '@/foundation/tests/calendarTests';
 import { syntheticProbe } from './domainProbe';
 import { makeCase, futureCase } from '../caseFactory';
 import { CLASS, RUNNER, APPLICABILITY } from '../constants';
-import { ev } from '../evidence';
+import { ev, verdict } from '../evidence';
 const probe = ids => syntheticProbe(DAILY_TESTS.filter(([id]) => ids.includes(id)));
 const c = suite => makeCase(suite, { runnerType: RUNNER.RUNTIME, classification: CLASS.SYNTHETIC_RUNTIME });
 const nativeProbe = ids => syntheticProbe(NATIVE_TESTS.filter(([id]) => ids.includes(id)));
@@ -23,7 +23,7 @@ export const DAILY_HEALTH_CASES = [
     const prerequisite = await nativePrerequisite(ctx, 'daily');
     if (prerequisite.status !== 'PASS') return prerequisite;
     let moon; try { moon = await ctx.moonReadiness(); } catch { /* reported below */ }
-    return { status: library?.ready && moon?.ready ? 'PASS' : 'BLOCKED', evidence: ev(CLASS.LIVE_RUNTIME, 'Base44 content + Moon verification', { contentReady: library?.ready, moonReady: moon?.ready }, 'verified approved content and current Moon coverage', 'Read-only prerequisites; H09-901 still requires hosted mutations.') };
+    return verdict(library?.ready === true && moon?.ready === true, ev(CLASS.LIVE_RUNTIME, 'Base44 content + Moon verification', { contentReady: library?.ready, moonReady: moon?.ready }, 'verified approved content and current Moon coverage', 'Read-only prerequisites; H09-901 still requires hosted mutations.'), 'BLOCKED');
   }),
   futureCase('H09', 'H09-901', 'Hosted first creation, reopen, locale and readback', 'After schema sync and controlled import, verify the same account and immutable daily record; not completed by fixtures.', APPLICABILITY.EXTERNAL, CLASS.LIVE_RUNTIME),
   c('H10')('H10-002', 'Astronomy UTC interval continuity and reference sample', 'Real Astronomy Engine against USNO sample, boundaries/gaps/overlaps and rolling identities.', probe(['DM09','DM10','DM24'])),

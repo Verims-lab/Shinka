@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-014",
-    "package_name": "Production closure investigation and OD-012",
-    "package_type": "CORRECTIVE",
-    "created_at": "2026-10-20T15:14:05.571467Z",
-    "health_catalog_version": "HC-014.0",
-    "short_summary": "Implements approved long-interval behavior across Home/Calendar; completes fresh TLS-verified security scan, live read-only schema/import checks and staged rollout tooling. Production persistence awaits concrete architecture approval.",
-    "full_health_status": "BLOCKED_PRODUCTION_PERSISTENCE",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "AWAITING_USER_ARCHITECTURE_APPROVAL. Chromium/WebKit each 405/405 canonical, 94/94 local Health; zero page errors. Clean install/tree, lint/type/build, Repo Health 16/16, five-package history and performance budgets pass. Fresh security 0 Critical/High, 2 Moderate; TLS verification enabled, no dependency changes. OD-012 resolved with behavioral regressions. Actual read-only Base44: lifecycle schema readable; content PRE_IMPORT missing 6/240/260 and Moon 103. Home/Calendar/Admin production writes stay blocked; no hosted concurrency/restart proof. Concrete single-authority PostgreSQL decision and executable schema rollout prepared. ON-05/live Full Health remain open. No main merge/publish, import, external provisioning/migration or live user mutations. Evidence: reports/SHINKA_CLOSURE_014.md and closure-014/verification.json. Latest five packages 010–014."
-  },
-  {
     "build_marker": "Buildmarker-015",
     "package_name": "PostgreSQL single-authority Test foundation",
     "package_type": "ARCHITECTURE",
@@ -67,5 +53,19 @@ export default [
     "source_changed": true,
     "tests_changed": true,
     "health_changed": true
+  },
+  {
+    "build_marker": "Buildmarker-019",
+    "package_name": "Audit and corrective reliability",
+    "package_type": "CORRECTIVE",
+    "created_at": "2026-10-21T00:00:00+03:00",
+    "health_catalog_version": "HC-019.0",
+    "short_summary": "Audit/fix: safe deletion diagnostics and bounded continuation; password regeneration policy; executable Health integrity; responsive text and keyboard fixes.",
+    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "Chromium/WebKit 476/476 each; 87/87 mobile checks each. Local in-app Health 124 PASS/13 remote-prerequisite BLOCKED/0 FAIL, no hosted run. Same live deletion remains unverified; concurrent server resumes fail closed on ambiguous audit, no distributed exactly-once promise. Typed source tests and official-source audit; latest five packages 015–019. Final quality/dependency/performance evidence and user acceptance: reports/SHINKA_AUDIT_FIX_019.md."
   }
 ];
