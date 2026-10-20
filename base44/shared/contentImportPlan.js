@@ -1,14 +1,15 @@
 import { InternalError } from './internalAuthorization.js';
 import { validateDomainRecord } from './domainValidation.js';
 import { SUN_SIGN_CODES } from './domainSchemas.js';
-import { SIGNS, MOONS, PHASES, UNKNOWN_PHASE } from './contentArtifactValidator.ts';
+import { CATEGORY_COUNTS, SIGNS, MOONS, PHASES, UNKNOWN_PHASE } from './contentArtifactValidator.ts';
 import { MOON_PHASE_ORDER } from './moonIntervals.js';
 
 export const CONTENT_TABLES = Object.freeze(['message_category_lookup', 'message_pair', 'message_category_mapping']);
 const TEXT_FIELDS = ['message_tr', 'suggestion_tr', 'message_en', 'suggestion_en'];
 export function contentBlueprint(source, decision) {
-  if (decision.status !== 'APPROVED_PRODUCT_DECISION' || decision.rows.length !== 6) throw new InternalError('CONTENT_CATEGORY_DECISION_REQUIRED', 503);
+  if (decision?.status !== 'APPROVED_PRODUCT_DECISION' || !Array.isArray(decision.rows) || decision.rows.length !== 6) throw new InternalError('CONTENT_CATEGORY_DECISION_REQUIRED', 503);
   const categories = decision.rows.map(({ source_label, ...record }) => ({ key: source_label, record: validateDomainRecord('message_category_lookup', record) }));
+  if (new Set(categories.map(row => row.record.category_code)).size !== 6 || new Set(categories.map(row => row.key)).size !== 6 || categories.some(row => !Object.hasOwn(CATEGORY_COUNTS, row.key))) throw new InternalError('CONTENT_CATEGORY_CONFLICT', 409);
   const category = label => {
     const found = categories.filter(row => row.key === label);
     if (found.length !== 1) throw new InternalError('CONTENT_CATEGORY_CONFLICT', 409);

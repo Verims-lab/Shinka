@@ -7,7 +7,7 @@ import { ev } from '../evidence';
 const probe = ids => syntheticProbe(DAILY_TESTS.filter(([id]) => ids.includes(id)));
 const c = suite => makeCase(suite, { runnerType: RUNNER.RUNTIME, classification: CLASS.SYNTHETIC_RUNTIME });
 export const DAILY_HEALTH_CASES = [
-  c('H05')('H05-010', 'Controlled import, partial recovery and exact crosswalk', 'Dry-run, no silent replacement, sequential retry and strict readiness; no native cross-worker guarantee.', probe(['DM01','DM02','DM03','DM04','DM05','DM23'])),
+  c('H05')('H05-010', 'Controlled import, partial recovery and exact crosswalk', 'Dry-run, no silent replacement, sequential retry and strict readiness; no native cross-worker guarantee.', probe(['DM01','DM02','DM03','DM04','DM05','DM23','DM26','DM27','DM28'])),
   c('H07')('H07-013', 'ON-06 readback to Home and locale continuity', 'Real components with injected server/storage fixture; failures never complete and late navigation is ignored.', syntheticProbe(DAILY_UI_TESTS)),
   c('H08')('H08-001', 'Phase lookup 28/5 and supported range', 'Only today phase calculation; no Calendar mutations/cache.', probe(['DM06','DM07','DM08'])),
   c('H08')('H08-003', 'Outlier rule 26/27/45 → 27', 'Last three observations, rounding and calculation-only defaults.', probe(['DM07','DM08'])),

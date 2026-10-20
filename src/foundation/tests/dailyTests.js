@@ -15,6 +15,8 @@ import { CONTENT_SOURCE_SHA256 } from '../../../base44/shared/contentSourceRecei
 import { evaluateContentState, CONTENT_ENTITY_NAMES } from '../../../base44/shared/contentStateContract.js';
 import { inspectMoonImport, applyMoonBatch } from '../../../base44/shared/moonImport.js';
 import { HEALTH_CONSENT_VERSION } from '../../../base44/shared/onboardingDependencies.js';
+import { CONTENT_CATEGORY_DECISION } from '../../../base44/shared/contentCategoryDecision.js';
+import { OPEN_DECISIONS } from '../openDecisions';
 const rejects = async (fn, code) => { try { await fn(); } catch (e) { check(!code || e.code === code, `expected ${code}, received ${e.code}`); return; } throw new Error(`expected rejection ${code}`); };
 const request = { action: 'today', timezone: 'Europe/Istanbul' };
 const call = f => dailyMessageOperation(f.client, request, f.dependencies);
@@ -219,5 +221,59 @@ export const DAILY_TESTS = [
   await rejects(() => onboardingOperation(f.client, { action: 'hydrate' }, { now: f.dependencies.now }), 'INVALID_DOMAIN_RECORD');
   f.rows.user_daily_message[0].id = 123;
   await rejects(() => onboardingOperation(f.client, { action: 'hydrate' }, { now: f.dependencies.now }), 'DAILY_READBACK_CONFLICT');
+ }],
+ ['DM26', 'OD-002 exact user-approved codes and TR/EN names with honest provenance', () => {
+  // Independent receipt of the user's six-row approval; not read from the implementation.
+  const approved = [
+    ['Dinlenme & Yavaşlama', 'REST_AND_SLOW_DOWN', 'Kendine Bir Nefes', 'Take a Breath'],
+    ['Öz Bakım & İyi Hissetme', 'SELF_CARE_AND_WELLBEING', 'Kendine İyi Gel', 'Be Kind to Yourself'],
+    ['Yenilik & Keşif', 'NOVELTY_AND_DISCOVERY', 'Yeniye Yer Aç', 'Make Room for the New'],
+    ['Odaklanma & İlerleme', 'FOCUS_AND_PROGRESS', 'Küçük Adımlarla İlerle', 'Move Forward in Small Steps'],
+    ['Bağ Kurma & Paylaşım', 'CONNECTION_AND_SHARING', 'Bağlarını Güçlendir', 'Strengthen Your Connections'],
+    ['Sadeleşme & Bırakma', 'SIMPLICITY_AND_LETTING_GO', 'Hafiflemeye İzin Ver', 'Allow Yourself to Feel Lighter'],
+  ];
+  const decision = CONTENT_CATEGORY_DECISION;
+  check(JSON.stringify(decision.rows.map(row => [row.source_label, row.category_code, row.display_name_tr, row.display_name_en])) === JSON.stringify(approved));
+  check(decision.status === 'APPROVED_PRODUCT_DECISION' && decision.resolution_status === 'RESOLVED_BY_PRODUCT_DECISION' && decision.approved_on === '2026-10-20');
+  check(decision.source.includes('user approval') && decision.decision_id === 'OD-002');
+  const registered = OPEN_DECISIONS.find(row => row.id === decision.decision_id);
+  check(registered.status === decision.resolution_status && registered.blocking === false && registered.resolution_rule.includes('Explicit user approval'));
+ }],
+ ['DM27', 'Category definition requires six unique codes, exact labels and both names', async () => {
+  const { source } = contentFixture();
+  for (const change of [
+    rows => { rows[1].category_code = rows[0].category_code; },
+    rows => { rows[1].source_label = rows[0].source_label; },
+    rows => { rows[1].source_label = 'Unknown category'; },
+  ]) {
+    const decision = JSON.parse(JSON.stringify(CONTENT_CATEGORY_DECISION)); change(decision.rows);
+    await rejects(() => contentBlueprint(source, decision), 'CONTENT_CATEGORY_CONFLICT');
+  }
+  for (const key of ['display_name_tr', 'display_name_en']) {
+    const decision = JSON.parse(JSON.stringify(CONTENT_CATEGORY_DECISION)); decision.rows[0][key] = '';
+    await rejects(() => contentBlueprint(source, decision), 'INVALID_DOMAIN_RECORD');
+  }
+  await rejects(() => contentBlueprint(source, { ...CONTENT_CATEGORY_DECISION, rows: CONTENT_CATEGORY_DECISION.rows.slice(1) }), 'CONTENT_CATEGORY_DECISION_REQUIRED');
+ }],
+ ['DM28', 'Approved category import preserves source Pair text and mapping identity', async () => {
+  const { source } = contentFixture(), decision = CONTENT_CATEGORY_DECISION;
+  const before = JSON.stringify(source), blueprint = contentBlueprint(source, decision);
+  const expectedCode = label => decision.rows.find(row => row.source_label === label).category_code;
+  blueprint.message_pair.forEach((entry, i) => {
+    const [id, label, ...texts] = source.pairs[i];
+    check(entry.key === id && entry.record.category_id === `@category:${expectedCode(label)}`);
+    check(JSON.stringify(['message_tr','suggestion_tr','message_en','suggestion_en'].map(key => entry.record[key])) === JSON.stringify(texts));
+  });
+  blueprint.message_category_mapping.forEach((entry, i) => check(entry.record.category_id === `@category:${expectedCode(source.mappings[i][3])}`));
+  const f = sdkOnboardingFixture({ role: 'admin' });
+  let result = await contentLibraryOperation(f.client, { action: 'dryRun' }, { source, decision });
+  check(result.phase === 'PRE_IMPORT' && result.ready === false && f.calls.every(c => c.method === 'filter'));
+  let batches = 0;
+  while (!result.ready) { check(++batches < 24); result = await contentLibraryOperation(f.client, { action: 'applyBatch', reviewed_digest: result.digest }, { source, decision }); }
+  check(result.phase === 'VERIFIED_IMPORTED' && result.pairIds.length === 260);
+  const count = f.calls.filter(c => c.method === 'upsert').length;
+  await contentLibraryOperation(f.client, { action: 'applyBatch', reviewed_digest: result.digest }, { source, decision });
+  check(count === f.calls.filter(c => c.method === 'upsert').length && JSON.stringify(source) === before);
+  check(decision.rows.every(({ source_label: _label, ...record }) => f.rows.message_category_lookup.some(row => Object.entries(record).every(([key, value]) => row[key] === value))));
  }],
 ];

@@ -59,12 +59,13 @@ export default [
     "package_type": "FEATURE",
     "created_at": "2026-10-19T23:27:39.496462+00:00",
     "health_catalog_version": "HC-011.0",
-    "short_summary": "Exact 260-pair/240-mapping source preparation, controlled admin content/Moon imports, daily calculations/selection and ON-06 to Home with immutable bilingual snapshots. Production creation blocked by OD-002 and unverified durable uniqueness.",
+    "short_summary": "First Shinka/Home with exact source content, controlled import and daily snapshot flow. OD-002 resolved by explicit user approval of six category codes/EN names; source TR names, 260 Pairs and 240 mappings preserved. Production daily persistence remains blocked.",
     "full_health_status": "BLOCKED",
-    "notes": "Chromium/WebKit each 346/346 canonical; 54 general + 21 onboarding + 9 daily synthetic Health; 5 daily, 17 admin, 8 routing/Preview and 5 mobile scenarios; zero page errors. Clean install/tree/security/type/lint/build, Repo Health 16/16 and five-package retention pass; audit 0 Critical/High, 2 existing Moderate. Initial JS 459,519 raw / 149,604 gzip bytes within budget; source/import/test data excluded from initial graph. No hosted import or first daily write/readback; no physical-device proof. New daily writes fail closed without a verified cross-instance adapter; existing valid rows remain readable. OD-002 proposals remain unapproved. ON-05 live same-account recovery remains open. Details: reports/SHINKA_FIRST_SHINKA_011.md and first-shinka-011/verification.json.",
+    "notes": "OD-002 RESOLVED_BY_PRODUCT_DECISION, user reply 2026-10-20; no attribution of new codes/EN names to original documents. Same package/catalog; source manifest hash and Pair/mapping bytes unchanged. Chromium/WebKit each 349/349 canonical, 54 general + 21 onboarding + 9 daily synthetic Health, 17 admin/8 routing-Preview/5 mobile/5 daily scenarios; zero page errors. Type/lint/build, Repo Health 16/16, dependency tree/security and five-package retention pass; 0 Critical/High, 2 existing Moderate. Initial JS 459,519 raw / 149,604 gzip unchanged. No live import, hosted daily write/readback, Full Health or device proof. H09-004 and ON-05 live recovery remain open. Approval evidence: reports/first-shinka-011/od002-approval.json; handoff: reports/SHINKA_FIRST_SHINKA_011.md.",
     "docs_aligned": true,
     "source_changed": true,
     "tests_changed": true,
-    "health_changed": true
+    "health_changed": true,
+    "updated_at": "2026-10-20T06:51:53.551Z"
   }
 ];

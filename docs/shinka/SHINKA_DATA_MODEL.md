@@ -8,7 +8,7 @@
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
 **Scope:** Product domain entities + separately listed internal tooling storage.
 **Implemented:** 20 JSONC schemas in `base44/entities/`, canonical definitions in `base44/shared/domainSchemas.js`, source field receipt, validation and guarded backend access.
-**Open Decisions:** OD-002, OD-004, OD-009
+**Open Decisions:** OD-004, OD-009; OD-002 RESOLVED_BY_PRODUCT_DECISION
 **External Verification Required:** Native UNIQUE/compound UNIQUE are UNSUPPORTED by official documentation. Index/FK/conditional update/transaction/rollback remain UNVERIFIED. Deployed enforcement pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
@@ -85,7 +85,7 @@ Native `id` is the unique platform identifier. All references are ID strings plu
 
 Optional fields use documented primitive types without `required`. Canonical logical NULL validation omits absent fields; reads normalize absence to NULL. The scoped onboarding adapter sends explicit NULLs when clearing merging SDK updates (see current-package mapping below). No `nullable`, unsupported type union or invented unique/index syntax is asserted. Native explicit-null acceptance remains unverified. No synthetic time or 5/28 calculation default is persisted. These are wire/storage adaptations, not entered values. Required schema fields with declared defaults are filled by the backend validator.
 
-Sun codes adapt the 12 source signs in order: Koç→ARIES, Boğa→TAURUS, İkizler→GEMINI, Yengeç→CANCER, Aslan→LEO, Başak→VIRGO, Terazi→LIBRA, Akrep→SCORPIO, Yay→SAGITTARIUS, Oğlak→CAPRICORN, Kova→AQUARIUS, Balık→PISCES. No UNCERTAIN. Category codes/EN labels remain OD-002 OPEN and no guessed values are seeded.
+Sun codes adapt the 12 source signs in order: Koç→ARIES, Boğa→TAURUS, İkizler→GEMINI, Yengeç→CANCER, Aslan→LEO, Başak→VIRGO, Terazi→LIBRA, Akrep→SCORPIO, Yay→SAGITTARIUS, Oğlak→CAPRICORN, Kova→AQUARIUS, Balık→PISCES. No UNCERTAIN. OD-002 is RESOLVED_BY_PRODUCT_DECISION (explicit user approval, 2026-10-20). The six category_code/EN values are canonical in contentCategoryDecision.js and SOURCE_OF_TRUTH; they are not attributed to the original DB/workbook documents. Source TR display names are unchanged; no live seed is claimed.
 
 ### OD-004 timestamp reconciliation — PARTIALLY_VERIFIED
 Semantic created_at → native created_date; semantic updated_at → native updated_date, for all 20 entities. No duplicate manual fields are created. A read-only InternalHealthRun response contained both at `2026-10-18T21:25:16.181000`; availability is observed, but the response has no UTC suffix. Native UTC interpretation, create/update mutability, product entity availability and immutable-record updated timestamp behavior still need live proof. The code preserves the native value instead of silently inventing a timezone. An updated timestamp never grants permission to update a snapshot. OD-004 is not resolved; do not treat these aliases as a certified immutable audit clock.
@@ -391,3 +391,7 @@ Daily snapshot fields are precisely the existing source contract: authenticated 
 Native compound uniqueness remains UNSUPPORTED. `createOnce` is used with its documented atomic requirements, now including an exact consent input predicate when health data influenced selection. Production has no accepted adapter and new daily writes are disabled. The SDK's upsert merge semantics cannot implement immutable winner selection. A native platform conditional-create guarantee, or an approved authoritative transactional store with UNIQUE(user_id,shinka_date) and a crash-safe integration/guard protocol, is required before enabling production. In-memory fixture concurrency is protocol proof only. No transaction/rollback/distributed-lock guarantee is claimed.
 
 Current-day cycle inputs are calculated in memory. NULL settings stay NULL; no predictions/phase-day/lookup rows are fabricated to mark onboarding complete. Moon reference import is explicit admin work, with at least two future years and strict UTC continuity; no scheduler is active.
+
+## OD-002 category data completion
+
+The approved six-row definition populates only existing `message_category_lookup.category_code`, `display_name_tr`, `display_name_en` through the controlled importer. No entity, field, RLS policy or native ID contract changes. Codes are REST_AND_SLOW_DOWN, SELF_CARE_AND_WELLBEING, NOVELTY_AND_DISCOVERY, FOCUS_AND_PROGRESS, CONNECTION_AND_SHARING and SIMPLICITY_AND_LETTING_GO, each associated with exactly one source label in the [approval table](SHINKA_CONTENT_MODEL.md#approved-category-definition--od-002-continuation). Pair/mapping category references resolve through these source labels to verified native category IDs; the source associations and four language text cells are unchanged. Business uniqueness validation is not native Base44 uniqueness evidence.

@@ -4,6 +4,8 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { readFirstSheet } from '../base44/shared/xlsxReader.ts';
 import { validateContentRows, validateMappingRows, compareBaseAndExtended, contentIntegrity, mappingIntegrity } from '../base44/shared/contentArtifactValidator.ts';
+import { CONTENT_CATEGORY_DECISION } from '../base44/shared/contentCategoryDecision.js';
+import { contentBlueprint } from '../base44/shared/contentImportPlan.js';
 
 const directory = process.argv[2];
 if (!directory) throw new Error('Supply the directory containing the three approved workbooks');
@@ -27,7 +29,10 @@ if (new Set(sheets[0].slice(1).map(row => JSON.stringify(row.slice(1)))).size !=
 const payload = { sourceSet: 'SRC-2026-10-18', sources, pairs: sheets[0].slice(1), mappings: sheets[1].slice(1) };
 const sha256 = createHash('sha256').update(JSON.stringify(payload)).digest('hex');
 const manifest = { ...payload, sha256 };
+// Keep original content bytes/hash separate from the later product decision.
+// The importer and this preparation check use exactly the same category mapping.
+const approvedCategories = CONTENT_CATEGORY_DECISION.status === 'APPROVED_PRODUCT_DECISION' ? contentBlueprint(manifest, CONTENT_CATEGORY_DECISION).message_category_lookup.map(row => ({ source_label: row.key, ...row.record })) : null;
 const destination = new URL('../base44/shared/firstContentSource.js', import.meta.url);
 await fs.writeFile(destination, `// Generated from approved workbook bytes by prepareFirstContent.mjs. Backend only.\nexport const FIRST_CONTENT_SOURCE = ${JSON.stringify(manifest, null, 2)};\n`);
 await fs.writeFile(new URL('../base44/shared/contentSourceReceipt.js', import.meta.url), `// Generated source receipt only; no product text.\nexport const CONTENT_SOURCE_SHA256 = ${JSON.stringify(sha256)};\n`);
-console.log(JSON.stringify({ sha256, sources, categories: content.perCategory, exactPairIds: true, relationship: relation, scope: 'REPOSITORY_PREPARATION_NOT_LIVE_IMPORT' }, null, 2));
+console.log(JSON.stringify({ sha256, sources, categories: content.perCategory, categoryDecision: { id: CONTENT_CATEGORY_DECISION.decision_id, status: CONTENT_CATEGORY_DECISION.resolution_status, source: CONTENT_CATEGORY_DECISION.source, rows: approvedCategories }, exactPairIds: true, relationship: relation, scope: 'REPOSITORY_PREPARATION_NOT_LIVE_IMPORT' }, null, 2));

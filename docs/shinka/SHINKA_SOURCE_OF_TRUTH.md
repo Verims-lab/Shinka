@@ -68,7 +68,7 @@ Illustrative UI mockups never override written business/data rules; the written 
 | ID | Status | Summary |
 |---|---|---|
 | OD-001 | RESOLVED_BY_SOURCE_RECEIPT | UI/UX v1.1 received as 4 transport parts; continuity verified; tokens reconciled. |
-| OD-002 | OPEN — CURRENT_IMPORT_BLOCKER | TR display mapping confirmed (SRC-03 table 4); category_code values + EN display names undefined. |
+| OD-002 | RESOLVED_BY_PRODUCT_DECISION | User approval in this conversation, 2026-10-20: six codes and EN names approved exactly; source TR names preserved. No mapping/copy changes or live closure. |
 | OD-003 | RESOLVED_BY_REPOSITORY_POLICY | Apple/Google-only repository surface implemented; historical platform snapshot preserved. Current dashboard configuration and live sign-in remain external verification. |
 | OD-004 | PARTIALLY_VERIFIED — EXTERNAL_RELEASE | Native created_date/updated_date observed read-only; aliases implemented without duplicate fields. UTC/update/immutable behavior remains unverified. |
 | OD-005 | NOTED | "Büyüyen Ay (Hilal)" label mapped to WAXING; UI/UX v1.1 does not redefine it. |
@@ -82,7 +82,7 @@ Illustrative UI mockups never override written business/data rules; the written 
 ## Evidence provenance
 Inventory READ/continuity/table records mean **SOURCE_RECEIVED_AND_RECORDED**. The original DOCX/XLSX artifacts are external and are not versioned/hash-verified in this repository. This package does not claim **SOURCE_ARTIFACT_HASH_VERIFIED_IN_REPO**. Build-time SHA-256 values cover current repository code/config/canonical Markdown only; they do not authenticate original external files. External artifact hashing is not an additional Foundation blocker.
 
-OD-003 closes repository policy implementation only. The recorded Authentication panel snapshot is historical evidence, not a fresh panel inspection or successful Apple/Google sign-in. OD-002 remains OPEN — CURRENT_IMPORT_BLOCKER. OD-004 and OD-009 are PARTIALLY_VERIFIED — EXTERNAL_RELEASE; neither is resolved.
+OD-003 closes repository policy implementation only. The recorded Authentication panel snapshot is historical evidence, not a fresh panel inspection or successful Apple/Google sign-in. OD-002 is RESOLVED_BY_PRODUCT_DECISION by the separately recorded user approval below. OD-004 and OD-009 are PARTIALLY_VERIFIED — EXTERNAL_RELEASE; neither is resolved.
 
 ## Data-model source receipt — Buildmarker-007
 SRC-05 v1.2 and SRC-07 v1.2 were reread directly from the supplied local DOCX/XLSX bytes. The backend source-field receipt contains all 20 exact entity field lists from SRC-07 entity sheets. SRC-06 remains subordinate. Business/technical/use-case text was inspected for ownership, nulls, protected records and future workflow boundaries. Attached documents provide source facts; task/implementation instructions come from the user's pasted request.
@@ -154,6 +154,21 @@ This updates the implemented navigation/screen inventory only. It does not autho
 
 Authority: current user attachment `cc51dad9-1fa5-423f-a865-3be824e53172/Pasted text.txt`. It explicitly authorizes controlled content preparation/import tooling, the necessary phase/selection backend, ON-06/Home, tests/Health/docs, and honest production blocking if durable uniqueness cannot be proven. Original workbook/Word statements remain source evidence, not separate operational instructions.
 
-SRC-01/02/03/04/05 originals and SRC-07 were reread for this scope. SRC-08/09/10 exact bytes were read and hashed; the manifest preserves punctuation and bilingual pairing. The 011 report records hashes/counts and the concrete six-row OD-002 proposal. Category codes and EN names are absent from approved originals/receipts; they remain unapproved until an explicit reply. This does not change the original ten logical sources or the global original-files-in-Git flag.
+SRC-01/02/03/04/05 originals and SRC-07 were reread for this scope. SRC-08/09/10 exact bytes were read and hashed; the manifest preserves punctuation and bilingual pairing. The 011 report records hashes/counts and the six-row OD-002 decision. Category codes and EN names are absent from the original documents; the explicit user approval on 2026-10-20 supplies them. TR names and content/mapping source bytes remain unchanged. This does not change the original ten logical sources or the global original-files-in-Git flag.
 
 Approved astronomy authority is Astronomy Engine JavaScript; Moon phase boundaries and cycle/outlier rules come directly from SRC-01 §§4–6 and SRC-04 §§4–6. The earlier user-approved birth-date-only Sun resolver still overrides legacy source time fallbacks. No legacy implementation or AI product text is introduced. New Home TR/helper presentation copy is scoped to this request; original English state/preparation text is retained. No hosted first Shinka or live import has been observed.
+
+## OD-002 product approval receipt — 2026-10-20
+
+Status: **RESOLVED_BY_PRODUCT_DECISION**. Authority is the user's explicit reply to the OD-002 question in this conversation: “Evet, sunduğun altı satırlık tabloyu aynen ürün kararı olarak onaylıyorum.” The user approved all six proposed category_code values and all six EN visible names, required the original TR names to remain exact, and expressly excluded changes to category mappings, 260 Pairs or their text. This is a product decision, not content discovered in SRC-01…10; the logical-source inventory remains ten.
+
+| Source category | Approved category_code | Preserved TR name | Approved EN name |
+|---|---|---|---|
+| Dinlenme & Yavaşlama | REST_AND_SLOW_DOWN | Kendine Bir Nefes | Take a Breath |
+| Öz Bakım & İyi Hissetme | SELF_CARE_AND_WELLBEING | Kendine İyi Gel | Be Kind to Yourself |
+| Yenilik & Keşif | NOVELTY_AND_DISCOVERY | Yeniye Yer Aç | Make Room for the New |
+| Odaklanma & İlerleme | FOCUS_AND_PROGRESS | Küçük Adımlarla İlerle | Move Forward in Small Steps |
+| Bağ Kurma & Paylaşım | CONNECTION_AND_SHARING | Bağlarını Güçlendir | Strengthen Your Connections |
+| Sadeleşme & Bırakma | SIMPLICITY_AND_LETTING_GO | Hafiflemeye İzin Ver | Allow Yourself to Feel Lighter |
+
+Canonical executable receipt: `base44/shared/contentCategoryDecision.js`. Import preparation and runtime `contentBlueprint` use this same definition; unique codes and a one-to-one match to the six source labels are mandatory. The source manifest hash remains `83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91`; the reviewed import digest includes the separate decision. No live import is implied. Production daily uniqueness, hosted Full Health, physical-device evidence and the ON-05 live incident remain open.

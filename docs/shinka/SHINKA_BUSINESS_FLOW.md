@@ -9,7 +9,7 @@
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
 **Not Implemented:** Verified hosted daily writes (atomic capability blocked), Calendar, Pattern, You editing, withdrawal/deactivation and notifications.
-**Open Decisions:** OD-002 (OD-003 repository auth policy implemented; live provider proof remains external)
+**Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 ## Account / Authentication (UC-01, KK-01)
 Apple or Google only; no Shinka password; one account per provider identity. 18+ checkbox (initially empty) must be checked before auth starts; age is re-checked from birth date (backend). Sign Out does not change account status.
