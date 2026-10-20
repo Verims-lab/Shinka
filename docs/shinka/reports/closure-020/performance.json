@@ -1,0 +1,1836 @@
+{
+  "lazyRetry": {
+    "passed": true,
+    "scope": "Synthetic network asset failure and full-reload retry, real App route"
+  },
+  "vitalsAcceptance": {
+    "status": "NOT_MEASURED",
+    "reason": "No field p75 or INP; local LCP/CLS only, not a production acceptance gate"
+  },
+  "label": "maintenance",
+  "measuredAt": "2026-10-20T22:18:14.416Z",
+  "environment": {
+    "node": "v26.0.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "browser": "Playwright Chromium, headless, cold context, 360x740, loopback, no throttling; SDK transport stubbed, external fonts blocked; not user metrics"
+  },
+  "production": {
+    "chunks": [
+      {
+        "file": "assets/index-DRITJgzv.js",
+        "entry": true,
+        "raw": 158084,
+        "gzip": 50722
+      },
+      {
+        "file": "assets/AdminPanel-DZwuAV_Y.js",
+        "entry": false,
+        "raw": 890,
+        "gzip": 504
+      },
+      {
+        "file": "assets/AuthShellProbe-C1YA3kkM.js",
+        "entry": false,
+        "raw": 1858,
+        "gzip": 958
+      },
+      {
+        "file": "assets/BuildEnvironment-Bf--tF99.js",
+        "entry": false,
+        "raw": 3243,
+        "gzip": 1356
+      },
+      {
+        "file": "assets/Calendar-BlF9r9NH.js",
+        "entry": false,
+        "raw": 15808,
+        "gzip": 5715
+      },
+      {
+        "file": "assets/HealthCenter-Cn7RLHv4.js",
+        "entry": false,
+        "raw": 13563,
+        "gzip": 5141
+      },
+      {
+        "file": "assets/InternalNav-BB5vp_F9.js",
+        "entry": false,
+        "raw": 1304,
+        "gzip": 668
+      },
+      {
+        "file": "assets/ShinkaCard-qJqUeQ_g.js",
+        "entry": false,
+        "raw": 8115,
+        "gzip": 3170
+      },
+      {
+        "file": "assets/StatusBadge-DNJs1v3m.js",
+        "entry": false,
+        "raw": 20198,
+        "gzip": 7646
+      },
+      {
+        "file": "assets/TestTools-Bkcd5RDP.js",
+        "entry": false,
+        "raw": 18986,
+        "gzip": 6722
+      },
+      {
+        "file": "assets/adminTestRepository-DPb6j4-T.js",
+        "entry": false,
+        "raw": 15599,
+        "gzip": 5327
+      },
+      {
+        "file": "assets/adminTestTools-D8_kVYm8.js",
+        "entry": false,
+        "raw": 756,
+        "gzip": 463
+      },
+      {
+        "file": "assets/aggregate-DpJZo9OY.js",
+        "entry": false,
+        "raw": 2555,
+        "gzip": 1153
+      },
+      {
+        "file": "assets/astronomy-DDiaoDFU.js",
+        "entry": false,
+        "raw": 104655,
+        "gzip": 42503
+      },
+      {
+        "file": "assets/base44Client-DUsKhcTL.js",
+        "entry": false,
+        "raw": 133295,
+        "gzip": 44434
+      },
+      {
+        "file": "assets/calendarController-DE0L4ItB.js",
+        "entry": false,
+        "raw": 4843,
+        "gzip": 1966
+      },
+      {
+        "file": "assets/catalog-YNPWS9WY.js",
+        "entry": false,
+        "raw": 340023,
+        "gzip": 103033
+      },
+      {
+        "file": "assets/internalAuthorization-D6ORd_Rh.js",
+        "entry": false,
+        "raw": 1413,
+        "gzip": 767
+      },
+      {
+        "file": "assets/onboardingFixture-HBSeya5v.js",
+        "entry": false,
+        "raw": 369610,
+        "gzip": 119046
+      },
+      {
+        "file": "assets/onboardingUiTests-CmCLpOLB.js",
+        "entry": false,
+        "raw": 2321,
+        "gzip": 1291
+      },
+      {
+        "file": "assets/onboardingValidation-DatHSXMi.js",
+        "entry": false,
+        "raw": 10431,
+        "gzip": 4273
+      },
+      {
+        "file": "assets/react-dom-DM46qtkV.js",
+        "entry": false,
+        "raw": 132631,
+        "gzip": 42513
+      },
+      {
+        "file": "assets/report-CF-WSQ-4.js",
+        "entry": false,
+        "raw": 1385,
+        "gzip": 768
+      },
+      {
+        "file": "assets/runner-BttFbMCx.js",
+        "entry": false,
+        "raw": 3603,
+        "gzip": 1794
+      },
+      {
+        "file": "assets/strings-qV78hWQO.js",
+        "entry": false,
+        "raw": 2882,
+        "gzip": 1232
+      },
+      {
+        "file": "assets/uiRules-ApOuaLjg.js",
+        "entry": false,
+        "raw": 2822,
+        "gzip": 1462
+      },
+      {
+        "file": "assets/uiuxTables-C8SgBqNj.js",
+        "entry": false,
+        "raw": 6194,
+        "gzip": 2867
+      },
+      {
+        "file": "assets/useHealthRunner-5-RbI8wI.js",
+        "entry": false,
+        "raw": 61,
+        "gzip": 77
+      }
+    ],
+    "initialJS": {
+      "raw": 453045,
+      "gzip": 149978
+    },
+    "allJS": {
+      "raw": 1377128,
+      "gzip": 457571
+    },
+    "css": {
+      "raw": 86467,
+      "gzip": 14914
+    },
+    "initialModules": [
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/StatePanel.jsx",
+      "/src/components/RouteBoundary.jsx",
+      "/src/components/ui/use-toast.jsx",
+      "/src/lib/utils.js",
+      "/src/components/ui/toast.jsx",
+      "/src/components/ui/toaster.jsx",
+      "/src/lib/query-client.js",
+      "/src/foundation/authErrors.js",
+      "/src/lib/AuthContext.jsx",
+      "/src/lib/PageNotFound.jsx",
+      "/src/components/UserNotRegisteredError.jsx",
+      "/src/components/ScrollToTop.jsx",
+      "/src/components/ProtectedRoute.jsx",
+      "/base44/shared/sunSign.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/src/services/onboardingService.js",
+      "/src/components/shinka/ShinkaInput.jsx",
+      "/src/components/GoogleIcon.jsx",
+      "/src/foundation/authPolicy.js",
+      "/src/services/authService.js",
+      "/src/lib/authReturnTo.js",
+      "/src/features/onboarding/SignIn.jsx",
+      "/src/components/shinka/ShinkaSelect.jsx",
+      "/src/features/onboarding/BirthplaceList.jsx",
+      "/src/features/onboarding/placeListCache.js",
+      "/src/features/onboarding/birthplaceSelection.js",
+      "/src/features/onboarding/BirthplacePicker.jsx",
+      "/src/features/onboarding/OnboardingForms.jsx",
+      "/src/features/onboarding/pendingName.js",
+      "/src/services/dailyMessageService.js",
+      "/src/features/daily/useDailyMessage.js",
+      "/src/foundation/i18n/dailyCopy.js",
+      "/src/features/daily/DailyStatus.jsx",
+      "/src/features/daily/FirstShinka.jsx",
+      "/src/features/onboarding/OnboardingScreen.jsx",
+      "/src/foundation/uiContract.js",
+      "/src/components/shinka/ProductNavigation.jsx",
+      "/src/foundation/internalNavigation.js",
+      "/src/components/profile/ProfileMenu.jsx",
+      "/src/pages/Home.jsx",
+      "/src/components/profile/ProfileAccess.jsx",
+      "/src/pages/Onboarding.jsx",
+      "/src/components/internal/AdminGate.jsx",
+      "/src/foundation/probes/authProbeRoute.js",
+      "/src/App.jsx",
+      "/src/index.css",
+      "/src/main.jsx",
+      "/index.html",
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/foundation/uiuxTables.js",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/lib/app-params.js",
+      "/src/api/base44Client.js",
+      "/src/foundation/i18n/strings.js",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/internalAuthorization.js"
+    ],
+    "chunkCount": 28
+  },
+  "lab": {
+    "chunks": [
+      {
+        "file": "assets/index-CdzUJEgR.js",
+        "entry": true,
+        "raw": 167197,
+        "gzip": 54196
+      },
+      {
+        "file": "assets/AdminPanel-BZOA3Sqp.js",
+        "entry": false,
+        "raw": 886,
+        "gzip": 502
+      },
+      {
+        "file": "assets/AuthShellProbe-ChZTYNUi.js",
+        "entry": false,
+        "raw": 1858,
+        "gzip": 958
+      },
+      {
+        "file": "assets/BuildEnvironment-BebOEOI0.js",
+        "entry": false,
+        "raw": 3245,
+        "gzip": 1356
+      },
+      {
+        "file": "assets/Calendar-C50W0EUY.js",
+        "entry": false,
+        "raw": 15759,
+        "gzip": 5692
+      },
+      {
+        "file": "assets/HealthCenter-ByDT9Gmy.js",
+        "entry": false,
+        "raw": 13569,
+        "gzip": 5138
+      },
+      {
+        "file": "assets/InternalNav-D317auEL.js",
+        "entry": false,
+        "raw": 1299,
+        "gzip": 669
+      },
+      {
+        "file": "assets/ShinkaCard-qJqUeQ_g.js",
+        "entry": false,
+        "raw": 8115,
+        "gzip": 3170
+      },
+      {
+        "file": "assets/StatusBadge-DU7eLjao.js",
+        "entry": false,
+        "raw": 20196,
+        "gzip": 7646
+      },
+      {
+        "file": "assets/TestTools-tCApy0UR.js",
+        "entry": false,
+        "raw": 18985,
+        "gzip": 6724
+      },
+      {
+        "file": "assets/adminTestTools-DSFCbfal.js",
+        "entry": false,
+        "raw": 754,
+        "gzip": 463
+      },
+      {
+        "file": "assets/aggregate-BDl3BZpE.js",
+        "entry": false,
+        "raw": 2555,
+        "gzip": 1153
+      },
+      {
+        "file": "assets/astronomy-DDiaoDFU.js",
+        "entry": false,
+        "raw": 104655,
+        "gzip": 42503
+      },
+      {
+        "file": "assets/calendarController-DZp1mC6h.js",
+        "entry": false,
+        "raw": 4826,
+        "gzip": 1958
+      },
+      {
+        "file": "assets/calendarFixture-C-aF7suJ.js",
+        "entry": false,
+        "raw": 3121,
+        "gzip": 1390
+      },
+      {
+        "file": "assets/calendarOperation-DHxVXDw-.js",
+        "entry": false,
+        "raw": 373208,
+        "gzip": 119772
+      },
+      {
+        "file": "assets/catalog-Bse5UsZp.js",
+        "entry": false,
+        "raw": 294679,
+        "gzip": 89473
+      },
+      {
+        "file": "assets/fakeBase44-BX1xRVXh.js",
+        "entry": false,
+        "raw": 5047,
+        "gzip": 2386
+      },
+      {
+        "file": "assets/internalAuthorization-D6ORd_Rh.js",
+        "entry": false,
+        "raw": 1413,
+        "gzip": 767
+      },
+      {
+        "file": "assets/nativeFixture-Bj7B6Gkn.js",
+        "entry": false,
+        "raw": 32267,
+        "gzip": 11296
+      },
+      {
+        "file": "assets/onboardingFixture-D7hbgo1Q.js",
+        "entry": false,
+        "raw": 22990,
+        "gzip": 8366
+      },
+      {
+        "file": "assets/onboardingUiTests-B45SGvUv.js",
+        "entry": false,
+        "raw": 2319,
+        "gzip": 1296
+      },
+      {
+        "file": "assets/react-dom-DM46qtkV.js",
+        "entry": false,
+        "raw": 132631,
+        "gzip": 42513
+      },
+      {
+        "file": "assets/report-DsMDYfDD.js",
+        "entry": false,
+        "raw": 1385,
+        "gzip": 766
+      },
+      {
+        "file": "assets/runner-BzGxR6-t.js",
+        "entry": false,
+        "raw": 3596,
+        "gzip": 1787
+      },
+      {
+        "file": "assets/strings-qV78hWQO.js",
+        "entry": false,
+        "raw": 2882,
+        "gzip": 1232
+      },
+      {
+        "file": "assets/uiRules-DvoCF9Nz.js",
+        "entry": false,
+        "raw": 2822,
+        "gzip": 1463
+      },
+      {
+        "file": "assets/uiuxTables-C8SgBqNj.js",
+        "entry": false,
+        "raw": 6194,
+        "gzip": 2867
+      },
+      {
+        "file": "assets/useHealthRunner-C7Wf0jj-.js",
+        "entry": false,
+        "raw": 61,
+        "gzip": 77
+      }
+    ],
+    "initialJS": {
+      "raw": 323479,
+      "gzip": 107131
+    },
+    "allJS": {
+      "raw": 1248514,
+      "gzip": 417579
+    },
+    "css": {
+      "raw": 86467,
+      "gzip": 14914
+    },
+    "initialModules": [
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/StatePanel.jsx",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/src/components/RouteBoundary.jsx",
+      "/src/components/ui/use-toast.jsx",
+      "/src/lib/utils.js",
+      "/src/components/ui/toast.jsx",
+      "/src/components/ui/toaster.jsx",
+      "/src/lib/query-client.js",
+      "/src/foundation/authErrors.js",
+      "/src/lib/AuthContext.jsx",
+      "/src/lib/PageNotFound.jsx",
+      "/src/components/UserNotRegisteredError.jsx",
+      "/src/components/ScrollToTop.jsx",
+      "/src/components/ProtectedRoute.jsx",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/sunSign.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/src/services/onboardingService.js",
+      "/src/components/shinka/ShinkaInput.jsx",
+      "/src/components/GoogleIcon.jsx",
+      "/src/foundation/authPolicy.js",
+      "/src/services/authService.js",
+      "/src/lib/authReturnTo.js",
+      "/src/features/onboarding/SignIn.jsx",
+      "/src/components/shinka/ShinkaSelect.jsx",
+      "/src/features/onboarding/BirthplaceList.jsx",
+      "/src/features/onboarding/placeListCache.js",
+      "/src/features/onboarding/birthplaceSelection.js",
+      "/src/features/onboarding/BirthplacePicker.jsx",
+      "/src/features/onboarding/OnboardingForms.jsx",
+      "/src/features/onboarding/pendingName.js",
+      "/src/services/dailyMessageService.js",
+      "/src/features/daily/useDailyMessage.js",
+      "/src/foundation/i18n/dailyCopy.js",
+      "/src/features/daily/DailyStatus.jsx",
+      "/src/features/daily/FirstShinka.jsx",
+      "/src/features/onboarding/OnboardingScreen.jsx",
+      "/src/foundation/uiContract.js",
+      "/src/components/shinka/ProductNavigation.jsx",
+      "/src/foundation/internalNavigation.js",
+      "/src/components/profile/ProfileMenu.jsx",
+      "/src/pages/Home.jsx",
+      "/src/components/profile/ProfileAccess.jsx",
+      "/src/pages/Onboarding.jsx",
+      "/src/components/internal/AdminGate.jsx",
+      "/src/foundation/probes/authProbeRoute.js",
+      "/src/App.jsx",
+      "/src/index.css",
+      "/src/main.jsx",
+      "/index.html",
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/foundation/uiuxTables.js",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/scripts/testHarness/fakeBase44.js",
+      "/src/foundation/i18n/strings.js",
+      "/base44/shared/internalAuthorization.js"
+    ],
+    "chunkCount": 29
+  },
+  "pages": [
+    {
+      "route": "/",
+      "samples": [
+        {
+          "domNodes": 42,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 22,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 20
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 48
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 48,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 42,
+          "js": [
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 15.400000035762787,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 16
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 40
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 40,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 42,
+          "js": [
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 16.900000035762787,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 16
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 44
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 44,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/login",
+      "samples": [
+        {
+          "domNodes": 46,
+          "js": [
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 14.400000035762787,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 40
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 40,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 46,
+          "js": [
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 13.5,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 36
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 36,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 46,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 15.299999952316284,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 16
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 40
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 40,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr",
+      "samples": [
+        {
+          "domNodes": 61,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 15.5,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 16
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 40
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 60,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "dailyMessage.today": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 61,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 14.399999976158142,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 40
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 60,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "dailyMessage.today": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 61,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 14.300000011920929,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 40
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 64,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "dailyMessage.today": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/calendar?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr&calendarScenario=blocked",
+      "samples": [
+        {
+          "domNodes": 164,
+          "js": [
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            },
+            {
+              "url": "/assets/calendarController-DZp1mC6h.js",
+              "bytes": 4826
+            },
+            {
+              "url": "/assets/Calendar-C50W0EUY.js",
+              "bytes": 15759
+            },
+            {
+              "url": "/assets/calendarFixture-C-aF7suJ.js",
+              "bytes": 3121
+            },
+            {
+              "url": "/assets/calendarOperation-DHxVXDw-.js",
+              "bytes": 373208
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 14.300000011920929,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 12
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 40
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 64,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "calendar.read": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 164,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            },
+            {
+              "url": "/assets/Calendar-C50W0EUY.js",
+              "bytes": 15759
+            },
+            {
+              "url": "/assets/calendarController-DZp1mC6h.js",
+              "bytes": 4826
+            },
+            {
+              "url": "/assets/calendarFixture-C-aF7suJ.js",
+              "bytes": 3121
+            },
+            {
+              "url": "/assets/calendarOperation-DHxVXDw-.js",
+              "bytes": 373208
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 15.699999988079071,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 16
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 40
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 76,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "calendar.read": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 164,
+          "js": [
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            },
+            {
+              "url": "/assets/Calendar-C50W0EUY.js",
+              "bytes": 15759
+            },
+            {
+              "url": "/assets/calendarController-DZp1mC6h.js",
+              "bytes": 4826
+            },
+            {
+              "url": "/assets/calendarFixture-C-aF7suJ.js",
+              "bytes": 3121
+            },
+            {
+              "url": "/assets/calendarOperation-DHxVXDw-.js",
+              "bytes": 373208
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 15.699999988079071,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 16
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 44
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 76,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "calendar.read": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/internal/build?sdkSession=admin",
+      "samples": [
+        {
+          "domNodes": 205,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            },
+            {
+              "url": "/assets/BuildEnvironment-BebOEOI0.js",
+              "bytes": 3245
+            },
+            {
+              "url": "/assets/InternalNav-D317auEL.js",
+              "bytes": 1299
+            },
+            {
+              "url": "/assets/StatusBadge-DU7eLjao.js",
+              "bytes": 20196
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 17.399999976158142,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 16
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 44
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 72,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 205,
+          "js": [
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/BuildEnvironment-BebOEOI0.js",
+              "bytes": 3245
+            },
+            {
+              "url": "/assets/InternalNav-D317auEL.js",
+              "bytes": 1299
+            },
+            {
+              "url": "/assets/StatusBadge-DU7eLjao.js",
+              "bytes": 20196
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 18.19999998807907,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 16
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 40
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 56,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 205,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            },
+            {
+              "url": "/assets/BuildEnvironment-BebOEOI0.js",
+              "bytes": 3245
+            },
+            {
+              "url": "/assets/StatusBadge-DU7eLjao.js",
+              "bytes": 20196
+            },
+            {
+              "url": "/assets/InternalNav-D317auEL.js",
+              "bytes": 1299
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 17.900000035762787,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 16
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 40
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 56,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/internal/health?sdkSession=admin",
+      "samples": [
+        {
+          "domNodes": 1301,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/HealthCenter-ByDT9Gmy.js",
+              "bytes": 13569
+            },
+            {
+              "url": "/assets/StatusBadge-DU7eLjao.js",
+              "bytes": 20196
+            },
+            {
+              "url": "/assets/calendarOperation-DHxVXDw-.js",
+              "bytes": 373208
+            },
+            {
+              "url": "/assets/catalog-Bse5UsZp.js",
+              "bytes": 295564
+            },
+            {
+              "url": "/assets/aggregate-BDl3BZpE.js",
+              "bytes": 2555
+            },
+            {
+              "url": "/assets/nativeFixture-Bj7B6Gkn.js",
+              "bytes": 32267
+            },
+            {
+              "url": "/assets/onboardingFixture-D7hbgo1Q.js",
+              "bytes": 22990
+            },
+            {
+              "url": "/assets/adminTestTools-DSFCbfal.js",
+              "bytes": 754
+            },
+            {
+              "url": "/assets/InternalNav-D317auEL.js",
+              "bytes": 1299
+            },
+            {
+              "url": "/assets/uiRules-DvoCF9Nz.js",
+              "bytes": 2822
+            },
+            {
+              "url": "/assets/AdminPanel-BZOA3Sqp.js",
+              "bytes": 886
+            },
+            {
+              "url": "/assets/calendarFixture-C-aF7suJ.js",
+              "bytes": 3121
+            },
+            {
+              "url": "/assets/report-DsMDYfDD.js",
+              "bytes": 1385
+            },
+            {
+              "url": "/assets/calendarController-DZp1mC6h.js",
+              "bytes": 4826
+            },
+            {
+              "url": "/assets/runner-BzGxR6-t.js",
+              "bytes": 3596
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 17.599999964237213,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 16
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 44
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 84,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 1301,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            },
+            {
+              "url": "/assets/HealthCenter-ByDT9Gmy.js",
+              "bytes": 13569
+            },
+            {
+              "url": "/assets/StatusBadge-DU7eLjao.js",
+              "bytes": 20196
+            },
+            {
+              "url": "/assets/catalog-Bse5UsZp.js",
+              "bytes": 295564
+            },
+            {
+              "url": "/assets/aggregate-BDl3BZpE.js",
+              "bytes": 2555
+            },
+            {
+              "url": "/assets/nativeFixture-Bj7B6Gkn.js",
+              "bytes": 32267
+            },
+            {
+              "url": "/assets/onboardingFixture-D7hbgo1Q.js",
+              "bytes": 22990
+            },
+            {
+              "url": "/assets/calendarOperation-DHxVXDw-.js",
+              "bytes": 373208
+            },
+            {
+              "url": "/assets/adminTestTools-DSFCbfal.js",
+              "bytes": 754
+            },
+            {
+              "url": "/assets/InternalNav-D317auEL.js",
+              "bytes": 1299
+            },
+            {
+              "url": "/assets/uiRules-DvoCF9Nz.js",
+              "bytes": 2822
+            },
+            {
+              "url": "/assets/AdminPanel-BZOA3Sqp.js",
+              "bytes": 886
+            },
+            {
+              "url": "/assets/calendarFixture-C-aF7suJ.js",
+              "bytes": 3121
+            },
+            {
+              "url": "/assets/report-DsMDYfDD.js",
+              "bytes": 1385
+            },
+            {
+              "url": "/assets/calendarController-DZp1mC6h.js",
+              "bytes": 4826
+            },
+            {
+              "url": "/assets/runner-BzGxR6-t.js",
+              "bytes": 3596
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 16.30000001192093,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 16
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 40
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 84,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        },
+        {
+          "domNodes": 1301,
+          "js": [
+            {
+              "url": "/assets/ShinkaCard-qJqUeQ_g.js",
+              "bytes": 8115
+            },
+            {
+              "url": "/assets/fakeBase44-BX1xRVXh.js",
+              "bytes": 5498
+            },
+            {
+              "url": "/assets/strings-qV78hWQO.js",
+              "bytes": 2882
+            },
+            {
+              "url": "/assets/uiuxTables-C8SgBqNj.js",
+              "bytes": 6194
+            },
+            {
+              "url": "/assets/react-dom-DM46qtkV.js",
+              "bytes": 132631
+            },
+            {
+              "url": "/assets/index-CdzUJEgR.js",
+              "bytes": 168196
+            },
+            {
+              "url": "/assets/internalAuthorization-D6ORd_Rh.js",
+              "bytes": 1413
+            },
+            {
+              "url": "/assets/HealthCenter-ByDT9Gmy.js",
+              "bytes": 13569
+            },
+            {
+              "url": "/assets/StatusBadge-DU7eLjao.js",
+              "bytes": 20196
+            },
+            {
+              "url": "/assets/catalog-Bse5UsZp.js",
+              "bytes": 295564
+            },
+            {
+              "url": "/assets/aggregate-BDl3BZpE.js",
+              "bytes": 2555
+            },
+            {
+              "url": "/assets/nativeFixture-Bj7B6Gkn.js",
+              "bytes": 32267
+            },
+            {
+              "url": "/assets/calendarOperation-DHxVXDw-.js",
+              "bytes": 373208
+            },
+            {
+              "url": "/assets/adminTestTools-DSFCbfal.js",
+              "bytes": 754
+            },
+            {
+              "url": "/assets/onboardingFixture-D7hbgo1Q.js",
+              "bytes": 22990
+            },
+            {
+              "url": "/assets/InternalNav-D317auEL.js",
+              "bytes": 1299
+            },
+            {
+              "url": "/assets/uiRules-DvoCF9Nz.js",
+              "bytes": 2822
+            },
+            {
+              "url": "/assets/calendarFixture-C-aF7suJ.js",
+              "bytes": 3121
+            },
+            {
+              "url": "/assets/AdminPanel-BZOA3Sqp.js",
+              "bytes": 886
+            },
+            {
+              "url": "/assets/calendarController-DZp1mC6h.js",
+              "bytes": 4826
+            },
+            {
+              "url": "/assets/report-DsMDYfDD.js",
+              "bytes": 1385
+            },
+            {
+              "url": "/assets/runner-BzGxR6-t.js",
+              "bytes": 3596
+            }
+          ],
+          "css": 86455,
+          "domContentLoaded": 15.199999988079071,
+          "paint": [
+            {
+              "name": "first-paint",
+              "start": 16
+            },
+            {
+              "name": "first-contentful-paint",
+              "start": 36
+            }
+          ],
+          "cls": 0,
+          "lcpMs": 80,
+          "inpMs": null,
+          "vitalsScope": "LAB_ONLY; INP and mobile/desktop field p75 NOT_MEASURED",
+          "sdkCalls": {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          "longTaskTotal": 0,
+          "scrollWidth": 360,
+          "viewport": 360,
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "cycles": []
+}

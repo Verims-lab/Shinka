@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-019
+**Current BuildMarker:** Buildmarker-020
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -12,6 +12,12 @@
 **External Verification Required:** Base44 native UNIQUE is unsupported; no multi-record transaction/CAS guarantee is claimed. Native handler tests use synthetic transport; hosted schema/authorization/mutation recovery remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+
+## 020 removal result semantics — no schema or retention change
+
+AdminTestOperation COMPLETED is persisted historical progress. execute, resume, status and lookup now share testOperationOutcome, which freshly verifies native User absence, all operational scopes, calendar receipts and pending-notification disposition before projecting COMPLETED. A reappearing active User/profile/residual projects PARTIAL even if the saved job says COMPLETED; failed or conflicting reads propagate an error and are not absence evidence. The existing same-operation resume policy remains; no new operation, account or silent journal rewrite is introduced.
+
+Native User is distinct from UserProfile and retained consent/event/daily/audit/protection histories. Target lookup uses asServiceRole.entities.User.filter({id: target}) with exact-ID/role/cardinality validation. Empty profile or failed login alone is insufficient. The result verifies active-store removal, not physical erasure, trash emptiness, backup removal or all retained history. SDK 0.8.54 delete(id) has no separately exposed trash-purge option; no undocumented endpoint or credential was added. See the official-source distinction and sanitized selected-target observation in the [020 report](reports/SHINKA_TARGETED_CLOSURE_020.md).
 
 ## Current data contract — 019 audit
 

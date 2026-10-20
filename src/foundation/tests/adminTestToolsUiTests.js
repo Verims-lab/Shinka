@@ -148,4 +148,25 @@ export const ADMIN_TEST_UI_TESTS = [
       assert(host.textContent.includes(TEST_TOOLS_COPY.en.deletePending),'recoverable partial state hidden');
     });
   }],
+  ['AU10','TR/EN completed removal clears the old identity and reopens the same operation without writes',async()=>{
+    for(const language of ['tr','en']) {
+      const f=nativeFixture();f.state.time=new Date().toISOString();
+      Object.assign(f.tables.User.find(row=>row.id==='ownerA'),{full_name:'Prior Synthetic Identity',email:'prior@example.invalid'});
+      const request=async(action,body)=>{const result=await f.tools({action,...body});if(['execute','resume','status'].includes(action))delete result.target;return result;};
+      await fixture(language,request,async(q,host)=>{
+        await lookup(q);checkIdentity();
+        function checkIdentity(){assert(host.textContent.includes('Prior Synthetic Identity'),'pre-operation target missing');}
+        q('[data-destructive="true"]').click();await until(()=>q('[data-test-preview]'));q('[data-test-preview] [data-variant="primary"]').click();
+        await until(()=>host.textContent.includes(TEST_TOOLS_COPY[language].deletedResult));
+        assert(!q('[data-test-target]')&&!host.textContent.includes('prior@example.invalid')&&!host.textContent.includes('Prior Synthetic Identity'),'stale active identity');
+        assert(!TEST_TOOLS_COPY[language].deleteDescription.includes(language==='tr'?'Geri alınamaz':'Irreversible'),'unsupported erasure promise');
+      });
+      const id=f.tables.AdminTestOperation[0].operation_id,start=f.state.calls.length;
+      await fixture(language,request,async(q,host)=>{
+        await until(()=>host.textContent.includes(TEST_TOOLS_COPY[language].deletedResult));
+        assert(!q('[data-test-target]')&&host.textContent.includes(id),'wrong restored operation/identity');
+      },true);
+      assert(f.state.calls.slice(start).every(c=>c.method==='filter')&&f.tables.AdminTestOperation.length===1,'reload wrote data');
+    }
+  }],
 ];

@@ -47,7 +47,11 @@ export function nativeFixture({ granted = true } = {}) {
   const library = async () => ({ plan: { ready: true }, actual: Object.fromEntries(Object.keys(DOMAIN_SCHEMAS).map(name => [name, clone(tables[physicalName(name)])])) });
   const today = () => dailyMessageOperation(client(), { action: 'today', timezone: 'Europe/Istanbul' }, { native: true, now, library, random: () => 0 });
   const tools = (body, owner = 'adminA', options = {}) => nativeAdminTestOperation(withUserLifecycle(options.diagnostics ? options.diagnostics.wrap(raw(owner)) : raw(owner)), body, { policy: { appId: 'native-fixture', label: 'TEST' }, signer: createPreviewSigner('synthetic-signing-key-at-least-32-characters', now), now, ...options });
-  const preview = (operation = 'RESET_ONBOARDING') => tools({ action: 'preview', target_id: 'ownerA', operation });
+  const preview = async (operation = 'RESET_ONBOARDING') => {
+    const result = await tools({ action: 'preview', target_id: 'ownerA', operation });
+    if (!('preview_token' in result) || !('enabled' in result)) throw new Error('EXPECTED_PREVIEW_RESPONSE');
+    return result;
+  };
   const execute = view => tools({ action: 'execute', target_id: 'ownerA', operation: view.operation, confirmation: true, preview_token: view.preview_token, request_id: crypto.randomUUID() });
   const once = (when, predicate) => { state[when] = async call => { if (predicate(call)) { state[when] = null; throw new Error('SYNTHETIC_LOST_RESPONSE'); } }; };
   return { tables, state, client, raw, now, cal, change, today, tools, preview, execute, once };

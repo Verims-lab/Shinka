@@ -1,0 +1,143 @@
+{
+  "schema": "shinka.target-removal-diagnostic/1",
+  "readOnly": true,
+  "measuredAt": "2026-10-20T22:06:28.281Z",
+  "dataEnvironment": "prod",
+  "appMatched": true,
+  "operations": [
+    {
+      "operation": "DELETE_USER",
+      "status": "COMPLETED",
+      "stage": "VERIFY",
+      "checkpoints": [
+        "NOTIFICATIONS",
+        "user_cycle_phase_day",
+        "user_cycle_prediction",
+        "user_cycle_settings",
+        "user_period_record",
+        "user_pattern_summary",
+        "user_preferences",
+        "user_profile",
+        "USER",
+        "VERIFY"
+      ],
+      "error_code": null,
+      "started_at": "2026-10-20T19:54:23.460Z",
+      "completed_at": "2026-10-20T21:55:22.406Z",
+      "progressed_at": "2026-10-20T21:55:22.938Z"
+    }
+  ],
+  "nativeUserFilter": {
+    "exactIdQuery": true,
+    "matches": 0,
+    "metadata": []
+  },
+  "nativeUserGet": {
+    "httpStatus": 404,
+    "code": "READ_FAILED"
+  },
+  "scopes": {
+    "UserProfile": {
+      "readConfirmed": true,
+      "present": false,
+      "sampledCount": 0,
+      "limit": 2
+    },
+    "UserPreferences": {
+      "readConfirmed": true,
+      "present": false,
+      "sampledCount": 0,
+      "limit": 2
+    },
+    "UserCycleSettings": {
+      "readConfirmed": true,
+      "present": false,
+      "sampledCount": 0,
+      "limit": 2
+    },
+    "UserPeriodRecord": {
+      "readConfirmed": true,
+      "present": false,
+      "sampledCount": 0,
+      "limit": 2
+    },
+    "UserCyclePrediction": {
+      "readConfirmed": true,
+      "present": false,
+      "sampledCount": 0,
+      "limit": 2
+    },
+    "UserCyclePhaseDay": {
+      "readConfirmed": true,
+      "present": false,
+      "sampledCount": 0,
+      "limit": 2
+    },
+    "UserPatternSummary": {
+      "readConfirmed": true,
+      "present": false,
+      "sampledCount": 0,
+      "limit": 2
+    },
+    "UserCalendarAction": {
+      "readConfirmed": true,
+      "present": false,
+      "sampledCount": 0,
+      "limit": 2
+    },
+    "UserDailyMessage": {
+      "readConfirmed": true,
+      "present": false,
+      "sampledCount": 0,
+      "limit": 2
+    },
+    "UserHealthConsent": {
+      "readConfirmed": true,
+      "present": false,
+      "sampledCount": 0,
+      "limit": 2
+    },
+    "UserHealthConsentEvent": {
+      "readConfirmed": true,
+      "present": false,
+      "sampledCount": 0,
+      "limit": 2
+    }
+  },
+  "lookup": {
+    "targetPresent": false,
+    "operation": "DELETE_USER",
+    "status": "COMPLETED",
+    "stage": "VERIFY",
+    "completed_at": "2026-10-20T21:55:22.406Z",
+    "result_state": "COMPLETED"
+  },
+  "status": {
+    "targetPresent": false,
+    "operation": "DELETE_USER",
+    "status": "COMPLETED",
+    "stage": "VERIFY",
+    "completed_at": "2026-10-20T21:55:22.406Z",
+    "result_state": "COMPLETED"
+  },
+  "uiObservation": {
+    "surface": "Data > UserProfile",
+    "beforeReload": {
+      "headingCount": 2,
+      "displayedRows": 3,
+      "selectedTargetVisible": true
+    },
+    "afterReload": {
+      "headingCount": 2,
+      "selectedTargetVisible": false
+    },
+    "recentlyDeleted": {
+      "surface": "App Users > More actions > Recently deleted",
+      "visibleRows": 1,
+      "targetIdExposed": false,
+      "exactTargetMembership": "UNCONFIRMED"
+    },
+    "mutationPerformed": false
+  },
+  "scope": "ONLY_USER_SELECTED_TARGET; NO_TARGET_ID_OR_PERSONAL_FIELDS_STORED"
+}

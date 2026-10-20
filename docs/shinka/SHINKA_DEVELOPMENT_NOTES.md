@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-019
+**Current BuildMarker:** Buildmarker-020
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## Buildmarker-020 — targeted readiness/removal closure
+
+Fixed nativePrerequisite strategy-string return with exact boolean strategy/schema/authority validation; preserved strict verdict. Unified execute/resume/status/lookup completion projection and replaced stale identity merging; corrected scoped TR/EN removal wording. Added RG01–03/RM01–03/AU10, updating existing H16-007/H12-036/H13-016 coverage without deleting failures. Original 019 code fails RG01/RM01/AU10; corrected targeted tests pass. Read-only selected-target diagnostics show completed VERIFY, no active User/profile/operational rows and a stale dashboard row that disappeared on reload; physical erasure/Recently deleted identity mapping remains unproven. No live mutation or Full Health. Final measurements and publication acceptance: [020 report](reports/SHINKA_TARGETED_CLOSURE_020.md).
 
 ## 019 Audit + Fix — 2026-10-21
 

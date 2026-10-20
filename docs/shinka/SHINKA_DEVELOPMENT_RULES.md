@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-019
+**Current BuildMarker:** Buildmarker-020
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -15,7 +15,11 @@
 - NO FUTURE FEATURE IMPLEMENTATION WITHOUT PACKAGE SCOPE
 - NO LEGACY SHINKA IMPORT — NO LEGACY SHINKA CONTRACT MAY ENTER THIS PROJECT WITHOUT AN EXPLICIT CHANGE REQUEST.
 
-## Current package governance — 019
+## Current package governance — 020 targeted fix
+
+Advance once to Buildmarker-020 / HC-020.0; retain packages 016–020 in Internal Build. Scope is the four readiness type failures and selected-target removal/result consistency, not a repeated general audit. The user permits only targeted read-only live diagnosis; no agent-run hosted Health, delete, resume, reset or permanent deletion. Required local quality/regression gates remain; the user owns main merge/publish and in-app acceptance. [020 handoff](reports/SHINKA_TARGETED_CLOSURE_020.md).
+
+## Historical package governance — 019
 
 Advance once to Buildmarker-019 / HC-019.0; the Internal Build source/output must contain exactly packages 015–019. Preserve Git, security and historical Health evidence. This task permits only targeted read-only live diagnostics and local isolated mutations; no live deletion/reset/resume/new operation or hosted Full Health. The user performs publish/acceptance in the app. Test delivery remains MANUAL_USER_VALIDATION_PENDING for hosted/device behavior.
 
