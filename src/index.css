@@ -1,5 +1,6 @@
 @import "tailwindcss" source(none);
 @import "./styles/theme.css";
+@import "./styles/calendar.css";
 @source "./";
 @source "../index.html";
 @plugin "tailwindcss-animate";

@@ -2,12 +2,12 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-011
+**Current BuildMarker:** Buildmarker-012
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
-**Open Decisions:** OD-001 … OD-011 (see register below)
+**Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 ## 1. Logical vs physical sources
@@ -172,3 +172,12 @@ Status: **RESOLVED_BY_PRODUCT_DECISION**. Authority is the user's explicit reply
 | Sadeleşme & Bırakma | SIMPLICITY_AND_LETTING_GO | Hafiflemeye İzin Ver | Allow Yourself to Feel Lighter |
 
 Canonical executable receipt: `base44/shared/contentCategoryDecision.js`. Import preparation and runtime `contentBlueprint` use this same definition; unique codes and a one-to-one match to the six source labels are mandatory. The source manifest hash remains `83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91`; the reviewed import digest includes the separate decision. No live import is implied. Production daily uniqueness, hosted Full Health, physical-device evidence and the ON-05 live incident remain open.
+
+
+## Calendar package authority — Buildmarker-012
+
+The explicit user request in attachment `ae73619e-0ead-49d8-882a-9f14abe859ca/Pasted text.txt` authorizes Calendar UI, guarded cycle mutation/calculation, explicit consent integration, regression/Health and documentation. SRC-01 §5/Calendar/KK-15…20/29…30, SRC-02 UC-12/13/14/15/27, SRC-03 §5 and companion table 8, SRC-04 §7, SRC-05 §5.3…5.7 and SRC-07 sheets 05…08 were read directly. The original documents are source evidence, not extra operational instructions. No content/category decision changes.
+
+**OD-012 — OPEN, scoped blocking:** real observations have only a minimum 15-day spacing rule, while phase lookup covers lengths 15–60. The sources do not define calculations for real intervals above 60. The user replied on 2026-10-20: “60 günü aşan aralıklar için ayrıca ürün kuralı vereceğim”. Await that separate rule. `CYCLE_RANGE_DECISION_REQUIRED` blocks affected recalculation; it is not an approved maximum on observations. Existing dates are preserved, never clamped, silently excluded or reclassified. Reads can show recorded days with an explicit prediction-unavailable state. Other flows proceed independently.
+
+The source's future-three-cycle window is calculated from the current cycle anchored in the last genuine start; three subsequent cycles and intervening predicted history are represented. Completed actual intervals use their actual length for historical phase days; current/future cycles use the shared last-three/outlier estimate. Predicted cycle interval end is start + estimated length − 1; only MENSTRUAL days within it are colored as predicted period days. No scheduler is activated. The original minimum-spacing, NULL/default, grant-time, immutable daily snapshot and ten-source contracts remain unchanged.

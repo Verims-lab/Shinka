@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-011
+**Current BuildMarker:** Buildmarker-012
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -68,3 +68,10 @@ Keep destination inventory/localization, role decision, menu interaction and pan
 ## Daily implementation boundaries
 
 Keep source manifest/backend astronomy out of the initial frontend graph. Import planning, SDK batches, phase calculation, selection, persistence and UI have separate modules. The write-surface tripwire adds exactly one upsert call in base44ContentLibrary and one in moonImport, both reachable only through strict admin apply dispatch; arbitrary writers remain rejected. Dry-run and Home must never trigger import. No native atomicity can be inferred from SDK method naming, synthetic concurrency or a local lock. Tests must assert production refusal until a verified adapter is explicitly added. Preserve actual selected category, immutable bilingual snapshots, bounded history and distinction between source/technical failures and UNKNOWN.
+
+
+## Calendar engineering requirements — Buildmarker-012
+
+Keep date selection, editing identity, validation, cycle calculation, authorized snapshot reading and transaction publication separate. Reuse the shared Home cycle engine. Dates remain YYYY-MM-DD; UTC arithmetic is only integer calendar-day arithmetic, never conversion of an entered local day. A production mutation must never be enabled merely because a method named transaction/upsert exists: verify cross-worker owner serialization, crash recovery, receipts, guards and atomic publication to every authoritative reader.
+
+Canonical CA/CU tests cover actual lifecycle, both neighbors, 14/15, local dates/DST, full pagination, NULLs/source examples, lost response, independent workers, no-consent/regrant/deletion, stale UI, unchanged Home and live-capability refusal. H08/H11/H12/H13 execute the same isolated contracts. Native evidence remains separate. Strict typecheck/lint remain enabled; no exclusions were added for Calendar or unused auth templates.

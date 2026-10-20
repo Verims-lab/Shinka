@@ -57,6 +57,7 @@ const AuthenticatedApp = () => {
           />
         }
       >
+        <Route path="/calendar" element={<Onboarding destination="calendar" />} />
         <Route element={<AdminGate />}>
           <Route path="/internal" element={<RouteBoundary><AdminPanel /></RouteBoundary>} />
           <Route

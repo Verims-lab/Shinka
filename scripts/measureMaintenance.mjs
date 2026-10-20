@@ -162,6 +162,7 @@ try {
     "/",
     "/login",
     "/?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr",
+    "/calendar?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr&calendarScenario=blocked",
     "/internal/build?sdkSession=admin",
     "/internal/health?sdkSession=admin",
   ]) {
@@ -203,7 +204,7 @@ try {
         } catch {}
       });
       await page.goto(origin + route);
-      await page.waitForSelector(route.includes('ACTIVE_EXISTING_USER') ? '[data-daily-id="local-measurement-only"]' : '[data-probe-root]');
+      await page.waitForSelector(route.startsWith('/calendar') ? '[data-calendar-blocked]' : route.includes('ACTIVE_EXISTING_USER') ? '[data-daily-id="local-measurement-only"]' : '[data-probe-root]');
       await page.waitForLoadState("networkidle");
       const metrics = await page.evaluate(() => ({
         domNodes: document.querySelectorAll("*").length,

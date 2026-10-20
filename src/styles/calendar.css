@@ -1,0 +1,5 @@
+.shinka-calendar-day { min-width: 44px; min-height: 44px; margin-block: 2px; }
+.shinka-calendar-day:focus-visible { outline: 2px dashed rgb(var(--shinka-plum)); outline-offset: 1px; }
+.shinka-calendar-dialog { margin: auto; width: min(440px, calc(100% - 40px)); max-height: 85vh; max-height: 85dvh; overflow: auto; }
+.shinka-calendar-dialog::backdrop { background: rgb(76 38 63 / .35); }
+@media (max-width: 359px) { .shinka-calendar-grid { margin-inline: -14px; } }

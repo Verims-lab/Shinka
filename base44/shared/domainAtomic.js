@@ -109,3 +109,20 @@ export async function commitOwnerAction(principal, actionId, fingerprint, writes
   });
   return outcome;
 }
+
+// Calendar needs a stronger multi-collection boundary than createOnce.
+// A compliant implementation takes an owner snapshot, checks the expected
+// revision and current ACTIVE/consent/deletion predicates, runs reduce, and
+// publishes the entire replacement plus a durable action receipt atomically.
+// Receipts are scoped to owner/actionId, bind the exact fingerprint, replay even
+// after a lost response, and never restore an old snapshot over newer changes.
+// Production has no implementation. The callback is server-owned, never JSON.
+export async function commitCalendarAction(principal, request, adapter, reduce) {
+  assertAuthenticatedPrincipal(principal);
+  if (typeof adapter?.transactCalendar !== 'function') fail('CALENDAR_ATOMIC_CAPABILITY_REQUIRED', 503);
+  const outcome = await adapter.transactCalendar({ owner: principal.id, ...request, reduce });
+  if (!outcome || !['COMMITTED', 'REPLAYED'].includes(outcome.status) || !outcome.snapshot || typeof outcome.revision !== 'string' || typeof outcome.calculationDay !== 'string') fail('ATOMIC_RESULT_INVALID');
+  if (typeof outcome.committedRevision !== 'string') fail('ATOMIC_RESULT_INVALID');
+  if (outcome.committedRevision !== outcome.revision) fail('CALENDAR_STATE_CHANGED');
+  return outcome;
+}

@@ -1,6 +1,10 @@
 // OPEN_DECISION register. Status: OPEN | RESOLVED_BY_PRECEDENCE (documented rule) | NOTED (non-material).
 // Nothing here may be silently marked resolved: RESOLVED_* entries must cite a resolution rule.
 export const OPEN_DECISIONS = Object.freeze([
+  { id: "OD-012", status: "OPEN", blocking: true, sources: ["SRC-01 §5", "SRC-05 §5.7", "User reply 2026-10-20"],
+    conflict: "Real starts require ≥15 days but the phase lookup supports only 15–60. Behavior for observed intervals over 60 is undefined.",
+    impact: "Affected Calendar calculation/mutation is refused with CYCLE_RANGE_DECISION_REQUIRED; dates are not clamped, omitted or silently changed.",
+    recommendation: "Await the separate product rule the user chose to provide. Do not infer approval of a new upper limit on real observations." },
   { id: "OD-001", status: "RESOLVED_BY_SOURCE_RECEIPT", blocking: false, sources: ["Task brief (10 files)", "UI/UX v1.1 Part 1–4 (reconciliation package)"],
     conflict: "Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx was listed as authoritative but was not uploaded in the initial Foundation package.",
     impact: "Tokens were PROVISIONAL until receipt.",

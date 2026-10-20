@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-011
+**Current BuildMarker:** Buildmarker-012
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -71,3 +71,10 @@ This explicit feature request advances 010 → 011 once and updates the catalog 
 ## OD-002 approval continuation within Home
 
 The explicit 2026-10-20 reply completes the pending category decision within package 011. Retain Buildmarker-011 and update its single ledger entry; active history remains 007…011. Retain HC-011.0: H02-006's provenance contract and H05-010's exact-import contract are unchanged, with three added canonical regressions supplying the newly approved data; no case ID, applicability, severity or gate is changed. Source content/mapping hashes must stay unchanged. The decision does not authorize live import, deployment, a main push or removal of H09-004's unverified-production-adapter blocker.
+
+
+## Calendar package — Buildmarker-012 / HC-012.0
+
+Advance once for the requested Calendar feature; retain 008…012 through recordBuild. H08-002 and H11-002 move from placeholders to scoped current tests; new Calendar protocol/privacy/UI and explicit production/source blockers update the catalog. No failing case is removed or downgraded. Package 012 retains the source-approved staged content policy; unapproved 013+ still blocks.
+
+The user will separately supply OD-012's >60-day rule; do not invent it or mark it resolved. Complete independent work while preserving the explicit refusal. Production Calendar writes and reconsent remain disabled without a verified multi-collection adapter. Passing local tests is safe repository implementation evidence, not complete product availability. Test-only push; user main merge/sync/publish and hosted/device acceptance remain required. ON-05 same-account live save/readback and Home H09-004 remain open.

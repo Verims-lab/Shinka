@@ -18,6 +18,7 @@ import { H13_CASES } from '@/foundation/health/cases/h13';
 import { createHealthContext } from "@/foundation/health/context";
 import { HEALTH_CASES } from "@/foundation/health/catalog";
 import { DAILY_HEALTH_CASES } from '@/foundation/health/cases/daily';
+import { CALENDAR_HEALTH_CASES } from '@/foundation/health/cases/calendar';
 import { SUITES } from "@/foundation/health/suites";
 import { HEALTH_CATALOG_VERSION, APPLICABILITY as A } from "@/foundation/health/constants";
 import "@/index.css";
@@ -48,5 +49,10 @@ window.__dailyHealthEvidence = async () => {
   const out=[];
   // Only synthetic cases here. H09-004 needs hosted evidence and remains blocked.
   for(const c of DAILY_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&c.runnerType==='RUNTIME'))out.push({id:c.id,...await c.run({})});
+  return out;
+};
+window.__calendarHealthEvidence = async () => {
+  const out=[];
+  for(const c of CALENDAR_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&c.runnerType==='RUNTIME'))out.push({id:c.id,...await c.run({})});
   return out;
 };

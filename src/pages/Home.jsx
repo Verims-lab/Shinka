@@ -1,14 +1,12 @@
 import { useState } from 'react';
-import { House, CalendarDays, Moon } from 'lucide-react';
-import { BOTTOM_NAV } from '@/foundation/uiContract';
+import ProductNavigation from '@/components/shinka/ProductNavigation';
 import ProfileMenu from '@/components/profile/ProfileMenu';
 import ShinkaCard from '@/components/shinka/ShinkaCard';
 import ShinkaButton from '@/components/shinka/ShinkaButton';
-import { t, resolveLanguage } from '@/foundation/i18n/strings';
+import { resolveLanguage } from '@/foundation/i18n/strings';
 import { dailyCopy, greetingKey } from '@/foundation/i18n/dailyCopy';
 import { useDailyMessage } from '@/features/daily/useDailyMessage';
 import DailyStatus from '@/features/daily/DailyStatus';
-const ICONS = { House, CalendarDays, Moon };
 export default function Home({ profileAccess = undefined, renderProfileAccess = undefined, language: initialLanguage = undefined, initialDaily = null, profile = null, request = undefined }) {
   const [language, setLanguage] = useState(initialLanguage || resolveLanguage());
   const daily = useDailyMessage(request, initialDaily);
@@ -28,8 +26,6 @@ export default function Home({ profileAccess = undefined, renderProfileAccess = 
         <ShinkaCard title={copy('suggestion')}><p className="text-shinka-body-lg whitespace-pre-wrap break-words" data-daily-suggestion>{row[`suggestion_${language}_snapshot`]}</p></ShinkaCard>
       </div> : <ShinkaCard><DailyStatus {...daily} language={language}/></ShinkaCard>}
     </main>
-    <nav aria-label={copy('navigation')} className="grid grid-cols-3 border-t border-shinka-line bg-shinka-white">
-      {BOTTOM_NAV.map(item => { const Icon = ICONS[item.component]; return <span key={item.key} aria-current={item.key === 'home' ? 'page' : undefined} aria-disabled={item.key !== 'home'} className="min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-taupe"><Icon className="h-5 w-5" aria-hidden="true"/>{t(item.labelKey, language)}</span>; })}
-    </nav>
+    <ProductNavigation current="home" language={language}/>
   </div>;
 }

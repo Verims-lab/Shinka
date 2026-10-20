@@ -8,7 +8,7 @@ export function sdkOnboardingFixture({owner='ownerA',role='user'}={}) {
   let seq=0,failEntity=null,failAfterWrite=false,omitField=null,nativeCreated=NOW,failReads=true;
   const match=(row,query)=>Object.entries(query).every(([k,v])=>v&&typeof v==='object'?Object.entries(v).every(([op,value])=>op==='$ne'?row[k]!==value:op==='$gte'?row[k]>=value:op==='$lte'?row[k]<=value:false):(row[k]??null)===v);
   const entities=Object.fromEntries(Object.keys(rows).map(entity=>[physicalName(entity),{
-    filter:async(query,sort,limit)=>{calls.push({method:'filter',entity,query});if(failReads&&failEntity===entity&&!failAfterWrite)throw new Error('private backend payload');const key=sort.replace(/^-/,'');return rows[entity].filter(row=>match(row,query)).sort((a,b)=>String(a[key]??'').localeCompare(String(b[key]??''))*(sort.startsWith('-')?-1:1)).slice(0,limit).map(row=>{const copy={...row};if(omitField)delete copy[omitField];return copy;});},
+    filter:async(query,sort,limit,skip=0)=>{calls.push({method:'filter',entity,query,limit,skip});if(failReads&&failEntity===entity&&!failAfterWrite)throw new Error('private backend payload');const key=sort.replace(/^-/,'');return rows[entity].filter(row=>match(row,query)).sort((a,b)=>String(a[key]??'').localeCompare(String(b[key]??''))*(sort.startsWith('-')?-1:1)).slice(skip,skip+limit).map(row=>{const copy={...row};if(omitField)delete copy[omitField];return copy;});},
     create:async(record)=>{
       calls.push({method:'create',entity,records:[structuredClone(record)]});
       if(failEntity===entity&&!failAfterWrite)throw new Error('private backend payload');

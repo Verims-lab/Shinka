@@ -56,7 +56,7 @@ export async function dailyMessageOperation(client, body, { now = () => new Date
     const grant = validatedOnboardingGrant(consent, HEALTH_CONSENT_VERSION);
     const jobs = await read('health_data_deletion_job', 1, { job_status: { $ne: 'COMPLETED' } });
     assertHealthConsent(owner, consent, jobs);
-    const events = await read('user_health_consent_event', 2);
+    const events = await read('user_health_consent_event', 2, { occurred_at: { $gte: grant.granted_at } });
     const expectedEvent = onboardingGrantEvent(grant);
     if (events.length !== 1 || Object.entries(expectedEvent).some(([key, value]) => events[0][key] !== value)) fail('CONSENT_EVENT_UNCONFIRMED');
     const settings = await singleton('user_cycle_settings');

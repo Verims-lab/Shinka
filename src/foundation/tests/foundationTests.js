@@ -1,5 +1,7 @@
 import { ADMIN_NAV_TESTS } from './adminNavigationTests';
 import { DAILY_TESTS } from './dailyTests';
+import { CALENDAR_TESTS } from './calendarTests';
+import { CALENDAR_UI_TESTS } from './calendarUiTests';
 import { DAILY_UI_TESTS } from './dailyUiTests';
 import { MAINTENANCE_TESTS } from './maintenanceTests';
 // Foundation automated tests (in-app runner). Uses real helpers + deterministic synthetic fixtures.
@@ -111,7 +113,7 @@ export const FOUNDATION_TESTS = [
 
 export async function runFoundationTests() {
   const out = [];
-  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...UI_CONTRACT_TESTS, ...HARDENING_TESTS, ...CSS_CONTRACT_TESTS, ...DATA_MODEL_TESTS, ...SECURITY_TESTS, ...AUTH_TESTS, ...ONBOARDING_TESTS, ...ONBOARDING_UI_TESTS, ...PRODUCTION_ONBOARDING_TESTS, ...ONBOARDING_DECISION_TESTS, ...HEALTH_CLOSURE_TESTS, ...AUTH_PROBE_TESTS, ...MAINTENANCE_TESTS, ...ADMIN_NAV_TESTS, ...DAILY_TESTS, ...DAILY_UI_TESTS]) {
+  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...UI_CONTRACT_TESTS, ...HARDENING_TESTS, ...CSS_CONTRACT_TESTS, ...DATA_MODEL_TESTS, ...SECURITY_TESTS, ...AUTH_TESTS, ...ONBOARDING_TESTS, ...ONBOARDING_UI_TESTS, ...PRODUCTION_ONBOARDING_TESTS, ...ONBOARDING_DECISION_TESTS, ...HEALTH_CLOSURE_TESTS, ...AUTH_PROBE_TESTS, ...MAINTENANCE_TESTS, ...ADMIN_NAV_TESTS, ...DAILY_TESTS, ...DAILY_UI_TESTS, ...CALENDAR_TESTS, ...CALENDAR_UI_TESTS]) {
     try { const result=await fn(); out.push({ id, name, passed: true, detail: "ok", ...(result&&typeof result==="object"&&"evidence" in result?{evidence:result.evidence}:{}) }); }
     catch (e) { out.push({ id, name, passed: false, detail: String(e?.message || e).slice(0, 160), ...(e?.probeEvidence?{evidence:{probe:e.probeEvidence}}:{}) }); }
   }
