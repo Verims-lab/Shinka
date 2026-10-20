@@ -1,4 +1,5 @@
 import { CLOSURE018_TESTS } from '@/foundation/tests/closure018Tests';
+import { AUDIT019_DELETION_TESTS } from '@/foundation/tests/audit019Tests';
 import { CLOSURE017_TESTS } from '@/foundation/tests/closure017Tests';
 import { NATIVE_TESTS } from '@/foundation/tests/nativeTests';
 import { syntheticProbe } from './domainProbe';
@@ -13,8 +14,9 @@ export async function nativePrerequisite(ctx, feature) {
   return verdict(value?.authority==='BASE44_NATIVE_V1'&&value.strategyVersion==='native-continuation/2'&&value.schemas?.length===3&&value.schemas.every(r=>r.readable)&&value[feature],ev(CLASS.LIVE_RUNTIME,'internalHealth nativeReadiness',value,'current native strategy; required schemas readable','Does not prove permissions, concurrent mutation or deletion.'));
 }
 export const NATIVE_HEALTH_CASES = [
+  makeCase('H12',{runnerType:RUNNER.RUNTIME,classification:CLASS.SYNTHETIC_RUNTIME})('H12-036','Native deletion failure, retry and request cost','Real handler with isolated SDK: access versus absence, safe diagnostics, bounded pages, final verification, same receipt and current actor.',syntheticProbe(AUDIT019_DELETION_TESTS)),
   makeCase('H12',{runnerType:RUNNER.RUNTIME,classification:CLASS.SYNTHETIC_RUNTIME})('H12-035','Deletion outcome and Health save visibility','Read-only recovery, slow recheck progress and save outcome distinction; isolated fixtures only.',syntheticProbe(CLOSURE018_TESTS.filter(([id])=>['E04','E05','E06','E07','E08'].includes(id)))),
-  makeCase('H12',{runnerType:RUNNER.RUNTIME,classification:CLASS.SYNTHETIC_RUNTIME})('H12-034','Health persistence retry and target lifecycle recovery','Private artifact reuse, immutable history, safe stages, bounded deletion and measured-browser contract.',syntheticProbe(CLOSURE017_TESTS)),
+  makeCase('H12',{runnerType:RUNNER.RUNTIME,classification:CLASS.SYNTHETIC_RUNTIME})('H12-034','Health persistence retry and target lifecycle recovery','Private artifact reuse, immutable history, safe stages, bounded deletion and evidence contract. CL10 complete-runner cancellation stays local under H03-007.',syntheticProbe(CLOSURE017_TESTS)),
   local('H04','H04-018','Native identity, current role and write admission',['NA01','NA07','NA22','NA23']),
   local('H07','H07-015','Native grant continuation preserves consent instant and optional durations',['NA14','NA15','NA24','NA30']),
   local('H09','H09-006','Native immutable candidate reconciliation and response loss',['NA02','NA03','NA04','NA05','NA06']),

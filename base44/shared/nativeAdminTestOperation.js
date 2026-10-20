@@ -6,15 +6,15 @@ import { targetGuard, testEnvironment } from './adminTestOperation.js';
 import { executeTestJob } from './adminTestExecution.js';
 import { nativeTestJournal } from './nativeTestJournal.js';
 
-export async function nativeAdminTestOperation(client, body, { policy = {}, signer = null, now = () => new Date() } = {}) {
+export async function nativeAdminTestOperation(client, body, { policy = {}, signer = null, now = () => new Date(), diagnostics = undefined, clock = undefined } = {}) {
   const actor = await requireInternalAdmin(client);
   validateTestRequest(body);
+  diagnostics?.bind(body.operation_id || body.request_id);
   const repository = createTestRepository(client), environment = testEnvironment(client, policy);
   const freshAdmin = async () => {
     const fresh = await requireInternalAdmin(client);
     if (fresh.id !== actor.id) testToolError('FORBIDDEN_INTERNAL_TOOLING', 403);
   };
-  await freshAdmin();
   const recovery = { resume_enabled: environment.authorized, mutation_blocker: environment.authorized ? null : 'TEST_ENVIRONMENT_UNVERIFIED' };
   if (body.action === 'status') {
     const job = await repository.operation(body.target_id, body.operation_id);
@@ -48,11 +48,9 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
   const operation = previous?.operation || body.operation;
   if (previous && body.operation && previous.operation !== body.operation) testToolError('TEST_OPERATION_CONFLICT');
   const guard = async () => {
-    await freshAdmin();
-    const active=await repository.lifecycle(body.target_id);
+    const [, active, identity] = await Promise.all([freshAdmin(), repository.lifecycle(body.target_id), repository.user(body.target_id)]);
     if(active && active.operation_id !== (previous?.operation_id || body.request_id))testToolError('TEST_OPERATION_CONFLICT');
-    const identity = await repository.user(body.target_id);
-    if (identity) targetGuard(actor, await repository.target(body.target_id, identity), operation);
+    if (identity) targetGuard(actor, await repository.target(body.target_id, identity, { deletionGuard: operation === 'DELETE_USER' }), operation);
   };
   await guard();
   let scopeHash = previous?.preview_hash;
@@ -75,9 +73,9 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
       return async (...args) => { await guard(); const value = await entity[method](...args); await guard(); return value; };
     } }); },
   }) } };
-  const guardedRepository = createTestRepository(guardedClient);
+  const guardedRepository = createTestRepository(guardedClient, { clock });
   const job = await executeTestJob({ journal: nativeTestJournal(guardedClient, guard, now), repository: guardedRepository, actor,
-    target: { id: body.target_id }, operation, requestId: previous?.request_id || body.request_id, previewHash: scopeHash, now });
+    target: { id: body.target_id }, operation, requestId: previous?.request_id || body.request_id, previewHash: scopeHash, now, diagnostics, clock });
   await guard();
   return { job, result_state:job.status==='COMPLETED'?'COMPLETED':job.status==='RESET_ACTIVE'?'RESET_ACTIVE':'PARTIAL', environment, ...recovery, retained: RETAINED_ENTITIES };
 }

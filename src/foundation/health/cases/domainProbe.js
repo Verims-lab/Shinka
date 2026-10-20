@@ -19,6 +19,6 @@ export function syntheticProbe(tests) {
         failed.push(test[0]); diagnostics.push({id:test[0],stage:error.testStage || 'HELPER',code:error.code === 'TEST_TIMEOUT' ? 'TEST_TIMEOUT' : 'TEST_FAILED'});
       }
     }
-    return verdict(failed.length === 0, ev(CLASS.SYNTHETIC_RUNTIME,'canonical domain/security helpers', {executed:tests.map(t=>t[0]),failed,diagnostics,reused}, {failed:[]}, 'Isolated helper fixtures; not live enforcement or browser acceptance'));
+    return verdict(tests.length > 0 && failed.length === 0, ev(CLASS.SYNTHETIC_RUNTIME,'canonical domain/security helpers', {executed:tests.map(t=>t[0]),failed,diagnostics,reused}, {failed:[]}, 'Isolated helper fixtures; not live enforcement or browser acceptance'));
   };
 }

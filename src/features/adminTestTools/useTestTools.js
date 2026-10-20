@@ -12,7 +12,7 @@ export function useTestTools(request = adminTestRequest) {
   const generation = useRef(0), inFlight = useRef(false);
   const accept = result => {
     setValue(previous=>({...previous,...result})); setJob(result.job || null);
-    const outcome=result.result_state || (result.job?.status==='COMPLETED'?'COMPLETED':result.job?.status==='RESET_ACTIVE'?'RESET_ACTIVE':result.job?'PARTIAL':'IDLE');
+    const outcome=result.result_state || (result.job?.status==='RESET_ACTIVE'?'RESET_ACTIVE':result.job?'PARTIAL':'IDLE');
     setPhase(outcome);
     if(result.job) {setPreview(null);setPendingId(result.job.operation_id);remember({target:input.trim(),id:result.job.operation_id});}
   };
@@ -21,13 +21,30 @@ export function useTestTools(request = adminTestRequest) {
     const version=generation.current;
     inFlight.current=true;setBusy(true);setError(null);
     if(action==='execute'||action==='resume')setPhase(preview?.operation==='RESET_ONBOARDING'||job?.operation==='RESET_ONBOARDING'?'RESETTING':'DELETING');
-    try { const result=await request(action,payload);if(version===generation.current)onResult(result); }
+    const started=performance.now();
+    try {
+      let result=await request(action,payload);
+      if(version!==generation.current)return;
+      onResult(result);
+      const operationId=payload.request_id||payload.operation_id;
+      // Only an acknowledged partial response can continue the already approved
+      // operation. Unknown responses leave this loop and only reconcile reads.
+      for(let pass=1;['execute','resume'].includes(action)&&pass<12&&performance.now()-started<60000;pass++) {
+        if(result.result_state!=='PARTIAL'||!result.resume_enabled||result.job?.operation!=='DELETE_USER'||result.job.operation_id!==operationId)break;
+        if(result.job.status!=='RUNNING'&&result.job.error_code!=='TEST_CLEANUP_MORE_REQUIRED')break;
+        if(version!==generation.current)break;
+        setPhase('DELETING');
+        result=await request('resume',{target_id:payload.target_id,operation_id:operationId});
+        if(version!==generation.current)break;
+        onResult(result);
+      }
+    }
     catch(e) {
       if(version!==generation.current)return;
       setError({code:e.code||'TEST_TOOLS_FAILED',stage:e.stage||null,requestId:e.requestId||null});
       if(action==='execute'||action==='resume'||action==='status') {
         setPhase('UNKNOWN');setPreview(null);
-        // Read-only reconciliation only. Never retry a destructive call automatically.
+        // Unknown completion: read only; no automatic destructive retry.
         for(let attempt=0;attempt<2&&version===generation.current;attempt++) {
           try {
             const result=await request('status',{target_id:payload.target_id,operation_id:payload.request_id||payload.operation_id});

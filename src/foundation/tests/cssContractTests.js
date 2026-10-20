@@ -51,7 +51,14 @@ export const CSS_CONTRACT_TESTS = [
       for(const el of Array.from(host.querySelectorAll("[data-heading]"))){const cs=measure(el),pair=DESIGN_TOKENS.typography.headingSizes[Number(el.getAttribute("data-heading"))];assert(/Cormorant Garamond/.test(cs.fontFamily)&&cs.fontWeight==="500"&&cs.fontSize===`${pair[0]}px`&&cs.lineHeight===`${pair[1]}px`,`heading ${el.className}`);}
       for(const el of Array.from(host.querySelectorAll("[data-body]"))){const cs=measure(el),pair=DESIGN_TOKENS.typography.bodySizes[Number(el.getAttribute("data-body"))];assert(/Inter/.test(cs.fontFamily)&&cs.fontWeight==="400"&&cs.fontSize===`${pair[0]}px`&&cs.lineHeight===`${pair[1]}px`,`body ${el.className}`);}
       assert(measure(host.querySelector("[data-nested-label]")).lineHeight==="16px","nested status label line height");
-      assert(measure(host.querySelector("h1")).lineHeight===(matchMedia("(min-width: 640px)").matches?"40px":"35px"),"responsive PageHeader line height");
+      assert(Math.abs(parseFloat(measure(host.querySelector("h1")).lineHeight)-(matchMedia("(min-width: 640px)").matches?40:35))<0.02,`responsive PageHeader line height ${measure(host.querySelector("h1")).lineHeight}`);
+      const text=Array.from(host.querySelectorAll('[data-heading],[data-body],[data-nested-label],h1'));
+      const before=text.map(el=>({size:parseFloat(measure(el).fontSize),line:parseFloat(measure(el).lineHeight)}));
+      // Resize parents as well so nested labels inherit the correctly scaled line box.
+      const all=Array.from(host.querySelectorAll('*')).filter(el=>el instanceof HTMLElement),sizes=all.map(el=>parseFloat(measure(el).fontSize));
+      all.forEach((el,i)=>{el.style.fontSize=`${sizes[i]*2}px`;});
+      text.forEach((el,i)=>assert(Math.abs(parseFloat(measure(el).lineHeight)-before[i].line*2)<0.02,'200% line box does not scale'));
+
     });
   }],
   ["T77","Real Shinka primitives preserve geometry, borders, colors and disabled state",async()=>{

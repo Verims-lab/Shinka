@@ -1,0 +1,70 @@
+{
+  "schema": "shinka.deletion-diagnostic/1",
+  "measuredAt": "2026-10-20T21:01:36.454Z",
+  "readOnly": true,
+  "operations": [
+    {
+      "operation": "DELETE_USER",
+      "status": "RUNNING",
+      "stage": "user_preferences",
+      "checkpoints": [
+        "NOTIFICATIONS",
+        "user_cycle_phase_day",
+        "user_cycle_prediction",
+        "user_cycle_settings",
+        "user_period_record",
+        "user_pattern_summary",
+        "user_preferences"
+      ],
+      "error_code": null,
+      "completedAtPresent": false,
+      "timestampShapes": [
+        {
+          "field": "started_at",
+          "type": "string",
+          "explicitZone": true
+        },
+        {
+          "field": "progressed_at",
+          "type": "string",
+          "explicitZone": true
+        },
+        {
+          "field": "completed_at",
+          "type": "object",
+          "explicitZone": false
+        }
+      ]
+    }
+  ],
+  "nativeUser": {
+    "matches": 1
+  },
+  "lookup": {
+    "targetPresent": true,
+    "operation": "DELETE_USER",
+    "status": "RUNNING",
+    "stage": "user_preferences"
+  },
+  "logQueries": [
+    {
+      "scope": "adminTestTools, 3 days, limit 30",
+      "rows": 0
+    },
+    {
+      "scope": "errors, 3 days, limit 30",
+      "rows": 0
+    }
+  ],
+  "causeConfirmed": false,
+  "authenticationPanel": {
+    "observedDate": "2026-10-21",
+    "path": "Dashboard > Settings > Authentication",
+    "google": true,
+    "apple": true,
+    "emailPassword": false,
+    "microsoft": false,
+    "facebook": false,
+    "changesMade": false
+  }
+}

@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-018
-**Last Updated:** 2026-10-20
+**Current BuildMarker:** Buildmarker-019
+**Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
 **Scope:** Product domain entities + separately listed internal tooling storage.
@@ -12,6 +12,12 @@
 **External Verification Required:** Base44 native UNIQUE is unsupported; no multi-record transaction/CAS guarantee is claimed. Native handler tests use synthetic transport; hosted schema/authorization/mutation recovery remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+
+## Current data contract — 019 audit
+
+No entity, field, RLS or retention change in 019. Base44 native data remains authoritative; 016/017 schema deployment evidence stays historical. AdminTestOperation persists the same actor/target/operation identity, stage, checkpoints and sanitized error_code. A checkpoint is prior verified progress, not permission to skip residual cleanup. RETRY_REQUIRED/TEST_CLEANUP_MORE_REQUIRED is acknowledged bounded progress; a missing response is unknown. COMPLETED requires native User absence plus all operational scopes and notification disposition, followed by final audit/status readback. Retained consent/event/daily/protection/audit rows are not deleted.
+
+InternalHealthRun's private report artifact adds executionContract, plannedCaseIds, evaluated predicate results and build/catalog/source bindings. Existing compact case summaries and entity columns remain unchanged. Current report writes require the server's complete case plan and matching counters; historical artifacts remain readable and are not rewritten. Base44 creation metadata remains distinct from persisted consent business time. [Current architecture and accepted limits](SHINKA_BASE44_CONTINUATION.md) supersede historical SQL/atomic-only descriptions below.
 
 ## 018 operation/report projection — no schema delta
 

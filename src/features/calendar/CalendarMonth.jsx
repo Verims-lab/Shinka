@@ -40,7 +40,7 @@ export default function CalendarMonth({ value, selected, onSelect, onMonth, disa
     </div>
     <div className="shinka-calendar-grid" ref={root} role="grid" aria-label={copy('title')} onKeyDown={keyboard}>
       <div role="row" className="grid grid-cols-7">
-        {Array.from({ length: 7 }, (_, i) => <span key={i} role="columnheader" className="text-center text-shinka-caption py-2">{formatCalendarDate(`2026-10-${19 + i}`, language, { weekday: 'short' })}</span>)}
+        {Array.from({ length: 7 }, (_, i) => <span key={i} role="columnheader" className="min-w-0 break-words text-center text-shinka-caption py-2">{formatCalendarDate(`2026-10-${19 + i}`, language, { weekday: 'short' })}</span>)}
       </div>
       {Array.from({ length: cells.length / 7 }, (_, week) => <div role="row" key={week} className="grid grid-cols-7">
         {cells.slice(week * 7, week * 7 + 7).map((day, index) => <div role="gridcell" key={day || `empty-${index}`} aria-selected={!!day && selected === day} className="flex justify-center">

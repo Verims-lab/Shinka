@@ -3,7 +3,7 @@
 // Update OBSERVED_AUTH_METHODS only after re-reading the platform state; never edit it to force a PASS.
 export const APPROVED_AUTH_METHODS = Object.freeze(["apple", "google"]);
 export const OBSERVED_AUTH_METHODS = Object.freeze({
-  observedAt: "2026-10-18T23:11:00+03:00", source: "Base44 platform state (login_methods)",
+  observedAt: "2026-10-21", source: "Read-only Base44 Dashboard > Settings > Authentication; Google/Apple ON, email/password/Microsoft/Facebook OFF",
   methods: ["google", "apple"],
 });
 

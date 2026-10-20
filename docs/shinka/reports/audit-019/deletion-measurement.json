@@ -1,0 +1,182 @@
+{
+  "scope": "ISOLATED_NATIVE_HELPERS_SYNTHETIC_SDK_COST_NOT_HOSTED_LATENCY",
+  "results": [
+    {
+      "id": "AD01",
+      "name": "SDK failure retains safe cause/stage and resumes the same durable partial deletion",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok",
+      "evidence": {
+        "resumedSdkReads": 115,
+        "failure": {
+          "event": "SDK_FAILURE",
+          "operationId": "8beb3db5-954d-4fda-9251-668d3035d275",
+          "stage": "USER_PROFILE",
+          "calls": 176,
+          "writes": 11,
+          "elapsedMs": 1,
+          "stageMs": 0,
+          "stageCalls": 7,
+          "sdk": "UserProfile.delete",
+          "code": "TEST_STORAGE_ACCESS_DENIED"
+        },
+        "stages": [
+          {
+            "event": "STAGE_END",
+            "operationId": "8beb3db5-954d-4fda-9251-668d3035d275",
+            "stage": "NOTIFICATIONS",
+            "calls": 19,
+            "writes": 0,
+            "elapsedMs": 0,
+            "stageMs": 0,
+            "stageCalls": 1
+          },
+          {
+            "event": "STAGE_END",
+            "operationId": "8beb3db5-954d-4fda-9251-668d3035d275",
+            "stage": "USER_CYCLE_PHASE_DAY",
+            "calls": 20,
+            "writes": 0,
+            "elapsedMs": 0,
+            "stageMs": 0,
+            "stageCalls": 1
+          },
+          {
+            "event": "STAGE_END",
+            "operationId": "8beb3db5-954d-4fda-9251-668d3035d275",
+            "stage": "USER_CYCLE_PREDICTION",
+            "calls": 21,
+            "writes": 0,
+            "elapsedMs": 0,
+            "stageMs": 0,
+            "stageCalls": 1
+          },
+          {
+            "event": "STAGE_END",
+            "operationId": "8beb3db5-954d-4fda-9251-668d3035d275",
+            "stage": "USER_CYCLE_SETTINGS",
+            "calls": 22,
+            "writes": 0,
+            "elapsedMs": 0,
+            "stageMs": 0,
+            "stageCalls": 1
+          },
+          {
+            "event": "STAGE_END",
+            "operationId": "8beb3db5-954d-4fda-9251-668d3035d275",
+            "stage": "USER_PERIOD_RECORD",
+            "calls": 24,
+            "writes": 0,
+            "elapsedMs": 0,
+            "stageMs": 0,
+            "stageCalls": 2
+          },
+          {
+            "event": "STAGE_END",
+            "operationId": "8beb3db5-954d-4fda-9251-668d3035d275",
+            "stage": "USER_PATTERN_SUMMARY",
+            "calls": 25,
+            "writes": 0,
+            "elapsedMs": 0,
+            "stageMs": 0,
+            "stageCalls": 1
+          },
+          {
+            "event": "STAGE_END",
+            "operationId": "8beb3db5-954d-4fda-9251-668d3035d275",
+            "stage": "USER_PREFERENCES",
+            "calls": 26,
+            "writes": 0,
+            "elapsedMs": 0,
+            "stageMs": 0,
+            "stageCalls": 1
+          },
+          {
+            "event": "STAGE_END",
+            "operationId": "8beb3db5-954d-4fda-9251-668d3035d275",
+            "stage": "USER_PROFILE",
+            "calls": 52,
+            "writes": 2,
+            "elapsedMs": 0,
+            "stageMs": 0,
+            "stageCalls": 26
+          },
+          {
+            "event": "STAGE_END",
+            "operationId": "8beb3db5-954d-4fda-9251-668d3035d275",
+            "stage": "USER",
+            "calls": 75,
+            "writes": 4,
+            "elapsedMs": 0,
+            "stageMs": 0,
+            "stageCalls": 23
+          },
+          {
+            "event": "STAGE_END",
+            "operationId": "8beb3db5-954d-4fda-9251-668d3035d275",
+            "stage": "VERIFY",
+            "calls": 96,
+            "writes": 5,
+            "elapsedMs": 1,
+            "stageMs": 0,
+            "stageCalls": 21
+          }
+        ],
+        "baselineIntent": "late partial job with seven verified stages; no health payload"
+      }
+    },
+    {
+      "id": "AD02",
+      "name": "Bounded cleanup of shrinking pages resumes without skipped rows or lost retention",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok",
+      "evidence": {
+        "passes": 5,
+        "deletedPatternRows": 205,
+        "deletedCalendarReceipts": 105,
+        "retainedNotifications": 105,
+        "retainedHistory": true
+      }
+    },
+    {
+      "id": "AD03",
+      "name": "Concurrent missing-row delete is idempotent only after successful absence read",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "AD04",
+      "name": "Residual and final-verification failure never become completed; wrong actor cannot resume",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "AD06",
+      "name": "Competing resumes retain one target operation and never infer successful cleanup",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok",
+      "evidence": {
+        "responses": [
+          "TEST_JOB_STATUS_UNCONFIRMED",
+          "TEST_JOB_STATUS_UNCONFIRMED"
+        ],
+        "lookup": "PARTIAL",
+        "operationCount": 1,
+        "scope": "ordinary CRUD race; no distributed exactly-once claim"
+      }
+    },
+    {
+      "id": "AD05",
+      "name": "Password regeneration is detected in every named slot without a filename exemption",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    }
+  ],
+  "distributedExactlyOnceClaimed": false
+}

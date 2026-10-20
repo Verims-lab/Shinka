@@ -18,7 +18,7 @@ export const OPEN_DECISIONS = Object.freeze([
     resolution_rule: "Explicit user approval, 2026-10-20: all six category_code values and English display names accepted exactly; preserve source TR names. Canonical executable mapping: base44/shared/contentCategoryDecision.js; full receipt: SHINKA_SOURCE_OF_TRUTH.md.",
     recommendation: "Use the approved mapping for controlled admin import; approval itself performs no live import and proves no daily uniqueness or hosted completion." },
   { id: "OD-003", status: "RESOLVED_BY_REPOSITORY_POLICY", blocking: false,
-    resolution_rule: "Repository auth exposes only Apple/Google; password routes/operations removed and errors sanitized. Platform snapshot recorded 2026-10-18 23:11 reports Google/Apple only; it is historical recorded evidence, not a fresh live check.", sources: ["SRC-01 §2", "SRC-04 §3.1", "SRC-03 table 1 (Apple/Google)", "Recorded Base44 platform state"],
+    resolution_rule: "Repository auth exposes only Apple/Google; password routes/operations removed and errors sanitized. Read-only Authentication panel observed 2026-10-21: Google/Apple ON; email/password/Microsoft/Facebook OFF. This is configuration evidence, not live provider callback proof.", sources: ["SRC-01 §2", "SRC-04 §3.1", "SRC-03 table 1 (Apple/Google)", "Recorded Base44 platform state"],
     conflict: "Prior generic auth shell exposed methods outside the approved Apple/Google contract.",
     impact: "Repository policy is implemented. Current Authentication panel configuration and live provider sign-in remain separate unverified evidence.",
     recommendation: "Verify the final deployed Authentication panel; obtain live Apple/Google and device evidence before release. Do not infer login success from repository tests." },

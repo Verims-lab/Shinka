@@ -224,9 +224,9 @@ export default function OnboardingScreen({
         data-onboarding-state={state}
         lang={language}
       >
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <span className="font-heading text-2xl">Shinka</span>
-          <div className="flex gap-1">
+          <div className="flex flex-wrap items-center gap-1">
             {["tr", "en"].map((lang) => (
               <ShinkaButton
                 key={lang}
@@ -255,7 +255,7 @@ export default function OnboardingScreen({
           <h1
             ref={title}
             tabIndex={-1}
-            className="font-heading text-[34px] leading-10 text-shinka-plum-deep outline-none"
+            className="font-heading text-shinka-h1 text-shinka-plum-deep outline-none"
           >
             {t(TITLES[state])}
           </h1>

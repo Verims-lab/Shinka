@@ -12,7 +12,7 @@ import SuiteSection from "@/components/internal/SuiteSection";
 import RunHistory from "@/components/internal/RunHistory";
 import { useHealthRunner } from "@/foundation/health/useHealthRunner";
 import { SUITES } from "@/foundation/health/suites";
-import { HEALTH_CASES, IN_APP_HEALTH_CASES } from "@/foundation/health/catalog";
+import { ACCEPTANCE_REQUIREMENTS, IN_APP_HEALTH_CASES } from "@/foundation/health/catalog";
 import { HEALTH_CATALOG_VERSION } from "@/foundation/health/constants";
 import { pendingCase } from "@/foundation/health/reportExport";
 import { resolveEnvironment } from "@/foundation/environment";
@@ -21,12 +21,12 @@ export default function HealthCenter() {
   const language=internalLanguage(useLocation().state);
   const { report, running, progress, saveError, saveState, checkSaved, history, run, loadHistory, retrySave } = useHealthRunner();
   const cases = report ? report.cases : IN_APP_HEALTH_CASES.map(pendingCase);
-  const suites = report ? SUITES.filter((s) => report.suites.some((x) => x.id === s.id)) : SUITES;
+  const suites = report ? SUITES.filter((s) => report.suites.some((x) => x.id === s.id)) : SUITES.filter(s=>s.active);
   return (
     <PageContainer data-health-root>
       <InternalNav />
       <PageHeader eyebrow="Internal · Health Center" title="Health Center">
-        <p className="text-sm text-shinka-muted">Catalog {HEALTH_CATALOG_VERSION} · {HEALTH_CASES.length} cases · {resolveEnvironment().id}</p>
+        <p className="text-sm text-shinka-muted">Catalog {HEALTH_CATALOG_VERSION} · {IN_APP_HEALTH_CASES.length} cases · {resolveEnvironment().id}</p>
       </PageHeader>
       <p className="my-4">{healthCopy('scope',language)}</p>
       <HealthControls language={language} running={running} report={report} onRun={run} />
@@ -42,7 +42,7 @@ export default function HealthCenter() {
       <section className="my-5 space-y-3" data-health-acceptance>
         <h2 className="text-shinka-h2">{healthCopy('separateAcceptance',language)}</h2>
         <p>{healthCopy('localAcceptance',language)}</p>
-        <ul>{HEALTH_CASES.filter(c=>c.executionLocation==='LOCAL_BROWSER'||c.applicability==='EXTERNAL_RELEASE').map(c=><li key={c.id}>{c.id} · {c.title} · {healthCopy(c.executionLocation==='LOCAL_BROWSER'?'localOnly':'externalOnly',language)}</li>)}</ul>
+        <ul>{ACCEPTANCE_REQUIREMENTS.map(c=><li key={c.id}>{c.id} · {c.title} · {healthCopy(c.executionLocation==='LOCAL_BROWSER'?'localOnly':c.applicability==='FUTURE_PACKAGE'?'futureOnly':'externalOnly',language)}</li>)}</ul>
       </section>
       <RunHistory history={history} onRetry={loadHistory} />
     </PageContainer>

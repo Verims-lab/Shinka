@@ -77,8 +77,8 @@ export const HEALTH_CLOSURE_TESTS=[
     assert(decide(data,null).code==='UNEXPECTED_PRODUCT_CONTENT_PRESENT','positive rows concealed by another unavailable dependency');
   }],
   ['HC12','Future content package requires approved imported-content validation',()=>{
-    for(const marker of ['Buildmarker-019','Buildmarker-006','invalid'])assert(decide(counts(),false,marker).status==='BLOCKED','zero rows permanently hardcoded');
-    assert(decide(counts(),false,'Buildmarker-019').code==='APPROVED_CONTENT_VALIDATION_REQUIRED','content transition not explicit');
+    for(const marker of ['Buildmarker-020','Buildmarker-006','invalid'])assert(decide(counts(),false,marker).status==='BLOCKED','zero rows permanently hardcoded');
+    assert(decide(counts(),false,'Buildmarker-020').code==='APPROVED_CONTENT_VALIDATION_REQUIRED','content transition not explicit');
     assert(decide(counts(),false,'Buildmarker-013').code==='CONTENT_VERIFICATION_UNAVAILABLE','Test Tools must retain staged content evidence, not assume an import');
     assert(decide(counts(),false,'Buildmarker-014').code==='CONTENT_VERIFICATION_UNAVAILABLE','Persistence closure retains staged content evidence and does not imply readiness');
   }],

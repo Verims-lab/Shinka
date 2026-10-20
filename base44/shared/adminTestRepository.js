@@ -42,6 +42,18 @@ export function createTestRepository(client, { clock = () => performance.now() }
     if (rows.some(row => row.user_id !== target)) testToolError('TEST_OWNER_CONFLICT', 403);
     return rows;
   }
+  async function scopedPage(name, target, fields, limit = pageSize, query = {}) {
+    const rows = await entities[name].filter({ ...query, user_id: target }, 'id', limit, 0, fields);
+    if (!Array.isArray(rows) || rows.length > limit || rows.some(row=>!row.id || row.user_id!==target) || new Set(rows.map(row=>row.id)).size!==rows.length) testToolError('TEST_OWNER_CONFLICT',403);
+    return rows;
+  }
+  const ownedPage = (entity,target,limit=pageSize) => scopedPage(physicalName(entity),target,[...baseFields,...(extras[entity]||[])],limit);
+  const calendarPage = (target,limit=pageSize) => scopedPage('UserCalendarAction',target,['id','user_id'],limit);
+  async function pendingPage(target,limit=pageSize) {
+    const rows=await scopedPage('NotificationDelivery',target,['id','user_id','delivery_status'],limit,{delivery_status:{$in:['PENDING','FAILED']}});
+    if(rows.some(row=>!['PENDING','FAILED'].includes(row.delivery_status)))testToolError('TEST_READ_UNCONFIRMED',503);
+    return rows;
+  }
   async function user(target, includeIdentity = false) {
     const rows = await entities.User.filter({ id: target }, 'id', 2, 0, includeIdentity ? ['id', 'role', 'full_name', 'email'] : ['id', 'role']);
     if (!Array.isArray(rows) || rows.length > 1 || rows.some(row => row.id !== target || !['admin', 'user'].includes(row.role))) testToolError('TEST_USER_READ_UNCONFIRMED');
@@ -59,10 +71,12 @@ export function createTestRepository(client, { clock = () => performance.now() }
     if (active.length > 1) testToolError('TEST_OPERATION_STATE_INVALID');
     return active[0] || null; // Completed DELETE is a permanent tombstone.
   }
-  async function target(targetId, identity = undefined) {
+  async function target(targetId, identity = undefined, { deletionGuard = false } = {}) {
     identity ||= await user(targetId, true);
     if (!identity) testToolError('TEST_USER_NOT_FOUND', 404);
-    const profiles = await owned('user_profile', targetId);
+    // Deletion admission needs current identity/roster and open jobs, not a
+    // profile that this same operation will remove. Lookup/reset still read it.
+    const profiles = deletionGuard ? [] : await owned('user_profile', targetId);
     if (profiles.length > 1) testToolError('DUPLICATE_OWNER_STATE');
     if (profiles[0] && !['ACTIVE', 'INACTIVE'].includes(profiles[0].account_status)) testToolError('TEST_ACCOUNT_STATE_INVALID');
     const jobs = await owned('health_data_deletion_job', targetId);
@@ -102,8 +116,9 @@ export function createTestRepository(client, { clock = () => performance.now() }
   }
   async function cleanup(entity, targetId) {
     if (!DELETED_ENTITIES.includes(entity)) testToolError('INVALID_TEST_SCOPE');
-    // Read all IDs before deletion so offset pagination cannot skip shrinking pages.
-    const rows=await owned(entity,targetId);
+    // Snapshot the first bounded page. Every resumed pass starts at offset zero;
+    // deleting from a shrinking collection cannot skip later rows.
+    const rows=await ownedPage(entity,targetId);
     if (entity === 'user_period_record') {
       for (let offset=0;offset<Math.min(rows.length,remainingWrites);offset+=pageSize) {
         const ids=rows.slice(offset,Math.min(offset+pageSize,remainingWrites)).map(row=>row.id);
@@ -113,20 +128,35 @@ export function createTestRepository(client, { clock = () => performance.now() }
         }
       }
     }
-    for (const row of rows) {spend();await entities[physicalName(entity)].delete(row.id);}
+    for (const row of rows) {spend();await deleteOwned(physicalName(entity), row.id, targetId);}
+    if (rows.length && (await ownedPage(entity,targetId,1)).length) testToolError(rows.length===pageSize ? 'TEST_CLEANUP_MORE_REQUIRED' : 'TEST_DELETE_UNCONFIRMED',503);
     if (entity === 'user_period_record') {
-      const actions = await scan('UserCalendarAction', { user_id: targetId }, ['id', 'user_id']);
-      if (actions.some(row => row.user_id !== targetId)) testToolError('TEST_OWNER_CONFLICT', 403);
-      for (const row of actions) { spend(); await entities.UserCalendarAction.delete(row.id); }
-      if ((await scan('UserCalendarAction', { user_id: targetId }, ['id', 'user_id'])).length) testToolError('TEST_DELETE_UNCONFIRMED');
+      const actions = await calendarPage(targetId);
+      for (const row of actions) { spend(); await deleteOwned('UserCalendarAction', row.id, targetId); }
+      if (actions.length && (await calendarPage(targetId,1)).length) testToolError(actions.length===pageSize?'TEST_CLEANUP_MORE_REQUIRED':'TEST_DELETE_UNCONFIRMED',503);
     }
-    if ((await owned(entity, targetId)).length) testToolError('TEST_DELETE_UNCONFIRMED');
+  }
+  async function deleteOwned(name, id, targetId) {
+    try { await entities[name].delete(id); }
+    catch (error) {
+      // Another request may have removed this exact ID. A 404 is accepted only
+      // after a successful owner-scoped absence read; 403/network never mean absent.
+      if (error.code !== 'TEST_STORAGE_NOT_FOUND' && (error?.response?.status || error?.status) !== 404) throw error;
+      const rows = await entities[name].filter({ id, user_id: targetId }, 'id', 2, 0, ['id','user_id']);
+      if (!Array.isArray(rows) || rows.length) throw error;
+    }
   }
   async function stopNotifications(targetId) {
-    for (const row of await owned('notification_delivery', targetId)) {
-      if (['PENDING', 'FAILED'].includes(row.delivery_status)) { spend(); await entities.NotificationDelivery.update(row.id, { delivery_status: 'SKIPPED', error_code: 'ADMIN_TEST_USER_DELETED' }); }
-    }
-    if ((await owned('notification_delivery', targetId)).some(row => ['PENDING', 'FAILED'].includes(row.delivery_status))) testToolError('TEST_DELETE_UNCONFIRMED');
+    const rows=await pendingPage(targetId);
+    for (const row of rows) { spend(); await entities.NotificationDelivery.update(row.id, { delivery_status: 'SKIPPED', error_code: 'ADMIN_TEST_USER_DELETED' }); }
+    if (rows.length && (await pendingPage(targetId,1)).length) testToolError(rows.length===pageSize?'TEST_CLEANUP_MORE_REQUIRED':'TEST_DELETE_UNCONFIRMED',503);
   }
-  return { user, target, impact, operation, lifecycle, owned, cleanup, stopNotifications, calendarActions: target => scan('UserCalendarAction', { user_id: target }, ['id', 'user_id']), deleteUser: id => entities.User.delete(id) };
+  async function deleteUser(id) {
+    try { await entities.User.delete(id); }
+    catch (error) {
+      if (error.code !== 'TEST_STORAGE_NOT_FOUND' && (error?.response?.status || error?.status) !== 404) throw error;
+      if (await user(id)) throw error;
+    }
+  }
+  return { user, target, impact, operation, lifecycle, owned, hasOwned: async (entity,target) => (await ownedPage(entity,target,1)).length>0, cleanup, stopNotifications, calendarActions: target => calendarPage(target,1), hasPendingNotifications: async target => (await pendingPage(target,1)).length>0, deleteUser };
 }

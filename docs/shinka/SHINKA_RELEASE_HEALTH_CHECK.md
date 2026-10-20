@@ -2,13 +2,23 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-018
-**Last Updated:** 2026-10-20
+**Current BuildMarker:** Buildmarker-019
+**Last Updated:** 2026-10-21
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-018.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-019.0; repository, synthetic and external evidence separated.
 
-## Active HC-018.0 — in-app scope, local regression and external acceptance
+## Active HC-019.0 — executable scope and report integrity
+
+Only CURRENT_PACKAGE executable in-app cases are dispatched. Future features, physical/live acceptance and LOCAL_BROWSER entries remain ID-addressable in ACCEPTANCE_REQUIREMENTS and appear separately in the UI/report. No current FAIL/BLOCKED check was removed. Historical run `780aebf1-ff0b-4a6d-8c20-12b746509d53` retains H03-008 FAIL and its 131/1/0/19 totals; the current catalog does not rewrite it.
+
+PASS requires attempted/executed, an evaluated true boolean assertion, a nonempty actual measurement, valid evidence and exact case/build/catalog/source binding. Missing runners, no-op returns and empty helper sets fail. The runner compares expected versus returned IDs; current backend saves also require the closed server plan, matching counters and gate. Missing result, reduced plan, false/unevaluated assertion, null measurement, wrong build and corrupted totals are negative-tested. Old artifacts without this contract remain readable; future unknown catalog writes are rejected, not guessed. Admin-submitted evidence is not independent hosted attestation.
+
+H12-036 adds native deletion failures/recovery/paging/cost. H15-001 activates real timeout/abort regressions; H15-002 is measured by the local production-bundle/lab runner; H15-003/004 add cancellation, stale-response, offline and cache invalidation assertions. H16-003/005 strengthen execution/plan/acceptance integrity and H16-007 executes the negative tests. H13-012 retains its ID with expanded 320/360/390/430/landscape, TR/EN, 200% text and focus/touch tests. [Every-case mapping and measurements](reports/audit-019/case-audit.md) and [change table](reports/SHINKA_AUDIT_FIX_019.md) explain scope and environment.
+
+A normal Health run performs no live product mutation. Backend read-only prerequisites may be BLOCKED in local SDK-stub execution; this is separate from local synthetic PASS and published acceptance. Full means full **in-app** scope, not physical devices, provider callbacks, field Web Vitals or completed live deletion. No terminal or JSON import is required. Use the user's published result; no agent-run live Full Health in 019.
+
+## Historical HC-018.0 — in-app scope, local regression and external acceptance
 
 Supplied published HC-017.0 run 6cf22904-4781-46ae-a54e-81fa68ebb93e:133 PASS/0 FAIL/4 BLOCKED/19 N/A, about169s. H03-007(90s),H10-003(20s),H13-012(30s) timeouts and H13-004 missing browser evidence remain historical facts; H03-008/H09-004 PASS. The shared onboarding iframe path and missing nested cancellation are source-proven. Local fault injection identifies CSS_WAIT and INTERACTION and verifies cleanup; no hosted trace proves that all three stalled at the same phase or that XFO caused them.
 
@@ -52,16 +62,16 @@ CLI output includes executable regression and current onboarding Health evidence
 H02-003 counts LOGICAL sources (must be 10). H02-004 requires every logical source and every physical part READ. H02-007 verifies the split UI/UX source: 4 parts, expected names, order 1→2→3→4, no gap/duplicate, continuity recorded, sole UI/UX authority, machine-readable companion present as supporting artifact (not a logical source), and documentation in SHINKA_SOURCE_OF_TRUTH.md. Artifacts are validated by role, never by a fixed physical total. H02-008 verifies all 11 UI/UX tables (design = tokens, icons = nav contract, 5 copy groups, QA checklist) and OD-010 closed. H03-008 verifies repository auth syntax plus the recorded Apple/Google policy; H03-009 exercises the actual server-admin request guard with injected anonymous/user/admin principals. Neither is LIVE_ENFORCEMENT.
 
 ## UI/UX contract cases (H13)
-001 token module · 002 44×44 rendered · 003 font families rendered · 004 no overflow at 360 (Health + Build pages) · 005 accessible names · 006 rendered CSS colors = v1.1 · 007 Medium headings / Inter-500 labels · 008 nav + Lucide icons · 009 primary ≥52 rendered · 010 light-only · 011 centralized EN/TR localization · 012 mobile form/long-list regression · 013 physical Android/iOS external acceptance · 014 admin navigation/localized inventory.
+001 token module · 002 44×44 rendered · 003 font families rendered · 004 actual current Health viewport overflow (responsive Build/mobile acceptance is local) · 005 accessible names · 006 rendered CSS colors = v1.1 · 007 Medium headings / Inter-500 labels · 008 nav + Lucide icons · 009 primary ≥52 rendered · 010 light-only · 011 centralized EN/TR localization · 012 mobile form/long-list regression · 013 physical Android/iOS external acceptance · 014 admin navigation/localized inventory.
 
 ## Case schema
-`{ id, suiteId, title, description, severity, blocker, runnerType, applicability, status, attempted, executed, durationMs, evidence }`; evidence `{ classification, source, actual, expected, reason, timestamp }`.
+`{ id, suiteId, title, description, severity, blocker, runnerType, applicability, status, attempted, executed, durationMs, evidence, assertion, execution }`; evidence `{ classification, source, actual, expected, reason, timestamp }`.
 
 ## Evidence classifications
 STATIC · SYNTHETIC_RUNTIME · LIVE_RUNTIME · LIVE_ENFORCEMENT · DEVICE · RECORDED_DECISION · BLOCKED_EXTERNAL. Classification ≠ status. Synthetic evidence is never described as live; static is never described as runtime.
 
 ## Statuses
-PASS (evidence satisfies expected) · FAIL · WARNING · BLOCKED (current check cannot complete) · NOT_RUN · NOT_APPLICABLE (future/external). PASS without complete valid evidence or with explicit unexecuted/unattempted state is converted to FAIL; gate independently requires both execution flags to be true.
+PASS (evidence satisfies expected) · FAIL · WARNING · BLOCKED (current check cannot complete) · NOT_RUN · NOT_APPLICABLE (historical report compatibility only; current future/external requirements are not dispatched). PASS without complete valid evidence or with explicit unexecuted/unattempted state is converted to FAIL; gate independently requires both execution flags to be true.
 
 ## Gate
 READY only if all applicable blocker cases have 0 FAIL, 0 WARNING, 0 BLOCKED, all applicable cases attempted and executed, every PASS has valid classification/source/actual/expected/reason/timestamp evidence, and catalog integrity (H16-001…004) passes. Otherwise NOT_READY (fail/warning/integrity), BLOCKED, or INCOMPLETE. Single-suite runs yield SCOPE_PASS at best. Future/external cases never affect the gate.
@@ -70,7 +80,7 @@ READY only if all applicable blocker cases have 0 FAIL, 0 WARNING, 0 BLOCKED, al
 Sequential; META (H16) cases run last over collected results; every case bounded (20 s default, 90 s tests); timeout ⇒ BLOCKED, never PASS.
 
 ## Report JSON (`shinka.health.report/1`)
-schemaVersion, runId, appName, buildMarker, healthCatalogVersion, sourceSetVersion, environment, scope, startedAt, completedAt, durationMs, suites, cases, summary, gate, externalRequirements, futureRequirements, openDecisions. Redacted before copy/export/storage.
+executionContract, plannedCaseIds, schemaVersion, runId, appName, buildMarker, healthCatalogVersion, sourceSetVersion, environment, scope, startedAt, completedAt, durationMs, suites, cases, summary, gate, externalRequirements, futureRequirements, openDecisions. Redacted before copy/export/storage.
 
 ## History
 Completed measurements remain displayed even when persistence fails (`HEALTH_HISTORY_PERSIST_FAILED`). Admin-guarded `internalHealth.save` verifies counts/gate and uploads a private redacted full report; `report_json` is valid compact JSON bounded to 15,000 UTF-8 bytes without truncation. `list` and stored-record `report` provide admin readback; signed links expire after 300 seconds. BuildMarker comes from the canonical module. Live persistence/readback for this package has not been measured.

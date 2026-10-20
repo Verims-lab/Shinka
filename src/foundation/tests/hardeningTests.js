@@ -1,3 +1,6 @@
+import { SOURCE_SET_VERSION } from '../sourceInventory';
+import { EXECUTION_CONTRACT } from '../../../base44/shared/healthExecutionEvidence.js';
+import { HEALTH_SERVER_PLAN } from '../../../base44/shared/healthPlan.js';
 import { healthUploadSigner } from '../../../base44/shared/healthPersistence.js';
 // All inputs are generated synthetic fixtures. No product workbook content is imported.
 import { findLegacyImports, findPersonalEmails, checkAuthSurface, checkInternalUiPurity } from "@/foundation/inspection/sourceRules";
@@ -40,8 +43,8 @@ const artifacts = (content = contentRows(), base = mappingRows(false), extended 
 };
 const healthStatus = async (id, data) => (await H05_CASES.find((c)=>c.id===id).run({artifacts:async()=>data})).status;
 const reportFixture = () => {
-  const cases = [passCase()];
-  return {runId:"synthetic-run", buildMarker:BUILD_MARKER, healthCatalogVersion:HEALTH_CATALOG_VERSION, environment:"LOCAL",
+  const cases = HEALTH_SERVER_PLAN.H01.map(id=>({...passCase(),id,assertion:{evaluated:true,passed:true},execution:{contract:EXECUTION_CONTRACT,caseId:id,buildMarker:BUILD_MARKER,healthCatalogVersion:HEALTH_CATALOG_VERSION,sourceSetVersion:SOURCE_SET_VERSION}}));
+  return {sourceSetVersion:SOURCE_SET_VERSION,executionContract:EXECUTION_CONTRACT,plannedCaseIds:HEALTH_SERVER_PLAN.H01,runId:"synthetic-run", buildMarker:BUILD_MARKER, healthCatalogVersion:HEALTH_CATALOG_VERSION, environment:"LOCAL",
     scope:"SUITE:H01",startedAt:"2026-01-01T00:00:00Z",completedAt:"2026-01-01T00:01:00Z",cases,summary:summarize(cases),gate:computeGate(cases,{fullScope:false})};
 };
 /** @type {import("./testTypes").FoundationTest[]} */
@@ -139,7 +142,7 @@ export const HARDENING_TESTS = [
   }],
   ["T70","Stored summary is verified; compact JSON bounded without truncation",()=>{
     const report=reportFixture(),safe=normalizeStoredReport(report),rec=buildHistoryRecord(safe,"private://fixture");
-    assert(rec.passed===1&&rec.status==="SCOPE_PASS"&&JSON.parse(rec.report_json).cases.length===1&&rec.report_json.length<HISTORY_FIELD_LIMIT,"record mismatch");
+    assert(rec.passed===report.cases.length&&rec.status==="SCOPE_PASS"&&JSON.parse(rec.report_json).cases.length===report.cases.length&&rec.report_json.length<HISTORY_FIELD_LIMIT,"record mismatch");
     rejects(()=>normalizeStoredReport({...report,summary:{...report.summary,passed:99}}),"HEALTH_HISTORY_SUMMARY_MISMATCH");
     rejects(()=>normalizeStoredReport({...report,gate:{status:"READY"}}),"HEALTH_HISTORY_GATE_MISMATCH");
     rejects(()=>compactCases({cases:Array.from({length:2000},()=>passCase())}),"HEALTH_HISTORY_SUMMARY_TOO_LARGE");

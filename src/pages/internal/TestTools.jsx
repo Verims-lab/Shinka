@@ -49,7 +49,7 @@ export default function TestTools({ request = undefined }) {
       {(tools.job || tools.pendingId) && <ShinkaCard title={text('result')}>
         <div role="status">
           <p>{text(tools.phase==='DELETING'?'deleting':tools.phase==='RESETTING'?'resetting':tools.phase==='UNKNOWN'?'unknownResult':tools.phase==='COMPLETED'?(tools.job?.operation==='DELETE_USER'?'deletedResult':'resetCompleted'):tools.phase==='RESET_ACTIVE'?'resetResult':tools.job?.operation==='DELETE_USER'?'deletePending':'pendingResult')}</p>
-          {tools.job && tools.phase==='PARTIAL' && <p>{text('stage')}: {text(tools.job.stage)}</p>}
+          {tools.job && ['PARTIAL','DELETING'].includes(tools.phase) && <p>{text('stage')}: {text(tools.job.stage)}</p>}
           <details><summary className="min-h-11 cursor-pointer">{text('details')}</summary><p className="break-all">{text('operationId')}: {tools.job?.operation_id || tools.pendingId}</p></details>
         </div>
         <div className="mt-4 flex flex-wrap gap-3">

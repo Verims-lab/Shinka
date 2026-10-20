@@ -45,6 +45,6 @@ export function nativeTestJournal(client, guard, now = () => new Date()) {
       await audit({ ...record, performed_at: job.started_at, error_code: values.status === 'RESET_ACTIVE' ? 'TEST_RESET_PREPARED' : 'TEST_OPERATION_COMPLETED' });
       return patch(job, values);
     },
-    async failed(job, code) { await audit(testAuditRecord(job, 'FAILED', job.started_at, code)); return patch(job, { status: 'RETRY_REQUIRED', error_code: code }); },
+    async failed(job, code, _record, stage = job.stage) { await audit(testAuditRecord(job, 'FAILED', job.started_at, code)); return patch(job, { status: 'RETRY_REQUIRED', error_code: code, stage }); },
   };
 }

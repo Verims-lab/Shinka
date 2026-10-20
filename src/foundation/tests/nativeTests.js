@@ -95,7 +95,7 @@ export const NATIVE_TESTS = [
  }],
  ['NA25','Late residual write before final deletion verification cannot be success',async()=>{
   const f=nativeFixture();f.state.paused=true;const view=await f.preview('DELETE_USER');f.state.after=async c=>{if(c.name==='User'&&c.method==='delete'){f.state.after=null;f.tables.UserPeriodRecord.push({id:'late',user_id:'ownerA',period_start_date:'2026-10-01'});}};
-  await rejects(()=>f.execute(view),'TEST_JOB_RETRY_REQUIRED');check(f.tables.AdminTestOperation[0].status==='RETRY_REQUIRED');check((await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id})).job.status==='COMPLETED');
+  await rejects(()=>f.execute(view),'TEST_DELETE_UNCONFIRMED');check(f.tables.AdminTestOperation[0].status==='RETRY_REQUIRED');check((await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id})).job.status==='COMPLETED');
  }],
  ['NA26','Final VERIFY reruns after audit failure even with a persisted checkpoint',async()=>{
   const f=nativeFixture();f.state.paused=true;f.once('before',c=>c.name==='AdminAuditLog'&&c.method==='create'&&c.args[0].action_status==='SUCCESS'&&c.args[0].error_code==='TEST_OPERATION_COMPLETED');await rejects(()=>f.preview('DELETE_USER').then(f.execute));check(f.tables.AdminTestOperation[0].checkpoints.includes('VERIFY'));

@@ -7,10 +7,15 @@ import { createHealthContext } from "./context";
 import { SUITES } from "./suites";
 import { HEALTH_CASES, IN_APP_HEALTH_CASES } from "./catalog";
 import { classifyError, withTimeout, ERROR_CODES } from "@/foundation/errors";
+import { BUILD_MARKER } from '../buildMarker';
+import { SOURCE_SET_VERSION } from '../sourceInventory';
+import { HEALTH_CATALOG_VERSION } from './constants';
+import { EXECUTION_CONTRACT, checkExecutionResults } from '../../../base44/shared/healthExecutionEvidence.js';
+const identity = { buildMarker: BUILD_MARKER, healthCatalogVersion: HEALTH_CATALOG_VERSION, sourceSetVersion: SOURCE_SET_VERSION };
 
 const INTEGRITY_CASES = ["H16-001", "H16-002", "H16-003", "H16-004"];
 
-async function executeCase(def, ctx, parentSignal) {
+export async function executeCase(def, ctx, parentSignal = undefined) {
   const meta = toCaseRecord(def);
   if (def.applicability !== APPLICABILITY.CURRENT) {
     const reason = def.applicability === APPLICABILITY.FUTURE ? "FUTURE_PACKAGE — not active for current BuildMarker" : "EXTERNAL_RELEASE — tracked separately, not a fake PASS";
@@ -22,8 +27,14 @@ async function executeCase(def, ctx, parentSignal) {
   const abort=()=>controller.abort(); parentSignal?.addEventListener('abort',abort,{once:true});
   if(parentSignal?.aborted)controller.abort();
   try {
+    if (typeof def.run !== 'function') throw new Error('HEALTH_RUNNER_MISSING');
     const r = await withTimeout(Promise.resolve().then(() => def.run({...ctx,signal:controller.signal})), def.timeoutMs || CASE_TIMEOUT_MS);
-    return enforceEvidence({ ...meta, ...r, attempted: true, executed: true, durationMs: Math.round(performance.now() - t0) });
+    const result = enforceEvidence({ ...meta, ...r, attempted: true, executed: true, durationMs: Math.round(performance.now() - t0),
+      execution: { contract: EXECUTION_CONTRACT, caseId: def.id, ...identity } });
+    if (!Object.values(STATUS).includes(result.status) || !checkExecutionResults([result], [def.id], identity).ok) {
+      return { ...result, status: STATUS.FAIL, evidence: ev(CLASS.SYNTHETIC_RUNTIME,def.id,null,'executed predicate and bound nonempty evidence','INVALID_EXECUTION_EVIDENCE') };
+    }
+    return result;
   } catch (e) {
     const code = classifyError(e);
     const timedOut = code === ERROR_CODES.TIMEOUT;
@@ -44,14 +55,17 @@ export async function runHealth({ suiteId = null, onProgress, signal } = {}) {
   for (const def of ordered) {
     if(signal?.aborted)throw new Error('HEALTH_RUN_CANCELLED');
     ctx.results = results.slice();
+    ctx.expectedCaseIds = ordered.slice(0,results.length).map(row=>row.id);
+    ctx.executionIdentity = identity;
     results.push(await executeCase(def, ctx, signal));
     onProgress?.(results.length, ordered.length);
   }
   const completed = new Date();
   const summary = summarize(results);
-  const integrityOk = suiteId
+  const catalogIntegrity = suiteId
     ? checkCatalog(SUITES, HEALTH_CASES).ok
     : INTEGRITY_CASES.every((id) => results.find((r) => r.id === id)?.status === STATUS.PASS);
+  const integrityOk = catalogIntegrity && checkExecutionResults(results, selected.map(row=>row.id), identity).ok;
   const gate = computeGate(results, { fullScope: !suiteId, integrityOk });
-  return buildReport({ scope, suiteId, started, completed, results, summary, gate });
+  return buildReport({ scope, suiteId, started, completed, results, summary, gate, plannedCaseIds: selected.map(row=>row.id) });
 }

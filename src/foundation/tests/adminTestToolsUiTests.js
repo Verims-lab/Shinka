@@ -125,4 +125,27 @@ export const ADMIN_TEST_UI_TESTS = [
     const done=await f.execute(await f.preview('DELETE_USER'));f.tables.AdminTestOperation[0].status='RUNNING';
     await fixture('en',(action,body)=>f.tools({action,...body}),async(q,host)=>{input(q('#test-user-id'),'ownerA');await pause();q('#test-lookup-button').click();await until(()=>host.textContent.includes(TEST_TOOLS_COPY.en.deletePending));const resume=[...host.querySelectorAll('button')].find(b=>b.textContent===TEST_TOOLS_COPY.en.retry);assert(resume&&!resume.disabled,'resume hidden');resume.click();await until(()=>host.textContent.includes(TEST_TOOLS_COPY.en.deletedResult));assert(f.tables.AdminTestOperation[0].operation_id===done.job.operation_id,'new operation');});
   }],
+  ['AU08','Acknowledged bounded passes continue one approval; no second operation on double click',async()=>{
+    const f=nativeFixture();f.state.time=new Date().toISOString();
+    f.tables.UserPatternSummary=Array.from({length:205},(_,i)=>({id:`row-${i}`,user_id:'ownerA'}));
+    const commands=[];
+    await fixture('en',async(action,body)=>{if(['execute','resume'].includes(action))commands.push({action,id:body.request_id||body.operation_id});return f.tools({action,...body});},async(q,host)=>{
+      await lookup(q);q('[data-destructive="true"]').click();await until(()=>q('[data-test-preview]'));
+      const button=q('[data-test-preview] [data-variant="primary"]');button.click();button.click();
+      await until(()=>host.textContent.includes(TEST_TOOLS_COPY.en.deletedResult));
+      assert(commands.length===3&&commands.filter(c=>c.action==='execute').length===1&&new Set(commands.map(c=>c.id)).size===1,'bounded continuation identity');
+      assert(f.tables.AdminTestOperation.length===1&&!f.tables.UserPatternSummary.length,'incomplete deletion');
+    });
+  }],
+  ['AU09','Lost continuation response switches to read-only reconciliation and never resumes again',async()=>{
+    const f=nativeFixture();f.state.time=new Date().toISOString();
+    f.tables.UserPatternSummary=Array.from({length:205},(_,i)=>({id:`row-${i}`,user_id:'ownerA'}));
+    let resumes=0,reads=0;
+    await fixture('en',async(action,body)=>{if(action==='resume'){resumes++;throw {code:'TEST_TOOLS_TIMEOUT'};}if(action==='status')reads++;return f.tools({action,...body});},async(q,host)=>{
+      await lookup(q);q('[data-destructive="true"]').click();await until(()=>q('[data-test-preview]'));q('[data-test-preview] [data-variant="primary"]').click();
+      await until(()=>reads>0&&!q('#test-user-id').disabled);
+      assert(resumes===1&&reads<=2&&!host.textContent.includes(TEST_TOOLS_COPY.en.deletedResult),'unknown continuation was repeated');
+      assert(host.textContent.includes(TEST_TOOLS_COPY.en.deletePending),'recoverable partial state hidden');
+    });
+  }],
 ];

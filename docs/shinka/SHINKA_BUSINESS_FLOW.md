@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-018
-**Last Updated:** 2026-10-20
+**Current BuildMarker:** Buildmarker-019
+**Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
@@ -11,11 +11,17 @@
 **Not Implemented:** Hosted acceptance for native daily/Calendar writes, Pattern, You editing, withdrawal/deactivation and notifications.
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
+## Current implemented flow — 019
+
+Onboarding preserves optional birthplace/period durations and backend-persisted consent time. ON-06/Home and Calendar use the approved native 016 continuation contract: persisted immutable daily candidates with deterministic reconciliation; actual period dates with read-time OD-012 calculations and durable intent recovery. Old atomic-capability refusals below describe historical packages, not current admission. The original partial ON-05 account still needs its own normal save/readback acceptance; recreating it is not closure.
+
+Admin deletion continues only acknowledged partial progress for the same confirmed operation (maximum 12 requests, 60s between starts). Unknown responses stop writes and query status at most twice. Reload does not execute. Continue uses the stored operation ID; two clicks in one UI do not submit twice. Only verified final absence/audit/status displays Completed; blocked access is not deletion. First-page bounded cleanup and fresh pre/post authorization preserve other owners and retained histories. Reset retains product/consent/daily data and advances only after ordinary validated writes/readback. No new product feature is introduced.
+
 ## 018 admin recovery flow
 
 Normal Health runs from Health Center without browser measurement import. Result scope is in-app; separate local and physical acceptance stays visible. Saved, failed and unknown persistence states are distinct; check/retry the same runId without rerunning.
 
-Delete remains find target → inspect scope → one confirm. Show progress immediately. Timeout/lost response triggers at most two read-only status requests for the same operation; no automatic delete/resume. Partial cleanup exposes Continue. Reload can recover the pending operation. Missing User plus pending/completed journal remains discoverable; missing User without any operation is Not found, while read/permission errors remain errors. Verified completion checks all deletion scopes. Retention, consent withdrawal and onboarding reset remain distinct.
+Delete remains find target → inspect scope → one confirm. Show progress immediately. Timeout/lost response triggers at most two read-only status requests for the same operation; only acknowledged partial responses permit bounded same-operation continuation under 019. Partial cleanup exposes Continue. Reload can recover the pending operation. Missing User plus pending/completed journal remains discoverable; missing User without any operation is Not found, while read/permission errors remain errors. Verified completion checks all deletion scopes. Retention, consent withdrawal and onboarding reset remain distinct.
 
 ## Current corrective behavior — 017
 
@@ -31,7 +37,7 @@ Calendar persists actual starts and owner/action receipts; derives phases/predic
 Apple or Google only; no Shinka password; one account per provider identity. 18+ checkbox (initially empty) must be checked before auth starts; age is re-checked from birth date (backend). Sign Out does not change account status.
 
 ## Onboarding (UC-02…06)
-Intro → optional name (trim, ≤50) → sign-in → birth date (required, valid, not future, 18+) → optional birth time (HH:mm 24h) and GeoNames-selected birthplace (no free text) → optional period info with explicit health consent → ON-06 real preparation/readback flow (production new writes currently blocked by durable uniqueness). Sun sign uses only birth_date and the fixed tropical mapping in SOURCE_OF_TRUTH; birth_time stays NULL when missing, with no 00:00 fallback and no UNCERTAIN.
+Intro → optional name (trim, ≤50) → sign-in → birth date (required, valid, not future, 18+) → optional birth time (HH:mm 24h) and GeoNames-selected birthplace (no free text) → optional period info with explicit health consent → ON-06 real preparation/readback flow (native immutable-candidate persistence; see current continuation). Sun sign uses only birth_date and the fixed tropical mapping in SOURCE_OF_TRUTH; birth_time stays NULL when missing, with no 00:00 fallback and no UNCERTAIN.
 
 ## Home (UC-11, KK-11/14)
 Shows the pair for the device's current local calendar day. Reopen/Retry/profile/language changes never create a second Pair ID. Greeting adapts to time and name; does not affect selection.

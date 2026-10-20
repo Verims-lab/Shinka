@@ -8,9 +8,9 @@ import { makeCase } from "../caseFactory";
 const c = makeCase("H02");
 
 export const H02_CASES = [
-  c("H02-001", "All canonical MD files exist", "The 12 canonical docs exist under docs/shinka/.", async (ctx) => {
+  c("H02-001", "All canonical MD files exist", "The 13 canonical docs exist under docs/shinka/.", async (ctx) => {
     const r = (await ctx.inspection()).docs;
-    return verdict(r.missing.length === 0, ev(CLASS.STATIC, "docs/shinka/*.md", { present: r.present, missing: r.missing }, { present: 12, missing: [] }, "Doc file inspection"));
+    return verdict(r.missing.length === 0, ev(CLASS.STATIC, "docs/shinka/*.md", { present: r.present, missing: r.missing }, { present: 13, missing: [] }, "Doc file inspection"));
   }),
   c("H02-002", "Canonical MD headers and BuildMarker aligned", "Every doc has the standard header; Current BuildMarker equals the canonical marker.", async (ctx) => {
     const r = (await ctx.inspection()).docs;
@@ -27,7 +27,7 @@ export const H02_CASES = [
     const ok = !notRead.length && !partsNotRead.length;
     const e = ev(ok ? CLASS.STATIC : CLASS.BLOCKED_EXTERNAL, "src/foundation/sourceInventory.js", { logicalRead: LOGICAL_SOURCE_COUNT - notRead.length, notRead, partsNotRead }, { logicalRead: 10, notRead: [], partsNotRead: [] },
       ok ? "SOURCE_RECEIVED_AND_RECORDED; original artifacts are external, not hash-verified in Git" : "Required source/part not supplied");
-    return { status: ok ? STATUS.PASS : STATUS.BLOCKED, evidence: e };
+    return verdict(ok, e, STATUS.BLOCKED);
   }),
   c("H02-005", "Source authority table exists", "Every required domain has a registered primary source; DB v1.2 supersedes DB v1.1.", async () => {
     const ids = SOURCE_INVENTORY.map((s) => s.id);

@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-018
-**Last Updated:** 2026-10-20
+**Current BuildMarker:** Buildmarker-019
+**Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
@@ -11,6 +11,12 @@
 **Not Implemented:** Verified hosted Calendar mutations, Pattern and full You/account workflows; new daily persistence remains blocked. ON-06/Home rendering and request states are implemented.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+## 019 responsive and outcome audit
+
+Existing surface is mobile web; no PWA/native WebView wrapper is added or claimed. Typography line boxes scale with text using em-based ratios while retaining the exact 100% design sizes; width-only checks are supplemented by line-height assertions and visual inspection. Header language/Profile controls wrap at narrow widths with 200% text; card text wraps without changing copy. Keep the approved 44×44 minimum (stricter than WCAG 2.2's 24 CSS-pixel minimum), primary 52px minima, readable native form controls, focus restoration and live operation status. Local browser text-size tests are not physical OS font scaling/keyboard evidence.
+
+Test Tools still uses one explicit selected-target confirmation. Progress includes the persisted stage, bounded same-operation continuation, separate partial/unknown/completed results and recovery after reload. Health lists executable in-app scope apart from local/future/external acceptance, with no fake N/A dispatch or hidden failures. [Primary Android/iOS evidence](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md) records both browser engines and the remaining physical checks; [019 handoff](reports/SHINKA_AUDIT_FIX_019.md) records the actual measured results.
 
 ## 018 approved Health and deletion interaction
 

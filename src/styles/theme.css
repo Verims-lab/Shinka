@@ -60,29 +60,30 @@
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  /* Retain fixed inherited line heights for nested small labels. */
-  --text-xs--line-height: 1rem;
-  --text-sm--line-height: 1.25rem;
-  --text-base--line-height: 1.5rem;
-  --text-lg--line-height: 1.75rem;
-  --text-xl--line-height: 1.75rem;
-  --text-2xl--line-height: 2rem;
-  --text-3xl--line-height: 2.25rem;
-  --text-4xl--line-height: 2.5rem;
+  /* Resolve proportional line boxes on each sized element. Children retain the
+     computed inherited height; text enlargement scales without overlapping. */
+  --text-xs--line-height: calc(16 / 12 * 1em);
+  --text-sm--line-height: calc(20 / 14 * 1em);
+  --text-base--line-height: calc(24 / 16 * 1em);
+  --text-lg--line-height: calc(28 / 18 * 1em);
+  --text-xl--line-height: calc(28 / 20 * 1em);
+  --text-2xl--line-height: calc(32 / 24 * 1em);
+  --text-3xl--line-height: calc(36 / 30 * 1em);
+  --text-4xl--line-height: calc(40 / 36 * 1em);
   --text-shinka-h1: 34px;
-  --text-shinka-h1--line-height: 40px;
+  --text-shinka-h1--line-height: calc(40 / 34 * 1em);
   --text-shinka-h2: 28px;
-  --text-shinka-h2--line-height: 34px;
+  --text-shinka-h2--line-height: calc(34 / 28 * 1em);
   --text-shinka-h3: 24px;
-  --text-shinka-h3--line-height: 30px;
+  --text-shinka-h3--line-height: calc(30 / 24 * 1em);
   --text-shinka-h4: 20px;
-  --text-shinka-h4--line-height: 26px;
+  --text-shinka-h4--line-height: calc(26 / 20 * 1em);
   --text-shinka-body-lg: 17px;
-  --text-shinka-body-lg--line-height: 25px;
+  --text-shinka-body-lg--line-height: calc(25 / 17 * 1em);
   --text-shinka-body: 15px;
-  --text-shinka-body--line-height: 22px;
+  --text-shinka-body--line-height: calc(22 / 15 * 1em);
   --text-shinka-caption: 13px;
-  --text-shinka-caption--line-height: 18px;
+  --text-shinka-caption--line-height: calc(18 / 13 * 1em);
   --shadow-shinka-card: 0 2px 10px rgba(76,38,63,.05);
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;

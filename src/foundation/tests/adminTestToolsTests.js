@@ -101,9 +101,9 @@ export const ADMIN_TEST_TOOLS_TESTS = [
     f.tables.NotificationDelivery.push({ id: 'notification', user_id: 'ownerA', daily_message_id: 'old-daily', delivery_status: 'PENDING' });
     const before = retained(f), view = await f.preview(), id = crypto.randomUUID();
     assert(view.counts.user_period_record === 205, 'first-page truncation');
-    let result;
-    try {result=await f.execute(view,id);}catch(e){assert(e.code==='TEST_JOB_RETRY_REQUIRED','bounded batch');}
-    for(let i=0;i<4&&!result;i++) {try{result=await f.resume(id);}catch(e){assert(e.code==='TEST_JOB_RETRY_REQUIRED','resumed batch');}}
+    let result=await f.execute(view,id);
+    assert(result.job.error_code==='TEST_CLEANUP_MORE_REQUIRED','bounded pass not acknowledged');
+    for(let i=0;i<4&&result.job.status!=='COMPLETED';i++) result=await f.resume(id);
     assert(result.job.status === 'COMPLETED' && deleted(f), 'not removed');
     assert(f.tables.UserPeriodRecord.length === 1 && f.tables.UserPeriodRecord[0].user_id === 'ownerB', 'other owner changed');
     assert(retained(f) === before && f.tables.NotificationDelivery[0].delivery_status === 'SKIPPED', 'retention');
@@ -133,7 +133,7 @@ export const ADMIN_TEST_TOOLS_TESTS = [
     for (const fault of ['delete:UserProfile', 'afterDelete:User', 'checkpoint:USER', 'finish']) {
       const f = adminTestFixture(), view = await f.preview(), id = crypto.randomUUID();
       const protectedBefore = retained(f);
-      f.state.fail = fault; await rejects(() => f.execute(view, id), 'TEST_JOB_RETRY_REQUIRED');
+      f.state.fail = fault; await rejects(() => f.execute(view, id), 'TEST_STORAGE_UNAVAILABLE');
       assert(f.tables.AdminTestOperation[0].status !== 'COMPLETED', 'false success');
       const result = await f.resume(id);
       assert(result.job.status === 'COMPLETED' && deleted(f) && retained(f) === protectedBefore, `retry ${fault}`);

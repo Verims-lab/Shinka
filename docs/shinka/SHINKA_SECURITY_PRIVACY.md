@@ -2,9 +2,9 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-018
+**Current BuildMarker:** Buildmarker-019
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
-**Last Updated:** 2026-10-20
+**Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
@@ -25,9 +25,17 @@
 | INACTIVE account | No login, generation, push | UNVERIFIED |
 | Restore protection | Deleted health data never reappears; INACTIVE stays INACTIVE | UNVERIFIED |
 
-Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS allows admin read and denies client create/update/delete; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
+Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+## 019 security audit
+
+Fresh auth configuration observation and regenerated-template provenance are recorded in SOURCE_OF_TRUTH; no provider-login success is inferred. InternalHealthRun direct create/read/update/delete policies all remain false; only current-admin backend operations expose authorized history. Current reports require canonical planned IDs and evaluated, version-bound evidence. This improves diagnostic integrity, not independent attestation of a client-submitted report. Old failures remain immutable.
+
+Deletion logs contain no SDK arguments, target identity/name/email, health rows, tokens or raw exceptions. SDK 401/403, 404, 429 and unavailable failures receive distinct safe codes; an absent-delete response counts as idempotent only after successful scoped absence read. Read failures never establish absence. Fresh actor/target/last-admin/open-job and ownership protections remain; parallel prechecks are awaited, not cached. Acknowledged partial continuation never bypasses those checks; unknown transport outcomes permit only read-only reconciliation. Per-request counters are not cross-worker fencing. Native User removal and related-data verification remain required.
+
+Dependency audit: ten unused direct dependencies removed after source/import inspection; Vite 8.2.0 → 8.2.4 fixes GHSA-698v-4r3x-3vcv (released 2026-10-06, beyond the configured 7-day release-age floor). Existing React Router Moderate exposure/disposition below remains; no Critical/High waiver. Final fresh counts and lock/tree checks are in the 019 report.
 
 ## 018 diagnostic and recovery limits
 

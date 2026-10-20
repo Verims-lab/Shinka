@@ -1,0 +1,38 @@
+{
+  "focused": true,
+  "results": [
+    {
+      "id": "AD01",
+      "name": "SDK failure retains safe cause/stage and resumes the same durable partial deletion",
+      "passed": false,
+      "blocked": false,
+      "detail": "AD01:START:TEST_JOB_RETRY_REQUIRED != TEST_STORAGE_ACCESS_DENIED"
+    },
+    {
+      "id": "AD02",
+      "name": "Bounded cleanup of shrinking pages resumes without skipped rows or lost retention",
+      "passed": false,
+      "blocked": false,
+      "detail": "AD02:START:TEST_JOB_RETRY_REQUIRED"
+    },
+    {
+      "id": "AD03",
+      "name": "Concurrent missing-row delete is idempotent only after successful absence read",
+      "passed": false,
+      "blocked": false,
+      "detail": "AD03:START:[object Object]"
+    },
+    {
+      "id": "AD04",
+      "name": "Residual and final-verification failure never become completed; wrong actor cannot resume",
+      "passed": false,
+      "blocked": false,
+      "detail": "AD04:START:TEST_JOB_RETRY_REQUIRED != TEST_DELETE_UNCONFIRMED"
+    }
+  ],
+  "pageErrors": [],
+  "baseRevision": "68efa0caa6753ad86078f302e27deeb84aeeab8c",
+  "method": "Vite import substitution of original nativeAdminTestOperation.js, adminTestExecution.js, adminTestRepository.js from git show into isolated current AD01-AD04 tests; checkout not reverted",
+  "scope": "LOCAL_SYNTHETIC_REAL_HELPERS",
+  "expectedFailures": 4
+}

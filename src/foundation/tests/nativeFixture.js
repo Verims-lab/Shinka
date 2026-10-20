@@ -46,7 +46,7 @@ export function nativeFixture({ granted = true } = {}) {
   const change = async (action, extra = {}) => cal({ action, revision: (await cal()).revision, action_id: crypto.randomUUID(), ...extra });
   const library = async () => ({ plan: { ready: true }, actual: Object.fromEntries(Object.keys(DOMAIN_SCHEMAS).map(name => [name, clone(tables[physicalName(name)])])) });
   const today = () => dailyMessageOperation(client(), { action: 'today', timezone: 'Europe/Istanbul' }, { native: true, now, library, random: () => 0 });
-  const tools = (body, owner = 'adminA') => nativeAdminTestOperation(withUserLifecycle(raw(owner)), body, { policy: { appId: 'native-fixture', label: 'TEST' }, signer: createPreviewSigner('synthetic-signing-key-at-least-32-characters', now), now });
+  const tools = (body, owner = 'adminA', options = {}) => nativeAdminTestOperation(withUserLifecycle(options.diagnostics ? options.diagnostics.wrap(raw(owner)) : raw(owner)), body, { policy: { appId: 'native-fixture', label: 'TEST' }, signer: createPreviewSigner('synthetic-signing-key-at-least-32-characters', now), now, ...options });
   const preview = (operation = 'RESET_ONBOARDING') => tools({ action: 'preview', target_id: 'ownerA', operation });
   const execute = view => tools({ action: 'execute', target_id: 'ownerA', operation: view.operation, confirmation: true, preview_token: view.preview_token, request_id: crypto.randomUUID() });
   const once = (when, predicate) => { state[when] = async call => { if (predicate(call)) { state[when] = null; throw new Error('SYNTHETIC_LOST_RESPONSE'); } }; };

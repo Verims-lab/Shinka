@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-018
-**Last Updated:** 2026-10-20
+**Current BuildMarker:** Buildmarker-019
+**Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
 **Scope:** All source (client, backend, internal tooling).
@@ -36,11 +36,17 @@
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
+## 019 corrective rules
+
+Retain narrow responsibilities: diagnostics → safe metadata/counters; repository → SDK paging/ownership; executor → durable stage and result; hook → user interaction/recovery. Keep specific safe errors and stages through catch boundaries. Missing-row idempotency requires an actual successful absence read; permissions/network errors are not missing data. Page a shrinking deletion collection from offset zero and cap writes; never advance an offset through concurrently removed rows. Reconcile old checkpoints, avoid rewriting unchanged checkpoints, and never cache authorization to reduce request counts.
+
+An evaluated boolean predicate, nonempty measured result and matching case/build/catalog/source identity are required for PASS. Empty helper sets, absent runners/no-op returns and incomplete results fail. Keep the server plan aligned with the executable catalog via H16; future/local/external requirements remain visible but undispatched. Isolated fixtures must drive actual implementation helpers, inject failure/race/loss and assert results. Native platform guarantees cannot be invented from fixtures. Use meaningful mobile text-resize/focus and performance measurements; no fixed-success Web Vitals evidence.
+
 ## 018 runtime/regression and recovery boundaries
 
 This supersedes the 017 normal-Health JSON measurement workflow. Local tests retain the real viewport contract; no import UI or hosted measurement script remains. Shared executeTest passes a child AbortSignal, safe ID/stage and deadline; onboarding fixture waits/delays observe it, unmount and remove their frame on abort/finally. syntheticProbe propagates cancellation and memoizes helpers within one run. Do not dispatch new tests after cancellation.
 
-Use a single deletion verification helper for executor and read-only lookup/status. Completed checkpoint/audit metadata is not rewritten on every resume, but every cleanup scope is reread for late residuals. Do not cache role/target authorization. Stage passes yield after bounded elapsed work; an in-flight SDK call is not physically aborted. Internal request errors preserve sanitized code/stage/request ID; a client timeout remains unknown. No automatic destructive retry. Normal Health report reads/writes retain immutable runId/digest behavior.
+Use a single deletion verification helper for executor and read-only lookup/status. Completed checkpoint/audit metadata is not rewritten on every resume, but every cleanup scope is reread for late residuals. Do not cache role/target authorization. Stage passes yield after bounded elapsed work; an in-flight SDK call is not physically aborted. Internal request errors preserve sanitized code/stage/request ID; a client timeout remains unknown. Unknown responses never trigger automatic destructive retry; only acknowledged partial progress permits bounded continuation of the same operation under 019. Normal Health report reads/writes retain immutable runId/digest behavior.
 
 ## Current probe/history/deletion standard — 017
 
@@ -54,7 +60,7 @@ Delete target admission is distinct from actor admin admission. Keep cleanup bou
 
 Keep mutation responsibility in narrow native modules and reuse existing validation/calculation. Ordinary Entity create/update/updateMany are not transaction/UNIQUE/CAS evidence. For immutable daily snapshots use insert and deterministic reconciliation, never upsert. For date mutation bind receipt/owner/intent, compare revision, verify affected counts and reread actual state. Persist business consent time once; preserve it on retry. No fallback clock/naive-Z patch.
 
-Normal write/readback must precede reset progress. Deletion is permitted only under the explicit operator-maintenance contract; pre/post admission is not distributed fencing. Tests exercise actual native handlers with ordinary SDK-shaped CRUD, faults and independent reconstructed clients; label those synthetic, separate hosted evidence. Existing historical atomic protocol fixtures do not enable production behavior. No SQL tooling/driver/CI requirement. [Current contract](SHINKA_BASE44_CONTINUATION.md).
+Normal write/readback must precede reset progress. The historical 016 operator-maintenance contract is superseded by the 017 target-scoped confirmation/lifecycle contract; pre/post admission is not distributed fencing. Tests exercise actual native handlers with ordinary SDK-shaped CRUD, faults and independent reconstructed clients; label those synthetic, separate hosted evidence. Existing historical atomic protocol fixtures do not enable production behavior. No SQL tooling/driver/CI requirement. [Current contract](SHINKA_BASE44_CONTINUATION.md).
 
 ## Onboarding boundaries and regression
 

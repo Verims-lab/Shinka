@@ -3,6 +3,7 @@ const params = new URLSearchParams(location.search);
 let session = params.get('sdkSession') || 'anonymous';
 let delayed = null;
 const calls = [];
+globalThis.__sdkLabCalls = calls; // CLI-only action-name counters; never request payloads.
 let releaseHydration;
 let dailyAttempts = 0;
 let calendarLab;

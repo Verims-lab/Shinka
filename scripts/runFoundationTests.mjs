@@ -1,4 +1,5 @@
 import { checkInAppHealth } from './verifyHealthFlow.mjs';
+import { writeHealthAudit } from './auditHealthCatalog.mjs';
 import { collectBrowserMeasurements } from './browserMeasurements.mjs';
 import { verifyNativeEntries } from './verifyNativeEntries.mjs';
 import { checkAdminTestTools } from './checkAdminTestTools.mjs';
@@ -61,7 +62,11 @@ try {
   const probeBundle = await collectBrowserMeasurements(browser, origin, identity, browserName);
   await page.addInitScript(bundle=>sessionStorage.setItem('shinka.browser-evidence.v1',JSON.stringify(bundle)),probeBundle);
   await page.evaluate(bundle=>window.__acceptBrowserEvidence(bundle),probeBundle);
-  if (process.env.FOUNDATION_ADMIN_ONLY === '1') {
+  if (process.env.FOUNDATION_MOBILE_ONLY === '1') {
+    const mobile=await checkMobile(browser,origin,process.env.FOUNDATION_MOBILE_DIR);
+    console.log(JSON.stringify({diagnosticOnly:true,mobile,pageErrors},null,2));
+    if(mobile.some(row=>!row.passed)||pageErrors.length)process.exitCode=1;
+  } else if (process.env.FOUNDATION_ADMIN_ONLY === '1') {
     const adminNavigation = await checkAdminNavigation(page, origin, process.env.FOUNDATION_ADMIN_DIR);
     console.log(JSON.stringify({ diagnosticOnly: true, adminNavigation, pageErrors }, null, 2));
     if (pageErrors.length) process.exitCode = 1;
@@ -69,8 +74,12 @@ try {
   if(process.env.FOUNDATION_VISUAL_DIR){await captureFoundationVisuals(page,origin,path.resolve(process.env.FOUNDATION_VISUAL_DIR));await page.setViewportSize({width:1280,height:900});}
   await page.goto(`${origin}/internal/health`);
   await page.waitForSelector("[data-health-root]");
-  const results=await page.evaluate(()=>window.__runFoundationTests());
+  const results=await page.evaluate(ids=>window.__runFoundationTests({ids}),process.env.FOUNDATION_TEST_IDS?.split(','));
   for(const result of results) console.log(`${result.passed?"PASS":"FAIL"} ${result.id} ${result.name}${result.passed?"":` — ${result.detail}`}`);
+  if (process.env.FOUNDATION_TEST_IDS) {
+    console.log(JSON.stringify({focused:true,results,pageErrors},null,2));
+    if(results.some(r=>!r.passed)||!results.length||pageErrors.length)process.exitCode=1;
+  } else {
   const health=await page.evaluate(()=>window.__staticHealthEvidence());
   const onboardingHealth=await page.evaluate(()=>window.__onboardingHealthEvidence());
   const dailyHealth=await page.evaluate(()=>window.__dailyHealthEvidence());
@@ -100,8 +109,13 @@ try {
   const calendarFlow = await checkCalendarFlow(page, origin, process.env.FOUNDATION_CALENDAR_DIR);
   const adminTestFlow = await checkAdminTestTools(page, origin, process.env.FOUNDATION_TEST_TOOLS_DIR);
   const inAppHealth=await checkInAppHealth(page,origin);
+  if(process.env.FOUNDATION_AUDIT_DIR) {
+    const audit=await page.evaluate(()=>({registry:window.__healthAuditRegistry,report:window.__savedHealthReport}));
+    await writeHealthAudit(root,process.env.FOUNDATION_AUDIT_DIR,audit.registry,audit.report,results);
+  }
   console.log(JSON.stringify({inAppHealth,adminNavigation,mobile,dailyFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
   if(mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||calendarHealth.some(c=>c.status!=="PASS")||adminTestHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
+  }
   }
 } catch(error){console.error(error);process.exitCode=1;}
 finally {await browser?.close();if(server) await new Promise(resolve=>server.close(resolve));await rm(output,{recursive:true,force:true});}

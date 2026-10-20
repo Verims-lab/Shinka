@@ -51,7 +51,7 @@ export const H05_CASES = [
     let verification=null;
     if(contentStatePolicy(BUILD_MARKER)==='VERIFIED_CONTENT_IMPORT_STAGES')try{verification=await ctx.contentLibrary();}catch{/* Verification unavailable is never ready. */}
     const result=evaluateContentState(BUILD_MARKER,counts,importPerformed,verification);
-    return {status:result.status,evidence:ev(CLASS.LIVE_RUNTIME,'internalHealth contentCounts + validateContentArtifacts (live, read-only)',
-      {buildMarker:BUILD_MARKER,counts,importPerformed,phase:verification?.phase,ready:verification?.ready,sourceHash:verification?.sourceHash,unexpected:result.unexpected||[]},result.expected,result.code)};
+    return verdict(result.status === 'PASS',ev(CLASS.LIVE_RUNTIME,'internalHealth contentCounts + validateContentArtifacts (live, read-only)',
+      {buildMarker:BUILD_MARKER,counts,importPerformed,phase:verification?.phase,ready:verification?.ready,sourceHash:verification?.sourceHash,unexpected:result.unexpected||[]},result.expected,result.code), result.status);
   }),
 ];

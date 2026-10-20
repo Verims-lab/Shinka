@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-018
-**Last Updated:** 2026-10-20
+**Current BuildMarker:** Buildmarker-019
+**Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 019 Audit + Fix — 2026-10-21
+
+Main was two commits ahead; Test/local were safely fast-forwarded to 68efa0c before edits. The user-reported 018 H03-008 failure is retained. Targeted read-only diagnosis found the existing deletion at user_preferences with native User present; no live destructive retry or hosted Health was run. Exact platform-stop cause remains unproven. Local regressions reproduce generic cause loss, partial cleanup and missing-row/final-verification faults against pre-fix 68efa0c, then exercise the corrected native path. Safe diagnostics, bounded same-operation continuation, auth-template policy, strict Health execution/report plan, mobile text wrapping and unused-dependency cleanup are delivered together. No content/schema/product decision was changed. Full evidence, case migration, dependency/performance results and remaining user acceptance: [019 audit](reports/SHINKA_AUDIT_FIX_019.md). Historical failed reports below are retained.
 
 ## Buildmarker-018 — In-app Health and deletion outcomes / HC-018.0
 
