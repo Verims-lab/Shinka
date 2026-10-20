@@ -1,3 +1,4 @@
+import { ADMIN_TEST_HEALTH_CASES } from '@/foundation/health/cases/adminTestTools';
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -56,3 +57,5 @@ window.__calendarHealthEvidence = async () => {
   for(const c of CALENDAR_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&c.runnerType==='RUNTIME'))out.push({id:c.id,...await c.run({})});
   return out;
 };
+
+window.__adminTestHealthEvidence = async () => { const out=[]; for (const c of ADMIN_TEST_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&c.runnerType==='RUNTIME')) out.push({id:c.id,...await c.run({})}); return out; };

@@ -1,0 +1,387 @@
+{
+  "scope": "REPOSITORY_AND_ISOLATED_BROWSER_ONLY",
+  "buildMarker": "Buildmarker-013",
+  "healthCatalog": "HC-013.0",
+  "measuredAt": "2026-10-20T12:43:54.493235+00:00",
+  "liveMutationPerformed": false,
+  "productionMutationStatus": "BLOCKED_NO_DURABLE_TARGET_COORDINATOR",
+  "browsers": {
+    "chromium": {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "canonical": {
+        "tests": 396,
+        "passed": 396,
+        "failed": 0
+      },
+      "catalog": {
+        "version": "HC-013.0",
+        "suites": 16,
+        "cases": 149,
+        "current": 130,
+        "future": 7,
+        "external": 12
+      },
+      "localHealth": {
+        "health": {
+          "passed": 54,
+          "caseIds": [
+            "H01-006",
+            "H03-010",
+            "H03-001",
+            "H03-004",
+            "H03-008",
+            "H03-009",
+            "H04-001",
+            "H04-002",
+            "H04-003",
+            "H04-004",
+            "H04-005",
+            "H04-007",
+            "H04-008",
+            "H04-009",
+            "H04-010",
+            "H04-011",
+            "H04-012",
+            "H04-013",
+            "H04-014",
+            "H04-015",
+            "H12-001",
+            "H12-002",
+            "H12-003",
+            "H12-004",
+            "H12-005",
+            "H12-006",
+            "H12-007",
+            "H12-008",
+            "H12-009",
+            "H12-010",
+            "H12-011",
+            "H12-012",
+            "H12-013",
+            "H12-014",
+            "H12-015",
+            "H12-016",
+            "H12-017",
+            "H12-018",
+            "H12-019",
+            "H12-020",
+            "H12-025",
+            "H13-001",
+            "H13-002",
+            "H13-003",
+            "H13-004",
+            "H13-005",
+            "H13-006",
+            "H13-007",
+            "H13-008",
+            "H13-009",
+            "H13-010",
+            "H13-011",
+            "H13-012",
+            "H13-014"
+          ]
+        },
+        "onboardingHealth": {
+          "passed": 21,
+          "caseIds": [
+            "H06-001",
+            "H06-002",
+            "H06-003",
+            "H06-004",
+            "H06-005",
+            "H06-006",
+            "H07-001",
+            "H07-002",
+            "H07-003",
+            "H07-004",
+            "H07-005",
+            "H07-006",
+            "H07-007",
+            "H07-008",
+            "H07-009",
+            "H07-010",
+            "H07-011",
+            "H07-012",
+            "H10-003",
+            "H11-004",
+            "H11-005"
+          ]
+        },
+        "dailyHealth": {
+          "passed": 9,
+          "caseIds": [
+            "H05-010",
+            "H07-013",
+            "H08-001",
+            "H08-003",
+            "H09-001",
+            "H09-002",
+            "H09-003",
+            "H10-002",
+            "H12-026"
+          ]
+        },
+        "calendarHealth": {
+          "passed": 5,
+          "caseIds": [
+            "H08-002",
+            "H08-004",
+            "H11-002",
+            "H12-027",
+            "H13-015"
+          ]
+        },
+        "adminTestHealth": {
+          "passed": 4,
+          "caseIds": [
+            "H12-028",
+            "H12-029",
+            "H12-030",
+            "H13-016"
+          ]
+        }
+      },
+      "scenarios": {
+        "adminNavigation": 19,
+        "mobile": 5,
+        "dailyFlow": 5,
+        "calendarFlow": 6,
+        "adminTestFlow": 4,
+        "productionRouting": 5,
+        "previewProbes": 3
+      },
+      "pageErrors": []
+    },
+    "webkit": {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "canonical": {
+        "tests": 396,
+        "passed": 396,
+        "failed": 0
+      },
+      "catalog": {
+        "version": "HC-013.0",
+        "suites": 16,
+        "cases": 149,
+        "current": 130,
+        "future": 7,
+        "external": 12
+      },
+      "localHealth": {
+        "health": {
+          "passed": 54,
+          "caseIds": [
+            "H01-006",
+            "H03-010",
+            "H03-001",
+            "H03-004",
+            "H03-008",
+            "H03-009",
+            "H04-001",
+            "H04-002",
+            "H04-003",
+            "H04-004",
+            "H04-005",
+            "H04-007",
+            "H04-008",
+            "H04-009",
+            "H04-010",
+            "H04-011",
+            "H04-012",
+            "H04-013",
+            "H04-014",
+            "H04-015",
+            "H12-001",
+            "H12-002",
+            "H12-003",
+            "H12-004",
+            "H12-005",
+            "H12-006",
+            "H12-007",
+            "H12-008",
+            "H12-009",
+            "H12-010",
+            "H12-011",
+            "H12-012",
+            "H12-013",
+            "H12-014",
+            "H12-015",
+            "H12-016",
+            "H12-017",
+            "H12-018",
+            "H12-019",
+            "H12-020",
+            "H12-025",
+            "H13-001",
+            "H13-002",
+            "H13-003",
+            "H13-004",
+            "H13-005",
+            "H13-006",
+            "H13-007",
+            "H13-008",
+            "H13-009",
+            "H13-010",
+            "H13-011",
+            "H13-012",
+            "H13-014"
+          ]
+        },
+        "onboardingHealth": {
+          "passed": 21,
+          "caseIds": [
+            "H06-001",
+            "H06-002",
+            "H06-003",
+            "H06-004",
+            "H06-005",
+            "H06-006",
+            "H07-001",
+            "H07-002",
+            "H07-003",
+            "H07-004",
+            "H07-005",
+            "H07-006",
+            "H07-007",
+            "H07-008",
+            "H07-009",
+            "H07-010",
+            "H07-011",
+            "H07-012",
+            "H10-003",
+            "H11-004",
+            "H11-005"
+          ]
+        },
+        "dailyHealth": {
+          "passed": 9,
+          "caseIds": [
+            "H05-010",
+            "H07-013",
+            "H08-001",
+            "H08-003",
+            "H09-001",
+            "H09-002",
+            "H09-003",
+            "H10-002",
+            "H12-026"
+          ]
+        },
+        "calendarHealth": {
+          "passed": 5,
+          "caseIds": [
+            "H08-002",
+            "H08-004",
+            "H11-002",
+            "H12-027",
+            "H13-015"
+          ]
+        },
+        "adminTestHealth": {
+          "passed": 4,
+          "caseIds": [
+            "H12-028",
+            "H12-029",
+            "H12-030",
+            "H13-016"
+          ]
+        }
+      },
+      "scenarios": {
+        "adminNavigation": 19,
+        "mobile": 5,
+        "dailyFlow": 5,
+        "calendarFlow": 6,
+        "adminTestFlow": 4,
+        "productionRouting": 5,
+        "previewProbes": 3
+      },
+      "pageErrors": []
+    }
+  },
+  "checks": {
+    "cleanInstall": "PASS: npm ci --offline --no-audit; audit performed separately",
+    "dependencyTree": "PASS: npm ls --all and npm ls --depth=0",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "productionBuild": "PASS",
+    "repoHealth": "PASS 16/16",
+    "diffCheck": "PASS"
+  },
+  "security": {
+    "status": "BLOCKED_TLS_CERTIFICATE_CHAIN",
+    "critical": null,
+    "high": null,
+    "moderate": null,
+    "attempts": [
+      "npm run security:deps: restricted-network DNS failure",
+      "npm audit --json: registry certificate chain failure",
+      "NODE_OPTIONS=--use-system-ca npm audit --json: same certificate chain failure"
+    ],
+    "tlsVerificationDisabled": false,
+    "dependencyChanges": false,
+    "historicalAudit": "Package 011 had 0 Critical/High and 2 Moderate; not a current result"
+  },
+  "healthChanges": {
+    "added": [
+      "H12-028",
+      "H12-029",
+      "H12-030",
+      "H12-031",
+      "H12-902",
+      "H13-016"
+    ],
+    "updated": [
+      "H04-003",
+      "H04-015",
+      "H05-009",
+      "H13-014"
+    ],
+    "deleted": [],
+    "livePrerequisite": "H12-031 BLOCKED",
+    "externalAcceptance": "H12-902 not performed"
+  },
+  "openItems": [
+    "Verified all-writer target coordinator, durable journal/receipt/reset transaction and admin-roster exclusion",
+    "Deployed schema/function/RLS/read-only preview and explicit-target live acceptance",
+    "Fresh security audit with valid registry certificate chain",
+    "Existing H09-004/H08-005/H08-006; OD-012 >60-day rule",
+    "ON-05 same-account live saveCycle and readback",
+    "Current deployed Full Health/history readback and physical-device proof"
+  ],
+  "performance": {
+    "passed": true,
+    "budget": {
+      "initialRaw": 500000,
+      "initialGzip": 165000,
+      "cssRaw": 90000,
+      "cssGzip": 16000
+    },
+    "production": {
+      "initialJS": {
+        "raw": 460913,
+        "gzip": 149979
+      },
+      "allJS": {
+        "raw": 1341292,
+        "gzip": 444589
+      },
+      "css": {
+        "raw": 86081,
+        "gzip": 14780
+      },
+      "chunkCount": 17
+    },
+    "staticCycles": [],
+    "pageExceptions": 0,
+    "initialTestsIncluded": false
+  }
+}

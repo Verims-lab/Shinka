@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-012
+**Current BuildMarker:** Buildmarker-013
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -163,3 +163,11 @@ Source manifest and astronomy runtime stay backend-only; Astronomy in the intern
 Owner data is memory-only, no persistent browser cache. Every month read fetches bounded complete observations, never one request per day. Two passes detect changing observations/access, with explicit conflict instead of mixed publication; no native snapshot isolation is claimed. Pure recomputation is bounded by 2,500 starts/40,000 days. Unchanged derived rows use indexed reuse rather than quadratic scans. The read response contains only the requested month. Rolling projection refresh is on reads/mutations; autonomous scheduler remains deferred and persisted-cache renewal cannot be claimed while writes are blocked.
 
 The main fast-forward introduced five unreachable generic auth templates; route/import inspection found no application registrations. AuthLayout, Register, ForgotPassword, ResetPassword and OAuthConsent were removed together. Their password/registration surfaces conflicted with the existing Apple/Google contract and reintroduced type errors. Active auth behavior is unchanged.
+
+## Admin Test Tools boundaries — 013
+
+Lazy `TestTools` page → `useTestTools` → one narrow service → `adminTestTools` function. Catalog/copy, preview UI, strict request policy, metadata-only paginated repository, HMAC preview signer, job executor and lifecycle/reset integration have separate modules. No client entity name, role, owner authority or environment override is accepted. SDK 0.8.54 supports the positional filter pagination and service-role User.delete(id) used by the repository. No cascade, token revocation or transaction is inferred.
+
+All seven existing function entries and the new entry wrap the request-scoped SDK with `withUserLifecycle`. Authentication rereads the existing User/role and target operation metadata; absent users or deletion tombstones deny access. This is an early admission check, **not an in-flight write fence**. An active reset overrides onboarding hydration and blocks Calendar; normal profile/cycle validation is reused, with a coordinator-supplied persistence context. Reset step commit and daily completion use a separate transaction port; the sequential onboarding SDK adapter is not that implementation.
+
+`shinka.target-lifecycle/1` requires durable target exclusion shared by every current/future product writer (including notifications/import-triggered work), global admin-roster exclusion, unique operation/receipt keys, persisted start audit, resumable checkpoints and verified final audit. Worker restart must preserve receipts/fences; failed operations keep their fence. The repository has **no production implementation**. The entry always supplies no coordinator: configuring environment/signing secrets cannot unlock it. The in-memory two-worker fixture is only an executable model. See [adapter and rollout contract](reports/SHINKA_ADMIN_TEST_TOOLS.md).

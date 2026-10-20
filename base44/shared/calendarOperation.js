@@ -1,3 +1,4 @@
+import { readUserLifecycle } from './userLifecycle.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
 import { resolveAuthenticatedOwner } from './domainSecurity.js';
 import { resolveTimezone, serverLocalDate, isCalendarDate } from './onboardingValidation.js';
@@ -21,6 +22,7 @@ function validateRequest(body) {
 export async function calendarOperation(client, body, { now = () => new Date(), atomic = null } = {}) {
   const principal = await requireAuthenticatedUser(client);
   const owner = resolveAuthenticatedOwner(principal, body);
+  if (await readUserLifecycle(client, owner)) fail('ONBOARDING_RESTART_REQUIRED', 409);
   validateRequest(body);
   const reader = calendarReader(client, principal);
   let state = await reader.confirmedSnapshot();

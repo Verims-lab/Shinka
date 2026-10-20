@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-012
+**Current BuildMarker:** Buildmarker-013
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
@@ -111,3 +111,11 @@ Add H08-004 (synthetic atomic replacement/receipt/failure/lost response/two-work
 H13-008 now verifies `ProductNavigation` renders `BOTTOM_NAV` and both Home and Calendar consume it, replacing the stale Home-only source check that failed after extraction. Its three-item/icon contract is unchanged; the failing case was corrected, not removed. H13 light-only/localized-shell source inspection also includes Calendar and the shared navigation.
 
 The CLI executes the five current synthetic Calendar cases separately from the two actual blockers and external case, and reports that scope. CA/CU definitions join the same canonical registry, plus actual-App Calendar screenshots and navigation scenarios. Final measured counts/results are recorded in the 012 handoff and Development Notes. Deployed Full Health is expected BLOCKED until missing capabilities/product rule are genuinely resolved; saving/reading that report is still required after publication.
+
+## HC-013.0 Admin Test Tools reconciliation
+
+Add H12-028 (admin/payload/preview/scope), H12-029 (isolated journal/deletion/recovery/stale tokens), H12-030 (persistent reset/normal validation/Skip/same-day reuse), H13-016 (localized responsive confirmation UI), H12-031 (**current BLOCKED** production durable coordinator) and H12-902 (**external** explicitly selected target live acceptance). Normal Health executes only synthetic destructive fixtures; no real User is removed or reset. Four new runtime cases join the CLI's local evidence; the actual prerequisite is never supplied a fake live adapter.
+
+Update H13-014/AN01/AN08 for the authorized three-tool inventory, H04-003/D02 and H04-015 for separate AdminTestOperation tooling, and H05-009/HC12 for staged 013 versus unapproved 014. Existing entry-isolation tests retain secret/request assertions while substituting the lifecycle wrapper; dedicated AT tests verify the actual wrapper. No case/suite is removed or downgraded. Catalog expected count: 149 / 130 current / 7 future / 12 external across 16 suites.
+
+After user sync/publish: first verify the new schema denies direct CRUD, actual app identity, read-only admin lookup/preview and user/anonymous denial. Mutations remain unavailable until H12-031 is truly resolved. Then run H12-902 only on an admin-explicit test target, including recovery/tokens/two workers and reset on two clients. Save/list/open current-marker Full Health; other blockers (H09-004, H08-005/006), ON-05 incident and device evidence are independent.

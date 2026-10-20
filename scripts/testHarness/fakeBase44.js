@@ -6,6 +6,7 @@ const calls = [];
 let releaseHydration;
 let dailyAttempts = 0;
 let calendarLab;
+let testToolsLab;
 async function loadCalendarLab() {
   if (!calendarLab) calendarLab = import('@/foundation/tests/calendarFixture').then(async ({ calendarFixture }) => {
     const f = calendarFixture({ granted: params.get('calendarScenario') !== 'consent' });
@@ -37,6 +38,13 @@ export const base44 = {
   },
   functions: { invoke: async (name, body) => {
     calls.push({ name, action: body.action }); // Action names only; no user payload.
+    if (name === 'adminTestTools') {
+      if (!testToolsLab) testToolsLab = import('@/foundation/tests/adminTestFixture').then(({ adminTestFixture }) => adminTestFixture());
+      const f = await testToolsLab;
+      f.state.actor = session === 'admin' ? 'adminA' : session === 'user' ? 'ownerA' : null;
+      try { return { data: await f.request(body, { ...f.dependencies, coordinator: null }) }; }
+      catch (error) { return { data: { error_code: error.code || 'TEST_TOOLS_FAILED' } }; }
+    }
     if (name === 'calendar') {
       const f = await loadCalendarLab();
       try {

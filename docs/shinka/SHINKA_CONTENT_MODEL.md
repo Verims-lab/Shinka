@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — source prepared; controlled import and engine implemented; production daily persistence blocked
-**Current BuildMarker:** Buildmarker-012
+**Current BuildMarker:** Buildmarker-013
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
@@ -81,3 +81,7 @@ Source and scope: explicit user approval in this conversation on 2026-10-20, rec
 ## Calendar integration — Buildmarker-012
 
 No Pair text, mapping, category, manifest hash or import behavior changes. Explicit staged content validation now covers packages 011 and 012; 013+ remains unapproved until its own policy. Calendar mutation never reads/writes daily snapshots. Shared `dailyCycle` supplies both Home and Calendar estimation/phase rules; an empty real history remains UNKNOWN even when settings survive last-start deletion. Daily generation accepts the matching current grant event after a completed withdrawal/regrant history rather than incorrectly requiring only one lifetime event. Production daily atomic persistence and live import/readback remain open.
+
+## Package 013 preservation
+
+Test Tools is an explicit non-content feature. The staged content validation policy extends to 013; 014 requires its own approved scope. The six approved category decisions, 260 Pairs, 240 mappings and source manifest hash remain unchanged. Delete/reset never mutate shared content or immutable user daily snapshots; completed reset reuses an existing same-day snapshot. No content import or live Pair generation was performed for this package.

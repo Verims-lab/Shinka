@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-012
+**Current BuildMarker:** Buildmarker-013
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -93,3 +93,11 @@ Pure replacement computes affected history and a rolling three-future-cycle wind
 **Production mutations are blocked** by CALENDAR_ATOMIC_CAPABILITY_REQUIRED. All-or-nothing publication and durable action receipt/revision behavior exist as a protocol with isolated tests, not a Base44 transaction implementation. UI clearly disables saving/deleting/reconsent while this capability is absent; reads and month selection work. A read-time projection is not reported as a persisted phase cache. OD-012 separately blocks undefined >60-day calculations.
 
 For onboarding skippers, the approved separate checkbox starts unchecked. Entry/selection grant nothing. New explicit add+consent is one proposed atomic operation; existing valid time is preserved. Regrant requires a valid WITHDRAWN record/event, a completed deletion job requested no earlier than that withdrawal, and zero remaining health rows inside the same transaction. No reactivation during deletion or restoration of prior data is allowed. Production regrant remains blocked with the other mutations.
+
+## Admin Test Tools — explicit user scope (013)
+
+Profile/You → Admin Panel → Test Tools adds two closed operations. Admin lookup returns only target ID, role/account state and operational state. Preview names the SDK destination app/server and a server-configured environment label; a branch or Preview is not a separate database. Typed exact ID + fresh actor/target/action/app/scope-bound confirmation precedes execution. A role or target change is rechecked under the required coordinator. Self-delete and last-admin removal are denied. A different target invalidates all UI approval state.
+
+Deletion is a separate admin test workflow, not normal Delete Account → INACTIVE. It preserves protected history and declares that retention. A partial operation retains its completed checkpoints and target fence, resumes the same receipt and reports success only after absence/readback and result audit. Reset keeps User/provider/role/profile/cycle/history intact; backend restart state wins over old daily completion on hydrate, login and another device. Existing authenticated sessions enter ON-04 without another OAuth step, then ON-05 and ON-06. Skip advances only restart progress, never health deletion or consent withdrawal. Final daily verification completes the restart; an existing same-day record is reused. INACTIVE and open health-deletion targets cannot reset. Admin self-reset retains the Admin Panel entry.
+
+Both production mutations remain disabled pending the durable shared-writer coordinator. Read-only lookup/preview is usable after schema/function sync. No live account was changed during development.

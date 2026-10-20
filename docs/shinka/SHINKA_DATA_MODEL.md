@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-012
+**Current BuildMarker:** Buildmarker-013
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -44,6 +44,7 @@ Relationships: 25 logical links (see domainContract.js): 24 from `21_Iliskiler`,
 ## INTERNAL TOOLING STORAGE (excluded from the 20)
 | Entity | Purpose | Access |
 |---|---|---|
+| AdminTestOperation | Test-operation journal, restart state, deletion tombstone | All direct CRUD denied |
 | InternalHealthRun | Health run history (redacted report JSON, counts) | admin read; direct create/update/delete denied |
 
 Build Ledger is SOURCE-based (`src/foundation/buildLedger.js`), not an entity.
@@ -408,3 +409,11 @@ No production implementation or external store is configured. A compliant store 
 Read-only Calendar uses owner-filtered pages of 100 starts, maximum 2,500 plus overflow detection; it never truncates and calculates success. A 40,000-day computation safety ceiling fails explicitly. Access and complete observation snapshots are re-read to detect changes; this is best-effort race detection, not snapshot isolation. Returned month contains only actual IDs/dates, recorded/predicted days and safe status/revision; no complete history, grant time, native metadata or tokens. Missing persisted derived rows after onboarding do not cause writes: the response is a read-time projection.
 
 OD-012 preserves >60-day actual observations and refuses undefined derived calculation. Settings are never clamped or filled with 5/28. No live data migration, import or write occurred.
+
+## Admin Test Tools operational state — 013 user decision
+
+`AdminTestOperation` is a second internal tooling entity, outside the unchanged 20 product entities and built-in User. It stores operation/request ID, actor ID, target ID, closed operation/status enums, stage/checkpoints, preview fingerprint, server UTC started_at/progressed_at/completed_at business times and safe error code. Native created_date/updated_date are not duplicated or interpreted as workflow time. It stores no profile/health values, message snapshots, provider IDs or tokens. Direct read/create/update/delete RLS are false; the admin endpoint returns a bounded metadata projection. Operation identity, target exclusivity and conditional progress are required adapter constraints, **not** JSON-schema unique/FK declarations.
+
+DELETE_USER stages: stop PENDING/FAILED notifications as SKIPPED; remove phase/prediction children, cycle settings and period parents, pattern summary, preferences, profile; call service-role User.delete(id); verify absence and stopped jobs; persist final audit/result. Retain current consent metadata, immutable consent events/daily messages, all audit/protection/deletion history and notifications. Shared lookup/content and unscoped system errors are untouched. See the exhaustive 20-entity scope/indirect-edge table in the [report](reports/SHINKA_ADMIN_TEST_TOOLS.md).
+
+Retained actor/target/user references after physical deletion are historical identifiers, never reassigned or cascade-deleted. A COMPLETED DELETE operation is a permanent tombstone. RESET_ACTIVE stages PROFILE → CYCLE → FIRST_SHINKA → COMPLETED/DONE override old daily-based completion; reset creates no consent event and changes no grant time or existing product row by itself. Normal validated writes and stage advancement must commit with a durable receipt. Same-day daily snapshots are reused. Failed/start/result records are retained indefinitely under current policy; the five-package UI history rule does not apply.

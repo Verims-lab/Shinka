@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-012
+**Current BuildMarker:** Buildmarker-013
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -181,3 +181,9 @@ The explicit user request in attachment `ae73619e-0ead-49d8-882a-9f14abe859ca/Pa
 **OD-012 — OPEN, scoped blocking:** real observations have only a minimum 15-day spacing rule, while phase lookup covers lengths 15–60. The sources do not define calculations for real intervals above 60. The user replied on 2026-10-20: “60 günü aşan aralıklar için ayrıca ürün kuralı vereceğim”. Await that separate rule. `CYCLE_RANGE_DECISION_REQUIRED` blocks affected recalculation; it is not an approved maximum on observations. Existing dates are preserved, never clamped, silently excluded or reclassified. Reads can show recorded days with an explicit prediction-unavailable state. Other flows proceed independently.
 
 The source's future-three-cycle window is calculated from the current cycle anchored in the last genuine start; three subsequent cycles and intervening predicted history are represented. Completed actual intervals use their actual length for historical phase days; current/future cycles use the shared last-three/outlier estimate. Predicted cycle interval end is start + estimated length − 1; only MENSTRUAL days within it are colored as predicted period days. No scheduler is activated. The original minimum-spacing, NULL/default, grant-time, immutable daily snapshot and ten-source contracts remain unchanged.
+
+## Explicit user decision — Admin Test Tools, 2026-10-20 (013)
+
+The user's Test Tools request (`661dae77-aa35-4480-a183-4e6ccad217b8/Pasted text.txt`) authorizes two separate authenticated-admin workflows: physical removal of a selected Base44 User with scoped operational cleanup, and persistent onboarding restart without deleting the account. These are new product decisions, not rules extracted from SRC-01…10. Normal self-service Delete Account → INACTIVE stays unchanged. Protected daily snapshots, consent events/current consent metadata, audit, protection history and shared content remain retained. Pending/failed notifications may transition to SKIPPED for a deleted target; their history remains.
+
+The user expressly requires unsafe mutations to stay closed when durable safety cannot be established. Repository lookup/preview/UI and executable isolated protocols are implemented; production mutation status is **BLOCKED_NO_DURABLE_TARGET_COORDINATOR**, not live functionality. H12-031 and H12-902 track capability and external acceptance separately. Full scope, minimal operational schema, rollout and recovery are in [Test Tools report](reports/SHINKA_ADMIN_TEST_TOOLS.md). Category approval, OD-012 and ON-05 retain their independent statuses.

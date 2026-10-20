@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-012
+**Current BuildMarker:** Buildmarker-013
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -75,3 +75,9 @@ Keep source manifest/backend astronomy out of the initial frontend graph. Import
 Keep date selection, editing identity, validation, cycle calculation, authorized snapshot reading and transaction publication separate. Reuse the shared Home cycle engine. Dates remain YYYY-MM-DD; UTC arithmetic is only integer calendar-day arithmetic, never conversion of an entered local day. A production mutation must never be enabled merely because a method named transaction/upsert exists: verify cross-worker owner serialization, crash recovery, receipts, guards and atomic publication to every authoritative reader.
 
 Canonical CA/CU tests cover actual lifecycle, both neighbors, 14/15, local dates/DST, full pagination, NULLs/source examples, lost response, independent workers, no-consent/regrant/deletion, stale UI, unchanged Home and live-capability refusal. H08/H11/H12/H13 execute the same isolated contracts. Native evidence remains separate. Strict typecheck/lint remain enabled; no exclusions were added for Calendar or unused auth templates.
+
+## Test Tools implementation rules — 013
+
+Keep UI/catalog/authorization/preview/persistence/execution separate. Only the two declared actions reach the executor. Server-controlled persistence scans target-filtered pages with explicit metadata fields, rejects malformed/duplicate pagination and foreign indirect references, and fails rather than truncates above the bounded 20,000-row safety ceiling. Cleanup snapshots IDs before deleting so offset pagination cannot skip shrinking pages. No unbounded parallel deletes.
+
+A coordinator interface is not a production guarantee. Do not enable delete/reset with an environment flag, SDK upsert, local mutex or schema assertion. Prove shared writer/roster fencing, durable job uniqueness/receipts and crash recovery before supplying a production coordinator. No persistent job stores normal profile/cycle request bodies. Fixture-only transactions remain under the canonical test tree. Hosted function entry wiring, current-User admission, reset override, protected-history scope and both browsers are part of regression coverage.

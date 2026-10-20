@@ -11,7 +11,7 @@ import { makeCase } from "../caseFactory";
 const c = makeCase("H13");
 
 export const H13_NAV_CASES = [
-  c("H13-014", "Admin navigation and localized inventory", "Exactly two existing tools, TR/EN approved labels, panel/tool/app return navigation with injected identities; keyboard and responsive evidence is recorded separately by the CLI.", syntheticProbe(ADMIN_NAV_TESTS.filter(([id]) => ["AN01", "AN08"].includes(id))), { classification: CLASS.SYNTHETIC_RUNTIME, runnerType: RUNNER.RUNTIME }),
+  c("H13-014", "Admin navigation and localized inventory", "Exactly three approved tools, TR/EN approved labels, panel/tool/app return navigation with injected identities; keyboard and responsive evidence is recorded separately by the CLI.", syntheticProbe(ADMIN_NAV_TESTS.filter(([id]) => ["AN01", "AN08"].includes(id))), { classification: CLASS.SYNTHETIC_RUNTIME, runnerType: RUNNER.RUNTIME }),
   c("H13-008", "Navigation and Lucide icon contract", "Bottom nav is exactly Home/Calendar/Pattern (house, calendar-days, moon); You is top-right user-round and not in bottom nav; icons resolve in lucide-react; Home and Calendar use the shared contract-driven navigation.", async (ctx) => {
     const r = checkNavContract(iconExports());
     const shellUsesContract = (await ctx.inspection()).ui.shellUsesContract;

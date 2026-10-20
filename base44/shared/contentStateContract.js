@@ -7,7 +7,7 @@ export function contentStatePolicy(buildMarker) {
   if(!match)return 'UNRECOGNIZED_PACKAGE';
   const version=Number(match[1]);
   // Packages 009 (maintenance) and 010 (admin navigation) are pre-content; it does not authorize content imports.
-  return [7,8,9,10].includes(version)?'PRE_CONTENT_ZERO_ROWS':[11,12].includes(version)?'VERIFIED_CONTENT_IMPORT_STAGES':'APPROVED_CONTENT_VALIDATION_REQUIRED';
+  return [7,8,9,10].includes(version)?'PRE_CONTENT_ZERO_ROWS':[11,12,13].includes(version)?'VERIFIED_CONTENT_IMPORT_STAGES':'APPROVED_CONTENT_VALIDATION_REQUIRED';
 }
 
 export function evaluateContentState(buildMarker, counts, importPerformed, verification=null) {

@@ -1,0 +1,22 @@
+{
+  "name": "AdminTestOperation",
+  "type": "object",
+  "description": "Internal Test Tools journal, onboarding restart state and permanent deletion tombstone. No profile/health payload. All direct SDK access denied. Schema is NOT a unique constraint, durable coordinator or transaction.",
+  "properties": {
+    "operation_id": { "type": "string" },
+    "actor_id": { "type": "string" },
+    "target_id": { "type": "string" },
+    "request_id": { "type": "string" },
+    "operation": { "type": "string", "enum": ["RESET_ONBOARDING", "DELETE_USER"] },
+    "status": { "type": "string", "enum": ["RUNNING", "RETRY_REQUIRED", "AUDIT_PENDING", "RESET_ACTIVE", "COMPLETED"] },
+    "stage": { "type": "string" },
+    "preview_hash": { "type": "string" },
+    "started_at": { "type": "string", "format": "date-time" },
+    "progressed_at": { "type": "string", "format": "date-time" },
+    "completed_at": { "type": ["string", "null"], "format": "date-time" },
+    "error_code": { "type": ["string", "null"] },
+    "checkpoints": { "type": "array", "items": { "type": "string" } }
+  },
+  "required": ["operation_id", "actor_id", "target_id", "request_id", "operation", "status", "stage", "preview_hash", "started_at", "progressed_at", "checkpoints"],
+  "rls": { "read": false, "create": false, "update": false, "delete": false }
+}

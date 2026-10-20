@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-008",
-    "package_name": "Authentication & Onboarding",
-    "package_type": "PRODUCT_FOUNDATION",
-    "short_summary": "Apple/Google-only auth with pre-auth 18+, ON-01..05 screens and guarded backend contracts, optional GeoNames/cycle consent, production SDK persistence with verified readback, finite ON-06 dependency shell and H06/H07 coverage.",
-    "created_at": "2026-10-19",
-    "health_catalog_version": "HC-007.0",
-    "full_health_status": "BASE44_FULL_HEALTH_REQUIRED",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "CLOSED_PENDING_BASE44_VERIFICATION. Approved fixed-date Sun, exact EN/TR copy, health-consent-v1.0 and durable daily-record completion remain active. Country/subdivision/populated-settlement selection uses safe manual redirects, request-scoped secrets and independent selected-ID resolve/readback. Final 287 canonical tests, 8 routing/Preview scenarios, 49 general and 21 onboarding Health checks passed locally. User-reported Preview search HTTP 200/eight places is not new cascade/save proof. Hosted auth, GeoNames selection/save, native enforcement and Full Health remain open. First Shinka is deferred; no native transaction/rollback claim."
-  },
-  {
     "build_marker": "Buildmarker-009",
     "package_name": "Maintenance, Performance & Mobile Compatibility",
     "package_type": "MAINTENANCE",
@@ -67,5 +53,20 @@ export default [
     "source_changed": true,
     "tests_changed": true,
     "health_changed": true
+  },
+  {
+    "build_marker": "Buildmarker-013",
+    "package_name": "Admin Test Tools",
+    "package_type": "FEATURE",
+    "created_at": "2026-10-20T12:43:54.493235+00:00",
+    "health_catalog_version": "HC-013.0",
+    "short_summary": "Admin-only User ID lookup, impact preview and guarded delete/reset protocols. Production mutations remain disabled pending a verified durable target coordinator; no live user was changed.",
+    "full_health_status": "BLOCKED",
+    "notes": "Chromium/WebKit each 396/396 canonical and 93/93 local Health PASS; 19 admin, 8 routing/Preview, 5 mobile, 5 daily, 6 Calendar and 4 Test Tools App scenarios per engine; zero page errors. Clean install/tree, type/lint/build and Repo Health 16/16 pass. Production delete/reset BLOCKED: no verified durable coordinator/all-writer fencing/reset transaction. New backend-only AdminTestOperation schema must precede lifecycle function deployment. Fresh npm audit BLOCKED_TLS_CERTIFICATE_CHAIN with TLS verification retained; current vulnerability counts unknown, no dependency changes. No live mutation or deployment. H12-031 current blocker, H12-902 external; prior ON-05/OD-012/daily/Calendar blockers remain. Scope/recovery/acceptance in reports/SHINKA_ADMIN_TEST_TOOLS.md; evidence in reports/test-tools-013/verification.json.",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "updated_at": "2026-10-20T12:43:54.493235+00:00"
   }
 ];

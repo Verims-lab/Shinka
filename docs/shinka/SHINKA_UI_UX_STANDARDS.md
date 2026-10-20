@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-012
+**Current BuildMarker:** Buildmarker-013
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -219,3 +219,9 @@ Selected existing ID/date and destination date remain separate across month navi
 `calendarCopy.js` centralizes original companion English and scoped Turkish/helper translations under this implementation request. The exact previously approved health-consent checkbox comes from onboardingCopy and starts unchecked. No fabricated duration/cycle setting is displayed. Disabled production mutations have a clear localized availability explanation; fixtures with the transaction model exercise the enabled UI without implying hosted support.
 
 Shared bottom navigation enables Home/Calendar and keeps Pattern inactive; Profile/admin behavior is unchanged. The route is lazy and only resolves for durably completed active users. Controls retain ≥44px, native date text 17px, dialog scrolling, safe-area/page padding and no fixed keyboard-obscuring save bar. Browser screenshots and physical-device limits are recorded in the existing mobile report.
+
+## Test Tools — 013 user-requested extension
+
+Admin inventory now has three destinations: Health Center, Build & Environment, Test Tools. Existing top-right Profile/You access, shared navigation, route guards and return path remain. Test Tools copy is centralized in `testToolsCopy.js`; it is new copy for this explicit feature, not attributed to the original UI/UX tables. Catalog parity is tested.
+
+User ID lookup must precede operation preview. ID edits discard target/preview/typed confirmation and invalidate late responses. Delete has its own irreversible-action description and complete removal/retention preview. Both operations show actual destination app/server and environment uncertainty; blocked prerequisites remain visible with the execute control disabled. An exact typed ID is required when execution is available. Preview receives heading focus; cancel restores the lookup input. Single-flight submit, status/recovery controls, live region results, mobile wrapping and ≥44px controls use existing primitives. A result never says all data were deleted. No second OAuth requirement or localStorage reset is introduced.

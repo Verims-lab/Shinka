@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — First Shinka repository work; production persistence and live closure blocked
-**Current BuildMarker:** Buildmarker-012
+**Current BuildMarker:** Buildmarker-013
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
@@ -137,3 +137,17 @@ Final local results: **376/376 canonical in Chromium 156.0.8078.4 and WebKit 27.
 **Fresh dependency security is BLOCKED:** official npm audit endpoint certificate issuer verification failed, including retries using macOS trust certificates. TLS verification stayed enabled; no persistent config was changed. The unchanged lock and previous 011 audit (0 Critical/High, 2 Moderate) do not prove fresh 012 security status. No unconditional repository closure or production-ready claim. Rerun `npm run security:deps` and `npm audit --json` when trusted TLS access is restored.
 
 All ten requested canonical standards, these notes and generated history are aligned. Removed five unused main-introduced auth templates only after import/route/dynamic inspection; existing approved Apple/Google flow retained. [Full implementation, blockers and publish acceptance](reports/SHINKA_CALENDAR_012.md), [structured verification](reports/calendar-012/verification.json), [mobile research/screens/limits](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md#buildmarker-012-calendar-extension).
+
+## Buildmarker-013 / HC-013.0 — Admin Test Tools
+
+User-authorized separate admin delete/reset workflows; normal Delete Account → INACTIVE retained. New lazy Test Tools page, restricted metadata lookup/preview, typed/HMAC approval protocol, minimal internal operation journal, resumable cleanup executor, early current-User/deletion guards and persistent onboarding reset integration. Production mutations remain BLOCKED_NO_DURABLE_TARGET_COORDINATOR; no live account was deleted/reset. New schema representation is not deployment or atomicity evidence.
+
+Branch baseline: local Test = origin/Test `e8afd7b`; main `3c76cb4`; Test ahead by one commit before work. No unexpected local changes. Base44 skills updated/read for SDK-specific work. Official User delete capability checked against current documentation and installed SDK 0.8.54. Detailed scope, known limits and acceptance: [report](reports/SHINKA_ADMIN_TEST_TOOLS.md). Final measurements are recorded below.
+
+### 013 final local verification
+
+Chromium 156.0.8078.4 and WebKit 27.2: **396/396 canonical tests and 93/93 local Health cases per engine**, zero page exceptions. Per engine: 19 admin, 8 routing/Preview, 5 mobile, 5 daily, 6 Calendar and 4 Test Tools actual-App scenarios. Eight Test Tools screenshots cover 360/1280 and TR/EN; this is synthetic browser evidence, not physical-device/live identity proof. Clean offline install from the unchanged lock, dependency tree, typecheck, lint, production build, Repo Health 16/16 and generated five-package retention pass.
+
+Fresh npm security audit remains **BLOCKED_TLS_CERTIFICATE_CHAIN**: unrestricted registry access and system-CA verification both fail to verify the first certificate. TLS verification was never disabled. Current vulnerability totals are unknown; the earlier 011 result (0 Critical/High, 2 Moderate) is historical only. No dependencies changed. This is not a fully closed security/release result.
+
+HC-013.0: 149 cases / 130 current / 7 future / 12 external, 16 suites; add H12-028/029/030/031/902 and H13-016, update H04 tooling/H05 package policy/H13 inventory, delete none. H12-031 is the explicit current production coordinator blocker; H12-902 is separate explicit-target live acceptance. No schema deployment, live deletion/reset, content import or main push occurred. Evidence: [verification](reports/test-tools-013/verification.json); [scope, recovery and deployment instructions](reports/SHINKA_ADMIN_TEST_TOOLS.md).

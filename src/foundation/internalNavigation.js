@@ -3,6 +3,7 @@ import { resolveLanguage, SUPPORTED_LANGUAGES } from "./i18n/strings";
 // Fixed destinations only. Route state carries display language, never authority.
 export const ADMIN_PANEL_PATH = "/internal";
 export const INTERNAL_TOOLS = Object.freeze([
+  { path: "/internal/test-tools", titleKey: "admin.testTools", descriptionKey: "admin.testToolsDescription" },
   { path: "/internal/health", titleKey: "admin.health", descriptionKey: "admin.healthDescription" },
   { path: "/internal/build", titleKey: "admin.build", descriptionKey: "admin.buildDescription" },
 ]);
