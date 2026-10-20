@@ -1,0 +1,34 @@
+{
+  "focused": true,
+  "results": [
+    {
+      "id": "RG01",
+      "name": "All four actual readiness cases pass a successful native backend shape with evaluated boolean assertions",
+      "passed": false,
+      "blocked": false,
+      "detail": "RG01:START:H04-019:FAIL"
+    },
+    {
+      "id": "RM01",
+      "name": "Execute and resume reverify active User and operational residuals after completion persistence",
+      "passed": false,
+      "blocked": false,
+      "detail": "RM01:START:execute:User:false completion"
+    },
+    {
+      "id": "AU10",
+      "name": "TR/EN completed removal clears the old identity and reopens the same operation without writes",
+      "passed": false,
+      "blocked": false,
+      "detail": "AU10:START:stale active identity"
+    }
+  ],
+  "pageErrors": [],
+  "baselineRevision": "41a5fd2",
+  "method": "Original 019 nativePrerequisite, nativeAdminTestOperation and useTestTools loaded through an isolated Vite plugin; no checkout rollback or live call",
+  "expectedFailures": [
+    "RG01",
+    "RM01",
+    "AU10"
+  ]
+}

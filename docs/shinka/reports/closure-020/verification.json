@@ -1,0 +1,2692 @@
+{
+  "schema": "shinka.targeted-closure/1",
+  "buildMarker": "Buildmarker-020",
+  "catalog": "HC-020.0",
+  "scope": "LOCAL_BROWSER_SYNTHETIC_AND_STATIC; HOSTED_ONLY_SELECTED_TARGET_READ_ONLY",
+  "browserResults": {
+    "chromium": {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "catalog": {
+        "version": "HC-020.0",
+        "suites": 16,
+        "cases": 161,
+        "localRegression": 7,
+        "current": 137,
+        "future": 5,
+        "external": 12
+      },
+      "evidenceScope": "LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",
+      "tests": 483,
+      "passed": 483,
+      "failed": 0,
+      "mobile": [
+        {
+          "scenario": "touch-viewport-320x568",
+          "width": 320,
+          "scrollWidth": 320,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-360x740",
+          "width": 360,
+          "scrollWidth": 360,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-390x844",
+          "width": 390,
+          "scrollWidth": 390,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-430x900",
+          "width": 430,
+          "scrollWidth": 430,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-844x390",
+          "width": 844,
+          "scrollWidth": 844,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "back-forward-reload-session-routing",
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-320",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-320",
+          "focusInside": true,
+          "width": 250,
+          "scrollWidth": 248,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-360",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-360",
+          "focusInside": true,
+          "width": 290,
+          "scrollWidth": 288,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-390",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-390",
+          "focusInside": true,
+          "width": 320,
+          "scrollWidth": 318,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-430",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-430",
+          "focusInside": true,
+          "width": 360,
+          "scrollWidth": 358,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-844",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-844",
+          "focusInside": true,
+          "width": 440,
+          "scrollWidth": 438,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-320",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-320",
+          "focusInside": true,
+          "width": 250,
+          "scrollWidth": 248,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-360",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-360",
+          "focusInside": true,
+          "width": 290,
+          "scrollWidth": 288,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-390",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-390",
+          "focusInside": true,
+          "width": 320,
+          "scrollWidth": 318,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-430",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-430",
+          "focusInside": true,
+          "width": 360,
+          "scrollWidth": 358,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-844",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-844",
+          "focusInside": true,
+          "width": 440,
+          "scrollWidth": 438,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "javascript-errors",
+          "passed": true,
+          "errors": []
+        }
+      ],
+      "adminTestFlow": [
+        {
+          "scenario": "readonly-preview-cancel-360-tr",
+          "passed": true,
+          "metrics": {
+            "width": 360,
+            "scrollWidth": 360,
+            "controls": [
+              {
+                "width": 113.78125,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 114.21875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 123.46875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 164.234375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 141.1875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 278,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 138.453125,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 230.25,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 244.359375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 242.359375,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 85.203125,
+                "height": 44,
+                "named": true
+              }
+            ]
+          },
+          "productWrites": 0
+        },
+        {
+          "scenario": "readonly-preview-cancel-360-en",
+          "passed": true,
+          "metrics": {
+            "width": 360,
+            "scrollWidth": 360,
+            "controls": [
+              {
+                "width": 113.78125,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 99.203125,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 123.46875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 164.234375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 129.296875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 278,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 96.71875,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 168.609375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 191.609375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 189.609375,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 82.15625,
+                "height": 52,
+                "named": true
+              }
+            ]
+          },
+          "productWrites": 0
+        },
+        {
+          "scenario": "readonly-preview-cancel-1280-tr",
+          "passed": true,
+          "metrics": {
+            "width": 1280,
+            "scrollWidth": 1280,
+            "controls": [
+              {
+                "width": 113.78125,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 114.21875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 123.46875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 164.234375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 141.1875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 942,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 138.453125,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 230.25,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 244.359375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 242.359375,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 85.203125,
+                "height": 52,
+                "named": true
+              }
+            ]
+          },
+          "productWrites": 0
+        },
+        {
+          "scenario": "readonly-preview-cancel-1280-en",
+          "passed": true,
+          "metrics": {
+            "width": 1280,
+            "scrollWidth": 1280,
+            "controls": [
+              {
+                "width": 113.78125,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 99.203125,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 123.46875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 164.234375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 129.296875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 942,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 96.71875,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 168.609375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 191.609375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 189.609375,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 82.15625,
+                "height": 52,
+                "named": true
+              }
+            ]
+          },
+          "productWrites": 0
+        }
+      ],
+      "pageErrors": [],
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 7,
+        "nativeRoutes": 2,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true
+      },
+      "inAppHealth": {
+        "counts": {
+          "PASS": 124,
+          "BLOCKED": 13
+        },
+        "saveState": "SAVED",
+        "passed": true,
+        "blocked": [
+          {
+            "id": "H04-019",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H05-001",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-002",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-003",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-004",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-005",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-006",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-007",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-008",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-009",
+            "status": "BLOCKED",
+            "reason": "LIVE_CONTENT_COUNT_UNAVAILABLE"
+          },
+          {
+            "id": "H08-005",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H09-004",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H12-031",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          }
+        ]
+      }
+    },
+    "webkit": {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "catalog": {
+        "version": "HC-020.0",
+        "suites": 16,
+        "cases": 161,
+        "localRegression": 7,
+        "current": 137,
+        "future": 5,
+        "external": 12
+      },
+      "evidenceScope": "LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",
+      "tests": 483,
+      "passed": 483,
+      "failed": 0,
+      "mobile": [
+        {
+          "scenario": "touch-viewport-320x568",
+          "width": 320,
+          "scrollWidth": 320,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-360x740",
+          "width": 360,
+          "scrollWidth": 360,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-390x844",
+          "width": 390,
+          "scrollWidth": 390,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-430x900",
+          "width": 430,
+          "scrollWidth": 430,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-844x390",
+          "width": 844,
+          "scrollWidth": 844,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "back-forward-reload-session-routing",
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-320",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-320",
+          "focusInside": true,
+          "width": 250,
+          "scrollWidth": 248,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-360",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-360",
+          "focusInside": true,
+          "width": 290,
+          "scrollWidth": 288,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-390",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-390",
+          "focusInside": true,
+          "width": 320,
+          "scrollWidth": 318,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-430",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-430",
+          "focusInside": true,
+          "width": 360,
+          "scrollWidth": 358,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-tr-844",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-844",
+          "focusInside": true,
+          "width": 440,
+          "scrollWidth": 438,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-320",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-320",
+          "focusInside": true,
+          "width": 250,
+          "scrollWidth": 248,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-360",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-360",
+          "focusInside": true,
+          "width": 290,
+          "scrollWidth": 288,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-390",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-390",
+          "focusInside": true,
+          "width": 320,
+          "scrollWidth": 318,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-430",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-430",
+          "focusInside": true,
+          "width": 360,
+          "scrollWidth": 358,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-menu-focus-en-844",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-844",
+          "focusInside": true,
+          "width": 440,
+          "scrollWidth": 438,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "javascript-errors",
+          "passed": true,
+          "errors": []
+        }
+      ],
+      "adminTestFlow": [
+        {
+          "scenario": "readonly-preview-cancel-360-tr",
+          "passed": true,
+          "metrics": {
+            "width": 360,
+            "scrollWidth": 360,
+            "controls": [
+              {
+                "width": 113.78125,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 114.21875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 123.46875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 164.234375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 141.1875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 278,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 138.453125,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 230.25,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 244.34375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 242.34375,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 85.203125,
+                "height": 44,
+                "named": true
+              }
+            ]
+          },
+          "productWrites": 0
+        },
+        {
+          "scenario": "readonly-preview-cancel-360-en",
+          "passed": true,
+          "metrics": {
+            "width": 360,
+            "scrollWidth": 360,
+            "controls": [
+              {
+                "width": 113.78125,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 99.203125,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 123.46875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 164.234375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 129.296875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 278,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 96.71875,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 168.609375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 191.609375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 189.609375,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 82.15625,
+                "height": 52,
+                "named": true
+              }
+            ]
+          },
+          "productWrites": 0
+        },
+        {
+          "scenario": "readonly-preview-cancel-1280-tr",
+          "passed": true,
+          "metrics": {
+            "width": 1280,
+            "scrollWidth": 1280,
+            "controls": [
+              {
+                "width": 113.78125,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 114.21875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 123.46875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 164.234375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 141.1875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 942,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 138.453125,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 230.25,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 244.34375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 242.34375,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 85.203125,
+                "height": 52,
+                "named": true
+              }
+            ]
+          },
+          "productWrites": 0
+        },
+        {
+          "scenario": "readonly-preview-cancel-1280-en",
+          "passed": true,
+          "metrics": {
+            "width": 1280,
+            "scrollWidth": 1280,
+            "controls": [
+              {
+                "width": 113.78125,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 99.203125,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 123.46875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 164.234375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 129.296875,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 942,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 96.71875,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 168.609375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 191.609375,
+                "height": 44,
+                "named": true
+              },
+              {
+                "width": 189.609375,
+                "height": 52,
+                "named": true
+              },
+              {
+                "width": 82.15625,
+                "height": 52,
+                "named": true
+              }
+            ]
+          },
+          "productWrites": 0
+        }
+      ],
+      "pageErrors": [],
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 7,
+        "nativeRoutes": 2,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true
+      },
+      "inAppHealth": {
+        "counts": {
+          "PASS": 124,
+          "BLOCKED": 13
+        },
+        "saveState": "SAVED",
+        "passed": true,
+        "blocked": [
+          {
+            "id": "H04-019",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H05-001",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-002",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-003",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-004",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-005",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-006",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-007",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-008",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-009",
+            "status": "BLOCKED",
+            "reason": "LIVE_CONTENT_COUNT_UNAVAILABLE"
+          },
+          {
+            "id": "H08-005",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H09-004",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H12-031",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          }
+        ]
+      }
+    }
+  },
+  "targetedTests": [
+    {
+      "id": "RG01",
+      "name": "All four actual readiness cases pass a successful native backend shape with evaluated boolean assertions",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok",
+      "evidence": {
+        "actual": [
+          {
+            "id": "H04-019",
+            "status": "PASS",
+            "assertion": {
+              "evaluated": true,
+              "passed": true
+            }
+          },
+          {
+            "id": "H08-005",
+            "status": "PASS",
+            "assertion": {
+              "evaluated": true,
+              "passed": true
+            }
+          },
+          {
+            "id": "H09-004",
+            "status": "PASS",
+            "assertion": {
+              "evaluated": true,
+              "passed": true
+            }
+          },
+          {
+            "id": "H12-031",
+            "status": "PASS",
+            "assertion": {
+              "evaluated": true,
+              "passed": true
+            }
+          }
+        ],
+        "backendShape": {
+          "authority": "BASE44_NATIVE_V1",
+          "strategyVersion": "native-continuation/2",
+          "schemas": [
+            {
+              "name": "AdminTestOperation",
+              "readable": true
+            },
+            {
+              "name": "UserCalendarAction",
+              "readable": true
+            },
+            {
+              "name": "InternalHealthRun",
+              "readable": true
+            }
+          ],
+          "daily": "IMMUTABLE_CANDIDATES",
+          "calendar": "OBSERVATIONS_AND_RECEIPTS",
+          "reset": "VERIFIED_STEPS",
+          "deletion": "TARGET_LIFECYCLE_RESUMABLE",
+          "distributedFence": false,
+          "hostedMutationVerified": false
+        },
+        "scope": "SYNTHETIC_RESPONSE_THROUGH_REAL_CASE_RUNNERS_NOT_HOSTED_MUTATION"
+      }
+    },
+    {
+      "id": "RG02",
+      "name": "Wrong strategy/version/authority and missing, duplicate, foreign or unreadable schemas fail all four readiness cases",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok",
+      "evidence": {
+        "negativeResponses": 56,
+        "cases": [
+          "H04-019",
+          "H08-005",
+          "H09-004",
+          "H12-031"
+        ]
+      }
+    },
+    {
+      "id": "RG03",
+      "name": "Unavailable readiness is BLOCKED, never PASS; daily content and Moon prerequisites remain required",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "RM01",
+      "name": "Execute and resume reverify active User and operational residuals after completion persistence",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "RM02",
+      "name": "Absent active User is separate from retained history and same-operation read-only recovery",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "RM03",
+      "name": "Denied, failed, malformed or wrong-owner native User reads never establish absence",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "AU10",
+      "name": "TR/EN completed removal clears the old identity and reopens the same operation without writes",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    }
+  ],
+  "published019Run": {
+    "source": "USER_SUPPLIED_NOT_RERUN",
+    "runId": "d09503f9-4f78-4088-a4ea-65d592265dd7",
+    "pass": 133,
+    "fail": 4,
+    "blocked": 0,
+    "durationMs": 4351,
+    "failures": [
+      "H04-019",
+      "H08-005",
+      "H09-004",
+      "H12-031"
+    ],
+    "H03-008": "PASS"
+  },
+  "qualityChecks": {
+    "npm ci": 0,
+    "npm ls --all": 0,
+    "npm ls --depth=0": 0,
+    "npm run typecheck": 0,
+    "npm run lint": 0,
+    "npm run health:repo": 0,
+    "npm run build": 0,
+    "npm run security:deps": 0,
+    "node scripts/recordBuild.mjs --check": 0,
+    "node scripts/measureMaintenance.mjs <outside-checkout>": 0
+  },
+  "dependencyAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 2,
+    "high": 0,
+    "critical": 0,
+    "total": 2
+  },
+  "intermediateFailures": [
+    {
+      "run": "Initial package transition regression",
+      "ids": [
+        "AI04",
+        "HC08",
+        "DM23"
+      ],
+      "resolution": "Keep legacy fixture pinned to HC-018 and carry unchanged approved content validation into explicit package-020 allowlist."
+    },
+    {
+      "run": "Second package transition regression",
+      "ids": [
+        "HC12"
+      ],
+      "resolution": "Future-package fixture now derives the next package rather than treating current 020 as future."
+    }
+  ],
+  "excludedActions": [
+    "main merge",
+    "publish",
+    "live Full Health",
+    "live delete",
+    "live resume",
+    "live reset",
+    "permanent purge",
+    "schema push",
+    "content import"
+  ],
+  "physicalDevicesTested": false,
+  "retainedBuilds": [
+    "016",
+    "017",
+    "018",
+    "019",
+    "020"
+  ],
+  "performance": {
+    "initialJS": {
+      "raw": 453045,
+      "gzip": 149978
+    },
+    "css": {
+      "raw": 86467,
+      "gzip": 14914
+    },
+    "cycles": [],
+    "lazyRetry": {
+      "passed": true,
+      "scope": "Synthetic network asset failure and full-reload retry, real App route"
+    },
+    "vitalsAcceptance": {
+      "status": "NOT_MEASURED",
+      "reason": "No field p75 or INP; local LCP/CLS only, not a production acceptance gate"
+    }
+  }
+}

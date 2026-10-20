@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-019
+**Current BuildMarker:** Buildmarker-020
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## 020 user instruction and evidence provenance
+
+The 2026-10-21 request (attachment 36363fdb-e3c6-4b3d-a8e2-95777d79bc1e) authorizes only the readiness type correction and removal/result consistency fix with selected-target read-only diagnosis. It authorizes accurate TR/EN removal copy, not a retention change or permanent erasure workflow. Published HC-019.0 133/4/0 is user-supplied evidence; local RG/RM/AU regressions and the scoped live query are separate. The target ID exists only in private diagnostic input, never source or fixtures. Official SDK and dashboard wording are distinguished in the [020 report](reports/SHINKA_TARGETED_CLOSURE_020.md).
 
 ## 019 authority and evidence provenance
 

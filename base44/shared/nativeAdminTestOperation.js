@@ -16,16 +16,22 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
     if (fresh.id !== actor.id) testToolError('FORBIDDEN_INTERNAL_TOOLING', 403);
   };
   const recovery = { resume_enabled: environment.authorized, mutation_blocker: environment.authorized ? null : 'TEST_ENVIRONMENT_UNVERIFIED' };
+  // Every action reports the same fresh removal verification; a saved COMPLETED
+  // status alone is not current absence evidence. Read errors propagate as unknown.
+  const response = async (job, target = null) => {
+    const result_state = await testOperationOutcome(repository, job);
+    return { job, target: result_state === 'COMPLETED' && job?.operation === 'DELETE_USER' ? null : target,
+      result_state, environment, ...recovery, retained: RETAINED_ENTITIES };
+  };
   if (body.action === 'status') {
     const job = await repository.operation(body.target_id, body.operation_id);
     if (!job) testToolError('TEST_OPERATION_NOT_FOUND', 404);
-    return { job, result_state:await testOperationOutcome(repository,job), environment, ...recovery, resume_enabled: recovery.resume_enabled };
+    return response(job);
   }
   if (body.action === 'lookup') {
     const job = await repository.lifecycle(body.target_id), identity = await repository.user(body.target_id);
     if (!identity && job?.operation !== 'DELETE_USER') testToolError('TEST_USER_NOT_FOUND', 404);
-    return { target: identity ? await repository.target(body.target_id) : null, job, result_state:await testOperationOutcome(repository,job), environment, ...recovery,
-      resume_enabled: recovery.resume_enabled };
+    return response(job, identity ? await repository.target(body.target_id) : null);
   }
   const binding = { actor: actor.id, target: body.target_id, operation: body.operation, app: environment.app_id };
   if (body.action === 'preview') {
@@ -77,5 +83,5 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
   const job = await executeTestJob({ journal: nativeTestJournal(guardedClient, guard, now), repository: guardedRepository, actor,
     target: { id: body.target_id }, operation, requestId: previous?.request_id || body.request_id, previewHash: scopeHash, now, diagnostics, clock });
   await guard();
-  return { job, result_state:job.status==='COMPLETED'?'COMPLETED':job.status==='RESET_ACTIVE'?'RESET_ACTIVE':'PARTIAL', environment, ...recovery, retained: RETAINED_ENTITIES };
+  return response(job);
 }

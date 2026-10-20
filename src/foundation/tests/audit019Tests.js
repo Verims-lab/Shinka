@@ -130,7 +130,7 @@ export const AUDIT019_INTEGRITY_TESTS = [
     check(normalizeStoredReport(report).cases.length===cases.length);
     const invalid=[{...report,executionContract:undefined},{...report,plannedCaseIds:plannedCaseIds.slice(1),cases:cases.slice(1)},{...report,cases:cases.slice(1)},{...report,sourceSetVersion:null}];
     for(const value of invalid){let failed=false;try{normalizeStoredReport(value);}catch{failed=true;}check(failed,'invalid persisted report accepted');}
-    const legacy={...report,executionContract:undefined,buildMarker:BUILD_MARKER.replace(/\d{3}$/,'018'),healthCatalogVersion:HEALTH_CATALOG_VERSION.replace(/019/,'018')};
+    const legacy={...report,executionContract:undefined,buildMarker:BUILD_MARKER.replace(/\d{3}$/,'018'),healthCatalogVersion:HEALTH_CATALOG_VERSION.replace(/^HC-\d{3}/,'HC-018')};
     check(normalizeStoredReport(legacy).summary.failed===cases.length);
   }],
   ['AI03','Supplied totals are checked against results; tampering cannot reconcile',()=>{

@@ -1,3 +1,4 @@
+import { CLOSURE020_REMOVAL_TESTS } from '../../tests/closure020Tests';
 import { CLOSURE018_TESTS } from '@/foundation/tests/closure018Tests';
 import { AUDIT019_DELETION_TESTS } from '@/foundation/tests/audit019Tests';
 import { CLOSURE017_TESTS } from '@/foundation/tests/closure017Tests';
@@ -5,16 +6,11 @@ import { NATIVE_TESTS } from '@/foundation/tests/nativeTests';
 import { syntheticProbe } from './domainProbe';
 import { makeCase } from '../caseFactory';
 import { CLASS, RUNNER } from '../constants';
-import { ev, verdict } from '../evidence';
+import { nativePrerequisite } from '../nativeReadinessContract';
 const local = (suite,id,title,ids) => makeCase(suite,{runnerType:RUNNER.RUNTIME,classification:CLASS.SYNTHETIC_RUNTIME})(id,title,
   'Actual native handlers with ordinary SDK-shaped transport, independent clients, persistent-row reconstruction and fault injection. No hosted enforcement claim.',syntheticProbe(NATIVE_TESTS.filter(([key])=>ids.includes(key))));
-export async function nativePrerequisite(ctx, feature) {
-  let value;
-  try { value = await ctx.nativeReadiness(); } catch { return {status:'BLOCKED',evidence:ev(CLASS.BLOCKED_EXTERNAL,'internalHealth nativeReadiness','UNAVAILABLE','deployed native strategy and readable schemas','Read-only prerequisite; hosted mutation acceptance remains separate.')}; }
-  return verdict(value?.authority==='BASE44_NATIVE_V1'&&value.strategyVersion==='native-continuation/2'&&value.schemas?.length===3&&value.schemas.every(r=>r.readable)&&value[feature],ev(CLASS.LIVE_RUNTIME,'internalHealth nativeReadiness',value,'current native strategy; required schemas readable','Does not prove permissions, concurrent mutation or deletion.'));
-}
 export const NATIVE_HEALTH_CASES = [
-  makeCase('H12',{runnerType:RUNNER.RUNTIME,classification:CLASS.SYNTHETIC_RUNTIME})('H12-036','Native deletion failure, retry and request cost','Real handler with isolated SDK: access versus absence, safe diagnostics, bounded pages, final verification, same receipt and current actor.',syntheticProbe(AUDIT019_DELETION_TESTS)),
+  makeCase('H12',{runnerType:RUNNER.RUNTIME,classification:CLASS.SYNTHETIC_RUNTIME})('H12-036','Native deletion failure, retry and request cost','Real handler with isolated SDK: access versus absence, safe diagnostics, bounded pages, final verification, same receipt, current actor and all-action completion verification; retained history is not permanent erasure.',syntheticProbe([...AUDIT019_DELETION_TESTS, ...CLOSURE020_REMOVAL_TESTS])),
   makeCase('H12',{runnerType:RUNNER.RUNTIME,classification:CLASS.SYNTHETIC_RUNTIME})('H12-035','Deletion outcome and Health save visibility','Read-only recovery, slow recheck progress and save outcome distinction; isolated fixtures only.',syntheticProbe(CLOSURE018_TESTS.filter(([id])=>['E04','E05','E06','E07','E08'].includes(id)))),
   makeCase('H12',{runnerType:RUNNER.RUNTIME,classification:CLASS.SYNTHETIC_RUNTIME})('H12-034','Health persistence retry and target lifecycle recovery','Private artifact reuse, immutable history, safe stages, bounded deletion and evidence contract. CL10 complete-runner cancellation stays local under H03-007.',syntheticProbe(CLOSURE017_TESTS)),
   local('H04','H04-018','Native identity, current role and write admission',['NA01','NA07','NA22','NA23']),

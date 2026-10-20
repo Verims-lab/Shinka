@@ -2,13 +2,21 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-019
+**Current BuildMarker:** Buildmarker-020
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-019.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-020.0; repository, synthetic and external evidence separated.
 
-## Active HC-019.0 — executable scope and report integrity
+## HC-020.0 — targeted readiness and removal correction
+
+The supplied published 019 run `d09503f9-4f78-4088-a4ea-65d592265dd7` is preserved: 133 PASS / 4 FAIL / 0 BLOCKED, 4351ms; H04-019/H08-005/H09-004/H12-031 failed, H03-008 passed. The shared nativePrerequisite returned a strategy string into strict verdict; a valid response therefore produced an unevaluated assertion and FAIL. HC-020.0 fixes the caller, never relaxes verdict or removes cases.
+
+All four checks now require explicit boolean comparisons: BASE44_NATIVE_V1, native-continuation/2, exact daily/calendar/reset/deletion strategies, and exactly one readable AdminTestOperation/UserCalendarAction/InternalHealthRun each. Malformed/wrong/unreadable responses FAIL; unavailable backend BLOCKED. hostedMutationVerified=false is valid and never mutation-success evidence. H09-004 still needs content and Moon readiness.
+
+Update H16-007 with RG01–RG03 (the four actual case runners, successful real backend response shape and negative responses); update H12-036 with RM01–RM03 (all-action removal projection, active User/residuals, unknown reads and retained history). H13-016's local browser coverage includes AU10 (old identity cleared and same-operation reopening in TR/EN). H12-029/031 remove obsolete maintenance-window descriptions; behavior stays the accepted target lifecycle. No ID added, removed or transferred: 161 registered, 137 in-app, 24 separate acceptance. Current backend plan binds to HC-020.0; existing stored historical artifacts remain unchanged/readable. No live Full Health is run by the agent. [020 evidence and handoff](reports/SHINKA_TARGETED_CLOSURE_020.md).
+
+## Historical HC-019.0 — executable scope and report integrity
 
 Only CURRENT_PACKAGE executable in-app cases are dispatched. Future features, physical/live acceptance and LOCAL_BROWSER entries remain ID-addressable in ACCEPTANCE_REQUIREMENTS and appear separately in the UI/report. No current FAIL/BLOCKED check was removed. Historical run `780aebf1-ff0b-4a6d-8c20-12b746509d53` retains H03-008 FAIL and its 131/1/0/19 totals; the current catalog does not rewrite it.
 

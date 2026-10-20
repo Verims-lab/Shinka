@@ -1,21 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-015",
-    "package_name": "PostgreSQL single-authority Test foundation",
-    "package_type": "ARCHITECTURE",
-    "created_at": "2026-10-20T18:00:00Z",
-    "health_catalog_version": "HC-015.0",
-    "short_summary": "Approved Test-only SQL product authority with preserved Base44 identity; concrete schema, transactions, daily uniqueness, Calendar recalculation, SQL admin roster and reset/delete recovery. Hosted Supabase access pending.",
-    "full_health_status": "REPO_CLOSED_PENDING_HOSTED_TEST",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "Test-only approval: Supabase Free Frankfurt, $0; account access pending, no project created or real product migration. Real local PostgreSQL 17.11: 25/25 test groups with restricted role, independent processes, response loss, killed worker, DB restart, SQL admin/last-admin, reset and durable delete recovery; Base44 identity transport synthetic. Chromium/WebKit each 405/405 canonical and 99/99 local Health; zero page errors. HC-015.0: 155 cases; hosted H09-004/H08-005/H12-031 and connected SQL probe remain separately unverified. Clean install/tree, lint/type/build, Repo Health 18/18, history and performance budgets pass. Fresh security: 0 Critical/High, 2 existing Moderate router findings. No main merge/publish or live user mutation. Reports: SHINKA_POSTGRESQL_TEST_015.md, postgres-015/local-postgres.json and verification.json. Latest five packages 011–015.",
-    "updated_at": "2026-10-20T16:36:15.851521+00:00"
-  },
-  {
     "build_marker": "Buildmarker-016",
     "package_name": "Base44 continuation and recoverable native flows",
     "package_type": "ARCHITECTURE_CORRECTION",
@@ -67,5 +52,19 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "notes": "Chromium/WebKit 476/476 each; 87/87 mobile checks each. Local in-app Health 124 PASS/13 remote-prerequisite BLOCKED/0 FAIL, no hosted run. Same live deletion remains unverified; concurrent server resumes fail closed on ambiguous audit, no distributed exactly-once promise. Typed source tests and official-source audit; latest five packages 015–019. Final quality/dependency/performance evidence and user acceptance: reports/SHINKA_AUDIT_FIX_019.md."
+  },
+  {
+    "build_marker": "Buildmarker-020",
+    "package_name": "Exact readiness predicates and truthful removal results",
+    "package_type": "CORRECTIVE",
+    "created_at": "2026-10-20T22:12:55.321974+00:00",
+    "health_catalog_version": "HC-020.0",
+    "short_summary": "Correct the four native readiness predicates; unify fresh removal verification and clear stale identity; distinguish active removal from unverified permanent erasure.",
+    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "Targeted 020 correction; RG01/RM01/AU10 fail with original 019 code and pass after fixes. All four actual readiness cases exercised with successful backend shape, strict strategy/schema/authority negatives and unavailable backend. Read-only selected target: COMPLETED/VERIFY, no active User or operational rows; stale dashboard UserProfile row disappeared on reload. Recently deleted exact-ID mapping and physical erasure not proven. No hosted Full Health or live mutation/main publish. Final local results: reports/SHINKA_TARGETED_CLOSURE_020.md. Active packages 016–020. Chromium/WebKit each 483/483 canonical and 87/87 mobile checks, no page errors; local in-app Health 124 PASS/13 BLOCKED (unavailable hosted prerequisites), separate successful native-readiness case path verified. Typecheck/lint/build/Repo Health and dependency checks pass; existing 2 Moderate router findings, no High/Critical. Local evidence only; physical devices and post-publish Health remain user acceptance."
   }
 ];

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-019
+**Current BuildMarker:** Buildmarker-020
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -11,6 +11,12 @@
 **Not Implemented:** Verified hosted Calendar mutations, Pattern and full You/account workflows; new daily persistence remains blocked. ON-06/Home rendering and request states are implemented.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+## 020 Test Tools — current result versus prior identity
+
+Each accepted operation response owns its displayed target; missing target is not merged with a prior lookup card. A confirmed removal clears the old card; a failed status read also clears stale identity and keeps the result unknown. Reload performs the existing read-only lookup and presents the same operation. User ID → lookup → one confirmation → progress → explicit result remains unchanged.
+
+Central TEST_TOOLS_COPY now says “Kullanıcıyı uygulamadan kaldır” / “Remove user from app”. It distinguishes active User/operational removal from retained history and unverified permanent erasure/Recently deleted cleanup. Unsupported “Geri alınamaz” / “Irreversible” copy is removed. This copy correction is authorized by the 020 user request; unrelated approved product copy is untouched. AU10 checks TR/EN stale-card clearing and same-operation reopening; existing live regions and mobile controls remain.
 
 ## 019 responsive and outcome audit
 

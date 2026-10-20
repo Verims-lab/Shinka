@@ -1,6 +1,6 @@
 import { localCase } from '../caseFactory';
 import { NATIVE_TESTS } from '@/foundation/tests/nativeTests';
-import { nativePrerequisite } from './native';
+import { nativePrerequisite } from '../nativeReadinessContract';
 import { DAILY_TESTS } from '@/foundation/tests/dailyTests';
 import { CALENDAR_TESTS } from '@/foundation/tests/calendarTests';
 import { syntheticProbe } from './domainProbe';

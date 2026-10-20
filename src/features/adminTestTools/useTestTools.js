@@ -11,7 +11,9 @@ export function useTestTools(request = adminTestRequest) {
   const [error,setError] = useState(null), [busy,setBusy] = useState(false), [phase,setPhase] = useState('IDLE');
   const generation = useRef(0), inFlight = useRef(false);
   const accept = result => {
-    setValue(previous=>({...previous,...result})); setJob(result.job || null);
+    // A response owns its displayed target. Never carry a pre-operation identity
+    // into a later status/execute response that did not read that identity.
+    setValue(result); setJob(result.job || null);
     const outcome=result.result_state || (result.job?.status==='RESET_ACTIVE'?'RESET_ACTIVE':result.job?'PARTIAL':'IDLE');
     setPhase(outcome);
     if(result.job) {setPreview(null);setPendingId(result.job.operation_id);remember({target:input.trim(),id:result.job.operation_id});}
@@ -41,6 +43,7 @@ export function useTestTools(request = adminTestRequest) {
     }
     catch(e) {
       if(version!==generation.current)return;
+      setValue(previous=>previous ? {...previous,target:null} : null);
       setError({code:e.code||'TEST_TOOLS_FAILED',stage:e.stage||null,requestId:e.requestId||null});
       if(action==='execute'||action==='resume'||action==='status') {
         setPhase('UNKNOWN');setPreview(null);

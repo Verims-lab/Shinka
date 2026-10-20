@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-019
+**Current BuildMarker:** Buildmarker-020
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -28,6 +28,12 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+## 020 removal verification and platform boundary
+
+Current removal responses share one fresh completion projection after normal execute/resume as well as status/lookup. Active native User or operational residual means PARTIAL; authorization/network/malformed/conflicting read means unconfirmed, never removed. Existing owner/current admin/self/last-admin/open-deletion guards and lifecycle tombstones remain. This read sequence is not a transaction or cross-worker atomic snapshot; later changes are rechecked on subsequent requests.
+
+The official generic SDK entities documentation calls delete(id) permanent removal, while the platform user-data guide separately describes App Users removal, Recently deleted restoration/purge, Data trash and other retained locations. The app can verify active query absence using the supported SDK; it cannot independently certify physical erasure across these surfaces. No new purge API, key, credential or permanent-delete action was used. Product-copy promises are limited accordingly. Existing retention policy is unchanged, not silently reclassified as a comprehensive privacy-erasure workflow. Only the selected target was inspected read-only; no live delete/resume/reset/Full Health.
 
 ## 019 security audit
 
