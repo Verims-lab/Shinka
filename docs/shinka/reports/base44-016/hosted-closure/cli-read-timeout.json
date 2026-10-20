@@ -1,0 +1,6 @@
+{
+  "operation": "calendar delete retry CLI launch",
+  "state": "NOT_EXECUTED",
+  "reason": "CLI failed before exec: GET published-url timed out",
+  "followup": "Separate invocation retried the same existing action ID; no replacement mutation ID generated."
+}

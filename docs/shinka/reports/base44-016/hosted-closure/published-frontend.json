@@ -1,0 +1,35 @@
+{
+  "url": "https://shinka-rhythm-flow.base44.app/assets/index-3XSqYJoV.js",
+  "sha256": "e902a7366be2536018c915fb6c8adacd5f437396fed35f6be82fdbede23470f4",
+  "bytes": 445650,
+  "buildMarkers": [],
+  "healthCatalogs": [],
+  "nativeAuthorityLiteral": true,
+  "applicationSessionLiteral": true,
+  "publishedCommit": "NOT_EXPOSED_BY_THIS_ASSET",
+  "referencedChunks": [
+    {
+      "url": "https://shinka-rhythm-flow.base44.app/assets/BuildEnvironment-SGaUHKi2.js",
+      "sha256": "3cf19f29801a6fa406c421319269a86324e25d32ffc26d47373737e8c948dcf8",
+      "bytes": 3245,
+      "buildMarkers": [],
+      "healthCatalogs": []
+    },
+    {
+      "url": "https://shinka-rhythm-flow.base44.app/assets/HealthCenter-D26VBgtL.js",
+      "sha256": "5c3994bd3e62ace94bba0e8156bbe9b04d79f6f5d41ac9ae9798bebf3da0a8ee",
+      "bytes": 12997,
+      "buildMarkers": [],
+      "healthCatalogs": []
+    },
+    {
+      "url": "https://shinka-rhythm-flow.base44.app/assets/catalog-CUUmnnLd.js",
+      "sha256": "385c960c47251b6cf6e846094ceb83f141ea7062c26101ae2b9e57824ccd7fc0",
+      "bytes": 32293,
+      "buildMarkers": [
+        "Buildmarker-016"
+      ],
+      "healthCatalogs": []
+    }
+  ]
+}

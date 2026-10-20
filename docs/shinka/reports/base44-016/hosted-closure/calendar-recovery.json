@@ -1,0 +1,19 @@
+{
+  "schema": "shinka.hosted-calendar-recovery/1",
+  "measuredAt": "2026-10-20T18:36:05.471Z",
+  "privileged": false,
+  "steps": [
+    {
+      "step": "resume_actual_partial_add",
+      "passed": true,
+      "actionHash": "df9c77d5fb182750b02336148ba8c8e7ff2f8baa438accc09dd620341662325f",
+      "count": 2,
+      "revision": "8936d12975ffde96ec5c377090e4532965b385fc0c8287ff429bc11a5b0d1f65"
+    }
+  ],
+  "status": "STOPPED",
+  "error": {
+    "code": "CALENDAR_OPERATION_FAILED",
+    "status": 500
+  }
+}

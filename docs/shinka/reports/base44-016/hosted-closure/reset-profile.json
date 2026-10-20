@@ -1,0 +1,13 @@
+{
+  "schema": "shinka.hosted-reset-profile/1",
+  "measuredAt": "2026-10-20T18:42:20.640Z",
+  "privileged": false,
+  "steps": [
+    {
+      "step": "save_unchanged_profile",
+      "state": "AUTHENTICATED_CYCLE_STEP",
+      "persisted": true
+    }
+  ],
+  "status": "CYCLE_STAGE_VERIFIED_CLIENT_STOPPED"
+}

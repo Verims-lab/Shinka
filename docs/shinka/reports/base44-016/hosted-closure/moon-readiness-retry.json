@@ -1,0 +1,18 @@
+{
+  "schema": "shinka.moon-readiness/1",
+  "measuredAt": "2026-10-20T18:07:22.296Z",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "dataEnvironment": "prod",
+  "privileged": false,
+  "result": {
+    "ready": false,
+    "create": 103,
+    "same": 0,
+    "conflicts": [],
+    "astronomyVersion": "2.1.19",
+    "generatedAt": "2026-10-20T18:07:23.466Z",
+    "coverageStart": "2026-10-03T13:25:33.710Z",
+    "coverageEnd": "2028-11-02T09:17:57.674Z",
+    "digest": "0949d52c18b959c355a82a8986dd47e933302634f3684e25593169f77d801c0f"
+  }
+}

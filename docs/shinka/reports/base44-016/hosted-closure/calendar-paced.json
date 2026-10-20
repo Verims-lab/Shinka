@@ -1,0 +1,11 @@
+{
+  "schema": "shinka.hosted-calendar-recovery/1",
+  "measuredAt": "2026-10-20T18:37:14.151Z",
+  "privileged": false,
+  "steps": [],
+  "status": "STOPPED",
+  "error": {
+    "code": "CALENDAR_STATE_CHANGED",
+    "status": 409
+  }
+}

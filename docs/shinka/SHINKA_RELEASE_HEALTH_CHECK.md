@@ -6,9 +6,15 @@
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-014.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-016.1; repository, synthetic and external evidence separated.
 
-## Current catalog — HC-016.0 / Buildmarker-016
+## Current catalog — HC-016.1 / Buildmarker-016
+
+Hosted continuation: the saved HC-016.0 Full Health completed at 2026-10-20T17:54:48.679Z was independently listed/opened: 134 PASS, H03-006 FAIL, H09-004 BLOCKED. Its failure evidence is preserved in `reports/base44-016/hosted-closure/existing-full-health.json`. H03-006 rejected the existing three Test Tools feature UI imports; the same failure reproduced locally. HC-016.1 permits only those exact reviewed module boundaries and also scans their contents for direct SDK/business access; HB01/HB02 cover real-source acceptance and prohibited imports/calls. H03-006 now runs in the local browser Health subset. No case is deleted or made nonblocking; catalog counts/applicability remain unchanged. The marker stays 016 because this is requested closure of that package.
+
+Native readiness success does not certify writes. Keep `hostedMutationVerified:false`; original ON-05, actual concurrency/retry/reset, deletion maintenance and physical devices require separate evidence. New hosted HC-016.1 Full Health requires user sync/publish. The earlier report remains NOT_READY and is never relabeled after the fix. [Current runbook](reports/SHINKA_HOSTED_CLOSURE_016.md).
+
+The new admin-browser HC-016.0 Full Health completed at 18:33:25.914Z: 133 PASS, H03-006/H03-007 FAIL, H13-004 BLOCKED, 19 NA. H09-004 now passes after exact reference import. H03-007/H13-004 record iframe timeouts; the published probe route returns `X-Frame-Options: DENY`. This is an unresolved hosted probe compatibility condition, not permission to weaken security or convert unmeasured layout/auth tests to PASS. The UI also reports `HEALTH_HISTORY_PERSIST_FAILED`; this unsaved run is retained in closure evidence, distinct from earlier history readback. Current evidence and subsequent attempts belong in the linked runbook.
 
 SQL-only H04-016/H04-017/H07-014/H09-005/H08-007/H12-032 are retired because the authority/runtime was removed by user decision. Their business concerns continue in native identity/manifest/consent/daily/Calendar/lifecycle regressions. Added H04-018/H04-019, H07-015, H09-006, H08-008, H12-033. H04-015 now checks the canonical three-entry operational inventory and all closed tooling policies. Catalog: 16 suites / 155 cases (136 current, 7 future, 12 external). H09-004 checks native strategy plus approved content/Moon; H08-005/H12-031 check native read-only prerequisites, not historical transaction requirements. No mutation acceptance is inferred.
 

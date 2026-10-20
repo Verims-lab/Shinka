@@ -1,0 +1,288 @@
+{
+  "schema": "shinka.approved-reference-import/1",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "dataEnvironment": "prod",
+  "isolated": false,
+  "authorization": "Explicit user approval in this thread for existing app/prod reference import and synthetic tests",
+  "startedAt": "2026-10-20T18:19:55.573Z",
+  "privileged": false,
+  "steps": [
+    {
+      "kind": "contentDryRun",
+      "index": 0,
+      "phase": "PARTIAL_IMPORT",
+      "ready": false,
+      "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+      "digest": "d389d119d1eceaa105d301e1d81fe2bd54fff4149ecf1ac623e18f3d1fe03c38",
+      "counts": {
+        "message_category_lookup": {
+          "create": 0,
+          "same": 6,
+          "conflicts": 0
+        },
+        "message_pair": {
+          "create": 0,
+          "same": 260,
+          "conflicts": 0
+        },
+        "message_category_mapping": {
+          "create": 25,
+          "same": 215,
+          "conflicts": 0
+        }
+      },
+      "conflictCount": 0,
+      "pairIdCount": 260
+    },
+    {
+      "kind": "contentApplyBatch",
+      "index": 0,
+      "reviewed_digest": "d389d119d1eceaa105d301e1d81fe2bd54fff4149ecf1ac623e18f3d1fe03c38",
+      "attempted": 25,
+      "phase": "VERIFIED_IMPORTED",
+      "ready": true,
+      "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+      "digest": "8c1be1e1d0752fef4c02634a799ed9123c9cbe4a81375fcfd87264868af2752b",
+      "counts": {
+        "message_category_lookup": {
+          "create": 0,
+          "same": 6,
+          "conflicts": 0
+        },
+        "message_pair": {
+          "create": 0,
+          "same": 260,
+          "conflicts": 0
+        },
+        "message_category_mapping": {
+          "create": 0,
+          "same": 240,
+          "conflicts": 0
+        }
+      },
+      "conflictCount": 0,
+      "pairIdCount": 260
+    },
+    {
+      "kind": "contentDryRun",
+      "index": 1,
+      "phase": "VERIFIED_IMPORTED",
+      "ready": true,
+      "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+      "digest": "8c1be1e1d0752fef4c02634a799ed9123c9cbe4a81375fcfd87264868af2752b",
+      "counts": {
+        "message_category_lookup": {
+          "create": 0,
+          "same": 6,
+          "conflicts": 0
+        },
+        "message_pair": {
+          "create": 0,
+          "same": 260,
+          "conflicts": 0
+        },
+        "message_category_mapping": {
+          "create": 0,
+          "same": 240,
+          "conflicts": 0
+        }
+      },
+      "conflictCount": 0,
+      "pairIdCount": 260
+    },
+    {
+      "kind": "moonDryRun",
+      "index": 0,
+      "ready": false,
+      "create": 103,
+      "same": 0,
+      "conflicts": [],
+      "astronomyVersion": "2.1.19",
+      "generatedAt": "2026-10-20T18:20:09.104Z",
+      "coverageStart": "2026-10-03T13:25:33.710Z",
+      "coverageEnd": "2028-11-02T09:17:57.674Z",
+      "digest": "0949d52c18b959c355a82a8986dd47e933302634f3684e25593169f77d801c0f"
+    },
+    {
+      "kind": "moonApplyBatch",
+      "index": 0,
+      "reviewed_digest": "0949d52c18b959c355a82a8986dd47e933302634f3684e25593169f77d801c0f",
+      "ready": false,
+      "create": 78,
+      "same": 25,
+      "conflicts": [],
+      "astronomyVersion": "2.1.19",
+      "generatedAt": "2026-10-20T18:20:11.923Z",
+      "coverageStart": "2026-10-03T13:25:33.710Z",
+      "coverageEnd": "2028-11-02T09:17:57.674Z",
+      "digest": "6d7aeac75340fa416b3e35be5d7cec5c04bdfbc4d7fcfd5af52409e710277ac7",
+      "attempted": 25
+    },
+    {
+      "kind": "moonDryRun",
+      "index": 1,
+      "ready": false,
+      "create": 78,
+      "same": 25,
+      "conflicts": [],
+      "astronomyVersion": "2.1.19",
+      "generatedAt": "2026-10-20T18:20:14.776Z",
+      "coverageStart": "2026-10-03T13:25:33.710Z",
+      "coverageEnd": "2028-11-02T09:17:57.674Z",
+      "digest": "6d7aeac75340fa416b3e35be5d7cec5c04bdfbc4d7fcfd5af52409e710277ac7"
+    },
+    {
+      "kind": "moonApplyBatch",
+      "index": 1,
+      "reviewed_digest": "6d7aeac75340fa416b3e35be5d7cec5c04bdfbc4d7fcfd5af52409e710277ac7",
+      "ready": false,
+      "create": 53,
+      "same": 50,
+      "conflicts": [],
+      "astronomyVersion": "2.1.19",
+      "generatedAt": "2026-10-20T18:20:18.031Z",
+      "coverageStart": "2026-10-03T13:25:33.710Z",
+      "coverageEnd": "2028-11-02T09:17:57.674Z",
+      "digest": "9bcd4675b27b0223984b631072e1caad89259ace796ef5e6e737766eefac998f",
+      "attempted": 25
+    },
+    {
+      "kind": "moonDryRun",
+      "index": 2,
+      "ready": false,
+      "create": 53,
+      "same": 50,
+      "conflicts": [],
+      "astronomyVersion": "2.1.19",
+      "generatedAt": "2026-10-20T18:20:20.840Z",
+      "coverageStart": "2026-10-03T13:25:33.710Z",
+      "coverageEnd": "2028-11-02T09:17:57.674Z",
+      "digest": "9bcd4675b27b0223984b631072e1caad89259ace796ef5e6e737766eefac998f"
+    },
+    {
+      "kind": "moonApplyBatch",
+      "index": 2,
+      "reviewed_digest": "9bcd4675b27b0223984b631072e1caad89259ace796ef5e6e737766eefac998f",
+      "ready": false,
+      "create": 28,
+      "same": 75,
+      "conflicts": [],
+      "astronomyVersion": "2.1.19",
+      "generatedAt": "2026-10-20T18:20:23.806Z",
+      "coverageStart": "2026-10-03T13:25:33.710Z",
+      "coverageEnd": "2028-11-02T09:17:57.674Z",
+      "digest": "be060adb4303f7e67849d1307e929263fbb32f643d06a59a3247699bd5bbff2b",
+      "attempted": 25
+    },
+    {
+      "kind": "moonDryRun",
+      "index": 3,
+      "ready": false,
+      "create": 28,
+      "same": 75,
+      "conflicts": [],
+      "astronomyVersion": "2.1.19",
+      "generatedAt": "2026-10-20T18:20:27.261Z",
+      "coverageStart": "2026-10-03T13:25:33.710Z",
+      "coverageEnd": "2028-11-02T09:17:57.674Z",
+      "digest": "be060adb4303f7e67849d1307e929263fbb32f643d06a59a3247699bd5bbff2b"
+    },
+    {
+      "kind": "moonApplyBatch",
+      "index": 3,
+      "reviewed_digest": "be060adb4303f7e67849d1307e929263fbb32f643d06a59a3247699bd5bbff2b",
+      "ready": false,
+      "create": 3,
+      "same": 100,
+      "conflicts": [],
+      "astronomyVersion": "2.1.19",
+      "generatedAt": "2026-10-20T18:20:30.237Z",
+      "coverageStart": "2026-10-03T13:25:33.710Z",
+      "coverageEnd": "2028-11-02T09:17:57.674Z",
+      "digest": "dc90860b7679a9d3a7138324acffd9f24a02a6b21c8daea89e1b4ff3be3f3870",
+      "attempted": 25
+    },
+    {
+      "kind": "moonDryRun",
+      "index": 4,
+      "ready": false,
+      "create": 3,
+      "same": 100,
+      "conflicts": [],
+      "astronomyVersion": "2.1.19",
+      "generatedAt": "2026-10-20T18:20:35.159Z",
+      "coverageStart": "2026-10-03T13:25:33.710Z",
+      "coverageEnd": "2028-11-02T09:17:57.674Z",
+      "digest": "dc90860b7679a9d3a7138324acffd9f24a02a6b21c8daea89e1b4ff3be3f3870"
+    },
+    {
+      "kind": "moonApplyBatch",
+      "index": 4,
+      "reviewed_digest": "dc90860b7679a9d3a7138324acffd9f24a02a6b21c8daea89e1b4ff3be3f3870",
+      "ready": true,
+      "create": 0,
+      "same": 103,
+      "conflicts": [],
+      "astronomyVersion": "2.1.19",
+      "generatedAt": "2026-10-20T18:20:38.144Z",
+      "coverageStart": "2026-10-03T13:25:33.710Z",
+      "coverageEnd": "2028-11-02T09:17:57.674Z",
+      "digest": "26657af0d38eb94d76d49e2fa5362f555ca87023c79d52af802679486399db6b",
+      "attempted": 3
+    },
+    {
+      "kind": "moonDryRun",
+      "index": 5,
+      "ready": true,
+      "create": 0,
+      "same": 103,
+      "conflicts": [],
+      "astronomyVersion": "2.1.19",
+      "generatedAt": "2026-10-20T18:20:41.077Z",
+      "coverageStart": "2026-10-03T13:25:33.710Z",
+      "coverageEnd": "2028-11-02T09:17:57.674Z",
+      "digest": "26657af0d38eb94d76d49e2fa5362f555ca87023c79d52af802679486399db6b"
+    }
+  ],
+  "content": {
+    "phase": "VERIFIED_IMPORTED",
+    "ready": true,
+    "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+    "digest": "8c1be1e1d0752fef4c02634a799ed9123c9cbe4a81375fcfd87264868af2752b",
+    "counts": {
+      "message_category_lookup": {
+        "create": 0,
+        "same": 6,
+        "conflicts": 0
+      },
+      "message_pair": {
+        "create": 0,
+        "same": 260,
+        "conflicts": 0
+      },
+      "message_category_mapping": {
+        "create": 0,
+        "same": 240,
+        "conflicts": 0
+      }
+    },
+    "conflictCount": 0,
+    "pairIdCount": 260,
+    "sourcePairIdsExact": true,
+    "nativePairIdsUnique": true
+  },
+  "moon": {
+    "ready": true,
+    "create": 0,
+    "same": 103,
+    "conflicts": [],
+    "astronomyVersion": "2.1.19",
+    "generatedAt": "2026-10-20T18:20:41.077Z",
+    "coverageStart": "2026-10-03T13:25:33.710Z",
+    "coverageEnd": "2028-11-02T09:17:57.674Z",
+    "digest": "26657af0d38eb94d76d49e2fa5362f555ca87023c79d52af802679486399db6b",
+    "requiredCoverageEnd": "2028-11-01T00:00:00.000Z"
+  },
+  "status": "VERIFIED_IMPORTED",
+  "completedAt": "2026-10-20T18:20:41.517Z"
+}

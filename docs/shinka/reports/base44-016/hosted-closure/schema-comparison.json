@@ -1,0 +1,174 @@
+{
+  "schema": "shinka.remote-schema-source-comparison/1",
+  "scope": "REMOTE_SANDBOX_SCHEMA_FILES_NOT_ACTIVE_DATABASE_POLICY_EXPORT",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "remoteCount": 24,
+  "localCount": 24,
+  "remoteOnly": [],
+  "localOnly": [],
+  "files": [
+    {
+      "name": "AdminAuditLog.jsonc",
+      "localSha256": "c2e896683b83957f5b6128d33d91533bbc48c49599415d3abe613d022eab958d",
+      "remoteSha256": "3052a34b2f1cb194df0ab9e4b687534634e4358f1d60c43fdac7aba03690ac94",
+      "jsonEqual": true
+    },
+    {
+      "name": "AdminTestOperation.jsonc",
+      "localSha256": "57ca036b47ae3c23eaf077338571e2b17049c4b8500ec20cd49c8dacf0cce16b",
+      "remoteSha256": "737856c107fb1b57502e773384fc074425b6e59ee9f92af7cd0af3bf002e1048",
+      "jsonEqual": true
+    },
+    {
+      "name": "CyclePhaseLookup.jsonc",
+      "localSha256": "2977fc893b956031d567d1bcf9c8c81c924ee42c7aab67e46e2dbcaa2f7bd628",
+      "remoteSha256": "a07bc6d54c49f49a08d550548a6e11e056e9ed8bdd9376b845d33344fc7baf30",
+      "jsonEqual": true
+    },
+    {
+      "name": "DataProtectionEvent.jsonc",
+      "localSha256": "8784aeecfb0a36063e6f037498e205dabff578f503edec962c2fd5957a9ecae1",
+      "remoteSha256": "d8d3df7c0ac435fcbe07aa13b85ba854db4944e7382fd820c67f61dae004d843",
+      "jsonEqual": true
+    },
+    {
+      "name": "HealthDataDeletionJob.jsonc",
+      "localSha256": "b3f86af9ea09e4add0be09fb43ac46283c78b18067f73e7f20abb38e42e6806e",
+      "remoteSha256": "57e99ac27431007d2821bc5db73b94a643a136619ecc48dbe4d3a45c7ad84900",
+      "jsonEqual": true
+    },
+    {
+      "name": "InternalHealthRun.jsonc",
+      "localSha256": "f7e88c2f8fe75c92b6b712e54561770d43ba37b3fd14e4345f226aff37e041d6",
+      "remoteSha256": "ea6549489bd5f34ea629f290fbc9cdf043285e5d643ebfad7a11ec9fc198b987",
+      "jsonEqual": true
+    },
+    {
+      "name": "MessageCategoryLookup.jsonc",
+      "localSha256": "744bf94cfa06083e6b610a3232733747ab27bd44e2a36fb282a46b529e1f468f",
+      "remoteSha256": "df6aa04a7f50448d760f6787e9fa5328487a8f160eb2f9e1a8ed956909f563bc",
+      "jsonEqual": true
+    },
+    {
+      "name": "MessageCategoryMapping.jsonc",
+      "localSha256": "1f1e8a1b6348d5c039736bd3a8cc5583416888ca45b4b45dc84df1efebfefdac",
+      "remoteSha256": "97445944262aea7706d1849d822968c53f7d21b51365d5582aec200fc543d5c8",
+      "jsonEqual": true
+    },
+    {
+      "name": "MessagePair.jsonc",
+      "localSha256": "ba03694920032a5b225934d54e08306b357b65db2c0faf4cdad93bfec0798ecd",
+      "remoteSha256": "17236b394329fead8ec61eb48c991ef5fa78f3993bb85036764fbed467cc84c0",
+      "jsonEqual": true
+    },
+    {
+      "name": "MoonPhaseLookup.jsonc",
+      "localSha256": "e86da2c11ccdba7d98a7a023137cfc7130da54f4bbb679641b922b4485acff2a",
+      "remoteSha256": "14bda073304481315387cfc0c8b77e3b17f3afb189f1472605697ba7a7d5a828",
+      "jsonEqual": true
+    },
+    {
+      "name": "NotificationDelivery.jsonc",
+      "localSha256": "19962ddacd67b019b75ac828c0a7465fc6cfd3579e7f4f241b831b2301e7d1ca",
+      "remoteSha256": "39bd84023d5af6dbde3fefa3a7a697538f35ee53cfbad9a4e0bb17c9cb4c60f1",
+      "jsonEqual": true
+    },
+    {
+      "name": "SystemErrorLog.jsonc",
+      "localSha256": "273c75b530471bf82be343d39ebba659944a8066b243e1ee50ead36c07734750",
+      "remoteSha256": "c4255ad5ffb7fffe7f5199f35d0f8cb71ba6532d70320bb1c20befd9b3b40aec",
+      "jsonEqual": true
+    },
+    {
+      "name": "User.jsonc",
+      "localSha256": "4de38108e89f3bb0c1c7411eabdd47f8899238f1580428a167de47b10c5b3a31",
+      "remoteSha256": "4de38108e89f3bb0c1c7411eabdd47f8899238f1580428a167de47b10c5b3a31",
+      "jsonEqual": true
+    },
+    {
+      "name": "UserCalendarAction.jsonc",
+      "localSha256": "481dc122ec58a27e7c03ec06d7796d304b319d51ab281ada26d44bcbd0d0c843",
+      "remoteSha256": "9d719fe52a9459dd4afd9decf1ef866ea980718faf1293a2ed5c7c9da8aadc7e",
+      "jsonEqual": true
+    },
+    {
+      "name": "UserCyclePhaseDay.jsonc",
+      "localSha256": "802b6ef34b6ae59759371c1c541e510fdbeccc428d92def785ad71b7822bf51c",
+      "remoteSha256": "f1e3afaed278677a47072e084426baf5364ac6cb540a84f553cba1352bfb1ee8",
+      "jsonEqual": true
+    },
+    {
+      "name": "UserCyclePrediction.jsonc",
+      "localSha256": "68ea03867cf3ed7a5f6934aedab8c1c0a0d9388190756ac77d62a27958d477da",
+      "remoteSha256": "84d11ae7b13ca23a5b9ed137c17f4530e0c7e9a06de7da9fd13c27f547734f65",
+      "jsonEqual": true
+    },
+    {
+      "name": "UserCycleSettings.jsonc",
+      "localSha256": "e70891545028e26dc22460b957ce5b4dbfd238ed0cb5883df21c583dcebea32b",
+      "remoteSha256": "c17003c98f12c1107e88fad5c019a85c900a2e3e2d2ed3b2d73696fa6a76ea27",
+      "jsonEqual": true
+    },
+    {
+      "name": "UserDailyMessage.jsonc",
+      "localSha256": "6b845066e391b6a99f668dd7bf05127ff7a537fa2ab65706c62d4250276898bd",
+      "remoteSha256": "1b7026e98780126167aea53cec77a49eeec29edef465e8f5c4b5b9bff935f720",
+      "jsonEqual": true
+    },
+    {
+      "name": "UserHealthConsent.jsonc",
+      "localSha256": "f53d48f44e74d2e0c0e88033c741644bba4eb139d2f98ed66bf00eb862773f0f",
+      "remoteSha256": "8bcbeeaa7e4391038d4b45c9d0ba10d9c9dda1e7f7a0bcf5bc813406a2174a5a",
+      "jsonEqual": true
+    },
+    {
+      "name": "UserHealthConsentEvent.jsonc",
+      "localSha256": "c687de99fc18cffca408b318345b8d1f2f3727aecdcf778b37fd4d8802e70bc0",
+      "remoteSha256": "ce3074cd53910516ccd1e91fb0e606849b53b4b44832a934361b4a7159afaf0c",
+      "jsonEqual": true
+    },
+    {
+      "name": "UserPatternSummary.jsonc",
+      "localSha256": "527a45c366780e75566f4dd9f0406327d29c3bb301519413da782a92f29002ca",
+      "remoteSha256": "16a85064ab99cd02beb243c0a6b541c294604aa7494e697cdc7041bb03bce873",
+      "jsonEqual": true
+    },
+    {
+      "name": "UserPeriodRecord.jsonc",
+      "localSha256": "6ca8a894180730f7b40a15250519820fdb22e9abde9c05c5a592f3c8af796f70",
+      "remoteSha256": "a828ec3e47992a5388097264ad3cee0ef3e0a7ec66ea4675cd352dec6e40810b",
+      "jsonEqual": true
+    },
+    {
+      "name": "UserPreferences.jsonc",
+      "localSha256": "b1d4b7808ce3a0f680d21dd91e411249d00f44b2546d59774c03aa1b44b6891a",
+      "remoteSha256": "1a211e59a2eae693f3eec812539c0ff3ca8dc9c4123c65d987c7973806da8961",
+      "jsonEqual": true
+    },
+    {
+      "name": "UserProfile.jsonc",
+      "localSha256": "cc8b3bbc1b272968085acd5b7eb487ddf9e7e6d83239c3697746ff4287e667c9",
+      "remoteSha256": "b11a4491f1eea0ec1cce5b2f490b80b68adf20cd8a47feb1b7cb861f84da6787",
+      "jsonEqual": true
+    }
+  ],
+  "semanticDifferences": [],
+  "checks": {
+    "UserCalendarAction": {
+      "create": false,
+      "read": false,
+      "update": false,
+      "delete": false
+    },
+    "AdminTestOperation.step_fingerprints": {
+      "type": "object",
+      "description": "Reset action digests only; no profile/health payload. Sequential progress, not a transaction."
+    },
+    "InternalHealthRun": {
+      "read": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    }
+  }
+}

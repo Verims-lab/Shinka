@@ -1,0 +1,267 @@
+{
+  "schema": "shinka.approved-reference-import/1",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "dataEnvironment": "prod",
+  "isolated": false,
+  "authorization": "Explicit user approval in this thread for existing app/prod reference import and synthetic tests",
+  "startedAt": "2026-10-20T18:18:42.100Z",
+  "privileged": false,
+  "steps": [
+    {
+      "kind": "contentDryRun",
+      "index": 0,
+      "phase": "PARTIAL_IMPORT",
+      "ready": false,
+      "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+      "digest": "e195dc7949063ae22db4d3c7fd666e834013efda4ff2528ee50e5d022f1c4101",
+      "counts": {
+        "message_category_lookup": {
+          "create": 0,
+          "same": 6,
+          "conflicts": 0
+        },
+        "message_pair": {
+          "create": 0,
+          "same": 260,
+          "conflicts": 0
+        },
+        "message_category_mapping": {
+          "create": 125,
+          "same": 115,
+          "conflicts": 0
+        }
+      },
+      "conflictCount": 0,
+      "pairIdCount": 260
+    },
+    {
+      "kind": "contentApplyBatch",
+      "index": 0,
+      "reviewed_digest": "e195dc7949063ae22db4d3c7fd666e834013efda4ff2528ee50e5d022f1c4101",
+      "attempted": 25,
+      "phase": "PARTIAL_IMPORT",
+      "ready": false,
+      "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+      "digest": "eecc9ec680cf59a7e126c63a86aff09d25c5c060091afc07b75a6c478eb44ae9",
+      "counts": {
+        "message_category_lookup": {
+          "create": 0,
+          "same": 6,
+          "conflicts": 0
+        },
+        "message_pair": {
+          "create": 0,
+          "same": 260,
+          "conflicts": 0
+        },
+        "message_category_mapping": {
+          "create": 100,
+          "same": 140,
+          "conflicts": 0
+        }
+      },
+      "conflictCount": 0,
+      "pairIdCount": 260
+    },
+    {
+      "kind": "contentDryRun",
+      "index": 1,
+      "phase": "PARTIAL_IMPORT",
+      "ready": false,
+      "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+      "digest": "eecc9ec680cf59a7e126c63a86aff09d25c5c060091afc07b75a6c478eb44ae9",
+      "counts": {
+        "message_category_lookup": {
+          "create": 0,
+          "same": 6,
+          "conflicts": 0
+        },
+        "message_pair": {
+          "create": 0,
+          "same": 260,
+          "conflicts": 0
+        },
+        "message_category_mapping": {
+          "create": 100,
+          "same": 140,
+          "conflicts": 0
+        }
+      },
+      "conflictCount": 0,
+      "pairIdCount": 260
+    },
+    {
+      "kind": "contentApplyBatch",
+      "index": 1,
+      "reviewed_digest": "eecc9ec680cf59a7e126c63a86aff09d25c5c060091afc07b75a6c478eb44ae9",
+      "attempted": 25,
+      "phase": "PARTIAL_IMPORT",
+      "ready": false,
+      "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+      "digest": "9f9e42a0ceaa5c4c670eb2ebde295de8d285165059076696772045760e4b0353",
+      "counts": {
+        "message_category_lookup": {
+          "create": 0,
+          "same": 6,
+          "conflicts": 0
+        },
+        "message_pair": {
+          "create": 0,
+          "same": 260,
+          "conflicts": 0
+        },
+        "message_category_mapping": {
+          "create": 75,
+          "same": 165,
+          "conflicts": 0
+        }
+      },
+      "conflictCount": 0,
+      "pairIdCount": 260
+    },
+    {
+      "kind": "contentDryRun",
+      "index": 2,
+      "phase": "PARTIAL_IMPORT",
+      "ready": false,
+      "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+      "digest": "9f9e42a0ceaa5c4c670eb2ebde295de8d285165059076696772045760e4b0353",
+      "counts": {
+        "message_category_lookup": {
+          "create": 0,
+          "same": 6,
+          "conflicts": 0
+        },
+        "message_pair": {
+          "create": 0,
+          "same": 260,
+          "conflicts": 0
+        },
+        "message_category_mapping": {
+          "create": 75,
+          "same": 165,
+          "conflicts": 0
+        }
+      },
+      "conflictCount": 0,
+      "pairIdCount": 260
+    },
+    {
+      "kind": "contentApplyBatch",
+      "index": 2,
+      "reviewed_digest": "9f9e42a0ceaa5c4c670eb2ebde295de8d285165059076696772045760e4b0353",
+      "attempted": 25,
+      "phase": "PARTIAL_IMPORT",
+      "ready": false,
+      "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+      "digest": "5bab380c6246ad3350db93e7dd395289a8bec4a6698ac2615ba95c50ee061d1b",
+      "counts": {
+        "message_category_lookup": {
+          "create": 0,
+          "same": 6,
+          "conflicts": 0
+        },
+        "message_pair": {
+          "create": 0,
+          "same": 260,
+          "conflicts": 0
+        },
+        "message_category_mapping": {
+          "create": 50,
+          "same": 190,
+          "conflicts": 0
+        }
+      },
+      "conflictCount": 0,
+      "pairIdCount": 260
+    },
+    {
+      "kind": "contentDryRun",
+      "index": 3,
+      "phase": "PARTIAL_IMPORT",
+      "ready": false,
+      "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+      "digest": "5bab380c6246ad3350db93e7dd395289a8bec4a6698ac2615ba95c50ee061d1b",
+      "counts": {
+        "message_category_lookup": {
+          "create": 0,
+          "same": 6,
+          "conflicts": 0
+        },
+        "message_pair": {
+          "create": 0,
+          "same": 260,
+          "conflicts": 0
+        },
+        "message_category_mapping": {
+          "create": 50,
+          "same": 190,
+          "conflicts": 0
+        }
+      },
+      "conflictCount": 0,
+      "pairIdCount": 260
+    },
+    {
+      "kind": "contentApplyBatch",
+      "index": 3,
+      "reviewed_digest": "5bab380c6246ad3350db93e7dd395289a8bec4a6698ac2615ba95c50ee061d1b",
+      "attempted": 25,
+      "phase": "PARTIAL_IMPORT",
+      "ready": false,
+      "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+      "digest": "d389d119d1eceaa105d301e1d81fe2bd54fff4149ecf1ac623e18f3d1fe03c38",
+      "counts": {
+        "message_category_lookup": {
+          "create": 0,
+          "same": 6,
+          "conflicts": 0
+        },
+        "message_pair": {
+          "create": 0,
+          "same": 260,
+          "conflicts": 0
+        },
+        "message_category_mapping": {
+          "create": 25,
+          "same": 215,
+          "conflicts": 0
+        }
+      },
+      "conflictCount": 0,
+      "pairIdCount": 260
+    },
+    {
+      "kind": "contentGroupReadback",
+      "phase": "PARTIAL_IMPORT",
+      "ready": false,
+      "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+      "digest": "d389d119d1eceaa105d301e1d81fe2bd54fff4149ecf1ac623e18f3d1fe03c38",
+      "counts": {
+        "message_category_lookup": {
+          "create": 0,
+          "same": 6,
+          "conflicts": 0
+        },
+        "message_pair": {
+          "create": 0,
+          "same": 260,
+          "conflicts": 0
+        },
+        "message_category_mapping": {
+          "create": 25,
+          "same": 215,
+          "conflicts": 0
+        }
+      },
+      "conflictCount": 0,
+      "pairIdCount": 260
+    }
+  ],
+  "status": "PAUSED_BETWEEN_BATCH_GROUPS",
+  "error": {
+    "code": "BATCH_GROUP_COMPLETE",
+    "status": null
+  },
+  "completedAt": "2026-10-20T18:19:13.498Z"
+}

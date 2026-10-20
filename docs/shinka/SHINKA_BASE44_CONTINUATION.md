@@ -1,7 +1,7 @@
 # Shinka — Base44 continuation
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
-**Status:** IMPLEMENTED LOCALLY — hosted acceptance pending
+**Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
 **Current BuildMarker:** Buildmarker-016
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
@@ -9,6 +9,8 @@
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
 
 ## Decision and checked starting state
+
+**016 hosted continuation (2026-10-20):** The user subsequently authorized reference import and synthetic tests on the existing shared app `6ad5190f4845d4e3af03b420`, data environment `prod`. This is explicit target authorization, **not database isolation**. Main/Test and Preview labels do not change that. The user separately approved the three persistent Test Tools settings (app binding, TEST label and private preview signing key); maintenance/drain/deletion remains excluded. Current measured evidence and the schema → backend → frontend runbook are in [hosted closure](reports/SHINKA_HOSTED_CLOSURE_016.md). Historical measurements below are retained, not current failure claims.
 
 The latest user instruction supersedes the PostgreSQL direction. Base44 remains the sole application data and identity authority. Existing OAuth/User IDs and native User admin role remain. There is no SQL read/write/fallback path, second identity, admin bootstrap or required SQL secret. SQL runtime, driver, migration, executable scripts and SQL-specific Health cases were removed selectively. Historical 014/015 reports are preserved, marked superseded; unrelated 015 fixes (unused auth template removal, current-session PageNotFound, closed InternalHealthRun policies) remain.
 

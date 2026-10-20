@@ -1,0 +1,719 @@
+Admin Panel
+Test Araçları
+Health Center
+Build & Environment
+Uygulamaya dön
+INTERNAL · HEALTH CENTER
+·
+Buildmarker-016
+Health Center
+
+Catalog HC-016.0 · 155 cases · PUBLISHED
+
+Run Full Health
+SUITE
+H01 Environment & Build
+H02 Source & Documentation Integrity
+H03 Architecture & Code Quality
+H04 Data Model Contract
+H05 Content Artifact Integrity
+H06 Auth & Identity
+H07 Onboarding
+H08 Cycle & Calendar
+H09 Daily Content Engine
+H10 Pattern / Astronomy / GeoNames
+H11 Consent / Account / Data Protection
+H12 Security & Ownership
+H13 UI / UX / Accessibility
+H14 Notifications & Scheduler
+H15 Resilience & Performance
+H16 Release Gate
+Run suite
+Copy JSON
+Export
+
+Run finished but could not be saved to history.
+
+HEALTH_HISTORY_PERSIST_FAILED
+
+Gate
+NOT_READY
+136
+Planned
+136
+Attempted
+136
+Executed
+133
+PASS
+2
+FAIL
+0
+WARNING
+1
+BLOCKED
+0
+NOT_RUN
+19
+NOT_APPLICABLE
+SCOPE
+FULL
+ENVIRONMENT
+PUBLISHED
+CATALOG
+HC-016.0
+STARTED
+2026-10-20T18:31:19.449Z
+COMPLETED
+2026-10-20T18:33:25.914Z
+DURATION
+126465 ms
+BLOCKING CASES
+H03-006, H03-007, H13-004
+NOT RUN
+none
+H01 — Environment & Build
+6/6 pass
+H01-001
+BuildMarker format · blocker
+PASS
+H01-002
+BuildMarker single source · blocker
+PASS
+H01-003
+Displayed marker matches application marker · blocker
+PASS
+H01-004
+Current environment resolved · blocker
+PASS
+H01-005
+Health catalog version present · blocker
+PASS
+H01-006
+Build Ledger consistent with canonical marker · blocker
+PASS
+H02 — Source & Documentation Integrity
+8/8 pass
+H02-001
+All canonical MD files exist · blocker
+PASS
+H02-002
+Canonical MD headers and BuildMarker aligned · blocker
+PASS
+H02-003
+Source inventory registers 10 LOGICAL sources · blocker
+PASS
+H02-004
+All logical sources and physical parts read · blocker
+PASS
+H02-005
+Source authority table exists · blocker
+PASS
+H02-006
+No unresolved conflict silently marked resolved · blocker
+PASS
+H02-007
+Split UI/UX source reconstructed completely · blocker
+PASS
+H02-008
+UI/UX tables machine-readable (OD-010) · blocker
+PASS
+H03 — Architecture & Code Quality
+8/10 pass
+H03-010
+Initial dependency and layer boundaries · blocker
+PASS
+H03-001
+No legacy Shinka source/module import · blocker
+PASS
+H03-002
+No duplicate BuildMarker authority · blocker
+PASS
+H03-003
+No hardcoded secret · blocker
+PASS
+H03-004
+No hardcoded personal admin email · blocker
+PASS
+H03-005
+Foundational service boundaries exist · blocker
+PASS
+H03-006
+No business logic in Health UI · blocker
+FAIL
+H03-007
+Foundation automated tests pass · blocker
+FAIL
+
+Canonical tests run against helpers, synthetic backend contexts and rendered UI.
+
+CURRENT_PACKAGE · RUNTIME · HIGH · 76392 ms · attempted true · executed true
+
+{
+  "classification": "SYNTHETIC_RUNTIME",
+  "source": "canonical Foundation tests",
+  "actual": {
+    "total": 437,
+    "failed": [
+      "T24:probe TIMEOUT sw=null",
+      "T41:probe {\"state\":\"TIMEOUT\",\"reason\":\"PROBE_ROOT_NOT_RENDERED\",\"path\":\"/internal/build?probe=1\",\"landedPath\":\"blank\",\"scrollWidth\":null,\"overflow\":null,\"width\":360",
+      "T74:AUTH_PROBE_ROOT_TIMEOUT;route=/auth-shell-probe;path=about:blank",
+      "HC01:AUTH_PROBE_ROOT_TIMEOUT;route=/auth-shell-probe;path=about:blank"
+    ],
+    "authProbe": {
+      "probe": {
+        "state": "TIMEOUT",
+        "code": "AUTH_PROBE_ROOT_TIMEOUT",
+        "route": "/auth-shell-probe",
+        "path": "about:blank",
+        "pathname": "about:blank",
+        "screen": null,
+        "expectedSelector": "[data-auth-probe=\"unauthenticated-shell\"]",
+        "selectorFound": false,
+        "documentReadyState": "complete",
+        "resolvedScreen": null,
+        "elapsedMs": 15014,
+        "frameState": {
+          "connected": true,
+          "loads": 0,
+          "visibility": "hidden",
+          "documentVisibility": "visible"
+        },
+        "readinessState": "LOADING",
+        "lastObservedProbeState": {
+          "readiness": "LOADING",
+          "screen": null,
+          "lifecycle": null
+        }
+      }
+    },
+    "probeFailures": [
+      {
+        "id": "T74",
+        "evidence": {
+          "probe": {
+            "state": "TIMEOUT",
+            "code": "AUTH_PROBE_ROOT_TIMEOUT",
+            "route": "/auth-shell-probe",
+            "path": "about:blank",
+            "pathname": "about:blank",
+            "screen": null,
+            "expectedSelector": "[data-auth-probe=\"unauthenticated-shell\"]",
+            "selectorFound": false,
+            "documentReadyState": "complete",
+            "resolvedScreen": null,
+            "elapsedMs": 15014,
+            "frameState": {
+              "connected": true,
+              "loads": 0,
+              "visibility": "hidden",
+              "documentVisibility": "visible"
+            },
+            "readinessState": "LOADING",
+            "lastObservedProbeState": {
+              "readiness": "LOADING",
+              "screen": null,
+              "lifecycle": null
+            }
+          }
+        }
+      },
+      {
+        "id": "HC01",
+        "evidence": {
+          "probe": {
+            "state": "TIMEOUT",
+            "code": "AUTH_PROBE_ROOT_TIMEOUT",
+            "route": "/auth-shell-probe",
+            "path": "about:blank",
+            "pathname": "about:blank",
+            "screen": null,
+            "expectedSelector": "[data-auth-probe=\"unauthenticated-shell\"]",
+            "selectorFound": false,
+            "documentReadyState": "complete",
+            "resolvedScreen": null,
+            "elapsedMs": 15016,
+            "frameState": {
+              "connected": true,
+              "loads": 0,
+              "visibility": "hidden",
+              "documentVisibility": "visible"
+            },
+            "readinessState": "LOADING",
+            "lastObservedProbeState": {
+              "readiness": "LOADING",
+              "screen": null,
+              "lifecycle": null
+            }
+          }
+        }
+      }
+    ]
+  },
+  "expected": {
+    "failed": []
+  },
+  "reason": "Local/browser regression; not live backend enforcement",
+  "timestamp": "2026-10-20T18:32:35.877Z"
+}
+H03-008
+Repository auth policy: Apple and Google only · blocker
+PASS
+H03-009
+Internal operations require server admin identity · blocker
+PASS
+H04 — Data Model Contract
+16/17 pass
+H04-018
+Native identity, current role and write admission · blocker
+PASS
+H04-019
+Connected Base44 continuation prerequisites · blocker
+PASS
+H04-001
+Authoritative domain entity count = 20 · blocker
+PASS
+H04-002
+Domain entity names documented · blocker
+PASS
+H04-003
+User identity and internal tooling excluded · blocker
+PASS
+H04-004
+Source relationships map real fields · blocker
+PASS
+H04-005
+Native constraint capability claims are honest · blocker
+PASS
+H04-006
+Deployed physical product schemas present
+NOT_APPLICABLE
+H04-007
+Physical repository schemas match source · blocker
+PASS
+H04-008
+Field types and ranges enforced · blocker
+PASS
+H04-009
+Optional fields preserve logical NULL · blocker
+PASS
+H04-010
+Foreign reference prechecks reject missing/cross-owner targets · blocker
+PASS
+H04-011
+Canonical uniqueness keys · blocker
+PASS
+H04-012
+Idempotent creation and concurrency protocol · blocker
+PASS
+H04-013
+Conditional mutation and safe readback fail closed · blocker
+PASS
+H04-014
+OD-004 mapping remains evidence-bounded · blocker
+PASS
+H04-015
+Domain access matrix and deny rules complete · blocker
+PASS
+H05 — Content Artifact Integrity
+10/10 pass
+H05-001
+260 content workbook readable · blocker
+PASS
+H05-002
+Expected Pair-ID/content columns exist · blocker
+PASS
+H05-003
+Six approved categories reconcile · blocker
+PASS
+H05-004
+192 mapping artifact readable and complete · blocker
+PASS
+H05-005
+240 mapping artifact readable and complete · blocker
+PASS
+H05-006
+192 + UNKNOWN extension relationship · blocker
+PASS
+H05-007
+No duplicate IDs or mappings · blocker
+PASS
+H05-008
+No missing mandatory language cells · blocker
+PASS
+H05-009
+Content import stage and exact verified readiness · blocker
+PASS
+H05-010
+Controlled import, partial recovery and exact crosswalk · blocker
+PASS
+H06 — Auth & Identity
+6/7 pass
+H06-001
+Apple/Google-only auth boundary · blocker
+PASS
+H06-002
+18+ declaration before provider call · blocker
+PASS
+H06-003
+OAuth cancellation and safe failure · blocker
+PASS
+H06-004
+Authenticated owner and sanitized response · blocker
+PASS
+H06-005
+Repeated hydration does not duplicate identity rows · blocker
+PASS
+H06-006
+Existing/INACTIVE user routing · blocker
+PASS
+H06-007
+Live Apple/Google sign-in and callback
+NOT_APPLICABLE
+H07 — Onboarding
+14/14 pass
+H07-015
+Native grant continuation preserves consent instant and optional durations · blocker
+PASS
+H07-001
+Backend DOB and 18+ date-only validation · blocker
+PASS
+H07-002
+Optional name and transient restoration · blocker
+PASS
+H07-003
+Birth time NULL semantics · blocker
+PASS
+H07-004
+Canonical eight-state route resolver · blocker
+PASS
+H07-005
+Optional cycle input and no fake 5/28 · blocker
+PASS
+H07-006
+Preferences initialization · blocker
+PASS
+H07-007
+Retry and partial failure contract · blocker
+PASS
+H07-008
+Source copy contract · blocker
+PASS
+H07-009
+Approved Sun calculation · blocker
+PASS
+H07-010
+Approved TR onboarding copy · blocker
+PASS
+H07-011
+Native Base44 persistence regression · blocker
+PASS
+H07-012
+Approved durable onboarding derivation · blocker
+PASS
+H07-013
+ON-06 readback to Home and locale continuity · blocker
+PASS
+H08 — Cycle & Calendar
+7/8 pass
+H08-008
+Native observation writes, conflict review and resumable receipts · blocker
+PASS
+H08-001
+Phase lookup 28/5 and supported range · blocker
+PASS
+H08-003
+Outlier rule 26/27/45 → 27 · blocker
+PASS
+H08-002
+Calendar starts, neighbors and local dates · blocker
+PASS
+H08-004
+Actual-date receipt recovery and independent clients · blocker
+PASS
+H08-005
+Connected native Calendar prerequisites · blocker
+PASS
+H08-006
+Approved >60-day observation behavior · blocker
+PASS
+H08-901
+Hosted Calendar mutation and readback acceptance
+NOT_APPLICABLE
+H09 — Daily Content Engine
+5/6 pass
+H09-006
+Native immutable candidate reconciliation and response loss · blocker
+PASS
+H09-001
+Native day reuse and candidate conflict behavior · blocker
+PASS
+H09-002
+40-day repeat window and local day · blocker
+PASS
+H09-003
+Fallback chain and immutable TR/EN snapshot · blocker
+PASS
+H09-004
+Production first-Shinka prerequisites · blocker
+PASS
+H09-901
+Hosted first creation, reopen, locale and readback
+NOT_APPLICABLE
+H10 — Pattern / Astronomy / GeoNames
+2/4 pass
+H10-001
+Pattern uses actual category_id · blocker
+NOT_APPLICABLE
+H10-003
+Optional structured GeoNames boundary · blocker
+PASS
+H10-004
+Live GeoNames credentials and provider
+NOT_APPLICABLE
+H10-002
+Astronomy UTC interval continuity and reference sample · blocker
+PASS
+H11 — Consent / Account / Data Protection
+3/6 pass
+H11-001
+Consent withdrawal deletes health data (verified) · blocker
+NOT_APPLICABLE
+H11-003
+Delete Account → INACTIVE without routine deletion · blocker
+NOT_APPLICABLE
+H11-004
+Onboarding consent grant and immutable history · blocker
+PASS
+H11-005
+Approved consent text/version and persistence · blocker
+PASS
+H11-006
+Live ON-05 partial grant recovery and readback
+NOT_APPLICABLE
+H11-002
+Explicit reconsent requires completed deletion · blocker
+PASS
+H12 — Security & Ownership
+28/30 pass
+H12-033
+Native reset progress and operator maintenance deletion · blocker
+PASS
+H12-026
+Daily owner and consent boundary · blocker
+PASS
+H12-027
+Calendar owner/consent privacy and stale response boundary · blocker
+PASS
+H12-028
+Test Tools admin, preview and scope isolation · blocker
+PASS
+H12-029
+Native deletion journal under operator maintenance · blocker
+PASS
+H12-030
+Native onboarding progress after verified writes · blocker
+PASS
+H12-031
+Connected native reset/deletion strategy · blocker
+PASS
+H12-902
+Explicit-target hosted Test Tools acceptance
+NOT_APPLICABLE
+H12-001
+User row isolation · blocker
+PASS
+H12-002
+Admin cannot modify immutable records · blocker
+PASS
+H12-003
+Internal tooling denied to non-admins · blocker
+PASS
+H12-004
+Unauthenticated private mutation denied · blocker
+PASS
+H12-005
+Forged client user_id rejected instead of changing canonical owner · blocker
+PASS
+H12-006
+Admin path requires server-authenticated admin role · blocker
+PASS
+H12-007
+Client admin and process flags rejected · blocker
+PASS
+H12-008
+Lookup reads require ACTIVE authentication and never grant writes · blocker
+PASS
+H12-009
+INACTIVE, missing and wrong-owner profiles block access · blocker
+PASS
+H12-010
+Health read requires consent and no unfinished deletion, including FAILED · blocker
+PASS
+H12-011
+Daily create needs specific server grant; even system cannot rewrite snapshot · blocker
+PASS
+H12-012
+Admin cannot complete/delete jobs; fake completion receipt rejected · blocker
+PASS
+H12-013
+Deletion completion requires zero counts and binds proof to job/owner · blocker
+PASS
+H12-014
+12-operation access matrix covers exactly 20 entities · blocker
+PASS
+H12-015
+Admin reads audited; users own reads create no admin audit · blocker
+PASS
+H12-016
+Failed protected admin mutation is audited without raw payload · blocker
+PASS
+H12-017
+Logging rejects secrets, raw health and snapshot content including nesting · blocker
+PASS
+H12-018
+Safe logs retain only validated machine codes and bounded identifiers · blocker
+PASS
+H12-019
+Backend error responses never expose raw error details · blocker
+PASS
+H12-020
+Audit persistence failure prevents privileged data return · blocker
+PASS
+H12-025
+Admin route and session boundary · blocker
+PASS
+H12-901
+LIVE_ENFORCEMENT_REQUIRED
+NOT_APPLICABLE
+H13 — UI / UX / Accessibility
+14/16 pass
+H13-015
+Calendar accessible month and explicit actions · blocker
+PASS
+H13-016
+Test Tools confirmation and accessible localized UI · blocker
+PASS
+H13-001
+Design token source exists · blocker
+PASS
+H13-002
+Minimum 44x44 touch target · blocker
+PASS
+H13-003
+Typography families rendered · blocker
+PASS
+H13-004
+No horizontal overflow at 360px (internal pages) · blocker
+BLOCKED
+
+Health Center and Build & Environment rendered in a 360px-wide frame have no horizontal overflow.
+
+CURRENT_PACKAGE · DOM · HIGH · 30013 ms · attempted true · executed true
+
+{
+  "classification": "LIVE_RUNTIME",
+  "source": "iframe layout probe",
+  "actual": {
+    "/internal/health?probe=1": {
+      "state": "TIMEOUT",
+      "reason": "PROBE_ROOT_NOT_RENDERED",
+      "path": "/internal/health?probe=1",
+      "landedPath": "blank",
+      "scrollWidth": null,
+      "overflow": null,
+      "width": 360,
+      "ms": 15003
+    },
+    "/internal/build?probe=1": {
+      "state": "TIMEOUT",
+      "reason": "PROBE_ROOT_NOT_RENDERED",
+      "path": "/internal/build?probe=1",
+      "landedPath": "blank",
+      "scrollWidth": null,
+      "overflow": null,
+      "width": 360,
+      "ms": 15007
+    }
+  },
+  "expected": "MEASURED",
+  "reason": "Probe not measured",
+  "timestamp": "2026-10-20T18:33:22.253Z"
+}
+H13-005
+Accessible labels on interactive controls · blocker
+PASS
+H13-006
+Canonical color tokens rendered exactly · blocker
+PASS
+H13-007
+Typography contract (Medium headings, Inter labels) · blocker
+PASS
+H13-008
+Navigation and Lucide icon contract · blocker
+PASS
+H13-009
+Primary control geometry at least 52px · blocker
+PASS
+H13-010
+Light-only target · blocker
+PASS
+H13-011
+Centralized localization for Foundation UI · blocker
+PASS
+H13-012
+Mobile form layout and large localized lists · blocker
+PASS
+H13-013
+Physical Android Chrome and iOS Safari acceptance
+NOT_APPLICABLE
+H13-014
+Admin navigation and localized inventory · blocker
+PASS
+H14 — Notifications & Scheduler
+FUTURE_PACKAGE
+H14-001
+06:00 local generation is idempotent · blocker
+NOT_APPLICABLE
+H14-002
+One delivery record per message and type · blocker
+NOT_APPLICABLE
+H15 — Resilience & Performance
+FUTURE_PACKAGE
+H15-001
+Bounded external timeouts · blocker
+NOT_APPLICABLE
+H15-002
+Performance targets measured · blocker
+NOT_APPLICABLE
+H16 — Release Gate
+6/9 pass
+H16-901
+Device proof: push delivery and open-to-Home
+NOT_APPLICABLE
+H16-902
+Device proof: Apple/Google sign-in
+NOT_APPLICABLE
+H16-903
+Restore proof: deleted health data stays deleted
+NOT_APPLICABLE
+H16-001
+Catalog integrity · blocker
+PASS
+H16-002
+Summary counts reconcile · blocker
+PASS
+H16-003
+No PASS without execution/evidence; valid statuses · blocker
+PASS
+H16-004
+No empty applicable suite silently passes · blocker
+PASS
+H16-005
+Future suites do not fake PASS · blocker
+PASS
+H16-006
+Gate reflects only applicable cases · blocker
+PASS
+Foundation tests
+Run tests

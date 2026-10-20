@@ -1,0 +1,103 @@
+{
+  "schema": "shinka.hosted-health-history-read/1",
+  "measuredAt": "2026-10-20T18:10:15.324Z",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "dataEnvironment": "prod",
+  "privileged": false,
+  "list": {
+    "readable": true,
+    "returned": 16,
+    "buildMarkers": [
+      "Buildmarker-016",
+      "Buildmarker-013",
+      "Buildmarker-011",
+      "Buildmarker-009",
+      "Buildmarker-008",
+      "Buildmarker-007",
+      "Buildmarker-006",
+      "Buildmarker-005",
+      "Buildmarker-004"
+    ]
+  },
+  "currentReport": {
+    "readable": true,
+    "buildMarker": "Buildmarker-016",
+    "healthCatalogVersion": "HC-016.0",
+    "scope": "FULL",
+    "completedAt": "2026-10-20T17:54:48.679Z",
+    "summary": {
+      "totalCatalog": 155,
+      "planned": 136,
+      "attempted": 136,
+      "executed": 136,
+      "passed": 134,
+      "failed": 1,
+      "warnings": 0,
+      "blocked": 1,
+      "notRun": 0,
+      "notApplicable": 19,
+      "applicableBlockers": 136,
+      "durationMs": 48570
+    },
+    "gate": {
+      "status": "NOT_READY",
+      "failing": [
+        "H03-006"
+      ],
+      "blocked": [
+        "H09-004"
+      ],
+      "notRun": [],
+      "invalidPass": [],
+      "invalidState": [],
+      "reasons": [],
+      "applicableBlockerCount": 136
+    },
+    "cases": [
+      {
+        "id": "H03-006",
+        "status": "FAIL",
+        "evidence": {
+          "classification": "STATIC",
+          "source": "build-time manifest:internalUi",
+          "actual": {
+            "files": 15,
+            "violations": [
+              {
+                "file": "/src/pages/internal/TestTools.jsx",
+                "spec": "@/features/adminTestTools/catalog"
+              },
+              {
+                "file": "/src/pages/internal/TestTools.jsx",
+                "spec": "@/features/adminTestTools/useTestTools"
+              },
+              {
+                "file": "/src/pages/internal/TestTools.jsx",
+                "spec": "@/features/adminTestTools/ImpactPreview"
+              }
+            ]
+          },
+          "expected": "no violations",
+          "reason": "UI boundary; repository hash metadata, not live enforcement",
+          "timestamp": "2026-10-20T17:54:00.151Z"
+        }
+      },
+      {
+        "id": "H09-004",
+        "status": "BLOCKED",
+        "evidence": {
+          "classification": "LIVE_RUNTIME",
+          "source": "Base44 content + Moon verification",
+          "actual": {
+            "contentReady": false,
+            "moonReady": false
+          },
+          "expected": "verified approved content and current Moon coverage",
+          "reason": "Read-only prerequisites; H09-901 still requires hosted mutations.",
+          "timestamp": "2026-10-20T17:54:37.188Z"
+        }
+      }
+    ],
+    "executedThisTurn": false
+  }
+}

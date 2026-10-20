@@ -16,7 +16,7 @@ export const H03_CASES = [
   c("H03-003", "No hardcoded secret", "Build-time source/config secret scan returns paths only.", scan("secretFiles", "Secret scan", (x)=>x.length===0)),
   c("H03-004", "No hardcoded personal admin email", "Production, configuration and tests scanned; reserved example fixture domains allowed.", scan("emailFiles", "Email scan", (x)=>x.length===0)),
   c("H03-005", "Foundational service boundaries exist", "Canonical service/module paths exist.", scan("boundaries", "Module inventory", (x)=>x.length===0)),
-  c("H03-006", "No business logic in Health UI", "Internal UI accesses data through guarded internal services.", scan("internalUi", "UI boundary", (x)=>x.files>0&&x.violations.length===0)),
+  c("H03-006", "No business logic in Health UI", "Internal UI and reviewed Test Tools presentation/controller modules access data through guarded internal services; direct SDK and unreviewed feature imports are denied.", scan("internalUi", "UI boundary", (x)=>x.files>0&&x.violations.length===0)),
   c("H03-007", "Foundation automated tests pass", "Canonical tests run against helpers, synthetic backend contexts and rendered UI.", async () => {
     const { runFoundationTests } = await import("@/foundation/tests/foundationTests");
     const results=await runFoundationTests();
