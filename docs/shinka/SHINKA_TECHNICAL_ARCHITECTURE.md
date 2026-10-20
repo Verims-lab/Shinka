@@ -2,13 +2,13 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-011
+**Current BuildMarker:** Buildmarker-013
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
-**Not Implemented:** Production daily atomic persistence, Calendar/Pattern workflows, notifications/scheduler; implemented pure daily/phase components are described below.
+**Not Implemented:** Production daily/Calendar atomic persistence, Pattern workflows, notifications/scheduler; implemented pure daily/phase components are described below.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 ## Responsibilities
@@ -152,3 +152,22 @@ For new generation, source-verified content is bounded to this manifest; Moon lo
 `dailyMessageService` has a 20-second client deadline and safe error projection. `useDailyMessage` discards late results, prevents duplicate pending UI requests and checks local date/timezone changes every 30 seconds while visible plus focus/visibility return. The local clock only triggers refresh; it never determines the saved day. ON-06 advances only on persisted/readback success. Home renders two snapshots, changes language locally without a generation request and preserves admin access during failures. No new completion flag is stored. Existing durable daily history routes to Home before any cycle hydration, so today's engine failure cannot restart onboarding.
 
 Source manifest and astronomy runtime stay backend-only; Astronomy in the internal test suite loads only when its test executes. They do not enter the normal application entry bundle. Existing byte budgets remain unchanged.
+
+
+## Calendar responsibilities and limits — Buildmarker-012
+
+`calendarCalculation` owns strict date/neighbor validation, complete-history phase projection, traceable observation/estimate separation and month projection. It reuses `dailyCycle.cycleEstimate`/`cyclePhaseAtDay`; no engine runs inside JSX. `calendarState` owns guarded pure replacement and commit verification. `base44CalendarReader` is read-only, bounded and owner-scoped. `calendarOperation` authenticates and dispatches closed read/add/edit/delete actions; `domainAtomic.commitCalendarAction` owns the unavailable durable transaction boundary. Production `calendar/entry.ts` passes no adapter and cannot execute mutations. No SDK write tripwire allowance is added.
+
+`calendarService` uses the existing SDK with a 20-second deadline, strict response shape and safe errors. `calendarController` separates selected date, editing ID, confirmation, in-flight action receipt and confirmed data; the hook handles disposal/privacy invalidation. Retry reuses the same action ID/payload/revision; an expired revision requires refresh. Requests are not claimed canceled. Calendar stays lazy behind the existing auth/onboarding resolver; shared `ProductNavigation` enables Home/Calendar and leaves Pattern inactive. Locale-only query values select display language, not authority.
+
+Owner data is memory-only, no persistent browser cache. Every month read fetches bounded complete observations, never one request per day. Two passes detect changing observations/access, with explicit conflict instead of mixed publication; no native snapshot isolation is claimed. Pure recomputation is bounded by 2,500 starts/40,000 days. Unchanged derived rows use indexed reuse rather than quadratic scans. The read response contains only the requested month. Rolling projection refresh is on reads/mutations; autonomous scheduler remains deferred and persisted-cache renewal cannot be claimed while writes are blocked.
+
+The main fast-forward introduced five unreachable generic auth templates; route/import inspection found no application registrations. AuthLayout, Register, ForgotPassword, ResetPassword and OAuthConsent were removed together. Their password/registration surfaces conflicted with the existing Apple/Google contract and reintroduced type errors. Active auth behavior is unchanged.
+
+## Admin Test Tools boundaries — 013
+
+Lazy `TestTools` page → `useTestTools` → one narrow service → `adminTestTools` function. Catalog/copy, preview UI, strict request policy, metadata-only paginated repository, HMAC preview signer, job executor and lifecycle/reset integration have separate modules. No client entity name, role, owner authority or environment override is accepted. SDK 0.8.54 supports the positional filter pagination and service-role User.delete(id) used by the repository. No cascade, token revocation or transaction is inferred.
+
+All seven existing function entries and the new entry wrap the request-scoped SDK with `withUserLifecycle`. Authentication rereads the existing User/role and target operation metadata; absent users or deletion tombstones deny access. This is an early admission check, **not an in-flight write fence**. An active reset overrides onboarding hydration and blocks Calendar; normal profile/cycle validation is reused, with a coordinator-supplied persistence context. Reset step commit and daily completion use a separate transaction port; the sequential onboarding SDK adapter is not that implementation.
+
+`shinka.target-lifecycle/1` requires durable target exclusion shared by every current/future product writer (including notifications/import-triggered work), global admin-roster exclusion, unique operation/receipt keys, persisted start audit, resumable checkpoints and verified final audit. Worker restart must preserve receipts/fences; failed operations keep their fence. The repository has **no production implementation**. The entry always supplies no coordinator: configuring environment/signing secrets cannot unlock it. The in-memory two-worker fixture is only an executable model. See [adapter and rollout contract](reports/SHINKA_ADMIN_TEST_TOOLS.md).

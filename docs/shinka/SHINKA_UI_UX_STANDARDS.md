@@ -2,13 +2,13 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-011
+**Current BuildMarker:** Buildmarker-013
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
 **Implemented:** Tokens (`src/foundation/designTokens.js` ↔ `src/index.css`), contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), primitives (`src/components/shinka/`), Foundation shell aligned; scoped Profile/You admin menu and internal panel.
-**Not Implemented:** Calendar, Pattern and full You/account workflows; new daily persistence remains blocked. ON-06/Home rendering and request states are implemented.
+**Not Implemented:** Verified hosted Calendar mutations, Pattern and full You/account workflows; new daily persistence remains blocked. ON-06/Home rendering and request states are implemented.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
@@ -201,10 +201,27 @@ Shared navigation links to the panel, both tools and the existing `/` app resolv
 
 ON-06 retains the approved EN/TR title/preparation text and starts the real daily service. Loading is bounded by the client deadline; error/not-ready/offline have localized Retry. Technical codes are DOM diagnostics, not added product instructions. No successful advancement occurs without id and both language snapshots in the backend's confirmed persisted response.
 
-Home has the existing Shinka header/Profile access, local greeting with optional name, exactly Your Shinka and Today’s Suggestion cards, and the three-item bottom navigation. Calendar/Pattern remain inactive. Greeting presentation uses before 12:00 morning, 12:00–17:59 afternoon and 18:00 onward evening; it never changes selection. `dailyCopy.js` centralizes original SRC-03 English state copy and scoped Turkish translations under this request; existing approved onboarding strings are unchanged. The selected preparation language carries into Home. Home language switches only the displayed snapshot; preference editing/persistence remains outside this scope.
+Home has the existing Shinka header/Profile access, local greeting with optional name, exactly Your Shinka and Today’s Suggestion cards, and the three-item bottom navigation. Calendar is enabled by package 012; Pattern remains inactive. Greeting presentation uses before 12:00 morning, 12:00–17:59 afternoon and 18:00 onward evening; it never changes selection. `dailyCopy.js` centralizes original SRC-03 English state copy and scoped Turkish translations under this request; existing approved onboarding strings are unchanged. The selected preparation language carries into Home. Home language switches only the displayed snapshot; preference editing/persistence remains outside this scope.
 
 Local date/timezone changes trigger a backend refresh; stale previous-day content is cleared while loading. Existing-user errors retain Home/Profile access. Existing safe area, typography, 44px controls and card tokens are preserved. Local browser captures use source copy with an isolated fixture transport; they are not hosted or physical-device evidence. See the updated Android/iOS report.
 
 ## OD-002 category display-name approval — 2026-10-20
 
 The user's explicit six-row approval supplies the English category display names and preserves the source Turkish names exactly. The [canonical category table](SHINKA_CONTENT_MODEL.md#approved-category-definition--od-002-continuation) and `contentCategoryDecision.js` carry all six pairs. These English names are product-decision copy, not strings from the original UI/UX document. Home still shows the two existing snapshot cards; this decision adds no category widget, translates no other text and changes no Pair/mapping. Any future category display must select the stored display_name_tr/display_name_en; codes remain locale-independent.
+
+
+## Calendar presentation — Buildmarker-012
+
+The real monthly Calendar uses existing tokens: Blush Pink recorded days, Soft Lavender predicted days and Plum selection ring. Source Period / Predicted / Selected English legend is exact; scoped TR equivalents are Regl / Tahmini / Seçili. Accessible day labels include full local calendar date and each applicable state; actual starts also have a small marker. No new phase color layer is introduced. Monday-first month presentation, previous/next named buttons, arrow/Home/End focus and native labeled date input are implemented. Choosing a day or moving focus never writes.
+
+Selected existing ID/date and destination date remain separate across month navigation. Mark period start performs add/edit; Cancel editing exits the draft. Delete appears only when the current selection is that actual start; a modal names its date and prediction effect, focuses Cancel initially, supports Escape/cancel without writes and restores focus. Busy blocks repeated submissions. Error/retry preserves selection and confirmed state; privacy invalidation conceals health. Empty, loading, offline, validation, operation error, success and production capability-unavailable states are distinct. Backend machine codes remain diagnostic attributes, not instructions shown to users.
+
+`calendarCopy.js` centralizes original companion English and scoped Turkish/helper translations under this implementation request. The exact previously approved health-consent checkbox comes from onboardingCopy and starts unchecked. No fabricated duration/cycle setting is displayed. Disabled production mutations have a clear localized availability explanation; fixtures with the transaction model exercise the enabled UI without implying hosted support.
+
+Shared bottom navigation enables Home/Calendar and keeps Pattern inactive; Profile/admin behavior is unchanged. The route is lazy and only resolves for durably completed active users. Controls retain ≥44px, native date text 17px, dialog scrolling, safe-area/page padding and no fixed keyboard-obscuring save bar. Browser screenshots and physical-device limits are recorded in the existing mobile report.
+
+## Test Tools — 013 user-requested extension
+
+Admin inventory now has three destinations: Health Center, Build & Environment, Test Tools. Existing top-right Profile/You access, shared navigation, route guards and return path remain. Test Tools copy is centralized in `testToolsCopy.js`; it is new copy for this explicit feature, not attributed to the original UI/UX tables. Catalog parity is tested.
+
+User ID lookup must precede operation preview. ID edits discard target/preview/typed confirmation and invalidate late responses. Delete has its own irreversible-action description and complete removal/retention preview. Both operations show actual destination app/server and environment uncertainty; blocked prerequisites remain visible with the execute control disabled. An exact typed ID is required when execution is available. Preview receives heading focus; cancel restores the lookup input. Single-flight submit, status/recovery controls, live region results, mobile wrapping and ≥44px controls use existing primitives. A result never says all data were deleted. No second OAuth requirement or localStorage reset is introduced.

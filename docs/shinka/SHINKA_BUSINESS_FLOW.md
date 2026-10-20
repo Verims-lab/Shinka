@@ -2,13 +2,13 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-011
+**Current BuildMarker:** Buildmarker-013
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
-**Not Implemented:** Verified hosted daily writes (atomic capability blocked), Calendar, Pattern, You editing, withdrawal/deactivation and notifications.
+**Not Implemented:** Verified hosted daily/Calendar writes (atomic capability blocked), Pattern, You editing, withdrawal/deactivation and notifications.
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 ## Account / Authentication (UC-01, KK-01)
@@ -80,3 +80,24 @@ Menu/panel/tool navigation invokes no product mutation, consent grant, period sa
 ON-06 invokes today's guarded backend operation and opens Home only after a real validated persisted result. Failure remains an explicit retryable state with approved preparation copy; no arbitrary pair/completion flag is synthesized. Once any real daily row exists, hydration stays on Home; missing today's content shows Home loading/not-ready/failure and Retry, rather than returning to onboarding. Reopen, Retry, language and profile changes preserve an existing day's pair and both immutable snapshots.
 
 Absent/withdrawn health consent or no real start follows UNKNOWN without fabricating health data. Valid consent requires its persisted business time/version and matching history; open deletion or malformed/inconsistent inputs fail rather than masquerading as UNKNOWN. Optional 5/28 are computation-only. Existing ON-05 recovery, no-write Skip and GeoNames flows remain unchanged. Production daily creation is explicitly blocked until the durable adapter is verified, while existing valid daily rows can be read. No live creation/import is recorded in this package.
+
+
+## Calendar implementation — Buildmarker-012
+
+Calendar is reachable from Home's shared three-item bottom navigation; completed users retain Profile/admin access and return to the same saved Home snapshot. Direct Calendar entry still passes the authenticated onboarding resolver. Pattern and full You/withdrawal/notification workflows remain out of scope.
+
+Selecting a date never writes. Selecting an actual start establishes the editing ID independently of the new date; month navigation retains that draft. Explicit Mark period start adds or updates that same ID. Only the selected actual start exposes deletion, with date, consequence, Cancel and busy protection. Backend rechecks valid local date, not-future, duplicate, both neighbors across complete history, ≥15 days and owner/ACTIVE/consent/no-open-job.
+
+Pure replacement computes affected history and a rolling three-future-cycle window; unchanged derived rows keep identity/time. Removing the last start removes predictions and phase days, preserves settings/consent, and future ungenerated daily selection uses UNKNOWN. Existing daily snapshots are never inputs or outputs of Calendar mutation. NULL inputs remain NULL; 28/5 are calculation-only.
+
+**Production mutations are blocked** by CALENDAR_ATOMIC_CAPABILITY_REQUIRED. All-or-nothing publication and durable action receipt/revision behavior exist as a protocol with isolated tests, not a Base44 transaction implementation. UI clearly disables saving/deleting/reconsent while this capability is absent; reads and month selection work. A read-time projection is not reported as a persisted phase cache. OD-012 separately blocks undefined >60-day calculations.
+
+For onboarding skippers, the approved separate checkbox starts unchecked. Entry/selection grant nothing. New explicit add+consent is one proposed atomic operation; existing valid time is preserved. Regrant requires a valid WITHDRAWN record/event, a completed deletion job requested no earlier than that withdrawal, and zero remaining health rows inside the same transaction. No reactivation during deletion or restoration of prior data is allowed. Production regrant remains blocked with the other mutations.
+
+## Admin Test Tools — explicit user scope (013)
+
+Profile/You → Admin Panel → Test Tools adds two closed operations. Admin lookup returns only target ID, role/account state and operational state. Preview names the SDK destination app/server and a server-configured environment label; a branch or Preview is not a separate database. Typed exact ID + fresh actor/target/action/app/scope-bound confirmation precedes execution. A role or target change is rechecked under the required coordinator. Self-delete and last-admin removal are denied. A different target invalidates all UI approval state.
+
+Deletion is a separate admin test workflow, not normal Delete Account → INACTIVE. It preserves protected history and declares that retention. A partial operation retains its completed checkpoints and target fence, resumes the same receipt and reports success only after absence/readback and result audit. Reset keeps User/provider/role/profile/cycle/history intact; backend restart state wins over old daily completion on hydrate, login and another device. Existing authenticated sessions enter ON-04 without another OAuth step, then ON-05 and ON-06. Skip advances only restart progress, never health deletion or consent withdrawal. Final daily verification completes the restart; an existing same-day record is reused. INACTIVE and open health-deletion targets cannot reset. Admin self-reset retains the Admin Panel entry.
+
+Both production mutations remain disabled pending the durable shared-writer coordinator. Read-only lookup/preview is usable after schema/function sync. No live account was changed during development.

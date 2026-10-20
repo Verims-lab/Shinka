@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — source prepared; controlled import and engine implemented; production daily persistence blocked
-**Current BuildMarker:** Buildmarker-011
+**Current BuildMarker:** Buildmarker-013
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
@@ -76,3 +76,12 @@ The pure engine implements mapped-category random selection, other-category fall
 | Sadeleşme & Bırakma | SIMPLICITY_AND_LETTING_GO | Hafiflemeye İzin Ver | Allow Yourself to Feel Lighter |
 
 Source and scope: explicit user approval in this conversation on 2026-10-20, recorded in SOURCE_OF_TRUTH. All 260 four-cell Pair tuples and all 240 source mapping rows remain byte-identical in the manifest. No category reassignment or text edit is authorized. Import validation rejects duplicate codes, duplicate/unknown/missing source labels and missing TR/EN names. Sequential admin dry-run/apply/readback uses these same six definitions; a source approval does not execute live import or close the production atomic-storage blocker.
+
+
+## Calendar integration — Buildmarker-012
+
+No Pair text, mapping, category, manifest hash or import behavior changes. Explicit staged content validation now covers packages 011 and 012; 013+ remains unapproved until its own policy. Calendar mutation never reads/writes daily snapshots. Shared `dailyCycle` supplies both Home and Calendar estimation/phase rules; an empty real history remains UNKNOWN even when settings survive last-start deletion. Daily generation accepts the matching current grant event after a completed withdrawal/regrant history rather than incorrectly requiring only one lifetime event. Production daily atomic persistence and live import/readback remain open.
+
+## Package 013 preservation
+
+Test Tools is an explicit non-content feature. The staged content validation policy extends to 013; 014 requires its own approved scope. The six approved category decisions, 260 Pairs, 240 mappings and source manifest hash remain unchanged. Delete/reset never mutate shared content or immutable user daily snapshots; completed reset reuses an existing same-day snapshot. No content import or live Pair generation was performed for this package.

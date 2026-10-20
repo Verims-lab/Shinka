@@ -12,7 +12,7 @@ const checks={
   boundedGeneratedHistory:e.activeBuildHistory.generatedMatches,
   twentyPhysicalProductSchemas:e.domain.expected===20&&e.domain.present===20&&e.domain.mismatches.length===0,
   noUnexpectedProductSchemas:e.domain.unexpected.length===0,
-  separateBuiltinUserAndTooling:e.domain.builtinUserSeparate&&e.domain.internal===1,
+  separateBuiltinUserAndTooling:e.domain.builtinUserSeparate&&e.domain.internal===2&&e.domain.testOperationPolicy,
   exactAuthoritativeFields:Object.keys(SOURCE_FIELD_NAMES).length===20&&Object.entries(SOURCE_FIELD_NAMES).every(([entity,fields])=>JSON.stringify([...fields].sort())===JSON.stringify(Object.keys(DOMAIN_SCHEMAS[entity].properties).sort())),
   completeAccessMatrix:e.domain.accessMatrixComplete&&e.domain.accessMatrixRows===20,
   directSdkOperationsDenied:e.domain.directOperationsDenied,

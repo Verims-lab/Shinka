@@ -6,7 +6,10 @@ export class InternalError extends Error {
 const authenticatedPrincipals = new WeakSet();
 export async function requireAuthenticatedUser(client) {
   let me;
-  try { me = await client.auth.me(); } catch { throw new InternalError("AUTH_REQUIRED", 401); }
+  try { me = await client.auth.me(); } catch (error) {
+    if (error instanceof InternalError) throw error;
+    throw new InternalError("AUTH_REQUIRED", 401);
+  }
   if (!me?.id || typeof me.id !== "string") throw new InternalError("AUTH_REQUIRED", 401);
   const principal = Object.freeze({ id: me.id, role: me.role });
   authenticatedPrincipals.add(principal);

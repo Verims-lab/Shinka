@@ -1,3 +1,4 @@
+import { withUserLifecycle } from '../../shared/userLifecycle.js';
 import { handleInternalRequest } from "../../shared/internalAuthorization.js";
 // INTERNAL TOOLING — admin-only, read-only content artifact validation. Performs NO import.
 import { createClientFromRequest } from "npm:@base44/sdk@0.8.54";
@@ -33,4 +34,4 @@ async function artifactOperation(_client, { mode }) {
       relation,
     };
 }
-export default (req) => handleInternalRequest(req, createClientFromRequest, artifactOperation);
+export default (req) => handleInternalRequest(req, request => withUserLifecycle(createClientFromRequest(request)), artifactOperation);

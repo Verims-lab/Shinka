@@ -30,9 +30,14 @@ export function buildStaticEvidence(root = process.cwd()) {
   const { byName, ...docResult } = checkDocs(docs, BUILD_MARKER);
   const truth = byName["SHINKA_SOURCE_OF_TRUTH.md"] || "";
   const history = byName["SHINKA_BUILD_HISTORY.md"] || "";
-  const uiPrefixes = ["/src/components/shinka/", "/src/components/internal/", "/src/pages/internal/", "/src/pages/Home.jsx", "/src/pages/Login.jsx", "/src/lib/AuthContext.jsx"];
+  const uiPrefixes = ["/src/components/shinka/", "/src/components/internal/", "/src/pages/internal/", "/src/pages/Home.jsx", "/src/pages/Calendar.jsx", "/src/features/calendar/", "/src/pages/Login.jsx", "/src/lib/AuthContext.jsx"];
   const darkFiles = Object.entries(raw).filter(([p,c]) => uiPrefixes.some((prefix) => p.startsWith(prefix)) && (/\bdark:/.test(c) || /classList\.(?:add|toggle)\(["']dark["']/.test(c))).map(([p]) => p);
-  const hardcoded = ["/src/pages/Home.jsx", "/src/components/shinka/StatePanel.jsx"].flatMap((file) => ["Home", "Calendar", "Pattern", "Retry"].filter((s) => raw[file]?.includes(`>${s}<`) || raw[file]?.includes(`"${s}"`)).map(() => ({ file })));
+  const hardcoded = ["/src/pages/Home.jsx", "/src/pages/Calendar.jsx", "/src/components/shinka/ProductNavigation.jsx", "/src/components/shinka/StatePanel.jsx"].flatMap((file) => ["Home", "Calendar", "Pattern", "Retry"].filter((s) => raw[file]?.includes(`>${s}<`) || raw[file]?.includes(`"${s}"`)).map(() => ({ file })));
+  const shellUsesContract = raw["/src/components/shinka/ProductNavigation.jsx"]?.includes("BOTTOM_NAV.map") &&
+    ["Home", "Calendar"].every(page => {
+      const source = raw[`/src/pages/${page}.jsx`] || "";
+      return source.includes("@/components/shinka/ProductNavigation") && source.includes("<ProductNavigation");
+    });
   const hashes = Object.fromEntries([...Object.entries(raw), ...Object.entries(docs)].map(([p,c]) => [p,createHash("sha256").update(c).digest("hex")]));
   return {
     schema: "shinka.static-evidence/1", buildMarker: BUILD_MARKER, generatedAt: new Date().toISOString(),
@@ -45,7 +50,7 @@ export function buildStaticEvidence(root = process.cwd()) {
     geoNamesEntry: inspectGeoNamesEntry(syntax['/base44/functions/onboarding/entry.ts']||''),
     marker: checkSingleSource(syntax), legacy: findLegacyImports(syntax), secretFiles: findSecrets(raw), emailFiles: findPersonalEmails(raw),
     boundaries: missingBoundaries(Object.keys(raw)), internalUi: checkInternalUiPurity(syntax), authSurface: checkAuthSurface(syntax),
-    ui: { darkFiles, hardcoded, shellUsesContract: raw["/src/pages/Home.jsx"].includes("BOTTOM_NAV.map") },
+    ui: { darkFiles, hardcoded, shellUsesContract },
     docs: { ...docResult,
       undocumentedDecisions: OPEN_DECISIONS.filter((d) => !truth.includes(d.id)).map((d) => d.id),
       splitDocumented: EXPECTED_UIUX_PARTS.every((p) => truth.includes(p)) && /Logical source count:\*\*\s*1\b/.test(truth),

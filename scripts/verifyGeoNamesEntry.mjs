@@ -13,6 +13,7 @@ export async function verifyGeoNamesRuntimeProbeEntry(root) {
   const exports={};let role=null,reads=0,runs=0,factories=0,currentValue='fixture-first',currentSignal;
   const client={auth:{me:async()=>role?{id:'fixture-admin',role}:null},get asServiceRole(){throw new Error('no entity access in probe');}};
   const imports={
+    "../../shared/userLifecycle.js":{withUserLifecycle:client=>client},
     'npm:@base44/sdk@0.8.54':{createClientFromRequest:()=>client},
     'base44:runtime':{secrets:{get:key=>{assert.equal(role,'admin');assert.equal(key,'GEONAMES_USERNAME');reads++;return currentValue;}}},
     '../../shared/internalAuthorization.js':{handleInternalRequest},
@@ -42,6 +43,7 @@ export async function verifyGeoNamesEntry(root) {
   let active=false,currentValue;
   const createClient=()=>{};
   const imports={
+    "../../shared/userLifecycle.js":{withUserLifecycle:client=>client},
     'npm:@base44/sdk@0.8.54':{createClientFromRequest:createClient},
     'base44:runtime':{secrets:{get:key=>{
       assert.equal(active,true,'secret read outside request');
@@ -49,7 +51,7 @@ export async function verifyGeoNamesEntry(root) {
     }}},
     '../../shared/geonamesAdapter.js':{createGeoNamesAdapter:({username})=>{bindings.push(username);return {binding:bindings.length};}},
     '../../shared/onboardingOperations.js':{handleOnboardingRequest:(req,client,{geoNames})=>{
-      assert.equal(client,createClient);assert.equal(geoNames.binding,bindings.length);
+      assert.equal(client(req),createClient(req));assert.equal(geoNames.binding,bindings.length);
       return {request:req};
     }},
   };

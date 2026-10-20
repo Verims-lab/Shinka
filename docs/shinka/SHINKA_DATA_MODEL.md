@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-011
+**Current BuildMarker:** Buildmarker-013
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -44,6 +44,7 @@ Relationships: 25 logical links (see domainContract.js): 24 from `21_Iliskiler`,
 ## INTERNAL TOOLING STORAGE (excluded from the 20)
 | Entity | Purpose | Access |
 |---|---|---|
+| AdminTestOperation | Test-operation journal, restart state, deletion tombstone | All direct CRUD denied |
 | InternalHealthRun | Health run history (redacted report JSON, counts) | admin read; direct create/update/delete denied |
 
 Build Ledger is SOURCE-based (`src/foundation/buildLedger.js`), not an entity.
@@ -395,3 +396,24 @@ Current-day cycle inputs are calculated in memory. NULL settings stay NULL; no p
 ## OD-002 category data completion
 
 The approved six-row definition populates only existing `message_category_lookup.category_code`, `display_name_tr`, `display_name_en` through the controlled importer. No entity, field, RLS policy or native ID contract changes. Codes are REST_AND_SLOW_DOWN, SELF_CARE_AND_WELLBEING, NOVELTY_AND_DISCOVERY, FOCUS_AND_PROGRESS, CONNECTION_AND_SHARING and SIMPLICITY_AND_LETTING_GO, each associated with exactly one source label in the [approval table](SHINKA_CONTENT_MODEL.md#approved-category-definition--od-002-continuation). Pair/mapping category references resolve through these source labels to verified native category IDs; the source associations and four language text cells are unchanged. Business uniqueness validation is not native Base44 uniqueness evidence.
+
+
+## Calendar data and atomic adapter contract — Buildmarker-012
+
+Exactly 20 product schemas remain; no speculative receipt/revision/journal entity, timestamp alias or RLS relaxation is added. Actual starts retain native ID on edit. `user_cycle_prediction` stores full predicted cycle intervals (inclusive end); Calendar colors their menstrual portion through shared phase calculation. `user_cycle_phase_day` stores one owner/date, RECORDED_START or PREDICTED, valid actual reference and backend UTC calculated_at. Recompute reuses unchanged rows; last-start deletion clears derived collections only, keeping settings and consent. Historical daily records are immutable and excluded entirely.
+
+`domainAtomic.commitCalendarAction` requires a server-owned `transactCalendar` implementation. It must serialize by authenticated owner across workers, read complete authoritative state, check ACTIVE/current consent/open deletion/references and expected revision, and atomically publish the actual change, derived replacement, consent/event when needed, and durable owner/action receipt. Receipt binds operation/target/date/explicit consent; same receipt with another payload conflicts. Replay returns current state without reapplying old writes or replacing the grant time, including after response loss. If current state differs from the receipt's committed revision, return CALENDAR_STATE_CHANGED rather than report a stale save as success. The adapter retains the projection's calculationDay alongside its transaction metadata so later-day replay verifies the committed projection rather than pretending a rolling cache was refreshed. These are adapter prerequisites, not added Base44 product fields.
+
+No production implementation or external store is configured. A compliant store must also be the source used by Calendar, Home, onboarding, consent and deletion readers/writers; a shadow store plus separate Base44 updates cannot supply the guarantee. Native UNIQUE remains unsupported; cross-collection transaction/CAS/rollback remain unverified. [Official schemas](https://docs.base44.com/developers/backend/resources/entities/entity-schemas#uniqueness), [SDK merge behavior](https://docs.base44.com/developers/references/sdk/docs/type-aliases/entities#upsert) and [Actors overview](https://docs.base44.com/developers/backend/resources/actors/overview) were rechecked 2026-10-20. None supplies evidence of an atomic commit across these Entity collections. Native documented transaction support or an approved authoritative transactional store with migration/guard/recovery design is needed.
+
+Read-only Calendar uses owner-filtered pages of 100 starts, maximum 2,500 plus overflow detection; it never truncates and calculates success. A 40,000-day computation safety ceiling fails explicitly. Access and complete observation snapshots are re-read to detect changes; this is best-effort race detection, not snapshot isolation. Returned month contains only actual IDs/dates, recorded/predicted days and safe status/revision; no complete history, grant time, native metadata or tokens. Missing persisted derived rows after onboarding do not cause writes: the response is a read-time projection.
+
+OD-012 preserves >60-day actual observations and refuses undefined derived calculation. Settings are never clamped or filled with 5/28. No live data migration, import or write occurred.
+
+## Admin Test Tools operational state — 013 user decision
+
+`AdminTestOperation` is a second internal tooling entity, outside the unchanged 20 product entities and built-in User. It stores operation/request ID, actor ID, target ID, closed operation/status enums, stage/checkpoints, preview fingerprint, server UTC started_at/progressed_at/completed_at business times and safe error code. Native created_date/updated_date are not duplicated or interpreted as workflow time. It stores no profile/health values, message snapshots, provider IDs or tokens. Direct read/create/update/delete RLS are false; the admin endpoint returns a bounded metadata projection. Operation identity, target exclusivity and conditional progress are required adapter constraints, **not** JSON-schema unique/FK declarations.
+
+DELETE_USER stages: stop PENDING/FAILED notifications as SKIPPED; remove phase/prediction children, cycle settings and period parents, pattern summary, preferences, profile; call service-role User.delete(id); verify absence and stopped jobs; persist final audit/result. Retain current consent metadata, immutable consent events/daily messages, all audit/protection/deletion history and notifications. Shared lookup/content and unscoped system errors are untouched. See the exhaustive 20-entity scope/indirect-edge table in the [report](reports/SHINKA_ADMIN_TEST_TOOLS.md).
+
+Retained actor/target/user references after physical deletion are historical identifiers, never reassigned or cascade-deleted. A COMPLETED DELETE operation is a permanent tombstone. RESET_ACTIVE stages PROFILE → CYCLE → FIRST_SHINKA → COMPLETED/DONE override old daily-based completion; reset creates no consent event and changes no grant time or existing product row by itself. Normal validated writes and stage advancement must commit with a durable receipt. Same-day daily snapshots are reused. Failed/start/result records are retained indefinitely under current policy; the five-package UI history rule does not apply.

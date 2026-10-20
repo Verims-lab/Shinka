@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-011
+**Current BuildMarker:** Buildmarker-013
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -178,3 +178,24 @@ AN02…AN07 exercise loading, direct-route denials, logout failure and stale/rev
 `contentLibrary` is admin-only with strict action/field allowlists. Caller content, URL, entity, source hash replacement or roles cannot authorize arbitrary writes. Dry-run/verify are read-only. Apply requires a freshly computed review digest, at most 25 insert-or-identical reference rows, conflict refusal and full readback. No overwrite/delete/import endpoint exists for daily snapshots. Concurrent import operators are unsupported and may create duplicates at the platform layer; strict verification then fails. No concurrent-exclusion or rollback guarantee is asserted. Apply audit retains only existing allowed entity/action/outcome metadata.
 
 Astronomy Engine 2.1.19 is the only added dependency, pinned to the approved source's library and excluded from the app entry bundle. Required fresh security results are recorded in Development Notes; the two existing Moderate router findings remain separately documented. No live import, live generation, RLS relaxation, external datastore connection or physical device test occurred.
+
+
+## Calendar security boundary — Buildmarker-012
+
+Authenticated owner is derived from the shared branded principal; client owner/role/phase/prediction/time/version fields are rejected. Every read checks ACTIVE, consent and no open deletion job before health collection access and rechecks afterward. A current grant needs canonical UTC time/version and exactly one matching grant event; historic withdrawn/regranted events are retained. No consent returns no health data and does not query health collections. Settings/start/derived writes remain behind the unavailable transaction boundary; no direct SDK or admin CRUD path is opened.
+
+A future durable adapter must couple account/consent/deletion checks and all writes, including new explicit grant/time/event, to the same transaction. Existing granted_at stays exact. Regrant requires matching withdrawal history, a valid completed deletion job newer than that withdrawal and no remaining health rows. Calendar never deletes settings, consent events or daily history. No product schema or RLS changes.
+
+UI invalidates health and pending responses before focus/visible-tab refresh, offline transition, known health-access-change event or unmount/session replacement. Visible polling is 60 seconds. This is bounded detection of remote revocation, not immediate server push; backend checks remain mandatory. Mutation errors retain prior confirmed state only within the same still-valid UI generation; known privacy errors immediately hide it. No health dates/receipts enter URL, local/session storage, analytics or logs. The transport cannot cancel an already-started invocation; obsolete results are discarded.
+
+The local atomic fixture models one serializable store shared by two workers. It proves protocol behavior only. No live mutation, independent hosted-worker test, native rollback or production-ready claim is made. Existing Moderate router advisory disposition remains applicable because navigation destinations are fixed internal paths.
+
+## Admin test deletion/restart — 013 explicit user authorization
+
+The new endpoint requires authenticated current admin for lookup, preview, execute, resume and status; it rereads the actor's User role before privileged work and again inside the required durable exclusion boundary. Target identity is separate. Payloads are closed; service-role calls stay in shared backend persistence. Preview uses projected row IDs, owner/reference IDs, states and revision metadata only. Profile values, birth/period dates, consent contents/times, email, message text and raw exceptions are neither returned nor logged. Health counts are limited to the exact admin-selected target. No bulk user listing or generic entity mutation console exists.
+
+The delete scope is an explicit exception for seven operational entities plus built-in User; immutable/protection/audit restrictions are unchanged. Current consent metadata stays retained without fabricated withdrawal. PENDING/FAILED notifications become SKIPPED while history stays. Indirect parent/child ownership conflicts stop the workflow. Admin self-delete, last-admin removal and open health-deletion collisions are denied. Reset is allowed for self-admin, never activates INACTIVE and never silently grants/withdraws consent.
+
+HMAC preview tokens bind actor/target/operation/app/scope and expire after five minutes; exact typed target ID is required. They are not authentication or concurrency primitives. Environment is the actual SDK app ID/server plus separately configured server label/allowlist. Test branch/Preview does not isolate data. No secret is supplied from browser input. Production execute/resume unconditionally refuse without a verified coordinator.
+
+Early guards reread User and durable deletion tombstone on every hosted function's authenticated path. This prevents a stale token from recreating profile/data through those paths, but neither instantaneous platform token revocation nor cross-worker exclusion is claimed. Direct SDK product CRUD remains denied. Deployment, existing-token behavior and all-writer fencing require explicit live proof before enabling mutations. New tooling schema must be deployed before lifecycle-aware functions; absence fails closed. Audit/job start must persist before destructive steps. A final audit failure leaves the actual partial/completed deletion state visible as retry/unconfirmed, never success.

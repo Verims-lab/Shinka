@@ -4,6 +4,7 @@ export const SUPPORTED_LANGUAGES = ["en", "tr"];
 
 export const STRINGS = Object.freeze({
   en: {
+    "admin.testTools": "Test Tools", "admin.testToolsDescription": "Per-user onboarding and account tests.",
     "profile.open": "You",
     "admin.panel": "Admin Panel",
     "admin.health": "Health Center",
@@ -28,6 +29,7 @@ export const STRINGS = Object.freeze({
     "state.retry": "Retry",
   },
   tr: {
+    "admin.testTools": "Test Araçları", "admin.testToolsDescription": "Kullanıcı bazında onboarding ve hesap testleri.",
     "profile.open": "Profil",
     "admin.panel": "Admin Panel",
     "admin.health": "Health Center",

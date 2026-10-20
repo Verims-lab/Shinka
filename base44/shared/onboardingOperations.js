@@ -1,3 +1,4 @@
+import { readUserLifecycle, resetRoute, resetOnboardingStep } from './userLifecycle.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
 import { resolveAuthenticatedOwner, assertOwner, assertActiveAccount, SYSTEM_AUTHORITIES as S } from './domainSecurity.js';
 import { normalizeDomainRead } from './domainValidation.js';
@@ -12,7 +13,7 @@ import { verifiedDailyRecord } from './dailyRecord.js';
 const fail=(code,status=400)=>{throw new OnboardingError(code,null,status);};
 const allowed={hydrate:[],initialize:['language_code','timezone','action_id'],saveProfile:['display_name','birth_date','birth_time','birthplace_geonames_id','action_id'],saveCycle:['period_start_date','period_duration_days','initial_cycle_length_days','health_consent','action_id'],skipCycle:[],listPlaceCountries:['language_code'],listPlaceRegions:['country','parent_id','offset','language_code'],listPlaceSettlements:['country','parent_id','offset','language_code'],searchPlaces:['query','language_code']};
 // Dependencies are server configuration/injected contract fixtures, never request fields.
-export async function onboardingOperation(client,body,dependencies={}) {
+async function normalOnboardingOperation(client,body,dependencies={}) {
   const {atomic=null,geoNames=null,sunSign=SUN_SIGN_RESOLVER,consentVersion=HEALTH_CONSENT_VERSION,now=()=>new Date()}=dependencies;
   const principal=await requireAuthenticatedUser(client),owner=resolveAuthenticatedOwner(principal,body);
   const persistence=dependencies.persistence??(atomic?null:createBase44OnboardingAdapter(client,principal,{now,consentVersion,cycleGate:dependencies.cycleGate}));
@@ -42,19 +43,19 @@ export async function onboardingOperation(client,body,dependencies={}) {
   const state=async(cycleStepConfirmed=false)=>{
     // A previous daily record is durable completion, independent of today's
     // generation/health dependencies. Avoid fetching health data for Home routing.
-    const daily=profile?await rows('user_daily_message',1):[];
+    const daily=profile&&!dependencies.resetFlow?await rows('user_daily_message',1):[];
     if(daily.length)verifiedDailyRecord(daily[0],owner);
     let hasHealthData=false;
-    if(profile&&!cycleStepConfirmed&&!daily.length){
+    if(profile&&!dependencies.resetFlow&&!cycleStepConfirmed&&!daily.length){
       if(persistence)hasHealthData=await persistence.hasVerifiedCycle();
       else {
         const consent=await singleton('user_health_consent');
         hasHealthData=consent?.consent_status==='GRANTED'&&(await rows('user_period_record',1)).length>0;
       }
     }
-    const dependencies=profile&&!SUN_SIGN_CODES.includes(profile.sun_sign_code)?['SUN_SIGN_RULE_REQUIRED']:[];
+    const missingDependencies=profile&&!SUN_SIGN_CODES.includes(profile.sun_sign_code)?['SUN_SIGN_RULE_REQUIRED']:[];
     const route=resolveOnboardingState({authenticated:true,profile,preferences,today,hasHealthData,hasDailyMessage:daily.length>0,cycleStepConfirmed});
-    return {dependencies,completionReady:route==='ACTIVE_EXISTING_USER',state:route,profile,preferences,today};
+    return {dependencies:missingDependencies,completionReady:route==='ACTIVE_EXISTING_USER',state:route,profile,preferences,today};
   };
   if(body.action==='hydrate')return state();
   const commit=async(writes)=>{
@@ -73,7 +74,7 @@ export async function onboardingOperation(client,body,dependencies={}) {
   }
   if(!preferences)fail('PREFERENCES_INITIALIZATION_REQUIRED',409);
   if(body.action==='saveProfile') {
-    if(profile&&SUN_SIGN_CODES.includes(profile.sun_sign_code)&&resolveOnboardingState({authenticated:true,profile,preferences,today})!=='AUTHENTICATED_PROFILE_REQUIRED')return {...await state(),persisted:true};
+    if(!dependencies.resetFlow&&profile&&SUN_SIGN_CODES.includes(profile.sun_sign_code)&&resolveOnboardingState({authenticated:true,profile,preferences,today})!=='AUTHENTICATED_PROFILE_REQUIRED')return {...await state(),persisted:true};
     const birth_date=validateBirthDate(body.birth_date,today),birth_time=optionalBirthTime(body.birth_time),display_name=optionalName(body.display_name);
     const sun_sign_code=typeof sunSign==='function'?await sunSign(birth_date):null;
     if(sun_sign_code!==null&&!SUN_SIGN_CODES.includes(sun_sign_code))fail('SUN_SIGN_RESOLVER_INVALID',503);
@@ -111,6 +112,24 @@ export async function onboardingOperation(client,body,dependencies={}) {
   if(cycle.period_duration_days!==null||cycle.initial_cycle_length_days!==null)writes.push({entity:'user_cycle_settings',authority:S.CYCLE,record:{user_id:owner,period_duration_days:cycle.period_duration_days,initial_cycle_length_days:cycle.initial_cycle_length_days}});
   await commit(writes);
   return {...await state(true),persisted:true};
+}
+export async function onboardingOperation(client, body, dependencies = {}) {
+  const principal = await requireAuthenticatedUser(client);
+  const reset = await readUserLifecycle(client, principal.id);
+  if (!reset || reset.operation !== 'RESET_ONBOARDING') return normalOnboardingOperation(client, body, dependencies);
+  if (reset.status !== 'RESET_ACTIVE') fail('TEST_TARGET_BUSY', 409);
+  const passive = ['hydrate', 'searchPlaces', 'listPlaceCountries', 'listPlaceRegions', 'listPlaceSettlements'];
+  if (passive.includes(body.action)) {
+    const result = await normalOnboardingOperation(client, body, { ...dependencies, resetFlow: true });
+    if (!result.state || result.state === 'INACTIVE_ACCOUNT') return result;
+    return { ...result, state: resetRoute(reset), completionReady: false };
+  }
+  return resetOnboardingStep({ client, reset, owner: principal.id, body, coordinator: dependencies.lifecycleCoordinator,
+    perform: async context => {
+      const result = await normalOnboardingOperation(client, body, { ...dependencies, ...context, resetFlow: true });
+      return body.action === 'initialize' && result.state !== 'INACTIVE_ACCOUNT' ? { ...result, state: resetRoute(reset), completionReady: false } : result;
+    },
+  });
 }
 export async function handleOnboardingRequest(req,createClient,dependencies={}) {
   try {

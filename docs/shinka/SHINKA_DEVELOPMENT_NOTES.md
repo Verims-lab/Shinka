@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — First Shinka repository work; production persistence and live closure blocked
-**Current BuildMarker:** Buildmarker-011
+**Current BuildMarker:** Buildmarker-013
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
@@ -121,3 +121,33 @@ HC-011.0 has 137 cases: 118 current / 9 future / 10 external. Six scoped future 
 Preflight: clean local Test = origin/Test `9e0de86`; Test two commits ahead of main, no main-only commits. The user approved the exact six codes/EN names and retained source TR names, explicitly excluding all Pair text and category-association changes. Registered RESOLVED_BY_PRODUCT_DECISION with this conversation as authority. Canonical executable table, preparation/import validation, SOURCE_OF_TRUTH, CONTENT_MODEL, DATA_MODEL and UI_UX_STANDARDS are reconciled. Manifest/source-receipt files remain byte-identical; digest remains `83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91`. DM26…DM28 cover exact receipt, code/label bijection, required names and approved importer retry/readback. Buildmarker-011/HC-011.0 are retained as the same Home package. The executed continuation results follow. No live import/deployment or daily capability closure is implied.
 
 Approval continuation verification: **349/349 canonical tests in each of Chromium and WebKit**, **54/54 general + 21/21 onboarding + 9/9 daily synthetic Health**, existing 17 admin/8 routing-Preview/5 mobile/5 daily scenarios, zero page exceptions. Typecheck/lint/build, Repo Health 16/16, dependency tree/security guard and byte budgets pass; no dependency/lock changes, 0 Critical/High and 2 existing Moderate findings. Initial JS 459,519 / 149,604 gzip bytes and CSS 84,916 / 14,553 are unchanged. [Approval receipt and executed evidence](reports/first-shinka-011/od002-approval.json). H09-004 remains BLOCKED; no live import, hosted Full Health or physical-device claim. The original verification.json retains the historical pre-approval snapshot.
+
+## Buildmarker-012 — Calendar and cycle management, 2026-10-20
+
+Preflight: clean local Test = origin/Test `f5fd7c4`; main `3c76cb4` two commits ahead. Fast-forwarded main into Test and pushed that synchronization before implementation. Pre-delivery fetch confirmed local/origin Test/main all `3c76cb4`, with only this package's working changes. Test-only feature delivery; main merge and publish remain with the user. No parallel agent or live product write.
+
+Implemented the monthly TR/EN Calendar, shared navigation, explicit same-ID edit/delete/cancel, stable retry payloads, invalidated stale responses, consent path and read-only owner-gated function. Shared Home cycle rules supply actual/history/current/future phases, computation-only 5/28, source outlier/half-up behavior and three future cycles. Last deletion preserves settings and daily snapshots. Pure planning validates all reused/new rows before publication; the durable adapter contract requires an atomic owner mutation/derived replacement/consent/receipt boundary. Production intentionally supplies no adapter and keeps writes disabled. Fixture queue/receipt and post-read checks are not claimed as native transactions or rollback.
+
+Read the listed original source sections and SRC-07 sheets 05…08. User reply explicitly defers >60-day interval policy; OD-012 remains OPEN, H08-006 BLOCKED, no clamping or invented upper limit. H08-005 remains BLOCKED for durable atomicity; Home H09-004 and ON-05 same-account live recovery remain open. Existing content/category source bytes, schemas and RLS remain unchanged.
+
+Final local results: **376/376 canonical in Chromium 156.0.8078.4 and WebKit 27.2**, each **89/89 local Health** (54 general/21 onboarding/9 daily/5 Calendar), **17 admin/8 routing-Preview/5 mobile/5 daily/6 Calendar scenarios**, zero page exceptions. CA01…23 and CU01…04 add 27 meaningful regressions; all previous 349 remain. H13-008's old Home-only source check failed after shared navigation extraction and was updated to verify the common component plus both consumers; no case was removed. Catalog HC-012.0: 143 total, 125 current, 7 future, 11 external, 16 suites. Internal Build/history retains 008…012.
+
+`npm ci`, direct/full dependency trees, typecheck, lint, build, Repo Health **16/16**, history check and existing performance budgets PASS. Initial production JS **460,387 raw / 149,852 gzip**, CSS **85,910 / 14,752** bytes; lazy Calendar **16,973 / 6,139**. Cold stubbed Calendar lab: 156 DOM nodes, DCL 14.8–18.1ms, CLS 0, no long task/page error/360px overflow. Both-engine TR/EN mobile/desktop images inspected; dialog centering/radius and focus distinction corrected. No physical Android/iOS or hosted latency proof.
+
+**Fresh dependency security is BLOCKED:** official npm audit endpoint certificate issuer verification failed, including retries using macOS trust certificates. TLS verification stayed enabled; no persistent config was changed. The unchanged lock and previous 011 audit (0 Critical/High, 2 Moderate) do not prove fresh 012 security status. No unconditional repository closure or production-ready claim. Rerun `npm run security:deps` and `npm audit --json` when trusted TLS access is restored.
+
+All ten requested canonical standards, these notes and generated history are aligned. Removed five unused main-introduced auth templates only after import/route/dynamic inspection; existing approved Apple/Google flow retained. [Full implementation, blockers and publish acceptance](reports/SHINKA_CALENDAR_012.md), [structured verification](reports/calendar-012/verification.json), [mobile research/screens/limits](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md#buildmarker-012-calendar-extension).
+
+## Buildmarker-013 / HC-013.0 — Admin Test Tools
+
+User-authorized separate admin delete/reset workflows; normal Delete Account → INACTIVE retained. New lazy Test Tools page, restricted metadata lookup/preview, typed/HMAC approval protocol, minimal internal operation journal, resumable cleanup executor, early current-User/deletion guards and persistent onboarding reset integration. Production mutations remain BLOCKED_NO_DURABLE_TARGET_COORDINATOR; no live account was deleted/reset. New schema representation is not deployment or atomicity evidence.
+
+Branch baseline: local Test = origin/Test `e8afd7b`; main `3c76cb4`; Test ahead by one commit before work. No unexpected local changes. Base44 skills updated/read for SDK-specific work. Official User delete capability checked against current documentation and installed SDK 0.8.54. Detailed scope, known limits and acceptance: [report](reports/SHINKA_ADMIN_TEST_TOOLS.md). Final measurements are recorded below.
+
+### 013 final local verification
+
+Chromium 156.0.8078.4 and WebKit 27.2: **396/396 canonical tests and 93/93 local Health cases per engine**, zero page exceptions. Per engine: 19 admin, 8 routing/Preview, 5 mobile, 5 daily, 6 Calendar and 4 Test Tools actual-App scenarios. Eight Test Tools screenshots cover 360/1280 and TR/EN; this is synthetic browser evidence, not physical-device/live identity proof. Clean offline install from the unchanged lock, dependency tree, typecheck, lint, production build, Repo Health 16/16 and generated five-package retention pass.
+
+Fresh npm security audit remains **BLOCKED_TLS_CERTIFICATE_CHAIN**: unrestricted registry access and system-CA verification both fail to verify the first certificate. TLS verification was never disabled. Current vulnerability totals are unknown; the earlier 011 result (0 Critical/High, 2 Moderate) is historical only. No dependencies changed. This is not a fully closed security/release result.
+
+HC-013.0: 149 cases / 130 current / 7 future / 12 external, 16 suites; add H12-028/029/030/031/902 and H13-016, update H04 tooling/H05 package policy/H13 inventory, delete none. H12-031 is the explicit current production coordinator blocker; H12-902 is separate explicit-target live acceptance. No schema deployment, live deletion/reset, content import or main push occurred. Evidence: [verification](reports/test-tools-013/verification.json); [scope, recovery and deployment instructions](reports/SHINKA_ADMIN_TEST_TOOLS.md).

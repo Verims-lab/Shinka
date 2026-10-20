@@ -44,8 +44,8 @@ async function fixture(identity, path, run, language = 'en') {
 
 /** @type {import('./testTypes').FoundationTest[]} */
 export const ADMIN_NAV_TESTS = [
-  ['AN01', 'Internal inventory has exactly the panel and two existing tools; language is display-only', () => {
-    assert(INTERNAL_ROUTES.join() === '/internal,/internal/health,/internal/build', 'route inventory');
+  ['AN01', 'Internal inventory has exactly the panel and three tools; language is display-only', () => {
+    assert(INTERNAL_ROUTES.join() === '/internal,/internal/test-tools,/internal/health,/internal/build', 'route inventory');
     assert(internalLanguage({ language: 'tr', role: 'admin' }) === 'tr', 'TR routing');
     assert(['en', 'tr'].includes(internalLanguage({ language: 'javascript:alert(1)' })), 'unsafe locale');
     assert(t('admin.healthDescription', 'tr') === 'Sağlık kontrolleri, testler ve sonuçlar.' && t('admin.buildDescription', 'tr') === 'Güncel sürüm, ortam bilgileri ve paket geçmişi.', 'approved copy');
@@ -105,10 +105,10 @@ export const ADMIN_NAV_TESTS = [
       assert(!f.auth.isAdmin && !q('[data-admin-panel]'), 'stale role restored');
     });
   }],
-  ['AN08', 'Admin panel TR/EN cards navigate to both tools, return to panel and existing app entry', async () => {
+  ['AN08', 'Admin panel TR/EN cards navigate to all three tools, return to panel and existing app entry', async () => {
     for (const language of ['tr', 'en']) await fixture(admin, '/internal', async (_f, q, host) => {
       await until(() => q('[data-admin-panel]'));
-      assert(q('[data-admin-panel]').querySelectorAll('a').length === 2, 'extra tools');
+      assert(q('[data-admin-panel]').querySelectorAll('a').length === 3, 'extra tools');
       for (const tool of INTERNAL_TOOLS) {
         assert(host.textContent.includes(t(tool.descriptionKey, language)), `localized description ${language} ${tool.path}: ${host.textContent}`);
         q(`[data-admin-panel] a[href="${tool.path}"]`).click(); await pause();

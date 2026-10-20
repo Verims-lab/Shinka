@@ -9,11 +9,11 @@ export function cyclePhaseAtDay(length, duration, day) {
   if (day >= center - 1 && day <= center + 1) return 'OVULATION';
   return day < center - 1 ? 'FOLLICULAR' : 'LUTEAL';
 }
-export function estimatedCycleLength(observations, initial = null) {
+export function cycleEstimate(observations, initial = null) {
   if (observations.length > 3 || observations.some(n => !Number.isInteger(n) || n < 15 || n > 60)) fail();
   if (!observations.length) {
     if (initial !== null && (!Number.isInteger(initial) || initial < 15 || initial > 60)) fail();
-    return initial ?? 28;
+    return { length: initial ?? 28, used: [], excluded: [] };
   }
   let used = observations;
   if (observations.length === 3) {
@@ -23,7 +23,10 @@ export function estimatedCycleLength(observations, initial = null) {
     });
     if (outlier >= 0) used = observations.filter((_, i) => i !== outlier);
   }
-  return Math.floor(used.reduce((sum, n) => sum + n, 0) / used.length + 0.5);
+  return { length: Math.floor(used.reduce((sum, n) => sum + n, 0) / used.length + 0.5), used, excluded: observations.filter(n => !used.includes(n)) };
+}
+export function estimatedCycleLength(observations, initial = null) {
+  return cycleEstimate(observations, initial).length;
 }
 // Only today's input is derived here. No Calendar prediction/phase cache is written.
 // Caller supplies the four latest real starts on/before today, after consent gates.

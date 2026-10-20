@@ -1,3 +1,4 @@
+import { readUserLifecycle, resetOnboardingStep } from './userLifecycle.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
 import { assertActiveAccount, assertOwner, assertHealthConsent, resolveAuthenticatedOwner, SYSTEM_AUTHORITIES } from './domainSecurity.js';
 import { DOMAIN_SCHEMAS, physicalName } from './domainSchemas.js';
@@ -17,7 +18,7 @@ const fail = (code, status = 409) => { throw new InternalError(code, status); };
 const domainFields = entity => Object.keys(DOMAIN_SCHEMAS[entity].properties);
 // atomic is a server-owned implementation of domainAtomic's durable protocol.
 // Production deliberately supplies none: SDK keyed upsert is not create-if-absent.
-export async function dailyMessageOperation(client, body, { now = () => new Date(), atomic = null, library = null, random = Math.random } = {}) {
+async function normalDailyMessageOperation(client, body, { now = () => new Date(), atomic = null, library = null, random = Math.random, resetFlow = false } = {}) {
   const principal = await requireAuthenticatedUser(client);
   const owner = resolveAuthenticatedOwner(principal, body);
   if (body.action !== 'today' || Object.keys(body).some(key => !['action', 'timezone'].includes(key))) fail('INVALID_REQUEST', 400);
@@ -38,6 +39,7 @@ export async function dailyMessageOperation(client, body, { now = () => new Date
   const preferences = await singleton('user_preferences');
   const timezone = resolveTimezone(body.timezone, preferences?.timezone);
   const instant = now(), day = serverLocalDate(instant, timezone);
+  if (resetFlow && !isOnboardingProfileReady(profile, preferences, day)) fail('PROFILE_COMPLETION_REQUIRED');
   const existing = await read('user_daily_message', 2, { shinka_date: day });
   if (existing.length > 1) fail('DUPLICATE_DAILY_MESSAGE');
   if (existing.length) return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: false, daily: verifiedDailyRecord(existing[0], owner, day), profile: { display_name: profile.display_name }, timezone };
@@ -56,7 +58,7 @@ export async function dailyMessageOperation(client, body, { now = () => new Date
     const grant = validatedOnboardingGrant(consent, HEALTH_CONSENT_VERSION);
     const jobs = await read('health_data_deletion_job', 1, { job_status: { $ne: 'COMPLETED' } });
     assertHealthConsent(owner, consent, jobs);
-    const events = await read('user_health_consent_event', 2);
+    const events = await read('user_health_consent_event', 2, { occurred_at: { $gte: grant.granted_at } });
     const expectedEvent = onboardingGrantEvent(grant);
     if (events.length !== 1 || Object.entries(expectedEvent).some(([key, value]) => events[0][key] !== value)) fail('CONSENT_EVENT_UNCONFIRMED');
     const settings = await singleton('user_cycle_settings');
@@ -85,6 +87,15 @@ export async function dailyMessageOperation(client, body, { now = () => new Date
     assertHealthConsent(owner, latest, await read('health_data_deletion_job', 1, { job_status: { $ne: 'COMPLETED' } }));
   }
   return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: outcome.created, daily: verifiedDailyRecord(outcome.record, owner, day), profile: { display_name: profile.display_name }, timezone };
+}
+export async function dailyMessageOperation(client, body, dependencies = {}) {
+  const principal = await requireAuthenticatedUser(client);
+  const reset = await readUserLifecycle(client, principal.id);
+  if (!reset || reset.operation !== 'RESET_ONBOARDING') return normalDailyMessageOperation(client, body, dependencies);
+  if (reset.status !== 'RESET_ACTIVE') fail('TEST_TARGET_BUSY', 409);
+  return resetOnboardingStep({ client, reset, owner: principal.id, body, coordinator: dependencies.lifecycleCoordinator,
+    perform: context => normalDailyMessageOperation(client, body, { ...dependencies, ...context, resetFlow: true }),
+  });
 }
 export async function handleDailyMessageRequest(req, createClient, dependencies = {}) {
   try {

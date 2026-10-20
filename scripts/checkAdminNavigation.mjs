@@ -41,12 +41,12 @@ export async function checkAdminNavigation(page, origin, directory) {
     assert(!(await trigger.evaluate(el => document.activeElement === el)), 'Tab must leave menu');
     await trigger.focus(); await page.keyboard.press('ArrowUp'); await entry.waitFor(); await page.keyboard.press('Enter');
     await page.waitForSelector('[data-admin-panel]');
-    assert.equal(await page.locator('[data-admin-panel] a').count(), 2);
+    assert.equal(await page.locator('[data-admin-panel] a').count(), 3);
     const panel = await geometry('nav a,[data-admin-panel] a');
     const description = language === 'tr' ? 'Sağlık kontrolleri, testler ve sonuçlar.' : 'Health checks, tests and results.';
     assert(await page.getByText(description, { exact: true }).isVisible(), 'localized panel');
     if (language === 'tr') await screenshot(`admin-panel-${width}`);
-    for (const tool of ['/internal/health', '/internal/build']) {
+    for (const tool of ['/internal/health', '/internal/build', '/internal/test-tools']) {
       await page.locator(`[data-admin-panel] a[href="${tool}"]`).click();
       await page.waitForSelector(tool.endsWith('health') ? '[data-health-root]' : 'h1');
       await page.locator('nav a[href="/internal"]').click();
@@ -65,7 +65,7 @@ export async function checkAdminNavigation(page, origin, directory) {
     if (language === 'tr') await screenshot(`user-onboarding-${width}`);
     results.push({ scenario: `user-no-menu-${width}-${language}`, passed: true });
   }
-  for (const session of ['user', 'anonymous']) for (const route of ['/internal', '/internal/health', '/internal/build']) {
+  for (const session of ['user', 'anonymous']) for (const route of ['/internal', '/internal/health', '/internal/build', '/internal/test-tools']) {
     await open(route, session);
     await page.waitForSelector(session === 'user' ? '[data-error-code="FORBIDDEN"]' : '[data-onboarding-state="UNAUTHENTICATED_SIGN_IN"]');
     assert.equal(await page.locator('[data-admin-panel],[data-health-root]').count(), 0);
