@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-016
+**Current BuildMarker:** Buildmarker-017
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,7 +12,13 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
-## Current native authority and recovery UI — 016
+## Current Admin/Health interaction — 017
+
+Deletion uses one entered User ID, current target ID/name/email/role/status and deletion/retention preview, then the explicit primary “Kullanıcıyı sil” / “Delete user” action. No second ID input or routine maintenance controls. Changing target invalidates preview; busy disables duplicate action. Preview takes heading focus, Cancel restores lookup focus, errors/results are live regions. Retry/continue uses the existing operation; completed deletion can be rechecked with the same target tombstone. Retained history is stated, never “all data deleted.” TR/EN helper copy is centralized.
+
+Health exposes current-build browser measurement JSON import and “Bu raporu yeniden kaydet” / “Save this report again” for a completed unsaved report. Retry saves the identical runId without launching tests. Safe code/stage/request ID are shown separately. Published viewport evidence comes from actual top-level browser pages, not hidden frames or narrow containers. Desktop Chromium/WebKit evidence is not physical Android/iOS evidence.
+
+## Historical native authority and recovery UI — 016
 
 Profile/You and AdminGate use applicationSession backed by current native User.role; no SQL availability dependency or Supabase login. Onboarding completeness does not decide admin membership. Pending/failed authorization hides privileged UI.
 

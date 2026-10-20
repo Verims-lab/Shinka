@@ -2,11 +2,23 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-016
+**Current BuildMarker:** Buildmarker-017
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## Active 017 override — user-approved target lifecycle
+
+The 017 request replaces only mandatory deletion maintenance/drain and routine live Health. Shared app/prod authority remains. No global write pause, operator/window/drain ACK or second typed ID is required. Existing three configured Test Tools settings remain; no routine secret change is needed.
+
+Admin lookup/preview shows current ID/name/email and retained/deleted scope; one explicit button submits true confirmation with a server-signed actor/target/action/app/scope token. Before destruction, the native journal persists and reads back a target DELETE operation/start audit. Current actor and target protections are rechecked; normal and service-role target writes consult the durable lifecycle. Other users stay available. Cleanup allows at most 100 destructive writes per invocation; partial work stays RETRY_REQUIRED and target-blocked. Resume repeats the same operation and reconciles all stages, including old checkpoints. Final absence, notification disposition, audit and status are verified. Completed operations can also recheck late residuals; the tombstone is permanent. No transaction/rollback/distributed fence or defense against privileged out-of-band writes is claimed.
+
+App User removal uses documented service-role User.delete plus absence readback. Protected consent/event/daily/protection/audit retention stays. Reset and withdrawal remain separate. No hosted deletion performed in 017. Explicit disposable-target acceptance is manual. No routine hosted Full Health: use user-supplied HC-016.1 evidence; local code delivery is MANUAL_USER_VALIDATION_PENDING. [017 handoff](reports/SHINKA_HEALTH_RECOVERY_017.md).
+
+## Historical 016 architecture and measurements
+
+The following records describe the delivered 016 state. Its operator maintenance requirements are superseded above; original failures/measurements are retained.
 
 ## Decision and checked starting state
 

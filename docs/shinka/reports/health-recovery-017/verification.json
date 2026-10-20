@@ -1,0 +1,230 @@
+{
+  "schema": "shinka.local-verification/1",
+  "buildMarker": "Buildmarker-017",
+  "healthCatalogVersion": "HC-017.0",
+  "status": "MANUAL_USER_VALIDATION_PENDING",
+  "recordedAt": "2026-10-20T19:45:21.641189+00:00",
+  "scope": "LOCAL_REPOSITORY_AND_SYNTHETIC_BROWSER_ONLY",
+  "git": {
+    "initialTest": "a0ba996",
+    "synchronizedMainBaseline": "ac3e7e9c560364b84964e176386e14baa051022a",
+    "mainAheadInitially": 2,
+    "synchronizedTestBeforeWork": true,
+    "deliveryBranch": "Test",
+    "mainMergeOrPublishPerformed": false
+  },
+  "hosted": {
+    "newAppApiDiagnostic": false,
+    "fullHealthRun": false,
+    "schemaPush": false,
+    "import": false,
+    "reset": false,
+    "deletion": false,
+    "physicalDeviceTest": false,
+    "target": "Existing approved shared Base44 app/prod; not isolated",
+    "suppliedEvidence": {
+      "runId": "62007d09-7694-423a-8708-2a44d9328270",
+      "catalog": "HC-016.1",
+      "environment": "PUBLISHED",
+      "startedAt": "2026-10-20T19:02:56.407Z",
+      "completedAt": "2026-10-20T19:05:12.956Z",
+      "passed": 133,
+      "failed": 1,
+      "blocked": 2,
+      "notApplicable": 19,
+      "gate": "NOT_READY",
+      "openCases": [
+        "H03-008",
+        "H03-007",
+        "H13-004"
+      ],
+      "alreadyPassed": [
+        "H03-006",
+        "H09-004"
+      ],
+      "provesHistoryPersistence": false
+    }
+  },
+  "engines": {
+    "chromium": {
+      "command": "npm run test:foundation",
+      "exitCode": 0,
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "tests": 454,
+      "passed": 454,
+      "failed": 0,
+      "localHealth": {
+        "health": {
+          "total": 61,
+          "passed": 61
+        },
+        "onboardingHealth": {
+          "total": 21,
+          "passed": 21
+        },
+        "dailyHealth": {
+          "total": 9,
+          "passed": 9
+        },
+        "calendarHealth": {
+          "total": 6,
+          "passed": 6
+        },
+        "adminTestHealth": {
+          "total": 4,
+          "passed": 4
+        }
+      },
+      "pageErrors": [],
+      "artifact": "chromium.json"
+    },
+    "webkit": {
+      "command": "FOUNDATION_BROWSER=webkit npm run test:foundation",
+      "exitCode": 0,
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "tests": 454,
+      "passed": 454,
+      "failed": 0,
+      "localHealth": {
+        "health": {
+          "total": 61,
+          "passed": 61
+        },
+        "onboardingHealth": {
+          "total": 21,
+          "passed": 21
+        },
+        "dailyHealth": {
+          "total": 9,
+          "passed": 9
+        },
+        "calendarHealth": {
+          "total": 6,
+          "passed": 6
+        },
+        "adminTestHealth": {
+          "total": 4,
+          "passed": 4
+        }
+      },
+      "pageErrors": [],
+      "artifact": "webkit.json"
+    }
+  },
+  "focusedCleanupCheck": {
+    "status": "PASS",
+    "scope": "Actual createTestRepository with synthetic monotonic clock and Entity store; slow 30s preparation still permits first cleanup write, 9s in-flight write stops next admission, reconstructed retry clears remaining row",
+    "permanentRegression": "CL08"
+  },
+  "catalog": {
+    "version": "HC-017.0",
+    "suites": 16,
+    "cases": 156,
+    "current": 137,
+    "future": 7,
+    "external": 12
+  },
+  "quality": {
+    "npm ci": "PASS",
+    "npm ls --all": "PASS",
+    "npm run typecheck": "PASS",
+    "npm run lint": "PASS",
+    "npm run build": "PASS",
+    "npm run health:repo": "PASS",
+    "node scripts/recordBuild.mjs --check": "PASS",
+    "git diff --check": "PASS"
+  },
+  "security": {
+    "command": "npm run security:deps",
+    "exitCode": 0,
+    "fullAuditExitCode": 1,
+    "critical": 0,
+    "high": 0,
+    "moderate": 2,
+    "low": 0,
+    "packages": [
+      "react-router",
+      "react-router-dom"
+    ],
+    "dependenciesChanged": false,
+    "disposition": "Existing Moderate router advisories retained; high-severity gate passes. Major router migration is outside this correction; unsafe navigation input remains rejected and SSR hydration is not used. No blanket safety claim.",
+    "artifact": "dependency-audit.json"
+  },
+  "performance": {
+    "command": "node scripts/measureMaintenance.mjs /private/tmp/shinka-017-measure",
+    "exitCode": 0,
+    "artifact": "performance-measurements.json",
+    "initialJSRaw": 453401,
+    "initialJSGzip": 147962,
+    "cssRaw": 86276,
+    "cssGzip": 14810,
+    "budgetsPass": true,
+    "cycles": 0,
+    "boundary": "Local production bundle and fake-SDK real-App lab; collected before final minor cleanup-budget/UI-fixture changes; not hosted latency or final all-chunk byte counts."
+  },
+  "ui": {
+    "languages": [
+      "tr",
+      "en"
+    ],
+    "viewports": [
+      360,
+      1280
+    ],
+    "singleDeleteConfirmation": true,
+    "nativeTargetIdentityShown": true,
+    "keyboardFocusAndCancel": "AU01/AU03 + actual App checks",
+    "screenshots": [
+      "test-tools-tr-360.png",
+      "test-tools-en-360.png"
+    ],
+    "data": "synthetic only"
+  },
+  "manualAcceptance": [
+    "Owner main merge/sync; inspect regenerated auth templates and Authentication configuration",
+    "Full schema inventory comparison; optional InternalHealthRun.report_digest before all backend/shared functions and frontend",
+    "Explicit top-level browser measurement JSON; import into same published build; user-run Full Health",
+    "Save-list-open same runId; retry save without rerunning Health on failure",
+    "Specifically approved disposable other user deletion, interruption/resume, native User absence and retained scope; normal-user denial",
+    "Original ON-05 same-account saveCycle/readback; account remains intact",
+    "Physical Android/iOS, hosted token revocation and provider re-entry remain unverified"
+  ],
+  "limits": [
+    "No native distributed lock, cross-worker unique key, transaction or rollback claim",
+    "Observed duplicate/conflicting Health run records fail closed; lost private-upload receipt can leave an unreferenced private file",
+    "Target deletion tombstone remains; already-transmitted writes require final verification and explicit reconciliation",
+    "Old failures and earlier reports remain unchanged"
+  ],
+  "artifactFilesContainSecrets": false,
+  "repoHealth": {
+    "passed": 17,
+    "failed": 0,
+    "checks": {
+      "dependencyBoundaries": true,
+      "boundedGeneratedHistory": true,
+      "twentyPhysicalProductSchemas": true,
+      "noUnexpectedProductSchemas": true,
+      "guardedHealthHistory": true,
+      "separateBuiltinUserAndTooling": true,
+      "exactAuthoritativeFields": true,
+      "completeAccessMatrix": true,
+      "directSdkOperationsDenied": true,
+      "onboardingCopyAndProxy": true,
+      "onboardingGeoNamesEntry": true,
+      "noProductSeedCalls": true,
+      "canonicalMarker": true,
+      "docsAligned": true,
+      "noLegacyImport": true,
+      "noCredentialFindings": true,
+      "noPersonalEmails": true
+    }
+  }
+}

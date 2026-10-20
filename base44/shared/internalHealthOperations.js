@@ -1,11 +1,11 @@
 import { nativeReadiness } from './nativeReadiness.js';
 import { InternalError } from "./internalAuthorization.js";
-import { normalizeStoredReport, buildHistoryRecord } from "./healthHistoryContract.js";
+import { saveHealthReport } from './healthPersistence.js';
 import { DOMAIN_ENTITIES } from "./domainContract.js";
 import { CONTENT_ENTITY_NAMES } from "./contentStateContract.js";
 
 // Called only inside handleInternalRequest, after server auth.me() succeeds.
-export async function internalHealthOperation(client, body, {geoNamesTransportProbe=null}={}) {
+export async function internalHealthOperation(client, body, {geoNamesTransportProbe=null, uploadSigner=null}={}) {
   if (body.action === 'nativeReadiness') {
     if (Object.keys(body).length !== 1) throw new InternalError('INVALID_REQUEST', 400);
     return nativeReadiness(client);
@@ -42,14 +42,6 @@ export async function internalHealthOperation(client, body, {geoNamesTransportPr
     }));
     return {source:'LIVE_BASE44_COUNT',measuredAt:new Date().toISOString(),results};
   }
-  if (body.action === "save") {
-    const report = normalizeStoredReport(body.report);
-    try {
-      const file = new File([JSON.stringify(report)], `health-${report.runId}.json`, { type:"application/json" });
-      const { file_uri } = await service.integrations.Core.UploadPrivateFile({ file });
-      const run = await store.create(buildHistoryRecord(report,file_uri));
-      return { id:run.id, run_id:report.runId };
-    } catch { throw new InternalError("HEALTH_HISTORY_PERSIST_FAILED"); }
-  }
+  if (body.action === "save") return saveHealthReport(client,body,uploadSigner);
   throw new InternalError("INVALID_INTERNAL_ACTION",400);
 }

@@ -1,7 +1,8 @@
 import { physicalName } from './domainSchemas.js';
 import { DELETED_ENTITIES, RETAINED_ENTITIES, OPERATION_ENTITY, OPERATION_FIELDS, projectOperation, testToolError, hashToolValue } from './adminTestPolicy.js';
 
-// SDK 0.8.54 positional pagination. No health values, email, names or snapshots.
+// SDK 0.8.54 positional pagination. Health values/snapshots are never selected;
+// name/email are selected only for the admin's explicit target lookup/preview.
 const pageSize = 100;
 const baseFields = ['id', 'user_id', 'updated_date'];
 const extras = {
@@ -12,8 +13,15 @@ const extras = {
   health_data_deletion_job: ['protection_event_id', 'job_status'],
   admin_audit_log: ['admin_user_id', 'target_user_id'],
 };
-export function createTestRepository(client) {
+export function createTestRepository(client, { clock = () => performance.now() } = {}) {
   const entities = client.asServiceRole.entities;
+  let remainingWrites = 100;
+  let deadline = null;
+  const spend = () => {
+    // Slow authorization/scope reads must not starve every resumed pass.
+    deadline ??= clock() + 8000;
+    if (--remainingWrites < 0 || clock() > deadline) testToolError('TEST_CLEANUP_MORE_REQUIRED', 503);
+  };
   async function scan(name, query, fields, bounded = 20000) {
     const result = [], seen = new Set();
     for (let offset = 0; offset <= bounded; offset += pageSize) {
@@ -34,10 +42,10 @@ export function createTestRepository(client) {
     if (rows.some(row => row.user_id !== target)) testToolError('TEST_OWNER_CONFLICT', 403);
     return rows;
   }
-  async function user(target) {
-    const rows = await entities.User.filter({ id: target }, 'id', 2, 0, ['id', 'role']);
+  async function user(target, includeIdentity = false) {
+    const rows = await entities.User.filter({ id: target }, 'id', 2, 0, includeIdentity ? ['id', 'role', 'full_name', 'email'] : ['id', 'role']);
     if (!Array.isArray(rows) || rows.length > 1 || rows.some(row => row.id !== target || !['admin', 'user'].includes(row.role))) testToolError('TEST_USER_READ_UNCONFIRMED');
-    return rows.length ? { id: rows[0].id, role: rows[0].role } : null;
+    return rows.length ? { id: rows[0].id, role: rows[0].role, full_name: rows[0].full_name || null, email: rows[0].email || null } : null;
   }
   async function operation(target, id) {
     const rows = await scan(OPERATION_ENTITY, { target_id: target, operation_id: id }, OPERATION_FIELDS, 100);
@@ -51,8 +59,8 @@ export function createTestRepository(client) {
     if (active.length > 1) testToolError('TEST_OPERATION_STATE_INVALID');
     return active[0] || null; // Completed DELETE is a permanent tombstone.
   }
-  async function target(targetId) {
-    const identity = await user(targetId);
+  async function target(targetId, identity = undefined) {
+    identity ||= await user(targetId, true);
     if (!identity) testToolError('TEST_USER_NOT_FOUND', 404);
     const profiles = await owned('user_profile', targetId);
     if (profiles.length > 1) testToolError('DUPLICATE_OWNER_STATE');
@@ -60,7 +68,7 @@ export function createTestRepository(client) {
     const jobs = await owned('health_data_deletion_job', targetId);
     const admins = identity.role === 'admin' ? await entities.User.filter({ role: 'admin' }, 'id', 2, 0, ['id', 'role']) : [];
     if (!Array.isArray(admins) || admins.some(row => row.role !== 'admin')) testToolError('TEST_USER_READ_UNCONFIRMED');
-    return { id: identity.id, role: identity.role, account_status: profiles[0]?.account_status || 'NO_PROFILE', open_deletion: jobs.some(row => row.job_status !== 'COMPLETED'), last_admin: identity.role === 'admin' && admins.length < 2 };
+    return { id: identity.id, role: identity.role, full_name: identity.full_name, email: identity.email, account_status: profiles[0]?.account_status || 'NO_PROFILE', open_deletion: jobs.some(row => row.job_status !== 'COMPLETED'), last_admin: identity.role === 'admin' && admins.length < 2 };
   }
   async function impact(targetId) {
     const records = {};
@@ -95,20 +103,28 @@ export function createTestRepository(client) {
   async function cleanup(entity, targetId) {
     if (!DELETED_ENTITIES.includes(entity)) testToolError('INVALID_TEST_SCOPE');
     // Read all IDs before deletion so offset pagination cannot skip shrinking pages.
-    for (const row of await owned(entity, targetId)) {
-      await entities[physicalName(entity)].delete(row.id);
+    const rows=await owned(entity,targetId);
+    if (entity === 'user_period_record') {
+      for (let offset=0;offset<Math.min(rows.length,remainingWrites);offset+=pageSize) {
+        const ids=rows.slice(offset,Math.min(offset+pageSize,remainingWrites)).map(row=>row.id);
+        for (const child of ['UserCyclePrediction','UserCyclePhaseDay']) {
+          const incoming=await scan(child,{reference_period_id:{$in:ids}},['id','user_id']);
+          if(incoming.some(item=>item.user_id!==targetId))testToolError('TEST_REFERENCE_CONFLICT');
+        }
+      }
     }
+    for (const row of rows) {spend();await entities[physicalName(entity)].delete(row.id);}
     if (entity === 'user_period_record') {
       const actions = await scan('UserCalendarAction', { user_id: targetId }, ['id', 'user_id']);
       if (actions.some(row => row.user_id !== targetId)) testToolError('TEST_OWNER_CONFLICT', 403);
-      for (const row of actions) await entities.UserCalendarAction.delete(row.id);
+      for (const row of actions) { spend(); await entities.UserCalendarAction.delete(row.id); }
       if ((await scan('UserCalendarAction', { user_id: targetId }, ['id', 'user_id'])).length) testToolError('TEST_DELETE_UNCONFIRMED');
     }
     if ((await owned(entity, targetId)).length) testToolError('TEST_DELETE_UNCONFIRMED');
   }
   async function stopNotifications(targetId) {
     for (const row of await owned('notification_delivery', targetId)) {
-      if (['PENDING', 'FAILED'].includes(row.delivery_status)) await entities.NotificationDelivery.update(row.id, { delivery_status: 'SKIPPED', error_code: 'ADMIN_TEST_USER_DELETED' });
+      if (['PENDING', 'FAILED'].includes(row.delivery_status)) { spend(); await entities.NotificationDelivery.update(row.id, { delivery_status: 'SKIPPED', error_code: 'ADMIN_TEST_USER_DELETED' }); }
     }
     if ((await owned('notification_delivery', targetId)).some(row => ['PENDING', 'FAILED'].includes(row.delivery_status))) testToolError('TEST_DELETE_UNCONFIRMED');
   }

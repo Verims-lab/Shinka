@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-016
+**Current BuildMarker:** Buildmarker-017
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -15,14 +15,22 @@
 - NO FUTURE FEATURE IMPLEMENTATION WITHOUT PACKAGE SCOPE
 - NO LEGACY SHINKA IMPORT — NO LEGACY SHINKA CONTRACT MAY ENTER THIS PROJECT WITHOUT AN EXPLICIT CHANGE REQUEST.
 
-## Current approved package — 016
+## Permanent validation rule — user decision, package 017
+
+Do not automatically run hosted Full Health, live suites or repeats at the end of a prompt/package. Standard delivery checks run locally. Use the user's supplied report as evidence without reproducing it live. Only a concrete unresolved diagnostic question justifies targeted live access: state that question first, then use the narrowest authorized log/read/function. Full live execution is permitted only if that specific diagnosis truly requires it; never to turn a gate green. The user runs post-publish Health and supplies results. This rule overrides historical agent-run/live-closure wording below and in older reports.
+
+Completed code is committed/pushed to Test after required local checks, even when hosted acceptance is **MANUAL_USER_VALIDATION_PENDING**. Never merge/publish main. Stop repeating adequate checks without a new failure/change/risk. Keep local, user-supplied published, independently measured hosted and physical-device evidence separate. Package 017 advances marker/catalog once; active display is 013–017. Do not prune operational/audit/user/Health history.
+
+The explicit 017 deletion decision replaces mandatory operator pause/drain/window/ACK and repeated typed-ID confirmation. Use the target-scoped durable lifecycle and bounded resumable cleanup defined in BASE44_CONTINUATION. No blanket permission for live deletion is implied. A hosted destructive acceptance needs a specifically selected disposable target; local regression is sufficient for code delivery.
+
+## Historical approved package — 016
 
 User's Base44 direction supersedes SQL implementation/provisioning. Keep all product data and roles in Base44, use native identity, preserve unrelated fixes and historical reports. No external setup/migration/deploy, main merge/publish, paid service or live target deletion/reset is authorized. User confirms no SQL setup/transfer; current remote read-only metadata checks are recorded separately.
 
 Required checks: repository Health, both canonical browser engines, lint/type/build, dependency tree/audit, generated last-five ledger and performance budgets. Add regression for observed partial state, competing requests and lifecycle gates; no database-specific test requirement remains. New native schema/fields require data/security docs and hosted schema/permission acceptance. User/audit/Git history is outside five-package display retention. [Accepted simplifications and operator runbook](SHINKA_BASE44_CONTINUATION.md).
 
 ## Mandatory workflow
-1. Read current source contracts. 2. Identify affected domains. 3. Implement. 4. Add/update tests. 5. Add/update Health. 6. Reconcile canonical docs. 7. Run regression (Full Health). 8. Increment BuildMarker exactly once. 9. Record build (ledger + BUILD_HISTORY). 10. Report remaining live/external verification honestly.
+1. Read current source contracts. 2. Identify affected domains. 3. Implement. 4. Add/update tests. 5. Add/update Health. 6. Reconcile canonical docs. 7. Run required local regression; user owns published Health. 8. Increment BuildMarker exactly once. 9. Record build (ledger + BUILD_HISTORY). 10. Report remaining live/external verification honestly.
 
 ## BuildMarker rules
 - Canonical authority: `src/foundation/buildMarker.js` (`BUILD_MARKER`). Format `Buildmarker-NNN`.
@@ -47,7 +55,7 @@ Run branch preflight before implementation; do not overwrite unexpected local wo
 
 The initial package incremented the marker once to 008 and the catalog once to HC-006.0. Its technical continuation retains both and updates the existing ledger entry only. The production SDK persistence adapter and approved Sun/TR/consent/durable derivation decisions are implemented. Existing source-gap Health cases now have executed PASS evidence; their IDs, intent and applicability are unchanged, so HC-006.0 is retained. The subsequent measured Health closure advances only the catalog to HC-007.0 because H05-009 changes from schema absence to package-aware live row counts. No second 008 ledger entry is added. Passing repository regressions verifies adapter behavior using an isolated SDK transport; it does not prove deployed writes, cross-instance enforcement or native transactions. Restart before a real daily message may resume at the earliest unresolved safe step, by approved decision. FIRST_SHINKA_ENGINE_REQUIRED is a next-package dependency, not an 008 blocker. No extra entity/field, content import, scheduler or live deployment is authorized by this package.
 
-Before each prompt fetch and compare main/Test/local Test; stop on divergence, local-ahead or unexpected changes. A clean main-ahead state may fast-forward Test; Test-ahead may proceed with final reporting. Complete work is committed/pushed only to Test. After the user merges Test to main and publishes, run the separate Base44 Full Health/live auth/GeoNames/enforcement verification.
+Before each prompt fetch and compare main/Test/local Test; stop on divergence, local-ahead or unexpected changes. A clean main-ahead state may fast-forward Test; Test-ahead may proceed with final reporting. Complete work is committed/pushed only to Test. After user merge/publish, the user performs separate Base44 Health/live acceptance under the permanent 017 rule.
 
 ## ON-04 decision continuation — explicit same-package authorization
 

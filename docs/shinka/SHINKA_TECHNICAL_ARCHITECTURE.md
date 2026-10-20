@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-016
+**Current BuildMarker:** Buildmarker-017
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -11,7 +11,15 @@
 **Not Implemented:** Hosted acceptance for native daily/Calendar persistence, Pattern workflows, notifications/scheduler; implemented pure daily/phase components are described below.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
-## Active execution architecture — Base44 016
+## Current corrective responsibilities — 017
+
+`healthPersistence` owns normalized report digest, existing-run lookup, private upload capability, row creation and readback. `internalAuthorization` adds safe stage/request identity; lifecycle failure is separate from upload/save. `useHealthRunner` retains report/recovery state and provides retrySave without run; per-run AbortController/generation prevents obsolete UI progress. Completed records are immutable. Optional InternalHealthRun.report_digest is the sole schema addition; closed CRUD policies remain. Existing server preview key signs upload receipts with a distinct health-upload namespace and 24h TTL; preview tokens retain 5min. No key in browser source or reports; recovery capability stays in caller memory.
+
+`browserEvidence` owns build/origin/environment/freshness binding; `inspectAuthShell` is reused by Playwright and component fixtures. `browserMeasurements.mjs` opens real top-level pages and closes every page in finally, including timeout. Local canonical runner supplies the bundle; manual hosted runner never runs Full Health. No iframe polling/listener remains in production probes. H03-007 consumes synthetic tests and explicit external measurements, blocks unmeasured paths, retains its deadline; abort stops starting further tests and discards old UI completions, not a claim to cancel an SDK call already sent.
+
+`nativeWriteChecks` distinguishes current actor from each record's user_id, including service-role create/upsert/update/delete and UserCalendarAction. Unscoped bulk/import paths are refused; update/delete resolve existing ownership and owner reassignment is forbidden. Pre/post target lifecycle checks narrow but cannot close a native in-flight race. Deletion has a separate guarded cleanup path; `nativeTestJournal` persists/readbacks target operation before destructive work. `adminTestRepository` bounds cleanup to 100 writes and an 8s admission budget from the first cleanup write per invocation, validates owners/references and returns retry when more remains. Executor reconciles all stages on resume regardless of old checkpoints, verifies User/operational absence and retained notification state, then verifies final audit/status. No global pause requirement, transaction, native unique key or distributed lock claim.
+
+## Historical execution architecture — Base44 016
 
 Browser → existing Base44 functions → native SDK authentication + current User/lifecycle → service-role Entity readers/writers. applicationSession and internal routes share fresh native User.role; applicationAdmin SQL role writer is removed. No SQL secret, connection, external auth or fallback. The native write boundary checks pause/identity/lifecycle before and after each product SDK mutation, without claiming recall of an in-flight write.
 

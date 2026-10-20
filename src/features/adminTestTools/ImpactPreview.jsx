@@ -1,15 +1,15 @@
 import { useEffect, useRef } from 'react';
-import ShinkaInput from '@/components/shinka/ShinkaInput';
 import ShinkaButton from '@/components/shinka/ShinkaButton';
 import { testToolsCopy as copy } from '@/foundation/i18n/testToolsCopy';
 
-export default function ImpactPreview({ preview, language, confirmation, setConfirmation, execute, cancel, busy }) {
+export default function ImpactPreview({ preview, language, execute, cancel, busy }) {
   const heading = useRef(null);
   useEffect(() => { heading.current?.focus(); }, [preview]);
   const text = key => copy(key, language);
   const deleting = preview.operation === 'DELETE_USER';
   return <section data-test-preview className="space-y-4 border-t border-shinka-line pt-5">
     <h2 ref={heading} tabIndex={-1} className="text-shinka-h2">{text('preview')}: {text(preview.operation)}</h2>
+    <p className="break-all">{preview.target.id} · {preview.target.full_name || '—'} · {preview.target.email || '—'}</p>
     <p>{text(deleting ? 'deleteDescription' : 'resetDescription')}</p>
     {deleting && <div className="space-y-4">
       {[['deleted', preview.scope.deleted], ['retained', preview.scope.retained]].map(([kind, entities]) => <div key={kind}>
@@ -25,11 +25,8 @@ export default function ImpactPreview({ preview, language, confirmation, setConf
       <h3 className="font-medium">{text('blocked')}</h3>
       <ul className="list-disc pl-5">{preview.blockers.map(code => <li key={code}>{text(code)}</li>)}</ul>
     </div>}
-    <label className="block space-y-2" htmlFor="test-confirmation"><span>{text('confirm')}</span>
-      <ShinkaInput id="test-confirmation" autoComplete="off" spellCheck={false} value={confirmation} disabled={!preview.enabled || busy} onChange={e => setConfirmation(e.target.value)} />
-    </label>
     <div className="flex flex-wrap gap-3">
-      <ShinkaButton onClick={execute} disabled={busy || !preview.enabled || confirmation !== preview.target.id || Date.parse(preview.expires_at) <= Date.now()}>{text('execute')}</ShinkaButton>
+      <ShinkaButton onClick={execute} disabled={busy || !preview.enabled || Date.parse(preview.expires_at) <= Date.now()}>{text(deleting ? 'DELETE_USER' : 'execute')}</ShinkaButton>
       <ShinkaButton variant="secondary" onClick={cancel} disabled={busy}>{text('cancel')}</ShinkaButton>
     </div>
   </section>;

@@ -54,20 +54,20 @@ export const ADMIN_TEST_TOOLS_TESTS = [
     assert(!blocked.enabled && blocked.blockers.includes('ADMIN_TEST_DURABLE_CAPABILITY_REQUIRED') && blocked.blockers.includes('TEST_ENVIRONMENT_UNVERIFIED'), 'production blocker');
     noMutations(f);
   }],
-  ['AT03', 'Lookup/preview read-only projections exclude health, snapshots, identity and credentials', async () => {
+  ['AT03', 'Lookup/preview shows selected identity only; excludes health, snapshots and credentials', async () => {
     const f = adminTestFixture(); const before = bytes(f);
     f.tables.User[2].email = 'private-canary@example.invalid';
     const baseline = bytes(f);
     const result = await f.request({ action: 'lookup', target_id: 'ownerA' });
     const view = await f.preview();
     const output = JSON.stringify([result, view]);
-    assert(!output.includes('private-canary') && !output.includes('birth_date') && !output.includes('TR fixture'), 'private payload');
+    assert(output.includes('private-canary') && !output.includes('birth_date') && !output.includes('TR fixture'), 'private payload');
     assert(bytes(f) === baseline && before !== baseline, 'preview mutation'); noMutations(f);
   }],
   ['AT04', 'Confirmation is actor/target/action/app/expiry bound; changed scope fails', async () => {
     const f = adminTestFixture(), view = await f.preview();
-    const body = { action: 'execute', operation: view.operation, target_id: 'ownerA', confirmation: 'ownerA', preview_token: view.preview_token, request_id: crypto.randomUUID() };
-    for (const patch of [{ confirmation: 'ownerB' }, { target_id: 'ownerB', confirmation: 'ownerB' }, { operation: 'RESET_ONBOARDING' }, { preview_token: view.preview_token + 'x' }]) await rejects(() => f.request({ ...body, ...patch }));
+    const body = { action: 'execute', operation: view.operation, target_id: 'ownerA', confirmation: true, preview_token: view.preview_token, request_id: crypto.randomUUID() };
+    for (const patch of [{ confirmation: false }, { target_id: 'ownerB', confirmation: true }, { operation: 'RESET_ONBOARDING' }, { preview_token: view.preview_token + 'x' }]) await rejects(() => f.request({ ...body, ...patch }));
     f.state.actor = 'adminB'; await rejects(() => f.request(body), 'TEST_PREVIEW_INVALID'); f.state.actor = 'adminA';
     f.tables.UserProfile[0].updated_date = 'changed';
     await rejects(() => f.request(body), 'TEST_PREVIEW_STALE');
@@ -101,14 +101,16 @@ export const ADMIN_TEST_TOOLS_TESTS = [
     f.tables.NotificationDelivery.push({ id: 'notification', user_id: 'ownerA', daily_message_id: 'old-daily', delivery_status: 'PENDING' });
     const before = retained(f), view = await f.preview(), id = crypto.randomUUID();
     assert(view.counts.user_period_record === 205, 'first-page truncation');
-    const result = await f.execute(view, id);
+    let result;
+    try {result=await f.execute(view,id);}catch(e){assert(e.code==='TEST_JOB_RETRY_REQUIRED','bounded batch');}
+    for(let i=0;i<4&&!result;i++) {try{result=await f.resume(id);}catch(e){assert(e.code==='TEST_JOB_RETRY_REQUIRED','resumed batch');}}
     assert(result.job.status === 'COMPLETED' && deleted(f), 'not removed');
     assert(f.tables.UserPeriodRecord.length === 1 && f.tables.UserPeriodRecord[0].user_id === 'ownerB', 'other owner changed');
     assert(retained(f) === before && f.tables.NotificationDelivery[0].delivery_status === 'SKIPPED', 'retention');
-    assert(f.state.audit.length === 2 && !JSON.stringify(f.state.audit).includes('birth_date'), 'audit');
+    assert(f.state.audit.length >= 2 && !JSON.stringify(f.state.audit).includes('birth_date'), 'audit');
     assert(f.state.calls.some(c => c.name === 'UserPeriodRecord' && c.skip === 200), 'pagination not exercised');
     const referenceCalls = f.state.calls.filter(c => c.query?.reference_period_id);
-    assert(referenceCalls.length <= 12 && referenceCalls.every(c => c.query.reference_period_id.$in.length <= 100), 'unbounded per-parent requests');
+    assert(referenceCalls.length <= 24 && referenceCalls.every(c => c.query.reference_period_id.$in.length <= 100), 'unbounded per-parent requests');
     const lookup = await f.request({ action: 'lookup', target_id: 'ownerA' });
     assert(!lookup.target && lookup.job.operation_id === id, 'post-delete recovery lookup');
   }],
@@ -122,7 +124,7 @@ export const ADMIN_TEST_TOOLS_TESTS = [
   }],
   ['AT08', 'No coordinator and failed start audit never mutate a user', async () => {
     const f = adminTestFixture(), view = await f.preview();
-    const body = { action: 'execute', target_id: 'ownerA', operation: 'DELETE_USER', confirmation: 'ownerA', preview_token: view.preview_token, request_id: crypto.randomUUID() };
+    const body = { action: 'execute', target_id: 'ownerA', operation: 'DELETE_USER', confirmation: true, preview_token: view.preview_token, request_id: crypto.randomUUID() };
     await rejects(() => f.request(body, { ...f.dependencies, coordinator: null }), 'ADMIN_TEST_DURABLE_CAPABILITY_REQUIRED');
     f.state.fail = 'start'; await rejects(() => f.request(body));
     assert(!deleted(f) && !f.tables.AdminTestOperation.length, 'unaudited deletion'); noMutations(f);
@@ -144,7 +146,7 @@ export const ADMIN_TEST_TOOLS_TESTS = [
   ['AT10', 'Duplicate requests and reset/delete race serialize in two fixture workers', async () => {
     const f = adminTestFixture(), view = await f.preview(), id = crypto.randomUUID();
     const other = { ...f.dependencies, coordinator: f.worker() };
-    const body = { action: 'execute', target_id: 'ownerA', operation: 'DELETE_USER', confirmation: 'ownerA', preview_token: view.preview_token, request_id: id };
+    const body = { action: 'execute', target_id: 'ownerA', operation: 'DELETE_USER', confirmation: true, preview_token: view.preview_token, request_id: id };
     const results = await Promise.all([f.request(body), f.request(body, other)]);
     assert(results.every(r => r.job.status === 'COMPLETED') && f.tables.AdminTestOperation.length === 1, 'duplicate job');
     const g = adminTestFixture(), del = await g.preview(), restart = await g.preview('RESET_ONBOARDING');

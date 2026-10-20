@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-016
+**Current BuildMarker:** Buildmarker-017
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -29,7 +29,15 @@ Internal route gates are UX only. Both `validateContentArtifacts` and `internalH
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
 
-## Active security boundary — Base44 016
+## Active corrective security contract — 017
+
+The user replaces operator maintenance/drain with durable target admission and resumable cleanup. No new runtime deletion secret or app-wide pause is required. Existing Test app binding/signing configuration, fresh admin, target-bound preview, explicit boolean confirmation, self/last-admin/open-job protections remain. Every normal owned SDK write checks target lifecycle before/after; service-role actor admission alone is insufficient. Completed DELETE remains a permanent tombstone. Already-sent SDK writes and privileged dashboard edits cannot be recalled; late residuals are detected and cleaned on retry, never hidden by checkpoints. A newly observed ambiguous operation/owner/reference fails closed. No all-data-erasure/provider deletion or distributed fencing claim.
+
+Selected-target name/email are now returned only in guarded target lookup/preview for explicit confirmation (user request); they are not added to journal/audit/report/log. Historical 013 no-name/email UI wording is superseded. Actor admission reads ID/role only. Product health values remain private. InternalHealthRun CRUD policies all stay false; digest and a report-bound 24h upload capability support retry without exposing credentials. Health failures return only safe code/stage/request ID and, when necessary, the opaque upload-retry capability; frontend never logs or exports it. Failures of current session/lifecycle and history persistence are separate observations.
+
+Official [Entity SDK](https://docs.base44.com/developers/references/sdk/docs/type-aliases/entities#built-in-user-entity), checked 2026-10-20, explicitly supports service-role read/update/delete of built-in User. Implementation calls User.delete(id) and confirms absent. [Dashboard removal](https://docs.base44.com/Setting-up-your-app/Managing-access#removing-an-app-user) also documents removal/sign-out; SDK token revocation timing, provider re-entry and hosted deletion are not independently measured here. Source/API support is not live acceptance. No new Authentication-panel evidence, external service, provider deletion or hosted destructive test is claimed.
+
+## Historical security boundary — Base44 016
 
 Native Base44 User.role is the single application-admin source. Verified SDK identity plus current User read defeats caller flags/cached roles; no SQL bootstrap/roster or second identity exists. Native role management controls grants/revocations. UI session refresh and backend checks use the same source; role changes do not roll back already-started external calls. Admin tooling remains reachable before onboarding completion, while product/health operations require owner/ACTIVE/current consent and no open deletion/reset conflict.
 
@@ -221,6 +229,6 @@ Live read-only CLI evidence confirms lifecycle schema readability and PRE_IMPORT
 
 Fresh TLS-verified npm audit after `npm ci`: 0 Critical, 0 High, 2 Moderate, 0 Low. Added pinned `postgres` 3.4.9 for server/operator/local database tests; no driver in the frontend graph. `security:deps` passes the native High threshold. Remaining router paths are `react-router-dom@6.30.6 → react-router@6.30.6`: GHSA-wrjc-x8rr-h8h6 (untrusted backslash navigation) and GHSA-337j-9hxr-rhxg (SSR hydration deserialization). Existing mitigation remains static/internal navigation plus validated auth return path; app uses BrowserRouter without SSR hydration. A major migration to fixed v7 is the vendor fix and remains separate scoped work, not suppressed by an override. The audit JSON and exact lock hash are recorded with 015 evidence.
 
-## Current dependency scan — 016
+## Historical dependency scan — 016
 
 Clean npm lockfile install after removing Postgres.js: zero Critical/High, two existing Moderate React Router advisories. No forced major-router migration. Existing static internal navigation/no SSR mitigation and remaining limits remain documented above. Exact fresh audit is retained in reports/base44-016/npm-audit.json. No SQL driver or runtime secret dependency remains.

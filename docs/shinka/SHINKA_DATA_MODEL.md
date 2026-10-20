@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-016
+**Current BuildMarker:** Buildmarker-017
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -12,6 +12,10 @@
 **External Verification Required:** Base44 native UNIQUE is unsupported; no multi-record transaction/CAS guarantee is claimed. Native handler tests use synthetic transport; hosted schema/authorization/mutation recovery remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+
+## Tooling retry metadata — 017
+
+InternalHealthRun adds optional `report_digest` (SHA-256 of the normalized redacted full report) for immutable same-run retry identity. No product field or policy changes. Older rows lacking it remain readable/immutable; new save cannot overwrite them. Private file URI remains server-selected. Duplicate runId observations fail closed; there is no native UNIQUE guarantee. AdminTestOperation and UserCalendarAction schemas stay unchanged; completed DELETE tombstones remain and all cleanup stages are rechecked on retry. Audit/user/history retention is unchanged.
 
 ## Current physical contract — Base44 016
 

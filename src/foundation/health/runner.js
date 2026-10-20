@@ -10,7 +10,7 @@ import { classifyError, withTimeout, ERROR_CODES } from "@/foundation/errors";
 
 const INTEGRITY_CASES = ["H16-001", "H16-002", "H16-003", "H16-004"];
 
-async function executeCase(def, ctx) {
+async function executeCase(def, ctx, parentSignal) {
   const meta = toCaseRecord(def);
   if (def.applicability !== APPLICABILITY.CURRENT) {
     const reason = def.applicability === APPLICABILITY.FUTURE ? "FUTURE_PACKAGE — not active for current BuildMarker" : "EXTERNAL_RELEASE — tracked separately, not a fake PASS";
@@ -18,8 +18,11 @@ async function executeCase(def, ctx) {
       evidence: ev(CLASS.RECORDED_DECISION, "Health catalog applicability", def.applicability, APPLICABILITY.CURRENT, reason) };
   }
   const t0 = performance.now();
+  const controller=new AbortController();
+  const abort=()=>controller.abort(); parentSignal?.addEventListener('abort',abort,{once:true});
+  if(parentSignal?.aborted)controller.abort();
   try {
-    const r = await withTimeout(Promise.resolve().then(() => def.run(ctx)), def.timeoutMs || CASE_TIMEOUT_MS);
+    const r = await withTimeout(Promise.resolve().then(() => def.run({...ctx,signal:controller.signal})), def.timeoutMs || CASE_TIMEOUT_MS);
     return enforceEvidence({ ...meta, ...r, attempted: true, executed: true, durationMs: Math.round(performance.now() - t0) });
   } catch (e) {
     const code = classifyError(e);
@@ -27,11 +30,11 @@ async function executeCase(def, ctx) {
     return { ...meta, status: timedOut ? STATUS.BLOCKED : STATUS.FAIL, attempted: true, executed: !timedOut,
       durationMs: Math.round(performance.now() - t0),
       evidence: ev(def.classification, def.id, code, "runner completes within bound", timedOut ? `TIMEOUT after ${def.timeoutMs || CASE_TIMEOUT_MS}ms` : `RUNNER_ERROR:${code}`) };
-  }
+  } finally {controller.abort();parentSignal?.removeEventListener('abort',abort);}
 }
 
-/** @param {{suiteId?: string|null, onProgress?: (done: number, total: number) => void}} [options] */
-export async function runHealth({ suiteId = null, onProgress } = {}) {
+/** @param {{suiteId?: string|null, onProgress?: (done: number, total: number) => void, signal?: AbortSignal}} [options] */
+export async function runHealth({ suiteId = null, onProgress, signal } = {}) {
   const scope = suiteId ? `SUITE:${suiteId}` : "FULL";
   const started = new Date();
   const ctx = createHealthContext();
@@ -39,8 +42,9 @@ export async function runHealth({ suiteId = null, onProgress } = {}) {
   const ordered = [...selected.filter((c) => c.runnerType !== RUNNER.META), ...selected.filter((c) => c.runnerType === RUNNER.META)];
   const results = [];
   for (const def of ordered) {
+    if(signal?.aborted)throw new Error('HEALTH_RUN_CANCELLED');
     ctx.results = results.slice();
-    results.push(await executeCase(def, ctx));
+    results.push(await executeCase(def, ctx, signal));
     onProgress?.(results.length, ordered.length);
   }
   const completed = new Date();

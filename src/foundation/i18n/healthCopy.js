@@ -1,0 +1,5 @@
+const copy = {
+ en:{retrySave:'Save this report again',saveFailed:'The completed report could not be saved. Retry saving without running Health again.',evidenceLabel:'Browser measurement JSON',evidenceHelp:'Viewport checks need current build measurements from the browser runner. Import them before running Health. Missing measurements remain BLOCKED.',evidenceLoaded:'Browser measurements loaded for this build and environment.',evidenceInvalid:'Measurements do not match this build/environment or have expired.'},
+ tr:{retrySave:'Bu raporu yeniden kaydet',saveFailed:'Tamamlanan rapor kaydedilemedi. Health’i yeniden çalıştırmadan kaydetmeyi tekrar dene.',evidenceLabel:'Tarayıcı ölçüm JSON dosyası',evidenceHelp:'Viewport kontrolleri güncel sürümün tarayıcı ölçümlerini gerektirir. Health öncesinde ölçümleri yükle. Ölçülmeyen kontroller BLOCKED kalır.',evidenceLoaded:'Bu sürüm ve ortam için tarayıcı ölçümleri yüklendi.',evidenceInvalid:'Ölçümler bu sürüm/ortamla eşleşmiyor veya süresi dolmuş.'}
+};
+export const healthCopy=(key,language='en')=>(copy[language]||copy.en)[key]||key;

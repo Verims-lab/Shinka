@@ -1,3 +1,4 @@
+import { nativeFixture } from './nativeFixture';
 import { createElement as h } from 'react';
 import { createRoot } from 'react-dom/client';
 import { MemoryRouter } from 'react-router-dom';
@@ -35,7 +36,7 @@ export const ADMIN_TEST_UI_TESTS = [
         await lookup(q);
         q('[data-destructive="true"]').click(); await until(() => q('[data-test-preview]'));
         assert(host.textContent.includes(TEST_TOOLS_COPY[language].ADMIN_TEST_DURABLE_CAPABILITY_REQUIRED), 'missing capability explanation');
-        assert(q('#test-confirmation').disabled && q('[data-test-preview] [data-variant="primary"]').disabled, 'unsafe execution enabled');
+        assert(!q('#test-confirmation') && q('[data-test-preview] [data-variant="primary"]').disabled, 'unsafe execution enabled');
         assert(host.textContent.includes('fixture-app') && host.textContent.includes(TEST_TOOLS_COPY[language].sharedDatabase), 'environment missing');
         assert(document.activeElement === q('[data-test-preview] h2'), 'preview focus');
         assert(host.scrollWidth <= 321, 'mobile overflow');
@@ -58,20 +59,16 @@ export const ADMIN_TEST_UI_TESTS = [
       assert(!q('[data-test-target]') && q('[data-destructive="true"]').disabled, 'late target accepted');
     });
     await fixture('tr', (action, body) => f.request({ action, ...body }), async q => {
-      await lookup(q); q('[data-destructive="true"]').click(); await until(() => q('#test-confirmation'));
-      input(q('#test-confirmation'), 'ownerA'); await pause();
+      await lookup(q); q('[data-destructive="true"]').click(); await until(() => q('[data-test-preview]'));
       input(q('#test-user-id'), 'ownerB'); await pause();
       assert(!q('[data-test-preview]') && !q('[data-test-target]'), 'old approval retained');
     });
   }],
-  ['AU03', 'Wrong confirmation disabled; cancel restores focus and creates no operation', async () => {
+  ['AU03', 'Single explicit confirmation shows target; cancel restores focus without mutation', async () => {
     const f = adminTestFixture(); f.state.time = new Date().toISOString();
     await fixture('en', (action, body) => f.request({ action, ...body }), async q => {
-      await lookup(q); q('[data-destructive="true"]').click(); await until(() => q('#test-confirmation'));
-      input(q('#test-confirmation'), 'ownerB'); await pause();
-      assert(q('[data-test-preview] [data-variant="primary"]').disabled, 'wrong confirmation');
-      input(q('#test-confirmation'), 'ownerA'); await pause();
-      assert(!q('[data-test-preview] [data-variant="primary"]').disabled, 'correct confirmation unavailable in fixture');
+      await lookup(q); q('[data-destructive="true"]').click(); await until(() => q('[data-test-preview]'));
+      assert(!q('[data-test-preview] [data-variant="primary"]').disabled, 'explicit confirmation unavailable');
       q('[data-test-preview] [data-variant="secondary"]').click(); await pause();
       assert(!q('[data-test-preview]') && document.activeElement === q('#test-user-id'), 'cancel focus');
     });
@@ -80,12 +77,25 @@ export const ADMIN_TEST_UI_TESTS = [
   ['AU04', 'Double click submits one reset; resulting operation remains visible for status', async () => {
     const f = adminTestFixture(); f.state.time = new Date().toISOString(); let executions = 0;
     await fixture('en', (action, body) => { if (action === 'execute') executions++; return f.request({ action, ...body }); }, async (q, host) => {
-      await lookup(q); q('[data-destructive="false"]').click(); await until(() => q('#test-confirmation'));
-      input(q('#test-confirmation'), 'ownerA'); await pause();
+      await lookup(q); q('[data-destructive="false"]').click(); await until(() => q('[data-test-preview]'));
       const button = q('[data-test-preview] [data-variant="primary"]'); button.click(); button.click();
       await until(() => host.textContent.includes(TEST_TOOLS_COPY.en.resetResult));
       assert(executions === 1 && f.tables.AdminTestOperation.length === 1, 'double submit');
       assert(!q('[data-test-preview]'), 'approval reusable');
     });
+  }],
+  ['AU05','Native delete shows current identity and needs one confirmation in TR/EN',async()=>{
+    for(const language of ['tr','en']) {
+      const f=nativeFixture();f.state.time=new Date().toISOString();
+      Object.assign(f.tables.User.find(row=>row.id==='ownerA'),{full_name:'Synthetic Target',email:'target@example.invalid'});
+      let executions=0;
+      await fixture(language,(action,body)=>{if(action==='execute')executions++;return f.tools({action,...body});},async(q,host)=>{
+        await lookup(q);q('[data-destructive="true"]').click();await until(()=>q('[data-test-preview]'));
+        assert(host.textContent.includes('Synthetic Target')&&host.textContent.includes('target@example.invalid')&&!q('#test-confirmation'),'identity or single confirmation');
+        const button=q('[data-test-preview] [data-variant="primary"]');assert(!button.disabled,'native delete unavailable');button.click();button.click();
+        await until(()=>host.textContent.includes(TEST_TOOLS_COPY[language].deletedResult));
+        assert(executions===1&&!f.tables.User.some(row=>row.id==='ownerA')&&f.tables.AdminTestOperation.length===1,'native UI did not verify removal');
+      });
+    }
   }],
 ];

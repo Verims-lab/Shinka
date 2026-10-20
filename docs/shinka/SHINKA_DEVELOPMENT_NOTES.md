@@ -2,11 +2,21 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-016
+**Current BuildMarker:** Buildmarker-017
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
-**Scope:** Current Base44 hosted verification and approved reference/synthetic writes; retained historical maintenance evidence. No agent main merge/publish.
+**Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## Buildmarker-017 — Health recovery and in-app deletion / HC-017.0
+
+Git preflight found clean local/origin Test at a0ba996 and main two commits ahead; Test was fast-forwarded and synchronized to ac3e7e9 before changes. That commit by base44-builder[bot] reintroduced five unused auth templates; removed after route/import inspection. Apple/Google shell, callback and safe return tests remain. Platform generation trigger and current Authentication configuration were not reverified.
+
+Replaced iframe-dependent geometry with explicit top-level Playwright measurements bound to build/source/origin/environment/viewport/engine/time; absent or malformed evidence blocks. XFO/CSP and 90s case deadline remain. H12-033 follows the approved target deletion contract; H12-034 adds recovery regressions, without retiring failed cases. Health save now separates safe failure stages and uses runId/digest readback plus a signed upload receipt; the same completed report can be retried without a new run. Only schema delta is optional InternalHealthRun.report_digest, with closed policies preserved.
+
+Admin deletion shows the current target identity/scope and takes one confirmation. It verifies the durable target operation before destructive calls, checks actor and service-role target separately, bounds cleanup at 100 writes/8s from its first cleanup write, resumes the same operation and reconciles late rows. Slow preparation cannot starve every retry. Self/last-admin and retention rules remain; no transaction or distributed fence is claimed. User.delete removes the app's native user entry, subject to hosted acceptance; it does not delete Apple/Google accounts. UI and backend no longer require a routine operator/drain window. Permanent no-routine-live-Health policy is recorded in Development Rules and Release Health.
+
+Chromium/WebKit each pass 454/454 canonical regressions and 101/101 local Health with zero page errors. Commands, safe dependency findings and performance evidence are in [017 verification](reports/health-recovery-017/verification.json). No live app/API diagnostic, import, schema push, reset, deletion, Full Health or publish occurred in this package. Supplied HC-016.1 run 62007d09-7694-423a-8708-2a44d9328270 remains NOT_READY (133 PASS/1 FAIL/2 BLOCKED/19 N/A); H03-006/H09-004 stay recorded PASS. Original save failure and separate lifecycle 503 are not assigned an unproven common cause. Delivery is MANUAL_USER_VALIDATION_PENDING, with Test push allowed. Internal Build keeps 013–017; audit/product records and historical evidence are not pruned. [Publication and short acceptance steps](reports/SHINKA_HEALTH_RECOVERY_017.md).
 
 ## Buildmarker-016 hosted continuation / HC-016.1 — 2026-10-20
 

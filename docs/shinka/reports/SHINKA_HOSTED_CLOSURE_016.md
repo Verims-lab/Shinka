@@ -1,3 +1,5 @@
+> **Historical 016 evidence.** User subsequently supplied published HC-016.1 run `62007d09-7694-423a-8708-2a44d9328270` (133 PASS /1 FAIL /2 BLOCKED /19 N/A). 017 replaces routine agent-run Health and operator-drain deletion instructions. See [017 handoff](SHINKA_HEALTH_RECOVERY_017.md). Original measurements below are unchanged.
+
 # Shinka 016 — hosted closure and operator handoff
 
 **Current BuildMarker:** Buildmarker-016

@@ -1,3 +1,4 @@
+import { probeIdentity, acceptBrowserEvidence } from '@/foundation/probes/browserEvidence';
 import { ADMIN_TEST_HEALTH_CASES } from '@/foundation/health/cases/adminTestTools';
 import React from "react";
 import { createRoot } from "react-dom/client";
@@ -8,7 +9,7 @@ import OnboardingFixture from './OnboardingFixture';
 import App from '@/App';
 import { authFixture } from './fakeBase44';
 import AdminPanel from '@/pages/internal/AdminPanel';
-import { isAuthProbePath, createAuthProbeFrame, waitForAuthProbe, measureAuthShell } from '@/foundation/probes/authProbeContract';
+import { isAuthProbePath, waitForAuthProbe, measureAuthShell } from '@/foundation/probes/authProbeContract';
 import { runFoundationTests } from "@/foundation/tests/foundationTests";
 import { ONBOARDING_HEALTH_CASES } from '@/foundation/health/cases/onboarding';
 import { H01_CASES } from "@/foundation/health/cases/h01";
@@ -36,7 +37,7 @@ createRoot(document.getElementById("root")).render(productionRoute?<App/>:<Brows
 </Routes></BrowserRouter>);
 window.__authFixture = authFixture;
 window.__runFoundationTests = runFoundationTests;
-window.__authProbeTools = {createAuthProbeFrame,waitForAuthProbe,measureAuthShell};
+window.__authProbeTools = {waitForAuthProbe,measureAuthShell};
 window.__foundationCatalog = {version:HEALTH_CATALOG_VERSION,suites:SUITES.length,cases:HEALTH_CASES.length,
   current:HEALTH_CASES.filter(c=>c.applicability===A.CURRENT).length,
   future:HEALTH_CASES.filter(c=>c.applicability===A.FUTURE).length,
@@ -60,3 +61,6 @@ window.__calendarHealthEvidence = async () => {
 };
 
 window.__adminTestHealthEvidence = async () => { const out=[]; for (const c of ADMIN_TEST_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&c.runnerType==='RUNTIME')) out.push({id:c.id,...await c.run({})}); return out; };
+
+window.__probeIdentity = probeIdentity;
+window.__acceptBrowserEvidence = acceptBrowserEvidence;

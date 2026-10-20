@@ -9,23 +9,24 @@ export default function TestsPanel() {
   const [running, setRunning] = useState(false);
   const [error, setError] = useState(false);
   const active = useRef(false),
-    lock = useRef(false);
+    lock = useRef(false), controller = useRef(null);
   useEffect(() => {
     active.current = true;
     return () => {
-      active.current = false;
+      active.current = false; controller.current?.abort();
     };
   }, []);
   const run = async () => {
     if (lock.current) return;
     lock.current = true;
+    controller.current=new AbortController();
     setRunning(true);
     setError(false);
     try {
       const { runFoundationTests } = await import(
         "@/foundation/tests/foundationTests"
       );
-      const measured = await runFoundationTests();
+      const measured = await runFoundationTests({signal:controller.current.signal});
       if (active.current) setResults(measured);
     } catch {
       if (active.current) setError(true);

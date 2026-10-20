@@ -32,11 +32,11 @@ export const H13_CASES = [
     const body = getComputedStyle(r).fontFamily;
     return verdict(/Cormorant Garamond/.test(head) && /Inter/.test(body), ev(CLASS.LIVE_RUNTIME, "getComputedStyle", { heading: head, body }, { heading: "Cormorant Garamond", body: "Inter" }, "Computed font check"));
   }, DOM),
-  c("H13-004", "No horizontal overflow at 360px (internal pages)", "Health Center and Build & Environment rendered in a 360px-wide frame have no horizontal overflow.", async () => {
+  c("H13-004", "No horizontal overflow at 360px (internal pages)", "Health Center and Build & Environment measured in a real top-level 360px browser viewport have no horizontal overflow.", async () => {
     const pages = {};
     for (const p of ["/internal/health?probe=1", "/internal/build?probe=1"]) pages[p] = await probeMobileOverflow(p, 360, 15000);
-    if (Object.values(pages).some((r) => r.state !== "MEASURED")) return blockedResult(ev(CLASS.LIVE_RUNTIME, "iframe layout probe", pages, "MEASURED", "Probe not measured"));
-    return verdict(Object.values(pages).every((r) => !r.overflow), ev(CLASS.LIVE_RUNTIME, "iframe layout probe /internal/*", pages, { overflow: false }, "Measured scrollWidth"));
+    if (Object.values(pages).some((r) => r.state !== "MEASURED")) return blockedResult(ev(CLASS.LIVE_RUNTIME, "top-level browser measurement", pages, "MEASURED", "Probe not measured"));
+    return verdict(Object.values(pages).every((r) => !r.overflow), ev(CLASS.LIVE_RUNTIME, "top-level browser measurement /internal/*", pages, { overflow: false }, "Measured scrollWidth"));
   }, { ...DOM, timeoutMs: 40000 }),
   c("H13-005", "Accessible labels on interactive controls", "Every visible control (including icon-only) inside the Health page has an accessible name.", async () => {
     if (!root()) return noRoot();

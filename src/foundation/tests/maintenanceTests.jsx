@@ -298,4 +298,18 @@ export const MAINTENANCE_TESTS = [
       }
     },
   ],
+  ["M10", "Failed Health save retries the same completed run without rerunning tests", async () => {
+    const {useHealthRunner}=await import('../health/useHealthRunner');
+    /** @type {ReturnType<typeof useHealthRunner>} */
+    let hook;
+    let runs=0,saves=0;
+    const {buildReport}=await import('../health/report');
+    const {summarize,computeGate}=await import('../health/aggregate');
+    const report=buildReport({scope:'FULL',started:new Date(),completed:new Date(),results:[],summary:summarize([]),gate:computeGate([])});
+    const operations={list:async()=>[],run:async()=>{runs++;return report;},save:async value=>{check(value===report);if(++saves===1)throw new Error('private');}};
+    function Harness(){hook=useHealthRunner(operations);return null;}
+    const host=document.createElement('div');document.body.appendChild(host);const root=createRoot(host);
+    try {root.render(createElement(Harness));await pause();await hook.run();await pause();check(hook.report===report&&hook.saveError);await hook.retrySave();await pause();check(runs===1&&saves===2&&hook.saveError===null);}
+    finally {root.unmount();host.remove();}
+  }],
 ];

@@ -65,6 +65,10 @@
     "report_file_uri": {
       "type": "string",
       "description": "Private file URI of the full redacted report JSON"
+    },
+    "report_digest": {
+      "type": "string",
+      "description": "SHA-256 of normalized full redacted report; immutable retry identity. Optional for historical rows."
     }
   },
   "required": [
