@@ -2,7 +2,7 @@
 
 Takvim ekranı, ortak hesaplama ve işlem protokolü uygulanmıştır. **Üretimde ekleme, düzeltme, silme ve Takvim üzerinden yeni rıza kaydı kapalıdır.** Base44 koleksiyonlarını birlikte, kalıcı ve bağımsız worker’lar arasında atomik değiştiren bir yetenek doğrulanmamıştır. Okuma ve aylık gösterim kullanılabilir; etkin kayıt akışları izole test modeliyle sınanmıştır. Bu paket üretime hazır veya canlı doğrulanmış olarak işaretlenmez.
 
-60 günü aşan gerçek aralıklar için kullanıcı ayrıca ürün kuralı verecektir. **OD-012 OPEN** kalır. Gerçek tarihler korunur; değerler 60’a kırpılmaz, hesaplamadan sessizce çıkarılmaz. Etkilenen hesaplama `CYCLE_RANGE_DECISION_REQUIRED` ile durur. Okuma, kayıtlı günleri tahminlerin hesaplanamadığını açıklayarak gösterebilir.
+**014 güncellemesi:** OD-012 kullanıcı kararıyla kapandı ve ortak Home/Takvim hesaplamasında uygulandı. Son üç tamamlanmış aralık penceresi içindeki 15–60 değerler kullanılır; >60 gerçek tarihler korunur, eski aralıklarla örnek tamamlanmaz. Desteklenen örnek yoksa güncel tahmin/evre üretilmez; hiç tamamlanmış aralık yoksa başlangıç/28 davranışı sürer. Aşağıdaki 012 ölçümleri tarihsel teslim kanıtıdır. Güncel kapsam ve testler: [014 teslimi](SHINKA_CLOSURE_014.md). Üretim yazma blokajı devam eder.
 
 ## Kaynak ve kapsam
 
@@ -90,10 +90,17 @@ Son inceleme ayrıca bozuk eski cache zamanının commit sonrasında fark edilme
 
 ## Publish sonrası kabul
 
-1. Main merge ve Base44 sync/publish kullanıcı tarafından yapılır. Buildmarker-012 / HC-012.0 ve `calendar` fonksiyonunun dağıtımını doğrulayın. Mevcut kullanıcıyla aylık kayıtları, TR/EN, ay değişimi, Profile/admin ve Home dönüşünü kontrol edin. Şu an beklenen sonuç: değişiklikler kapalı; giriş/seçim yeni onam veya sağlık kaydı oluşturmaz.
+1. Main merge ve Base44 sync/publish kullanıcı tarafından yapılır. Güncel devam paketi **Buildmarker-014 / HC-014.0** ve `calendar` fonksiyonunun dağıtımını doğrulayın; [014 yayın adımlarını](SHINKA_RELEASE_ROLLOUT_014.md) izleyin. Mevcut kullanıcıyla aylık kayıtları, TR/EN, ay değişimi, Profile/admin ve Home dönüşünü kontrol edin. Şu an beklenen sonuç: değişiklikler kapalı; giriş/seçim yeni onam veya sağlık kaydı oluşturmaz.
 2. Ürün kuralı/atomiklik/güvenlik doğrulaması kapandıktan ve gerçek adapter yayımlandıktan sonra, amaç için ayrılmış aynı test hesabında **ekle → yeniden aç → aynı ID ile düzelt → silmeyi iptal et → sil → son kaydı sil**. Önce/sonra owner kapsamlı backend okumasıyla kayıt sayısı/referanslar ve türetilmiş verileri doğrulayın. NULL ayar ve mevcut grant zamanı korunmalı.
 3. Kayıp yanıt/yenileme/iki sekme/bağımsız worker tekrarlarını gerçek mekanizmada sınayın; tek etkili işlem ve doğru conflict bekleyin. Aktif olmayan, onamsız, silme işi süren ve diğer owner erişimleri reddedilmeli. Rıza geri çekilirken bekleyen eski yanıt sağlık verisini geri göstermemeli.
 4. Son kayıt silindikten sonra tahmin/fazlar sıfır, ayarlar aynı olmalı. Önceden kaydedilmiş bugünün Home ID/Pair/dört snapshot’ı aynı kalmalı; yalnızca henüz üretilmemiş günlük hesaplama UNKNOWN kullanmalı.
-5. Android Chrome ve iPhone Safari’de native tarih seçici, klavye, safe area, dönüş/arka plan ve ekran okuyucuyla gerçek cihaz kabulünü yapın. Sonra deployed **Full Health → kaydet → listele → özel raporu tekrar aç**. H08-005/H08-006/H09-004 ilgili kanıt olmadan PASS yapılmamalı.
+5. Android Chrome ve iPhone Safari’de native tarih seçici, klavye, safe area, dönüş/arka plan ve ekran okuyucuyla gerçek cihaz kabulünü yapın. Sonra deployed **Full Health → kaydet → listele → özel raporu tekrar aç**. H08-005/H09-004 canlı yetenek kanıtı olmadan PASS yapılmamalı; H08-006 onaylı OD-012 davranışını çalıştırarak doğrular ve üretim persistence engelini kapatmaz.
 
 ON-05 için aynı yarım kalmış hesapla `saveCycle` başarı yanıtı ve consent/event/period/settings readback’i ayrıca [önceki incident adımlarıyla](SHINKA_ON05_CONSENT_RECOVERY.md) doğrulanmalıdır. Bu paket o olayı kapatmaz. Kanıtlarda token veya tam sağlık kaydı yerine gerekli ID/sayı/durum özeti kullanın.
+
+
+## 014 teknik kapanış devamı
+
+CR01…CR07 / CU05, eski CA02 üst-aralık ret beklentisinin yerine onaylı davranışı doğrular; case silinmez. Geçerli uzun ekleme/düzeltme planı oluşur, destek dışı kapanmış aralığa faz yazılmaz, eski güncel tahmin/fazlar yerine yeni sonuç konur. Home aynı hesaplamayı kullanır; mevcut günlük kayıt değişmez. H08-006 artık davranış çalıştıran sentetik kontroldür. H08-005 gerçek üretim persistence eksikliği nedeniyle BLOCKED kalır.
+
+Güncel güvenlik taraması 0 Critical/High, 2 Moderate ile tamamlandı; yukarıdaki 012 TLS blokajı o çalıştırmanın tarihsel sonucudur. Üretim çözümü seçenekleri, tek yetkili veri modeli ve onay gereksinimi [karar belgesinde](SHINKA_PERSISTENCE_DECISION_014.md); mevcut uygulamada yapılabilen somut şema/import kontrolleri [yayın belgesinde](SHINKA_RELEASE_ROLLOUT_014.md). Hiçbir canlı Calendar mutasyonu veya publish yapılmadı.

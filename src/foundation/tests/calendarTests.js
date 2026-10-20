@@ -1,3 +1,4 @@
+import { CYCLE_RANGE_TESTS } from './cycleRangeTests';
 import { check } from './dataModelTests';
 import { calendarFixture, CALENDAR_NOW } from './calendarFixture';
 import { calculateCalendar, validatePeriodChange, addCalendarDays, calendarMonthView } from '../../../base44/shared/calendarCalculation.js';
@@ -14,6 +15,7 @@ const period = (id, date) => ({ id, user_id: 'ownerA', period_start_date: date }
 const read = f => f.request('read');
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CALENDAR_TESTS = [
+ ...CYCLE_RANGE_TESTS,
  ['CA01', 'Source 28/5 phases, three future cycles, real/predicted basis and NULL inputs', () => {
    const settings = { period_duration_days: null, initial_cycle_length_days: null };
    const result = calculateCalendar({ periods: [period('p1', '2026-10-01')], settings, today: '2026-10-20' });
@@ -22,12 +24,13 @@ export const CALENDAR_TESTS = [
    check(result.phases[27].calculation_basis === 'RECORDED_START' && result.phases[28].calculation_basis === 'PREDICTED');
    check(settings.period_duration_days === null && settings.initial_cycle_length_days === null);
  }],
- ['CA02', 'Source 26/27/45 preserves actual outlier, half-up 27 and explicit long-interval gap', async () => {
+ ['CA02', 'Source 26/27/45 preserves actual outlier, half-up 27 and unsupported history', async () => {
    const dates = ['2026-06-01','2026-06-27','2026-07-24','2026-09-07'];
    const periods = dates.map((day,i) => period(`p${i}`, day));
    const result = calculateCalendar({ periods, today: '2026-09-10' });
    check(result.estimate.length === 27 && result.estimate.excluded[0] === 45 && result.observations.length === 3 && periods.length === 4);
-   await reject(() => calculateCalendar({ periods: [period('a','2026-01-01'),period('b','2026-04-01')], today:'2026-10-20' }), 'CYCLE_RANGE_DECISION_REQUIRED');
+   const unsupported = calculateCalendar({ periods: [period('a','2026-01-01'),period('b','2026-04-01')], today:'2026-10-20' });
+   check(unsupported.estimate.length === null && !unsupported.predictions.length && !unsupported.phases.length);
  }],
  ['CA03', 'Duplicate and 14 days rejected, 15 accepted on both sides outside displayed month', async () => {
    const rows = [period('a','2026-08-31'),period('b','2026-09-30'),period('c','2026-10-30')];
@@ -167,6 +170,13 @@ export const CALENDAR_TESTS = [
    const response=await handleCalendarRequest(new Request('https://test.invalid',{method:'POST',body:'{"action":"read"}'}),()=>({auth:{me:async()=>{throw new Error('secret@example.invalid health payload');}}}));
    check(!JSON.stringify(await response.json()).includes('secret'));
    await reject(()=>calendarRequest('read',{}, {functions:{invoke:async()=>({data:{state:'READY'}})}}),'CALENDAR_READBACK_CONFLICT');
+   const view=await f.request('read');
+   for (const invalid of [
+     {...view,calculationNotice:'UNAPPROVED_NOTICE'},
+     {...view,calculationNotice:'CYCLE_ESTIMATE_UNAVAILABLE',predictedDays:['2026-10-29']},
+   ]) await reject(()=>calendarRequest('read',{}, {functions:{invoke:async()=>({data:invalid})}}),'CALENDAR_READBACK_CONFLICT');
+   const unsupported={...view,calculationNotice:'CYCLE_ESTIMATE_UNAVAILABLE',predictedDays:[]};
+   check((await calendarRequest('read',{}, {functions:{invoke:async()=>({data:unsupported})}})).calculationNotice==='CYCLE_ESTIMATE_UNAVAILABLE');
    f.rows.user_cycle_phase_day[0].calculated_at='2026-10-20T12:00:00';
    const before=JSON.stringify(f.rows);
    await reject(()=>f.change('edit',{period_id:f.rows.user_period_record[0].id,date:'2026-10-01'}));

@@ -2,11 +2,11 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-013
+**Current BuildMarker:** Buildmarker-014
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-012.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-014.0; repository, synthetic and external evidence separated.
 
 ## Previous catalog checkpoint (HC-011.0) — 16 suites, 137 cases
 
@@ -63,7 +63,7 @@ Final local results and exact environment are recorded in [Development Notes](SH
 
 ## Required external closure
 
-Run the deployed **current** marker/catalog Full Health and save/list/open its private report. Verify both function bundles, live Apple/Google callbacks, new GeoNames country/region/settlement/resolve/save, owner A/B/admin/anonymous boundaries, explicit NULLs, native timestamp offsets, keyed uniqueness/conditional updates and protected-history behavior. H04-006, H06-007, H10-004, H12-901, H13-013 and H16-901/902/903 plus H11-006 plus H09-901 remain ten explicit external requirements. First Shinka modules/UI are implemented; production creation remains blocked by durable persistence and current import prerequisites.
+Run the deployed **current** marker/catalog Full Health and save/list/open its private report. Verify current function bundles, live Apple/Google callbacks, GeoNames country/region/settlement/resolve/save, owner A/B/admin/anonymous boundaries, explicit NULLs, timestamp authority, proven uniqueness/conditional commits and protected-history behavior. H04-006, H06-007, H10-004, H12-901, H13-013, H16-901/902/903, H11-006, H09-901, H08-901 and H12-902 are the twelve explicit external requirements in HC-014.0. First Shinka modules/UI are implemented; production creation remains blocked by durable persistence and current import prerequisites.
 
 The 2026-10-19 live zero counts, historical readiness and transport evidence are retained once in [prior evidence](reports/SHINKA_PRE_009_EVIDENCE.md). They do not certify package 009. Package retention only bounds Internal Build; it does not prune necessary Health evidence or security records. External cases remain listed N/A in normal runs and cannot be promoted to PASS by local fixtures.
 
@@ -102,20 +102,27 @@ No case is deleted or downgraded. Six formerly future cases move to executed syn
 H02-006 now records the explicit user source and resolution rule. H05-010 additionally executes DM26 (independent exact six-row approval receipt/provenance), DM27 (unique codes, bijective source-label mapping, required bilingual names) and DM28 (approved definition through dry-run/batched import/readback/retry with unchanged Pair text/mapping). These expand the same exact-import contract; HC-011.0 and its 137 cases/118 current/9 future/10 external remain unchanged. H05-009 still requires real counts/hash/crosswalk; approval alone is not VERIFIED_IMPORTED. H09-004 remains BLOCKED and H09-901/ON-05/physical requirements remain external. No case is removed, relaxed or promoted by the approval.
 
 
-## HC-012.0 Calendar reconciliation
+## Historical HC-012.0 Calendar reconciliation
 
 Catalog: **143 cases / 125 current / 7 future / 11 external**, 16 suites. H08-002 is activated for full-history spacing/date/edit/delete validation. H11-002 is activated for the scoped explicit Calendar regrant guard; the withdrawal executor remains future H11-001. H08-001/003 expand the existing shared phase/default/outlier evidence to Calendar. H05 staged validation explicitly includes 012; HC12 now checks the unapproved 013 boundary.
 
-Add H08-004 (synthetic atomic replacement/receipt/failure/lost response/two-worker/Home preservation); H08-005 (current BLOCKED production transaction prerequisite); H08-006 (current BLOCKED OD-012 source gap); H08-901 (hosted lifecycle/readback external); H12-027 (owner/consent/pagination/stale responses); H13-015 (TR/EN monthly accessible controls/explicit confirmation). No suite/case is deleted. Moving two placeholders preserves their IDs and intent, with the scoped executor and evidence classification stated. No synthetic result can clear H08-005/H09-004 or H08-901/ON-05/device obligations.
+Added H08-004 (synthetic atomic replacement/receipt/failure/lost response/two-worker/Home preservation); H08-005 (BLOCKED production transaction prerequisite); H08-006 (then-BLOCKED OD-012 source gap, superseded by HC-014.0 below); H08-901 (hosted lifecycle/readback external); H12-027 (owner/consent/pagination/stale responses); H13-015 (TR/EN monthly accessible controls/explicit confirmation). No suite/case was deleted. Moving two placeholders preserved their IDs and intent, with the scoped executor and evidence classification stated. No synthetic result can clear H08-005/H09-004 or H08-901/ON-05/device obligations.
 
 H13-008 now verifies `ProductNavigation` renders `BOTTOM_NAV` and both Home and Calendar consume it, replacing the stale Home-only source check that failed after extraction. Its three-item/icon contract is unchanged; the failing case was corrected, not removed. H13 light-only/localized-shell source inspection also includes Calendar and the shared navigation.
 
 The CLI executes the five current synthetic Calendar cases separately from the two actual blockers and external case, and reports that scope. CA/CU definitions join the same canonical registry, plus actual-App Calendar screenshots and navigation scenarios. Final measured counts/results are recorded in the 012 handoff and Development Notes. Deployed Full Health is expected BLOCKED until missing capabilities/product rule are genuinely resolved; saving/reading that report is still required after publication.
 
-## HC-013.0 Admin Test Tools reconciliation
+## Historical HC-013.0 Admin Test Tools reconciliation
 
 Add H12-028 (admin/payload/preview/scope), H12-029 (isolated journal/deletion/recovery/stale tokens), H12-030 (persistent reset/normal validation/Skip/same-day reuse), H13-016 (localized responsive confirmation UI), H12-031 (**current BLOCKED** production durable coordinator) and H12-902 (**external** explicitly selected target live acceptance). Normal Health executes only synthetic destructive fixtures; no real User is removed or reset. Four new runtime cases join the CLI's local evidence; the actual prerequisite is never supplied a fake live adapter.
 
 Update H13-014/AN01/AN08 for the authorized three-tool inventory, H04-003/D02 and H04-015 for separate AdminTestOperation tooling, and H05-009/HC12 for staged 013 versus unapproved 014. Existing entry-isolation tests retain secret/request assertions while substituting the lifecycle wrapper; dedicated AT tests verify the actual wrapper. No case/suite is removed or downgraded. Catalog expected count: 149 / 130 current / 7 future / 12 external across 16 suites.
 
 After user sync/publish: first verify the new schema denies direct CRUD, actual app identity, read-only admin lookup/preview and user/anonymous denial. Mutations remain unavailable until H12-031 is truly resolved. Then run H12-902 only on an admin-explicit test target, including recovery/tokens/two workers and reset on two clients. Save/list/open current-marker Full Health; other blockers (H09-004, H08-005/006), ON-05 incident and device evidence are independent.
+
+
+## Current catalog — HC-014.0 / Buildmarker-014
+
+149 cases / 130 current / 7 future / 12 external, 16 suites. Earlier numbered sections are historical checkpoints, not current catalog declarations. H08-006 changes from a recorded source-gap blocker to an executed SYNTHETIC_RUNTIME behavioral test (CR01…CR07): >60 acceptance, fixed window/filter, no backfill/clamp, unsupported vs absent history, stale derived removal, Home UNKNOWN and error preservation. The status is computed by execution, never by OD-012's label. H13-015 adds CU05/current App information state; H12-028 adds AT17 missing-schema failure/recovery. H05-009/HC12 explicitly stage 014, leaving unapproved 015 blocked. No cases removed or downgraded to hide production failure.
+
+H09-004, H08-005 and H12-031 remain current BLOCKED. The read-only live schema/import report is separate evidence and cannot close them. Hosted Home/Calendar/Admin mutation, process restart/independent workers, old-token enforcement, Full Health save/list/readback, ON-05 same-account recovery and device obligations remain outstanding. Existing in-memory receipt/race/failure tests continue as protocol evidence only. See [014 delivery](reports/SHINKA_CLOSURE_014.md) for executed counts and [decision 014](reports/SHINKA_PERSISTENCE_DECISION_014.md) for exact next resources.

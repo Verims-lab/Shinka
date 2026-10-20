@@ -30,6 +30,7 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
         <CalendarMonth value={value} selected={state.selected} disabled={state.busy} language={language} onSelect={controller.select} onMonth={controller.load}/>
         {!value.writable && <p role="status" data-calendar-blocked>{copy('unavailable')}</p>}
         {value.calculationError && <p role="alert">{copy('calculation')}</p>}
+        {value.calculationNotice && <p role="status" data-calendar-estimate-unavailable>{copy('estimateUnavailable')}</p>}
         {!needsConsent && !value.hasPeriods && <p role="status">{copy('empty')}</p>}
         <ShinkaCard>
           <form noValidate className="space-y-4" onSubmit={event => { event.preventDefault(); controller.submit(state.editing ? 'edit' : 'add'); }}>

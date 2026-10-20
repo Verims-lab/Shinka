@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-013
+**Current BuildMarker:** Buildmarker-014
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -90,7 +90,7 @@ Selecting a date never writes. Selecting an actual start establishes the editing
 
 Pure replacement computes affected history and a rolling three-future-cycle window; unchanged derived rows keep identity/time. Removing the last start removes predictions and phase days, preserves settings/consent, and future ungenerated daily selection uses UNKNOWN. Existing daily snapshots are never inputs or outputs of Calendar mutation. NULL inputs remain NULL; 28/5 are calculation-only.
 
-**Production mutations are blocked** by CALENDAR_ATOMIC_CAPABILITY_REQUIRED. All-or-nothing publication and durable action receipt/revision behavior exist as a protocol with isolated tests, not a Base44 transaction implementation. UI clearly disables saving/deleting/reconsent while this capability is absent; reads and month selection work. A read-time projection is not reported as a persisted phase cache. OD-012 separately blocks undefined >60-day calculations.
+**Production mutations are blocked** by CALENDAR_ATOMIC_CAPABILITY_REQUIRED. All-or-nothing publication and durable action receipt/revision behavior exist as a protocol with isolated tests, not a Base44 transaction implementation. UI clearly disables saving/deleting/reconsent while this capability is absent; reads and month selection work. A read-time projection is not reported as a persisted phase cache. OD-012 is resolved by the later 014 product decision below; >60-day observations no longer block calculation planning.
 
 For onboarding skippers, the approved separate checkbox starts unchecked. Entry/selection grant nothing. New explicit add+consent is one proposed atomic operation; existing valid time is preserved. Regrant requires a valid WITHDRAWN record/event, a completed deletion job requested no earlier than that withdrawal, and zero remaining health rows inside the same transaction. No reactivation during deletion or restoration of prior data is allowed. Production regrant remains blocked with the other mutations.
 
@@ -101,3 +101,12 @@ Profile/You → Admin Panel → Test Tools adds two closed operations. Admin loo
 Deletion is a separate admin test workflow, not normal Delete Account → INACTIVE. It preserves protected history and declares that retention. A partial operation retains its completed checkpoints and target fence, resumes the same receipt and reports success only after absence/readback and result audit. Reset keeps User/provider/role/profile/cycle/history intact; backend restart state wins over old daily completion on hydrate, login and another device. Existing authenticated sessions enter ON-04 without another OAuth step, then ON-05 and ON-06. Skip advances only restart progress, never health deletion or consent withdrawal. Final daily verification completes the restart; an existing same-day record is reused. INACTIVE and open health-deletion targets cannot reset. Admin self-reset retains the Admin Panel entry.
 
 Both production mutations remain disabled pending the durable shared-writer coordinator. Read-only lookup/preview is usable after schema/function sync. No live account was changed during development.
+
+
+## OD-012 behavior and production closure — 014
+
+Real starts remain ≥15 days apart. Longer than 60 days is not a validation error: keep the exact dates. Determine the last three completed intervals first; use only 15–60 values within that window, without reaching farther back. Existing outlier/average/half-up rules apply to the remaining values. No supported completed sample gives no estimate/current phase; no completed intervals retains initial/28 behavior. Completed >60 intervals have no derived phase rows. Supported historical intervals can retain their historical phases even when no current estimate exists.
+
+A successful Calendar plan replaces all obsolete current predictions/phases and returns a central TR/EN information status, not a failed-save message. The production transaction remains blocked, so this is enabled calculation/reader behavior plus isolated mutation evidence, not a hosted save. New Home generation uses the same rule and UNKNOWN only for unavailable phase; existing daily snapshots remain immutable. Missing consent/deletion/account guards and technical/data errors never become UNKNOWN.
+
+Home → Calendar → reset → delete is the proposed enablement order after the independent prerequisites in the [architecture decision](reports/SHINKA_PERSISTENCE_DECISION_014.md). No feature is declared live-complete in 014.

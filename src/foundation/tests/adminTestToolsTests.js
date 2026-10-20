@@ -23,6 +23,18 @@ function daily(f) {
 }
 /** @type {import('./testTypes').FoundationTest[]} */
 export const ADMIN_TEST_TOOLS_TESTS = [
+  ['AT17', 'Missing lifecycle schema fails closed before product work; additive schema restores reads', async () => {
+    const f = adminTestFixture(), owner = f.ownerClient(), saved = bytes(f);
+    const schemaRows = f.tables.AdminTestOperation;
+    delete f.tables.AdminTestOperation;
+    await rejects(() => onboardingOperation(owner, { action: 'hydrate' }), 'TEST_LIFECYCLE_UNAVAILABLE');
+    await rejects(() => dailyMessageOperation(owner, { action: 'today' }), 'TEST_LIFECYCLE_UNAVAILABLE');
+    await rejects(() => adminTestOperation(withUserLifecycle(f.client), { action: 'lookup', target_id: 'ownerA' }), 'TEST_LIFECYCLE_UNAVAILABLE');
+    noMutations(f);
+    f.tables.AdminTestOperation = schemaRows;
+    assert((await owner.auth.me()).id === 'ownerA', 'schema-only repair did not restore admission');
+    assert(bytes(f) === saved, 'schema repair changed product records');
+  }],
   ['AT01', 'Every Test Tools action denies anonymous/user/forged roles before entity access', async () => {
     for (const actor of [null, 'ownerA']) for (const action of ['lookup', 'preview', 'execute', 'status', 'resume']) {
       const f = adminTestFixture(); f.state.actor = actor;

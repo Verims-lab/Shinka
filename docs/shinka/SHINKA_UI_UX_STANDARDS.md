@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-013
+**Current BuildMarker:** Buildmarker-014
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -225,3 +225,10 @@ Shared bottom navigation enables Home/Calendar and keeps Pattern inactive; Profi
 Admin inventory now has three destinations: Health Center, Build & Environment, Test Tools. Existing top-right Profile/You access, shared navigation, route guards and return path remain. Test Tools copy is centralized in `testToolsCopy.js`; it is new copy for this explicit feature, not attributed to the original UI/UX tables. Catalog parity is tested.
 
 User ID lookup must precede operation preview. ID edits discard target/preview/typed confirmation and invalidate late responses. Delete has its own irreversible-action description and complete removal/retention preview. Both operations show actual destination app/server and environment uncertainty; blocked prerequisites remain visible with the execute control disabled. An exact typed ID is required when execution is available. Preview receives heading focus; cancel restores the lookup input. Single-flight submit, status/recovery controls, live region results, mobile wrapping and ≥44px controls use existing primitives. A result never says all data were deleted. No second OAuth requirement or localStorage reset is introduced.
+
+
+## OD-012 information state — 014
+
+Calendar keeps actual dates and uses a status live region when the completed sample window cannot support a current estimate. Central `calendarCopy.estimateUnavailable` EN: “Your recorded dates are preserved. A prediction or current phase cannot be calculated because the latest completed intervals are longer than 60 days”. TR: “Kayıtlı tarihlerin korunuyor. Son tamamlanmış aralıklar 60 günden uzun olduğu için tahmin ve güncel evre hesaplanamıyor”. This helper copy is scoped to the user's 014 request; original approved onboarding copy is unchanged.
+
+This informational result is independent of production save availability and save success/error. It neither disables an otherwise available valid mutation nor paints stale predictions. No new screen is added. CU05 and actual-App TR/EN mobile scenarios exercise the state. Production still displays the separate unavailable-write explanation until persistence is enabled with evidence.

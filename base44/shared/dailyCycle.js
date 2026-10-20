@@ -10,18 +10,22 @@ export function cyclePhaseAtDay(length, duration, day) {
   return day < center - 1 ? 'FOLLICULAR' : 'LUTEAL';
 }
 export function cycleEstimate(observations, initial = null) {
-  if (observations.length > 3 || observations.some(n => !Number.isInteger(n) || n < 15 || n > 60)) fail();
+  if (observations.length > 3 || observations.some(n => !Number.isInteger(n) || n < 15)) fail();
   if (!observations.length) {
     if (initial !== null && (!Number.isInteger(initial) || initial < 15 || initial > 60)) fail();
     return { length: initial ?? 28, used: [], excluded: [] };
   }
-  let used = observations;
-  if (observations.length === 3) {
-    const outlier = observations.findIndex((n, index) => {
-      const other = observations.filter((_, i) => i !== index);
+  // OD-012: the caller fixes the last-three completed window BEFORE filtering.
+  // Unsupported observations are real history, never a missing-history default.
+  const supported = observations.filter(n => n <= 60);
+  if (!supported.length) return { length: null, used: [], excluded: [...observations] };
+  let used = supported;
+  if (supported.length === 3) {
+    const outlier = supported.findIndex((n, index) => {
+      const other = supported.filter((_, i) => i !== index);
       return other.every(value => Math.abs(value - n) >= 9) && Math.abs(other[0] - other[1]) <= 3;
     });
-    if (outlier >= 0) used = observations.filter((_, i) => i !== outlier);
+    if (outlier >= 0) used = supported.filter((_, i) => i !== outlier);
   }
   return { length: Math.floor(used.reduce((sum, n) => sum + n, 0) / used.length + 0.5), used, excluded: observations.filter(n => !used.includes(n)) };
 }
@@ -39,5 +43,7 @@ export function resolveDailyCycle({ day, periods, settings = null }) {
   const intervals = starts.slice(1).map((n, i) => starts[i] - n);
   const length = estimatedCycleLength(intervals, settings?.initial_cycle_length_days ?? null);
   const duration = settings?.period_duration_days ?? 5;
+  if (!Number.isInteger(duration) || duration < 1 || duration > 10) fail();
+  if (length === null) return 'UNKNOWN';
   return cyclePhaseAtDay(length, duration, (today - starts[0]) % length + 1);
 }

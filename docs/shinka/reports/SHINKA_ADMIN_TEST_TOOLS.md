@@ -1,5 +1,7 @@
 # Admin Test Tools — Buildmarker-013 / HC-013.0
 
+**Current continuation: Buildmarker-014 / HC-014.0.** Original 013 tests below are historical. Live read-only schema/import checks, rollout tooling and architecture approval are documented in the final section; production mutations remain blocked.
+
 Source: explicit user request of 2026-10-20, attachment `661dae77-aa35-4480-a183-4e6ccad217b8/Pasted text.txt`. These workflows are additions to the original product sources. Normal self-service **Delete Account → INACTIVE** is unchanged.
 
 **Delivery status:** repository UI, read-only SDK lookup/preview, lifecycle guards and isolated executable delete/reset protocols. **Production delete/reset remain BLOCKED_NO_DURABLE_TARGET_COORDINATOR.** There is no production journal/transaction adapter. No real user was deleted or reset, no schema deployed, no main merge/publish performed.
@@ -93,7 +95,7 @@ All hosted function entry factories now apply current-User/role and deletion-sta
 3. At this delivery, execute stays disabled with the durable-capability explanation. **Do not treat a secret/configuration change as resolution.** Implement and verify the coordinator/all-writer integration before proceeding with destructive acceptance.
 4. After capability closure, choose a disposable target explicitly. For delete: retain before-counts/IDs only, inspect scope, type ID, execute, reopen status. Confirm User and seven operational scopes absent, pending jobs stopped, immutable/current-consent/protection/audit/shared records preserved, and old authenticated requests denied. Test partial failure and same-operation recovery on isolated live test data with two workers.
 5. For reset: choose an ACTIVE target without open deletion work, including a self-admin case. Confirm unchanged User/provider/role and retained records. Refresh/sign in from another device: ON-04 must appear despite old daily rows. Submit valid data, exercise Skip without consent writes, finish ON-06 and confirm the same day's daily ID/Pair/snapshots are unchanged and reset is COMPLETED. Test failed step commit/response loss and retry without duplication.
-6. Run current **013 / HC-013.0** Full Health, save/list/open its report. H12-031 stays BLOCKED until proven; H12-902 is separately recorded live acceptance. Existing daily/Calendar capability blockers, OD-012, ON-05 same-account live closure and physical-device obligations are independent.
+6. Run current **014 / HC-014.0** Full Health, save/list/open its report. H12-031 stays BLOCKED until proven; H12-902 is separately recorded live acceptance. Existing daily/Calendar capability blockers, ON-05 same-account live closure and physical-device obligations are independent. OD-012 is resolved and behaviorally verified by the 014 continuation; it does not close these production blockers.
 
 ## Test and Health reconciliation
 
@@ -102,3 +104,14 @@ AT01…AT16 cover authorization, metadata privacy, preview binding/staleness, cu
 Health add: H12-028/029/030, H13-016 (current synthetic); H12-031 (current BLOCKED); H12-902 (external). Update H13-014/AN01/AN08 to three tools; H04/D02/tooling evidence to two internal schemas; H05/HC12 to approved staged package 013. No case/suite removed or downgraded. Current catalog: 149 cases, 130 current, 7 future, 12 external, 16 suites.
 
 Final local result: Chromium 156.0.8078.4 and WebKit 27.2 each passed 396 canonical tests and 93 local Health cases, with zero page errors. Clean install/tree, type/lint/build, Repo Health and bounded history passed. Fresh npm audit is BLOCKED_TLS_CERTIFICATE_CHAIN, including with system CA enabled; current vulnerability totals are unknown and TLS checks stayed enabled. No dependencies changed. Measurements are in [verification.json](test-tools-013/verification.json) and Development Notes. These results do not close the production coordinator, live acceptance or security scan.
+
+
+## 014 continuation: actual prerequisites and rollout
+
+Live Data UI now lists AdminTestOperation (0). A successful privileged official-CLI read confirms schema availability; no operation was created. `contentLibrary.verify` and `moonDryRun` execute live and report missing content/Moon data. This is not proof of independent-user RLS, deletion/reset, distributed fencing or a published function commit. Preview identifies main 29a64d3 and prod data; public deployment hash is not independently measured.
+
+AT17 adds missing-schema fail-closed checks for onboarding/daily/admin and additive-schema recovery without product changes; H12-028 executes it. Original two-worker/partial-write tests remain isolated models. No new speculative coordinator is supplied. H12-031 and explicit-target H12-902 remain open.
+
+[Rollout 014](SHINKA_RELEASE_ROLLOUT_014.md) replaces the former unverified “schema first” instruction with a generated 23-schema inventory, schema-only Git delta, tested pre-013/current-main preparation, official CLI read-only script, and full-sync repair warning/steps. The observed app already has the schema, so no repair was run. Missing schema never bypasses admission. No live delete/reset, main merge or publish occurred.
+
+[Decision 014](SHINKA_PERSISTENCE_DECISION_014.md) distinguishes transactional reset from resumable physical deletion across SQL/Base44, defines authority/fencing/audit/identity/roster/migration/recovery, and requests approval/resources for the external design. This is pending approval, not implementation. Security scan now completes with 0 Critical/High and 2 Moderate; the prior 013 TLS result remains historical.

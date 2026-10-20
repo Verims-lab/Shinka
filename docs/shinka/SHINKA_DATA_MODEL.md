@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-013
+**Current BuildMarker:** Buildmarker-014
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -408,7 +408,7 @@ No production implementation or external store is configured. A compliant store 
 
 Read-only Calendar uses owner-filtered pages of 100 starts, maximum 2,500 plus overflow detection; it never truncates and calculates success. A 40,000-day computation safety ceiling fails explicitly. Access and complete observation snapshots are re-read to detect changes; this is best-effort race detection, not snapshot isolation. Returned month contains only actual IDs/dates, recorded/predicted days and safe status/revision; no complete history, grant time, native metadata or tokens. Missing persisted derived rows after onboarding do not cause writes: the response is a read-time projection.
 
-OD-012 preserves >60-day actual observations and refuses undefined derived calculation. Settings are never clamped or filled with 5/28. No live data migration, import or write occurred.
+OD-012 now preserves >60-day observations and excludes them only from estimation within the fixed last-three window; see the 014 contract below. Settings are never clamped or filled with 5/28. No live data migration, import or write occurred.
 
 ## Admin Test Tools operational state — 013 user decision
 
@@ -417,3 +417,10 @@ OD-012 preserves >60-day actual observations and refuses undefined derived calcu
 DELETE_USER stages: stop PENDING/FAILED notifications as SKIPPED; remove phase/prediction children, cycle settings and period parents, pattern summary, preferences, profile; call service-role User.delete(id); verify absence and stopped jobs; persist final audit/result. Retain current consent metadata, immutable consent events/daily messages, all audit/protection/deletion history and notifications. Shared lookup/content and unscoped system errors are untouched. See the exhaustive 20-entity scope/indirect-edge table in the [report](reports/SHINKA_ADMIN_TEST_TOOLS.md).
 
 Retained actor/target/user references after physical deletion are historical identifiers, never reassigned or cascade-deleted. A COMPLETED DELETE operation is a permanent tombstone. RESET_ACTIVE stages PROFILE → CYCLE → FIRST_SHINKA → COMPLETED/DONE override old daily-based completion; reset creates no consent event and changes no grant time or existing product row by itself. Normal validated writes and stage advancement must commit with a durable receipt. Same-day daily snapshots are reused. Failed/start/result records are retained indefinitely under current policy; the five-package UI history rule does not apply.
+
+
+## OD-012 and proposed physical authority — 014
+
+No entity/RLS/field change in this package. `dailyCycle.cycleEstimate` returns nullable length when the last-three completed window contains no 15–60 interval. Empty completed history still uses entered initial length or computation-only 28. `calculateCalendar` preserves all actual observations, emits no phase rows for unsupported closed intervals, keeps supported historical phases, and emits no current/future phases or predictions without an estimate. `planCalendarChange` replaces derived sets, so stale rows are removed in the same proposed commit. No default is written into settings; existing daily rows are untouched.
+
+The PostgreSQL proposal in [decision 014](reports/SHINKA_PERSISTENCE_DECISION_014.md) changes physical authority and derived storage only after approval/migration. Until then the 20 product schemas, two tooling schemas and native User extension remain authoritative as currently implemented. Actor storage is not treated as an Entity transaction. A full 23-schema release snapshot and schema-only Git patch can be prepared with `scripts/prepareSchemaStage.mjs`; it executes no deployment. Missing lifecycle schema still fails closed.

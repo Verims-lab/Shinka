@@ -12,6 +12,16 @@ async function probe(run) {
 const button=(host,text)=>[...host.querySelectorAll('button')].find(row=>row.textContent===text);
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CALENDAR_UI_TESTS = [
+ ['CU05','Unsupported estimate is central TR/EN information with real dates and no stale predicted days',async()=>probe(async(root,host)=>{
+   const f=calendarFixture();await f.change('add',{date:'2026-01-01'});await f.change('add',{date:'2026-04-01'});
+   root.render(createElement(Calendar,{language:'tr',request:f.request}));
+   await until(()=>host.querySelector('[data-calendar-estimate-unavailable]'));
+   const notice=host.querySelector('[data-calendar-estimate-unavailable]');
+   check(notice.getAttribute('role')==='status' && notice.textContent.includes('60 günden uzun'));
+   check(!host.querySelector('[aria-label*="Tahmini"]') && !host.querySelector('button[type="submit"]').disabled);
+   button(host,'EN').click();await pause();
+   check(host.querySelector('[data-calendar-estimate-unavailable]').textContent.includes('longer than 60 days'));
+ })],
  ['CU01','Monthly TR/EN, labeled real/predicted/selected days, ≥44px keyboard controls and no selection writes',async()=>probe(async(root,host)=>{
    const f=calendarFixture();await f.change('add',{date:'2026-10-01'});
    root.render(createElement(Calendar,{language:'en',request:f.request}));

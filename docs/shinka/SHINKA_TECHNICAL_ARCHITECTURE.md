@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-013
+**Current BuildMarker:** Buildmarker-014
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -171,3 +171,12 @@ Lazy `TestTools` page → `useTestTools` → one narrow service → `adminTestTo
 All seven existing function entries and the new entry wrap the request-scoped SDK with `withUserLifecycle`. Authentication rereads the existing User/role and target operation metadata; absent users or deletion tombstones deny access. This is an early admission check, **not an in-flight write fence**. An active reset overrides onboarding hydration and blocks Calendar; normal profile/cycle validation is reused, with a coordinator-supplied persistence context. Reset step commit and daily completion use a separate transaction port; the sequential onboarding SDK adapter is not that implementation.
 
 `shinka.target-lifecycle/1` requires durable target exclusion shared by every current/future product writer (including notifications/import-triggered work), global admin-roster exclusion, unique operation/receipt keys, persisted start audit, resumable checkpoints and verified final audit. Worker restart must preserve receipts/fences; failed operations keep their fence. The repository has **no production implementation**. The entry always supplies no coordinator: configuring environment/signing secrets cannot unlock it. The in-memory two-worker fixture is only an executable model. See [adapter and rollout contract](reports/SHINKA_ADMIN_TEST_TOOLS.md).
+
+
+## Production closure investigation — 014
+
+Reviewed SDK 0.8.54 and current official Entity/Actor/CLI documentation. Entity UNIQUE is explicitly unsupported; reviewed APIs do not establish immutable conditional create, CAS publication or a cross-Entity transaction. A single owner aggregate/read-time derived projection reduces Calendar coordination, but without verified conditional replacement still loses concurrent writes. Moving every owner operation into Actor storage would change authority and still requires verified storage/interleaving/retry/roster semantics; it is not enabled on the strength of persistent storage alone.
+
+[Decision 014](reports/SHINKA_PERSISTENCE_DECISION_014.md) specifies the recommended PostgreSQL authority, Base44 identity bridge, distinct Home transaction/Calendar snapshot/Admin saga mechanisms, migration and rollback. It awaits user approval; no new interface is represented as its implementation. Actual entry wiring remains unchanged and all three writers stay independently blocked. Existing onboarding sequential persistence and its known limitations remain visible.
+
+OD-012 is implemented once in `dailyCycle`, consumed by Home and `calendarCalculation`. Window selection precedes filtering. Calendar returns `calculationNotice=CYCLE_ESTIMATE_UNAVAILABLE` separately from technical `calculationError`; its service rejects contradictory notice/predicted-day responses. Missing schema never bypasses lifecycle checks. `prepareSchemaStage.mjs` produces a full hashed schema inventory and a schema-only delta; `base44ReleaseReadiness.ts` is a read-only official-CLI operator script. Neither introduces a product endpoint or starts deployment.
