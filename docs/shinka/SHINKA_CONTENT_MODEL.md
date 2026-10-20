@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — source prepared; controlled import and engine implemented; production daily persistence blocked
-**Current BuildMarker:** Buildmarker-013
+**Current BuildMarker:** Buildmarker-014
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
@@ -80,8 +80,15 @@ Source and scope: explicit user approval in this conversation on 2026-10-20, rec
 
 ## Calendar integration — Buildmarker-012
 
-No Pair text, mapping, category, manifest hash or import behavior changes. Explicit staged content validation now covers packages 011 and 012; 013+ remains unapproved until its own policy. Calendar mutation never reads/writes daily snapshots. Shared `dailyCycle` supplies both Home and Calendar estimation/phase rules; an empty real history remains UNKNOWN even when settings survive last-start deletion. Daily generation accepts the matching current grant event after a completed withdrawal/regrant history rather than incorrectly requiring only one lifetime event. Production daily atomic persistence and live import/readback remain open.
+No Pair text, mapping, category, manifest hash or import behavior changes. Explicit staged content validation now covers packages 011 and 012 at that checkpoint; later explicit 013/014 policy follows. Calendar mutation never reads/writes daily snapshots. Shared `dailyCycle` supplies both Home and Calendar estimation/phase rules; an empty real history remains UNKNOWN even when settings survive last-start deletion. Daily generation accepts the matching current grant event after a completed withdrawal/regrant history rather than incorrectly requiring only one lifetime event. Production daily atomic persistence and live import/readback remain open.
 
 ## Package 013 preservation
 
-Test Tools is an explicit non-content feature. The staged content validation policy extends to 013; 014 requires its own approved scope. The six approved category decisions, 260 Pairs, 240 mappings and source manifest hash remain unchanged. Delete/reset never mutate shared content or immutable user daily snapshots; completed reset reuses an existing same-day snapshot. No content import or live Pair generation was performed for this package.
+Test Tools is an explicit non-content feature. The staged content validation policy extends to 013; 014 receives its separate scoped policy below. The six approved category decisions, 260 Pairs, 240 mappings and source manifest hash remain unchanged. Delete/reset never mutate shared content or immutable user daily snapshots; completed reset reuses an existing same-day snapshot. No content import or live Pair generation was performed for this package.
+
+
+## Closure readiness — 014
+
+Staged PRE_IMPORT/VERIFIED_IMPORTED validation explicitly includes 014; 015+ requires its own scope. Manifest/source hash, six category definitions, 260 four-cell Pairs and 240 mapping rows are unchanged. Live read-only `contentLibrary.verify` on 2026-10-20 reports PRE_IMPORT: missing 6/260/240, zero same/conflicts. `moonDryRun` reports 103 missing intervals, zero same/conflicts, planned coverage 2026-10-03T13:25:33.710Z through 2028-11-02T09:17:57.674Z. These are planned intervals, **not stored coverage**. Data UI independently shows all four tables at zero. No import was run.
+
+Home requires both a verified immutable writer and verified content/Moon readiness. OD-012 changes only the cycle input choice: no supported estimate → UNKNOWN mapping, never a different Pair text/category mapping. Existing daily snapshots stay exact. Controlled single-operator dryRun/applyBatch/readback and Moon dryRun/applyBatch remain the existing import mechanism; concurrent operators are unsupported. [014 rollout](reports/SHINKA_RELEASE_ROLLOUT_014.md) provides executable inspection and release steps.

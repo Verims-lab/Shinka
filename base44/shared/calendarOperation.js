@@ -54,13 +54,14 @@ export async function calendarOperation(client, body, { now = () => new Date(), 
     validateCalendarHealth(state, owner);
     try { calculation = calculateCalendar({ periods: state.periods, settings: state.settings, today }); }
     catch (error) {
-      if (!(error instanceof InternalError) || !['CYCLE_RANGE_DECISION_REQUIRED', 'CALENDAR_HISTORY_LIMIT'].includes(error.code)) throw error;
+      if (!(error instanceof InternalError) || error.code !== 'CALENDAR_HISTORY_LIMIT') throw error;
       calculationError = error.code;
     }
   }
   return {
     state: consent ? 'READY' : 'CONSENT_REQUIRED', today, timezone,
     revision: await calendarRevision(state), writable, calculationError,
+    calculationNotice: calculation.estimate?.length === null ? 'CYCLE_ESTIMATE_UNAVAILABLE' : null,
     mutationConfirmed: body.action !== 'read',
     // Derived display is calculated from confirmed observations, not advertised
     // as an already persisted phase cache or a transactionally isolated read.

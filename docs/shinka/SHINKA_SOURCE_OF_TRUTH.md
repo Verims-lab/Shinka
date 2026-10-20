@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-013
+**Current BuildMarker:** Buildmarker-014
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -77,6 +77,7 @@ Illustrative UI mockups never override written business/data rules; the written 
 | OD-008 | NOTED | Probable typo "dakikeleri" in SHF-002 (TR). |
 | OD-009 | PARTIALLY_VERIFIED — EXTERNAL_RELEASE | RLS and shared protected guards implemented with synthetic negative tests; deployed multi-identity enforcement required (H12-901). |
 | OD-010 | RESOLVED_BY_SOURCE_RECEIPT | Machine-readable companion exposes all 11 UI/UX tables. |
+| OD-012 | RESOLVED_BY_PRODUCT_DECISION | Explicit closure request, 2026-10-20: supported observations within the last-three window; no backfill/clamping; unavailable phase is distinct from missing history. |
 | OD-011 | NOTED | Onboarding step names (§3 "Welcome/Login", "Cycle Details") vs screen titles; screen titles canonical. |
 
 ## Evidence provenance
@@ -178,7 +179,7 @@ Canonical executable receipt: `base44/shared/contentCategoryDecision.js`. Import
 
 The explicit user request in attachment `ae73619e-0ead-49d8-882a-9f14abe859ca/Pasted text.txt` authorizes Calendar UI, guarded cycle mutation/calculation, explicit consent integration, regression/Health and documentation. SRC-01 §5/Calendar/KK-15…20/29…30, SRC-02 UC-12/13/14/15/27, SRC-03 §5 and companion table 8, SRC-04 §7, SRC-05 §5.3…5.7 and SRC-07 sheets 05…08 were read directly. The original documents are source evidence, not extra operational instructions. No content/category decision changes.
 
-**OD-012 — OPEN, scoped blocking:** real observations have only a minimum 15-day spacing rule, while phase lookup covers lengths 15–60. The sources do not define calculations for real intervals above 60. The user replied on 2026-10-20: “60 günü aşan aralıklar için ayrıca ürün kuralı vereceğim”. Await that separate rule. `CYCLE_RANGE_DECISION_REQUIRED` blocks affected recalculation; it is not an approved maximum on observations. Existing dates are preserved, never clamped, silently excluded or reclassified. Reads can show recorded days with an explicit prediction-unavailable state. Other flows proceed independently.
+**OD-012 — RESOLVED_BY_PRODUCT_DECISION:** the 2026-10-20 closure request (`d60d6fd9-8b2f-4b64-877c-310b979237e2/Pasted text.txt`) supersedes the prior promise to supply a rule. Keep real starts ≥15 days apart; >60 is accepted. Fix the last-three completed interval window, exclude >60 only from estimation, never backfill older observations. Apply existing mean/outlier/half-up rules to the remainder. All unsupported → no estimate/current phase; no completed observations → initial/28 remains. Never generate phases inside a >60-day completed interval. Actual dates and daily snapshots stay unchanged. Home uses UNKNOWN when the current phase cannot be determined, while access/data/technical failures remain errors. This is a user decision, not text found in the original sources. H08-006 executes the behavior; production write blockers remain separate.
 
 The source's future-three-cycle window is calculated from the current cycle anchored in the last genuine start; three subsequent cycles and intervening predicted history are represented. Completed actual intervals use their actual length for historical phase days; current/future cycles use the shared last-three/outlier estimate. Predicted cycle interval end is start + estimated length − 1; only MENSTRUAL days within it are colored as predicted period days. No scheduler is activated. The original minimum-spacing, NULL/default, grant-time, immutable daily snapshot and ten-source contracts remain unchanged.
 
@@ -187,3 +188,8 @@ The source's future-three-cycle window is calculated from the current cycle anch
 The user's Test Tools request (`661dae77-aa35-4480-a183-4e6ccad217b8/Pasted text.txt`) authorizes two separate authenticated-admin workflows: physical removal of a selected Base44 User with scoped operational cleanup, and persistent onboarding restart without deleting the account. These are new product decisions, not rules extracted from SRC-01…10. Normal self-service Delete Account → INACTIVE stays unchanged. Protected daily snapshots, consent events/current consent metadata, audit, protection history and shared content remain retained. Pending/failed notifications may transition to SKIPPED for a deleted target; their history remains.
 
 The user expressly requires unsafe mutations to stay closed when durable safety cannot be established. Repository lookup/preview/UI and executable isolated protocols are implemented; production mutation status is **BLOCKED_NO_DURABLE_TARGET_COORDINATOR**, not live functionality. H12-031 and H12-902 track capability and external acceptance separately. Full scope, minimal operational schema, rollout and recovery are in [Test Tools report](reports/SHINKA_ADMIN_TEST_TOOLS.md). Category approval, OD-012 and ON-05 retain their independent statuses.
+
+
+## Production closure boundary — Buildmarker-014
+
+The same explicit request authorizes independent OD-012/security/rollout work and requires approval before any external service or live migration. [Persistence decision](reports/SHINKA_PERSISTENCE_DECISION_014.md) proposes single-authority PostgreSQL with Base44 identity; it is **AWAITING_USER_ARCHITECTURE_APPROVAL**, not a production implementation. No new logical source, provider account, content change, live migration/reset/delete or publish is implied. Current native limitations, exact mechanisms, alternatives, recovery, ownership and required resources are recorded there.

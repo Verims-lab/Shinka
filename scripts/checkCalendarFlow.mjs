@@ -55,5 +55,16 @@ export async function checkCalendarFlow(page, origin, directory) {
     if(directory)await page.screenshot({path:path.join(directory,`calendar-${scenario}-360-tr.png`),fullPage:true});
     results.push({scenario:`calendar-${scenario}`,passed:true,scope:'LOCAL_BROWSER_SYNTHETIC'});
   }
+  for (const language of ['tr', 'en']) {
+    await page.goto(`${origin}/calendar?appFixture=1&sdkSession=admin&onboardingState=ACTIVE_EXISTING_USER&language=${language}&calendarScenario=unsupported`);
+    await page.waitForSelector('[data-calendar-estimate-unavailable]');
+    assert.equal(await page.locator('[data-calendar-estimate-unavailable]').getAttribute('role'), 'status');
+    assert.equal(await page.locator('button[type=submit]').isDisabled(), false);
+    assert.equal(await page.evaluate(() => window.__calendarLab.rows.user_cycle_phase_day.length), 0);
+    assert.equal(await page.evaluate(() => window.__calendarLab.rows.user_cycle_prediction.length), 0);
+    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+    if (directory) await page.screenshot({ path: path.join(directory, `calendar-unsupported-360-${language}.png`), fullPage: true });
+    results.push({ scenario: `calendar-unsupported-${language}`, passed: true, scope: 'LOCAL_BROWSER_SYNTHETIC' });
+  }
   return results;
 }

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-013
+**Current BuildMarker:** Buildmarker-014
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -77,10 +77,15 @@ The explicit 2026-10-20 reply completes the pending category decision within pac
 
 Advance once for the requested Calendar feature; retain 008…012 through recordBuild. H08-002 and H11-002 move from placeholders to scoped current tests; new Calendar protocol/privacy/UI and explicit production/source blockers update the catalog. No failing case is removed or downgraded. Package 012 retains the source-approved staged content policy; unapproved 013+ still blocks.
 
-The user will separately supply OD-012's >60-day rule; do not invent it or mark it resolved. Complete independent work while preserving the explicit refusal. Production Calendar writes and reconsent remain disabled without a verified multi-collection adapter. Passing local tests is safe repository implementation evidence, not complete product availability. Test-only push; user main merge/sync/publish and hosted/device acceptance remain required. ON-05 same-account live save/readback and Home H09-004 remain open.
+At the 012 checkpoint the user deferred OD-012's >60-day rule. The explicit 014 decision below supersedes that source gap and refusal; apply the approved rule and behavioral tests. Production Calendar writes and reconsent remain disabled without a verified coherent-commit mechanism. Passing local tests is repository implementation evidence, not complete product availability. Test-only push; user main merge/sync/publish and hosted/device acceptance remain required. ON-05 same-account live save/readback and Home H09-004 remain open.
 
 ## Admin Test Tools package — Buildmarker-013 / HC-013.0
 
 Advance the package/catalog once for the explicit two-tool feature request. Active generated history retains 009…013; previous source decisions/security evidence remain. Add four current synthetic cases, one current production blocker and one external explicit-target acceptance case; update admin inventory/schema isolation tests. Do not downgrade the blocker or run live destructive actions in normal Health. Content validation stays staged for 013 with unchanged content bytes; unapproved 014 remains blocked.
 
 Test-only delivery includes UI/backend protocols/schema/tests/docs. Actual production mutation enablement is separately contingent on a verified durable coordinator, configured environment/preview signing and deployed enforcement evidence. The user's request explicitly requires refusal where safety is unproven, so repository completion is not live delete/reset acceptance. Sync/publish and main merge stay with the user. Fresh audit failures remain visible and cannot be reported as zero vulnerabilities.
+
+
+## Production closure package — Buildmarker-014 / HC-014.0
+
+This requested corrective package advances each authority once. Record OD-012's explicit approval with implementation evidence, preserve 012/013 features, and retain latest five packages 010…014. A security scan must use current lockfile/TLS verification. Architecture approval is required by the user's current request before external provisioning or live migration; prepare the complete decision first and complete independent work. Do not close production blockers with protocol-only tests or read-only schema/import success. Main merge, publish and target-specific live actions remain user-owned.

@@ -1,0 +1,732 @@
+{
+  "scope": "REPOSITORY_SYNTHETIC_BROWSER_AND_SEPARATE_HOSTED_READ_ONLY",
+  "buildMarker": "Buildmarker-014",
+  "healthCatalog": "HC-014.0",
+  "measuredAt": "2026-10-20T15:23:55.344Z",
+  "baselineCommit": "29a64d3c3d400090c1cd3081dcf54141de24e57b",
+  "liveMutationPerformed": false,
+  "productionMutationStatus": {
+    "home": "BLOCKED_NO_DURABLE_IMMUTABLE_WRITER",
+    "calendar": "BLOCKED_NO_COHERENT_COMMIT",
+    "admin": "BLOCKED_NO_DURABLE_TARGET_COORDINATOR"
+  },
+  "browsers": {
+    "chromium": {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "canonical": {
+        "tests": 405,
+        "passed": 405,
+        "failed": 0
+      },
+      "catalog": {
+        "version": "HC-014.0",
+        "suites": 16,
+        "cases": 149,
+        "current": 130,
+        "future": 7,
+        "external": 12
+      },
+      "localHealth": {
+        "health": {
+          "passed": 54,
+          "caseIds": [
+            "H01-006",
+            "H03-010",
+            "H03-001",
+            "H03-004",
+            "H03-008",
+            "H03-009",
+            "H04-001",
+            "H04-002",
+            "H04-003",
+            "H04-004",
+            "H04-005",
+            "H04-007",
+            "H04-008",
+            "H04-009",
+            "H04-010",
+            "H04-011",
+            "H04-012",
+            "H04-013",
+            "H04-014",
+            "H04-015",
+            "H12-001",
+            "H12-002",
+            "H12-003",
+            "H12-004",
+            "H12-005",
+            "H12-006",
+            "H12-007",
+            "H12-008",
+            "H12-009",
+            "H12-010",
+            "H12-011",
+            "H12-012",
+            "H12-013",
+            "H12-014",
+            "H12-015",
+            "H12-016",
+            "H12-017",
+            "H12-018",
+            "H12-019",
+            "H12-020",
+            "H12-025",
+            "H13-001",
+            "H13-002",
+            "H13-003",
+            "H13-004",
+            "H13-005",
+            "H13-006",
+            "H13-007",
+            "H13-008",
+            "H13-009",
+            "H13-010",
+            "H13-011",
+            "H13-012",
+            "H13-014"
+          ],
+          "failures": []
+        },
+        "onboardingHealth": {
+          "passed": 21,
+          "caseIds": [
+            "H06-001",
+            "H06-002",
+            "H06-003",
+            "H06-004",
+            "H06-005",
+            "H06-006",
+            "H07-001",
+            "H07-002",
+            "H07-003",
+            "H07-004",
+            "H07-005",
+            "H07-006",
+            "H07-007",
+            "H07-008",
+            "H07-009",
+            "H07-010",
+            "H07-011",
+            "H07-012",
+            "H10-003",
+            "H11-004",
+            "H11-005"
+          ],
+          "failures": []
+        },
+        "dailyHealth": {
+          "passed": 9,
+          "caseIds": [
+            "H05-010",
+            "H07-013",
+            "H08-001",
+            "H08-003",
+            "H09-001",
+            "H09-002",
+            "H09-003",
+            "H10-002",
+            "H12-026"
+          ],
+          "failures": []
+        },
+        "calendarHealth": {
+          "passed": 6,
+          "caseIds": [
+            "H08-002",
+            "H08-004",
+            "H08-006",
+            "H11-002",
+            "H12-027",
+            "H13-015"
+          ],
+          "failures": []
+        },
+        "adminTestHealth": {
+          "passed": 4,
+          "caseIds": [
+            "H12-028",
+            "H12-029",
+            "H12-030",
+            "H13-016"
+          ],
+          "failures": []
+        }
+      },
+      "scenarios": {
+        "adminNavigation": 19,
+        "mobile": 5,
+        "dailyFlow": 5,
+        "calendarFlow": 8,
+        "adminTestFlow": 4,
+        "productionRouting": 5,
+        "previewProbes": 3
+      },
+      "pageErrors": [],
+      "od012Evidence": {
+        "id": "H08-006",
+        "status": "PASS",
+        "evidence": {
+          "classification": "SYNTHETIC_RUNTIME",
+          "source": "canonical domain/security helpers",
+          "actual": {
+            "executed": [
+              "CR01",
+              "CR02",
+              "CR03",
+              "CR04",
+              "CR05",
+              "CR06",
+              "CR07"
+            ],
+            "failed": []
+          },
+          "expected": {
+            "failed": []
+          },
+          "reason": "Isolated fixtures; not LIVE_ENFORCEMENT evidence",
+          "timestamp": "2026-10-20T15:20:42.814Z"
+        }
+      }
+    },
+    "webkit": {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "canonical": {
+        "tests": 405,
+        "passed": 405,
+        "failed": 0
+      },
+      "catalog": {
+        "version": "HC-014.0",
+        "suites": 16,
+        "cases": 149,
+        "current": 130,
+        "future": 7,
+        "external": 12
+      },
+      "localHealth": {
+        "health": {
+          "passed": 54,
+          "caseIds": [
+            "H01-006",
+            "H03-010",
+            "H03-001",
+            "H03-004",
+            "H03-008",
+            "H03-009",
+            "H04-001",
+            "H04-002",
+            "H04-003",
+            "H04-004",
+            "H04-005",
+            "H04-007",
+            "H04-008",
+            "H04-009",
+            "H04-010",
+            "H04-011",
+            "H04-012",
+            "H04-013",
+            "H04-014",
+            "H04-015",
+            "H12-001",
+            "H12-002",
+            "H12-003",
+            "H12-004",
+            "H12-005",
+            "H12-006",
+            "H12-007",
+            "H12-008",
+            "H12-009",
+            "H12-010",
+            "H12-011",
+            "H12-012",
+            "H12-013",
+            "H12-014",
+            "H12-015",
+            "H12-016",
+            "H12-017",
+            "H12-018",
+            "H12-019",
+            "H12-020",
+            "H12-025",
+            "H13-001",
+            "H13-002",
+            "H13-003",
+            "H13-004",
+            "H13-005",
+            "H13-006",
+            "H13-007",
+            "H13-008",
+            "H13-009",
+            "H13-010",
+            "H13-011",
+            "H13-012",
+            "H13-014"
+          ],
+          "failures": []
+        },
+        "onboardingHealth": {
+          "passed": 21,
+          "caseIds": [
+            "H06-001",
+            "H06-002",
+            "H06-003",
+            "H06-004",
+            "H06-005",
+            "H06-006",
+            "H07-001",
+            "H07-002",
+            "H07-003",
+            "H07-004",
+            "H07-005",
+            "H07-006",
+            "H07-007",
+            "H07-008",
+            "H07-009",
+            "H07-010",
+            "H07-011",
+            "H07-012",
+            "H10-003",
+            "H11-004",
+            "H11-005"
+          ],
+          "failures": []
+        },
+        "dailyHealth": {
+          "passed": 9,
+          "caseIds": [
+            "H05-010",
+            "H07-013",
+            "H08-001",
+            "H08-003",
+            "H09-001",
+            "H09-002",
+            "H09-003",
+            "H10-002",
+            "H12-026"
+          ],
+          "failures": []
+        },
+        "calendarHealth": {
+          "passed": 6,
+          "caseIds": [
+            "H08-002",
+            "H08-004",
+            "H08-006",
+            "H11-002",
+            "H12-027",
+            "H13-015"
+          ],
+          "failures": []
+        },
+        "adminTestHealth": {
+          "passed": 4,
+          "caseIds": [
+            "H12-028",
+            "H12-029",
+            "H12-030",
+            "H13-016"
+          ],
+          "failures": []
+        }
+      },
+      "scenarios": {
+        "adminNavigation": 19,
+        "mobile": 5,
+        "dailyFlow": 5,
+        "calendarFlow": 8,
+        "adminTestFlow": 4,
+        "productionRouting": 5,
+        "previewProbes": 3
+      },
+      "pageErrors": [],
+      "od012Evidence": {
+        "id": "H08-006",
+        "status": "PASS",
+        "evidence": {
+          "classification": "SYNTHETIC_RUNTIME",
+          "source": "canonical domain/security helpers",
+          "actual": {
+            "executed": [
+              "CR01",
+              "CR02",
+              "CR03",
+              "CR04",
+              "CR05",
+              "CR06",
+              "CR07"
+            ],
+            "failed": []
+          },
+          "expected": {
+            "failed": []
+          },
+          "reason": "Isolated fixtures; not LIVE_ENFORCEMENT evidence",
+          "timestamp": "2026-10-20T15:20:45.682Z"
+        }
+      }
+    }
+  },
+  "checks": {
+    "cleanInstall": "PASS: npm ci --offline --no-audit; audit separately",
+    "dependencyTree": "PASS: npm ls --all and npm ls --depth=0",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "productionBuild": "PASS: local VITE app configuration absent; no deployment implied",
+    "repoHealth": "PASS 16/16",
+    "history": "PASS latest five 010..014",
+    "diffCheck": "PASS"
+  },
+  "security": {
+    "status": "SCANNED_NO_CRITICAL_HIGH",
+    "lockSha256": "98542fb2ec2004ccd54f48ac07eef9ccd40fb50baf69735479e93606f8b52436",
+    "counts": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 0,
+      "critical": 0,
+      "total": 2
+    },
+    "dependencyPath": "root -> react-router-dom@6.30.6 -> react-router@6.30.6",
+    "advisories": [
+      {
+        "source": 1124268,
+        "name": "react-router",
+        "dependency": "react-router",
+        "title": "React Router: Open redirect via backslash in <Link> and useNavigate (CVE-2025-68470 bypass)",
+        "url": "https://github.com/advisories/GHSA-wrjc-x8rr-h8h6",
+        "severity": "moderate",
+        "cwe": [
+          "CWE-601"
+        ],
+        "cvss": {
+          "score": 0,
+          "vectorString": null
+        },
+        "range": ">=6.0.0 <7.18.0"
+      },
+      {
+        "source": 1124272,
+        "name": "react-router",
+        "dependency": "react-router",
+        "title": "React Router: Arbitrary Constructor Injection via deserializeErrors() in React Router SSR Hydration",
+        "url": "https://github.com/advisories/GHSA-337j-9hxr-rhxg",
+        "severity": "moderate",
+        "cwe": [
+          "CWE-470"
+        ],
+        "cvss": {
+          "score": 6.1,
+          "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+        },
+        "range": ">=6.4.0 <7.18.0"
+      }
+    ],
+    "fixOffered": {
+      "name": "react-router-dom",
+      "version": "7.18.4",
+      "isSemVerMajor": true
+    },
+    "disposition": "Fixed internal navigation and backslash-rejecting auth return validation; client-only BrowserRouter/createRoot, no SSR hydration. Not patched. Major upgrade remains separate compatibility work.",
+    "tlsVerificationDisabled": false,
+    "strictSsl": true,
+    "extraCAConfigured": false,
+    "registryTls": {
+      "authorized": true,
+      "protocol": "TLSv1.2",
+      "issuer": "Google Trust Services"
+    },
+    "earlierFailureCause": "UNPROVEN_NOT_REPRODUCIBLE_CURRENT_RUN",
+    "dependencyChanges": false
+  },
+  "healthChanges": {
+    "updated": [
+      "H08-006",
+      "H13-015",
+      "H12-028",
+      "H05-009"
+    ],
+    "added": [],
+    "deleted": [],
+    "productionBlockers": [
+      "H09-004",
+      "H08-005",
+      "H12-031"
+    ],
+    "liveAcceptanceNotRun": [
+      "H08-901",
+      "H12-902",
+      "ON-05 same-account save/readback",
+      "Current deployed Full Health save/list/open",
+      "Physical devices"
+    ]
+  },
+  "openItems": [
+    "User approval/resources for concrete PostgreSQL application authority in SHINKA_PERSISTENCE_DECISION_014.md",
+    "Production adapters and hosted independent clients/lost response/restart/fencing acceptance after that approval",
+    "Content/Moon verified import in chosen authority",
+    "Public deployed backend exact version and user-owned publish",
+    "ON-05 same-account live recovery and current Full Health/history"
+  ],
+  "liveEvidence": {
+    "readiness": "live-readiness.json",
+    "scope": "Actual authorized hosted schema/import reads. No user records printed, live writes, RLS or concurrency proof.",
+    "preview": {
+      "commit": "29a64d3c3d400090c1cd3081dcf54141de24e57b",
+      "functionsVersion": "preview",
+      "dataEnvironment": "prod",
+      "publishedBackendCommit": "NOT_INDEPENDENTLY_PROVEN"
+    }
+  },
+  "schemaStage": {
+    "current": {
+      "schema": "shinka.schema-stage/1",
+      "baselineCommit": "29a64d3c3d400090c1cd3081dcf54141de24e57b",
+      "schemaDelta": false,
+      "patchSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": [
+        {
+          "name": "AdminAuditLog.jsonc",
+          "sha256": "c2e896683b83957f5b6128d33d91533bbc48c49599415d3abe613d022eab958d"
+        },
+        {
+          "name": "AdminTestOperation.jsonc",
+          "sha256": "bc124b31cbea299fe69c713ce0d5d36f5101e2f05e99dd0d11bee5116630b65c"
+        },
+        {
+          "name": "CyclePhaseLookup.jsonc",
+          "sha256": "2977fc893b956031d567d1bcf9c8c81c924ee42c7aab67e46e2dbcaa2f7bd628"
+        },
+        {
+          "name": "DataProtectionEvent.jsonc",
+          "sha256": "8784aeecfb0a36063e6f037498e205dabff578f503edec962c2fd5957a9ecae1"
+        },
+        {
+          "name": "HealthDataDeletionJob.jsonc",
+          "sha256": "b3f86af9ea09e4add0be09fb43ac46283c78b18067f73e7f20abb38e42e6806e"
+        },
+        {
+          "name": "InternalHealthRun.jsonc",
+          "sha256": "dad6c4049e17473335476b9c561e09e093be2781ea9055dd48490d3d8c7f5575"
+        },
+        {
+          "name": "MessageCategoryLookup.jsonc",
+          "sha256": "744bf94cfa06083e6b610a3232733747ab27bd44e2a36fb282a46b529e1f468f"
+        },
+        {
+          "name": "MessageCategoryMapping.jsonc",
+          "sha256": "1f1e8a1b6348d5c039736bd3a8cc5583416888ca45b4b45dc84df1efebfefdac"
+        },
+        {
+          "name": "MessagePair.jsonc",
+          "sha256": "ba03694920032a5b225934d54e08306b357b65db2c0faf4cdad93bfec0798ecd"
+        },
+        {
+          "name": "MoonPhaseLookup.jsonc",
+          "sha256": "e86da2c11ccdba7d98a7a023137cfc7130da54f4bbb679641b922b4485acff2a"
+        },
+        {
+          "name": "NotificationDelivery.jsonc",
+          "sha256": "19962ddacd67b019b75ac828c0a7465fc6cfd3579e7f4f241b831b2301e7d1ca"
+        },
+        {
+          "name": "SystemErrorLog.jsonc",
+          "sha256": "273c75b530471bf82be343d39ebba659944a8066b243e1ee50ead36c07734750"
+        },
+        {
+          "name": "User.jsonc",
+          "sha256": "4de38108e89f3bb0c1c7411eabdd47f8899238f1580428a167de47b10c5b3a31"
+        },
+        {
+          "name": "UserCyclePhaseDay.jsonc",
+          "sha256": "802b6ef34b6ae59759371c1c541e510fdbeccc428d92def785ad71b7822bf51c"
+        },
+        {
+          "name": "UserCyclePrediction.jsonc",
+          "sha256": "68ea03867cf3ed7a5f6934aedab8c1c0a0d9388190756ac77d62a27958d477da"
+        },
+        {
+          "name": "UserCycleSettings.jsonc",
+          "sha256": "e70891545028e26dc22460b957ce5b4dbfd238ed0cb5883df21c583dcebea32b"
+        },
+        {
+          "name": "UserDailyMessage.jsonc",
+          "sha256": "6b845066e391b6a99f668dd7bf05127ff7a537fa2ab65706c62d4250276898bd"
+        },
+        {
+          "name": "UserHealthConsent.jsonc",
+          "sha256": "f53d48f44e74d2e0c0e88033c741644bba4eb139d2f98ed66bf00eb862773f0f"
+        },
+        {
+          "name": "UserHealthConsentEvent.jsonc",
+          "sha256": "c687de99fc18cffca408b318345b8d1f2f3727aecdcf778b37fd4d8802e70bc0"
+        },
+        {
+          "name": "UserPatternSummary.jsonc",
+          "sha256": "527a45c366780e75566f4dd9f0406327d29c3bb301519413da782a92f29002ca"
+        },
+        {
+          "name": "UserPeriodRecord.jsonc",
+          "sha256": "6ca8a894180730f7b40a15250519820fdb22e9abde9c05c5a592f3c8af796f70"
+        },
+        {
+          "name": "UserPreferences.jsonc",
+          "sha256": "b1d4b7808ce3a0f680d21dd91e411249d00f44b2546d59774c03aa1b44b6891a"
+        },
+        {
+          "name": "UserProfile.jsonc",
+          "sha256": "cc8b3bbc1b272968085acd5b7eb487ddf9e7e6d83239c3697746ff4287e667c9"
+        }
+      ],
+      "includesFunctions": false,
+      "includesCredentials": false,
+      "executesDeployment": false,
+      "warning": "entities push fully synchronizes ALL schemas. Compare full remote inventory first. Do not use deploy from this schema-only directory."
+    },
+    "pre013": {
+      "schema": "shinka.schema-stage/1",
+      "baselineCommit": "e8afd7be0ee537e016bcc9995d98cc99d662af48",
+      "schemaDelta": true,
+      "patchSha256": "a18c8cbdd9767dc3d72a718a760b7bc799f963a435f18550f49434c806dc205a",
+      "files": [
+        {
+          "name": "AdminAuditLog.jsonc",
+          "sha256": "c2e896683b83957f5b6128d33d91533bbc48c49599415d3abe613d022eab958d"
+        },
+        {
+          "name": "AdminTestOperation.jsonc",
+          "sha256": "bc124b31cbea299fe69c713ce0d5d36f5101e2f05e99dd0d11bee5116630b65c"
+        },
+        {
+          "name": "CyclePhaseLookup.jsonc",
+          "sha256": "2977fc893b956031d567d1bcf9c8c81c924ee42c7aab67e46e2dbcaa2f7bd628"
+        },
+        {
+          "name": "DataProtectionEvent.jsonc",
+          "sha256": "8784aeecfb0a36063e6f037498e205dabff578f503edec962c2fd5957a9ecae1"
+        },
+        {
+          "name": "HealthDataDeletionJob.jsonc",
+          "sha256": "b3f86af9ea09e4add0be09fb43ac46283c78b18067f73e7f20abb38e42e6806e"
+        },
+        {
+          "name": "InternalHealthRun.jsonc",
+          "sha256": "dad6c4049e17473335476b9c561e09e093be2781ea9055dd48490d3d8c7f5575"
+        },
+        {
+          "name": "MessageCategoryLookup.jsonc",
+          "sha256": "744bf94cfa06083e6b610a3232733747ab27bd44e2a36fb282a46b529e1f468f"
+        },
+        {
+          "name": "MessageCategoryMapping.jsonc",
+          "sha256": "1f1e8a1b6348d5c039736bd3a8cc5583416888ca45b4b45dc84df1efebfefdac"
+        },
+        {
+          "name": "MessagePair.jsonc",
+          "sha256": "ba03694920032a5b225934d54e08306b357b65db2c0faf4cdad93bfec0798ecd"
+        },
+        {
+          "name": "MoonPhaseLookup.jsonc",
+          "sha256": "e86da2c11ccdba7d98a7a023137cfc7130da54f4bbb679641b922b4485acff2a"
+        },
+        {
+          "name": "NotificationDelivery.jsonc",
+          "sha256": "19962ddacd67b019b75ac828c0a7465fc6cfd3579e7f4f241b831b2301e7d1ca"
+        },
+        {
+          "name": "SystemErrorLog.jsonc",
+          "sha256": "273c75b530471bf82be343d39ebba659944a8066b243e1ee50ead36c07734750"
+        },
+        {
+          "name": "User.jsonc",
+          "sha256": "4de38108e89f3bb0c1c7411eabdd47f8899238f1580428a167de47b10c5b3a31"
+        },
+        {
+          "name": "UserCyclePhaseDay.jsonc",
+          "sha256": "802b6ef34b6ae59759371c1c541e510fdbeccc428d92def785ad71b7822bf51c"
+        },
+        {
+          "name": "UserCyclePrediction.jsonc",
+          "sha256": "68ea03867cf3ed7a5f6934aedab8c1c0a0d9388190756ac77d62a27958d477da"
+        },
+        {
+          "name": "UserCycleSettings.jsonc",
+          "sha256": "e70891545028e26dc22460b957ce5b4dbfd238ed0cb5883df21c583dcebea32b"
+        },
+        {
+          "name": "UserDailyMessage.jsonc",
+          "sha256": "6b845066e391b6a99f668dd7bf05127ff7a537fa2ab65706c62d4250276898bd"
+        },
+        {
+          "name": "UserHealthConsent.jsonc",
+          "sha256": "f53d48f44e74d2e0c0e88033c741644bba4eb139d2f98ed66bf00eb862773f0f"
+        },
+        {
+          "name": "UserHealthConsentEvent.jsonc",
+          "sha256": "c687de99fc18cffca408b318345b8d1f2f3727aecdcf778b37fd4d8802e70bc0"
+        },
+        {
+          "name": "UserPatternSummary.jsonc",
+          "sha256": "527a45c366780e75566f4dd9f0406327d29c3bb301519413da782a92f29002ca"
+        },
+        {
+          "name": "UserPeriodRecord.jsonc",
+          "sha256": "6ca8a894180730f7b40a15250519820fdb22e9abde9c05c5a592f3c8af796f70"
+        },
+        {
+          "name": "UserPreferences.jsonc",
+          "sha256": "b1d4b7808ce3a0f680d21dd91e411249d00f44b2546d59774c03aa1b44b6891a"
+        },
+        {
+          "name": "UserProfile.jsonc",
+          "sha256": "cc8b3bbc1b272968085acd5b7eb487ddf9e7e6d83239c3697746ff4287e667c9"
+        }
+      ],
+      "includesFunctions": false,
+      "includesCredentials": false,
+      "executesDeployment": false,
+      "warning": "entities push fully synchronizes ALL schemas. Compare full remote inventory first. Do not use deploy from this schema-only directory."
+    },
+    "reversePatchCheck": "PASS pre013 additive patch matches current tree",
+    "deployed": false
+  },
+  "performance": {
+    "passed": true,
+    "budget": {
+      "initialRaw": 500000,
+      "initialGzip": 165000,
+      "cssRaw": 90000,
+      "cssGzip": 16000
+    },
+    "production": {
+      "initialJS": {
+        "raw": 460913,
+        "gzip": 149980
+      },
+      "allJS": {
+        "raw": 1350322,
+        "gzip": 447228
+      },
+      "css": {
+        "raw": 86240,
+        "gzip": 14800
+      },
+      "chunkCount": 17
+    },
+    "staticCycles": [],
+    "pageExceptions": 0,
+    "initialTestsIncluded": false,
+    "lazyRetry": {
+      "passed": true,
+      "scope": "Synthetic network asset failure and full-reload retry, real App route"
+    }
+  }
+}

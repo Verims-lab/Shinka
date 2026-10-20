@@ -1,21 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-009",
-    "package_name": "Maintenance, Performance & Mobile Compatibility",
-    "package_type": "MAINTENANCE",
-    "created_at": "2026-10-20",
-    "updated_at": "2026-10-20",
-    "health_catalog_version": "HC-009.0",
-    "short_summary": "Preserved loading/mobile/history maintenance; ON-05 correction separates persisted consent business time from native metadata, resumes partial writes and verifies history before advancement.",
-    "full_health_status": "BASE44_FULL_HEALTH_REQUIRED",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "REPO_CLOSED_PENDING_BASE44_VERIFICATION; ON05_OPEN_PENDING_LIVE_SAVE_AND_READBACK. Existing loading/mobile/cache/history work preserved. UTC granted_at is durable business authority; insert-only consent/settings, bounded worker coalescing, conflict checks and verified event/period recovery. Chromium/WebKit each 310/310 canonical, 52 general + 21 onboarding Health, 8 routing/Preview + 5 mobile PASS. Clean install/tree/security/type/lint/build/Repo Health/retention/byte guards PASS; 0 Critical/High, 2 existing Moderate. Initial JS 447,080 raw / 146,566 gzip bytes. Published UI observed 008/HC-007.0; Preview main 848e073; live table counts 1/0/0, raw timestamp type/offset and function hash unverified. Cross-worker uniqueness, hosted save/readback, Full Health/history and prior external obligations remain open; no native transaction/rollback, product deletion or live closure claimed."
-  },
-  {
     "build_marker": "Buildmarker-010",
     "package_name": "Admin profile access",
     "package_type": "FEATURE",
@@ -68,5 +53,19 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "updated_at": "2026-10-20T12:43:54.493235+00:00"
+  },
+  {
+    "build_marker": "Buildmarker-014",
+    "package_name": "Production closure investigation and OD-012",
+    "package_type": "CORRECTIVE",
+    "created_at": "2026-10-20T15:14:05.571467Z",
+    "health_catalog_version": "HC-014.0",
+    "short_summary": "Implements approved long-interval behavior across Home/Calendar; completes fresh TLS-verified security scan, live read-only schema/import checks and staged rollout tooling. Production persistence awaits concrete architecture approval.",
+    "full_health_status": "BLOCKED_PRODUCTION_PERSISTENCE",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "AWAITING_USER_ARCHITECTURE_APPROVAL. Chromium/WebKit each 405/405 canonical, 94/94 local Health; zero page errors. Clean install/tree, lint/type/build, Repo Health 16/16, five-package history and performance budgets pass. Fresh security 0 Critical/High, 2 Moderate; TLS verification enabled, no dependency changes. OD-012 resolved with behavioral regressions. Actual read-only Base44: lifecycle schema readable; content PRE_IMPORT missing 6/240/260 and Moon 103. Home/Calendar/Admin production writes stay blocked; no hosted concurrency/restart proof. Concrete single-authority PostgreSQL decision and executable schema rollout prepared. ON-05/live Full Health remain open. No main merge/publish, import, external provisioning/migration or live user mutations. Evidence: reports/SHINKA_CLOSURE_014.md and closure-014/verification.json. Latest five packages 010–014."
   }
 ];

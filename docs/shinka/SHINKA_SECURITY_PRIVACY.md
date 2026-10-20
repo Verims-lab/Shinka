@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-013
+**Current BuildMarker:** Buildmarker-014
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -199,3 +199,12 @@ The delete scope is an explicit exception for seven operational entities plus bu
 HMAC preview tokens bind actor/target/operation/app/scope and expire after five minutes; exact typed target ID is required. They are not authentication or concurrency primitives. Environment is the actual SDK app ID/server plus separately configured server label/allowlist. Test branch/Preview does not isolate data. No secret is supplied from browser input. Production execute/resume unconditionally refuse without a verified coordinator.
 
 Early guards reread User and durable deletion tombstone on every hosted function's authenticated path. This prevents a stale token from recreating profile/data through those paths, but neither instantaneous platform token revocation nor cross-worker exclusion is claimed. Direct SDK product CRUD remains denied. Deployment, existing-token behavior and all-writer fencing require explicit live proof before enabling mutations. New tooling schema must be deployed before lifecycle-aware functions; absence fails closed. Audit/job start must persist before destructive steps. A final audit failure leaves the actual partial/completed deletion state visible as retry/unconfirmed, never success.
+
+
+## Current dependency and authority evidence — 014 (2026-10-20)
+
+Fresh `npm audit --json` completed on the unchanged lockfile (SHA-256 `98542fb2ec2004ccd54f48ac07eef9ccd40fb50baf69735479e93606f8b52436`): **0 Critical, 0 High, 2 Moderate, 0 Low** affected packages. `npm run security:deps` exits 0 at its native High threshold; standalone JSON audit exits 1 for Moderate findings. This is a new measurement, not the earlier 011 count. Path: root → react-router-dom@6.30.6 → react-router@6.30.6. Advisories GHSA-wrjc-x8rr-h8h6 and GHSA-337j-9hxr-rhxg and the documented fixed-navigation/declarative-no-SSR exposure assessment above remain applicable; npm proposes the breaking 7.18.4 upgrade. No dependency or lockfile changed, no issue is described as patched.
+
+Prior 012/013 scans failed certificate-chain verification. The failure was not reproducible in this run: direct Node TLS to registry.npmjs.org reports authorized=true, TLSv1.2, issuer Google Trust Services; strict-ssl=true, no NODE_TLS_REJECT_UNAUTHORIZED override, no extra CA configured. No trust, TLS or npm configuration was changed. The old connection's chain/root cause was not captured and cannot now be proven; transient network/chain presentation is a hypothesis, not a repaired application defect. Current scan is complete, so the current security-scan status is no longer BLOCKED. Historical blocked results remain recorded as historical.
+
+Live read-only CLI evidence confirms lifecycle schema readability and PRE_IMPORT/Moon missing data only. Privileged inspection does not prove user RLS or mutation safety. The proposed SQL authority/region/identity/admin-roster/migration changes require user approval per [decision 014](reports/SHINKA_PERSISTENCE_DECISION_014.md); no external service, credential, data movement or live account operation occurred. The missing-schema guard remains fail-closed and AT17 verifies no product writes before failure. Live ON-05 save/readback and hosted multi-identity enforcement remain outstanding.

@@ -24,6 +24,8 @@ export async function calendarRequest(action, payload = {}, client = base44) {
       typeof value.revision !== 'string' || !/^[a-f0-9]{64}$/.test(value.revision) || typeof value.writable !== 'boolean' ||
       !Array.isArray(value.starts) || value.starts.some(row => typeof row.id !== 'string' || !isCalendarDate(row.date)) ||
       !Array.isArray(value.recordedDays) || !Array.isArray(value.predictedDays) ||
+      (value.calculationNotice != null && value.calculationNotice !== 'CYCLE_ESTIMATE_UNAVAILABLE') ||
+      (value.calculationNotice && (value.predictedDays.length || value.state !== 'READY')) ||
       [...value.recordedDays, ...value.predictedDays].some(day => !isCalendarDate(day)) ||
       (payload.month && value.month !== payload.month) ||
       (value.state === 'CONSENT_REQUIRED' && (value.starts.length || value.recordedDays.length || value.predictedDays.length)) ||

@@ -50,15 +50,13 @@ export function calculateCalendar({ periods, settings = null, today }) {
     from: rows[i].id, to: row.id,
     days: calendarDayNumber(row.period_start_date) - calendarDayNumber(rows[i].period_start_date),
   }));
-  // The sources specify only a 15–60 lookup, not a rule for longer observed
-  // intervals. Preserve observations and fail explicitly; never clamp/omit them.
-  if (observations.some(row => row.days > 60)) fail('CYCLE_RANGE_DECISION_REQUIRED');
   const estimate = cycleEstimate(observations.slice(-3).map(row => row.days), settings?.initial_cycle_length_days ?? null);
   const latest = rows.at(-1), length = estimate.length;
-  cyclePhaseAtDay(length, duration, 1);
-  const currentCycle = Math.floor((calendarDayNumber(today) - calendarDayNumber(latest.period_start_date)) / length);
-  const coverageEnd = addCalendarDays(latest.period_start_date, (currentCycle + 4) * length - 1);
-  if (calendarDayNumber(coverageEnd) - calendarDayNumber(rows[0].period_start_date) >= CALENDAR_DAY_LIMIT) fail('CALENDAR_HISTORY_LIMIT');
+  // Validate settings even when this window has no supported estimate.
+  cyclePhaseAtDay(length ?? 28, duration, 1);
+  const currentCycle = length === null ? null : Math.floor((calendarDayNumber(today) - calendarDayNumber(latest.period_start_date)) / length);
+  const coverageEnd = length === null ? null : addCalendarDays(latest.period_start_date, (currentCycle + 4) * length - 1);
+  if (calendarDayNumber(coverageEnd ?? today) - calendarDayNumber(rows[0].period_start_date) >= CALENDAR_DAY_LIMIT) fail('CALENDAR_HISTORY_LIMIT');
   const phases = [], predictions = [];
   const appendCycle = (start, days, cycleLength, basis, reference) => {
     for (let d = 0; d < days; d++) phases.push({
@@ -67,7 +65,11 @@ export function calculateCalendar({ periods, settings = null, today }) {
     });
   };
   // Completed real cycles use their actual lengths; genuine starts take priority.
-  rows.slice(0, -1).forEach((row, i) => appendCycle(row.period_start_date, observations[i].days, observations[i].days, 'RECORDED_START', row.id));
+  rows.slice(0, -1).forEach((row, i) => {
+    const days = observations[i].days;
+    if (days <= 60) appendCycle(row.period_start_date, days, days, 'RECORDED_START', row.id);
+  });
+  if (length === null) return { predictions, phases, observations, estimate, coverageEnd };
   appendCycle(latest.period_start_date, length, length, 'RECORDED_START', latest.id);
   for (let cycle = 1; cycle <= currentCycle + 3; cycle++) {
     const start = addCalendarDays(latest.period_start_date, cycle * length);

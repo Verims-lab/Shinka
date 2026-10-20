@@ -10,7 +10,10 @@ let testToolsLab;
 async function loadCalendarLab() {
   if (!calendarLab) calendarLab = import('@/foundation/tests/calendarFixture').then(async ({ calendarFixture }) => {
     const f = calendarFixture({ granted: params.get('calendarScenario') !== 'consent' });
-    if (params.get('calendarScenario') !== 'consent') await f.change('add', { date: '2026-10-01' });
+    if (params.get('calendarScenario') === 'unsupported') {
+      await f.change('add', { date: '2026-01-01' });
+      await f.change('add', { date: '2026-04-01' });
+    } else if (params.get('calendarScenario') !== 'consent') await f.change('add', { date: '2026-10-01' });
     globalThis.__calendarLab = f;
     return f;
   });

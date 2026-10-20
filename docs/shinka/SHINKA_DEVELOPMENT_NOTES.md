@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — First Shinka repository work; production persistence and live closure blocked
-**Current BuildMarker:** Buildmarker-013
+**Current BuildMarker:** Buildmarker-014
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
@@ -151,3 +151,17 @@ Chromium 156.0.8078.4 and WebKit 27.2: **396/396 canonical tests and 93/93 local
 Fresh npm security audit remains **BLOCKED_TLS_CERTIFICATE_CHAIN**: unrestricted registry access and system-CA verification both fail to verify the first certificate. TLS verification was never disabled. Current vulnerability totals are unknown; the earlier 011 result (0 Critical/High, 2 Moderate) is historical only. No dependencies changed. This is not a fully closed security/release result.
 
 HC-013.0: 149 cases / 130 current / 7 future / 12 external, 16 suites; add H12-028/029/030/031/902 and H13-016, update H04 tooling/H05 package policy/H13 inventory, delete none. H12-031 is the explicit current production coordinator blocker; H12-902 is separate explicit-target live acceptance. No schema deployment, live deletion/reset, content import or main push occurred. Evidence: [verification](reports/test-tools-013/verification.json); [scope, recovery and deployment instructions](reports/SHINKA_ADMIN_TEST_TOOLS.md).
+
+## Buildmarker-014 / HC-014.0 — OD-012 and production closure investigation
+
+Preflight: clean local/origin Test `039d97e`; main advanced to `29a64d3`. Fast-forwarded main into Test and pushed that synchronization before work. Existing Calendar/Admin implementations preserved. Current Base44 skills and official SDK/Entity/Actor/CLI references reviewed; native uniqueness is explicitly unsupported and the reviewed APIs do not establish the needed conditional commits or all-writer fencing. No fake production adapter or writable capability was introduced.
+
+Applied the user's explicit OD-012 decision in the common Home/Calendar engine: fixed last-three completed window before filtering, no older backfill, >60 observations preserved, all unsupported distinct from no history, stale derived removal and central TR/EN information. Valid dates are accepted by the mutation planner; production persistence remains a separate blocker. CR01…CR07/CU05, updated CA02/CA17 and missing-schema AT17 execute behavior; H08-006 now runs its regressions. HC-014.0 retains 149 cases/130 current/7 future/12 external and removes none. Current Internal Build retains 010…014.
+
+Chromium 156.0.8078.4 and WebKit 27.2 each pass **405/405 canonical tests and 94/94 local Health** (54 general/21 onboarding/9 daily/6 Calendar/4 Admin); zero page exceptions. Each also passes 19 admin, 8 routing/Preview, 5 mobile, 5 daily, 8 Calendar and 4 Test Tools actual-App scenarios. New 360px information states were visually checked. Clean install/direct+full trees, lint/typecheck/build, Repo Health 16/16, generated history and existing performance budgets pass. These are repository/synthetic-browser results, not hosted transaction, restart or physical-device proof.
+
+Fresh unchanged-lock audit completed with TLS/strict-ssl verification enabled: **0 Critical / 0 High / 2 Moderate / 0 Low** affected packages, both through react-router-dom → react-router. No dependency or trust-setting changes. The previous TLS failure is not reproduced; its original cause remains unproven. Current security scan is no longer blocked; historical 012/013 results above remain historical.
+
+Actual hosted read-only UI/official CLI evidence: AdminTestOperation is readable, content is PRE_IMPORT (6 categories/240 mappings/260 Pairs missing), Moon has 103 missing intervals, no reported conflicts. Preview identifies main `29a64d3` with preview functions/prod data; public backend commit and writable persistence were not proven. Full-schema snapshot/delta generator and readiness script were exercised; current main needs no schema delta, pre-013 generates only the additive operation schema. No deployment/import/user mutation.
+
+[Closure and measured evidence](reports/SHINKA_CLOSURE_014.md), [architecture decision](reports/SHINKA_PERSISTENCE_DECISION_014.md), [executable rollout](reports/SHINKA_RELEASE_ROLLOUT_014.md). Recommended PostgreSQL application authority with Base44 identity/read-time Calendar projection awaits the user's explicit architecture approval; no service or migration was started. Home H09-004, Calendar H08-005 and Admin H12-031 remain BLOCKED; ON-05 live save/readback and current hosted Full Health/history/device evidence remain open. Approval is required by section 4 of the current user request, not inferred from a skill.

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-013
+**Current BuildMarker:** Buildmarker-014
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -81,3 +81,8 @@ Canonical CA/CU tests cover actual lifecycle, both neighbors, 14/15, local dates
 Keep UI/catalog/authorization/preview/persistence/execution separate. Only the two declared actions reach the executor. Server-controlled persistence scans target-filtered pages with explicit metadata fields, rejects malformed/duplicate pagination and foreign indirect references, and fails rather than truncates above the bounded 20,000-row safety ceiling. Cleanup snapshots IDs before deleting so offset pagination cannot skip shrinking pages. No unbounded parallel deletes.
 
 A coordinator interface is not a production guarantee. Do not enable delete/reset with an environment flag, SDK upsert, local mutex or schema assertion. Prove shared writer/roster fencing, durable job uniqueness/receipts and crash recovery before supplying a production coordinator. No persistent job stores normal profile/cycle request bodies. Fixture-only transactions remain under the canonical test tree. Hosted function entry wiring, current-User admission, reset override, protected-history scope and both browsers are part of regression coverage.
+
+
+## OD-012 and release tooling — 014
+
+Filter supported observations only after fixing the last-three window. Preserve valid dates and distinguish no observations from all unsupported observations; never catch general technical/access failures as UNKNOWN. Keep unavailable calculation copy central. Release scripts must produce reviewable metadata/artifacts, never automatically deploy, import, reset or delete. Entity-only full sync requires complete inventory comparison; a directory with only the new schema is unsafe. Read-only CLI evidence must omit records, credentials and raw exceptions.
