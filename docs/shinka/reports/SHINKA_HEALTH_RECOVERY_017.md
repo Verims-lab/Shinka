@@ -1,3 +1,5 @@
+> **018 supersedes the normal Health terminal/JSON workflow and adds visible deletion outcome recovery.** Historical evidence below remains unchanged; current acceptance uses application screens only. See [018 handoff](SHINKA_HEALTH_USABILITY_018.md).
+
 # Shinka 017 — Health recovery and in-app target deletion
 
 **Current BuildMarker:** Buildmarker-017  

@@ -14,19 +14,7 @@ export async function saveHealthReport(client, body, signer) {
   const store=client.asServiceRole.entities.InternalHealthRun, core=client.asServiceRole.integrations.Core;
   const digest=await hashToolValue(report);
   const binding={purpose:'health-upload/1',run_id:report.runId,digest};
-  const lookup=async()=>{
-    let rows;
-    try {rows=await store.filter({run_id:report.runId},'id',2);}
-    catch {throw failure('HEALTH_HISTORY_LOOKUP_FAILED','READBACK');}
-    if(!Array.isArray(rows)||rows.length>1)throw failure('HEALTH_HISTORY_CONFLICT','READBACK');
-    const row=rows[0];
-    if(row) {
-      if(row.report_digest!==digest)throw failure('HEALTH_HISTORY_CONFLICT','REPORT_VALIDATION');
-      const expected=buildHistoryRecord(report,row.report_file_uri);
-      if(!row.id||Object.entries(expected).some(([key,value])=>row[key]!==value))throw failure('HEALTH_HISTORY_READBACK_FAILED','READBACK');
-    }
-    return row;
-  };
+  const lookup=()=>findHealthRun(client,report);
   const existing=await lookup();
   if(existing)return {id:existing.id,run_id:report.runId,reused:true};
   // A server-signed receipt is retained by the caller when create/readback fails.
@@ -58,4 +46,19 @@ export async function saveHealthReport(client, body, signer) {
   try {saved=await lookup();} catch(error) {error.uploadReceipt=receipt;throw error;}
   if(!saved)throw failure('HEALTH_HISTORY_READBACK_FAILED','READBACK',receipt);
   return {id:saved.id,run_id:report.runId,reused:false};
+}
+
+export async function findHealthRun(client, report) {
+  const store=client.asServiceRole.entities.InternalHealthRun, digest=await hashToolValue(report);
+    let rows;
+    try {rows=await store.filter({run_id:report.runId},'id',2);}
+    catch {throw failure('HEALTH_HISTORY_LOOKUP_FAILED','READBACK');}
+    if(!Array.isArray(rows)||rows.length>1)throw failure('HEALTH_HISTORY_CONFLICT','READBACK');
+    const row=rows[0];
+    if(row) {
+      if(row.report_digest!==digest)throw failure('HEALTH_HISTORY_CONFLICT','REPORT_VALIDATION');
+      const expected=buildHistoryRecord(report,row.report_file_uri);
+      if(!row.id||Object.entries(expected).some(([key,value])=>row[key]!==value))throw failure('HEALTH_HISTORY_READBACK_FAILED','READBACK');
+    }
+    return row;
 }

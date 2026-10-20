@@ -1,3 +1,4 @@
+import { LOCAL_HEALTH_IDS } from '../../base44/shared/healthExecutionScope.js';
 import { probeIdentity, acceptBrowserEvidence } from '@/foundation/probes/browserEvidence';
 import { ADMIN_TEST_HEALTH_CASES } from '@/foundation/health/cases/adminTestTools';
 import React from "react";
@@ -39,28 +40,29 @@ window.__authFixture = authFixture;
 window.__runFoundationTests = runFoundationTests;
 window.__authProbeTools = {waitForAuthProbe,measureAuthShell};
 window.__foundationCatalog = {version:HEALTH_CATALOG_VERSION,suites:SUITES.length,cases:HEALTH_CASES.length,
-  current:HEALTH_CASES.filter(c=>c.applicability===A.CURRENT).length,
+  localRegression:HEALTH_CASES.filter(c=>LOCAL_HEALTH_IDS.has(c.id)).length,
+  current:HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)).length,
   future:HEALTH_CASES.filter(c=>c.applicability===A.FUTURE).length,
   external:HEALTH_CASES.filter(c=>c.applicability===A.EXTERNAL).length};
 window.__staticHealthEvidence = async () => {
   const context = createHealthContext();
-  return Promise.all([...NATIVE_HEALTH_CASES.filter(c=>c.runnerType==='RUNTIME'),...H01_CASES.filter(c=>c.id==="H01-006"),...H03_CASES.filter((c)=>["H03-001","H03-004","H03-006","H03-008","H03-009","H03-010"].includes(c.id)),...H04_CASES.filter(c=>c.applicability===A.CURRENT),...H12_CASES.filter(c=>c.applicability===A.CURRENT),...H13_CASES.filter(c=>c.applicability===A.CURRENT)].map(async(c)=>({id:c.id,...await c.run(context)})));
+  return Promise.all([...NATIVE_HEALTH_CASES.filter(c=>c.runnerType==='RUNTIME'),...H01_CASES.filter(c=>c.id==="H01-006"),...H03_CASES.filter((c)=>["H03-001","H03-004","H03-006","H03-008","H03-009","H03-010"].includes(c.id)),...H04_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)),...H12_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)),...H13_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id))].map(async(c)=>({id:c.id,...await c.run(context)})));
 };
 
-window.__onboardingHealthEvidence = async () => Promise.all(ONBOARDING_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT).map(async c=>({id:c.id,...await c.run({})})));
+window.__onboardingHealthEvidence = async () => Promise.all(ONBOARDING_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)).map(async c=>({id:c.id,...await c.run({})})));
 window.__dailyHealthEvidence = async () => {
   const out=[];
   // Only synthetic cases here. H09-004 needs hosted evidence and remains blocked.
-  for(const c of DAILY_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&c.runnerType==='RUNTIME'))out.push({id:c.id,...await c.run({})});
+  for(const c of DAILY_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)&&c.runnerType==='RUNTIME'))out.push({id:c.id,...await c.run({})});
   return out;
 };
 window.__calendarHealthEvidence = async () => {
   const out=[];
-  for(const c of CALENDAR_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&c.runnerType==='RUNTIME'))out.push({id:c.id,...await c.run({})});
+  for(const c of CALENDAR_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)&&c.runnerType==='RUNTIME'))out.push({id:c.id,...await c.run({})});
   return out;
 };
 
-window.__adminTestHealthEvidence = async () => { const out=[]; for (const c of ADMIN_TEST_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&c.runnerType==='RUNTIME')) out.push({id:c.id,...await c.run({})}); return out; };
+window.__adminTestHealthEvidence = async () => { const out=[]; for (const c of ADMIN_TEST_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)&&c.runnerType==='RUNTIME')) out.push({id:c.id,...await c.run({})}); return out; };
 
 window.__probeIdentity = probeIdentity;
 window.__acceptBrowserEvidence = acceptBrowserEvidence;

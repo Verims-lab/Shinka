@@ -4,6 +4,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 
 export async function checkAdminNavigation(page, origin, directory) {
+  await page.evaluate(()=>sessionStorage.removeItem('shinka.pending-test-operation')); // Independent navigation scenario, no pending test operation.
   const results = [];
   if (directory) await mkdir(directory, { recursive: true });
   const open = (route, session, language = 'en', state = 'AUTHENTICATED_CYCLE_STEP') =>

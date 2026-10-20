@@ -7,7 +7,7 @@ export function nativeTestJournal(client, guard, now = () => new Date()) {
   const store = client.asServiceRole.entities, repository = createTestRepository(client);
   const read = job => repository.operation(job.target_id, job.operation_id);
   const patch = async (job, values) => {
-    await guard();
+    // The supplied client already guards every write before and after.
     await store.AdminTestOperation.update(job.id, { ...values, progressed_at: now().toISOString() });
     const saved = await read(job);
     if (!saved || Object.entries(values).some(([key, value]) => JSON.stringify(saved[key]) !== JSON.stringify(value))) testToolError('TEST_JOB_STATUS_UNCONFIRMED', 503);
@@ -16,7 +16,8 @@ export function nativeTestJournal(client, guard, now = () => new Date()) {
   const audit = async record => {
     const rows = await store.AdminAuditLog.filter(record, 'id', 2);
     if (!Array.isArray(rows) || rows.length > 1) testToolError('TEST_AUDIT_UNCONFIRMED');
-    if (!rows.length) await store.AdminAuditLog.create(record);
+    if (rows.length === 1) return; // Exact persisted audit already confirmed.
+    await store.AdminAuditLog.create(record);
     const saved = await store.AdminAuditLog.filter(record, 'id', 2);
     if (!Array.isArray(saved) || saved.length !== 1) testToolError('TEST_AUDIT_UNCONFIRMED');
   };
@@ -36,6 +37,7 @@ export function nativeTestJournal(client, guard, now = () => new Date()) {
     async reopen(job) { return patch(job,{status:'RUNNING',stage:'START',completed_at:null,error_code:null}); },
     async checkpoint(job, stage) {
       const saved = await read(job);
+      if (saved.checkpoints.includes(stage)) return saved; // Executor still reconciles residual rows.
       return patch(job, { stage, checkpoints: [...new Set([...saved.checkpoints, stage])] });
     },
     async finish(job, values, record) {

@@ -1,6 +1,6 @@
 import { DESIGN_TOKENS } from "@/foundation/designTokens";
 import { SOURCE_INVENTORY } from "@/foundation/sourceInventory";
-import { findUnlabeledControls, findSmallTargets, probeMobileOverflow } from "@/foundation/probes/domProbes";
+import { findUnlabeledControls, findSmallTargets } from "@/foundation/probes/domProbes";
 import { CLASS, RUNNER, STATUS } from "../constants";
 import { ev, verdict, blockedResult } from "../evidence";
 import { makeCase } from "../caseFactory";
@@ -32,12 +32,12 @@ export const H13_CASES = [
     const body = getComputedStyle(r).fontFamily;
     return verdict(/Cormorant Garamond/.test(head) && /Inter/.test(body), ev(CLASS.LIVE_RUNTIME, "getComputedStyle", { heading: head, body }, { heading: "Cormorant Garamond", body: "Inter" }, "Computed font check"));
   }, DOM),
-  c("H13-004", "No horizontal overflow at 360px (internal pages)", "Health Center and Build & Environment measured in a real top-level 360px browser viewport have no horizontal overflow.", async () => {
-    const pages = {};
-    for (const p of ["/internal/health?probe=1", "/internal/build?probe=1"]) pages[p] = await probeMobileOverflow(p, 360, 15000);
-    if (Object.values(pages).some((r) => r.state !== "MEASURED")) return blockedResult(ev(CLASS.LIVE_RUNTIME, "top-level browser measurement", pages, "MEASURED", "Probe not measured"));
-    return verdict(Object.values(pages).every((r) => !r.overflow), ev(CLASS.LIVE_RUNTIME, "top-level browser measurement /internal/*", pages, { overflow: false }, "Measured scrollWidth"));
-  }, { ...DOM, timeoutMs: 40000 }),
+  c("H13-004", "Current Health viewport overflow", "Measures this rendered Health screen at its actual viewport; mobile/Build acceptance stays in local browser tests.", async () => {
+    if (!root()) return noRoot();
+    const width = document.documentElement.clientWidth, height = window.innerHeight;
+    const scrollWidth = document.documentElement.scrollWidth;
+    return verdict(width > 0 && scrollWidth <= width + 1, ev(CLASS.LIVE_RUNTIME,'current Health viewport', {width,height,scrollWidth,path:location.pathname}, {overflow:false}, 'Current viewport only; no inferred 320/360px or physical-device evidence'));
+  }, DOM),
   c("H13-005", "Accessible labels on interactive controls", "Every visible control (including icon-only) inside the Health page has an accessible name.", async () => {
     if (!root()) return noRoot();
     const unlabeled = findUnlabeledControls(root());

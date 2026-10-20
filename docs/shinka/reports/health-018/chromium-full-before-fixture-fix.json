@@ -1,0 +1,4952 @@
+{
+  "inAppHealth": {
+    "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+    "passed": true,
+    "durationMs": 1554,
+    "requiresJson": false,
+    "saveState": "SAVED",
+    "frames": 0,
+    "cases": [
+      {
+        "id": "H01-001",
+        "status": "PASS",
+        "reason": "Format check of canonical constant"
+      },
+      {
+        "id": "H01-002",
+        "status": "PASS",
+        "reason": "Static source scan"
+      },
+      {
+        "id": "H01-003",
+        "status": "PASS",
+        "reason": "1 element(s) inspected"
+      },
+      {
+        "id": "H01-004",
+        "status": "PASS",
+        "reason": "Resolved from real runtime location"
+      },
+      {
+        "id": "H01-005",
+        "status": "PASS",
+        "reason": "Constant inspection"
+      },
+      {
+        "id": "H01-006",
+        "status": "PASS",
+        "reason": "Ledger validation"
+      },
+      {
+        "id": "H02-001",
+        "status": "PASS",
+        "reason": "Doc file inspection"
+      },
+      {
+        "id": "H02-002",
+        "status": "PASS",
+        "reason": "Header inspection"
+      },
+      {
+        "id": "H02-003",
+        "status": "PASS",
+        "reason": "Logical inventory inspection"
+      },
+      {
+        "id": "H02-004",
+        "status": "PASS",
+        "reason": "SOURCE_RECEIVED_AND_RECORDED; original artifacts are external, not hash-verified in Git"
+      },
+      {
+        "id": "H02-005",
+        "status": "PASS",
+        "reason": "Authority inspection"
+      },
+      {
+        "id": "H02-006",
+        "status": "PASS",
+        "reason": "12 decisions inspected"
+      },
+      {
+        "id": "H02-007",
+        "status": "PASS",
+        "reason": "Logical/physical source integrity by role"
+      },
+      {
+        "id": "H02-008",
+        "status": "PASS",
+        "reason": "Companion table completeness"
+      },
+      {
+        "id": "H03-010",
+        "status": "PASS",
+        "reason": "Dependency graph; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-001",
+        "status": "PASS",
+        "reason": "Legacy firewall; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-002",
+        "status": "PASS",
+        "reason": "Marker authority; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-003",
+        "status": "PASS",
+        "reason": "Secret scan; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-004",
+        "status": "PASS",
+        "reason": "Email scan; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-005",
+        "status": "PASS",
+        "reason": "Module inventory; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-006",
+        "status": "PASS",
+        "reason": "UI boundary; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-008",
+        "status": "PASS",
+        "reason": "Repository policy only; Base44 Authentication panel and sign-in still require external verification"
+      },
+      {
+        "id": "H03-009",
+        "status": "PASS",
+        "reason": "Injected server principals; not LIVE_ENFORCEMENT"
+      },
+      {
+        "id": "H04-018",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-019",
+        "status": "BLOCKED",
+        "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+      },
+      {
+        "id": "H04-001",
+        "status": "PASS",
+        "reason": "Canonical inventory"
+      },
+      {
+        "id": "H04-002",
+        "status": "PASS",
+        "reason": "Source/doc consistency"
+      },
+      {
+        "id": "H04-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-005",
+        "status": "PASS",
+        "reason": "Official schema docs + registered evidence"
+      },
+      {
+        "id": "H04-006",
+        "status": "NOT_APPLICABLE",
+        "reason": "EXTERNAL_RELEASE — tracked separately, not a fake PASS"
+      },
+      {
+        "id": "H04-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-008",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-009",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-010",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-011",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-012",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-013",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-014",
+        "status": "PASS",
+        "reason": "Availability observed on tooling; no immutable/UTC proof"
+      },
+      {
+        "id": "H04-015",
+        "status": "PASS",
+        "reason": "Deployed enforcement checked separately"
+      },
+      {
+        "id": "H05-001",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable"
+      },
+      {
+        "id": "H05-002",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable"
+      },
+      {
+        "id": "H05-003",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable"
+      },
+      {
+        "id": "H05-004",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable"
+      },
+      {
+        "id": "H05-005",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable"
+      },
+      {
+        "id": "H05-006",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable"
+      },
+      {
+        "id": "H05-007",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable"
+      },
+      {
+        "id": "H05-008",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable"
+      },
+      {
+        "id": "H05-009",
+        "status": "BLOCKED",
+        "reason": "LIVE_CONTENT_COUNT_UNAVAILABLE"
+      },
+      {
+        "id": "H05-010",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-005",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-007",
+        "status": "NOT_APPLICABLE",
+        "reason": "EXTERNAL_RELEASE — tracked separately, not a fake PASS"
+      },
+      {
+        "id": "H07-015",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-005",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-008",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-009",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-010",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-011",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-012",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-008",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-005",
+        "status": "BLOCKED",
+        "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+      },
+      {
+        "id": "H08-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-901",
+        "status": "NOT_APPLICABLE",
+        "reason": "EXTERNAL_RELEASE — tracked separately, not a fake PASS"
+      },
+      {
+        "id": "H09-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-004",
+        "status": "BLOCKED",
+        "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+      },
+      {
+        "id": "H09-901",
+        "status": "NOT_APPLICABLE",
+        "reason": "EXTERNAL_RELEASE — tracked separately, not a fake PASS"
+      },
+      {
+        "id": "H10-001",
+        "status": "NOT_APPLICABLE",
+        "reason": "FUTURE_PACKAGE — not active for current BuildMarker"
+      },
+      {
+        "id": "H10-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H10-004",
+        "status": "NOT_APPLICABLE",
+        "reason": "EXTERNAL_RELEASE — tracked separately, not a fake PASS"
+      },
+      {
+        "id": "H10-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H11-001",
+        "status": "NOT_APPLICABLE",
+        "reason": "FUTURE_PACKAGE — not active for current BuildMarker"
+      },
+      {
+        "id": "H11-003",
+        "status": "NOT_APPLICABLE",
+        "reason": "FUTURE_PACKAGE — not active for current BuildMarker"
+      },
+      {
+        "id": "H11-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H11-005",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H11-006",
+        "status": "NOT_APPLICABLE",
+        "reason": "EXTERNAL_RELEASE — tracked separately, not a fake PASS"
+      },
+      {
+        "id": "H11-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-035",
+        "status": "FAIL",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-034",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-033",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-026",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-027",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-028",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-029",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-030",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-031",
+        "status": "BLOCKED",
+        "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+      },
+      {
+        "id": "H12-902",
+        "status": "NOT_APPLICABLE",
+        "reason": "EXTERNAL_RELEASE — tracked separately, not a fake PASS"
+      },
+      {
+        "id": "H12-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-005",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-008",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-009",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-010",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-011",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-012",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-013",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-014",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-015",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-016",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-017",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-018",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-019",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-020",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-901",
+        "status": "NOT_APPLICABLE",
+        "reason": "EXTERNAL_RELEASE — tracked separately, not a fake PASS"
+      },
+      {
+        "id": "H13-001",
+        "status": "PASS",
+        "reason": "Token inspection"
+      },
+      {
+        "id": "H13-002",
+        "status": "PASS",
+        "reason": "Rendered size check"
+      },
+      {
+        "id": "H13-003",
+        "status": "PASS",
+        "reason": "Computed font check"
+      },
+      {
+        "id": "H13-004",
+        "status": "PASS",
+        "reason": "Current viewport only; no inferred 320/360px or physical-device evidence",
+        "actual": {
+          "width": 1280,
+          "height": 900,
+          "scrollWidth": 1280,
+          "path": "/internal/health"
+        }
+      },
+      {
+        "id": "H13-005",
+        "status": "PASS",
+        "reason": "Accessible name scan"
+      },
+      {
+        "id": "H13-006",
+        "status": "PASS",
+        "reason": "Rendered token comparison"
+      },
+      {
+        "id": "H13-007",
+        "status": "PASS",
+        "reason": "Typography check"
+      },
+      {
+        "id": "H13-008",
+        "status": "PASS",
+        "reason": "Contract inspection"
+      },
+      {
+        "id": "H13-009",
+        "status": "PASS",
+        "reason": "Rendered height check"
+      },
+      {
+        "id": "H13-010",
+        "status": "PASS",
+        "reason": "Light-only check"
+      },
+      {
+        "id": "H13-011",
+        "status": "PASS",
+        "reason": "Localization inspection"
+      },
+      {
+        "id": "H13-013",
+        "status": "NOT_APPLICABLE",
+        "reason": "EXTERNAL_RELEASE — tracked separately, not a fake PASS"
+      },
+      {
+        "id": "H13-014",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H14-001",
+        "status": "NOT_APPLICABLE",
+        "reason": "FUTURE_PACKAGE — not active for current BuildMarker"
+      },
+      {
+        "id": "H14-002",
+        "status": "NOT_APPLICABLE",
+        "reason": "FUTURE_PACKAGE — not active for current BuildMarker"
+      },
+      {
+        "id": "H15-001",
+        "status": "NOT_APPLICABLE",
+        "reason": "FUTURE_PACKAGE — not active for current BuildMarker"
+      },
+      {
+        "id": "H15-002",
+        "status": "NOT_APPLICABLE",
+        "reason": "FUTURE_PACKAGE — not active for current BuildMarker"
+      },
+      {
+        "id": "H16-901",
+        "status": "NOT_APPLICABLE",
+        "reason": "EXTERNAL_RELEASE — tracked separately, not a fake PASS"
+      },
+      {
+        "id": "H16-902",
+        "status": "NOT_APPLICABLE",
+        "reason": "EXTERNAL_RELEASE — tracked separately, not a fake PASS"
+      },
+      {
+        "id": "H16-903",
+        "status": "NOT_APPLICABLE",
+        "reason": "EXTERNAL_RELEASE — tracked separately, not a fake PASS"
+      },
+      {
+        "id": "H16-001",
+        "status": "PASS",
+        "reason": "Catalog self-test"
+      },
+      {
+        "id": "H16-002",
+        "status": "PASS",
+        "reason": "146 results reconciled"
+      },
+      {
+        "id": "H16-003",
+        "status": "PASS",
+        "reason": "Result self-test"
+      },
+      {
+        "id": "H16-004",
+        "status": "PASS",
+        "reason": "Coverage self-test"
+      },
+      {
+        "id": "H16-005",
+        "status": "PASS",
+        "reason": "Future status check"
+      },
+      {
+        "id": "H16-006",
+        "status": "PASS",
+        "reason": "Gate isolation check"
+      }
+    ],
+    "physicalDevice": false
+  },
+  "adminNavigation": [
+    {
+      "scenario": "admin-menu-panel-tools-return-360-tr",
+      "passed": true,
+      "menu": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 44,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 190,
+            "height": 44,
+            "named": true
+          }
+        ]
+      },
+      "panel": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 114.21875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 141.1875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 132,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 132,
+            "named": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        }
+      ]
+    },
+    {
+      "scenario": "user-no-menu-360-tr",
+      "passed": true
+    },
+    {
+      "scenario": "admin-menu-panel-tools-return-360-en",
+      "passed": true,
+      "menu": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 44,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 190,
+            "height": 44,
+            "named": true
+          }
+        ]
+      },
+      "panel": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 99.203125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 129.296875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 132,
+            "named": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        }
+      ]
+    },
+    {
+      "scenario": "user-no-menu-360-en",
+      "passed": true
+    },
+    {
+      "scenario": "admin-menu-panel-tools-return-1280-tr",
+      "passed": true,
+      "menu": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 44,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 190,
+            "height": 44,
+            "named": true
+          }
+        ]
+      },
+      "panel": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 114.21875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 141.1875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 482,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 482,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 482,
+            "height": 110,
+            "named": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        }
+      ]
+    },
+    {
+      "scenario": "user-no-menu-1280-tr",
+      "passed": true
+    },
+    {
+      "scenario": "admin-menu-panel-tools-return-1280-en",
+      "passed": true,
+      "menu": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 44,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 190,
+            "height": 44,
+            "named": true
+          }
+        ]
+      },
+      "panel": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 99.203125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 129.296875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 482,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 482,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 482,
+            "height": 110,
+            "named": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        }
+      ]
+    },
+    {
+      "scenario": "user-no-menu-1280-en",
+      "passed": true
+    },
+    {
+      "scenario": "user-direct-/internal",
+      "passed": true
+    },
+    {
+      "scenario": "user-direct-/internal/health",
+      "passed": true
+    },
+    {
+      "scenario": "user-direct-/internal/build",
+      "passed": true
+    },
+    {
+      "scenario": "user-direct-/internal/test-tools",
+      "passed": true
+    },
+    {
+      "scenario": "anonymous-direct-/internal",
+      "passed": true
+    },
+    {
+      "scenario": "anonymous-direct-/internal/health",
+      "passed": true
+    },
+    {
+      "scenario": "anonymous-direct-/internal/build",
+      "passed": true
+    },
+    {
+      "scenario": "anonymous-direct-/internal/test-tools",
+      "passed": true
+    },
+    {
+      "scenario": "focus-refresh-pending-then-revoked",
+      "passed": true
+    },
+    {
+      "scenario": "existing-user-home-entry-and-return",
+      "passed": true
+    },
+    {
+      "scenario": "pending-onboarding-admin-entry-no-late-write",
+      "passed": true,
+      "actions": [
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        },
+        {
+          "name": "applicationSession"
+        }
+      ]
+    }
+  ],
+  "mobile": [
+    {
+      "scenario": "touch-viewport-320x568",
+      "width": 320,
+      "scrollWidth": 320,
+      "controls": [
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "birth_date",
+          "height": 52
+        },
+        {
+          "id": "birth_time",
+          "height": 52
+        },
+        {
+          "id": "place-countries",
+          "height": 52
+        },
+        {
+          "id": "place-0",
+          "height": 52
+        },
+        {
+          "id": "place-1",
+          "height": 52
+        },
+        {
+          "id": "place-places",
+          "height": 52
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 52
+        }
+      ],
+      "date": "1990-01-01",
+      "time": "08:30",
+      "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+      "passed": true
+    },
+    {
+      "scenario": "touch-viewport-390x844",
+      "width": 390,
+      "scrollWidth": 390,
+      "controls": [
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "birth_date",
+          "height": 52
+        },
+        {
+          "id": "birth_time",
+          "height": 52
+        },
+        {
+          "id": "place-countries",
+          "height": 52
+        },
+        {
+          "id": "place-0",
+          "height": 52
+        },
+        {
+          "id": "place-1",
+          "height": 52
+        },
+        {
+          "id": "place-places",
+          "height": 52
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 52
+        }
+      ],
+      "date": "1990-01-01",
+      "time": "08:30",
+      "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+      "passed": true
+    },
+    {
+      "scenario": "touch-viewport-844x390",
+      "width": 844,
+      "scrollWidth": 844,
+      "controls": [
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "birth_date",
+          "height": 52
+        },
+        {
+          "id": "birth_time",
+          "height": 52
+        },
+        {
+          "id": "place-countries",
+          "height": 52
+        },
+        {
+          "id": "place-0",
+          "height": 52
+        },
+        {
+          "id": "place-1",
+          "height": 52
+        },
+        {
+          "id": "place-places",
+          "height": 52
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 52
+        }
+      ],
+      "date": "1990-01-01",
+      "time": "08:30",
+      "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+      "passed": true
+    },
+    {
+      "scenario": "back-forward-reload-session-routing",
+      "passed": true
+    },
+    {
+      "scenario": "javascript-errors",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "dailyFlow": [
+    {
+      "scenario": "on06-retry-home-locale-360-tr",
+      "passed": true,
+      "geometry": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 51.1875,
+            "height": 44
+          },
+          {
+            "width": 51.875,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          }
+        ]
+      },
+      "sourcePairId": "SHF-001",
+      "scope": "LOCAL_BROWSER_FIXTURE"
+    },
+    {
+      "scenario": "on06-retry-home-locale-360-en",
+      "passed": true,
+      "geometry": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 51.1875,
+            "height": 44
+          },
+          {
+            "width": 51.875,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          }
+        ]
+      },
+      "sourcePairId": "SHF-001",
+      "scope": "LOCAL_BROWSER_FIXTURE"
+    },
+    {
+      "scenario": "on06-retry-home-locale-1280-tr",
+      "passed": true,
+      "geometry": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 51.1875,
+            "height": 44
+          },
+          {
+            "width": 51.875,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          }
+        ]
+      },
+      "sourcePairId": "SHF-001",
+      "scope": "LOCAL_BROWSER_FIXTURE"
+    },
+    {
+      "scenario": "on06-retry-home-locale-1280-en",
+      "passed": true,
+      "geometry": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 51.1875,
+            "height": 44
+          },
+          {
+            "width": 51.875,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          }
+        ]
+      },
+      "sourcePairId": "SHF-001",
+      "scope": "LOCAL_BROWSER_FIXTURE"
+    },
+    {
+      "scenario": "completed-user-failure-remains-home",
+      "passed": true
+    }
+  ],
+  "calendarFlow": [
+    {
+      "scenario": "calendar-edit-cancel-last-delete-home-360-en",
+      "passed": true,
+      "geometry": {
+        "width": 360,
+        "scrollWidth": 360,
+        "days": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "dateFont": "17px"
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "calendar-edit-cancel-last-delete-home-360-tr",
+      "passed": true,
+      "geometry": {
+        "width": 360,
+        "scrollWidth": 360,
+        "days": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "dateFont": "17px"
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "calendar-edit-cancel-last-delete-home-1280-en",
+      "passed": true,
+      "geometry": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "days": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "dateFont": "17px"
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "calendar-edit-cancel-last-delete-home-1280-tr",
+      "passed": true,
+      "geometry": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "days": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "dateFont": "17px"
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "calendar-blocked",
+      "passed": true,
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "calendar-consent",
+      "passed": true,
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "calendar-unsupported-tr",
+      "passed": true,
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "calendar-unsupported-en",
+      "passed": true,
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    }
+  ],
+  "adminTestFlow": [
+    {
+      "scenario": "readonly-preview-cancel-360-tr",
+      "passed": true,
+      "metrics": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 114.21875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 141.1875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 278,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 138.453125,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 230.25,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.28125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 121.28125,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 85.203125,
+            "height": 52,
+            "named": true
+          }
+        ]
+      },
+      "productWrites": 0
+    },
+    {
+      "scenario": "readonly-preview-cancel-360-en",
+      "passed": true,
+      "metrics": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 99.203125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 129.296875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 278,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 96.71875,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 168.609375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 114.03125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 112.03125,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 82.15625,
+            "height": 52,
+            "named": true
+          }
+        ]
+      },
+      "productWrites": 0
+    },
+    {
+      "scenario": "readonly-preview-cancel-1280-tr",
+      "passed": true,
+      "metrics": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 114.21875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 141.1875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 942,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 138.453125,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 230.25,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.28125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 121.28125,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 85.203125,
+            "height": 52,
+            "named": true
+          }
+        ]
+      },
+      "productWrites": 0
+    },
+    {
+      "scenario": "readonly-preview-cancel-1280-en",
+      "passed": true,
+      "metrics": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 99.203125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 129.296875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 942,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 96.71875,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 168.609375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 114.03125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 112.03125,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 82.15625,
+            "height": 52,
+            "named": true
+          }
+        ]
+      },
+      "productWrites": 0
+    }
+  ],
+  "evidenceScope": "LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",
+  "browser": {
+    "engine": "chromium",
+    "version": "156.0.8078.4",
+    "physicalDevice": false
+  },
+  "catalog": {
+    "version": "HC-018.0",
+    "suites": 16,
+    "cases": 157,
+    "localRegression": 6,
+    "current": 132,
+    "future": 7,
+    "external": 12
+  },
+  "nativeEntries": {
+    "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+    "sessionChecks": 7,
+    "nativeRoutes": 2,
+    "loginSecretReads": 0,
+    "hostedVerified": false,
+    "passed": true
+  },
+  "tests": 464,
+  "passed": 463,
+  "failed": 1,
+  "geoNamesEntry": {
+    "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+    "requests": 3,
+    "secretReadsAtModuleLoad": 0,
+    "passed": true
+  },
+  "geoNamesRuntimeProbeEntry": {
+    "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+    "deniedRequests": 3,
+    "authorizedRequests": 2,
+    "secretReadsBeforeAuthorization": 0,
+    "workerFactories": 1,
+    "passed": true
+  },
+  "authProbe": {
+    "probes": [
+      {
+        "width": 360,
+        "kind": "auth",
+        "path": "/auth-shell-probe",
+        "viewport": {
+          "width": 360,
+          "height": 800
+        },
+        "topLevel": true,
+        "landedPath": "/auth-shell-probe",
+        "state": "READY",
+        "route": "/auth-shell-probe",
+        "screen": "UNAUTHENTICATED_SIGN_IN",
+        "geometry": {
+          "providers": "apple,google",
+          "heights": [
+            52,
+            52
+          ],
+          "padding": [
+            "20px",
+            "20px"
+          ],
+          "passwords": 0,
+          "ageChecked": false
+        },
+        "elapsedMs": 96,
+        "provenance": {
+          "contract": "shinka.browser-probes/1",
+          "buildMarker": "Buildmarker-018",
+          "sourceDigest": "62f69ce9bd410b0ad1c54bff153a93c2c9f6f489498b135c0e50ac6e7f6076e0",
+          "origin": "http://127.0.0.1:58198",
+          "environment": "LOCAL",
+          "measuredAt": "2026-10-20T20:33:03.503Z",
+          "engine": "chromium",
+          "browserVersion": "156.0.8078.4",
+          "evidenceBoundary": "ADMIN_SUPPLIED_BROWSER_MEASUREMENT",
+          "physicalDevice": false
+        }
+      },
+      {
+        "width": 1024,
+        "kind": "auth",
+        "path": "/auth-shell-probe",
+        "viewport": {
+          "width": 1024,
+          "height": 800
+        },
+        "topLevel": true,
+        "landedPath": "/auth-shell-probe",
+        "state": "READY",
+        "route": "/auth-shell-probe",
+        "screen": "UNAUTHENTICATED_SIGN_IN",
+        "geometry": {
+          "providers": "apple,google",
+          "heights": [
+            52,
+            52
+          ],
+          "padding": [
+            "20px",
+            "20px"
+          ],
+          "passwords": 0,
+          "ageChecked": false
+        },
+        "elapsedMs": 80,
+        "provenance": {
+          "contract": "shinka.browser-probes/1",
+          "buildMarker": "Buildmarker-018",
+          "sourceDigest": "62f69ce9bd410b0ad1c54bff153a93c2c9f6f489498b135c0e50ac6e7f6076e0",
+          "origin": "http://127.0.0.1:58198",
+          "environment": "LOCAL",
+          "measuredAt": "2026-10-20T20:33:03.503Z",
+          "engine": "chromium",
+          "browserVersion": "156.0.8078.4",
+          "evidenceBoundary": "ADMIN_SUPPLIED_BROWSER_MEASUREMENT",
+          "physicalDevice": false
+        }
+      }
+    ]
+  },
+  "productionRouting": [
+    {
+      "session": "anonymous",
+      "state": "UNAUTHENTICATED_SIGN_IN",
+      "passed": true
+    },
+    {
+      "session": "admin",
+      "state": "AUTHENTICATED_PROFILE_REQUIRED",
+      "passed": true
+    },
+    {
+      "session": "admin-session-preserved-with-external-evidence",
+      "probe": {
+        "kind": "auth",
+        "path": "/auth-shell-probe",
+        "width": 360,
+        "viewport": {
+          "width": 360,
+          "height": 800
+        },
+        "topLevel": true,
+        "landedPath": "/auth-shell-probe",
+        "state": "READY",
+        "route": "/auth-shell-probe",
+        "screen": "UNAUTHENTICATED_SIGN_IN",
+        "geometry": {
+          "providers": "apple,google",
+          "heights": [
+            52,
+            52
+          ],
+          "padding": [
+            "20px",
+            "20px"
+          ],
+          "passwords": 0,
+          "ageChecked": false
+        },
+        "elapsedMs": 96,
+        "provenance": {
+          "contract": "shinka.browser-probes/1",
+          "buildMarker": "Buildmarker-018",
+          "sourceDigest": "62f69ce9bd410b0ad1c54bff153a93c2c9f6f489498b135c0e50ac6e7f6076e0",
+          "origin": "http://127.0.0.1:58198",
+          "environment": "LOCAL",
+          "measuredAt": "2026-10-20T20:33:03.503Z",
+          "engine": "chromium",
+          "browserVersion": "156.0.8078.4",
+          "evidenceBoundary": "ADMIN_SUPPLIED_BROWSER_MEASUREMENT",
+          "physicalDevice": false
+        }
+      },
+      "passed": true
+    },
+    {
+      "session": "anonymous-top-level-probe",
+      "passed": true
+    },
+    {
+      "session": "admin-top-level-probe",
+      "passed": true
+    }
+  ],
+  "previewProbes": [
+    {
+      "probe": {
+        "kind": "layout",
+        "path": "/internal/health",
+        "width": 360,
+        "viewport": {
+          "width": 360,
+          "height": 800
+        },
+        "topLevel": true,
+        "landedPath": "/internal/health",
+        "state": "MEASURED",
+        "scrollWidth": 360,
+        "overflow": false,
+        "ms": 94
+      },
+      "passed": true
+    },
+    {
+      "probe": {
+        "kind": "layout",
+        "path": "/internal/build",
+        "width": 360,
+        "viewport": {
+          "width": 360,
+          "height": 800
+        },
+        "topLevel": true,
+        "landedPath": "/internal/build",
+        "state": "MEASURED",
+        "scrollWidth": 360,
+        "overflow": false,
+        "ms": 77
+      },
+      "passed": true
+    },
+    {
+      "probe": {
+        "kind": "auth",
+        "path": "/auth-shell-probe",
+        "width": 360,
+        "viewport": {
+          "width": 360,
+          "height": 800
+        },
+        "topLevel": true,
+        "landedPath": "/auth-shell-probe",
+        "state": "READY",
+        "route": "/auth-shell-probe",
+        "screen": "UNAUTHENTICATED_SIGN_IN",
+        "geometry": {
+          "providers": "apple,google",
+          "heights": [
+            52,
+            52
+          ],
+          "padding": [
+            "20px",
+            "20px"
+          ],
+          "passwords": 0,
+          "ageChecked": false
+        },
+        "elapsedMs": 96
+      },
+      "passed": true
+    },
+    {
+      "probe": {
+        "kind": "auth",
+        "path": "/auth-shell-probe",
+        "width": 1024,
+        "viewport": {
+          "width": 1024,
+          "height": 800
+        },
+        "topLevel": true,
+        "landedPath": "/auth-shell-probe",
+        "state": "READY",
+        "route": "/auth-shell-probe",
+        "screen": "UNAUTHENTICATED_SIGN_IN",
+        "geometry": {
+          "providers": "apple,google",
+          "heights": [
+            52,
+            52
+          ],
+          "padding": [
+            "20px",
+            "20px"
+          ],
+          "passwords": 0,
+          "ageChecked": false
+        },
+        "elapsedMs": 80
+      },
+      "passed": true
+    }
+  ],
+  "health": [
+    {
+      "id": "H12-035",
+      "status": "FAIL",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "E04",
+            "E05",
+            "E06",
+            "E07",
+            "E08"
+          ],
+          "failed": [
+            "E08"
+          ],
+          "diagnostics": [
+            {
+              "id": "E08",
+              "stage": "START",
+              "code": "TEST_FAILED"
+            }
+          ],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.057Z"
+      }
+    },
+    {
+      "id": "H12-034",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "CL01",
+            "CL02",
+            "CL03",
+            "CL04",
+            "CL05",
+            "CL06",
+            "CL07",
+            "CL08",
+            "CL09",
+            "CL10",
+            "CL11",
+            "CL12",
+            "CL13"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.061Z"
+      }
+    },
+    {
+      "id": "H04-018",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "NA01",
+            "NA07",
+            "NA22",
+            "NA23"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.989Z"
+      }
+    },
+    {
+      "id": "H07-015",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "NA14",
+            "NA15",
+            "NA24",
+            "NA30"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.006Z"
+      }
+    },
+    {
+      "id": "H09-006",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "NA02",
+            "NA03",
+            "NA04",
+            "NA05",
+            "NA06"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.000Z"
+      }
+    },
+    {
+      "id": "H08-008",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "NA08",
+            "NA09",
+            "NA10",
+            "NA11",
+            "NA12",
+            "NA13",
+            "NA16",
+            "NA28",
+            "NA29"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.038Z"
+      }
+    },
+    {
+      "id": "H12-033",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "NA17",
+            "NA18",
+            "NA19",
+            "NA20",
+            "NA21",
+            "NA22",
+            "NA23",
+            "NA25",
+            "NA26",
+            "NA27"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": [
+            "NA22",
+            "NA23"
+          ]
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.039Z"
+      }
+    },
+    {
+      "id": "H01-006",
+      "status": "PASS",
+      "evidence": {
+        "classification": "STATIC",
+        "source": "src/foundation/buildLedgerData.js + generated history",
+        "actual": {
+          "entries": 5,
+          "generatedMatches": true,
+          "errors": []
+        },
+        "expected": {
+          "errors": []
+        },
+        "reason": "Ledger validation",
+        "timestamp": "2026-10-20T20:33:18.975Z"
+      }
+    },
+    {
+      "id": "H03-010",
+      "status": "PASS",
+      "evidence": {
+        "classification": "STATIC",
+        "source": "build-time manifest:dependencies",
+        "actual": {
+          "ok": true,
+          "staticModules": 55,
+          "eagerInternal": [],
+          "violations": [],
+          "cycles": []
+        },
+        "expected": "no violations",
+        "reason": "Dependency graph; repository hash metadata, not live enforcement",
+        "timestamp": "2026-10-20T20:33:18.975Z"
+      }
+    },
+    {
+      "id": "H03-001",
+      "status": "PASS",
+      "evidence": {
+        "classification": "STATIC",
+        "source": "build-time manifest:legacy",
+        "actual": [],
+        "expected": "no violations",
+        "reason": "Legacy firewall; repository hash metadata, not live enforcement",
+        "timestamp": "2026-10-20T20:33:18.975Z"
+      }
+    },
+    {
+      "id": "H03-004",
+      "status": "PASS",
+      "evidence": {
+        "classification": "STATIC",
+        "source": "build-time manifest:emailFiles",
+        "actual": [],
+        "expected": "no violations",
+        "reason": "Email scan; repository hash metadata, not live enforcement",
+        "timestamp": "2026-10-20T20:33:18.975Z"
+      }
+    },
+    {
+      "id": "H03-006",
+      "status": "PASS",
+      "evidence": {
+        "classification": "STATIC",
+        "source": "build-time manifest:internalUi",
+        "actual": {
+          "files": 17,
+          "violations": []
+        },
+        "expected": "no violations",
+        "reason": "UI boundary; repository hash metadata, not live enforcement",
+        "timestamp": "2026-10-20T20:33:18.975Z"
+      }
+    },
+    {
+      "id": "H03-008",
+      "status": "PASS",
+      "evidence": {
+        "classification": "STATIC",
+        "source": "repository auth manifest + recorded policy",
+        "actual": {
+          "surface": {
+            "ok": true,
+            "violations": []
+          },
+          "recordedAt": "2026-10-18T23:11:00+03:00"
+        },
+        "expected": {
+          "ok": true
+        },
+        "reason": "Repository policy only; Base44 Authentication panel and sign-in still require external verification",
+        "timestamp": "2026-10-20T20:33:18.975Z"
+      }
+    },
+    {
+      "id": "H03-009",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "handleInternalRequest",
+        "actual": {
+          "ok": true,
+          "statuses": [
+            401,
+            403,
+            200
+          ],
+          "operationCalls": 1
+        },
+        "expected": {
+          "ok": true
+        },
+        "reason": "Injected server principals; not LIVE_ENFORCEMENT",
+        "timestamp": "2026-10-20T20:33:19.040Z"
+      }
+    },
+    {
+      "id": "H04-001",
+      "status": "PASS",
+      "evidence": {
+        "classification": "STATIC",
+        "source": "domainContract",
+        "actual": {
+          "count": 20
+        },
+        "expected": 20,
+        "reason": "Canonical inventory",
+        "timestamp": "2026-10-20T20:33:18.971Z"
+      }
+    },
+    {
+      "id": "H04-002",
+      "status": "PASS",
+      "evidence": {
+        "classification": "STATIC",
+        "source": "canonical docs",
+        "actual": {
+          "missing": []
+        },
+        "expected": [],
+        "reason": "Source/doc consistency",
+        "timestamp": "2026-10-20T20:33:18.975Z"
+      }
+    },
+    {
+      "id": "H04-003",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "D02"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.976Z"
+      }
+    },
+    {
+      "id": "H04-004",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "D10"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.976Z"
+      }
+    },
+    {
+      "id": "H04-005",
+      "status": "PASS",
+      "evidence": {
+        "classification": "STATIC",
+        "source": "capability register",
+        "actual": {
+          "falsePass": false,
+          "nativeUnique": "UNSUPPORTED"
+        },
+        "expected": "No invented native guarantees",
+        "reason": "Official schema docs + registered evidence",
+        "timestamp": "2026-10-20T20:33:18.971Z"
+      }
+    },
+    {
+      "id": "H04-007",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "D01",
+            "D03",
+            "D22"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.978Z"
+      }
+    },
+    {
+      "id": "H04-008",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "D05",
+            "D06",
+            "D07",
+            "D08",
+            "D09",
+            "D19",
+            "D20"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.980Z"
+      }
+    },
+    {
+      "id": "H04-009",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "D04"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.976Z"
+      }
+    },
+    {
+      "id": "H04-010",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "D11"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.977Z"
+      }
+    },
+    {
+      "id": "H04-011",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "D12"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.976Z"
+      }
+    },
+    {
+      "id": "H04-012",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "D13",
+            "D14"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.978Z"
+      }
+    },
+    {
+      "id": "H04-013",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "D15",
+            "D16",
+            "D17",
+            "D21"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.978Z"
+      }
+    },
+    {
+      "id": "H04-014",
+      "status": "PASS",
+      "evidence": {
+        "classification": "STATIC",
+        "source": "timestamp mapping",
+        "actual": {
+          "created_at": "created_date",
+          "updated_at": "updated_date",
+          "status": "PARTIALLY_VERIFIED"
+        },
+        "expected": "Native aliases; live behavior pending",
+        "reason": "Availability observed on tooling; no immutable/UTC proof",
+        "timestamp": "2026-10-20T20:33:18.976Z"
+      }
+    },
+    {
+      "id": "H04-015",
+      "status": "PASS",
+      "evidence": {
+        "classification": "STATIC",
+        "source": "physical schema inspection",
+        "actual": {
+          "matrixRows": 20,
+          "directOperationsDenied": true,
+          "internal": 3,
+          "calendarActionPolicy": true,
+          "healthHistoryPolicy": true
+        },
+        "expected": "20 complete matrix rows; SDK denied; three closed operational/tooling schemas",
+        "reason": "Deployed enforcement checked separately",
+        "timestamp": "2026-10-20T20:33:18.976Z"
+      }
+    },
+    {
+      "id": "H12-001",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S01",
+            "S03",
+            "S04",
+            "S24"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.978Z"
+      }
+    },
+    {
+      "id": "H12-002",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S12",
+            "S14"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.978Z"
+      }
+    },
+    {
+      "id": "H12-003",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S08"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.977Z"
+      }
+    },
+    {
+      "id": "H12-004",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S02"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.977Z"
+      }
+    },
+    {
+      "id": "H12-005",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S05"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.977Z"
+      }
+    },
+    {
+      "id": "H12-006",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S06"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.978Z"
+      }
+    },
+    {
+      "id": "H12-007",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S07"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.978Z"
+      }
+    },
+    {
+      "id": "H12-008",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S09"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.978Z"
+      }
+    },
+    {
+      "id": "H12-009",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S10"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.977Z"
+      }
+    },
+    {
+      "id": "H12-010",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S11"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.977Z"
+      }
+    },
+    {
+      "id": "H12-011",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S13"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.977Z"
+      }
+    },
+    {
+      "id": "H12-012",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S15"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.977Z"
+      }
+    },
+    {
+      "id": "H12-013",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S16"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.977Z"
+      }
+    },
+    {
+      "id": "H12-014",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S17"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.976Z"
+      }
+    },
+    {
+      "id": "H12-015",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S18"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.978Z"
+      }
+    },
+    {
+      "id": "H12-016",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S19"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.977Z"
+      }
+    },
+    {
+      "id": "H12-017",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S20"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.978Z"
+      }
+    },
+    {
+      "id": "H12-018",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S21"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.977Z"
+      }
+    },
+    {
+      "id": "H12-019",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S22"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.057Z"
+      }
+    },
+    {
+      "id": "H12-020",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "S23"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:18.977Z"
+      }
+    },
+    {
+      "id": "H13-001",
+      "status": "PASS",
+      "evidence": {
+        "classification": "STATIC",
+        "source": "src/foundation/designTokens.js",
+        "actual": {
+          "missing": [],
+          "theme": "light-only",
+          "status": "APPROVED_UIUX_V1_1"
+        },
+        "expected": {
+          "missing": [],
+          "theme": "light-only"
+        },
+        "reason": "Token inspection",
+        "timestamp": "2026-10-20T20:33:18.971Z"
+      }
+    },
+    {
+      "id": "H13-002",
+      "status": "PASS",
+      "evidence": {
+        "classification": "LIVE_RUNTIME",
+        "source": "DOM getBoundingClientRect",
+        "actual": {
+          "token": 44,
+          "small": []
+        },
+        "expected": {
+          "token": 44,
+          "small": []
+        },
+        "reason": "Rendered size check",
+        "timestamp": "2026-10-20T20:33:18.971Z"
+      }
+    },
+    {
+      "id": "H13-003",
+      "status": "PASS",
+      "evidence": {
+        "classification": "LIVE_RUNTIME",
+        "source": "getComputedStyle",
+        "actual": {
+          "heading": "\"Cormorant Garamond\", Georgia, serif",
+          "body": "Inter, ui-sans-serif, system-ui, sans-serif"
+        },
+        "expected": {
+          "heading": "Cormorant Garamond",
+          "body": "Inter"
+        },
+        "reason": "Computed font check",
+        "timestamp": "2026-10-20T20:33:18.971Z"
+      }
+    },
+    {
+      "id": "H13-004",
+      "status": "PASS",
+      "evidence": {
+        "classification": "LIVE_RUNTIME",
+        "source": "current Health viewport",
+        "actual": {
+          "width": 1280,
+          "height": 900,
+          "scrollWidth": 1280,
+          "path": "/internal/health"
+        },
+        "expected": {
+          "overflow": false
+        },
+        "reason": "Current viewport only; no inferred 320/360px or physical-device evidence",
+        "timestamp": "2026-10-20T20:33:18.971Z"
+      }
+    },
+    {
+      "id": "H13-005",
+      "status": "PASS",
+      "evidence": {
+        "classification": "LIVE_RUNTIME",
+        "source": "DOM accessible-name check",
+        "actual": {
+          "unlabeled": []
+        },
+        "expected": {
+          "unlabeled": []
+        },
+        "reason": "Accessible name scan",
+        "timestamp": "2026-10-20T20:33:18.972Z"
+      }
+    },
+    {
+      "id": "H13-006",
+      "status": "PASS",
+      "evidence": {
+        "classification": "LIVE_RUNTIME",
+        "source": "getComputedStyle(:root)",
+        "actual": {
+          "status": "APPROVED_UIUX_V1_1",
+          "checked": 15,
+          "mismatches": []
+        },
+        "expected": {
+          "status": "APPROVED_UIUX_V1_1",
+          "mismatches": []
+        },
+        "reason": "Rendered token comparison",
+        "timestamp": "2026-10-20T20:33:19.057Z"
+      }
+    },
+    {
+      "id": "H13-007",
+      "status": "PASS",
+      "evidence": {
+        "classification": "LIVE_RUNTIME",
+        "source": "tokens + getComputedStyle",
+        "actual": {
+          "sizesOk": true,
+          "headingWeight": "500",
+          "labelWeight": "500",
+          "labelFamily": "Inter, ui-sans-serif, system-ui, sans-serif"
+        },
+        "expected": {
+          "sizesOk": true,
+          "headingWeight": "500",
+          "labelWeight": "500",
+          "labelFamily": "Inter"
+        },
+        "reason": "Typography check",
+        "timestamp": "2026-10-20T20:33:18.972Z"
+      }
+    },
+    {
+      "id": "H13-008",
+      "status": "PASS",
+      "evidence": {
+        "classification": "STATIC",
+        "source": "uiContract.js + lucide-react + ProductNavigation + Home/Calendar",
+        "actual": {
+          "ok": true,
+          "keys": [
+            "home",
+            "calendar",
+            "pattern"
+          ],
+          "icons": [
+            "house",
+            "calendar-days",
+            "moon"
+          ],
+          "profile": "user-round",
+          "missingExports": [],
+          "shellUsesContract": true
+        },
+        "expected": {
+          "ok": true,
+          "shellUsesContract": true
+        },
+        "reason": "Contract inspection",
+        "timestamp": "2026-10-20T20:33:18.976Z"
+      }
+    },
+    {
+      "id": "H13-009",
+      "status": "PASS",
+      "evidence": {
+        "classification": "LIVE_RUNTIME",
+        "source": "DOM getBoundingClientRect",
+        "actual": {
+          "primaryHeights": [
+            52
+          ],
+          "token": {
+            "primaryMinHeight": 52,
+            "inputMinHeight": 52,
+            "inputPaddingX": 16,
+            "primaryRadius": 16,
+            "inputRadius": 16,
+            "disabledOpacity": 0.45
+          }
+        },
+        "expected": {
+          "primaryHeights": "all >= 52",
+          "count": ">0"
+        },
+        "reason": "Rendered height check",
+        "timestamp": "2026-10-20T20:33:18.972Z"
+      }
+    },
+    {
+      "id": "H13-010",
+      "status": "PASS",
+      "evidence": {
+        "classification": "LIVE_RUNTIME",
+        "source": "tokens + html class + source scan",
+        "actual": {
+          "theme": "light-only",
+          "darkActive": false,
+          "darkFiles": []
+        },
+        "expected": {
+          "theme": "light-only",
+          "darkActive": false,
+          "darkFiles": []
+        },
+        "reason": "Light-only check",
+        "timestamp": "2026-10-20T20:33:18.976Z"
+      }
+    },
+    {
+      "id": "H13-011",
+      "status": "PASS",
+      "evidence": {
+        "classification": "STATIC",
+        "source": "i18n/strings.js + Foundation UI sources",
+        "actual": {
+          "ok": true,
+          "keys": 30,
+          "missingInTr": [],
+          "missingInEn": [],
+          "empty": [],
+          "hardcoded": []
+        },
+        "expected": {
+          "ok": true,
+          "hardcoded": []
+        },
+        "reason": "Localization inspection",
+        "timestamp": "2026-10-20T20:33:18.976Z"
+      }
+    },
+    {
+      "id": "H13-014",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "AN01",
+            "AN08"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.414Z"
+      }
+    }
+  ],
+  "onboardingHealth": [
+    {
+      "id": "H06-001",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "A02"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.426Z"
+      }
+    },
+    {
+      "id": "H06-002",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "A01"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.426Z"
+      }
+    },
+    {
+      "id": "H06-003",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "A03"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.426Z"
+      }
+    },
+    {
+      "id": "H06-004",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "P01",
+            "P02",
+            "P06",
+            "P12",
+            "A06",
+            "A09",
+            "O26"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.500Z"
+      }
+    },
+    {
+      "id": "H06-005",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "P03",
+            "P04",
+            "A04",
+            "A05"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.439Z"
+      }
+    },
+    {
+      "id": "H06-006",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "A07",
+            "A08"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.433Z"
+      }
+    },
+    {
+      "id": "H07-001",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "O03",
+            "O04",
+            "O05"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.430Z"
+      }
+    },
+    {
+      "id": "H07-002",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "O01",
+            "O02"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.426Z"
+      }
+    },
+    {
+      "id": "H07-003",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "C14",
+            "O06"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.443Z"
+      }
+    },
+    {
+      "id": "H07-004",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "A07",
+            "A08",
+            "O24"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.433Z"
+      }
+    },
+    {
+      "id": "H07-005",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "O14",
+            "O15",
+            "O16",
+            "O17",
+            "O18"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.439Z"
+      }
+    },
+    {
+      "id": "H07-006",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "A05",
+            "O23",
+            "O30"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.432Z"
+      }
+    },
+    {
+      "id": "H07-007",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "P23",
+            "P24",
+            "P30",
+            "P31",
+            "A04",
+            "O19",
+            "O20",
+            "O21",
+            "O29",
+            "O31"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.457Z"
+      }
+    },
+    {
+      "id": "H07-008",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "C19",
+            "O25",
+            "O27"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.427Z"
+      }
+    },
+    {
+      "id": "H07-009",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "C01",
+            "C02",
+            "C03",
+            "C04",
+            "C05",
+            "C06",
+            "C07",
+            "C08",
+            "C09",
+            "C10",
+            "C11",
+            "C12",
+            "C13",
+            "C14",
+            "C15",
+            "C16"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.447Z"
+      }
+    },
+    {
+      "id": "H07-010",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "C19"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.425Z"
+      }
+    },
+    {
+      "id": "H07-011",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "P21",
+            "P22",
+            "P23",
+            "P24",
+            "P25",
+            "P26",
+            "P27",
+            "P28",
+            "P29",
+            "P30",
+            "P31",
+            "P32",
+            "P01",
+            "P02",
+            "P03",
+            "P04",
+            "P05",
+            "P06",
+            "P07",
+            "P08",
+            "P09",
+            "P10",
+            "P11",
+            "P12",
+            "P13",
+            "P14",
+            "P15",
+            "P16",
+            "P17",
+            "P18",
+            "P19",
+            "P20"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.500Z"
+      }
+    },
+    {
+      "id": "H07-012",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "C16",
+            "C18",
+            "C20"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.442Z"
+      }
+    },
+    {
+      "id": "H10-003",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "M06",
+            "M07",
+            "M08",
+            "O08",
+            "O09",
+            "O10",
+            "O11",
+            "O12",
+            "O13",
+            "O28",
+            "O32",
+            "O33",
+            "G01",
+            "G02",
+            "G03",
+            "G04",
+            "G05",
+            "G06",
+            "G07",
+            "G08",
+            "G09",
+            "G10",
+            "G11",
+            "G12",
+            "G21",
+            "G22",
+            "G23",
+            "G24",
+            "B01",
+            "B02",
+            "B03",
+            "B04",
+            "B05",
+            "B06",
+            "B07",
+            "B08",
+            "B09",
+            "B10",
+            "B11",
+            "B12",
+            "B13",
+            "B14",
+            "B15",
+            "B16",
+            "B17",
+            "B18",
+            "G13",
+            "G14",
+            "G15",
+            "G16",
+            "G17",
+            "G18",
+            "G19",
+            "G20"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.817Z"
+      }
+    },
+    {
+      "id": "H11-004",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "C17",
+            "C21",
+            "P21",
+            "P22",
+            "P23",
+            "P24",
+            "P25",
+            "P26",
+            "P27",
+            "P28",
+            "P29",
+            "P30",
+            "P31",
+            "P32",
+            "P09",
+            "P15",
+            "P16",
+            "P17",
+            "P18",
+            "O17",
+            "O18",
+            "O19",
+            "O20",
+            "O22",
+            "S12",
+            "S14"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.494Z"
+      }
+    },
+    {
+      "id": "H11-005",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "C17",
+            "C19",
+            "C21"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.448Z"
+      }
+    }
+  ],
+  "dailyHealth": [
+    {
+      "id": "H05-010",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "DM01",
+            "DM02",
+            "DM03",
+            "DM04",
+            "DM05",
+            "DM23",
+            "DM26",
+            "DM27",
+            "DM28"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.878Z"
+      }
+    },
+    {
+      "id": "H08-001",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "DM06",
+            "DM07",
+            "DM08",
+            "CA01"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.878Z"
+      }
+    },
+    {
+      "id": "H08-003",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "DM07",
+            "DM08",
+            "CA02"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.879Z"
+      }
+    },
+    {
+      "id": "H09-001",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "NA02",
+            "NA03",
+            "NA04",
+            "NA05"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.885Z"
+      }
+    },
+    {
+      "id": "H09-002",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "DM11",
+            "DM12"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.885Z"
+      }
+    },
+    {
+      "id": "H09-003",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "DM13",
+            "DM14",
+            "DM18",
+            "DM19"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.891Z"
+      }
+    },
+    {
+      "id": "H10-002",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "DM09",
+            "DM10",
+            "DM24"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.953Z"
+      }
+    },
+    {
+      "id": "H12-026",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "DM05",
+            "DM17",
+            "DM18",
+            "DM19",
+            "DM22"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.959Z"
+      }
+    }
+  ],
+  "calendarHealth": [
+    {
+      "id": "H08-002",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "CA03",
+            "CA04",
+            "CA05",
+            "CA13",
+            "CA18"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.979Z"
+      }
+    },
+    {
+      "id": "H08-004",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "NA08",
+            "NA09",
+            "NA10",
+            "NA11",
+            "NA12",
+            "NA13"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:19.994Z"
+      }
+    },
+    {
+      "id": "H08-006",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "CR01",
+            "CR02",
+            "CR03",
+            "CR04",
+            "CR05",
+            "CR06",
+            "CR07"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:20.010Z"
+      }
+    },
+    {
+      "id": "H11-002",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "CA05",
+            "CA10",
+            "CA11",
+            "CA12",
+            "CA19"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:20.017Z"
+      }
+    },
+    {
+      "id": "H12-027",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "CA09",
+            "CA10",
+            "CA11",
+            "CA13",
+            "CA16",
+            "CA17",
+            "CA19",
+            "CA20",
+            "CA21"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:20.037Z"
+      }
+    }
+  ],
+  "adminTestHealth": [
+    {
+      "id": "H12-028",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "AT17",
+            "AT01",
+            "AT02",
+            "AT03",
+            "AT04",
+            "AT05",
+            "AT07",
+            "AT16"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:20.051Z"
+      }
+    },
+    {
+      "id": "H12-029",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "NA20",
+            "NA21",
+            "NA22",
+            "NA23"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:20.058Z"
+      }
+    },
+    {
+      "id": "H12-030",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "NA17",
+            "NA18",
+            "NA19"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-10-20T20:33:20.064Z"
+      }
+    }
+  ],
+  "pageErrors": []
+}

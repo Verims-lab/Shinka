@@ -1,3 +1,4 @@
+import { HEALTH_SCOPE_TRANSFERS } from '../../../base44/shared/healthExecutionScope.js';
 import { BUILD_MARKER } from "@/foundation/buildMarker";
 import { APP_NAME, resolveEnvironment } from "@/foundation/environment";
 import { SOURCE_SET_VERSION } from "@/foundation/sourceInventory";
@@ -13,6 +14,7 @@ export const toCaseRecord = (c) => Object.fromEntries(CASE_FIELDS.map((k) => [k,
 export function buildReport({ scope, suiteId = null, started, completed, results, summary, gate }) {
   const inScope = SUITES.filter((s) => !suiteId || s.id === suiteId);
   return {
+    assessmentScope: 'IN_APP_HEALTH', localRegressionRequirements: HEALTH_SCOPE_TRANSFERS,
     schemaVersion: REPORT_SCHEMA_VERSION, runId: crypto.randomUUID(), appName: APP_NAME,
     buildMarker: BUILD_MARKER, healthCatalogVersion: HEALTH_CATALOG_VERSION, sourceSetVersion: SOURCE_SET_VERSION,
     environment: resolveEnvironment().id, scope, startedAt: started.toISOString(), completedAt: completed.toISOString(),

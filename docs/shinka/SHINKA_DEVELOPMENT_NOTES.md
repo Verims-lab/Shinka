@@ -2,11 +2,25 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-017
+**Current BuildMarker:** Buildmarker-018
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## Buildmarker-018 — In-app Health and deletion outcomes / HC-018.0
+
+Preflight: clean local/origin Test `c244aaa`; main one merge commit ahead. Fast-forwarded and synchronized Test to `04a5ebe` before work. Pre-delivery fetch still showed main/origin Test/local at that baseline, with only this package's working changes. Delivery is Test-only; no main merge or publish.
+
+Applied the approved scope decision: normal Health needs no terminal or JSON import. Six original case IDs move to a visible local-regression list, two retain partial in-app coverage, and all transferred coverage remains executable locally. H12-035 covers deletion readback, save status and progress under slow rechecks. HC-018.0: 157 catalog entries, 132 in-app current + 6 local + 7 future + 12 external. No old failure is converted into a pass. Nested test cancellation now carries safe ID/phase, clears fixture waits/listeners and removes frames; helpers are memoized per Health run. The exact hosted stalled subtest/phase is unproven; local CSS_WAIT/INTERACTION fault injection is separate evidence.
+
+Delete UI immediately shows progress, confirmed/partial/unknown outcomes and collapsed diagnostics. At most two automatic read-only status checks reconcile a lost response; reload restores the same operation pointer. Native User absence alone is insufficient: all operational scopes are reverified before success. Resumes reconcile old checkpoints, avoid redundant journal writes, and yield after new progress without letting slow rechecks starve every retry. Cleanup write bounds, self/last-admin/actor/target guards and retained history remain. Health save/retry/check uses the same report/runId, exposes SAVED/FAILED/UNKNOWN and separates history-refresh failures. Removed unused in-app Foundation launcher, JSON import control and hosted measurement script; no new dependency, service or schema.
+
+One authorized narrow live read at 2026-10-20T20:17:04.993Z found the prior DELETE_USER operation **RUNNING/user_cycle_prediction**, three checkpoints, no completion time and native User still present. Authenticated lookup succeeded. Prior lookup failure and interruption cause remain unproven; login denial is consistent with the lifecycle guard. No deletion/resume, reset, Full Health, content/Moon import or remote write was performed. The diagnostic target ID is omitted from versioned evidence.
+
+Local verification is deliberately reported by run: the first final Chromium/WebKit runs passed 463/463 canonical + 97/97 local Health. After adding E08's slow-recheck regression, both full runs passed the same 463 tests and failed E08 because its fixture returned raw field order instead of the repository's canonical projection. Corrected that fixture only; focused **E01–E08 8/8 + general Health 60/60 + real Health UI** then passed in both engines. The other 37 Health cases passed in the full run. This covers all 464 current canonical IDs but is not represented as a single clean 464-test full rerun. No page exceptions. Normal Health UI ran with no JSON and no fixture frames; its synthetic transport appropriately retains 13 hosted blockers, rather than claiming live Full Health PASS. Original failed artifacts remain in [structured verification](reports/health-018/verification.json).
+
+Clean install/tree, type/lint, production build, Repo Health 17/17, generated five-package history and whitespace checks pass; results are recorded in verification. Initial bundle lab measurement: JS 453,726 raw /151,309 gzip and CSS 86,320/14,817 bytes, unchanged budgets pass; measured before final E08/journal-yield correction, not hosted latency or final all-chunk bytes. Fresh audit: 0 Critical/High, **3 Moderate** affected packages (two router paths plus Vite/launch-editor Windows advisory), all retained; no dependency changes. Internal Build contains 014–018. Hosted save/list/open, existing-operation completion, original ON-05 and physical Android/iOS remain manual acceptance. [Application-only handoff](reports/SHINKA_HEALTH_USABILITY_018.md).
 
 ## Buildmarker-017 — Health recovery and in-app deletion / HC-017.0
 

@@ -14,6 +14,6 @@ export function createHealthContext() {
     entityProbe: memo(probeDomainEntities),
     contentCounts: memo(countLiveContentRows),
     contentLibrary: memo(verifyLiveContentLibrary),
-    results: [],
+    results: [], testResults: new Map(),
   };
 }

@@ -1,3 +1,4 @@
+import { internalHealthOperation } from '../../../base44/shared/internalHealthOperations.js';
 import { BUILD_MARKER } from '../buildMarker';
 import { HEALTH_CATALOG_VERSION } from '../health/constants';
 import { nativeFixture } from './nativeFixture';
@@ -16,7 +17,7 @@ const healthFixture=()=>{
  const rows=[],state={uploads:0,creates:0,createFailure:false,lostAck:false,readFailure:false,uploadFailure:false,failReadAfterCreate:false};
  const client={asServiceRole:{entities:{InternalHealthRun:{filter:async()=>{if(state.readFailure)throw new Error('private');return structuredClone(rows);},create:async row=>{state.creates++;if(state.createFailure)throw new Error('private');rows.push({id:'run',...row});if(state.failReadAfterCreate)state.readFailure=true;if(state.lostAck)throw new Error('lost');return rows[0];}}},integrations:{Core:{UploadPrivateFile:async()=>{state.uploads++;if(state.uploadFailure)throw new Error('private upload');return {file_uri:'private://fixture'};}}}}};
  const signer=healthUploadSigner('synthetic-health-secret-at-least-32-characters');
- return {rows,state,save:body=>saveHealthReport(client,body,signer)};
+ return {rows,state,save:body=>saveHealthReport(client,body,signer),check:report=>internalHealthOperation(client,{action:'saveStatus',report})};
 };
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CLOSURE017_TESTS=[
@@ -25,6 +26,7 @@ export const CLOSURE017_TESTS=[
   const e=await rejected(()=>f.save({report:r}),'HEALTH_HISTORY_CREATE_FAILED');assert(e.stage==='HISTORY_CREATE'&&e.uploadReceipt);
   f.state.createFailure=false;await f.save({report:r,uploadReceipt:e.uploadReceipt});await f.save({report:r});
   assert(f.state.uploads===1&&f.rows.length===1&&f.rows[0].failed===1);
+  const creates=f.state.creates;assert((await f.check(r)).state==='SAVED'&&f.state.creates===creates&&f.state.uploads===1);
  }],
  ['CL02','Lost row acknowledgement returns verified existing history, no second upload or row',async()=>{
   const f=healthFixture(),r=report();f.state.lostAck=true;await f.save({report:r});await f.save({report:r});assert(f.state.uploads===1&&f.state.creates===1);

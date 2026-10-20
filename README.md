@@ -4,7 +4,7 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Any change pushed to the repo will also be reflected in the Base44 Builder.
 
-## Current Test data authority (Buildmarker-017)
+## Current Test data authority (Buildmarker-018)
 
 Base44 is the single product-data, identity and admin-role authority. Browser calls Base44 backend functions; no SQL secret, service, database setup or second login is required. Home reconciles immutable daily candidates; Calendar calculates from actual dates; reset verifies each step; deletion uses a durable target lifecycle with bounded resumable cleanup.
 
@@ -87,7 +87,7 @@ npm run lint
 npm run build
 ```
 
-The CLI executes the same `src/foundation/tests` definitions as Health Center in a temporary local Chromium or WebKit harness. It renders real pages for DOM probes and substitutes only backend access with synthetic fixtures; it never contacts live Base44. Any failed test, Health evidence check or browser exception returns a non-zero exit code. Node must permit a loopback listener and the selected browser execution. Standard Playwright browser-cache configuration is supported.
+The CLI executes the comprehensive `src/foundation/tests` definitions; Health Center runs the declared in-app subset in a temporary local Chromium or WebKit harness. It renders real pages for DOM probes and substitutes only backend access with synthetic fixtures; it never contacts live Base44. Any failed test, Health evidence check or browser exception returns a non-zero exit code. Node must permit a loopback listener and the selected browser execution. Standard Playwright browser-cache configuration is supported.
 
 `security:deps` uses npm's native High threshold, including development dependencies: Critical/High or registry errors fail non-zero; remaining Moderate/Low findings still print. Run it for every package. Use `npm ci` for reproducible validation; do not edit the lockfile manually.
 
@@ -103,4 +103,4 @@ Active Internal Build history is generated, latest five unique packages includin
 
 First Shinka source preparation (read-only workbooks): `node scripts/prepareFirstContent.mjs /absolute/source-directory`. The generated backend manifest is never imported by normal frontend code. Controlled live admin import instructions and production blockers: [011 handoff](docs/shinka/reports/SHINKA_FIRST_SHINKA_011.md). `FOUNDATION_DAILY_DIR=/tmp/shinka-daily npm run test:foundation` adds ON-06/Home TR/EN mobile/desktop captures using an isolated transport.
 
-Package 017: no routine agent-run hosted Health. User performs published acceptance; pending status does not block Test delivery. See [017 handoff](docs/shinka/reports/SHINKA_HEALTH_RECOVERY_017.md) for real viewport evidence, save retry and in-app deletion.
+Package 018: no routine agent-run hosted Health. Normal Health requires no terminal or JSON import. Local browser regressions and external/device acceptance are separate from in-app results. See [018 handoff](docs/shinka/reports/SHINKA_HEALTH_USABILITY_018.md) for save and deletion outcome recovery.

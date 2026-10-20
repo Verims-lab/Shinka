@@ -1,3 +1,4 @@
+import { checkInAppHealth } from './verifyHealthFlow.mjs';
 import { collectBrowserMeasurements } from './browserMeasurements.mjs';
 import { verifyNativeEntries } from './verifyNativeEntries.mjs';
 import { checkAdminTestTools } from './checkAdminTestTools.mjs';
@@ -98,7 +99,8 @@ try {
   const dailyFlow = await checkDailyFlow(page, origin, process.env.FOUNDATION_DAILY_DIR);
   const calendarFlow = await checkCalendarFlow(page, origin, process.env.FOUNDATION_CALENDAR_DIR);
   const adminTestFlow = await checkAdminTestTools(page, origin, process.env.FOUNDATION_TEST_TOOLS_DIR);
-  console.log(JSON.stringify({adminNavigation,mobile,dailyFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
+  const inAppHealth=await checkInAppHealth(page,origin);
+  console.log(JSON.stringify({inAppHealth,adminNavigation,mobile,dailyFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
   if(mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||calendarHealth.some(c=>c.status!=="PASS")||adminTestHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
   }
 } catch(error){console.error(error);process.exitCode=1;}

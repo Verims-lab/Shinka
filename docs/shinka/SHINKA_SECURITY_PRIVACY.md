@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-017
+**Current BuildMarker:** Buildmarker-018
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -28,6 +28,12 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS allows admin read and denies client create/update/delete; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+## 018 diagnostic and recovery limits
+
+Exactly one successful narrow live diagnostic read was made for the user-selected existing deletion: operation metadata, native User presence and authenticated lookup. No Health run, delete/resume, reset, import or publish. At observation, operation was RUNNING/user_cycle_prediction with no completion timestamp; native User remained present and lookup succeeded. The target ID is omitted from the versioned report. A blocked target login is consistent with its deletion tombstone, not proof of full deletion. Platform termination cause and earlier client lookup failure remain unproven.
+
+Keep current admin/self/last-admin/target lifecycle/retention controls. Neither timeout nor native User absence establishes successful deletion. Fresh read-only completion verification detects residual operational rows; no mutation occurs during lookup/status. Preserve safe error codes, stage and request IDs; no raw exception, account values, tokens or secrets in UI/logs. A session recovery pointer grants no backend authority. Already-transmitted writes, provider re-entry/token revocation and distributed races remain separate acceptance limits. No maintenance/drain prerequisite is reintroduced.
 
 ## Active corrective security contract — 017
 
@@ -232,3 +238,8 @@ Fresh TLS-verified npm audit after `npm ci`: 0 Critical, 0 High, 2 Moderate, 0 L
 ## Historical dependency scan — 016
 
 Clean npm lockfile install after removing Postgres.js: zero Critical/High, two existing Moderate React Router advisories. No forced major-router migration. Existing static internal navigation/no SSR mitigation and remaining limits remain documented above. Exact fresh audit is retained in reports/base44-016/npm-audit.json. No SQL driver or runtime secret dependency remains.
+<!-- Latest security measurement; historical package counts below remain unchanged. -->
+
+## 018 dependency scan and diagnostic boundary
+
+Fresh unchanged-lock audit: **0 Critical / 0 High / 3 Moderate / 0 Low** affected packages. High-threshold security check passes; full audit exits 1 for the retained Moderate findings. The existing react-router/react-router-dom paths remain. The additional Vite finding is [GHSA-698v-4r3x-3vcv](https://github.com/vitejs/launch-editor/security/advisories/GHSA-698v-4r3x-3vcv), involving Windows editor launching with attacker-controlled filenames/environment or alternate data streams. No dependency change or blanket safety claim; macOS local testing does not validate Windows exposure. Exact audit is retained in reports/health-018/dependency-audit.json.

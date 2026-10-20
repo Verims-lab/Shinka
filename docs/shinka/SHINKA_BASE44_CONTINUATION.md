@@ -8,6 +8,12 @@
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
 
+## 018 active continuation
+
+The approved shared Base44 app/prod remains the only target; no new service/schema is needed in 018. The 017 terminal/JSON Health prerequisite is superseded: browser regressions are local and normal Health is in-app, with a separate acceptance list. User merges/syncs/publishes backend/shared and frontend together, then uses the application screens. Current operational contract and short acceptance: [018 handoff](reports/SHINKA_HEALTH_USABILITY_018.md).
+
+Existing deletion was observed unfinished; the diagnostic is read-only and does not authorize a new operation. Result recovery uses its same operation ID, shows partial/unknown truthfully and never infers deletion from failed login. Retained histories remain unchanged. Local code delivery is MANUAL_USER_VALIDATION_PENDING; do not repeat live Full Health to close it.
+
 ## Active 017 override — user-approved target lifecycle
 
 The 017 request replaces only mandatory deletion maintenance/drain and routine live Health. Shared app/prod authority remains. No global write pause, operator/window/drain ACK or second typed ID is required. Existing three configured Test Tools settings remain; no routine secret change is needed.

@@ -1,7 +1,7 @@
+import { localCase } from '../caseFactory';
 import { NATIVE_TESTS } from '@/foundation/tests/nativeTests';
 import { nativePrerequisite } from './native';
 import { CALENDAR_TESTS } from '@/foundation/tests/calendarTests';
-import { CALENDAR_UI_TESTS } from '@/foundation/tests/calendarUiTests';
 import { syntheticProbe } from './domainProbe';
 import { makeCase, futureCase } from '../caseFactory';
 import { CLASS, RUNNER, APPLICABILITY } from '../constants';
@@ -15,6 +15,6 @@ export const CALENDAR_HEALTH_CASES = [
   c('H08')('H08-006', 'Approved >60-day observation behavior', 'Execute OD-012: last-three window before filtering, no backfill/clamping, unsupported vs absent history, stale phase removal, Home UNKNOWN and error preservation. Persistence tests use isolated fixtures.', probe(['CR01','CR02','CR03','CR04','CR05','CR06','CR07'])),
   c('H11')('H11-002', 'Explicit reconsent requires completed deletion', 'Scoped Calendar consent path, existing grant preservation and refusal while deletion/residual health exists; withdrawal worker remains future.', probe(['CA05','CA10','CA11','CA12','CA19'])),
   c('H12')('H12-027', 'Calendar owner/consent privacy and stale response boundary', 'Strict payload, paginated owner reads, active/deletion gates, no grant on selection and invalidated late UI responses.', probe(['CA09','CA10','CA11','CA13','CA16','CA17','CA19','CA20','CA21'])),
-  c('H13')('H13-015', 'Calendar accessible month and explicit actions', 'TR/EN, actual/predicted/selected labels, 44px keyboard controls, delete confirmation/cancel, blocked production and consent concealment.', syntheticProbe(CALENDAR_UI_TESTS)),
+  localCase('H13','H13-015','Calendar accessible component regression','Preserved in local Chromium/WebKit regression and the separate acceptance list; not executed in-app.'),
   futureCase('H08', 'H08-901', 'Hosted Calendar mutation and readback acceptance', 'After native schema sync: same account add/reopen/edit/cancel/delete/last delete, Home snapshot unchanged, two clients and deployed Full Health. No local substitution.', APPLICABILITY.EXTERNAL, CLASS.LIVE_RUNTIME),
 ];

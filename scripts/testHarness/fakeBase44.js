@@ -7,6 +7,7 @@ let releaseHydration;
 let dailyAttempts = 0;
 let calendarLab;
 let testToolsLab;
+const healthRuns=[];
 async function loadCalendarLab() {
   if (!calendarLab) calendarLab = import('@/foundation/tests/calendarFixture').then(async ({ calendarFixture }) => {
     const f = calendarFixture({ granted: params.get('calendarScenario') !== 'consent' });
@@ -73,7 +74,8 @@ export const base44 = {
       if (fixture) return { data: structuredClone(fixture) };
       return { data: { error_code: 'DAILY_ATOMIC_CAPABILITY_REQUIRED' } };
     }
-    if (body.action === 'list') return { data: { runs: [] } };
+    if(name==='internalHealth' && body.action==='save') {globalThis.__savedHealthReport=body.report;const row={id:'synthetic-health',run_id:body.report.runId,build_marker:body.report.buildMarker,health_catalog_version:body.report.healthCatalogVersion,status:body.report.gate.status,started_at:body.report.startedAt};healthRuns.push(row);return {data:{id:row.id,run_id:row.run_id}};}
+    if (body.action === 'list') return { data: { runs: healthRuns } };
     throw new Error('LIVE_OPERATION_UNAVAILABLE_IN_CLI');
   } },
 };

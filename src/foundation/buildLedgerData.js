@@ -1,21 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-013",
-    "package_name": "Admin Test Tools",
-    "package_type": "FEATURE",
-    "created_at": "2026-10-20T12:43:54.493235+00:00",
-    "health_catalog_version": "HC-013.0",
-    "short_summary": "Admin-only User ID lookup, impact preview and guarded delete/reset protocols. Production mutations remain disabled pending a verified durable target coordinator; no live user was changed.",
-    "full_health_status": "BLOCKED",
-    "notes": "Chromium/WebKit each 396/396 canonical and 93/93 local Health PASS; 19 admin, 8 routing/Preview, 5 mobile, 5 daily, 6 Calendar and 4 Test Tools App scenarios per engine; zero page errors. Clean install/tree, type/lint/build and Repo Health 16/16 pass. Production delete/reset BLOCKED: no verified durable coordinator/all-writer fencing/reset transaction. New backend-only AdminTestOperation schema must precede lifecycle function deployment. Fresh npm audit BLOCKED_TLS_CERTIFICATE_CHAIN with TLS verification retained; current vulnerability counts unknown, no dependency changes. No live mutation or deployment. H12-031 current blocker, H12-902 external; prior ON-05/OD-012/daily/Calendar blockers remain. Scope/recovery/acceptance in reports/SHINKA_ADMIN_TEST_TOOLS.md; evidence in reports/test-tools-013/verification.json.",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "updated_at": "2026-10-20T12:43:54.493235+00:00"
-  },
-  {
     "build_marker": "Buildmarker-014",
     "package_name": "Production closure investigation and OD-012",
     "package_type": "CORRECTIVE",
@@ -64,6 +49,20 @@ export default [
     "short_summary": "Remove regenerated password templates; real viewport evidence contract; retry Health save without rerun; target-scoped bounded deletion with resume and retention.",
     "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
     "notes": "Chromium/WebKit each 454/454 canonical + 101/101 local Health PASS, zero page errors; native single-confirmation TR/EN delete and 30s preparation/retry budget regression pass. Required repository quality and byte budgets verified locally; audit 0 Critical/High, 2 existing Moderate router findings. HC-017.0:156 cases,137 current; no failing case retired. Only schema delta: optional InternalHealthRun.report_digest. User-supplied HC-016.1 NOT_READY evidence preserved; H03-006/H09-004 PASS retained. No live app/API diagnostic, Full Health, import, reset/deletion, schema push or publish. Owner sync/publish, viewport evidence/manual Health save-list-open, selected disposable target deletion, normal-user boundaries, original ON-05 and physical devices remain MANUAL_USER_VALIDATION_PENDING. See reports/SHINKA_HEALTH_RECOVERY_017.md and health-recovery-017/verification.json. Active history 013–017.",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true
+  },
+  {
+    "build_marker": "Buildmarker-018",
+    "package_name": "In-app Health scope and deletion outcome recovery",
+    "package_type": "CORRECTIVE",
+    "created_at": "2026-10-20T20:20:39.644339+00:00",
+    "health_catalog_version": "HC-018.0",
+    "short_summary": "Separate browser regressions from in-app Health; cancel nested probes; show confirmed, partial or unknown deletion and report-save outcomes.",
+    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
+    "notes": "Local Chromium/WebKit: 463 existing canonical regressions pass; E01–E08 focused rerun and 60/60 general Health pass after correcting E08 fixture projection. Remaining 37 local Health pass. Normal Health runs without JSON, confirmed save visible. Full-run E08 fixture failure retained in evidence. Narrow live read: prior deletion RUNNING/user_cycle_prediction, User present. No live delete/resume, Health or publish. Hosted acceptance pending; 0 Critical/High, 3 Moderate findings retained.",
     "docs_aligned": true,
     "source_changed": true,
     "tests_changed": true,

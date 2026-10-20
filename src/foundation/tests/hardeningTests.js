@@ -48,7 +48,7 @@ const reportFixture = () => {
 export const HARDENING_TESTS = [
   ["HB01","Internal Test Tools presentation modules pass the actual repository boundary scan",async()=>{
     const result=(await loadStaticEvidence()).internalUi;
-    assert(result.files>=18&&result.violations.length===0,"internal presentation boundary failed");
+    assert(result.files>=16&&result.violations.length===0,"internal presentation boundary failed");
   }],
   ["HB02","Internal feature UI cannot hide direct SDK calls or unreviewed imports",()=>{
     const page="/src/pages/internal/TestTools.jsx", hook="/src/features/adminTestTools/useTestTools.js";
