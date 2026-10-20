@@ -1,6 +1,7 @@
 // New Test Tools product copy, scoped to the explicit 2026-10-20 request.
 export const TEST_TOOLS_COPY = Object.freeze({
   tr: {
+    deleting:'Kullanıcı siliniyor…', resetting:'Onboarding yeniden başlatılıyor…', unknownResult:'İşlem sonucu henüz doğrulanamadı. Mevcut operasyonun durumunu kontrol et', details:'Teknik ayrıntılar',
     identity: 'Mevcut kimlik', calendar_actions: 'Takvim işlem kayıtları',
     PROFILE: "Kişisel bilgiler", CYCLE: "Döngü", FIRST_SHINKA: "İlk Shinka", DONE: "Tamamlandı", START: "Başlangıç kaydedildi", NOTIFICATIONS: "Bekleyen bildirimler durduruldu", USER: "User kaydı kaldırıldı", VERIFY: "Son doğrulama",
     resetCompleted: 'Yeniden başlatılan onboarding tamamlandı.',
@@ -18,9 +19,10 @@ export const TEST_TOOLS_COPY = Object.freeze({
     blocked: 'İşlem şu anda kullanılamıyor', retry: 'Kalan adımlara devam et', check: 'İşlem durumunu kontrol et',
     result: 'İşlem sonucu', operationId: 'Operasyon ID', status: 'Durum', stage: 'Son kayıtlı aşama',
     busy: 'Kontrol ediliyor…', missing: 'Kullanıcı bulunamadı.', error: 'İşlem tamamlanamadı. Durumu kontrol edip tekrar dene.',
-    deletedResult: 'User ve kapsam dahilindeki operasyonel kayıtlar kaldırıldı. Korunan geçmiş yerinde duruyor.',
+    deletedResult: 'Kullanıcı silindi. Kapsamdaki operasyonel kayıtlar kaldırıldı; korunan geçmiş yerinde duruyor',
     resetResult: 'Onboarding yeniden başlatıldı. Hedef kullanıcı uygulamaya döndüğünde akış açılır; mevcut oturum korunur.',
-    pendingResult: 'İşlem tamamlanmadı. Durumu kontrol et; kalan adımları aynı operasyonla sürdür.',
+    deletePending:'Silme işlemi henüz tamamlanmadı. Kalan adımlara aynı operasyonla devam et',
+    pendingResult: 'İşlem henüz tamamlanmadı. Kalan adımlara aynı operasyonla devam et',
     RUNNING: 'İşlem sürüyor', RETRY_REQUIRED: 'Tekrar deneme gerekiyor', AUDIT_PENDING: 'Sonuç kaydı doğrulanamadı', RESET_ACTIVE: 'Onboarding yeniden başlatıldı', COMPLETED: 'Tamamlandı',
     ACTIVE: 'Aktif', INACTIVE: 'Aktif değil', NO_PROFILE: 'Profil henüz yok', admin: 'Yönetici', user: 'Kullanıcı',
     TEST: 'Sunucu yapılandırması: Test', PREVIEW: 'Sunucu yapılandırması: Preview', UNVERIFIED: 'Ortam doğrulanmadı',
@@ -46,6 +48,7 @@ export const TEST_TOOLS_COPY = Object.freeze({
     unknownCount: 'Hedefe göre sayılmaz; korunur',
   },
   en: {
+    deleting:'Deleting user…', resetting:'Restarting onboarding…', unknownResult:'The result is not confirmed yet. Check the existing operation’s status', details:'Technical details',
     identity: 'Current identity', calendar_actions: 'Calendar operation records',
     PROFILE: "Personal details", CYCLE: "Cycle", FIRST_SHINKA: "First Shinka", DONE: "Completed", START: "Start recorded", NOTIFICATIONS: "Pending notifications stopped", USER: "User record removed", VERIFY: "Final verification",
     resetCompleted: 'The restarted onboarding is complete.',
@@ -63,8 +66,9 @@ export const TEST_TOOLS_COPY = Object.freeze({
     blocked: 'This operation is currently unavailable', retry: 'Resume remaining steps', check: 'Check operation status',
     result: 'Operation result', operationId: 'Operation ID', status: 'Status', stage: 'Last recorded stage',
     busy: 'Checking…', missing: 'User not found.', error: 'The operation could not be completed. Check its status and retry.',
-    deletedResult: 'The User and in-scope operational records were removed. Retained history remains.',
+    deletedResult: 'User deleted. In-scope operational records were removed; retained history remains',
     resetResult: 'Onboarding restarted. It opens when the target returns to the app; the current session is preserved.',
+    deletePending:'Deletion is not complete yet. Resume the same operation',
     pendingResult: 'The operation is incomplete. Check its status and resume the same operation.',
     RUNNING: 'In progress', RETRY_REQUIRED: 'Retry required', AUDIT_PENDING: 'Result record unconfirmed', RESET_ACTIVE: 'Onboarding restarted', COMPLETED: 'Completed',
     ACTIVE: 'Active', INACTIVE: 'Inactive', NO_PROFILE: 'No profile yet', admin: 'Admin', user: 'User',

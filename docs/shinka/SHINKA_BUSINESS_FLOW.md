@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-017
+**Current BuildMarker:** Buildmarker-018
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -10,6 +10,12 @@
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
 **Not Implemented:** Hosted acceptance for native daily/Calendar writes, Pattern, You editing, withdrawal/deactivation and notifications.
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+## 018 admin recovery flow
+
+Normal Health runs from Health Center without browser measurement import. Result scope is in-app; separate local and physical acceptance stays visible. Saved, failed and unknown persistence states are distinct; check/retry the same runId without rerunning.
+
+Delete remains find target → inspect scope → one confirm. Show progress immediately. Timeout/lost response triggers at most two read-only status requests for the same operation; no automatic delete/resume. Partial cleanup exposes Continue. Reload can recover the pending operation. Missing User plus pending/completed journal remains discoverable; missing User without any operation is Not found, while read/permission errors remain errors. Verified completion checks all deletion scopes. Retention, consent withdrawal and onboarding reset remain distinct.
 
 ## Current corrective behavior — 017
 

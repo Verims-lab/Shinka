@@ -1,4 +1,4 @@
-import { ADMIN_NAV_TESTS } from '@/foundation/tests/adminNavigationTests';
+import { localCase } from '../caseFactory';
 import { SECURITY_TESTS } from '@/foundation/tests/securityTests';
 import { CLASS, RUNNER, APPLICABILITY } from '../constants';
 import { ev, blockedResult } from '../evidence';
@@ -14,6 +14,6 @@ const groups=[
 ];
 export const H12_CASES=[
  ...groups.map(([id,title,ids])=>c(id,title,'Executes canonical backend/security helpers with isolated synthetic identities.',syntheticProbe(SECURITY_TESTS.filter(([testId])=>ids.includes(testId))))),
- c('H12-025','Admin route and session boundary','Exercises real AuthContext/ProtectedRoute/AdminGate with isolated SDK identities, pending/revoked roles, logout and stale responses.',syntheticProbe(ADMIN_NAV_TESTS.filter(([id])=>['AN02','AN03','AN04','AN05','AN06','AN07'].includes(id)))),
+  localCase('H12','H12-025','Admin route and session regression','Preserved in local Chromium/WebKit regression and the separate acceptance list; not executed in-app.'),
  c('H12-901','LIVE_ENFORCEMENT_REQUIRED','Separate deployed anonymous / owner A / owner B / admin evidence is mandatory.',async()=>blockedResult(ev(CLASS.LIVE_ENFORCEMENT,'Base44 deployed enforcement',{verified:false},'Independent identity denials, protected mutation rejection, timestamp/readback proof','No synthetic result can close live enforcement')),{classification:CLASS.LIVE_ENFORCEMENT,runnerType:RUNNER.NONE,applicability:APPLICABILITY.EXTERNAL,blocker:false}),
 ];

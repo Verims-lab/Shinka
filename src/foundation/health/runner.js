@@ -5,7 +5,7 @@ import { checkCatalog } from "./integrity";
 import { buildReport, toCaseRecord } from "./report";
 import { createHealthContext } from "./context";
 import { SUITES } from "./suites";
-import { HEALTH_CASES } from "./catalog";
+import { HEALTH_CASES, IN_APP_HEALTH_CASES } from "./catalog";
 import { classifyError, withTimeout, ERROR_CODES } from "@/foundation/errors";
 
 const INTEGRITY_CASES = ["H16-001", "H16-002", "H16-003", "H16-004"];
@@ -38,7 +38,7 @@ export async function runHealth({ suiteId = null, onProgress, signal } = {}) {
   const scope = suiteId ? `SUITE:${suiteId}` : "FULL";
   const started = new Date();
   const ctx = createHealthContext();
-  const selected = HEALTH_CASES.filter((c) => !suiteId || c.suiteId === suiteId);
+  const selected = IN_APP_HEALTH_CASES.filter((c) => !suiteId || c.suiteId === suiteId);
   const ordered = [...selected.filter((c) => c.runnerType !== RUNNER.META), ...selected.filter((c) => c.runnerType === RUNNER.META)];
   const results = [];
   for (const def of ordered) {

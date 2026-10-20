@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-017
+**Current BuildMarker:** Buildmarker-018
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -14,6 +14,10 @@
 - NO SILENT SOURCE-CONTRACT CHANGE
 - NO FUTURE FEATURE IMPLEMENTATION WITHOUT PACKAGE SCOPE
 - NO LEGACY SHINKA IMPORT — NO LEGACY SHINKA CONTRACT MAY ENTER THIS PROJECT WITHOUT AN EXPLICIT CHANGE REQUEST.
+
+## 018 Health scope and delivery decision
+
+The user approved normal Health without terminal commands, Playwright setup or JSON import. Full in-app Health covers its declared in-app catalog only. Comprehensive browser regressions run in the existing local Chromium/WebKit harness; their original case IDs remain in a separate acceptance list and are not turned into live PASS or NOT_APPLICABLE records. Scope transfer mapping is canonical in healthExecutionScope.js and the 018 report. Required local regression remains mandatory. No routine agent live Health. Final user acceptance uses application screens only. Advance once to Buildmarker-018 / HC-018.0; display packages 014–018. The diagnostic target is read-only authorization for its existing job, not permission to restart deletion or recreate the account.
 
 ## Permanent validation rule — user decision, package 017
 

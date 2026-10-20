@@ -1,0 +1,301 @@
+{
+  "schema": "shinka.local-verification/1",
+  "buildMarker": "Buildmarker-018",
+  "healthCatalogVersion": "HC-018.0",
+  "status": "MANUAL_USER_VALIDATION_PENDING",
+  "recordedAt": "2026-10-20T20:36:14.495903+00:00",
+  "scope": "LOCAL_REPOSITORY_AND_SYNTHETIC_BROWSER_PLUS_ONE_NARROW_HOSTED_READ",
+  "git": {
+    "initialTest": "c244aaa",
+    "synchronizedMainBaseline": "04a5ebe",
+    "mainAheadInitially": 1,
+    "synchronizedTestBeforeWork": true,
+    "deliveryBranch": "Test",
+    "mainMergeOrPublishPerformed": false
+  },
+  "hosted": {
+    "successfulNarrowReadOnlyDiagnostic": 1,
+    "artifact": "deletion-diagnostic.json",
+    "fullHealthRun": false,
+    "schemaPush": false,
+    "import": false,
+    "reset": false,
+    "deletionOrResume": false,
+    "publish": false,
+    "physicalDeviceTest": false,
+    "suppliedEvidence": {
+      "runId": "6cf22904-4781-46ae-a54e-81fa68ebb93e",
+      "catalog": "HC-017.0",
+      "passed": 133,
+      "failed": 0,
+      "blocked": 4,
+      "notApplicable": 19,
+      "approximateDurationSeconds": 169,
+      "openCases": {
+        "H03-007": "90s TIMEOUT",
+        "H10-003": "20s TIMEOUT",
+        "H13-012": "30s TIMEOUT",
+        "H13-004": "BROWSER_EVIDENCE_REQUIRED"
+      },
+      "alreadyPassed": [
+        "H03-008",
+        "H09-004"
+      ],
+      "provesHistoryPersistence": false
+    },
+    "diagnosticConclusion": "Selected prior DELETE_USER job RUNNING at user_cycle_prediction; native User still present; authenticated lookup succeeded. Exact interruption cause and earlier lookup failure unproven. No new operation or resume."
+  },
+  "engines": {
+    "chromium": {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "canonicalFull": {
+        "command": "npm run test:foundation",
+        "exitCode": 1,
+        "tests": 464,
+        "passed": 463,
+        "failed": 1,
+        "failure": "E08 fixture returned raw object ordering instead of the actual projectOperation repository projection; TEST_JOB_START_UNCONFIRMED. Production implementation unchanged after this run.",
+        "artifact": "chromium-full-before-fixture-fix.json"
+      },
+      "focusedAfterFixtureCorrection": {
+        "command": "Local temporary driver using the existing Vite/Playwright harness; canonical E01–E08, general Health helpers and actual Health UI",
+        "exitCode": 0,
+        "tests": 8,
+        "passed": 8,
+        "generalHealth": 60,
+        "generalHealthPassed": 60,
+        "inAppHealthFlow": {
+          "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+          "passed": true,
+          "durationMs": 1624,
+          "requiresJson": false,
+          "saveState": "SAVED",
+          "frames": 0,
+          "physicalDevice": false
+        },
+        "artifact": "chromium-focused.json"
+      },
+      "verifiedCanonicalCoverage": 464,
+      "coverageNote": "463 passing unchanged tests from the full run plus corrected E08 passing in this engine. Not a claim of a single 464/464 full rerun.",
+      "otherLocalHealth": {
+        "onboardingHealth": {
+          "total": 21,
+          "passed": 21
+        },
+        "dailyHealth": {
+          "total": 8,
+          "passed": 8
+        },
+        "calendarHealth": {
+          "total": 5,
+          "passed": 5
+        },
+        "adminTestHealth": {
+          "total": 3,
+          "passed": 3
+        }
+      },
+      "pageErrors": []
+    },
+    "webkit": {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "canonicalFull": {
+        "command": "FOUNDATION_BROWSER=webkit npm run test:foundation",
+        "exitCode": 1,
+        "tests": 464,
+        "passed": 463,
+        "failed": 1,
+        "failure": "E08 fixture returned raw object ordering instead of the actual projectOperation repository projection; TEST_JOB_START_UNCONFIRMED. Production implementation unchanged after this run.",
+        "artifact": "webkit-full-before-fixture-fix.json"
+      },
+      "focusedAfterFixtureCorrection": {
+        "command": "Local temporary driver using the existing Vite/Playwright harness; canonical E01–E08, general Health helpers and actual Health UI",
+        "exitCode": 0,
+        "tests": 8,
+        "passed": 8,
+        "generalHealth": 60,
+        "generalHealthPassed": 60,
+        "inAppHealthFlow": {
+          "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+          "passed": true,
+          "durationMs": 1905,
+          "requiresJson": false,
+          "saveState": "SAVED",
+          "frames": 0,
+          "physicalDevice": false
+        },
+        "artifact": "webkit-focused.json"
+      },
+      "verifiedCanonicalCoverage": 464,
+      "coverageNote": "463 passing unchanged tests from the full run plus corrected E08 passing in this engine. Not a claim of a single 464/464 full rerun.",
+      "otherLocalHealth": {
+        "onboardingHealth": {
+          "total": 21,
+          "passed": 21
+        },
+        "dailyHealth": {
+          "total": 8,
+          "passed": 8
+        },
+        "calendarHealth": {
+          "total": 5,
+          "passed": 5
+        },
+        "adminTestHealth": {
+          "total": 3,
+          "passed": 3
+        }
+      },
+      "pageErrors": []
+    }
+  },
+  "catalog": {
+    "version": "HC-018.0",
+    "suites": 16,
+    "cases": 157,
+    "localRegression": 6,
+    "current": 132,
+    "future": 7,
+    "external": 12
+  },
+  "quality": {
+    "npm ci": "PASS",
+    "npm ls --all": "PASS",
+    "npm run typecheck": "PASS",
+    "npm run lint": "PASS",
+    "npm run build": "PASS",
+    "npm run health:repo": "PASS",
+    "node scripts/recordBuild.mjs --check": "PASS",
+    "git diff --check": "PASS"
+  },
+  "security": {
+    "command": "npm run security:deps",
+    "exitCode": 0,
+    "fullAuditExitCode": 1,
+    "info": 0,
+    "low": 0,
+    "moderate": 3,
+    "high": 0,
+    "critical": 0,
+    "total": 3,
+    "packages": [
+      "react-router",
+      "react-router-dom",
+      "vite"
+    ],
+    "dependenciesChanged": false,
+    "artifact": "dependency-audit.json",
+    "disposition": "High/Critical gate passes; Moderate findings remain. Two router package findings unchanged; newly reported Vite/launch-editor Windows advisory retained, no dependency upgrade in this scoped correction. Current macOS test execution does not establish Windows safety.",
+    "primaryReference": "https://github.com/vitejs/launch-editor/security/advisories/GHSA-698v-4r3x-3vcv"
+  },
+  "performance": {
+    "command": "node scripts/measureMaintenance.mjs /private/tmp/shinka-018-measure",
+    "exitCode": 0,
+    "artifact": "performance-measurements.json",
+    "initialJSRaw": 453726,
+    "initialJSGzip": 151309,
+    "cssRaw": 86320,
+    "cssGzip": 14817,
+    "budgetsPass": true,
+    "cycles": 0,
+    "boundary": "Measured before the final E08/deletion-yield correction and delivery metadata. Not hosted latency or exact final all-chunk byte counts."
+  },
+  "repoHealth": {
+    "passed": 17,
+    "failed": 0,
+    "checks": {
+      "dependencyBoundaries": true,
+      "boundedGeneratedHistory": true,
+      "twentyPhysicalProductSchemas": true,
+      "noUnexpectedProductSchemas": true,
+      "guardedHealthHistory": true,
+      "separateBuiltinUserAndTooling": true,
+      "exactAuthoritativeFields": true,
+      "completeAccessMatrix": true,
+      "directSdkOperationsDenied": true,
+      "onboardingCopyAndProxy": true,
+      "onboardingGeoNamesEntry": true,
+      "noProductSeedCalls": true,
+      "canonicalMarker": true,
+      "docsAligned": true,
+      "noLegacyImport": true,
+      "noCredentialFindings": true,
+      "noPersonalEmails": true
+    }
+  },
+  "changes": {
+    "newCases": [
+      "H12-035"
+    ],
+    "localOnlyTransferredCases": [
+      "H03-007",
+      "H07-013",
+      "H12-025",
+      "H13-012",
+      "H13-015",
+      "H13-016"
+    ],
+    "partiallyTransferredCases": [
+      "H10-003",
+      "H13-004"
+    ],
+    "newRegressions": [
+      "E01",
+      "E02",
+      "E03",
+      "E04",
+      "E05",
+      "E06",
+      "E07",
+      "E08",
+      "AU06",
+      "AU07"
+    ],
+    "retiredCode": [
+      "BrowserEvidenceControl.jsx",
+      "TestsPanel.jsx",
+      "measureHostedBrowser.mjs"
+    ],
+    "schemaChanges": false,
+    "retention": "014–018; no product/audit/Health history pruned"
+  },
+  "localInAppHealthOutcome": {
+    "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+    "passed": 119,
+    "failed": 0,
+    "blocked": 13,
+    "notApplicable": 19,
+    "explanation": "Backend/hosted capabilities unavailable in the stub remain BLOCKED. Six transferred local case IDs are absent from the run and separately listed. This is not a hosted Full Health result."
+  },
+  "manualAcceptance": [
+    "After owner sync/publish, run Health in the app and confirm save/list/open same run",
+    "If needed retry save or read-only check existing report without rerunning",
+    "Look up the previously affected user ID; Continue the same existing operation and re-query result; do not start a new deletion",
+    "Physical Android/iOS, original ON-05 same-account readback and hosted authorization acceptance remain separate"
+  ],
+  "limits": [
+    "Exact hosted stalled subtest/phase was not measured; local fault injection proves cancellation cleanup, not XFO causality",
+    "No native transaction, rollback, cross-worker lock or cancellation of already-transmitted SDK calls claimed",
+    "Read-only deletion verification may report late residuals as partial; explicit resume reconciles them",
+    "History/upload ambiguity is visible; no fabricated success; native duplicates conflict rather than overwrite"
+  ],
+  "intermediateChecks": {
+    "priorToE08": "463/463 canonical and 97/97 local Health in each engine",
+    "afterE08Full": "E08 fixture projection failed in both engines; retained in full artifacts; corrected fixture and focused reruns passed",
+    "localhostSandbox": "One final full-run attempt could not bind 127.0.0.1 (EPERM); authorized local port rerun completed. No remote mutation."
+  },
+  "sourceBinding": {
+    "baseRevision": "04a5ebe",
+    "runtimeAndTestsSha256": "dfd68909e8b08ab39cbba70b9cdb5eee973f363b474fdfc28004a11723b701a6",
+    "files": 338,
+    "excludes": "generated build ledger and documentation; this is a repository fingerprint, not hosted deployment evidence"
+  }
+}

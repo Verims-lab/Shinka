@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-017
+**Current BuildMarker:** Buildmarker-018
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -36,6 +36,12 @@
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
+## 018 runtime/regression and recovery boundaries
+
+This supersedes the 017 normal-Health JSON measurement workflow. Local tests retain the real viewport contract; no import UI or hosted measurement script remains. Shared executeTest passes a child AbortSignal, safe ID/stage and deadline; onboarding fixture waits/delays observe it, unmount and remove their frame on abort/finally. syntheticProbe propagates cancellation and memoizes helpers within one run. Do not dispatch new tests after cancellation.
+
+Use a single deletion verification helper for executor and read-only lookup/status. Completed checkpoint/audit metadata is not rewritten on every resume, but every cleanup scope is reread for late residuals. Do not cache role/target authorization. Stage passes yield after bounded elapsed work; an in-flight SDK call is not physically aborted. Internal request errors preserve sanitized code/stage/request ID; a client timeout remains unknown. No automatic destructive retry. Normal Health report reads/writes retain immutable runId/digest behavior.
+
 ## Current probe/history/deletion standard — 017
 
 This section supersedes old N/O and maintenance deletion wording below. Use one browser measurement contract with actual top-level viewport, exact build/source/environment and freshness binding. Unmeasured => BLOCKED, never PASS/N/A. Do not weaken frame security or raise timeouts to hide failures. Close measurement pages in finally; abort runners at deadlines/navigation and reject stale UI completions.
@@ -58,7 +64,7 @@ Keep copy in the canonical onboarding catalog; do not invent translations or an 
 
 ## ON-04 selection regression contract
 
-The explicit 2026-10-20 product decision is recorded in SOURCE_OF_TRUTH; its new selector/help/status copy is centralized in onboardingCopy.js. Preserve the earlier exact-copy receipt. Keep provider hierarchy validation in the existing backend adapter and transient UI races in birthplaceSelection.js. Do not persist the path, infer a country, autoselect a result, accept an administrative record as a settlement, assume childrenJSON pagination, silently truncate lists or add a new UI dependency. B01…B18 and U09…U12 run through the existing canonical runner and H10-003; fixtures remain synthetic and cannot close H10-004. Native keyboard/device observations must be recorded separately from programmatic selectOption tests.
+The explicit 2026-10-20 product decision is recorded in SOURCE_OF_TRUTH; its new selector/help/status copy is centralized in onboardingCopy.js. Preserve the earlier exact-copy receipt. Keep provider hierarchy validation in the existing backend adapter and transient UI races in birthplaceSelection.js. Do not persist the path, infer a country, autoselect a result, accept an administrative record as a settlement, assume childrenJSON pagination, silently truncate lists or add a new UI dependency. B01…B18 and U09…U12 run through the local canonical runner; H10-003 retains only pure helper checks in 018. Fixtures remain synthetic and cannot close H10-004. Native keyboard/device observations must be recorded separately from programmatic selectOption tests.
 
 ## Maintenance regression boundaries
 

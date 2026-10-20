@@ -1,3 +1,4 @@
+import { testOperationOutcome } from './testDeletionResult.js';
 import { requireInternalAdmin, InternalError } from './internalAuthorization.js';
 import { createTestRepository } from './adminTestRepository.js';
 import { validateTestRequest, testToolError, DELETED_ENTITIES, RETAINED_ENTITIES, SHARED_ENTITIES } from './adminTestPolicy.js';
@@ -18,12 +19,12 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
   if (body.action === 'status') {
     const job = await repository.operation(body.target_id, body.operation_id);
     if (!job) testToolError('TEST_OPERATION_NOT_FOUND', 404);
-    return { job, environment, ...recovery, resume_enabled: recovery.resume_enabled };
+    return { job, result_state:await testOperationOutcome(repository,job), environment, ...recovery, resume_enabled: recovery.resume_enabled };
   }
   if (body.action === 'lookup') {
     const job = await repository.lifecycle(body.target_id), identity = await repository.user(body.target_id);
     if (!identity && job?.operation !== 'DELETE_USER') testToolError('TEST_USER_NOT_FOUND', 404);
-    return { target: identity ? await repository.target(body.target_id) : null, job, environment, ...recovery,
+    return { target: identity ? await repository.target(body.target_id) : null, job, result_state:await testOperationOutcome(repository,job), environment, ...recovery,
       resume_enabled: recovery.resume_enabled };
   }
   const binding = { actor: actor.id, target: body.target_id, operation: body.operation, app: environment.app_id };
@@ -37,7 +38,7 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
     if (!signer) blockers.push('TEST_PREVIEW_SIGNER_REQUIRED');
     return { target, environment, operation: body.operation, counts: impact.counts, pending_notifications: impact.pending_notifications,
       scope: { deleted: body.operation === 'DELETE_USER' ? [...DELETED_ENTITIES, 'calendar_actions', 'User'] : [], retained: RETAINED_ENTITIES, shared: SHARED_ENTITIES },
-      blockers, enabled: !blockers.length, preview_token: blockers.length ? null : await signer.sign({ ...binding, scope_hash: impact.hash }),
+      job:undefined, result_state:undefined, blockers, enabled: !blockers.length, preview_token: blockers.length ? null : await signer.sign({ ...binding, scope_hash: impact.hash }),
       expires_at: new Date(now().getTime() + 300000).toISOString(), active_operation: active };
   }
   if (!environment.authorized) testToolError('TEST_ENVIRONMENT_UNVERIFIED', 403);
@@ -78,5 +79,5 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
   const job = await executeTestJob({ journal: nativeTestJournal(guardedClient, guard, now), repository: guardedRepository, actor,
     target: { id: body.target_id }, operation, requestId: previous?.request_id || body.request_id, previewHash: scopeHash, now });
   await guard();
-  return { job, environment, retained: RETAINED_ENTITIES };
+  return { job, result_state:job.status==='COMPLETED'?'COMPLETED':job.status==='RESET_ACTIVE'?'RESET_ACTIVE':'PARTIAL', environment, ...recovery, retained: RETAINED_ENTITIES };
 }

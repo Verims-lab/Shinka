@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-017
+**Current BuildMarker:** Buildmarker-018
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -12,6 +12,10 @@
 **External Verification Required:** Base44 native UNIQUE is unsupported; no multi-record transaction/CAS guarantee is claimed. Native handler tests use synthetic transport; hosted schema/authorization/mutation recovery remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+
+## 018 operation/report projection — no schema delta
+
+No entity schema changes. Existing AdminTestOperation retains permanent target lifecycle and checkpoints. The API result_state is a read-only projection (PARTIAL, COMPLETED, RESET_ACTIVE), not a new persisted field; native User absence alone is insufficient. InternalHealthRun report_file_uri still points to immutable normalized JSON, now with optional IN_APP_HEALTH/transfer metadata for 018 reports; historical normalized payloads are unchanged. saveStatus validates and reads the same runId/digest without upload/create. No target/user record is added to the build history.
 
 ## Tooling retry metadata — 017
 

@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-017
+**Current BuildMarker:** Buildmarker-018
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## 018 explicit product decision provenance
+
+User attachment f9781bea-8339-4732-8f2e-aabb006cd97b/Pasted text.txt approves the separation of local browser regressions from normal in-app Health, removes terminal/JSON prerequisites, and requires visible confirmed/partial/unknown deletion and save outcomes. This is a new product operation decision, not text attributed to original source documents. Existing content and Moon approvals remain unchanged; H03-008/H09-004 are user-reported PASS. Exact case migration and diagnostic boundaries are in reports/SHINKA_HEALTH_USABILITY_018.md.
 
 ## Authoritative corrective decision — 017
 

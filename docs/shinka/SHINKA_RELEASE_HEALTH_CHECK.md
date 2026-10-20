@@ -2,19 +2,27 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-017
+**Current BuildMarker:** Buildmarker-018
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-017.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-018.0; repository, synthetic and external evidence separated.
 
-## Active catalog HC-017.0 and manual hosted acceptance
+## Active HC-018.0 — in-app scope, local regression and external acceptance
+
+Supplied published HC-017.0 run 6cf22904-4781-46ae-a54e-81fa68ebb93e:133 PASS/0 FAIL/4 BLOCKED/19 N/A, about169s. H03-007(90s),H10-003(20s),H13-012(30s) timeouts and H13-004 missing browser evidence remain historical facts; H03-008/H09-004 PASS. The shared onboarding iframe path and missing nested cancellation are source-proven. Local fault injection identifies CSS_WAIT and INTERACTION and verifies cleanup; no hosted trace proves that all three stalled at the same phase or that XFO caused them.
+
+In-app Health no longer executes the full Foundation suite or comprehensive UI fixtures. H03-007,H07-013,H12-025,H13-012,H13-015,H13-016 remain catalog entries with LOCAL_BROWSER execution and are listed separately, not executed/marked N/A/PASS in the app report. H10-003 retains pure provider/cache/validation checks; U09–U12 stay local. H13-004 measures current Health document clientWidth/scrollWidth/height/path; 320/360px and Build/auth layout remain in CLI regressions. Full report scope explicitly says IN_APP_HEALTH and persists the transfer list. Synthetic helper results are memoized once per run; errors keep safe test ID/stage. Added H12-035 for read-only deletion outcomes and save status. Existing external/device cases stay separate. No JSON upload or hosted measurement command is required.
+
+Run/save status is SAVING, SAVED, FAILED or UNKNOWN. UNKNOWN does not assert absence: check the same report through read-only saveStatus or retry its existing runId; do not rerun Full Health. History refresh failure cannot relabel a confirmed save as failed. Current acceptance and exact local counts: reports/SHINKA_HEALTH_USABILITY_018.md.
+
+## Historical catalog HC-017.0 and manual hosted acceptance
 
 Permanent rule: routine Full Health/live suite execution by the agent is prohibited. Required delivery evidence is local; the user runs published Health. A specific diagnostic exception must first name its question and use the narrowest necessary authorized read/log/function. Pending live acceptance is **MANUAL_USER_VALIDATION_PENDING**, not a Test-push blocker. This supersedes historical end-of-package live-run instructions below.
 
 User-supplied PUBLISHED run `62007d09-7694-423a-8708-2a44d9328270`, Buildmarker-016 / HC-016.1, 2026-10-20T19:02:56.407Z–19:05:12.956Z: 155 catalog /136 planned; 133 PASS, 1 FAIL (H03-008), 2 BLOCKED (H03-007/H13-004),19 N/A, NOT_READY. H03-006/H09-004 PASS. This is supplied evidence, not proof of history persistence or a fresh agent run. Earlier unsuccessful reports remain unchanged.
 
-017 retains T24/T41/T74/HC01 and H03-007/H13-004. They consume `shinka.browser-probes/1` top-level real-viewport measurements; no iframe or 360px container substitutes for a viewport. Local runner collects them automatically with isolated transport. Published measurement is an explicit user command (`scripts/measureHostedBrowser.mjs`), then admin imports JSON before Health. Contract binds exact build marker/source digest, origin/environment, engine/version, viewport, path, top-level status and timestamp (24h freshness). It is admin-supplied diagnostic evidence, not independently authenticated enforcement proof. Missing/stale/wrong-build evidence remains BLOCKED; overflow/wrong geometry FAIL. XFO/CSP stay intact. No old failure is made N/A.
+017 retained T24/T41/T74/HC01 and H03-007/H13-004 using `shinka.browser-probes/1` top-level real-viewport measurements. Its published command/JSON-import prerequisite is retired in 018; the script and import UI were removed. The local runner still collects actual viewports with isolated transport, bound to build/source/origin/environment/engine/path/time. Missing/stale/wrong-build evidence still fails local regression validation; no container substitutes for a viewport. XFO/CSP stay intact. The original 017 failures remain historical evidence.
 
 H12-033 replaces the superseded operator-attestation expectation with target-scoped deletion/resume and unchanged reset safeguards. H12-034 adds private-upload/history retry, safe error stages, service-role target enforcement, late-row cleanup and cancellation regressions. No suite/case retired. Current totals: 156 catalog,137 current,7 future,12 external. H05-009 keeps exact approved reference policy for 017; no content reload.
 

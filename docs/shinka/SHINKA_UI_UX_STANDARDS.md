@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-017
+**Current BuildMarker:** Buildmarker-018
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,11 +12,17 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+## 018 approved Health and deletion interaction
+
+Admin Panel → Health Center → Run Health → result and save status. Remove the browser measurement upload and in-app Foundation test launcher. Separate local/browser/device acceptance is visible, with no manual artifact preparation required. Explain that READY refers to in-app scope only. Current viewport measurements include actual width; desktop is not mobile evidence. Optional export remains.
+
+Show Kaydedildi / Kaydedilemedi; bu raporu yeniden kaydet / Kayıt sonucu doğrulanamadı; mevcut runId’yi kontrol et, with equivalent EN copy in healthCopy. Technical code/stage/request ID is collapsed. Deletion shows Kullanıcı siliniyor… immediately, Kullanıcı silindi only on backend verification, partial completion with same-operation Continue, and unknown response with bounded read-only status reconciliation. No second confirmation or global maintenance setup. Save only target/operation recovery IDs in tab session storage; no form/health data. Reload looks up the existing operation, never executes deletion. Not-found differs from service/permission failure. Normal User absence alone is not full cleanup evidence.
+
 ## Current Admin/Health interaction — 017
 
 Deletion uses one entered User ID, current target ID/name/email/role/status and deletion/retention preview, then the explicit primary “Kullanıcıyı sil” / “Delete user” action. No second ID input or routine maintenance controls. Changing target invalidates preview; busy disables duplicate action. Preview takes heading focus, Cancel restores lookup focus, errors/results are live regions. Retry/continue uses the existing operation; completed deletion can be rechecked with the same target tombstone. Retained history is stated, never “all data deleted.” TR/EN helper copy is centralized.
 
-Health exposes current-build browser measurement JSON import and “Bu raporu yeniden kaydet” / “Save this report again” for a completed unsaved report. Retry saves the identical runId without launching tests. Safe code/stage/request ID are shown separately. Published viewport evidence comes from actual top-level browser pages, not hidden frames or narrow containers. Desktop Chromium/WebKit evidence is not physical Android/iOS evidence.
+Health retains “Bu raporu yeniden kaydet” / “Save this report again” for a completed unsaved report. Retry saves the identical runId without launching tests. Safe code/stage/request ID are available in collapsed details. The 017 browser-measurement JSON import was removed by the 018 decision above. Actual top-level viewport evidence remains in local regressions; desktop Chromium/WebKit evidence is not physical Android/iOS evidence.
 
 ## Historical native authority and recovery UI — 016
 

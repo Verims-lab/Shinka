@@ -42,16 +42,19 @@ export default function TestTools({ request = undefined }) {
         </ShinkaCard>)}
       </div>
       {tools.preview && <ImpactPreview {...tools} language={language} cancel={() => { tools.cancel(); lookupButton.current?.focus(); }} />}
-      {tools.error && <p role="alert">{text(tools.error === 'TEST_USER_NOT_FOUND' ? 'missing' : text(tools.error) !== tools.error ? tools.error : 'error')} <span className="break-all text-sm">{tools.error}</span></p>}
+      {tools.error && <div role="alert">
+        <p>{text(tools.phase==='MISSING'?'missing':tools.phase==='UNKNOWN'?'unknownResult':text(tools.error.code)!==tools.error.code?tools.error.code:'error')}</p>
+        <details><summary className="min-h-11 cursor-pointer">{text('details')}</summary><p className="break-all text-sm">{[tools.error.code,tools.error.stage,tools.error.requestId].filter(Boolean).join(' · ')}</p></details>
+      </div>}
       {(tools.job || tools.pendingId) && <ShinkaCard title={text('result')}>
         <div role="status">
-          <p>{text(tools.job?.status === 'COMPLETED' ? (tools.job.operation === 'DELETE_USER' ? 'deletedResult' : 'resetCompleted') : tools.job?.status === 'RESET_ACTIVE' ? 'resetResult' : 'pendingResult')}</p>
-          <p className="break-all">{text('operationId')}: {tools.job?.operation_id || tools.pendingId}</p>
-          {tools.job && <p>{text('status')}: {text(tools.job.status)} · {text('stage')}: {text(tools.job.stage)}</p>}
+          <p>{text(tools.phase==='DELETING'?'deleting':tools.phase==='RESETTING'?'resetting':tools.phase==='UNKNOWN'?'unknownResult':tools.phase==='COMPLETED'?(tools.job?.operation==='DELETE_USER'?'deletedResult':'resetCompleted'):tools.phase==='RESET_ACTIVE'?'resetResult':tools.job?.operation==='DELETE_USER'?'deletePending':'pendingResult')}</p>
+          {tools.job && tools.phase==='PARTIAL' && <p>{text('stage')}: {text(tools.job.stage)}</p>}
+          <details><summary className="min-h-11 cursor-pointer">{text('details')}</summary><p className="break-all">{text('operationId')}: {tools.job?.operation_id || tools.pendingId}</p></details>
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
           <ShinkaButton variant="secondary" onClick={tools.status} disabled={tools.busy}>{text('check')}</ShinkaButton>
-          {tools.job && (['RETRY_REQUIRED', 'AUDIT_PENDING', 'RUNNING'].includes(tools.job.status) || tools.job.operation==='DELETE_USER' && tools.job.status==='COMPLETED') && <ShinkaButton variant="secondary" onClick={tools.resume} disabled={tools.busy || !tools.value?.resume_enabled}>{text('retry')}</ShinkaButton>}
+          {tools.job && tools.phase==='PARTIAL' && <ShinkaButton variant="secondary" onClick={tools.resume} disabled={tools.busy || !tools.value?.resume_enabled}>{text('retry')}</ShinkaButton>}
         </div>
         {tools.job && ['RETRY_REQUIRED', 'AUDIT_PENDING', 'RUNNING'].includes(tools.job.status) && tools.value?.mutation_blocker && <p className="mt-3">{text(tools.value.mutation_blocker)}</p>}
       </ShinkaCard>}

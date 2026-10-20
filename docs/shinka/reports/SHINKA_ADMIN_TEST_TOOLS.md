@@ -1,3 +1,5 @@
+> **018 supersedes the normal Health terminal/JSON workflow and adds visible deletion outcome recovery.** Historical evidence below remains unchanged; current acceptance uses application screens only. See [018 handoff](SHINKA_HEALTH_USABILITY_018.md).
+
 > **017 active contract:** Target lookup now includes name/email, one explicit confirmation replaces typed-ID repetition, and native target lifecycle replaces the former coordinator/maintenance prerequisite. Cleanup is bounded/resumable with late-row recheck; retention table below remains authoritative. See [017 handoff](SHINKA_HEALTH_RECOVERY_017.md) and [current continuation](../SHINKA_BASE44_CONTINUATION.md). Remaining text is historical 013/014 evidence, not an active blocker.
 
 # Admin Test Tools — Buildmarker-013 / HC-013.0

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-017
+**Current BuildMarker:** Buildmarker-018
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -11,11 +11,17 @@
 **Not Implemented:** Hosted acceptance for native daily/Calendar persistence, Pattern workflows, notifications/scheduler; implemented pure daily/phase components are described below.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
+## 018 execution locations and operation outcomes
+
+HEALTH_CASES retains the catalog; IN_APP_HEALTH_CASES excludes only documented LOCAL_BROWSER cases. Reports add IN_APP_HEALTH and canonical transfer metadata. Local regressions and real viewport measurements run through existing Playwright; no external test service. In-app current-viewport DOM checks and pure synthetic/backend prerequisites keep their original evidence classifications. No local result is represented as deployed enforcement.
+
+Admin tools separate command submission from read-only outcome reconciliation. A pending target/operation pointer survives tab reload; no auth tokens or health data are stored. status/lookup recheck native User plus all operational scopes for a completed delete; a residual means PARTIAL without silent mutation. Resuming reuses that operation. Guarded SDK writes still revalidate actor and target. Existing stage/audit checkpoints are read rather than redundantly rewritten. The first cleanup-write budget and per-stage elapsed yield bound admission, not server execution time or transaction semantics. Health saveStatus validates the same report digest and reads metadata only; saved vs unknown is visible separately from history loading.
+
 ## Current corrective responsibilities — 017
 
 `healthPersistence` owns normalized report digest, existing-run lookup, private upload capability, row creation and readback. `internalAuthorization` adds safe stage/request identity; lifecycle failure is separate from upload/save. `useHealthRunner` retains report/recovery state and provides retrySave without run; per-run AbortController/generation prevents obsolete UI progress. Completed records are immutable. Optional InternalHealthRun.report_digest is the sole schema addition; closed CRUD policies remain. Existing server preview key signs upload receipts with a distinct health-upload namespace and 24h TTL; preview tokens retain 5min. No key in browser source or reports; recovery capability stays in caller memory.
 
-`browserEvidence` owns build/origin/environment/freshness binding; `inspectAuthShell` is reused by Playwright and component fixtures. `browserMeasurements.mjs` opens real top-level pages and closes every page in finally, including timeout. Local canonical runner supplies the bundle; manual hosted runner never runs Full Health. No iframe polling/listener remains in production probes. H03-007 consumes synthetic tests and explicit external measurements, blocks unmeasured paths, retains its deadline; abort stops starting further tests and discards old UI completions, not a claim to cancel an SDK call already sent.
+`browserEvidence` owns build/origin/environment/freshness binding for local regressions; `inspectAuthShell` is reused by Playwright and component fixtures. `browserMeasurements.mjs` opens real top-level pages and closes every page in finally, including timeout. The local canonical runner supplies the bundle. The former hosted measurement script/import UI was removed in 018. H03-007's comprehensive coverage runs locally; normal Health does not start its iframe fixtures. Nested fixture waits observe cancellation and clean up; already-transmitted SDK calls are not claimed cancelled.
 
 `nativeWriteChecks` distinguishes current actor from each record's user_id, including service-role create/upsert/update/delete and UserCalendarAction. Unscoped bulk/import paths are refused; update/delete resolve existing ownership and owner reassignment is forbidden. Pre/post target lifecycle checks narrow but cannot close a native in-flight race. Deletion has a separate guarded cleanup path; `nativeTestJournal` persists/readbacks target operation before destructive work. `adminTestRepository` bounds cleanup to 100 writes and an 8s admission budget from the first cleanup write per invocation, validates owners/references and returns retry when more remains. Executor reconciles all stages on resume regardless of old checkpoints, verifies User/operational absence and retained notification state, then verifies final audit/status. No global pause requirement, transaction, native unique key or distributed lock claim.
 
@@ -126,7 +132,7 @@ Country payload cap: 512 KiB / at most 300 country rows. List-page cap: 1 MiB / 
 
 ## Maintenance responsibilities and loading
 
-`App` retains routing/auth policy, using lazy BuildEnvironment, HealthCenter and AuthShellProbe with a localized Suspense/error/reload boundary. `authProbeRoute` is the tiny eager exact-path contract; the existing DOM readiness machinery loads with the probe/Health. TestsPanel loads the canonical runner on explicit execution. No authorization boundary moved to the lazy child and no new SDK client/transport exists. Static and resolved Vite graphs show no cycles or backend→frontend dependency.
+`App` retains routing/auth policy, using lazy BuildEnvironment, HealthCenter and AuthShellProbe with a localized Suspense/error/reload boundary. `authProbeRoute` is the tiny eager exact-path contract; DOM readiness machinery loads with its probe. The canonical comprehensive runner is invoked by local tooling; the in-app TestsPanel was removed in 018. No authorization boundary moved to the lazy child and no new SDK client/transport exists. Static and resolved Vite graphs show no cycles or backend→frontend dependency.
 
 `OnboardingScreen` coordinates state, errors, action idempotency and routing; `OnboardingForms` groups the profile/cycle field presentation and shared validation. `BirthplacePicker` bridges the external controller to React, while `BirthplaceList` renders one accessible paged resource with O(n) duplicate-label counting. `birthplaceSelection` owns generation/ticket invalidation and `placeListCache` owns TTL/LRU/serialized-byte bounds. SDK invoke has no AbortSignal option; client deadlines and generation checks reject/discard late results, while backend provider deadlines still abort their supported fetch. This is not proof that an already-started hosted invocation stops.
 

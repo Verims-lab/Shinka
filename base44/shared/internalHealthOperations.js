@@ -1,6 +1,7 @@
+import { normalizeStoredReport } from './healthHistoryContract.js';
 import { nativeReadiness } from './nativeReadiness.js';
 import { InternalError } from "./internalAuthorization.js";
-import { saveHealthReport } from './healthPersistence.js';
+import { saveHealthReport, findHealthRun } from './healthPersistence.js';
 import { DOMAIN_ENTITIES } from "./domainContract.js";
 import { CONTENT_ENTITY_NAMES } from "./contentStateContract.js";
 
@@ -41,6 +42,10 @@ export async function internalHealthOperation(client, body, {geoNamesTransportPr
       } catch {return {entity,state:'INCONCLUSIVE',count:null,code:'CONTENT_COUNT_UNAVAILABLE'};}
     }));
     return {source:'LIVE_BASE44_COUNT',measuredAt:new Date().toISOString(),results};
+  }
+  if (body.action === 'saveStatus') {
+    const row=await findHealthRun(client,normalizeStoredReport(body.report));
+    return {state:row?'SAVED':'ABSENT',run_id:body.report.runId};
   }
   if (body.action === "save") return saveHealthReport(client,body,uploadSigner);
   throw new InternalError("INVALID_INTERNAL_ACTION",400);

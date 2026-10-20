@@ -1,3 +1,4 @@
+import { HEALTH_SCOPE_TRANSFERS } from './healthExecutionScope.js';
 import { summarize, computeGate } from "./healthAggregate.js";
 import { redact } from "./reportPrivacy.js";
 import { InternalError } from "./internalAuthorization.js";
@@ -29,7 +30,7 @@ export function normalizeStoredReport(report) {
   const integrityOk = report.scope !== "FULL" || ["H16-001","H16-002","H16-003","H16-004"].every((id)=>cases.some((c)=>c.id===id&&c.status==="PASS"));
   const gate = computeGate(cases, { fullScope: report.scope === "FULL", integrityOk });
   if (report.gate?.status !== gate.status) throw new InternalError("HEALTH_HISTORY_GATE_MISMATCH", 400);
-  const safe = redact({ schemaVersion: "shinka.health.report/1", runId: report.runId, buildMarker: report.buildMarker,
+  const safe = redact({ ...(report.assessmentScope==='IN_APP_HEALTH'?{assessmentScope:'IN_APP_HEALTH',localRegressionRequirements:HEALTH_SCOPE_TRANSFERS}:{}), schemaVersion: "shinka.health.report/1", runId: report.runId, buildMarker: report.buildMarker,
     healthCatalogVersion: report.healthCatalogVersion, sourceSetVersion: report.sourceSetVersion,
     environment: ["LOCAL","PREVIEW","PUBLISHED"].includes(report.environment) ? report.environment : "UNKNOWN",
     scope: report.scope, startedAt: report.startedAt, completedAt: report.completedAt,

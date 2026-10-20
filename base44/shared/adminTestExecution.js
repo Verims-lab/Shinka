@@ -1,20 +1,16 @@
+import { verifyTestDeletion } from './testDeletionResult.js';
 import { DELETE_STEPS, DELETED_ENTITIES, testToolError, projectOperation } from './adminTestPolicy.js';
 import { testAuditRecord } from './adminTestAudit.js';
 
 // Caller supplies the historical test coordinator or native target journal. journal.begin persists before any destructive call.
 // Each checkpoint is recoverable; failure never rolls back already deleted rows.
-export async function executeTestJob({ journal, repository, actor, target, operation, requestId, previewHash, now }) {
+export async function executeTestJob({ journal, repository, actor, target, operation, requestId, previewHash, now, clock = () => performance.now() }) {
   let job = await journal.begin({ actor_id: actor.id, target_id: target.id, operation, request_id: requestId, preview_hash: previewHash, started_at: now().toISOString() });
   job = projectOperation(job);
   if (job.operation_id !== requestId || job.actor_id !== actor.id || job.target_id !== target.id || job.operation !== operation || job.request_id !== requestId || job.preview_hash !== previewHash) testToolError('TEST_OPERATION_CONFLICT');
   const started = await repository.operation(target.id, job.operation_id);
   if (!started || JSON.stringify(started) !== JSON.stringify(job)) testToolError('TEST_JOB_START_UNCONFIRMED', 503);
-  const verified = async () => {
-    if (await repository.user(target.id)) return false;
-    if (repository.calendarActions && (await repository.calendarActions(target.id)).length) return false;
-    for (const entity of DELETED_ENTITIES) if ((await repository.owned(entity,target.id)).length) return false;
-    return !(await repository.owned('notification_delivery',target.id)).some(row=>['PENDING','FAILED'].includes(row.delivery_status));
-  };
+  const verified = () => verifyTestDeletion(repository, target.id);
   if (job.status === 'RESET_ACTIVE') return job;
   if (job.status === 'COMPLETED') {
     if (operation !== 'DELETE_USER' || await verified()) return job;
@@ -32,6 +28,7 @@ export async function executeTestJob({ journal, repository, actor, target, opera
       // No product row is touched. This durable state defeats old daily evidence.
       return await finish({ status: 'RESET_ACTIVE', stage: 'PROFILE', error_code: null });
     }
+    const passStarted=clock();
     for (const stage of DELETE_STEPS) {
       // Checkpoints describe progress, never an exemption from rechecking late rows.
       // Cleanup is idempotent and bounded; a resumed deletion reconciles every scope.
@@ -42,6 +39,8 @@ export async function executeTestJob({ journal, repository, actor, target, opera
         if (await repository.user(target.id)) testToolError('TEST_DELETE_UNCONFIRMED');
       } else if (!await verified()) testToolError('TEST_DELETE_UNCONFIRMED');
       await journal.checkpoint(job, stage);
+      // Rechecking old checkpoints must not consume every retry without progress.
+      if(stage!=='VERIFY' && !job.checkpoints.includes(stage) && clock()-passStarted>=8000) return await repository.operation(target.id,job.operation_id);
     }
     // If final audit persistence fails, status remains recoverable, not success.
     return await finish({ status: 'COMPLETED', stage: 'VERIFY', completed_at: now().toISOString(), error_code: null });

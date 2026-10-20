@@ -12,7 +12,8 @@ function input(node, value) {
   Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(node, value);
   node.dispatchEvent(new Event('input', { bubbles: true }));
 }
-async function fixture(language, request, run) {
+async function fixture(language, request, run, restore = false) {
+  if(!restore)sessionStorage.removeItem('shinka.pending-test-operation');
   const host = document.createElement('div');
   Object.assign(host.style, { position: 'fixed', left: '-10000px', width: '320px' }); document.body.appendChild(host);
   const root = createRoot(host);
@@ -97,5 +98,31 @@ export const ADMIN_TEST_UI_TESTS = [
         assert(executions===1&&!f.tables.User.some(row=>row.id==='ownerA')&&f.tables.AdminTestOperation.length===1,'native UI did not verify removal');
       });
     }
+  }],
+  ['AU06','Deletion announces progress, reconciles lost response and restores the same operation after reload',async()=>{
+    const f=nativeFixture();f.state.time=new Date().toISOString();let release,executions=0;
+    const request=async(action,body)=>{
+      if(action==='execute'){executions++;await new Promise(resolve=>{release=resolve;});await f.tools({action,...body});throw {code:'TEST_TOOLS_TIMEOUT'};}
+      return f.tools({action,...body});
+    };
+    let operation;
+    await fixture('tr',request,async(q,host)=>{
+      await lookup(q);q('[data-destructive="true"]').click();await until(()=>q('[data-test-preview]'));
+      q('[data-test-preview] [data-variant="primary"]').click();await until(()=>host.textContent.includes(TEST_TOOLS_COPY.tr.deleting));
+      release();await until(()=>host.textContent.includes(TEST_TOOLS_COPY.tr.deletedResult));operation=f.tables.AdminTestOperation[0].operation_id;
+      assert(executions===1,'timeout restarted delete');
+    });
+    await fixture('tr',request,async(q,host)=>{await until(()=>host.textContent.includes(TEST_TOOLS_COPY.tr.deletedResult));assert(!q('[data-test-target]')&&host.textContent.includes(operation)&&executions===1,'reload lost operation');},true);
+  }],
+  ['AU07','Unknown response stays unknown after bounded reads; partial job offers same-operation resume',async()=>{
+    const f=nativeFixture();f.state.time=new Date().toISOString();let reads=0,executeId;
+    const request=async(action,body)=>{
+      if(action==='execute'){executeId=body.request_id;throw {code:'TEST_TOOLS_TIMEOUT'};}
+      if(action==='status'){reads++;assert(body.operation_id===executeId,'changed operation');throw {code:'TEST_TOOLS_FAILED',stage:'OPERATION',requestId:'safe-fixture'};}
+      return f.tools({action,...body});
+    };
+    await fixture('en',request,async(q,host)=>{await lookup(q);q('[data-destructive="true"]').click();await until(()=>q('[data-test-preview]'));q('[data-test-preview] [data-variant="primary"]').click();await until(()=>reads===2);await pause();assert(host.textContent.includes(TEST_TOOLS_COPY.en.unknownResult)&&!host.textContent.includes(TEST_TOOLS_COPY.en.deletedResult),'uncertain result hidden');assert(q('details'),'safe details absent');});
+    const done=await f.execute(await f.preview('DELETE_USER'));f.tables.AdminTestOperation[0].status='RUNNING';
+    await fixture('en',(action,body)=>f.tools({action,...body}),async(q,host)=>{input(q('#test-user-id'),'ownerA');await pause();q('#test-lookup-button').click();await until(()=>host.textContent.includes(TEST_TOOLS_COPY.en.deletePending));const resume=[...host.querySelectorAll('button')].find(b=>b.textContent===TEST_TOOLS_COPY.en.retry);assert(resume&&!resume.disabled,'resume hidden');resume.click();await until(()=>host.textContent.includes(TEST_TOOLS_COPY.en.deletedResult));assert(f.tables.AdminTestOperation[0].operation_id===done.job.operation_id,'new operation');});
   }],
 ];
