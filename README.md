@@ -4,6 +4,14 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Any change pushed to the repo will also be reflected in the Base44 Builder.
 
+## Current Test data authority (Buildmarker-016)
+
+Base44 is the single product-data, identity and admin-role authority. Browser calls Base44 backend functions; no SQL secret, service, database setup or second login is required. Home reconciles immutable daily candidates; Calendar calculates from actual dates; reset verifies each step; deletion requires an operator-controlled maintenance window.
+
+Read [Base44 continuation and rollout](docs/shinka/SHINKA_BASE44_CONTINUATION.md) before syncing. New UserCalendarAction schema, AdminTestOperation.step_fingerprints and applicationSession must be synced together with native function entries. A frontend-only sync is insufficient. Content and Moon are separately PRE_IMPORT; their absence is not a database-platform failure. No publish/main merge is authorized by this package. Historical 014/015 reports are retained as superseded evidence.
+
+Run `npm ci`, `npm run health:repo`, `npm run test:foundation` (also `FOUNDATION_BROWSER=webkit`), `npm run lint`, `npm run typecheck`, `npm run build`, `npm run security:deps`. Local synthetic evidence does not close hosted or physical-device acceptance.
+
 ## Prerequisites
 
 1. Clone the repository using the project's Git URL.

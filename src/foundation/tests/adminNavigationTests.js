@@ -22,7 +22,7 @@ async function until(check) {
 }
 async function fixture(identity, path, run, language = 'en') {
   const f = { identity, me: () => Promise.resolve(f.identity), auth: null, logout: () => Promise.resolve() };
-  const client = { app: { getPublicSettings: async () => ({}) }, auth: { me: () => f.me(), logout: () => f.logout() } };
+  const client = { app: { getPublicSettings: async () => ({}) }, auth: { me: async () => admin, logout: () => f.logout() }, functions: { invoke: async name => { assert(name === 'applicationSession', 'native session endpoint'); return { data: { ...await f.me(), authority: 'BASE44_NATIVE_V1' } }; } } };
   const host = document.createElement('div');
   Object.assign(host.style, { position: 'fixed', left: '-10000px', width: '360px' });
   document.body.appendChild(host);

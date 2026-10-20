@@ -9,12 +9,22 @@ const report: Record<string, unknown> = {
   schema: 'shinka.release-readiness/1', measuredAt: new Date().toISOString(),
   evidence: 'LIVE_SCHEMA_AND_IMPORT_READS_ONLY', appId: base44.getConfig().appId,
   // Readiness is deliberately separate from permission to enable writers.
-  repositoryExpectation: { home: 'BLOCKED', calendar: 'BLOCKED', admin: 'BLOCKED' },
+  repositoryExpectation: { home: 'NATIVE_CANDIDATES_REQUIRES_REFERENCES', calendar: 'NATIVE_OBSERVATIONS_RECEIPTS', reset: 'VERIFIED_STEPS', deletion: 'TEST_OPERATOR_MAINTENANCE' },
 };
 try {
   const rows = await base44.entities.AdminTestOperation.filter({}, 'id', 1, 0, ['id']);
   report.lifecycleSchema = Array.isArray(rows) ? 'READABLE' : 'INVALID_RESPONSE';
 } catch { report.lifecycleSchema = 'UNAVAILABLE'; }
+try {
+  const rows = await base44.entities.UserCalendarAction.filter({}, 'id', 1, 0, ['id']);
+  report.calendarReceiptSchema = Array.isArray(rows) ? 'READABLE' : 'INVALID_RESPONSE';
+} catch { report.calendarReceiptSchema = 'UNAVAILABLE'; }
+try {
+  const { data } = await base44.functions.invoke('internalHealth', { action: 'nativeReadiness' });
+  report.nativeRuntime = data?.authority === 'BASE44_NATIVE_V1'
+    ? { authority: data.authority, strategyVersion: data.strategyVersion, schemas: data.schemas, hostedMutationVerified: false }
+    : { state: 'UNCONFIRMED' };
+} catch { report.nativeRuntime = { state: 'UNAVAILABLE' }; }
 if (report.lifecycleSchema === 'READABLE') {
   for (const action of ['verify', 'moonDryRun']) {
     try {

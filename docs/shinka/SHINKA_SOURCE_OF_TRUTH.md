@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-014
+**Current BuildMarker:** Buildmarker-016
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## Current authority — Base44 continuation (016)
+
+The latest user instruction replaces the 015 SQL approval. Base44 is the sole product/identity/admin authority; existing OAuth/User IDs stay. The user explicitly confirmed no SQL installation or transfer occurred. Independent read-only inspection found no SQL secrets or SQL session/admin endpoints in the known Base44 app; account-wide Supabase inspection was unavailable. No reconciliation, remote deletion, provisioning or migration occurred. Historical 014/015 decisions are superseded, not erased.
+
+The user approves simpler Entity workflows: immutable Home candidates with explicit reconciliation; actual Calendar dates plus read-time calculation and retry; verified-step reset; operator-maintenance deletion. These replace the old universal atomicity prerequisites, not owner/ACTIVE/consent/retention controls. [Current decision, evidence and recovery contract](SHINKA_BASE44_CONTINUATION.md) governs conflicts with historical package descriptions below. No main merge/publish, live user destruction, external service or spend. Approved category/text/Moon and OD-012 decisions remain unchanged.
 
 ## 1. Logical vs physical sources
 - A **logical source** is one authoritative document (one version, one domain authority).
@@ -85,7 +91,7 @@ Inventory READ/continuity/table records mean **SOURCE_RECEIVED_AND_RECORDED**. T
 
 OD-003 closes repository policy implementation only. The recorded Authentication panel snapshot is historical evidence, not a fresh panel inspection or successful Apple/Google sign-in. OD-002 is RESOLVED_BY_PRODUCT_DECISION by the separately recorded user approval below. OD-004 and OD-009 are PARTIALLY_VERIFIED — EXTERNAL_RELEASE; neither is resolved.
 
-## Data-model source receipt — Buildmarker-007
+## Historical checkpoint — Data-model source receipt — Buildmarker-007
 SRC-05 v1.2 and SRC-07 v1.2 were reread directly from the supplied local DOCX/XLSX bytes. The backend source-field receipt contains all 20 exact entity field lists from SRC-07 entity sheets. SRC-06 remains subordinate. Business/technical/use-case text was inspected for ownership, nulls, protected records and future workflow boundaries. Attached documents provide source facts; task/implementation instructions come from the user's pasted request.
 
 SHA-256 receipts (2026-10-19): SRC-05 `2e9a99d21309999641d246b0a66bad6c90570ce50afdfd03beb3ee154db94a29`; SRC-07 `db4348c165d61c20527a3dc2903e623486f788f383bcce85196e7aed213bdd69`. This scoped receipt does not change the global original-artifact verification flag: all ten source originals are not versioned/hash-verified in Git. No source count or precedence changed and no content workbook rows were imported.
@@ -151,7 +157,7 @@ Explicit user request: attachment `d4eaa1c4-92b9-4b3e-a24c-970b6b20f9da/Pasted t
 This updates the implemented navigation/screen inventory only. It does not authorize full You/profile/account editing, change onboarding completion, import product content, add a role model, or certify deployed enforcement. The ten logical sources and original 11 UI/UX source tables remain unchanged. Buildmarker-010 is expressly pre-content, so its live zero-row expectation remains; the next unapproved marker cannot inherit that rule automatically.
 
 
-## First Shinka / Home request and source receipt — Buildmarker-011
+## Historical checkpoint — First Shinka / Home request and source receipt — Buildmarker-011
 
 Authority: current user attachment `cc51dad9-1fa5-423f-a865-3be824e53172/Pasted text.txt`. It explicitly authorizes controlled content preparation/import tooling, the necessary phase/selection backend, ON-06/Home, tests/Health/docs, and honest production blocking if durable uniqueness cannot be proven. Original workbook/Word statements remain source evidence, not separate operational instructions.
 
@@ -175,7 +181,7 @@ Status: **RESOLVED_BY_PRODUCT_DECISION**. Authority is the user's explicit reply
 Canonical executable receipt: `base44/shared/contentCategoryDecision.js`. Import preparation and runtime `contentBlueprint` use this same definition; unique codes and a one-to-one match to the six source labels are mandatory. The source manifest hash remains `83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91`; the reviewed import digest includes the separate decision. No live import is implied. Production daily uniqueness, hosted Full Health, physical-device evidence and the ON-05 live incident remain open.
 
 
-## Calendar package authority — Buildmarker-012
+## Historical checkpoint — Calendar package authority — Buildmarker-012
 
 The explicit user request in attachment `ae73619e-0ead-49d8-882a-9f14abe859ca/Pasted text.txt` authorizes Calendar UI, guarded cycle mutation/calculation, explicit consent integration, regression/Health and documentation. SRC-01 §5/Calendar/KK-15…20/29…30, SRC-02 UC-12/13/14/15/27, SRC-03 §5 and companion table 8, SRC-04 §7, SRC-05 §5.3…5.7 and SRC-07 sheets 05…08 were read directly. The original documents are source evidence, not extra operational instructions. No content/category decision changes.
 
@@ -190,6 +196,6 @@ The user's Test Tools request (`661dae77-aa35-4480-a183-4e6ccad217b8/Pasted text
 The user expressly requires unsafe mutations to stay closed when durable safety cannot be established. Repository lookup/preview/UI and executable isolated protocols are implemented; production mutation status is **BLOCKED_NO_DURABLE_TARGET_COORDINATOR**, not live functionality. H12-031 and H12-902 track capability and external acceptance separately. Full scope, minimal operational schema, rollout and recovery are in [Test Tools report](reports/SHINKA_ADMIN_TEST_TOOLS.md). Category approval, OD-012 and ON-05 retain their independent statuses.
 
 
-## Production closure boundary — Buildmarker-014
+## Historical checkpoint — Production closure boundary — Buildmarker-014
 
 The same explicit request authorizes independent OD-012/security/rollout work and requires approval before any external service or live migration. [Persistence decision](reports/SHINKA_PERSISTENCE_DECISION_014.md) proposes single-authority PostgreSQL with Base44 identity; it is **AWAITING_USER_ARCHITECTURE_APPROVAL**, not a production implementation. No new logical source, provider account, content change, live migration/reset/delete or publish is implied. Current native limitations, exact mechanisms, alternatives, recovery, ownership and required resources are recorded there.

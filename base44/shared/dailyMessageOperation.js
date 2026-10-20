@@ -13,12 +13,13 @@ import { resolveDailyCycle } from './dailyCycle.js';
 import { repeatWindowStart, selectDailyPair, dailySnapshot } from './dailySelection.js';
 import { resolveMoonPhase } from './moonIntervals.js';
 import { verifiedDailyRecord } from './dailyRecord.js';
+import { nativeDailyPersistence } from './nativeDailyPersistence.js';
 
 const fail = (code, status = 409) => { throw new InternalError(code, status); };
 const domainFields = entity => Object.keys(DOMAIN_SCHEMAS[entity].properties);
-// atomic is a server-owned implementation of domainAtomic's durable protocol.
-// Production deliberately supplies none: SDK keyed upsert is not create-if-absent.
-async function normalDailyMessageOperation(client, body, { now = () => new Date(), atomic = null, library = null, random = Math.random, resetFlow = false } = {}) {
+// Deployed native mode reconciles immutable candidates. atomic is retained only
+// for historical executable protocol tests; keyed upsert is never used here.
+async function normalDailyMessageOperation(client, body, { now = () => new Date(), atomic = null, native = false, library = null, random = Math.random, resetFlow = false } = {}) {
   const principal = await requireAuthenticatedUser(client);
   const owner = resolveAuthenticatedOwner(principal, body);
   if (body.action !== 'today' || Object.keys(body).some(key => !['action', 'timezone'].includes(key))) fail('INVALID_REQUEST', 400);
@@ -39,12 +40,14 @@ async function normalDailyMessageOperation(client, body, { now = () => new Date(
   const preferences = await singleton('user_preferences');
   const timezone = resolveTimezone(body.timezone, preferences?.timezone);
   const instant = now(), day = serverLocalDate(instant, timezone);
+  const persistence = native ? nativeDailyPersistence(client, owner) : null;
   if (resetFlow && !isOnboardingProfileReady(profile, preferences, day)) fail('PROFILE_COMPLETION_REQUIRED');
-  const existing = await read('user_daily_message', 2, { shinka_date: day });
+  const reconciled = persistence ? await persistence.existing(day) : null;
+  const existing = persistence ? (reconciled.record ? [reconciled.record] : []) : await read('user_daily_message', 2, { shinka_date: day });
   if (existing.length > 1) fail('DUPLICATE_DAILY_MESSAGE');
-  if (existing.length) return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: false, daily: verifiedDailyRecord(existing[0], owner, day), profile: { display_name: profile.display_name }, timezone };
+  if (existing.length) return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: false, notice: reconciled?.notice || null, daily: verifiedDailyRecord(existing[0], owner, day), profile: { display_name: profile.display_name }, timezone };
   if (!isOnboardingProfileReady(profile, preferences, day)) fail('PROFILE_COMPLETION_REQUIRED');
-  if (!atomic) fail('DAILY_ATOMIC_CAPABILITY_REQUIRED', 503);
+  if (!atomic && !persistence) fail('DAILY_ATOMIC_CAPABILITY_REQUIRED', 503);
   if (typeof library !== 'function') fail('CONTENT_NOT_READY', 503);
   const content = await library(client);
   if (!content.plan.ready) fail('CONTENT_NOT_READY', 503);
@@ -69,16 +72,12 @@ async function normalDailyMessageOperation(client, body, { now = () => new Date(
   } else if (consent && consent.consent_status !== 'WITHDRAWN') fail('CONSENT_STATE_INVALID');
   const mappings = content.actual.message_category_mapping.filter(row => row.sun_sign_code === resolveSunSign(profile.birth_date) && row.moon_phase_code === moon && row.cycle_phase_code === cycle);
   if (mappings.length !== 1) fail('CONTENT_MAPPING_CONFLICT');
-  const history = await read('user_daily_message', 41, { shinka_date: { $gte: repeatWindowStart(day), $lte: day } }, '-shinka_date', ['shinka_date', 'message_pair_id']);
-  if (history.length > 40 || new Set(history.map(row => row.shinka_date)).size !== history.length) fail('DUPLICATE_DAILY_MESSAGE');
+  const history = persistence ? await persistence.history(repeatWindowStart(day), day) : await read('user_daily_message', 41, { shinka_date: { $gte: repeatWindowStart(day), $lte: day } }, '-shinka_date', ['shinka_date', 'message_pair_id']);
+  if (!persistence && (history.length > 40 || new Set(history.map(row => row.shinka_date)).size !== history.length)) fail('DUPLICATE_DAILY_MESSAGE');
   const { pair } = selectDailyPair({ pairs: content.actual.message_pair, history, categoryId: mappings[0].category_id, day, random });
   const record = dailySnapshot({ owner, day, timezone, pair, now: instant });
-  const guardedAtomic = {
-    read: (entity, id) => atomic.read(entity, id),
-    createIfAbsent: request => atomic.createIfAbsent({ ...request, requirements: { ...request.requirements, healthInput: healthGuard } }),
-  };
-  const outcome = await createOnce('user_daily_message', record, SYSTEM_AUTHORITIES.DAILY_MESSAGE, guardedAtomic);
-  // Recheck privacy gates after readback as well. No HTTP result on revoked access.
+  const guard = async () => {
+    await client.auth.me();
   assertActiveAccount(owner, await singleton('user_profile'));
   if (healthGuard) {
     const latest = await singleton('user_health_consent');
@@ -86,7 +85,13 @@ async function normalDailyMessageOperation(client, body, { now = () => new Date(
     if (latest.id !== healthGuard.consentId || latest.granted_at !== healthGuard.grantedAt || latest.consent_version !== healthGuard.version) fail('CONSENT_STATE_CHANGED');
     assertHealthConsent(owner, latest, await read('health_data_deletion_job', 1, { job_status: { $ne: 'COMPLETED' } }));
   }
-  return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: outcome.created, daily: verifiedDailyRecord(outcome.record, owner, day), profile: { display_name: profile.display_name }, timezone };
+  };
+  const outcome = persistence ? await persistence.save(record, guard) : await createOnce('user_daily_message', record, SYSTEM_AUTHORITIES.DAILY_MESSAGE, {
+    read: (entity, id) => atomic.read(entity, id),
+    createIfAbsent: request => atomic.createIfAbsent({ ...request, requirements: { ...request.requirements, healthInput: healthGuard } }),
+  });
+  await guard();
+  return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: outcome.created, notice: outcome.notice || null, daily: verifiedDailyRecord(outcome.record, owner, day), profile: { display_name: profile.display_name }, timezone };
 }
 export async function dailyMessageOperation(client, body, dependencies = {}) {
   const principal = await requireAuthenticatedUser(client);

@@ -1,3 +1,4 @@
+import { nativeReadiness } from './nativeReadiness.js';
 import { InternalError } from "./internalAuthorization.js";
 import { normalizeStoredReport, buildHistoryRecord } from "./healthHistoryContract.js";
 import { DOMAIN_ENTITIES } from "./domainContract.js";
@@ -5,6 +6,10 @@ import { CONTENT_ENTITY_NAMES } from "./contentStateContract.js";
 
 // Called only inside handleInternalRequest, after server auth.me() succeeds.
 export async function internalHealthOperation(client, body, {geoNamesTransportProbe=null}={}) {
+  if (body.action === 'nativeReadiness') {
+    if (Object.keys(body).length !== 1) throw new InternalError('INVALID_REQUEST', 400);
+    return nativeReadiness(client);
+  }
   if(body.action==='geoNamesTransportProbe'){
     if(Object.keys(body).length!==1)throw new InternalError('INVALID_REQUEST',400);
     if(!geoNamesTransportProbe)throw new InternalError('GEONAMES_PROBE_UNAVAILABLE',503);

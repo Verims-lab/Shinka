@@ -13,8 +13,8 @@ export function inspectGeoNamesEntry(code) {
     && secret.arguments?.length===1&&secret.arguments[0]?.value==='GEONAMES_USERNAME'
     && nodes.some(n=>n.type==='ImportDeclaration'&&n.source.value==='base44:runtime'&&n.specifiers.some(s=>s.imported?.name==='secrets'&&s.local?.name==='secrets'))
     && nodes.some(n=>n.type==='ImportDeclaration'&&n.source.value==='../../shared/geonamesAdapter.js')
-    && nodes.some(n=>inside(n)&&n.type==='CallExpression'&&n.callee?.name==='handleOnboardingRequest'
-      && n.arguments?.[2]?.properties?.some(p=>p.key?.name==='geoNames'&&p.value?.name==='geoNames'));
+    && nodes.some(n=>inside(n)&&n.type==='CallExpression'&&['handleOnboardingRequest','handleSqlRequest'].includes(n.callee?.name)
+      && n.arguments?.[n.callee.name==='handleSqlRequest'?3:2]?.properties?.some(p=>p.key?.name==='geoNames'&&p.value?.name==='geoNames'));
 }
 export function inspectOnboardingSurface(sources,approvedCopy) {
   const duplicates=[],credentials=[];

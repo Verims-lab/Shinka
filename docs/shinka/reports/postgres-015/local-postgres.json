@@ -1,0 +1,146 @@
+{
+  "sourceDigest": "02e0a24f2d9de405c0be4d3f98d26df8be9b62dea3b35f39fb4d315c191e4d1e",
+  "scope": "LOCAL_REAL_POSTGRESQL",
+  "postgres": "17.11",
+  "identityProvider": "SYNTHETIC_BASE44_FIXTURE",
+  "hostedVerified": false,
+  "reference": {
+    "scope": "TEST_REFERENCE_IMPORT",
+    "sourceHash": "83ec8ad248483ef31c996b0f0782a2ce419de7d4d186590ce03b47c30cfd9a91",
+    "categories": 6,
+    "mappings": 240,
+    "pairs": 260,
+    "moonIntervals": 103,
+    "coverageStart": "2026-10-03T13:25:33.710Z",
+    "coverageEnd": "2028-11-02T09:17:57.674Z"
+  },
+  "passed": 25,
+  "failed": 0,
+  "results": [
+    {
+      "name": "PG01 migration checksum and restricted runtime role",
+      "status": "PASS",
+      "ms": 71
+    },
+    {
+      "name": "PG02 manifest 6/240/260 and Moon import is identical on retry",
+      "status": "PASS",
+      "ms": 282
+    },
+    {
+      "name": "PG03 verified one-shot admin bootstrap; native admin does not confer SQL admin",
+      "status": "PASS",
+      "ms": 58
+    },
+    {
+      "name": "PG04 tenant RLS, forged owner, inactive and test scope fail closed",
+      "status": "PASS",
+      "ms": 20
+    },
+    {
+      "name": "PG05 onboarding concurrent retries persist one grant/time/event/period and null optionals",
+      "status": "PASS",
+      "ms": 278
+    },
+    {
+      "name": "PG06 missing consent and skip produce no health records",
+      "status": "PASS",
+      "ms": 33
+    },
+    {
+      "name": "PG07 consent/event/period failure rolls back together; retry recovers",
+      "status": "PASS",
+      "ms": 32
+    },
+    {
+      "name": "PG08 Home concurrent connections and lost-response/new-process retry return one immutable day",
+      "status": "PASS",
+      "ms": 431
+    },
+    {
+      "name": "PG09 Calendar concurrent revisions, committed replay and derived recomputation",
+      "status": "PASS",
+      "ms": 272
+    },
+    {
+      "name": "PG10 last-admin guard and immediate SQL revocation across workers",
+      "status": "PASS",
+      "ms": 204
+    },
+    {
+      "name": "PG11 reset admission concurrent retry, blocked calendar and atomic progress receipts",
+      "status": "PASS",
+      "ms": 615
+    },
+    {
+      "name": "PG12 delete commits fence, checkpoints partial work, survives native lost response and new worker",
+      "status": "PASS",
+      "ms": 458
+    },
+    {
+      "name": "PG15 independent OS processes contend for first Home creation",
+      "status": "PASS",
+      "ms": 287
+    },
+    {
+      "name": "PG16 Calendar rollback, lost response, edit/delete and unchanged Home",
+      "status": "PASS",
+      "ms": 464
+    },
+    {
+      "name": "PG17 reset step failure rolls back profile/progress; concurrent changed input conflicts",
+      "status": "PASS",
+      "ms": 468
+    },
+    {
+      "name": "PG18 failed first deletion stage keeps durable fence while native identity exists",
+      "status": "PASS",
+      "ms": 252
+    },
+    {
+      "name": "PG19 physical FK/unique/spacing constraints reject conflicting direct SQL",
+      "status": "PASS",
+      "ms": 32
+    },
+    {
+      "name": "PG20 withdrawn consent/open health job block retries and audited admin health read",
+      "status": "PASS",
+      "ms": 66
+    },
+    {
+      "name": "PG21 worker killed during actual saveCycle transaction leaves no partial grant",
+      "status": "PASS",
+      "ms": 423
+    },
+    {
+      "name": "PG22 UTC/offset business time survives retry; naive/missing/invalid time rejected",
+      "status": "PASS",
+      "ms": 30
+    },
+    {
+      "name": "PG23 actual function entries/config use SQL authority and close pools; no legacy fallback",
+      "status": "PASS",
+      "ms": 83
+    },
+    {
+      "name": "PG24 concurrent roster revocations preserve one ACTIVE admin; lost grant response replays once",
+      "status": "PASS",
+      "ms": 363
+    },
+    {
+      "name": "PG25 missing start audit rolls back deletion admission, fence and role changes",
+      "status": "PASS",
+      "ms": 78
+    },
+    {
+      "name": "PG13 crash recovery preserves committed records and receipts",
+      "status": "PASS",
+      "ms": 721
+    },
+    {
+      "name": "PG14 HTTP hides SQL diagnostics and hosted TLS cannot be weakened",
+      "status": "PASS",
+      "ms": 0
+    }
+  ]
+}

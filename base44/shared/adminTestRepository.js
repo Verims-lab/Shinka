@@ -86,6 +86,8 @@ export function createTestRepository(client) {
     const audit = await scan('AdminAuditLog', { $or: [{ admin_user_id: targetId }, { target_user_id: targetId }] }, ['id', 'admin_user_id', 'target_user_id', 'updated_date']);
     if (audit.some(row => row.admin_user_id !== targetId && row.target_user_id !== targetId)) testToolError('TEST_OWNER_CONFLICT', 403);
     records.admin_audit_log = audit;
+    records.calendar_actions = await scan('UserCalendarAction', { user_id: targetId }, ['id', 'user_id', 'updated_date']);
+    if (records.calendar_actions.some(row => row.user_id !== targetId)) testToolError('TEST_OWNER_CONFLICT', 403);
     const counts = Object.fromEntries(Object.entries(records).map(([entity, rows]) => [entity, rows.length]));
     const pending = records.notification_delivery.filter(row => ['PENDING', 'FAILED'].includes(row.delivery_status));
     return { counts, pending_notifications: pending.length, hash: await hashToolValue(records) };
@@ -96,6 +98,12 @@ export function createTestRepository(client) {
     for (const row of await owned(entity, targetId)) {
       await entities[physicalName(entity)].delete(row.id);
     }
+    if (entity === 'user_period_record') {
+      const actions = await scan('UserCalendarAction', { user_id: targetId }, ['id', 'user_id']);
+      if (actions.some(row => row.user_id !== targetId)) testToolError('TEST_OWNER_CONFLICT', 403);
+      for (const row of actions) await entities.UserCalendarAction.delete(row.id);
+      if ((await scan('UserCalendarAction', { user_id: targetId }, ['id', 'user_id'])).length) testToolError('TEST_DELETE_UNCONFIRMED');
+    }
     if ((await owned(entity, targetId)).length) testToolError('TEST_DELETE_UNCONFIRMED');
   }
   async function stopNotifications(targetId) {
@@ -104,5 +112,5 @@ export function createTestRepository(client) {
     }
     if ((await owned('notification_delivery', targetId)).some(row => ['PENDING', 'FAILED'].includes(row.delivery_status))) testToolError('TEST_DELETE_UNCONFIRMED');
   }
-  return { user, target, impact, operation, lifecycle, owned, cleanup, stopNotifications, deleteUser: id => entities.User.delete(id) };
+  return { user, target, impact, operation, lifecycle, owned, cleanup, stopNotifications, calendarActions: target => scan('UserCalendarAction', { user_id: target }, ['id', 'user_id']), deleteUser: id => entities.User.delete(id) };
 }

@@ -9,3 +9,6 @@ export async function countLiveContentRows() {
 export async function verifyLiveContentLibrary() {
   return (await base44.functions.invoke('contentLibrary', { action: 'verify' })).data;
 }
+
+export async function probeNativeReadiness() { return (await base44.functions.invoke('internalHealth', { action: 'nativeReadiness' })).data; }
+export async function verifyLiveMoon() { return (await base44.functions.invoke('contentLibrary', { action: 'moonDryRun' })).data; }

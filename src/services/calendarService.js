@@ -1,6 +1,7 @@
 import { base44 } from '@/api/base44Client';
 import { isCalendarDate } from '../../base44/shared/onboardingValidation.js';
 const SAFE_CODES = new Set([
+  'CALENDAR_ACTION_CONFLICT', 'CALENDAR_WRITE_UNCONFIRMED', 'MAINTENANCE_WRITE_PAUSED', 'CONSENT_WRITE_UNCONFIRMED',
   'AUTH_REQUIRED', 'ACTIVE_ACCOUNT_REQUIRED', 'HEALTH_CONSENT_REQUIRED', 'HEALTH_DELETION_PENDING', 'HEALTH_DELETION_UNCONFIRMED',
   'CONSENT_STATE_CHANGED', 'CONSENT_TIMESTAMP_INVALID', 'CONSENT_EVENT_UNCONFIRMED', 'CONSENT_VERSION_CONFLICT',
   'CALENDAR_ATOMIC_CAPABILITY_REQUIRED', 'CALENDAR_STATE_CHANGED', 'CALENDAR_DATA_CONFLICT', 'CALENDAR_READ_FAILED',
@@ -20,13 +21,16 @@ export async function calendarRequest(action, payload = {}, client = base44) {
     ]);
     const value = response?.data;
     if (value?.error_code) throw { response: { data: value } };
-    if (!['READY', 'CONSENT_REQUIRED'].includes(value?.state) || !isCalendarDate(value.today) || !isCalendarDate(`${value.month}-01`) ||
+    if (!['READY', 'CONSENT_REQUIRED', 'RECOVERY_REQUIRED'].includes(value?.state) || !isCalendarDate(value.today) || !isCalendarDate(`${value.month}-01`) ||
       typeof value.revision !== 'string' || !/^[a-f0-9]{64}$/.test(value.revision) || typeof value.writable !== 'boolean' ||
       !Array.isArray(value.starts) || value.starts.some(row => typeof row.id !== 'string' || !isCalendarDate(row.date)) ||
       !Array.isArray(value.recordedDays) || !Array.isArray(value.predictedDays) ||
       (value.calculationNotice != null && value.calculationNotice !== 'CYCLE_ESTIMATE_UNAVAILABLE') ||
       (value.calculationNotice && (value.predictedDays.length || value.state !== 'READY')) ||
       [...value.recordedDays, ...value.predictedDays].some(day => !isCalendarDate(day)) ||
+      (value.recovery != null && (typeof value.recovery.action_id !== 'string' || !/^[a-zA-Z0-9_-]{16,80}$/.test(value.recovery.action_id) || !/^[a-f0-9]{64}$/.test(value.recovery.revision) || !isCalendarDate(value.recovery.date))) ||
+      (value.state === 'RECOVERY_REQUIRED' && (!value.recovery || value.writable || value.starts.length || value.recordedDays.length || value.predictedDays.length)) ||
+      (value.pendingReview === true && value.predictedDays.length > 0) ||
       (payload.month && value.month !== payload.month) ||
       (value.state === 'CONSENT_REQUIRED' && (value.starts.length || value.recordedDays.length || value.predictedDays.length)) ||
       (action !== 'read' && value.mutationConfirmed !== true)) throw Object.assign(new Error(), { code: 'CALENDAR_READBACK_CONFLICT' });

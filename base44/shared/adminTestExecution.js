@@ -1,8 +1,8 @@
 import { DELETE_STEPS, DELETED_ENTITIES, testToolError, projectOperation } from './adminTestPolicy.js';
 import { testAuditRecord } from './adminTestAudit.js';
 
-// Called ONLY inside a verified coordinator's durable target + admin-roster
-// exclusion boundary. journal.begin must persist before any destructive call.
+// Caller supplies either the historical test coordinator or the native operator
+// maintenance boundary. journal.begin persists before any destructive call.
 // Each checkpoint is recoverable; failure never rolls back already deleted rows.
 export async function executeTestJob({ journal, repository, actor, target, operation, requestId, previewHash, now }) {
   let job = await journal.begin({ actor_id: actor.id, target_id: target.id, operation, request_id: requestId, preview_hash: previewHash, started_at: now().toISOString() });
@@ -23,7 +23,7 @@ export async function executeTestJob({ journal, repository, actor, target, opera
       return await finish({ status: 'RESET_ACTIVE', stage: 'PROFILE', error_code: null });
     }
     for (const stage of DELETE_STEPS) {
-      if (await journal.isDone(job, stage)) continue;
+      if (stage !== 'VERIFY' && await journal.isDone(job, stage)) continue;
       if (stage === 'NOTIFICATIONS') await repository.stopNotifications(target.id);
       else if (DELETED_ENTITIES.includes(stage)) await repository.cleanup(stage, target.id);
       else if (stage === 'USER') {
@@ -31,6 +31,7 @@ export async function executeTestJob({ journal, repository, actor, target, opera
         if (await repository.user(target.id)) testToolError('TEST_DELETE_UNCONFIRMED');
       } else {
         if (await repository.user(target.id)) testToolError('TEST_DELETE_UNCONFIRMED');
+        if (repository.calendarActions && (await repository.calendarActions(target.id)).length) testToolError('TEST_DELETE_UNCONFIRMED');
         for (const entity of DELETED_ENTITIES) if ((await repository.owned(entity, target.id)).length) testToolError('TEST_DELETE_UNCONFIRMED');
         if ((await repository.owned('notification_delivery', target.id)).some(row => ['PENDING', 'FAILED'].includes(row.delivery_status))) testToolError('TEST_DELETE_UNCONFIRMED');
       }
@@ -40,7 +41,7 @@ export async function executeTestJob({ journal, repository, actor, target, opera
     return await finish({ status: 'COMPLETED', stage: 'VERIFY', completed_at: now().toISOString(), error_code: null });
   } catch {
     try {
-      // A lost acknowledgement may follow a successful atomic final audit.
+      // A lost acknowledgement may follow a successful final audit.
       // Never regress a confirmed terminal job or append a duplicate result.
       const current = await repository.operation(target.id, job.operation_id);
       if (current && ['COMPLETED', 'RESET_ACTIVE'].includes(current.status)) return current;

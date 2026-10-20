@@ -2,14 +2,20 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-014
+**Current BuildMarker:** Buildmarker-016
 **Last Updated:** 2026-10-20
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
-**Not Implemented:** Verified hosted daily/Calendar writes (atomic capability blocked), Pattern, You editing, withdrawal/deactivation and notifications.
+**Not Implemented:** Hosted acceptance for native daily/Calendar writes, Pattern, You editing, withdrawal/deactivation and notifications.
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+## Current Base44 behavior — 016
+
+Home reuses valid saved daily content. Competing physical candidates are retained and reconciled by persisted generated_at then ID; a differing candidate displays a notice. All candidates count in the 40-day history. Late visibility can change the chosen display on refresh; no random deletion or snapshot update.
+
+Calendar persists actual starts and owner/action receipts; derives phases/predictions on read with OD-012. Same intent retries recover from partial writes; stale/competing intent requires refresh/review. Pending conflict hides predictions. Explicit partial grant resumes with its original persisted business time. No transaction/rollback promise. Reset starts progress only, then verifies normal writes before advancing; same-day ON-06 reuses its snapshot. Delete requires Test preview/typed confirmation and operator-controlled write pause/drain, persistent stages, audit/readback and final verification. Exact limits and recovery: [continuation](SHINKA_BASE44_CONTINUATION.md).
 
 ## Account / Authentication (UC-01, KK-01)
 Apple or Google only; no Shinka password; one account per provider identity. 18+ checkbox (initially empty) must be checked before auth starts; age is re-checked from birth date (backend). Sign Out does not change account status.
@@ -21,7 +27,7 @@ Intro → optional name (trim, ≤50) → sign-in → birth date (required, vali
 Shows the pair for the device's current local calendar day. Reopen/Retry/profile/language changes never create a second Pair ID. Greeting adapts to time and name; does not affect selection.
 
 ## Calendar (UC-12/13/15/27, KK-15…20, 29/30)
-Only distinguishes recorded vs predicted period days. Selecting a date never saves. "Mark period start" creates; selecting an existing start + new date updates the same ID. Delete requires confirmation. ≥15 days between distinct starts. All recalculation is atomic; failure keeps prior state. Last start deleted ⇒ predictions/phases removed, settings kept, messages use UNKNOWN.
+Only distinguishes recorded vs predicted period days. Selecting a date never saves. "Mark period start" creates; selecting an existing start + new date updates the same ID. Delete requires confirmation. ≥15 days between distinct starts. Recalculation derives from confirmed actual dates on read; failed writes may have persisted and require retry/review. Last start deleted ⇒ predictions/phases removed, settings kept, messages use UNKNOWN.
 
 ## Pattern (UC-16/17, KK-21/22/34)
 Recurring Themes: 1–29 days use all history, ≥30 rolling last 30; based on user_daily_message.category_id actually assigned; max two categories; ties → most recently seen; no inference. Lunar Timeline: previous New Moon → next New Moon, proportional, local dd.MM HH:mm, no horizontal scroll.
@@ -41,8 +47,9 @@ Existing record for local day ⇒ return it. Else category from 240 mapping (sig
 ## Data Protection (KK-35/37)
 Delete Account ⇒ INACTIVE + ACCOUNT_DEACTIVATION event. Admin cannot modify/delete daily message history, consent events, protection events, audit log; deletion job status backend-only.
 
-## Foundation readiness — Buildmarker-007
-All 20 physical schemas now represent these contracts. Backend read boundaries derive owner from auth.me().id and check ACTIVE/consent state; protected mutations are denied. At the 007 checkpoint no Calendar, onboarding, Home, Pattern, daily-generation, scheduler, push or deletion execution flow had begun; the current onboarding implementation is described below. Future Calendar mutations still require ≥15-day inter-record validation and atomic derived-state replacement; future withdrawal must stop processing first, create minimal protection/job metadata, verify physical deletion and permit re-consent only after completion. Account deactivation retains records and closes normal access. No current schema or synthetic test constitutes implementation of those business flows.
+> Historical contract (superseded by the current 016 native contract above):
+> ## Historical checkpoint — Foundation readiness — Buildmarker-007
+> All 20 physical schemas now represent these contracts. Backend read boundaries derive owner from auth.me().id and check ACTIVE/consent state; protected mutations are denied. At the 007 checkpoint no Calendar, onboarding, Home, Pattern, daily-generation, scheduler, push or deletion execution flow had begun; the current onboarding implementation is described below. Future Calendar mutations still require ≥15-day inter-record validation and atomic derived-state replacement; future withdrawal must stop processing first, create minimal protection/job metadata, verify physical deletion and permit re-consent only after completion. Account deactivation retains records and closes normal access. No current schema or synthetic test constitutes implementation of those business flows.
 
 ## Authentication/onboarding implementation boundary — package 008 checkpoint
 
@@ -68,21 +75,21 @@ Package 009 preserves ON-04 country→region→settlement selection, explicit Cl
 
 An existing valid consent without its event/period is a resumable partial operation. Continue with the same intended inputs keeps the saved consent time and creates only missing matching records after verification. Retry/reload/double tap in one worker does not issue another grant time; confirmed matching rows are not written again. Conflicting settings, period start, version/history or withdrawn consent is refused; onboarding cannot silently become a health editing/regrant flow. All required records must be read back before Continue succeeds. Reload cannot infer cycle completion from period alone when its consent event is absent. Skip writes nothing, including when an earlier failed attempt left consent behind; it neither revokes nor deletes that consent. Live success with the same partial account remains required.
 
-## Admin access during onboarding — Buildmarker-010
+## Historical checkpoint — Admin access during onboarding — Buildmarker-010
 
 A verified Base44 admin may open top-right Profile/You → Admin Panel → Health Center / Build & Environment while onboarding is incomplete, ready or loading/failed. This is independent of product onboarding completion. Ordinary users keep their existing onboarding flow and cannot enter internal routes.
 
 Menu/panel/tool navigation invokes no product mutation, consent grant, period save, Skip, completion flag or daily engine. Return goes to `/`, which rehydrates through the existing backend resolver (and retains existing first-login preferences initialization when needed). Navigation adds no initialization or write path of its own. A stale hydrate result after leaving onboarding cannot start a later initialization; an already-issued backend operation is not claimed canceled. Incomplete users return to the server-resolved onboarding state; only existing durable data can resolve Home. No new storage/entity or full You workflow is introduced.
 
 
-## First Shinka and Home — Buildmarker-011
+## Historical checkpoint — First Shinka and Home — Buildmarker-011
 
 ON-06 invokes today's guarded backend operation and opens Home only after a real validated persisted result. Failure remains an explicit retryable state with approved preparation copy; no arbitrary pair/completion flag is synthesized. Once any real daily row exists, hydration stays on Home; missing today's content shows Home loading/not-ready/failure and Retry, rather than returning to onboarding. Reopen, Retry, language and profile changes preserve an existing day's pair and both immutable snapshots.
 
 Absent/withdrawn health consent or no real start follows UNKNOWN without fabricating health data. Valid consent requires its persisted business time/version and matching history; open deletion or malformed/inconsistent inputs fail rather than masquerading as UNKNOWN. Optional 5/28 are computation-only. Existing ON-05 recovery, no-write Skip and GeoNames flows remain unchanged. Production daily creation is explicitly blocked until the durable adapter is verified, while existing valid daily rows can be read. No live creation/import is recorded in this package.
 
 
-## Calendar implementation — Buildmarker-012
+## Historical checkpoint — Calendar implementation — Buildmarker-012
 
 Calendar is reachable from Home's shared three-item bottom navigation; completed users retain Profile/admin access and return to the same saved Home snapshot. Direct Calendar entry still passes the authenticated onboarding resolver. Pattern and full You/withdrawal/notification workflows remain out of scope.
 
@@ -92,7 +99,8 @@ Pure replacement computes affected history and a rolling three-future-cycle wind
 
 **Production mutations are blocked** by CALENDAR_ATOMIC_CAPABILITY_REQUIRED. All-or-nothing publication and durable action receipt/revision behavior exist as a protocol with isolated tests, not a Base44 transaction implementation. UI clearly disables saving/deleting/reconsent while this capability is absent; reads and month selection work. A read-time projection is not reported as a persisted phase cache. OD-012 is resolved by the later 014 product decision below; >60-day observations no longer block calculation planning.
 
-For onboarding skippers, the approved separate checkbox starts unchecked. Entry/selection grant nothing. New explicit add+consent is one proposed atomic operation; existing valid time is preserved. Regrant requires a valid WITHDRAWN record/event, a completed deletion job requested no earlier than that withdrawal, and zero remaining health rows inside the same transaction. No reactivation during deletion or restoration of prior data is allowed. Production regrant remains blocked with the other mutations.
+> Historical contract (superseded by the current 016 native contract above):
+> For onboarding skippers, the approved separate checkbox starts unchecked. Entry/selection grant nothing. New explicit add+consent is one proposed atomic operation; existing valid time is preserved. Regrant requires a valid WITHDRAWN record/event, a completed deletion job requested no earlier than that withdrawal, and zero remaining health rows inside the same transaction. No reactivation during deletion or restoration of prior data is allowed. Production regrant remains blocked with the other mutations.
 
 ## Admin Test Tools — explicit user scope (013)
 
@@ -100,10 +108,11 @@ Profile/You → Admin Panel → Test Tools adds two closed operations. Admin loo
 
 Deletion is a separate admin test workflow, not normal Delete Account → INACTIVE. It preserves protected history and declares that retention. A partial operation retains its completed checkpoints and target fence, resumes the same receipt and reports success only after absence/readback and result audit. Reset keeps User/provider/role/profile/cycle/history intact; backend restart state wins over old daily completion on hydrate, login and another device. Existing authenticated sessions enter ON-04 without another OAuth step, then ON-05 and ON-06. Skip advances only restart progress, never health deletion or consent withdrawal. Final daily verification completes the restart; an existing same-day record is reused. INACTIVE and open health-deletion targets cannot reset. Admin self-reset retains the Admin Panel entry.
 
-Both production mutations remain disabled pending the durable shared-writer coordinator. Read-only lookup/preview is usable after schema/function sync. No live account was changed during development.
+> Historical contract (superseded by the current 016 native contract above):
+> Both production mutations remain disabled pending the durable shared-writer coordinator. Read-only lookup/preview is usable after schema/function sync. No live account was changed during development.
 
 
-## OD-012 behavior and production closure — 014
+## Historical checkpoint — OD-012 behavior and production closure — 014
 
 Real starts remain ≥15 days apart. Longer than 60 days is not a validation error: keep the exact dates. Determine the last three completed intervals first; use only 15–60 values within that window, without reaching farther back. Existing outlier/average/half-up rules apply to the remaining values. No supported completed sample gives no estimate/current phase; no completed intervals retains initial/28 behavior. Completed >60 intervals have no derived phase rows. Supported historical intervals can retain their historical phases even when no current estimate exists.
 

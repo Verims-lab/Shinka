@@ -6,7 +6,7 @@ import { CALENDAR_HISTORY_LIMIT } from './calendarCalculation.js';
 import { validateCalendarAccess, validateCalendarHealth, calendarRevision } from './calendarState.js';
 
 const fail = code => { throw new InternalError(code, 409); };
-// Read-only SDK boundary. No SDK mutation method can implement the transaction.
+// Read-only SDK boundary; two reads detect some races, not snapshot isolation.
 export function calendarReader(client, principal) {
   const owner = principal.id;
   const read = async (entity, limit, offset = 0, filter = {}, sort = 'id') => {

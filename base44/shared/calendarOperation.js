@@ -5,11 +5,13 @@ import { resolveTimezone, serverLocalDate, isCalendarDate } from './onboardingVa
 import { calculateCalendar, calendarMonthView } from './calendarCalculation.js';
 import { validateCalendarAccess, validateCalendarHealth, calendarRevision, planCalendarChange, verifyCalendarCommit } from './calendarState.js';
 import { calendarReader } from './base44CalendarReader.js';
+import { nativeCalendarRecovery } from './nativeCalendarRecovery.js';
+import { nativeCalendarChange } from './nativeCalendarPersistence.js';
 import { commitCalendarAction } from './domainAtomic.js';
 
 const fail = (code, status = 400) => { throw new InternalError(code, status); };
 function validateRequest(body) {
-  const allowed = { read: ['month'], add: ['date', 'health_consent'], edit: ['period_id', 'date'], delete: ['period_id'] };
+  const allowed = { read: ['month'], resume: [], acknowledge: [], add: ['date', 'health_consent'], edit: ['period_id', 'date'], delete: ['period_id'] };
   if (!Object.hasOwn(allowed, body.action)) fail('INVALID_REQUEST');
   const mutation = body.action !== 'read';
   const fields = ['action', 'timezone', ...allowed[body.action], ...(mutation ? ['action_id', 'revision', 'month'] : [])];
@@ -19,17 +21,24 @@ function validateRequest(body) {
   if (['edit', 'delete'].includes(body.action) && (typeof body.period_id !== 'string' || !body.period_id || body.period_id.length > 200)) fail('PERIOD_NOT_FOUND');
   if (body.health_consent !== undefined && typeof body.health_consent !== 'boolean') fail('INVALID_REQUEST');
 }
-export async function calendarOperation(client, body, { now = () => new Date(), atomic = null } = {}) {
+export async function calendarOperation(client, body, { now = () => new Date(), atomic = null, native = false } = {}) {
   const principal = await requireAuthenticatedUser(client);
   const owner = resolveAuthenticatedOwner(principal, body);
   if (await readUserLifecycle(client, owner)) fail('ONBOARDING_RESTART_REQUIRED', 409);
   validateRequest(body);
   const reader = calendarReader(client, principal);
-  let state = await reader.confirmedSnapshot();
+  let state;
+  try { state = native && body.action !== 'read' ? await nativeCalendarChange(client, principal, body, now) : await reader.confirmedSnapshot(); }
+  catch (error) {
+    if (!native || body.action !== 'read' || error.code !== 'CONSENT_EVENT_UNCONFIRMED') throw error;
+    const recovery = await nativeCalendarRecovery(client, owner);
+    const timezone = resolveTimezone(body.timezone), today = serverLocalDate(now(), timezone), month = body.month || today.slice(0, 7);
+    return { state: 'RECOVERY_REQUIRED', recovery, today, month, timezone, revision: recovery.revision, writable: false, coverageEnd: null, calculationNotice: null, calculationError: null, mutationConfirmed: false, pendingReview: true, starts: [], recordedDays: [], predictedDays: [], hasPeriods: false };
+  }
   let timezone = resolveTimezone(body.timezone, state.preferences?.timezone);
   let today = serverLocalDate(now(), timezone);
-  const writable = typeof atomic?.transactCalendar === 'function';
-  if (body.action !== 'read') {
+  const writable = native || typeof atomic?.transactCalendar === 'function';
+  if (body.action !== 'read' && !native) {
     const fingerprint = JSON.stringify([body.action, body.period_id ?? null, body.date ?? null, body.health_consent ?? false]);
     const outcome = await commitCalendarAction(principal, { actionId: body.action_id, fingerprint, revision: body.revision }, atomic,
       (snapshot, newId) => {
@@ -47,6 +56,9 @@ export async function calendarOperation(client, body, { now = () => new Date(), 
     if (await calendarRevision(state) !== outcome.revision) fail('CALENDAR_STATE_CHANGED', 409);
   }
   const consent = validateCalendarAccess(state, owner);
+  const pending = native ? await client.asServiceRole.entities.UserCalendarAction.filter({ user_id: owner, status: 'PENDING' }, 'id', 1, 0, ['id','user_id','initial_grant']) : [];
+  if (!Array.isArray(pending) || pending.some(row => row.user_id !== owner)) fail('CALENDAR_READ_FAILED', 409);
+  const pendingReview = pending.length > 0;
   const month = body.month || today.slice(0, 7);
   let calculation = { predictions: [], phases: [], observations: [], estimate: null, coverageEnd: null };
   let calculationError = null;
@@ -66,6 +78,9 @@ export async function calendarOperation(client, body, { now = () => new Date(), 
     // Derived display is calculated from confirmed observations, not advertised
     // as an already persisted phase cache or a transactionally isolated read.
     ...calendarMonthView(consent ? state.periods : [], state.settings, calculation, month),
+    pendingReview,
+    ...(pending.some(row => row.initial_grant) ? { recovery: await nativeCalendarRecovery(client, owner) } : {}),
+    ...(pendingReview ? { predictedDays: [], calculationError: 'CALENDAR_PENDING_REVIEW' } : {}),
     hasPeriods: consent && state.periods.length > 0,
   };
 }

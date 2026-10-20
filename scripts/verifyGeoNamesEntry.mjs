@@ -14,7 +14,7 @@ export async function verifyGeoNamesRuntimeProbeEntry(root) {
   const client={auth:{me:async()=>role?{id:'fixture-admin',role}:null},get asServiceRole(){throw new Error('no entity access in probe');}};
   const imports={
     "../../shared/userLifecycle.js":{withUserLifecycle:client=>client},
-    'npm:@base44/sdk@0.8.54':{createClientFromRequest:()=>client},
+    '../../shared/nativeClient.ts':{createNativeClient:()=>client},
     'base44:runtime':{secrets:{get:key=>{assert.equal(role,'admin');assert.equal(key,'GEONAMES_USERNAME');reads++;return currentValue;}}},
     '../../shared/internalAuthorization.js':{handleInternalRequest},
     '../../shared/internalHealthOperations.js':{internalHealthOperation},
@@ -44,7 +44,7 @@ export async function verifyGeoNamesEntry(root) {
   const createClient=()=>{};
   const imports={
     "../../shared/userLifecycle.js":{withUserLifecycle:client=>client},
-    'npm:@base44/sdk@0.8.54':{createClientFromRequest:createClient},
+    '../../shared/nativeClient.ts':{createNativeClient:createClient},
     'base44:runtime':{secrets:{get:key=>{
       assert.equal(active,true,'secret read outside request');
       assert.equal(key,'GEONAMES_USERNAME');reads.push(key);return currentValue;

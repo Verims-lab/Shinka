@@ -3,7 +3,7 @@ import { createTestRepository } from './adminTestRepository.js';
 import { validateTestRequest, requireTestCoordinator, testToolError, DELETED_ENTITIES, RETAINED_ENTITIES, SHARED_ENTITIES } from './adminTestPolicy.js';
 import { executeTestJob } from './adminTestExecution.js';
 
-function targetGuard(actor, target, operation) {
+export function targetGuard(actor, target, operation) {
   if (target.open_deletion) testToolError('HEALTH_DELETION_PENDING');
   if (operation === 'RESET_ONBOARDING' && target.account_status === 'INACTIVE') testToolError('TEST_INACTIVE_ACCOUNT');
   if (operation === 'DELETE_USER' && actor.id === target.id) testToolError('TEST_SELF_DELETE_DENIED', 403);

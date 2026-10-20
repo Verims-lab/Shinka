@@ -1,7 +1,6 @@
-import { withUserLifecycle } from '../../shared/userLifecycle.js';
 import { handleInternalRequest } from "../../shared/internalAuthorization.js";
 // INTERNAL TOOLING — admin-only, read-only content artifact validation. Performs NO import.
-import { createClientFromRequest } from "npm:@base44/sdk@0.8.54";
+import { createNativeClient } from '../../shared/nativeClient.ts';
 import { readFirstSheet } from "../../shared/xlsxReader.ts";
 import { ARTIFACT_URLS } from "../../shared/contentArtifactSources.ts";
 import {
@@ -34,4 +33,4 @@ async function artifactOperation(_client, { mode }) {
       relation,
     };
 }
-export default (req) => handleInternalRequest(req, request => withUserLifecycle(createClientFromRequest(request)), artifactOperation);
+export default (req) => handleInternalRequest(req, createNativeClient, artifactOperation);

@@ -55,7 +55,7 @@ export async function checkAdminNavigation(page, origin, directory) {
     await page.locator('nav a[href="/"]').click();
     await page.waitForSelector('[data-onboarding-state="AUTHENTICATED_CYCLE_STEP"]');
     const actions = await page.evaluate(() => window.__authFixture.calls);
-    assert(actions.every(c => (c.name === 'onboarding' && c.action === 'hydrate') || c.action === 'list'), 'navigation wrote data or started Health');
+    assert(actions.every(c => c.name === 'applicationSession' || (c.name === 'onboarding' && c.action === 'hydrate') || c.action === 'list'), 'navigation wrote data or started Health');
     results.push({ scenario: `admin-menu-panel-tools-return-${width}-${language}`, passed: true, menu, panel, actions });
     await open('/', 'user', language);
     await page.waitForSelector('[data-onboarding-state]');
@@ -94,7 +94,7 @@ export async function checkAdminNavigation(page, origin, directory) {
   await page.evaluate(() => window.__authFixture.releaseHydration());
   await page.waitForFunction(() => window.__authFixture.hydrationReturned);
   const pendingActions = await page.evaluate(() => window.__authFixture.calls);
-  assert(pendingActions.every(call => call.name === 'onboarding' && call.action === 'hydrate'), 'late hydration initialized after navigation');
+  assert(pendingActions.every(call => call.name === 'applicationSession' || call.name === 'onboarding' && call.action === 'hydrate'), 'late hydration initialized after navigation');
   results.push({ scenario: 'pending-onboarding-admin-entry-no-late-write', passed: true, actions: pendingActions });
   await page.setViewportSize({ width: 1280, height: 900 });
   return results;
