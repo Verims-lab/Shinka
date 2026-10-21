@@ -4,9 +4,11 @@ import { validatedOnboardingGrant, onboardingGrantEvent } from './onboardingCons
 import { HEALTH_CONSENT_VERSION } from './onboardingDependencies.js';
 import { HEALTH_ENTITIES } from './domainSchemas.js';
 import { readUserLifecycle } from './userLifecycle.js';
+import { assertPrivacyAccess } from './privacyPolicy.js';
 
 export async function guardDomainOwner(client, owner, entity) {
   const store = client.asServiceRole.entities;
+  await assertPrivacyAccess(client, owner, { health: HEALTH_ENTITIES.includes(entity) });
   if (await readUserLifecycle(client, owner)) throw new InternalError('ONBOARDING_RESTART_REQUIRED', 409);
   const identities = await store.User.filter({ id: owner }, 'id', 2, 0, ['id']);
   if (identities.length !== 1 || identities[0].id !== owner) throw new InternalError('AUTH_REQUIRED', 401);

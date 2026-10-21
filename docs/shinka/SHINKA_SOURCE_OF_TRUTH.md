@@ -2,13 +2,22 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-022
+**Current BuildMarker:** Buildmarker-023
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## Current privacy decision — 023 (2026-10-21)
+
+The explicit owner request (attachment `ea5c5169-9fba-4e63-9d4e-527f9f20dca9`, SHA-256 `e256b56eac98d7ef50010c63eff06284fdd9dfea7652a2af90fec343cbcf565c`) supersedes the original SRC-01/SRC-03 **Delete Account → INACTIVE with all records retained** product decision. Self-service Delete Account now means a durable owner-confirmed request, denial of new target activity, bounded removal of active personal records and native User, followed by separately pending platform/provider erasure. INACTIVE alone is never completion. Historical source text and delivery evidence are preserved below; their deactivation and admin-test retention descriptions do not govern the new self-service flow.
+
+Withdrawal is now implemented, including health-bearing Calendar receipts, stable server time/events, verified cleanup and fresh explicit Calendar regrant. Existing account/profile/daily history retention applies only to withdrawal, not owner account erasure. Legal destinations remain unpublished by the user's explicit 022 reply. New scoped privacy TR/EN copy comes from this requested implementation, not from original source tables; old deactivation copy remains historical and unused by erasure.
+
+No approved legal retention period exists for owner-related audit, consent or erasure metadata. Account erasure removes associated active product/audit records; the minimal current erasure request and hashed recovery receipts remain visibly pending for platform work, not granted indefinite legal retention. See [the complete matrix and open decisions](reports/SHINKA_PRIVACY_023.md). Base44 remains the only identity/data authority. No live user mutation, live Full Health, external service, main merge or publish is authorized in 023.
+
 
 ## You/Profile authority — 022
 

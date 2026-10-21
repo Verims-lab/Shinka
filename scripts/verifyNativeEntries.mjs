@@ -7,11 +7,13 @@ import ts from 'typescript';
 import { withUserLifecycle } from '../base44/shared/userLifecycle.js';
 import { withNativeWriteChecks } from '../base44/shared/nativeWriteChecks.js';
 import * as authorization from '../base44/shared/internalAuthorization.js';
+import * as privacyPolicy from '../base44/shared/privacyPolicy.js';
 export async function verifyNativeEntries(root) {
   let role = 'admin', exists = true, token = true, secretReads = 0;
   const client = { auth: { me: async () => token ? { id: 'synthetic-admin', role: 'cached-admin' } : null }, asServiceRole: { entities: {
     User: { filter: async () => exists ? [{ id: 'synthetic-admin', role }] : [] },
     AdminTestOperation: { filter: async () => [] },
+    UserPrivacyRequest: { filter: async () => [] },
   } } };
   const load = async (path, imports) => {
     const output = ts.transpileModule(await readFile(`${root}/${path}`, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
@@ -26,6 +28,7 @@ export async function verifyNativeEntries(root) {
   });
   const session = await load('base44/functions/applicationSession/entry.ts', {
     '../../shared/nativeClient.ts': native, '../../shared/internalAuthorization.js': authorization,
+    '../../shared/privacyPolicy.js': privacyPolicy,
   });
   const call = body => session.default(new Request('https://fixture.invalid/session', { method: 'POST', body }));
   assert.equal((await (await call('{}')).json()).role, 'admin');
@@ -57,5 +60,11 @@ export async function verifyNativeEntries(root) {
     '../../shared/youOperation.js': { handleYouRequest: (_req, createClient, deps) => { assert.equal(createClient, native.createNativeClient); assert.equal(deps.geoNames.fixture,'synthetic-public-provider-name'); return 'you-route'; } },
   });
   assert.equal(await you.default({}), 'you-route');
-  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 7, nativeRoutes: 4, loginSecretReads: secretReads, hostedVerified: false, passed: true };
+  const rawClient = () => client;
+  const privacy = await load('base44/functions/accountPrivacy/entry.ts', {
+    'npm:@base44/sdk@0.8.54': { createClientFromRequest: rawClient },
+    '../../shared/privacyOperation.js': { handlePrivacyRequest: (_req, createClient) => { assert.equal(createClient, rawClient); return 'owner-privacy-route'; } },
+  });
+  assert.equal(await privacy.default({}), 'owner-privacy-route');
+  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 7, nativeRoutes: 5, loginSecretReads: secretReads, hostedVerified: false, passed: true };
 }

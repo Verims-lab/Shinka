@@ -62,7 +62,7 @@ export const CLOSURE017_TESTS=[
   const partial=await f.execute(await f.preview('DELETE_USER'));assert(partial.result_state==='PARTIAL' && partial.job.error_code==='TEST_CLEANUP_MORE_REQUIRED');assert(f.tables.User.some(r=>r.id==='ownerA'));
   const result=await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id});assert(result.job.status==='COMPLETED'&&!f.tables.UserPatternSummary.length);
   let time=0;const rows=[{id:'slow-a',user_id:'ownerA'},{id:'slow-b',user_id:'ownerA'}];
-  const repo=createTestRepository({asServiceRole:{entities:{UserPatternSummary:{filter:async()=>structuredClone(rows),delete:async id=>{rows.splice(rows.findIndex(r=>r.id===id),1);time+=9000;}}}}},{clock:()=>time});
+  const repo=createTestRepository({asServiceRole:{entities:{UserPatternSummary:{filter:async query=>structuredClone(rows.filter(row=>Object.entries(query).every(([key,value])=>row[key]===value))),delete:async id=>{rows.splice(rows.findIndex(r=>r.id===id),1);time+=9000;}}}}},{clock:()=>time});
   time=30000; // Preparation already took 30s: allow progress, then enforce the write budget.
   await rejected(()=>repo.cleanup('user_pattern_summary','ownerA'),'TEST_CLEANUP_MORE_REQUIRED');assert(rows.length===1&&rows[0].id==='slow-b');
  }],

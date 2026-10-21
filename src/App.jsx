@@ -18,6 +18,7 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 import Onboarding from "@/pages/Onboarding";
 import AdminGate from "@/components/internal/AdminGate";
 const TestTools = lazy(() => import("@/pages/internal/TestTools"));
+const AccountPrivacy = lazy(() => import("@/pages/AccountPrivacy"));
 const AdminPanel = lazy(() => import("@/pages/internal/AdminPanel"));
 const BuildEnvironment = lazy(
   () => import("@/pages/internal/BuildEnvironment"),
@@ -38,13 +39,15 @@ const AuthenticatedApp = () => {
   }
 
   if (authError) {
-    if (authError.type === "user_not_registered") {
+    if (authError.type === "user_not_registered" && !['/account-privacy','/delete-account'].includes(window.location.pathname)) {
       return <UserNotRegisteredError />;
     }
   }
 
   return (
     <Routes>
+      <Route path="/account-privacy" element={<RouteBoundary><AccountPrivacy /></RouteBoundary>} />
+      <Route path="/delete-account" element={<RouteBoundary><AccountPrivacy /></RouteBoundary>} />
       <Route
         path="/login"
         element={<Onboarding initialEntry="UNAUTHENTICATED_SIGN_IN" />}

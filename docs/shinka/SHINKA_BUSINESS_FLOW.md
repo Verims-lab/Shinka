@@ -2,14 +2,25 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-022
+**Current BuildMarker:** Buildmarker-023
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
-**Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You flows, withdrawal/deactivation and notification delivery.
+**Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and notification delivery.
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+## Current owner privacy flow — 023
+
+You → Account & Privacy exposes Withdraw my health data consent and Delete my account separately. Each shows scope → one explicit confirmation → progress → verified result or Check status / Continue. Opening, cancelling, closing or reloading never starts cleanup. Incomplete accounts use the header Account & Privacy entry or `/account-privacy`; no profile/daily completion is required. `/delete-account` provides the external web entry and existing Apple/Google sign-in, with the same confirmation and owner-only backend.
+
+Withdrawal persists a target health-processing fence before changing consent. The original grant timestamp/version remain; a stable backend request instant becomes withdrawn_at and the immutable withdrawal event instant. HealthDataDeletionJob/DataProtectionEvent track cleanup. Five health scopes, including UserCalendarAction, must reread empty before the UI confirms active cleanup. A failed cleanup never grants consent back. Account/profile and approved daily/consent history remain; no health calculation is reconstructed from them. Regrant is the existing explicit Calendar add+consent only after completed verified cleanup and no residuals; old data never returns. An unfinished onboarding account can skip cycle without a new grant and later use Calendar.
+
+Account deletion takes precedence over an unfinished owner withdrawal and removes its health/job data under the same account fence. New normal writes/readbacks are denied; admin reset/delete refuse an active privacy request. The normal self-service route never exposes Admin Test Tools. Current native admins are protected because the available native role cannot distinguish the app owner; the existing admin self/last-admin rules stay unchanged. Other users and shared content/Moon are untouched.
+
+Each Continue starts at the first bounded page of every scope, not blindly after old checkpoints. Native User is last. A separate random, expiring receipt can only read a non-identifying outcome after identity removal. Successful HTTP, INACTIVE, failed login, or an old checkpoint never proves removal. The final active-store scope reread plus native absence can produce PLATFORM_PENDING, never “permanently deleted”. Cleanup errors and ambiguous duplicate requests remain visible and fail closed. [Scope and recovery details](reports/SHINKA_PRIVACY_023.md).
+
 
 ## Implemented You flow — 022
 
@@ -69,10 +80,10 @@ Only distinguishes recorded vs predicted period days. Selecting a date never sav
 Recurring Themes: 1–29 days use all history, ≥30 rolling last 30; based on user_daily_message.category_id actually assigned; max two categories; ties → most recently seen; no inference. Lunar Timeline: previous New Moon → next New Moon, proportional, local dd.MM HH:mm, no horizontal scroll.
 
 ## You (UC-18…24)
-Edit name, birth date, time, birthplace in one screen; Sun sign read-only. Language TR/EN. Notifications on/off; time fixed 06:00 (notification_time stored, not editable). Privacy Policy, Terms of Service, Health Data Consent, Sign Out, Delete Account (→ INACTIVE via "Deactivate account" confirmation, no routine deletion; no separate Deactivate screen). Presentation per SRC-03 §7 (see SHINKA_UI_UX_STANDARDS.md).
+Edit name, birth date, time, birthplace in one screen; Sun sign read-only. Language TR/EN. Notifications on/off; time fixed 06:00 (notification_time stored, not editable). Privacy Policy, Terms of Service, Health Data Consent, Sign Out, Delete Account (confirmed owner erasure; active removal and pending platform erasure are distinct; 023 supersedes original deactivation). Presentation per SRC-03 §7 (see SHINKA_UI_UX_STANDARDS.md).
 
 ## Health Consent (UC-05/22, KK-25/26/36)
-Explicit separate consent with version + time. Withdrawal: warning + confirmation → processing stops immediately → settings, records, predictions, phase days deleted and verified → success only after verification; retries automatic; one open job per user; re-consent only after completion; deleted data never returns.
+Explicit separate consent with version + time. Withdrawal: warning + confirmation → processing stops immediately → settings, records, predictions, phase days and UserCalendarAction deleted and verified → success only after verification; uncertain results use read-only Check, then explicit same-request Continue (023); one open job per user; re-consent only after completion; deleted data never returns.
 
 ## Daily Content (UC-09, KK-10…14, 31/32)
 Existing record for local day ⇒ return it. Else category from 240 mapping (sign × moon × phase/UNKNOWN) → random Active pair not shown in last 40 days (day 41 eligible) → else other categories → else least-recently-shown Active pair (ties random). Store actual category_id + immutable TR/EN snapshots. No AI.
@@ -81,11 +92,11 @@ Existing record for local day ⇒ return it. Else category from 240 mapping (sig
 06:00 local generation; push only if enabled + OS permission + ACTIVE account; push failure never regenerates the message; not a guaranteed 06:00 delivery.
 
 ## Data Protection (KK-35/37)
-Delete Account ⇒ INACTIVE + ACCOUNT_DEACTIVATION event. Admin cannot modify/delete daily message history, consent events, protection events, audit log; deletion job status backend-only.
+Delete Account ⇒ owner-confirmed erasure request + blocked target activity + verified active removal + platform erasure pending (023). Admin cannot modify/delete daily message history, consent events, protection events, audit log; deletion job status backend-only.
 
 > Historical contract (superseded by the current 016 native contract above):
 > ## Historical checkpoint — Foundation readiness — Buildmarker-007
-> All 20 physical schemas now represent these contracts. Backend read boundaries derive owner from auth.me().id and check ACTIVE/consent state; protected mutations are denied. At the 007 checkpoint no Calendar, onboarding, Home, Pattern, daily-generation, scheduler, push or deletion execution flow had begun; the current onboarding implementation is described below. Future Calendar mutations still require ≥15-day inter-record validation and atomic derived-state replacement; future withdrawal must stop processing first, create minimal protection/job metadata, verify physical deletion and permit re-consent only after completion. Account deactivation retains records and closes normal access. No current schema or synthetic test constitutes implementation of those business flows.
+> All 20 physical schemas now represent these contracts. Backend read boundaries derive owner from auth.me().id and check ACTIVE/consent state; protected mutations are denied. At the 007 checkpoint no Calendar, onboarding, Home, Pattern, daily-generation, scheduler, push or deletion execution flow had begun; the current onboarding implementation is described below. Future Calendar mutations still require ≥15-day inter-record validation and atomic derived-state replacement; future withdrawal must stop processing first, create minimal protection/job metadata, verify physical deletion and permit re-consent only after completion. Historical 007 deactivation retained records; owner erasure in 023 supersedes that product behavior. No current schema or synthetic test constitutes implementation of those business flows.
 
 ## Authentication/onboarding implementation boundary — package 008 checkpoint
 

@@ -2,7 +2,7 @@ import { CLASS } from './constants';
 import { ev, verdict } from './evidence';
 
 const STRATEGIES = Object.freeze({ daily: 'IMMUTABLE_CANDIDATES', calendar: 'OBSERVATIONS_AND_RECEIPTS', reset: 'VERIFIED_STEPS', deletion: 'TARGET_LIFECYCLE_RESUMABLE' });
-const SCHEMAS = Object.freeze(['AdminTestOperation', 'UserCalendarAction', 'InternalHealthRun']);
+const SCHEMAS = Object.freeze(['AdminTestOperation', 'UserCalendarAction', 'InternalHealthRun', 'UserPrivacyRequest', 'PrivacyRecoveryReceipt']);
 // Explicit contract comparisons: truthy strategy text is neither a predicate nor
 // proof that any mutation ran. The strict shared verdict remains unchanged.
 export async function nativePrerequisite(ctx, feature) {

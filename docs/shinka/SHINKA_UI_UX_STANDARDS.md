@@ -2,15 +2,24 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-022
+**Current BuildMarker:** Buildmarker-023
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
 **Implemented:** Tokens (`src/foundation/designTokens.js` ↔ `src/index.css`), contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), primitives (`src/components/shinka/`), Foundation shell aligned; scoped Profile/You admin menu and internal panel.
-**Not Implemented:** Current-build hosted/device acceptance, approved legal destinations, withdrawal and deactivation. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
+**Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+## Implemented privacy experience — 023
+
+Two Account & Privacy links open the corresponding scope in one modal. Cancel receives initial focus; Escape/Cancel writes nothing and returns focus. The modal traps keyboard focus, scrolls vertically on narrow/landscape screens, keeps 44px targets and permits 200% text. Shared Shinka primitives and centralized privacyCopy TR/EN preserve tokens; no technical IDs/JSON/maintenance steps appear in the user flow.
+
+The confirmed action keeps a recoverable pending intent before dispatch. Busy blocks repeated taps. Loading/processing, consent withdrawn but cleanup pending, verified active health cleanup, unknown outcome and account active-data-removed/platform-pending are distinct. Check status only reads; Continue explicitly reuses the pending operation. Reload never auto-resumes destructive work. Scope and confirmation are separate for withdrawal and account deletion; no fake deactivation or permanent-erasure success text is used. The current backend cannot certify trash/provider purge, so the result remains visibly pending.
+
+Incomplete authenticated users have an Account & Privacy header link while onboarding/admin tools remain intact. `/delete-account` is a public web entry naming Shinka, links existing provider sign-in and does not require completing onboarding. The published origin and Play Console URL registration remain owner acceptance. Approved legal content/URLs remain unavailable and show unpublished status. Current admin accounts show the native owner/last-admin protection explanation. Physical devices/store approval remain unverified.
+
 
 ## Implemented You UX — 022
 
@@ -18,7 +27,7 @@ Top-right profile opens You for completed users, including normal users. Incompl
 
 Inline profile edit opens with name focus; field validation moves focus to the failing field. Save failure preserves draft; success follows exact backend readback and returns focus to Edit. Current persisted Sun is read-only; its value changes after verified profile save, not client calculation. Saved birthplace remains visible independently of picker lists. Provider error, Clear and incomplete selection reuse the existing localized selector states. Profile and preferences have separate Save and success results; no blanket partial-success message.
 
-Unknown write has Check saved result and explicit same-save Retry; edits are locked while outcome is unknown. A conflict retains the draft and offers explicit Reopen saved values. Notifications show fixed local 06:00 plus a clear preference-only/delivery-unavailable explanation. No new device permission/timezone/time selector. Legal headings show unpublished status, with no invented links. Current consent is text only; withdrawal/deactivation remain absent future actions. TR/EN source and scoped-copy provenance is in SOURCE_OF_TRUTH.
+Unknown write has Check saved result and explicit same-save Retry; edits are locked while outcome is unknown. A conflict retains the draft and offers explicit Reopen saved values. Notifications show fixed local 06:00 plus a clear preference-only/delivery-unavailable explanation. No new device permission/timezone/time selector. Legal headings show unpublished status, with no invented links. The 022 consent text remains read-only; 023 adds separate confirmed withdrawal and erasure links. TR/EN source and scoped-copy provenance is in SOURCE_OF_TRUTH.
 
 ## Implemented Pattern UX — 021
 
@@ -131,13 +140,13 @@ Monthly view; actual period pastel pink, predicted light lavender, selected day 
 Read-only: **Your Recurring Themes** (assigned categories, ≤2 themes) and **Lunar Timeline** (previous New → next New Moon, five proportional nodes, active phase + Today marker, local dd.MM HH:mm, no horizontal scroll).
 
 ## You UX
-Opened from top-right icon only. **My Profile** (inline edit: optional name, required DOB, optional birth time, optional GeoNames birthplace, read-only Sun sign). **App Preferences** (Language TR/EN; Daily Notifications on/off, local 06:00 shown, no time picker, no timezone picker). **Account & Privacy** (Privacy Policy, Terms of Service, Health Data Consent, Sign Out, Delete Account). Delete Account → confirmation explaining INACTIVE (access + new messages/notifications stop, records not deleted); "Deactivate account" confirm; no success if still active. No menstrual data editing in You.
+Opened from top-right icon only. **My Profile** (inline edit: optional name, required DOB, optional birth time, optional GeoNames birthplace, read-only Sun sign). **App Preferences** (Language TR/EN; Daily Notifications on/off, local 06:00 shown, no time picker, no timezone picker). **Account & Privacy** (Privacy Policy, Terms of Service, Health Data Consent, Sign Out, Delete Account). Delete Account → one owner-erasure scope confirmation; active account/data removal must be verified and platform erasure stays explicitly pending (023). No menstrual data editing in You.
 
 ## Consent UX
-Withdraw bottom sheet opens only when triggered: "Withdraw health data consent?" / "Your cycle records, predictions, and calculated phases will be deleted. Your account will remain active." Processing stops immediately; success only after verified deletion; re-consent blocked while in progress; historic health data never restored. Distinct from Delete Account.
+Withdraw bottom sheet opens only when triggered: "Withdraw health data consent?" / "The current localized 023 scope also includes cycle settings and calendar action data, while account/profile and approved history remain." Processing stops immediately; success only after verified deletion; re-consent blocked while in progress; historic health data never restored. Distinct from Delete Account.
 
 ## Future package boundaries
-Onboarding H06/H07, GeoNames H10 and onboarding-consent H11 are current with the four approved decisions implemented; deployed verification remains separate. Home/content modules are implemented with production capability/import blockers. This was the historical Foundation boundary; Calendar and Pattern are implemented by 012/016 and 021. Account/withdrawal and notifications remain future.
+Onboarding H06/H07, GeoNames H10 and onboarding-consent H11 are current with the four approved decisions implemented; deployed verification remains separate. Home/content modules are implemented with production capability/import blockers. This was the historical Foundation boundary; Calendar and Pattern are implemented by 012/016 and 021. Account erasure and withdrawal are implemented by 023; notification delivery remains future.
 
 ## Foundation auth shell alignment
 `PageContainer` now uses fixed 20px horizontal padding at mobile and desktop widths. `/login` uses ShinkaCard/ShinkaButton with Apple and Google only, primary controls at least 52px, localized safe error codes and no password fields/links. T74 measures actual 360px/1024px rendered layouts. The earlier Foundation shell has been replaced by ON-03 with a pre-auth age boundary. Live sign-in is still unverified.

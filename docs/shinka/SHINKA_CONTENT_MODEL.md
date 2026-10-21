@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — approved references imported; native daily snapshot observed; hosted acceptance remains partial
-**Current BuildMarker:** Buildmarker-022
+**Current BuildMarker:** Buildmarker-023
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
@@ -10,6 +10,11 @@
 **Implemented:** Workbook validator, exact backend manifest, dry-run/apply/verify importer, Moon preparation, daily selection and snapshot protocol, ON-06/Home integration.
 **Not Implemented:** Distributed physical uniqueness guarantee; scheduled lookup renewal. Remaining hosted/device evidence is tracked separately.
 **Open Decisions:** OD-005, OD-008 (noted); OD-002 RESOLVED_BY_PRODUCT_DECISION
+
+## Privacy lifecycle and historical content — 023
+
+Withdrawal preserves existing daily bilingual snapshots and assigned Pattern categories. These contain no period dates, cycle settings or calculated phases, and they are never used to recreate withdrawn health input. New daily selection uses UNKNOWN without a current valid grant; an open withdrawal fence cannot read/process cycle inputs. Pattern remains a read-only historical category projection. Account erasure removes the owner's UserDailyMessage, UserPatternSummary and NotificationDelivery records through the narrow confirmed erasure path; normal content/admin mutations remain immutable-denied. Re-registration with a new native identity does not match the removed owner's history. The six categories, 240 mappings, 260 source pairs, Moon references and source hashes are unchanged; 023 continues the approved import-validation policy without an import.
+
 
 ## You preservation — 022
 

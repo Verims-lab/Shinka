@@ -2,11 +2,18 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-022
+**Current BuildMarker:** Buildmarker-023
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## Privacy package — 023
+
+Final local evidence: Chromium/WebKit 550/550 each; 23 privacy flows per engine; Health 131 PASS/13 BLOCKED (hosted unavailable); lint/typecheck/build, 17 Repo Health and byte budgets pass; 0 Critical/High and 2 existing Moderate dependency findings. Full 26-schema stage prepared, not pushed. No live mutation/Full Health or main publish. [023 report and retained initial failures](reports/SHINKA_PRIVACY_023.md).
+
+Started clean at Test 31b1989; main ec2f8d3 was three commits ahead. Fast-forwarded Test to main before implementation, preserving Pattern/You and regenerated auth templates. Implemented separate withdrawal and self-erasure paths, shared bounded deletion/readback, closed lifecycle/recovery schemas, current-session fences, incomplete-account/external-web access and central TR/EN modal/recovery. Early fixtures exposed completed-withdrawal duplicate retry; corrected to reuse the existing request/time rather than validate it as a new grant. Upstream auth-template type errors received narrow Headers/optional-prop fixes. Focused handler/component/browser tests passed; final mandatory measurements are recorded in the [single 023 delivery](reports/SHINKA_PRIVACY_023.md). No hosted mutations or agent-run live Health.
+
 
 ## You/Profile package — 022
 

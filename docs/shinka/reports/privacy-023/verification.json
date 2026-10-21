@@ -1,0 +1,4377 @@
+{
+  "buildMarker": "Buildmarker-023",
+  "healthCatalog": "HC-023.0",
+  "status": "REPO_CLOSED_PENDING_OWNER_PUBLICATION_AND_HOSTED_PLATFORM_ACCEPTANCE",
+  "authority": "BASE44_NATIVE_V1",
+  "gitPreflight": {
+    "initialTest": "31b1989",
+    "mainAheadBy": 3,
+    "fastForwardedAndPushedTest": "ec2f8d3f1530edbf141e314d44c0dae2242474da",
+    "initialLocalOnlyCommits": 0,
+    "initialWorkingTreeClean": true
+  },
+  "schemaDelta": [
+    "UserPrivacyRequest",
+    "PrivacyRecoveryReceipt"
+  ],
+  "fullSchemaCount": 26,
+  "remoteSchemaCompared": false,
+  "sourceDataChanged": false,
+  "engines": [
+    {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "tests": 550,
+      "passed": 550,
+      "failed": 0,
+      "pageErrors": [],
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 7,
+        "nativeRoutes": 5,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true
+      },
+      "catalog": {
+        "version": "HC-023.0",
+        "suites": 16,
+        "cases": 169,
+        "localRegression": 10,
+        "current": 144,
+        "future": 2,
+        "external": 13
+      },
+      "privacyFlow": [
+        {
+          "scenario": "privacy-320-tr-1",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "documentWidth": 320,
+            "modalWidth": 280,
+            "modalScroll": 278,
+            "modalClient": 278,
+            "controls": [
+              {
+                "width": 238,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 238,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-320-tr-2",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "documentWidth": 320,
+            "modalWidth": 280,
+            "modalScroll": 278,
+            "modalClient": 278,
+            "controls": [
+              {
+                "width": 238,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 238,
+                "height": 88,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-320-en-1",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "documentWidth": 320,
+            "modalWidth": 280,
+            "modalScroll": 278,
+            "modalClient": 278,
+            "controls": [
+              {
+                "width": 238,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 238,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-320-en-2",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "documentWidth": 320,
+            "modalWidth": 280,
+            "modalScroll": 278,
+            "modalClient": 278,
+            "controls": [
+              {
+                "width": 238,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 238,
+                "height": 132,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-360-tr-1",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "documentWidth": 360,
+            "modalWidth": 320,
+            "modalScroll": 318,
+            "modalClient": 318,
+            "controls": [
+              {
+                "width": 278,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 278,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-360-tr-2",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "documentWidth": 360,
+            "modalWidth": 320,
+            "modalScroll": 318,
+            "modalClient": 318,
+            "controls": [
+              {
+                "width": 278,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 278,
+                "height": 88,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-360-en-1",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "documentWidth": 360,
+            "modalWidth": 320,
+            "modalScroll": 318,
+            "modalClient": 318,
+            "controls": [
+              {
+                "width": 278,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 278,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-360-en-2",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "documentWidth": 360,
+            "modalWidth": 320,
+            "modalScroll": 318,
+            "modalClient": 318,
+            "controls": [
+              {
+                "width": 278,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 278,
+                "height": 88,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-390-tr-1",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "documentWidth": 390,
+            "modalWidth": 350,
+            "modalScroll": 348,
+            "modalClient": 348,
+            "controls": [
+              {
+                "width": 308,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 308,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-390-tr-2",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "documentWidth": 390,
+            "modalWidth": 350,
+            "modalScroll": 348,
+            "modalClient": 348,
+            "controls": [
+              {
+                "width": 308,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 308,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-390-en-1",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "documentWidth": 390,
+            "modalWidth": 350,
+            "modalScroll": 348,
+            "modalClient": 348,
+            "controls": [
+              {
+                "width": 308,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 308,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-390-en-2",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "documentWidth": 390,
+            "modalWidth": 350,
+            "modalScroll": 348,
+            "modalClient": 348,
+            "controls": [
+              {
+                "width": 308,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 308,
+                "height": 88,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-430-tr-1",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "documentWidth": 430,
+            "modalWidth": 390,
+            "modalScroll": 388,
+            "modalClient": 388,
+            "controls": [
+              {
+                "width": 348,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 348,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-430-tr-2",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "documentWidth": 430,
+            "modalWidth": 390,
+            "modalScroll": 388,
+            "modalClient": 388,
+            "controls": [
+              {
+                "width": 348,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 348,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-430-en-1",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "documentWidth": 430,
+            "modalWidth": 390,
+            "modalScroll": 388,
+            "modalClient": 388,
+            "controls": [
+              {
+                "width": 348,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 348,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-430-en-2",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "documentWidth": 430,
+            "modalWidth": 390,
+            "modalScroll": 388,
+            "modalClient": 388,
+            "controls": [
+              {
+                "width": 348,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 348,
+                "height": 88,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-844-tr-1",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "documentWidth": 844,
+            "modalWidth": 440,
+            "modalScroll": 438,
+            "modalClient": 438,
+            "controls": [
+              {
+                "width": 398,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 398,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-844-tr-2",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "documentWidth": 844,
+            "modalWidth": 440,
+            "modalScroll": 438,
+            "modalClient": 438,
+            "controls": [
+              {
+                "width": 398,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 398,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-844-en-1",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "documentWidth": 844,
+            "modalWidth": 440,
+            "modalScroll": 438,
+            "modalClient": 438,
+            "controls": [
+              {
+                "width": 398,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 398,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-844-en-2",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "documentWidth": 844,
+            "modalWidth": 440,
+            "modalScroll": 438,
+            "modalClient": 438,
+            "controls": [
+              {
+                "width": 398,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 398,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "incomplete-native-removal-lost-response-readonly-recovery-logout",
+          "passed": true
+        },
+        {
+          "scenario": "external-deletion-path-public-auth-required-no-password",
+          "passed": true
+        },
+        {
+          "scenario": "protected-current-native-admin",
+          "passed": true
+        }
+      ],
+      "inAppHealth": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "passed": true,
+        "durationMs": 1566,
+        "requiresJson": false,
+        "saveState": "SAVED",
+        "frames": 0,
+        "cases": [
+          {
+            "id": "H01-001",
+            "status": "PASS",
+            "reason": "Format check of canonical constant"
+          },
+          {
+            "id": "H01-002",
+            "status": "PASS",
+            "reason": "Static source scan"
+          },
+          {
+            "id": "H01-003",
+            "status": "PASS",
+            "reason": "1 element(s) inspected"
+          },
+          {
+            "id": "H01-004",
+            "status": "PASS",
+            "reason": "Resolved from real runtime location"
+          },
+          {
+            "id": "H01-005",
+            "status": "PASS",
+            "reason": "Constant inspection"
+          },
+          {
+            "id": "H01-006",
+            "status": "PASS",
+            "reason": "Ledger validation"
+          },
+          {
+            "id": "H02-001",
+            "status": "PASS",
+            "reason": "Doc file inspection"
+          },
+          {
+            "id": "H02-002",
+            "status": "PASS",
+            "reason": "Header inspection"
+          },
+          {
+            "id": "H02-003",
+            "status": "PASS",
+            "reason": "Logical inventory inspection"
+          },
+          {
+            "id": "H02-004",
+            "status": "PASS",
+            "reason": "SOURCE_RECEIVED_AND_RECORDED; original artifacts are external, not hash-verified in Git"
+          },
+          {
+            "id": "H02-005",
+            "status": "PASS",
+            "reason": "Authority inspection"
+          },
+          {
+            "id": "H02-006",
+            "status": "PASS",
+            "reason": "12 decisions inspected"
+          },
+          {
+            "id": "H02-007",
+            "status": "PASS",
+            "reason": "Logical/physical source integrity by role"
+          },
+          {
+            "id": "H02-008",
+            "status": "PASS",
+            "reason": "Companion table completeness"
+          },
+          {
+            "id": "H03-010",
+            "status": "PASS",
+            "reason": "Dependency graph; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-001",
+            "status": "PASS",
+            "reason": "Legacy firewall; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-002",
+            "status": "PASS",
+            "reason": "Marker authority; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-003",
+            "status": "PASS",
+            "reason": "Secret scan; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-004",
+            "status": "PASS",
+            "reason": "Email scan; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-005",
+            "status": "PASS",
+            "reason": "Module inventory; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-006",
+            "status": "PASS",
+            "reason": "UI boundary; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-008",
+            "status": "PASS",
+            "reason": "Repository policy only; Base44 Authentication panel and sign-in still require external verification"
+          },
+          {
+            "id": "H03-009",
+            "status": "PASS",
+            "reason": "Injected server principals; not LIVE_ENFORCEMENT"
+          },
+          {
+            "id": "H04-018",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-019",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H04-001",
+            "status": "PASS",
+            "reason": "Canonical inventory"
+          },
+          {
+            "id": "H04-002",
+            "status": "PASS",
+            "reason": "Source/doc consistency"
+          },
+          {
+            "id": "H04-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-005",
+            "status": "PASS",
+            "reason": "Official schema docs + registered evidence"
+          },
+          {
+            "id": "H04-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-009",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-011",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-012",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-013",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-014",
+            "status": "PASS",
+            "reason": "Availability observed on tooling; no immutable/UTC proof"
+          },
+          {
+            "id": "H04-015",
+            "status": "PASS",
+            "reason": "Deployed enforcement checked separately"
+          },
+          {
+            "id": "H05-001",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-002",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-003",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-004",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-005",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-006",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-007",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-008",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-009",
+            "status": "BLOCKED",
+            "reason": "LIVE_CONTENT_COUNT_UNAVAILABLE"
+          },
+          {
+            "id": "H05-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-015",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-009",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-011",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-012",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-005",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H08-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-004",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H10-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H10-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H10-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-039",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-038",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-037",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-036",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-035",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-034",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-033",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-026",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-027",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-028",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-029",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-030",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-031",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H12-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-009",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-011",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-012",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-013",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-014",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-015",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-016",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-017",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-018",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-019",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-020",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H13-001",
+            "status": "PASS",
+            "reason": "Token inspection"
+          },
+          {
+            "id": "H13-002",
+            "status": "PASS",
+            "reason": "Rendered size check"
+          },
+          {
+            "id": "H13-003",
+            "status": "PASS",
+            "reason": "Computed font check"
+          },
+          {
+            "id": "H13-004",
+            "status": "PASS",
+            "reason": "Current viewport only; no inferred 320/360px or physical-device evidence",
+            "actual": {
+              "width": 1280,
+              "height": 900,
+              "scrollWidth": 1280,
+              "path": "/internal/health"
+            }
+          },
+          {
+            "id": "H13-005",
+            "status": "PASS",
+            "reason": "Accessible name scan"
+          },
+          {
+            "id": "H13-006",
+            "status": "PASS",
+            "reason": "Rendered token comparison"
+          },
+          {
+            "id": "H13-007",
+            "status": "PASS",
+            "reason": "Typography check"
+          },
+          {
+            "id": "H13-008",
+            "status": "PASS",
+            "reason": "Contract inspection"
+          },
+          {
+            "id": "H13-009",
+            "status": "PASS",
+            "reason": "Rendered height check"
+          },
+          {
+            "id": "H13-010",
+            "status": "PASS",
+            "reason": "Light-only check"
+          },
+          {
+            "id": "H13-011",
+            "status": "PASS",
+            "reason": "Localization inspection"
+          },
+          {
+            "id": "H13-014",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H15-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H15-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H15-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H16-001",
+            "status": "PASS",
+            "reason": "Catalog self-test"
+          },
+          {
+            "id": "H16-002",
+            "status": "PASS",
+            "reason": "138 results reconciled"
+          },
+          {
+            "id": "H16-003",
+            "status": "PASS",
+            "reason": "Predicate, result and build binding self-test"
+          },
+          {
+            "id": "H16-004",
+            "status": "PASS",
+            "reason": "Coverage self-test"
+          },
+          {
+            "id": "H16-005",
+            "status": "PASS",
+            "reason": "No N/A placeholders dispatched"
+          },
+          {
+            "id": "H16-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H16-006",
+            "status": "PASS",
+            "reason": "Gate isolation check"
+          }
+        ],
+        "physicalDevice": false
+      },
+      "flows": {
+        "privacyFlow": 23,
+        "youFlow": 24,
+        "patternFlow": 22,
+        "mobile": 87,
+        "dailyFlow": 5,
+        "calendarFlow": 8,
+        "adminNavigation": 19,
+        "adminTestFlow": 4
+      },
+      "mobile": [
+        {
+          "scenario": "touch-viewport-320x568",
+          "width": 320,
+          "scrollWidth": 320,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-360x740",
+          "width": 360,
+          "scrollWidth": 360,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-390x844",
+          "width": 390,
+          "scrollWidth": 390,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-430x900",
+          "width": 430,
+          "scrollWidth": 430,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-844x390",
+          "width": 844,
+          "scrollWidth": 844,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "back-forward-reload-session-routing",
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-tr-320",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-320",
+          "focusInside": true,
+          "width": 250,
+          "scrollWidth": 248,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-tr-360",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-360",
+          "focusInside": true,
+          "width": 290,
+          "scrollWidth": 288,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-tr-390",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-390",
+          "focusInside": true,
+          "width": 320,
+          "scrollWidth": 318,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-tr-430",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-430",
+          "focusInside": true,
+          "width": 360,
+          "scrollWidth": 358,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-tr-844",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-844",
+          "focusInside": true,
+          "width": 440,
+          "scrollWidth": 438,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-en-320",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-320",
+          "focusInside": true,
+          "width": 250,
+          "scrollWidth": 248,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-en-360",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-360",
+          "focusInside": true,
+          "width": 290,
+          "scrollWidth": 288,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-en-390",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-390",
+          "focusInside": true,
+          "width": 320,
+          "scrollWidth": 318,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-en-430",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-430",
+          "focusInside": true,
+          "width": 360,
+          "scrollWidth": 358,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-en-844",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-844",
+          "focusInside": true,
+          "width": 440,
+          "scrollWidth": 438,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "javascript-errors",
+          "passed": true,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "tests": 550,
+      "passed": 550,
+      "failed": 0,
+      "pageErrors": [],
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 7,
+        "nativeRoutes": 5,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true
+      },
+      "catalog": {
+        "version": "HC-023.0",
+        "suites": 16,
+        "cases": 169,
+        "localRegression": 10,
+        "current": 144,
+        "future": 2,
+        "external": 13
+      },
+      "privacyFlow": [
+        {
+          "scenario": "privacy-320-tr-1",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "documentWidth": 320,
+            "modalWidth": 280,
+            "modalScroll": 278,
+            "modalClient": 278,
+            "controls": [
+              {
+                "width": 238,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 238,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-320-tr-2",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "documentWidth": 320,
+            "modalWidth": 280,
+            "modalScroll": 278,
+            "modalClient": 278,
+            "controls": [
+              {
+                "width": 238,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 238,
+                "height": 88,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-320-en-1",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "documentWidth": 320,
+            "modalWidth": 280,
+            "modalScroll": 278,
+            "modalClient": 278,
+            "controls": [
+              {
+                "width": 238,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 238,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-320-en-2",
+          "passed": true,
+          "geometry": {
+            "width": 320,
+            "documentWidth": 320,
+            "modalWidth": 280,
+            "modalScroll": 278,
+            "modalClient": 278,
+            "controls": [
+              {
+                "width": 238,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 238,
+                "height": 132,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-360-tr-1",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "documentWidth": 360,
+            "modalWidth": 320,
+            "modalScroll": 318,
+            "modalClient": 318,
+            "controls": [
+              {
+                "width": 278,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 278,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-360-tr-2",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "documentWidth": 360,
+            "modalWidth": 320,
+            "modalScroll": 318,
+            "modalClient": 318,
+            "controls": [
+              {
+                "width": 278,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 278,
+                "height": 88,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-360-en-1",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "documentWidth": 360,
+            "modalWidth": 320,
+            "modalScroll": 318,
+            "modalClient": 318,
+            "controls": [
+              {
+                "width": 278,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 278,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-360-en-2",
+          "passed": true,
+          "geometry": {
+            "width": 360,
+            "documentWidth": 360,
+            "modalWidth": 320,
+            "modalScroll": 318,
+            "modalClient": 318,
+            "controls": [
+              {
+                "width": 278,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 278,
+                "height": 88,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-390-tr-1",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "documentWidth": 390,
+            "modalWidth": 350,
+            "modalScroll": 348,
+            "modalClient": 348,
+            "controls": [
+              {
+                "width": 308,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 308,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-390-tr-2",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "documentWidth": 390,
+            "modalWidth": 350,
+            "modalScroll": 348,
+            "modalClient": 348,
+            "controls": [
+              {
+                "width": 308,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 308,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-390-en-1",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "documentWidth": 390,
+            "modalWidth": 350,
+            "modalScroll": 348,
+            "modalClient": 348,
+            "controls": [
+              {
+                "width": 308,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 308,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-390-en-2",
+          "passed": true,
+          "geometry": {
+            "width": 390,
+            "documentWidth": 390,
+            "modalWidth": 350,
+            "modalScroll": 348,
+            "modalClient": 348,
+            "controls": [
+              {
+                "width": 308,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 308,
+                "height": 88,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-430-tr-1",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "documentWidth": 430,
+            "modalWidth": 390,
+            "modalScroll": 388,
+            "modalClient": 388,
+            "controls": [
+              {
+                "width": 348,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 348,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-430-tr-2",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "documentWidth": 430,
+            "modalWidth": 390,
+            "modalScroll": 388,
+            "modalClient": 388,
+            "controls": [
+              {
+                "width": 348,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 348,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-430-en-1",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "documentWidth": 430,
+            "modalWidth": 390,
+            "modalScroll": 388,
+            "modalClient": 388,
+            "controls": [
+              {
+                "width": 348,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 348,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-430-en-2",
+          "passed": true,
+          "geometry": {
+            "width": 430,
+            "documentWidth": 430,
+            "modalWidth": 390,
+            "modalScroll": 388,
+            "modalClient": 388,
+            "controls": [
+              {
+                "width": 348,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 348,
+                "height": 88,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-844-tr-1",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "documentWidth": 844,
+            "modalWidth": 440,
+            "modalScroll": 438,
+            "modalClient": 438,
+            "controls": [
+              {
+                "width": 398,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 398,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-844-tr-2",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "documentWidth": 844,
+            "modalWidth": 440,
+            "modalScroll": 438,
+            "modalClient": 438,
+            "controls": [
+              {
+                "width": 398,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 398,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-844-en-1",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "documentWidth": 844,
+            "modalWidth": 440,
+            "modalScroll": 438,
+            "modalClient": 438,
+            "controls": [
+              {
+                "width": 398,
+                "height": 44,
+                "label": true
+              },
+              {
+                "width": 398,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "privacy-844-en-2",
+          "passed": true,
+          "geometry": {
+            "width": 844,
+            "documentWidth": 844,
+            "modalWidth": 440,
+            "modalScroll": 438,
+            "modalClient": 438,
+            "controls": [
+              {
+                "width": 398,
+                "height": 46,
+                "label": true
+              },
+              {
+                "width": 398,
+                "height": 52,
+                "label": true
+              }
+            ]
+          },
+          "scope": "LOCAL_BROWSER_SYNTHETIC"
+        },
+        {
+          "scenario": "incomplete-native-removal-lost-response-readonly-recovery-logout",
+          "passed": true
+        },
+        {
+          "scenario": "external-deletion-path-public-auth-required-no-password",
+          "passed": true
+        },
+        {
+          "scenario": "protected-current-native-admin",
+          "passed": true
+        }
+      ],
+      "inAppHealth": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "passed": true,
+        "durationMs": 1936,
+        "requiresJson": false,
+        "saveState": "SAVED",
+        "frames": 0,
+        "cases": [
+          {
+            "id": "H01-001",
+            "status": "PASS",
+            "reason": "Format check of canonical constant"
+          },
+          {
+            "id": "H01-002",
+            "status": "PASS",
+            "reason": "Static source scan"
+          },
+          {
+            "id": "H01-003",
+            "status": "PASS",
+            "reason": "1 element(s) inspected"
+          },
+          {
+            "id": "H01-004",
+            "status": "PASS",
+            "reason": "Resolved from real runtime location"
+          },
+          {
+            "id": "H01-005",
+            "status": "PASS",
+            "reason": "Constant inspection"
+          },
+          {
+            "id": "H01-006",
+            "status": "PASS",
+            "reason": "Ledger validation"
+          },
+          {
+            "id": "H02-001",
+            "status": "PASS",
+            "reason": "Doc file inspection"
+          },
+          {
+            "id": "H02-002",
+            "status": "PASS",
+            "reason": "Header inspection"
+          },
+          {
+            "id": "H02-003",
+            "status": "PASS",
+            "reason": "Logical inventory inspection"
+          },
+          {
+            "id": "H02-004",
+            "status": "PASS",
+            "reason": "SOURCE_RECEIVED_AND_RECORDED; original artifacts are external, not hash-verified in Git"
+          },
+          {
+            "id": "H02-005",
+            "status": "PASS",
+            "reason": "Authority inspection"
+          },
+          {
+            "id": "H02-006",
+            "status": "PASS",
+            "reason": "12 decisions inspected"
+          },
+          {
+            "id": "H02-007",
+            "status": "PASS",
+            "reason": "Logical/physical source integrity by role"
+          },
+          {
+            "id": "H02-008",
+            "status": "PASS",
+            "reason": "Companion table completeness"
+          },
+          {
+            "id": "H03-010",
+            "status": "PASS",
+            "reason": "Dependency graph; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-001",
+            "status": "PASS",
+            "reason": "Legacy firewall; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-002",
+            "status": "PASS",
+            "reason": "Marker authority; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-003",
+            "status": "PASS",
+            "reason": "Secret scan; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-004",
+            "status": "PASS",
+            "reason": "Email scan; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-005",
+            "status": "PASS",
+            "reason": "Module inventory; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-006",
+            "status": "PASS",
+            "reason": "UI boundary; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-008",
+            "status": "PASS",
+            "reason": "Repository policy only; Base44 Authentication panel and sign-in still require external verification"
+          },
+          {
+            "id": "H03-009",
+            "status": "PASS",
+            "reason": "Injected server principals; not LIVE_ENFORCEMENT"
+          },
+          {
+            "id": "H04-018",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-019",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H04-001",
+            "status": "PASS",
+            "reason": "Canonical inventory"
+          },
+          {
+            "id": "H04-002",
+            "status": "PASS",
+            "reason": "Source/doc consistency"
+          },
+          {
+            "id": "H04-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-005",
+            "status": "PASS",
+            "reason": "Official schema docs + registered evidence"
+          },
+          {
+            "id": "H04-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-009",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-011",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-012",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-013",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-014",
+            "status": "PASS",
+            "reason": "Availability observed on tooling; no immutable/UTC proof"
+          },
+          {
+            "id": "H04-015",
+            "status": "PASS",
+            "reason": "Deployed enforcement checked separately"
+          },
+          {
+            "id": "H05-001",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-002",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-003",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-004",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-005",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-006",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-007",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-008",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable"
+          },
+          {
+            "id": "H05-009",
+            "status": "BLOCKED",
+            "reason": "LIVE_CONTENT_COUNT_UNAVAILABLE"
+          },
+          {
+            "id": "H05-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-015",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-009",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-011",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-012",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-005",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H08-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-004",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H10-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H10-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H10-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-039",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-038",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-037",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-036",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-035",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-034",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-033",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-026",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-027",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-028",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-029",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-030",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-031",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H12-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-009",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-011",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-012",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-013",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-014",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-015",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-016",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-017",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-018",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-019",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-020",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H13-001",
+            "status": "PASS",
+            "reason": "Token inspection"
+          },
+          {
+            "id": "H13-002",
+            "status": "PASS",
+            "reason": "Rendered size check"
+          },
+          {
+            "id": "H13-003",
+            "status": "PASS",
+            "reason": "Computed font check"
+          },
+          {
+            "id": "H13-004",
+            "status": "PASS",
+            "reason": "Current viewport only; no inferred 320/360px or physical-device evidence",
+            "actual": {
+              "width": 1280,
+              "height": 900,
+              "scrollWidth": 1280,
+              "path": "/internal/health"
+            }
+          },
+          {
+            "id": "H13-005",
+            "status": "PASS",
+            "reason": "Accessible name scan"
+          },
+          {
+            "id": "H13-006",
+            "status": "PASS",
+            "reason": "Rendered token comparison"
+          },
+          {
+            "id": "H13-007",
+            "status": "PASS",
+            "reason": "Typography check"
+          },
+          {
+            "id": "H13-008",
+            "status": "PASS",
+            "reason": "Contract inspection"
+          },
+          {
+            "id": "H13-009",
+            "status": "PASS",
+            "reason": "Rendered height check"
+          },
+          {
+            "id": "H13-010",
+            "status": "PASS",
+            "reason": "Light-only check"
+          },
+          {
+            "id": "H13-011",
+            "status": "PASS",
+            "reason": "Localization inspection"
+          },
+          {
+            "id": "H13-014",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H15-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H15-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H15-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H16-001",
+            "status": "PASS",
+            "reason": "Catalog self-test"
+          },
+          {
+            "id": "H16-002",
+            "status": "PASS",
+            "reason": "138 results reconciled"
+          },
+          {
+            "id": "H16-003",
+            "status": "PASS",
+            "reason": "Predicate, result and build binding self-test"
+          },
+          {
+            "id": "H16-004",
+            "status": "PASS",
+            "reason": "Coverage self-test"
+          },
+          {
+            "id": "H16-005",
+            "status": "PASS",
+            "reason": "No N/A placeholders dispatched"
+          },
+          {
+            "id": "H16-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H16-006",
+            "status": "PASS",
+            "reason": "Gate isolation check"
+          }
+        ],
+        "physicalDevice": false
+      },
+      "flows": {
+        "privacyFlow": 23,
+        "youFlow": 24,
+        "patternFlow": 22,
+        "mobile": 87,
+        "dailyFlow": 5,
+        "calendarFlow": 8,
+        "adminNavigation": 19,
+        "adminTestFlow": 4
+      },
+      "mobile": [
+        {
+          "scenario": "touch-viewport-320x568",
+          "width": 320,
+          "scrollWidth": 320,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-360x740",
+          "width": 360,
+          "scrollWidth": 360,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-390x844",
+          "width": 390,
+          "scrollWidth": 390,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-430x900",
+          "width": 430,
+          "scrollWidth": 430,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "touch-viewport-844x390",
+          "width": 844,
+          "scrollWidth": 844,
+          "controls": [
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "birth_date",
+              "height": 52
+            },
+            {
+              "id": "birth_time",
+              "height": 52
+            },
+            {
+              "id": "place-countries",
+              "height": 52
+            },
+            {
+              "id": "place-0",
+              "height": 52
+            },
+            {
+              "id": "place-1",
+              "height": 52
+            },
+            {
+              "id": "place-places",
+              "height": 52
+            },
+            {
+              "id": "",
+              "height": 44
+            },
+            {
+              "id": "",
+              "height": 52
+            }
+          ],
+          "date": "1990-01-01",
+          "time": "08:30",
+          "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+          "passed": true
+        },
+        {
+          "scenario": "back-forward-reload-session-routing",
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-tr-320",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-320",
+          "focusInside": true,
+          "width": 250,
+          "scrollWidth": 248,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-tr-360",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-360",
+          "focusInside": true,
+          "width": 290,
+          "scrollWidth": 288,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-tr-390",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-390",
+          "focusInside": true,
+          "width": 320,
+          "scrollWidth": 318,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-tr-430",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-430",
+          "focusInside": true,
+          "width": 360,
+          "scrollWidth": 358,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-tr-844",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-tr-844",
+          "focusInside": true,
+          "width": 440,
+          "scrollWidth": 438,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-tr-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-en-320",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-320",
+          "focusInside": true,
+          "width": 250,
+          "scrollWidth": 248,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-320x568-200percent",
+          "width": 320,
+          "scrollWidth": 320,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-en-360",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-360",
+          "focusInside": true,
+          "width": 290,
+          "scrollWidth": 288,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-360x740-200percent",
+          "width": 360,
+          "scrollWidth": 360,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-en-390",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-390",
+          "focusInside": true,
+          "width": 320,
+          "scrollWidth": 318,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-390x844-200percent",
+          "width": 390,
+          "scrollWidth": 390,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-en-430",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-430",
+          "focusInside": true,
+          "width": 360,
+          "scrollWidth": 358,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-430x900-200percent",
+          "width": 430,
+          "scrollWidth": 430,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "cycle-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "home-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "profile-you-keyboard-focus-en-844",
+          "passed": true
+        },
+        {
+          "scenario": "calendar-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "modal-focus-en-844",
+          "focusInside": true,
+          "width": 440,
+          "scrollWidth": 438,
+          "restored": true,
+          "passed": true
+        },
+        {
+          "scenario": "admin-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "test-tools-en-844x390-200percent",
+          "width": 844,
+          "scrollWidth": 844,
+          "tightText": [],
+          "small": [],
+          "passed": true
+        },
+        {
+          "scenario": "javascript-errors",
+          "passed": true,
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "npmCi": "PASS",
+    "npmLsAll": "PASS",
+    "npmLsDirect": "PASS",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS",
+    "repoHealth": {
+      "dependencyBoundaries": true,
+      "boundedGeneratedHistory": true,
+      "twentyPhysicalProductSchemas": true,
+      "noUnexpectedProductSchemas": true,
+      "guardedHealthHistory": true,
+      "separateBuiltinUserAndTooling": true,
+      "exactAuthoritativeFields": true,
+      "completeAccessMatrix": true,
+      "directSdkOperationsDenied": true,
+      "onboardingCopyAndProxy": true,
+      "onboardingGeoNamesEntry": true,
+      "noProductSeedCalls": true,
+      "canonicalMarker": true,
+      "docsAligned": true,
+      "noLegacyImport": true,
+      "noCredentialFindings": true,
+      "noPersonalEmails": true
+    },
+    "securityDeps": "PASS_WITH_TWO_EXISTING_MODERATE_FINDINGS",
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 0,
+      "critical": 0,
+      "total": 2
+    },
+    "performance": true
+  },
+  "earlyFailuresPreserved": [
+    {
+      "check": "PR12",
+      "failure": "Completed withdrawal duplicate tried a new grant",
+      "fix": "Reuse the matching persisted withdrawal generation"
+    },
+    {
+      "check": "CL08 / H12-034 first Chromium full run",
+      "failure": "Minimal timing fixture ignored the new exact-ID delete verification filter",
+      "fix": "Fixture implements query filtering; deadline and bounded-progress assertions preserved"
+    },
+    {
+      "check": "typecheck",
+      "failure": "Upstream optional OAuth/AuthLayout props and new callback annotations",
+      "fix": "Narrow typing/Headers corrections"
+    },
+    {
+      "check": "review",
+      "failure": "Slow setup could exhaust the cleanup deadline before first progress",
+      "fix": "Start cleanup deadline at first deletion; PR19 proves one progress unit followed by deadline stop"
+    },
+    {
+      "check": "final review / PR20",
+      "failure": "Cleanup completion could be reported before the final request-status write released the fence",
+      "fix": "Require both verified cleanup and persisted COMPLETED request; retry completes only the missing checkpoint without another event"
+    }
+  ],
+  "hosted": {
+    "executed": false,
+    "liveFullHealth": false,
+    "liveWithdrawal": false,
+    "liveAccountErasure": false,
+    "mainMergedOrPublished": false,
+    "physicalDevices": false,
+    "permanentErasureVerified": false
+  },
+  "pending": [
+    "Owner schema \u2192 all backend/shared entries \u2192 frontend sync/publish",
+    "User-selected separate disposable normal accounts for withdrawal and self erasure",
+    "Hosted schema policies/native access and provider-session invalidation",
+    "Base44 recovery areas, native creator metadata, logs/backups/uploads as applicable",
+    "Supported Sign in with Apple revocation integration/evidence",
+    "Published external deletion URL and Play Console registration",
+    "Final disposition/retention decision for current erasure request/receipt",
+    "Current native admin accounts are conservatively protected from self erasure",
+    "Physical Android/iOS keyboard, reader, safe-area and text scaling"
+  ],
+  "evidenceScope": "LOCAL_BUILD_STATIC_AND_ISOLATED_SYNTHETIC_BROWSER_NOT_HOSTED_ENFORCEMENT"
+}

@@ -70,6 +70,11 @@ export async function calendarOperation(client, body, { now = () => new Date(), 
       calculationError = error.code;
     }
   }
+  if (native) {
+    await client.auth.me();
+    const final = await reader.access();
+    if (JSON.stringify(final.consent) !== JSON.stringify(state.consent) || JSON.stringify(final.jobs) !== JSON.stringify(state.jobs)) fail('CONSENT_STATE_CHANGED', 403);
+  }
   return {
     state: consent ? 'READY' : 'CONSENT_REQUIRED', today, timezone,
     revision: await calendarRevision(state), writable, calculationError,

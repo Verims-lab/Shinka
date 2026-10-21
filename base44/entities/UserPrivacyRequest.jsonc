@@ -1,0 +1,69 @@
+{
+  "name": "UserPrivacyRequest",
+  "type": "object",
+  "description": "Owner-confirmed privacy lifecycle. Pending platform erasure is not permanent deletion. Operational storage, not a uniqueness or transaction guarantee.",
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "request_key": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "WITHDRAW_HEALTH",
+        "DELETE_ACCOUNT"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "IN_PROGRESS",
+        "COMPLETED",
+        "NATIVE_REMOVAL_PENDING",
+        "PLATFORM_PENDING"
+      ]
+    },
+    "requested_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "grant_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "consent_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "completed_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "user_id",
+    "request_key",
+    "kind",
+    "status",
+    "requested_at",
+    "grant_at",
+    "consent_version",
+    "completed_at"
+  ],
+  "rls": {
+    "read": false,
+    "create": false,
+    "update": false,
+    "delete": false
+  }
+}

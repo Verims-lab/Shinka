@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-022
+**Current BuildMarker:** Buildmarker-023
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -12,6 +12,17 @@
 **External Verification Required:** Base44 native UNIQUE is unsupported; no multi-record transaction/CAS guarantee is claimed. Native handler tests use synthetic transport; hosted schema/authorization/mutation recovery remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+
+## Owner erasure and withdrawal storage — 023
+
+The 20 source product schemas are unchanged. Two closed operational schemas join the existing three: **UserPrivacyRequest** and **PrivacyRecoveryReceipt** (26 total files including built-in User). All direct CRUD policies are false. Full schema inventory must be deployed before updated applicationSession/native shared code and frontend; neither Git Test nor Preview is a separate database.
+
+UserPrivacyRequest: native id; user_id; stable request_key (`DELETE_ACCOUNT` or withdrawal + previous grant instant); kind WITHDRAW_HEALTH/DELETE_ACCOUNT; status IN_PROGRESS/COMPLETED/NATIVE_REMOVAL_PENDING/PLATFORM_PENDING; requested_at (server UTC); optional original grant_at/consent_version and completed_at. It contains no profile, cycle date or content payload. Duplicate observed request keys are an explicit conflict, not an invented UNIQUE/CAS guarantee. One worker coalesces pending same-owner requests; reconstructed workers reread authority. A new withdrawal generation requires a later explicit grant.
+
+PrivacyRecoveryReceipt stores SHA-256 token_hash, request_id and expires_at only. The browser generates 256 random bits before confirmed dispatch; receipts are valid for 24 hours, max five per erasure request, and can only expose kind/status/verified booleans. They authorize no mutation or arbitrary target lookup. Request IDs are not bearer credentials. The validity limit is a security limit, not an invented legal retention duration. The pending request and receipts still need platform disposition; no automatic final purge is claimed.
+
+Withdrawal reuses current UserHealthConsent, append-only UserHealthConsentEvent, DataProtectionEvent HEALTH_DATA_DELETION and HealthDataDeletionJob. granted_at stays exact; withdrawn_at/occurred_at use one persisted backend instant. Cleanup is five scopes: UserCalendarAction, UserCyclePhaseDay, UserCyclePrediction, UserPeriodRecord, UserCycleSettings. Terminal verification rechecks all five. Personal daily snapshots and physical Pattern summaries are retained historical assignments, not raw cycle copies or new health inputs. Self-service account erasure instead removes all owner-linked product data and owner-related audit/admin-operation records; its narrow server path is the explicit exception to normal immutable protection. Shared sources, anonymous system-error records, redacted Health artifacts and repository evidence are unchanged. [Per-type matrix](reports/SHINKA_PRIVACY_023.md).
+
 
 ## You update contract — 022
 
@@ -53,35 +64,35 @@ InternalHealthRun adds optional `report_digest` (SHA-256 of the normalized redac
 
 ## Current physical contract — Base44 016
 
-The original 20 product Entity schemas, native User extension and three internal/operational schemas are the active Base44 model. Native metadata id/created_date/updated_date is not redeclared; normalization is not consent-time authority. Consent granted_at and event occurred_at remain persisted backend business instants, validated and preserved on retry; no timezone suffix is invented. Optional durations stay null/absent, 5/28 calculation-only.
+The original 20 product Entity schemas, native User extension and five internal/operational schemas (including two from 023) are the active Base44 model. Native metadata id/created_date/updated_date is not redeclared; normalization is not consent-time authority. Consent granted_at and event occurred_at remain persisted backend business instants, validated and preserved on retry; no timezone suffix is invented. Optional durations stay null/absent, 5/28 calculation-only.
 
-Additional UserCalendarAction is an owner-scoped **health-data receipt**, all direct CRUD false: user_id/action_id/fingerprint/base_revision/result_revision/operation/period_id/desired_date/previous_date/initial_grant/grant_at/status/started_at. Status PENDING/APPLIED/CANCELLED; no uniqueness guarantee. It retains intent after failures; it is included in test-user cleanup and required future health-withdrawal cleanup. Never export dates/receipt bodies to audit or Health. AdminTestOperation gains optional step_fingerprints (intent hashes only) for reset continuation. InternalHealthRun remains closed to direct SDK access, with current native admin backend reads.
+Additional UserCalendarAction is an owner-scoped **health-data receipt**, all direct CRUD false: user_id/action_id/fingerprint/base_revision/result_revision/operation/period_id/desired_date/previous_date/initial_grant/grant_at/status/started_at. Status PENDING/APPLIED/CANCELLED; no uniqueness guarantee. It retains intent after failures; it is included in test-user cleanup and implemented 023 health-withdrawal cleanup. Never export dates/receipt bodies to audit or Health. AdminTestOperation gains optional step_fingerprints (intent hashes only) for reset continuation. InternalHealthRun remains closed to direct SDK access, with current native admin backend reads.
 
 UserDailyMessage may have multiple physical candidates; ordering and conflict notice replace physical one/day as a prerequisite. Logical user/day selection uses generated_at then ID and retains every row. UserPeriodRecord is Calendar authority. Existing prediction/phase entities remain compatible schema artifacts but current readers calculate projections and writers do not maintain those caches. No SQL schema/runtime, second store, transaction or CAS is active. [Full contract and recovery](SHINKA_BASE44_CONTINUATION.md).
 
 ## PRODUCT DOMAIN ENTITIES (20)
 | # | Entity | Purpose | Owner | Lifecycle | Uniqueness / index | Deletion |
 |---|---|---|---|---|---|---|
-| 1 | user_profile | Profile + account_status | user | editable | UNIQUE(user_id) | Delete Account → INACTIVE |
-| 2 | user_preferences | language, notifications, notification_time 06:00, timezone | user | editable | UNIQUE(user_id) | retained |
-| 3 | user_health_consent | current consent state | user | editable state | UNIQUE(user_id) | retained (metadata) |
-| 4 | user_health_consent_event | GRANTED/WITHDRAWN history | user | append-only | — | never by admin |
-| 5 | user_cycle_settings | entered duration/length (NULL if not entered) | user | editable | UNIQUE(user_id) | deleted on withdrawal |
-| 6 | user_period_record | recorded starts | user | editable (update same id) | INDEX(user_id, period_start_date); ≥15 days | withdrawal / single delete |
-| 7 | user_cycle_prediction | predicted cycles | user | derived | — | withdrawal; atomic recompute |
-| 8 | user_cycle_phase_day | per-day phase cache | user | derived | UNIQUE(user_id, phase_date) | withdrawal |
+| 1 | user_profile | Profile + account_status | user | editable | UNIQUE(user_id) | 023 owner erasure removes; INACTIVE only during cleanup |
+| 2 | user_preferences | language, notifications, notification_time 06:00, timezone | user | editable | UNIQUE(user_id) | withdrawal retains; owner erasure removes |
+| 3 | user_health_consent | current consent state | user | editable state | UNIQUE(user_id) | withdrawal retains WITHDRAWN metadata; owner erasure removes |
+| 4 | user_health_consent_event | GRANTED/WITHDRAWN history | user | append-only | — | ordinary/admin immutable; owner erasure removes |
+| 5 | user_cycle_settings | entered duration/length (NULL if not entered) | user | editable | UNIQUE(user_id) | withdrawal / owner erasure |
+| 6 | user_period_record | recorded starts | user | editable (update same id) | INDEX(user_id, period_start_date); ≥15 days | withdrawal / owner erasure / explicit single delete |
+| 7 | user_cycle_prediction | predicted cycles | user | derived | — | withdrawal / owner erasure; native calculation on read |
+| 8 | user_cycle_phase_day | per-day phase cache | user | derived | UNIQUE(user_id, phase_date) | withdrawal / owner erasure |
 | 9 | cycle_phase_lookup | length × duration × day → phase | system | reference | UNIQUE(cycle_length_days, period_duration_days, cycle_day) | not deletable |
 | 10 | message_category_lookup | six categories | system | reference | UNIQUE(category_code) | not deletable |
 | 11 | message_category_mapping | 240 mappings | system | reference | UNIQUE(sun_sign_code, moon_phase_code, cycle_phase_code) | not deletable |
 | 12 | message_pair | 260+ TR/EN pairs, is_active "Active" | system | editable text | INDEX(category_id, is_active) | no delete function |
-| 13 | user_daily_message | one immutable snapshot per user/local day | user | immutable | UNIQUE(user_id, shinka_date); INDEX(user_id, generated_at) | never by admin |
-| 14 | notification_delivery | push job per message | user | stateful | UNIQUE(daily_message_id, notification_type) | retained |
-| 15 | user_pattern_summary | single current summary | user | derived single row | UNIQUE(user_id) | overwritten |
+| 13 | user_daily_message | one immutable snapshot per user/local day | user | immutable | UNIQUE(user_id, shinka_date); INDEX(user_id, generated_at) | ordinary/admin immutable; owner erasure removes all candidates |
+| 14 | notification_delivery | push job per message | user | stateful | UNIQUE(daily_message_id, notification_type) | withdrawal retains history; owner erasure removes |
+| 15 | user_pattern_summary | single current summary | user | derived single row | UNIQUE(user_id) | legacy cache ignored; owner erasure removes |
 | 16 | moon_phase_lookup | UTC phase intervals | system | rolling reference | INDEX(start_at_utc) | not user-deletable |
-| 17 | admin_audit_log | admin VIEW/UPDATE/DELETE | system | append-only | INDEX(admin_user_id, performed_at) | never |
+| 17 | admin_audit_log | admin VIEW/UPDATE/DELETE | system | append-only | INDEX(admin_user_id, performed_at) | ordinary/admin immutable; owner-related rows removed on owner erasure |
 | 18 | system_error_log | deduplicated errors | system | stateful | — | retained |
-| 19 | health_data_deletion_job | verified deletion | system | backend-only state | one open job per user | admin cannot complete/delete |
-| 20 | data_protection_event | deletion/deactivation decision | system | append-only | — | never by admin |
+| 19 | health_data_deletion_job | verified deletion | system | backend-only state | one open job per user | withdrawal progress retained; owner erasure removes |
+| 20 | data_protection_event | deletion/deactivation decision | system | append-only | — | ordinary/admin immutable; owner erasure removes |
 
 Relationships: 25 logical links (see domainContract.js): 24 from `21_Iliskiler`, plus health_data_deletion_job.user_id → User.id explicitly required by SRC-05 §8.3 and SRC-07 entity sheet 19. Deleted health entities must never leave dangling references.
 
@@ -465,7 +476,7 @@ OD-012 now preserves >60-day observations and excludes them only from estimation
 
 DELETE_USER stages: stop PENDING/FAILED notifications as SKIPPED; remove phase/prediction children, cycle settings and period parents, pattern summary, preferences, profile; call service-role User.delete(id); verify absence and stopped jobs; persist final audit/result. Retain current consent metadata, immutable consent events/daily messages, all audit/protection/deletion history and notifications. Shared lookup/content and unscoped system errors are untouched. See the exhaustive 20-entity scope/indirect-edge table in the [report](reports/SHINKA_ADMIN_TEST_TOOLS.md).
 
-Retained actor/target/user references after physical deletion are historical identifiers, never reassigned or cascade-deleted. A COMPLETED DELETE operation is a permanent tombstone. RESET_ACTIVE stages PROFILE → CYCLE → FIRST_SHINKA → COMPLETED/DONE override old daily-based completion; reset creates no consent event and changes no grant time or existing product row by itself. Normal validated writes and stage advancement must commit with a durable receipt. Same-day daily snapshots are reused. Failed/start/result records are retained indefinitely under current policy; the five-package UI history rule does not apply.
+Retained actor/target/user references after physical deletion are historical identifiers, never reassigned or cascade-deleted. A COMPLETED DELETE operation is a permanent tombstone. RESET_ACTIVE stages PROFILE → CYCLE → FIRST_SHINKA → COMPLETED/DONE override old daily-based completion; reset creates no consent event and changes no grant time or existing product row by itself. Normal validated writes and stage advancement must commit with a durable receipt. Same-day daily snapshots are reused. This historical admin-test policy retained failed/start/result records; it does not authorize retention under 023 owner erasure, which removes owner-related journals/audit rows. For ordinary admin-test history, the five-package UI history rule does not apply.
 
 
 ## Historical checkpoint — OD-012 and proposed physical authority — 014

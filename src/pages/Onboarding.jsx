@@ -32,6 +32,11 @@ export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destina
     }catch(e){if(ticket===generation.current)setError(e.code);}
   },[language,user?.id]);
   useEffect(()=>{if(isAuthenticated)load();else {generation.current++;setSnapshot(null);}return()=>{generation.current++;};},[isAuthenticated,user?.id,load]);
+  useEffect(()=>{
+    const invalidate=()=>{generation.current++;setSnapshot(null);if(isAuthenticated)void load();};
+    window.addEventListener('shinka-health-access-changed',invalidate);
+    return()=>window.removeEventListener('shinka-health-access-changed',invalidate);
+  },[isAuthenticated,load]);
   const saveProductLanguage = async next => {
     const ticket = generation.current;
     let result;

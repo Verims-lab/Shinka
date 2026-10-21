@@ -1,5 +1,11 @@
 # Shinka Android / iOS compatibility evidence
 
+## Privacy addition — Buildmarker-023 / HC-023.0 (2026-10-21)
+
+The actual App `/account-privacy` and public `/delete-account` paths add single-confirmation, visible unknown/check/continue and post-User-removal read-only outcome. Local Chromium/WebKit coverage includes TR/EN at 320/360/390/430px and 844×390, computed 100%/200% text, modal Tab/Escape/initial-and-return focus, labels/status and ≥44px controls. Existing safe-area padding/100dvh remain; zoom is not disabled. Each engine passed 550 tests and 23 privacy flows; zero page exceptions. Initial JS 475,923/158,117 gzip and CSS 87,430/15,054 meet the existing budgets. Final engine/count/geometry evidence: [023 verification](privacy-023/verification.json). No physical device, OS text scaling, VoiceOver/TalkBack spoken output, provider callback or store acceptance was executed.
+
+Official review on 2026-10-21: [Apple](https://developer.apple.com/help/app-review/guideline-reference/5-1-1-account-deletion), [Google Play](https://support.google.com/googleplay/android-developer/answer/13327111?hl=en), [Base44](https://docs.base44.com/Community-and-support/Deleting-user-data). In-app initiation and external request route are implemented. Published-domain/Play Console URL, hosted native removal/Recently deleted disposition and Apple provider revocation remain separate acceptance; current SDK 0.8.54 has no verified purge/revocation method. See [one delivery report](SHINKA_PRIVACY_023.md) for matrix, limits and review. Physical Android/iOS and all earlier unresolved findings remain open.
+
 ## You/Profile acceptance — 022 (2026-10-21)
 
 Current source adds You/profile/preferences and preserves Pattern. Canonical Chromium 156.0.8078.4 and WebKit 27.2 each pass 526/526 regressions, 24 actual-App You scenarios, 22 Pattern flows and 87 retained mobile checks with zero page exceptions. You includes TR/EN, 320/360/390/430px and 844px landscape, 100/200% text, field/name focus, Save/Cancel focus return, keyboard entry, labeled native form controls, provider outage/clear, unknown-save recovery and logout invalidation. A completed user's former menu test now checks keyboard navigation to You/heading focus; incomplete-admin menu/Escape checks remain. YU06 proves verified NULL name cannot revive an old Home name.

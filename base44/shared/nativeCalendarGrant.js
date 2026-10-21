@@ -4,6 +4,7 @@ import { validateDomainRecord } from './domainValidation.js';
 import { validatedOnboardingGrant, onboardingGrantEvent } from './onboardingConsent.js';
 import { DOMAIN_SCHEMAS } from './domainSchemas.js';
 import { HEALTH_CONSENT_VERSION } from './onboardingDependencies.js';
+import { HEALTH_CLEANUP, assertPrivacyAccess } from './privacyPolicy.js';
 
 const fail = code => { throw new InternalError(code, 409); };
 // Only an explicit add+consent with a persisted owner receipt can enter here.
@@ -15,6 +16,7 @@ export async function completeCalendarGrant(client, owner, receipt) {
     return rows[0] || null;
   };
   const guard = async () => {
+    if (client.shinkaNative) await assertPrivacyAccess(client, owner, { health: true });
     await client.auth.me();
     await client.shinkaAssertWritable?.();
     assertActiveAccount(owner, await one('UserProfile'));
@@ -32,7 +34,12 @@ export async function completeCalendarGrant(client, owner, receipt) {
     if (!job || job.user_id !== owner || !job.completed_at || job.completed_at < job.requested_at) fail('HEALTH_DELETION_UNCONFIRMED');
     const withdrawal = await one('UserHealthConsentEvent', { event_type: 'WITHDRAWN', occurred_at: current.withdrawn_at, consent_version: current.consent_version });
     if (!withdrawal) fail('CONSENT_EVENT_UNCONFIRMED');
-    for (const name of ['UserCycleSettings', 'UserPeriodRecord', 'UserCyclePrediction', 'UserCyclePhaseDay']) {
+    for (const name of HEALTH_CLEANUP) {
+      if (name === 'UserCalendarAction') {
+        const others = await store.UserCalendarAction.filter({ user_id: owner, id: { $ne: receipt.id } }, 'id', 1, 0, ['id']);
+        if (!Array.isArray(others) || others.length) fail('HEALTH_DELETION_UNCONFIRMED');
+        continue;
+      }
       if (await one(name)) fail('HEALTH_DELETION_UNCONFIRMED');
     }
     if (receipt.grant_at <= current.withdrawn_at) fail('CONSENT_STATE_CHANGED');

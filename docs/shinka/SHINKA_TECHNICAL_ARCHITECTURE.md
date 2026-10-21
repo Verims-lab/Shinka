@@ -2,14 +2,23 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-022
+**Current BuildMarker:** Buildmarker-023
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
-**Not Implemented:** withdrawal/deactivation product workflows and notification delivery/scheduler. Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
+**Not Implemented:** permanent platform/provider erasure and notification delivery/scheduler. Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## Privacy responsibilities — 023
+
+`privacyOperation` owns authentication, closed dispatch, confirmation, admission and outcome projection. `privacyRepository` owns bounded SDK queries, receipts, exact writes/readback and cleanup; `privacyWithdrawal` owns consent/event/job sequencing; `privacyAccountDeletion` owns personal-scope/native identity removal; `privacyPolicy` owns explicit scopes and common admission. `ownedCleanup` is shared with existing admin cleanup for delete + verified scoped absence; there is no second generic CRUD endpoint or database.
+
+The worker uses first-page batches (20 rows; at most 40 cleanup deletes and eight seconds of admission per request), then returns acknowledged partial state. It rereads every scope on explicit Continue. Request reads cap at 50 owner privacy requests and fail rather than truncate; receipts cap at five per request. These are bounded ordinary SDK operations, not native transaction/unique/locking guarantees. Already-sent calls may finish later; final and subsequent status verification detect observed residuals. Ambiguous independent-worker requests fail closed. Identity removal has a persisted pre-removal stage and a separate read-only capability so a missing native user is not falsely classified from auth failure.
+
+Frontend privacyService owns response/deadline/recovery transport, privacyController owns confirmation/pending/unknown state, PrivacyActions/Dialog render scope/progress/focus, and AccountPrivacy supplies session/navigation. Normal sign-out/session switching invalidates personal state. Cross-tab nonce and opaque session privacy revision trigger invalidation; periodic checks are bounded, not realtime revocation. The external deletion entry reuses existing OAuth. No password, scheduler, new push/service or undocumented purge/token-revocation endpoint is added.
+
 
 ## You responsibilities — 022
 

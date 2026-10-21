@@ -25,6 +25,8 @@ export function adminTestFixture() {
   tables.User = [{ id: 'adminA', role: 'admin' }, { id: 'adminB', role: 'admin' }, { id: 'ownerA', role: 'user' }, { id: 'ownerB', role: 'user' }];
   tables.AdminTestOperation = [];
   tables.UserCalendarAction = [];
+  tables.UserPrivacyRequest = [];
+  tables.PrivacyRecoveryReceipt = [];
   const state = { tables, actor: 'adminA', fail: null, time: DAILY_NOW, calls: [], audit: [], serial: Promise.resolve(), resetReceipts: new Map() };
   const fault = name => { if (state.fail === name) { state.fail = null; throw new Error('synthetic hidden exception'); } };
   /** @type {Record<string, any>} */
