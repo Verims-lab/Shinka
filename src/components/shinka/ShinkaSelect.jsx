@@ -6,7 +6,7 @@ export default function ShinkaSelect({ className = "", children, ...props }) {
   return (
     <div className="relative min-w-0">
       <select
-        className={`appearance-none min-h-[52px] w-full min-w-0 max-w-full rounded-shinka-md border border-shinka-line bg-shinka-white px-4 pr-10 text-[17px] leading-[calc(25/17*1em)] text-shinka-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum disabled:opacity-45 ${className}`}
+        className={`appearance-none min-h-[52px] w-full min-w-0 max-w-full rounded-shinka-md border border-shinka-control bg-shinka-white px-4 pr-10 text-[17px] leading-[calc(25/17*1em)] text-shinka-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum disabled:opacity-45 ${className}`}
         {...props}
       >
         {children}

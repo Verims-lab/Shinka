@@ -1,5 +1,6 @@
+import { useLayerHistory } from "@/features/mobile/useLayerHistory";
 import { useEffect, useId, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserRound } from "lucide-react";
 import { ADMIN_PANEL_PATH } from "@/foundation/internalNavigation";
 import { t } from "@/foundation/i18n/strings";
@@ -9,6 +10,7 @@ export default function ProfileMenu({ enabled = false, language = undefined }) {
   const [open, setOpen] = useState(false);
   const container = useRef(null), trigger = useRef(null), item = useRef(null);
   const menuId = useId();
+  const leaveLayer = useLayerHistory(open && enabled, () => { setOpen(false); trigger.current?.focus(); }, container);
   useEffect(() => { if (!enabled) setOpen(false); }, [enabled]);
   useEffect(() => {
     if (!open || !enabled) return;
@@ -44,10 +46,17 @@ export default function ProfileMenu({ enabled = false, language = undefined }) {
     </button>
     {enabled && open && <div id={menuId} role="menu" aria-label={t("profile.open", language)} onKeyDown={menuKey}
       className="absolute right-0 top-full mt-2 z-50 w-52 max-w-[calc(100vw-40px)] rounded-shinka-md border border-shinka-line bg-shinka-white p-2 font-body text-shinka-plum shadow-shinka-card">
-      <Link ref={item} role="menuitem" tabIndex={-1} to={ADMIN_PANEL_PATH} state={{ language }} onClick={() => setOpen(false)}
+      <MenuLink itemRef={item} leaveLayer={leaveLayer} role="menuitem" tabIndex={-1} to={ADMIN_PANEL_PATH} state={{ language }}
         className="flex items-center min-h-11 rounded-shinka-sm px-4 text-shinka-small break-words focus-visible:outline-2 focus-visible:outline-shinka-plum focus:bg-shinka-cream focus:text-shinka-plum-deep">
         {t("admin.panel", language)}
-      </Link>
+      </MenuLink>
     </div>}
   </div>;
+}
+
+// Traverse the transient layer entry before pushing the destination, so opening
+// a menu does not leave an extra root entry behind normal page navigation.
+function MenuLink({ itemRef, leaveLayer, to, state, children, ...props }) {
+  const navigate = useNavigate();
+  return <Link ref={itemRef} to={to} state={state} {...props} onClick={event => { event.preventDefault(); leaveLayer(() => navigate(to, { state })); }}>{children}</Link>;
 }

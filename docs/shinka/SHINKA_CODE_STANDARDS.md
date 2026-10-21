@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-025
+**Current BuildMarker:** Buildmarker-026
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -35,6 +35,13 @@
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+
+## Mobile regression and delivery — 026
+
+Use one system theme owner, semantic text/surface/on-primary/control colors and computed contrast checks. Do not add an independent theme state, global touchmove prevention, zoom lock or a retained private exit tree. Shared picker presentation must not fork business rules. A modal history entry is limited to the lifetime of its layer; no root back trap. Keep controls/text accessible with document scrolling and 200% text.
+
+Refresh must coalesce, retain confirmed data/drafts on ordinary failure and invalidate on known privacy/session changes. Unknown writes retain one intent and cannot be silently replaced by a new action. Use controlled promises and observed DOM in new tests, not sleeps or inflated Health budgets. Run the new mobile experience matrix in both existing engines, alongside all retained regressions. H13-012 remains LOCAL_BROWSER, H13-013 remains external/manual; neither becomes a synthetic device PASS. Exclude only the verified-unused generated sidebar CSS source; adding a sidebar importer requires restoring its CSS source. Existing 500000/165000 JS and 90000/16000 CSS limits remain.
+
 
 ## Synthetic helper timing rule — 025
 

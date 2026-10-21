@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-025
+**Current BuildMarker:** Buildmarker-026
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -14,6 +14,11 @@
 - NO SILENT SOURCE-CONTRACT CHANGE
 - NO FUTURE FEATURE IMPLEMENTATION WITHOUT PACKAGE SCOPE
 - NO LEGACY SHINKA IMPORT — NO LEGACY SHINKA CONTRACT MAY ENTER THIS PROJECT WITHOUT AN EXPLICIT CHANGE REQUEST.
+
+## 026 mobile scope
+
+Advance 025 → 026 / HC-026.0 once; recordBuild retains 022–026. Explicit request supersedes light-only/mobile native-select decisions. Source, meaningful regression, Health mapping and the existing single Android/iOS report must change together. Keep original 024 incident and 025 timing evidence; do not rerun hosted Health/probes/imports or mutate real users. Local Chromium/WebKit, install/tree/audit, type/lint/build, Repo Health, last-five and performance gates remain mandatory. No main merge/publish, native build, store scan or new platform. Publish/device acceptance stays owner-owned.
+
 
 ## 025 targeted timing fix scope
 

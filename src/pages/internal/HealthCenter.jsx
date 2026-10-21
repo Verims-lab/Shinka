@@ -42,7 +42,7 @@ export default function HealthCenter() {
       <section className="my-5 space-y-3" data-health-acceptance>
         <h2 className="text-shinka-h2">{healthCopy('separateAcceptance',language)}</h2>
         <p>{healthCopy('localAcceptance',language)}</p>
-        <ul>{ACCEPTANCE_REQUIREMENTS.map(c=><li key={c.id}>{c.id} · {c.title} · {healthCopy(c.executionLocation==='LOCAL_BROWSER'?'localOnly':c.applicability==='FUTURE_PACKAGE'?'futureOnly':'externalOnly',language)}</li>)}</ul>
+        <ul className="break-words">{ACCEPTANCE_REQUIREMENTS.map(c=><li key={c.id}>{c.id} · {c.title} · {healthCopy(c.executionLocation==='LOCAL_BROWSER'?'localOnly':c.applicability==='FUTURE_PACKAGE'?'futureOnly':'externalOnly',language)}</li>)}</ul>
       </section>
       <RunHistory history={history} onRetry={loadHistory} />
     </PageContainer>

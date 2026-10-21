@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-021",
-    "package_name": "Pattern",
-    "package_type": "FEATURE",
-    "created_at": "2026-10-21T01:42:56.953000+03:00",
-    "health_catalog_version": "HC-021.0",
-    "short_summary": "Read-only recurring themes and proportional Lunar Timeline; shared Home selection and native owner/lifecycle guards.",
-    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "Chromium/WebKit 507/507 each; 22 Pattern and 87 mobile checks each; local Health 126 PASS/13 BLOCKED (hosted dependencies absent). Mandatory gates and JS/CSS budgets pass; zero Critical/High, two existing Moderate router findings. H10-001 activated; H12-037/H13-017 added; H15 extended. No live Health/import/mutation or main publish. Original ON-05, hosted acceptance and physical devices remain open."
-  },
-  {
     "build_marker": "Buildmarker-022",
     "package_name": "You/Profile and Preferences",
     "package_type": "FEATURE",
@@ -69,5 +55,19 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "notes": "HC-025.0 retains all 169 cases / 144 in-app; HT01–HT09 cover timeout/cancel/cache/DOM/console cleanup and safe progress. Local Health 131 PASS/13 expected hosted-dependency BLOCKED; no published readiness/content regression claimed. Mandatory local gates and byte budgets pass; 0 Critical/High, 2 existing Moderate router findings. No live Health/probe/import/mutation/main publish. Last five 021–025. Owner publishes and runs Full Health; physical acceptance remains separate. Evidence: SHINKA_HEALTH_TIMING_025.md."
+  },
+  {
+    "build_marker": "Buildmarker-026",
+    "package_name": "Mobile system theme and interaction compatibility",
+    "package_type": "FIX",
+    "created_at": "2026-10-21T14:03:49.435356+03:00",
+    "health_catalog_version": "HC-026.0",
+    "short_summary": "System light/dark, safe-area ownership, accessible mobile birthplace sheets, layer history and short reduced-motion transitions. Home refresh retains daily snapshots; Calendar preserves drafts and same-intent recovery.",
+    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "Chromium/WebKit local regressions and mobile matrices; H08-007 added, H13 theme/mobile contracts updated, no cases removed. Existing byte budgets and 025 timeout/cleanup coverage retained. Hosted Full Health and physical Android/iOS/wrapper acceptance remain owner-run. No main/publish, provider probe/import or live user mutation."
   }
 ];

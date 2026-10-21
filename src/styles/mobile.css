@@ -1,0 +1,22 @@
+:root { --safe-top: env(safe-area-inset-top, 0px); --safe-right: env(safe-area-inset-right, 0px); --safe-bottom: env(safe-area-inset-bottom, 0px); --safe-left: env(safe-area-inset-left, 0px); }
+/* The document is the scrolling owner. Contain only Y: preserve horizontal
+   navigation and zoom. Sheets have their own bounded, contained scroll area. */
+html { overscroll-behavior-y: contain; background: rgb(var(--shinka-ivory)); color-scheme: light; }
+html.dark { color-scheme: dark; }
+@media (prefers-color-scheme: dark) { html:not(.light) { background: #1e1720; color-scheme: dark; } }
+button, [role="tab"], nav a, svg[aria-hidden="true"] { -webkit-user-select: none; user-select: none; }
+:focus-visible { outline: 2px solid rgb(var(--shinka-plum)); outline-offset: 2px; }
+.shinka-product-nav { padding-bottom: var(--safe-bottom); }
+.shinka-safe-shell { padding-bottom: 0; }
+.shinka-calendar-dialog, .shinka-place-sheet, .shinka-place-options { overscroll-behavior-y: contain; }
+.shinka-place-sheet { position: fixed; inset: auto 0 0; z-index: 60; max-height: 85vh; max-height: 85dvh; margin: 0; width: 100%; max-width: none; overflow-y: auto; display: flex; flex-direction: column; border-radius: 20px 20px 0 0; background: rgb(var(--shinka-white)); color: rgb(var(--shinka-ink)); padding: 20px max(20px, var(--safe-right)) max(20px, var(--safe-bottom)) max(20px, var(--safe-left)); }
+.shinka-place-sheet > header, .shinka-place-sheet > footer { flex-shrink: 0; }
+.shinka-place-options { overflow-y: auto; min-height: min(120px, 20dvh); flex: 1 1 auto; }
+.shinka-route-clip { overflow-x: clip; }
+.shinka-place-option { display: block; width: 100%; min-height: 52px; padding: 12px; text-align: left; overflow-wrap: anywhere; border-bottom: 1px solid rgb(var(--shinka-line)); }
+.shinka-place-option[aria-checked="true"] { background: rgb(var(--shinka-lavender)); font-weight: 600; }
+.shinka-place-sheet::backdrop { background: rgb(10 5 10 / .55); }
+.shinka-refresh { min-height: 44px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.shinka-calendar-day[data-period="true"] { border-bottom: 3px solid rgb(var(--shinka-plum)); }
+.shinka-calendar-day[data-predicted="true"] { border: 1px dashed rgb(var(--shinka-plum)); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0s !important; } }

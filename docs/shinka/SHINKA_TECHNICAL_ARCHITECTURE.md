@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-025
+**Current BuildMarker:** Buildmarker-026
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -10,6 +10,15 @@
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and notification delivery/scheduler. Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## Mobile web responsibilities — 026
+
+`features/mobile` owns system-theme binding, passive RefreshControl, layer/modal focus-history and RouteMotion. No backend data authority is moved to the browser. RouteMotion animates an existing container after navigation without holding the old page; guarded owner keys/invalidation remain. AuthProvider also clears private cached UI before checking a persisted pageshow restoration. No undocumented native bridge is used.
+
+BirthplaceList selects presentation from its own window's media query; lazy BirthplaceSheet reuses useModalSurface and the existing paged controller. Hierarchy/selected-ID resolution stays in the existing provider/backend. Calendar controller separates read coalescing, draft, confirmed value, mutation intent and outcome. Refresh never dispatches mutation or clears an unknown receipt; another mutation is refused until same-intent retry resolves. Definite rejections retain editable draft; unknown responses retain prior verified value. Ordinary network failure retains the view, but explicit session/consent events, privacy denial and disposal invalidate generations. Home reuses the existing today operation and immutable server snapshot selection; refreshing does not clear a same-context snapshot. SDK requests already sent are not claimed canceled.
+
+No schema delta. HC-026.0 and H08-007 server plan require matching shared backend/frontend publication through the owner's existing flow. 025 timers/helper budgets/progress/abort and all previous evidence are unchanged. Lazy sheet/motion are excluded from the initial dependency closure; unused generated sidebar classes are excluded from Tailwind source scanning while the module has no importer. Keep measured byte budgets unchanged.
+
 
 ## Health execution lifetime — 025
 

@@ -1,11 +1,15 @@
 @import "tailwindcss" source(none);
 @import "./styles/theme.css";
 @import "./styles/calendar.css";
+@import "./styles/mobile.css";
+@import "./styles/dark.css";
 @source "./";
+/* Unused generated sidebar has no importer; exclude its template-only classes. */
+@source not "./components/ui/sidebar.jsx";
 @source "../index.html";
 @plugin "tailwindcss-animate";
 
-/* Library variants stay opt-in by class; OS preference never activates dark. */
+/* The shared system theme owner aligns root class, tokens and color-scheme. */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
@@ -35,7 +39,7 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-    /* Shinka tokens — UI/UX v1.1 (RGB channels). Authority: src/foundation/designTokens.js. Light-only. */
+    /* Shinka tokens — UI/UX v1.1 (RGB channels). Authority: src/foundation/designTokens.js. Light palette. */
     --shinka-plum: 111 65 90;
     --shinka-plum-deep: 76 38 63;
     --shinka-ink: 76 38 63;
@@ -118,12 +122,12 @@
 .shinka-viewport { min-height: 100vh; min-height: 100dvh; }
 .shinka-safe-content {
   padding: 24px 20px;
-  padding-top: max(24px, env(safe-area-inset-top, 0px));
-  padding-right: max(20px, env(safe-area-inset-right, 0px));
-  padding-bottom: max(24px, env(safe-area-inset-bottom, 0px));
-  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-top: max(24px, var(--safe-top));
+  padding-right: max(20px, var(--safe-right));
+  padding-bottom: max(24px, var(--safe-bottom));
+  padding-left: max(20px, var(--safe-left));
 }
 input, select, button { scroll-margin-block: 24px; }
 
 /* Home uses its own spacing, adding only device insets here. */
-.shinka-safe-shell { padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px); }
+.shinka-safe-shell { padding: var(--safe-top) var(--safe-right) 0 var(--safe-left); }

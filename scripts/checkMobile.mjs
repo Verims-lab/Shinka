@@ -1,3 +1,4 @@
+import { selectBirthplace } from "./selectBirthplace.mjs";
 import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import { FIRST_CONTENT_SOURCE } from '../base44/shared/firstContentSource.js';
@@ -31,8 +32,8 @@ export async function checkMobile(browser, origin, directory) {
       await page.goto(
         `${origin}/onboarding-fixture?step=AUTHENTICATED_PROFILE_REQUIRED&language=tr`,
       );
-      await page.locator("#place-countries").selectOption("100");
-      await page.locator("#place-0").selectOption("1001");
+      await selectBirthplace(page, "place-countries", "100");
+      await selectBirthplace(page, "place-0", "1001");
       await page.locator("#birth_date").fill("1990-01-01");
       await page.locator("#birth_time").fill("08:30");
       await page.locator("button[type=submit]").scrollIntoViewIfNeeded();

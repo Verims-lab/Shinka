@@ -7,7 +7,7 @@ export const HEALTH_SCOPE_TRANSFERS = Object.freeze([
   {id:'H03-007', localOnly:true, tests:'All canonical Foundation regressions', coverage:'Chromium/WebKit, auth, contracts, security and UI'},
   {id:'H07-013', localOnly:true, tests:'DU01–DU05', coverage:'ON-06/Home components, locale and late navigation'},
   {id:'H12-025', localOnly:true, tests:'AN02–AN07', coverage:'AuthContext, route/admin boundaries, stale sessions'},
-  {id:'H13-012', localOnly:true, tests:'U12–U14, T76, scripts/checkMobile.mjs', coverage:'320/360/390/430px and landscape; 200% text/line boxes, native inputs, modal/menu focus and long TR/EN lists'},
+  {id:'H13-012', localOnly:true, tests:'U12–U14, T76/T79, MI04–MI05, scripts/checkMobile.mjs, scripts/checkMobileExperience.mjs', coverage:'320/360/390/430px and landscape/reduced viewport; TR/EN light/dark and 200% text, contrast, shared sheet/focus/history, refresh/unknown intent and reduced motion; not physical devices'},
   {id:'H13-015', localOnly:true, tests:'Calendar UI regressions', coverage:'TR/EN, keyboard, consent and explicit actions'},
   {id:'H13-016', localOnly:true, tests:'AU01–AU05 and subsequent recovery UI cases', coverage:'TR/EN deletion/reset, focus, cancellation, double click and recovery'},
   {id:'H10-003', localOnly:false, tests:'U09–U12', coverage:'GeoNames selection UI; pure provider/cache/validation checks stay in-app'},

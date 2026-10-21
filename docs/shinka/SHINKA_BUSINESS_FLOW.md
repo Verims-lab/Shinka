@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-025
+**Current BuildMarker:** Buildmarker-026
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -10,6 +10,13 @@
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and notification delivery.
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+## Refresh and dismissal contract — 026
+
+Home refresh rereads the backend's current-day result without changing a confirmed day's pair/snapshots. Day/timezone changes invalidate the old context; refresh errors retain the last same-context view with retry. Calendar refresh reads only: it preserves selected date/editing ID, consent draft and unknown pending intent. A successful ordinary read does not certify that a previous write succeeded. Only existing mutation/readback verification confirms a save. Unknown response keeps the same action_id/revision/payload on retry and blocks a new edit intent; definite rejection leaves draft and confirmed dates visible. No local rollback claim is made.
+
+Closing a drawer/dialog or browser Back is not consent, save, cancellation of a dispatched write, deletion or reset. Pending mutation remains guarded and recoverable. Known withdrawal/session loss clears personal screens before late responses can apply. Auth/onboarding/owner guards still resolve route entry after Back/Forward; no previous-user exit-animation tree remains. All existing security/NULL-duration/content contracts are preserved.
+
 
 ## Current owner privacy flow — 023
 

@@ -1,5 +1,66 @@
 # Shinka Android / iOS compatibility evidence
 
+## Current mobile package — Buildmarker-026 / HC-026.0 (2026-10-21)
+
+This section supersedes historical light-only/mobile native-select presentation and old atomic-prerequisite statements below. Base44 remains the authority. The user supplied an eight-area mobile improvement request, not a raw store-scan result; no new store scan or hosted call was performed. Each recommendation was compared with source. Existing document scrolling, viewport-fit=cover, vh/dvh fallback, provider hierarchy/race guards, immutable daily selection and verified Calendar readback were retained.
+
+| Finding / recommendation | Implemented decision | Executed evidence path | Remaining device/platform acceptance |
+|---|---|---|---|
+| Insets, bars and keyboard reach | Document scroll remains. Env-backed top/side insets; ProductNavigation owns the only product bottom inset; no fixed save bar or zoom cap. | Retained mobile matrix plus 026 simulated 24/28/28/34px inset accounting; narrow/landscape/reduced viewport and 200% text. Simulation proves arithmetic, not OS insets. | Physical notch/system bars, rotating keyboard, OS text scaling. |
+| System light/dark | One media-query owner applies initial/live root class and color-scheme. Separate semantic dark palette, on-primary/control tokens, chart colors; subtle light secondary-text contrast correction. | Both engines measure actual text/control/focus contrast and root changes on product/admin/Health surfaces. | Native wrapper status/navigation bars and forced-color/device settings. |
+| Android Back and layer dismissal | Real browser history: one same-URL entry per open layer; shared native modal focus/Back dismissal. No keydown hardware emulation or root history trap. Pending requests remain controller-owned. | Drawer/dialog focus and Back before route traversal; Back/Forward, logout/back and reduced-motion route regression. | Android system/predictive Back in the actual Base44 wrapper; iOS swipe-back and OS eviction. |
+| Overscroll/touch | Vertical containment on the document and modal/list scroll owners. Passive single-touch observation, no touchmove preventDefault. Text remains selectable. Unsupported containment keeps accessible Refresh only. | Computed scrolling owner/Y containment, bounded list scroll, threshold/multi-touch rejection and no duplicate refresh. | Native bounce/pull-to-refresh interaction and physical pinch/horizontal navigation. |
+| Mobile birthplace selection | Lazy native dialog bottom sheet at narrow/coarse-pointer viewports; desktop select retained. Existing single paged controller/backend ID resolution remains. Vaul was evaluated; existing dialog avoids another gesture/scroll engine. | U04/U09–U12 preserve hierarchy/empty/error/retry/stale/NULL behavior; real 50-row long/homonym list, next page, keyboard/selected labels/return focus and Back measured. | VoiceOver/TalkBack spoken labels, native keyboard and provider latency. |
+| Page movement | Lazy Framer Motion animates the existing container: tab fade vs hierarchical ±12px entrance, 200ms, reduced-motion cancellation, no exit tree/remount. | MI05 policy assertions; real App navigation and session invalidation; bundle graph and SDK request counts. | Device frame pacing and platform gestures. |
+| Calendar feedback / suggested optimistic rollback | Immediate draft + saving, verified success only. Definitive rejection retains draft; unknown response retains one action_id/revision/payload and refuses a new intent until retry. Refresh is read-only and preserves draft. | MI01–MI03/H08-007, existing CA/CU/native receipt tests, real Calendar refresh/dialog/Back flow. | Owner's hosted save/lost-response/readback acceptance; no new atomicity claim. |
+| Home/Calendar pull refresh | Top-only threshold and visible feedback plus Refresh button. Coalescing, retained confirmed content on failure, known privacy/session concealment and late-response isolation. Same Home daily operation, no local regeneration. | MI01–MI04; scripted touch threshold/multitouch/single-flight/error retention and Calendar zero-write refresh. | Actual finger gesture/provider/network timing in Chrome/Safari/wrapper. |
+
+The source changes and local gate results are recorded in [026 verification](mobile-026/verification.json); [before performance](mobile-026/before-performance.json) and [after performance](mobile-026/after-performance.json) compare the same production byte budgets and actual-App laboratory route samples. [Initial findings](mobile-026/initial-findings.json) preserves the first measured failures (Health 200% overflow and 368-byte CSS raw-budget excess). They are not hidden by dropping checks. The fix makes Health controls/rows wrap and bounds the empty toast viewport/text lines; unused generated sidebar-only CSS is excluded after checking its lack of importers. WebKit’s button-click focus difference is fixed by explicitly focusing the sheet opener before mounting the modal. No byte budget is raised. External fonts/SDK are substituted or blocked in the lab; no field p75/INP or physical performance is inferred.
+
+Health: add H08-007 (three controller helpers); update H13-001/006/010 and H13-012/015 local acceptance descriptions; update old light-only/tag expectations. No case/suite deleted. H13-013 remains external. H10-003/H13-014/H16-007 and their 025 timer fault-injection evidence remain. No live Full Health, provider probe, content import, real mutation, main publish or store artifact was run.
+
+### Executed local results
+
+Chromium 156.0.8078.4 and WebKit 27.2 each passed **574/574 canonical tests, 150/150 new mobile checks and 87/87 retained mobile checks**, with zero page exceptions. Each local in-app Health run saved 132 PASS / 0 FAIL / 13 expected hosted-prerequisite BLOCKED; this is synthetic transport, not published Full Health. Catalog: 170 total / 145 in-app / 10 local / 13 external / 2 future. H10-003 and H13-014 also pass normal and deliberately slowed fixture-timer runs, with zero external requests. HT01–HT09/H16-007 continue to check timeout cleanup and safe evidence/cache handling.
+
+Clean install/tree, typecheck, lint, production build, Repo Health 17/17, five-package retention and whitespace gates passed. Security gate: zero High/Critical; two existing Moderate router-package findings remain, no dependency change. Both real text and element bounds are checked so clipping cannot conceal horizontal text overflow. The 144 surface/theme/language/size/text-scale rows per engine have no measured text-contrast failure (minimum observed 5.28:1), no <44px control and no horizontal text overflow. Semantic control/focus boundaries exceed 3:1. Disabled controls are excluded from contrast certification; this remains a limited lab test, not comprehensive WCAG certification.
+
+| Comparable laboratory measurement | Before (`94da577`) | After (026) |
+|---|---:|---:|
+| Initial JS raw / gzip bytes | 478,329 / 158,980 | 485,450 / 161,080 |
+| CSS raw / gzip bytes | 87,430 / 15,054 | 77,557 / 14,274 |
+| Median route DOMContentLoaded range (nine routes, three cold samples each) | 15.4–25.9ms | 16.0–21.5ms |
+| Home daily SDK requests per cold entry | 1 `dailyMessage.today` | 1 `dailyMessage.today` (no duplicate) |
+| Dependency cycles / lazy-chunk error and reload retry | 0 / PASS | 0 / PASS |
+
+Unchanged limits: JS 500,000 raw / 165,000 gzip; CSS 90,000 / 16,000. These are loopback/fallback-font samples, not cellular latency or field p75/INP. The new 50-of-150-row sheet opened in about 32ms Chromium / 33ms WebKit in the measured interaction; one next-page click made one request and rendered 50 rows. The former OS-native select opening time was not instrumented, so no before/after speed improvement is asserted.
+
+An initial three-sample run showed Pattern CLS 0.1484 only after the patch. A separate [24-run comparison](mobile-026/pattern-loading-comparison.json) reproduced the identical lunar loading-to-content expansion and value in **both** preserved baseline and final bundles, with and without reduced motion and no route animation active. This pre-existing cold-load movement is retained as an observation, not hidden as zero or called a new animation regression. You (0.0770) and privacy (0.0055) loading shifts also remain; no field-vitals acceptance is claimed. The exact per-route samples, DOM counts and request counts remain in the raw before/after files.
+
+Representative WebKit synthetic views: [Home dark at 200%](mobile-026/home-dark-320-200percent.png), [Calendar light at 200%](mobile-026/calendar-light-320-200percent.png), [long-list sheet](mobile-026/birthplace-dark-long-list-200percent.png).
+
+### Official sources accessed 2026-10-21
+
+| Source | Decision supported / limit |
+|---|---|
+| [Base44 store preparation and wrapper](https://docs.base44.com/documentation/building-your-app/uploading-to-app-stores) | Published web app runs in a secure WebView. The inspected document specifies no usable JavaScript system-back or native bar-color API; no bridge is invented and no store scan/build was requested. |
+| [Android core app quality](https://developer.android.com/docs/quality-guidelines/core-app-quality) | Orientation/form-factor parity and background/resume require device acceptance alongside responsive web tests. |
+| [Android custom Back](https://developer.android.com/guide/navigation/custom-back) | System Back/predictive Back belongs to native host navigation; browser history tests and Escape are separate. |
+| [WebKit safe areas](https://webkit.org/blog/7929/designing-websites-for-iphone-x/) | viewport-fit=cover requires explicit inset-aware content edges; preserve minimum spacing and background. |
+| [MDN overscroll](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overscroll-behavior) | Apply containment to actual scroll containers. Y-only behavior preserves the separate horizontal axis; support/device behavior must be checked. |
+| [WCAG 2.2](https://www.w3.org/TR/WCAG22/) | Measure text contrast (4.5:1 normal / 3:1 large), interactive boundaries/focus (3:1), 200% text, reflow, keyboard/focus and alternatives to gestures. This limited matrix is not a full conformance certification. |
+
+### Owner acceptance after the existing sync/publish flow (maximum five steps)
+
+1. In TR and EN, open Home, Calendar, Pattern and You; switch the phone between light/dark while the app stays open. Rotate and enlarge text. Confirm all content/buttons remain reachable above system bars and with the keyboard open.
+2. In ON-04 or You editing, open country/region/settlement sheets; try a long list/page, Back, close and keyboard selection. Verify the saved birthplace stays until explicitly changed/cleared.
+3. On Home and Calendar, pull at the top and use Refresh. Confirm today's Shinka stays the same, Calendar's unsaved date stays, and offline retry keeps the last view. Never interpret an unknown save as rollback; use the same-change Check/Retry.
+4. Open a confirmation then use system Back; verify the layer closes before the page. Try browser Back/Forward, reduced motion and sign out; prior private content must not return. Repeat native wrapper system Back/status-bar checks separately if that host is available.
+5. Run the newly published Full Health in the app and save/open its report. Record actual Android/iPhone model/OS/browser or wrapper, keyboard, VoiceOver/TalkBack and gesture results separately; desktop WebKit is not physical iPhone evidence.
+
+No full Android/iOS compatibility, native wrapper or store-acceptance PASS is asserted. Earlier original ON-05, legal-publication, provider/erasure and hosted acceptance remain separate.
+
+
 ## Privacy addition — Buildmarker-023 / HC-023.0 (2026-10-21)
 
 The actual App `/account-privacy` and public `/delete-account` paths add single-confirmation, visible unknown/check/continue and post-User-removal read-only outcome. Local Chromium/WebKit coverage includes TR/EN at 320/360/390/430px and 844×390, computed 100%/200% text, modal Tab/Escape/initial-and-return focus, labels/status and ≥44px controls. Existing safe-area padding/100dvh remain; zoom is not disabled. Each engine passed 550 tests and 23 privacy flows; zero page exceptions. Initial JS 475,923/158,117 gzip and CSS 87,430/15,054 meet the existing budgets. Final engine/count/geometry evidence: [023 verification](privacy-023/verification.json). No physical device, OS text scaling, VoiceOver/TalkBack spoken output, provider callback or store acceptance was executed.

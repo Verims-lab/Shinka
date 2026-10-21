@@ -2,11 +2,19 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-025
+**Current BuildMarker:** Buildmarker-026
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## Buildmarker-026 — mobile compatibility implementation
+
+Started from clean local/origin Test `bb375f6`; main was one merge commit ahead. Fast-forwarded and synchronized Test to `94da577` before edits. System theme and the responsive birthplace sheet supersede the two old presentation decisions under the explicit user request. Retained Base44/data authority, one picker controller, same-day Home selection, Calendar receipt readback and 025 timer/cancel/progress behavior. No schema or dependency change.
+
+Implemented shared safe-area/scroll ownership, passive top-only refresh with an accessible button, history/focus-aware layers and lazy short route motion without retained private exit pages. Calendar retains drafts/verified data and unresolved intent across read refresh or failure. The initial local runs exposed large-text Health wrapping, a CSS budget excess and WebKit trigger-focus behavior; all initial findings remain in the [single mobile report](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md) and its evidence folder. Original source colors remain preserved separately from the documented accessible secondary-text amendment. No case was removed; H08-007 adds three controller checks and existing H13 coverage is updated.
+
+Executed local checks and final before/after measurements are recorded in [026 verification](reports/mobile-026/verification.json). No live Full Health, GeoNames probe, import, user mutation, native build, store scan or main publish. Hosted acceptance, physical devices, OS keyboard/text scaling, wrapper system Back/bars and screen-reader speech remain separate user acceptance. Internal Build retains 022–026; older Git/report evidence is preserved.
 
 ## Buildmarker-025 — H10-003 timing correction
 

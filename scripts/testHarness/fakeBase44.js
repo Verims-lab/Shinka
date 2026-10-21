@@ -7,6 +7,7 @@ const params = new URLSearchParams(location.search);
 let session = params.get('sdkSession') || 'anonymous';
 let delayed = null;
 const calls = [];
+const operationGates = new Map(), operationFailures = new Set();
 globalThis.__sdkLabCalls = calls; // CLI-only action-name counters; never request payloads.
 let releaseHydration;
 let dailyAttempts = 0;
@@ -29,6 +30,9 @@ async function loadCalendarLab() {
 const hydration = params.has('holdHydration') ? new Promise(resolve => { releaseHydration = resolve; }) : Promise.resolve();
 export const authFixture = {
   calls,
+  holdOperation(name) { let resolve; const promise=new Promise(done=>{resolve=done;});operationGates.set(name,{promise,resolve}); },
+  releaseOperation(name) { const gate=operationGates.get(name);operationGates.delete(name);gate?.resolve(); },
+  failOperation(name) { operationFailures.add(name); },
   hydrationReturned: false,
   releaseHydration() { releaseHydration?.(); },
   setSession(value) { session = value; },
@@ -48,6 +52,8 @@ export const base44 = {
   },
   functions: { invoke: async (name, body) => {
     calls.push({ name, action: body.action }); // Action names only; no user payload.
+    if(operationGates.has(name))await operationGates.get(name).promise;
+    if(operationFailures.delete(name))throw new Error('SYNTHETIC_NETWORK_FAILURE');
     if (name === 'applicationSession') return { data: { ...await base44.auth.me(), authority: 'BASE44_NATIVE_V1' } };
     if (name === 'adminTestTools') {
       if (!testToolsLab) testToolsLab = import('@/foundation/tests/nativeFixture').then(({nativeFixture})=>{const fixture=nativeFixture();fixture.state.time=new Date().toISOString();Object.assign(fixture.tables.User.find(row=>row.id==='ownerA'),{full_name:'Synthetic Target',email:'target@example.invalid'});return fixture;});

@@ -54,6 +54,7 @@ export default function BirthplacePicker({
       disabled={disabled}
       picker={picker}
       t={t}
+      language={language}
     />
   );
   return (

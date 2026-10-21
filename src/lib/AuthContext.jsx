@@ -85,10 +85,18 @@ export const AuthProvider = ({ children, client = base44 }) => {
   useEffect(() => {
     if (!isAuthenticated) return;
     const refresh = () => { if (document.visibilityState === "visible") void checkUserAuth(); };
+    const restore = event => {
+      if (!event.persisted) return;
+      queryClientInstance.clear(); setUser(null); setIsAuthenticated(false);
+      window.dispatchEvent(new Event('shinka-health-access-changed'));
+      void checkUserAuth();
+    };
+    window.addEventListener('pageshow', restore);
     window.addEventListener("focus", refresh);
     document.addEventListener("visibilitychange", refresh);
     const timer = setInterval(refresh, 60000);
     return () => {
+      window.removeEventListener('pageshow', restore);
       window.removeEventListener("focus", refresh);
       document.removeEventListener("visibilitychange", refresh);
       clearInterval(timer);

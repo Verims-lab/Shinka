@@ -6,16 +6,16 @@ export default function LunarTimeline({ timeline, language }) {
   const x = position => 12 + position * 276;
   return <div data-lunar-timeline className="space-y-4">
     <svg viewBox="0 0 300 84" className="w-full" aria-hidden="true" data-lunar-track>
-      <path d="M12 32H288" fill="none" stroke="#93637B"/>
+      <path d="M12 32H288" fill="none" stroke="rgb(var(--shinka-mauve))"/>
       {timeline.nodes.map((node, index) => <g key={node.instant}>
         <g transform={`translate(${x(node.position)} 32)`}>
-          <circle r="8" fill={node.phase_code === 'NEW' ? '#6F415A' : '#FFF8F3'} stroke="#6F415A"/>
-          {['WAXING', 'WANING'].includes(node.phase_code) && <path d={node.phase_code === 'WAXING' ? 'M0-8 A8 8 0 0 0 0 8 Q6 0 0-8Z' : 'M0-8 A8 8 0 0 1 0 8 Q-6 0 0-8Z'} fill="#6F415A"/>}
-          {index === timeline.active_index && <circle r="11" fill="none" stroke="#6F415A" strokeWidth="1.5"/>}
+          <circle r="8" fill={node.phase_code === 'NEW' ? 'rgb(var(--shinka-plum))' : 'rgb(var(--shinka-ivory))'} stroke="rgb(var(--shinka-plum))"/>
+          {['WAXING', 'WANING'].includes(node.phase_code) && <path d={node.phase_code === 'WAXING' ? 'M0-8 A8 8 0 0 0 0 8 Q6 0 0-8Z' : 'M0-8 A8 8 0 0 1 0 8 Q-6 0 0-8Z'} fill="rgb(var(--shinka-plum))"/>}
+          {index === timeline.active_index && <circle r="11" fill="none" stroke="rgb(var(--shinka-plum))" strokeWidth="1.5"/>}
         </g>
-        <text x={x(node.position)} y="13" textAnchor="middle" fill="#4C263F" fontSize="12">{index + 1}</text>
+        <text x={x(node.position)} y="13" textAnchor="middle" fill="rgb(var(--shinka-ink))" fontSize="12">{index + 1}</text>
       </g>)}
-      <path d={`M${x(timeline.today_position)} 45v20m-4-4 4 4 4-4`} fill="none" stroke="#6F415A" strokeWidth="2" data-today-marker/>
+      <path d={`M${x(timeline.today_position)} 45v20m-4-4 4 4 4-4`} fill="none" stroke="rgb(var(--shinka-plum))" strokeWidth="2" data-today-marker/>
     </svg>
     <p className="text-shinka-caption" data-lunar-current>{copy('today')} · {copy(timeline.nodes[timeline.active_index].phase_code)} · {copy('active')}</p>
     <ol className="space-y-3" aria-label={copy('lunar')}>

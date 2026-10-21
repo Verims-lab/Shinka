@@ -1,0 +1,308 @@
+{
+  "buildMarker": "Buildmarker-026",
+  "healthCatalog": "HC-026.0",
+  "date": "2026-10-21",
+  "sourceBaseline": "94da577",
+  "requestSha256": "c19174f7d4d5539a4506248b2bf0124de4c607dd25f9e8c0deba175a2bf35942",
+  "scope": "LOCAL_BROWSER_SYNTHETIC_AND_REPOSITORY_ONLY",
+  "engines": {
+    "chromium": {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "canonical": {
+        "tests": 574,
+        "passed": 574,
+        "failed": 0
+      },
+      "catalog": {
+        "version": "HC-026.0",
+        "suites": 16,
+        "cases": 170,
+        "localRegression": 10,
+        "current": 145,
+        "future": 2,
+        "external": 13
+      },
+      "newMobileMatrix": {
+        "total": 150,
+        "passed": 150,
+        "failed": []
+      },
+      "retainedMobileChecks": {
+        "total": 87,
+        "passed": 87
+      },
+      "flows": {
+        "adminNavigation": 19,
+        "dailyFlow": 5,
+        "patternFlow": 22,
+        "youFlow": 24,
+        "privacyFlow": 23,
+        "calendarFlow": 8,
+        "adminTestFlow": 4
+      },
+      "inAppHealth": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "saveState": "SAVED",
+        "counts": {
+          "PASS": 132,
+          "FAIL": 0,
+          "BLOCKED": 13
+        },
+        "blocked": [
+          "H04-019",
+          "H05-001",
+          "H05-002",
+          "H05-003",
+          "H05-004",
+          "H05-005",
+          "H05-006",
+          "H05-007",
+          "H05-008",
+          "H05-009",
+          "H08-005",
+          "H09-004",
+          "H12-031"
+        ],
+        "note": "Synthetic transport has no hosted prerequisites; these 13 BLOCKED results are neither a live failure nor a hosted PASS."
+      },
+      "retainedTimingFaultInjection": [
+        {
+          "id": "H10-003",
+          "slowTimers": false,
+          "status": "PASS",
+          "durationMs": 39,
+          "externalRequests": 0
+        },
+        {
+          "id": "H13-014",
+          "slowTimers": false,
+          "status": "PASS",
+          "durationMs": 8,
+          "externalRequests": 0
+        },
+        {
+          "id": "H10-003",
+          "slowTimers": true,
+          "status": "PASS",
+          "durationMs": 38,
+          "externalRequests": 0
+        },
+        {
+          "id": "H13-014",
+          "slowTimers": true,
+          "status": "PASS",
+          "durationMs": 9,
+          "externalRequests": 0
+        }
+      ],
+      "pageErrors": []
+    },
+    "webkit": {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "canonical": {
+        "tests": 574,
+        "passed": 574,
+        "failed": 0
+      },
+      "catalog": {
+        "version": "HC-026.0",
+        "suites": 16,
+        "cases": 170,
+        "localRegression": 10,
+        "current": 145,
+        "future": 2,
+        "external": 13
+      },
+      "newMobileMatrix": {
+        "total": 150,
+        "passed": 150,
+        "failed": []
+      },
+      "retainedMobileChecks": {
+        "total": 87,
+        "passed": 87
+      },
+      "flows": {
+        "adminNavigation": 19,
+        "dailyFlow": 5,
+        "patternFlow": 22,
+        "youFlow": 24,
+        "privacyFlow": 23,
+        "calendarFlow": 8,
+        "adminTestFlow": 4
+      },
+      "inAppHealth": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "saveState": "SAVED",
+        "counts": {
+          "PASS": 132,
+          "FAIL": 0,
+          "BLOCKED": 13
+        },
+        "blocked": [
+          "H04-019",
+          "H05-001",
+          "H05-002",
+          "H05-003",
+          "H05-004",
+          "H05-005",
+          "H05-006",
+          "H05-007",
+          "H05-008",
+          "H05-009",
+          "H08-005",
+          "H09-004",
+          "H12-031"
+        ],
+        "note": "Synthetic transport has no hosted prerequisites; these 13 BLOCKED results are neither a live failure nor a hosted PASS."
+      },
+      "retainedTimingFaultInjection": [
+        {
+          "id": "H10-003",
+          "slowTimers": false,
+          "status": "PASS",
+          "durationMs": 47,
+          "externalRequests": 0
+        },
+        {
+          "id": "H13-014",
+          "slowTimers": false,
+          "status": "PASS",
+          "durationMs": 54,
+          "externalRequests": 0
+        },
+        {
+          "id": "H10-003",
+          "slowTimers": true,
+          "status": "PASS",
+          "durationMs": 47,
+          "externalRequests": 0
+        },
+        {
+          "id": "H13-014",
+          "slowTimers": true,
+          "status": "PASS",
+          "durationMs": 55,
+          "externalRequests": 0
+        }
+      ],
+      "pageErrors": []
+    }
+  },
+  "qualityGates": {
+    "npmCi": "PASS",
+    "npmLsAll": "PASS",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "repoHealth": "17/17 PASS",
+    "recordBuild": "PASS: 022–026, five unique packages",
+    "productionBuild": "PASS",
+    "gitDiffCheck": "PASS",
+    "dependencySecurity": {
+      "high": 0,
+      "critical": 0,
+      "moderate": 2,
+      "gate": "npm run security:deps PASS; npm audit --json exits 1 for retained moderate router findings; no dependency changes"
+    }
+  },
+  "healthChanges": {
+    "added": [
+      "H08-007"
+    ],
+    "updated": [
+      "H13-001",
+      "H13-006",
+      "H13-010",
+      "H13-012",
+      "H13-013",
+      "H13-015"
+    ],
+    "deleted": [],
+    "newCanonicalHelpers": [
+      "MI01",
+      "MI02",
+      "MI03",
+      "MI04",
+      "MI05"
+    ],
+    "retained025": [
+      "H10-003",
+      "H13-014",
+      "H16-007",
+      "HT01–HT09"
+    ]
+  },
+  "notExecuted": [
+    "hosted Full Health",
+    "live provider probe",
+    "content import",
+    "real user mutation",
+    "physical Android/iOS",
+    "VoiceOver/TalkBack speech",
+    "native system/predictive Back or bar color",
+    "main merge/publish",
+    "IPA/AAB/store scan/submission"
+  ],
+  "performance": {
+    "before": {
+      "initialJS": {
+        "raw": 478329,
+        "gzip": 158980
+      },
+      "css": {
+        "raw": 87430,
+        "gzip": 15054
+      }
+    },
+    "after": {
+      "initialJS": {
+        "raw": 485450,
+        "gzip": 161080
+      },
+      "css": {
+        "raw": 77557,
+        "gzip": 14274
+      }
+    },
+    "physicalOrFieldAcceptance": false,
+    "budgets": {
+      "initialRaw": 500000,
+      "initialGzip": 165000,
+      "cssRaw": 90000,
+      "cssGzip": 16000
+    },
+    "passed": true,
+    "rawMeasurements": [
+      "before-performance.json",
+      "after-performance.json"
+    ],
+    "lazyChunkFailureRetry": {
+      "passed": true,
+      "scope": "Synthetic network asset failure and full-reload retry, real App route"
+    },
+    "cycles": [],
+    "layoutShiftInvestigation": "Pattern cold load intermittently reaches CLS 0.148378 in both saved baseline and final bundles, including reduced motion; the same lunar section expands when data arrives, with no route animation active. 24 independent runs recorded in pattern-loading-comparison.json. Not a new motion regression or field acceptance."
+  },
+  "initialFailuresPreserved": "initial-findings.json",
+  "reproduce": [
+    "npm ci",
+    "npm run typecheck",
+    "npm run lint",
+    "npm ls --all",
+    "npm run security:deps",
+    "npm run health:repo",
+    "npm run build",
+    "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-026-audit-chromium FOUNDATION_MOBILE_DIR=/private/tmp/shinka-026-mobile-chromium npm run test:foundation",
+    "FOUNDATION_BROWSER=webkit FOUNDATION_AUDIT_DIR=/private/tmp/shinka-026-audit-webkit FOUNDATION_MOBILE_DIR=/private/tmp/shinka-026-mobile-webkit npm run test:foundation",
+    "node scripts/measureMaintenance.mjs /private/tmp/shinka-026-performance",
+    "node scripts/recordBuild.mjs --check"
+  ]
+}

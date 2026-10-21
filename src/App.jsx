@@ -1,3 +1,5 @@
+import SystemTheme from "@/features/mobile/SystemThemeBinding";
+import RouteMotion from "@/features/mobile/RouteMotion";
 import { lazy } from "react";
 import RouteBoundary from "@/components/RouteBoundary";
 import { Toaster } from "@/components/ui/toaster";
@@ -98,15 +100,18 @@ function App() {
       </RouteBoundary>
     );
   return (
+    <>
+    <SystemTheme />
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
         <Router>
           <ScrollToTop />
-          <AuthenticatedApp />
+          <RouteMotion><AuthenticatedApp /></RouteMotion>
         </Router>
         <Toaster />
       </QueryClientProvider>
     </AuthProvider>
+    </>
   );
 }
 

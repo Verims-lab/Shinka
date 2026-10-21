@@ -42,8 +42,8 @@ export default function HealthControls({ running, report, onRun, language = 'en'
         <Play className="h-4 w-4" />
         {text('run')}
       </ShinkaButton>
-      <div className="flex items-end gap-2">
-        <div className="flex flex-col">
+      <div className="flex flex-wrap items-end gap-2 min-w-0">
+        <div className="flex flex-col min-w-0">
           <label
             htmlFor="suite-select"
             className="text-[11px] uppercase tracking-wider text-shinka-muted"

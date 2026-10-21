@@ -1,3 +1,4 @@
+import { checkMobileExperience } from "./checkMobileExperience.mjs";
 import { checkHealthTiming } from './checkHealthTiming.mjs';
 import { checkPrivacyFlow } from './checkPrivacyFlow.mjs';
 import { checkYouFlow } from './checkYouFlow.mjs';
@@ -57,7 +58,7 @@ try {
   // Preserve normal Chromium background/frame scheduling, which Playwright otherwise disables.
   browser=await engine.launch({headless:true,ignoreDefaultArgs:['--disable-background-timer-throttling','--disable-backgrounding-occluded-windows','--disable-renderer-backgrounding']});
   const page=await browser.newPage({viewport:{width:1280,height:900}});
-  await page.emulateMedia({colorScheme:"dark"}); // Product stays light even when the OS prefers dark.
+  await page.emulateMedia({colorScheme:"dark"}); // Exercise the current system-following dark theme.
   await page.route("**/*",route=>new URL(route.request().url()).origin===origin?route.continue():route.abort());
   const pageErrors=[];page.on("pageerror",error=>pageErrors.push(error.message));
   await page.goto(`${origin}/internal/health`);
@@ -66,7 +67,11 @@ try {
   const probeBundle = await collectBrowserMeasurements(browser, origin, identity, browserName);
   await page.addInitScript(bundle=>sessionStorage.setItem('shinka.browser-evidence.v1',JSON.stringify(bundle)),probeBundle);
   await page.evaluate(bundle=>window.__acceptBrowserEvidence(bundle),probeBundle);
-  if (process.env.FOUNDATION_TIMING_ONLY === '1') {
+  if (process.env.FOUNDATION_MOBILE_EXPERIENCE_ONLY === '1') {
+    const mobileExperience=await checkMobileExperience(browser,origin,process.env.FOUNDATION_MOBILE_DIR);
+    console.log(JSON.stringify({mobileExperience,pageErrors},null,2));
+    if(mobileExperience.some(r=>!r.passed)||pageErrors.length)process.exitCode=1;
+  } else if (process.env.FOUNDATION_TIMING_ONLY === '1') {
     const timing = await checkHealthTiming(browser, origin);
     console.log(JSON.stringify({scope:'LOCAL_SYNTHETIC_TIMER_FAULT_INJECTION',timing},null,2));
   } else if (process.env.FOUNDATION_MOBILE_ONLY === '1') {
@@ -123,6 +128,7 @@ try {
   }
   const previewProbes = probeBundle.measurements.map(probe=>({probe,passed:['READY','MEASURED'].includes(probe.state)}));
   const adminNavigation = await checkAdminNavigation(page, origin, process.env.FOUNDATION_ADMIN_DIR);
+  const mobileExperience = await checkMobileExperience(browser,origin,process.env.FOUNDATION_MOBILE_DIR);
   const mobile = await checkMobile(browser, origin, process.env.FOUNDATION_MOBILE_DIR);
   const dailyFlow = await checkDailyFlow(page, origin, process.env.FOUNDATION_DAILY_DIR);
   const patternFlow = await checkPatternFlow(page, origin, process.env.FOUNDATION_PATTERN_DIR);
@@ -136,8 +142,8 @@ try {
     const audit=await page.evaluate(()=>({registry:window.__healthAuditRegistry,report:window.__savedHealthReport}));
     await writeHealthAudit(root,process.env.FOUNDATION_AUDIT_DIR,audit.registry,audit.report,results);
   }
-  console.log(JSON.stringify({healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
-  if(mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||calendarHealth.some(c=>c.status!=="PASS")||adminTestHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
+  console.log(JSON.stringify({healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
+  if(mobileExperience.some(r=>!r.passed)||mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||calendarHealth.some(c=>c.status!=="PASS")||adminTestHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
   }
   }
 } catch(error){console.error(error);process.exitCode=1;}

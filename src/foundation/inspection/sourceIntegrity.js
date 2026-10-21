@@ -1,7 +1,7 @@
 // Logical vs physical source integrity (pure). UI/UX v1.1 = ONE logical source in FOUR physical parts.
 import { LOGICAL_SOURCE_COUNT, EXPECTED_UIUX_PARTS, physicalAttachmentCount, SOURCE_INVENTORY } from "@/foundation/sourceInventory";
 import { UIUX_COMPANION, UIUX_TABLES, DESIGN_TABLE, ICON_TABLE, APPROVED_COPY, QA_CHECKLIST } from "@/foundation/uiuxTables";
-import { DESIGN_TOKENS } from "@/foundation/designTokens";
+import { DESIGN_TOKENS, UIUX_COLOR_AMENDMENTS } from "@/foundation/designTokens";
 import { BOTTOM_NAV, PROFILE_ENTRY } from "@/foundation/uiContract";
 
 const ITEM_KEYS = { home: "Home", calendar: "Calendar", pattern: "Pattern", you: "You" };
@@ -42,7 +42,7 @@ export function checkSplitSource(inventory, authorityTable, continuity) {
 export function checkUiuxTables(t) {
   const r = {
     tableCount: t.tables.length, emptyTables: t.tables.filter((x) => !x.rows).map((x) => x.n),
-    colorsMatch: JSON.stringify(t.design.colors) === JSON.stringify(t.tokens.colors),
+    colorsMatch: JSON.stringify({ ...t.design.colors, ...UIUX_COLOR_AMENDMENTS }) === JSON.stringify(t.tokens.colors),
     iconsMatch: t.icons.length === 4 && t.icons.every((i) => t.iconMap[i.item] === i.icon) && t.icons.find((i) => i.item === "You")?.placement === "TOP_RIGHT_PROFILE",
     copyGroups: Object.keys(t.copy), emptyCopyGroups: Object.entries(t.copy).filter(([, v]) => !v.length).map(([k]) => k),
     qaItems: t.qa.length, companionMirrorsSrc03: t.companion.mirrors === "SRC-03" && t.companion.visualReferenceRules.length >= 3,

@@ -1,3 +1,4 @@
+import RefreshControl from "@/features/mobile/RefreshControl";
 import ProductLanguageControls from '@/components/profile/ProductLanguageControls';
 import { useEffect, useState } from 'react';
 import ProductNavigation from '@/components/shinka/ProductNavigation';
@@ -22,6 +23,7 @@ export default function Home({ profileAccess = undefined, renderProfileAccess = 
     </header>
     <main className="flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6">
       <h1 className="font-heading font-medium text-shinka-h1 break-words">{copy(greetingKey())}{name ? `, ${name}` : ''}</h1>
+      <RefreshControl language={language} refresh={daily.reload} loading={daily.loading} error={daily.error}/>
       {row ? <div className="space-y-5" data-daily-id={row.id}>
         {daily.value?.notice === 'DAILY_DUPLICATE_RECONCILED' && <p role="status" className="text-shinka-caption">{copy('reconciled')}</p>}
         <ShinkaCard title={copy('shinka')}><p className="text-shinka-body-lg whitespace-pre-wrap break-words" data-daily-message>{row[`message_${language}_snapshot`]}</p></ShinkaCard>
