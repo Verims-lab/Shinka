@@ -2,13 +2,25 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-020
+**Current BuildMarker:** Buildmarker-022
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## You/Profile authority — 022
+
+User request `3dd6f189-011e-4fc0-865c-12957dad45a1/Pasted text.txt`, SHA-256 `3be20ad4c06ef0bb1d79040b06d57b43105e84bb7dd3787567e94886225761b8`, authorizes You/profile/preferences, read-only consent status, approved legal destinations, Sign Out and current native-admin entry. It explicitly excludes new withdrawal, deactivation, notification delivery/scheduler, live Health/user writes and main publish. Pattern 021 remains implemented. No schema, content, Sun, consent version or identity authority changes.
+
+Original EN success/error/cancel strings are imported from `uiuxTables.APPROVED_COPY.you`; shared onboarding validation/copy remains canonical. New scoped labels/status and TR translations live in `youCopy` and are attributed to this implementation request, not original-source verbatim text. Terms of Service remains untranslated. No approved Privacy Policy/Terms destination or body was found in repository sources; the UI presents unpublished status, with no invented URL, legal text or empty button. Owner-provided approved destinations remain a content acceptance item.
+
+## Pattern authority — 021
+
+User request `37ea216e-3297-448f-bd6c-9d783b518ece/Pasted text.txt` authorizes Pattern backend/calculation/UI/local tests/Health/docs with Test-only delivery. UC-16/17 and KK-21/22/34 remain the rules. The request explicitly clarifies **30 calendar days**, one logical day selected by the current Home reconciliation, independent section errors and no generation/snapshot changes on entry. No new content/category/psychological interpretation or external service is authorized.
+
+Implementation decision: use the existing UserPatternSummary field contract as a freshly calculated read-only projection. Stored summaries are not a second authority and are neither read nor written by Pattern; no new schema/cache is added. Original EN state strings come verbatim from `uiuxTables.APPROVED_COPY.pattern`; approved category TR/EN names remain OD-002. Scoped TR state translations and phase/section labels are centralized in `patternCopy`, attributable to this feature implementation, not claimed verbatim original-source text. Historical SQL/atomic-only prerequisites and future Pattern labels below describe earlier checkpoints; current native Pattern supersedes them. Hosted/device/ON-05 acceptance stays open.
 
 ## 020 user instruction and evidence provenance
 

@@ -1,3 +1,5 @@
+let youLab;
+const loadYouLab = () => youLab ||= import("@/foundation/tests/youFixture").then(({youFixture})=>{const f=youFixture();f.tables.UserPreferences[0].language_code=params.get("language")==="tr"?"tr":"en";globalThis.__youLab=f;return f;});
 // CLI-only substitution; no application build imports this module or its URL controls.
 const params = new URLSearchParams(location.search);
 let session = params.get('sdkSession') || 'anonymous';
@@ -7,6 +9,7 @@ globalThis.__sdkLabCalls = calls; // CLI-only action-name counters; never reques
 let releaseHydration;
 let dailyAttempts = 0;
 let calendarLab;
+let patternLab;
 let testToolsLab;
 const healthRuns=[];
 async function loadCalendarLab() {
@@ -51,6 +54,13 @@ export const base44 = {
       try { return { data: await f.tools(body, actor) }; }
       catch (error) { return { data: { error_code: error.code || 'TEST_TOOLS_FAILED' } }; }
     }
+    if (name === 'you') { const f=await loadYouLab();return {data:await(await f.http(body)).json()}; }
+    if (name === 'pattern') {
+      if (!patternLab) patternLab = import('@/foundation/tests/patternFixture').then(({patternFixture,patternRow})=>{const f=patternFixture();f.tables.UserDailyMessage.push(patternRow('2026-10-19'));globalThis.__patternLab=f;return f;});
+      const f=await patternLab;
+      try { return {data:await f.request(body.action)}; }
+      catch(error) { return {data:{error_code:error.code||'PATTERN_READ_FAILED'}}; }
+    }
     if (name === 'calendar') {
       const f = await loadCalendarLab();
       try {
@@ -65,10 +75,12 @@ export const base44 = {
       await hydration; authFixture.hydrationReturned = true;
       return { data: {
       state: ['AUTHENTICATED_CYCLE_STEP', 'FIRST_SHINKA_DEPENDENCY', 'ACTIVE_EXISTING_USER'].includes(params.get('onboardingState')) ? params.get('onboardingState') : 'AUTHENTICATED_PROFILE_REQUIRED',
-      preferences: params.has('uninitialized') ? null : { language_code: params.get('language') === 'tr' ? 'tr' : 'en', timezone: 'UTC' }, today: '2026-10-20',
+      profile: youLab ? (await (await loadYouLab()).request('read')).profile : undefined,
+      preferences: youLab ? (await (await loadYouLab()).request('read')).preferences : params.has('uninitialized') ? null : { language_code: params.get('language') === 'tr' ? 'tr' : 'en', timezone: 'UTC' }, today: '2026-10-20',
     } };
     }
     if (name === 'dailyMessage') {
+      if(youLab)return {data:await(await loadYouLab()).today()};
       dailyAttempts++;
       if (params.get('dailyScenario') === 'notReady' || params.get('dailyScenario') === 'retry' && dailyAttempts === 1) return { data: { error_code: 'DAILY_ATOMIC_CAPABILITY_REQUIRED' } };
       const fixture = globalThis.__dailyFixture;

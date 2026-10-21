@@ -2,15 +2,31 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-020
+**Current BuildMarker:** Buildmarker-022
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
 **Implemented:** Tokens (`src/foundation/designTokens.js` ↔ `src/index.css`), contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), primitives (`src/components/shinka/`), Foundation shell aligned; scoped Profile/You admin menu and internal panel.
-**Not Implemented:** Verified hosted Calendar mutations, Pattern and full You/account workflows; new daily persistence remains blocked. ON-06/Home rendering and request states are implemented.
+**Not Implemented:** Current-build hosted/device acceptance, approved legal destinations, withdrawal and deactivation. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+## Implemented You UX — 022
+
+Top-right profile opens You for completed users, including normal users. Incomplete users retain onboarding and its verified-admin tools. You has My Profile, App Preferences, Account & Privacy, top Back and unchanged three-item bottom navigation. Admin Panel appears only under the existing fresh AuthContext.isAdmin decision. Shared ShinkaCard/Button/Input/Select, relative line heights, minimum 44px controls and 52px primary actions remain. ShinkaButton now forwards a DOM ref for proper focus return after Save/Cancel.
+
+Inline profile edit opens with name focus; field validation moves focus to the failing field. Save failure preserves draft; success follows exact backend readback and returns focus to Edit. Current persisted Sun is read-only; its value changes after verified profile save, not client calculation. Saved birthplace remains visible independently of picker lists. Provider error, Clear and incomplete selection reuse the existing localized selector states. Profile and preferences have separate Save and success results; no blanket partial-success message.
+
+Unknown write has Check saved result and explicit same-save Retry; edits are locked while outcome is unknown. A conflict retains the draft and offers explicit Reopen saved values. Notifications show fixed local 06:00 plus a clear preference-only/delivery-unavailable explanation. No new device permission/timezone/time selector. Legal headings show unpublished status, with no invented links. Current consent is text only; withdrawal/deactivation remain absent future actions. TR/EN source and scoped-copy provenance is in SOURCE_OF_TRUTH.
+
+## Implemented Pattern UX — 021
+
+Pattern is enabled at `/pattern` behind the same session/onboarding route as Calendar. Existing Shinka header, top-right Profile/You, language buttons, safe-area shell and three-item bottom navigation remain. Read-only Your Recurring Themes / Lunar Timeline cards load independently with section-specific status, error and ≥44px Retry; error never becomes the approved empty-history message. A privacy denial clears both sections. Locale switch reuses the same verified results.
+
+The narrow-screen timeline has a proportional five-node track and a separate Today pointer; numbered wrapping phase/date rows link to those exact nodes. This placement avoids collisions even at 320px/200% text, rather than shifting the actual node instants into equally spaced slots. Active phase is stated in text and `aria-current=step`, not color alone. UTC instants display local dd.MM HH:mm with visible IANA timezone. EN empty/error strings remain verbatim in uiuxTables; scoped TR labels/state translations are centralized in patternCopy. Existing category names remain exact. No new recommendation or inferred personal text.
+
+Current Pattern source and local browser tests supersede earlier inactive/future descriptions below. Physical screen-reader output, safe-area/browser bars, OS text scaling, hosted font loading and real-device navigation remain manual acceptance.
 
 ## 020 Test Tools — current result versus prior identity
 
@@ -121,7 +137,7 @@ Opened from top-right icon only. **My Profile** (inline edit: optional name, req
 Withdraw bottom sheet opens only when triggered: "Withdraw health data consent?" / "Your cycle records, predictions, and calculated phases will be deleted. Your account will remain active." Processing stops immediately; success only after verified deletion; re-consent blocked while in progress; historic health data never restored. Distinct from Delete Account.
 
 ## Future package boundaries
-Onboarding H06/H07, GeoNames H10 and onboarding-consent H11 are current with the four approved decisions implemented; deployed verification remains separate. Home/content modules are implemented with production capability/import blockers. Calendar, Pattern, account/withdrawal and notifications remain future.
+Onboarding H06/H07, GeoNames H10 and onboarding-consent H11 are current with the four approved decisions implemented; deployed verification remains separate. Home/content modules are implemented with production capability/import blockers. This was the historical Foundation boundary; Calendar and Pattern are implemented by 012/016 and 021. Account/withdrawal and notifications remain future.
 
 ## Foundation auth shell alignment
 `PageContainer` now uses fixed 20px horizontal padding at mobile and desktop widths. `/login` uses ShinkaCard/ShinkaButton with Apple and Google only, primary controls at least 52px, localized safe error codes and no password fields/links. T74 measures actual 360px/1024px rendered layouts. The earlier Foundation shell has been replaced by ON-03 with a pre-auth age boundary. Live sign-in is still unverified.
@@ -231,7 +247,7 @@ Shared navigation links to the panel, both tools and the existing `/` app resolv
 
 ON-06 retains the approved EN/TR title/preparation text and starts the real daily service. Loading is bounded by the client deadline; error/not-ready/offline have localized Retry. Technical codes are DOM diagnostics, not added product instructions. No successful advancement occurs without id and both language snapshots in the backend's confirmed persisted response.
 
-Home has the existing Shinka header/Profile access, local greeting with optional name, exactly Your Shinka and Today’s Suggestion cards, and the three-item bottom navigation. Calendar is enabled by package 012; Pattern remains inactive. Greeting presentation uses before 12:00 morning, 12:00–17:59 afternoon and 18:00 onward evening; it never changes selection. `dailyCopy.js` centralizes original SRC-03 English state copy and scoped Turkish translations under this request; existing approved onboarding strings are unchanged. The selected preparation language carries into Home. Home language switches only the displayed snapshot; preference editing/persistence remains outside this scope.
+Home has the existing Shinka header/Profile access, local greeting with optional name, exactly Your Shinka and Today’s Suggestion cards, and the three-item bottom navigation. Calendar is enabled by package 012; Pattern was inactive in 011 and is enabled in 021. Greeting presentation uses before 12:00 morning, 12:00–17:59 afternoon and 18:00 onward evening; it never changes selection. `dailyCopy.js` centralizes original SRC-03 English state copy and scoped Turkish translations under this request; existing approved onboarding strings are unchanged. The selected preparation language carries into Home. Home language switches only the displayed snapshot; preference editing/persistence remains outside this scope.
 
 Local date/timezone changes trigger a backend refresh; stale previous-day content is cleared while loading. Existing-user errors retain Home/Profile access. Existing safe area, typography, 44px controls and card tokens are preserved. Local browser captures use source copy with an isolated fixture transport; they are not hosted or physical-device evidence. See the updated Android/iOS report.
 
@@ -248,7 +264,7 @@ Selected existing ID/date and destination date remain separate across month navi
 
 `calendarCopy.js` centralizes original companion English and scoped Turkish/helper translations under this implementation request. The exact previously approved health-consent checkbox comes from onboardingCopy and starts unchecked. No fabricated duration/cycle setting is displayed. Disabled production mutations have a clear localized availability explanation; fixtures with the transaction model exercise the enabled UI without implying hosted support.
 
-Shared bottom navigation enables Home/Calendar and keeps Pattern inactive; Profile/admin behavior is unchanged. The route is lazy and only resolves for durably completed active users. Controls retain ≥44px, native date text 17px, dialog scrolling, safe-area/page padding and no fixed keyboard-obscuring save bar. Browser screenshots and physical-device limits are recorded in the existing mobile report.
+Shared bottom navigation enables Home/Calendar and kept Pattern inactive at the 012 checkpoint; 021 enables it; Profile/admin behavior is unchanged. The route is lazy and only resolves for durably completed active users. Controls retain ≥44px, native date text 17px, dialog scrolling, safe-area/page padding and no fixed keyboard-obscuring save bar. Browser screenshots and physical-device limits are recorded in the existing mobile report.
 
 ## Historical checkpoint — Test Tools — 013 user-requested extension
 

@@ -45,5 +45,17 @@ export async function verifyNativeEntries(root) {
   });
   const calendar = await load('base44/functions/calendar/entry.ts', { '../../shared/nativeClient.ts': native, '../../shared/calendarOperation.js': { handleCalendarRequest: handler } });
   assert.equal(await daily.default({}), 'native-route'); assert.equal(await calendar.default({}), 'native-route');
-  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 7, nativeRoutes: 2, loginSecretReads: secretReads, hostedVerified: false, passed: true };
+  const pattern = await load('base44/functions/pattern/entry.ts', {
+    '../../shared/nativeClient.ts': native,
+    '../../shared/patternOperation.js': { handlePatternRequest: (_req, createClient) => { assert.equal(createClient, native.createNativeClient); return 'pattern-read-route'; } },
+  });
+  assert.equal(await pattern.default({}), 'pattern-read-route');
+  const you = await load('base44/functions/you/entry.ts', {
+    '../../shared/nativeClient.ts': native,
+    'base44:runtime': { secrets: { get: name => { assert.equal(name, 'GEONAMES_USERNAME'); return 'synthetic-public-provider-name'; } } },
+    '../../shared/geonamesAdapter.js': { createGeoNamesAdapter: config => ({ fixture: config.username }) },
+    '../../shared/youOperation.js': { handleYouRequest: (_req, createClient, deps) => { assert.equal(createClient, native.createNativeClient); assert.equal(deps.geoNames.fixture,'synthetic-public-provider-name'); return 'you-route'; } },
+  });
+  assert.equal(await you.default({}), 'you-route');
+  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 7, nativeRoutes: 4, loginSecretReads: secretReads, hostedVerified: false, passed: true };
 }

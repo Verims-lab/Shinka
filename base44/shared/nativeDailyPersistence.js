@@ -1,3 +1,4 @@
+import { selectDailyCandidate } from './dailyCandidateSelection.js';
 import { InternalError } from './internalAuthorization.js';
 import { verifiedDailyRecord } from './dailyRecord.js';
 import { validateDomainRecord } from './domainValidation.js';
@@ -7,8 +8,7 @@ const fail = code => { throw new InternalError(code, 409); };
 // A late-visible earlier candidate can change the winner; every row is retained.
 export function reconcileDailyRows(rows, owner, day) {
   const valid = rows.map(row => verifiedDailyRecord(row, owner, day));
-  valid.sort((a, b) => Date.parse(a.generated_at) - Date.parse(b.generated_at) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
-  const first = valid[0];
+  const first = selectDailyCandidate(valid);
   const content = row => JSON.stringify([row.category_id, row.message_pair_id, row.message_tr_snapshot, row.suggestion_tr_snapshot, row.message_en_snapshot, row.suggestion_en_snapshot]);
   const conflict = !!first && valid.some(row => content(row) !== content(first));
   return { record: first || null, notice: conflict ? 'DAILY_DUPLICATE_RECONCILED' : null };

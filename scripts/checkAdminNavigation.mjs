@@ -82,7 +82,7 @@ export async function checkAdminNavigation(page, origin, directory) {
   results.push({ scenario: 'focus-refresh-pending-then-revoked', passed: true });
   await open('/', 'admin', 'en', 'ACTIVE_EXISTING_USER');
   await page.waitForSelector('[data-profile-trigger]:not(:disabled)');
-  await page.locator('[data-profile-trigger]').click(); await page.getByRole('menuitem', { name: 'Admin Panel' }).click();
+  await page.locator('[data-profile-trigger]').click(); await page.waitForSelector('[data-you-root]'); await page.getByRole('link', { name: 'Admin Panel' }).click();
   await page.waitForSelector('[data-admin-panel]');
   await page.locator('nav a[href="/"]').click();
   await page.waitForSelector('[data-profile-trigger]:not(:disabled)');

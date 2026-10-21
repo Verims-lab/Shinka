@@ -8,8 +8,8 @@ import { loadStaticEvidence } from "../inspection/sourceScanner";
 import {
   createPlaceListCache,
   PLACE_CACHE_LIMITS,
-} from "@/features/onboarding/placeListCache";
-import { createBirthplacePicker } from "@/features/onboarding/birthplaceSelection";
+} from "@/features/profile/placeListCache";
+import { createBirthplacePicker } from "@/features/profile/birthplaceSelection";
 import { createGeoNamesAdapter } from "../../../base44/shared/geonamesAdapter.js";
 import { onboardingOperation } from "../../../base44/shared/onboardingOperations.js";
 import { sdkOnboardingFixture } from "./base44OnboardingFixture";

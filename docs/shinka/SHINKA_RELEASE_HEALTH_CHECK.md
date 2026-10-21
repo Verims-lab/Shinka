@@ -2,13 +2,42 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-020
+**Current BuildMarker:** Buildmarker-022
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-020.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-021.0; repository, synthetic and external evidence separated.
 
-## HC-020.0 — targeted readiness and removal correction
+## HC-022.0 — You/Profile and preferences
+
+Adds H11-007 (profile/preferences only), H12-038 (authority/conflict/retry) and H13-018 (local component/App/mobile acceptance). Updates H06-004 with actual You forged-owner/role/status refusals and H10-003 with changed/preserved/cleared place assertions. H13-012 mobile Home entry now verifies keyboard navigation to You and heading focus; the retired completed-user menu expectation is replaced, while incomplete-admin menu/Escape tests remain. No case deletion, forced N/A or future withdrawal/deactivation/delivery activation. H13-018 is explicitly local-only; normal Health performs no user mutation. Backend closed server plan and scope transfer inventory update together.
+
+| Requirement → case | Actual runner/assertion | Evidence / environment |
+|---|---|---|
+| Owner profile open/update/reopen; optional/DOB/18+/Sun; preferences/timezone | H11-007 → YT01,03,05 | Actual HTTP success and SDK-shaped persisted readback; SYNTHETIC_RUNTIME |
+| Saved place/resolve/clear | H10-003 + H11-007 → YT04; local YU02 | resolve call count, all five fields, unchanged saved place through outage; no live provider proof |
+| Owner/role/status/ACTIVE/reset/deletion | H06-004 + H12-038 → YT02,09 | closed payload failures and fresh guard rejection; SYNTHETIC_RUNTIME |
+| Immutable daily/Pattern/consent/cycle history | H11-007 → YT01,05,09 | full protected fixture-table equality; preference-only writes; SYNTHETIC_RUNTIME |
+| Lost response/readback/retry/double click/conflict/late session | H12-038 → YT06–13 | actual failure before/after write, no rewrite on same desired state, controller invalidation; SYNTHETIC_RUNTIME, no native CAS claim |
+| TR/EN form/focus/status/current admin/mobile | H13-018 → YU01–06 + checkYouFlow | real component/App, 320/360/390/430/landscape, 200% text, keyboard and named controls; LOCAL_BROWSER Chromium/WebKit |
+
+Registered count is 166: 141 in-app executable and 25 separate acceptance (9 local, 12 external, 4 future). Existing failures and historical plan identities remain unchanged. Hosted two-owner/native predicate/null behavior, Health save/list/open, physical H13-013 and original ON-05 H11-006 stay manual. [Results and acceptance](reports/SHINKA_YOU_022.md); [current case audit](reports/you-022/case-audit.md).
+
+## Current HC-021.0 — Pattern
+
+H10-001 is activated from FUTURE under its existing ID; no historical failure is deleted. Add H12-037 and local-only H13-017, update H15-004 and H13-008/010/011's inspected source boundary to include Pattern. No new suite. Registered total: 163, in-app executable: 139; separate acceptance: 24 (8 local, 12 external, 4 future). Server healthPlan includes new executable IDs; private reports retain exact catalog/plan identity. Historical artifacts keep their original catalog/results.
+
+| Case → requirement | Runner/assertions | Evidence/environment |
+|---|---|---|
+| H10-001 → UC-16/17 KK-21/22/34 | PT01–10,13,17–19: actual summary/timeline/reader/HTTP; empty/single/top-two, 29/30/calendar gaps, recent tie, Home duplicates, approved lookup, Moon boundaries/DST/bad coverage, >100/sentinel bounds, no cache/write | SYNTHETIC_RUNTIME; actual execution in canonical runner and in-app synthetic Health; [case audit](reports/pattern-021/case-audit.md) |
+| H12-037 → backend owner/ACTIVE/lifecycle and transport | PT10–12,14: positive HTTP+strict response, anonymous/foreign authority/inactive/reset/deletion, post-read revoke, malformed/server error/deadline | SYNTHETIC_RUNTIME; no live identity proof |
+| H15-004 → independent retry/stale result | Existing B12–15 retained; PT15–16 add two section controllers, duplicate start, failed section retry, invalidation/disposal/privacy clear | SYNTHETIC_RUNTIME; no live requests |
+| H13-017 → screen/navigation/labels | PU01–05 and checkPatternFlow; actual components/App, TR/EN unchanged IDs, error vs empty, retry, unmount, mobile label bounds/200% text, guarded route/no generation | LOCAL_BROWSER Chromium/WebKit, separate from normal Health; physicalDevice=false |
+| H13-008/010/011 → shared nav/light/localization | Existing static contracts include Pattern; approved EN states and exact TR/EN category behavior also executed by PT/PU | STATIC + local component evidence; no visual/physical inference |
+
+Normal Health writes no product data and imports nothing. Remaining hosted prerequisites may be BLOCKED in the isolated SDK lab; no fake backend PASS is supplied. User owns post-publish Full Health/save/list/open. Physical H13-013 and live H12-901 cover Pattern along with existing features; future H11/H14 remain unimplemented. [Delivery and actual validation results](reports/SHINKA_PATTERN_021.md).
+
+## Historical HC-020.0 — targeted readiness and removal correction
 
 The supplied published 019 run `d09503f9-4f78-4088-a4ea-65d592265dd7` is preserved: 133 PASS / 4 FAIL / 0 BLOCKED, 4351ms; H04-019/H08-005/H09-004/H12-031 failed, H03-008 passed. The shared nativePrerequisite returned a strategy string into strict verdict; a valid response therefore produced an unevaluated assertion and FAIL. HC-020.0 fixes the caller, never relaxes verdict or removes cases.
 

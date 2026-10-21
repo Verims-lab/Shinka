@@ -6,9 +6,10 @@ import { physicalName, SUN_SIGN_CODES } from './domainSchemas.js';
 import { createBase44OnboardingAdapter } from './base44OnboardingAdapter.js';
 import { commitOwnerAction } from './domainAtomic.js';
 import { resolveOnboardingState, isOnboardingProfileReady } from './onboardingRoute.js';
-import { optionalName, optionalBirthTime, validateBirthDate, validateCycleInput, resolveTimezone, serverLocalDate, emptyBirthplace, validTimezone, OnboardingError } from './onboardingValidation.js';
+import { validateCycleInput, resolveTimezone, serverLocalDate, validTimezone, OnboardingError } from './onboardingValidation.js';
 import { SUN_SIGN_RESOLVER, HEALTH_CONSENT_VERSION } from './onboardingDependencies.js';
 import { geoNamesDiagnostic } from './geonamesDiagnostics.js';
+import { prepareProfileInput } from './profileInput.js';
 import { verifiedDailyRecord } from './dailyRecord.js';
 const fail=(code,status=400)=>{throw new OnboardingError(code,null,status);};
 const allowed={hydrate:[],initialize:['language_code','timezone','action_id'],saveProfile:['display_name','birth_date','birth_time','birthplace_geonames_id','action_id'],saveCycle:['period_start_date','period_duration_days','initial_cycle_length_days','health_consent','action_id'],skipCycle:[],listPlaceCountries:['language_code'],listPlaceRegions:['country','parent_id','offset','language_code'],listPlaceSettlements:['country','parent_id','offset','language_code'],searchPlaces:['query','language_code']};
@@ -75,15 +76,8 @@ async function normalOnboardingOperation(client,body,dependencies={}) {
   if(!preferences)fail('PREFERENCES_INITIALIZATION_REQUIRED',409);
   if(body.action==='saveProfile') {
     if(!dependencies.resetFlow&&profile&&SUN_SIGN_CODES.includes(profile.sun_sign_code)&&resolveOnboardingState({authenticated:true,profile,preferences,today})!=='AUTHENTICATED_PROFILE_REQUIRED')return {...await state(),persisted:true};
-    const birth_date=validateBirthDate(body.birth_date,today),birth_time=optionalBirthTime(body.birth_time),display_name=optionalName(body.display_name);
-    const sun_sign_code=typeof sunSign==='function'?await sunSign(birth_date):null;
-    if(sun_sign_code!==null&&!SUN_SIGN_CODES.includes(sun_sign_code))fail('SUN_SIGN_RESOLVER_INVALID',503);
-    let birthplace=emptyBirthplace();
-    if(body.birthplace_geonames_id!=null) {
-      if(!geoNames)fail('GEONAMES_UNAVAILABLE',503);
-      birthplace=await geoNames.resolve(body.birthplace_geonames_id);
-    }
-    const input={display_name,birth_date,birth_time,...birthplace,sun_sign_code,account_status:'ACTIVE'};
+    const input={...await prepareProfileInput(body,{today,geoNames,sunSign}),account_status:'ACTIVE'};
+    const {sun_sign_code}=input;
     let saved;
     if(persistence)saved=await persistence.saveProfile(input);
     else {const result=await commit([{entity:'user_profile',authority:S.PROFILE,mode:'COMPLETE_PROFILE',record:{user_id:owner,...input}}]);saved=normalizeDomainRead('user_profile',result.records[0]);}

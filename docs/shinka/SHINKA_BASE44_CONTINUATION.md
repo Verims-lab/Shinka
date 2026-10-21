@@ -2,11 +2,23 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-020
+**Current BuildMarker:** Buildmarker-022
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## You native continuation — 022
+
+Schema delta: **none**; keep the complete existing inventory. Owner's normal Git flow: merge Test when ready, wait for Base44 Git sync, confirm new `you/entry.ts`, shared `youOperation`, `youRepository`, `profileInput` plus updated onboarding/shared native entries/applicationSession are synced together, then matching frontend assets and Publish. Do not publish frontend-only against an older backend. No CLI deploy/entity push, live invocation, live Full Health, user mutation or main update is performed by this delivery.
+
+Pattern 021 remains intact. You uses native single-owner updateMany predicates/count/readback with observable conflicts and same-desired-state recovery, not native CAS/transactions. Current write wrapper and reset/deletion guards remain. User-owned hosted acceptance includes profile reopen, optional NULL/GeoNames, language across routes, original snapshots unchanged, current admin role and unknown retry. Physical devices and original ON-05 same-account closure remain separate. [You delivery](reports/SHINKA_YOU_022.md).
+
+## Pattern native continuation — 021
+
+Pattern is a read-only native feature. Reuse the existing 24-schema inventory; this package has **no schema delta**. In the owner's normal Git→Base44 flow, sync the complete shared backend plus new `pattern/entry.ts` and updated Home comparator, applicationSession and other native entries together, then frontend/route assets. A frontend-only publish cannot supply the new pattern function. Main merge/publish remains owner-owned; this delivery performs no hosted call, Full Health, import or user mutation.
+
+Actual backend tests use SDK-shaped isolated fixtures, successful HTTP responses and negative/lifecycle/timeout paths. They do not attest hosted identity, installed function version or physical devices. Existing original ON-05, concurrent writes/reset/removal and Health history acceptance remain unchanged. After sync/publish use the five in-app steps in [Pattern delivery](reports/SHINKA_PATTERN_021.md); no terminal or test-data creation is required for normal Health.
 
 ## 020 targeted completion clarification
 

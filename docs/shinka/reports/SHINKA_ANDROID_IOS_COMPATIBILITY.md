@@ -1,5 +1,17 @@
 # Shinka Android / iOS compatibility evidence
 
+## You/Profile acceptance — 022 (2026-10-21)
+
+Current source adds You/profile/preferences and preserves Pattern. Canonical Chromium 156.0.8078.4 and WebKit 27.2 each pass 526/526 regressions, 24 actual-App You scenarios, 22 Pattern flows and 87 retained mobile checks with zero page exceptions. You includes TR/EN, 320/360/390/430px and 844px landscape, 100/200% text, field/name focus, Save/Cancel focus return, keyboard entry, labeled native form controls, provider outage/clear, unknown-save recovery and logout invalidation. A completed user's former menu test now checks keyboard navigation to You/heading focus; incomplete-admin menu/Escape checks remain. YU06 proves verified NULL name cannot revive an old Home name.
+
+Local visual review of the 320px/200% form confirmed wrapping/vertical flow; measurements cover both engines. Synthetic provider outage is deliberately visible, not represented as a live GeoNames failure. Native date/time/select behavior, hosted fonts, virtual keyboard, screen-reader output, browser chrome/safe areas and OS scaling still need actual devices. No physical Android/iOS test was run; WebKit is desktop engine emulation.
+
+Production byte budgets pass: initial JS 467,644 raw / 155,412 gzip; CSS 86,583 / 14,929; no static cycles and lazy-error reload retry passes. You is lazy. Local route LCP/CLS are laboratory observations; field p75/INP remains NOT_MEASURED. [Detailed evidence](you-022/verification.json), [performance](you-022/performance.json), [owner acceptance](SHINKA_YOU_022.md). Prior physical/live/ON-05 requirements and historical failures remain open.
+
+## Pattern addition — Buildmarker-021 / HC-021.0
+
+Local Pattern evidence extends this primary report: actual components/App at 320/360/390/430 and 844×390, TR/EN, 100%/200% computed text, five non-overlapping lunar labels, 44px controls, route/onboarding guards and section retry/unmount. Chromium 156.0.8078.4 and WebKit 27.2 each passed 507 canonical tests, 22 Pattern route/layout scenarios and the existing 87 mobile checks with zero page errors. Original computed sizes are captured before doubling to avoid inheritance compounding. [320px screenshot](pattern-021/pattern-tr-320.png), [200% WebKit](pattern-021/pattern-tr-320-200percent.png). Exact engine/count/results are in [021 verification](pattern-021/verification.json). Dedicated screenshots/geometry supplement the existing 87-scenario mobile matrix; old evidence below remains historical. Physical Android/iOS, browser-bar/notch insets, OS text scaling, VoiceOver/TalkBack and hosted font/network remain **NOT RUN**; no device PASS is inferred.
+
 ## Current acceptance — Buildmarker-019 / HC-019.0, 2026-10-21
 
 This is the single primary Android/iOS report. The package 009/011/012 material below is historical; old atomic-capability/maintenance prerequisites are superseded by [Base44 continuation](../SHINKA_BASE44_CONTINUATION.md). The repository is **mobile web**, with no PWA service worker/manifest or native Android/iOS WebView wrapper. No wrapper was added. Vite is now 8.2.4; no claim that every browser at the historical toolchain floor was exercised.

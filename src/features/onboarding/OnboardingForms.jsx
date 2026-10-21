@@ -1,6 +1,6 @@
 import ShinkaButton from "@/components/shinka/ShinkaButton";
 import ShinkaInput from "@/components/shinka/ShinkaInput";
-import BirthplacePicker from "./BirthplacePicker";
+import BirthplacePicker from "../profile/BirthplacePicker";
 import {
   optionalName,
   optionalBirthTime,

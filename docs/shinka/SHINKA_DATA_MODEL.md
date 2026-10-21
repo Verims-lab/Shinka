@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-020
+**Current BuildMarker:** Buildmarker-022
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -12,6 +12,24 @@
 **External Verification Required:** Base44 native UNIQUE is unsupported; no multi-record transaction/CAS guarantee is claimed. Native handler tests use synthetic transport; hosted schema/authorization/mutation recovery remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+
+## You update contract — 022
+
+No entity/field/RLS delta. Existing UserProfile and UserPreferences remain owner singletons; ready users are updated only, never recreated/upserted by You. Backend allows profile inputs display_name, birth_date, birth_time and birthplace_geonames_id; server derives the five-place fields and Sun. account_status/user_id/role/consent/derived Sun are never caller-owned. The profile patch excludes account_status. Preference patch contains language_code, notifications_enabled, fixed notification_time 06:00 and validated automatic timezone. Optional NULL values are explicit for merge updates.
+
+The opaque SHA-256 revision binds row ID, native update metadata and canonical editable field projection; it is an observation token, not a native lock. Native timestamp strings are compared as supplied, never reparsed/appended with Z. Pre-write comparison plus exact previous-value/owner/ACTIVE filter, one-row result and exact readback detect observable conflict. Same desired state verifies without writing even after response loss. No new receipt/cache/table or multi-record transaction/CAS guarantee. Actual one-row SDK predicate/count behavior and concurrent remote visibility remain hosted acceptance.
+
+Profile/Preference saves never modify UserDailyMessage, UserPatternSummary/history, consent/event/cycle/notification records or reset progress. Onam time/version authority is unchanged. Read-only consent status is taken from the existing current record after validation; missing record means NOT_GIVEN, not an inferred grant. Malformed/duplicate records produce an error.
+
+## Pattern projection — 021
+
+Native generic domainAccess also returns this same calculated summary; recordId-based owner/admin reads refuse with DERIVED_PATTERN_READ_REQUIRED rather than exposing an obsolete physical cache. Generic mutations remain denied.
+
+No entity/field/policy changes. `UserPatternSummary` retains its original field contract; the current Pattern API computes and validates that shape from daily rows at read time, returns null category/count pairs for empty/absent secondary, and does not persist/cache a summary. Any old physical summaries are ignored by this reader (and still covered by existing deletion scope). `calculated_at` is the backend read instant, not consent/native metadata.
+
+Daily history uses only id,user_id,shinka_date,timezone,category_id,generated_at with owner and [today−29,today] predicates, limit 4001. More than 4000 rows, duplicate IDs or malformed/foreign/out-of-range rows fail rather than truncate. One request below the pinned SDK's 5000 limit avoids offset-page shifting; a second limit-1 earliest-date query determines early-history window metadata and checks visible inconsistency. Category lookup requests 7 sentinel rows and requires the six exact approved unique codes/names/native IDs. Moon requests at most 33 sentinel rows overlapping ±35 UTC days, rejects >32 and validates continuity/order/UTC fields before selecting the enclosing cycle. No product text or health table is needed.
+
+These bounded ordinary reads are not a transaction/snapshot/CAS guarantee. A newly visible daily candidate can change Home and Pattern consistently on next refresh using the same shared comparator. No silent overwrite or uniqueness claim. [SDK filter signature/field selection and limits](https://docs.base44.com/developers/references/sdk/docs/type-aliases/entities), checked 2026-10-21; implementation retains pinned 0.8.54's positional filter API, not newer cursor overloads.
 
 ## 020 removal result semantics — no schema or retention change
 

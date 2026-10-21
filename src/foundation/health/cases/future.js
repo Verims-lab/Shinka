@@ -2,7 +2,6 @@
 import { futureCase as f } from "../caseFactory";
 
 export const FUTURE_CASES = [
-  f("H10", "H10-001", "Pattern uses actual category_id", "Top two themes, tie broken by most recent."),
   f("H11", "H11-001", "Consent withdrawal deletes health data (verified)", "Success shown only after verified deletion."),
   f("H11", "H11-003", "Delete Account → INACTIVE without routine deletion", "Access, generation and push stop."),
   f("H14", "H14-001", "06:00 local generation is idempotent", "Scheduler and app-open use the same unique key."),

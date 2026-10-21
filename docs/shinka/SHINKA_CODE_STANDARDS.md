@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-020
+**Current BuildMarker:** Buildmarker-022
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -35,6 +35,16 @@
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+
+## You implementation rules — 022
+
+Keep shared profile input/Sun/GeoNames validation in one authority; do not unlock onboarding's ready-profile mutation guard for You. Use a purpose-specific closed update endpoint and filtered owner/previous values plus exact count/readback. Never describe native updateMany as CAS. Separate confirmed values, draft, pending intent and outcome; a timeout is unknown and late UI results must not restore a prior user. Verify same desired state before retrying a write; observable conflict needs explicit reopen/review. Keep errors/localization central and personal fields out of diagnostics and storage.
+
+Actual YT handler/ordinary-SDK tests and YU components cover positive/negative/retry paths; current Health references those executable assertions. Shared Birthplace components live in features/profile; tests retain the same selection/cache behavior. No source-copy or security check is weakened for a green result. Physical device and deployed acceptance stay separate from Chromium/WebKit and local synthetic evidence.
+
+## Pattern implementation rules — 021
+
+One shared candidate comparator for Home/Pattern; one calculation module for window/rank/timeline. Keep SDK bounds and projection validation in the reader, auth/dispatch in handler, deadline/response in service, stale completion in controller and display in components. A limit sentinel/invalid row produces an error, never partial EMPTY. Never persist a summary merely from opening a read-only screen, interpret current mappings as old assignments or claim native uniqueness/transaction isolation. PT/PU and actual-App tests execute actual modules, not source-string-only behavioral assertions; published and physical acceptance stays separate.
 
 ## 019 corrective rules
 

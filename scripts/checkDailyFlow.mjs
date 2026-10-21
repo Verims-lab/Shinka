@@ -21,6 +21,7 @@ export async function checkDailyFlow(page, origin, directory) {
     assert.equal(await page.locator('[data-daily-suggestion]').textContent(), language === 'tr' ? pair[3] : pair[5]);
     const before = await page.evaluate(() => window.__authFixture.calls.filter(c => c.name === 'dailyMessage').length);
     await page.getByRole('button', { name: language === 'tr' ? 'EN' : 'TR', exact: true }).click();
+    await page.waitForFunction(text=>document.querySelector('[data-daily-message]')?.textContent===text,language === 'tr' ? pair[4] : pair[2]);
     assert.equal(await page.locator('[data-daily-message]').textContent(), language === 'tr' ? pair[4] : pair[2]);
     assert.equal(await page.evaluate(() => window.__authFixture.calls.filter(c => c.name === 'dailyMessage').length), before);
     await page.getByRole('button', { name: language.toUpperCase(), exact: true }).click();

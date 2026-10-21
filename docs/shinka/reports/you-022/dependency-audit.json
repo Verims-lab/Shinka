@@ -1,0 +1,49 @@
+{
+  "scope": "FRESH_NPM_AUDIT_UNCHANGED_LOCK",
+  "counts": {
+    "info": 0,
+    "low": 0,
+    "moderate": 2,
+    "high": 0,
+    "critical": 0,
+    "total": 2
+  },
+  "securityDepsExit": 0,
+  "fullAuditExit": 1,
+  "findings": [
+    {
+      "package": "react-router",
+      "severity": "moderate",
+      "direct": false,
+      "advisories": [
+        {
+          "id": 1124268,
+          "title": "React Router: Open redirect via backslash in <Link> and useNavigate (CVE-2025-68470 bypass)",
+          "url": "https://github.com/advisories/GHSA-wrjc-x8rr-h8h6"
+        },
+        {
+          "id": 1124272,
+          "title": "React Router: Arbitrary Constructor Injection via deserializeErrors() in React Router SSR Hydration",
+          "url": "https://github.com/advisories/GHSA-337j-9hxr-rhxg"
+        }
+      ],
+      "fixAvailable": {
+        "name": "react-router-dom",
+        "version": "7.18.4",
+        "isSemVerMajor": true
+      }
+    },
+    {
+      "package": "react-router-dom",
+      "severity": "moderate",
+      "direct": true,
+      "advisories": [],
+      "fixAvailable": {
+        "name": "react-router-dom",
+        "version": "7.18.4",
+        "isSemVerMajor": true
+      }
+    }
+  ],
+  "disposition": "Existing React Router Moderate advisories. Fixed internal destinations, no external redirect/SSR hydration path introduced. Vendor fix needs supported major migration; no new dependency or suppression in 022."
+}
