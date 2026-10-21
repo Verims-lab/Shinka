@@ -1,3 +1,4 @@
+import { HEALTH_READ_TESTS } from './healthReadTests';
 import { PRIVACY_UI_TESTS } from './privacyUiTests';
 import { PRIVACY_TESTS } from './privacyTests';
 import { YOU_TESTS } from './youTests';
@@ -57,6 +58,7 @@ const fixtureCases = (ids) => ids.map((id) => ({ id, suiteId: id.slice(0, 3), ti
 
 /** @type {import("./testTypes").FoundationTest[]} */
 export const FOUNDATION_TESTS = [
+  ...HEALTH_READ_TESTS,
   ...YOU_TESTS, ...YOU_UI_TESTS,
   ...PATTERN_TESTS, ...PATTERN_UI_TESTS,
   ...NATIVE_TESTS,

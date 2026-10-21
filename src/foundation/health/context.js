@@ -5,15 +5,15 @@ import { verifyLiveMoon, probeNativeReadiness, probeDomainEntities, countLiveCon
 const memo = (fn) => { let p; return () => (p ??= fn()); };
 
 // Per-run shared, memoized evidence sources. Each loader is invoked at most once per run.
-export function createHealthContext() {
+export function createHealthContext(loaders = {}) {
   return {
-    moonReadiness: memo(verifyLiveMoon),
-    nativeReadiness: memo(probeNativeReadiness),
-    inspection: memo(loadStaticEvidence),
-    artifacts: memo(() => fetchArtifactValidation("live")),
-    entityProbe: memo(probeDomainEntities),
-    contentCounts: memo(countLiveContentRows),
-    contentLibrary: memo(verifyLiveContentLibrary),
+    moonReadiness: memo(loaders.moonReadiness ?? verifyLiveMoon),
+    nativeReadiness: memo(loaders.nativeReadiness ?? probeNativeReadiness),
+    inspection: memo(loaders.inspection ?? loadStaticEvidence),
+    artifacts: memo(loaders.artifacts ?? (() => fetchArtifactValidation("live"))),
+    entityProbe: memo(loaders.entityProbe ?? probeDomainEntities),
+    contentCounts: memo(loaders.contentCounts ?? countLiveContentRows),
+    contentLibrary: memo(loaders.contentLibrary ?? verifyLiveContentLibrary),
     results: [], expectedCaseIds: [], executionIdentity: {}, testResults: new Map(),
   };
 }

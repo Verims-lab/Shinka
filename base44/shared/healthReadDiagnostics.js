@@ -1,0 +1,36 @@
+// Closed diagnostic vocabulary shared by server and Health UI. Never serialize
+// messages, response bodies, URLs, query values, headers or arbitrary SDK codes.
+const CODES = new Set(['UNKNOWN', 'NOT_FOUND', 'ACCESS_DENIED', 'INVALID_QUERY', 'SDK_METHOD_UNAVAILABLE', 'INVALID_RESPONSE', 'TIMEOUT', 'RATE_LIMITED', 'SERVICE_UNAVAILABLE', 'NETWORK_UNAVAILABLE', 'ARTIFACT_PARSE_FAILED', 'ARTIFACT_VALIDATION_FAILED', 'AUTH_REQUIRED', 'FORBIDDEN_INTERNAL_TOOLING', 'TEST_LIFECYCLE_UNAVAILABLE', 'PRIVACY_STATE_UNCONFIRMED', 'ACCOUNT_DELETION_IN_PROGRESS']);
+const STAGES = new Set(['SESSION_AUTH_LIFECYCLE', 'SESSION_AUTH', 'LIFECYCLE_READ', 'OPERATION', 'ENTITY_READ', 'CONTENT_COUNT', 'ARTIFACT_DOWNLOAD', 'ARTIFACT_PARSE', 'ARTIFACT_VALIDATION', 'FUNCTION_INVOKE']);
+const ADMISSION_CODES = new Set(['AUTH_REQUIRED', 'FORBIDDEN_INTERNAL_TOOLING', 'TEST_LIFECYCLE_UNAVAILABLE', 'PRIVACY_STATE_UNCONFIRMED', 'ACCOUNT_DELETION_IN_PROGRESS']);
+const uuid = value => typeof value === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value) ? value : null;
+const status = value => Number.isInteger(value) && value >= 100 && value <= 599 ? value : null;
+export function sanitizeHealthDiagnostic(value) {
+  return {
+    code: CODES.has(value?.code) ? value.code : 'UNKNOWN',
+    httpStatus: status(value?.httpStatus),
+    stage: STAGES.has(value?.stage) ? value.stage : 'FUNCTION_INVOKE',
+    durationMs: Number.isSafeInteger(value?.durationMs) && value.durationMs >= 0 && value.durationMs <= 3600000 ? value.durationMs : null,
+    requestId: uuid(value?.requestId),
+  };
+}
+export function healthReadDiagnostic(error, { stage = 'FUNCTION_INVOKE', durationMs = null } = {}) {
+  const data = error?.data ?? error?.response?.data ?? error?.originalError?.response?.data;
+  const saved = error?.diagnostic ?? data?.diagnostic;
+  if (saved) return sanitizeHealthDiagnostic({ ...saved, durationMs: saved.durationMs ?? durationMs, requestId: data?.request_id ?? saved.requestId });
+  const httpStatus = status(error?.status ?? error?.response?.status ?? error?.originalError?.response?.status);
+  const rawCode = data?.error_code ?? data?.error?.code ?? data?.code ?? error?.code;
+  // HTTP status is evidence of a failure class, not proof of the underlying
+  // schema/policy/deployment cause. In particular, a 404 is only NOT_FOUND.
+  const code = ADMISSION_CODES.has(rawCode) ? rawCode
+    : httpStatus === 429 ? 'RATE_LIMITED'
+    : httpStatus === 408 || httpStatus === 504 || ['ETIMEDOUT', 'ECONNABORTED', 'TIMEOUT'].includes(rawCode) || error?.name === 'TimeoutError' ? 'TIMEOUT'
+    : httpStatus === 401 || httpStatus === 403 ? 'ACCESS_DENIED'
+    : httpStatus === 404 ? 'NOT_FOUND'
+    : httpStatus === 400 || httpStatus === 422 ? 'INVALID_QUERY'
+    : httpStatus >= 500 ? 'SERVICE_UNAVAILABLE'
+    : rawCode === 'ERR_NETWORK' ? 'NETWORK_UNAVAILABLE'
+    : CODES.has(rawCode) ? rawCode : 'UNKNOWN';
+  return sanitizeHealthDiagnostic({ code, httpStatus, stage: data?.stage ?? stage, durationMs, requestId: data?.request_id });
+}
+export const healthReadError = code => Object.assign(new Error(code), { code });

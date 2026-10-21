@@ -1,3 +1,4 @@
+import { contentRows, mappingRows } from './contentArtifactFixture';
 import { SOURCE_SET_VERSION } from '../sourceInventory';
 import { EXECUTION_CONTRACT } from '../../../base44/shared/healthExecutionEvidence.js';
 import { HEALTH_SERVER_PLAN } from '../../../base44/shared/healthPlan.js';
@@ -14,8 +15,7 @@ import { APPLICABILITY as A } from "@/foundation/health/constants";
 import { persistCompletedRun } from "@/foundation/health/completion";
 import { H05_CASES } from "@/foundation/health/cases/h05";
 import { guardScenarios } from "./securityScenarios";
-import { CONTENT_COLUMNS, MAPPING_COLUMNS, CATEGORY_COUNTS, SIGNS, MOONS, PHASES, UNKNOWN_PHASE,
-  validateContentRows, validateMappingRows, compareBaseAndExtended, contentIntegrity, mappingIntegrity } from "../../../base44/shared/contentArtifactValidator.ts";
+import { CATEGORY_COUNTS, validateContentRows, validateMappingRows, compareBaseAndExtended, contentIntegrity, mappingIntegrity } from "../../../base44/shared/contentArtifactValidator.ts";
 import { normalizeStoredReport, buildHistoryRecord, compactCases, HISTORY_FIELD_LIMIT } from "../../../base44/shared/healthHistoryContract.js";
 import { internalHealthOperation } from "../../../base44/shared/internalHealthOperations.js";
 import { measureAuthShell, requireAuthProbeReady } from "@/foundation/probes/authProbeContract";
@@ -26,17 +26,6 @@ const assert = (ok, message) => { if (!ok) throw new Error(message); };
 const rejects = (fn, code) => { try { fn(); } catch (e) { assert(e.code === code, `unexpected error ${e.code}`); return; } throw new Error(`expected ${code}`); };
 const passCase = (extra = {}) => ({ id:"H01-001", suiteId:"H01", status:"PASS", applicability:A.CURRENT, blocker:true,
   attempted:true, executed:true, durationMs:0, evidence:ev("SYNTHETIC_RUNTIME","canonical test fixture",true,true,"Synthetic execution completed"), ...extra });
-const contentRows = () => {
-  let id = 0;
-  return [CONTENT_COLUMNS, ...Object.entries(CATEGORY_COUNTS).flatMap(([category, count]) => Array.from({length:count}, () =>
-    [`SHF-${String(++id).padStart(3,"0")}`,category,"fixture TR","fixture TR","fixture EN","fixture EN"]))];
-};
-const mappingRows = (extended) => {
-  const categories = Object.keys(CATEGORY_COUNTS);
-  let i = 0;
-  const base = SIGNS.flatMap((s) => MOONS.flatMap((m) => PHASES.map((p) => [s,m,p,categories[i++ % 6]])));
-  return [MAPPING_COLUMNS, ...base, ...(extended ? SIGNS.flatMap((s)=>MOONS.map((m)=>[s,m,UNKNOWN_PHASE,categories[i++ % 6]])) : [])];
-};
 const artifacts = (content = contentRows(), base = mappingRows(false), extended = mappingRows(true)) => {
   const mapping192 = validateMappingRows(base,false), mapping240 = validateMappingRows(extended,true);
   return {content260:validateContentRows(content),mapping192,mapping240,relation:compareBaseAndExtended(mapping192,mapping240)};

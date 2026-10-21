@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-023
+**Current BuildMarker:** Buildmarker-024
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## Buildmarker-024 — HC-023 targeted read failure closure
+
+Branch preflight: clean Test/origin Test at 53a2552; main two commits ahead at 144e939. Fast-forwarded and pushed Test to that baseline before edits. Explicit prod read-only checks succeeded (five schemas, 6/240/260 counts, three parsed workbooks); incident-time prod logs returned no entries. Historical cause remains unproven. Corrected swallowed diagnostics, malformed-read acceptance and the 30s service/20s case deadline mismatch. Backend preserves lifecycle details safely; artifact phases and frontend Health evidence are explicit. No schema/content/user mutation, hosted Full Health or main publish. Local gates and owner handoff: [024 report](reports/SHINKA_HEALTH_READ_024.md).
 
 ## Privacy package — 023
 

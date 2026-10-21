@@ -1,0 +1,536 @@
+{
+  "incident": {
+    "source": "user-supplied published report",
+    "runId": "298c7142-5afd-4f5f-95e0-4bdabce7d438",
+    "startedAt": "2026-10-21T08:22:33.260Z",
+    "buildMarker": "Buildmarker-023",
+    "healthCatalogVersion": "HC-023.0",
+    "scope": "FULL",
+    "environment": "PUBLISHED",
+    "counts": {
+      "planned": 144,
+      "passed": 131,
+      "failed": 4,
+      "blocked": 9
+    },
+    "gate": "NOT_READY",
+    "sharedReadinessFailedCases": [
+      "H04-019",
+      "H08-005",
+      "H09-004",
+      "H12-031"
+    ],
+    "readable": {
+      "AdminTestOperation": false,
+      "UserCalendarAction": true,
+      "InternalHealthRun": false,
+      "UserPrivacyRequest": false,
+      "PrivacyRecoveryReceipt": true
+    },
+    "artifactCases": "H05-001\u2013008 BACKEND_FAILED",
+    "contentCase": "H05-009 LIVE_CONTENT_COUNT_UNAVAILABLE; counts=null"
+  },
+  "publishedReadOnlyProbe": {
+    "at": "2026-10-21T08:43:16.167Z",
+    "appId": "6ad5190f4845d4e3af03b420",
+    "dataEnvironment": "prod",
+    "mode": "READ_ONLY_EXISTING_FUNCTIONS",
+    "functionsVersion": "prod",
+    "calls": [
+      {
+        "name": "internalHealth",
+        "action": "nativeReadiness",
+        "ok": true,
+        "durationMs": 1215,
+        "authority": "BASE44_NATIVE_V1",
+        "strategyVersion": "native-continuation/2",
+        "schemas": [
+          {
+            "name": "AdminTestOperation",
+            "readable": true
+          },
+          {
+            "name": "UserCalendarAction",
+            "readable": true
+          },
+          {
+            "name": "InternalHealthRun",
+            "readable": true
+          },
+          {
+            "name": "UserPrivacyRequest",
+            "readable": true
+          },
+          {
+            "name": "PrivacyRecoveryReceipt",
+            "readable": true
+          }
+        ],
+        "hostedMutationVerified": false
+      },
+      {
+        "name": "internalHealth",
+        "action": "contentCounts",
+        "ok": true,
+        "durationMs": 641,
+        "source": "LIVE_BASE44_COUNT",
+        "results": [
+          {
+            "entity": "MessageCategoryLookup",
+            "state": "MEASURED",
+            "count": 6
+          },
+          {
+            "entity": "MessageCategoryMapping",
+            "state": "MEASURED",
+            "count": 240
+          },
+          {
+            "entity": "MessagePair",
+            "state": "MEASURED",
+            "count": 260
+          }
+        ]
+      },
+      {
+        "name": "validateContentArtifacts",
+        "action": "fixture",
+        "ok": true,
+        "durationMs": 516,
+        "mode": "fixture",
+        "fixturePresent": true
+      },
+      {
+        "name": "validateContentArtifacts",
+        "action": "live",
+        "ok": true,
+        "durationMs": 807,
+        "mode": "live",
+        "contentRows": 260,
+        "baseRows": 192,
+        "extendedRows": 240,
+        "importPerformed": false
+      }
+    ]
+  },
+  "incidentLogs": {
+    "source": "CLI logs --env prod",
+    "functions": [
+      "internalHealth",
+      "validateContentArtifacts"
+    ],
+    "since": "2026-10-21T08:22:30Z",
+    "until": "2026-10-21T08:24:00Z",
+    "returnedEntries": 0,
+    "conclusion": "No retained error evidence; no inference of a successful historical call"
+  },
+  "sourceComparison": [
+    {
+      "function": "internalHealth",
+      "source": "CLI functions pull; no published-version selector",
+      "files": [
+        {
+          "path": "base44/functions/internalHealth/entry.ts",
+          "sha256": "f3e82c5539fec875c46063d7fc3977df829b52e02ce9bb27692d79bffd7b252f",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/adminTestAudit.js",
+          "sha256": "cde414fb8a7a73f8c0253b24bd7982dc912c759a06d283a4ac86bf45acc933f2",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/adminTestPolicy.js",
+          "sha256": "d774ac4bd8b374dc2a10742921b185f9b9d526e8ef5b2c1f81bd2b8bf5069929",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/adminTestPreview.js",
+          "sha256": "60be6693bc5bb6dae15142a6fa80e748e8796b73a9627c1b9a86a2d083d6f625",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/adminTestRepository.js",
+          "sha256": "623fd4f39da511186c7fbc9ed204ba3cd2ec364e38749bdfea8055124a96e892",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/base44CalendarReader.js",
+          "sha256": "fee8ba765c95d5db97adff764a854ec9bbf25ab3c3e3eaf426d18c6f6004598e",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/base44OnboardingAdapter.js",
+          "sha256": "6a2400d6970d820327fd2b2545726fd8f4925bb39867fcd0ba87534f07438192",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/calendarCalculation.js",
+          "sha256": "851b3c6d0840a0babaeded01767583c6d1fdb0851fb44ed9cb99b7c4fd135e4e",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/calendarState.js",
+          "sha256": "ab12d57c2653e3fb1ffeb525de56c1c07a70a22765c3f8a3f0770fdf01bd6f01",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/contentSourceReceipt.js",
+          "sha256": "860c746f04210aabac0383609e435e4a806c7111ea7d33606c1ac30ed48be86f",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/contentStateContract.js",
+          "sha256": "7b2bcd9cb88f3ea483adc2b40aa58b076c2dcece3e0b36dfd9f9aa6e39b77a9a",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/dailyCycle.js",
+          "sha256": "f0217c69ec0521b41682454a5747a4651bd9f3ee6417b7a6f383732adaa7e1df",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/dailySelection.js",
+          "sha256": "65c38603bd4dc447b74aaa559503eea857907de7f8876c7805c9810dcc8b70f4",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/domainContract.js",
+          "sha256": "ee4cdf308e91d230fe4d7506084bbc8ec79a434fda86d53c0c320ba81186f64e",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/domainSchemas.js",
+          "sha256": "8405555a0340bbeb9cdedaf977ef5444766ebef1534cb8dde66b24259c50d6c2",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/domainSecurity.js",
+          "sha256": "1628a445de9245f81f02b46a3fc6d71fa888b4e888ac1540e853abc4d6311fd6",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/domainValidation.js",
+          "sha256": "5fbc9a7f66d8fa275db567b97f78ddc88b9a44ffc88da537a7eb18e1c973636f",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/geonamesDiagnostics.js",
+          "sha256": "ae046777a39f49c9561232d64229c5ae2c5e3c10d09124128cfdfa6e426bb5cc",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/geonamesRuntimeProbe.js",
+          "sha256": "201c06887b6f8ffc81229862072757d621a2e79031674b226d10581a02556b58",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/healthAggregate.js",
+          "sha256": "c363f544188be876072ff34cff1221d11d08487af93f9372a448e5946f71f580",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/healthConstants.js",
+          "sha256": "b9d91233df33bb80f1fde2d465d29215707ba091d633f2cf8374fb7801cd285e",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/healthEvidence.js",
+          "sha256": "a951240e2b7d0f6a1692d2ecfd3546d7965dfa962bb4c39338c3079cdcb10aee",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/healthExecutionEvidence.js",
+          "sha256": "7fcabd157346d1c4960c53c50a50239ebbc18e0d947e8e198b4807de242c1ffa",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/healthExecutionScope.js",
+          "sha256": "0b8e0046e75db2d1751ea2a6d0e1e619d43b52eb1a86cd65095aba3635d76d4e",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/healthHistoryContract.js",
+          "sha256": "6007994e0c6f5475c8c706b04c3ac91e33c103319d4a2e3740499c9c60451ac5",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/healthPersistence.js",
+          "sha256": "3129d0adab93dd1ad8e5ff89be9d57db4d806cc8c7bf0a85e232ba89acad9ff6",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/healthPlan.js",
+          "sha256": "ef4377e565a6c3411eb266411cad53a60e3927acd32322d5e393a388c8808247",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/internalAuthorization.js",
+          "sha256": "d03d85ebc9178e3270c8c9524715901aec254079cfbf0f02384af47f47217b12",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/internalHealthOperations.js",
+          "sha256": "addd1bc38827d6b2e25e63f0904efec529c33639041eb3ab36eb449ac94201fe",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/nativeClient.ts",
+          "sha256": "6a546cea813d9fedb6f9d6c6b8d62439c55df5d94f32953887135888df8f6cc7",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/nativeReadiness.js",
+          "sha256": "4be35afdcee8222de5100e4413b5a7e02e83ff024b9766f4dc35616c48981803",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/nativeResetStep.js",
+          "sha256": "6ddd88a8baf9c9d4b63ffa203ca6a691cf1202896669c07e61be2d6ebc87df8d",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/nativeWriteChecks.js",
+          "sha256": "ab1486e9c2a7f2c1fff9dffd1ec8c6f8fd2047ff16d4932e15e4d3c9bd388479",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/onboardingConsent.js",
+          "sha256": "9478e06a5280d958cb1a92d1eb4c34d2aabd76401ac47e15115627d76a33d518",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/onboardingCycleGate.js",
+          "sha256": "ce89c9b1555c6890debde44378def60d9768836660cdd52dc0004119c2e941b8",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/onboardingCyclePersistence.js",
+          "sha256": "c93875f611e61ff3171dcf8f1a4fc5b1964114bc48d87a2fa691d132730be496",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/onboardingDependencies.js",
+          "sha256": "dae9cb06aea9eed562aba262005d75ae490c6d1c0aaf96bfdab90a33d0cd6c73",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/onboardingRoute.js",
+          "sha256": "996e74878b2717c0a36ed4f61881319ff86b046a51faed64a06aade0e742c3dd",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/onboardingValidation.js",
+          "sha256": "23e02aa1a2e97f50de23d5826c8f4f3ee828adb03555f30147d8fada9516c998",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/ownedCleanup.js",
+          "sha256": "32248c2db4154caa659e251045e9568a54fb7f6f0a0d2cde9f128898f17f689d",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/privacyPolicy.js",
+          "sha256": "9bc603a4e3f5254cb05b573e7393054dbf6951879f62361c2f36063852da20f7",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/reportPrivacy.js",
+          "sha256": "bdae9d092fbcdcf395396c97b926dcfc9d41500d47dfb3807f64deac8d6a04ff",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/sunSign.js",
+          "sha256": "9cf7bcbf537549f2a1759e0581199325e9449284971e2a009e43c6c85bb29015",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/userLifecycle.js",
+          "sha256": "315350845d99f2c76e641f3fdc59fa34bca209964bc25cd35ac84eef32672ca7",
+          "matchesBaseline": true
+        }
+      ]
+    },
+    {
+      "function": "validateContentArtifacts",
+      "source": "CLI functions pull; no published-version selector",
+      "files": [
+        {
+          "path": "base44/functions/validateContentArtifacts/entry.ts",
+          "sha256": "0c8d0d678226fa69aa6a0571ee935c56facd94eef8b7753830d2b4e00d213369",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/adminTestAudit.js",
+          "sha256": "cde414fb8a7a73f8c0253b24bd7982dc912c759a06d283a4ac86bf45acc933f2",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/adminTestPolicy.js",
+          "sha256": "d774ac4bd8b374dc2a10742921b185f9b9d526e8ef5b2c1f81bd2b8bf5069929",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/adminTestRepository.js",
+          "sha256": "623fd4f39da511186c7fbc9ed204ba3cd2ec364e38749bdfea8055124a96e892",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/base44CalendarReader.js",
+          "sha256": "fee8ba765c95d5db97adff764a854ec9bbf25ab3c3e3eaf426d18c6f6004598e",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/base44OnboardingAdapter.js",
+          "sha256": "6a2400d6970d820327fd2b2545726fd8f4925bb39867fcd0ba87534f07438192",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/calendarCalculation.js",
+          "sha256": "851b3c6d0840a0babaeded01767583c6d1fdb0851fb44ed9cb99b7c4fd135e4e",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/calendarState.js",
+          "sha256": "ab12d57c2653e3fb1ffeb525de56c1c07a70a22765c3f8a3f0770fdf01bd6f01",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/contentArtifactSources.ts",
+          "sha256": "f326a593d4b0ff57438d04b3eae99329341dfdedcdaeda2185a50d4b5153b148",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/contentArtifactValidator.ts",
+          "sha256": "4b384e191ddf9695609e5165a7eb2cd14e964cfa93338e27c20431cf9c200d2a",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/dailyCycle.js",
+          "sha256": "f0217c69ec0521b41682454a5747a4651bd9f3ee6417b7a6f383732adaa7e1df",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/dailySelection.js",
+          "sha256": "65c38603bd4dc447b74aaa559503eea857907de7f8876c7805c9810dcc8b70f4",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/domainSchemas.js",
+          "sha256": "8405555a0340bbeb9cdedaf977ef5444766ebef1534cb8dde66b24259c50d6c2",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/domainSecurity.js",
+          "sha256": "1628a445de9245f81f02b46a3fc6d71fa888b4e888ac1540e853abc4d6311fd6",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/domainValidation.js",
+          "sha256": "5fbc9a7f66d8fa275db567b97f78ddc88b9a44ffc88da537a7eb18e1c973636f",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/internalAuthorization.js",
+          "sha256": "d03d85ebc9178e3270c8c9524715901aec254079cfbf0f02384af47f47217b12",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/nativeClient.ts",
+          "sha256": "6a546cea813d9fedb6f9d6c6b8d62439c55df5d94f32953887135888df8f6cc7",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/nativeResetStep.js",
+          "sha256": "6ddd88a8baf9c9d4b63ffa203ca6a691cf1202896669c07e61be2d6ebc87df8d",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/nativeWriteChecks.js",
+          "sha256": "ab1486e9c2a7f2c1fff9dffd1ec8c6f8fd2047ff16d4932e15e4d3c9bd388479",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/onboardingConsent.js",
+          "sha256": "9478e06a5280d958cb1a92d1eb4c34d2aabd76401ac47e15115627d76a33d518",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/onboardingCycleGate.js",
+          "sha256": "ce89c9b1555c6890debde44378def60d9768836660cdd52dc0004119c2e941b8",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/onboardingCyclePersistence.js",
+          "sha256": "c93875f611e61ff3171dcf8f1a4fc5b1964114bc48d87a2fa691d132730be496",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/onboardingDependencies.js",
+          "sha256": "dae9cb06aea9eed562aba262005d75ae490c6d1c0aaf96bfdab90a33d0cd6c73",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/onboardingRoute.js",
+          "sha256": "996e74878b2717c0a36ed4f61881319ff86b046a51faed64a06aade0e742c3dd",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/onboardingValidation.js",
+          "sha256": "23e02aa1a2e97f50de23d5826c8f4f3ee828adb03555f30147d8fada9516c998",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/ownedCleanup.js",
+          "sha256": "32248c2db4154caa659e251045e9568a54fb7f6f0a0d2cde9f128898f17f689d",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/privacyPolicy.js",
+          "sha256": "9bc603a4e3f5254cb05b573e7393054dbf6951879f62361c2f36063852da20f7",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/sunSign.js",
+          "sha256": "9cf7bcbf537549f2a1759e0581199325e9449284971e2a009e43c6c85bb29015",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/userLifecycle.js",
+          "sha256": "315350845d99f2c76e641f3fdc59fa34bca209964bc25cd35ac84eef32672ca7",
+          "matchesBaseline": true
+        },
+        {
+          "path": "base44/shared/xlsxReader.ts",
+          "sha256": "d09b62063a586c4274a33aee66e213fcea67aae38062c0536450b09b331aea40",
+          "matchesBaseline": true
+        }
+      ]
+    }
+  ],
+  "schemaComparison": [
+    {
+      "name": "AdminTestOperation",
+      "source": "Builder main sandbox (not an independent database or prod policy attestation)",
+      "matchesBaseline": true
+    },
+    {
+      "name": "InternalHealthRun",
+      "source": "Builder main sandbox (not an independent database or prod policy attestation)",
+      "matchesBaseline": true
+    },
+    {
+      "name": "UserPrivacyRequest",
+      "source": "Builder main sandbox (not an independent database or prod policy attestation)",
+      "matchesBaseline": true
+    },
+    {
+      "name": "PrivacyRecoveryReceipt",
+      "source": "Builder main sandbox (not an independent database or prod policy attestation)",
+      "matchesBaseline": true
+    }
+  ],
+  "liveWritesPerformed": false,
+  "fullHealthRunPerformed": false,
+  "historicalCauseProven": false
+}

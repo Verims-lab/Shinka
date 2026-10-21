@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-019",
-    "package_name": "Audit and corrective reliability",
-    "package_type": "CORRECTIVE",
-    "created_at": "2026-10-21T00:00:00+03:00",
-    "health_catalog_version": "HC-019.0",
-    "short_summary": "Audit/fix: safe deletion diagnostics and bounded continuation; password regeneration policy; executable Health integrity; responsive text and keyboard fixes.",
-    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "Chromium/WebKit 476/476 each; 87/87 mobile checks each. Local in-app Health 124 PASS/13 remote-prerequisite BLOCKED/0 FAIL, no hosted run. Same live deletion remains unverified; concurrent server resumes fail closed on ambiguous audit, no distributed exactly-once promise. Typed source tests and official-source audit; latest five packages 015–019. Final quality/dependency/performance evidence and user acceptance: reports/SHINKA_AUDIT_FIX_019.md."
-  },
-  {
     "build_marker": "Buildmarker-020",
     "package_name": "Exact readiness predicates and truthful removal results",
     "package_type": "CORRECTIVE",
@@ -69,5 +55,19 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "notes": "Two closed operational schemas; schema→all backend/shared functions→frontend. No live privacy mutation/Full Health, main merge/publish or new service. Current native admins remain protected. Base44 purge, Apple revocation and published Play deletion URL remain external acceptance. Active history retains 019–023; older evidence stays in Git/reports."
+  },
+  {
+    "build_marker": "Buildmarker-024",
+    "package_name": "Targeted hosted Health read diagnostics",
+    "package_type": "FIX",
+    "created_at": "2026-10-21T08:50:49.003927+00:00",
+    "health_catalog_version": "HC-024.0",
+    "short_summary": "Read diagnostics preserve safe status/stage/request ID; malformed reads cannot pass. Chromium/WebKit 560/560 each; local Health 131 PASS/13 BLOCKED. Original hosted incident retained; narrow prod reads succeeded, historical cause unproven.",
+    "full_health_status": "OWNER_POST_PUBLICATION_RUN_PENDING",
+    "notes": "HC-023 incident preserved. Explicit prod narrow reads succeeded for five schemas, 6/240/260 counts and three workbooks; historical failure cause remains unproven. No hosted mutation/import/schema push/Full Health/main publish. Local regressions and quality evidence: SHINKA_HEALTH_READ_024.md.",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true
   }
 ];

@@ -4,6 +4,7 @@ import { BUILD_MARKER } from '@/foundation/buildMarker';
 import { evaluateContentState, contentStatePolicy } from '../../../../base44/shared/contentStateContract.js';
 import { ev, verdict, blockedResult } from "../evidence";
 import { makeCase } from "../caseFactory";
+import { healthReadDiagnostic } from '../../../../base44/shared/healthReadDiagnostics.js';
 
 const c = makeCase("H05", { runnerType: RUNNER.BACKEND, classification: CLASS.LIVE_RUNTIME });
 const SRC = "validateContentArtifacts (live, read-only)";
@@ -11,7 +12,7 @@ const SRC = "validateContentArtifacts (live, read-only)";
 const withArtifacts = (fn) => async (ctx) => {
   let a;
   try { a = await ctx.artifacts(); } catch (e) {
-    return blockedResult(ev(CLASS.LIVE_RUNTIME, SRC, e?.code || "UNAVAILABLE", "200 OK", "Backend artifact validation unavailable"));
+    return blockedResult(ev(CLASS.LIVE_RUNTIME, SRC, { state: 'UNAVAILABLE', diagnostic: healthReadDiagnostic(e) }, "200 OK", "Backend artifact validation unavailable; no content inconsistency inferred"));
   }
   return fn(a);
 };
@@ -45,13 +46,14 @@ export const H05_CASES = [
     check(a.content260.missingCellCount === 0, { missingCellCount: a.content260.missingCellCount }, { missingCellCount: 0 }, "Cell completeness"))),
   c("H05-009", "Content import stage and exact verified readiness", "Pre-import is distinct from complete source-verified import; partial/conflicting rows fail.", async (ctx) => {
     let counts=null;
-    try { counts=await ctx.contentCounts(); } catch { /* No inferred zero on an unavailable live probe. */ }
+    const diagnostics = {};
+    try { counts=await ctx.contentCounts(); } catch (error) { diagnostics.counts = healthReadDiagnostic(error); }
     let importPerformed = null;
-    try { importPerformed = (await ctx.artifacts()).importPerformed; } catch { importPerformed = null; }
+    try { importPerformed = (await ctx.artifacts()).importPerformed; } catch (error) { diagnostics.artifacts = healthReadDiagnostic(error); }
     let verification=null;
-    if(contentStatePolicy(BUILD_MARKER)==='VERIFIED_CONTENT_IMPORT_STAGES')try{verification=await ctx.contentLibrary();}catch{/* Verification unavailable is never ready. */}
+    if(contentStatePolicy(BUILD_MARKER)==='VERIFIED_CONTENT_IMPORT_STAGES')try{verification=await ctx.contentLibrary();}catch(error){diagnostics.verification=healthReadDiagnostic(error);}
     const result=evaluateContentState(BUILD_MARKER,counts,importPerformed,verification);
     return verdict(result.status === 'PASS',ev(CLASS.LIVE_RUNTIME,'internalHealth contentCounts + validateContentArtifacts (live, read-only)',
-      {buildMarker:BUILD_MARKER,counts,importPerformed,phase:verification?.phase,ready:verification?.ready,sourceHash:verification?.sourceHash,unexpected:result.unexpected||[]},result.expected,result.code), result.status);
+      {buildMarker:BUILD_MARKER,counts,importPerformed,phase:verification?.phase,ready:verification?.ready,sourceHash:verification?.sourceHash,unexpected:result.unexpected||[],diagnostics},result.expected,result.code), result.status);
   }),
 ];

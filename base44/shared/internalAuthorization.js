@@ -1,6 +1,7 @@
+import { healthReadDiagnostic } from './healthReadDiagnostics.js';
 // Only the server SDK's authenticated principal can grant internal access. Request payload roles are ignored.
 export class InternalError extends Error {
-  constructor(code, status = 500) { super(code); this.code = code; this.status = status; this.stage = undefined; this.uploadReceipt = undefined; }
+  constructor(code, status = 500) { super(code); this.code = code; this.status = status; this.stage = undefined; this.uploadReceipt = undefined; this.diagnostic = undefined; }
 }
 // Trusted principals are minted only by server auth.me(), never by request data.
 const authenticatedPrincipals = new WeakSet();
@@ -8,7 +9,9 @@ export async function requireAuthenticatedUser(client) {
   let me;
   try { me = await client.auth.me(); } catch (error) {
     if (error instanceof InternalError) throw error;
-    throw new InternalError("AUTH_REQUIRED", 401);
+    const failure = new InternalError("AUTH_REQUIRED", 401);
+    failure.diagnostic = healthReadDiagnostic(error, { stage: 'SESSION_AUTH' });
+    throw failure;
   }
   if (!me?.id || typeof me.id !== "string") throw new InternalError("AUTH_REQUIRED", 401);
   const principal = Object.freeze({ id: me.id, role: me.role });
@@ -34,6 +37,7 @@ export async function requireInternalAdmin(client) {
 }
 export async function handleInternalRequest(req, createClient, operation) {
   const requestId=crypto.randomUUID();
+  const started = Date.now();
   let stage='SESSION_AUTH_LIFECYCLE';
   try {
     const client = createClient(req);
@@ -48,6 +52,7 @@ export async function handleInternalRequest(req, createClient, operation) {
     return Response.json(await operation(client, body),{headers:{'X-Shinka-Request-Id':requestId}});
   } catch (error) {
     const known = error instanceof InternalError;
-    return Response.json({ error_code: known ? error.code : "INTERNAL_OPERATION_FAILED", stage: known && error.stage || stage, request_id:requestId, ...(known && error.uploadReceipt ? {uploadReceipt:error.uploadReceipt}: {}) }, { status: known ? error.status : 500 });
+    const diagnostic = healthReadDiagnostic(error, { stage, durationMs: Date.now() - started });
+    return Response.json({ error_code: known ? error.code : "INTERNAL_OPERATION_FAILED", stage: known && error.stage || stage, request_id:requestId, diagnostic: { ...diagnostic, requestId }, ...(known && error.uploadReceipt ? {uploadReceipt:error.uploadReceipt}: {}) }, { status: known ? error.status : 500 });
   }
 }

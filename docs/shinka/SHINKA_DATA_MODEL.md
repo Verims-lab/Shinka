@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-023
+**Current BuildMarker:** Buildmarker-024
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -12,6 +12,10 @@
 **External Verification Required:** Base44 native UNIQUE is unsupported; no multi-record transaction/CAS guarantee is claimed. Native handler tests use synthetic transport; hosted schema/authorization/mutation recovery remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+
+## Health diagnostic metadata — 024
+
+No schema, product field, timestamp authority or content-record change. Readiness samples at most one ID per operational schema and returns only readability/sample size and a closed diagnostic. Actual empty tables are readable; unmeasured content counts remain NULL, never zero. Existing InternalHealthRun private report artifacts carry safe diagnostic evidence through the unchanged persistence contract; no historical report is rewritten. Schema presence and policy enforcement require their own evidence.
 
 ## Owner erasure and withdrawal storage — 023
 
