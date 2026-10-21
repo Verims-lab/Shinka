@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-023
+**Current BuildMarker:** Buildmarker-024
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -14,6 +14,10 @@
 - NO SILENT SOURCE-CONTRACT CHANGE
 - NO FUTURE FEATURE IMPLEMENTATION WITHOUT PACKAGE SCOPE
 - NO LEGACY SHINKA IMPORT — NO LEGACY SHINKA CONTRACT MAY ENTER THIS PROJECT WITHOUT AN EXPLICIT CHANGE REQUEST.
+
+## 024 targeted Health fix scope
+
+Advance 023 → 024 and HC-023.0 → HC-024.0 once; retain 020–024 in Internal Build. Preserve the supplied failed run and prior reports. Narrow read-only published diagnosis is authorized; live Full Health, content import, onam/reset/delete/resume, schema push and main merge/publish remain outside this agent task. No new service, architecture change or general audit. Mandatory local gates and both browser engines remain required. Owner runs Full Health after the existing main/sync/publish workflow.
 
 ## Privacy package governance — 023
 

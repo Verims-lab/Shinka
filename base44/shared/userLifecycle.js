@@ -3,6 +3,7 @@ import { testToolError } from './adminTestPolicy.js';
 import { InternalError } from './internalAuthorization.js';
 import { nativeResetStep } from './nativeResetStep.js';
 import { assertPrivacyAccess } from './privacyPolicy.js';
+import { healthReadDiagnostic } from './healthReadDiagnostics.js';
 
 // Fresh actor admission; completed DELETE remains a permanent target tombstone.
 // Per-write target admission is separate and is not a distributed fence.
@@ -14,6 +15,7 @@ export function withUserLifecycle(client) {
     async me() {
       const me = await client.auth.me();
       if (!me?.id) testToolError('AUTH_REQUIRED', 401);
+      const started = Date.now();
       try {
         const user = await repository.user(me.id);
         if (!user) testToolError('AUTH_REQUIRED', 401);
@@ -23,7 +25,9 @@ export function withUserLifecycle(client) {
         return { id: user.id, role: user.role };
       } catch (error) {
         if (error instanceof InternalError) throw error;
-        testToolError('TEST_LIFECYCLE_UNAVAILABLE', 503);
+        const failure = new InternalError('TEST_LIFECYCLE_UNAVAILABLE', 503);
+        failure.diagnostic = healthReadDiagnostic(error, { stage: 'LIFECYCLE_READ', durationMs: Date.now() - started });
+        throw failure;
       }
     },
   } });

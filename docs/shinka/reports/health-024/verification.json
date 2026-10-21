@@ -1,0 +1,146 @@
+{
+  "status": "OWNER_PUBLICATION_AND_FULL_HEALTH_PENDING",
+  "browsers": {
+    "chromium": {
+      "scope": "LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",
+      "passed": 560,
+      "failed": 0,
+      "pageErrors": [],
+      "localHealth": {
+        "PASS": 131,
+        "BLOCKED": 13
+      },
+      "healthSaveState": "SAVED",
+      "physicalDevice": false,
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 7,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true
+      },
+      "flows": {
+        "privacyFlow": {
+          "checks": 23,
+          "failed": 0
+        },
+        "youFlow": {
+          "checks": 24,
+          "failed": 0
+        },
+        "adminNavigation": {
+          "checks": 19,
+          "failed": 0
+        },
+        "mobile": {
+          "checks": 87,
+          "failed": 0
+        },
+        "dailyFlow": {
+          "checks": 5,
+          "failed": 0
+        },
+        "patternFlow": {
+          "checks": 22,
+          "failed": 0
+        },
+        "calendarFlow": {
+          "checks": 8,
+          "failed": 0
+        },
+        "adminTestFlow": {
+          "checks": 4,
+          "failed": 0
+        }
+      }
+    },
+    "webkit": {
+      "scope": "LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",
+      "passed": 560,
+      "failed": 0,
+      "pageErrors": [],
+      "localHealth": {
+        "PASS": 131,
+        "BLOCKED": 13
+      },
+      "healthSaveState": "SAVED",
+      "physicalDevice": false,
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 7,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true
+      },
+      "flows": {
+        "privacyFlow": {
+          "checks": 23,
+          "failed": 0
+        },
+        "youFlow": {
+          "checks": 24,
+          "failed": 0
+        },
+        "adminNavigation": {
+          "checks": 19,
+          "failed": 0
+        },
+        "mobile": {
+          "checks": 87,
+          "failed": 0
+        },
+        "dailyFlow": {
+          "checks": 5,
+          "failed": 0
+        },
+        "patternFlow": {
+          "checks": 22,
+          "failed": 0
+        },
+        "calendarFlow": {
+          "checks": 8,
+          "failed": 0
+        },
+        "adminTestFlow": {
+          "checks": 4,
+          "failed": 0
+        }
+      }
+    }
+  },
+  "quality": {
+    "cleanInstall": true,
+    "dependencyTreeProblems": [],
+    "dependencyAudit": {
+      "high": 0,
+      "critical": 0,
+      "moderate": 2,
+      "packages": [
+        "react-router",
+        "react-router-dom"
+      ],
+      "baselineNotChanged": true
+    },
+    "typecheck": true,
+    "lint": true,
+    "repoHealthFailed": [],
+    "build": true,
+    "diffCheck": true,
+    "ledgerPackages": 5,
+    "performancePassed": true,
+    "productionInitialJS": {
+      "raw": 478329,
+      "gzip": 158978
+    },
+    "productionCSS": {
+      "raw": 87430,
+      "gzip": 15054
+    }
+  },
+  "noHostedMutation": true,
+  "hostedFullHealthRun": false
+}

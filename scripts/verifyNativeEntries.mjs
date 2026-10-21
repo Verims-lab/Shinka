@@ -1,3 +1,4 @@
+import { artifactOperation } from '../base44/shared/contentArtifactOperation.ts';
 // Execute current TS routing/session entry points with platform imports replaced.
 // Native auth/lifecycle/write guards are real; no network, SQL or user mutations.
 import { readFile } from 'node:fs/promises';
@@ -30,6 +31,15 @@ export async function verifyNativeEntries(root) {
     '../../shared/nativeClient.ts': native, '../../shared/internalAuthorization.js': authorization,
     '../../shared/privacyPolicy.js': privacyPolicy,
   });
+  const artifacts = await load('base44/functions/validateContentArtifacts/entry.ts', {
+    '../../shared/nativeClient.ts': native,
+    '../../shared/internalAuthorization.js': authorization,
+    '../../shared/contentArtifactOperation.ts': { artifactOperation },
+  });
+  const artifactCall = () => artifacts.default(new Request('https://fixture.invalid/artifacts', {method:'POST',body:'{"mode":"fixture"}'}));
+  assert.equal((await (await artifactCall()).json()).mode, 'fixture');
+  role = 'user'; assert.equal((await artifactCall()).status, 403);
+  role = 'admin';
   const call = body => session.default(new Request('https://fixture.invalid/session', { method: 'POST', body }));
   assert.equal((await (await call('{}')).json()).role, 'admin');
   role = 'user'; assert.equal((await (await call('{}')).json()).role, 'user');
@@ -66,5 +76,5 @@ export async function verifyNativeEntries(root) {
     '../../shared/privacyOperation.js': { handlePrivacyRequest: (_req, createClient) => { assert.equal(createClient, rawClient); return 'owner-privacy-route'; } },
   });
   assert.equal(await privacy.default({}), 'owner-privacy-route');
-  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 7, nativeRoutes: 5, loginSecretReads: secretReads, hostedVerified: false, passed: true };
+  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 7, nativeRoutes: 5, artifactEntryChecks: 2, loginSecretReads: secretReads, hostedVerified: false, passed: true };
 }

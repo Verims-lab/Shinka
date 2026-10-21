@@ -1,5 +1,6 @@
 import { CLASS } from './constants';
 import { ev, verdict } from './evidence';
+import { healthReadDiagnostic } from '../../../base44/shared/healthReadDiagnostics.js';
 
 const STRATEGIES = Object.freeze({ daily: 'IMMUTABLE_CANDIDATES', calendar: 'OBSERVATIONS_AND_RECEIPTS', reset: 'VERIFIED_STEPS', deletion: 'TARGET_LIFECYCLE_RESUMABLE' });
 const SCHEMAS = Object.freeze(['AdminTestOperation', 'UserCalendarAction', 'InternalHealthRun', 'UserPrivacyRequest', 'PrivacyRecoveryReceipt']);
@@ -8,7 +9,7 @@ const SCHEMAS = Object.freeze(['AdminTestOperation', 'UserCalendarAction', 'Inte
 export async function nativePrerequisite(ctx, feature) {
   let value;
   try { value = await ctx.nativeReadiness(); }
-  catch { return { status: 'BLOCKED', evidence: ev(CLASS.BLOCKED_EXTERNAL, 'internalHealth nativeReadiness', 'UNAVAILABLE', 'deployed native strategy and readable schemas', 'Read-only prerequisite; hosted mutation acceptance remains separate.') }; }
+  catch (error) { return { status: 'BLOCKED', evidence: ev(CLASS.BLOCKED_EXTERNAL, 'internalHealth nativeReadiness', { state: 'UNAVAILABLE', diagnostic: healthReadDiagnostic(error) }, 'deployed native strategy and readable schemas', 'Read-only prerequisite; hosted mutation acceptance remains separate.') }; }
   const valid = Object.hasOwn(STRATEGIES, feature) && value?.authority === 'BASE44_NATIVE_V1' &&
     value.strategyVersion === 'native-continuation/2' &&
     Object.entries(STRATEGIES).every(([key, expected]) => value[key] === expected) &&

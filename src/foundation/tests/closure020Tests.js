@@ -42,7 +42,7 @@ export const CLOSURE020_READINESS_TESTS = [
   }],
   ['RG03', 'Unavailable readiness is BLOCKED, never PASS; daily content and Moon prerequisites remain required', async () => {
     const ctx = context(await pristine()); ctx.nativeReadiness = async () => { throw new Error('backend unavailable'); };
-    for (const c of await readinessCases()) { const r = await c.run(ctx); check(r.status === 'BLOCKED' && r.evidence.actual === 'UNAVAILABLE', c.id); }
+    for (const c of await readinessCases()) { const r = await c.run(ctx); check(r.status === 'BLOCKED' && r.evidence.actual.state === 'UNAVAILABLE', c.id); }
     const c = (await readinessCases()).find(c => c.id === 'H09-004');
     for (const dependency of ['contentLibrary', 'moonReadiness']) {
       const unavailable = context(await pristine()); unavailable[dependency] = async () => { throw new Error('unavailable'); };

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-023
+**Current BuildMarker:** Buildmarker-024
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -10,6 +10,12 @@
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and notification delivery/scheduler. Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## Health read failure boundaries — 024
+
+`healthReadDiagnostics.js` is the dependency-free closed diagnostic contract. Readiness returns a verified 0/1 sample size or `readable:false` plus a safe diagnostic; count failures retain `count:null`. SDK method absence and malformed successful responses are distinct from HTTP 400/422, 401/403, 404, 429, timeout, 5xx and unknown failures. A 404 alone is NOT_FOUND, not proof of a missing schema. No fallback query or retry is added.
+
+`contentArtifactOperation.ts` separates download (including response body), XLSX parsing and validator execution. Validly parsed inconsistent content still reaches the unchanged H05 FAIL predicates. Invocation/session/lifecycle failures stay BLOCKED with diagnostics. `invokeHealthRead` supports Base44Error data and Axios response/originalError envelopes without retaining their bodies; its 18s local deadline precedes the 20s case deadline so timeout evidence survives. This bounds waiting, not remote cancellation. Run-context memoization caches successful and rejected promises once per source. All three artifact fetches remain fixed and bounded at 15s each.
 
 ## Privacy responsibilities — 023
 

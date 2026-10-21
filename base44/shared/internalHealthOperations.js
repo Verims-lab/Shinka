@@ -4,6 +4,7 @@ import { InternalError } from "./internalAuthorization.js";
 import { saveHealthReport, findHealthRun } from './healthPersistence.js';
 import { DOMAIN_ENTITIES } from "./domainContract.js";
 import { CONTENT_ENTITY_NAMES } from "./contentStateContract.js";
+import { healthReadDiagnostic, healthReadError } from './healthReadDiagnostics.js';
 
 // Called only inside handleInternalRequest, after server auth.me() succeeds.
 export async function internalHealthOperation(client, body, {geoNamesTransportProbe=null, uploadSigner=null}={}) {
@@ -35,11 +36,13 @@ export async function internalHealthOperation(client, body, {geoNamesTransportPr
   }
   if (body.action === "contentCounts") {
     const results=await Promise.all(CONTENT_ENTITY_NAMES.map(async entity=>{
+      const started = Date.now();
       try {
+        if (typeof service.entities[entity]?.count !== 'function') throw healthReadError('SDK_METHOD_UNAVAILABLE');
         const count=await service.entities[entity].count(); // Unfiltered, exact SDK aggregate; no pagination/row reads.
-        if(!Number.isSafeInteger(count)||count<0)throw new Error('INVALID_COUNT');
+        if(!Number.isSafeInteger(count)||count<0)throw healthReadError('INVALID_RESPONSE');
         return {entity,state:'MEASURED',count};
-      } catch {return {entity,state:'INCONCLUSIVE',count:null,code:'CONTENT_COUNT_UNAVAILABLE'};}
+      } catch (error) {return {entity,state:'INCONCLUSIVE',count:null,code:'CONTENT_COUNT_UNAVAILABLE',diagnostic:healthReadDiagnostic(error,{stage:'CONTENT_COUNT',durationMs:Date.now()-started})};}
     }));
     return {source:'LIVE_BASE44_COUNT',measuredAt:new Date().toISOString(),results};
   }

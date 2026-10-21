@@ -2,11 +2,17 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-023
+**Current BuildMarker:** Buildmarker-024
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-023.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-024.0; repository, synthetic and external evidence separated.
+
+## HC-024.0 — targeted read evidence correction
+
+No IDs removed and no PASS predicate relaxed. Inventory remains 169 cases / 144 in-app / 10 local / 13 external / 2 future. H04-019, H08-005, H09-004 and H12-031 retain the exact five-schema/native strategy predicate; unreadable responses FAIL, unavailable invocations BLOCK with a safe diagnostic. H05-001–008 distinguish session/lifecycle/download/parse/validator-execution unavailability from actual content inconsistency. H05-009 retains unavailable counts and per-source diagnostics. H16-007 additionally executes HD01–HD10: actual backend helpers and H05 runners, valid/empty/error/malformed responses, safe envelopes, stage propagation and one invocation per run. Existing content, negative readiness, consent and deletion fixtures remain.
+
+The historical HC-023 run stays NOT_READY; narrow successful prod reads are separate evidence, not a rerun or mutation acceptance. Owner alone runs post-publish Full Health. [024 report](reports/SHINKA_HEALTH_READ_024.md).
 
 ## HC-023.0 — owner privacy requirements and evidence
 
