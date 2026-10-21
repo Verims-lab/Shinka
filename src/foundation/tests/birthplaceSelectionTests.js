@@ -1,3 +1,4 @@
+import { withTestClock, testEventTurn } from './testClock';
 import { check, rejects, NOW } from './dataModelTests';
 import { createGeoNamesAdapter } from '../../../base44/shared/geonamesAdapter.js';
 import { geoNamesDiagnostic } from '../../../base44/shared/geonamesDiagnostics.js';
@@ -9,7 +10,6 @@ import { hierarchyFetch, fixtureCountries, fixtureRegions, fixtureProviderPlace 
 const input={country:'TR',parent_id:null,offset:0,language_code:'tr'};
 const adapter=(fetcher=hierarchyFetch)=>createGeoNamesAdapter({username:'fixture',fetcher});
 const requestFor=geo=>async(action,payload)=>action==='listPlaceCountries'?geo.countries(payload.language_code):action==='listPlaceRegions'?geo.regions(payload):geo.places(payload);
-const tick=()=>new Promise(resolve=>setTimeout(resolve,0));
 /** @type {import('./testTypes').FoundationTest[]} */
 export const BIRTHPLACE_SELECTION_TESTS=[
  ['B01','Country → ADM1 → ADM2 → populated place uses typed provider records and no user query',async()=>{
@@ -148,13 +148,14 @@ export const BIRTHPLACE_SELECTION_TESTS=[
   const loading=picker.country(100);check(changed===1);picker.dispose();const before=picker.getSnapshot();
   pending.slice(2).forEach(p=>p.resolve({options:[]}));await loading;check(picker.getSnapshot()===before&&changed===1);
  }],
- ['B14','Saved selection survives hierarchy failure; retry is explicit and clearing permits null',async()=>{
+ ['B14','Saved selection survives hierarchy failure; retry is explicit and clearing permits null',async(context={})=>{
   const selected={birthplace_geonames_id:123,birthplace_name:'Saved',birthplace_country_code:'TR'};let calls=0,fail=true;
   const picker=createBirthplacePicker({selection:selected,request:async()=>{calls++;if(fail)throw Object.assign(new Error('private'),{code:'GEONAMES_UNAVAILABLE'});return {options:[]};}});
+  context.cleanup?.(()=>picker.dispose());
   await picker.start('en');check(calls===0&&picker.getSnapshot().selection===selected);
-  await picker.edit();await tick();check(calls===1&&picker.getSnapshot().countries.status==='ERROR'&&picker.getSnapshot().selection===selected);
-  fail=false;await picker.retry('countries');check(calls===2&&picker.getSnapshot().countries.status==='READY');
-  await picker.clear();check(!picker.getSnapshot().selection&&!picker.getSnapshot().incomplete);picker.dispose();
+  context.stage?.('SELECTION_EDIT');await picker.edit();check(calls===1&&picker.getSnapshot().countries.status==='ERROR'&&picker.getSnapshot().selection===selected);
+  context.stage?.('SELECTION_RETRY');fail=false;await picker.retry('countries');check(calls===2&&picker.getSnapshot().countries.status==='READY');
+  context.stage?.('SELECTION_CLEAR');await picker.clear();check(!picker.getSnapshot().selection&&!picker.getSnapshot().incomplete);picker.dispose();
  }],
  ['B15','A changed region invalidates both old child and settlement responses without leaving ancestor pages loading',async()=>{
   const pending=[];
@@ -188,13 +189,13 @@ export const BIRTHPLACE_SELECTION_TESTS=[
   check(first.options.length===100&&first.next_offset===100&&second.options.length===80&&second.previous_offset===0&&second.next_offset===null&&second.level===1);
   check(new Set([...first.options,...second.options].map(o=>o.id)).size===180);
  }],
- ['B18','Expanded country envelopes are bounded; streamed body timeout aborts without an unhandled rejection',async()=>{
+ ['B18','Expanded country envelopes are bounded; streamed body timeout aborts without an unhandled rejection',withTestClock(async(clock,context)=>{
   const geo=adapter(async()=>Response.json({geonames:fixtureCountries,unused:'x'.repeat(120000)}));check((await geo.countries('en')).options.length===3);
-  let aborted=0,unhandled=0;const listener=()=>{unhandled++;};window.addEventListener('unhandledrejection',listener);
+  let aborted=0,unhandled=0;const listener=()=>{unhandled++;};window.addEventListener('unhandledrejection',listener);context.cleanup?.(()=>window.removeEventListener('unhandledrejection',listener));
   try{
-    const stalled=createGeoNamesAdapter({username:'fixture',timeoutMs:5,fetcher:async(_url,{signal})=>new Response(new ReadableStream({start(controller){signal.addEventListener('abort',()=>{aborted++;controller.error(new Error('private body fixture'));},{once:true});}}))});
-    let caught;try{await stalled.countries('en');}catch(error){caught=error;}
-    check(geoNamesDiagnostic(caught).code==='GEONAMES_REQUEST_TIMEOUT'&&aborted===1);await tick();check(unhandled===0);
+    const stalled=createGeoNamesAdapter({username:'fixture',timeoutMs:5,timers:clock.timers,fetcher:async(_url,{signal})=>new Response(new ReadableStream({start(controller){signal.addEventListener('abort',()=>{aborted++;controller.error(new Error('private body fixture'));},{once:true});}}))});
+    let caught;try{context.stage?.('BODY_WAIT');await clock.run(()=>stalled.countries('en'));}catch(error){caught=error;}
+    check(geoNamesDiagnostic(caught).code==='GEONAMES_REQUEST_TIMEOUT'&&aborted===1);await testEventTurn(context.signal);check(unhandled===0);
   }finally{window.removeEventListener('unhandledrejection',listener);}
- }],
+ })],
 ];

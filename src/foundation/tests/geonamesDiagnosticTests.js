@@ -1,3 +1,5 @@
+import { captureFixtureConsole } from './fixtureConsole';
+import { withTestClock, testEventTurn } from './testClock';
 import { check, NOW } from './dataModelTests';
 import { fixturePlace } from './onboardingFixture';
 import { sdkOnboardingFixture } from './base44OnboardingFixture';
@@ -35,19 +37,20 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
   const response=await post(sdkOnboardingFixture(),adapter);
   check(response.status===200&&JSON.stringify(await response.json())===JSON.stringify({places:[normalizeGeoNamesPlace(fixturePlace)]}));
  }],
- ['G02','Network failure and request/body timeout have distinct safe classes and bounded abort',async()=>{
+ ['G02','Network failure and request/body timeout have distinct safe classes and bounded abort',withTestClock(async(clock,context)=>{
   const network=createGeoNamesAdapter({username:'fixture',fetcher:async()=>{throw new Error('private URL and username');}});
   await failure(()=>network.search('City','en'),'GEONAMES_NETWORK_ERROR');
   for(const bodyPending of [false,true]){
     let signal=new AbortController().signal;
-    const timeout=createGeoNamesAdapter({username:'fixture',timeoutMs:5,fetcher:async(_url,options)=>{
+    const timeout=createGeoNamesAdapter({username:'fixture',timeoutMs:5,timers:clock.timers,fetcher:async(_url,options)=>{
       signal=options.signal;
       return bodyPending?{ok:true,status:200,text:()=>new Promise(()=>{})}:new Promise(()=>{});
     }});
-    await failure(()=>timeout.search('City','en'),'GEONAMES_REQUEST_TIMEOUT',bodyPending?200:null);check(signal?.aborted);
-    const response=await post(sdkOnboardingFixture(),timeout);check(response.status===504);
+    context.stage?.(bodyPending?'BODY_WAIT':'FETCH_WAIT');
+    await clock.run(()=>failure(()=>timeout.search('City','en'),'GEONAMES_REQUEST_TIMEOUT',bodyPending?200:null));check(signal?.aborted);
+    context.stage?.('BACKEND_FIXTURE');const response=await clock.run(()=>post(sdkOnboardingFixture(),timeout));check(response.status===504);
   }
- }],
+ })],
  ['G03','Non-provider HTTP failures retain only numeric HTTP status',async()=>{
   for(const status of [401,403,429,500,503])for(const body of ['private provider text',JSON.stringify({message:'private provider text'})]){
     const adapter=createGeoNamesAdapter({username:'fixture',fetcher:async()=>new Response(body,{status})});
@@ -151,42 +154,41 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
   check(JSON.stringify(await success.resolve(place.birthplace_geonames_id))===JSON.stringify(place));
   check(paths.join()==='/searchJSON,/getJSON');
  }],
- ['G11','Settled requests clear deadlines; abort and late fetch/body rejection never escape unhandled',async()=>{
+ ['G11','Settled requests clear deadlines; abort and late fetch/body rejection never escape unhandled',withTestClock(async(clock,context)=>{
   let unhandled=0;const listener=()=>{unhandled++;};
-  const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-  window.addEventListener('unhandledrejection',listener);
+  window.addEventListener('unhandledrejection',listener);context.cleanup?.(()=>window.removeEventListener('unhandledrejection',listener));
   try{
     for(const outcome of ['success','rejection','http']){
       let signal=new AbortController().signal;
-      const adapter=createGeoNamesAdapter({username:'fixture',timeoutMs:5,fetcher:async(_url,options)=>{
+      const adapter=createGeoNamesAdapter({username:'fixture',timeoutMs:5,timers:clock.timers,fetcher:async(_url,options)=>{
         signal=options.signal;
         if(outcome==='rejection')throw new TypeError('fixture');
         return outcome==='http'?new Response('',{status:503}):Response.json({geonames:[]});
       }});
       if(outcome==='success')await adapter.search('City','en');
       else await failure(()=>adapter.search('City','en'),outcome==='http'?'GEONAMES_HTTP_ERROR':'GEONAMES_NETWORK_ERROR',outcome==='http'?503:null);
-      await delay(15);check(!signal.aborted,'settled request deadline was not cleared');
+      context.stage?.('SETTLED_CHECK');await clock.advance(15);check(!signal.aborted,'settled request deadline was not cleared');
     }
     for(const bodyPending of [false,true])for(const rejectOnAbort of [false,true]){
       let signal=new AbortController().signal,aborts=0;
       /** @type {(reason:unknown)=>void} */ let rejectLate=()=>{};
       const pending=new Promise((_,reject)=>{rejectLate=reject;});
-      const adapter=createGeoNamesAdapter({username:'fixture',timeoutMs:5,fetcher:async(_url,options)=>{
+      const adapter=createGeoNamesAdapter({username:'fixture',timeoutMs:5,timers:clock.timers,fetcher:async(_url,options)=>{
         signal=options.signal;signal.addEventListener('abort',()=>{aborts++;if(rejectOnAbort)rejectLate(new DOMException('fixture','AbortError'));});
         return bodyPending?{status:200,ok:true,text:()=>pending}:pending;
       }});
-      await failure(()=>adapter.search('City','en'),'GEONAMES_REQUEST_TIMEOUT',bodyPending?200:null);
-      check(signal.aborted&&aborts===1);rejectLate(new TypeError('late fixture rejection'));await delay(15);
+      context.stage?.(bodyPending?'BODY_WAIT':'FETCH_WAIT');
+      await clock.run(()=>failure(()=>adapter.search('City','en'),'GEONAMES_REQUEST_TIMEOUT',bodyPending?200:null));
+      check(signal.aborted&&aborts===1);rejectLate(new TypeError('late fixture rejection'));await clock.advance(15);await testEventTurn(context.signal);
     }
     check(unhandled===0,'unhandled transport rejection');
   }finally{window.removeEventListener('unhandledrejection',listener);}
- }],
- ['G12','Sensitive exceptions/cause/stack and unknown names/codes never reach response, console or entities',async()=>{
+ })],
+ ['G12','Sensitive exceptions/cause/stack and unknown names/codes never reach response, console or entities',async(context={})=>{
   const fixtureUsername='synthetic-sensitive-username',fixtureQuery='Synthetic Private City';
   const fixtureUrl=`https://secure.geonames.org/searchJSON?username=${fixtureUsername}&q=${encodeURIComponent(fixtureQuery)}`;
   const methods=['log','info','warn','error','debug','trace','dir','table'];
-  const originals=methods.map(method=>console[method]);let logs=0;
-  methods.forEach(method=>{console[method]=()=>{logs++;};});
+  const captured=captureFixtureConsole(methods,context);
   try{
     for(const signature of ['unknown','code','message']){
       const message=signature==='message'?`error sending request for url (${fixtureUrl}): client error (Connect): dns error: ${fixtureQuery}`:`${fixtureUrl} ${fixtureQuery}`;
@@ -204,8 +206,8 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
     const unsafe=new GeoNamesError('GEONAMES_NETWORK_ERROR',null,null,fixtureUsername,fixtureQuery);
     unsafe.failureStage=fixtureUsername;unsafe.transportClass=fixtureQuery;
     const safe=geoNamesDiagnostic(unsafe);check(safe.failure_stage==='UNKNOWN'&&safe.transport_class===null);
-    check(logs===0,'transport errors must not log');
-  }finally{methods.forEach((method,index)=>{console[method]=originals[index];});}
+    check(captured.count()===0,'transport errors must not log');
+  }finally{captured.dispose();}
  }],
  ['G21','Manual compatibility processes search and selected-ID resolution when error mode is unsupported',async()=>{
   const seen=[],receivers=[];
@@ -240,30 +242,29 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
     check(calls===1&&reads===0&&cancels===1);
   }
  }],
- ['G23','Redirect cleanup is deadline-bounded; late responses are cancelled unread without unhandled rejection',async()=>{
-  const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));let unhandled=0;
-  const listener=()=>{unhandled++;};window.addEventListener('unhandledrejection',listener);
+ ['G23','Redirect cleanup is deadline-bounded; late responses are cancelled unread without unhandled rejection',withTestClock(async(clock,context)=>{
+  let unhandled=0;
+  const listener=()=>{unhandled++;};window.addEventListener('unhandledrejection',listener);context.cleanup?.(()=>window.removeEventListener('unhandledrejection',listener));
   try{
     let signal=new AbortController().signal,cancels=0;
     /** @type {(reason:unknown)=>void} */ let rejectCleanup=()=>{};
     const cleanup=new Promise((_,reject)=>{rejectCleanup=reject;});
-    const stalled=createGeoNamesAdapter({username:'fixture',timeoutMs:5,fetcher:async(_url,options)=>{
+    const stalled=createGeoNamesAdapter({username:'fixture',timeoutMs:5,timers:clock.timers,fetcher:async(_url,options)=>{
       signal=options.signal;
       return new Response(new ReadableStream({cancel(){cancels++;return cleanup;}}),{status:302});
     }});
-    await failure(()=>stalled.search('City','en'),'GEONAMES_REQUEST_TIMEOUT',302,null,null,'RESPONSE_VALIDATION','TIMEOUT');
+    context.stage?.('CLEANUP');await clock.run(()=>failure(()=>stalled.search('City','en'),'GEONAMES_REQUEST_TIMEOUT',302,null,null,'RESPONSE_VALIDATION','TIMEOUT'));
     check(signal.aborted&&cancels===1);rejectCleanup(new Error('private cleanup fixture'));
     let resolveLate=(_response)=>{};let reads=0,lateCancels=0;
-    const late=createGeoNamesAdapter({username:'fixture',timeoutMs:5,fetcher:()=>new Promise(resolve=>{resolveLate=resolve;})});
-    await failure(()=>late.search('City','en'),'GEONAMES_REQUEST_TIMEOUT');
+    const late=createGeoNamesAdapter({username:'fixture',timeoutMs:5,timers:clock.timers,fetcher:()=>new Promise(resolve=>{resolveLate=resolve;})});
+    context.stage?.('LATE_RESPONSE');await clock.run(()=>failure(()=>late.search('City','en'),'GEONAMES_REQUEST_TIMEOUT'));
     resolveLate(Object.assign(new Response(new ReadableStream({cancel(){lateCancels++;throw new Error('private late cleanup');}})),{text:async()=>{reads++;return '{}';}}));
-    await delay(15);check(reads===0&&lateCancels===1&&unhandled===0);
+    await clock.advance(15);await testEventTurn(context.signal);check(reads===0&&lateCancels===1&&unhandled===0);
   }finally{window.removeEventListener('unhandledrejection',listener);}
- }],
- ['G24','Redirect projection discards Location, body and cancellation errors without logs or product writes',async()=>{
+ })],
+ ['G24','Redirect projection discards Location, body and cancellation errors without logs or product writes',async(context={})=>{
   const marker='synthetic-redirect-sensitive',methods=['log','info','warn','error','debug','trace'];
-  const originals=methods.map(k=>console[k]);let logs=0;
-  methods.forEach(k=>{console[k]=()=>{logs++;};});
+  const captured=captureFixtureConsole(methods,context);
   try{
     for(const status of [301,302,303,307,308,0]){
       const f=sdkOnboardingFixture(),before=JSON.stringify(f.rows);let calls=0;
@@ -279,7 +280,7 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
       for(const value of [marker,'https://','Location','username','stack','cause','message','İstanbul'])check(!serialized.includes(value),'redirect disclosure');
       check(JSON.stringify(f.rows)===before&&f.calls.every(c=>c.method==='filter'));
     }
-    check(logs===0);
-  }finally{methods.forEach((k,i)=>{console[k]=originals[i];});}
+    check(captured.count()===0);
+  }finally{captured.dispose();}
  }],
 ];

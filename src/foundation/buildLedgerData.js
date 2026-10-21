@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-020",
-    "package_name": "Exact readiness predicates and truthful removal results",
-    "package_type": "CORRECTIVE",
-    "created_at": "2026-10-20T22:12:55.321974+00:00",
-    "health_catalog_version": "HC-020.0",
-    "short_summary": "Correct the four native readiness predicates; unify fresh removal verification and clear stale identity; distinguish active removal from unverified permanent erasure.",
-    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "Targeted 020 correction; RG01/RM01/AU10 fail with original 019 code and pass after fixes. All four actual readiness cases exercised with successful backend shape, strict strategy/schema/authority negatives and unavailable backend. Read-only selected target: COMPLETED/VERIFY, no active User or operational rows; stale dashboard UserProfile row disappeared on reload. Recently deleted exact-ID mapping and physical erasure not proven. No hosted Full Health or live mutation/main publish. Final local results: reports/SHINKA_TARGETED_CLOSURE_020.md. Active packages 016–020. Chromium/WebKit each 483/483 canonical and 87/87 mobile checks, no page errors; local in-app Health 124 PASS/13 BLOCKED (unavailable hosted prerequisites), separate successful native-readiness case path verified. Typecheck/lint/build/Repo Health and dependency checks pass; existing 2 Moderate router findings, no High/Critical. Local evidence only; physical devices and post-publish Health remain user acceptance."
-  },
-  {
     "build_marker": "Buildmarker-021",
     "package_name": "Pattern",
     "package_type": "FEATURE",
@@ -69,5 +55,19 @@ export default [
     "source_changed": true,
     "tests_changed": true,
     "health_changed": true
+  },
+  {
+    "build_marker": "Buildmarker-025",
+    "package_name": "Health helper timing and cancellation",
+    "package_type": "FIX",
+    "created_at": "2026-10-21T09:36:39.880338+00:00",
+    "health_catalog_version": "HC-025.0",
+    "short_summary": "H10/H13 controlled fixture timing, safe partial progress, synchronous cleanup and completed-success-only caching. Chromium/WebKit 569/569 each; no external fixture requests. Prior HC-024 timeout preserved; historical active helper/visibility unknown.",
+    "full_health_status": "OWNER_POST_PUBLICATION_RUN_PENDING",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "HC-025.0 retains all 169 cases / 144 in-app; HT01–HT09 cover timeout/cancel/cache/DOM/console cleanup and safe progress. Local Health 131 PASS/13 expected hosted-dependency BLOCKED; no published readiness/content regression claimed. Mandatory local gates and byte budgets pass; 0 Critical/High, 2 existing Moderate router findings. No live Health/probe/import/mutation/main publish. Last five 021–025. Owner publishes and runs Full Health; physical acceptance remains separate. Evidence: SHINKA_HEALTH_TIMING_025.md."
   }
 ];

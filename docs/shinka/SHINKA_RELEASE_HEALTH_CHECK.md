@@ -2,11 +2,21 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-024
+**Current BuildMarker:** Buildmarker-025
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-024.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-025.0; repository, synthetic and external evidence separated.
+
+## HC-025.0 — helper timing, progress and cancellation
+
+Retain every case, predicate and applicability: 169 registered / 144 in-app / 10 local / 13 external / 2 future. H10-003 still executes all 55 selected helpers, including real abort, stream cleanup, late rejection, cooldown and selection assertions. G02/G11/G18/G19/G23/O28/B18 use fixture-local virtual deadlines, with actual AbortController/Response behavior; B14 awaits its returned operation. H13-014 retains AN01/AN08 and every TR/EN route assertion; DOM changes are observed instead of timer-polled. No live GeoNames/provider call is made by these fixtures.
+
+The case budget stays 20,000ms. Synthetic helpers use min(5,000ms, remaining case budget), with monotonic elapsed-time checks in addition to timer delivery. On timeout/cancellation the case stays BLOCKED, attempted=true/executed=false. Its evidence retains `actual.helpers.completed` and `active`, containing only bounded safe helper ID, enumerated stage and elapsed milliseconds. Completed successful helpers alone may be reused within that run; failed, pending, cancelled and late completions cannot become cached PASS. A new run owns a new cache. Registered synchronous resource cleanup runs on abort before the next case; uncooperative JavaScript promises are not claimed physically terminated.
+
+H16-007 adds HT01–HT09 for partial timeout evidence, per-helper budget, pre/active cancellation, synchronous cleanup, late cache exclusion, run isolation, real navigation unmount/restart, diagnostic minimization, delayed deadline delivery and cleanup failure. No case was removed to hide a failure. Canonical local checks additionally run H10/H13 with <100ms timers clamped to 1,000ms in separate pages, blocking/counting external fetch/XHR; the fault injector is local tooling only.
+
+Preserve the user-supplied PUBLISHED/FULL HC-024 run `4b518113-02f1-4db1-9693-f0a02fbeecb8`: 143 PASS / 0 FAIL / 1 BLOCKED, H10-003 timeout at 20,950ms, H13-014 PASS at 15,930ms. Prior readiness/content PASS stays accepted. The historical active helper and browser visibility are unknown. Local baseline fault injection reproduced H10 timeout while B14 was active and AN08 around 16s; that is separate evidence, not retrospective proof. [025 report](reports/SHINKA_HEALTH_TIMING_025.md). Owner runs published Full Health after normal sync/publish; no agent-run live probe, import, user mutation or physical-device claim.
 
 ## HC-024.0 — targeted read evidence correction
 

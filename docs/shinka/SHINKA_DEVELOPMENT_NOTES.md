@@ -2,11 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-024
+**Current BuildMarker:** Buildmarker-025
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## Buildmarker-025 — H10-003 timing correction
+
+User-supplied HC-024 PUBLISHED/FULL run `4b518113-02f1-4db1-9693-f0a02fbeecb8` remains 143 PASS / 0 FAIL / 1 BLOCKED. Existing 20s helper/case deadline collision and sequential short real timers are source-proven; local timer fault injection reproduced H10 BLOCKED at 20,003ms (B14 active) and H13 PASS at 16,039ms. It does not prove the historical active helper or background-tab throttling. No external fetch/XHR was attempted by these fixtures.
+
+Controlled fixture deadlines and DOM observers preserve all existing assertions. Case evidence now keeps completed and active helper progress; abort owns synchronous resource cleanup and incomplete/late results cannot enter the success cache. HT01–HT09 cover timeout/cancel/cache/DOM cleanup/late-timer/privacy negatives. Normal GeoNames behavior is unchanged; only scheduler injection was added. Readiness/content checks and source bytes remain intact. Final local results, preserved baseline, boundaries and owner publication steps: [025 delivery](reports/SHINKA_HEALTH_TIMING_025.md). No live Health/provider probe/import/user mutation/main publish. Hosted/device verification remains manual.
 
 ## Buildmarker-024 — HC-023 targeted read failure closure
 

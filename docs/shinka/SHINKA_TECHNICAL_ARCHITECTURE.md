@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-024
+**Current BuildMarker:** Buildmarker-025
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -10,6 +10,14 @@
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and notification delivery/scheduler. Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## Health execution lifetime — 025
+
+`runner.executeCase` owns the case AbortController, monotonic remaining budget and closed `testProgress` projection. `syntheticProbe` runs helpers sequentially through `executeTest` with min(5s, remaining budget); only a completed successful result enters the per-run context cache. A case timeout preserves completed helper IDs and last active ID/stage/elapsed time, then closes publication and aborts owned resources before the next dispatch. Parent cancellation also stops a case immediately. Timers cannot guarantee execution while an event loop is suspended; elapsed-time checks reject late over-budget completion when it resumes. Arbitrary non-cooperative promises cannot be forcibly killed; their late continuations have no progress/cache authority and fixtures own no shared persistent state.
+
+The GeoNames adapter receives an optional timer dependency with exactly the prior native defaults; destination, redirect, validation, provider timeouts and normal transport behavior are unchanged. Timed fixtures inject their own scheduler and fetcher, keeping actual AbortController, Response/stream cancellation and unhandled-rejection assertions. Runtime-probe fixtures already support timer/clock injection. Each scheduler wakes on actual pending-work settlement or deadline registration, with abortable MessageChannel turns, and clears its private jobs on disposal. Admin navigation observes DOM changes and disposes its React root/waiters; it no longer relies on repeated short sleeps. Fault-injected global timer clamping exists only in `scripts/testHarness/healthTiming.js`, not the published graph.
+
+No schema, identity, data contract, content or authorization change belongs to this fix. HC-025.0 frontend and shared backend catalog identity must be synced together for report save; normal owner main/sync/publish remains unchanged. Previous successful readiness/content evidence is retained. [Evidence and limits](reports/SHINKA_HEALTH_TIMING_025.md).
 
 ## Health read failure boundaries — 024
 

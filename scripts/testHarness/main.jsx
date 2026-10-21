@@ -1,3 +1,4 @@
+import { runHealthTiming } from './healthTiming';
 import { LOCAL_HEALTH_IDS } from '../../base44/shared/healthExecutionScope.js';
 import { probeIdentity, acceptBrowserEvidence } from '@/foundation/probes/browserEvidence';
 import { ADMIN_TEST_HEALTH_CASES } from '@/foundation/health/cases/adminTestTools';
@@ -38,6 +39,7 @@ createRoot(document.getElementById("root")).render(productionRoute?<App/>:<Brows
 </Routes></BrowserRouter>);
 window.__authFixture = authFixture;
 window.__runFoundationTests = runFoundationTests;
+window.__runHealthTiming = runHealthTiming;
 window.__healthAuditRegistry = HEALTH_CASES.map(c=>({id:c.id,title:c.title,description:c.description,runnerType:c.runnerType,classification:c.classification,applicability:c.applicability,executionLocation:c.executionLocation,active:IN_APP_HEALTH_CASES.includes(c),hasRunner:typeof c.run==='function'}));
 window.__authProbeTools = {waitForAuthProbe,measureAuthShell};
 window.__foundationCatalog = {version:HEALTH_CATALOG_VERSION,suites:SUITES.length,cases:HEALTH_CASES.length,

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-024
+**Current BuildMarker:** Buildmarker-025
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -35,6 +35,12 @@
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+
+## Synthetic helper timing rule — 025
+
+Keep controlled time fixture-local: inject scheduler dependencies, never patch production global timers. Production adapter defaults and provider policy stay unchanged. A test deadline must exercise the real abort/cleanup path; an arbitrary sleep is not evidence that cleanup occurred. Observe DOM mutations with a bounded, abortable waiter; remove observers, timers, listeners and roots on completion/abort. Fixture ownership is registered through `context.cleanup`; all registered disposers are attempted synchronously, and cleanup failure cannot cache success.
+
+A helper's 5s bound is capped by the remaining 20s case budget; both check monotonic elapsed time so delayed timer delivery cannot accept an over-budget result. Stop dispatch on timeout/abort, close progress publication and exclude all unfinished/late work from the run cache. Only completed successful helpers are reused; a new Health context starts empty. Keep safe partial progress (IDs, closed stage codes, durations), not exceptions, request bodies, credentials or fixture data. Local scheduler fault injection does not establish background-tab behavior or provider failure. The complete local Chromium/WebKit gates must continue to assert the existing behavior.
 
 ## Targeted Health evidence rule — 024
 
