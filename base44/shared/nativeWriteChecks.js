@@ -1,6 +1,7 @@
 import { InternalError } from './internalAuthorization.js';
 import { DOMAIN_SCHEMAS, physicalName } from './domainSchemas.js';
 import { createTestRepository } from './adminTestRepository.js';
+import { assertPrivacyAccess, HEALTH_CLEANUP } from './privacyPolicy.js';
 
 const mutations = new Set(['create', 'update', 'updateMany', 'upsert', 'delete', 'deleteMany', 'bulkCreate', 'bulkUpdate', 'importEntities']);
 const productNames = new Set([...Object.keys(DOMAIN_SCHEMAS).map(physicalName), 'UserCalendarAction']);
@@ -18,6 +19,7 @@ export function withNativeWriteChecks(client, { paused = () => false } = {}) {
     if (!owner) return actor;
     if (owner !== actor.id && actor.role !== 'admin') throw new InternalError('OWNER_REQUIRED', 403);
     if ((await repository.lifecycle(owner))?.operation === 'DELETE_USER') throw new InternalError('ACCOUNT_DELETION_IN_PROGRESS', 403);
+    await assertPrivacyAccess(client, owner);
     if (owner !== actor.id && !await repository.user(owner)) throw new InternalError('AUTH_REQUIRED', 401);
     return actor;
   };
@@ -48,10 +50,16 @@ export function withNativeWriteChecks(client, { paused = () => false } = {}) {
               if(owners.some(owner=>typeof owner!=='string'||!owner))fail('WRITE_TARGET_REQUIRED');
               const patch = args[1]?.$set || args[1];
               if (patch?.user_id && owners.some(owner => patch.user_id !== owner)) fail('WRITE_TARGET_CONFLICT');
-              for (const owner of new Set(owners)) await check(owner);
+              for (const owner of new Set(owners)) {
+                await check(owner);
+                if (HEALTH_CLEANUP.includes(String(name)) || name === 'UserHealthConsent') await assertPrivacyAccess(client, owner, { health: true });
+              }
             }
             const result = await handler[method](...args);
-            for (const owner of new Set(owners)) await check(owner);
+            for (const owner of new Set(owners)) {
+              await check(owner);
+              if (HEALTH_CLEANUP.includes(String(name)) || name === 'UserHealthConsent') await assertPrivacyAccess(client, owner, { health: true });
+            }
             await check();
             return result;
           };

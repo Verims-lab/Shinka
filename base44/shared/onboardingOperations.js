@@ -11,12 +11,14 @@ import { SUN_SIGN_RESOLVER, HEALTH_CONSENT_VERSION } from './onboardingDependenc
 import { geoNamesDiagnostic } from './geonamesDiagnostics.js';
 import { prepareProfileInput } from './profileInput.js';
 import { verifiedDailyRecord } from './dailyRecord.js';
+import { assertPrivacyAccess } from './privacyPolicy.js';
 const fail=(code,status=400)=>{throw new OnboardingError(code,null,status);};
 const allowed={hydrate:[],initialize:['language_code','timezone','action_id'],saveProfile:['display_name','birth_date','birth_time','birthplace_geonames_id','action_id'],saveCycle:['period_start_date','period_duration_days','initial_cycle_length_days','health_consent','action_id'],skipCycle:[],listPlaceCountries:['language_code'],listPlaceRegions:['country','parent_id','offset','language_code'],listPlaceSettlements:['country','parent_id','offset','language_code'],searchPlaces:['query','language_code']};
 // Dependencies are server configuration/injected contract fixtures, never request fields.
 async function normalOnboardingOperation(client,body,dependencies={}) {
   const {atomic=null,geoNames=null,sunSign=SUN_SIGN_RESOLVER,consentVersion=HEALTH_CONSENT_VERSION,now=()=>new Date()}=dependencies;
   const principal=await requireAuthenticatedUser(client),owner=resolveAuthenticatedOwner(principal,body);
+  if (client.shinkaNative) await assertPrivacyAccess(client, owner, { health: true });
   const persistence=dependencies.persistence??(atomic?null:createBase44OnboardingAdapter(client,principal,{now,consentVersion,cycleGate:dependencies.cycleGate}));
   const fields=allowed[body.action];
   if(!fields||Object.keys(body).some(k=>!['action','user_id',...fields].includes(k)))fail('INVALID_REQUEST');

@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-018",
-    "package_name": "In-app Health scope and deletion outcome recovery",
-    "package_type": "CORRECTIVE",
-    "created_at": "2026-10-20T20:20:39.644339+00:00",
-    "health_catalog_version": "HC-018.0",
-    "short_summary": "Separate browser regressions from in-app Health; cancel nested probes; show confirmed, partial or unknown deletion and report-save outcomes.",
-    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
-    "notes": "Local Chromium/WebKit: 463 existing canonical regressions pass; E01–E08 focused rerun and 60/60 general Health pass after correcting E08 fixture projection. Remaining 37 local Health pass. Normal Health runs without JSON, confirmed save visible. Full-run E08 fixture failure retained in evidence. Narrow live read: prior deletion RUNNING/user_cycle_prediction, User present. No live delete/resume, Health or publish. Hosted acceptance pending; 0 Critical/High, 3 Moderate findings retained.",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true
-  },
-  {
     "build_marker": "Buildmarker-019",
     "package_name": "Audit and corrective reliability",
     "package_type": "CORRECTIVE",
@@ -69,5 +55,19 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "notes": "No schema delta, live mutation/Full Health, main merge/publish, reference import or new service. Actual profile/preference readback, lost-response recovery, conflict, null/name and locale regressions pass. Canonical docs and case audit aligned; Internal Build retains 018–022. Legal destinations/content remain unpublished. Notification delivery, withdrawal and deactivation are separate packages. Original ON-05 same-account acceptance remains open."
+  },
+  {
+    "build_marker": "Buildmarker-023",
+    "package_name": "Owner Privacy: Consent Withdrawal and Account Erasure",
+    "package_type": "FEATURE",
+    "created_at": "2026-10-21T10:53:26+03:00",
+    "health_catalog_version": "HC-023.0",
+    "short_summary": "Owner consent withdrawal and bounded account erasure with durable same-request recovery, verified active absence and platform-pending outcome. Chromium/WebKit 550/550 each; local Health 131 PASS/13 BLOCKED. Type/lint/build/Repo Health and byte budgets pass; 0 High/Critical. Hosted/device/provider acceptance remains open.",
+    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "Two closed operational schemas; schema→all backend/shared functions→frontend. No live privacy mutation/Full Health, main merge/publish or new service. Current native admins remain protected. Base44 purge, Apple revocation and published Play deletion URL remain external acceptance. Active history retains 019–023; older evidence stays in Git/reports."
   }
 ];

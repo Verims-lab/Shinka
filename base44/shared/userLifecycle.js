@@ -2,6 +2,7 @@ import { createTestRepository } from './adminTestRepository.js';
 import { testToolError } from './adminTestPolicy.js';
 import { InternalError } from './internalAuthorization.js';
 import { nativeResetStep } from './nativeResetStep.js';
+import { assertPrivacyAccess } from './privacyPolicy.js';
 
 // Fresh actor admission; completed DELETE remains a permanent target tombstone.
 // Per-write target admission is separate and is not a distributed fence.
@@ -16,6 +17,7 @@ export function withUserLifecycle(client) {
       try {
         const user = await repository.user(me.id);
         if (!user) testToolError('AUTH_REQUIRED', 401);
+        await assertPrivacyAccess(client, me.id);
         const current = await repository.lifecycle(me.id);
         if (current?.operation === 'DELETE_USER') testToolError('ACCOUNT_DELETION_IN_PROGRESS', 403);
         return { id: user.id, role: user.role };

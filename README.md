@@ -4,11 +4,13 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Any change pushed to the repo will also be reflected in the Base44 Builder.
 
-## Current Test data authority (Buildmarker-022)
+## Current Test data authority (Buildmarker-023)
 
 Base44 is the single product-data, identity and admin-role authority. Browser calls Base44 backend functions; no SQL secret, service, database setup or second login is required. Home reconciles immutable daily candidates; Calendar calculates from actual dates; reset verifies each step; deletion uses a durable target lifecycle with bounded resumable cleanup.
 
-You/Profile and preferences are implemented at `/you`, with closed owner-only `you` backend operations. Sync the new function plus all shared native code before the matching frontend. No schema delta or live mutation in this package. [You delivery and acceptance](docs/shinka/reports/SHINKA_YOU_022.md).
+Owner privacy is implemented at `/account-privacy` and external `/delete-account`: separate consent withdrawal and self account erasure, bounded same-request recovery, verified active-store absence and visible pending platform erasure. Add the two closed operational schemas before `accountPrivacy`, `applicationSession` and all native/shared code, then the matching frontend. [023 delivery, scope matrix and acceptance](docs/shinka/reports/SHINKA_PRIVACY_023.md). No live mutation or Full Health was run.
+
+You/Profile and preferences are implemented at `/you`, with closed owner-only `you` backend operations. Sync the new function plus all shared native code before the matching frontend. Package 022 had no schema delta or live mutation; 023 adds two operational schemas. [You delivery and acceptance](docs/shinka/reports/SHINKA_YOU_022.md).
 
 Pattern is now a read-only native route using assigned daily categories and verified Moon intervals. It generates no daily message and writes no summary cache. Sync the new `pattern` function with shared backend code and frontend through the normal owner publish flow. See [Pattern delivery](docs/shinka/reports/SHINKA_PATTERN_021.md).
 

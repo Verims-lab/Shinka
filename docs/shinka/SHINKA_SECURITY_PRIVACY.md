@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-022
+**Current BuildMarker:** Buildmarker-023
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -16,8 +16,8 @@
 | User row isolation | User sees only own rows; owner from auth context | REPOSITORY + SYNTHETIC verified; 20 direct SDK deny policies and backend owner scoping; live pending |
 | Admin boundary | Fresh native User.role and identity; audited; no email authority | LOCAL_NATIVE_SYNTHETIC; hosted two-user enforcement unverified |
 | Sensitive health access | Only with explicit valid consent | Shared backend consent/open-job checks; live pending |
-| Consent | Versioned, timestamped, event history | UNVERIFIED |
-| Health-data deletion | Immediate stop, verified deletion, retries, no re-consent mid-job | UNVERIFIED |
+| Consent | Versioned, timestamped, event history | 023 isolated grant/withdrawal/retry proof; hosted acceptance pending |
+| Health-data deletion | Persisted processing fence, five-scope active removal, explicit same-request retry, no re-consent mid-job | 023 synthetic handler/UI proof; hosted/platform acceptance pending |
 | Protected immutable records | Admin cannot UPDATE/DELETE snapshots/events/audit (OD-009) | Repository deny rules + shared guards + negative tests; PARTIALLY_VERIFIED |
 | Audit metadata minimization | No health content in audit log | Validated allowlist helper + negative tests |
 | Log redaction | No tokens, health data, message bodies | Health reports redacted (`redact()`), T17 test |
@@ -28,6 +28,17 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+## Owner privacy authority and erasure exception — 023
+
+`accountPrivacy` is a separate closed backend route. It uses the verified native session plus a fresh native User read; it deliberately bypasses normal product tombstone admission only to continue that owner's already confirmed privacy request. No caller owner/target/role/status/event time is accepted. Begin requires explicit true confirmation; read/status never mutate. Resume needs the current owner's native session. Incomplete profiles are allowed for account erasure. Native admin self-removal remains protected; no ordinary-user access to Admin Test Tools is introduced.
+
+A durable UserPrivacyRequest denies target product activity before destructive work. Health withdrawal separately denies health access/processing from that point, including before a failed consent write. Existing native wrappers, Calendar, onboarding, domain reads and new daily calculation recheck the relevant fence; account deletion is also checked by applicationSession. Bounded periodic/focus auth refresh carries an opaque privacy revision; same-browser signals carry a random invalidation nonce only. Cache generations discard stale responses. This is not instantaneous cross-device push, transaction, CAS, exactly-once, rollback or recall of an already transmitted SDK write.
+
+The server-owned privacy cleanup is a narrow exception to immutable **deletion**, only after authenticated owner confirmation, persisted lifecycle and exact scoped ownership. It does not authorize updates to daily/consent/audit history, arbitrary admin deletion or client CRUD. Other owners/shared references remain protected, including foreign indirect-edge conflicts. Cleanup verifies each deleted ID and each final scope; uncertainty never becomes absence.
+
+After native User removal a 256-bit capability, stored only in the initiating browser session and hashed on the server, permits only minimal read-only status. It expires after 24 hours, is not an operation ID, is never logged or placed in a URL, and cannot resume/delete anything. Normal sign-out clears the pointer; verified erasure preserves it for result recovery. Account switches discard an incompatible pointer. No personal values or tokens enter Health evidence. Normal Health uses isolated fixtures only. Permanent platform/provider erasure and the retention/disposition of pending minimal receipts remain open, without fabricated legal basis or duration; [official-source review](reports/SHINKA_PRIVACY_023.md).
+
 
 ## You security boundary — 022
 
@@ -81,7 +92,7 @@ Official [Entity SDK](https://docs.base44.com/developers/references/sdk/docs/typ
 
 Native Base44 User.role is the single application-admin source. Verified SDK identity plus current User read defeats caller flags/cached roles; no SQL bootstrap/roster or second identity exists. Native role management controls grants/revocations. UI session refresh and backend checks use the same source; role changes do not roll back already-started external calls. Admin tooling remains reachable before onboarding completion, while product/health operations require owner/ACTIVE/current consent and no open deletion/reset conflict.
 
-All product direct SDK policies remain closed. UserCalendarAction is backend-only health data, owner-bound, never logged/exported; delete cleanup includes it and future health withdrawal must include it. AdminTestOperation contains safe IDs/status/checkpoints/fingerprint hashes, not profile/health bodies. InternalHealthRun direct CRUD remains false and backend requires current native admin. No secrets in frontend/reports.
+All product direct SDK policies remain closed. UserCalendarAction is backend-only health data, owner-bound, never logged/exported; both admin deletion and current 023 withdrawal include it. AdminTestOperation contains safe IDs/status/checkpoints/fingerprint hashes, not profile/health bodies. InternalHealthRun direct CRUD remains false and backend requires current native admin. No secrets in frontend/reports.
 
 Deletion requires explicit Test config, signed preview, exact typed target, same current initiating admin, self/last-admin protections and operator pause/drain/roster freeze. Pre/post-write checks are **not** a distributed fence. Cannot verify drain ⇒ do not delete. Final audit/readback and empty/native-absence verification precede SUCCESS; historical consent/daily/protection/audit retention scope stays. No real reset/delete in this delivery. [Runbook and risk register](SHINKA_BASE44_CONTINUATION.md).
 
@@ -160,7 +171,7 @@ Each cell describes the current package. DENY_IN_007 means the corresponding fut
 | data_protection_event | DENY | ACTIVE_OWNER_BACKEND | DENY_IN_007 | DENY_IN_007 | DENY_IN_007 | AUDITED_BACKEND | DENY_IN_007 | DENY_PROTECTED | DENY_PROTECTED | GUARDED_PROTECTION | CONDITIONAL_PROTECTION | DENY |
 
 ### Protected records and admin audit
-user_daily_message: own read, only future DAILY_MESSAGE grant create, no update/delete even by that grant. user_health_consent_event and admin_audit_log: append-only. data_protection_event: no human update/delete; backend status progression remains closed until a verified transition workflow is supplied. health_data_deletion_job: only DELETION grant progresses approved states, never deletes history or changes owner/event/request metadata. COMPLETED requires a module-issued proof bound to the job/user after all four health collections have zero remaining records; request booleans cannot substitute. Terminal jobs cannot regress. Future worker must couple deletion verification and state publication with proven atomicity; a proof object alone is not a platform transaction.
+user_daily_message: own read, only future DAILY_MESSAGE grant create, no update/delete even by that grant. user_health_consent_event and admin_audit_log: append-only. data_protection_event: no human update/delete; backend status progression remains closed until a verified transition workflow is supplied. health_data_deletion_job: only DELETION grant progresses approved states, never deletes history or changes owner/event/request metadata. COMPLETED requires a module-issued proof bound to the job/user after all required health scopes have zero remaining records (the native 023 worker includes UserCalendarAction in addition to the four source collections); request booleans cannot substitute. Terminal jobs cannot regress. Future worker must couple deletion verification and state publication with proven atomicity; a proof object alone is not a platform transaction.
 
 `withAdminAudit` records successful/failed privileged VIEW/UPDATE/DELETE attempts with actor, target, action, outcome, time and safe code. It prevents returning privileged data if audit persistence fails. No normal user action is written to admin_audit_log. No admin UI or generic admin mutation route exists. `createAdminAuditEntry` and `createSystemErrorEntry` accept only declared metadata, bounded identifiers and machine codes; unknown/nested fields, credentials, health data and message snapshots are rejected. Existing recursive Health redaction is preserved. Email alert delivery and error retry/dedup workers are future scope.
 

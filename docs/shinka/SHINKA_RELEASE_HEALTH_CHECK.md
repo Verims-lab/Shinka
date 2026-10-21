@@ -2,11 +2,26 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-022
+**Current BuildMarker:** Buildmarker-023
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-021.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-023.0; repository, synthetic and external evidence separated.
+
+## HC-023.0 — owner privacy requirements and evidence
+
+H11-001 moves from future to an executable isolated withdrawal test. H11-003 keeps its ID and now tests owner account erasure, explicitly replacing INACTIVE-only behavior by the 023 product decision. Neither was a prior failed active case; no FAIL/BLOCKED history is removed. H11-002's description now links the implemented withdrawal/regrant path. H04-015 covers five closed operational schemas. H12-039 and local H13-019 are added; H11-008 tracks hosted/platform/provider acceptance outside normal dispatch.
+
+| Requirement → case | Runner and meaningful assertion | Environment |
+|---|---|---|
+| Cancel/no mutation; stable withdrawal/event; all five scopes; partial/regrant | H11-001 → PR01–04,09,13,18–20 | Actual HTTP + ordinary SDK fixture, persisted rows/empty scopes/current guard |
+| Normal/incomplete self erasure; other owners/shared unchanged; native User response loss; false success prevention | H11-003 → PR05–07,10 | Actual handler and fresh absence verifier, SYNTHETIC_RUNTIME |
+| Owner/role/stale session/admin protection; collision; duplicate/reload/expiry | H12-039 → PR08,11,12,14–17 | Actual closed authorization and controller/capability assertions, SYNTHETIC_RUNTIME |
+| Modal scope/cancel/focus/lost reply/TR/EN/%200 + external route | H13-019 → PV01–04 + checkPrivacyFlow | LOCAL_BROWSER Chromium/WebKit; not physical-device proof |
+| Hosted native removal, trash purge, Apple revocation, public Play link | H11-008; H13-013/H16-903 remain | Separate owner-run hosted/device/platform acceptance; never synthetic PASS |
+
+Normal Full Health never withdraws or deletes a live account. A readiness read is not deletion proof. Current catalog/server plan and last-five build history change together. Current inventory: 169 cases; 144 in-app; separate 10 local, 13 external and 2 future. Exact final results and every-case audit are recorded in [023 delivery](reports/SHINKA_PRIVACY_023.md).
+
 
 ## HC-022.0 — You/Profile and preferences
 

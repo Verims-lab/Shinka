@@ -29,9 +29,12 @@ export function useDailyMessage(request = dailyMessageRequest, initial = null, r
   useEffect(() => {
     if (!initial) reload();
     const checkDay = () => { if (document.visibilityState === 'visible' && context.current !== readContext()) reload(); };
+    const invalidate = () => { generation.current++; pending.current = false; setValue(null); setError(null); setLoading(false); };
+    const privacy = () => { invalidate(); if (document.visibilityState === 'visible') void reload(); };
     const timer = setInterval(checkDay, 30000);
     window.addEventListener('focus', checkDay); document.addEventListener('visibilitychange', checkDay);
-    return () => { generation.current++; pending.current = false; clearInterval(timer); window.removeEventListener('focus', checkDay); document.removeEventListener('visibilitychange', checkDay); };
+    window.addEventListener('shinka-health-access-changed', privacy); window.addEventListener('shinka-session-ended', invalidate);
+    return () => { generation.current++; pending.current = false; clearInterval(timer); window.removeEventListener('focus', checkDay); document.removeEventListener('visibilitychange', checkDay); window.removeEventListener('shinka-health-access-changed', privacy); window.removeEventListener('shinka-session-ended', invalidate); };
   }, [reload, initial, readContext]);
   return { value, error, loading, reload };
 }

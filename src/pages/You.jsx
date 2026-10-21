@@ -9,6 +9,7 @@ import ProfileEditor from '@/features/you/ProfileEditor';
 import { youCopy } from '@/foundation/i18n/youCopy';
 import { t } from '@/foundation/i18n/strings';
 import { onboardingRequest } from '@/services/onboardingService';
+import { privacyCopy } from '@/foundation/i18n/privacyCopy';
 
 function YouLink({ to, children, state = undefined, ...props }) {
   return useInRouterContext() ? <Link to={to} state={state} {...props}>{children}</Link> : <a href={to} {...props}>{children}</a>;
@@ -41,6 +42,8 @@ export default function You({ language = 'en', request = undefined, placeRequest
           <div><p>{copy('privacy')}</p><p className="text-shinka-caption">{copy('legalPending')}</p></div>
           <div><p>{copy('terms')}</p><p className="text-shinka-caption">{copy('legalPending')}</p></div>
           <div><p>{copy('consent')}</p><p data-you-consent>{copy(value.consent.status)}</p></div>
+          <YouLink to={`/account-privacy?intent=withdraw&lang=${language}`} className="flex min-h-11 items-center text-shinka-plum">{privacyCopy('withdraw', language)}</YouLink>
+          <YouLink to={`/account-privacy?intent=delete&lang=${language}`} className="flex min-h-11 items-center text-shinka-plum">{privacyCopy('delete', language)}</YouLink>
           <ShinkaButton variant="secondary" onClick={onLogout}>{copy('signOut')}</ShinkaButton>
           {isAdmin && <YouLink to="/internal" state={{language}} className="flex min-h-11 items-center text-shinka-plum">{t('admin.panel',language)}</YouLink>}
         </div></ShinkaCard>

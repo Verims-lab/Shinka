@@ -14,7 +14,7 @@ const checks={
   twentyPhysicalProductSchemas:e.domain.expected===20&&e.domain.present===20&&e.domain.mismatches.length===0,
   noUnexpectedProductSchemas:e.domain.unexpected.length===0,
   guardedHealthHistory:e.domain.healthHistoryPolicy,
-  separateBuiltinUserAndTooling:e.domain.builtinUserSeparate&&e.domain.internal===3&&e.domain.testOperationPolicy&&e.domain.calendarActionPolicy,
+  separateBuiltinUserAndTooling:e.domain.builtinUserSeparate&&e.domain.internal===5&&e.domain.testOperationPolicy&&e.domain.calendarActionPolicy&&e.domain.privacyPolicies,
   exactAuthoritativeFields:Object.keys(SOURCE_FIELD_NAMES).length===20&&Object.entries(SOURCE_FIELD_NAMES).every(([entity,fields])=>JSON.stringify([...fields].sort())===JSON.stringify(Object.keys(DOMAIN_SCHEMAS[entity].properties).sort())),
   completeAccessMatrix:e.domain.accessMatrixComplete&&e.domain.accessMatrixRows===20,
   directSdkOperationsDenied:e.domain.directOperationsDenied,

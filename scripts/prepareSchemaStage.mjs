@@ -12,7 +12,7 @@ const output = path.resolve(destination);
 if (output === root || output.startsWith(`${root}${path.sep}`)) throw new Error('Output must be outside the checkout');
 const baselineCommit = execFileSync('git', ['rev-parse', '--verify', `${baseline}^{commit}`], { cwd: root, encoding: 'utf8' }).trim();
 const names = (await fs.readdir(path.join(root, 'base44/entities'))).filter(name => /\.jsonc?$/.test(name)).sort();
-if (names.length !== 24 || !names.includes('AdminTestOperation.jsonc') || !names.includes('UserCalendarAction.jsonc')) throw new Error('Unexpected schema inventory; review before release');
+if (names.length !== 26 || !names.includes('AdminTestOperation.jsonc') || !names.includes('UserCalendarAction.jsonc') || !names.includes('UserPrivacyRequest.jsonc') || !names.includes('PrivacyRecoveryReceipt.jsonc')) throw new Error('Unexpected schema inventory; review before release');
 const tracked = new Set(execFileSync('git', ['ls-files', '--', 'base44/entities'], { cwd: root, encoding: 'utf8' }).trim().split('\n'));
 if (names.some(name => !tracked.has(`base44/entities/${name}`))) throw new Error('Stage reviewed new schemas in Git before generating a complete patch');
 const files = await Promise.all(names.map(async name => {

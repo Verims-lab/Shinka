@@ -14,6 +14,7 @@ import { repeatWindowStart, selectDailyPair, dailySnapshot } from './dailySelect
 import { resolveMoonPhase } from './moonIntervals.js';
 import { verifiedDailyRecord } from './dailyRecord.js';
 import { nativeDailyPersistence } from './nativeDailyPersistence.js';
+import { assertPrivacyAccess } from './privacyPolicy.js';
 
 const fail = (code, status = 409) => { throw new InternalError(code, status); };
 const domainFields = entity => Object.keys(DOMAIN_SCHEMAS[entity].properties);
@@ -45,7 +46,11 @@ async function normalDailyMessageOperation(client, body, { now = () => new Date(
   const reconciled = persistence ? await persistence.existing(day) : null;
   const existing = persistence ? (reconciled.record ? [reconciled.record] : []) : await read('user_daily_message', 2, { shinka_date: day });
   if (existing.length > 1) fail('DUPLICATE_DAILY_MESSAGE');
-  if (existing.length) return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: false, notice: reconciled?.notice || null, daily: verifiedDailyRecord(existing[0], owner, day), profile: { display_name: profile.display_name }, timezone };
+  if (existing.length) {
+    await client.auth.me();
+    assertActiveAccount(owner, await singleton('user_profile'));
+    return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: false, notice: reconciled?.notice || null, daily: verifiedDailyRecord(existing[0], owner, day), profile: { display_name: profile.display_name }, timezone };
+  }
   if (!isOnboardingProfileReady(profile, preferences, day)) fail('PROFILE_COMPLETION_REQUIRED');
   if (!atomic && !persistence) fail('DAILY_ATOMIC_CAPABILITY_REQUIRED', 503);
   if (typeof library !== 'function') fail('CONTENT_NOT_READY', 503);
@@ -58,6 +63,7 @@ async function normalDailyMessageOperation(client, body, { now = () => new Date(
   let cycle = 'UNKNOWN';
   let healthGuard = null;
   if (consent?.consent_status === 'GRANTED') {
+    if (native) await assertPrivacyAccess(client, owner, { health: true });
     const grant = validatedOnboardingGrant(consent, HEALTH_CONSENT_VERSION);
     const jobs = await read('health_data_deletion_job', 1, { job_status: { $ne: 'COMPLETED' } });
     assertHealthConsent(owner, consent, jobs);

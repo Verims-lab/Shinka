@@ -44,7 +44,7 @@ export const YOU_UI_TESTS=[
    await until(()=>button(host,'Check saved result'));check(host.querySelector('#display_name').disabled&&!host.textContent.includes('Your profile has been updated'));
    button(host,'Check saved result').click();await until(()=>host.textContent.includes('Your profile has been updated'));button(host,'Sign Out').click();await until(()=>!host.querySelector('[data-you-consent]'));check(logout===1&&!host.textContent.includes('Lost response'));
  })],
- ['YU04','TR/EN 320px 200% real form labels, min touch, no fake legal/withdrawal/notification actions',async()=>probe(async(root,host)=>{
+ ['YU04','TR/EN 320px 200% real form labels, min touch, no fake legal or notification actions; privacy links point to confirmed workflows',async()=>probe(async(root,host)=>{
    for(const language of ['tr','en']) {
      const f=youFixture();root.render(createElement(You,{key:language,language,request:f.request,placeRequest:places}));await until(()=>host.querySelector('[data-you-root]')?.lang===language&&button(host,language==='tr'?'Profili düzenle':'Edit profile'));
      button(host,language==='tr'?'Profili düzenle':'Edit profile').click();await until(()=>host.querySelector('[data-you-profile-form]'));

@@ -2,11 +2,20 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-022
+**Current BuildMarker:** Buildmarker-023
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## Current privacy rollout — 023
+
+Base44 remains sole authority. Start: clean Test `31b1989`; origin/main three commits ahead at `ec2f8d3`; Test fast-forwarded and pushed to that current base before development. Buildmarker-022/HC-022.0 becomes 023/HC-023.0 once. Upstream generated OAuth templates are preserved; narrow type fixes only. No live Full Health, native mutation, reset/resume, remote schema push, main merge or publish occurred.
+
+Deployment order: (1) sync the complete schema inventory, adding UserPrivacyRequest and PrivacyRecoveryReceipt with all direct policies false; existing schemas/policies remain. Use `node scripts/prepareSchemaStage.mjs /private/tmp/shinka-023-schema-<new-name> origin/main` after the new files are tracked if a reviewable snapshot is needed. Compare all remote entity names before any full entities push; do not push an incomplete folder. (2) Sync new `accountPrivacy`, changed `applicationSession` and **all** native entry/shared code, including userLifecycle/nativeWriteChecks/Calendar/onboarding. (3) Publish the matching frontend with `/account-privacy` and `/delete-account`. Owner owns main merge/sync/publish. No frontend-only publish.
+
+Native readiness now checks all five operational schemas, including UserPrivacyRequest and PrivacyRecoveryReceipt, without changing native-continuation/2; it remains read-only and is no mutation proof; new privacy schema policies/readability additionally require hosted owner acceptance. Use separate disposable owner-selected accounts for withdrawal and account deletion. Account erasure is broader than admin test deletion: personal history is removed under explicit owner authority; admin retention/self/last-admin protections otherwise remain. Permanent Base44/Apple/provider and Play external-link acceptance is separate and pending. The current erasure request stays visible as PLATFORM_PENDING after active removal; no automatic trash purge or final completion claim. [Single delivery report, matrix and five acceptance steps](reports/SHINKA_PRIVACY_023.md).
+
 
 ## You native continuation — 022
 
@@ -26,7 +35,7 @@ No architecture/schema/retention change. All four Test Tools actions use the sam
 
 ## 019 active continuation — Audit + Fix
 
-This section governs the current delivery; package-numbered sections below preserve historical decisions. Base44 remains the sole data/identity authority. The approved existing app/prod is shared, not an isolated Test database. No schema change, external service, import, live reset/delete/resume or hosted Full Health is part of 019. User performs main merge/sync/publish and application acceptance. Reference import was verified in 016 (6 categories, 240 mappings, 260 pairs; Moon coverage through 2028-11-02), not newly measured or reloaded here.
+This section records the 019 delivery; the 023 privacy contract above governs self-service erasure and withdrawal. Base44 remains the sole data/identity authority. The approved existing app/prod is shared, not an isolated Test database. No schema change, external service, import, live reset/delete/resume or hosted Full Health is part of 019. User performs main merge/sync/publish and application acceptance. Reference import was verified in 016 (6 categories, 240 mappings, 260 pairs; Moon coverage through 2028-11-02), not newly measured or reloaded here.
 
 Current deletion UX: enter ID → fetch target → inspect one explicit confirmation → visible progress → verified result. Acknowledged partial passes may continue the **same** authorized operation automatically, bounded to 12 requests / 60 seconds between request starts. An unknown response ends writes and allows at most two read-only status checks; reload only looks up the retained operation. Limits leave a visible same-operation Continue action, never a new deletion. Actor/target/self/last-admin/open-job checks remain fresh around each mutation. Final native User and operational-data absence, retained notification disposition, final audit and status readback are all required. Checkpoints record earlier progress but do not exempt a scope from reconciliation. No operator terminal, global drain or JSON step is required.
 

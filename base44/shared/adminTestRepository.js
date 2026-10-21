@@ -1,4 +1,6 @@
 import { physicalName } from './domainSchemas.js';
+import { readPrivacyRequests } from './privacyPolicy.js';
+import { deleteAndVerifyAbsent } from './ownedCleanup.js';
 import { DELETED_ENTITIES, RETAINED_ENTITIES, OPERATION_ENTITY, OPERATION_FIELDS, projectOperation, testToolError, hashToolValue } from './adminTestPolicy.js';
 
 // SDK 0.8.54 positional pagination. Health values/snapshots are never selected;
@@ -72,6 +74,8 @@ export function createTestRepository(client, { clock = () => performance.now() }
     return active[0] || null; // Completed DELETE is a permanent tombstone.
   }
   async function target(targetId, identity = undefined, { deletionGuard = false } = {}) {
+    const privacy = await readPrivacyRequests(client, targetId);
+    if (privacy.some(row => row.kind === 'DELETE_ACCOUNT' || row.status !== 'COMPLETED')) testToolError('PRIVACY_OTHER_OPERATION_PENDING');
     identity ||= await user(targetId, true);
     if (!identity) testToolError('TEST_USER_NOT_FOUND', 404);
     // Deletion admission needs current identity/roster and open jobs, not a
@@ -137,14 +141,7 @@ export function createTestRepository(client, { clock = () => performance.now() }
     }
   }
   async function deleteOwned(name, id, targetId) {
-    try { await entities[name].delete(id); }
-    catch (error) {
-      // Another request may have removed this exact ID. A 404 is accepted only
-      // after a successful owner-scoped absence read; 403/network never mean absent.
-      if (error.code !== 'TEST_STORAGE_NOT_FOUND' && (error?.response?.status || error?.status) !== 404) throw error;
-      const rows = await entities[name].filter({ id, user_id: targetId }, 'id', 2, 0, ['id','user_id']);
-      if (!Array.isArray(rows) || rows.length) throw error;
-    }
+    await deleteAndVerifyAbsent(entities, name, id, { user_id: targetId }, 'TEST_DELETE_UNCONFIRMED');
   }
   async function stopNotifications(targetId) {
     const rows=await pendingPage(targetId);

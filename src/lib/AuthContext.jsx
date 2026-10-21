@@ -1,6 +1,8 @@
 import { createContext, useState, useContext, useEffect, useCallback, useRef } from "react";
 import { base44 } from "@/api/base44Client";
 import { safeAuthError } from "@/foundation/authErrors";
+import { PRIVACY_SIGNAL, privacyRecoveryStore } from '@/services/privacyService';
+import { queryClientInstance } from '@/lib/query-client';
 
 const AuthContext = createContext(null);
 // Isolated canonical tests inject a client; production uses the existing SDK.
@@ -15,6 +17,7 @@ export const AuthProvider = ({ children, client = base44 }) => {
   const [authChecked, setAuthChecked] = useState(false);
   const [appPublicSettings, setAppPublicSettings] = useState(null);
   const generation = useRef(0), signedOut = useRef(false);
+  const privacyVersion = useRef(null);
 
   const checkUserAuth = useCallback(async () => {
     if (signedOut.current) return false;
@@ -26,6 +29,8 @@ export const AuthProvider = ({ children, client = base44 }) => {
       if (currentUser?.authority !== 'BASE44_NATIVE_V1' || !['admin','user'].includes(currentUser?.role)) throw new Error('APPLICATION_SESSION_UNVERIFIED');
       if (ticket !== generation.current) return false;
       if (!currentUser?.id) throw new Error("AUTH_SESSION_REQUIRED");
+      if (privacyVersion.current && privacyVersion.current !== `${currentUser.id}:${currentUser.privacyRevision || ''}`) window.dispatchEvent(new Event('shinka-health-access-changed'));
+      privacyVersion.current = `${currentUser.id}:${currentUser.privacyRevision || ''}`;
       setUser(currentUser); setIsAuthenticated(true); setAuthError(null);
       return true;
     } catch (error) {
@@ -64,6 +69,17 @@ export const AuthProvider = ({ children, client = base44 }) => {
     void checkAppState();
     return () => { generation.current++; };
   }, [checkAppState]);
+  useEffect(() => {
+    const changed = () => { queryClientInstance.clear(); };
+    const external = event => {
+      if (event.key !== PRIVACY_SIGNAL) return;
+      window.dispatchEvent(new Event('shinka-health-access-changed'));
+      void checkUserAuth();
+    };
+    window.addEventListener('storage', external);
+    window.addEventListener('shinka-health-access-changed', changed);
+    return () => { window.removeEventListener('storage', external); window.removeEventListener('shinka-health-access-changed', changed); };
+  }, [checkUserAuth]);
 
   // Refresh privilege without unmounting the onboarding form. No push/revocation guarantee.
   useEffect(() => {
@@ -71,7 +87,7 @@ export const AuthProvider = ({ children, client = base44 }) => {
     const refresh = () => { if (document.visibilityState === "visible") void checkUserAuth(); };
     window.addEventListener("focus", refresh);
     document.addEventListener("visibilitychange", refresh);
-    const timer = user?.role === "admin" ? setInterval(refresh, 60000) : undefined;
+    const timer = setInterval(refresh, 60000);
     return () => {
       window.removeEventListener("focus", refresh);
       document.removeEventListener("visibilitychange", refresh);
@@ -79,9 +95,11 @@ export const AuthProvider = ({ children, client = base44 }) => {
     };
   }, [isAuthenticated, user?.role, checkUserAuth]);
 
-  const logout = async (shouldRedirect = true) => {
+  const logout = async (shouldRedirect = true, { preservePrivacyRecovery = false } = {}) => {
     signedOut.current = true; generation.current++;
     window.dispatchEvent(new Event('shinka-session-ended'));
+    queryClientInstance.clear();
+    if (!preservePrivacyRecovery) privacyRecoveryStore.clear();
     setUser(null); setIsAuthenticated(false); setAuthChecked(true);
     setIsLoadingAuth(false); setIsRefreshingAuth(false); setIsLoadingPublicSettings(false);
     try { await client.auth.logout(shouldRedirect ? `${window.location.origin}/login` : undefined); }

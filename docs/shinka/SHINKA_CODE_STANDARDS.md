@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-022
+**Current BuildMarker:** Buildmarker-023
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -35,6 +35,11 @@
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+
+## Privacy implementation standards — 023
+
+Use the explicit owner-erasure scope and closed endpoint, not a new general system delete grant. Keep ordinary immutable/admin rules unchanged. Share delete/readback logic with admin cleanup; every mutation and indirect reference is scoped. Keep confirmation separate from opening/reading, persistent request separate from UI busy state, and native identity removal separate from post-removal status capability. Recovery is bounded and never blindly starts a new request. A failed verification does not certify absence or permanent erasure. Local fixture tests must include positive cleanup, partial failure, native-removal response loss, current guards, other owners and meaningful UI assertions. Future platform/device/provider evidence stays separate from active Health. No auth/health values in diagnostics.
+
 
 ## You implementation rules — 022
 

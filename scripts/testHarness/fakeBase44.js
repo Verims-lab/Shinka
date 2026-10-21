@@ -1,3 +1,5 @@
+let privacyLab;
+const loadPrivacyLab = () => privacyLab ||= import('@/foundation/tests/privacyFixture').then(({privacyFixture})=>{const f=privacyFixture();globalThis.__privacyLab=f;return f;});
 let youLab;
 const loadYouLab = () => youLab ||= import("@/foundation/tests/youFixture").then(({youFixture})=>{const f=youFixture();f.tables.UserPreferences[0].language_code=params.get("language")==="tr"?"tr":"en";globalThis.__youLab=f;return f;});
 // CLI-only substitution; no application build imports this module or its URL controls.
@@ -54,6 +56,7 @@ export const base44 = {
       try { return { data: await f.tools(body, actor) }; }
       catch (error) { return { data: { error_code: error.code || 'TEST_TOOLS_FAILED' } }; }
     }
+    if (name === 'accountPrivacy') { const f = await loadPrivacyLab(); return {data:await(await f.http(body, session === 'admin' ? 'adminA' : session === 'user' ? 'ownerA' : null)).json()}; }
     if (name === 'you') { const f=await loadYouLab();return {data:await(await f.http(body)).json()}; }
     if (name === 'pattern') {
       if (!patternLab) patternLab = import('@/foundation/tests/patternFixture').then(({patternFixture,patternRow})=>{const f=patternFixture();f.tables.UserDailyMessage.push(patternRow('2026-10-19'));globalThis.__patternLab=f;return f;});

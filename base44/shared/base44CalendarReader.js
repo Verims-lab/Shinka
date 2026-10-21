@@ -4,6 +4,7 @@ import { DOMAIN_SCHEMAS, physicalName } from './domainSchemas.js';
 import { normalizeDomainRead } from './domainValidation.js';
 import { CALENDAR_HISTORY_LIMIT } from './calendarCalculation.js';
 import { validateCalendarAccess, validateCalendarHealth, calendarRevision } from './calendarState.js';
+import { assertPrivacyAccess } from './privacyPolicy.js';
 
 const fail = code => { throw new InternalError(code, 409); };
 // Read-only SDK boundary; two reads detect some races, not snapshot isolation.
@@ -25,6 +26,7 @@ export function calendarReader(client, principal) {
     return rows[0] || null;
   };
   const access = async () => {
+    if (client.shinkaNative) await assertPrivacyAccess(client, owner, { health: true });
     const profile = await one('user_profile');
     assertActiveAccount(owner, profile);
     const consent = await one('user_health_consent');
@@ -59,6 +61,7 @@ export function calendarReader(client, principal) {
     return result;
   };
   return {
+    access,
     snapshot,
     // Best-effort detection of read races, NOT a native snapshot transaction.
     async confirmedSnapshot() {

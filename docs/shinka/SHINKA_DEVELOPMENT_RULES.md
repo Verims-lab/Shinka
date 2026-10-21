@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-022
+**Current BuildMarker:** Buildmarker-023
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -14,6 +14,11 @@
 - NO SILENT SOURCE-CONTRACT CHANGE
 - NO FUTURE FEATURE IMPLEMENTATION WITHOUT PACKAGE SCOPE
 - NO LEGACY SHINKA IMPORT — NO LEGACY SHINKA CONTRACT MAY ENTER THIS PROJECT WITHOUT AN EXPLICIT CHANGE REQUEST.
+
+## Privacy package governance — 023
+
+Explicit scope advances 022 → 023 and HC-022.0 → HC-023.0 once, retaining 019–023 in Internal Build. H11-001 activates withdrawal; H11-003 replaces the superseded INACTIVE-only future requirement with real owner erasure; previous catalog/evidence stays in Git. Add owner/recovery and local UI cases; track platform/provider/physical acceptance separately. No normal Health mutation reaches a real user. Two new operational schemas require a full-inventory publication review. Required local install/tree/audit, Repo Health/type/lint/build, both browser engines and performance budgets remain mandatory. Publish and live destructive acceptance belong to the user with explicitly chosen disposable accounts. No external service, SQL, live agent reset/delete/resume or main push.
+
 
 ## You package governance — 022
 
