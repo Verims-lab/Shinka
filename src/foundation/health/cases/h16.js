@@ -1,3 +1,4 @@
+import { HEALTH_TIMING_TESTS } from '../../tests/healthTimingTests';
 import { HEALTH_READ_TESTS } from '../../tests/healthReadTests';
 import { CLOSURE020_READINESS_TESTS } from '../../tests/closure020Tests';
 import { checkCatalog, checkResults, checkSuiteCoverage, checkSummaryReconciles } from "../integrity";
@@ -41,7 +42,7 @@ export const H16_CASES = [
     const planAligned=plan.length===IN_APP_HEALTH_CASES.length && plan.every(id=>IN_APP_HEALTH_CASES.some(c=>c.id===id));
     return verdict(planAligned && fake.length===0 && overlap.length===0 && ACCEPTANCE_REQUIREMENTS.length>0,ev(CLASS.SYNTHETIC_RUNTIME,'execution/acceptance inventories',{fake,overlap,planAligned,tracked:ACCEPTANCE_REQUIREMENTS.map(r=>r.id)},'disjoint and retained','No N/A placeholders dispatched'));
   }),
-  c('H16-007','Negative evidence integrity regressions','Missing runners/assertions/results/measurements, wrong builds and incorrect supplied totals cannot pass; real prerequisite runners require exact successful contracts; read failures retain safe stage/status diagnostics without retry.',syntheticProbe([...AUDIT019_INTEGRITY_TESTS, ...CLOSURE020_READINESS_TESTS, ...HEALTH_READ_TESTS])),
+  c('H16-007','Negative evidence integrity regressions','Missing runners/assertions/results/measurements, wrong builds and incorrect supplied totals cannot pass; real prerequisite runners require exact successful contracts; read failures retain safe stage/status diagnostics without retry. Helper timeout, cleanup, progress and completed-only cache integrity are verified.',syntheticProbe([...AUDIT019_INTEGRITY_TESTS, ...CLOSURE020_READINESS_TESTS, ...HEALTH_READ_TESTS, ...HEALTH_TIMING_TESTS])),
   c("H16-006", "Gate reflects only applicable cases", "Gate is unchanged when future cases are removed or a synthetic future FAIL is injected.", async (ctx) => {
     const base = computeGate(ctx.results).status;
     const onlyCurrent = computeGate(ctx.results.filter((r) => r.applicability === APPLICABILITY.CURRENT)).status;

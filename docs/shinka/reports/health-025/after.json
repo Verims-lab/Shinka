@@ -1,0 +1,6133 @@
+{
+  "scope": "LOCAL_SYNTHETIC_TIMER_FAULT_INJECTION_AFTER_FIX",
+  "buildMarker": "Buildmarker-025",
+  "healthCatalogVersion": "HC-025.0",
+  "runs": [
+    {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "results": [
+        {
+          "id": "H10-003",
+          "slowTimers": false,
+          "status": "PASS",
+          "durationMs": 39,
+          "evidence": {
+            "classification": "SYNTHETIC_RUNTIME",
+            "source": "canonical domain/security helpers",
+            "actual": {
+              "executed": [
+                "YT04",
+                "M06",
+                "M07",
+                "M08",
+                "O08",
+                "O09",
+                "O10",
+                "O11",
+                "O12",
+                "O13",
+                "O28",
+                "O32",
+                "O33",
+                "G01",
+                "G02",
+                "G03",
+                "G04",
+                "G05",
+                "G06",
+                "G07",
+                "G08",
+                "G09",
+                "G10",
+                "G11",
+                "G12",
+                "G21",
+                "G22",
+                "G23",
+                "G24",
+                "B01",
+                "B02",
+                "B03",
+                "B04",
+                "B05",
+                "B06",
+                "B07",
+                "B08",
+                "B09",
+                "B10",
+                "B11",
+                "B12",
+                "B13",
+                "B14",
+                "B15",
+                "B16",
+                "B17",
+                "B18",
+                "G13",
+                "G14",
+                "G15",
+                "G16",
+                "G17",
+                "G18",
+                "G19",
+                "G20"
+              ],
+              "failed": [],
+              "diagnostics": [],
+              "reused": [],
+              "helpers": {
+                "completed": [
+                  {
+                    "id": "YT04",
+                    "stage": "COMPLETE",
+                    "durationMs": 9
+                  },
+                  {
+                    "id": "M06",
+                    "stage": "COMPLETE",
+                    "durationMs": 4
+                  },
+                  {
+                    "id": "M07",
+                    "stage": "COMPLETE",
+                    "durationMs": 3
+                  },
+                  {
+                    "id": "M08",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "O08",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "O09",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O10",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O11",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "O12",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O13",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O28",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O32",
+                    "stage": "COMPLETE",
+                    "durationMs": 3
+                  },
+                  {
+                    "id": "O33",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G01",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G02",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G03",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G04",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G05",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G06",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G07",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G08",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G09",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G10",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G11",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G12",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G21",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G22",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G23",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G24",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B01",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B02",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B03",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B04",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B05",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B06",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B07",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B08",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B09",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B10",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B11",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B12",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B13",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B14",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B15",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B16",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B17",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B18",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G13",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G14",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G15",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G16",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G17",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G18",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G19",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G20",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  }
+                ],
+                "active": null
+              }
+            },
+            "expected": {
+              "failed": []
+            },
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+            "timestamp": "2026-10-21T09:53:59.702Z"
+          },
+          "events": [
+            {
+              "id": "YT04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "YT04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "YT04",
+              "stage": "COMPLETE",
+              "durationMs": 9
+            },
+            {
+              "id": "M06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M06",
+              "stage": "COMPLETE",
+              "durationMs": 4
+            },
+            {
+              "id": "M07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M07",
+              "stage": "COMPLETE",
+              "durationMs": 3
+            },
+            {
+              "id": "M08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M08",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "O08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O08",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "O09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O09",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O10",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O11",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "O12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O12",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O13",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O28",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O28",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O28",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "O28",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O32",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O32",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O32",
+              "stage": "COMPLETE",
+              "durationMs": 3
+            },
+            {
+              "id": "O33",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O33",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O33",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G01",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "BACKEND_FIXTURE",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "BODY_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "BACKEND_FIXTURE",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G03",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G04",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G05",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G06",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G07",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G08",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G09",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G10",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "BODY_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "BODY_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G12",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G21",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G21",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G21",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G22",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G22",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G22",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G23",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "CLEANUP",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "LATE_RESPONSE",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G24",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G24",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G24",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B01",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B02",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B03",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B04",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B05",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B06",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B07",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B08",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B09",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B10",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B11",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B12",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B13",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "SELECTION_EDIT",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "SELECTION_RETRY",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "SELECTION_CLEAR",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B15",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B16",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B17",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B18",
+              "stage": "BODY_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "B18",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G13",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G14",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G15",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G16",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G17",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G19",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "CLEANUP",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "COOLDOWN",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G20",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G20",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G20",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            }
+          ],
+          "externalRequests": 0
+        },
+        {
+          "id": "H13-014",
+          "slowTimers": false,
+          "status": "PASS",
+          "durationMs": 9,
+          "evidence": {
+            "classification": "SYNTHETIC_RUNTIME",
+            "source": "canonical domain/security helpers",
+            "actual": {
+              "executed": [
+                "AN01",
+                "AN08"
+              ],
+              "failed": [],
+              "diagnostics": [],
+              "reused": [],
+              "helpers": {
+                "completed": [
+                  {
+                    "id": "AN01",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "AN08",
+                    "stage": "COMPLETE",
+                    "durationMs": 9
+                  }
+                ],
+                "active": null
+              }
+            },
+            "expected": {
+              "failed": []
+            },
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+            "timestamp": "2026-10-21T09:53:59.843Z"
+          },
+          "events": [
+            {
+              "id": "AN01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN01",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_MOUNT",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 1
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 3
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 3
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 3
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 3
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 3
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 3
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 4
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 4
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 4
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 4
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 4
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 4
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 5
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_MOUNT",
+              "durationMs": 5
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 5
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 5
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 5
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 5
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 6
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 6
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 6
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 6
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 6
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 6
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 7
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 7
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 8
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 8
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 9
+            },
+            {
+              "id": "AN08",
+              "stage": "COMPLETE",
+              "durationMs": 9
+            }
+          ],
+          "externalRequests": 0
+        },
+        {
+          "id": "H10-003",
+          "slowTimers": true,
+          "status": "PASS",
+          "durationMs": 38,
+          "evidence": {
+            "classification": "SYNTHETIC_RUNTIME",
+            "source": "canonical domain/security helpers",
+            "actual": {
+              "executed": [
+                "YT04",
+                "M06",
+                "M07",
+                "M08",
+                "O08",
+                "O09",
+                "O10",
+                "O11",
+                "O12",
+                "O13",
+                "O28",
+                "O32",
+                "O33",
+                "G01",
+                "G02",
+                "G03",
+                "G04",
+                "G05",
+                "G06",
+                "G07",
+                "G08",
+                "G09",
+                "G10",
+                "G11",
+                "G12",
+                "G21",
+                "G22",
+                "G23",
+                "G24",
+                "B01",
+                "B02",
+                "B03",
+                "B04",
+                "B05",
+                "B06",
+                "B07",
+                "B08",
+                "B09",
+                "B10",
+                "B11",
+                "B12",
+                "B13",
+                "B14",
+                "B15",
+                "B16",
+                "B17",
+                "B18",
+                "G13",
+                "G14",
+                "G15",
+                "G16",
+                "G17",
+                "G18",
+                "G19",
+                "G20"
+              ],
+              "failed": [],
+              "diagnostics": [],
+              "reused": [],
+              "helpers": {
+                "completed": [
+                  {
+                    "id": "YT04",
+                    "stage": "COMPLETE",
+                    "durationMs": 9
+                  },
+                  {
+                    "id": "M06",
+                    "stage": "COMPLETE",
+                    "durationMs": 4
+                  },
+                  {
+                    "id": "M07",
+                    "stage": "COMPLETE",
+                    "durationMs": 2
+                  },
+                  {
+                    "id": "M08",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "O08",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "O09",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O10",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O11",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "O12",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O13",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O28",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O32",
+                    "stage": "COMPLETE",
+                    "durationMs": 3
+                  },
+                  {
+                    "id": "O33",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G01",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G02",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G03",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G04",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G05",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G06",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G07",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G08",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G09",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G10",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G11",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G12",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G21",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G22",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G23",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G24",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B01",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B02",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B03",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B04",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B05",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B06",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B07",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B08",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B09",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B10",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B11",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B12",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B13",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B14",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B15",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B16",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B17",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B18",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G13",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G14",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G15",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G16",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G17",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G18",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G19",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G20",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  }
+                ],
+                "active": null
+              }
+            },
+            "expected": {
+              "failed": []
+            },
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+            "timestamp": "2026-10-21T09:54:00.014Z"
+          },
+          "events": [
+            {
+              "id": "YT04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "YT04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "YT04",
+              "stage": "COMPLETE",
+              "durationMs": 9
+            },
+            {
+              "id": "M06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M06",
+              "stage": "COMPLETE",
+              "durationMs": 4
+            },
+            {
+              "id": "M07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M07",
+              "stage": "COMPLETE",
+              "durationMs": 2
+            },
+            {
+              "id": "M08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M08",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "O08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O08",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "O09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O09",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O10",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O11",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "O12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O12",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O13",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O28",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O28",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O28",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "O28",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O32",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O32",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O32",
+              "stage": "COMPLETE",
+              "durationMs": 3
+            },
+            {
+              "id": "O33",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O33",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O33",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G01",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "BACKEND_FIXTURE",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "BODY_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "BACKEND_FIXTURE",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G03",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G04",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G05",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G06",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G07",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G08",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G09",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G10",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "BODY_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "BODY_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G12",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G21",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G21",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G21",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G22",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G22",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G22",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G23",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "CLEANUP",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "LATE_RESPONSE",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G24",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G24",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G24",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B01",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B02",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B03",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B04",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B05",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B06",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B07",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B08",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B09",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B10",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B11",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B12",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B13",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "SELECTION_EDIT",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "SELECTION_RETRY",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "SELECTION_CLEAR",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B15",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B16",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B17",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B18",
+              "stage": "BODY_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "B18",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G13",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G14",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G15",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G16",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G17",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "CLEANUP",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "COOLDOWN",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G20",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G20",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G20",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            }
+          ],
+          "externalRequests": 0
+        },
+        {
+          "id": "H13-014",
+          "slowTimers": true,
+          "status": "PASS",
+          "durationMs": 10,
+          "evidence": {
+            "classification": "SYNTHETIC_RUNTIME",
+            "source": "canonical domain/security helpers",
+            "actual": {
+              "executed": [
+                "AN01",
+                "AN08"
+              ],
+              "failed": [],
+              "diagnostics": [],
+              "reused": [],
+              "helpers": {
+                "completed": [
+                  {
+                    "id": "AN01",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "AN08",
+                    "stage": "COMPLETE",
+                    "durationMs": 9
+                  }
+                ],
+                "active": null
+              }
+            },
+            "expected": {
+              "failed": []
+            },
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+            "timestamp": "2026-10-21T09:54:00.157Z"
+          },
+          "events": [
+            {
+              "id": "AN01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN01",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_MOUNT",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 1
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 3
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 3
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 3
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 3
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 4
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 4
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 4
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 4
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 4
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 4
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 4
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 4
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 5
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_MOUNT",
+              "durationMs": 5
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 5
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 5
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 6
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 6
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 6
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 6
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 6
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 6
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 6
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 6
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 9
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 9
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 9
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 9
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 9
+            },
+            {
+              "id": "AN08",
+              "stage": "COMPLETE",
+              "durationMs": 9
+            }
+          ],
+          "externalRequests": 0
+        }
+      ]
+    },
+    {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "results": [
+        {
+          "id": "H10-003",
+          "slowTimers": false,
+          "status": "PASS",
+          "durationMs": 48,
+          "evidence": {
+            "classification": "SYNTHETIC_RUNTIME",
+            "source": "canonical domain/security helpers",
+            "actual": {
+              "executed": [
+                "YT04",
+                "M06",
+                "M07",
+                "M08",
+                "O08",
+                "O09",
+                "O10",
+                "O11",
+                "O12",
+                "O13",
+                "O28",
+                "O32",
+                "O33",
+                "G01",
+                "G02",
+                "G03",
+                "G04",
+                "G05",
+                "G06",
+                "G07",
+                "G08",
+                "G09",
+                "G10",
+                "G11",
+                "G12",
+                "G21",
+                "G22",
+                "G23",
+                "G24",
+                "B01",
+                "B02",
+                "B03",
+                "B04",
+                "B05",
+                "B06",
+                "B07",
+                "B08",
+                "B09",
+                "B10",
+                "B11",
+                "B12",
+                "B13",
+                "B14",
+                "B15",
+                "B16",
+                "B17",
+                "B18",
+                "G13",
+                "G14",
+                "G15",
+                "G16",
+                "G17",
+                "G18",
+                "G19",
+                "G20"
+              ],
+              "failed": [],
+              "diagnostics": [],
+              "reused": [],
+              "helpers": {
+                "completed": [
+                  {
+                    "id": "YT04",
+                    "stage": "COMPLETE",
+                    "durationMs": 11
+                  },
+                  {
+                    "id": "M06",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "M07",
+                    "stage": "COMPLETE",
+                    "durationMs": 3
+                  },
+                  {
+                    "id": "M08",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "O08",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "O09",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O10",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "O11",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O12",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "O13",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O28",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O32",
+                    "stage": "COMPLETE",
+                    "durationMs": 3
+                  },
+                  {
+                    "id": "O33",
+                    "stage": "COMPLETE",
+                    "durationMs": 2
+                  },
+                  {
+                    "id": "G01",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G02",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G03",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G04",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G05",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G06",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G07",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G08",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G09",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G10",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G11",
+                    "stage": "COMPLETE",
+                    "durationMs": 2
+                  },
+                  {
+                    "id": "G12",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G21",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G22",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G23",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G24",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B01",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B02",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B03",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B04",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B05",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B06",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B07",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B08",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B09",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B10",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B11",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B12",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B13",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B14",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B15",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B16",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B17",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B18",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G13",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G14",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G15",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G16",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G17",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G18",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G19",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G20",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  }
+                ],
+                "active": null
+              }
+            },
+            "expected": {
+              "failed": []
+            },
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+            "timestamp": "2026-10-21T09:55:21.840Z"
+          },
+          "events": [
+            {
+              "id": "YT04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "YT04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "YT04",
+              "stage": "COMPLETE",
+              "durationMs": 11
+            },
+            {
+              "id": "M06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M06",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "M07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M07",
+              "stage": "COMPLETE",
+              "durationMs": 3
+            },
+            {
+              "id": "M08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M08",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "O08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O08",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "O09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O09",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O10",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "O11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O11",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O12",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "O13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O13",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O28",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O28",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O28",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "O28",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O32",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O32",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O32",
+              "stage": "COMPLETE",
+              "durationMs": 3
+            },
+            {
+              "id": "O33",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O33",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O33",
+              "stage": "COMPLETE",
+              "durationMs": 2
+            },
+            {
+              "id": "G01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G01",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "FETCH_WAIT",
+              "durationMs": 1
+            },
+            {
+              "id": "G02",
+              "stage": "BACKEND_FIXTURE",
+              "durationMs": 1
+            },
+            {
+              "id": "G02",
+              "stage": "BODY_WAIT",
+              "durationMs": 1
+            },
+            {
+              "id": "G02",
+              "stage": "BACKEND_FIXTURE",
+              "durationMs": 1
+            },
+            {
+              "id": "G02",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G03",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G04",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G05",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G06",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G07",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G08",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G09",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G10",
+              "stage": "START",
+              "durationMs": 1
+            },
+            {
+              "id": "G10",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "FETCH_WAIT",
+              "durationMs": 1
+            },
+            {
+              "id": "G11",
+              "stage": "BODY_WAIT",
+              "durationMs": 1
+            },
+            {
+              "id": "G11",
+              "stage": "BODY_WAIT",
+              "durationMs": 1
+            },
+            {
+              "id": "G11",
+              "stage": "COMPLETE",
+              "durationMs": 2
+            },
+            {
+              "id": "G12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G12",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G21",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G21",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G21",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G22",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G22",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G22",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G23",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "CLEANUP",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "LATE_RESPONSE",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G24",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G24",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G24",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B01",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B02",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B03",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B04",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B05",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B06",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B07",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B08",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B09",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B10",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B11",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B12",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B13",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "SELECTION_EDIT",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "SELECTION_RETRY",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "SELECTION_CLEAR",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B15",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B16",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B17",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B18",
+              "stage": "BODY_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "B18",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G13",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G14",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G15",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G16",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G17",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 1
+            },
+            {
+              "id": "G18",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G19",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "CLEANUP",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "COOLDOWN",
+              "durationMs": 1
+            },
+            {
+              "id": "G19",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G20",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G20",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G20",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            }
+          ],
+          "externalRequests": 0
+        },
+        {
+          "id": "H13-014",
+          "slowTimers": false,
+          "status": "PASS",
+          "durationMs": 55,
+          "evidence": {
+            "classification": "SYNTHETIC_RUNTIME",
+            "source": "canonical domain/security helpers",
+            "actual": {
+              "executed": [
+                "AN01",
+                "AN08"
+              ],
+              "failed": [],
+              "diagnostics": [],
+              "reused": [],
+              "helpers": {
+                "completed": [
+                  {
+                    "id": "AN01",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "AN08",
+                    "stage": "COMPLETE",
+                    "durationMs": 55
+                  }
+                ],
+                "active": null
+              }
+            },
+            "expected": {
+              "failed": []
+            },
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+            "timestamp": "2026-10-21T09:55:22.186Z"
+          },
+          "events": [
+            {
+              "id": "AN01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN01",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_MOUNT",
+              "durationMs": 1
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 1
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 17
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 23
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 23
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 25
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 25
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 26
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 26
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 27
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 27
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 28
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 28
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 29
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 29
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 30
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_MOUNT",
+              "durationMs": 30
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 30
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 45
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 49
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 49
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 50
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 50
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 51
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 51
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 52
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 52
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 53
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 53
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 54
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 54
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 54
+            },
+            {
+              "id": "AN08",
+              "stage": "COMPLETE",
+              "durationMs": 55
+            }
+          ],
+          "externalRequests": 0
+        },
+        {
+          "id": "H10-003",
+          "slowTimers": true,
+          "status": "PASS",
+          "durationMs": 50,
+          "evidence": {
+            "classification": "SYNTHETIC_RUNTIME",
+            "source": "canonical domain/security helpers",
+            "actual": {
+              "executed": [
+                "YT04",
+                "M06",
+                "M07",
+                "M08",
+                "O08",
+                "O09",
+                "O10",
+                "O11",
+                "O12",
+                "O13",
+                "O28",
+                "O32",
+                "O33",
+                "G01",
+                "G02",
+                "G03",
+                "G04",
+                "G05",
+                "G06",
+                "G07",
+                "G08",
+                "G09",
+                "G10",
+                "G11",
+                "G12",
+                "G21",
+                "G22",
+                "G23",
+                "G24",
+                "B01",
+                "B02",
+                "B03",
+                "B04",
+                "B05",
+                "B06",
+                "B07",
+                "B08",
+                "B09",
+                "B10",
+                "B11",
+                "B12",
+                "B13",
+                "B14",
+                "B15",
+                "B16",
+                "B17",
+                "B18",
+                "G13",
+                "G14",
+                "G15",
+                "G16",
+                "G17",
+                "G18",
+                "G19",
+                "G20"
+              ],
+              "failed": [],
+              "diagnostics": [],
+              "reused": [],
+              "helpers": {
+                "completed": [
+                  {
+                    "id": "YT04",
+                    "stage": "COMPLETE",
+                    "durationMs": 11
+                  },
+                  {
+                    "id": "M06",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "M07",
+                    "stage": "COMPLETE",
+                    "durationMs": 3
+                  },
+                  {
+                    "id": "M08",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "O08",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "O09",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "O10",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O11",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "O12",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O13",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "O28",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "O32",
+                    "stage": "COMPLETE",
+                    "durationMs": 3
+                  },
+                  {
+                    "id": "O33",
+                    "stage": "COMPLETE",
+                    "durationMs": 4
+                  },
+                  {
+                    "id": "G01",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G02",
+                    "stage": "COMPLETE",
+                    "durationMs": 2
+                  },
+                  {
+                    "id": "G03",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G04",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G05",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G06",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G07",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G08",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G09",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G10",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G11",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G12",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G21",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G22",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G23",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G24",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B01",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B02",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B03",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B04",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B05",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B06",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B07",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B08",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B09",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B10",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B11",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B12",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B13",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B14",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B15",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "B16",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B17",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "B18",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G13",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G14",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G15",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G16",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G17",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "G18",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G19",
+                    "stage": "COMPLETE",
+                    "durationMs": 1
+                  },
+                  {
+                    "id": "G20",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  }
+                ],
+                "active": null
+              }
+            },
+            "expected": {
+              "failed": []
+            },
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+            "timestamp": "2026-10-21T09:55:22.532Z"
+          },
+          "events": [
+            {
+              "id": "YT04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "YT04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "YT04",
+              "stage": "COMPLETE",
+              "durationMs": 11
+            },
+            {
+              "id": "M06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M06",
+              "stage": "START",
+              "durationMs": 1
+            },
+            {
+              "id": "M06",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "M07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M07",
+              "stage": "COMPLETE",
+              "durationMs": 3
+            },
+            {
+              "id": "M08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "M08",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "O08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O08",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "O09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O09",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "O10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O10",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O11",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "O12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O12",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O13",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "O28",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O28",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O28",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "O28",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "O32",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O32",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O32",
+              "stage": "COMPLETE",
+              "durationMs": 3
+            },
+            {
+              "id": "O33",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O33",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "O33",
+              "stage": "COMPLETE",
+              "durationMs": 4
+            },
+            {
+              "id": "G01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G01",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G02",
+              "stage": "FETCH_WAIT",
+              "durationMs": 1
+            },
+            {
+              "id": "G02",
+              "stage": "BACKEND_FIXTURE",
+              "durationMs": 1
+            },
+            {
+              "id": "G02",
+              "stage": "BODY_WAIT",
+              "durationMs": 1
+            },
+            {
+              "id": "G02",
+              "stage": "BACKEND_FIXTURE",
+              "durationMs": 1
+            },
+            {
+              "id": "G02",
+              "stage": "COMPLETE",
+              "durationMs": 2
+            },
+            {
+              "id": "G03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G03",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G04",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G05",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G06",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G07",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G08",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G09",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G10",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G11",
+              "stage": "FETCH_WAIT",
+              "durationMs": 1
+            },
+            {
+              "id": "G11",
+              "stage": "BODY_WAIT",
+              "durationMs": 1
+            },
+            {
+              "id": "G11",
+              "stage": "BODY_WAIT",
+              "durationMs": 1
+            },
+            {
+              "id": "G11",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G12",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G21",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G21",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G21",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G22",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G22",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G22",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G23",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "CLEANUP",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "LATE_RESPONSE",
+              "durationMs": 0
+            },
+            {
+              "id": "G23",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G24",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G24",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G24",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B01",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B02",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B02",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B03",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B03",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B04",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B04",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B05",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B05",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B06",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B06",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B07",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B07",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B08",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B09",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B09",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B10",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B10",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B11",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B11",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B12",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B12",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B13",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "SELECTION_EDIT",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "SELECTION_RETRY",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "SELECTION_CLEAR",
+              "durationMs": 0
+            },
+            {
+              "id": "B14",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B15",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "B16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B16",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B17",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "B18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "B18",
+              "stage": "BODY_WAIT",
+              "durationMs": 1
+            },
+            {
+              "id": "B18",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G13",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G13",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G14",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G14",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G15",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G15",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G16",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G16",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G17",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G17",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "FETCH_WAIT",
+              "durationMs": 0
+            },
+            {
+              "id": "G18",
+              "stage": "SETTLED_CHECK",
+              "durationMs": 1
+            },
+            {
+              "id": "G18",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G19",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "CLEANUP",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "COOLDOWN",
+              "durationMs": 0
+            },
+            {
+              "id": "G19",
+              "stage": "COMPLETE",
+              "durationMs": 1
+            },
+            {
+              "id": "G20",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G20",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "G20",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            }
+          ],
+          "externalRequests": 0
+        },
+        {
+          "id": "H13-014",
+          "slowTimers": true,
+          "status": "PASS",
+          "durationMs": 56,
+          "evidence": {
+            "classification": "SYNTHETIC_RUNTIME",
+            "source": "canonical domain/security helpers",
+            "actual": {
+              "executed": [
+                "AN01",
+                "AN08"
+              ],
+              "failed": [],
+              "diagnostics": [],
+              "reused": [],
+              "helpers": {
+                "completed": [
+                  {
+                    "id": "AN01",
+                    "stage": "COMPLETE",
+                    "durationMs": 0
+                  },
+                  {
+                    "id": "AN08",
+                    "stage": "COMPLETE",
+                    "durationMs": 54
+                  }
+                ],
+                "active": null
+              }
+            },
+            "expected": {
+              "failed": []
+            },
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+            "timestamp": "2026-10-21T09:55:22.878Z"
+          },
+          "events": [
+            {
+              "id": "AN01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN01",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN01",
+              "stage": "COMPLETE",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "START",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_MOUNT",
+              "durationMs": 0
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 1
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 18
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 23
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 23
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 24
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 24
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 25
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 25
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 26
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 26
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 27
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 27
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 28
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 28
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 29
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_MOUNT",
+              "durationMs": 29
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 29
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 44
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 49
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 49
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 50
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 50
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 51
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 51
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 52
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 52
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 53
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 53
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_NAVIGATION",
+              "durationMs": 53
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 53
+            },
+            {
+              "id": "AN08",
+              "stage": "DOM_WAIT",
+              "durationMs": 54
+            },
+            {
+              "id": "AN08",
+              "stage": "COMPLETE",
+              "durationMs": 54
+            }
+          ],
+          "externalRequests": 0
+        }
+      ]
+    }
+  ]
+}

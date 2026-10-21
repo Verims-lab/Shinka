@@ -1,0 +1,33 @@
+{
+  "provenance": "User-supplied published Health report; not independently rerun",
+  "buildMarker": "Buildmarker-024",
+  "healthCatalogVersion": "HC-024.0",
+  "environment": "PUBLISHED",
+  "scope": "FULL",
+  "runId": "4b518113-02f1-4db1-9693-f0a02fbeecb8",
+  "summary": {
+    "passed": 143,
+    "failed": 0,
+    "blocked": 1
+  },
+  "H10-003": {
+    "status": "BLOCKED",
+    "reason": "TIMEOUT after 20000ms",
+    "durationMs": 20950,
+    "attempted": true,
+    "executed": false
+  },
+  "H13-014": {
+    "status": "PASS",
+    "durationMs": 15930
+  },
+  "previousHC023_H10_003": {
+    "status": "PASS",
+    "durationMs": 326
+  },
+  "readinessAndContent": "Prior four readiness errors and nine content blockers now PASS according to user; not reopened.",
+  "unknowns": [
+    "Historical active helper/stage",
+    "Browser visibility/throttling state"
+  ]
+}

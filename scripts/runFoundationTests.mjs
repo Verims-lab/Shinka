@@ -1,3 +1,4 @@
+import { checkHealthTiming } from './checkHealthTiming.mjs';
 import { checkPrivacyFlow } from './checkPrivacyFlow.mjs';
 import { checkYouFlow } from './checkYouFlow.mjs';
 import { checkPatternFlow } from './checkPatternFlow.mjs';
@@ -65,7 +66,10 @@ try {
   const probeBundle = await collectBrowserMeasurements(browser, origin, identity, browserName);
   await page.addInitScript(bundle=>sessionStorage.setItem('shinka.browser-evidence.v1',JSON.stringify(bundle)),probeBundle);
   await page.evaluate(bundle=>window.__acceptBrowserEvidence(bundle),probeBundle);
-  if (process.env.FOUNDATION_MOBILE_ONLY === '1') {
+  if (process.env.FOUNDATION_TIMING_ONLY === '1') {
+    const timing = await checkHealthTiming(browser, origin);
+    console.log(JSON.stringify({scope:'LOCAL_SYNTHETIC_TIMER_FAULT_INJECTION',timing},null,2));
+  } else if (process.env.FOUNDATION_MOBILE_ONLY === '1') {
     const mobile=await checkMobile(browser,origin,process.env.FOUNDATION_MOBILE_DIR);
     console.log(JSON.stringify({diagnosticOnly:true,mobile,pageErrors},null,2));
     if(mobile.some(row=>!row.passed)||pageErrors.length)process.exitCode=1;
@@ -127,11 +131,12 @@ try {
   const calendarFlow = await checkCalendarFlow(page, origin, process.env.FOUNDATION_CALENDAR_DIR);
   const adminTestFlow = await checkAdminTestTools(page, origin, process.env.FOUNDATION_TEST_TOOLS_DIR);
   const inAppHealth=await checkInAppHealth(page,origin);
+  const healthTiming=await checkHealthTiming(browser,origin);
   if(process.env.FOUNDATION_AUDIT_DIR) {
     const audit=await page.evaluate(()=>({registry:window.__healthAuditRegistry,report:window.__savedHealthReport}));
     await writeHealthAudit(root,process.env.FOUNDATION_AUDIT_DIR,audit.registry,audit.report,results);
   }
-  console.log(JSON.stringify({privacyFlow,youFlow,inAppHealth,adminNavigation,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
+  console.log(JSON.stringify({healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
   if(mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||calendarHealth.some(c=>c.status!=="PASS")||adminTestHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
   }
   }

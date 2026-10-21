@@ -7,7 +7,7 @@ export function sanitizePlaceQuery(input) {
   if(query.length<2||query.length>80||!/^[\p{L}\p{M}\p{N}\s'’.,()-]+$/u.test(query))throw new OnboardingError('GEONAMES_QUERY_INVALID','birthplace',400);
   return query;
 }
-export function createGeoNamesAdapter({username,fetcher=fetch,timeoutMs=8000}) {
+export function createGeoNamesAdapter({username,fetcher=fetch,timeoutMs=8000,timers={set:(fn,ms)=>setTimeout(fn,ms),clear:timer=>clearTimeout(timer)}}) {
   const configuredUsername=typeof username==='string'?username.trim():'';
   const request=async(path,params,{maxBytes=100000,deadlineMs=timeoutMs}={})=>{
     if(!configuredUsername)throw new GeoNamesError('GEONAMES_SECRET_MISSING',null,null,'CONFIGURATION');
@@ -61,7 +61,7 @@ export function createGeoNamesAdapter({username,fetcher=fetch,timeoutMs=8000}) {
             try{if(response.body&&!response.bodyUsed&&!response.body.locked)await response.body.cancel();}catch{/* No raw cleanup error or replacement of the primary failure. */}
           }
         })(),
-        new Promise((_,reject)=>{timer=setTimeout(()=>{abort.abort();reject(new GeoNamesError('GEONAMES_REQUEST_TIMEOUT',httpStatus,null,stage,'TIMEOUT'));},Math.min(timeoutMs,deadlineMs));}),
+        new Promise((_,reject)=>{timer=timers.set(()=>{abort.abort();reject(new GeoNamesError('GEONAMES_REQUEST_TIMEOUT',httpStatus,null,stage,'TIMEOUT'));},Math.min(timeoutMs,deadlineMs));}),
       ]);
     }catch(error){
       if(error instanceof GeoNamesError){
@@ -69,7 +69,7 @@ export function createGeoNamesAdapter({username,fetcher=fetch,timeoutMs=8000}) {
         throw error;
       }
       throw new GeoNamesError(abort.signal.aborted?'GEONAMES_REQUEST_TIMEOUT':'GEONAMES_NETWORK_ERROR',httpStatus,null,stage,abort.signal.aborted?'TIMEOUT':classifyGeoNamesTransport(error));
-    }finally{clearTimeout(timer);}
+    }finally{timers.clear(timer);}
   };
   const normalize=(raw,httpStatus)=>{
     try{return normalizeGeoNamesPlace(raw);}catch{throw new GeoNamesError('GEONAMES_INVALID_RESPONSE',httpStatus,null,'RESPONSE_VALIDATION');}

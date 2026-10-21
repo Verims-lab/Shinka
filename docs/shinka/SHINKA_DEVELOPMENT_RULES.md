@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-024
+**Current BuildMarker:** Buildmarker-025
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -14,6 +14,10 @@
 - NO SILENT SOURCE-CONTRACT CHANGE
 - NO FUTURE FEATURE IMPLEMENTATION WITHOUT PACKAGE SCOPE
 - NO LEGACY SHINKA IMPORT — NO LEGACY SHINKA CONTRACT MAY ENTER THIS PROJECT WITHOUT AN EXPLICIT CHANGE REQUEST.
+
+## 025 targeted timing fix scope
+
+Advance 024 → 025 and HC-024.0 → HC-025.0 once; retain 021–025 through recordBuild. Preserve the supplied HC-024 timeout and all prior reports. This package authorizes local timing/cleanup corrections and focused plus mandatory local checks only: no live Full Health, GeoNames probe, product mutation, import, main merge or publish. Do not reopen the now-PASS readiness/content issues. Extend the existing staged content policy through 025 without changing content predicates or bytes. Report fault-injected laboratory measurements separately from the historical published incident; its exact active helper/visibility remains unknown. Owner alone runs post-publication Health and saves/opens its result; physical devices remain separate acceptance.
 
 ## 024 targeted Health fix scope
 

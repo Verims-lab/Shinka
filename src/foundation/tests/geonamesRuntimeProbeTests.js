@@ -1,3 +1,5 @@
+import { captureFixtureConsole } from './fixtureConsole';
+import { withTestClock, testEventTurn } from './testClock';
 import { check, rejects } from './dataModelTests';
 import { createGeoNamesRuntimeProbe } from '../../../base44/shared/geonamesRuntimeProbe.js';
 import { createGeoNamesAdapter } from '../../../base44/shared/geonamesAdapter.js';
@@ -6,7 +8,6 @@ import { internalHealthOperation } from '../../../base44/shared/internalHealthOp
 
 const body={action:'geoNamesTransportProbe'};
 const shortLimits={max_requests:8,request_timeout_ms:5,total_timeout_ms:150,cleanup_grace_ms:2,cooldown_ms:20};
-const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const snapshot=(input,options)=>({url:String(input),isURL:input instanceof URL,keys:Object.keys(options).sort().join(),redirect:options.redirect});
 const post=(client,probe,payload=body)=>handleInternalRequest(new Request('https://fixture.invalid/internalHealth',{method:'POST',body:JSON.stringify(payload)}),()=>client,(c,b)=>internalHealthOperation(c,b,{geoNamesTransportProbe:probe}));
 const admin={auth:{me:async()=>({id:'fixture-admin',role:'admin'})},get asServiceRole(){throw new Error('probe must not access entities');}};
@@ -75,27 +76,27 @@ export const GEONAMES_RUNTIME_PROBE_TESTS=[
     check(calls===4&&cancelled===2&&result.results.filter(r=>r.probe_id.startsWith('MANUAL')).every(r=>r.redirect_observed&&r.http_status===(opaque?null:302)&&r.cleanup_confirmed));
   }
  }],
- ['G18','Probe deadlines abort sequential requests, clear timers, reject concurrent/cooldown runs and do not leak rejections',async()=>{
+ ['G18','Probe deadlines abort sequential requests, clear timers, reject concurrent/cooldown runs and do not leak rejections',withTestClock(async(clock,context)=>{
   const signals=[];let active=0,peak=0,unhandled=0;
-  const handles=new Set(),timers={set:(fn,ms)=>{const id=setTimeout(()=>{handles.delete(id);fn();},ms);handles.add(id);return id;},clear:id=>{handles.delete(id);clearTimeout(id);}};
-  const listener=()=>{unhandled++;};window.addEventListener('unhandledrejection',listener);
+  const timers=clock.timers;
+  const listener=()=>{unhandled++;};window.addEventListener('unhandledrejection',listener);context.cleanup?.(()=>window.removeEventListener('unhandledrejection',listener));
   try{
-    const run=createGeoNamesRuntimeProbe({limits:shortLimits,timers,getFetch:()=>async(_input,options)=>{
+    const run=createGeoNamesRuntimeProbe({limits:shortLimits,timers,now:clock.now,getFetch:()=>async(_input,options)=>{
       signals.push(options.signal);active++;peak=Math.max(peak,active);
       try{return await new Promise((_,reject)=>options.signal.addEventListener('abort',()=>reject(new DOMException('fixture','AbortError')),{once:true}));}finally{active--;}
     }});
     const pending=run({username:'fixture'});await rejects(()=>run({username:'fixture'}),'GEONAMES_PROBE_BUSY');
-    const result=await pending;check(result.request_count===4&&peak===1&&active===0&&signals.every(s=>s.aborted)&&handles.size===0);
+    context.stage?.('FETCH_WAIT');const result=await clock.run(()=>pending);check(result.request_count===4&&peak===1&&active===0&&signals.every(s=>s.aborted)&&clock.pending()===0);
     check(result.results.every(r=>r.transport_class==='TIMEOUT'&&r.cleanup_confirmed));
     await rejects(()=>run({username:'fixture'}),'GEONAMES_PROBE_BUSY');
     for(const fails of [false,true]){
-      const immediate=createGeoNamesRuntimeProbe({timers,getFetch:()=>async()=>{if(fails)throw new Error('fixture');return new Response(null);}});
-      await immediate({username:'fixture'});check(handles.size===0,'probe deadline timer retained');
+      const immediate=createGeoNamesRuntimeProbe({timers,now:clock.now,getFetch:()=>async()=>{if(fails)throw new Error('fixture');return new Response(null);}});
+      await immediate({username:'fixture'});check(clock.pending()===0,'probe deadline timer retained');
     }
-    await delay(15);check(unhandled===0);
+    context.stage?.('SETTLED_CHECK');await clock.advance(15);await testEventTurn(context.signal);check(unhandled===0);
   }finally{window.removeEventListener('unhandledrejection',listener);}
- }],
- ['G19','Caller abort/total deadline stop further samples; unconfirmed cancellation keeps the worker blocked',async()=>{
+ })],
+ ['G19','Caller abort/total deadline stop further samples; unconfirmed cancellation keeps the worker blocked',withTestClock(async(testClock,context)=>{
   const controller=new AbortController();let calls=0;
   const run=createGeoNamesRuntimeProbe({getFetch:()=>async(_input,options)=>{calls++;controller.abort();return new Promise((_,reject)=>{if(options.signal.aborted)reject(new Error('fixture'));else options.signal.addEventListener('abort',()=>reject(new Error('fixture')));});}});
   const cancelled=await run({username:'fixture',signal:controller.signal});check(calls===1&&cancelled.stop_reason==='CALLER_CANCELLED');
@@ -103,26 +104,25 @@ export const GEONAMES_RUNTIME_PROBE_TESTS=[
   const budget=createGeoNamesRuntimeProbe({now:()=>clock,getFetch:()=>async()=>{clock=30000;throw new Error('fixture');}});
   const exhausted=await budget({username:'fixture'});check(exhausted.request_count===1&&exhausted.stop_reason==='TOTAL_DEADLINE');
   /** @type {(reason:unknown)=>void} */ let rejectLate=()=>{};
-  const stuck=createGeoNamesRuntimeProbe({limits:shortLimits,getFetch:()=>()=>new Promise((_,reject)=>{rejectLate=reject;})});
-  const result=await stuck({username:'fixture'});check(result.request_count===1&&result.stop_reason==='CANCELLATION_UNCONFIRMED');
-  await delay(25);await rejects(()=>stuck({username:'fixture'}),'GEONAMES_PROBE_BUSY');
-  rejectLate(new Error('late fixture'));await delay(0);
- }],
- ['G20','Probe returns only technical projections; no body/header/error/credential or console disclosure',async()=>{
+  const stuck=createGeoNamesRuntimeProbe({limits:shortLimits,timers:testClock.timers,now:testClock.now,getFetch:()=>()=>new Promise((_,reject)=>{rejectLate=reject;})});
+  context.stage?.('CLEANUP');const result=await testClock.run(()=>stuck({username:'fixture'}));check(result.request_count===1&&result.stop_reason==='CANCELLATION_UNCONFIRMED');
+  context.stage?.('COOLDOWN');await testClock.advance(25);await rejects(()=>stuck({username:'fixture'}),'GEONAMES_PROBE_BUSY');
+  rejectLate(new Error('late fixture'));await testEventTurn(context.signal);check(testClock.pending()===0);
+ })],
+ ['G20','Probe returns only technical projections; no body/header/error/credential or console disclosure',async(context={})=>{
   const marker='synthetic-probe-private',methods=['log','info','warn','error','debug','trace'];
-  const originals=methods.map(k=>console[k]);let logs=0,calls=0;
-  methods.forEach(k=>{console[k]=()=>{logs++;};});
+  const captured=captureFixtureConsole(methods,context);let calls=0;
   try{
     const run=createGeoNamesRuntimeProbe({getFetch:()=>async(input)=>{
       calls++;const detail=`${String(input)} ${marker}`;
       throw Object.assign(new TypeError(detail,{cause:{message:detail,name:detail,code:detail}}),{stack:detail});
     }});
     const response=await post(admin,()=>run({username:marker})),result=await response.json(),text=JSON.stringify(result);
-    check(response.status===200&&calls===4&&logs===0);
+    check(response.status===200&&calls===4&&captured.count()===0);
     for(const value of [marker,'https://','Istanbul','stack','cause','message','username'])check(!text.includes(value),'probe data leak');
     check(result.results.every(r=>r.transport_class==='UNKNOWN'&&Object.keys(r).sort().join()==='changed_variable,cleanup_confirmed,comparison_to,elapsed_ms,failure_stage,http_response_received,http_status,probe_id,redirect_observed,transport_class'));
     let fetched=0;const missing=createGeoNamesRuntimeProbe({getFetch:()=>async()=>{fetched++;return new Response(null);}});
     await rejects(()=>missing({username:'  '}),'GEONAMES_SECRET_MISSING');check(fetched===0);
-  }finally{methods.forEach((k,i)=>{console[k]=originals[i];});}
+  }finally{captured.dispose();}
  }],
 ];
