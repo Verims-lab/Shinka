@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 const VARIANTS = {
-  primary: "min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-white hover:bg-shinka-plum-deep",
-  secondary: "min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-line hover:bg-shinka-lavender",
+  primary: "min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep",
+  secondary: "min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender",
   ghost: "min-h-11 rounded-shinka-sm text-shinka-plum hover:bg-shinka-lavender",
 };
 

@@ -30,8 +30,6 @@ export function buildStaticEvidence(root = process.cwd()) {
   const { byName, ...docResult } = checkDocs(docs, BUILD_MARKER);
   const truth = byName["SHINKA_SOURCE_OF_TRUTH.md"] || "";
   const history = byName["SHINKA_BUILD_HISTORY.md"] || "";
-  const uiPrefixes = ["/src/components/shinka/", "/src/components/internal/", "/src/pages/internal/", "/src/pages/Home.jsx", "/src/pages/Calendar.jsx", "/src/pages/Pattern.jsx", "/src/pages/You.jsx", "/src/features/calendar/", "/src/features/pattern/", "/src/features/you/", "/src/features/profile/", "/src/pages/Login.jsx", "/src/lib/AuthContext.jsx"];
-  const darkFiles = Object.entries(raw).filter(([p,c]) => uiPrefixes.some((prefix) => p.startsWith(prefix)) && (/\bdark:/.test(c) || /classList\.(?:add|toggle)\(["']dark["']/.test(c))).map(([p]) => p);
   const hardcoded = ["/src/pages/Home.jsx", "/src/pages/Calendar.jsx", "/src/pages/Pattern.jsx", "/src/pages/You.jsx", "/src/components/shinka/ProductNavigation.jsx", "/src/components/shinka/StatePanel.jsx"].flatMap((file) => ["Home", "Calendar", "Pattern", "Retry"].filter((s) => raw[file]?.includes(`>${s}<`) || raw[file]?.includes(`"${s}"`)).map(() => ({ file })));
   const shellUsesContract = raw["/src/components/shinka/ProductNavigation.jsx"]?.includes("BOTTOM_NAV.map") &&
     ["Home", "Calendar", "Pattern"].every(page => {
@@ -50,7 +48,7 @@ export function buildStaticEvidence(root = process.cwd()) {
     geoNamesEntry: inspectGeoNamesEntry(syntax['/base44/functions/onboarding/entry.ts']||''),
     marker: checkSingleSource(syntax), legacy: findLegacyImports(syntax), secretFiles: findSecrets(raw), emailFiles: findPersonalEmails(raw),
     boundaries: missingBoundaries(Object.keys(raw)), internalUi: checkInternalUiPurity(syntax), authSurface: checkAuthSurface(syntax),
-    ui: { darkFiles, hardcoded, shellUsesContract },
+    ui: { hardcoded, shellUsesContract },
     docs: { ...docResult,
       undocumentedDecisions: OPEN_DECISIONS.filter((d) => !truth.includes(d.id)).map((d) => d.id),
       splitDocumented: EXPECTED_UIUX_PARTS.every((p) => truth.includes(p)) && /Logical source count:\*\*\s*1\b/.test(truth),

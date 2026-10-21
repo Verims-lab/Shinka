@@ -1,0 +1,371 @@
+{
+  "scope": "LOCAL_SYNTHETIC_COLD_PATTERN_RELOADS",
+  "results": [
+    {
+      "label": "before",
+      "reducedMotion": "no-preference",
+      "sample": 0,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "before",
+      "reducedMotion": "no-preference",
+      "sample": 1,
+      "shifts": [
+        {
+          "value": 0.14837843544558071,
+          "sources": [
+            {
+              "tag": "SECTION",
+              "section": "lunar",
+              "previous": {
+                "y": 287,
+                "height": 142
+              },
+              "current": {
+                "y": 306,
+                "height": 434
+              }
+            },
+            {
+              "tag": "NAV",
+              "previous": {
+                "y": 683,
+                "height": 57
+              },
+              "current": {
+                "y": 0,
+                "height": 0
+              }
+            }
+          ]
+        }
+      ],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "before",
+      "reducedMotion": "no-preference",
+      "sample": 2,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "before",
+      "reducedMotion": "no-preference",
+      "sample": 3,
+      "shifts": [
+        {
+          "value": 0.14837843544558071,
+          "sources": [
+            {
+              "tag": "SECTION",
+              "section": "lunar",
+              "previous": {
+                "y": 287,
+                "height": 142
+              },
+              "current": {
+                "y": 306,
+                "height": 434
+              }
+            },
+            {
+              "tag": "NAV",
+              "previous": {
+                "y": 683,
+                "height": 57
+              },
+              "current": {
+                "y": 0,
+                "height": 0
+              }
+            }
+          ]
+        }
+      ],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "before",
+      "reducedMotion": "no-preference",
+      "sample": 4,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "before",
+      "reducedMotion": "no-preference",
+      "sample": 5,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "before",
+      "reducedMotion": "reduce",
+      "sample": 0,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "before",
+      "reducedMotion": "reduce",
+      "sample": 1,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "before",
+      "reducedMotion": "reduce",
+      "sample": 2,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "before",
+      "reducedMotion": "reduce",
+      "sample": 3,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "before",
+      "reducedMotion": "reduce",
+      "sample": 4,
+      "shifts": [
+        {
+          "value": 0.14837843544558071,
+          "sources": [
+            {
+              "tag": "SECTION",
+              "section": "lunar",
+              "previous": {
+                "y": 287,
+                "height": 142
+              },
+              "current": {
+                "y": 306,
+                "height": 434
+              }
+            },
+            {
+              "tag": "NAV",
+              "previous": {
+                "y": 683,
+                "height": 57
+              },
+              "current": {
+                "y": 0,
+                "height": 0
+              }
+            }
+          ]
+        }
+      ],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "before",
+      "reducedMotion": "reduce",
+      "sample": 5,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "final",
+      "reducedMotion": "no-preference",
+      "sample": 0,
+      "shifts": [
+        {
+          "value": 0.14837843544558071,
+          "sources": [
+            {
+              "tag": "SECTION",
+              "section": "lunar",
+              "previous": {
+                "y": 287,
+                "height": 142
+              },
+              "current": {
+                "y": 306,
+                "height": 434
+              }
+            },
+            {
+              "tag": "NAV",
+              "previous": {
+                "y": 683,
+                "height": 57
+              },
+              "current": {
+                "y": 0,
+                "height": 0
+              }
+            }
+          ]
+        }
+      ],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "final",
+      "reducedMotion": "no-preference",
+      "sample": 1,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "final",
+      "reducedMotion": "no-preference",
+      "sample": 2,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "final",
+      "reducedMotion": "no-preference",
+      "sample": 3,
+      "shifts": [
+        {
+          "value": 0.14837843544558071,
+          "sources": [
+            {
+              "tag": "SECTION",
+              "section": "lunar",
+              "previous": {
+                "y": 287,
+                "height": 142
+              },
+              "current": {
+                "y": 306,
+                "height": 434
+              }
+            },
+            {
+              "tag": "NAV",
+              "previous": {
+                "y": 683,
+                "height": 57
+              },
+              "current": {
+                "y": 0,
+                "height": 0
+              }
+            }
+          ]
+        }
+      ],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "final",
+      "reducedMotion": "no-preference",
+      "sample": 4,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "final",
+      "reducedMotion": "no-preference",
+      "sample": 5,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "final",
+      "reducedMotion": "reduce",
+      "sample": 0,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "final",
+      "reducedMotion": "reduce",
+      "sample": 1,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "final",
+      "reducedMotion": "reduce",
+      "sample": 2,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "final",
+      "reducedMotion": "reduce",
+      "sample": 3,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "final",
+      "reducedMotion": "reduce",
+      "sample": 4,
+      "shifts": [],
+      "animations": 0,
+      "motionStyle": null
+    },
+    {
+      "label": "final",
+      "reducedMotion": "reduce",
+      "sample": 5,
+      "shifts": [
+        {
+          "value": 0.14837843544558071,
+          "sources": [
+            {
+              "tag": "SECTION",
+              "section": "lunar",
+              "previous": {
+                "y": 287,
+                "height": 142
+              },
+              "current": {
+                "y": 306,
+                "height": 434
+              }
+            },
+            {
+              "tag": "NAV",
+              "previous": {
+                "y": 683,
+                "height": 57
+              },
+              "current": {
+                "y": 0,
+                "height": 0
+              }
+            }
+          ]
+        }
+      ],
+      "animations": 0,
+      "motionStyle": null
+    }
+  ]
+}

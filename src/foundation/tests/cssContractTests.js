@@ -1,3 +1,4 @@
+import { followSystemTheme } from "@/features/mobile/systemTheme";
 // Rendered CSS regression: the canonical suite runs unchanged in Health Center and CLI.
 import { createElement as h } from "react";
 import { createRoot } from "react-dom/client";
@@ -24,6 +25,7 @@ async function rendered(children, check) {
   try {flushSync(()=>root.render(children));await check(host);}
   finally {flushSync(()=>root.unmount());host.remove();}
 }
+const palette = () => document.documentElement.classList.contains("dark") ? DESIGN_TOKENS.darkColor : DESIGN_TOKENS.color;
 const COLORS = [
   ["bg-shinka-plum","primaryPlum"],["bg-shinka-plum-deep","deepPlumText"],["bg-shinka-mauve","mutedMauve"],
   ["bg-shinka-rose","dustyRose"],["bg-shinka-blush","blushPink"],["bg-shinka-lavender","softLavender"],
@@ -39,7 +41,7 @@ export const CSS_CONTRACT_TESTS = [
     const vars=checkCssTokens(v=>measure(document.documentElement).getPropertyValue(v));
     assert(vars.checked===15&&!vars.mismatches.length,JSON.stringify(vars));
     await rendered(h("div",null,COLORS.map(([className,key])=>h("div",{key,className,"data-color":key}))),host=>{
-      for(const el of Array.from(host.querySelectorAll("[data-color]"))) assert(measure(el).backgroundColor===rgb(DESIGN_TOKENS.color[el.getAttribute("data-color")]),`color utility ${el.className}`);
+      for(const el of Array.from(host.querySelectorAll("[data-color]"))) assert(measure(el).backgroundColor===rgb(palette()[el.getAttribute("data-color")]),`color utility ${el.className}`);
     });
   }],
   ["T76","Heading and body font families, weights, sizes and line heights survive CSS changes",async()=>{
@@ -67,12 +69,12 @@ export const CSS_CONTRACT_TESTS = [
       h(ShinkaButton,{key:"disabled",disabled:true,id:"css-disabled"},"Disabled"),h(ShinkaInput,{key:"input","aria-label":"Synthetic input",id:"css-input"})]})}),host=>{
       const page=host.querySelector("[data-probe-root]"),inner=page.firstElementChild,card=host.querySelector("section");
       assert(measure(inner).paddingLeft==="20px"&&measure(inner).paddingRight==="20px","page padding");
-      assert(measure(page).backgroundColor===rgb(DESIGN_TOKENS.color.warmIvory),"page color");
-      const cs=measure(card);assert(cs.borderRadius==="20px"&&cs.paddingLeft==="20px"&&cs.borderTopWidth==="1px"&&cs.borderTopColor===rgb(DESIGN_TOKENS.color.divider)&&cs.boxShadow.includes("10px"),"card geometry");
+      assert(measure(page).backgroundColor===rgb(palette().warmIvory),"page color");
+      const cs=measure(card);assert(cs.borderRadius==="20px"&&cs.paddingLeft==="20px"&&cs.borderTopWidth==="1px"&&cs.borderTopColor===rgb(palette().divider)&&cs.boxShadow.includes("10px"),"card geometry");
       for(const selector of ["#css-primary","#css-input"]){const el=host.querySelector(selector),s=measure(el);assert(el.getBoundingClientRect().height>=52&&s.borderRadius==="16px"&&s.paddingLeft==="16px"&&s.transitionDuration==="0.2s",`${selector} geometry`);}
       const secondary=host.querySelector("#css-secondary").getBoundingClientRect();assert(secondary.height>=44&&secondary.width>=44,"secondary touch size");
       assert(measure(host.querySelector("#css-disabled")).opacity==="0.45","disabled opacity");
-      assert(measure(host.querySelector("#css-primary")).backgroundColor===rgb(DESIGN_TOKENS.color.primaryPlum),"primary color");
+      assert(measure(host.querySelector("#css-primary")).backgroundColor===rgb(palette().primaryPlum),"primary color");
     });
   }],
   ["T78","Canonical spacing/radius utilities retain their pixel values",async()=>{
@@ -83,14 +85,18 @@ export const CSS_CONTRACT_TESTS = [
       for(const el of Array.from(host.querySelectorAll("[data-radius]")))assert(measure(el).borderRadius===`${[12,16,20][Number(el.getAttribute("data-radius"))]}px`,el.className);
     });
   }],
-  ["T79","Light-only application and hidden probes do not depend on OS theme",async()=>{
-    assert(!document.documentElement.classList.contains("dark"),"dark activated");
-    await rendered(h("div",null,h("div",{className:"bg-white dark:bg-black","data-theme-probe":true}),h("div",{className:"hidden","data-hidden-probe":true})),host=>{
-      assert(measure(host.querySelector("[data-theme-probe]")).backgroundColor==="rgb(255, 255, 255)","OS dark preference changed theme");
-      assert(measure(host.querySelector("[data-hidden-probe]")).display==="none","hidden class lost");
-    });
+  ["T79","System theme initial/change/cleanup aligns class and native form scheme",async()=>{
+    const root = document.createElement('div');
+    let listener = () => {};
+    const media = { matches: true, addEventListener: (_event, fn) => { listener = fn; }, removeEventListener: (_event, fn) => { if (listener === fn) listener = null; } };
+    const stop = followSystemTheme(root, /** @type {any} */ (media));
+    assert(root.classList.contains('dark') && root.style.colorScheme === 'dark', 'initial dark');
+    media.matches = false; listener();
+    assert(root.classList.contains('light') && !root.classList.contains('dark') && root.style.colorScheme === 'light', 'live light');
+    stop(); assert(listener === null, 'theme listener cleanup');
+    await rendered(h('div', {className:'hidden'}), host => assert(measure(host.firstElementChild).display === 'none', 'hidden class lost'));
   }],
-  ["T80","Existing rendered Health typography/color/touch/light checks remain passing",async()=>{
+  ["T80","Existing rendered Health typography/color/touch/system-theme checks remain passing",async()=>{
     const context=createHealthContext();
     for(const id of ["H13-002","H13-003","H13-006","H13-007","H13-009","H13-010"]){const c=H13_CASES.find(c=>c.id===id),r=await c.run(context);assert(r.status==="PASS",`${id}: ${JSON.stringify(r.evidence.actual)}`);}
   }],

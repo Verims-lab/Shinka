@@ -17,6 +17,8 @@ import { ShinkaError, ERROR_CODES, classifyError } from "@/foundation/errors";
 const assert = (cond, msg) => { if (!cond) throw new Error(msg); };
 const uiParts = () => SOURCE_INVENTORY.find((s) => s.id === "SRC-03")?.parts || [];
 const split = (inv) => checkSplitSource(inv, AUTHORITY_TABLE, UIUX_CONTINUITY);
+import { DESIGN_TABLE } from "@/foundation/uiuxTables";
+
 const COLORS = { primaryPlum: "#6F415A", deepPlumText: "#4C263F", mutedMauve: "#93637B", dustyRose: "#D8A5AA", blushPink: "#F2D7D4", softLavender: "#E7DCE8", warmIvory: "#FFF8F3", softCream: "#F9EEE8", mutedTaupe: "#87757D", divider: "#EDE3E3", white: "#FFFFFF" };
 
 /** @type {import("./testTypes").FoundationTest[]} */
@@ -34,7 +36,10 @@ export const UI_CONTRACT_TESTS = [
     assert(!SOURCE_INVENTORY.some((s) => /Part_\d_of_\d/.test(s.file)) && physicalAttachmentCount() === 14, "parts counted as logical");
     assert(!split([...SOURCE_INVENTORY, { id: "SRC-11", file: EXPECTED_UIUX_PARTS[0] }]).ok, "inflated inventory accepted");
   }],
-  ["T32", "Design colors exact", () => assert(JSON.stringify(DESIGN_TOKENS.color) === JSON.stringify(COLORS), "colors")],
+  ["T32", "Original design colors preserved with the documented accessible text amendment", () => {
+    assert(JSON.stringify(DESIGN_TABLE.colors) === JSON.stringify(COLORS), "original source changed");
+    assert(JSON.stringify(DESIGN_TOKENS.color) === JSON.stringify({ ...COLORS, mutedTaupe: "#77636C" }), "effective colors");
+  }],
   ["T33", "Typography contract exact", () => {
     const ty = DESIGN_TOKENS.typography;
     assert(/Cormorant Garamond/.test(ty.heading) && /Inter/.test(ty.body) && ty.headingWeight === 500 && ty.bodyWeight === 400 && ty.labelWeight === 500, "families/weights");
@@ -49,7 +54,7 @@ export const UI_CONTRACT_TESTS = [
     assert(k.primaryMinHeight === 52 && k.inputMinHeight === 52 && k.inputPaddingX === 16 && k.primaryRadius === 16 && k.disabledOpacity === 0.45 && DESIGN_TOKENS.pagePaddingX === 20, "geometry");
     assert(JSON.stringify(DESIGN_TOKENS.spacing) === "[4,8,12,16,20,24,32,40]" && JSON.stringify(DESIGN_TOKENS.radii) === '{"sm":12,"md":16,"lg":20,"pill":999}', "scale");
   }],
-  ["T39", "No dark-theme target", async () => assert(DESIGN_TOKENS.theme === "light-only" && (await loadStaticEvidence()).ui.darkFiles.length === 0, "dark target")],
+  ["T39", "System theme has a separate semantic dark palette", () => assert(DESIGN_TOKENS.theme === "system" && Object.keys(DESIGN_TOKENS.darkColor).length === 12, "system palette")],
   ["T40", "Icon-only controls require accessible labels", () => {
     const d = document.createElement("div");
     const btn = document.createElement("button");

@@ -6,7 +6,7 @@ import { Link, useInRouterContext } from 'react-router-dom';
 const ICONS = { House, CalendarDays, Moon };
 export default function ProductNavigation({ current, language }) {
   const inRouter = useInRouterContext();
-  return <nav aria-label={dailyCopy('navigation', language)} className="grid grid-cols-3 border-t border-shinka-line bg-shinka-white">
+  return <nav aria-label={dailyCopy('navigation', language)} className="shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white">
     {BOTTOM_NAV.map(item => {
       const Icon = ICONS[item.component], active = item.key === current;
       const content = <><Icon className="h-5 w-5" aria-hidden="true"/>{t(item.labelKey, language)}</>;

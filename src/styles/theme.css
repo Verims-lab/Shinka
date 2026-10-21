@@ -16,6 +16,8 @@
   --color-accent-foreground: hsl(var(--accent-foreground));
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-shinka-on-primary: rgb(var(--shinka-on-primary));
+  --color-shinka-control: rgb(var(--shinka-control));
   --color-shinka-plum: rgb(var(--shinka-plum));
   --color-shinka-plum-deep: rgb(var(--shinka-plum-deep));
   --color-shinka-plum-soft: rgb(var(--shinka-plum-soft));

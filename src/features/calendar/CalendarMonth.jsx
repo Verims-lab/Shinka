@@ -44,7 +44,7 @@ export default function CalendarMonth({ value, selected, onSelect, onMonth, disa
       </div>
       {Array.from({ length: cells.length / 7 }, (_, week) => <div role="row" key={week} className="grid grid-cols-7">
         {cells.slice(week * 7, week * 7 + 7).map((day, index) => <div role="gridcell" key={day || `empty-${index}`} aria-selected={!!day && selected === day} className="flex justify-center">
-          {day && <button type="button" data-calendar-date={day} disabled={disabled}
+          {day && <button type="button" data-calendar-date={day} data-period={recorded.has(day)} data-predicted={predicted.has(day)} disabled={disabled}
             aria-label={[formatCalendarDate(day, language), starts.has(day) ? copy('start') : recorded.has(day) ? copy('period') : predicted.has(day) ? copy('predicted') : '', selected === day ? copy('selected') : ''].filter(Boolean).join(', ')}
             aria-current={day === value.today ? 'date' : undefined}
             onClick={() => onSelect(day)}

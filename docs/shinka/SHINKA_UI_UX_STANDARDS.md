@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-025
+**Current BuildMarker:** Buildmarker-026
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -11,6 +11,19 @@
 **Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+## Current mobile experience — 026
+
+System preference controls initial and live light/dark through one `followSystemTheme` binding, root light/dark class and color-scheme. No stored override/toggle is introduced. CSS provides an empty-document dark background before React paints. Semantic dark tokens cover product/internal surfaces, status colors, overlays and lunar drawing; no inversion. Primary on-color is independent of the surface token. Retained light colors plus the approved secondary-text/control-border contrast corrections are authoritative.
+
+The document scrolls; 100vh/100dvh, zoom and in-flow actions remain. Shared env-backed inset variables preserve top/side safety. ProductNavigation alone owns the product bottom inset; PageContainer owns its own bottom inset on non-product pages. Overscroll containment is vertical on the actual document and modal list, without touchmove cancellation. Text stays selectable; buttons/nav/decorative icons alone suppress selection.
+
+Below 768px or with a coarse primary pointer, the shared birthplace resource opens a lazily loaded native dialog styled as a bottom sheet. Existing dialog behavior was selected after evaluating the installed Vaul wrapper: no extra gesture engine, background transform or initial dependency is needed. Desktop retains native select. Both use the existing hierarchy/cache/controller and bounded provider pages. Title, selected radio state, Arrow/Home/End, Tab/Escape, close/Back and return focus are required; no search/autoselection. Saved summary and five-field server resolution remain unchanged. Date/time controls are untouched.
+
+Open layers have one same-URL history entry; Back dismisses before route traversal. Dismissing a pending confirmation hides presentation only: busy/intents/recovery remain owned by controllers. There is no root sentinel or Backspace handler. Route animation uses lazily imported Framer Motion on the existing node: tab fade, hierarchical ±12px entrance, 200ms, no retained exit subtree or keyed remount; reduced motion disables it. Native system back/status bars remain external acceptance.
+
+Home/Calendar offer thresholded pull refresh and a labeled Refresh button. Gesture observation is passive, single-touch, at document top, outside controls/layers/nested scrolls; unsupported overscroll containment keeps the button alternative. Requests coalesce. Last confirmed content survives refresh failure, while known privacy/session changes immediately conceal it. Calendar preserves draft and same-request unknown outcome; no optimistic confirmed save/rollback. Selection is immediate and saving/unknown/rejected/verified states stay distinct. Actual period days have a solid edge, predictions a dashed edge and selection a ring plus labels. Health case rows/control groups reflow with enlarged text.
+
 
 ## Implemented privacy experience — 023
 
@@ -79,8 +92,8 @@ Bottom navigation: **Home · Calendar · Pattern** only. **You** opens from the 
 ## Screen inventory
 ON-01 Introduction · ON-02 What should we call you? · ON-03 Welcome · ON-04 Personal Details · ON-05 Your cycle, your choice · ON-06 First Shinka preparation · Home · Calendar · Pattern · You · Withdraw consent bottom sheet.
 
-## Colors (light-only, no dark target)
-Primary Plum #6F415A · Deep Plum Text #4C263F · Muted Mauve #93637B · Dusty Rose #D8A5AA · Blush Pink #F2D7D4 · Soft Lavender #E7DCE8 · Warm Ivory #FFF8F3 · Soft Cream #F9EEE8 · Muted Taupe #87757D · Divider #EDE3E3 · White #FFFFFF.
+## Light palette (system-theme decision 026 supersedes light-only)
+Primary Plum #6F415A · Deep Plum Text #4C263F · Muted Mauve #93637B · Dusty Rose #D8A5AA · Blush Pink #F2D7D4 · Soft Lavender #E7DCE8 · Warm Ivory #FFF8F3 · Soft Cream #F9EEE8 · Muted Taupe #77636C (026 contrast correction) · Divider #EDE3E3 · White #FFFFFF.
 
 ## Typography
 Headings: Cormorant Garamond Medium — 34/40, 28/34, 24/30, 20/26. Body: Inter Regular — 17/25, 15/22, 13/18. Label/Button: Inter Medium. Classes: `text-shinka-h1…h4`, `text-shinka-body-lg|body|caption`.
@@ -151,10 +164,10 @@ Onboarding H06/H07, GeoNames H10 and onboarding-consent H11 are current with the
 ## Foundation auth shell alignment
 `PageContainer` now uses fixed 20px horizontal padding at mobile and desktop widths. `/login` uses ShinkaCard/ShinkaButton with Apple and Google only, primary controls at least 52px, localized safe error codes and no password fields/links. T74 measures actual 360px/1024px rendered layouts. The earlier Foundation shell has been replaced by ON-03 with a pre-auth age boundary. Live sign-in is still unverified.
 
-Shinka application components do not activate a dark theme, expose a toggle or use dark variants. Unused generic library `.dark` selectors remain outside the application policy scan; they are not evidence of a Shinka dark target.
+Superseded in 026: the former light-only rule no longer applies. Current system theme is defined above; there is still no user theme-toggle screen.
 
 ## CSS migration preservation — Buildmarker-006
-Native Tailwind 4 theme mappings preserve all eleven canonical colors, fifteen RGB variables, Cormorant Garamond/Inter families and weights, fixed typography line heights, 20px page padding, spacing/radii, 200ms transitions, ≥44px touch targets and ≥52px primary controls. Existing neutral/status colors are also pinned. The product stays light with OS dark preference; retained generic library dark variables require a class the application does not apply.
+Native Tailwind 4 theme mappings retain the original brand palette with the documented 026 secondary-text contrast amendment, RGB variable names, Cormorant Garamond/Inter families and weights, proportional typography line boxes, 20px page padding, spacing/radii, 200ms transitions, ≥44px touch targets and ≥52px primary controls. Existing neutral/status colors are also pinned. 026 supersedes the historical light-only behavior: the shared binding activates the matching system class and semantic palette.
 
 T75–T80 measure real computed styles/primitives and existing H13 cases in the same canonical suite. Existing T24/T41/T49/T74 retain internal 360px overflow, missing-root and Apple/Google auth coverage. Before/after local captures at 360px/1280px for Health, Build and login showed identical sampled heading/control/card geometry and colors after fixing inherited label and desktop heading line heights. External font requests are blocked in the isolated harness; declared families are verified, live font/device rendering is still required.
 
@@ -219,7 +232,7 @@ Approved product copy (the exact additional source decision):
 
 ## ON-04 selection presentation — current decision
 
-The SOURCE_OF_TRUTH decision replaces search with visible Country, State/Province/Region, District/County or Subregion, and Birth settlement native selection controls. Turkish labels are Ülke, İl / Bölge / Eyalet, İlçe / İdari bölge, Alt bölge and Doğduğun yerleşim. No search input, magnifier, debounce, inferred country or automatic first choice remains. TR normally follows country → province → district → settlement. Other countries use their available ADM levels; no-subdivision countries can select a settlement directly. Settlement selection remains available within any selected scope without requiring unnecessary lower levels.
+The SOURCE_OF_TRUTH decision replaces search with visible Country, State/Province/Region, District/County or Subregion, and Birth settlement selection controls (mobile bottom sheet / desktop native select since 026). Turkish labels are Ülke, İl / Bölge / Eyalet, İlçe / İdari bölge, Alt bölge and Doğduğun yerleşim. No search input, magnifier, debounce, inferred country or automatic first choice remains. TR normally follows country → province → district → settlement. Other countries use their available ADM levels; no-subdivision countries can select a settlement directly. Settlement selection remains available within any selected scope without requiring unnecessary lower levels.
 
 ShinkaSelect uses existing input tokens, 52px height, 17px text, visible focus, visible linked labels and native keyboard semantics. The single-column layout has no horizontal overflow at 360px/1280px in measured EN/TR fixtures. Long selected labels/context wrap below the control; country/administrative context distinguishes same-name records, with ID disambiguation when labels/context are identical. The selected birthplace has an explicit summary. Native option menus remain browser/OS UI; the application does not introduce a custom menu dependency.
 
@@ -231,7 +244,7 @@ Visual QA inspected empty/selected EN/TR ON-04 at 360px and 1280px. Rendered tes
 
 ## Mobile maintenance implementation
 
-Shared native select uses `appearance:none` with a decorative noninteractive chevron to enforce the existing 52px/17px tokens in WebKit; native selection semantics remain. Inputs have shrinkable width, PageContainer uses 100dvh with a 100vh fallback, and safe-area padding preserves the existing 20px/24px minimum. Home adds only device insets to its own spacing. Viewport permits user zoom; there is no zoom cap or keyboard scroll lock. The missing manifest link was removed: this checkout is a responsive web app, not an implemented PWA or native WebView shell.
+Desktop native select uses `appearance:none` with a decorative noninteractive chevron to enforce the existing 52px/17px tokens in WebKit; native selection semantics remain. Inputs have shrinkable width, PageContainer uses 100dvh with a 100vh fallback, and safe-area padding preserves the existing 20px/24px minimum. Home adds only device insets to its own spacing. Viewport permits user zoom; there is no zoom cap or keyboard scroll lock. The missing manifest link was removed: this checkout is a responsive web app, not an implemented PWA or native WebView shell.
 
 Browser-level layout, focus, localized long options, date/time and network retry evidence is in [Android/iOS compatibility](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md). Native keyboard/date/select sheets, VoiceOver/TalkBack, pinch zoom, real insets and background eviction require physical-device evidence (H13-013); desktop WebKit is not Safari certification. Product copy is unchanged.
 

@@ -2,11 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-025
+**Current BuildMarker:** Buildmarker-026
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-025.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-026.0; repository, synthetic and external evidence separated.
+
+## HC-026.0 mobile contract
+
+Add H08-007: MI01–MI03 execute real Calendar controller read coalescing, draft/confirmed data retention, pending/rejected/unknown same-intent retry and privacy/disposal isolation. Update H13-001/H13-006/H13-010 from the superseded light-only contract to current system preference and semantic palette checks. H13-012 local acceptance now includes system theme initial/live changes, text/nontext contrast, safe-area ownership, sheet focus/paging/history, reduced motion, Home/Calendar refresh and session isolation; H13-015 retains Calendar UI checks. T32/T39/T46/T75/T77/T79/U12/U14 reflect actual responsive behavior, not HTML-tag-only expectations. MI04–MI05 add Home lifecycle and motion policy assertions in the existing canonical runner.
+
+No suite/case is deleted or relabeled to hide failures. H13-013 remains EXTERNAL for physical Android/iOS, OS keyboard/text scaling, native system back/bars and VoiceOver/TalkBack. The catalog/server plan gains one in-app case (170 total, 145 in-app, 10 local, 13 external, 2 future); H16 compares them. H10-003/H13-014/H16-007 retain 025 bounds, cancellation, progress and isolated timer-fault tests. Prior reports stay immutable. No current-build hosted result is asserted; [mobile evidence](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md) records final local execution separately.
+
 
 ## HC-025.0 — helper timing, progress and cancellation
 
@@ -130,7 +137,7 @@ CLI output includes executable regression and current onboarding Health evidence
 H02-003 counts LOGICAL sources (must be 10). H02-004 requires every logical source and every physical part READ. H02-007 verifies the split UI/UX source: 4 parts, expected names, order 1→2→3→4, no gap/duplicate, continuity recorded, sole UI/UX authority, machine-readable companion present as supporting artifact (not a logical source), and documentation in SHINKA_SOURCE_OF_TRUTH.md. Artifacts are validated by role, never by a fixed physical total. H02-008 verifies all 11 UI/UX tables (design = tokens, icons = nav contract, 5 copy groups, QA checklist) and OD-010 closed. H03-008 verifies repository auth syntax plus the recorded Apple/Google policy; H03-009 exercises the actual server-admin request guard with injected anonymous/user/admin principals. Neither is LIVE_ENFORCEMENT.
 
 ## UI/UX contract cases (H13)
-001 token module · 002 44×44 rendered · 003 font families rendered · 004 actual current Health viewport overflow (responsive Build/mobile acceptance is local) · 005 accessible names · 006 rendered CSS colors = v1.1 · 007 Medium headings / Inter-500 labels · 008 nav + Lucide icons · 009 primary ≥52 rendered · 010 light-only · 011 centralized EN/TR localization · 012 mobile form/long-list regression · 013 physical Android/iOS external acceptance · 014 admin navigation/localized inventory.
+001 token module · 002 44×44 rendered · 003 font families rendered · 004 actual current Health viewport overflow (responsive Build/mobile acceptance is local) · 005 accessible names · 006 rendered CSS colors = active semantic palette · 007 Medium headings / Inter-500 labels · 008 nav + Lucide icons · 009 primary ≥52 rendered · 010 current system theme · 011 centralized EN/TR localization · 012 mobile form/long-list regression · 013 physical Android/iOS external acceptance · 014 admin navigation/localized inventory.
 
 ## Case schema
 `{ id, suiteId, title, description, severity, blocker, runnerType, applicability, status, attempted, executed, durationMs, evidence, assertion, execution }`; evidence `{ classification, source, actual, expected, reason, timestamp }`.

@@ -1,3 +1,5 @@
+import { lazy, Suspense, useLayoutEffect, useRef, useState } from "react";
+const BirthplaceSheet = lazy(() => import("./BirthplaceSheet"));
 import ShinkaButton from "@/components/shinka/ShinkaButton";
 import ShinkaSelect from "@/components/shinka/ShinkaSelect";
 
@@ -16,44 +18,24 @@ export default function BirthplaceList({
   disabled,
   picker,
   t,
+  language,
 }) {
-  const options =
-    selected && !data.options.some((x) => x.id === selected.id)
-      ? [selected, ...data.options]
-      : data.options;
-  const selectedOption = options.find((option) => option.id === selected?.id);
+  const container = useRef(null);
+  const [mobile, setMobile] = useState(false), [open, setOpen] = useState(false);
+  useLayoutEffect(() => {
+    const media = container.current.ownerDocument.defaultView.matchMedia('(max-width: 767px), (pointer: coarse)');
+    const update = () => { setMobile(media.matches); if (!media.matches) setOpen(false); };
+    update(); media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
+  const options = selected && !data.options.some(x => x.id === selected.id) ? [selected, ...data.options] : data.options;
+  const selectedOption = options.find(option => option.id === selected?.id);
   const ids = `place-${resourceKey}`;
   const counts = new Map();
-  for (const option of options)
-    counts.set(optionText(option), (counts.get(optionText(option)) || 0) + 1);
-  return (
-    <div className="min-w-0 space-y-2">
-      <label htmlFor={ids} className="block text-shinka-body">
-        {label}
-      </label>
-      <ShinkaSelect
-        id={ids}
-        value={selected?.id ?? ""}
-        disabled={
-          disabled ||
-          unavailable ||
-          data.status !== "READY" ||
-          !data.options.length
-        }
-        onChange={(e) => choose(Number(e.target.value))}
-        aria-busy={data.status === "LOADING"}
-        aria-describedby={`${ids}-status`}
-      >
-        <option value="" disabled>
-          {placeholder}
-        </option>
-        {options.map((option) => (
-          <option key={option.id} value={option.id}>
-            {optionText(option)}
-            {counts.get(optionText(option)) > 1 ? ` · #${option.id}` : ""}
-          </option>
-        ))}
-      </ShinkaSelect>
+  for (const option of options) counts.set(optionText(option), (counts.get(optionText(option)) || 0) + 1);
+  const text = option => `${optionText(option)}${counts.get(optionText(option)) > 1 ? ` · #${option.id}` : ''}`;
+  const inactive = disabled || unavailable || data.status !== 'READY' || !data.options.length;
+  const feedback = <>
       {selectedOption?.context && (
         <p className="break-words text-shinka-small text-shinka-taupe">
           {optionText(selectedOption)}
@@ -121,6 +103,14 @@ export default function BirthplaceList({
           </ShinkaButton>
         </div>
       )}
-    </div>
-  );
+  </>;
+  return <div ref={container} className="min-w-0 space-y-2">
+    <label htmlFor={ids} className="block text-shinka-body">{label}</label>
+    {mobile ? <ShinkaButton id={ids} value={selected?.id ?? ''} variant="secondary" className="w-full justify-between min-h-[52px] text-[17px] leading-[calc(25/17*1em)] text-left" data-place-control disabled={inactive} aria-haspopup="dialog" aria-expanded={open} aria-describedby={`${ids}-status`} onClick={event => { event.currentTarget.focus(); setOpen(true); }}>{selectedOption ? text(selectedOption) : placeholder}<span aria-hidden="true">⌄</span></ShinkaButton> :
+      <ShinkaSelect id={ids} data-place-control value={selected?.id ?? ''} disabled={inactive} onChange={e => choose(Number(e.target.value))} aria-busy={data.status === 'LOADING'} aria-describedby={`${ids}-status`}>
+        <option value="" disabled>{placeholder}</option>
+        {options.map(option => <option key={option.id} value={option.id}>{text(option)}</option>)}
+      </ShinkaSelect>}
+    {open && mobile ? <Suspense fallback={feedback}><BirthplaceSheet label={label} options={options} selected={selected} text={text} choose={choose} close={() => setOpen(false)} language={language} disabled={inactive}>{feedback}</BirthplaceSheet></Suspense> : feedback}
+  </div>;
 }

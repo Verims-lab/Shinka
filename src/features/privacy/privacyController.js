@@ -27,7 +27,8 @@ export function createPrivacyController(request, recovery, { onRemoved = async (
     subscribe: listener => { listeners.add(listener); return () => listeners.delete(listener); },
     load: () => state.pending ? call('status', state.pending) : call('read'),
     select: kind => { if (!state.busy && !state.pending && state.value?.state !== 'IN_PROGRESS') set({ selected: kind, error: null }); },
-    cancel: () => { if (!state.busy) set({ selected: null }); },
+    // Dismissal never cancels a dispatched request or discards durable recovery.
+    cancel: () => set({ selected: null }),
     confirm: () => {
       if (!state.selected || state.busy) return;
       const pending = { kind: state.selected, recovery_key: privacySecret() };

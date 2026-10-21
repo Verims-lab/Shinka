@@ -11,7 +11,8 @@ export function useDailyMessage(request = dailyMessageRequest, initial = null, r
     if (pending.current) return;
     pending.current = true;
     const ticket = ++generation.current;
-    setLoading(true); setError(null); setValue(null);
+    setLoading(true); setError(null);
+    if (context.current !== readContext()) setValue(null);
     try {
       // The browser context only invalidates a response; the backend still owns the day key.
       for (let attempt = 0; attempt < 2; attempt++) {
@@ -23,7 +24,10 @@ export function useDailyMessage(request = dailyMessageRequest, initial = null, r
         context.current = requestedContext; setValue(result); return;
       }
       throw Object.assign(new Error(), { code: 'DAILY_CONTEXT_CHANGED' });
-    } catch (e) { if (ticket === generation.current) setError(e.code || 'DAILY_OPERATION_FAILED'); }
+    } catch (e) { if (ticket === generation.current) {
+      if (/^(AUTH_|ACTIVE_|HEALTH_|CONSENT_)/.test(e.code || '')) setValue(null);
+      setError(e.code || 'DAILY_OPERATION_FAILED');
+    } }
     finally { if (ticket === generation.current) { pending.current = false; setLoading(false); } }
   }, [request, readContext]);
   useEffect(() => {

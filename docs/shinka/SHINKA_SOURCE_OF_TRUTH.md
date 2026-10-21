@@ -2,13 +2,20 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-025
+**Current BuildMarker:** Buildmarker-026
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## Mobile interaction and theme decision — 026, 2026-10-21
+
+Authority: explicit user request in attachment `d425bafc-2da2-4a48-9edc-a7e39dc561da/Pasted text.txt`; SHA-256 `c19174f7d4d5539a4506248b2bf0124de4c607dd25f9e8c0deba175a2bf35942`. This supersedes the light-only and mobile native-select presentation decisions, including those historical statements below. It is not an eleventh logical source. System light/dark, mobile birthplace bottom sheet, safe-area/scroll ownership, browser layer/back behavior, short reduced-motion-aware transitions and guarded Home/Calendar refresh are authorized. New helper copy is centralized in `mobileCopy.js`; source content, exact consent copy, five birthplace fields and backend authority are unchanged.
+
+The light brand remains; secondary text darkens from #87757D to #77636C and interactive boundaries use #95848D for contrast. Separate dark semantic values live in designTokens/dark.css; primary labels have their own on-primary token. No notification delivery, new theme setting, external infrastructure, native project or store build is authorized. Existing 025 timeout/cancellation/progress behavior remains. [Single mobile evidence report](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md) separates executed browser evidence from native/device acceptance.
+
 
 ## Current privacy decision — 023 (2026-10-21)
 

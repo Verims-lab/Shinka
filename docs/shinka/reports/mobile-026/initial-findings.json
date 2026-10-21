@@ -1,0 +1,137 @@
+{
+  "sourceCommit": "94da577",
+  "scope": "LOCAL_SYNTHETIC_BROWSER",
+  "matrix": {
+    "total": 150,
+    "failures": [
+      {
+        "scenario": "health-light-tr-320-2x",
+        "width": 497,
+        "scrollWidth": 497,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 652,
+        "minText": 5.28,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ],
+        "passed": false
+      },
+      {
+        "scenario": "health-light-en-320-2x",
+        "width": 497,
+        "scrollWidth": 497,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 652,
+        "minText": 5.28,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ],
+        "passed": false
+      },
+      {
+        "scenario": "health-dark-tr-320-2x",
+        "width": 497,
+        "scrollWidth": 497,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 652,
+        "minText": 7.68,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.507253007758388,
+            "input": 4.351762272801449
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 9.395100303413555,
+            "input": 4.805927719828516
+          }
+        ],
+        "passed": false
+      },
+      {
+        "scenario": "health-dark-en-320-2x",
+        "width": 497,
+        "scrollWidth": 497,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 652,
+        "minText": 7.68,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.507253007758388,
+            "input": 4.351762272801449
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 9.395100303413555,
+            "input": 4.805927719828516
+          }
+        ],
+        "passed": false
+      }
+    ]
+  },
+  "interimBundle": {
+    "initialJS": {
+      "raw": 484909,
+      "gzip": 160887
+    },
+    "css": {
+      "raw": 90368,
+      "gzip": 15977
+    },
+    "budgetPassed": false
+  },
+  "firstFullChromium": {
+    "failures": [
+      "T02: duplicate marker text in token comment",
+      "T32/T46: unamended original-only palette equality",
+      "U14: SELECT-only mobile fixture assumption"
+    ],
+    "correction": "Removed marker literal; original source colors remain exact while separately testing the documented contrast amendment; U14 exercises both real sheet and desktop select with all 300 identity/disambiguation checks. No case removed."
+  },
+  "firstFullWebKit": {
+    "canonicalPassed": 574,
+    "failure": "Sheet Back restored birthplace fieldset instead of place-places trigger. Safari-style button clicks do not acquire focus automatically.",
+    "correction": "Explicitly focus the shared mobile sheet trigger before opening; modal cleanup then restores the actual initiating control."
+  }
+}

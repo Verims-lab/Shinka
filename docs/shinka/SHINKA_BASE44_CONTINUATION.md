@@ -2,11 +2,18 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-025
+**Current BuildMarker:** Buildmarker-026
 **Last Updated:** 2026-10-21
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## 026 publication and platform boundary
+
+Base44 identity/data/functions remain sole authority. Schema delta: none. Owner workflow: merge Test when ready, complete GitHub sync of HC-026.0 shared healthConstants/healthPlan/contentStateContract and all existing native entry/shared sources, then matching frontend Publish. The agent pushes only Test. Staged content authorization extends through 026; source hashes/import predicates/data are unchanged and no import is run.
+
+No hosted call is necessary for this package. Current official Base44 store documentation describes a published-app WebView but specifies no usable JavaScript system-back or native bar-color bridge. Web changes are implemented; wrapper/device behavior remains pending, not unsupported or proven fixed. No Capacitor, native project, notification delivery or external service is added. Original ON-05 and prior hosted/private-history acceptance remain open.
+
 
 ## Current targeted Health closure — 024
 

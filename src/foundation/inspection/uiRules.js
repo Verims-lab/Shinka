@@ -4,11 +4,11 @@ import { BOTTOM_NAV, PROFILE_ENTRY } from "@/foundation/uiContract";
 import { STRINGS, SUPPORTED_LANGUAGES } from "@/foundation/i18n/strings";
 
 // Rendered CSS variables must equal token hex values.
-export function checkCssTokens(readVar) {
+export function checkCssTokens(readVar, dark = document.documentElement.classList.contains("dark")) {
   const mismatches = [];
   for (const [v, key] of Object.entries(DESIGN_TOKENS.cssVars)) {
     const actual = (readVar(v) || "").trim();
-    const expected = hexToRgbChannels(DESIGN_TOKENS.color[key]);
+    const expected = hexToRgbChannels(dark ? (v === "--shinka-ink" ? DESIGN_TOKENS.darkColor.ink : DESIGN_TOKENS.darkColor[key]) : DESIGN_TOKENS.color[key]);
     if (actual !== expected) mismatches.push({ variable: v, actual, expected });
   }
   return { checked: Object.keys(DESIGN_TOKENS.cssVars).length, mismatches };
@@ -37,6 +37,3 @@ export function findHardcodedStrings(sources, files, literals) {
   for (const f of files) for (const lit of literals) if ((sources[f] || "").includes(`>${lit}<`) || (sources[f] || "").includes(`"${lit}"`)) hits.push({ file: f, literal: lit });
   return hits;
 }
-
-export const findDarkVariants = (sources, prefixes) =>
-  Object.entries(sources).filter(([p, c]) => prefixes.some((x) => p.startsWith(x)) && /\bdark:/.test(c)).map(([p]) => p);
