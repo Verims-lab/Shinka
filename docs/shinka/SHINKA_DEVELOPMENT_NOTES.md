@@ -13,6 +13,7 @@
 Global write pause removed; shared bounded body reader; worker-local GeoNames guard with TR/EN limit copy; H12-040/H12-041 added. Local evidence: SC01–SC05 PASS, native-entry/GeoNames-entry PASS, production build exit 0. Browser regression suite not run (pinned Playwright Chromium missing, download blocked). Owner runs publish, Full Health and Security scan. Details: reports/SHINKA_SECURITY_CLOSURE_028.md.
 
 028 follow-up (same package, no marker change): adapter no longer converts guard limit errors to 503 (SC07–SC09 local PASS; SC07/SC08 FAIL on pre-fix code); H12-040 now backed by SC06/SC10/SC11 (run locally under Node via a bundle, PASS; not run in a browser); build-history trailing newline restored, `recordBuild --check` PASS (5 packages). Browser suite still not run.
+028 O32 fix: stale `inspectGeoNamesEntry` updated to the guarded entry (repoHealth was failing `onboardingGeoNamesEntry`, now `failed: []`); O32 negative `((o,` was invalid JS (SyntaxError) and replaced by a parseable unguarded entry. Local source rule check 9/9 under Node; focused browser O32 run exited 1 with 0 tests (Chromium binary missing) — not a PASS. SC01–SC05/SC07–SC09 re-run 8/8 PASS. SC06/SC10/SC11, NA07/NA22 not re-run.
 
 ## 027 — Bildirim Öncesi Kalite Milestone’u
 

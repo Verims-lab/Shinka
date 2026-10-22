@@ -4,6 +4,7 @@ import { BIRTHPLACE_SELECTION_TESTS } from './birthplaceSelectionTests';
 import { GEONAMES_DIAGNOSTIC_TESTS } from './geonamesDiagnosticTests';
 import { GEONAMES_RUNTIME_PROBE_TESTS } from './geonamesRuntimeProbeTests';
 import { loadStaticEvidence } from '../inspection/sourceScanner';
+import { syntaxNodes } from '../inspection/sourceRules';
 import { inspectGeoNamesEntry, inspectOnboardingSurface } from '../inspection/onboardingRules';
 import { check, rejects } from './dataModelTests';
 import { onboardingFixture, fixturePlace } from './onboardingFixture';
@@ -71,7 +72,10 @@ export const ONBOARDING_TESTS=[
   check((await loadStaticEvidence()).geoNamesEntry);
   const entry="import {secrets} from 'base44:runtime'; import {createGeoNamesAdapter} from '../../shared/geonamesAdapter.js'; import {createGeoNamesGuard} from '../../shared/geonamesGuard.js'; const guard=createGeoNamesGuard(); export default function onboarding(req) { const geoNamesFor=owner=>guard.forOwner(owner,fetcher=>createGeoNamesAdapter({username:secrets.get('GEONAMES_USERNAME'),fetcher})); return handleOnboardingRequest(req,createNativeClient,{geoNamesFor}); }";
   check(inspectGeoNamesEntry(entry));
-  for(const broken of [entry.replace('GEONAMES_USERNAME','VITE_GEONAMES_USERNAME'),entry.replace('secrets.get','Deno.env.get'),entry.replace('base44:runtime','wrong-runtime'),entry.replace('export default function onboarding(req) {', 'const cached=secrets.get(\'GEONAMES_USERNAME\'); export default function onboarding(req) {'),entry.replace('{geoNamesFor}', '{geoNamesFor:mockAdapter}'),entry.replace('guard.forOwner(owner,','((o,')])check(!inspectGeoNamesEntry(broken));
+  for(const broken of [entry.replace('GEONAMES_USERNAME','VITE_GEONAMES_USERNAME'),entry.replace('secrets.get','Deno.env.get'),entry.replace('base44:runtime','wrong-runtime'),entry.replace('export default function onboarding(req) {', 'const cached=secrets.get(\'GEONAMES_USERNAME\'); export default function onboarding(req) {'),entry.replace('{geoNamesFor}', '{geoNamesFor:mockAdapter}')])check(!inspectGeoNamesEntry(broken));
+  // Guard removed, syntax still valid: must parse, then be rejected.
+  const unguarded=entry.replace("guard.forOwner(owner,fetcher=>createGeoNamesAdapter({username:secrets.get('GEONAMES_USERNAME'),fetcher}))","createGeoNamesAdapter({username:secrets.get('GEONAMES_USERNAME')})");
+  check(unguarded!==entry&&syntaxNodes(unguarded).length>0&&!inspectGeoNamesEntry(unguarded));
   for(const host of ['api','secure'])check(!inspectOnboardingSurface({'/src/services/onboardingService.js':`fetch('https://${host}.geonames.org/searchJSON')`},[]).ok);
  }],
  ['O33','GeoNames search/detail normalize only five fields and suppress provider secrets',async()=>{
