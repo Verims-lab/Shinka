@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-029
+**Current BuildMarker:** Buildmarker-030
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -13,7 +13,7 @@
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
 
-## 029 — explicit notification extensions
+## 030 continuation — retained 029 notification extensions
 
 Original SRC-05/07 fields remain independently recorded in domainSourceReceipt. The following optional fields are authorized by this package, not retroactively attributed to the original files. D01 and repository inspection compare original fields plus this exact five-field extension; unexpected fields still fail.
 
@@ -25,7 +25,7 @@ Original SRC-05/07 fields remain independently recorded in domainSourceReceipt. 
 | claim_id | Random attempt correlation for readback; not provider idempotency or a lock |
 | error_stage | ADMISSION, PROVIDER or PROVIDER_ACCEPTANCE; safe code only |
 
-Existing delivery_status stays PENDING/SENT/FAILED/SKIPPED. SENT means a verified provider acceptance response, never device display. IN_FLIGHT is written before calling the provider; failure to persist/read back completion keeps it non-retryable. Unknown/malformed/timeout responses become FAILED + UNKNOWN; definite rejection may retry at most three total attempts within the current local 06:00–12:00 window. Original legacy rows without a known dispatch_state are not blindly resumed. Duplicate candidates remain evidence; canonical ID and existing sent/uncertain candidates suppress further sends. No physical UNIQUE/CAS/transaction is added or claimed.
+030 adds no schema or field. Existing delivery_status stays PENDING/SENT/FAILED/SKIPPED. SENT means a verified provider acceptance response, never device display. The 030 Base44 adapter cannot establish acceptance and always returns UNKNOWN, including resolved objects and 403/502/timeouts; only explicitly accepted synthetic providers exercise SENT in tests. The reported user_id mapping to native User.id, no-device behavior and provider idempotency remain unverified. IN_FLIGHT is written before calling the provider; failure to persist/read back completion keeps it non-retryable. Unknown/malformed/timeout responses become FAILED + UNKNOWN; definite rejection may retry at most three total attempts within the current local 06:00–12:00 window. Original legacy rows without a known dispatch_state are not blindly resumed. Duplicate candidates remain evidence; canonical ID and existing sent/uncertain candidates suppress further sends. No physical UNIQUE/CAS/transaction is added or claimed.
 
 NotificationSchedule is the sixth operational schema, outside the original 20 product entities. Its closed fields are schedule_key=DAILY_SHINKA, cursor (last preference record ID as a lexical boundary), last_tick_at. Direct CRUD denied. It stores no user/health payload or credential. Owner erasure removes NotificationDelivery through existing cleanup. The global positional cursor does not authorize or recreate the deleted identity; next sweep advances/resets it. No user-specific pending scheduler job exists outside delivery rows.
 

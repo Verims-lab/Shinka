@@ -3,7 +3,7 @@ import { privacyFixture, privacyIntent } from './privacyFixture';
 import { check, rejects } from './dataModelTests';
 import { notificationFixture } from './notificationFixture';
 import { barrier } from './nativeFixture';
-import { notificationWindow, NOTIFICATION_COPY, notificationFail } from '../../../base44/shared/notificationPolicy.js';
+import { notificationWindow, NOTIFICATION_COPY } from '../../../base44/shared/notificationPolicy.js';
 import { notificationOwner } from '../../../base44/shared/notificationOwner.js';
 import { notificationTick, handleNotificationSchedule } from '../../../base44/shared/notificationScheduler.js';
 import { base44PushProvider } from '../../../base44/shared/base44PushProvider.js';
@@ -102,8 +102,8 @@ export const NOTIFICATION_TESTS = [
   f.tables.NotificationDelivery.push({...f.tables.NotificationDelivery[0],id:'zz-competing'});f.advance();await Promise.all([f.send(),f.send()]);
   check(f.sent.length===1&&f.tables.NotificationDelivery.find(r=>r.id==='zz-competing').attempt_count===0);
  }],
- ['NT14','Closed handler denies unauthenticated and body authority/target/copy manipulation before writes',async()=>{
-  const f=notificationFixture(),call=(body,authorized=true,enabled=true)=>handleNotificationSchedule(new Request('https://fixture.invalid/schedule',{method:'POST',body:JSON.stringify(body)}),{authorize:async()=>{if(!authorized)notificationFail('AUTH_REQUIRED',401);},createClient:()=>f.raw(),enabled,...f.options});
+ ['NT14','Shared admin handler denies unauthenticated and body authority/target/copy manipulation before writes',async()=>{
+  const f=notificationFixture(),call=(body,authorized=true,enabled=true)=>handleNotificationSchedule(new Request('https://fixture.invalid/schedule',{method:'POST',body:JSON.stringify(body)}),{createClient:()=>f.raw(authorized?'adminA':null),enabled,createProvider:()=>f.provider,...f.options});
   check((await call({action:'tick',system:true},false)).status===401&&writes(f).length===0);
   for(const field of ['system','admin','user_id','title','message','url','cursor'])check((await call({action:'tick',[field]:'forged'})).status===400);
   check(writes(f).length===0);const disabled=await(await call({action:'tick'},true,false)).json();check(disabled.state==='DISABLED'&&writes(f).length===0);
@@ -123,9 +123,9 @@ export const NOTIFICATION_TESTS = [
   const second=await f.tick();check(second.processed===3&&second.cycleComplete&&f.tables.NotificationSchedule[0].cursor==='',`second cursor=${f.tables.NotificationSchedule[0].cursor} processed=${second.processed}`);
   check(f.sent.length===0&&!f.state.calls.some(c=>c.name==='UserDailyMessage'),'unexpected daily IO');
  }],
- ['NT17','Missing production push binding stays unknown and never calls dynamic SDK',async()=>{
+ ['NT17','Unknown eligibility and reported provider call never infer acceptance',async()=>{
   let calls=0;const provider=base44PushProvider({asServiceRole:{integrations:{Core:{SendPushNotification:async()=>{calls++;}}}}});
-  check((await provider.eligibility('ownerA')).permission==='UNKNOWN');await rejects(()=>provider.send({owner:'ownerA',language:'tr'}),'PUSH_CONTRACT_UNVERIFIED');check(calls===0);
+  check((await provider.eligibility('ownerA')).permission==='UNKNOWN');check((await provider.send({owner:'ownerA',language:'tr'})).kind==='unknown');check(calls===1);
   check(NOTIFICATION_COPY.tr.message==='Günlük Shinka içeriğin hazır'&&NOTIFICATION_COPY.en.message==='Your daily Shinka is ready');
  }],
  ['NT19','Owner erasure removes pending/in-flight/unknown notifications; global cursor cannot recreate identity',async()=>{

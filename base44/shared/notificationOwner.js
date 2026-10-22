@@ -5,7 +5,7 @@ import { notificationFail as fail } from './notificationPolicy.js';
 
 // Runs only after scheduler authorization. No invented user auth principal and
 // no permission to update profile/consent/history. Rechecked before every write.
-export function notificationOwner(client, owner, now) {
+export function notificationOwner(client, owner, now, admitCaller = async () => {}) {
   const store = client.asServiceRole.entities;
   const one = async name => {
     const rows = await store[name].filter({ user_id: owner }, 'id', 2);
@@ -13,6 +13,7 @@ export function notificationOwner(client, owner, now) {
     return rows[0];
   };
   const admit = async () => {
+    await admitCaller();
     const users = await store.User.filter({ id: owner }, 'id', 2, 0, ['id']);
     if (!Array.isArray(users) || users.length !== 1 || users[0].id !== owner) fail('AUTH_REQUIRED', 401);
     await assertPrivacyAccess(client, owner);

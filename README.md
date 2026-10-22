@@ -4,9 +4,9 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Any change pushed to the repo will also be reflected in the Base44 Builder.
 
-## Current Test notification package (Buildmarker-029)
+## Current Test notification continuation (Buildmarker-030)
 
-The local DAILY_SHINKA core shares the existing daily engine, uses fixed local 06:00 with a same-day bounded window, and separates saved preference from native device permission. Independent code/UI/local validation are complete. Two bindings remain open: provider connection (named payload/response and recipient/device eligibility) and scheduler caller authorization. The owner will obtain sourced Base44 examples; compare them with the actual SDK/platform contract before implementation. The production scheduler stays deliberately closed. **Mobile credentials alone do not complete these bindings.** No workflow was created or live push sent. See the [029 report and exact next work](docs/shinka/reports/SHINKA_NOTIFICATIONS_029.md). Test delivery is not production notification acceptance; main merge/publish remain owner-owned.
+The completed 029 daily engine/UI is retained. 030 adds the shared fresh native-admin guard for manual starts and a narrow adapter for the user-relayed push input schema. Workflow identity and provider response/recipient/device contracts remain unverified. Actual entry is disabled; unknown adapter output never becomes SENT. No live send or schedule is enabled. Mobile credentials alone cannot complete these contracts. See the [current 030 result and retained 029 evidence](docs/shinka/reports/SHINKA_NOTIFICATIONS_029.md). Test delivery is local implementation only; main merge/publish and controlled native acceptance remain owner-owned.
 
 ## Existing data authority (Buildmarker-023 onward)
 

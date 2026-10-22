@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-029
+**Current BuildMarker:** Buildmarker-030
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -11,7 +11,7 @@
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
-## 029 — one scheduler path, shared engine and provider boundary
+## 030 — one scheduler path, shared engine and provider boundary
 
 Read-only Base44 CLI workflows list returned an empty supported list on 2026-10-22; the UI also exposes Workflows. Choose Workflows only. Do not add function.jsonc automations: current documentation rejects those on workflow apps. No remote workflow is created, activated or executed by this package. Intended owner-configured cadence is every five minutes in UTC, one scheduled function, no frontend polling. Configuration/activation remains blocked by the missing verified authentication and push binding, in addition to mobile setup.
 
@@ -19,7 +19,9 @@ notificationScheduler bounds each pass to 25 preferences sorted by ID and a 20-s
 
 produceDailyForOwner is the single algorithm used by Home and scheduler, with fresh admission callbacks. notificationOwner checks native User, ACTIVE/complete profile, existing first daily, privacy and admin lifecycle; it permits only daily create and delivery create/update with pre/post checks. No fake auth.me principal is minted. notificationDelivery uses persisted intent/readback, candidate ordering and a worker-local map; IN_FLIGHT or unknown outcomes suppress retry. Cross-worker final-read/send races and in-flight revocation remain residual risks. Conditional Home timezone update is read back, not claimed as CAS.
 
-base44PushProvider is backend-only and names the documented Core.SendPushNotification dynamic SDK method. Named parameters, result interpretation and trusted device eligibility are intentionally not invented: no production binding is supplied. notificationSchedule entry is hard-closed before client creation, including requests with apparent service headers. An injected service-role SDK client alone never authenticates a scheduler caller. Local NT/NS checks prove these boundaries, not a working hosted schedule.
+base44PushProvider is backend-only, with a narrow ReportedPushInput/Promise<unknown> type matching the user-relayed schema: required user_id/title/content, optional action_label/action_url. It validates 100/500/50 Unicode-code-point limits and uses only server-derived neutral TR/EN copy. The optional destination is omitted; app validation allows only Home if supplied internally. No SDK upgrade or global any augmentation. Resolved output and caught errors both produce UNKNOWN; no response fields or definite no-send meaning are inferred. Eligibility remains UNKNOWN.
+
+notificationSchedule authenticates before constructing a service-role lifecycle repository, then uses the existing shared requireAdmin with a fresh native User/lifecycle lookup and unchanged-principal check. It repeats admission at work/write/send boundaries; anonymous, normal, demoted or deleted identities cannot reach job data or provider creation. Enabled synthetic tests exercise direct admin ticks. The actual entry is enabled:false: authorized calls return DISABLED, zero work. Workflow auth.me identity and creator lifecycle are unverified, not unsupported; no null-auth system fallback, secret/header workaround or beta Run API authentication. NS01–09 execute the actual TS entry/shared guard with substituted SDK transport; NC01–09 exercise enabled policy/adapter locally. Neither proves a hosted scheduler.
 
 ## 028 — shared security modules (ACTIVE)
 

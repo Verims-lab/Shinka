@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-029
+**Current BuildMarker:** Buildmarker-030
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,9 +12,9 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
-## 029 — notification settings and honest permission states
+## 030 continuation — notification settings and honest permission states
 
-You keeps one on/off preference, fixed local 06:00 target, language selection and existing save/unknown/conflict/draft contract. The saved preference is displayed independently from the unsaved checkbox draft. Device permission and native platform support are separate labeled states. Production currently reports both unverified/unknown because no Base44 JavaScript native permission/registration bridge was documented. Browser Notification.permission, service workers and user-agent inference are not substitutes. No automatic permission request, unsupported settings URI, or pretend permission button is added.
+030 retains the completed 029 UI without a new permission bridge or navigation-time send. The new manual admin backend guard and reported input adapter do not imply delivery activation. You keeps one on/off preference, fixed local 06:00 target, language selection and existing save/unknown/conflict/draft contract. The saved preference is displayed independently from the unsaved checkbox draft. Device permission and native platform support are separate labeled states. Production currently reports both unverified/unknown because no Base44 JavaScript native permission/registration bridge was documented. Browser Notification.permission, service workers and user-agent inference are not substitutes. No automatic permission request, unsupported settings URI, or pretend permission button is added.
 
 Denied permission shows the original English device-settings instruction and scoped Turkish translation. Manual guidance points to Shinka in OS notification settings; the verified Base44 flow requests native permission at first opening of a push-enabled store build. The current setup-pending text is truthful while the production binding is closed. Switching account/logout clears the You view through the existing session boundary; native device-token reassignment/revocation still needs physical acceptance. No health, birth, cycle or daily snapshot appears in lock-screen copy. Neutral 029 TR/EN text is centralized in notificationPolicy; UI states in notificationCopy.
 

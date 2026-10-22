@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-029
+**Current BuildMarker:** Buildmarker-030
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
-> ## NO FEATURE IS COMPLETE WITHOUT: SOURCE + TESTS + HEALTH + DOCS
+> ## 030 — notification continuation under revised caller contract
+
+Continue completed 029 without rewriting it. Advance once to Buildmarker-030 / HC-030.0 and retain 026–030. Direct current-native-admin invocation is acceptable using the existing common guard. Do not infer workflow authority from missing auth, service-role access, body/header/run ID or undocumented creator identity. Implement only the reported push input contract with narrow types; output stays unknown until verified. Keep real sending and schedules disabled. Preserve 12 findings OPEN / USER-DEFERRED, all earlier failures and device acceptance. Update existing H14 cases/report rather than duplicate them. Run fresh mandatory local gates and both engines, then push Test only; no main merge, publish, hosted Health/scan/import/push/user mutation.
+
+## NO FEATURE IS COMPLETE WITHOUT: SOURCE + TESTS + HEALTH + DOCS
 > A functional or contract change is NOT complete until SOURCE, TESTS, HEALTH/REGRESSION and CANONICAL DOCUMENTATION are reconciled. If one is affected and not updated, the package is incomplete.
 
 - NO SILENT SOURCE-CONTRACT CHANGE

@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-029
+**Current BuildMarker:** Buildmarker-030
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 030 — reported push input and shared manual admin admission
+
+Started from clean Test/origin Test 758d6af; main 060ba76 is already an ancestor, no user work or Base44 change overwritten. Completed 029 implementation a51cdd4 and clarification 758d6af remain in history. Corrected the workflow-admin assumption from user-relayed support; manual shared admin guard replaces the placeholder verifier. A narrow input adapter follows the relayed schema and preserves unknown responses/errors. Production stays disabled. Existing Health cases gain NC01–09/NS01–09 coverage; no case removed. CAP-13/17 now record partial documentation/local evidence consistently (their old source entries still said UNVERIFIED despite the 029 report). Final Chromium/WebKit each 617/617, with 8 server + 9 actual-entry checks per command; local Health 136 PASS/13 prerequisite BLOCKED. Required quality/dependency/history/performance gates pass, audit zero; initial JS 479543/160180 gzip and CSS 77521/14262 bytes. Initial type/lint diagnostics and external limits are recorded in the existing notification report and notifications-030 artifacts.
 
 ## 029 — local notification verification complete; platform binding blocked
 

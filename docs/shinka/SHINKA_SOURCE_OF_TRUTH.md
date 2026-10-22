@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-029
+**Current BuildMarker:** Buildmarker-030
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## 030 — user-relayed support correction (2026-10-22)
+
+The continuation attachment explicitly permits direct current-native-admin starts and supersedes any workflow-only identity requirement. It relays Base44 support, not an independently retrieved support ticket: workflow auth.me identity/creator lifecycle and a verifiable workflow caller mechanism are undocumented. The earlier AI creator-admin claim is unverified; documentation gaps are not UNSUPPORTED evidence. Beta Run APIs do not authenticate incoming calls.
+
+The same attachment relays SendPushNotification input schema (user_id/title/content, optional nullable action_label/action_url; 100/500/50 character limits), implemented with a narrow type and local validation. It supplies no verified response, recipient-ID mapping, no-device behavior or idempotency contract. These remain unknown. All original 029 product decisions and source receipts below remain authoritative within their recorded scope. The 030 report distinguishes this user-relayed input from official documentation, synthetic execution and unperformed physical acceptance.
 
 ## 029 — direct notification source reconciliation
 

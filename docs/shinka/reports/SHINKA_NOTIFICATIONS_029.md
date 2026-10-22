@@ -1,4 +1,60 @@
-# Shinka Notifications 029 — local delivery and platform blockers
+# Shinka Notifications 029–030 — local delivery and platform blockers
+
+## Current continuation — Buildmarker-030 / HC-030.0 (2026-10-22)
+
+**LOCAL_VALIDATION_PASS / LIVE_BINDING_BLOCKED.** Continue completed 029 (`a51cdd4`) and its clarification (`758d6af`); no rewrite of the daily engine or UI. Clean local/origin Test was `758d6af7bc14aa6c07855915c5dd223a15960c79`, ahead of main `060ba76` by those two commits; no divergence or user edits. The tested 030 executable/config inputs are identified by the [495-file manifest](notifications-030/source-manifest.json), aggregate `2921c430f579d596bf2f5af44049b895e8d8f755022474c248b8b839d1939c27`. Generated ledger/prose are finalized separately. Frontend and notification entry SDK remain 0.8.57, other native entries retain 0.8.54; plugin 1.0.47, Playwright 1.64.0 and Vite 8.2.4 remain locked. No dependency, schema or content-source change in 030. Internal Build retains **026–030**.
+
+### Corrected contract and implemented code
+
+The owner's 2026-10-22 continuation relays Base44 support, rather than an independently retrieved support ticket. It says workflow `auth.me()` identity, creator downgrade/deletion behavior, workflow signatures/headers/run-ID verification and workflow-only access are undocumented. The previous Base44 AI “creator admin” assertion is **UNVERIFIED**, not an accepted contract. This does not establish platform non-support. [Beta Workflow APIs](https://docs.base44.com/developers/references/apps-api/sections/workflows) are not an incoming-caller authentication contract. No secure workflow credential transport was demonstrated; `secrets.get` alone would not prove it. No guessed header, shared-secret workaround, custom signing service or SHINKA_WRITE_MODE was added.
+
+Manual admin starts are now explicitly acceptable. `handleNotificationSchedule` authenticates before constructing the lifecycle service-role repository, then uses the common `requireAdmin` with fresh native User/lifecycle and unchanged-principal checks. Anonymous/auth-error calls touch no service-role object. Normal, demoted and removed accounts cannot read job data, mutate work or construct/call the provider. Admission repeats at work/write/send boundaries. Enabled local fixtures prove direct admin execution and revocation after IN_FLIGHT stopping send/further writes. The **actual entry remains `enabled:false`**: a current admin receives `DISABLED / processed:0`; others are rejected. This replaces the historical 029 unconditional 503 placeholder. A service-role client never proves workflow authority.
+
+The isolated `base44PushProvider` and JSDoc type module implement the **platform input schema as relayed by the owner, not live verified**:
+
+| Field | Reported contract / implemented handling |
+|---|---|
+| user_id | Required string; server-derived owner. Exact native User.id mapping remains unverified. |
+| title / content | Required strings, maximum 100 / 500 characters; central neutral TR/EN copy. Local validation counts Unicode code points. |
+| action_label | Optional string/null, maximum 50 characters; omitted by daily adapter. |
+| action_url | Optional string/null; omitted for documented default app opening. App-level validator admits only `/` or null if supplied internally. |
+
+The installed SDK exposes dynamic Core integration methods, without the named schema. The adapter calls `asServiceRole.integrations.Core.SendPushNotification` with only `{user_id,title,content}` and treats the result as `unknown`. It never interprets `success`, `message_id` or `delivered`, forwards raw output/errors or infers SENT. A resolved object, null/string, 403, 502 and timeout all remain UNKNOWN; they cannot trigger a blind retry. Device eligibility stays UNKNOWN. The actual entry and eligibility gate keep live calls off. [Official integration documentation](https://docs.base44.com/Integrations/built-in-integrations) establishes the method/default opening at documentation level, not recipient/response/device acceptance.
+
+029 behavior is retained: fixed IANA 06:00, current local 06:00–12:00 window, DST/zone changes, shared Home/job daily generation, immutable content, preference/OS/support separation, lifecycle/consent fences, persisted intent/readback, at most three attempts only for a definite synthetic transient rejection, and no automatic retry for UNKNOWN/IN_FLIGHT. There is no native UNIQUE, CAS, distributed lock or exactly-once guarantee. No job runs on the navigation critical path; no new polling or function call chain.
+
+### Actual local results
+
+[Verification](notifications-030/verification.json), [Chromium](notifications-030/chromium.json), [WebKit](notifications-030/webkit.json), [quality receipts](notifications-030/quality-gates.json), [case audit](notifications-030/chromium-case-audit.md).
+
+| Check | Executed result | Limit |
+|---|---|---|
+| Chromium 156.0.8078.4 | **617 PASS / 0 FAIL**, 0 page errors | Full canonical runner; synthetic SDK/provider, external network blocked |
+| WebKit 27.2 | **617 PASS / 0 FAIL**, 0 page errors | Same final source; desktop WebKit, not physical iOS |
+| Per command: SC01–05/07–09 | **8/8 PASS** | Node/server fixtures, counted separately |
+| Per command: NS01–09 | **9/9 PASS** | Actual TS entry/shared guard, SDK/platform imports substituted; no hosted identity proof |
+| Per engine: local in-app Health | **136 PASS / 0 FAIL / 13 BLOCKED** of 149 | Hosted/content prerequisites unavailable; blocked is not PASS |
+| Clean install/tree/audit/security:deps/repo/type/lint/build/history | **PASS** | Zero dependency advisories at all levels; no live Security scan |
+| Production bytes, graph and lazy retry | **PASS** | Existing budgets unchanged; laboratory evidence only |
+| Hosted workflow/push, native permission/token lifecycle, physical display/Home tap | **NOT RUN / BLOCKED** | H14-901 and H16-901 remain external |
+
+Both result lists explicitly contain NT01–23, NU01–03, NC01–09 and retained O32/NA07/NA22/SC06/SC10/SC11; **no missing required ID or zero-test pass**. Each engine also retains 150 mobile interaction, 87 compatibility, 24 You and 23 privacy checks. The 13 blocked Health IDs remain H04-019, H05-001–009, H08-005, H09-004, H12-031.
+
+H14-001/002 retain their existing assertions. H14-003 adds NC01–09 to its real admission/adapter coverage; H14-004 now describes NS01–09 plus retained NU01–03. H14-901 distinguishes implemented manual guard/reported input from unresolved platform contracts. No new or removed Health ID: these behaviors fit the existing cases. Catalog, suite, backend H14 plan and scopes agree: **175 total / 149 in-app / 12 local / 14 external / 0 future**. CAP-13/17 source entries now consistently say PARTIALLY_VERIFIED with documentation/local evidence; they previously still said UNVERIFIED despite the 029 report. Missing documentation is not UNSUPPORTED. The existing **12 backend findings remain OPEN / USER-DEFERRED**.
+
+[Initial failures](notifications-030/initial-failures.json) retain the optional-field typecheck diagnostics and `.d.ts` parser failure. Fixed via validated narrow casts and the existing JSDoc style; no lint rule, assertion or security predicate removed. A development-only checker syntax error occurred before execution and was corrected; it was not a pass. First full 617/617 runs preceded the type-module conversion; the final full runs above use the final source. All 028/029 evidence below and on disk is preserved.
+
+### Performance and remaining acceptance
+
+[Production measurements](notifications-030/performance.json): initial JS **479,543 raw / 160,180 gzip**, CSS **77,521 / 14,262** bytes, within unchanged 500,000/165,000 and 90,000/16,000 limits. No dependency cycle; lazy failure/reload retry passes. Three local You LCP observations are 76/64/76ms, unthrottled synthetic loopback—not field p75 or device speed. No production SDK latency/credits measured.
+
+[Direct NC04 measurement](notifications-030/manual-entity-cost.json) includes the new repeated admin/lifecycle entity lookups: existing-day intent **84 reads / 4 writes**, accepted synthetic dispatch **119 / 4**, settled pass **61 / 2**. It excludes `auth.me`, real provider/SDK latency and credits; historical 029 core-only costs below must not be substituted for the new admin path. Pagination remains ≤25 preferences with a 20-second between-owner budget and saved cursor. A slow active SDK request can exceed that admission budget; this is not cancellation or a hard wall-clock guarantee. Before activation, measure hosted latency/capacity under the [five-minute function ceiling](https://docs.base44.com/developers/backend/resources/backend-functions/overview); do not chain functions to extend it. Existing five-minute cadence intent, two-pass settlement and capacity/credit formulas below remain estimates.
+
+**Still needed from Base44/support:** verified workflow caller identity and creator revocation/deletion behavior or a supported secure credential transport; native recipient-ID mapping; complete push response/error and no-device semantics; accepted versus queued versus delivered meaning; native eligibility/permission/token lifecycle; provider idempotency. Supplied examples must match the installed SDK and documented platform contract. Actual send/schedule stays disabled until these facts support a safe binding.
+
+**Owner actions:** merge/publish and sync all matching 029+030 schemas/shared backend/frontend/HC sources when ready. Configure iOS APNs .p8 + Key ID and Android google-services.json + Firebase service-account JSON in trusted Base44 UI, with matching project/package; generate/install updated native builds. Firebase remains push setup, not application storage. After verified bindings and setup, use one selected test account for controlled push/display → guarded Home/current content → in-app Health and Android/iOS OS-denial/logout/account-switch checks. Physical H16-901 remains open. No agent live Health/scan/push/import/user mutation, workflow activation, main merge or publish occurred.
+
+## Historical 029 delivery — preserved, current boundary superseded above
 
 **Build:** Buildmarker-029 / HC-029.0
 **Date:** 2026-10-22

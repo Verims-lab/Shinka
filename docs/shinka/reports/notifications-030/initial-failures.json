@@ -1,0 +1,80 @@
+{
+  "scope": "LOCAL_ONLY",
+  "failures": [
+    {
+      "gate": "typecheck-initial",
+      "exitCode": 1,
+      "detail": "TS2322: optional nullable fields remained unknown after runtime checks. Added narrow nullable casts after validation; no any or runtime rule weakening.",
+      "evidence": "typecheck-initial.txt"
+    },
+    {
+      "gate": "lint",
+      "exitCode": 1,
+      "detail": "Existing JS ESLint parser cannot parse the new backend .d.ts type keyword. Converted same narrow types to JSDoc module; parser/rules unchanged.",
+      "evidence": "lint-initial.txt"
+    },
+    {
+      "gate": "pre-run development script",
+      "detail": "Initial verifyNotifications.mjs getter braces caused a parse SyntaxError before test execution; corrected before entry-initial. No tests counted as pass. Initial metadata edit script assertion also stopped before adding numeric content allowlist 30; corrected before full runs. No raw log retained for these two console-only attempts."
+    },
+    {
+      "gate": "optional Node cost harness setup",
+      "exitCode": 1,
+      "detail": "First Vite cost bundle omitted static-evidence plugin and dependency bundling; no NC04 measurement ran. Corrected harness without repository source changes; final direct NC04 measurement passed.",
+      "evidence": "manual-cost-initial.txt"
+    }
+  ],
+  "firstFullRuns": {
+    "chromium": {
+      "tests": 617,
+      "passed": 617,
+      "failed": 0,
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "test:foundation"
+        ],
+        "exitCode": 0,
+        "startedAt": "2026-10-22T14:23:24.241945+00:00",
+        "completedAt": "2026-10-22T14:24:29.691966+00:00",
+        "log": "chromium.log"
+      },
+      "note": "Before JSDoc-only conversion; superseded by final full runs."
+    },
+    "webkit": {
+      "tests": 617,
+      "passed": 617,
+      "failed": 0,
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "test:foundation"
+        ],
+        "exitCode": 0,
+        "startedAt": "2026-10-22T14:23:23.425109+00:00",
+        "completedAt": "2026-10-22T14:24:36.488477+00:00",
+        "log": "webkit.log"
+      },
+      "note": "Before JSDoc-only conversion; superseded by final full runs."
+    }
+  },
+  "focusedInitial": {
+    "tests": 11,
+    "passed": 11,
+    "receipt": {
+      "command": [
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T14:16:04.371749+00:00",
+      "completedAt": "2026-10-22T14:16:09.060751+00:00",
+      "log": "focused-initial.log"
+    }
+  },
+  "assertionsRemoved": false,
+  "securityRulesRelaxed": false
+}

@@ -1,0 +1,10 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 lint
+> eslint . --quiet
+
+
+/Users/verimsari/Documents/Shinka/base44/shared/notificationProviderTypes.d.ts
+  2:8  error  Parsing error: Unexpected token type
+
+✖ 1 problem (1 error, 0 warnings)

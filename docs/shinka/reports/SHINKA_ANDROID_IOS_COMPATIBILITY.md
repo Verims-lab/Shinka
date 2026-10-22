@@ -1,5 +1,9 @@
 # Shinka Android / iOS compatibility evidence
 
+## 030 — admin admission and reported push adapter continuation (2026-10-22)
+
+Final Chromium/WebKit each 617/617, plus 8 server and 9 actual-entry checks per command; retained NU01–03, 150 interaction/87 compatibility checks, 24 You and 23 privacy checks per engine. UI/guarded Home behavior is retained; no native permission bridge or real push is inferred. H14-901 now distinguishes implemented manual admin/reported input from unverified workflow and provider semantics. H16-901 remains physical Android/iOS display, permission, logout/rebinding and Home acceptance. Entry and eligibility remain disabled/unknown. [030 results and setup](SHINKA_NOTIFICATIONS_029.md), [verification](notifications-030/verification.json). Earlier evidence below is historical and preserved.
+
 ## 029 — notification UI and physical delivery boundary (2026-10-22)
 
 Local Chromium 156.0.8078.4 and WebKit 27.2 each pass 608/608 regressions, including NU01–03 (TR/EN draft preservation, stored preference vs unknown/denied/support state, old Home URL and session concealment), retained 150 interaction/87 compatibility checks, and 24 You/23 privacy checks. These are desktop browser fixtures, not native device proof. No browser permission is treated as native permission; no undocumented permission/settings/token bridge is invoked. Production delivery setup is visibly inactive.

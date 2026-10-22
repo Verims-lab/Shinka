@@ -2,21 +2,19 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-029
+**Current BuildMarker:** Buildmarker-030
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-029.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-030.0; repository, synthetic and external evidence separated.
 
-## HC-029.0 — notifications with explicit external blocker
+## HC-030.0 — existing notification cases aligned with actual guards
 
-Owner clarification (2026-10-22): H14-901 covers exactly the two open code bindings—provider connection (including device eligibility) and scheduler caller authorization. The owner will obtain sourced Base44 examples; those must be checked against the actual SDK/platform contract before implementation. No new case, case deletion, assertion change or fake execution result is needed for this clarification. H16-901 remains separate physical-device acceptance. The 608/608 results below are retained original 029 evidence, not a newly executed browser run for this documentation-only update.
+H14-001/002 retain their IDs and 029 daily reconciliation/window/retry assertions. H14-003 now includes NC01–09: actual shared fresh-admin admission, missing/error/demoted/deleted/changed identity, forged workflow flags, positive synthetic manual admin, revocation before send, reported input bounds/mapping and unknown-result suppression. H14-004 retains NU01–03 and now describes NS01–09 actual TS entry checks with substituted SDK: unauthorized rejection and authorized DISABLED. The old injected-verifier / all-calls-before-SDK description is superseded.
 
-H14-001/002 retain their IDs and move from future to executable synthetic-runtime coverage. Titles now state ordinary SDK reconciliation instead of native unique/idempotency guarantees. H14-003 adds admission/deletion/paging/closed-binding behavior; H14-004 tracks local NU01–03 UI and NS01–03 actual inactive-entry checks. H14-901 tracks the missing platform authentication/parameter/response/eligibility binding externally. H16-901 remains physical iOS/Android push and Home acceptance, never local PASS. No existing Health ID was deleted; future placeholders moved to executable registrations.
+No new or deleted Health ID is needed: these assertions extend the existing admission/entry cases. Existing suite registration, backend H14 plan [001,002,003] and execution scopes stay aligned; H14-004 remains local-only, H14-901 external. H14-901 records implemented manual guard/reported input separately from unverified workflow identity, recipient/result/error/device semantics. H16-901 remains physical Android/iOS acceptance, never local PASS. Content allowlist explicitly adds only 030 without loosening predicates.
 
-The suite, catalog, closed backend plan and execution scope are changed together; 029 is explicitly in the unchanged content-policy allowlist. Health invokes only fake providers/clocks and ordinary in-memory SDK transport, never production notificationSchedule or a real push. NT14 verifies an injected test verifier/closed request body; NS01–03 verify actual entry denial before IO. Neither proves a platform authenticator. Full new local regression results and initial failures are recorded in the single [029 report](reports/SHINKA_NOTIFICATIONS_029.md). User-reported successful published 028 Health is historical input, not 029 evidence.
-
-029 final local evidence: **608/608 Chromium and 608/608 WebKit**, plus **8/8 retained server fixtures and 3/3 inactive-entry checks** per command. Local in-app Health **136 PASS / 0 FAIL / 13 expected hosted-prerequisite BLOCKED**. Inventory: **175 total / 149 in-app / 12 local / 14 external / 0 future**. Mandatory quality/dependency/history/byte gates pass; original failures retained. Hosted binding remains BLOCKED, device checks NOT RUN. See [029 verification](reports/notifications-029/verification.json).
+Health uses fake providers/clocks and in-memory SDK transport. It never calls the production scheduler or sends real push. Catalog inventory remains 175 total / 149 in-app / 12 local / 14 external / 0 future. Final 030 counts and gate receipts are in the [existing notification report](reports/SHINKA_NOTIFICATIONS_029.md) and notifications-030 evidence. 030 final: Chromium **617/617**, WebKit **617/617**, per command **8/8 server + 9/9 actual-entry checks**; local Health **136 PASS / 0 FAIL / 13 prerequisite BLOCKED**. Required quality/dependency/history/performance gates pass with zero audit advisories. The prior 029 result remains historical: 608/608 per engine, 8 server + 3 inactive-entry checks, local Health 136 PASS/13 prerequisite BLOCKED, zero dependency advisories. Its original files/failures are preserved. User-reported published 028 success is separate historical evidence.
 
 ## HC-028.0 — security closure and completed local verification
 

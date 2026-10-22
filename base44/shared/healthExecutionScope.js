@@ -1,6 +1,6 @@
 // User-approved 018/019 scope separation. IDs and acceptance coverage are retained.
 export const HEALTH_SCOPE_TRANSFERS = Object.freeze([
-  {id:"H14-004",localOnly:true,tests:"NU01–NU03 and scripts/verifyNotifications029.mjs NS01–03; existing AN/YU account-switch and guarded Home routes",coverage:"TR/EN preference draft after errors, independent unknown/denied native permission and unsupported status; no permission API invented"},
+  {id:"H14-004",localOnly:true,tests:"NU01–NU03 and scripts/verifyNotifications.mjs NS01–09; existing AN/YU account-switch and guarded Home routes",coverage:"TR/EN preference draft after errors, independent unknown/denied native permission and unsupported status; no permission API invented"},
   {id:'H12-041',localOnly:true,tests:'SC01–SC05, SC07–SC09, scripts/verifySecurity028.mjs',coverage:'028 server fixtures: bounded JSON; GeoNames guard/adapter app, user-upstream and worker limits; onboarding 429/Retry-After and You error-envelope injection (not saveProfile); network/forged-error 503; unauthenticated and oversize handler rejection without writes'},
   {id:'H13-019',localOnly:true,tests:'PV01–PV04, scripts/checkPrivacyFlow.mjs',coverage:'Confirmed privacy actions, same-request recovery, incomplete onboarding and mobile modal focus'},
   {id:'H13-018',localOnly:true,tests:'YU01–YU06, scripts/checkYouFlow.mjs',coverage:'You profile/preferences, unknown result, logout, current admin, saved locale and 320px/200% forms'},

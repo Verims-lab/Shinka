@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-029
+**Current BuildMarker:** Buildmarker-030
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -11,13 +11,13 @@
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
-## 029 — daily notification behavior and current boundary
+## 030 — daily notification behavior and current boundary
 
 UC-10/20, KK-13/24: the shared daily engine is callable by authenticated Home and a separately admitted scheduler owner. The local scheduler processes completed ACTIVE accounts in bounded pages at/after local 06:00, produces/reconciles today's immutable daily message first, then evaluates notification preference and verified device eligibility. No permitted health input means UNKNOWN-cycle generation, using the existing algorithm. Preference off or OS denial does not suppress content. Home saves a newly detected valid IANA zone with readback; invalid detection retains the saved zone, never rewriting historical snapshots.
 
 New 029 decisions (not claimed as original-source rules): send only during the current local day, 06:00 inclusive to 12:00 exclusive; late runs/new opt-ins/zone changes receive at most the current day's opportunity, never a backlog. First delivery intent settles until the next scheduler pass (minimum one minute), then at most three attempts; definite transient rejection backs off 5 then 15 minutes. Uncertain response/in-flight crash never automatically resends. A timezone change cancels the old in-flight admission; normal next traversal evaluates the new local day. Same-day terminal delivery suppresses another delivery even if canonical daily reconciliation changes the winning candidate. Native uniqueness remains unproven.
 
-**Current shipped repository boundary:** production notification entry denies every call because platform authentication and push parameter/response/eligibility bindings remain unverified. No workflow was created. Thus scheduled production and real delivery are **BLOCKED**, not working features. Home/You and the independently tested scheduling engine are implemented. The neutral push wording is scoped 029 copy; omit the optional destination so Base44 opens the existing guarded Home route. No historical date is transmitted. [Delivery and blockers](reports/SHINKA_NOTIFICATIONS_029.md).
+**Current repository boundary (030):** manual calls use the shared backend guard and fresh native admin role. A verified admin receives DISABLED with zero job/provider work while the real entry remains disabled; unauthorized callers are rejected. The independently tested enabled handler can run the bounded job directly for an admin. Workflow identity is unverified, never inferred from missing auth or service-role access. The input adapter now follows the user-relayed schema, but response/recipient/device semantics remain unverified; every actual adapter result stays UNKNOWN. No workflow was created. Home/You and 029 policy remain implemented. Central neutral copy maps to title/content; optional destination is omitted for the documented default app opening through guarded Home. No historical date is transmitted. [Current delivery and retained 029 evidence](reports/SHINKA_NOTIFICATIONS_029.md).
 
 ## Birthplace request limit and deletion flow — 028 (ACTIVE)
 
