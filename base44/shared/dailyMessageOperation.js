@@ -30,7 +30,7 @@ async function normalDailyMessageOperation(client, body, { now = () => new Date(
 // Shared domain engine. Caller must supply fresh owner admission; HTTP users and
 // the scheduler have separate entry authorization. Never accepts a request role.
 export async function produceDailyForOwner(client, owner, body, { now = () => new Date(), atomic = null, native = false, library = null, random = Math.random, resetFlow = false, syncTimezone = false } = {}, admit) {
-  await admit();
+  const admitted = await admit();
   if (body.action !== 'today' || Object.keys(body).some(key => !['action', 'timezone'].includes(key))) fail('INVALID_REQUEST', 400);
   const store = client.asServiceRole.entities;
   const read = async (entity, limit, filter = {}, sort = '-created_date', fields = domainFields(entity)) => {
@@ -39,14 +39,17 @@ export async function produceDailyForOwner(client, owner, body, { now = () => ne
     rows.forEach(row => { if (row.user_id !== owner) fail('FORGED_OWNER', 403); });
     return rows;
   };
-  const singleton = async entity => {
-    const rows = await read(entity, 2);
+  const singleton = async (entity, admittedRecord = undefined) => {
+    // A trusted backend admission callback may return the records it just read.
+    // This is same-phase reuse, never an auth flag or a later-phase cache.
+    const rows = admittedRecord === undefined ? await read(entity, 2) : [admittedRecord];
+    if (rows.some(row => row?.user_id !== owner)) fail('FORGED_OWNER', 403);
     if (rows.length > 1) fail('DUPLICATE_OWNER_STATE');
     return rows[0] ? normalizeDomainRead(entity, rows[0]) : null;
   };
-  const profile = await singleton('user_profile');
+  const profile = await singleton('user_profile', admitted?.profile);
   assertActiveAccount(owner, profile);
-  let preferences = await singleton('user_preferences');
+  let preferences = await singleton('user_preferences', admitted?.preferences);
   const timezone = resolveTimezone(body.timezone, preferences?.timezone);
   if (syncTimezone && preferences && preferences.timezone !== timezone) {
     await admit();
@@ -62,8 +65,8 @@ export async function produceDailyForOwner(client, owner, body, { now = () => ne
   const existing = persistence ? (reconciled.record ? [reconciled.record] : []) : await read('user_daily_message', 2, { shinka_date: day });
   if (existing.length > 1) fail('DUPLICATE_DAILY_MESSAGE');
   if (existing.length) {
-    await admit();
-    assertActiveAccount(owner, await singleton('user_profile'));
+    const current = await admit();
+    assertActiveAccount(owner, await singleton('user_profile', current?.profile));
     return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: false, notice: reconciled?.notice || null, daily: verifiedDailyRecord(existing[0], owner, day), profile: { display_name: profile.display_name }, timezone };
   }
   if (!isOnboardingProfileReady(profile, preferences, day)) fail('PROFILE_COMPLETION_REQUIRED');
@@ -98,8 +101,8 @@ export async function produceDailyForOwner(client, owner, body, { now = () => ne
   const { pair } = selectDailyPair({ pairs: content.actual.message_pair, history, categoryId: mappings[0].category_id, day, random });
   const record = dailySnapshot({ owner, day, timezone, pair, now: instant });
   const guard = async () => {
-    await admit();
-  assertActiveAccount(owner, await singleton('user_profile'));
+    const current = await admit();
+  assertActiveAccount(owner, await singleton('user_profile', current?.profile));
   if (healthGuard) {
     const latest = await singleton('user_health_consent');
     validatedOnboardingGrant(latest, HEALTH_CONSENT_VERSION);

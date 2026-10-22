@@ -1,0 +1,4 @@
+git diff --cached --check
+Exit code: 2
+SHINKA_NOTIFICATION_PERFORMANCE_031.md lines 3, 4, 5: trailing whitespace from Markdown hard line breaks.
+Commit did not run. Removed the trailing spaces; runtime and test source unchanged.

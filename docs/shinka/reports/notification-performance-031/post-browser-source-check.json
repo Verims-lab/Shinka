@@ -1,0 +1,14 @@
+{
+  "fullBrowserManifest": "browser-source-manifest.json",
+  "finalSourceManifest": "source-manifest.json",
+  "changedFile": "src/foundation/tests/notificationPerformanceTests.js",
+  "fullBrowserSha256": "71076c5bb52e48908d519f55a8b7864a0ecfbf6542f857915896efd4b46e446f",
+  "finalSha256": "ddd9f1003757bb3d9998354515c8514c3e136c495043a072c8a85dc690fa4583",
+  "verification": "Reconstructed pre-annotation file matches recorded browser hash; Acorn executable ASTs equal after normalizing grouped variable declarations. Only explicit JSDoc Promise<void>/callback types and declaration splitting changed.",
+  "executableEquivalent": true,
+  "focusedFollowUp": [
+    "busy-final-chromium",
+    "busy-final-webkit"
+  ],
+  "allOtherManifestFilesIdentical": true
+}

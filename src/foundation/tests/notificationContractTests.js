@@ -33,12 +33,10 @@ export const NOTIFICATION_CONTRACT_TESTS = [
   const f=notificationFixture();check((await call(f,{body:{action:'tick',run_id:'synthetic-run'}})).status===400&&mutations(f).length===0);
  }],
  ['NC04','Verified native admin can start the bounded job directly with a synthetic provider',async()=>{
-  const f=notificationFixture(), costs=[];
-  const measure=label=>{costs.push({label,reads:f.state.calls.filter(c=>c.method==='filter').length,writes:mutations(f).length});f.state.calls.length=0;};
-  const queued=await call(f);check(queued.status===200&&(await queued.json()).counts.QUEUED===1);measure('existing-day manual admin intent');
-  f.advance();const sent=await call(f);check(sent.status===200&&(await sent.json()).counts.ACCEPTED===1);measure('manual admin accepted fixture dispatch');
-  await call(f);check(f.sent.length===1&&f.tables.NotificationDelivery.length===1&&f.tables.NotificationDelivery[0].attempt_count===1);measure('manual admin settled pass');
-  return {costs,scope:'synthetic entity calls including fresh admin/lifecycle guards; excludes auth.me and real SDK/provider latency or credits'};
+  const f=notificationFixture();
+  const queued=await call(f);check(queued.status===200&&(await queued.json()).counts.QUEUED===1);
+  f.advance();const sent=await call(f);check(sent.status===200&&(await sent.json()).counts.ACCEPTED===1);
+  await call(f);check(f.sent.length===1&&f.tables.NotificationDelivery.length===1&&f.tables.NotificationDelivery[0].attempt_count===1);
  }],
  ['NC05','Admin role revoked after intent write prevents send and further checkpoint mutations',async()=>{
   const f=notificationFixture();await call(f);f.advance();let boundary=0;

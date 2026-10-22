@@ -1,0 +1,24 @@
+{
+  "cost-before": {
+    "command": [
+      "node",
+      "scripts/measureNotifications.mjs",
+      "/private/tmp/shinka-031/before"
+    ],
+    "exitCode": 0,
+    "startedAt": "2026-10-22T15:46:11.875785+00:00",
+    "completedAt": "2026-10-22T15:46:13.332616+00:00",
+    "log": "cost-before.log"
+  },
+  "cost-after": {
+    "command": [
+      "node",
+      "scripts/measureNotifications.mjs",
+      "/private/tmp/shinka-031/after"
+    ],
+    "exitCode": 0,
+    "startedAt": "2026-10-22T15:59:17.313751+00:00",
+    "completedAt": "2026-10-22T15:59:18.427538+00:00",
+    "log": "cost-after.log"
+  }
+}

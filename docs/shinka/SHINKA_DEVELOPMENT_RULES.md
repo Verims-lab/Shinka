@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-030
+**Current BuildMarker:** Buildmarker-031
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
+
+## 031 — bounded notification performance correction
+
+The explicit request authorizes a focused SDK read reduction over completed 030, with matched before/after fixtures and separate entity read/write, auth.me and provider counts. Advance once to 031 / HC-031.0; active history 027–031. Preserve current-native-admin/owner/consent/lifecycle checks at required boundaries, direct lower-level guards, unknown outcome suppression and live enabled:false. No cross-request/owner or TTL authorization reuse. Shared daily changes require retained Home/daily regressions. Record actual new full browser/gate results and initial failures in SHINKA_NOTIFICATION_PERFORMANCE_031.md; preserve 029/030 evidence. Test delivery only. PR #32 was merged by the owner before this task; link the continuation PR from its preserved description. No new general audit, platform contract invention, live mutation/scan/push/workflow or main merge/publish.
 
 > ## 030 — notification continuation under revised caller contract
 

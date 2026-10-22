@@ -2,11 +2,19 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-030
+**Current BuildMarker:** Buildmarker-031
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-030.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-031.0; repository, synthetic and external evidence separated.
+
+## HC-031.0 — notification read budgets and freshness boundaries
+
+H14-003 is updated in place with NP01–07: bounded SDK method budgets and unchanged product outcome; same-request revocation after daily read; owner/request isolation; direct lower-level writer/daily guards; role loss during body IO; consent loss before persistence; current caller check even when a worker is BUSY. Existing NT01–23 and NC01–09 stay registered; NC04's obsolete duplicate measurement output is replaced by the shared transport-counter fixture without removing its functional assertions. H14-004 retains NU01–03/NS01–09 unchanged; review found its current description still matches assertions.
+
+No Health ID/suite/plan entry is added or deleted. Existing H14 backend plan [001,002,003] and scopes remain valid; H14-004 is local-only and H14-901/H16-901 external. Catalog remains 175 / 149 in-app / 12 local / 14 external / 0 future. The strict content allowlist adds 031 only. Final 031 runs and blocked IDs are in the [focused report](reports/SHINKA_NOTIFICATION_PERFORMANCE_031.md); 030's 617/617 is historical only. No real scheduler/provider is invoked by Health.
+
+Final 031 local results: Chromium **624/624**, WebKit **624/624**, each with **8/8 server + 9/9 actual-entry fixtures**, no missing required IDs or page errors. In-app Health **136 PASS / 0 FAIL / 13 prerequisite BLOCKED**; H14-901/H16-901 remain external. Mandatory install/dependency/type/lint/build/repo/history/performance gates pass; audit zero. Initial JS 479543/160178 gzip, CSS 77521/14262 bytes. Full-source hashes and the subsequent executable-equivalent NP07 JSDoc correction/focused reruns are recorded in the focused report. Internal Build retains 027–031.
 
 ## HC-030.0 — existing notification cases aligned with actual guards
 

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-030
+**Current BuildMarker:** Buildmarker-031
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -28,6 +28,14 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+## 031 — read reduction without cross-phase authorization reuse
+
+The same-phase record handoff is a trusted backend callback result, never a request flag/role or a serialized authorization token. The shared daily engine still normalizes the record, verifies owner identity/ACTIVE state, and runs fresh admission at later return and mutation boundaries. Notification writer pre/post checks, persisted intent/readback, final owner/preference/device gate and consent revalidation remain independent. No change to shared auth/lifecycle/privacy helpers; no worker/global role, consent, deletion or preference cache. Direct lower-level writer/daily calls retain their guards.
+
+NP01–07 add measured budgets, same-request role/owner/account/preference changes after daily read, cross-owner/request isolation, direct writer/daily rejection, revocation during body IO, consent withdrawal before daily persistence, and BUSY-path current-admin admission. NC05 and NT10/11 still cover revocation/preferences/deletion after IN_FLIGHT. Initial NP07 exposed the early BUSY return skipping the moved caller check; the check now precedes BUSY and provider construction. Original failing evidence is retained. No assertion or security predicate is relaxed.
+
+12 backend findings remain OPEN / USER-DEFERRED. Entry enabled:false, H14-901/H16-901 and unknown provider/workflow contracts are unchanged; no live action. [031 results](reports/SHINKA_NOTIFICATION_PERFORMANCE_031.md).
 
 ## 030 — notification security and lifecycle
 
