@@ -31,8 +31,8 @@ export const NATIVE_TESTS = [
  ['NA06','Every daily candidate counts toward the 40-day repeat exclusion',async()=>{
   const f=nativeFixture(), a=await f.today(); f.state.time='2026-10-21T12:00:00Z'; const b=await f.today(); check(a.daily.message_pair_id!==b.daily.message_pair_id);
  }],
- ['NA07','Daily active/owner/withdrawal and write pause gates remain enforced',async()=>{
-  const f=nativeFixture(); f.tables.UserProfile[0].account_status='INACTIVE'; await rejects(f.today,'ACTIVE_ACCOUNT_REQUIRED'); f.tables.UserProfile[0].account_status='ACTIVE'; f.state.paused=true; await rejects(f.today,'MAINTENANCE_WRITE_PAUSED'); check(!f.tables.UserDailyMessage.length);
+ ['NA07','Daily active/owner/identity gates remain enforced without a global write pause',async()=>{
+  const f=nativeFixture(); f.tables.UserProfile[0].account_status='INACTIVE'; await rejects(f.today,'ACTIVE_ACCOUNT_REQUIRED'); f.tables.UserProfile[0].account_status='ACTIVE'; f.state.signedOut=true; await rejects(f.today); check(!f.tables.UserDailyMessage.length); f.state.signedOut=false;
  }],
  ['NA08','Calendar actual add/edit/delete; same ID; no derived writes or duration defaults',async()=>{
   const f=nativeFixture(); await add(f); const id=f.tables.UserPeriodRecord[0].id; await f.change('edit',{period_id:id,date:'2026-10-02'}); check(f.tables.UserPeriodRecord[0].id===id); await f.change('delete',{period_id:id}); check(!f.tables.UserPeriodRecord.length&&!f.tables.UserCyclePrediction.length&&!f.tables.UserCyclePhaseDay.length&&!f.tables.UserCycleSettings.length);
@@ -82,23 +82,23 @@ export const NATIVE_TESTS = [
   await rejects(()=>f.client('adminA').asServiceRole.entities.UserPreferences.create({user_id:'ownerA',language_code:'tr'}),'ACCOUNT_DELETION_IN_PROGRESS');
  }],
  ['NA21','Deletion staged failure resumes with fresh client and retains consent/audit evidence',async()=>{
-  const f=nativeFixture();await add(f);const grant=JSON.stringify(f.tables.UserHealthConsent);f.state.paused=true;f.once('after',c=>c.name==='UserPeriodRecord'&&c.method==='delete');await rejects(()=>f.preview('DELETE_USER').then(f.execute));check(f.tables.AdminTestOperation[0].status==='RETRY_REQUIRED');const result=await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id});check(result.job.status==='COMPLETED'&&!f.tables.User.some(r=>r.id==='ownerA')&&!f.tables.UserCalendarAction.length&&JSON.stringify(f.tables.UserHealthConsent)===grant);await rejects(()=>f.today(),'AUTH_REQUIRED');
+  const f=nativeFixture();await add(f);const grant=JSON.stringify(f.tables.UserHealthConsent);f.once('after',c=>c.name==='UserPeriodRecord'&&c.method==='delete');await rejects(()=>f.preview('DELETE_USER').then(f.execute));check(f.tables.AdminTestOperation[0].status==='RETRY_REQUIRED');const result=await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id});check(result.job.status==='COMPLETED'&&!f.tables.User.some(r=>r.id==='ownerA')&&!f.tables.UserCalendarAction.length&&JSON.stringify(f.tables.UserHealthConsent)===grant);await rejects(()=>f.today(),'AUTH_REQUIRED');
  }],
  ['NA22','Write pause catches an already-started SDK write after return; no invented rollback',async()=>{
-  const f=nativeFixture();f.state.after=async c=>{if(c.name==='UserDailyMessage'&&c.method==='create')f.state.paused=true;};await rejects(f.today,'MAINTENANCE_WRITE_PAUSED');check(f.tables.UserDailyMessage.length===1);
+  const f=nativeFixture();f.state.after=async c=>{if(c.name==='UserDailyMessage'&&c.method==='create')f.state.signedOut=true;};await rejects(f.today);check(f.tables.UserDailyMessage.length===1);
  }],
  ['NA23','Fresh admin role revocation stops destructive stages',async()=>{
-  const f=nativeFixture();f.state.paused=true;const view=await f.preview('DELETE_USER');f.state.after=async c=>{if(c.name==='AdminTestOperation'&&c.method==='create')f.tables.User.find(row=>row.id==='adminA').role='user';};await rejects(()=>f.execute(view));check(f.tables.User.some(r=>r.id==='ownerA')&&f.tables.UserProfile.length===1);
+  const f=nativeFixture();const view=await f.preview('DELETE_USER');f.state.after=async c=>{if(c.name==='AdminTestOperation'&&c.method==='create')f.tables.User.find(row=>row.id==='adminA').role='user';};await rejects(()=>f.execute(view));check(f.tables.User.some(r=>r.id==='ownerA')&&f.tables.UserProfile.length===1);
  }],
  ['NA24','Native regrant never skips withdrawal cleanup proof',async()=>{
   const f=nativeFixture();Object.assign(f.tables.UserHealthConsent[0],{consent_status:'WITHDRAWN',withdrawn_at:'2026-10-20T11:00:00Z',granted_at:'2026-10-01T12:00:00Z',consent_version:HEALTH_CONSENT_VERSION});await rejects(()=>f.change('add',{date:'2026-10-01',health_consent:true}),'HEALTH_DELETION_UNCONFIRMED');check(!f.tables.UserPeriodRecord.length);
  }],
  ['NA25','Late residual write before final deletion verification cannot be success',async()=>{
-  const f=nativeFixture();f.state.paused=true;const view=await f.preview('DELETE_USER');f.state.after=async c=>{if(c.name==='User'&&c.method==='delete'){f.state.after=null;f.tables.UserPeriodRecord.push({id:'late',user_id:'ownerA',period_start_date:'2026-10-01'});}};
+  const f=nativeFixture();const view=await f.preview('DELETE_USER');f.state.after=async c=>{if(c.name==='User'&&c.method==='delete'){f.state.after=null;f.tables.UserPeriodRecord.push({id:'late',user_id:'ownerA',period_start_date:'2026-10-01'});}};
   await rejects(()=>f.execute(view),'TEST_DELETE_UNCONFIRMED');check(f.tables.AdminTestOperation[0].status==='RETRY_REQUIRED');check((await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id})).job.status==='COMPLETED');
  }],
  ['NA26','Final VERIFY reruns after audit failure even with a persisted checkpoint',async()=>{
-  const f=nativeFixture();f.state.paused=true;f.once('before',c=>c.name==='AdminAuditLog'&&c.method==='create'&&c.args[0].action_status==='SUCCESS'&&c.args[0].error_code==='TEST_OPERATION_COMPLETED');await rejects(()=>f.preview('DELETE_USER').then(f.execute));check(f.tables.AdminTestOperation[0].checkpoints.includes('VERIFY'));
+  const f=nativeFixture();f.once('before',c=>c.name==='AdminAuditLog'&&c.method==='create'&&c.args[0].action_status==='SUCCESS'&&c.args[0].error_code==='TEST_OPERATION_COMPLETED');await rejects(()=>f.preview('DELETE_USER').then(f.execute));check(f.tables.AdminTestOperation[0].checkpoints.includes('VERIFY'));
   f.tables.UserPeriodRecord.push({id:'residual',user_id:'ownerA',period_start_date:'2026-10-01'});check((await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id})).job.status==='COMPLETED');check(f.tables.AdminTestOperation[0].status==='COMPLETED'&&!f.tables.UserPeriodRecord.length);
  }],
  ['NA27','Reset pending step rejects changed input without replacing first saved input',async()=>{

@@ -24,7 +24,7 @@ export function nativeFixture({ granted = true } = {}) {
     tables.UserHealthConsentEvent.push({ id: 'grant', user_id: 'ownerA', event_type: 'GRANTED', consent_version: HEALTH_CONSENT_VERSION, occurred_at: DAILY_NOW });
   }
   for (const rows of Object.values(tables)) for (const row of rows) { row.created_date ??= DAILY_NOW; row.updated_date ??= DAILY_NOW; }
-  const state = { before: null, after: null, paused: false, sequence: 0, calls: [], time: DAILY_NOW };
+  const state = { before: null, after: null, signedOut: false, sequence: 0, calls: [], time: DAILY_NOW };
   const now = () => new Date(state.time);
   const entities = new Proxy({}, { get: (_, name) => {
     const run = async (method, args, work) => {
@@ -40,8 +40,8 @@ export function nativeFixture({ granted = true } = {}) {
       deleteMany: q => run('deleteMany', [q], () => { const deleted = tables[name].filter(row => matches(row, q)).length; tables[name] = tables[name].filter(row => !matches(row, q)); return { success: true, deleted }; }),
     };
   } });
-  const raw = (owner = 'ownerA') => ({ auth: { me: async () => owner ? { id: owner, role: 'untrusted-cached-role' } : null }, asServiceRole: { entities }, getConfig: () => ({ appId: 'native-fixture', serverUrl: 'https://fixture.invalid' }) });
-  const client = (owner = 'ownerA') => withNativeWriteChecks(withUserLifecycle(raw(owner)), { paused: () => state.paused });
+  const raw = (owner = 'ownerA') => ({ auth: { me: async () => owner && !state.signedOut ? { id: owner, role: 'untrusted-cached-role' } : null }, asServiceRole: { entities }, getConfig: () => ({ appId: 'native-fixture', serverUrl: 'https://fixture.invalid' }) });
+  const client = (owner = 'ownerA') => withNativeWriteChecks(withUserLifecycle(raw(owner)));
   const cal = (body = { action: 'read' }, owner = 'ownerA') => calendarOperation(client(owner), { timezone: 'Europe/Istanbul', ...body }, { native: true, now });
   const change = async (action, extra = {}) => cal({ action, revision: (await cal()).revision, action_id: crypto.randomUUID(), ...extra });
   const library = async () => ({ plan: { ready: true }, actual: Object.fromEntries(Object.keys(DOMAIN_SCHEMAS).map(name => [name, clone(tables[physicalName(name)])])) });
