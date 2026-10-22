@@ -13,7 +13,7 @@
 
 ## Birthplace request limit and deletion flow — 028 (ACTIVE)
 
-If birthplace lookups exceed the limit, onboarding and You show the approved message (“Çok fazla yer isteği yapıldı…” / “Too many place requests…”), keep the chosen country/region/settlement and every unsaved field, and wait for the user to try again; there is no automatic retry. Admin test deletion and owner privacy flows no longer require pausing the whole app; they rely on per-user lifecycle, consent and tombstone checks.
+If birthplace lookups exceed the limit, onboarding and You show the approved message (“Çok fazla yer isteği yapıldı…” / “Too many place requests…”), keep the chosen country/region/settlement and every unsaved field, and wait for the user to try again; there is no automatic retry. This message now also appears when the limit is reached on provider calls (not only on app requests); before the fix those cases showed the generic “place service unavailable” message. Limits are counted separately for onboarding and You. Admin test deletion and owner privacy flows no longer require pausing the whole app; they rely on per-user lifecycle, consent and tombstone checks.
 
 ## Refresh and dismissal contract — 026
 

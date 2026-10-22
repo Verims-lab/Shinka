@@ -10,7 +10,7 @@
 
 ## 028 security continuation (ACTIVE)
 
-No entity/schema, content, identity or privacy contract change. `SHINKA_WRITE_MODE` is no longer read; setting it has no effect. The historical 016 “Controlled deletion runbook” step 2 (`SHINKA_WRITE_MODE=PAUSED`) is kept as a record only and is superseded by the 017 lifecycle decision and this removal. Per-owner identity, lifecycle, consent, privacy-tombstone and current-admin checks remain mandatory. GeoNames limits are worker-local (see SHINKA_SECURITY_PRIVACY.md §028). Save/redeploy restarts workers and therefore resets these counters; preview and published share the same app data.
+No entity/schema, content, identity or privacy contract change. `SHINKA_WRITE_MODE` is no longer read; setting it has no effect. The historical 016 “Controlled deletion runbook” step 2 (`SHINKA_WRITE_MODE=PAUSED`) is kept as a record only and is superseded by the 017 lifecycle decision and this removal. Per-owner identity, lifecycle, consent, privacy-tombstone and current-admin checks remain mandatory. GeoNames limits are worker-local and separate for the `onboarding` and `you` functions (see SHINKA_SECURITY_PRIVACY.md §028). 028 fix: user-upstream and worker-upstream limit errors now reach the client as 429 with Retry-After instead of 503. Save/redeploy restarts workers and therefore resets these counters; preview and published share the same app data.
 
 ## 027 implementation continuation
 

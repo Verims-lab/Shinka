@@ -14,9 +14,9 @@
 ## 028 — shared security modules (ACTIVE)
 
 - `base44/shared/boundedJson.js`: single streaming body reader; callers pass their own safe `fail(code,status)` so error types stay per domain.
-- `base44/shared/geonamesGuard.js`: one guard instance per worker in `onboarding` and `you` entries; `forOwner(owner, createAdapter)` returns the same five adapter methods, counting app requests and the adapter's real fetches through an injected fetcher. Existing adapter transport, timeout, redirect and pagination handling and the admin `geoNamesTransportProbe` (internalHealth) are unchanged and not routed through the guard.
+- `base44/shared/geonamesGuard.js`: one guard instance per worker in each of the `onboarding` and `you` entries (separate counters per function; not shared between them); exports `isGuardRateLimit(error)`, which the adapter uses so only guard-created limit errors bypass its network-error wrapping; `forOwner(owner, createAdapter)` returns the same five adapter methods, counting app requests and the adapter's real fetches through an injected fetcher. Existing adapter transport, timeout, redirect and pagination handling and the admin `geoNamesTransportProbe` (internalHealth) are unchanged and not routed through the guard.
 - `nativeClient.ts`/`nativeWriteChecks.js`: no global pause dependency; per-owner checks only.
-- Client: `GEONAMES_RATE_LIMITED` is a central onboarding copy key (TR/EN); birthplace lists keep the code, forms keep selections and drafts, and nothing retries automatically.
+- Client: `GEONAMES_RATE_LIMITED` is a central onboarding copy key (TR/EN); the birthplace picker keeps the chosen country and the code, the You controller keeps the profile draft, and nothing retries automatically (SC10/SC11, synthetic controller tests; rendered screens not exercised).
 
 ## 027 — navigation and report lifetime
 

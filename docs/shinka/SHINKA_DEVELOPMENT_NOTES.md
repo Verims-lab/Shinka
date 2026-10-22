@@ -12,6 +12,8 @@
 
 Global write pause removed; shared bounded body reader; worker-local GeoNames guard with TR/EN limit copy; H12-040/H12-041 added. Local evidence: SC01–SC05 PASS, native-entry/GeoNames-entry PASS, production build exit 0. Browser regression suite not run (pinned Playwright Chromium missing, download blocked). Owner runs publish, Full Health and Security scan. Details: reports/SHINKA_SECURITY_CLOSURE_028.md.
 
+028 follow-up (same package, no marker change): adapter no longer converts guard limit errors to 503 (SC07–SC09 local PASS; SC07/SC08 FAIL on pre-fix code); H12-040 now backed by SC06/SC10/SC11 (run locally under Node via a bundle, PASS; not run in a browser); build-history trailing newline restored, `recordBuild --check` PASS (5 packages). Browser suite still not run.
+
 ## 027 — Bildirim Öncesi Kalite Milestone’u
 
 Removed the reintroduced unregistered OAuthConsent/AuthLayout after current route/import/graph checks; active SignIn is unchanged. Confirmed redundant hydration on Home/product route-tree changes, duplicate onboarding authentication within a request, vulnerable Router dependency chain, unbounded Health history reads, late report-window completion and a generic rejection assertion that could accept no-op success. Focused fixes preserve Base44 authority, per-operation guards, immutable snapshots, retry/cleanup and existing 025/026 evidence. The single [milestone report](reports/SHINKA_PRE_NOTIFICATION_QUALITY_027.md) records new local measurements, security matrix, final gates and manual boundaries. No live writes, import, hosted Full Health or publish.
