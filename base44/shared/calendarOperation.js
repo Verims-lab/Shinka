@@ -1,5 +1,6 @@
 import { readUserLifecycle } from './userLifecycle.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
+import { readBoundedJson } from './boundedJson.js';
 import { resolveAuthenticatedOwner } from './domainSecurity.js';
 import { resolveTimezone, serverLocalDate, isCalendarDate } from './onboardingValidation.js';
 import { calculateCalendar, calendarMonthView } from './calendarCalculation.js';
@@ -92,10 +93,7 @@ export async function calendarOperation(client, body, { now = () => new Date(), 
 export async function handleCalendarRequest(req, createClient, dependencies = {}) {
   try {
     if (req.method !== 'POST') fail('METHOD_NOT_ALLOWED', 405);
-    const text = await req.text();
-    if (text.length > 2000) fail('REQUEST_TOO_LARGE', 413);
-    let body; try { body = JSON.parse(text); } catch { fail('INVALID_REQUEST'); }
-    if (!body || typeof body !== 'object' || Array.isArray(body)) fail('INVALID_REQUEST');
+    const body = await readBoundedJson(req, 2000, fail);
     return Response.json(await calendarOperation(createClient(req), body, dependencies));
   } catch (error) {
     return Response.json({ error_code: error instanceof InternalError ? error.code : 'CALENDAR_OPERATION_FAILED' }, { status: error instanceof InternalError ? error.status : 500 });

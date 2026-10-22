@@ -1,5 +1,6 @@
 import { readUserLifecycle, resetOnboardingStep } from './userLifecycle.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
+import { readBoundedJson } from './boundedJson.js';
 import { assertActiveAccount, assertOwner, assertHealthConsent, resolveAuthenticatedOwner, SYSTEM_AUTHORITIES } from './domainSecurity.js';
 import { DOMAIN_SCHEMAS, physicalName } from './domainSchemas.js';
 import { normalizeDomainRead, validateDomainRecord } from './domainValidation.js';
@@ -111,10 +112,7 @@ export async function dailyMessageOperation(client, body, dependencies = {}) {
 export async function handleDailyMessageRequest(req, createClient, dependencies = {}) {
   try {
     if (req.method !== 'POST') fail('METHOD_NOT_ALLOWED', 405);
-    const text = await req.text();
-    if (text.length > 2000) fail('REQUEST_TOO_LARGE', 413);
-    let body; try { body = JSON.parse(text); } catch { fail('INVALID_REQUEST', 400); }
-    if (!body || typeof body !== 'object' || Array.isArray(body)) fail('INVALID_REQUEST', 400);
+    const body = await readBoundedJson(req, 2000, fail);
     return Response.json(await dailyMessageOperation(createClient(req), body, dependencies));
   } catch (error) {
     return Response.json({ error_code: error instanceof InternalError ? error.code : 'DAILY_OPERATION_FAILED' }, { status: error instanceof InternalError ? error.status : 500 });

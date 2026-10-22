@@ -1,4 +1,5 @@
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
+import { readBoundedJson } from './boundedJson.js';
 import { createTestRepository } from './adminTestRepository.js';
 import { privacyRepository } from './privacyRepository.js';
 import { privacyFail, PRIVACY_KINDS, readPrivacyRequests } from './privacyPolicy.js';
@@ -88,9 +89,7 @@ export async function privacyOperation(client, body, { now = () => new Date(), g
 export async function handlePrivacyRequest(req, createClient, options = {}) {
   try {
     if (req.method !== 'POST') privacyFail('METHOD_NOT_ALLOWED', 405);
-    const text = await req.text();
-    if (new TextEncoder().encode(text).length > 1200) privacyFail('REQUEST_TOO_LARGE', 413);
-    let body; try { body = JSON.parse(text); } catch { privacyFail('INVALID_REQUEST', 400); }
+    const body = await readBoundedJson(req, 1200, privacyFail);
     return Response.json(await privacyOperation(createClient(req), body, options));
   } catch (error) {
     return Response.json({ error_code: error instanceof InternalError ? error.code : 'PRIVACY_OUTCOME_UNCONFIRMED' }, { status: error instanceof InternalError ? error.status : 503 });

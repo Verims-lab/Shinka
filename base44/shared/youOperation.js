@@ -1,4 +1,5 @@
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
+import { readBoundedJson } from './boundedJson.js';
 import { resolveAuthenticatedOwner } from './domainSecurity.js';
 import { guardDomainOwner } from './nativeDomainGuard.js';
 import { resolveTimezone, serverLocalDate, OnboardingError } from './onboardingValidation.js';
@@ -11,8 +12,10 @@ const profileInputFields = ['display_name', 'birth_date', 'birth_time', 'birthpl
 const preferenceInputFields = ['language_code', 'notifications_enabled', 'timezone', 'revision'];
 const actions = { read: [], readPreferences: [], saveProfile: profileInputFields, verifyProfile: profileInputFields, savePreferences: preferenceInputFields, verifyPreferences: preferenceInputFields };
 const fail = (code, status = 409) => { throw new InternalError(code, status); };
-export async function youOperation(client, body, { now = () => new Date(), geoNames = null } = {}) {
+export async function youOperation(client, body, { now = () => new Date(), geoNames: fixed = null, geoNamesFor = null } = {}) {
   const principal = await requireAuthenticatedUser(client), owner = resolveAuthenticatedOwner(principal, body);
+  // Owner-bound GeoNames guard; the provider secret is read only if a new birthplace must be resolved.
+  const geoNames = geoNamesFor ? geoNamesFor(owner) : fixed;
   const allowed = typeof body.action === 'string' && Object.hasOwn(actions, body.action) ? actions[body.action] : null;
   if (!allowed || Object.keys(body).some(key => !['action', ...allowed].includes(key))) fail('INVALID_REQUEST', 400);
   const repository = youRepository(client, principal), store = client.asServiceRole.entities;
@@ -66,12 +69,10 @@ export async function youOperation(client, body, { now = () => new Date(), geoNa
 export async function handleYouRequest(req, createClient, dependencies = {}) {
   try {
     if (req.method !== 'POST') fail('METHOD_NOT_ALLOWED', 405);
-    const text = await req.text();
-    if (new TextEncoder().encode(text).length > 4000) fail('REQUEST_TOO_LARGE', 413);
-    let body; try { body = JSON.parse(text); } catch { fail('INVALID_REQUEST', 400); }
-    if (!body || typeof body !== 'object' || Array.isArray(body)) fail('INVALID_REQUEST', 400);
+    const body = await readBoundedJson(req, 4000, fail);
     return Response.json(await youOperation(createClient(req), body, dependencies));
   } catch (error) {
-    return Response.json({ error_code: error instanceof InternalError ? error.code : 'YOU_READ_FAILED', field: error instanceof OnboardingError ? error.field : null, write_outcome: error.writeUnconfirmed ? 'UNCONFIRMED' : undefined }, { status: error instanceof InternalError ? error.status : 503 });
+    const retry = Number.isInteger(error?.retryAfterSeconds) ? error.retryAfterSeconds : undefined;
+    return Response.json({ error_code: error instanceof InternalError ? error.code : 'YOU_READ_FAILED', field: error instanceof OnboardingError ? error.field : null, write_outcome: error.writeUnconfirmed ? 'UNCONFIRMED' : undefined, retry_after_seconds: retry }, { status: error instanceof InternalError ? error.status : 503, ...(retry ? { headers: { 'Retry-After': String(retry) } } : {}) });
   }
 }

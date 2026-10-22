@@ -9,6 +9,8 @@ import { withUserLifecycle } from '../base44/shared/userLifecycle.js';
 import { withNativeWriteChecks } from '../base44/shared/nativeWriteChecks.js';
 import * as authorization from '../base44/shared/internalAuthorization.js';
 import * as privacyPolicy from '../base44/shared/privacyPolicy.js';
+import * as boundedJson from '../base44/shared/boundedJson.js';
+import * as geonamesGuard from '../base44/shared/geonamesGuard.js';
 export async function verifyNativeEntries(root) {
   let role = 'admin', exists = true, token = true, secretReads = 0;
   const client = { auth: { me: async () => token ? { id: 'synthetic-admin', role: 'cached-admin' } : null }, asServiceRole: { entities: {
@@ -29,7 +31,7 @@ export async function verifyNativeEntries(root) {
   });
   const session = await load('base44/functions/applicationSession/entry.ts', {
     '../../shared/nativeClient.ts': native, '../../shared/internalAuthorization.js': authorization,
-    '../../shared/privacyPolicy.js': privacyPolicy,
+    '../../shared/privacyPolicy.js': privacyPolicy, '../../shared/boundedJson.js': boundedJson,
   });
   const artifacts = await load('base44/functions/validateContentArtifacts/entry.ts', {
     '../../shared/nativeClient.ts': native,
@@ -65,11 +67,16 @@ export async function verifyNativeEntries(root) {
   assert.equal(await pattern.default({}), 'pattern-read-route');
   const you = await load('base44/functions/you/entry.ts', {
     '../../shared/nativeClient.ts': native,
-    'base44:runtime': { secrets: { get: name => { assert.equal(name, 'GEONAMES_USERNAME'); return 'synthetic-public-provider-name'; } } },
-    '../../shared/geonamesAdapter.js': { createGeoNamesAdapter: config => ({ fixture: config.username }) },
-    '../../shared/youOperation.js': { handleYouRequest: (_req, createClient, deps) => { assert.equal(createClient, native.createNativeClient); assert.equal(deps.geoNames.fixture,'synthetic-public-provider-name'); return 'you-route'; } },
+    'base44:runtime': { secrets: { get: name => { assert.equal(name, 'GEONAMES_USERNAME'); youSecretReads++; return 'synthetic-public-provider-name'; } } },
+    '../../shared/geonamesGuard.js': geonamesGuard,
+    '../../shared/geonamesAdapter.js': { createGeoNamesAdapter: config => ({ countries: async () => ({ fixture: config.username }) }) },
+    '../../shared/youOperation.js': { handleYouRequest: (_req, createClient, deps) => { assert.equal(createClient, native.createNativeClient); assert.equal(typeof deps.geoNamesFor, 'function'); assert.equal(deps.geoNames, undefined); youDeps = deps; return 'you-route'; } },
   });
+  let youSecretReads = 0, youDeps = null;
   assert.equal(await you.default({}), 'you-route');
+  assert.equal(youSecretReads, 0, 'You read/hydrate must not read the GeoNames secret');
+  assert.equal((await youDeps.geoNamesFor('synthetic-owner').countries('en')).fixture, 'synthetic-public-provider-name');
+  assert.equal(youSecretReads, 1);
   const rawClient = () => client;
   const privacy = await load('base44/functions/accountPrivacy/entry.ts', {
     'npm:@base44/sdk@0.8.54': { createClientFromRequest: rawClient },

@@ -10,11 +10,11 @@ const fail = code => { throw new InternalError(code, 409); };
 
 // Request-scoped admission around every SDK mutation, not a distributed lock.
 // Destructive admin cleanup has its own target-bound authorization/journal path.
-/** @param {any} client @param {{paused?: () => boolean}} options */
-export function withNativeWriteChecks(client, { paused = () => false } = {}) {
+// No global write-pause flag (017): per-owner lifecycle/consent/privacy checks only.
+/** @param {any} client */
+export function withNativeWriteChecks(client) {
   const repository = createTestRepository(client);
   const check = async (owner = null) => {
-    if (paused()) throw new InternalError('MAINTENANCE_WRITE_PAUSED', 503);
     const actor = await client.auth.me();
     if (!owner) return actor;
     if (owner !== actor.id && actor.role !== 'admin') throw new InternalError('OWNER_REQUIRED', 403);

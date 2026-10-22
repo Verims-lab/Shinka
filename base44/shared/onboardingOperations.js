@@ -1,5 +1,6 @@
 import { readUserLifecycle, resetRoute, resetOnboardingStep } from './userLifecycle.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
+import { readBoundedJson } from './boundedJson.js';
 import { resolveAuthenticatedOwner, assertOwner, assertActiveAccount, SYSTEM_AUTHORITIES as S } from './domainSecurity.js';
 import { normalizeDomainRead } from './domainValidation.js';
 import { physicalName, SUN_SIGN_CODES } from './domainSchemas.js';
@@ -16,10 +17,12 @@ const fail=(code,status=400)=>{throw new OnboardingError(code,null,status);};
 const allowed={hydrate:[],initialize:['language_code','timezone','action_id'],saveProfile:['display_name','birth_date','birth_time','birthplace_geonames_id','action_id'],saveCycle:['period_start_date','period_duration_days','initial_cycle_length_days','health_consent','action_id'],skipCycle:[],listPlaceCountries:['language_code'],listPlaceRegions:['country','parent_id','offset','language_code'],listPlaceSettlements:['country','parent_id','offset','language_code'],searchPlaces:['query','language_code']};
 // Dependencies are server configuration/injected contract fixtures, never request fields.
 async function normalOnboardingOperation(client,body,dependencies,principal) {
-  const {atomic=null,geoNames=null,sunSign=SUN_SIGN_RESOLVER,consentVersion=HEALTH_CONSENT_VERSION,now=()=>new Date()}=dependencies;
+  const {atomic=null,sunSign=SUN_SIGN_RESOLVER,consentVersion=HEALTH_CONSENT_VERSION,now=()=>new Date()}=dependencies;
   // The public dispatcher minted this principal through fresh server auth.me().
   // Reuse only within this request; lifecycle and per-write guards stay current.
   const owner=resolveAuthenticatedOwner(principal,body);
+  // GeoNames quota/cache is bound to the authenticated owner; no secret is read here.
+  const geoNames=dependencies.geoNamesFor?dependencies.geoNamesFor(owner):(dependencies.geoNames??null);
   if (client.shinkaNative) await assertPrivacyAccess(client, owner, { health: true });
   const persistence=dependencies.persistence??(atomic?null:createBase44OnboardingAdapter(client,principal,{now,consentVersion,cycleGate:dependencies.cycleGate}));
   const fields=allowed[body.action];
@@ -132,12 +135,10 @@ export async function onboardingOperation(client, body, dependencies = {}) {
 export async function handleOnboardingRequest(req,createClient,dependencies={}) {
   try {
     if(req.method!=='POST')fail('METHOD_NOT_ALLOWED',405);
-    const text=await req.text();if(new TextEncoder().encode(text).length>8000)fail('REQUEST_TOO_LARGE',413);
-    let body;try{body=JSON.parse(text);}catch{fail('INVALID_REQUEST');}
-    if(!body||typeof body!=='object'||Array.isArray(body))fail('INVALID_REQUEST');
+    const body=await readBoundedJson(req,8000,fail);
     return Response.json(await onboardingOperation(createClient(req),body,dependencies));
   }catch(error){
-    const diagnostic=geoNamesDiagnostic(error);
-    return Response.json({error_code:error instanceof InternalError?error.code:'ONBOARDING_OPERATION_FAILED',field:error instanceof OnboardingError?error.field:null,...(diagnostic?{diagnostic}:{})},{status:error instanceof InternalError?error.status:500});
+    const diagnostic=geoNamesDiagnostic(error),retry=Number.isInteger(error?.retryAfterSeconds)?error.retryAfterSeconds:undefined;
+    return Response.json({error_code:error instanceof InternalError?error.code:'ONBOARDING_OPERATION_FAILED',field:error instanceof OnboardingError?error.field:null,...(retry?{retry_after_seconds:retry}:{}),...(diagnostic?{diagnostic}:{})},{status:error instanceof InternalError?error.status:500,...(retry?{headers:{'Retry-After':String(retry)}}:{})});
   }
 }

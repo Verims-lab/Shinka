@@ -1,4 +1,5 @@
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
+import { readBoundedJson } from './boundedJson.js';
 import { resolveAuthenticatedOwner } from './domainSecurity.js';
 import { guardDomainOwner } from './nativeDomainGuard.js';
 import { resolveTimezone, serverLocalDate } from './onboardingValidation.js';
@@ -34,10 +35,7 @@ export async function patternOperation(client, body, { now = () => new Date() } 
 export async function handlePatternRequest(req, createClient, dependencies = {}) {
   try {
     if (req.method !== 'POST') throw new InternalError('METHOD_NOT_ALLOWED', 405);
-    const text = await req.text();
-    if (text.length > 1000) throw new InternalError('REQUEST_TOO_LARGE', 413);
-    let body; try { body = JSON.parse(text); } catch { throw new InternalError('INVALID_REQUEST', 400); }
-    if (!body || typeof body !== 'object' || Array.isArray(body)) throw new InternalError('INVALID_REQUEST', 400);
+    const body = await readBoundedJson(req, 1000, (code, status) => { throw new InternalError(code, status); });
     return Response.json(await patternOperation(createClient(req), body, dependencies));
   } catch (error) {
     return Response.json({ error_code: error instanceof InternalError ? error.code : 'PATTERN_READ_FAILED' }, { status: error instanceof InternalError ? error.status : 503 });

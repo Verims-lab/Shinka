@@ -6,6 +6,7 @@ import ts from 'typescript';
 import assert from 'node:assert/strict';
 import { handleInternalRequest } from '../base44/shared/internalAuthorization.js';
 import { internalHealthOperation } from '../base44/shared/internalHealthOperations.js';
+import { createGeoNamesGuard } from '../base44/shared/geonamesGuard.js';
 
 export async function verifyGeoNamesRuntimeProbeEntry(root) {
   const source=await readFile(`${root}/base44/functions/internalHealth/entry.ts`,'utf8');
@@ -50,9 +51,13 @@ export async function verifyGeoNamesEntry(root) {
       assert.equal(active,true,'secret read outside request');
       assert.equal(key,'GEONAMES_USERNAME');reads.push(key);return currentValue;
     }}},
-    '../../shared/geonamesAdapter.js':{createGeoNamesAdapter:({username})=>{bindings.push(username);return {binding:bindings.length};}},
-    '../../shared/onboardingOperations.js':{handleOnboardingRequest:(req,client,{geoNames})=>{
-      assert.equal(client(req),createClient(req));assert.equal(geoNames.binding,bindings.length);
+    '../../shared/geonamesGuard.js':{createGeoNamesGuard},
+    '../../shared/geonamesAdapter.js':{createGeoNamesAdapter:({username})=>{bindings.push(username);return {countries:async()=>({binding:bindings.length})};}},
+    '../../shared/onboardingOperations.js':{handleOnboardingRequest:async(req,client,{geoNamesFor})=>{
+      assert.equal(client(req),createClient(req));
+      const before=reads.length;
+      const guarded=geoNamesFor(`owner-${before}`);assert.equal(reads.length,before,'no secret read before a provider call');
+      assert.equal((await guarded.countries(`fixture-${before}`)).binding,bindings.length);
       return {request:req};
     }},
   };

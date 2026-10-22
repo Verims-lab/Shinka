@@ -1,4 +1,5 @@
 import { healthReadDiagnostic } from './healthReadDiagnostics.js';
+import { readBoundedJson } from './boundedJson.js';
 // Only the server SDK's authenticated principal can grant internal access. Request payload roles are ignored.
 export class InternalError extends Error {
   constructor(code, status = 500) { super(code); this.code = code; this.status = status; this.stage = undefined; this.uploadReceipt = undefined; this.diagnostic = undefined; }
@@ -43,11 +44,8 @@ export async function handleInternalRequest(req, createClient, operation) {
     const client = createClient(req);
     await requireInternalAdmin(client);
     if (req.method !== "POST") throw new InternalError("METHOD_NOT_ALLOWED", 405);
-    const text = await req.text();
-    if (new TextEncoder().encode(text).length > 1000000) throw new InternalError("REQUEST_TOO_LARGE", 413);
-    let body;
-    try { body = JSON.parse(text || "{}"); } catch { throw new InternalError("INVALID_REQUEST", 400); }
-    if (!body || typeof body !== "object" || Array.isArray(body)) throw new InternalError("INVALID_REQUEST", 400);
+    // Admin-only; the 1 MB limit is the existing Health report size contract.
+    const body = await readBoundedJson(req, 1000000, (code, status) => { throw new InternalError(code, status); }, { allowEmpty: true });
     stage='OPERATION';
     return Response.json(await operation(client, body),{headers:{'X-Shinka-Request-Id':requestId}});
   } catch (error) {

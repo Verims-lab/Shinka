@@ -4,6 +4,7 @@ import { calendarReader } from './base44CalendarReader.js';
 import { calculateCalendar } from './calendarCalculation.js';
 import { resolveTimezone, serverLocalDate } from './onboardingValidation.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
+import { readBoundedJson } from './boundedJson.js';
 import { DOMAIN_SCHEMAS, SHARED_ENTITIES, HEALTH_ENTITIES, physicalName } from './domainSchemas.js';
 import { resolveAuthenticatedOwner, assertOwner, assertActiveAccount, assertHealthConsent, assertAdminAccess, assertProtectedRecordMutationAllowed } from './domainSecurity.js';
 import { normalizeDomainRead } from './domainValidation.js';
@@ -72,10 +73,7 @@ export async function handleDomainRequest(req,createClient) {
   try {
     const client=createClient(req);
     if(req.method!=='POST') throw new InternalError('METHOD_NOT_ALLOWED',405);
-    const text=await req.text();
-    if(new TextEncoder().encode(text).length>10000) throw new InternalError('REQUEST_TOO_LARGE',413);
-    let body;try{body=JSON.parse(text);}catch{throw new InternalError('INVALID_REQUEST',400);}
-    if(!body||typeof body!=='object'||Array.isArray(body)) throw new InternalError('INVALID_REQUEST',400);
+    const body=await readBoundedJson(req,10000,(code,status)=>{throw new InternalError(code,status);});
     return Response.json(await domainAccessOperation(client,body));
   } catch(error) {
     return Response.json({error_code:error instanceof InternalError?error.code:'DOMAIN_OPERATION_FAILED'},{status:error instanceof InternalError?error.status:500});
