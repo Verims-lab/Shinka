@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-028
+**Current BuildMarker:** Buildmarker-029
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -12,6 +12,22 @@
 **External Verification Required:** Base44 native UNIQUE is unsupported; no multi-record transaction/CAS guarantee is claimed. Native handler tests use synthetic transport; hosted schema/authorization/mutation recovery remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+
+## 029 — explicit notification extensions
+
+Original SRC-05/07 fields remain independently recorded in domainSourceReceipt. The following optional fields are authorized by this package, not retroactively attributed to the original files. D01 and repository inspection compare original fields plus this exact five-field extension; unexpected fields still fail.
+
+| NotificationDelivery field | Meaning |
+|---|---|
+| shinka_date | Local date from the reconciled daily message; groups competing candidates across a changed canonical winner |
+| dispatch_state | READY, IN_FLIGHT, RETRYABLE, ACCEPTED, PERMANENT, UNKNOWN or INELIGIBLE |
+| next_attempt_at | UTC earliest retry/intent-settlement instant; window still rechecked |
+| claim_id | Random attempt correlation for readback; not provider idempotency or a lock |
+| error_stage | ADMISSION, PROVIDER or PROVIDER_ACCEPTANCE; safe code only |
+
+Existing delivery_status stays PENDING/SENT/FAILED/SKIPPED. SENT means a verified provider acceptance response, never device display. IN_FLIGHT is written before calling the provider; failure to persist/read back completion keeps it non-retryable. Unknown/malformed/timeout responses become FAILED + UNKNOWN; definite rejection may retry at most three total attempts within the current local 06:00–12:00 window. Original legacy rows without a known dispatch_state are not blindly resumed. Duplicate candidates remain evidence; canonical ID and existing sent/uncertain candidates suppress further sends. No physical UNIQUE/CAS/transaction is added or claimed.
+
+NotificationSchedule is the sixth operational schema, outside the original 20 product entities. Its closed fields are schedule_key=DAILY_SHINKA, cursor (last preference record ID as a lexical boundary), last_tick_at. Direct CRUD denied. It stores no user/health payload or credential. Owner erasure removes NotificationDelivery through existing cleanup. The global positional cursor does not authorize or recreate the deleted identity; next sweep advances/resets it. No user-specific pending scheduler job exists outside delivery rows.
 
 ## 027 continuity
 
@@ -389,7 +405,7 @@ Required fields are listed in each JSONC; optional fields are marked NULL below.
 
 ## Capability evidence register at package completion
 
-Current counts: VERIFIED 1; PARTIALLY_VERIFIED 11; UNVERIFIED 10; UNSUPPORTED 2. Native and repository evidence are distinguished per row.
+Current counts: VERIFIED 1; PARTIALLY_VERIFIED 13; UNVERIFIED 8; UNSUPPORTED 2. Native and repository evidence are distinguished per row.
 
 | ID | Capability | Status | Evidence / remaining proof |
 |---|---|---|---|
@@ -405,11 +421,11 @@ Current counts: VERIFIED 1; PARTIALLY_VERIFIED 11; UNVERIFIED 10; UNSUPPORTED 2.
 | CAP-10 | Row / owner security (RLS) | PARTIALLY_VERIFIED | 20 product schemas deny direct SDK CRUD; backend filters owner using auth.me().id, ACTIVE/consent gates. Synthetic cross-owner tests pass; live identities still required. |
 | CAP-11 | Admin role authorization (platform-native) | PARTIALLY_VERIFIED | One shared auth.me()/admin guard for tooling and domain access; read-only CLI confirms current principal role admin. Separate non-admin live 403 evidence pending. |
 | CAP-12 | Backend function execution | VERIFIED | validateContentArtifacts executed 2026-10-18 (live + fixture modes) returning structured results. |
-| CAP-13 | Scheduler (06:00 local, rolling jobs) | UNVERIFIED | Not measured. |
+| CAP-13 | Scheduler (06:00 local, rolling jobs) | PARTIALLY_VERIFIED | 029: read-only CLI confirms Workflows support/empty list; controlled-clock local traversal and checkpoint tests pass. No workflow created; actual scheduler authentication remains unbound and entry denies every call. No hosted execution proof. |
 | CAP-14 | Secrets | PARTIALLY_VERIFIED | Request-scoped backend secret binding and synthetic entry tests; user reports configured secret and Preview search HTTP 200. Secret value not inspected; independent hosted list/save verification pending. |
 | CAP-15 | GeoNames backend proxy | PARTIALLY_VERIFIED | Search/resolve and cascading lists implemented with synthetic boundary tests; user-reported Preview search HTTP 200 returned eight places. New hosted selection/resolve/save/readback remains unverified. |
 | CAP-16 | Astronomy Engine execution in backend | PARTIALLY_VERIFIED | Repository backend generator and local Node/browser reference tests implemented; hosted execution/import unverified. |
-| CAP-17 | Native push (iOS/Android) | UNVERIFIED | Requires DEVICE evidence. |
+| CAP-17 | Native push (iOS/Android) | PARTIALLY_VERIFIED | 029: official documentation names SendPushNotification; SDK 0.8.57 dynamically forwards Core calls. Named payload/response and native eligibility are unverified; adapter has no production binding. Fake-provider tests are local only; zero live sends and no DEVICE evidence. |
 | CAP-18 | Backup | UNVERIFIED | Not measured. |
 | CAP-19 | Restore (deleted health data must not reappear) | UNVERIFIED | Not measured. |
 | CAP-21 | Backend-only writes / service-role bypass | PARTIALLY_VERIFIED | Official security docs: service role bypasses RLS/FLS. Schemas deny direct writes; specific non-serializable server grants guard future workers. No live mutation enforcement test. |

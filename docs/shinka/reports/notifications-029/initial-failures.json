@@ -1,0 +1,160 @@
+{
+  "scope": "LOCAL_SYNTHETIC",
+  "results": [
+    {
+      "id": "NT01",
+      "name": "Actual local 06:00 and noon boundary; fractional zones and UTC day rollover",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT02",
+      "name": "DST spring/fall and 30-minute transition use actual local target offset",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT03",
+      "name": "Scheduler creates missing today even with preference off; Home reuses immutable snapshot",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT04",
+      "name": "Same operation queues then accepts once; repeated tick does not send or generate again",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT05",
+      "name": "Transient rejection backoff and max three attempts on same row",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT06",
+      "name": "Permanent rejection, ambiguous timeout and malformed response never blindly retry",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT07",
+      "name": "Lost receipt after accepted call leaves IN_FLIGHT; new worker pass cannot resend",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT08",
+      "name": "Disabled, denied, unknown and unsupported devices never send; content remains available",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT09",
+      "name": "Late/enable/zone change stays same-day window and never mutates previous content",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT10",
+      "name": "Fresh disabled preference after persisted intent prevents provider call",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT11",
+      "name": "Deletion or native account removal immediately before send denies dispatch and recreates no owner data",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT12",
+      "name": "Scheduler/Home concurrent native candidates reconcile with no push-driven regeneration",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT13",
+      "name": "Worker coalescing and competing visible delivery candidates admit only canonical row",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT14",
+      "name": "Closed handler denies unauthenticated and body authority/target/copy manipulation before writes",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT15",
+      "name": "Owner-scoped engine refuses forged writes and unfinished/reset/privacy accounts",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT16",
+      "name": "Bounded page checkpoints continue beyond first 25 without historical fanout",
+      "passed": false,
+      "blocked": false,
+      "detail": "NT16:START:contract failed"
+    },
+    {
+      "id": "NT17",
+      "name": "Missing production push binding stays unknown and never calls dynamic SDK",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT19",
+      "name": "Owner erasure removes pending/in-flight/unknown notifications; global cursor cannot recreate identity",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT20",
+      "name": "Home saves current valid IANA automatically without changing the current daily snapshot",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT18",
+      "name": "Withdrawn health consent causes no health-data reads while scheduler produces content",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NU01",
+      "name": "TR/EN actual You preference error retains opt-in draft and stored off; unknown native permission stays separate",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NU02",
+      "name": "Denied, unsupported, granted and unknown presentation has no fake permission/settings bridge",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    }
+  ],
+  "explanation": "NT16 expected p-24 but the fixture generated p-024. Corrected exact expectation; no production predicate/assertion removed. Type annotations corrected separately; loopback EPERM was zero tests, not a pass."
+}

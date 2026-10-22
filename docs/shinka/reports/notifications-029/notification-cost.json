@@ -1,0 +1,119 @@
+{
+  "focused": true,
+  "security028": {
+    "scope": "LOCAL_SERVER_FIXTURE",
+    "hostedVerified": false,
+    "results": [
+      {
+        "id": "SC01",
+        "name": "Bounded JSON: streaming byte limit, Content-Length, malformed and non-object",
+        "status": "PASS"
+      },
+      {
+        "id": "SC02",
+        "name": "GeoNames guard: no owner 401, lazy adapter/secret, per-user app limit with retry seconds, window reset",
+        "status": "PASS"
+      },
+      {
+        "id": "SC03",
+        "name": "GeoNames guard counts real upstream fetches and the worker-local total across owners; cache avoids refetch",
+        "status": "PASS"
+      },
+      {
+        "id": "SC04",
+        "name": "Unauthenticated You/onboarding calls: 401, zero product writes, no GeoNames setup",
+        "status": "PASS"
+      },
+      {
+        "id": "SC05",
+        "name": "Oversize bodies: 413 from real You/onboarding handlers with no entity call",
+        "status": "PASS"
+      },
+      {
+        "id": "SC07",
+        "name": "Real guard + real adapter: app, user-upstream and worker-upstream limits keep 429/retry and stop provider fetches",
+        "status": "PASS"
+      },
+      {
+        "id": "SC08",
+        "name": "Onboarding and You handlers return 429, GEONAMES_RATE_LIMITED, Retry-After and retry_after_seconds for the real chain error",
+        "status": "PASS"
+      },
+      {
+        "id": "SC09",
+        "name": "Negative: network failure and a forged 429-shaped error from fetch stay GEONAMES_UNAVAILABLE, never rate-limited",
+        "status": "PASS"
+      }
+    ],
+    "passed": true
+  },
+  "notifications029": {
+    "scope": "LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION",
+    "passed": true,
+    "results": [
+      {
+        "id": "NS01",
+        "status": "PASS",
+        "assertion": "Actual inactive entry denies call before any SDK/client creation; not platform authentication proof"
+      },
+      {
+        "id": "NS02",
+        "status": "PASS",
+        "assertion": "Actual inactive entry denies call before any SDK/client creation; not platform authentication proof"
+      },
+      {
+        "id": "NS03",
+        "status": "PASS",
+        "assertion": "Actual inactive entry denies call before any SDK/client creation; not platform authentication proof"
+      }
+    ],
+    "hostedVerified": false
+  },
+  "results": [
+    {
+      "id": "NT23",
+      "name": "Measure ordinary SDK request counts for existing/new daily, dispatch and Home reuse",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok",
+      "evidence": {
+        "scope": "SYNTHETIC_ORDINARY_SDK_COUNTS_NOT_LATENCY_OR_CREDITS",
+        "measured": {
+          "existing-queue": {
+            "reads": 45,
+            "writes": 4
+          },
+          "existing-accept": {
+            "reads": 71,
+            "writes": 4
+          },
+          "existing-settled": {
+            "reads": 31,
+            "writes": 2
+          },
+          "existing-home": {
+            "reads": 17,
+            "writes": 0
+          },
+          "new-queue": {
+            "reads": 82,
+            "writes": 5
+          },
+          "new-accept": {
+            "reads": 71,
+            "writes": 4
+          },
+          "new-settled": {
+            "reads": 31,
+            "writes": 2
+          },
+          "new-home": {
+            "reads": 17,
+            "writes": 0
+          }
+        }
+      }
+    }
+  ],
+  "pageErrors": []
+}

@@ -2,11 +2,19 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-028
+**Current BuildMarker:** Buildmarker-029
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## 029 — notification platform continuation
+
+Continue using Base44 for identity, entities, backend functions and push; Firebase is Android push configuration only. Read-only workflows metadata returned no workflows and confirms the supported Workflows path. No schedule was created; no automations block is added. The intended one-workflow cadence is five-minute UTC ticks, but activation is blocked until documented caller authentication and push/device contracts are implemented and verified. This is additional engineering work, not a credential-only checkbox. Native UNIQUE/transaction/CAS/idempotency are not asserted.
+
+SDK 0.8.57 (fresh GitHub lockfile 060ba76) supports dynamic Core integration calls; current public docs name SendPushNotification but omit named parameter/response and eligibility schemas. The backend adapter remains unbound, the endpoint denies before all IO, and You reports setup pending/unknown native permission. Official docs also expose no usable in-app native permission/token/logout bridge. Do not replace these gaps with guessed methods, browser Notification.permission, a body system role or a user/admin call as scheduler proof. CAP-13/17 remain partial documentation/local evidence with hosted/device acceptance absent.
+
+Owner mobile setup: in Publish → Mobile app → Build Stores Files, add push notifications. iOS uses APNs .p8 plus Key ID, separate from App Store Connect credentials. Android uses google-services.json and service-account JSON from the same Firebase project/package displayed by Base44. Upload only in trusted platform UI. Existing native apps need updated store files/build installation. No store submission, account creation or plan change is authorized. Binding completion precedes selected-test-account push → tap Home → app Health/device checks. See the single 029 report for exact remaining work.
 
 ## 028 security continuation (ACTIVE)
 

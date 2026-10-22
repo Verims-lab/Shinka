@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-028
+**Current BuildMarker:** Buildmarker-029
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -35,6 +35,10 @@
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+
+## 029 — notification boundaries
+
+Keep time policy, owner admission, delivery state and bounded traversal in small shared modules. Platform-specific SendPushNotification encoding/decoding/eligibility and scheduler verification require authoritative contracts and backend-only bindings. Health must use a fake provider/clock; production wiring never auto-enables a workflow. New optional model fields are explicit authorized extensions to the immutable original source receipt. No distributed-lock/idempotency promise from worker memory or readback.
 
 ## 027 — measured quality closure
 

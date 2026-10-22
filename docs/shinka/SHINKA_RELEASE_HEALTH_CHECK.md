@@ -2,11 +2,19 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-028
+**Current BuildMarker:** Buildmarker-029
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-028.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-029.0; repository, synthetic and external evidence separated.
+
+## HC-029.0 — notifications with explicit external blocker
+
+H14-001/002 retain their IDs and move from future to executable synthetic-runtime coverage. Titles now state ordinary SDK reconciliation instead of native unique/idempotency guarantees. H14-003 adds admission/deletion/paging/closed-binding behavior; H14-004 tracks local NU01–03 UI and NS01–03 actual inactive-entry checks. H14-901 tracks the missing platform authentication/parameter/response/eligibility binding externally. H16-901 remains physical iOS/Android push and Home acceptance, never local PASS. No existing Health ID was deleted; future placeholders moved to executable registrations.
+
+The suite, catalog, closed backend plan and execution scope are changed together; 029 is explicitly in the unchanged content-policy allowlist. Health invokes only fake providers/clocks and ordinary in-memory SDK transport, never production notificationSchedule or a real push. NT14 verifies an injected test verifier/closed request body; NS01–03 verify actual entry denial before IO. Neither proves a platform authenticator. Full new local regression results and initial failures are recorded in the single [029 report](reports/SHINKA_NOTIFICATIONS_029.md). User-reported successful published 028 Health is historical input, not 029 evidence.
+
+029 final local evidence: **608/608 Chromium and 608/608 WebKit**, plus **8/8 retained server fixtures and 3/3 inactive-entry checks** per command. Local in-app Health **136 PASS / 0 FAIL / 13 expected hosted-prerequisite BLOCKED**. Inventory: **175 total / 149 in-app / 12 local / 14 external / 0 future**. Mandatory quality/dependency/history/byte gates pass; original failures retained. Hosted binding remains BLOCKED, device checks NOT RUN. See [029 verification](reports/notifications-029/verification.json).
 
 ## HC-028.0 — security closure and completed local verification
 

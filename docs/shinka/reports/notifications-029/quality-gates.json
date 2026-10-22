@@ -1,0 +1,229 @@
+{
+  "scope": "LOCAL_QUALITY_PLUS_EXPLICIT_READ_ONLY_WORKFLOW_LIST",
+  "source": "source-manifest.json",
+  "gates": [
+    {
+      "command": [
+        "npm",
+        "ci"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T13:40:11.801300+00:00",
+      "completedAt": "2026-10-22T13:40:17.099549+00:00",
+      "log": "clean-install.log",
+      "label": "clean-install",
+      "status": "PASS",
+      "logSha256": "39af9528b9fa4af5f63fcfd961dee6f869bf5e1bba638f16e1669ac5ef3d0c2d",
+      "deliveredLog": "clean-install.txt",
+      "deliveredLogSha256": "39af9528b9fa4af5f63fcfd961dee6f869bf5e1bba638f16e1669ac5ef3d0c2d"
+    },
+    {
+      "command": [
+        "npm",
+        "ls",
+        "--all"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T13:36:07.170127+00:00",
+      "completedAt": "2026-10-22T13:36:07.922914+00:00",
+      "log": "tree.log",
+      "label": "tree",
+      "status": "PASS",
+      "logSha256": "0ae4ff988ec4fe59008b6adc33daaac03e68940818cf6940d2caca2872e44119",
+      "deliveredLog": "tree.txt",
+      "deliveredLogSha256": "b89e8fca594a2e9375015baa5af2818f55f959c60a24c549b197d0c5830df2c5"
+    },
+    {
+      "command": [
+        "npm",
+        "audit",
+        "--json"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T13:36:10.575261+00:00",
+      "completedAt": "2026-10-22T13:36:11.261974+00:00",
+      "log": "audit.log",
+      "label": "audit",
+      "status": "PASS",
+      "logSha256": "433afea046aa62fec794af08a30e91c61504aff7f880b5367802cb68f214f667"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "security:deps"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T13:36:58.045002+00:00",
+      "completedAt": "2026-10-22T13:37:00.291811+00:00",
+      "log": "security-deps.log",
+      "label": "security-deps",
+      "status": "PASS",
+      "logSha256": "ba5a55cc48eca8e7c392d3754b663e0bd7b6233525429a1d8a5d44768df5b507",
+      "deliveredLog": "security-deps.txt",
+      "deliveredLogSha256": "ba5a55cc48eca8e7c392d3754b663e0bd7b6233525429a1d8a5d44768df5b507"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "health:repo"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T13:47:56.143968+00:00",
+      "completedAt": "2026-10-22T13:47:57.607696+00:00",
+      "log": "repo-final.log",
+      "label": "repo-final",
+      "status": "PASS",
+      "logSha256": "1b570b74e4cd6f2e909c9d7c3620335d389f2543068136323a1664e05fd992a5",
+      "deliveredLog": "repo-final.txt",
+      "deliveredLogSha256": "1b570b74e4cd6f2e909c9d7c3620335d389f2543068136323a1664e05fd992a5"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T13:36:07.170061+00:00",
+      "completedAt": "2026-10-22T13:36:09.697235+00:00",
+      "log": "typecheck-final.log",
+      "label": "typecheck-final",
+      "status": "PASS",
+      "logSha256": "2e1c7db5ac28fb733e8c1d3d7c2c3bf8a4bb6628ed45eb56ce2e7328388598de",
+      "deliveredLog": "typecheck-final.txt",
+      "deliveredLogSha256": "219c73819fb104986577380376528635b8bf8b0f1eb490283a0b22ac6a011ba0"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T13:36:55.715350+00:00",
+      "completedAt": "2026-10-22T13:37:00.309682+00:00",
+      "log": "lint-final.log",
+      "label": "lint-final",
+      "status": "PASS",
+      "logSha256": "8423c1a66df3f2a021733ae12f217befbeb04b23971e056cb4e3739c7fb936cf",
+      "deliveredLog": "lint-final.txt",
+      "deliveredLogSha256": "f1f78baa67d3a65a4400919a9b9191a804c8d990e3b2bf860089ff4f3182055e"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T13:36:55.715351+00:00",
+      "completedAt": "2026-10-22T13:37:00.014424+00:00",
+      "log": "build.log",
+      "label": "build",
+      "status": "PASS",
+      "logSha256": "11a6cab1671c0c3c4358ba908e122f491ffbfe868790806d50614884e7ee79bf",
+      "deliveredLog": "build.txt",
+      "deliveredLogSha256": "11a6cab1671c0c3c4358ba908e122f491ffbfe868790806d50614884e7ee79bf"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/recordBuild.mjs",
+        "--check"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T13:47:57.219810+00:00",
+      "completedAt": "2026-10-22T13:47:57.309064+00:00",
+      "log": "history-final.log",
+      "label": "history-final",
+      "status": "PASS",
+      "logSha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f",
+      "deliveredLog": "history-final.txt",
+      "deliveredLogSha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/measureMaintenance.mjs",
+        "/private/tmp/shinka-029/performance"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T13:36:19.610013+00:00",
+      "completedAt": "2026-10-22T13:36:39.727145+00:00",
+      "log": "performance.log",
+      "label": "performance",
+      "status": "PASS",
+      "logSha256": "b6faa7f1021aeb71d457c6a6763f904e2400673b782c2395b80f594df84a42f1"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T13:36:11.900295+00:00",
+      "completedAt": "2026-10-22T13:37:17.734304+00:00",
+      "log": "chromium-final.log",
+      "label": "chromium-final",
+      "status": "PASS",
+      "logSha256": "b999b5b36019b4e6e2f5b508644164101513436f30d8b24db9696f129706be2d"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T13:36:11.455892+00:00",
+      "completedAt": "2026-10-22T13:37:23.913568+00:00",
+      "log": "webkit-final.log",
+      "label": "webkit-final",
+      "status": "PASS",
+      "logSha256": "70af364019cdb528a09338cadd39d541ebbf8af6ac19496c43310583d5e0d98e"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T13:39:39.553045+00:00",
+      "completedAt": "2026-10-22T13:39:42.962735+00:00",
+      "log": "notification-cost.log",
+      "label": "notification-cost",
+      "status": "PASS",
+      "logSha256": "3d349561adf8068167f7d00f9e71707e545e239eb2e8c90fcd7899236ae9e415"
+    },
+    {
+      "command": [
+        "node",
+        "/Users/verimsari/.npm/_npx/f03008262d76efee/node_modules/base44/bin/run.js",
+        "workflows",
+        "list",
+        "--app-id",
+        "6ad5190f4845d4e3af03b420",
+        "--json"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T13:43:09.297936+00:00",
+      "completedAt": "2026-10-22T13:43:10.691475+00:00",
+      "log": "workflows-read-confirmed.log",
+      "label": "workflows-read-confirmed",
+      "status": "PASS",
+      "logSha256": "82baa148679fe5a0a1bab44396e3fed3338fdbfde276ca5496a75b18c36681fd",
+      "deliveredLog": "workflows-read-confirmed.txt",
+      "deliveredLogSha256": "82baa148679fe5a0a1bab44396e3fed3338fdbfde276ca5496a75b18c36681fd"
+    }
+  ],
+  "notes": [
+    "npm ci --ignore-scripts also succeeded before development; standard npm ci was captured after tests with the same unchanged lockfile.",
+    "Canonical engine runs used pinned dependencies. Native/provider behavior was substituted, external browser requests blocked.",
+    "CLI module import produced no output; only the later actual bin/run.js response establishes workflow availability. No active workflow was created or executed.",
+    "Delivered .txt transcripts normalize trailing whitespace/blank lines only; raw and delivered hashes are separately recorded."
+  ]
+}

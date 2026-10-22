@@ -1,0 +1,16 @@
+{
+  "tests": 604,
+  "passed": 604,
+  "failed": 0,
+  "receipt": {
+    "command": [
+      "node",
+      "scripts/runFoundationTests.mjs"
+    ],
+    "exitCode": 0,
+    "startedAt": "2026-10-22T13:24:24.030346+00:00",
+    "completedAt": "2026-10-22T13:25:25.568191+00:00",
+    "log": "chromium-initial.log"
+  },
+  "scope": "Before final additional guards/tests; not final 029 evidence"
+}

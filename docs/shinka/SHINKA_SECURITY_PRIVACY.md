@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-028
+**Current BuildMarker:** Buildmarker-029
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -28,6 +28,16 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+## 029 — notification security and lifecycle
+
+The existing 12 backend findings remain OPEN / USER-DEFERRED by explicit owner direction; no scan or acknowledgement is performed. New notificationSchedule is closed to all calls before SDK creation until a platform scheduler verifier is implemented from an authoritative contract. A request body role/system flag, a forged header, or the mere availability of asServiceRole cannot grant authority. The internal handler accepts only {action:"tick"}; no target, copy, destination or caller-controlled checkpoint. No new secret is read or provisioned; SHINKA_WRITE_MODE is not reintroduced.
+
+All notification product writes are owner-bound to fresh native existence, ACTIVE/complete account, deletion/privacy/reset state. Preference, timezone, current window and trusted device eligibility are rechecked immediately before send. Profile/health/history mutations are forbidden through the scheduler client. Account erasure already includes NotificationDelivery, covering READY/IN_FLIGHT/UNKNOWN records; a permanent deletion marker/native absence blocks recreation. Withdrawal retains neutral notification history under existing policy, stops unauthorized health reads and uses the common consent-aware generation path. Worker checks cannot revoke a push already accepted by a provider or eliminate the final cross-worker send race.
+
+Provider payload is restricted to a server-derived owner and neutral central text; optional destination omitted for guarded Home. No sensitive snapshots, token, secret, raw provider error or owner ID is returned in scheduler summaries. Only closed state counts and safe error codes/stages are retained. Credential upload belongs to the trusted Base44 mobile settings, never Git/chat. Native token binding on account switch/logout and OS permission freshness remain unverified and block activation; local UI teardown is not device-token revocation proof.
+
+029 final local security evidence: NT01–23/NU01–03 and NS01–03 pass; both full engines 608/608, dependencies zero advisories. Unauthenticated entry, body authority/target manipulation, malformed delivery/checkpoint, lifecycle/consent/deletion and uncertain-result suppression are exercised synthetically. No current hosted authentication/token/device proof; H14-901/H16-901 remain external. Prior 12 backend findings stay OPEN / USER-DEFERRED. [029 evidence](reports/SHINKA_NOTIFICATIONS_029.md).
 
 ## 028 — security closure (ACTIVE)
 

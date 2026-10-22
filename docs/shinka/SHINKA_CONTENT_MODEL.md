@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — approved references imported; native daily snapshot observed; hosted acceptance remains partial
-**Current BuildMarker:** Buildmarker-028
+**Current BuildMarker:** Buildmarker-029
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
@@ -10,6 +10,10 @@
 **Implemented:** Workbook validator, exact backend manifest, dry-run/apply/verify importer, Moon preparation, daily selection and snapshot protocol, ON-06/Home integration.
 **Not Implemented:** Distributed physical uniqueness guarantee; scheduled lookup renewal. Remaining hosted/device evidence is tracked separately.
 **Open Decisions:** OD-005, OD-008 (noted); OD-002 RESOLVED_BY_PRODUCT_DECISION
+
+## 029 — notification content independence
+
+Scheduler and Home call the same produceDailyForOwner engine with distinct authorization. Notification preference/OS permission never change pair selection, snapshots, 40-day history or health-consent rules. Retry only changes NotificationDelivery. Current-day canonical candidates are reconciled through nativeDailyPersistence; original rows are retained, never overwritten. No content import, text change or second generation algorithm is introduced. Lock-screen copy is neutral 029 wording, not a user_daily_message snapshot. Production scheduling remains blocked by platform bindings.
 
 ## 028 verification correction
 

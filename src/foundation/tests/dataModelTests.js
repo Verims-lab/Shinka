@@ -1,5 +1,5 @@
 import { DOMAIN_SCHEMAS, base44Schema, physicalName, SUN_SIGN_CODES } from '../../../base44/shared/domainSchemas.js';
-import { SOURCE_FIELD_NAMES } from '../../../base44/shared/domainSourceReceipt.js';
+import { SOURCE_FIELD_NAMES, expectedDomainFields } from '../../../base44/shared/domainSourceReceipt.js';
 import { validateDomainRecord, normalizeDomainRead } from '../../../base44/shared/domainValidation.js';
 import { RELATIONSHIPS } from '../../../base44/shared/domainContract.js';
 import { canonicalUniqueKeys, createOnce, mutateConditionally, assertReferenceTargets } from '../../../base44/shared/domainAtomic.js';
@@ -30,7 +30,7 @@ export function atomicFixture() {
 }
 /** @type {import('./testTypes').FoundationTest[]} */
 export const DATA_MODEL_TESTS = [
- ['D01','20 physical schemas match independently extracted source fields',async()=>{const evidence=(await loadStaticEvidence()).domain;check(evidence.present===20&&evidence.mismatches.length===0&&evidence.unexpected.length===0);check(Object.keys(SOURCE_FIELD_NAMES).length===20);for(const [entity,names] of Object.entries(SOURCE_FIELD_NAMES))check(JSON.stringify([...names].sort())===JSON.stringify(Object.keys(DOMAIN_SCHEMAS[entity].properties).sort()),entity);} ],
+ ['D01','20 schemas match original source fields plus explicit 029 extensions',async()=>{const evidence=(await loadStaticEvidence()).domain;check(evidence.present===20&&evidence.mismatches.length===0&&evidence.unexpected.length===0);check(Object.keys(SOURCE_FIELD_NAMES).length===20);for(const [entity,names] of Object.entries(SOURCE_FIELD_NAMES))check(JSON.stringify([...expectedDomainFields(entity,names)].sort())===JSON.stringify(Object.keys(DOMAIN_SCHEMAS[entity].properties).sort()),entity);} ],
  ['D02','One logical/physical mapping; builtin identity and tooling separate',async()=>{check((await loadStaticEvidence()).domain.testOperationPolicy);const mapped=Object.keys(DOMAIN_SCHEMAS).map(physicalName);check(new Set(mapped).size===20&&!mapped.includes('User')&&!mapped.includes('InternalHealthRun')&&!mapped.includes('AdminTestOperation'));}],
  ['D03','Required fields enforced; unsupported uniqueness properties absent',async()=>{await rejects(()=>validateDomainRecord('user_period_record',{user_id:'ownerA'}),'INVALID_DOMAIN_RECORD');for(const entity of Object.keys(DOMAIN_SCHEMAS)){const schema=base44Schema(entity);check(!Object.hasOwn(schema,'unique_fields')&&!Object.hasOwn(schema.properties,'created_at')&&!Object.hasOwn(schema.properties,'id'));}}],
  ['D04','Logical NULL stays absent on write and NULL on read; no 5/28 defaults',()=>{const row=validateDomainRecord('user_cycle_settings',{user_id:'ownerA',period_duration_days:null,initial_cycle_length_days:null});check(Object.keys(row).length===1);const read=normalizeDomainRead('user_cycle_settings',row);check(read.period_duration_days===null&&read.initial_cycle_length_days===null);} ],

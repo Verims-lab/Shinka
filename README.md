@@ -4,7 +4,11 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Any change pushed to the repo will also be reflected in the Base44 Builder.
 
-## Current Test data authority (Buildmarker-023)
+## Current Test notification package (Buildmarker-029)
+
+The local DAILY_SHINKA core shares the existing daily engine, uses fixed local 06:00 with a same-day bounded window, and separates saved preference from native device permission. The production scheduler is deliberately closed: verified platform caller authentication, named push parameters/response and native eligibility still require implementation before activation. **Mobile credentials alone do not complete this binding.** No workflow was created or live push sent. See the [029 report and exact next work](docs/shinka/reports/SHINKA_NOTIFICATIONS_029.md). Test delivery is not production notification acceptance; main merge/publish remain owner-owned.
+
+## Existing data authority (Buildmarker-023 onward)
 
 Base44 is the single product-data, identity and admin-role authority. Browser calls Base44 backend functions; no SQL secret, service, database setup or second login is required. Home reconciles immutable daily candidates; Calendar calculates from actual dates; reset verifies each step; deletion uses a durable target lifecycle with bounded resumable cleanup.
 

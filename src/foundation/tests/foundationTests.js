@@ -1,3 +1,5 @@
+import { NOTIFICATION_TESTS } from './notificationTests';
+import { NOTIFICATION_UI_TESTS } from './notificationUiTests';
 import { MOBILE_INTERACTION_TESTS } from "./mobileInteractionTests";
 import { QUALITY_MILESTONE_TESTS } from './qualityMilestoneTests';
 import { HEALTH_TIMING_TESTS } from './healthTimingTests';
@@ -62,6 +64,7 @@ const fixtureCases = (ids) => ids.map((id) => ({ id, suiteId: id.slice(0, 3), ti
 
 /** @type {import("./testTypes").FoundationTest[]} */
 export const FOUNDATION_TESTS = [
+  ...NOTIFICATION_TESTS, ...NOTIFICATION_UI_TESTS,
   ...QUALITY_MILESTONE_TESTS,
   ...MOBILE_INTERACTION_TESTS,
   ...HEALTH_TIMING_TESTS,

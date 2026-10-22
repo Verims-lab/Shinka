@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-028
+**Current BuildMarker:** Buildmarker-029
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -11,6 +11,12 @@
 **Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+## 029 — notification settings and honest permission states
+
+You keeps one on/off preference, fixed local 06:00 target, language selection and existing save/unknown/conflict/draft contract. The saved preference is displayed independently from the unsaved checkbox draft. Device permission and native platform support are separate labeled states. Production currently reports both unverified/unknown because no Base44 JavaScript native permission/registration bridge was documented. Browser Notification.permission, service workers and user-agent inference are not substitutes. No automatic permission request, unsupported settings URI, or pretend permission button is added.
+
+Denied permission shows the original English device-settings instruction and scoped Turkish translation. Manual guidance points to Shinka in OS notification settings; the verified Base44 flow requests native permission at first opening of a push-enabled store build. The current setup-pending text is truthful while the production binding is closed. Switching account/logout clears the You view through the existing session boundary; native device-token reassignment/revocation still needs physical acceptance. No health, birth, cycle or daily snapshot appears in lock-screen copy. Neutral 029 TR/EN text is centralized in notificationPolicy; UI states in notificationCopy.
 
 ## 027 — navigation quality boundary
 
@@ -44,7 +50,7 @@ Top-right profile opens You for completed users, including normal users. Incompl
 
 Inline profile edit opens with name focus; field validation moves focus to the failing field. Save failure preserves draft; success follows exact backend readback and returns focus to Edit. Current persisted Sun is read-only; its value changes after verified profile save, not client calculation. Saved birthplace remains visible independently of picker lists. Provider error, Clear and incomplete selection reuse the existing localized selector states. Profile and preferences have separate Save and success results; no blanket partial-success message.
 
-Unknown write has Check saved result and explicit same-save Retry; edits are locked while outcome is unknown. A conflict retains the draft and offers explicit Reopen saved values. Notifications show fixed local 06:00 plus a clear preference-only/delivery-unavailable explanation. No new device permission/timezone/time selector. Legal headings show unpublished status, with no invented links. The 022 consent text remains read-only; 023 adds separate confirmed withdrawal and erasure links. TR/EN source and scoped-copy provenance is in SOURCE_OF_TRUTH.
+Unknown write has Check saved result and explicit same-save Retry; edits are locked while outcome is unknown. A conflict retains the draft and offers explicit Reopen saved values. Notifications show fixed local 06:00 target, saved preference, separate unknown native support/permission and current setup-pending explanation (029). No timezone/time selector or unverified permission API. Legal headings show unpublished status, with no invented links. The 022 consent text remains read-only; 023 adds separate confirmed withdrawal and erasure links. TR/EN source and scoped-copy provenance is in SOURCE_OF_TRUTH.
 
 ## Implemented Pattern UX — 021
 
@@ -163,7 +169,7 @@ Opened from top-right icon only. **My Profile** (inline edit: optional name, req
 Withdraw bottom sheet opens only when triggered: "Withdraw health data consent?" / "The current localized 023 scope also includes cycle settings and calendar action data, while account/profile and approved history remain." Processing stops immediately; success only after verified deletion; re-consent blocked while in progress; historic health data never restored. Distinct from Delete Account.
 
 ## Future package boundaries
-Onboarding H06/H07, GeoNames H10 and onboarding-consent H11 are current with the four approved decisions implemented; deployed verification remains separate. Home/content modules are implemented with production capability/import blockers. This was the historical Foundation boundary; Calendar and Pattern are implemented by 012/016 and 021. Account erasure and withdrawal are implemented by 023; notification delivery remains future.
+Onboarding H06/H07, GeoNames H10 and onboarding-consent H11 are current with the four approved decisions implemented; deployed verification remains separate. Home/content modules are implemented with production capability/import blockers. This was the historical Foundation boundary; Calendar and Pattern are implemented by 012/016 and 021. Account erasure and withdrawal are implemented by 023; 029 implements the local notification engine; production binding and device delivery remain unverified.
 
 ## Foundation auth shell alignment
 `PageContainer` now uses fixed 20px horizontal padding at mobile and desktop widths. `/login` uses ShinkaCard/ShinkaButton with Apple and Google only, primary controls at least 52px, localized safe error codes and no password fields/links. T74 measures actual 360px/1024px rendered layouts. The earlier Foundation shell has been replaced by ON-03 with a pre-auth age boundary. Live sign-in is still unverified.

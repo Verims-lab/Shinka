@@ -164,3 +164,7 @@ export const SOURCE_FIELD_NAMES = Object.freeze({
   ]
 });
 export const DATA_SOURCE_RECEIPT = Object.freeze({date:"2026-10-19", workbookSha256:"db4348c165d61c20527a3dc2903e623486f788f383bcce85196e7aed213bdd69", primaryDocSha256:"2e9a99d21309999641d246b0a66bad6c90570ce50afdfd03beb3ee154db94a29", scope:"SRC-05_AND_SRC-07_ONLY_NOT_ALL_SOURCE_ARTIFACTS"});
+
+// User-authorized 029 extensions, NOT fields claimed to appear in SRC-05/07.
+export const NOTIFICATION_029_FIELDS = Object.freeze(['shinka_date','dispatch_state','next_attempt_at','claim_id','error_stage']);
+export const expectedDomainFields = (entity, original) => entity === 'notification_delivery' ? [...original, ...NOTIFICATION_029_FIELDS] : original;

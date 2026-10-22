@@ -1,0 +1,7 @@
+Fetching workflows from Base44
+Workflows fetched successfully
+Found 0 workflows.
+{
+  "workflows": []
+}
+Update available: 0.1.32 → 0.2.2. Run: npm install -g base44@latest

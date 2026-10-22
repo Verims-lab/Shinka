@@ -1,0 +1,21 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 typecheck
+> tsc -p ./jsconfig.json
+
+src/features/you/NotificationStatus.jsx(8,22): error TS2367: This comparison appears to be unintentional because the types '"UNKNOWN"' and '"SUPPORTED"' have no overlap.
+src/features/you/NotificationStatus.jsx(13,14): error TS2367: This comparison appears to be unintentional because the types '"UNKNOWN"' and '"DENIED"' have no overlap.
+src/foundation/tests/notificationTests.js(54,70): error TS2339: Property 'kind' does not exist on type 'Error | { kind: string; } | { kind?: undefined; }'.
+  Property 'kind' does not exist on type 'Error'.
+src/foundation/tests/notificationTests.js(54,109): error TS2339: Property 'kind' does not exist on type 'Error | { kind: string; } | { kind?: undefined; }'.
+  Property 'kind' does not exist on type 'Error'.
+src/foundation/tests/notificationTests.js(106,192): error TS2345: Argument of type '{ provider: { eligibility: () => Promise<{ support: string; permission: string; }>; send: (value: any) => Promise<any>; }; library: () => Promise<{ plan: { ready: boolean; }; actual: { [k: string]: any; }; }>; now: () => Date; authorize: () => Promise<...>; createClient: () => { ...; }; enabled: boolean; }' is not assignable to parameter of type '{ authorize: any; createClient: any; enabled?: boolean; provider: any; library: any; now: any; elapsed: any; }'.
+  Property 'elapsed' is missing in type '{ provider: { eligibility: () => Promise<{ support: string; permission: string; }>; send: (value: any) => Promise<any>; }; library: () => Promise<{ plan: { ready: boolean; }; actual: { [k: string]: any; }; }>; now: () => Date; authorize: () => Promise<...>; createClient: () => { ...; }; enabled: boolean; }' but required in type '{ authorize: any; createClient: any; enabled?: boolean; provider: any; library: any; now: any; elapsed: any; }'.
+src/foundation/tests/notificationUiTests.js(27,123): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type 'string' is not assignable to type '"UNKNOWN"'.
+      Type 'string' is not assignable to type '"UNKNOWN"'.
+src/foundation/tests/notificationUiTests.js(27,131): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type 'string' is not assignable to type '"UNKNOWN"'.
+      Type 'string' is not assignable to type '"UNKNOWN"'.

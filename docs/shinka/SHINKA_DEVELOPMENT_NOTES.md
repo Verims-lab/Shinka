@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-028
+**Current BuildMarker:** Buildmarker-029
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 029 — local notification verification complete; platform binding blocked
+
+Started from clean Test 414b05d; safely fast-forwarded merged main to 060ba76 (Base44 SDK 0.8.57/Vite plugin lock update). No user edits overwritten. Read-only workflow list returned zero entries; current app uses Workflows. Completed source/SDK/original-document inspection, shared generation/admission, bounded scheduler core, delivery journal/retry, UI states, explicit schema extensions and Health registrations. Production endpoint remains closed pending authoritative scheduler/push/device binding. Initial focused run: 21 PASS/1 FAIL (NT16 expected p-24 versus generated p-024); test fixture corrected without changing paging predicate. Initial sandbox run could not bind localhost; rerun uses approved local browser execution. Final Chromium/WebKit each 608/608, 8 retained server + 3 actual inactive-entry checks per command, local Health 136 PASS/13 expected prerequisite BLOCKED. Mandatory local gates and unchanged byte budgets pass; dependency audit zero. Full evidence and remaining implementation in SHINKA_NOTIFICATIONS_029.md. No live mutations, push, workflow create/run, scan or publish.
 
 ## 028 — completed local verification continuation
 

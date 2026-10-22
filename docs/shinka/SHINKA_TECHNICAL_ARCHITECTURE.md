@@ -2,14 +2,24 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-028
+**Current BuildMarker:** Buildmarker-029
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
-**Not Implemented:** permanent platform/provider erasure and notification delivery/scheduler. Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
+**Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## 029 — one scheduler path, shared engine and provider boundary
+
+Read-only Base44 CLI workflows list returned an empty supported list on 2026-10-22; the UI also exposes Workflows. Choose Workflows only. Do not add function.jsonc automations: current documentation rejects those on workflow apps. No remote workflow is created, activated or executed by this package. Intended owner-configured cadence is every five minutes in UTC, one scheduled function, no frontend polling. Configuration/activation remains blocked by the missing verified authentication and push binding, in addition to mobile setup.
+
+notificationScheduler bounds each pass to 25 preferences sorted by ID and a 20-second between-owner admission budget. NotificationSchedule stores one durable lexical cursor with per-owner progress; duplicate checkpoints block. A single slow SDK request can exceed that admission budget (no artificial cancellation claim). Production function timeout remains the platform limit. Only current-day delivery rows (maximum ten competing candidates) and the existing bounded daily history are read; no all-delivery-history scan. Global cursor concurrency may repeat/skip a page until the next sweep; it is not a lock. Restart resumes the last saved cursor, and end-of-sweep resets it. Jobs with a newer ID enter a later page/sweep.
+
+produceDailyForOwner is the single algorithm used by Home and scheduler, with fresh admission callbacks. notificationOwner checks native User, ACTIVE/complete profile, existing first daily, privacy and admin lifecycle; it permits only daily create and delivery create/update with pre/post checks. No fake auth.me principal is minted. notificationDelivery uses persisted intent/readback, candidate ordering and a worker-local map; IN_FLIGHT or unknown outcomes suppress retry. Cross-worker final-read/send races and in-flight revocation remain residual risks. Conditional Home timezone update is read back, not claimed as CAS.
+
+base44PushProvider is backend-only and names the documented Core.SendPushNotification dynamic SDK method. Named parameters, result interpretation and trusted device eligibility are intentionally not invented: no production binding is supplied. notificationSchedule entry is hard-closed before client creation, including requests with apparent service headers. An injected service-role SDK client alone never authenticates a scheduler caller. Local NT/NS checks prove these boundaries, not a working hosted schedule.
 
 ## 028 — shared security modules (ACTIVE)
 
@@ -112,7 +122,7 @@ Responsibilities: nativeDailyPersistence (bounded immutable-candidate reconcilia
 | Scheduler / jobs | Base44 workflows (scheduled) | 06:00 local generation, retries. |
 | Content engine | single backend module | Pair selection + snapshot. |
 | Cycle engine | shared pure backend module | Current native actual-date/read-time OD-012 projection; historical atomic protocol is not a native guarantee. |
-| Notification | backend + external push provider | Delivery idempotency. |
+| Notification | backend + Base44 native push | Bounded ordinary-SDK reconciliation; production binding blocked; no provider idempotency proven. |
 | Internal tooling | `src/foundation/**`, `src/services/internal/**`, `/internal/*`, `Internal*` entities | Admin-only. |
 
 ## Health framework
@@ -125,7 +135,7 @@ Machine codes in `src/foundation/errors.js` (AUTH_REQUIRED, FORBIDDEN, NOT_FOUND
 Canonical list: `src/foundation/capabilityRegister.js` (24 items after Buildmarker-007). Historical counts at Buildmarker-001: VERIFIED 1 (backend function execution), PARTIALLY_VERIFIED 4 (field types, auth providers, RLS, admin role), UNVERIFIED 15, UNSUPPORTED 0. Items: field types, UNIQUE, compound UNIQUE, indexes, FK, transaction/rollback, conditional update, concurrency, auth providers, row/owner security, admin role, backend execution, scheduler, secrets, GeoNames proxy, Astronomy library, push, backup, restore, deployment rollback.
 
 ## Future package boundaries
-H04/H12 foundation and H06/H07 onboarding contracts are present; GeoNames and onboarding consent are scoped current work. H08 Calendar and H09 content/Home are implemented under native continuation. Remaining product features: H11 withdrawal/account and H14 notifications. H15 executable resilience is active in 019; field performance remains external. Live verification remains separate.
+H04/H12 foundation and H06/H07 onboarding contracts are present; GeoNames and onboarding consent are scoped current work. H08 Calendar and H09 content/Home are implemented under native continuation. H11 withdrawal/account is implemented in 023; H14 local notification core in 029, with production binding pending. H15 executable resilience is active in 019; field performance remains external. Live verification remains separate.
 
 ## Repository hardening boundaries
 - `scripts/staticEvidence.mjs` reads repository files only during Vite build/dev on the host. The virtual module exports safe findings, counts, paths and SHA-256 hashes. Raw source and canonical document bodies are not imported with `?raw` or shipped as a source/document registry. H01/H02/H03/H04/H13 declare build-time inspection, not live server inspection.

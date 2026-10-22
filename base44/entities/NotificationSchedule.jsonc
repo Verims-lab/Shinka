@@ -1,0 +1,12 @@
+{
+  "name": "NotificationSchedule",
+  "type": "object",
+  "description": "029 operational scheduler cursor. Cursor is an opaque preference record ID used only as a lexical boundary; no recipient payload or credential. Logical singleton only; duplicate rows stop the worker. Owner deletion does not delete this global traversal position.",
+  "properties": {
+    "schedule_key": { "type":"string", "enum":["DAILY_SHINKA"] },
+    "cursor": { "type":"string" },
+    "last_tick_at": { "type":"string", "format":"date-time" }
+  },
+  "required": ["schedule_key","cursor","last_tick_at"],
+  "rls": { "create":false,"read":false,"update":false,"delete":false }
+}

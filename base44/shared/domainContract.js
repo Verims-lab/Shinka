@@ -47,6 +47,7 @@ export const RELATIONSHIPS = Object.freeze([
 
 // INTERNAL TOOLING storage — explicitly EXCLUDED from the 20-entity product contract.
 export const INTERNAL_TOOLING_ENTITIES = Object.freeze([
+  { name: "NotificationSchedule", purpose: "029 global bounded traversal cursor; no recipient or credential", access: "scheduler backend only; direct CRUD denied" },
   { name: "AdminTestOperation", purpose: "Test Tools operation journal, reset progress and deletion tombstone", access: "backend-only; direct CRUD denied" },
   { name: "InternalHealthRun", purpose: "Health run history (redacted reports)", access: "current native admin backend; direct CRUD denied" },
   { name: "UserCalendarAction", purpose: "Private owner health intent/result receipt for Calendar recovery", access: "backend-only; direct CRUD denied; included in health cleanup" },
