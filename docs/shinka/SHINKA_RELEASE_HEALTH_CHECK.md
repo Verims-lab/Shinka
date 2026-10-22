@@ -2,11 +2,17 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-026
-**Last Updated:** 2026-10-21
+**Current BuildMarker:** Buildmarker-027
+**Last Updated:** 2026-10-22
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Scope:** Health catalog HC-026.0; repository, synthetic and external evidence separated.
+
+## HC-027.0 — pre-notification quality milestone
+
+No case is removed or converted from failure to PASS. H06-004 adds QM05 (safe same-origin return and bootstrap stripping without modifying browser history). H06-005 adds QM01 (one fresh request-scoped server principal; next request rejects removed identity). H12-001/S04 now exercises actual native Calendar/Onboarding/You denials and asserts all persisted tables and mutation counts unchanged. H16-007 adds QM02–04: private report opener/referrer/HTTPS/cancellation/retry and a negative-assertion self-test. H15-002 remains LOCAL_BROWSER, now including production transition timing and actual-App no-prefetch, reload/back/forward, late response, account/consent invalidation and logout concealment. Existing catalog/server IDs and execution scopes are unchanged (170 total; 145 in-app, 10 local, 13 external, 2 future). HC advances because executable evidence semantics changed.
+
+Local Health UI verification now injects a save failure, retries the same report, lists one row and opens its synthetic private report with no opener. Backend persistence loss/retry/digest/owner guards remain in their existing tests. All 025 timeouts/partial progress/cache rules and 026 mobile assertions remain. Local prerequisite BLOCKED results do not reopen the user's previously passing hosted content/readiness cases. Post-publish Full Health belongs to the user.
 
 ## HC-026.0 mobile contract
 

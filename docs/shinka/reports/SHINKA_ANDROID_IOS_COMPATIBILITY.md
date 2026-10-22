@@ -1,5 +1,13 @@
 # Shinka Android / iOS compatibility evidence
 
+## 027 — pre-notification audit continuation (2026-10-22)
+
+The new [single milestone report](SHINKA_PRE_NOTIFICATION_QUALITY_027.md) contains fresh Chromium/WebKit results, the corrected production before/after transition samples, ASVS scope and dependency closure. The current package preserves all 026 mobile and 025 timing/abort checks. The same 150 + 87 checks per engine pass across TR/EN, light/dark, narrow/landscape/200% text and keyboard/layers; new actual-App checks cover shared owner resolver, no backend prefetch, reload/back/forward, late completion, privacy/account switch and logout/back concealment. This is a local synthetic transport, not new hosted/native/device proof.
+
+Representative 027 screenshots were visually inspected: [Chromium dark Home](quality-027/chromium-home-dark-320-200percent.png), [Calendar light](quality-027/chromium-calendar-light-320-200percent.png), [WebKit You](quality-027/webkit-you-dark-320-200percent.png), [settlement sheet](quality-027/webkit-birthplace-dark-long-list-200percent.png), [ON05](quality-027/webkit-cycle-dark-320-200percent.png), [landscape EN Pattern](quality-027/webkit-pattern-844-en-2x.png). Enlarged text wraps and scrolls; sheets retain a visible close action and scrollable options. Native keyboard, physical safe areas/system Back, actual touch and OAuth remain external acceptance. No universal WCAG/store certification is implied.
+
+The Router Moderate advisory chain is resolved by reviewed 7.18.4; 027 audit has zero findings. Bundle limits remain unchanged. Route continuity removes a redundant Home-crossing hydrate; retained destination reads still require fresh server guards. Existing Pattern loading expansion/CLS observation remains labelled, not hidden. This section supersedes only current 026 dependency/timing status; all older evidence below remains historical.
+
 ## Current mobile package — Buildmarker-026 / HC-026.0 (2026-10-21)
 
 This section supersedes historical light-only/mobile native-select presentation and old atomic-prerequisite statements below. Base44 remains the authority. The user supplied an eight-area mobile improvement request, not a raw store-scan result; no new store scan or hosted call was performed. Each recommendation was compared with source. Existing document scrolling, viewport-fit=cover, vh/dvh fallback, provider hierarchy/race guards, immutable daily selection and verified Calendar readback were retained.

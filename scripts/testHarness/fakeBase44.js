@@ -53,7 +53,7 @@ export const base44 = {
   functions: { invoke: async (name, body) => {
     calls.push({ name, action: body.action }); // Action names only; no user payload.
     if(operationGates.has(name))await operationGates.get(name).promise;
-    if(operationFailures.delete(name))throw new Error('SYNTHETIC_NETWORK_FAILURE');
+    if(operationFailures.delete(`${name}.${body.action}`)||operationFailures.delete(name))throw new Error('SYNTHETIC_NETWORK_FAILURE');
     if (name === 'applicationSession') return { data: { ...await base44.auth.me(), authority: 'BASE44_NATIVE_V1' } };
     if (name === 'adminTestTools') {
       if (!testToolsLab) testToolsLab = import('@/foundation/tests/nativeFixture').then(({nativeFixture})=>{const fixture=nativeFixture();fixture.state.time=new Date().toISOString();Object.assign(fixture.tables.User.find(row=>row.id==='ownerA'),{full_name:'Synthetic Target',email:'target@example.invalid'});return fixture;});
@@ -96,7 +96,8 @@ export const base44 = {
       if (fixture) return { data: structuredClone(fixture) };
       return { data: { error_code: 'DAILY_ATOMIC_CAPABILITY_REQUIRED' } };
     }
-    if(name==='internalHealth' && body.action==='save') {globalThis.__savedHealthReport=body.report;const row={id:'synthetic-health',run_id:body.report.runId,build_marker:body.report.buildMarker,health_catalog_version:body.report.healthCatalogVersion,status:body.report.gate.status,started_at:body.report.startedAt};healthRuns.push(row);return {data:{id:row.id,run_id:row.run_id}};}
+    if(name==='internalHealth' && body.action==='save') {globalThis.__savedHealthReport=body.report;const row={id:'synthetic-health',run_id:body.report.runId,build_marker:body.report.buildMarker,health_catalog_version:body.report.healthCatalogVersion,status:body.report.gate.status,started_at:body.report.startedAt,report_file_uri:'private/synthetic-health.json'};if(!healthRuns.some(r=>r.run_id===row.run_id))healthRuns.push(row);return {data:{id:row.id,run_id:row.run_id}};}
+    if(name==='internalHealth' && body.action==='report') {if(!healthRuns.some(r=>r.id===body.runId))throw new Error('SYNTHETIC_UNKNOWN_REPORT');return {data:{signed_url:'https://health-report.example.invalid/synthetic-report.json'}};}
     if (body.action === 'list') return { data: { runs: healthRuns } };
     throw new Error('LIVE_OPERATION_UNAVAILABLE_IN_CLI');
   } },

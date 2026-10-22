@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — approved references imported; native daily snapshot observed; hosted acceptance remains partial
-**Current BuildMarker:** Buildmarker-026
-**Last Updated:** 2026-10-21
+**Current BuildMarker:** Buildmarker-027
+**Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
 **Scope:** Source preparation, controlled import, daily selection and Home; shared app/prod explicitly authorized for synthetic acceptance.
 **Implemented:** Workbook validator, exact backend manifest, dry-run/apply/verify importer, Moon preparation, daily selection and snapshot protocol, ON-06/Home integration.
 **Not Implemented:** Distributed physical uniqueness guarantee; scheduled lookup renewal. Remaining hosted/device evidence is tracked separately.
 **Open Decisions:** OD-005, OD-008 (noted); OD-002 RESOLVED_BY_PRODUCT_DECISION
+
+## 027 preservation
+
+No source text, pair, category/mapping, Moon reference, importer or daily selection change. The explicit VERIFIED_CONTENT_IMPORT_STAGES package allowlist advances to 027; imports are not run. Product route continuity preserves only owner-bound resolver state, never a new daily record or a reference cache. Existing daily immutable readback and published-versus-local evidence distinctions remain.
 
 ## Privacy lifecycle and historical content — 023
 

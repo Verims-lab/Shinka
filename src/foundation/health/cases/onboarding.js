@@ -1,4 +1,5 @@
 import { YOU_TESTS } from '../../tests/youTests';
+import { QUALITY_MILESTONE_TESTS } from '../../tests/qualityMilestoneTests';
 import { MAINTENANCE_TESTS } from '@/foundation/tests/maintenanceTests';
 import { ONBOARDING_DECISION_TESTS } from '@/foundation/tests/onboardingDecisionTests';
 import { PRODUCTION_ONBOARDING_TESTS } from '@/foundation/tests/productionOnboardingTests';
@@ -7,15 +8,15 @@ import { SECURITY_TESTS } from '@/foundation/tests/securityTests';
 import { syntheticProbe } from './domainProbe';
 import { makeCase, futureCase } from '../caseFactory';
 import { CLASS, RUNNER, APPLICABILITY } from '../constants';
-const tests=[...YOU_TESTS,...MAINTENANCE_TESTS,...ONBOARDING_DECISION_TESTS,...PRODUCTION_ONBOARDING_TESTS,...AUTH_TESTS,...ONBOARDING_TESTS,...SECURITY_TESTS];
+const tests=[...QUALITY_MILESTONE_TESTS,...YOU_TESTS,...MAINTENANCE_TESTS,...ONBOARDING_DECISION_TESTS,...PRODUCTION_ONBOARDING_TESTS,...AUTH_TESTS,...ONBOARDING_TESTS,...SECURITY_TESTS];
 const probe=(ids)=>syntheticProbe(tests.filter(([id])=>ids.includes(id)));
 const c=suite=>makeCase(suite,{runnerType:RUNNER.RUNTIME,classification:CLASS.SYNTHETIC_RUNTIME});
 export const ONBOARDING_HEALTH_CASES=[
  c('H06')('H06-001','Apple/Google-only auth boundary','Only the two approved providers can be invoked.',probe(['A02'])),
  c('H06')('H06-002','18+ declaration before provider call','Unchecked and missing values cannot initiate OAuth.',probe(['A01'])),
  c('H06')('H06-003','OAuth cancellation and safe failure','Cancellation is distinct; raw provider errors never returned.',probe(['A03'])),
- c('H06')('H06-004','Authenticated owner and sanitized response','Forged owner/role rejected; unexpected payloads removed.',probe(['YT02','A06','A09','O26','P01','P02','P06','P12'])),
- c('H06')('H06-005','Repeated hydration does not duplicate identity rows','Production SDK adapter and synthetic atomic protocol; no new Base44 identity created.',probe(['A04','A05','P03','P04'])),
+ c('H06')('H06-004','Authenticated owner and sanitized response','Forged owner/role rejected; unexpected payloads removed; OAuth return targets reject external normalization and bootstrap injection.',probe(['QM05','YT02','A06','A09','O26','P01','P02','P06','P12'])),
+ c('H06')('H06-005','Repeated hydration does not duplicate identity rows','One fresh server principal per request; no cross-request identity cache or mutation during hydration.',probe(['QM01','A04','A05','P03','P04'])),
  c('H06')('H06-006','Existing/INACTIVE user routing','Inactive profile cannot be recreated; existing daily data preserved.',probe(['A07','A08'])),
  futureCase('H06','H06-007','Live Apple/Google sign-in and callback','Real provider/device verification required after deployment.',APPLICABILITY.EXTERNAL,CLASS.LIVE_RUNTIME),
  c('H07')('H07-001','Backend DOB and 18+ date-only validation','Missing/future/underage and leap boundaries.',probe(['O03','O04','O05'])),

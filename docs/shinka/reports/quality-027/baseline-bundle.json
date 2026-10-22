@@ -1,0 +1,63 @@
+{
+  "scope": "FRESH_BASELINE_PRODUCTION_DEFAULT_BUILD_STATIC_IMPORT_CLOSURE",
+  "nodeEnv": "production",
+  "commit": "860c2d74e48e399e30d0448a998b637a3644314f",
+  "initialJS": {
+    "raw": 487786,
+    "gzip": 162039
+  },
+  "css": {
+    "raw": 77545,
+    "gzip": 14261
+  },
+  "assets": [
+    {
+      "file": "/assets/index-xCphbaMS.js",
+      "sha256": "cc67a631e9d0a3db65c2d25d91da75d237ff50d2a2dfafed9eb237bea65ba31d"
+    },
+    {
+      "file": "/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021"
+    },
+    {
+      "file": "/assets/jsx-runtime-096o_Uk7.js",
+      "sha256": "1fbae96912290168f77bee003446a6539832ab19c4580f22dda421f7d74ad037"
+    },
+    {
+      "file": "/assets/react-dom-axp8LMq0.js",
+      "sha256": "8cc0d6e3e2f0dd047a1ff4077c822edca0e5b1d23423d1b9646d5cba202de820"
+    },
+    {
+      "file": "/assets/dist-CRpN_Yy9.js",
+      "sha256": "191480267c230ed052d8c59210698cb6428eb4d97816d0bbaacfd1c65f737f24"
+    },
+    {
+      "file": "/assets/uiuxTables-IOdn2gBw.js",
+      "sha256": "a310b34f50af578f64b19bcba1bc6f4e59fc23c0e857469166b3774212526877"
+    },
+    {
+      "file": "/assets/moon-BKAq0cA5.js",
+      "sha256": "4c9cbaf4f24c281630047135156556e852b2dc4723bc82e30a3b408a1808fc55"
+    },
+    {
+      "file": "/assets/strings-qV78hWQO.js",
+      "sha256": "6ca0ab16c20d708789f500ede4a16414ae2351e1d6f87463659ca70c536c6606"
+    },
+    {
+      "file": "/assets/onboardingCopy-BB1k9G_Z.js",
+      "sha256": "5c4511d250b58b95b0cdc38aa724adcf399a8268d2666846b2e8a6417eeada86"
+    },
+    {
+      "file": "/assets/onboardingValidation-DK9hDSC9.js",
+      "sha256": "34575c983a976b5cddcfce18d67e376d57507fdd6aa2c8369011e882b35f3a4e"
+    },
+    {
+      "file": "/assets/internalAuthorization-DJtRJyBa.js",
+      "sha256": "81fe43db2318e84b2ea38130e312db4d35f56de778e438e264c78c2a0673f688"
+    },
+    {
+      "file": "/assets/dailyCopy-DNf3jBEy.js",
+      "sha256": "04694e804dfefe169174ffb51cf68d31bc9c7da685ee3f433e5420041ba7bc0e"
+    }
+  ]
+}

@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-026
-**Last Updated:** 2026-10-21
+**Current BuildMarker:** Buildmarker-027
+**Last Updated:** 2026-10-22
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## 027 implementation continuation
+
+No entity/schema, reference/content, identity, native concurrency or privacy contract changes. Browser requests still reach Base44 functions; onboarding reuses only the current dispatcher's authenticated principal within that request. Route continuity removes redundant browser hydration, not server admission. Publish all affected native entry/shared code together with frontend/catalog under the owner's existing flow; this package does not publish or execute live mutations. [027 local evidence and remaining acceptance](reports/SHINKA_PRE_NOTIFICATION_QUALITY_027.md).
 
 ## 026 publication and platform boundary
 

@@ -2,14 +2,20 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-026
-**Last Updated:** 2026-10-21
+**Current BuildMarker:** Buildmarker-027
+**Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and notification delivery/scheduler. Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## 027 — navigation and report lifetime
+
+All six product/entry routes use the same `ProductRoute → ProtectedRoute → Onboarding` tree. The resolver's existing owner-bound in-memory snapshot survives product tab changes; screen reads still run on entry through current backend admission. No global/persistent profile cache, auth cache, data prefetch or write prefetch is added. Logout, owner change and privacy signals invalidate the resolver; a fresh document hydrates again. Onboarding/auth forms load lazily only when needed, keeping returning-user entry within the unchanged bundle budgets after the Router security update.
+
+Onboarding authenticates once in the public dispatcher and passes that non-serializable trusted principal to its private operation for the same request. Fresh lifecycle/privacy and per-write checks remain; subsequent requests authenticate again. This is neither cached authorization nor transaction isolation. Health list/report reads use the existing 30-second store deadline. Report opening reserves an isolated blank window in the user gesture, cancels it on unmount/session/privacy invalidation, and navigates only to a validated HTTPS signed target. No late result may open a private report after disposal. Actual SDK invocations are not claimed to be physically aborted.
 
 ## Mobile web responsibilities — 026
 

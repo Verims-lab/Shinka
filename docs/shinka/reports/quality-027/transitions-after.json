@@ -1,0 +1,1314 @@
+{
+  "scope": "LOCAL_PRODUCTION_BUILD_REAL_SDK_SYNTHETIC_HTTP_NO_HOSTED_NO_FIELD_INP",
+  "nodeEnv": "production",
+  "commit": "Buildmarker-027-final-source",
+  "browser": "Chromium",
+  "profile": {
+    "apiLatencyMs": 200,
+    "assetLatencyMs": 40,
+    "cpuSlowdown": 4,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "samples": 5,
+    "bandwidthLimit": null,
+    "externalFonts": "BLOCKED_IN_BOTH_RUNS"
+  },
+  "rows": [
+    {
+      "sample": 1,
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "start": 1590.199999988079,
+      "feedback": 5.600000023841858,
+      "visible": 78.80000001192093,
+      "usable": 330.9000000357628,
+      "jsBytes": 77324,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 1668.1000000238419,
+          "end": 1894.800000011921,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "start": 1952.300000011921,
+      "feedback": 11.800000011920929,
+      "visible": 71.19999998807907,
+      "usable": 294.80000001192093,
+      "jsBytes": 16613,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 2025.1000000238419,
+          "end": 2237.5,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 2025.1000000238419,
+          "end": 2237.5,
+          "bytes": 705
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "start": 2288,
+      "feedback": 64.5,
+      "visible": 64.5,
+      "usable": 293,
+      "jsBytes": 24471,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 2353.399999976158,
+          "end": 2561.300000011921,
+          "bytes": 577
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2635.800000011921,
+      "feedback": 27.899999976158142,
+      "visible": 27.899999976158142,
+      "usable": 244.5999999642372,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 2654.100000023842,
+          "end": 2858.699999988079,
+          "bytes": 535
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 2916.5,
+      "feedback": 13.800000011920929,
+      "visible": 30.5,
+      "usable": 248.19999998807907,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 2937.899999976158,
+          "end": 3145.100000023842,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 2937.899999976158,
+          "end": 3145.100000023842,
+          "bytes": 705
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 3200.899999976158,
+      "feedback": 30,
+      "visible": 30,
+      "usable": 246.10000002384186,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 3222.600000023842,
+          "end": 3432.199999988079,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "start": 3483.600000023842,
+      "feedback": 13.299999952316284,
+      "visible": 30.299999952316284,
+      "usable": 246.5999999642372,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 3504.5,
+          "end": 3709.100000023842,
+          "bytes": 535
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3767.600000023842,
+      "feedback": 12.699999988079071,
+      "visible": 29.299999952316284,
+      "usable": 248.19999998807907,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3786.800000011921,
+          "end": 3991.399999976158,
+          "bytes": 577
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 4050,
+      "feedback": 30.80000001192093,
+      "visible": 30.80000001192093,
+      "usable": 247.19999998807907,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 4071.300000011921,
+          "end": 4279.600000023842,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "start": 4334.399999976158,
+      "feedback": 12.400000035762787,
+      "visible": 29.200000047683716,
+      "usable": 246.5,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 4353.300000011921,
+          "end": 4558.600000023842,
+          "bytes": 577
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 4617.699999988079,
+      "feedback": 30,
+      "visible": 30,
+      "usable": 247.19999998807907,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 4638.199999988079,
+          "end": 4844.600000023842,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 4638.199999988079,
+          "end": 4844.699999988079,
+          "bytes": 705
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "start": 4900.399999976158,
+      "feedback": 29.700000047683716,
+      "visible": 29.700000047683716,
+      "usable": 247,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 4921.300000011921,
+          "end": 5124.199999988079,
+          "bytes": 535
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "start": 1448.6000000238419,
+      "feedback": 18.69999998807907,
+      "visible": 83,
+      "usable": 320.5999999642372,
+      "jsBytes": 77324,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 1536.300000011921,
+          "end": 1757.3999999761581,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "start": 1795.800000011921,
+      "feedback": 12.899999976158142,
+      "visible": 71.5,
+      "usable": 296.80000001192093,
+      "jsBytes": 16613,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 1868.3999999761581,
+          "end": 2079.300000011921,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 1868.3999999761581,
+          "end": 2079.399999976158,
+          "bytes": 705
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "start": 2129,
+      "feedback": 69.39999997615814,
+      "visible": 69.39999997615814,
+      "usable": 296.19999998807907,
+      "jsBytes": 24471,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 2199.899999976158,
+          "end": 2406.399999976158,
+          "bytes": 577
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2462.899999976158,
+      "feedback": 28,
+      "visible": 28,
+      "usable": 244,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 2483,
+          "end": 2686.899999976158,
+          "bytes": 535
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 2745.699999988079,
+      "feedback": 12.300000011920929,
+      "visible": 29.5,
+      "usable": 246.10000002384186,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 2765.5,
+          "end": 2975.399999976158,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 2766.199999988079,
+          "end": 2975.5,
+          "bytes": 705
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 3029.100000023842,
+      "feedback": 27.799999952316284,
+      "visible": 27.799999952316284,
+      "usable": 246.39999997615814,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 3047.699999988079,
+          "end": 3258,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "start": 3313.100000023842,
+      "feedback": 12.799999952316284,
+      "visible": 29,
+      "usable": 245.89999997615814,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 3332.300000011921,
+          "end": 3536,
+          "bytes": 535
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3593.699999988079,
+      "feedback": 15,
+      "visible": 31.400000035762787,
+      "usable": 248.69999998807907,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3614.5,
+          "end": 3820.199999988079,
+          "bytes": 577
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 3877.300000011921,
+      "feedback": 31.80000001192093,
+      "visible": 31.80000001192093,
+      "usable": 247.5999999642372,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 3898,
+          "end": 4106.699999988079,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "start": 4162.600000023842,
+      "feedback": 11.899999976158142,
+      "visible": 28.5,
+      "usable": 246.19999998807907,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 4181.399999976158,
+          "end": 4386.699999988079,
+          "bytes": 577
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 4444.899999976158,
+      "feedback": 31.200000047683716,
+      "visible": 31.200000047683716,
+      "usable": 245.80000001192093,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 4466.399999976158,
+          "end": 4673.100000023842,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 4466.399999976158,
+          "end": 4673.100000023842,
+          "bytes": 705
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "start": 4727.800000011921,
+      "feedback": 31.099999964237213,
+      "visible": 31.099999964237213,
+      "usable": 246,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 4747.699999988079,
+          "end": 4949.699999988079,
+          "bytes": 535
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "start": 1447.300000011921,
+      "feedback": 18.80000001192093,
+      "visible": 80.30000001192093,
+      "usable": 314.39999997615814,
+      "jsBytes": 77324,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 1528.5,
+          "end": 1748.1000000238419,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "start": 1794.800000011921,
+      "feedback": 13.800000011920929,
+      "visible": 80.69999998807907,
+      "usable": 297.89999997615814,
+      "jsBytes": 16613,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 1868.199999988079,
+          "end": 2081.100000023842,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 1868.199999988079,
+          "end": 2081.100000023842,
+          "bytes": 705
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "start": 2128.699999988079,
+      "feedback": 69.40000003576279,
+      "visible": 69.40000003576279,
+      "usable": 296.80000001192093,
+      "jsBytes": 24471,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 2199.300000011921,
+          "end": 2405.5,
+          "bytes": 577
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2461.899999976158,
+      "feedback": 27.900000035762787,
+      "visible": 27.900000035762787,
+      "usable": 247,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 2483.600000023842,
+          "end": 2688.300000011921,
+          "bytes": 535
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 2743.100000023842,
+      "feedback": 15.599999964237213,
+      "visible": 30.099999964237213,
+      "usable": 247,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 2766.300000011921,
+          "end": 2974.300000011921,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 2766.899999976158,
+          "end": 2974.300000011921,
+          "bytes": 705
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 3026.699999988079,
+      "feedback": 31.600000023841858,
+      "visible": 31.600000023841858,
+      "usable": 246.80000001192093,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 3048.800000011921,
+          "end": 3258,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "start": 3312,
+      "feedback": 11.399999976158142,
+      "visible": 30,
+      "usable": 245.39999997615814,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 3331.399999976158,
+          "end": 3533.800000011921,
+          "bytes": 535
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3592.899999976158,
+      "feedback": 14.200000047683716,
+      "visible": 31.100000023841858,
+      "usable": 249.30000001192093,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3612.399999976158,
+          "end": 3816.199999988079,
+          "bytes": 577
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 3876.699999988079,
+      "feedback": 32.30000001192093,
+      "visible": 32.30000001192093,
+      "usable": 247,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 3897,
+          "end": 4105.800000011921,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "start": 4159.199999988079,
+      "feedback": 14.600000023841858,
+      "visible": 32.40000003576279,
+      "usable": 247.60000002384186,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 4181,
+          "end": 4384.699999988079,
+          "bytes": 577
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 4442.600000023842,
+      "feedback": 31.099999964237213,
+      "visible": 31.099999964237213,
+      "usable": 247.5,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 4464.699999988079,
+          "end": 4670.800000011921,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 4464.699999988079,
+          "end": 4670.899999976158,
+          "bytes": 705
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "start": 4728.600000023842,
+      "feedback": 28.399999976158142,
+      "visible": 28.399999976158142,
+      "usable": 244.5,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 4745.600000023842,
+          "end": 4947.899999976158,
+          "bytes": 535
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "start": 1446.6000000238419,
+      "feedback": 19.099999964237213,
+      "visible": 80.09999996423721,
+      "usable": 320.5999999642372,
+      "jsBytes": 77324,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 1531.5,
+          "end": 1754.9000000357628,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "start": 1794.4000000357628,
+      "feedback": 12.5,
+      "visible": 72.09999996423721,
+      "usable": 296.0999999642372,
+      "jsBytes": 16613,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 1867.5,
+          "end": 2080,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 1868.199999988079,
+          "end": 2080.100000023842,
+          "bytes": 705
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "start": 2128.300000011921,
+      "feedback": 69.5,
+      "visible": 69.5,
+      "usable": 295.80000001192093,
+      "jsBytes": 24471,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 2198.800000011921,
+          "end": 2405.699999988079,
+          "bytes": 577
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2460.5,
+      "feedback": 30.19999998807907,
+      "visible": 30.19999998807907,
+      "usable": 246.60000002384186,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 2481.100000023842,
+          "end": 2684.600000023842,
+          "bytes": 535
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 2743.800000011921,
+      "feedback": 13.800000011920929,
+      "visible": 30.19999998807907,
+      "usable": 247.5,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 2765.400000035763,
+          "end": 2975.100000023842,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 2766.199999988079,
+          "end": 2975.300000011921,
+          "bytes": 705
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 3027.400000035763,
+      "feedback": 29.899999976158142,
+      "visible": 29.899999976158142,
+      "usable": 246.5999999642372,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 3048.300000011921,
+          "end": 3256.900000035763,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "start": 3309.600000023842,
+      "feedback": 15.199999988079071,
+      "visible": 31.19999998807907,
+      "usable": 248.30000001192093,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 3332.199999988079,
+          "end": 3534.400000035763,
+          "bytes": 535
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3594.100000023842,
+      "feedback": 13.300000011920929,
+      "visible": 30.099999964237213,
+      "usable": 247.39999997615814,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3613.199999988079,
+          "end": 3819.100000023842,
+          "bytes": 577
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 3876.900000035763,
+      "feedback": 30,
+      "visible": 30,
+      "usable": 247.29999995231628,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 3897.800000011921,
+          "end": 4108.400000035763,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "start": 4161.300000011921,
+      "feedback": 12.699999988079071,
+      "visible": 29.600000023841858,
+      "usable": 245.80000001192093,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 4180.699999988079,
+          "end": 4386,
+          "bytes": 577
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 4442.699999988079,
+      "feedback": 31,
+      "visible": 31,
+      "usable": 248,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 4464.600000023842,
+          "end": 4670,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 4464.600000023842,
+          "end": 4670,
+          "bytes": 705
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "start": 4727.900000035763,
+      "feedback": 29.299999952316284,
+      "visible": 29.299999952316284,
+      "usable": 245.69999998807907,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 4746.699999988079,
+          "end": 4950.800000011921,
+          "bytes": 535
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "start": 1447.199999988079,
+      "feedback": 20.599999964237213,
+      "visible": 83.39999997615814,
+      "usable": 323.0999999642372,
+      "jsBytes": 77324,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 1536,
+          "end": 1757.0999999642372,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "start": 1794.8999999761581,
+      "feedback": 13,
+      "visible": 69.39999997615814,
+      "usable": 297.5,
+      "jsBytes": 16613,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 1864.8999999761581,
+          "end": 2076.5,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 1865,
+          "end": 2076.5,
+          "bytes": 705
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "start": 2129.7999999523163,
+      "feedback": 79,
+      "visible": 79,
+      "usable": 295.4000000357628,
+      "jsBytes": 24471,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 2200,
+          "end": 2407.199999988079,
+          "bytes": 577
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2461.399999976158,
+      "feedback": 30.30000001192093,
+      "visible": 30.30000001192093,
+      "usable": 247.19999998807907,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 2482.399999976158,
+          "end": 2685.699999988079,
+          "bytes": 535
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 2744.2999999523163,
+      "feedback": 14.100000023841858,
+      "visible": 30.30000001192093,
+      "usable": 247.80000001192093,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 2766.199999988079,
+          "end": 2971.7999999523163,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 2766.199999988079,
+          "end": 2971.899999976158,
+          "bytes": 705
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 3029.199999988079,
+      "feedback": 28.5,
+      "visible": 28.5,
+      "usable": 246.0999999642372,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 3049.199999988079,
+          "end": 3257.5,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "start": 3311,
+      "feedback": 13.399999976158142,
+      "visible": 30.69999998807907,
+      "usable": 247,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 3330.899999976158,
+          "end": 3533.7999999523163,
+          "bytes": 535
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3593.199999988079,
+      "feedback": 15.699999988079071,
+      "visible": 31.899999976158142,
+      "usable": 249.0999999642372,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3614.699999988079,
+          "end": 3819.199999988079,
+          "bytes": 577
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 3878.099999964237,
+      "feedback": 30.30000001192093,
+      "visible": 30.30000001192093,
+      "usable": 247.10000002384186,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 3899,
+          "end": 4109.5,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "start": 4159.799999952316,
+      "feedback": 15.400000035762787,
+      "visible": 32.30000001192093,
+      "usable": 247.70000004768372,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 4181.799999952316,
+          "end": 4387.199999988079,
+          "bytes": 577
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 4445.5,
+      "feedback": 29.899999976158142,
+      "visible": 29.899999976158142,
+      "usable": 246.5999999642372,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 4464.099999964237,
+          "end": 4670.799999952316,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 4464.199999988079,
+          "end": 4671.299999952316,
+          "bytes": 705
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "start": 4726.399999976158,
+      "feedback": 31.5,
+      "visible": 31.5,
+      "usable": 248.69999998807907,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 4746.899999976158,
+          "end": 4950.5,
+          "bytes": 535
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "blocked": [
+    "https://fonts.googleapis.com"
+  ]
+}

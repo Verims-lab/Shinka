@@ -4,8 +4,22 @@ export async function checkInAppHealth(page, origin) {
   await page.evaluate(()=>sessionStorage.removeItem('shinka.browser-evidence.v1'));
   assert.equal(await page.locator('input[type=file]').count(),0);
   const started=Date.now();
+  await page.evaluate(()=>window.__authFixture.failOperation('internalHealth.save'));
   await page.getByRole('button',{name:'Run Health',exact:true}).click();
+  await page.locator('[data-save-state=UNKNOWN]').waitFor({timeout:30000});
+  const beforeRetry=await page.evaluate(()=>window.__authFixture.calls.filter(c=>c.name==='internalHealth'&&c.action==='save').length);
+  await page.locator('[data-save-state] button').first().click();
   await page.locator('[data-save-state=SAVED]').waitFor({timeout:30000});
+  assert.equal(await page.evaluate(()=>window.__authFixture.calls.filter(c=>c.name==='internalHealth'&&c.action==='save').length),beforeRetry+1);
+  await page.getByRole('button',{name:'Open private report',exact:true}).waitFor();
+  assert.equal(await page.getByRole('button',{name:'Open private report',exact:true}).count(),1);
+  await page.context().route('https://health-report.example.invalid/**',route=>route.fulfill({contentType:'application/json',body:'{"synthetic":true}'}));
+  const popupEvent=page.waitForEvent('popup');
+  await page.getByRole('button',{name:'Open private report',exact:true}).click();
+  const popup=await popupEvent;
+  await popup.waitForURL('https://health-report.example.invalid/synthetic-report.json');
+  assert.equal(await popup.evaluate(()=>window.opener),null);
+  await popup.close();
   const result=await page.evaluate(()=>{
     const r=window.__savedHealthReport;
     return {scope:r.assessmentScope,runIdPresent:!!r.runId,transfers:r.localRegressionRequirements.map(x=>x.id),cases:r.cases.map(c=>({id:c.id,status:c.status,reason:c.evidence?.reason,actual:c.id==='H13-004'?c.evidence.actual:undefined})),frames:document.querySelectorAll('[data-onboarding-fixture]').length};
@@ -17,5 +31,5 @@ export async function checkInAppHealth(page, origin) {
   assert.equal(result.cases.find(c=>c.id==='H10-003').status,'PASS');
   assert.equal(result.cases.find(c=>c.id==='H13-004').actual.width,page.viewportSize().width);
   assert(!result.cases.some(c=>/TIMEOUT/.test(c.reason||'')));
-  return {scope:'LOCAL_REAL_UI_SYNTHETIC_TRANSPORT',passed:true,durationMs:Date.now()-started,requiresJson:false,saveState:'SAVED',frames:result.frames,cases:result.cases,physicalDevice:false};
+  return {scope:'LOCAL_REAL_UI_SYNTHETIC_TRANSPORT',passed:true,durationMs:Date.now()-started,requiresJson:false,saveState:'SAVED',retrySave:true,historyListed:true,privateReportOpened:true,frames:result.frames,cases:result.cases,physicalDevice:false};
 }

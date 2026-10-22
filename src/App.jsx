@@ -17,7 +17,7 @@ import UserNotRegisteredError from "@/components/UserNotRegisteredError";
 import ScrollToTop from "./components/ScrollToTop";
 import ProtectedRoute from "@/components/ProtectedRoute";
 // Add page imports here
-import Onboarding from "@/pages/Onboarding";
+import ProductRoute from "@/components/ProductRoute";
 import AdminGate from "@/components/internal/AdminGate";
 const TestTools = lazy(() => import("@/pages/internal/TestTools"));
 const AccountPrivacy = lazy(() => import("@/pages/AccountPrivacy"));
@@ -52,10 +52,13 @@ const AuthenticatedApp = () => {
       <Route path="/delete-account" element={<RouteBoundary><AccountPrivacy /></RouteBoundary>} />
       <Route
         path="/login"
-        element={<Onboarding initialEntry="UNAUTHENTICATED_SIGN_IN" />}
+        element={<ProductRoute publicEntry initialEntry="UNAUTHENTICATED_SIGN_IN" />}
       />
-      <Route path="/" element={<Onboarding />} />
-      <Route path="/onboarding" element={<Onboarding />} />
+      <Route path="/" element={<ProductRoute publicEntry />} />
+      <Route path="/onboarding" element={<ProductRoute publicEntry />} />
+      <Route path="/you" element={<ProductRoute destination="you" />} />
+      <Route path="/pattern" element={<ProductRoute destination="pattern" />} />
+      <Route path="/calendar" element={<ProductRoute destination="calendar" />} />
       <Route
         element={
           <ProtectedRoute
@@ -63,9 +66,6 @@ const AuthenticatedApp = () => {
           />
         }
       >
-        <Route path="/you" element={<Onboarding destination="you" />} />
-        <Route path="/pattern" element={<Onboarding destination="pattern" />} />
-        <Route path="/calendar" element={<Onboarding destination="calendar" />} />
         <Route element={<AdminGate />}>
           <Route path="/internal/test-tools" element={<RouteBoundary><TestTools /></RouteBoundary>} />
           <Route path="/internal" element={<RouteBoundary><AdminPanel /></RouteBoundary>} />

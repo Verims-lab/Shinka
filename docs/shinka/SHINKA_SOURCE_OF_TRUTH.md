@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-026
-**Last Updated:** 2026-10-21
+**Current BuildMarker:** Buildmarker-027
+**Last Updated:** 2026-10-22
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## 027 user-authorized quality milestone
+
+The user's 2026-10-22 “Bildirim Öncesi Kalite Milestone’u” request authorizes the current audit/fixes and reviewed Router major upgrade. It does not alter approved content, category decisions, date/consent authority, Base44 data authority or notification scope. The repository started clean at 1cd93e1; main's two-commit lead was fast-forwarded into Test before work, yielding baseline 860c2d74e48e399e30d0448a998b637a3644314f. Only Test receives this delivery. Local synthetic/browser evidence, prior user-reported live success and outstanding hosted/device acceptance remain distinct; [027 report](reports/SHINKA_PRE_NOTIFICATION_QUALITY_027.md).
 
 ## Mobile interaction and theme decision — 026, 2026-10-21
 
