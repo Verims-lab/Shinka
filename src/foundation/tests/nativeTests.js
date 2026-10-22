@@ -31,7 +31,7 @@ export const NATIVE_TESTS = [
  ['NA06','Every daily candidate counts toward the 40-day repeat exclusion',async()=>{
   const f=nativeFixture(), a=await f.today(); f.state.time='2026-10-21T12:00:00Z'; const b=await f.today(); check(a.daily.message_pair_id!==b.daily.message_pair_id);
  }],
- ['NA07','Daily active/owner/identity gates remain enforced without a global write pause',async()=>{
+ ['NA07','Inactive daily account and signed-out identity are rejected without creating a daily row',async()=>{
   const f=nativeFixture(); f.tables.UserProfile[0].account_status='INACTIVE'; await rejects(f.today,'ACTIVE_ACCOUNT_REQUIRED'); f.tables.UserProfile[0].account_status='ACTIVE'; f.state.signedOut=true; await rejects(f.today); check(!f.tables.UserDailyMessage.length); f.state.signedOut=false;
  }],
  ['NA08','Calendar actual add/edit/delete; same ID; no derived writes or duration defaults',async()=>{
@@ -84,7 +84,7 @@ export const NATIVE_TESTS = [
  ['NA21','Deletion staged failure resumes with fresh client and retains consent/audit evidence',async()=>{
   const f=nativeFixture();await add(f);const grant=JSON.stringify(f.tables.UserHealthConsent);f.once('after',c=>c.name==='UserPeriodRecord'&&c.method==='delete');await rejects(()=>f.preview('DELETE_USER').then(f.execute));check(f.tables.AdminTestOperation[0].status==='RETRY_REQUIRED');const result=await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id});check(result.job.status==='COMPLETED'&&!f.tables.User.some(r=>r.id==='ownerA')&&!f.tables.UserCalendarAction.length&&JSON.stringify(f.tables.UserHealthConsent)===grant);await rejects(()=>f.today(),'AUTH_REQUIRED');
  }],
- ['NA22','Write pause catches an already-started SDK write after return; no invented rollback',async()=>{
+ ['NA22','Post-write identity re-check rejects sign-out after SDK create; the persisted daily row remains',async()=>{
   const f=nativeFixture();f.state.after=async c=>{if(c.name==='UserDailyMessage'&&c.method==='create')f.state.signedOut=true;};await rejects(f.today);check(f.tables.UserDailyMessage.length===1);
  }],
  ['NA23','Fresh admin role revocation stops destructive stages',async()=>{

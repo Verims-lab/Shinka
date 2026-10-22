@@ -1,0 +1,26 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 typecheck
+> tsc -p ./jsconfig.json
+
+base44/shared/geonamesGuard.js(22,118): error TS2556: A spread argument must either have a tuple type or be passed to a rest parameter.
+src/foundation/tests/foundationTests.js(147,43): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(147,46): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(147,51): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/pages/OAuthConsent.jsx(111,37): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(input: string | URL | Request, init?: RequestInit): Promise<Response>', gave the following error.
+    Type '{ Authorization: string; }' is not assignable to type 'HeadersInit'.
+      Type '{ Authorization: string; }' is not assignable to type 'Record<string, string>'.
+        Index signature for type 'string' is missing in type '{ Authorization: string; }'.
+  Overload 2 of 2, '(input: URL | RequestInfo, init?: RequestInit): Promise<Response>', gave the following error.
+    Type '{ Authorization: string; }' is not assignable to type 'HeadersInit'.
+      Type '{ Authorization: string; }' is not assignable to type 'Record<string, string>'.
+        Index signature for type 'string' is missing in type '{ Authorization: string; }'.
+src/pages/OAuthConsent.jsx(209,8): error TS2739: Type '{ children: Element; icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>; title: string; }' is missing the following properties from type '{ icon: any; title: any; subtitle: any; footer: any; children: any; }': subtitle, footer
+src/pages/OAuthConsent.jsx(223,8): error TS2739: Type '{ icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>; title: string; subtitle: string; }' is missing the following properties from type '{ icon: any; title: any; subtitle: any; footer: any; children: any; }': footer, children
+src/pages/OAuthConsent.jsx(236,8): error TS2739: Type '{ children: Element; icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>; title: string; }' is missing the following properties from type '{ icon: any; title: any; subtitle: any; footer: any; children: any; }': subtitle, footer
+src/pages/OAuthConsent.jsx(249,8): error TS2739: Type '{ children: Element; icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>; title: string; }' is missing the following properties from type '{ icon: any; title: any; subtitle: any; footer: any; children: any; }': subtitle, footer
+src/pages/OAuthConsent.jsx(261,6): error TS2741: Property 'footer' is missing in type '{ children: Element[]; icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>; title: string; subtitle: string; }' but required in type '{ icon: any; title: any; subtitle: any; footer: any; children: any; }'.

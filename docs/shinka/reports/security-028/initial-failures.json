@@ -1,0 +1,147 @@
+{
+  "typecheck": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "exitCode": 2,
+    "startedAt": "2026-10-22T11:42:14.272350+00:00",
+    "completedAt": "2026-10-22T11:42:17.756457+00:00",
+    "log": "typecheck.log"
+  },
+  "browserRuns": [
+    {
+      "engine": "chromium",
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "test:foundation"
+        ],
+        "exitCode": 1,
+        "startedAt": "2026-10-22T11:43:22.155727+00:00",
+        "completedAt": "2026-10-22T11:44:28.572299+00:00",
+        "log": "chromium.log"
+      },
+      "baseCommit": "0f243df4b6512079baa0c0e64c45b0e9173c4b20",
+      "appliedPatch": "validation-source-before.patch",
+      "counts": {
+        "PASS": 580,
+        "FAIL": 2
+      },
+      "total": 582,
+      "failures": [
+        {
+          "status": "FAIL",
+          "id": "HC08",
+          "detail": "H05-009 accepts all three present empty schemas with live counts — HC08:START:schema presence treated as import"
+        },
+        {
+          "status": "FAIL",
+          "id": "DM23",
+          "detail": "Staged content Health rejects positive partial counts and wrong source hash — DM23:START:contract failed"
+        }
+      ],
+      "stopReason": "AssertionError [ERR_ASSERTION]: H05-010: Isolated helper fixtures; not live enforcement or browser acceptance\n\n'FAIL' !== 'PASS'\n\n    at checkInAppHealth (file:///Users/verimsari/Documents/Shinka/scripts/verifyHealthFlow.mjs:28:40)\n    at async file:///Users/verimsari/Documents/Shinka/scripts/runFoundationTests.mjs:147:21 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 'FAIL',\n  expected: 'PASS',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n",
+      "notCompleted": [
+        "Health assertions after the first failure",
+        "healthTiming",
+        "final JSON summary and catalog audit"
+      ]
+    },
+    {
+      "engine": "webkit",
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "test:foundation"
+        ],
+        "exitCode": 1,
+        "startedAt": "2026-10-22T11:43:21.905168+00:00",
+        "completedAt": "2026-10-22T11:44:34.393825+00:00",
+        "log": "webkit.log"
+      },
+      "baseCommit": "0f243df4b6512079baa0c0e64c45b0e9173c4b20",
+      "appliedPatch": "validation-source-before.patch",
+      "counts": {
+        "PASS": 580,
+        "FAIL": 2
+      },
+      "total": 582,
+      "failures": [
+        {
+          "status": "FAIL",
+          "id": "HC08",
+          "detail": "H05-009 accepts all three present empty schemas with live counts — HC08:START:schema presence treated as import"
+        },
+        {
+          "status": "FAIL",
+          "id": "DM23",
+          "detail": "Staged content Health rejects positive partial counts and wrong source hash — DM23:START:contract failed"
+        }
+      ],
+      "stopReason": "AssertionError [ERR_ASSERTION]: H05-010: Isolated helper fixtures; not live enforcement or browser acceptance\n\n'FAIL' !== 'PASS'\n\n    at checkInAppHealth (file:///Users/verimsari/Documents/Shinka/scripts/verifyHealthFlow.mjs:28:40)\n    at async file:///Users/verimsari/Documents/Shinka/scripts/runFoundationTests.mjs:147:21 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 'FAIL',\n  expected: 'PASS',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n",
+      "notCompleted": [
+        "Health assertions after the first failure",
+        "healthTiming",
+        "final JSON summary and catalog audit"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "test:foundation"
+        ],
+        "exitCode": 1,
+        "startedAt": "2026-10-22T11:45:14.585680+00:00",
+        "completedAt": "2026-10-22T11:46:18.067381+00:00",
+        "log": "chromium.log"
+      },
+      "baseCommit": "0f243df4b6512079baa0c0e64c45b0e9173c4b20",
+      "appliedPatch": "validation-source-plan-before.patch",
+      "counts": {
+        "PASS": 582
+      },
+      "total": 582,
+      "failures": [],
+      "stopReason": "AssertionError [ERR_ASSERTION]: H16-005: No N/A placeholders dispatched\n\n'FAIL' !== 'PASS'\n\n    at checkInAppHealth (file:///Users/verimsari/Documents/Shinka/scripts/verifyHealthFlow.mjs:28:40)\n    at async file:///Users/verimsari/Documents/Shinka/scripts/runFoundationTests.mjs:147:21 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 'FAIL',\n  expected: 'PASS',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n",
+      "notCompleted": [
+        "Health assertions after the first failure",
+        "healthTiming",
+        "final JSON summary and catalog audit"
+      ]
+    },
+    {
+      "engine": "webkit",
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "test:foundation"
+        ],
+        "exitCode": 1,
+        "startedAt": "2026-10-22T11:45:14.585745+00:00",
+        "completedAt": "2026-10-22T11:46:22.889683+00:00",
+        "log": "webkit.log"
+      },
+      "baseCommit": "0f243df4b6512079baa0c0e64c45b0e9173c4b20",
+      "appliedPatch": "validation-source-plan-before.patch",
+      "counts": {
+        "PASS": 582
+      },
+      "total": 582,
+      "failures": [],
+      "stopReason": "AssertionError [ERR_ASSERTION]: H16-005: No N/A placeholders dispatched\n\n'FAIL' !== 'PASS'\n\n    at checkInAppHealth (file:///Users/verimsari/Documents/Shinka/scripts/verifyHealthFlow.mjs:28:40)\n    at async file:///Users/verimsari/Documents/Shinka/scripts/runFoundationTests.mjs:147:21 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 'FAIL',\n  expected: 'PASS',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n",
+      "notCompleted": [
+        "Health assertions after the first failure",
+        "healthTiming",
+        "final JSON summary and catalog audit"
+      ]
+    }
+  ]
+}

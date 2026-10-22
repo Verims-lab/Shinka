@@ -10,6 +10,7 @@ const limited = () => Object.assign(new Error('GEONAMES_RATE_LIMITED'), { code: 
 const settle = () => new Promise(resolve => setTimeout(resolve, 30));
 const limitedClient = { functions: { invoke: async () => ({ data: { error_code: 'GEONAMES_RATE_LIMITED', field: 'birthplace', retry_after_seconds: 30, detail: 'upstream secret detail' } }) } };
 
+/** @type {import('./testTypes').FoundationTest[]} */
 export const SECURITY_028_UI_TESTS = [
   ['SC06', 'Rate-limit code maps to approved TR/EN copy in onboarding and You services; raw backend detail never surfaces', async () => {
     check(ONBOARDING_ERROR_KEYS.includes('GEONAMES_RATE_LIMITED'));
