@@ -1,0 +1,40 @@
+{
+  "baseCommit": "0a8b1e8baba8881434e46c8ad6057d3031cd8859",
+  "baselineTestCommit": "b4b654f6259af8d1e0c7b856d47fe49c6be93a77",
+  "baseTreesIdentical": true,
+  "applicationFilesUnchanged": {
+    "package.json": true,
+    "package-lock.json": true,
+    "base44/functions/notificationSchedule/entry.ts": true,
+    "base44/shared/notificationScheduler.js": true,
+    "base44/shared/notificationOwner.js": true,
+    "base44/shared/notificationDelivery.js": true,
+    "base44/shared/dailyMessageOperation.js": true,
+    "base44/shared/notificationPolicy.js": true,
+    "base44/shared/base44PushProvider.js": true,
+    "base44/shared/internalAuthorization.js": true,
+    "base44/shared/userLifecycle.js": true,
+    "base44/shared/privacyPolicy.js": true,
+    "src/features/you/NotificationStatus.jsx": true,
+    "src/foundation/i18n/notificationCopy.js": true,
+    "src/features/you/youController.js": true,
+    "src/features/you/useYou.js": true,
+    "src/pages/You.jsx": true
+  },
+  "nativeProjectCredentialTrackedPaths": [],
+  "credentialContentsRead": false,
+  "sdkVersion": "0.8.57",
+  "scope": "Scoped source inspection; no native device evidence or dashboard absence inference",
+  "recordedAt": "2026-10-22T18:56:09.220743+00:00",
+  "testedSourceStillMatches": true,
+  "unchangedTestAndScriptFiles": 109,
+  "finalChangedSourcePaths": [
+    "base44/shared/contentStateContract.js",
+    "base44/shared/healthConstants.js",
+    "src/foundation/buildLedgerData.js",
+    "src/foundation/buildMarker.js",
+    "src/foundation/health/cases/h16.js",
+    "src/foundation/health/cases/notifications.js"
+  ],
+  "postExecutionDelta": "Generated build ledger result text and report/prose only; runtime/test manifest unchanged"
+}

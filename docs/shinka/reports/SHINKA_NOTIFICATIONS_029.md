@@ -1,5 +1,10 @@
 # Shinka Notifications 029–030 — local delivery and platform blockers
 
+## 032 — native setup and device acceptance preparation
+
+[Native Notification Readiness 032](SHINKA_NATIVE_NOTIFICATION_READINESS_032.md) is the current setup inventory and owner runbook, with two-stage physical acceptance marked NOT_RUN. No notification/UI runtime change, native bridge, credential or real sending is added. H14-901/H16-901 descriptions are clarified without closing them. Earlier package evidence below stays historical; it is not a 032 execution result.
+
+
 ## Current 031 performance continuation
 
 [Notification Performance 031](SHINKA_NOTIFICATION_PERFORMANCE_031.md) records matched SDK counts, freshness controls and new local results. Entity reads 84→69 / 119→104 / 61→46, writes/sends unchanged. Production sending/scheduling remains disabled. This supersedes the current performance status only; 029/030 contracts and all historical evidence below are retained.

@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-031
+**Current BuildMarker:** Buildmarker-032
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## 032 — native preparation authority (2026-10-22)
+
+The explicit native-readiness request (attachment 2c2d181c-0497-4b43-9fa7-c587979a7202) permits independent setup guidance before the technical contracts arrive. Firebase is permitted only as the owner's Base44 Android push configuration; it is not a new Shinka identity, database or backend. This supersedes any reading of earlier “no external service” or “contracts before setup” wording that would block this preparation. The agent creates no accounts/projects/keys, starts no native build, and changes no dashboard configuration. Main merge/publish, credential entry and device actions belong to the owner.
+
+A safe automatic caller contract is required; distinguishing the same authorized admin's manual call from a workflow is not a product requirement. Missing auth or available service-role access never establishes system authority. Existing 029 product rules/031 read budgets remain. Browser/PWA permission is not native permission, and provider acceptance is not device display. The [032 report](reports/SHINKA_NATIVE_NOTIFICATION_READINESS_032.md) separates observed non-secret settings, verified local absence and unknown platform state; all physical steps remain NOT_RUN. No new application behavior was necessary after the scoped review.
 
 ## 030 — user-relayed support correction (2026-10-22)
 

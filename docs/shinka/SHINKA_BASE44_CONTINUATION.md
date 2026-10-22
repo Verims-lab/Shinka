@@ -2,11 +2,17 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-031
+**Current BuildMarker:** Buildmarker-032
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## 032 — native setup preparation, sending still closed
+
+Current source is based on owner-merged PR #33 (0a8b1e8; same tree as b4b654f). No product/backend/schema/dependency behavior changes. Publish preparation must carry matching marker/catalog/content-policy metadata; no content import or credential file belongs in the repo. Agent delivery is Test only. The owner can prepare native accounts/configuration/builds before the pending provider/workflow answer, but native credentials do not activate the closed entry. This supersedes any earlier ordering that made independent setup wait on the two code bindings.
+
+[032 native readiness](reports/SHINKA_NATIVE_NOTIFICATION_READINESS_032.md) contains current official sources, observed settings, unknown identifiers/credentials and two-stage device instructions. Firebase's only role is Base44 Android push configuration; keep default Base44 identity/data. No workflow, live push/Health/scan/user mutation, key/account/project creation, native build or store upload is executed here. Main merge/publish and later controlled device work remain owner-owned. H14-901/H16-901 and existing 12 deferred findings stay open.
 
 ## 031 — local backend performance continuation
 

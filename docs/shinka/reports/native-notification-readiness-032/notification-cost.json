@@ -1,0 +1,6202 @@
+{
+  "scope": "LOCAL_SYNTHETIC_SDK_TRANSPORT_COUNTS_NOT_LATENCY_OR_CREDITS",
+  "initialStateHash": "fe0aa8dc9ed6385d5e9ae06383d08fe6fa17b45b688145e2cf258428a726de7d",
+  "clock": "2026-10-20T03:00:00.000Z; +5 minutes after intent only",
+  "fixture": "notificationFixture current:true granted:false; one owner, existing daily, synthetic accepted provider",
+  "scenarios": [
+    {
+      "name": "existing-intent",
+      "time": "2026-10-20T03:00:00.000Z",
+      "counts": {
+        "entityReads": 69,
+        "entityWrites": 4,
+        "authMe": 12,
+        "providerEligibility": 1,
+        "providerSend": 0
+      },
+      "result": {
+        "state": "COMPLETE",
+        "processed": 1,
+        "counts": {
+          "QUEUED": 1
+        },
+        "cycleComplete": true
+      },
+      "product": {
+        "dailyUnchanged": true,
+        "dailyCount": 1,
+        "deliveryCount": 1,
+        "deliveryStatus": "PENDING",
+        "dispatchState": "READY",
+        "attemptCount": 0,
+        "sendCount": 0
+      },
+      "trace": [
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "requireAuthenticatedUser",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "NotificationSchedule",
+          "method": "filter",
+          "controls": [
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "schedule_key",
+            "cursor"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "write",
+          "entity": "NotificationSchedule",
+          "method": "create",
+          "controls": [
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "NotificationSchedule",
+          "method": "filter",
+          "controls": [
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "schedule_key",
+            "cursor"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 25,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "read",
+            "existing",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": null,
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "NotificationDelivery",
+          "method": "filter",
+          "controls": [
+            "read",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 11,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "daily_message_id",
+            "notification_type",
+            "scheduled_at",
+            "delivery_status",
+            "attempt_count",
+            "last_attempt_at",
+            "sent_at",
+            "error_code",
+            "shinka_date",
+            "dispatch_state",
+            "next_attempt_at",
+            "claim_id",
+            "error_stage"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "provider",
+          "method": "eligibility",
+          "controls": [
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "write",
+          "entity": "NotificationDelivery",
+          "method": "create",
+          "controls": [
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "NotificationDelivery",
+          "method": "filter",
+          "controls": [
+            "read",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 11,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "daily_message_id",
+            "notification_type",
+            "scheduled_at",
+            "delivery_status",
+            "attempt_count",
+            "last_attempt_at",
+            "sent_at",
+            "error_code",
+            "shinka_date",
+            "dispatch_state",
+            "next_attempt_at",
+            "claim_id",
+            "error_stage"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "write",
+          "entity": "NotificationSchedule",
+          "method": "update",
+          "controls": [
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "write",
+          "entity": "NotificationSchedule",
+          "method": "update",
+          "controls": [
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "accepted-dispatch",
+      "time": "2026-10-20T03:05:00.000Z",
+      "counts": {
+        "entityReads": 104,
+        "entityWrites": 4,
+        "authMe": 15,
+        "providerEligibility": 3,
+        "providerSend": 1
+      },
+      "result": {
+        "state": "COMPLETE",
+        "processed": 1,
+        "counts": {
+          "ACCEPTED": 1
+        },
+        "cycleComplete": true
+      },
+      "product": {
+        "dailyUnchanged": true,
+        "dailyCount": 1,
+        "deliveryCount": 1,
+        "deliveryStatus": "SENT",
+        "dispatchState": "ACCEPTED",
+        "attemptCount": 1,
+        "sendCount": 1
+      },
+      "trace": [
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "requireAuthenticatedUser",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "NotificationSchedule",
+          "method": "filter",
+          "controls": [
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "schedule_key",
+            "cursor"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 25,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "read",
+            "existing",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": null,
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "NotificationDelivery",
+          "method": "filter",
+          "controls": [
+            "read",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 11,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "daily_message_id",
+            "notification_type",
+            "scheduled_at",
+            "delivery_status",
+            "attempt_count",
+            "last_attempt_at",
+            "sent_at",
+            "error_code",
+            "shinka_date",
+            "dispatch_state",
+            "next_attempt_at",
+            "claim_id",
+            "error_stage"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "provider",
+          "method": "eligibility",
+          "controls": [
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "provider",
+          "method": "eligibility",
+          "controls": [
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "NotificationDelivery",
+          "method": "filter",
+          "controls": [
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "write",
+          "entity": "NotificationDelivery",
+          "method": "update",
+          "controls": [
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "NotificationDelivery",
+          "method": "filter",
+          "controls": [
+            "read",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 11,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "daily_message_id",
+            "notification_type",
+            "scheduled_at",
+            "delivery_status",
+            "attempt_count",
+            "last_attempt_at",
+            "sent_at",
+            "error_code",
+            "shinka_date",
+            "dispatch_state",
+            "next_attempt_at",
+            "claim_id",
+            "error_stage"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "provider",
+          "method": "eligibility",
+          "controls": [
+            "eligible",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "provider",
+          "method": "send",
+          "controls": [
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "NotificationDelivery",
+          "method": "filter",
+          "controls": [
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "write",
+          "entity": "NotificationDelivery",
+          "method": "update",
+          "controls": [
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "NotificationDelivery",
+          "method": "filter",
+          "controls": [
+            "read",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 11,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "daily_message_id",
+            "notification_type",
+            "scheduled_at",
+            "delivery_status",
+            "attempt_count",
+            "last_attempt_at",
+            "sent_at",
+            "error_code",
+            "shinka_date",
+            "dispatch_state",
+            "next_attempt_at",
+            "claim_id",
+            "error_stage"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "write",
+          "entity": "NotificationSchedule",
+          "method": "update",
+          "controls": [
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "write",
+          "entity": "NotificationSchedule",
+          "method": "update",
+          "controls": [
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settled-pass",
+      "time": "2026-10-20T03:05:00.000Z",
+      "counts": {
+        "entityReads": 46,
+        "entityWrites": 2,
+        "authMe": 9,
+        "providerEligibility": 0,
+        "providerSend": 0
+      },
+      "result": {
+        "state": "COMPLETE",
+        "processed": 1,
+        "counts": {
+          "ACCEPTED": 1
+        },
+        "cycleComplete": true
+      },
+      "product": {
+        "dailyUnchanged": true,
+        "dailyCount": 1,
+        "deliveryCount": 1,
+        "deliveryStatus": "SENT",
+        "dispatchState": "ACCEPTED",
+        "attemptCount": 1,
+        "sendCount": 1
+      },
+      "trace": [
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "requireAuthenticatedUser",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "NotificationSchedule",
+          "method": "filter",
+          "controls": [
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "schedule_key",
+            "cursor"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 25,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "read",
+            "existing",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": null,
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "produceDailyForOwner",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "UserProfile",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPreferences",
+          "method": "filter",
+          "controls": [
+            "one",
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "controls": [
+            "admit",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 1,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "NotificationDelivery",
+          "method": "filter",
+          "controls": [
+            "read",
+            "dispatch",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 11,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "daily_message_id",
+            "notification_type",
+            "scheduled_at",
+            "delivery_status",
+            "attempt_count",
+            "last_attempt_at",
+            "sent_at",
+            "error_code",
+            "shinka_date",
+            "dispatch_state",
+            "next_attempt_at",
+            "claim_id",
+            "error_stage"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "write",
+          "entity": "NotificationSchedule",
+          "method": "update",
+          "controls": [
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "auth",
+          "method": "auth.me",
+          "controls": [
+            "me",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        },
+        {
+          "kind": "read",
+          "entity": "User",
+          "method": "filter",
+          "controls": [
+            "user",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 2,
+          "offset": 0,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "returnedRows": 1
+        },
+        {
+          "kind": "read",
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "controls": [
+            "readPrivacyRequests",
+            "assertPrivacyAccess",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 51,
+          "offset": 0,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "read",
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "controls": [
+            "lifecycle",
+            "me",
+            "requireAuthenticatedUser",
+            "requireAdmin",
+            "admitCaller",
+            "notificationTick",
+            "handleNotificationSchedule"
+          ],
+          "limit": 100,
+          "offset": 0,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "returnedRows": 0
+        },
+        {
+          "kind": "write",
+          "entity": "NotificationSchedule",
+          "method": "update",
+          "controls": [
+            "notificationTick",
+            "handleNotificationSchedule"
+          ]
+        }
+      ]
+    }
+  ],
+  "baseCommit": "0a8b1e8baba8881434e46c8ad6057d3031cd8859",
+  "sourceHashes": {
+    "base44/shared/notificationScheduler.js": "958f0f9253524844cbc90aa1d33d8784a28cb5da49c8ba45fd34221a62a617d2",
+    "base44/shared/notificationOwner.js": "9ff7da4ed8b12e915225a51b67f4a50f7994be986e3039fc20b8458a23e04ed4",
+    "base44/shared/notificationDelivery.js": "6a93873b4e70c399902dacbf20482012ec31842593b8c1e0e327e4d92c4eea9a",
+    "base44/shared/dailyMessageOperation.js": "96601171d68e86a5f57fdcd7c49db3eed7d37ba9cdb596d131937ad8594ca59a",
+    "base44/shared/userLifecycle.js": "c2d9e82c21ef7db58865c8f0b4759d5d2fd32ef4012fa25b5d6b76476288ec94",
+    "base44/shared/internalAuthorization.js": "2ecb34f610d6696cab97a5526435658f88738376be83d635799d0c16a1150ca6",
+    "base44/shared/privacyPolicy.js": "ecb671b3cd2f901527cbff1cac8d8d388b09e02b0d33b7e0718c42c47595dd5f",
+    "src/foundation/tests/notificationCostFixture.js": "ccc17e0414934dc771e560a473c5f83fd249fd5dc25a6107698422065ef908fa",
+    "scripts/measureNotifications.mjs": "5ad144da93b61936a6b9b882dbe06d126a782cf629cc18ffa318111ab4d822e9"
+  }
+}

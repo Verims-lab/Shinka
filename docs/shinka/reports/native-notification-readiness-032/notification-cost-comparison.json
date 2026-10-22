@@ -1,0 +1,52 @@
+{
+  "baseline": "../notification-performance-031/after.json",
+  "sameHarnessAndRuntimeHashes": true,
+  "sameInitialState": true,
+  "scenarios": [
+    {
+      "scenario": "existing-intent",
+      "counts": {
+        "entityReads": 69,
+        "entityWrites": 4,
+        "authMe": 12,
+        "providerEligibility": 1,
+        "providerSend": 0
+      },
+      "same031StateTimeResultProductAndCounts": true
+    },
+    {
+      "scenario": "accepted-dispatch",
+      "counts": {
+        "entityReads": 104,
+        "entityWrites": 4,
+        "authMe": 15,
+        "providerEligibility": 3,
+        "providerSend": 1
+      },
+      "same031StateTimeResultProductAndCounts": true
+    },
+    {
+      "scenario": "settled-pass",
+      "counts": {
+        "entityReads": 46,
+        "entityWrites": 2,
+        "authMe": 9,
+        "providerEligibility": 0,
+        "providerSend": 0
+      },
+      "same031StateTimeResultProductAndCounts": true
+    }
+  ],
+  "receipt": {
+    "command": [
+      "node",
+      "scripts/measureNotifications.mjs",
+      "/private/tmp/shinka-032/cost"
+    ],
+    "exitCode": 0,
+    "startedAt": "2026-10-22T18:56:09.481207+00:00",
+    "completedAt": "2026-10-22T18:56:11.383780+00:00",
+    "log": "cost.log"
+  },
+  "scope": "Local synthetic SDK calls; no hosted latency, credits or device delivery claim"
+}

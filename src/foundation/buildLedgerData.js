@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-027",
-    "package_name": "Bildirim Öncesi Kalite Milestone’u",
-    "package_type": "AUDIT_FIX",
-    "created_at": "2026-10-22T12:00:00+03:00",
-    "health_catalog_version": "HC-027.0",
-    "short_summary": "Guarded route continuity removes redundant Home-crossing hydrate; fresh per-request onboarding identity, lazy onboarding, Router 7.18.4 and safe Health history retry/open. Chromium/WebKit each 579/579; 150+87 mobile checks each; zero audit findings; byte/quality gates pass. Production lab gain and manual boundaries in the milestone report.",
-    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "No schema delta, live mutation/import/Full Health, notification work, main merge/publish or new service. Same-request principal only; server owner/current-admin/consent/lifecycle guards preserved. Health 132 PASS/13 expected local prerequisite BLOCKED; deployed acceptance remains owner-run. Initial failures and 025/026 evidence preserved. Active history 023–027. Physical/OAuth/hosted enforcement and same-account ON05 remain separate."
-  },
-  {
     "build_marker": "Buildmarker-028",
     "package_name": "Güvenlik Kapanışı 028",
     "package_type": "AUDIT_FIX",
@@ -69,5 +55,19 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "notes": "031 only: no product/schema/SDK contract change. Fresh write/readback/send guards retained; NP07 BUSY gap fixed with initial failure preserved. H14-003 adds NP01–07, no Health IDs added/deleted; H14-901/H16-901 external. Actual entry enabled:false; 12 findings OPEN / USER-DEFERRED. Internal Build 027–031; no live actions/main merge/publish. Focused report SHINKA_NOTIFICATION_PERFORMANCE_031.md; PR32 was owner-merged, Test continuation linked there."
+  },
+  {
+    "build_marker": "Buildmarker-032",
+    "package_name": "Native notification readiness and device acceptance",
+    "package_type": "DOCS",
+    "created_at": "2026-10-22T18:46:33.644742+00:00",
+    "health_catalog_version": "HC-032.0",
+    "short_summary": "Native setup inventory and two-stage device plan; no application behavior fix required. Chromium/WebKit each 624/624; 8 server + 9 actual-entry fixtures per engine; local Health 136 PASS/13 prerequisite BLOCKED. All device steps NOT_RUN.",
+    "full_health_status": "NATIVE_AND_PLATFORM_ACCEPTANCE_NOT_RUN",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": false,
+    "health_changed": true,
+    "notes": "Health add 0/update 2/delete 0 (H14-901/H16-901 external descriptions); executable tests unchanged. Required local gates pass; audit zero; 031 budgets unchanged at 69/104/46 entity reads. Initial JS 479543/160180 gzip, CSS 77521/14262 bytes. Native setup may proceed independently; verified contracts still gate activation, superseding historical 029 setup ordering. Base44 remains identity/data authority; Firebase is Android push setup only. Actual entry enabled:false; no credentials/build/live calls/main merge/publish. Existing 12 findings OPEN / USER-DEFERRED. Internal Build 028–032; SHINKA_NATIVE_NOTIFICATION_READINESS_032.md."
   }
 ];
