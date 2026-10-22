@@ -1,3 +1,4 @@
+import { NOTIFICATION_PERFORMANCE_TESTS } from './notificationPerformanceTests';
 import { NOTIFICATION_CONTRACT_TESTS } from './notificationContractTests';
 import { NOTIFICATION_TESTS } from './notificationTests';
 import { NOTIFICATION_UI_TESTS } from './notificationUiTests';
@@ -65,7 +66,7 @@ const fixtureCases = (ids) => ids.map((id) => ({ id, suiteId: id.slice(0, 3), ti
 
 /** @type {import("./testTypes").FoundationTest[]} */
 export const FOUNDATION_TESTS = [
-  ...NOTIFICATION_TESTS, ...NOTIFICATION_CONTRACT_TESTS, ...NOTIFICATION_UI_TESTS,
+  ...NOTIFICATION_TESTS, ...NOTIFICATION_CONTRACT_TESTS, ...NOTIFICATION_PERFORMANCE_TESTS, ...NOTIFICATION_UI_TESTS,
   ...QUALITY_MILESTONE_TESTS,
   ...MOBILE_INTERACTION_TESTS,
   ...HEALTH_TIMING_TESTS,

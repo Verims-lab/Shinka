@@ -14,21 +14,24 @@ export async function deliverDailyNotification({ client, owner, daily, window, a
 async function dispatch({ client, owner, daily, window, admit, provider, now }) {
   const store = client.asServiceRole.entities.NotificationDelivery;
   const read = async () => {
-    const rows = await store.filter({ user_id: owner, notification_type: NOTIFICATION_TYPE, $or: [{ shinka_date: window.day }, { daily_message_id: daily.id }] }, 'id', 11);
+    const rows = await store.filter({ user_id: owner, notification_type: NOTIFICATION_TYPE, $or: [{ shinka_date: window.day }, { daily_message_id: daily.id }] }, 'id', 11, 0, ['id',...Object.keys(DOMAIN_SCHEMAS.notification_delivery.properties)]);
     if (!Array.isArray(rows) || rows.length > 10 || rows.some(row => !row.id || row.user_id !== owner || row.notification_type !== NOTIFICATION_TYPE)) fail('NOTIFICATION_RECONCILIATION_BLOCKED');
     for (const row of rows) validateDomainRecord('notification_delivery', Object.fromEntries(Object.keys(DOMAIN_SCHEMAS.notification_delivery.properties).map(key => [key,row[key]])));
     return rows.sort((a,b) => a.id.localeCompare(b.id));
   };
-  const eligible = async () => {
-    const preferences = await admit();
+  const eligible = async (state = null) => {
+    const { preferences } = state || await admit();
     if (preferences.timezone !== window.timezone || !currentNotificationDay(now(), preferences.timezone, window.day)) return { reason:'NOTIFICATION_WINDOW_CHANGED', preferences };
     const device = await provider.eligibility(owner);
     return { reason: notificationEligible(preferences, device), preferences };
   };
-  const first = await eligible();
+  const admitted = await admit();
   let rows = await read();
   const protectedRow = rows.find(row => terminal.has(row.dispatch_state) || ['SENT','SKIPPED'].includes(row.delivery_status) || row.dispatch_state === 'IN_FLIGHT');
   if (protectedRow) return { state: protectedRow.dispatch_state || protectedRow.delivery_status };
+  // Settled/uncertain rows still require fresh owner admission and validation,
+  // but cannot send, so they need no device/provider eligibility lookup.
+  const first = await eligible(admitted);
   let row = rows[0];
   if (first.reason) {
     if (row) await store.update(row.id, { delivery_status:'SKIPPED',dispatch_state:'INELIGIBLE',error_code:first.reason,error_stage:'ADMISSION' });

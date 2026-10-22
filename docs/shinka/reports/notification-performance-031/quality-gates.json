@@ -1,0 +1,233 @@
+{
+  "status": "PASS",
+  "recordedAt": "2026-10-22T16:12:58.750203+00:00",
+  "source": "source-manifest.json; full browsers use browser-source-manifest.json with executable-equivalent JSDoc follow-up",
+  "logNormalization": "Trailing whitespace normalized; raw and saved hashes retained",
+  "gates": [
+    {
+      "label": "clean-install",
+      "command": [
+        "npm",
+        "ci"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T15:55:53.983247+00:00",
+      "completedAt": "2026-10-22T15:56:00.683666+00:00",
+      "log": "clean-install.txt",
+      "rawLogSha256": "ff83421d786271105aa3e45336ab833a33d5361e0479807d9b9b29ad7e8ec5d6",
+      "savedLogSha256": "ff83421d786271105aa3e45336ab833a33d5361e0479807d9b9b29ad7e8ec5d6"
+    },
+    {
+      "label": "tree-top",
+      "command": [
+        "npm",
+        "ls",
+        "--depth=0"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T15:57:29.508414+00:00",
+      "completedAt": "2026-10-22T15:57:30.679406+00:00",
+      "log": "tree-top.txt",
+      "rawLogSha256": "636fc7fe42b2d5f59a7695d9f53ee472f00447d271bc268566ce9b072009d9ee",
+      "savedLogSha256": "19e7272accfa0bea976cb7f4011672aa67e300c88c65b1d01fccf021815d6668"
+    },
+    {
+      "label": "tree",
+      "command": [
+        "npm",
+        "ls",
+        "--all"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T15:57:29.505454+00:00",
+      "completedAt": "2026-10-22T15:57:30.728129+00:00",
+      "log": "tree.txt",
+      "rawLogSha256": "0ae4ff988ec4fe59008b6adc33daaac03e68940818cf6940d2caca2872e44119",
+      "savedLogSha256": "b89e8fca594a2e9375015baa5af2818f55f959c60a24c549b197d0c5830df2c5"
+    },
+    {
+      "label": "audit",
+      "command": [
+        "npm",
+        "audit",
+        "--json"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T15:57:31.081239+00:00",
+      "completedAt": "2026-10-22T15:57:32.130171+00:00",
+      "log": "audit.txt",
+      "rawLogSha256": "433afea046aa62fec794af08a30e91c61504aff7f880b5367802cb68f214f667",
+      "savedLogSha256": "433afea046aa62fec794af08a30e91c61504aff7f880b5367802cb68f214f667"
+    },
+    {
+      "label": "security-deps",
+      "command": [
+        "npm",
+        "run",
+        "security:deps"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T15:57:34.016437+00:00",
+      "completedAt": "2026-10-22T15:57:35.115925+00:00",
+      "log": "security-deps.txt",
+      "rawLogSha256": "ba5a55cc48eca8e7c392d3754b663e0bd7b6233525429a1d8a5d44768df5b507",
+      "savedLogSha256": "ba5a55cc48eca8e7c392d3754b663e0bd7b6233525429a1d8a5d44768df5b507"
+    },
+    {
+      "label": "typecheck-final3",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T16:06:53.170271+00:00",
+      "completedAt": "2026-10-22T16:06:55.625867+00:00",
+      "log": "typecheck-final3.txt",
+      "rawLogSha256": "2e1c7db5ac28fb733e8c1d3d7c2c3bf8a4bb6628ed45eb56ce2e7328388598de",
+      "savedLogSha256": "219c73819fb104986577380376528635b8bf8b0f1eb490283a0b22ac6a011ba0"
+    },
+    {
+      "label": "lint-final2",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T16:12:07.617245+00:00",
+      "completedAt": "2026-10-22T16:12:09.827633+00:00",
+      "log": "lint-final2.txt",
+      "rawLogSha256": "8423c1a66df3f2a021733ae12f217befbeb04b23971e056cb4e3739c7fb936cf",
+      "savedLogSha256": "f1f78baa67d3a65a4400919a9b9191a804c8d990e3b2bf860089ff4f3182055e"
+    },
+    {
+      "label": "repo-final",
+      "command": [
+        "npm",
+        "run",
+        "health:repo"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T16:12:07.608673+00:00",
+      "completedAt": "2026-10-22T16:12:08.983232+00:00",
+      "log": "repo-final.txt",
+      "rawLogSha256": "15d77944b90c51fc433bebc6106686bc7aeedf54a3af28559dc34d6cfac290fe",
+      "savedLogSha256": "15d77944b90c51fc433bebc6106686bc7aeedf54a3af28559dc34d6cfac290fe"
+    },
+    {
+      "label": "build-final",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T16:12:07.623009+00:00",
+      "completedAt": "2026-10-22T16:12:09.603017+00:00",
+      "log": "build-final.txt",
+      "rawLogSha256": "4390f95039c67cc536ee2842c36810c37f453b003a83a06fac7db823b4a3dc69",
+      "savedLogSha256": "4390f95039c67cc536ee2842c36810c37f453b003a83a06fac7db823b4a3dc69"
+    },
+    {
+      "label": "history-final",
+      "command": [
+        "node",
+        "scripts/recordBuild.mjs",
+        "--check"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T16:12:07.609028+00:00",
+      "completedAt": "2026-10-22T16:12:07.699368+00:00",
+      "log": "history-final.txt",
+      "rawLogSha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f",
+      "savedLogSha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f"
+    },
+    {
+      "label": "performance",
+      "command": [
+        "node",
+        "scripts/measureMaintenance.mjs",
+        "/private/tmp/shinka-031/performance"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T16:07:45.014279+00:00",
+      "completedAt": "2026-10-22T16:08:05.344158+00:00",
+      "log": "performance.txt",
+      "rawLogSha256": "d647ea10a44a7207c258463b4efd41b5a2f174f82059a579a689e67a38af9461",
+      "savedLogSha256": "d647ea10a44a7207c258463b4efd41b5a2f174f82059a579a689e67a38af9461"
+    },
+    {
+      "label": "chromium-final",
+      "command": [
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T16:00:48.863708+00:00",
+      "completedAt": "2026-10-22T16:01:51.996894+00:00",
+      "log": "chromium-final.txt",
+      "rawLogSha256": "253f198d48a87be3f150a6df095bf0ce7d24dfe0d547944a4317dd206b6daa6a",
+      "savedLogSha256": "253f198d48a87be3f150a6df095bf0ce7d24dfe0d547944a4317dd206b6daa6a",
+      "environment": {
+        "FOUNDATION_BROWSER": "chromium",
+        "FOUNDATION_AUDIT_DIR": "/private/tmp/shinka-031/chromium-final"
+      }
+    },
+    {
+      "label": "webkit-final",
+      "command": [
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T16:00:50.169816+00:00",
+      "completedAt": "2026-10-22T16:02:00.031361+00:00",
+      "log": "webkit-final.txt",
+      "rawLogSha256": "5a6efa713f6bebdc0139f61508807d9af1c850066dee74d4fff10c52d8f71330",
+      "savedLogSha256": "5a6efa713f6bebdc0139f61508807d9af1c850066dee74d4fff10c52d8f71330",
+      "environment": {
+        "FOUNDATION_BROWSER": "webkit",
+        "FOUNDATION_AUDIT_DIR": "/private/tmp/shinka-031/webkit-final"
+      }
+    },
+    {
+      "label": "busy-final-chromium",
+      "command": [
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T16:06:56.892383+00:00",
+      "completedAt": "2026-10-22T16:07:00.390846+00:00",
+      "log": "busy-final-chromium.txt",
+      "rawLogSha256": "1fc5ae063c39147c384d9d4552d83f759712e62508559d88c912e205c7a50a5a",
+      "savedLogSha256": "1fc5ae063c39147c384d9d4552d83f759712e62508559d88c912e205c7a50a5a",
+      "environment": {
+        "FOUNDATION_BROWSER": "chromium",
+        "FOUNDATION_TEST_IDS": "NP07"
+      }
+    },
+    {
+      "label": "busy-final-webkit",
+      "command": [
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T16:06:56.395104+00:00",
+      "completedAt": "2026-10-22T16:07:01.286233+00:00",
+      "log": "busy-final-webkit.txt",
+      "rawLogSha256": "1fc5ae063c39147c384d9d4552d83f759712e62508559d88c912e205c7a50a5a",
+      "savedLogSha256": "1fc5ae063c39147c384d9d4552d83f759712e62508559d88c912e205c7a50a5a",
+      "environment": {
+        "FOUNDATION_BROWSER": "webkit",
+        "FOUNDATION_TEST_IDS": "NP07"
+      }
+    }
+  ]
+}

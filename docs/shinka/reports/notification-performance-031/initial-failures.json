@@ -1,0 +1,145 @@
+{
+  "scope": "LOCAL_ONLY",
+  "failures": [
+    {
+      "gate": "typecheck-new",
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "typecheck"
+        ],
+        "exitCode": 2,
+        "startedAt": "2026-10-22T15:54:52.679594+00:00",
+        "completedAt": "2026-10-22T15:54:55.374831+00:00",
+        "log": "typecheck-new.log"
+      },
+      "detail": "NP04 fresh caller callback returned an admin principal where Promise<void> was required; await without return preserves the same check.",
+      "evidence": "typecheck-new.txt"
+    },
+    {
+      "gate": "busy-before",
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "test:foundation"
+        ],
+        "exitCode": 1,
+        "startedAt": "2026-10-22T15:58:55.894889+00:00",
+        "completedAt": "2026-10-22T15:58:59.256119+00:00",
+        "log": "busy-before.log"
+      },
+      "detail": "NP07 rejected the initial optimization: BUSY returned before fresh admission after removal of the duplicate handler guard. Moved tick admission before BUSY and provider construction. No assertion removed.",
+      "evidence": "busy-before.txt"
+    },
+    {
+      "gate": "typecheck-final",
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "typecheck"
+        ],
+        "exitCode": 2,
+        "startedAt": "2026-10-22T16:00:46.677600+00:00",
+        "completedAt": "2026-10-22T16:00:49.293329+00:00",
+        "log": "typecheck-final.log"
+      },
+      "detail": "NP07 deferred callback inferred possibly undefined; explicit JSDoc required.",
+      "evidence": "typecheck-final.txt"
+    },
+    {
+      "gate": "typecheck-final2",
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "typecheck"
+        ],
+        "exitCode": 2,
+        "startedAt": "2026-10-22T16:02:52.463929+00:00",
+        "completedAt": "2026-10-22T16:02:54.823451+00:00",
+        "log": "typecheck-final2.log"
+      },
+      "detail": "NP07 Promise resolver signature still required an argument; explicit Promise<void> type fixed the test declaration. Executable AST equivalence verified; final NP07 rerun in both engines.",
+      "evidence": "typecheck-final2.txt"
+    },
+    {
+      "gate": "pre-commit staged diff whitespace",
+      "exitCode": 2,
+      "detail": "Three Markdown hard-break trailing spaces blocked pre-commit diff check; removed without runtime/test changes.",
+      "evidence": "diff-check-initial.txt"
+    }
+  ],
+  "firstFullRuns": {
+    "chromium": {
+      "tests": 623,
+      "passed": 623,
+      "failed": 0,
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "test:foundation"
+        ],
+        "exitCode": 0,
+        "startedAt": "2026-10-22T15:56:38.654045+00:00",
+        "completedAt": "2026-10-22T15:57:44.478845+00:00",
+        "log": "chromium.log"
+      },
+      "note": "NP01–06 before the later NP07 BUSY guard correction; superseded by final 624 runs."
+    },
+    "webkit": {
+      "tests": 623,
+      "passed": 623,
+      "failed": 0,
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "test:foundation"
+        ],
+        "exitCode": 0,
+        "startedAt": "2026-10-22T15:56:38.009103+00:00",
+        "completedAt": "2026-10-22T15:57:50.637714+00:00",
+        "log": "webkit.log"
+      },
+      "note": "NP01–06 before the later NP07 BUSY guard correction; superseded by final 624 runs."
+    }
+  },
+  "focusedInitial": [
+    {
+      "label": "focused-initial",
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "test:foundation"
+        ],
+        "exitCode": 0,
+        "startedAt": "2026-10-22T15:51:42.917525+00:00",
+        "completedAt": "2026-10-22T15:51:46.291651+00:00",
+        "log": "focused-initial.log"
+      },
+      "tests": 30
+    },
+    {
+      "label": "focused-new",
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "test:foundation"
+        ],
+        "exitCode": 0,
+        "startedAt": "2026-10-22T15:54:18.147064+00:00",
+        "completedAt": "2026-10-22T15:54:21.655850+00:00",
+        "log": "focused-new.log"
+      },
+      "tests": 6
+    }
+  ],
+  "assertionsRemoved": false,
+  "securityRulesRelaxed": false
+}

@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-026",
-    "package_name": "Mobile system theme and interaction compatibility",
-    "package_type": "FIX",
-    "created_at": "2026-10-21T14:03:49.435356+03:00",
-    "health_catalog_version": "HC-026.0",
-    "short_summary": "System light/dark, safe-area ownership, accessible mobile birthplace sheets, layer history and short reduced-motion transitions. Home refresh retains daily snapshots; Calendar preserves drafts and same-intent recovery.",
-    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "Chromium/WebKit local regressions and mobile matrices; H08-007 added, H13 theme/mobile contracts updated, no cases removed. Existing byte budgets and 025 timeout/cleanup coverage retained. Hosted Full Health and physical Android/iOS/wrapper acceptance remain owner-run. No main/publish, provider probe/import or live user mutation."
-  },
-  {
     "build_marker": "Buildmarker-027",
     "package_name": "Bildirim Öncesi Kalite Milestone’u",
     "package_type": "AUDIT_FIX",
@@ -69,5 +55,19 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "notes": "H14 existing assertions/descriptions updated; no case removed. Health 136 PASS/13 hosted-prerequisite BLOCKED, 175 total cases. Quality/dependency/history/performance gates pass; audit zero. Original failures preserved. Source/contract provenance in existing SHINKA_NOTIFICATIONS_029.md. 12 backend findings OPEN / USER-DEFERRED; H14-901/H16-901 external. Active 026–030; no live actions/main/publish."
+  },
+  {
+    "build_marker": "Buildmarker-031",
+    "package_name": "Notification admission read reduction",
+    "package_type": "FIX",
+    "created_at": "2026-10-22T15:56:35.323131+00:00",
+    "health_catalog_version": "HC-031.0",
+    "short_summary": "Comparable SDK reads 84→69,119→104,61→46; auth 14→12,17→15,11→9; writes/sends unchanged. Chromium/WebKit 624/624 each; 8 server + 9 entry fixtures, Health 136 PASS/13 prerequisite BLOCKED. Local gates/audit/history/performance PASS; live binding blocked.",
+    "full_health_status": "PLATFORM_BINDING_BLOCKED",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "031 only: no product/schema/SDK contract change. Fresh write/readback/send guards retained; NP07 BUSY gap fixed with initial failure preserved. H14-003 adds NP01–07, no Health IDs added/deleted; H14-901/H16-901 external. Actual entry enabled:false; 12 findings OPEN / USER-DEFERRED. Internal Build 027–031; no live actions/main merge/publish. Focused report SHINKA_NOTIFICATION_PERFORMANCE_031.md; PR32 was owner-merged, Test continuation linked there."
   }
 ];

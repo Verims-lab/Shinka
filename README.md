@@ -4,9 +4,9 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Any change pushed to the repo will also be reflected in the Base44 Builder.
 
-## Current Test notification continuation (Buildmarker-030)
+## Current Test notification continuation (Buildmarker-031)
 
-The completed 029 daily engine/UI is retained. 030 adds the shared fresh native-admin guard for manual starts and a narrow adapter for the user-relayed push input schema. Workflow identity and provider response/recipient/device contracts remain unverified. Actual entry is disabled; unknown adapter output never becomes SENT. No live send or schedule is enabled. Mobile credentials alone cannot complete these contracts. See the [current 030 result and retained 029 evidence](docs/shinka/reports/SHINKA_NOTIFICATIONS_029.md). Test delivery is local implementation only; main merge/publish and controlled native acceptance remain owner-owned.
+031 reduces redundant backend reads with fresh write/readback/send guards: [matched measurements and validation](docs/shinka/reports/SHINKA_NOTIFICATION_PERFORMANCE_031.md). The completed 029 daily engine/UI is retained. 030 adds the shared fresh native-admin guard for manual starts and a narrow adapter for the user-relayed push input schema. Workflow identity and provider response/recipient/device contracts remain unverified. Actual entry is disabled; unknown adapter output never becomes SENT. No live send or schedule is enabled. Mobile credentials alone cannot complete these contracts. See the [retained 029/030 evidence](docs/shinka/reports/SHINKA_NOTIFICATIONS_029.md). Test delivery is local implementation only; main merge/publish and controlled native acceptance remain owner-owned.
 
 ## Existing data authority (Buildmarker-023 onward)
 

@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-030
+**Current BuildMarker:** Buildmarker-031
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## 031 — local backend performance continuation
+
+031 changes only notification read scheduling and same-phase daily admission reuse; no product/schema/SDK/provider contract change. Source starts from owner-merged b61228e; preserve all prior 029/030 setup and platform evidence below. Caller guard runs after request body IO and before BUSY/provider construction. Actual entry remains enabled:false, current admin DISABLED/processed:0. No workflow, real push, live Health/scan/import, credential or user operation. The owner still owns merge/publish and later platform/device acceptance. [031 report and matched SDK counts](reports/SHINKA_NOTIFICATION_PERFORMANCE_031.md).
 
 ## 030 — corrected notification platform continuation
 

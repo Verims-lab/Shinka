@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-030
+**Current BuildMarker:** Buildmarker-031
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -10,6 +10,14 @@
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## 031 — same-phase notification admission reuse
+
+The measured notification path now removes two duplicate admissions: the daily engine invokes initial owner admission once and uses that fresh state for both window calculation and daily computation; the tick owns the post-body caller guard before BUSY/provider construction/work, replacing the adjacent handler/tick pair. notificationOwner returns the freshly read profile and preferences. produceDailyForOwner normalizes and checks owner/ACTIVE state from those records in that same phase instead of immediately querying them again. Later return/write guards always call admission again. Home callbacks return no records and keep the existing store-read path. userLifecycle, internalAuthorization and privacyPolicy are unchanged.
+
+No admission/result cache or TTL is added. A record returned by one callback invocation is not reused for another invocation, owner, write boundary or request. The notification write facade retains independent pre/post admission even when called directly; daily persistence/readback and post-IN_FLIGHT pre-send admission remain. Completed/uncertain deliveries still admit the owner and validate bounded rows, then return before device eligibility because no send can start. Pending dispatch retains all three device checks. Preference-page queries select only id/user_id; checkpoint, owner/profile/preference, delivery and ownership-check queries use required fields with unchanged limits. No wider query or parallelization is credited as count reduction.
+
+Same-fixture SDK counts: preparation 84→69 reads, dispatch 119→104, settled pass 61→46; writes 4/4/2 unchanged; auth.me 14→12, 17→15, 11→9. [Focused measurement, traces and limits](reports/SHINKA_NOTIFICATION_PERFORMANCE_031.md). Existing ≤25 rows/20-second between-owner budget and native race limitations are retained. Production enabled:false and platform blockers are unchanged.
 
 ## 030 — one scheduler path, shared engine and provider boundary
 

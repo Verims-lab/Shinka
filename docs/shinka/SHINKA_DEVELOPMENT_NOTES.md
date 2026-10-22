@@ -2,11 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-030
+**Current BuildMarker:** Buildmarker-031
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 031 — comparable notification backend read reduction
+
+Preflight found clean Test 0abfa8f and owner-merged main b61228e (PR #32), identical source tree. Safely fast-forwarded Test to the merge record; 031 was free. Fresh baseline reproduced 84/119/61 entity reads with 4/4/2 writes, 14/17/11 auth.me, 1/3/1 eligibility and 0/1/0 provider sends. Final same harness/state/time/outcome yields 69/104/46 reads, 4/4/2 writes, 12/15/9 auth.me, 1/3/0 eligibility and 0/1/0 sends. No hosted latency/credit claim. Freshness/write/readback checks retained; shared auth/privacy modules unchanged. The direct callback test's return type was corrected after typecheck; NP07 first exposed a BUSY early-return gap and now runs the caller guard before that return. [Focused report, original failures and final gates](reports/SHINKA_NOTIFICATION_PERFORMANCE_031.md).
+
+Final 031 local results: Chromium **624/624**, WebKit **624/624**, each with **8/8 server + 9/9 actual-entry fixtures**, no missing required IDs or page errors. In-app Health **136 PASS / 0 FAIL / 13 prerequisite BLOCKED**; H14-901/H16-901 remain external. Mandatory install/dependency/type/lint/build/repo/history/performance gates pass; audit zero. Initial JS 479543/160178 gzip, CSS 77521/14262 bytes. Full-source hashes and the subsequent executable-equivalent NP07 JSDoc correction/focused reruns are recorded in the focused report. Internal Build retains 027–031.
 
 ## 030 — reported push input and shared manual admin admission
 

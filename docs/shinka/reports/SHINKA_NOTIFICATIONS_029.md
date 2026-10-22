@@ -1,6 +1,12 @@
 # Shinka Notifications 029–030 — local delivery and platform blockers
 
-## Current continuation — Buildmarker-030 / HC-030.0 (2026-10-22)
+## Current 031 performance continuation
+
+[Notification Performance 031](SHINKA_NOTIFICATION_PERFORMANCE_031.md) records matched SDK counts, freshness controls and new local results. Entity reads 84→69 / 119→104 / 61→46, writes/sends unchanged. Production sending/scheduling remains disabled. This supersedes the current performance status only; 029/030 contracts and all historical evidence below are retained.
+
+031 final local execution: Chromium/WebKit **624/624 each**, separate 8 server + 9 entry fixtures, Health 136 PASS/13 prerequisite BLOCKED; mandatory gates pass and audit zero. H14-003 updated, no Health ID added/deleted, active history 027–031. Live bindings and H14-901/H16-901 remain open. See the focused report for exact source, retained failures and measurement scope.
+
+## Historical continuation — Buildmarker-030 / HC-030.0 (2026-10-22)
 
 **LOCAL_VALIDATION_PASS / LIVE_BINDING_BLOCKED.** Continue completed 029 (`a51cdd4`) and its clarification (`758d6af`); no rewrite of the daily engine or UI. Clean local/origin Test was `758d6af7bc14aa6c07855915c5dd223a15960c79`, ahead of main `060ba76` by those two commits; no divergence or user edits. The tested 030 executable/config inputs are identified by the [495-file manifest](notifications-030/source-manifest.json), aggregate `2921c430f579d596bf2f5af44049b895e8d8f755022474c248b8b839d1939c27`. Generated ledger/prose are finalized separately. Frontend and notification entry SDK remain 0.8.57, other native entries retain 0.8.54; plugin 1.0.47, Playwright 1.64.0 and Vite 8.2.4 remain locked. No dependency, schema or content-source change in 030. Internal Build retains **026–030**.
 
