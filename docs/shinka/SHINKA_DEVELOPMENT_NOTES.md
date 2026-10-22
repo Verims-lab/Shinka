@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-026
-**Last Updated:** 2026-10-21
+**Current BuildMarker:** Buildmarker-027
+**Last Updated:** 2026-10-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 027 — Bildirim Öncesi Kalite Milestone’u
+
+Removed the reintroduced unregistered OAuthConsent/AuthLayout after current route/import/graph checks; active SignIn is unchanged. Confirmed redundant hydration on Home/product route-tree changes, duplicate onboarding authentication within a request, vulnerable Router dependency chain, unbounded Health history reads, late report-window completion and a generic rejection assertion that could accept no-op success. Focused fixes preserve Base44 authority, per-operation guards, immutable snapshots, retry/cleanup and existing 025/026 evidence. The single [milestone report](reports/SHINKA_PRE_NOTIFICATION_QUALITY_027.md) records new local measurements, security matrix, final gates and manual boundaries. No live writes, import, hosted Full Health or publish.
 
 ## Buildmarker-026 — mobile compatibility implementation
 

@@ -1,4 +1,7 @@
 import { requireAuthenticatedUser, requireAdmin, requireInternalAdmin } from '../../../base44/shared/internalAuthorization.js';
+import { nativeFixture } from './nativeFixture';
+import { handleOnboardingRequest } from '../../../base44/shared/onboardingOperations.js';
+import { handleYouRequest } from '../../../base44/shared/youOperation.js';
 import { domainAccessOperation, handleDomainRequest } from '../../../base44/shared/domainAccess.js';
 import { resolveAuthenticatedOwner, assertOwner, assertActiveAccount, assertHealthConsent, assertProtectedRecordMutationAllowed, ACCESS_MATRIX, SYSTEM_AUTHORITIES as S } from '../../../base44/shared/domainSecurity.js';
 import { PROTECTED_ENTITIES, DOMAIN_SCHEMAS, base44Schema, HEALTH_ENTITIES } from '../../../base44/shared/domainSchemas.js';
@@ -29,7 +32,22 @@ export const SECURITY_TESTS = [
  ['S01','Unauthenticated private read denied',async()=>{await rejects(()=>domainAccessOperation(securityFixture('user',null).client,{entity:'user_period_record',action:'read'}),'AUTH_REQUIRED');}],
  ['S02','Unauthenticated private mutation denied',async()=>{await rejects(()=>domainAccessOperation(securityFixture('user',null).client,{entity:'user_period_record',action:'create'}),'AUTH_REQUIRED');}],
  ['S03','User A cannot read User B; private query is owner scoped',async()=>{const f=securityFixture();const result=await domainAccessOperation(f.client,{entity:'user_period_record',action:'read',recordId:'periodB'});check(result.records.length===0);check(f.queries.find(q=>q.name==='UserPeriodRecord').query.user_id==='ownerA');}],
- ['S04','User A cannot mutate User B; forged principal is not authentication',async()=>{await rejects(async()=>assertOwner(await principal(),{user_id:'ownerB'}),'OWNER_REQUIRED');await rejects(()=>assertOwner({id:'ownerB',role:'admin'},{user_id:'ownerB'}),'AUTH_REQUIRED');}],
+ ['S04','User A cannot mutate User B; actual native handlers deny and preserve all persisted rows',async()=>{
+   await rejects(async()=>assertOwner(await principal(),{user_id:'ownerB'}),'OWNER_REQUIRED');
+   await rejects(()=>assertOwner({id:'ownerB',role:'admin'},{user_id:'ownerB'}),'AUTH_REQUIRED');
+   const f=nativeFixture();
+   f.tables.UserProfile.push({...f.tables.UserProfile[0],id:'profileB',user_id:'ownerB'});
+   f.tables.UserPeriodRecord.push({id:'periodB',user_id:'ownerB',period_start_date:'2026-10-01'});
+   const before=JSON.stringify(f.tables), view=await f.cal();
+   await rejects(()=>f.cal({action:'edit',period_id:'periodB',date:'2026-10-02',revision:view.revision,action_id:crypto.randomUUID()}));
+   await rejects(()=>f.cal({action:'read',user_id:'ownerB'}),'FORGED_OWNER');
+   for(const handler of [handleOnboardingRequest,handleYouRequest]) {
+     const response=await handler(new Request('https://fixture.invalid',{method:'POST',body:JSON.stringify({action:'saveProfile',user_id:'ownerB'})}),()=>f.client());
+     check(response.status>=400,'forged owner accepted');
+   }
+   check(JSON.stringify(f.tables)===before,'denied request changed persisted data');
+   check(!f.state.calls.some(call=>call.method!=='filter'),'denied request reached mutation');
+ }],
  ['S05','Forged client user_id rejected instead of changing canonical owner',async()=>{await rejects(()=>domainAccessOperation(securityFixture().client,{entity:'user_profile',action:'read',user_id:'ownerB'}),'FORGED_OWNER');const p=await principal();check(resolveAuthenticatedOwner(p,{user_id:'ownerA'})==='ownerA');}],
  ['S06','Admin path requires server-authenticated admin role',async()=>{await rejects(()=>requireAdmin(securityFixture().client),'ADMIN_REQUIRED');await rejects(()=>domainAccessOperation(securityFixture().client,{entity:'user_period_record',action:'adminRead',recordId:'periodB'}),'ADMIN_REQUIRED');check((await requireAdmin(securityFixture('admin').client)).role==='admin');}],
  ['S07','Client admin and process flags rejected',async()=>{for(const payload of [{admin:true},{role:'admin'},{authority:'DAILY_MESSAGE'},{process:'DELETION'}])await rejects(()=>domainAccessOperation(securityFixture().client,{entity:'user_profile',action:'read',...payload}),'CLIENT_AUTHORITY_REJECTED');}],

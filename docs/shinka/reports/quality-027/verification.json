@@ -1,0 +1,121 @@
+{
+  "date": "2026-10-22",
+  "buildMarker": "Buildmarker-027",
+  "healthCatalog": "HC-027.0",
+  "milestone": "Bildirim Öncesi Kalite Milestone’u",
+  "baseline": "860c2d74e48e399e30d0448a998b637a3644314f",
+  "status": "REPO_CLOSED_PENDING_BASE44_VERIFICATION",
+  "scope": "LOCAL_ONLY_NO_HOSTED_MUTATION_IMPORT_HEALTH_PUBLISH",
+  "gates": {
+    "cleanInstall": true,
+    "fullDependencyTree": true,
+    "typecheck": true,
+    "lint": true,
+    "productionBuild": true,
+    "repoHealth": {
+      "dependencyBoundaries": true,
+      "boundedGeneratedHistory": true,
+      "twentyPhysicalProductSchemas": true,
+      "noUnexpectedProductSchemas": true,
+      "guardedHealthHistory": true,
+      "separateBuiltinUserAndTooling": true,
+      "exactAuthoritativeFields": true,
+      "completeAccessMatrix": true,
+      "directSdkOperationsDenied": true,
+      "onboardingCopyAndProxy": true,
+      "onboardingGeoNamesEntry": true,
+      "noProductSeedCalls": true,
+      "canonicalMarker": true,
+      "docsAligned": true,
+      "noLegacyImport": true,
+      "noCredentialFindings": true,
+      "noPersonalEmails": true
+    },
+    "retainedPackages": [
+      "023",
+      "024",
+      "025",
+      "026",
+      "027"
+    ],
+    "dependencyAudit": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "byteBudget": "PASS_UNCHANGED",
+    "gitWhitespace": true
+  },
+  "browsers": {
+    "chromium": {
+      "tests": 579,
+      "passed": 579,
+      "failed": 0,
+      "version": "156.0.8078.4",
+      "pageErrors": []
+    },
+    "webkit": {
+      "tests": 579,
+      "passed": 579,
+      "failed": 0,
+      "version": "27.2",
+      "pageErrors": []
+    }
+  },
+  "health": {
+    "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+    "pass": 132,
+    "fail": 0,
+    "blocked": 13,
+    "durationMs": {
+      "chromium": 1206,
+      "webkit": 1658
+    },
+    "catalog": {
+      "version": "HC-027.0",
+      "suites": 16,
+      "cases": 170,
+      "localRegression": 10,
+      "current": 145,
+      "future": 2,
+      "external": 13
+    },
+    "saveRetryListOpen": true,
+    "changed": [
+      "H06-004",
+      "H06-005",
+      "H12-001",
+      "H16-007",
+      "H15-002"
+    ],
+    "added": [],
+    "deleted": [],
+    "preserved": [
+      "025 timing/abort/partial progress/completed-only memoization",
+      "026 mobile/system theme/layers"
+    ]
+  },
+  "runtimeSourceSha256": {
+    "src/App.jsx": "9aa9829b178e0bfd8b0f35cc1b448fc7fd8032ebf408a974f317c7081d10d70e",
+    "src/components/ProductRoute.jsx": "0f783f43c022217c04f1985fd719be907a11e44e23ed1f7131c348730687614f",
+    "src/components/ProtectedRoute.jsx": "333780e54d1116983d41bbfb0652906cf02822ee4b729a645452bb49563f2500",
+    "src/pages/Onboarding.jsx": "28df71829c62f5ef3a24488ef42c68f39b294a5905bd753dc476ed6faa3d86a6",
+    "src/components/internal/RunHistory.jsx": "0a98d7222f3923cff842d6c488726aabd719267997dd92f4b446d2b61d4f4bbc",
+    "src/foundation/health/privateReportOpening.js": "b4b971341e3484126c00dddf79b79143b0fd5062e89b4257413a72d8d52cd9c8",
+    "src/lib/authReturnTo.js": "43f7b27c036fe8bb01047f52d3a613827c8fc145fa8c39dfd197a95010360f22",
+    "src/services/internal/healthRunStore.js": "bbca4e872aac0e8a5cf2d3a1e7cdb5fda94265da33e99c93be817ad983223670",
+    "base44/shared/onboardingOperations.js": "3b9f2a4768bf0fa400fd921f5f6f85e44538351ed39c6c08a6d6f7520c8711eb",
+    "package-lock.json": "0426863edbbcee5fcd2967fc0deda6c34108d879778ba37889a3c24ecbcdabd6"
+  },
+  "manualPending": [
+    "Published Full Health and history readback",
+    "Deployed owner/admin/RLS/provider enforcement",
+    "Original partial-account ON05 saveCycle/readback",
+    "Real Apple/Google and physical Android/iOS wrapper/keyboard/Back",
+    "Platform backup/trash/permanent erasure guarantees"
+  ],
+  "deliverySourceCommit": "5342a4e11380d6618ca39050320b8bbd06db96cd"
+}

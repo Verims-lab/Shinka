@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { beginPrivateReport } from '@/foundation/health/privateReportOpening';
 import ShinkaButton from "@/components/shinka/ShinkaButton";
 import { fullReportUrl } from "@/services/internal/healthRunStore";
 import ShinkaCard from "@/components/shinka/ShinkaCard";
@@ -7,10 +8,22 @@ import StatePanel from "@/components/shinka/StatePanel";
 
 export default function RunHistory({ history, onRetry }) {
   const [reportError,setReportError]=useState(false);
+  const [opening,setOpening]=useState(false);
+  const pending=useRef(null);
+  useEffect(()=>{
+    const clear=()=>{pending.current?.cancel();pending.current=null;};
+    const invalidate=()=>{clear();setOpening(false);setReportError(false);};
+    window.addEventListener('shinka-session-ended',invalidate);
+    window.addEventListener('shinka-health-access-changed',invalidate);
+    return()=>{clear();window.removeEventListener('shinka-session-ended',invalidate);window.removeEventListener('shinka-health-access-changed',invalidate);};
+  },[]);
   const openReport=async(run)=>{
-    setReportError(false);
-    try {const url=await fullReportUrl(run);if(typeof url!=="string"||!url.startsWith("https://"))throw new Error("INVALID_REPORT_URL");window.open(url,"_blank","noopener,noreferrer");}
-    catch {setReportError(true);}
+    if(pending.current)return;
+    setReportError(false);setOpening(true);
+    const operation=beginPrivateReport(()=>fullReportUrl(run));pending.current=operation;
+    try {await operation.result;}
+    catch {if(pending.current===operation)setReportError(true);}
+    finally {if(pending.current===operation){pending.current=null;setOpening(false);}}
   };
   return (
     <ShinkaCard title="Run history">
@@ -27,7 +40,7 @@ export default function RunHistory({ history, onRetry }) {
               <StatusBadge status={r.status} />
               <span className="text-shinka-muted">P{r.passed} F{r.failed} W{r.warnings} B{r.blocked} NA{r.not_applicable}</span>
               <span className="text-shinka-muted break-all">{r.completed_at}</span>
-              {r.report_file_uri && <ShinkaButton variant="secondary" onClick={()=>openReport(r)}>Open private report</ShinkaButton>}
+              {r.report_file_uri && <ShinkaButton variant="secondary" disabled={opening} onClick={()=>openReport(r)}>Open private report</ShinkaButton>}
             </li>
           ))}
         </ul>

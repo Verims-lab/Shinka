@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-026
-**Last Updated:** 2026-10-21
+**Current BuildMarker:** Buildmarker-027
+**Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
 **Scope:** All source (client, backend, internal tooling).
@@ -35,6 +35,10 @@
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+
+## 027 — measured quality closure
+
+Use production assets plus the real SDK with synthetic HTTP interception for comparable route timing (`scripts/measureTransitions.mjs`); block external traffic and label results laboratory-only, never field INP or hosted proof. Keep cold/first destination and revisit separate; report feedback, visible, usable, call counts/bytes and long tasks with sample count. Keep the existing byte budgets. The canonical `rejects` helper must prove a rejection actually occurred even when no error code is specified; no-op success cannot pass a negative assertion. QM04 protects this rule. Heavy performance and actual-App navigation checks stay local; normal Health uses bounded synthetic helpers.
 
 ## Mobile regression and delivery — 026
 

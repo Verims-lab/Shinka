@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-026
-**Last Updated:** 2026-10-21
+**Current BuildMarker:** Buildmarker-027
+**Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
@@ -39,7 +39,7 @@ Profile and preferences save separately, with section-specific verified success.
 
 Each editor retains its base revision and intended values in memory. Timeout/lost response is unconfirmed, never a success or rollback claim. Read-only Check verifies the desired state; explicit retry reuses the same intent. Matching saved values return verified without another update. A different observed revision refuses overwrite and asks the user to reopen saved values; the draft remains until that explicit action. Reload only reads current authority, never resubmits. Profile/consent data is not kept in storage/URL. Logout/session replacement disposes pending UI generations.
 
-Account & Privacy displays current GRANTED/WITHDRAWN/NOT_GIVEN consent without mutation, unpublished legal-content status where no approved destination exists, Sign Out and current admin entry. Withdrawal and deactivation have no working-looking buttons in this package. Existing admin reset/removal remains separate and unchanged.
+Account & Privacy displays current GRANTED/WITHDRAWN/NOT_GIVEN consent without mutation, unpublished legal-content status where no approved destination exists, Sign Out and current admin entry. The current 023 privacy contract above governs implemented withdrawal and account erasure. Existing admin reset/removal remains separate and unchanged.
 
 ## Current Pattern flow — 021
 

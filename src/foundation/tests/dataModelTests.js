@@ -7,7 +7,11 @@ import { SYSTEM_AUTHORITIES as S } from '../../../base44/shared/domainSecurity.j
 import { inspectProductWriteSurface } from '../inspection/domainRules';
 import { loadStaticEvidence } from '../inspection/sourceScanner';
 export const check = (condition,message='contract failed') => {if(!condition) throw new Error(message);};
-export async function rejects(fn,code) {let found;try{await fn();}catch(error){found=error.code;}check(found===code,`expected ${code}; got ${found??'success'}`);}
+export async function rejects(fn, code) {
+  let found, caught = false;
+  try { await fn(); } catch (error) { caught = true; found = error.code; }
+  check(caught && (code === undefined || found === code), `expected rejection${code ? ` ${code}` : ''}; got ${caught ? found ?? 'unclassified error' : 'success'}`);
+}
 export const NOW='2026-10-19T09:00:00.000Z';
 export const dailyFixture = (overrides={}) => ({user_id:'ownerA',shinka_date:'2026-10-19',timezone:'Europe/Istanbul',category_id:'categoryA',message_pair_id:'pairA',message_tr_snapshot:'synthetic TR',suggestion_tr_snapshot:'synthetic suggestion TR',message_en_snapshot:'synthetic EN',suggestion_en_snapshot:'synthetic suggestion EN',generated_at:NOW,...overrides});
 // Isolated synchronous-map atomic simulator. No network, SDK or product row writes.

@@ -1,0 +1,37 @@
+{
+  "scope": "LOCAL_DIAGNOSTICS_RETAINED",
+  "findings": [
+    {
+      "id": "Q-BUDGET",
+      "observed": {
+        "raw": 502050,
+        "gzip": 166711
+      },
+      "limits": {
+        "raw": 500000,
+        "gzip": 165000
+      },
+      "fix": "Defer onboarding-only forms; limits unchanged"
+    },
+    {
+      "id": "Q-FIXTURE-EMAIL",
+      "test": "T53 / H03-004 / noPersonalEmails",
+      "cause": "Synthetic URL credential test used unapproved fixture domain",
+      "fix": "Use reserved example.invalid; detector unchanged"
+    },
+    {
+      "id": "Q-MEASUREMENT",
+      "invalidRuns": [
+        "shinka-027-before",
+        "shinka-027-after"
+      ],
+      "cause": "SSR fixture loader set NODE_ENV development before Vite build; minified React development runtime",
+      "disposition": "Excluded from performance acceptance; rerun exact baseline archive and current code with NODE_ENV production before SSR loader"
+    },
+    {
+      "id": "Q-RELOAD-FIXTURE",
+      "cause": "Reloading a navigated lab URL lost synthetic session/appFixture selectors",
+      "fix": "Restore harness-only selectors before actual reload; production untouched"
+    }
+  ]
+}

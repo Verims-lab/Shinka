@@ -1,0 +1,593 @@
+{
+  "scope": "LOCAL_PRODUCTION_BUILD_REAL_SDK_SYNTHETIC_HTTP_NO_HOSTED_NO_FIELD_INP",
+  "profile": {
+    "apiLatencyMs": 200,
+    "assetLatencyMs": 40,
+    "cpuSlowdown": 4,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "samples": 5,
+    "bandwidthLimit": null,
+    "externalFonts": "BLOCKED_IN_BOTH_RUNS"
+  },
+  "transitions": [
+    {
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "n": 5,
+      "before": {
+        "feedback": {
+          "median": 36.4,
+          "min": 34.2,
+          "max": 37.6
+        },
+        "visible": {
+          "median": 278.3,
+          "min": 277.7,
+          "max": 301.8
+        },
+        "usable": {
+          "median": 505.1,
+          "min": 504.6,
+          "max": 545.5
+        },
+        "requests": 2,
+        "responseBytes": 1196,
+        "jsBytesMedian": 76690,
+        "longTaskMsMedian": 0
+      },
+      "after": {
+        "feedback": {
+          "median": 18.8,
+          "min": 5.6,
+          "max": 20.6
+        },
+        "visible": {
+          "median": 80.3,
+          "min": 78.8,
+          "max": 83.4
+        },
+        "usable": {
+          "median": 320.6,
+          "min": 314.4,
+          "max": 330.9
+        },
+        "requests": 1,
+        "responseBytes": 509,
+        "jsBytesMedian": 77324,
+        "longTaskMsMedian": 0
+      }
+    },
+    {
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "n": 5,
+      "before": {
+        "feedback": {
+          "median": 13,
+          "min": 12.9,
+          "max": 13.9
+        },
+        "visible": {
+          "median": 63,
+          "min": 62.4,
+          "max": 63.8
+        },
+        "usable": {
+          "median": 280,
+          "min": 279.5,
+          "max": 281.2
+        },
+        "requests": 2,
+        "responseBytes": 1189,
+        "jsBytesMedian": 16542,
+        "longTaskMsMedian": 0
+      },
+      "after": {
+        "feedback": {
+          "median": 12.9,
+          "min": 11.8,
+          "max": 13.8
+        },
+        "visible": {
+          "median": 71.5,
+          "min": 69.4,
+          "max": 80.7
+        },
+        "usable": {
+          "median": 296.8,
+          "min": 294.8,
+          "max": 297.9
+        },
+        "requests": 2,
+        "responseBytes": 1189,
+        "jsBytesMedian": 16613,
+        "longTaskMsMedian": 0
+      }
+    },
+    {
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "n": 5,
+      "before": {
+        "feedback": {
+          "median": 12,
+          "min": 10.7,
+          "max": 13.7
+        },
+        "visible": {
+          "median": 61.5,
+          "min": 60.6,
+          "max": 65.2
+        },
+        "usable": {
+          "median": 278.1,
+          "min": 277.5,
+          "max": 295.4
+        },
+        "requests": 1,
+        "responseBytes": 577,
+        "jsBytesMedian": 10214,
+        "longTaskMsMedian": 0
+      },
+      "after": {
+        "feedback": {
+          "median": 69.4,
+          "min": 64.5,
+          "max": 79
+        },
+        "visible": {
+          "median": 69.4,
+          "min": 64.5,
+          "max": 79
+        },
+        "usable": {
+          "median": 295.8,
+          "min": 293,
+          "max": 296.8
+        },
+        "requests": 1,
+        "responseBytes": 577,
+        "jsBytesMedian": 24471,
+        "longTaskMsMedian": 0
+      }
+    },
+    {
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "n": 5,
+      "before": {
+        "feedback": {
+          "median": 13.2,
+          "min": 12.9,
+          "max": 14.5
+        },
+        "visible": {
+          "median": 214.5,
+          "min": 213.5,
+          "max": 215.3
+        },
+        "usable": {
+          "median": 447.4,
+          "min": 444.7,
+          "max": 448.2
+        },
+        "requests": 2,
+        "responseBytes": 1222,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      },
+      "after": {
+        "feedback": {
+          "median": 28,
+          "min": 27.9,
+          "max": 30.3
+        },
+        "visible": {
+          "median": 28,
+          "min": 27.9,
+          "max": 30.3
+        },
+        "usable": {
+          "median": 246.6,
+          "min": 244,
+          "max": 247.2
+        },
+        "requests": 1,
+        "responseBytes": 535,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      }
+    },
+    {
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "n": 5,
+      "before": {
+        "feedback": {
+          "median": 13.6,
+          "min": 12.8,
+          "max": 14.4
+        },
+        "visible": {
+          "median": 214.5,
+          "min": 213.7,
+          "max": 215.5
+        },
+        "usable": {
+          "median": 447.1,
+          "min": 446.7,
+          "max": 447.6
+        },
+        "requests": 3,
+        "responseBytes": 1876,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      },
+      "after": {
+        "feedback": {
+          "median": 13.8,
+          "min": 12.3,
+          "max": 15.6
+        },
+        "visible": {
+          "median": 30.2,
+          "min": 29.5,
+          "max": 30.5
+        },
+        "usable": {
+          "median": 247.5,
+          "min": 246.1,
+          "max": 248.2
+        },
+        "requests": 2,
+        "responseBytes": 1189,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      }
+    },
+    {
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "n": 5,
+      "before": {
+        "feedback": {
+          "median": 13.1,
+          "min": 11.8,
+          "max": 14.6
+        },
+        "visible": {
+          "median": 13.1,
+          "min": 11.8,
+          "max": 14.6
+        },
+        "usable": {
+          "median": 231,
+          "min": 229.6,
+          "max": 245.4
+        },
+        "requests": 1,
+        "responseBytes": 509,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      },
+      "after": {
+        "feedback": {
+          "median": 29.9,
+          "min": 27.8,
+          "max": 31.6
+        },
+        "visible": {
+          "median": 29.9,
+          "min": 27.8,
+          "max": 31.6
+        },
+        "usable": {
+          "median": 246.4,
+          "min": 246.1,
+          "max": 246.8
+        },
+        "requests": 1,
+        "responseBytes": 509,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      }
+    },
+    {
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "n": 5,
+      "before": {
+        "feedback": {
+          "median": 13.7,
+          "min": 7.4,
+          "max": 14.1
+        },
+        "visible": {
+          "median": 214.2,
+          "min": 213.8,
+          "max": 220.5
+        },
+        "usable": {
+          "median": 445.8,
+          "min": 437.5,
+          "max": 447.4
+        },
+        "requests": 2,
+        "responseBytes": 1222,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      },
+      "after": {
+        "feedback": {
+          "median": 13.3,
+          "min": 11.4,
+          "max": 15.2
+        },
+        "visible": {
+          "median": 30.3,
+          "min": 29,
+          "max": 31.2
+        },
+        "usable": {
+          "median": 246.6,
+          "min": 245.4,
+          "max": 248.3
+        },
+        "requests": 1,
+        "responseBytes": 535,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      }
+    },
+    {
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "n": 5,
+      "before": {
+        "feedback": {
+          "median": 14,
+          "min": 13.3,
+          "max": 15
+        },
+        "visible": {
+          "median": 214.1,
+          "min": 213.5,
+          "max": 217.2
+        },
+        "usable": {
+          "median": 446.4,
+          "min": 430,
+          "max": 447.8
+        },
+        "requests": 2,
+        "responseBytes": 1264,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      },
+      "after": {
+        "feedback": {
+          "median": 14.2,
+          "min": 12.7,
+          "max": 15.7
+        },
+        "visible": {
+          "median": 31.1,
+          "min": 29.3,
+          "max": 31.9
+        },
+        "usable": {
+          "median": 248.7,
+          "min": 247.4,
+          "max": 249.3
+        },
+        "requests": 1,
+        "responseBytes": 577,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      }
+    },
+    {
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "n": 5,
+      "before": {
+        "feedback": {
+          "median": 13.2,
+          "min": 12.7,
+          "max": 14.9
+        },
+        "visible": {
+          "median": 13.2,
+          "min": 12.7,
+          "max": 14.9
+        },
+        "usable": {
+          "median": 231.7,
+          "min": 230.6,
+          "max": 245.4
+        },
+        "requests": 1,
+        "responseBytes": 509,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      },
+      "after": {
+        "feedback": {
+          "median": 30.8,
+          "min": 30,
+          "max": 32.3
+        },
+        "visible": {
+          "median": 30.8,
+          "min": 30,
+          "max": 32.3
+        },
+        "usable": {
+          "median": 247.2,
+          "min": 247,
+          "max": 247.6
+        },
+        "requests": 1,
+        "responseBytes": 509,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      }
+    },
+    {
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "n": 5,
+      "before": {
+        "feedback": {
+          "median": 13.6,
+          "min": 11.1,
+          "max": 14.2
+        },
+        "visible": {
+          "median": 13.6,
+          "min": 11.1,
+          "max": 14.2
+        },
+        "usable": {
+          "median": 230.9,
+          "min": 229.8,
+          "max": 244.4
+        },
+        "requests": 1,
+        "responseBytes": 577,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      },
+      "after": {
+        "feedback": {
+          "median": 12.7,
+          "min": 11.9,
+          "max": 15.4
+        },
+        "visible": {
+          "median": 29.6,
+          "min": 28.5,
+          "max": 32.4
+        },
+        "usable": {
+          "median": 246.5,
+          "min": 245.8,
+          "max": 247.7
+        },
+        "requests": 1,
+        "responseBytes": 577,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      }
+    },
+    {
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "n": 5,
+      "before": {
+        "feedback": {
+          "median": 13.2,
+          "min": 12.5,
+          "max": 14.3
+        },
+        "visible": {
+          "median": 13.2,
+          "min": 12.5,
+          "max": 14.3
+        },
+        "usable": {
+          "median": 230.7,
+          "min": 229.8,
+          "max": 230.9
+        },
+        "requests": 2,
+        "responseBytes": 1189,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      },
+      "after": {
+        "feedback": {
+          "median": 31,
+          "min": 29.9,
+          "max": 31.2
+        },
+        "visible": {
+          "median": 31,
+          "min": 29.9,
+          "max": 31.2
+        },
+        "usable": {
+          "median": 247.2,
+          "min": 245.8,
+          "max": 248
+        },
+        "requests": 2,
+        "responseBytes": 1189,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      }
+    },
+    {
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "n": 5,
+      "before": {
+        "feedback": {
+          "median": 14,
+          "min": 12.8,
+          "max": 14.7
+        },
+        "visible": {
+          "median": 213.7,
+          "min": 212.8,
+          "max": 214.2
+        },
+        "usable": {
+          "median": 446.7,
+          "min": 430.9,
+          "max": 447.1
+        },
+        "requests": 2,
+        "responseBytes": 1222,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      },
+      "after": {
+        "feedback": {
+          "median": 29.7,
+          "min": 28.4,
+          "max": 31.5
+        },
+        "visible": {
+          "median": 29.7,
+          "min": 28.4,
+          "max": 31.5
+        },
+        "usable": {
+          "median": 246,
+          "min": 244.5,
+          "max": 248.7
+        },
+        "requests": 1,
+        "responseBytes": 535,
+        "jsBytesMedian": 0,
+        "longTaskMsMedian": 0
+      }
+    }
+  ]
+}

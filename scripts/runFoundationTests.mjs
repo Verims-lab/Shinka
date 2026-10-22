@@ -1,4 +1,5 @@
 import { checkMobileExperience } from "./checkMobileExperience.mjs";
+import { checkProductNavigation } from './checkProductNavigation.mjs';
 import { checkHealthTiming } from './checkHealthTiming.mjs';
 import { checkPrivacyFlow } from './checkPrivacyFlow.mjs';
 import { checkYouFlow } from './checkYouFlow.mjs';
@@ -67,7 +68,11 @@ try {
   const probeBundle = await collectBrowserMeasurements(browser, origin, identity, browserName);
   await page.addInitScript(bundle=>sessionStorage.setItem('shinka.browser-evidence.v1',JSON.stringify(bundle)),probeBundle);
   await page.evaluate(bundle=>window.__acceptBrowserEvidence(bundle),probeBundle);
-  if (process.env.FOUNDATION_MOBILE_EXPERIENCE_ONLY === '1') {
+  if (process.env.FOUNDATION_NAVIGATION_ONLY === '1') {
+    const productNavigation=await checkProductNavigation(page,origin);
+    console.log(JSON.stringify({productNavigation,pageErrors},null,2));
+    if(pageErrors.length)process.exitCode=1;
+  } else if (process.env.FOUNDATION_MOBILE_EXPERIENCE_ONLY === '1') {
     const mobileExperience=await checkMobileExperience(browser,origin,process.env.FOUNDATION_MOBILE_DIR);
     console.log(JSON.stringify({mobileExperience,pageErrors},null,2));
     if(mobileExperience.some(r=>!r.passed)||pageErrors.length)process.exitCode=1;
@@ -127,6 +132,7 @@ try {
     productionRouting.push({session:`${session}-top-level-probe`,passed:await page.locator('[data-onboarding-state]').getAttribute('data-onboarding-state')==='UNAUTHENTICATED_SIGN_IN'});
   }
   const previewProbes = probeBundle.measurements.map(probe=>({probe,passed:['READY','MEASURED'].includes(probe.state)}));
+  const productNavigation = await checkProductNavigation(page, origin);
   const adminNavigation = await checkAdminNavigation(page, origin, process.env.FOUNDATION_ADMIN_DIR);
   const mobileExperience = await checkMobileExperience(browser,origin,process.env.FOUNDATION_MOBILE_DIR);
   const mobile = await checkMobile(browser, origin, process.env.FOUNDATION_MOBILE_DIR);
@@ -142,7 +148,7 @@ try {
     const audit=await page.evaluate(()=>({registry:window.__healthAuditRegistry,report:window.__savedHealthReport}));
     await writeHealthAudit(root,process.env.FOUNDATION_AUDIT_DIR,audit.registry,audit.report,results);
   }
-  console.log(JSON.stringify({healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
+  console.log(JSON.stringify({productNavigation,healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
   if(mobileExperience.some(r=>!r.passed)||mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||calendarHealth.some(c=>c.status!=="PASS")||adminTestHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
   }
   }

@@ -15,9 +15,11 @@ import { assertPrivacyAccess } from './privacyPolicy.js';
 const fail=(code,status=400)=>{throw new OnboardingError(code,null,status);};
 const allowed={hydrate:[],initialize:['language_code','timezone','action_id'],saveProfile:['display_name','birth_date','birth_time','birthplace_geonames_id','action_id'],saveCycle:['period_start_date','period_duration_days','initial_cycle_length_days','health_consent','action_id'],skipCycle:[],listPlaceCountries:['language_code'],listPlaceRegions:['country','parent_id','offset','language_code'],listPlaceSettlements:['country','parent_id','offset','language_code'],searchPlaces:['query','language_code']};
 // Dependencies are server configuration/injected contract fixtures, never request fields.
-async function normalOnboardingOperation(client,body,dependencies={}) {
+async function normalOnboardingOperation(client,body,dependencies,principal) {
   const {atomic=null,geoNames=null,sunSign=SUN_SIGN_RESOLVER,consentVersion=HEALTH_CONSENT_VERSION,now=()=>new Date()}=dependencies;
-  const principal=await requireAuthenticatedUser(client),owner=resolveAuthenticatedOwner(principal,body);
+  // The public dispatcher minted this principal through fresh server auth.me().
+  // Reuse only within this request; lifecycle and per-write guards stay current.
+  const owner=resolveAuthenticatedOwner(principal,body);
   if (client.shinkaNative) await assertPrivacyAccess(client, owner, { health: true });
   const persistence=dependencies.persistence??(atomic?null:createBase44OnboardingAdapter(client,principal,{now,consentVersion,cycleGate:dependencies.cycleGate}));
   const fields=allowed[body.action];
@@ -112,17 +114,17 @@ async function normalOnboardingOperation(client,body,dependencies={}) {
 export async function onboardingOperation(client, body, dependencies = {}) {
   const principal = await requireAuthenticatedUser(client);
   const reset = await readUserLifecycle(client, principal.id);
-  if (!reset || reset.operation !== 'RESET_ONBOARDING') return normalOnboardingOperation(client, body, dependencies);
+  if (!reset || reset.operation !== 'RESET_ONBOARDING') return normalOnboardingOperation(client, body, dependencies, principal);
   if (reset.status !== 'RESET_ACTIVE') fail('TEST_TARGET_BUSY', 409);
   const passive = ['hydrate', 'searchPlaces', 'listPlaceCountries', 'listPlaceRegions', 'listPlaceSettlements'];
   if (passive.includes(body.action)) {
-    const result = await normalOnboardingOperation(client, body, { ...dependencies, resetFlow: true });
+    const result = await normalOnboardingOperation(client, body, { ...dependencies, resetFlow: true }, principal);
     if (!result.state || result.state === 'INACTIVE_ACCOUNT') return result;
     return { ...result, state: resetRoute(reset), completionReady: false };
   }
   return resetOnboardingStep({ client, reset, owner: principal.id, body, coordinator: dependencies.lifecycleCoordinator,
     perform: async context => {
-      const result = await normalOnboardingOperation(client, body, { ...dependencies, ...context, resetFlow: true });
+      const result = await normalOnboardingOperation(client, body, { ...dependencies, ...context, resetFlow: true }, principal);
       return body.action === 'initialize' && result.state !== 'INACTIVE_ACCOUNT' ? { ...result, state: resetRoute(reset), completionReady: false } : result;
     },
   });

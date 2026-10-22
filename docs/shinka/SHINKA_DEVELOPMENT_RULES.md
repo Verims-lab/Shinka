@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-026
-**Last Updated:** 2026-10-21
+**Current BuildMarker:** Buildmarker-027
+**Last Updated:** 2026-10-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
@@ -14,6 +14,10 @@
 - NO SILENT SOURCE-CONTRACT CHANGE
 - NO FUTURE FEATURE IMPLEMENTATION WITHOUT PACKAGE SCOPE
 - NO LEGACY SHINKA IMPORT — NO LEGACY SHINKA CONTRACT MAY ENTER THIS PROJECT WITHOUT AN EXPLICIT CHANGE REQUEST.
+
+## 027 — Bildirim Öncesi Kalite Milestone’u
+
+The current user request authorizes audit **and** focused fixes, including a compatible Router major update after review. Advance once to Buildmarker-027 / HC-027.0 and retain 023–027. No notification work, infrastructure, live mutation/import, routine hosted Health, main merge/publish or device/store submission. Preserve 024 incident evidence, 025 cancellation/timing tests and 026 mobile acceptance. Current local evidence, comparable production measurements and remaining manual acceptance belong in [the single milestone report](reports/SHINKA_PRE_NOTIFICATION_QUALITY_027.md). App/SDK fixtures are not hosted proof.
 
 ## 026 mobile scope
 

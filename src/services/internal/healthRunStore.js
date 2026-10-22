@@ -10,8 +10,8 @@ export async function saveHealthRun(report, recovery = {}) {
     throw historyError(error);
   }
 }
-export async function listHealthRuns(_limit=20) {return (await base44.functions.invoke('internalHealth',{action:'list'})).data.runs;}
-export async function fullReportUrl(run) {return (await base44.functions.invoke('internalHealth',{action:'report',runId:run.id})).data.signed_url;}
+export async function listHealthRuns(_limit=20) {return (await withTimeout(base44.functions.invoke('internalHealth',{action:'list'}),30000)).data.runs;}
+export async function fullReportUrl(run) {return (await withTimeout(base44.functions.invoke('internalHealth',{action:'report',runId:run.id}),30000)).data.signed_url;}
 
 export async function checkHealthRun(report) {
   try {return (await withTimeout(base44.functions.invoke('internalHealth',{action:'saveStatus',report}),30000)).data;}
