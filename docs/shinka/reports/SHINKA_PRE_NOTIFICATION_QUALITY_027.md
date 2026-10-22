@@ -4,7 +4,7 @@
 
 Code/local acceptance: **COMPLETE — REPO_CLOSED_PENDING_BASE44_VERIFICATION**. Hosted and physical-device acceptance: **MANUAL_USER_VALIDATION_PENDING**. No notification implementation, live mutation/import, live Full Health, main merge/publish, new identity/database/service or store submission occurred.
 
-Starting checkout was clean Test `1cd93e1`. Fetched main was two commits ahead (026 merge and Base44 dependency update); Test was fast-forwarded and pushed before implementation. Measured baseline is **`860c2d74e48e399e30d0448a998b637a3644314f`**, including its exact lockfile. Delivery source commit: recorded in the final receipt below; the receipt-only follow-up does not change runtime code.
+Starting checkout was clean Test `1cd93e1`. Fetched main was two commits ahead (026 merge and Base44 dependency update); Test was fast-forwarded and pushed before implementation. Measured baseline is **`860c2d74e48e399e30d0448a998b637a3644314f`**, including its exact lockfile. Delivery source commit: **`5342a4e11380d6618ca39050320b8bbd06db96cd`**. The receipt-only follow-up on Test records this hash and does not change runtime code. The final Test head is supplied in the delivery message.
 
 ## Findings, fixes and evidence
 
@@ -110,3 +110,7 @@ At most five app checks after publication:
 - [Base44 entity security](https://docs.base44.com/developers/backend/resources/entities/security) and [SDK work with data](https://docs.base44.com/developers/references/sdk/getting-started/work-with-data): direct policies and service-role bypass require server authorization.
 - [Pinned v7.18.4 upgrade guide](https://github.com/remix-run/react-router/blob/react-router%407.18.4/docs/upgrading/v6.md): Node/React prerequisites, future behavioral changes, lazy placement and splat review.
 - [Router redirect advisory](https://github.com/advisories/GHSA-wrjc-x8rr-h8h6), [SSR hydration advisory](https://github.com/advisories/GHSA-337j-9hxr-rhxg): affected/fixed ranges and mode-specific reachability.
+
+## Final source receipt
+
+Implementation, tests and evidence are committed as `5342a4e11380d6618ca39050320b8bbd06db96cd`. [Machine-readable final gates and runtime source hashes](quality-027/verification.json). Delivery remains Test-only; user main merge/sync/publish and hosted/device acceptance remain pending.
