@@ -2,11 +2,20 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-031
+**Current BuildMarker:** Buildmarker-032
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-031.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-032.0; repository, synthetic and external evidence separated.
+
+## HC-032.0 — native preparation and external acceptance clarity
+
+Update **H14-901** in place: secure automatic caller plus native User recipient mapping, response/error/no-device meaning, eligibility and idempotency; distinguishing an equally authorized manual admin is not required. Update **H16-901** in place: first verify push-bearing build/OS permission/preferences, then approved controlled physical delivery, lifecycle states, guarded Home, denial and logout/account rebinding. Both remain EXTERNAL and cannot PASS from local fixtures or credential/file presence. H16-902 retains separate device Apple/Google sign-in acceptance.
+
+Add: none. Delete: none. H14-001–004 and all existing NT/NC/NP/NU/You/Home assertions remain unchanged; no runtime bug was found in this scoped review. Catalog inventory/plan stays 175 total / 149 in-app / 12 local / 14 external / 0 future, H14 backend plan [001,002,003]. Only catalog version and explicit content-policy entry 032 advance. [032 report](reports/SHINKA_NATIVE_NOTIFICATION_READINESS_032.md) records newly executed package checks and physical NOT_RUN separately from 031 history.
+
+
+Final 032 local results: Chromium **624/624**, WebKit **624/624**, each **8/8 server + 9/9 actual-entry fixtures**; required IDs present, no failures/page errors. In-app Health **136 PASS / 0 FAIL / 13 prerequisite BLOCKED**. Required install/tree/audit/security/type/lint/build/repo/history/performance gates pass; audit zero. 031 same-fixture budgets remain 69/104/46 entity reads, 4/4/2 writes, 12/15/9 auth.me, 1/3/0 eligibility, 0/1/0 synthetic sends. JS 479543/160180 gzip, CSS 77521/14262 bytes. All native/hosted acceptance remains NOT_RUN; Internal Build 028–032. Exact source hashes and receipts are in the 032 report.
 
 ## HC-031.0 — notification read budgets and freshness boundaries
 

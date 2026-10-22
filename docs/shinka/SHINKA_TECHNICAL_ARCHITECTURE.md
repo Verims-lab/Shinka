@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-031
+**Current BuildMarker:** Buildmarker-032
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -10,6 +10,12 @@
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## 032 — native preparation with unchanged runtime
+
+The scoped review found no runtime defect requiring a new implementation: NotificationStatus reports the persisted preference separately from unknown support/permission and pending setup; no native bridge or settings button exists. The server adapter remains UNKNOWN and the real schedule entry enabled:false. Current Home/onboarding/session guards, neutral copy, preference readback and all 031 fresh-admission/read budgets remain byte-identical. No schema/dependency/native framework/device registry is added.
+
+Native credentials and push-bearing binaries are owner-controlled platform preparation; Firebase is only Base44's Android push transport configuration. Device permission/recipient lifecycle is not available through a verified JavaScript interface in the inspected SDK/docs. Secure automatic invocation and provider recipient/result/error/no-device/eligibility/idempotency contracts still gate activation. Manual admin equivalence is acceptable. The [032 report](reports/SHINKA_NATIVE_NOTIFICATION_READINESS_032.md) is the single setup/device plan; the existing mobile report remains the UI compatibility authority.
 
 ## 031 — same-phase notification admission reuse
 

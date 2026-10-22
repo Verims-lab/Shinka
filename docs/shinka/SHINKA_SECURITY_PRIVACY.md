@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-031
-**Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
+**Current BuildMarker:** Buildmarker-032
+**Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
@@ -28,6 +28,12 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+## 032 — native preparation and security evidence
+
+Read-only dashboard inspection observed Apple and Google login enabled, with Google using the default Base44 OAuth. This proves settings only, not native sign-in or device-token binding. No secret was opened, copied or saved; blank setup fields do not prove absent keys/accounts. Record application identifiers only when actually confirmed; private keys, service accounts, sessions and device tokens must never enter chat/log/Git. The owner supplies required credentials directly to trusted platform forms; Firebase is push configuration, never a Shinka data migration.
+
+All backend/UI security behavior stays unchanged. The actual entry is enabled:false and unknown native permission/recipient/provider states cannot authorize sending. Secure automatic caller identity is still required, while workflow-only versus equally authorized manual-admin separation is not. H14-901/H16-901 remain external, no transaction/CAS/distributed exactly-once guarantee is added, and the existing 12 findings stay OPEN / USER-DEFERRED. The already-open dashboard displayed an aggregate 13-function warning; it was not rescanned, investigated or acknowledged in this package and does not close/reclassify the retained 12. [032 inventory and external proof](reports/SHINKA_NATIVE_NOTIFICATION_READINESS_032.md).
 
 ## 031 — read reduction without cross-phase authorization reuse
 

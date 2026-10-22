@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-031
+**Current BuildMarker:** Buildmarker-032
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -10,6 +10,12 @@
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+## 032 — preparation and delivery are separate
+
+The app opt-in records the owner's preference; it does not grant OS permission, register a recipient or activate sending. Existing unknown device/support and setup-pending presentation remains truthful; no concrete runtime correction was needed. Daily generation stays independent of permission and opt-in, with unchanged 06:00–12:00/window/retry/UNKNOWN rules and guarded Home opening. No new URL protocol or notification navigation handler is introduced.
+
+The owner may prepare platform accounts/configuration and the correct native build independently of the pending technical response. Actual sending still requires both safe platform contracts and explicit controlled-test approval. Service-role access or absent auth is never caller proof; manual calls by the same authorized admin need not be distinguishable from automatic calls. See [032 setup and acceptance](reports/SHINKA_NATIVE_NOTIFICATION_READINESS_032.md); all physical execution is NOT_RUN.
 
 ## 030 — daily notification behavior and current boundary
 

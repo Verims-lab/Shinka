@@ -50,7 +50,7 @@ export const H16_CASES = [
     const injected = computeGate([...ctx.results, { id: "SYN-FUTURE", applicability: APPLICABILITY.FUTURE, blocker: true, status: STATUS.FAIL }]).status;
     return verdict(base === onlyCurrent && base === injected, ev(CLASS.SYNTHETIC_RUNTIME, "computeGate", { base, onlyCurrent, injected }, "all equal", "Gate isolation check"));
   }),
-  futureCase("H16", "H16-901", "Device proof: push delivery and open-to-Home", "Physical iOS/Android evidence required before release.", APPLICABILITY.EXTERNAL, CLASS.DEVICE),
+  futureCase("H16", "H16-901", "Device proof: push delivery and open-to-Home", "032 two-stage plan: push-enabled build identity, OS permission and persisted preference; after binding approval, physical iPhone/Android foreground/background/closed delivery, guarded Home, denial and logout/account rebinding. Provider acceptance is separate from display; all device steps NOT_RUN until evidence exists. See SHINKA_NATIVE_NOTIFICATION_READINESS_032.md.", APPLICABILITY.EXTERNAL, CLASS.DEVICE),
   futureCase("H16", "H16-902", "Device proof: Apple/Google sign-in", "Physical device sign-in evidence required before release.", APPLICABILITY.EXTERNAL, CLASS.DEVICE),
   futureCase("H16", "H16-903", "Restore proof: deleted health data stays deleted", "Base44 backup/restore evidence required before release.", APPLICABILITY.EXTERNAL, CLASS.BLOCKED_EXTERNAL),
 ];

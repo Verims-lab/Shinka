@@ -1,0 +1,42 @@
+{
+  "observedDate": "2026-10-22",
+  "surface": "Existing Shinka Base44 editor Main; read-only UI observations",
+  "authentication": {
+    "appleEnabled": true,
+    "googleEnabled": true,
+    "googleMode": "default Base44 OAuth"
+  },
+  "iosForm": {
+    "issuerIdEmpty": true,
+    "keyIdEmpty": true,
+    "teamIdEmpty": true,
+    "apiKeyFileSelected": false,
+    "continueEnabled": false,
+    "pushToggle": false
+  },
+  "androidForm": {
+    "pushToggle": false,
+    "packageNameVisibleAtInspectedStep": false
+  },
+  "unknown": [
+    "bundle ID",
+    "package name",
+    "Apple/Google account access",
+    "plan",
+    "existing credentials",
+    "Firebase project/files",
+    "signing fingerprints",
+    "native builds",
+    "device permission/token"
+  ],
+  "inferenceLimit": "Blank/default creation forms do not establish missing accounts or previously persisted credentials. No secret values inspected. Not native proof.",
+  "mutations": {
+    "savedSettings": false,
+    "togglesChanged": false,
+    "uploads": false,
+    "generatedBuild": false,
+    "publish": false,
+    "securityScan": false
+  },
+  "safetyReview": "Initial numeric Close target rejected by automatic approval review; fresh semantic Close succeeded. No remaining blocker."
+}

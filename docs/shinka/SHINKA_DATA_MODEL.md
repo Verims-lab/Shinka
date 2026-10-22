@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-031
+**Current BuildMarker:** Buildmarker-032
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -417,7 +417,7 @@ Current counts: VERIFIED 1; PARTIALLY_VERIFIED 13; UNVERIFIED 8; UNSUPPORTED 2. 
 | CAP-06 | Transaction / rollback (multi-record atomicity) | UNVERIFIED | Not measured. |
 | CAP-07 | Conditional update | UNVERIFIED | Not measured. |
 | CAP-08 | Concurrency safety | UNVERIFIED | Not measured. |
-| CAP-09 | Auth providers (Apple + Google only) | PARTIALLY_VERIFIED | Repository policy implemented (OD-003); recorded platform snapshot lists Apple/Google. Current dashboard configuration and live provider sign-in remain unverified. |
+| CAP-09 | Auth providers (Apple + Google only) | PARTIALLY_VERIFIED | Repository policy implemented (OD-003); recorded snapshot and 032 read-only dashboard inspection (2026-10-22) show Apple/Google enabled, default Base44 Google OAuth. Live/native provider sign-in remains unverified. |
 | CAP-10 | Row / owner security (RLS) | PARTIALLY_VERIFIED | 20 product schemas deny direct SDK CRUD; backend filters owner using auth.me().id, ACTIVE/consent gates. Synthetic cross-owner tests pass; live identities still required. |
 | CAP-11 | Admin role authorization (platform-native) | PARTIALLY_VERIFIED | One shared auth.me()/admin guard for tooling and domain access; read-only CLI confirms current principal role admin. Separate non-admin live 403 evidence pending. |
 | CAP-12 | Backend function execution | VERIFIED | validateContentArtifacts executed 2026-10-18 (live + fixture modes) returning structured results. |

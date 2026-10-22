@@ -2,11 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-031
+**Current BuildMarker:** Buildmarker-032
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
+
+## 032 — independent native readiness, bounded delivery
+
+Start from owner-merged PR #33 (0a8b1e8, same tree as Test b4b654f), preserve work and advance once to 032 / HC-032.0. This package authorizes a sourced native setup inventory/runbook and device plan, not general audit, new architecture or live integration. Prepare independent work before asking for access. Do not infer missing dashboard state from absent repo files. Credentials go directly into trusted platform fields, never chat/log/Git; no agent account/project/key creation, paid upgrade, build, upload, workflow/push, live Health/scan/import/user mutation or main publish. Firebase preparation is Android push only; Base44 remains authority.
+
+Application/backend/test behavior is unchanged after scoped inspection. Only version/content-policy metadata and existing external acceptance descriptions change in code. No new test/suite/Health ID is warranted. Record actual local package runs separately from 031 and physical NOT_RUN; retain 031 query budgets and all prior failures. Internal Build keeps 028–032. Deliver Test and a draft continuation PR because #33 is already merged. [Single readiness report](reports/SHINKA_NATIVE_NOTIFICATION_READINESS_032.md).
 
 ## 031 — bounded notification performance correction
 

@@ -2,11 +2,20 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-031
+**Current BuildMarker:** Buildmarker-032
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 032 — native notification preparation
+
+Clean Test/origin Test b4b654f; PR #33 already owner-merged as 0a8b1e8 with identical tree. Fast-forward preserved all work; 032 was unused. Reviewed canonical sources, 029/031 and mobile evidence, installed SDK and current official Base44/Apple/Android/Firebase sources. Read-only Base44 UI confirms Apple/Google enabled (default Base44 Google OAuth), accessible native setup forms and no selected iOS API key in the opened form; account/key existence, native IDs/builds and push eligibility remain unknown. No settings saved, build generated or live app action executed.
+
+No concrete application defect was found; existing preference/permission/setup/session/Home behavior and test code are retained. Only 032 version/strict allowlist metadata plus H14-901/H16-901 external descriptions change in source. New suite/case unnecessary. A numeric dismiss click was rejected by automatic review; fresh semantic Close succeeded, without publication or configuration changes. [Single readiness report](reports/SHINKA_NATIVE_NOTIFICATION_READINESS_032.md) records the inventory, owner setup and device NOT_RUN plan.
+
+
+Final 032 local results: Chromium **624/624**, WebKit **624/624**, each **8/8 server + 9/9 actual-entry fixtures**; required IDs present, no failures/page errors. In-app Health **136 PASS / 0 FAIL / 13 prerequisite BLOCKED**. Required install/tree/audit/security/type/lint/build/repo/history/performance gates pass; audit zero. 031 same-fixture budgets remain 69/104/46 entity reads, 4/4/2 writes, 12/15/9 auth.me, 1/3/0 eligibility, 0/1/0 synthetic sends. JS 479543/160180 gzip, CSS 77521/14262 bytes. All native/hosted acceptance remains NOT_RUN; Internal Build 028–032. Exact source hashes and receipts are in the 032 report.
 
 ## 031 — comparable notification backend read reduction
 

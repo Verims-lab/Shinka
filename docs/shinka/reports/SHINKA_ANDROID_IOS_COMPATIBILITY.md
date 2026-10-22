@@ -1,5 +1,10 @@
 # Shinka Android / iOS compatibility evidence
 
+## 032 — native setup and device acceptance preparation
+
+[Native Notification Readiness 032](SHINKA_NATIVE_NOTIFICATION_READINESS_032.md) is the current setup inventory and owner runbook, with two-stage physical acceptance marked NOT_RUN. No notification/UI runtime change, native bridge, credential or real sending is added. H14-901/H16-901 descriptions are clarified without closing them. Earlier package evidence below stays historical; it is not a 032 execution result.
+
+
 ## 030 — admin admission and reported push adapter continuation (2026-10-22)
 
 Final Chromium/WebKit each 617/617, plus 8 server and 9 actual-entry checks per command; retained NU01–03, 150 interaction/87 compatibility checks, 24 You and 23 privacy checks per engine. UI/guarded Home behavior is retained; no native permission bridge or real push is inferred. H14-901 now distinguishes implemented manual admin/reported input from unverified workflow and provider semantics. H16-901 remains physical Android/iOS display, permission, logout/rebinding and Home acceptance. Entry and eligibility remain disabled/unknown. [030 results and setup](SHINKA_NOTIFICATIONS_029.md), [verification](notifications-030/verification.json). Earlier evidence below is historical and preserved.
