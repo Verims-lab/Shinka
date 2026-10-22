@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-032
-**Last Updated:** 2026-10-22
+**Current BuildMarker:** Buildmarker-033
+**Last Updated:** 2026-10-23
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
 **Scope:** Product domain entities + separately listed internal tooling storage.
@@ -421,11 +421,11 @@ Current counts: VERIFIED 1; PARTIALLY_VERIFIED 13; UNVERIFIED 8; UNSUPPORTED 2. 
 | CAP-10 | Row / owner security (RLS) | PARTIALLY_VERIFIED | 20 product schemas deny direct SDK CRUD; backend filters owner using auth.me().id, ACTIVE/consent gates. Synthetic cross-owner tests pass; live identities still required. |
 | CAP-11 | Admin role authorization (platform-native) | PARTIALLY_VERIFIED | One shared auth.me()/admin guard for tooling and domain access; read-only CLI confirms current principal role admin. Separate non-admin live 403 evidence pending. |
 | CAP-12 | Backend function execution | VERIFIED | validateContentArtifacts executed 2026-10-18 (live + fixture modes) returning structured results. |
-| CAP-13 | Scheduler (06:00 local, rolling jobs) | PARTIALLY_VERIFIED | 029: read-only CLI confirms Workflows support/empty list; controlled-clock local traversal and checkpoint tests pass. No workflow created; actual scheduler authentication remains unbound and entry denies every call. No hosted execution proof. |
-| CAP-14 | Secrets | PARTIALLY_VERIFIED | Request-scoped backend secret binding and synthetic entry tests; user reports configured secret and Preview search HTTP 200. Secret value not inspected; independent hosted list/save verification pending. |
+| CAP-13 | Scheduler | PARTIALLY_VERIFIED | 033 local manual/machine separation and secret comparison; owner accepts scoped shared secret. Registration and secure workflow reference/transport remain unbound; disabled. |
+| CAP-14 | Secrets | PARTIALLY_VERIFIED | Existing GeoNames evidence retained. 033 scheduler uses only synthetic readers; official request-time/set/delete publication behavior documented, actual registration NOT_RUN. |
 | CAP-15 | GeoNames backend proxy | PARTIALLY_VERIFIED | Search/resolve and cascading lists implemented with synthetic boundary tests; user-reported Preview search HTTP 200 returned eight places. New hosted selection/resolve/save/readback remains unverified. |
 | CAP-16 | Astronomy Engine execution in backend | PARTIALLY_VERIFIED | Repository backend generator and local Node/browser reference tests implemented; hosted execution/import unverified. |
-| CAP-17 | Native push (iOS/Android) | PARTIALLY_VERIFIED | 029: official documentation names SendPushNotification; SDK 0.8.57 dynamically forwards Core calls. Named payload/response and native eligibility are unverified; adapter has no production binding. Fake-provider tests are local only; zero live sends and no DEVICE evidence. |
+| CAP-17 | Native push | PARTIALLY_VERIFIED | Relayed support: success means acceptance, not display. Exact input/native User/result/error/no-device/eligibility/idempotency contracts remain unverified; adapter UNKNOWN, entry disabled. |
 | CAP-18 | Backup | UNVERIFIED | Not measured. |
 | CAP-19 | Restore (deleted health data must not reappear) | UNVERIFIED | Not measured. |
 | CAP-21 | Backend-only writes / service-role bypass | PARTIALLY_VERIFIED | Official security docs: service role bypasses RLS/FLS. Schemas deny direct writes; specific non-serializable server grants guard future workers. No live mutation enforcement test. |

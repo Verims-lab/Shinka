@@ -2,9 +2,9 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-032
+**Current BuildMarker:** Buildmarker-033
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
-**Last Updated:** 2026-10-22
+**Last Updated:** 2026-10-23
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
@@ -29,6 +29,12 @@ Internal route gates are UX only. Both `validateContentArtifacts` and `internalH
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
 
+## 033 — accepted secret, no general admin authority
+
+The owner accepts a scheduler-only shared secret based on relayed Base44 support. Prepared machine admission returns no User/admin principal and does not change requireAdmin/internal tooling. Manual native-user freshness checks remain. Null auth, service role, body roles/IDs and workflow flags are never credentials. Missing/invalid/unreadable configuration fails closed; fixed-format node:crypto comparison, repeated request-time reads and generic codes expose no secret/raw error.
+
+Real registration and secure workflow transport remain unverified; entry installs no secret reader or machine callback and stays enabled:false. Knowing an old secret survives admin demotion: revoke/rotate it separately. Official docs say deployed backend values update promptly but an editor-published version may retain the old value until republished; in-flight work is not instantaneously cancelled. Stop scheduled activity and verify old-value rejection in each environment before resuming. [033 owner runbook and evidence](reports/SHINKA_SCHEDULER_AUTHORIZATION_033.md). Existing 12 findings remain OPEN / USER-DEFERRED; no live scan or mutation.
+
 ## 032 — native preparation and security evidence
 
 Read-only dashboard inspection observed Apple and Google login enabled, with Google using the default Base44 OAuth. This proves settings only, not native sign-in or device-token binding. No secret was opened, copied or saved; blank setup fields do not prove absent keys/accounts. Record application identifiers only when actually confirmed; private keys, service accounts, sessions and device tokens must never enter chat/log/Git. The owner supplies required credentials directly to trusted platform forms; Firebase is push configuration, never a Shinka data migration.
@@ -44,6 +50,8 @@ NP01–07 add measured budgets, same-request role/owner/account/preference chang
 12 backend findings remain OPEN / USER-DEFERRED. Entry enabled:false, H14-901/H16-901 and unknown provider/workflow contracts are unchanged; no live action. [031 results](reports/SHINKA_NOTIFICATION_PERFORMANCE_031.md).
 
 ## 030 — notification security and lifecycle
+
+**033 scope amendment:** the following 030 description remains the manual/unbound-entry baseline; its keyless/session-only assumption is superseded for the prepared scheduler machine path by §033. General admin guards are unchanged.
 
 The existing 12 backend findings remain OPEN / USER-DEFERRED. No scan or acknowledgement is performed. notificationSchedule authenticates before constructing a service-role lifecycle repository, then uses the existing shared requireAdmin with fresh native role/lifecycle and stable caller ID. Anonymous/auth-error calls stop before service-role access; normal, demoted and removed identities stop before personal job reads, writes or provider construction. Enabled local tests permit direct verified-admin work and recheck admission at mutation/send boundaries. The actual entry remains enabled:false and returns DISABLED for an admitted admin. No missing-auth system branch exists. A forged header, body role/system/run ID or asServiceRole presence never grants authority. Only {action:"tick"} is accepted; no target/copy/URL/checkpoint input. No secret workaround or SHINKA_WRITE_MODE.
 

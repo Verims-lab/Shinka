@@ -1,0 +1,351 @@
+{
+  "scope": "LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION",
+  "passed": true,
+  "results": [
+    {
+      "id": "NS01",
+      "status": "PASS",
+      "httpStatus": 401,
+      "response": {
+        "error_code": "AUTH_REQUIRED"
+      },
+      "counts": {
+        "clients": 1,
+        "auth": 1,
+        "serviceAccess": 0,
+        "reads": [],
+        "jobIO": 0,
+        "provider": 0,
+        "secretReads": 0
+      },
+      "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+    },
+    {
+      "id": "NS02",
+      "status": "PASS",
+      "httpStatus": 401,
+      "response": {
+        "error_code": "AUTH_REQUIRED"
+      },
+      "counts": {
+        "clients": 1,
+        "auth": 1,
+        "serviceAccess": 0,
+        "reads": [],
+        "jobIO": 0,
+        "provider": 0,
+        "secretReads": 0
+      },
+      "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+    },
+    {
+      "id": "NS03",
+      "status": "PASS",
+      "httpStatus": 403,
+      "response": {
+        "error_code": "ADMIN_REQUIRED"
+      },
+      "counts": {
+        "clients": 1,
+        "auth": 2,
+        "serviceAccess": 3,
+        "reads": [
+          {
+            "entity": "User",
+            "query": {
+              "id": "synthetic-actor"
+            }
+          },
+          {
+            "entity": "UserPrivacyRequest",
+            "query": {
+              "user_id": "synthetic-actor"
+            }
+          },
+          {
+            "entity": "AdminTestOperation",
+            "query": {
+              "target_id": "synthetic-actor"
+            }
+          }
+        ],
+        "jobIO": 0,
+        "provider": 0,
+        "secretReads": 0
+      },
+      "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+    },
+    {
+      "id": "NS04",
+      "status": "PASS",
+      "httpStatus": 403,
+      "response": {
+        "error_code": "ADMIN_REQUIRED"
+      },
+      "counts": {
+        "clients": 1,
+        "auth": 2,
+        "serviceAccess": 3,
+        "reads": [
+          {
+            "entity": "User",
+            "query": {
+              "id": "synthetic-actor"
+            }
+          },
+          {
+            "entity": "UserPrivacyRequest",
+            "query": {
+              "user_id": "synthetic-actor"
+            }
+          },
+          {
+            "entity": "AdminTestOperation",
+            "query": {
+              "target_id": "synthetic-actor"
+            }
+          }
+        ],
+        "jobIO": 0,
+        "provider": 0,
+        "secretReads": 0
+      },
+      "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+    },
+    {
+      "id": "NS05",
+      "status": "PASS",
+      "httpStatus": 401,
+      "response": {
+        "error_code": "AUTH_REQUIRED"
+      },
+      "counts": {
+        "clients": 1,
+        "auth": 2,
+        "serviceAccess": 2,
+        "reads": [
+          {
+            "entity": "User",
+            "query": {
+              "id": "synthetic-actor"
+            }
+          }
+        ],
+        "jobIO": 0,
+        "provider": 0,
+        "secretReads": 0
+      },
+      "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+    },
+    {
+      "id": "NS06",
+      "status": "PASS",
+      "httpStatus": 401,
+      "response": {
+        "error_code": "AUTH_REQUIRED"
+      },
+      "counts": {
+        "clients": 1,
+        "auth": 1,
+        "serviceAccess": 0,
+        "reads": [],
+        "jobIO": 0,
+        "provider": 0,
+        "secretReads": 0
+      },
+      "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+    },
+    {
+      "id": "NS07",
+      "status": "PASS",
+      "httpStatus": 400,
+      "response": {
+        "error_code": "INVALID_REQUEST"
+      },
+      "counts": {
+        "clients": 1,
+        "auth": 2,
+        "serviceAccess": 3,
+        "reads": [
+          {
+            "entity": "User",
+            "query": {
+              "id": "synthetic-actor"
+            }
+          },
+          {
+            "entity": "UserPrivacyRequest",
+            "query": {
+              "user_id": "synthetic-actor"
+            }
+          },
+          {
+            "entity": "AdminTestOperation",
+            "query": {
+              "target_id": "synthetic-actor"
+            }
+          }
+        ],
+        "jobIO": 0,
+        "provider": 0,
+        "secretReads": 0
+      },
+      "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+    },
+    {
+      "id": "NS08",
+      "status": "PASS",
+      "httpStatus": 200,
+      "response": {
+        "state": "DISABLED",
+        "processed": 0
+      },
+      "counts": {
+        "clients": 1,
+        "auth": 2,
+        "serviceAccess": 3,
+        "reads": [
+          {
+            "entity": "User",
+            "query": {
+              "id": "synthetic-actor"
+            }
+          },
+          {
+            "entity": "UserPrivacyRequest",
+            "query": {
+              "user_id": "synthetic-actor"
+            }
+          },
+          {
+            "entity": "AdminTestOperation",
+            "query": {
+              "target_id": "synthetic-actor"
+            }
+          }
+        ],
+        "jobIO": 0,
+        "provider": 0,
+        "secretReads": 0
+      },
+      "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+    },
+    {
+      "id": "NS09",
+      "status": "PASS",
+      "httpStatus": 400,
+      "response": {
+        "error_code": "INVALID_REQUEST"
+      },
+      "counts": {
+        "clients": 1,
+        "auth": 2,
+        "serviceAccess": 3,
+        "reads": [
+          {
+            "entity": "User",
+            "query": {
+              "id": "synthetic-actor"
+            }
+          },
+          {
+            "entity": "UserPrivacyRequest",
+            "query": {
+              "user_id": "synthetic-actor"
+            }
+          },
+          {
+            "entity": "AdminTestOperation",
+            "query": {
+              "target_id": "synthetic-actor"
+            }
+          }
+        ],
+        "jobIO": 0,
+        "provider": 0,
+        "secretReads": 0
+      },
+      "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+    },
+    {
+      "id": "NS10",
+      "status": "PASS",
+      "httpStatus": 401,
+      "response": {
+        "error_code": "AUTH_REQUIRED"
+      },
+      "counts": {
+        "clients": 1,
+        "auth": 1,
+        "serviceAccess": 0,
+        "reads": [],
+        "jobIO": 0,
+        "provider": 0,
+        "secretReads": 0
+      },
+      "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+    },
+    {
+      "id": "NS11",
+      "status": "PASS",
+      "httpStatus": 200,
+      "response": {
+        "state": "DISABLED",
+        "processed": 0
+      },
+      "counts": {
+        "clients": 1,
+        "auth": 0,
+        "serviceAccess": 0,
+        "reads": [],
+        "jobIO": 0,
+        "provider": 0,
+        "secretReads": 1
+      },
+      "assertion": "Actual disabled entry options with prepared real comparator injected only in this fixture; no workflow transport proof."
+    }
+  ],
+  "secretChecks": {
+    "scope": "LOCAL_NODE_CRYPTO_REAL_COMPARISON_SYNTHETIC_READERS",
+    "passed": true,
+    "results": [
+      {
+        "id": "SM01",
+        "status": "PASS",
+        "assertion": "Missing, blank, malformed and unreadable configuration: no client/work/provider"
+      },
+      {
+        "id": "SM02",
+        "status": "PASS",
+        "assertion": "Missing, malformed, unreadable and equal-length wrong credential: no client/work/provider"
+      },
+      {
+        "id": "SM03",
+        "status": "PASS",
+        "assertion": "Factory performs no reads; every admission rereads configuration and credential"
+      },
+      {
+        "id": "SM04",
+        "status": "PASS",
+        "assertion": "Request-local callbacks share no authorization or configuration cache"
+      },
+      {
+        "id": "SM05",
+        "status": "PASS",
+        "assertion": "Successful comparison returns no User/admin authority and leaves common guards closed"
+      },
+      {
+        "id": "SM06",
+        "status": "PASS",
+        "assertion": "Valid credential still returns DISABLED with zero service access/work/provider"
+      },
+      {
+        "id": "SM07",
+        "status": "PASS",
+        "assertion": "Unavailable reader callbacks fail closed; no native identity fallback"
+      }
+    ],
+    "hostedVerified": false
+  },
+  "hostedVerified": false
+}

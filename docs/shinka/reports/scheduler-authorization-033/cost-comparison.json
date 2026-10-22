@@ -1,0 +1,93 @@
+{
+  "baseline": "../notification-performance-031/after.json",
+  "scope": "Separate authority paths, local SDK call counts; not hosted latency/credit optimization or physical delivery",
+  "sameInitialState": true,
+  "scenarios": [
+    {
+      "scenario": "existing-intent",
+      "adminCounts": {
+        "entityReads": 69,
+        "entityWrites": 4,
+        "authMe": 12,
+        "providerEligibility": 1,
+        "providerSend": 0
+      },
+      "machineCounts": {
+        "entityReads": 36,
+        "entityWrites": 4,
+        "authMe": 0,
+        "providerEligibility": 1,
+        "providerSend": 0,
+        "machineAdmissions": 11
+      },
+      "adminUnchangedFrom031": true,
+      "sameTimeStateResultProduct": true
+    },
+    {
+      "scenario": "accepted-dispatch",
+      "adminCounts": {
+        "entityReads": 104,
+        "entityWrites": 4,
+        "authMe": 15,
+        "providerEligibility": 3,
+        "providerSend": 1
+      },
+      "machineCounts": {
+        "entityReads": 62,
+        "entityWrites": 4,
+        "authMe": 0,
+        "providerEligibility": 3,
+        "providerSend": 1,
+        "machineAdmissions": 14
+      },
+      "adminUnchangedFrom031": true,
+      "sameTimeStateResultProduct": true
+    },
+    {
+      "scenario": "settled-pass",
+      "adminCounts": {
+        "entityReads": 46,
+        "entityWrites": 2,
+        "authMe": 9,
+        "providerEligibility": 0,
+        "providerSend": 0
+      },
+      "machineCounts": {
+        "entityReads": 22,
+        "entityWrites": 2,
+        "authMe": 0,
+        "providerEligibility": 0,
+        "providerSend": 0,
+        "machineAdmissions": 8
+      },
+      "adminUnchangedFrom031": true,
+      "sameTimeStateResultProduct": true
+    }
+  ],
+  "receipts": {
+    "cost-admin": {
+      "command": [
+        "node",
+        "scripts/measureNotifications.mjs",
+        "/private/tmp/shinka-033/cost-admin"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:10:23.375144+00:00",
+      "completedAt": "2026-10-22T21:10:29.499569+00:00",
+      "log": "cost-admin.log"
+    },
+    "cost-machine": {
+      "command": [
+        "node",
+        "scripts/measureNotifications.mjs",
+        "/private/tmp/shinka-033/cost-machine",
+        "--machine"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:10:23.371929+00:00",
+      "completedAt": "2026-10-22T21:10:29.498604+00:00",
+      "log": "cost-machine.log"
+    }
+  },
+  "postMeasurementSourceDelta": "Only executable-equivalent comparator JSDoc; post-browser-source-check.json"
+}

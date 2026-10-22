@@ -1,0 +1,90 @@
+{
+  "scope": "LOCAL_SYNTHETIC_SDK_TRANSPORT_COUNTS_NOT_LATENCY_OR_CREDITS",
+  "initialStateHash": "fe0aa8dc9ed6385d5e9ae06383d08fe6fa17b45b688145e2cf258428a726de7d",
+  "scenarios": [
+    {
+      "name": "existing-intent",
+      "time": "2026-10-20T03:00:00.000Z",
+      "counts": {
+        "entityReads": 69,
+        "entityWrites": 4,
+        "authMe": 12,
+        "providerEligibility": 1,
+        "providerSend": 0
+      },
+      "result": {
+        "state": "COMPLETE",
+        "processed": 1,
+        "counts": {
+          "QUEUED": 1
+        },
+        "cycleComplete": true
+      },
+      "product": {
+        "dailyUnchanged": true,
+        "dailyCount": 1,
+        "deliveryCount": 1,
+        "deliveryStatus": "PENDING",
+        "dispatchState": "READY",
+        "attemptCount": 0,
+        "sendCount": 0
+      }
+    },
+    {
+      "name": "accepted-dispatch",
+      "time": "2026-10-20T03:05:00.000Z",
+      "counts": {
+        "entityReads": 104,
+        "entityWrites": 4,
+        "authMe": 15,
+        "providerEligibility": 3,
+        "providerSend": 1
+      },
+      "result": {
+        "state": "COMPLETE",
+        "processed": 1,
+        "counts": {
+          "ACCEPTED": 1
+        },
+        "cycleComplete": true
+      },
+      "product": {
+        "dailyUnchanged": true,
+        "dailyCount": 1,
+        "deliveryCount": 1,
+        "deliveryStatus": "SENT",
+        "dispatchState": "ACCEPTED",
+        "attemptCount": 1,
+        "sendCount": 1
+      }
+    },
+    {
+      "name": "settled-pass",
+      "time": "2026-10-20T03:05:00.000Z",
+      "counts": {
+        "entityReads": 46,
+        "entityWrites": 2,
+        "authMe": 9,
+        "providerEligibility": 0,
+        "providerSend": 0
+      },
+      "result": {
+        "state": "COMPLETE",
+        "processed": 1,
+        "counts": {
+          "ACCEPTED": 1
+        },
+        "cycleComplete": true
+      },
+      "product": {
+        "dailyUnchanged": true,
+        "dailyCount": 1,
+        "deliveryCount": 1,
+        "deliveryStatus": "SENT",
+        "dispatchState": "ACCEPTED",
+        "attemptCount": 1,
+        "sendCount": 1
+      }
+    }
+  ]
+}

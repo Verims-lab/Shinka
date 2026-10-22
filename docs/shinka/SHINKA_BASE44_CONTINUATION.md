@@ -2,11 +2,17 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-032
-**Last Updated:** 2026-10-22
+**Current BuildMarker:** Buildmarker-033
+**Last Updated:** 2026-10-23
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## 033 — local secret preparation, hosted binding still closed
+
+The new owner-approved shared secret supersedes any keyless/admin-session-only requirement for automatic scheduling. Support recommends carrying an app secret; its safe workflow reference/transport example is still missing. Preserve manual current-native-admin admission. The prepared verifier and trusted handler callback are local only: the actual entry contains no secrets.get, no guessed header and no machine binding; enabled:false remains.
+
+Proposed app secret name: SHINKA_NOTIFICATION_SCHEDULER_SECRET, dedicated to this operation; do not reuse SHINKA_WRITE_MODE, GeoNames or admin-preview keys. Owner-only registration, environment-aware publish, binding verification and rotation steps are in [033 delivery](reports/SHINKA_SCHEDULER_AUTHORIZATION_033.md). Official docs describe request-time secrets, immediate deployed-backend updates and possible old values in an editor-published app until Publish. This is not proof of this app’s hosted behavior or cancellation of in-flight requests. No live work is performed; existing 032 native setup remains independent.
 
 ## 032 — native setup preparation, sending still closed
 
@@ -19,6 +25,8 @@ Current source is based on owner-merged PR #33 (0a8b1e8; same tree as b4b654f). 
 031 changes only notification read scheduling and same-phase daily admission reuse; no product/schema/SDK/provider contract change. Source starts from owner-merged b61228e; preserve all prior 029/030 setup and platform evidence below. Caller guard runs after request body IO and before BUSY/provider construction. Actual entry remains enabled:false, current admin DISABLED/processed:0. No workflow, real push, live Health/scan/import, credential or user operation. The owner still owns merge/publish and later platform/device acceptance. [031 report and matched SDK counts](reports/SHINKA_NOTIFICATION_PERFORMANCE_031.md).
 
 ## 030 — corrected notification platform continuation
+
+**033 scope amendment:** the following 030 description remains the manual/unbound-entry baseline; its keyless/session-only assumption is superseded for the prepared scheduler machine path by §033. General admin guards are unchanged.
 
 On 2026-10-22 the owner relayed Base44 support: workflow auth.me identity, creator downgrade/deletion behavior, signed headers/run-ID verification and workflow-only access are undocumented. The earlier Base44 AI “creator admin” statement is therefore unverified, not an authoritative contract and not proof of non-support. Beta Workflow Run APIs are management/observation, not caller authentication. No secure workflow credential transport/storage contract was supplied; secrets.get alone would not establish it. No guessed header, URL/body secret or custom signature service is introduced.
 

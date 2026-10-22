@@ -2,11 +2,20 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-032
-**Last Updated:** 2026-10-22
+**Current BuildMarker:** Buildmarker-033
+**Last Updated:** 2026-10-23
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 033 — scheduler secret authorization preparation
+
+Started clean at Test/origin Test 8498cf4; owner-merged PR #34 main c9d2d04 has the same tree. Fast-forward preserved all work; 033 was free. Updated Base44 skills and reviewed current official runtime/secret lifecycle documentation. Support is relayed by the owner, not an independently accessed ticket.
+
+Prepared a server-only comparison callback and separate machine path without a fake User/admin, global cache, real secret registration or transport guess. The actual entry remains unbound/disabled, general auth/recipient/privacy/delivery behavior is retained. H14-003/004/901 updated; no new/deleted Health ID. [033 evidence and safe setup](reports/SHINKA_SCHEDULER_AUTHORIZATION_033.md).
+
+
+Final 033 local validation: Chromium **632/632**, WebKit **632/632**; per canonical command **8 server + 11 entry + 7 real crypto/synthetic-reader checks**. Required IDs complete; no browser failure/page error. In-app Health **136 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED**. Mandatory gates pass; audit zero. Admin 031 counts unchanged (69/104/46 reads, 12/15/9 auth.me); prepared machine separately measured (36/62/22 reads, 0 auth.me, 11/14/8 credential checks), same writes/product results. JS 479543/160179 gzip, CSS 77521/14262 bytes. Initial typecheck failure and executable-equivalent JSDoc repair are retained in the 033 report; affected server checks rerun. Real registration/transport/provider/device acceptance remains open. Active 029–033.
 
 ## 032 — native notification preparation
 

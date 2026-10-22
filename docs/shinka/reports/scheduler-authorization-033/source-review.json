@@ -1,0 +1,25 @@
+{
+  "baseCommit": "c9d2d04a1176f9e936456eaddaf14dd420d81721",
+  "unchangedFiles": [
+    "package.json",
+    "package-lock.json",
+    "base44/shared/internalAuthorization.js",
+    "base44/shared/userLifecycle.js",
+    "base44/shared/privacyPolicy.js",
+    "base44/shared/notificationOwner.js",
+    "base44/shared/notificationDelivery.js",
+    "base44/shared/dailyMessageOperation.js",
+    "src/features/you/NotificationStatus.jsx",
+    "src/foundation/i18n/notificationCopy.js",
+    "src/foundation/health/cases/h16.js",
+    "src/foundation/tests/notificationTests.js",
+    "src/foundation/tests/notificationContractTests.js",
+    "src/foundation/tests/notificationPerformanceTests.js",
+    "src/foundation/tests/notificationUiTests.js"
+  ],
+  "comparison": "Byte identical to base commit",
+  "entry": "enabled:false; no real secret reader, credential parser or machine binding",
+  "callbackScope": "Trusted server composition only; no request-selected caller mode",
+  "credentials": "No real secret generated, read or stored; deliberately fixed local fixture values only",
+  "externalClaims": "No hosted Deno/workflow/native acceptance"
+}

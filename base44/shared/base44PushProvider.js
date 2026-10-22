@@ -39,7 +39,8 @@ export function base44PushProvider(client) {
       // No daily date or personal snapshot enters this minimal notification.
       const params = validateReportedPushInput({ user_id:owner,title:copy.title,content:copy.message });
       try {
-        // Promise<unknown>: even a resolved 2xx object has no established meaning.
+        // Support says success means acceptance, not device display, but has not
+        // supplied its wire representation. A fulfilled promise is still unknown.
         await client.asServiceRole.integrations.Core.SendPushNotification(params);
       } catch { /* 403/502/timeout are not a complete no-send/error contract. */ }
       // Never forward raw output, infer SENT, or automatically retry this call.

@@ -2,11 +2,20 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-032
-**Last Updated:** 2026-10-22
+**Current BuildMarker:** Buildmarker-033
+**Last Updated:** 2026-10-23
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-032.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-033.0; repository, synthetic and external evidence separated.
+
+## HC-033.0 — local machine authorization, external workflow acceptance
+
+Health add 0 / update 3 / delete 0. H14-003 adds NM01–08 browser orchestration fixtures for fail-before-client, strict body/disabled behavior, no admin authority, userless execution, recipient/consent guards, admission revocation and UNKNOWN suppression; these substitute the machine callback and do not test crypto. H14-004 adds SM01–07 real node:crypto checks with synthetic readers and NS10–11 actual unbound/disabled entry checks; NS11 injects the prepared binding only in the fixture. Existing NC/NP/NT/NU assertions remain.
+
+H14-901 records accepted secret/local preparation separately from unverified registration/transport and push contracts. H16-901 remains external physical NOT_RUN, unchanged. Inventory/plan stays 175 / 149 in-app / 12 local / 14 external / 0 future; H14 [001,002,003]. No credential presence test closes external acceptance. [033 actual results](reports/SHINKA_SCHEDULER_AUTHORIZATION_033.md).
+
+
+Final 033 local validation: Chromium **632/632**, WebKit **632/632**; per canonical command **8 server + 11 entry + 7 real crypto/synthetic-reader checks**. Required IDs complete; no browser failure/page error. In-app Health **136 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED**. Mandatory gates pass; audit zero. Admin 031 counts unchanged (69/104/46 reads, 12/15/9 auth.me); prepared machine separately measured (36/62/22 reads, 0 auth.me, 11/14/8 credential checks), same writes/product results. JS 479543/160179 gzip, CSS 77521/14262 bytes. Initial typecheck failure and executable-equivalent JSDoc repair are retained in the 033 report; affected server checks rerun. Real registration/transport/provider/device acceptance remains open. Active 029–033.
 
 ## HC-032.0 — native preparation and external acceptance clarity
 
