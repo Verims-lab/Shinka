@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-027
+**Current BuildMarker:** Buildmarker-028
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -10,6 +10,13 @@
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and notification delivery/scheduler. Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## 028 — shared security modules (ACTIVE)
+
+- `base44/shared/boundedJson.js`: single streaming body reader; callers pass their own safe `fail(code,status)` so error types stay per domain.
+- `base44/shared/geonamesGuard.js`: one guard instance per worker in `onboarding` and `you` entries; `forOwner(owner, createAdapter)` returns the same five adapter methods, counting app requests and the adapter's real fetches through an injected fetcher. Existing adapter transport, timeout, redirect and pagination handling and the admin `geoNamesTransportProbe` (internalHealth) are unchanged and not routed through the guard.
+- `nativeClient.ts`/`nativeWriteChecks.js`: no global pause dependency; per-owner checks only.
+- Client: `GEONAMES_RATE_LIMITED` is a central onboarding copy key (TR/EN); birthplace lists keep the code, forms keep selections and drafts, and nothing retries automatically.
 
 ## 027 — navigation and report lifetime
 

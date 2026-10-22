@@ -4,6 +4,7 @@ import { HEALTH_TIMING_TESTS } from './healthTimingTests';
 import { HEALTH_READ_TESTS } from './healthReadTests';
 import { PRIVACY_UI_TESTS } from './privacyUiTests';
 import { PRIVACY_TESTS } from './privacyTests';
+import { SECURITY_028_UI_TESTS } from './security028UiTests';
 import { YOU_TESTS } from './youTests';
 import { YOU_UI_TESTS } from './youUiTests';
 import { PATTERN_TESTS } from './patternTests';
@@ -140,7 +141,7 @@ export const FOUNDATION_TESTS = [
 
 export async function runFoundationTests({ signal = undefined, ids = undefined } = {}) {
   const out = [];
-  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...PRIVACY_TESTS, ...PRIVACY_UI_TESTS, ...CLOSURE020_READINESS_TESTS, ...CLOSURE020_REMOVAL_TESTS, ...LOCAL_RUNNER_TESTS, ...AUDIT019_DELETION_TESTS, ...AUDIT019_INTEGRITY_TESTS, ...CLOSURE018_TESTS, ...CLOSURE017_TESTS, ...UI_CONTRACT_TESTS, ...HARDENING_TESTS, ...CSS_CONTRACT_TESTS, ...DATA_MODEL_TESTS, ...SECURITY_TESTS, ...AUTH_TESTS, ...ONBOARDING_TESTS, ...ONBOARDING_UI_TESTS, ...PRODUCTION_ONBOARDING_TESTS, ...ONBOARDING_DECISION_TESTS, ...HEALTH_CLOSURE_TESTS, ...AUTH_PROBE_TESTS, ...MAINTENANCE_TESTS, ...ADMIN_NAV_TESTS, ...DAILY_TESTS, ...DAILY_UI_TESTS, ...CALENDAR_TESTS, ...CALENDAR_UI_TESTS, ...ADMIN_TEST_TOOLS_TESTS, ...ADMIN_TEST_UI_TESTS]) {
+  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...PRIVACY_TESTS, ...SECURITY_028_UI_TESTS, ...PRIVACY_UI_TESTS, ...CLOSURE020_READINESS_TESTS, ...CLOSURE020_REMOVAL_TESTS, ...LOCAL_RUNNER_TESTS, ...AUDIT019_DELETION_TESTS, ...AUDIT019_INTEGRITY_TESTS, ...CLOSURE018_TESTS, ...CLOSURE017_TESTS, ...UI_CONTRACT_TESTS, ...HARDENING_TESTS, ...CSS_CONTRACT_TESTS, ...DATA_MODEL_TESTS, ...SECURITY_TESTS, ...AUTH_TESTS, ...ONBOARDING_TESTS, ...ONBOARDING_UI_TESTS, ...PRODUCTION_ONBOARDING_TESTS, ...ONBOARDING_DECISION_TESTS, ...HEALTH_CLOSURE_TESTS, ...AUTH_PROBE_TESTS, ...MAINTENANCE_TESTS, ...ADMIN_NAV_TESTS, ...DAILY_TESTS, ...DAILY_UI_TESTS, ...CALENDAR_TESTS, ...CALENDAR_UI_TESTS, ...ADMIN_TEST_TOOLS_TESTS, ...ADMIN_TEST_UI_TESTS]) {
     if (signal?.aborted) break;
     if (ids && !ids.includes(id)) continue;
     try { const result=await executeTest([id,name,fn],{signal}); if(signal?.aborted)break; out.push({ id, name, passed: true, blocked:false, detail: "ok", ...(result&&typeof result==="object"&&"evidence" in result?{evidence:result.evidence}:{}) }); }

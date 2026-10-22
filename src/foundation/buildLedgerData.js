@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-023",
-    "package_name": "Owner Privacy: Consent Withdrawal and Account Erasure",
-    "package_type": "FEATURE",
-    "created_at": "2026-10-21T10:53:26+03:00",
-    "health_catalog_version": "HC-023.0",
-    "short_summary": "Owner consent withdrawal and bounded account erasure with durable same-request recovery, verified active absence and platform-pending outcome. Chromium/WebKit 550/550 each; local Health 131 PASS/13 BLOCKED. Type/lint/build/Repo Health and byte budgets pass; 0 High/Critical. Hosted/device/provider acceptance remains open.",
-    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "Two closed operational schemas; schema→all backend/shared functions→frontend. No live privacy mutation/Full Health, main merge/publish or new service. Current native admins remain protected. Base44 purge, Apple revocation and published Play deletion URL remain external acceptance. Active history retains 019–023; older evidence stays in Git/reports."
-  },
-  {
     "build_marker": "Buildmarker-024",
     "package_name": "Targeted hosted Health read diagnostics",
     "package_type": "FIX",
@@ -69,5 +55,19 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "notes": "No schema delta, live mutation/import/Full Health, notification work, main merge/publish or new service. Same-request principal only; server owner/current-admin/consent/lifecycle guards preserved. Health 132 PASS/13 expected local prerequisite BLOCKED; deployed acceptance remains owner-run. Initial failures and 025/026 evidence preserved. Active history 023–027. Physical/OAuth/hosted enforcement and same-account ON05 remain separate."
+  },
+  {
+    "build_marker": "Buildmarker-028",
+    "package_name": "Güvenlik Kapanışı 028",
+    "package_type": "AUDIT_FIX",
+    "created_at": "2026-10-22T14:30:00+03:00",
+    "health_catalog_version": "HC-028.0",
+    "short_summary": "Global SHINKA_WRITE_MODE write-pause removed; per-owner identity/lifecycle/consent/privacy and current-admin guards kept. Shared streaming bounded JSON reader in 9 handlers. Worker-local GeoNames owner/upstream/worker limits with lazy secret for onboarding and You; TR/EN rate-limit copy. H12-040/H12-041 added; NA07/NA22 retargeted.",
+    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "Local: SC01–SC05 server fixtures, native-entry and GeoNames-entry checks and production build pass. Browser regression suite NOT run: Playwright Chromium binary absent and download blocked in sandbox. GeoNames limits are per worker, reset on restart, not a distributed quota. No publish, live Full Health, Security scan, user mutation or import. Report: reports/SHINKA_SECURITY_CLOSURE_028.md."
   }
 ];

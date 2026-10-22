@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-027
+**Current BuildMarker:** Buildmarker-028
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-026.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-028.0; repository, synthetic and external evidence separated.
+
+## HC-028.0 — security closure
+
+Added: **H12-040** (SYNTHETIC_RUNTIME, in-app; SC06 rate-limit TR/EN copy and safe client mapping) and **H12-041** (local-only; SC01–SC05 via `scripts/verifySecurity028.mjs`: bounded body reader, GeoNames owner/app/upstream/worker limits with retry seconds, unauthenticated and oversize You/onboarding handler rejection with zero writes and no GeoNames setup). Updated: NA07 (H04-018) now asserts identity/lifecycle gates without a global pause; NA22 (H04-018/H12-033) asserts post-write identity re-check. Removed: none. Recovery-key expiry stays in H12-039 (PR15–PR17); validateContentArtifacts link stays in H05. No hosted enforcement, live GeoNames load or real user mutation is part of Health. The browser regression run for this package did not execute (sandbox lacks the pinned Playwright Chromium); no 028 case is recorded as PASS from that suite.
 
 ## HC-027.0 — pre-notification quality milestone
 

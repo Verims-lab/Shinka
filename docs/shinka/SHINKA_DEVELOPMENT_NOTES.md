@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-027
+**Current BuildMarker:** Buildmarker-028
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 028 — Güvenlik Kapanışı
+
+Global write pause removed; shared bounded body reader; worker-local GeoNames guard with TR/EN limit copy; H12-040/H12-041 added. Local evidence: SC01–SC05 PASS, native-entry/GeoNames-entry PASS, production build exit 0. Browser regression suite not run (pinned Playwright Chromium missing, download blocked). Owner runs publish, Full Health and Security scan. Details: reports/SHINKA_SECURITY_CLOSURE_028.md.
 
 ## 027 — Bildirim Öncesi Kalite Milestone’u
 

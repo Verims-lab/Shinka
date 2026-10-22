@@ -94,8 +94,8 @@ export function createBirthplacePicker({
           offset,
           status: "ERROR",
           error:
-            error.code === "PLACE_HIERARCHY_INCOMPLETE"
-              ? "PLACE_HIERARCHY_INCOMPLETE"
+            ["PLACE_HIERARCHY_INCOMPLETE", "GEONAMES_RATE_LIMITED"].includes(error.code)
+              ? error.code
               : "GEONAMES_UNAVAILABLE",
         });
     }

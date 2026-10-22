@@ -8,6 +8,7 @@ import { checkInAppHealth } from './verifyHealthFlow.mjs';
 import { writeHealthAudit } from './auditHealthCatalog.mjs';
 import { collectBrowserMeasurements } from './browserMeasurements.mjs';
 import { verifyNativeEntries } from './verifyNativeEntries.mjs';
+import { verifySecurity028 } from './verifySecurity028.mjs';
 import { checkAdminTestTools } from './checkAdminTestTools.mjs';
 import { checkAdminNavigation } from './checkAdminNavigation.mjs';
 import { checkDailyFlow } from './checkDailyFlow.mjs';
@@ -40,6 +41,7 @@ try {
   const nativeEntries = await verifyNativeEntries(root);
   const geoNamesEntry=await verifyGeoNamesEntry(root);
   const geoNamesRuntimeProbeEntry=await verifyGeoNamesRuntimeProbeEntry(root);
+  const security028=await verifySecurity028();if(!security028.passed)throw new Error(`SECURITY_028_FAILED ${JSON.stringify(security028.results.filter(r=>r.status!=='PASS'))}`);
   await build({root,configFile:false,plugins:[staticEvidencePlugin(root),tailwindcss(),react()],logLevel:"warn",
     resolve:{alias:[{find:"@/api/base44Client",replacement:path.join(root,"scripts/testHarness/fakeBase44.js")},{find:"@",replacement:path.join(root,"src")}]},
     build:{outDir:output,emptyOutDir:true,rollupOptions:{input:path.join(root,"scripts/testHarness/index.html")}}});

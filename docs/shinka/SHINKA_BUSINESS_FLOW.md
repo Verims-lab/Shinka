@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-027
+**Current BuildMarker:** Buildmarker-028
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -10,6 +10,10 @@
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and notification delivery.
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+## Birthplace request limit and deletion flow — 028 (ACTIVE)
+
+If birthplace lookups exceed the limit, onboarding and You show the approved message (“Çok fazla yer isteği yapıldı…” / “Too many place requests…”), keep the chosen country/region/settlement and every unsaved field, and wait for the user to try again; there is no automatic retry. Admin test deletion and owner privacy flows no longer require pausing the whole app; they rely on per-user lifecycle, consent and tombstone checks.
 
 ## Refresh and dismissal contract — 026
 

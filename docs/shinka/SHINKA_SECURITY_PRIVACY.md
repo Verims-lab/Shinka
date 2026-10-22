@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-027
+**Current BuildMarker:** Buildmarker-028
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -28,6 +28,14 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+## 028 — security closure (ACTIVE)
+
+- **Global write pause removed.** `SHINKA_WRITE_MODE` is no longer read by any code path; it was never stored as an app secret and the 017 decision already removed mandatory deletion maintenance. Every write still requires a server-authenticated principal from the same request, owner match, ACTIVE account, current consent/version, no open health-deletion job, privacy request/tombstone checks and, for admin tools, the current native admin role (re-read per stage). Post-write identity re-check (NA22) still reports an already-started write without inventing rollback.
+- **Request bodies.** `base44/shared/boundedJson.js` enforces the byte limit while streaming (rejects oversize `Content-Length` first, cancels the stream at the limit, strict UTF-8, object-only). Used by onboarding (8 000 B), you (4 000), calendar (2 000), dailyMessage (2 000), pattern (1 000), accountPrivacy (1 200), applicationSession (1 000, empty object only), domainAccess (10 000) and admin internal handlers (1 000 000, existing Health report contract). Pre-028 handlers read the full body and then measured it; that was a post-read check, not a memory bound.
+- **GeoNames.** `base44/shared/geonamesGuard.js` wraps every provider path used by onboarding and You: search, country/region/settlement lists and profile birthplace resolution. Limits per fixed 60 s window: 30 GeoNames-backed **app requests** per user, 60 **real upstream fetches** per user (one app request may issue several), 300 upstream fetches per worker. 10-minute public-place cache (200 entries) and in-flight de-duplication. Over-limit → 429 `GEONAMES_RATE_LIMITED` with `Retry-After`. The owner comes only from the authenticated principal; the adapter and `GEONAMES_USERNAME` are created/read only at the first real provider call, so auth failures and non-birthplace actions never touch GeoNames configuration. **Platform limit:** state is per worker, resets on restart, and is not a distributed or exact quota.
+- **Recovery key.** accountPrivacy's same-request recovery key remains read-only status lookup for its 24-hour TTL and may be reused within it; it is not one-time and grants no personal-data read or mutation. Invalid/expired keys return no state (PR15–PR17).
+- **Logs/evidence.** No secret, recovery key, token or personal value is logged or stored in Health evidence by the new code; rate-limit responses carry only code, field and seconds.
 
 ## 027 — focused ASVS review and dependency closure
 
