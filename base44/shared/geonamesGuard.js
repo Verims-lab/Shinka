@@ -19,7 +19,7 @@ const copy = value => (value === undefined ? value : structuredClone(value));
 const guardErrors = new WeakSet();
 export const isGuardRateLimit = error => guardErrors.has(error);
 
-export function createGeoNamesGuard({ limits = GEONAMES_LIMITS, now = () => Date.now(), fetcher = (...args) => fetch(...args) } = {}) {
+export function createGeoNamesGuard({ limits = GEONAMES_LIMITS, now = () => Date.now(), fetcher = (input, init) => fetch(input, init) } = {}) {
   const users = new Map(), cache = new Map(), inflight = new Map();
   let worker = { start: 0, count: 0 };
   const limited = start => {

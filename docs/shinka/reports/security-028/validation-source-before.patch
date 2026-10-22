@@ -1,0 +1,146 @@
+diff --git a/base44/shared/geonamesGuard.js b/base44/shared/geonamesGuard.js
+index f5a93f3..5106e9f 100644
+--- a/base44/shared/geonamesGuard.js
++++ b/base44/shared/geonamesGuard.js
+@@ -19,7 +19,7 @@ const copy = value => (value === undefined ? value : structuredClone(value));
+ const guardErrors = new WeakSet();
+ export const isGuardRateLimit = error => guardErrors.has(error);
+ 
+-export function createGeoNamesGuard({ limits = GEONAMES_LIMITS, now = () => Date.now(), fetcher = (...args) => fetch(...args) } = {}) {
++export function createGeoNamesGuard({ limits = GEONAMES_LIMITS, now = () => Date.now(), fetcher = (input, init) => fetch(input, init) } = {}) {
+   const users = new Map(), cache = new Map(), inflight = new Map();
+   let worker = { start: 0, count: 0 };
+   const limited = start => {
+@@ -75,4 +75,4 @@ export function createGeoNamesGuard({ limits = GEONAMES_LIMITS, now = () => Date
+     };
+   }
+   return { forOwner, limits };
+-}
+\ No newline at end of file
++}
+diff --git a/base44/shared/healthExecutionScope.js b/base44/shared/healthExecutionScope.js
+index 40af7ec..6c5d74a 100644
+--- a/base44/shared/healthExecutionScope.js
++++ b/base44/shared/healthExecutionScope.js
+@@ -1,6 +1,6 @@
+ // User-approved 018/019 scope separation. IDs and acceptance coverage are retained.
+ export const HEALTH_SCOPE_TRANSFERS = Object.freeze([
+-  {id:'H12-041',localOnly:true,tests:'SC01–SC05, scripts/verifySecurity028.mjs',coverage:'028 server fixture: bounded JSON, GeoNames owner/app/upstream/worker limits, unauthenticated and oversize You/onboarding handler rejection without writes'},
++  {id:'H12-041',localOnly:true,tests:'SC01–SC05, SC07–SC09, scripts/verifySecurity028.mjs',coverage:'028 server fixtures: bounded JSON; GeoNames guard/adapter app, user-upstream and worker limits; onboarding 429/Retry-After and You error-envelope injection (not saveProfile); network/forged-error 503; unauthenticated and oversize handler rejection without writes'},
+   {id:'H13-019',localOnly:true,tests:'PV01–PV04, scripts/checkPrivacyFlow.mjs',coverage:'Confirmed privacy actions, same-request recovery, incomplete onboarding and mobile modal focus'},
+   {id:'H13-018',localOnly:true,tests:'YU01–YU06, scripts/checkYouFlow.mjs',coverage:'You profile/preferences, unknown result, logout, current admin, saved locale and 320px/200% forms'},
+   {id:'H13-017',localOnly:true,tests:'PU01–PU05, scripts/checkPatternFlow.mjs',coverage:'Pattern TR/EN, isolated section retry, stale response, mobile timeline labels and product routes'},
+@@ -14,4 +14,4 @@ export const HEALTH_SCOPE_TRANSFERS = Object.freeze([
+   {id:'H10-003', localOnly:false, tests:'U09–U12', coverage:'GeoNames selection UI; pure provider/cache/validation checks stay in-app'},
+   {id:'H13-004', localOnly:false, tests:'T24/T41/T74/HC01 and CLI mobile checks', coverage:'360px Health/Build and auth viewport; in-app case measures only the current viewport'},
+ ]);
+-export const LOCAL_HEALTH_IDS = new Set(HEALTH_SCOPE_TRANSFERS.filter(item=>item.localOnly).map(item=>item.id));
+\ No newline at end of file
++export const LOCAL_HEALTH_IDS = new Set(HEALTH_SCOPE_TRANSFERS.filter(item=>item.localOnly).map(item=>item.id));
+diff --git a/scripts/runFoundationTests.mjs b/scripts/runFoundationTests.mjs
+index 815f327..3e4a498 100644
+--- a/scripts/runFoundationTests.mjs
++++ b/scripts/runFoundationTests.mjs
+@@ -108,7 +108,7 @@ try {
+   const results=await page.evaluate(ids=>window.__runFoundationTests({ids}),process.env.FOUNDATION_TEST_IDS?.split(','));
+   for(const result of results) console.log(`${result.passed?"PASS":"FAIL"} ${result.id} ${result.name}${result.passed?"":` — ${result.detail}`}`);
+   if (process.env.FOUNDATION_TEST_IDS) {
+-    console.log(JSON.stringify({focused:true,results,pageErrors},null,2));
++    console.log(JSON.stringify({focused:true,security028,results,pageErrors},null,2));
+     if(results.some(r=>!r.passed)||!results.length||pageErrors.length)process.exitCode=1;
+   } else {
+   const health=await page.evaluate(()=>window.__staticHealthEvidence());
+@@ -150,7 +150,7 @@ try {
+     const audit=await page.evaluate(()=>({registry:window.__healthAuditRegistry,report:window.__savedHealthReport}));
+     await writeHealthAudit(root,process.env.FOUNDATION_AUDIT_DIR,audit.registry,audit.report,results);
+   }
+-  console.log(JSON.stringify({productNavigation,healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
++  console.log(JSON.stringify({productNavigation,healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,security028,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
+   if(mobileExperience.some(r=>!r.passed)||mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||calendarHealth.some(c=>c.status!=="PASS")||adminTestHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
+   }
+   }
+diff --git a/src/components/AuthLayout.jsx b/src/components/AuthLayout.jsx
+index 93f70ef..f1fcc28 100644
+--- a/src/components/AuthLayout.jsx
++++ b/src/components/AuthLayout.jsx
+@@ -1,6 +1,6 @@
+ import React from "react";
+ 
+-export default function AuthLayout({ icon: Icon, title, subtitle, footer, children }) {
++export default function AuthLayout({ icon: Icon, title, subtitle = null, footer = null, children = null }) {
+   return (
+     <div className="min-h-screen flex items-center justify-center bg-background px-4">
+       <div className="w-full max-w-md">
+diff --git a/src/foundation/health/cases/security.js b/src/foundation/health/cases/security.js
+index 458abf3..66d558a 100644
+--- a/src/foundation/health/cases/security.js
++++ b/src/foundation/health/cases/security.js
+@@ -6,5 +6,5 @@ const runtime = { runnerType: RUNNER.RUNTIME, classification: CLASS.SYNTHETIC_RU
+ // 028 security closure. Hosted enforcement and live GeoNames quota are NOT exercised here.
+ export const SECURITY_HEALTH_CASES = [
+   makeCase('H12', runtime)('H12-040', 'GeoNames rate limit: approved TR/EN copy, kept selection/draft, no automatic retry', 'SC06, SC10, SC11 in-app with synthetic request functions: onboarding and You service mapping (no raw detail); birthplace picker keeps the chosen country and retries only on user action; You keeps the profile draft and does not resend. Rendered screens, real backend and provider are not exercised.', syntheticProbe(SECURITY_028_UI_TESTS)),
+-  localCase('H12', 'H12-041', 'Server request limits, real GeoNames guard+adapter chain and unauthenticated rejection (local only)', 'LOCAL ONLY — in-app Full Health does not run these; it reports this case as local. SC01–SC05 and SC07–SC09 via `node scripts/verifySecurity028.mjs`: bounded reader; real guard + real adapter with synthetic fetch for app, user-upstream and worker-upstream limits (429, retry kept, no extra fetch); onboarding and You handler 429/Retry-After contract; network and forged errors stay 503. Worker-local limits only; hosted enforcement separate.'),
+-];
+\ No newline at end of file
++  localCase('H12', 'H12-041', 'Server request limits, real GeoNames guard+adapter chain and unauthenticated rejection (local only)', 'LOCAL ONLY — in-app Full Health does not run these; it reports this case as local. SC01–SC05 and SC07–SC09 via the canonical runner or scripts/verifySecurity028.mjs: bounded reader; real guard + adapter with synthetic fetch for app, user-upstream and worker limits (429, retry kept, no extra fetch); onboarding search handler and You read-handler error injection preserve 429/Retry-After (not the You saveProfile/provider path); network and forged errors stay 503. Worker-local limits only; hosted enforcement separate.'),
++];
+diff --git a/src/foundation/tests/nativeTests.js b/src/foundation/tests/nativeTests.js
+index abc1dda..58071fb 100644
+--- a/src/foundation/tests/nativeTests.js
++++ b/src/foundation/tests/nativeTests.js
+@@ -31,7 +31,7 @@ export const NATIVE_TESTS = [
+  ['NA06','Every daily candidate counts toward the 40-day repeat exclusion',async()=>{
+   const f=nativeFixture(), a=await f.today(); f.state.time='2026-10-21T12:00:00Z'; const b=await f.today(); check(a.daily.message_pair_id!==b.daily.message_pair_id);
+  }],
+- ['NA07','Daily active/owner/identity gates remain enforced without a global write pause',async()=>{
++ ['NA07','Inactive daily account and signed-out identity are rejected without creating a daily row',async()=>{
+   const f=nativeFixture(); f.tables.UserProfile[0].account_status='INACTIVE'; await rejects(f.today,'ACTIVE_ACCOUNT_REQUIRED'); f.tables.UserProfile[0].account_status='ACTIVE'; f.state.signedOut=true; await rejects(f.today); check(!f.tables.UserDailyMessage.length); f.state.signedOut=false;
+  }],
+  ['NA08','Calendar actual add/edit/delete; same ID; no derived writes or duration defaults',async()=>{
+@@ -84,7 +84,7 @@ export const NATIVE_TESTS = [
+  ['NA21','Deletion staged failure resumes with fresh client and retains consent/audit evidence',async()=>{
+   const f=nativeFixture();await add(f);const grant=JSON.stringify(f.tables.UserHealthConsent);f.once('after',c=>c.name==='UserPeriodRecord'&&c.method==='delete');await rejects(()=>f.preview('DELETE_USER').then(f.execute));check(f.tables.AdminTestOperation[0].status==='RETRY_REQUIRED');const result=await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id});check(result.job.status==='COMPLETED'&&!f.tables.User.some(r=>r.id==='ownerA')&&!f.tables.UserCalendarAction.length&&JSON.stringify(f.tables.UserHealthConsent)===grant);await rejects(()=>f.today(),'AUTH_REQUIRED');
+  }],
+- ['NA22','Write pause catches an already-started SDK write after return; no invented rollback',async()=>{
++ ['NA22','Post-write identity re-check rejects sign-out after SDK create; the persisted daily row remains',async()=>{
+   const f=nativeFixture();f.state.after=async c=>{if(c.name==='UserDailyMessage'&&c.method==='create')f.state.signedOut=true;};await rejects(f.today);check(f.tables.UserDailyMessage.length===1);
+  }],
+  ['NA23','Fresh admin role revocation stops destructive stages',async()=>{
+@@ -115,4 +115,4 @@ export const NATIVE_TESTS = [
+   const f=nativeFixture({granted:false}), body=await request(f,'add',{date:'2026-10-01',health_consent:true});f.once('before',c=>c.name==='UserPeriodRecord'&&c.method==='create');await rejects(()=>f.cal(body));const time=f.tables.UserHealthConsent[0].granted_at;await f.cal(body);check(f.tables.UserHealthConsent.length===1&&f.tables.UserHealthConsentEvent.length===1&&f.tables.UserPeriodRecord.length===1&&f.tables.UserHealthConsent[0].granted_at===time);
+  }],
+ 
+-];
+\ No newline at end of file
++];
+diff --git a/src/foundation/tests/security028UiTests.js b/src/foundation/tests/security028UiTests.js
+index a091eb5..48a6578 100644
+--- a/src/foundation/tests/security028UiTests.js
++++ b/src/foundation/tests/security028UiTests.js
+@@ -10,6 +10,7 @@ const limited = () => Object.assign(new Error('GEONAMES_RATE_LIMITED'), { code:
+ const settle = () => new Promise(resolve => setTimeout(resolve, 30));
+ const limitedClient = { functions: { invoke: async () => ({ data: { error_code: 'GEONAMES_RATE_LIMITED', field: 'birthplace', retry_after_seconds: 30, detail: 'upstream secret detail' } }) } };
+ 
++/** @type {import('./testTypes').FoundationTest[]} */
+ export const SECURITY_028_UI_TESTS = [
+   ['SC06', 'Rate-limit code maps to approved TR/EN copy in onboarding and You services; raw backend detail never surfaces', async () => {
+     check(ONBOARDING_ERROR_KEYS.includes('GEONAMES_RATE_LIMITED'));
+@@ -42,4 +43,4 @@ export const SECURITY_028_UI_TESTS = [
+     await settle(); check(saves === 1);
+     you.dispose();
+   }],
+-];
+\ No newline at end of file
++];
+diff --git a/src/pages/OAuthConsent.jsx b/src/pages/OAuthConsent.jsx
+index 376f2bf..2a893a3 100644
+--- a/src/pages/OAuthConsent.jsx
++++ b/src/pages/OAuthConsent.jsx
+@@ -104,6 +104,7 @@ export default function OAuthConsent() {
+         // bearer token) so the server can list the granted tools for a
+         // signed-in user — the same auth the approve/deny call sends; without
+         // it the display request is anonymous and shows no tools.
++        /** @type {Record<string, string>} */
+         const infoHeaders = {};
+         if (appParams.token) infoHeaders.Authorization = "Bearer " + appParams.token;
+         const res = await fetch(

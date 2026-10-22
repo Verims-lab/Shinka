@@ -11,6 +11,10 @@
 **Not Implemented:** Distributed physical uniqueness guarantee; scheduled lookup renewal. Remaining hosted/device evidence is tracked separately.
 **Open Decisions:** OD-005, OD-008 (noted); OD-002 RESOLVED_BY_PRODUCT_DECISION
 
+## 028 verification correction
+
+The marker advanced to 028 while the explicit staged-content allowlist still ended at 027. Local Chromium/WebKit exposed HC08/DM23 failures and H05-010 failure. Add only 028 to the existing VERIFIED_CONTENT_IMPORT_STAGES policy. Source hashes, exact 6/240/260 counts, Pair-ID bijection, partial/conflict rejection and pre-import distinction are unchanged; HC12 still rejects the next unapproved package (029). No content bytes, importer, provider or live data changes. Initial failed runs remain in the [028 report](reports/SHINKA_SECURITY_CLOSURE_028.md).
+
 ## 027 preservation
 
 No source text, pair, category/mapping, Moon reference, importer or daily selection change. The explicit VERIFIED_CONTENT_IMPORT_STAGES package allowlist advances to 027; imports are not run. Product route continuity preserves only owner-bound resolver state, never a new daily record or a reference cache. Existing daily immutable readback and published-versus-local evidence distinctions remain.

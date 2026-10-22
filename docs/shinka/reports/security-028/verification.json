@@ -1,0 +1,178 @@
+{
+  "buildMarker": "Buildmarker-028",
+  "healthCatalogVersion": "HC-028.0",
+  "source": {
+    "baseCommit": "0f243df4b6512079baa0c0e64c45b0e9173c4b20",
+    "patch": "validation-source.patch",
+    "patchSha256": "2a5acffaf850a9c7186fcc5a61533ba7e77ee1261abbd1cba8b6c4cc29297fca",
+    "lockfileSha256": "0426863edbbcee5fcd2967fc0deda6c34108d879778ba37889a3c24ecbcdabd6",
+    "finalExecutablePatchMatchesTestedPatch": true,
+    "metadataAfterBrowserRun": "Only documentation and the generated 028 ledger/history summary were updated after the complete browser runs; final repo/type/lint/build/history checks passed. No executable changes."
+  },
+  "environment": {
+    "node": "v26.0.0",
+    "npm": "11.12.1",
+    "platform": "macOS arm64",
+    "physicalDevice": false,
+    "hostedVerified": false,
+    "playwright": "1.64.0",
+    "architecture": "arm64"
+  },
+  "browsers": {
+    "chromium": {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "total": 582,
+      "passed": 582,
+      "failed": 0,
+      "requiredBrowserIds": {
+        "O32": true,
+        "NA07": true,
+        "NA22": true,
+        "SC06": true,
+        "SC10": true,
+        "SC11": true
+      },
+      "serverFixtureIds": {
+        "SC01": "PASS",
+        "SC02": "PASS",
+        "SC03": "PASS",
+        "SC04": "PASS",
+        "SC05": "PASS",
+        "SC07": "PASS",
+        "SC08": "PASS",
+        "SC09": "PASS"
+      },
+      "healthCounts": {
+        "PASS": 133,
+        "BLOCKED": 13
+      },
+      "healthBlocked": [
+        "H04-019",
+        "H05-001",
+        "H05-002",
+        "H05-003",
+        "H05-004",
+        "H05-005",
+        "H05-006",
+        "H05-007",
+        "H05-008",
+        "H05-009",
+        "H08-005",
+        "H09-004",
+        "H12-031"
+      ],
+      "catalog": {
+        "version": "HC-028.0",
+        "suites": 16,
+        "cases": 172,
+        "localRegression": 11,
+        "current": 146,
+        "future": 2,
+        "external": 13
+      },
+      "missingRequiredIds": [],
+      "browserPageErrors": [],
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "test:foundation"
+        ],
+        "exitCode": 0,
+        "startedAt": "2026-10-22T11:46:51.293881+00:00",
+        "completedAt": "2026-10-22T11:47:53.831072+00:00",
+        "log": "chromium.log",
+        "environment": {
+          "FOUNDATION_BROWSER": "chromium",
+          "FOUNDATION_AUDIT_DIR": "/private/tmp/shinka-028-validation/chromium-audit"
+        }
+      }
+    },
+    "webkit": {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "total": 582,
+      "passed": 582,
+      "failed": 0,
+      "requiredBrowserIds": {
+        "O32": true,
+        "NA07": true,
+        "NA22": true,
+        "SC06": true,
+        "SC10": true,
+        "SC11": true
+      },
+      "serverFixtureIds": {
+        "SC01": "PASS",
+        "SC02": "PASS",
+        "SC03": "PASS",
+        "SC04": "PASS",
+        "SC05": "PASS",
+        "SC07": "PASS",
+        "SC08": "PASS",
+        "SC09": "PASS"
+      },
+      "healthCounts": {
+        "PASS": 133,
+        "BLOCKED": 13
+      },
+      "healthBlocked": [
+        "H04-019",
+        "H05-001",
+        "H05-002",
+        "H05-003",
+        "H05-004",
+        "H05-005",
+        "H05-006",
+        "H05-007",
+        "H05-008",
+        "H05-009",
+        "H08-005",
+        "H09-004",
+        "H12-031"
+      ],
+      "catalog": {
+        "version": "HC-028.0",
+        "suites": 16,
+        "cases": 172,
+        "localRegression": 11,
+        "current": 146,
+        "future": 2,
+        "external": 13
+      },
+      "missingRequiredIds": [],
+      "browserPageErrors": [],
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "test:foundation"
+        ],
+        "exitCode": 0,
+        "startedAt": "2026-10-22T11:46:54.153944+00:00",
+        "completedAt": "2026-10-22T11:48:02.404541+00:00",
+        "log": "webkit.log",
+        "environment": {
+          "FOUNDATION_BROWSER": "webkit",
+          "FOUNDATION_AUDIT_DIR": "/private/tmp/shinka-028-validation/webkit-audit"
+        }
+      }
+    }
+  },
+  "unexecutedExternal": [
+    "Owner main merge and Base44 sync/publish",
+    "Published Full Health and save/list/private readback",
+    "Base44 Security scan and endpoint multi-identity enforcement",
+    "Live provider/load and distributed quota",
+    "Physical Android/iOS acceptance"
+  ],
+  "assertions": "Nonzero unique browser result IDs, exact runner totals, all six required IDs PASS, exact eight server fixture IDs PASS, no page errors; H12-040 executed, H12-041 outside in-app scope.",
+  "qualityGates": "quality-gates.json"
+}

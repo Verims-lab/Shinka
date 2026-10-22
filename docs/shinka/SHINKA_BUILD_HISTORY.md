@@ -44,8 +44,8 @@ No schema delta, live mutation/import/Full Health, notification work, main merge
 
 ## Buildmarker-028 — Güvenlik Kapanışı 028 (2026-10-22T14:30:00+03:00)
 
-Global SHINKA_WRITE_MODE write-pause removed; per-owner identity/lifecycle/consent/privacy and current-admin guards kept. Shared streaming bounded JSON reader in 9 handlers. Worker-local GeoNames owner/upstream/worker limits with lazy secret for onboarding and You; TR/EN rate-limit copy. H12-040/H12-041 added; NA07/NA22 retargeted.
+028 local verification complete: Chromium/WebKit 582/582 each, plus 8/8 server fixtures per command; required O32/NA07/NA22/SC06/SC10/SC11 present. Fixed type errors, omitted 028 content-policy registration and missing H12-040 server plan. No assertions weakened; original failures retained.
 
 Health: HC-028.0. Verification: MANUAL_USER_VALIDATION_PENDING.
 
-Local: SC01–SC05 server fixtures, native-entry and GeoNames-entry checks and production build pass. Browser regression suite NOT run: Playwright Chromium binary absent and download blocked in sandbox. GeoNames limits are per worker, reset on restart, not a distributed quota. No publish, live Full Health, Security scan, user mutation or import. Report: reports/SHINKA_SECURITY_CLOSURE_028.md.
+Synced Base44 source 0f243df plus the recorded local correction patch. Local Health 133 PASS/13 hosted-prerequisite BLOCKED per engine. Clean install/tree/audit, repository/type/lint/build, history and production budgets PASS; zero dependency advisories. Active 024–028. Worker-local quotas; SC08 You error injection is not full saveProfile proof. Owner main merge, complete Base44 sync/publish, Full Health/private readback, Security scan and physical/live enforcement acceptance pending. No live import/user operation. Evidence: reports/SHINKA_SECURITY_CLOSURE_028.md.

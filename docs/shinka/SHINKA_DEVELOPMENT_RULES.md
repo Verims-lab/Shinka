@@ -15,6 +15,10 @@
 - NO FUTURE FEATURE IMPLEMENTATION WITHOUT PACKAGE SCOPE
 - NO LEGACY SHINKA IMPORT — NO LEGACY SHINKA CONTRACT MAY ENTER THIS PROJECT WITHOUT AN EXPLICIT CHANGE REQUEST.
 
+## 028 — local verification continuation
+
+Retain Buildmarker-028 / HC-028.0 and the single 028 ledger entry; active history is 024–028. The user authorizes verification of the synced Base44 source, focused corrections exposed by existing local gates, and Test-only delivery. Preserve O32’s parseable negative fixture, all assertions and old failed evidence. The unchanged strict staged-content policy explicitly includes 028; unapproved 029+ still blocks. Use the pinned lockfile/runner, both real desktop browser engines, dependency/tree/audit, repository/type/lint/build, history and existing production byte budgets. Report exact source, nonzero counts, missing IDs and any unavailable checks; local server fixtures are distinct from browser execution and neither proves hosted/device behavior. No new feature, general audit, main merge/publish, hosted Full Health/Security scan, import or real user operation. The owner handles external acceptance. [028 results](reports/SHINKA_SECURITY_CLOSURE_028.md).
+
 ## 027 — Bildirim Öncesi Kalite Milestone’u
 
 The current user request authorizes audit **and** focused fixes, including a compatible Router major update after review. Advance once to Buildmarker-027 / HC-027.0 and retain 023–027. No notification work, infrastructure, live mutation/import, routine hosted Health, main merge/publish or device/store submission. Preserve 024 incident evidence, 025 cancellation/timing tests and 026 mobile acceptance. Current local evidence, comparable production measurements and remaining manual acceptance belong in [the single milestone report](reports/SHINKA_PRE_NOTIFICATION_QUALITY_027.md). App/SDK fixtures are not hosted proof.

@@ -8,7 +8,14 @@
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
-## 028 — Güvenlik Kapanışı
+## 028 — completed local verification continuation
+
+Verified GitHub Base44 source `0f243df4b6512079baa0c0e64c45b0e9173c4b20` contains the post-5a2f0b6 O32/doc fixes. Clean Test fast-forward preserved Base44 work. Existing pinned install/runner: Chromium **582/582**, WebKit **582/582**, plus **8/8 local server fixtures per command**; all six requested browser IDs individually present and PASS. Local Health **133 PASS / 13 BLOCKED** (hosted unavailable); catalog 172/146 in-app/11 local/13 external/2 future. No hosted or physical inference.
+
+Required gates exposed type errors in the new guard/test list and regenerated auth templates, omitted 028 staged-content policy, and missing H12-040 in the backend report plan. Applied narrow fixes without removing assertions or changing content/security predicates. Corrected NA07/NA22 and H12-041 scope descriptions. All final repository/type/lint/build/dependency/performance/history checks pass; audit 0 across severities. Initial JS 479,391 B / 160,093 B gzip; CSS 77,521 B / 14,262 B gzip, within existing budgets. Same 028 ledger entry retains 024–028. [Exact source, original failures, browser results and owner handoff](reports/SHINKA_SECURITY_CLOSURE_028.md). Main merge/publish, live Full Health/Security scan/import/user operations were not performed.
+
+### Historical Base44 028 checkpoints — retained
+
 
 Global write pause removed; shared bounded body reader; worker-local GeoNames guard with TR/EN limit copy; H12-040/H12-041 added. Local evidence: SC01–SC05 PASS, native-entry/GeoNames-entry PASS, production build exit 0. Browser regression suite not run (pinned Playwright Chromium missing, download blocked). Owner runs publish, Full Health and Security scan. Details: reports/SHINKA_SECURITY_CLOSURE_028.md.
 
