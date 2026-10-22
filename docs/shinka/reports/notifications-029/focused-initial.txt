@@ -1,0 +1,249 @@
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/HealthCenter.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/BuildEnvironment.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/features/onboarding/OnboardingScreen.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/probes/AuthShellProbe.jsx, src/foundation/tests/OnboardingTestScreen.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/You.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/notificationUiTests.js, src/foundation/tests/youUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/Pattern.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/patternUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/TestTools.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/adminTestToolsUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/Calendar.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/calendarUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/probes/AuthShellProbe.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/authProbeTests.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/tests/foundationTests.js is dynamically imported by src/foundation/tests/localRunnerTests.js but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/health/catalog.js is dynamically imported by src/foundation/health/cases/h16.js, src/foundation/tests/closure018Tests.js, src/foundation/tests/closure020Tests.js, src/foundation/tests/foundationTests.js but also statically imported by scripts/testHarness/healthTiming.js, scripts/testHarness/main.jsx, src/foundation/health/report.js, src/foundation/health/runner.js, src/pages/internal/HealthCenter.jsx, dynamic import will not move module into another chunk.
+
+PASS NT01 Actual local 06:00 and noon boundary; fractional zones and UTC day rollover
+PASS NT02 DST spring/fall and 30-minute transition use actual local target offset
+PASS NT03 Scheduler creates missing today even with preference off; Home reuses immutable snapshot
+PASS NT04 Same operation queues then accepts once; repeated tick does not send or generate again
+PASS NT05 Transient rejection backoff and max three attempts on same row
+PASS NT06 Permanent rejection, ambiguous timeout and malformed response never blindly retry
+PASS NT07 Lost receipt after accepted call leaves IN_FLIGHT; new worker pass cannot resend
+PASS NT08 Disabled, denied, unknown and unsupported devices never send; content remains available
+PASS NT09 Late/enable/zone change stays same-day window and never mutates previous content
+PASS NT10 Fresh disabled preference after persisted intent prevents provider call
+PASS NT11 Deletion or native account removal immediately before send denies dispatch and recreates no owner data
+PASS NT12 Scheduler/Home concurrent native candidates reconcile with no push-driven regeneration
+PASS NT13 Worker coalescing and competing visible delivery candidates admit only canonical row
+PASS NT14 Closed handler denies unauthenticated and body authority/target/copy manipulation before writes
+PASS NT15 Owner-scoped engine refuses forged writes and unfinished/reset/privacy accounts
+FAIL NT16 Bounded page checkpoints continue beyond first 25 without historical fanout — NT16:START:contract failed
+PASS NT17 Missing production push binding stays unknown and never calls dynamic SDK
+PASS NT19 Owner erasure removes pending/in-flight/unknown notifications; global cursor cannot recreate identity
+PASS NT20 Home saves current valid IANA automatically without changing the current daily snapshot
+PASS NT18 Withdrawn health consent causes no health-data reads while scheduler produces content
+PASS NU01 TR/EN actual You preference error retains opt-in draft and stored off; unknown native permission stays separate
+PASS NU02 Denied, unsupported, granted and unknown presentation has no fake permission/settings bridge
+{
+  "focused": true,
+  "security028": {
+    "scope": "LOCAL_SERVER_FIXTURE",
+    "hostedVerified": false,
+    "results": [
+      {
+        "id": "SC01",
+        "name": "Bounded JSON: streaming byte limit, Content-Length, malformed and non-object",
+        "status": "PASS"
+      },
+      {
+        "id": "SC02",
+        "name": "GeoNames guard: no owner 401, lazy adapter/secret, per-user app limit with retry seconds, window reset",
+        "status": "PASS"
+      },
+      {
+        "id": "SC03",
+        "name": "GeoNames guard counts real upstream fetches and the worker-local total across owners; cache avoids refetch",
+        "status": "PASS"
+      },
+      {
+        "id": "SC04",
+        "name": "Unauthenticated You/onboarding calls: 401, zero product writes, no GeoNames setup",
+        "status": "PASS"
+      },
+      {
+        "id": "SC05",
+        "name": "Oversize bodies: 413 from real You/onboarding handlers with no entity call",
+        "status": "PASS"
+      },
+      {
+        "id": "SC07",
+        "name": "Real guard + real adapter: app, user-upstream and worker-upstream limits keep 429/retry and stop provider fetches",
+        "status": "PASS"
+      },
+      {
+        "id": "SC08",
+        "name": "Onboarding and You handlers return 429, GEONAMES_RATE_LIMITED, Retry-After and retry_after_seconds for the real chain error",
+        "status": "PASS"
+      },
+      {
+        "id": "SC09",
+        "name": "Negative: network failure and a forged 429-shaped error from fetch stay GEONAMES_UNAVAILABLE, never rate-limited",
+        "status": "PASS"
+      }
+    ],
+    "passed": true
+  },
+  "results": [
+    {
+      "id": "NT01",
+      "name": "Actual local 06:00 and noon boundary; fractional zones and UTC day rollover",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT02",
+      "name": "DST spring/fall and 30-minute transition use actual local target offset",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT03",
+      "name": "Scheduler creates missing today even with preference off; Home reuses immutable snapshot",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT04",
+      "name": "Same operation queues then accepts once; repeated tick does not send or generate again",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT05",
+      "name": "Transient rejection backoff and max three attempts on same row",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT06",
+      "name": "Permanent rejection, ambiguous timeout and malformed response never blindly retry",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT07",
+      "name": "Lost receipt after accepted call leaves IN_FLIGHT; new worker pass cannot resend",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT08",
+      "name": "Disabled, denied, unknown and unsupported devices never send; content remains available",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT09",
+      "name": "Late/enable/zone change stays same-day window and never mutates previous content",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT10",
+      "name": "Fresh disabled preference after persisted intent prevents provider call",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT11",
+      "name": "Deletion or native account removal immediately before send denies dispatch and recreates no owner data",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT12",
+      "name": "Scheduler/Home concurrent native candidates reconcile with no push-driven regeneration",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT13",
+      "name": "Worker coalescing and competing visible delivery candidates admit only canonical row",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT14",
+      "name": "Closed handler denies unauthenticated and body authority/target/copy manipulation before writes",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT15",
+      "name": "Owner-scoped engine refuses forged writes and unfinished/reset/privacy accounts",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT16",
+      "name": "Bounded page checkpoints continue beyond first 25 without historical fanout",
+      "passed": false,
+      "blocked": false,
+      "detail": "NT16:START:contract failed"
+    },
+    {
+      "id": "NT17",
+      "name": "Missing production push binding stays unknown and never calls dynamic SDK",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT19",
+      "name": "Owner erasure removes pending/in-flight/unknown notifications; global cursor cannot recreate identity",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT20",
+      "name": "Home saves current valid IANA automatically without changing the current daily snapshot",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NT18",
+      "name": "Withdrawn health consent causes no health-data reads while scheduler produces content",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NU01",
+      "name": "TR/EN actual You preference error retains opt-in draft and stored off; unknown native permission stays separate",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NU02",
+      "name": "Denied, unsupported, granted and unknown presentation has no fake permission/settings bridge",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    }
+  ],
+  "pageErrors": []
+}

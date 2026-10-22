@@ -47,6 +47,38 @@
     "error_code": {
       "type": "string",
       "minLength": 1
+    },
+    "shinka_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "dispatch_state": {
+      "type": "string",
+      "enum": [
+        "READY",
+        "IN_FLIGHT",
+        "RETRYABLE",
+        "ACCEPTED",
+        "PERMANENT",
+        "UNKNOWN",
+        "INELIGIBLE"
+      ]
+    },
+    "next_attempt_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "claim_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "error_stage": {
+      "type": "string",
+      "enum": [
+        "ADMISSION",
+        "PROVIDER",
+        "PROVIDER_ACCEPTANCE"
+      ]
     }
   },
   "required": [

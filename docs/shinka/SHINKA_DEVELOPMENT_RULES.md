@@ -2,18 +2,26 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-028
+**Current BuildMarker:** Buildmarker-030
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
-> ## NO FEATURE IS COMPLETE WITHOUT: SOURCE + TESTS + HEALTH + DOCS
+> ## 030 — notification continuation under revised caller contract
+
+Continue completed 029 without rewriting it. Advance once to Buildmarker-030 / HC-030.0 and retain 026–030. Direct current-native-admin invocation is acceptable using the existing common guard. Do not infer workflow authority from missing auth, service-role access, body/header/run ID or undocumented creator identity. Implement only the reported push input contract with narrow types; output stays unknown until verified. Keep real sending and schedules disabled. Preserve 12 findings OPEN / USER-DEFERRED, all earlier failures and device acceptance. Update existing H14 cases/report rather than duplicate them. Run fresh mandatory local gates and both engines, then push Test only; no main merge, publish, hosted Health/scan/import/push/user mutation.
+
+## NO FEATURE IS COMPLETE WITHOUT: SOURCE + TESTS + HEALTH + DOCS
 > A functional or contract change is NOT complete until SOURCE, TESTS, HEALTH/REGRESSION and CANONICAL DOCUMENTATION are reconciled. If one is affected and not updated, the package is incomplete.
 
 - NO SILENT SOURCE-CONTRACT CHANGE
 - NO FUTURE FEATURE IMPLEMENTATION WITHOUT PACKAGE SCOPE
 - NO LEGACY SHINKA IMPORT — NO LEGACY SHINKA CONTRACT MAY ENTER THIS PROJECT WITHOUT AN EXPLICIT CHANGE REQUEST.
+
+## 029 — notification package and closed platform binding
+
+This explicit notification request supersedes the historical 028 no-feature scope. Advance exactly once to Buildmarker-029 / HC-029.0; retain 025–029 and all older evidence. Implement local DAILY_SHINKA generation/sending policy, You status, lifecycle controls, meaningful tests and aligned Health. Native UNIQUE/transaction/CAS, delivery at exactly 06:00 and physical delivery must never be inferred. Keep the scheduler uncreated/inactive until verified platform authentication, integration schema, native eligibility and owner setup are complete. No agent-run live push, workflow execution, Full Health, Security scan/acknowledgement, import, user mutation, main merge or publish. The owner reports published 028 Health successful; the 12 previous backend findings remain OPEN / USER-DEFERRED. The single 029 handoff records actual local gates and unresolved platform work; a locally passing fixture is not production notification completion.
 
 ## 028 — local verification continuation
 

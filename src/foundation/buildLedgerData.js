@@ -1,34 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-024",
-    "package_name": "Targeted hosted Health read diagnostics",
-    "package_type": "FIX",
-    "created_at": "2026-10-21T08:50:49.003927+00:00",
-    "health_catalog_version": "HC-024.0",
-    "short_summary": "Read diagnostics preserve safe status/stage/request ID; malformed reads cannot pass. Chromium/WebKit 560/560 each; local Health 131 PASS/13 BLOCKED. Original hosted incident retained; narrow prod reads succeeded, historical cause unproven.",
-    "full_health_status": "OWNER_POST_PUBLICATION_RUN_PENDING",
-    "notes": "HC-023 incident preserved. Explicit prod narrow reads succeeded for five schemas, 6/240/260 counts and three workbooks; historical failure cause remains unproven. No hosted mutation/import/schema push/Full Health/main publish. Local regressions and quality evidence: SHINKA_HEALTH_READ_024.md.",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true
-  },
-  {
-    "build_marker": "Buildmarker-025",
-    "package_name": "Health helper timing and cancellation",
-    "package_type": "FIX",
-    "created_at": "2026-10-21T09:36:39.880338+00:00",
-    "health_catalog_version": "HC-025.0",
-    "short_summary": "H10/H13 controlled fixture timing, safe partial progress, synchronous cleanup and completed-success-only caching. Chromium/WebKit 569/569 each; no external fixture requests. Prior HC-024 timeout preserved; historical active helper/visibility unknown.",
-    "full_health_status": "OWNER_POST_PUBLICATION_RUN_PENDING",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "HC-025.0 retains all 169 cases / 144 in-app; HT01–HT09 cover timeout/cancel/cache/DOM/console cleanup and safe progress. Local Health 131 PASS/13 expected hosted-dependency BLOCKED; no published readiness/content regression claimed. Mandatory local gates and byte budgets pass; 0 Critical/High, 2 existing Moderate router findings. No live Health/probe/import/mutation/main publish. Last five 021–025. Owner publishes and runs Full Health; physical acceptance remains separate. Evidence: SHINKA_HEALTH_TIMING_025.md."
-  },
-  {
     "build_marker": "Buildmarker-026",
     "package_name": "Mobile system theme and interaction compatibility",
     "package_type": "FIX",
@@ -69,5 +41,33 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "notes": "Synced Base44 source 0f243df plus the recorded local correction patch. Local Health 133 PASS/13 hosted-prerequisite BLOCKED per engine. Clean install/tree/audit, repository/type/lint/build, history and production budgets PASS; zero dependency advisories. Active 024–028. Worker-local quotas; SC08 You error injection is not full saveProfile proof. Owner main merge, complete Base44 sync/publish, Full Health/private readback, Security scan and physical/live enforcement acceptance pending. No live import/user operation. Evidence: reports/SHINKA_SECURITY_CLOSURE_028.md."
+  },
+  {
+    "build_marker": "Buildmarker-029",
+    "package_name": "Daily notifications and inactive scheduler",
+    "package_type": "FEATURE",
+    "created_at": "2026-10-22T13:47:31.272828+00:00",
+    "health_catalog_version": "HC-029.0",
+    "short_summary": "Shared daily engine, fixed local 06:00 policy, bounded delivery reconciliation/retry and separate preference/device UI. Chromium/WebKit 608/608 each; 8 server + 3 closed-entry checks per command. Production binding remains blocked; no active scheduler or real sends.",
+    "full_health_status": "PLATFORM_BINDING_BLOCKED",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "HC-029.0: H14-001/002 activated, H14-003 security/traversal and H14-004 local UI/entry added, H14-901 external binding added; no Health ID deleted. 175 total/149 in-app; local 136 PASS/13 prerequisite BLOCKED. Install/tree/audit/repo/type/lint/build/history/byte gates PASS; zero dependency advisories. Provider named payload/result/device eligibility and workflow caller authentication still need verified code bindings before APNs/Firebase setup/activation. H16-901 physical proof NOT RUN. No live push/workflow mutation/Full Health, main merge or publish. Active 025–029; previous evidence preserved. Report: SHINKA_NOTIFICATIONS_029.md. Owner clarification: exactly two open code bindings (provider incl. device eligibility; scheduler caller authorization); sourced examples must match SDK/platform contract. Independent work complete; real sending/scheduling remain closed."
+  },
+  {
+    "build_marker": "Buildmarker-030",
+    "package_name": "Notification admin admission and reported push contract",
+    "package_type": "FIX",
+    "created_at": "2026-10-22T14:16:35.354495+00:00",
+    "health_catalog_version": "HC-030.0",
+    "short_summary": "Shared fresh-native-admin manual admission and reported push input adapter; unknown results never become SENT. Chromium/WebKit 617/617 each, plus 8 server and 9 actual-entry checks per command. Real sends/schedules remain disabled.",
+    "full_health_status": "PLATFORM_BINDING_BLOCKED",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "H14 existing assertions/descriptions updated; no case removed. Health 136 PASS/13 hosted-prerequisite BLOCKED, 175 total cases. Quality/dependency/history/performance gates pass; audit zero. Original failures preserved. Source/contract provenance in existing SHINKA_NOTIFICATIONS_029.md. 12 backend findings OPEN / USER-DEFERRED; H14-901/H16-901 external. Active 026–030; no live actions/main/publish."
   }
 ];

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-028
+**Current BuildMarker:** Buildmarker-030
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; current dashboard and live Apple/Google proof remain unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -28,6 +28,16 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+## 030 — notification security and lifecycle
+
+The existing 12 backend findings remain OPEN / USER-DEFERRED. No scan or acknowledgement is performed. notificationSchedule authenticates before constructing a service-role lifecycle repository, then uses the existing shared requireAdmin with fresh native role/lifecycle and stable caller ID. Anonymous/auth-error calls stop before service-role access; normal, demoted and removed identities stop before personal job reads, writes or provider construction. Enabled local tests permit direct verified-admin work and recheck admission at mutation/send boundaries. The actual entry remains enabled:false and returns DISABLED for an admitted admin. No missing-auth system branch exists. A forged header, body role/system/run ID or asServiceRole presence never grants authority. Only {action:"tick"} is accepted; no target/copy/URL/checkpoint input. No secret workaround or SHINKA_WRITE_MODE.
+
+Owner admission retains native existence, ACTIVE/complete profile, deletion/privacy/reset fences, preference, timezone/window and device eligibility checks. Scheduler facade allows only daily create and delivery create/update. Account erasure already covers READY/IN_FLIGHT/UNKNOWN deliveries; withdrawal uses consent-aware shared generation without unauthorized health reads. A final guard cannot recall an already-started provider call or provide distributed fencing.
+
+The narrow adapter uses the user-relayed title/content/user_id schema and neutral TR/EN copy. All unknown resolved responses and 403/502/timeout exceptions remain UNKNOWN, with no automatic retry or invented SENT. No raw provider response/error, personal snapshot or secret is returned/logged. Production eligibility remains UNKNOWN. Credentials belong only in trusted Base44 mobile setup. Native token lifecycle remains external.
+
+2026-10-22 correction: the earlier Base44 AI creator-admin assertion is unverified after user-relayed support clarification. Workflow identity, role downgrade/deletion and verifiable caller mechanism are undocumented; beta Run APIs do not authenticate callers. This is not a claim of platform non-support. [030 results and preserved 029 evidence](reports/SHINKA_NOTIFICATIONS_029.md) separate local NC/NT/NS execution from hosted authentication and H16-901 devices.
 
 ## 028 — security closure (ACTIVE)
 

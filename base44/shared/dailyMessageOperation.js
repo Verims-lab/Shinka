@@ -1,7 +1,7 @@
 import { readUserLifecycle, resetOnboardingStep } from './userLifecycle.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
 import { readBoundedJson } from './boundedJson.js';
-import { assertActiveAccount, assertOwner, assertHealthConsent, resolveAuthenticatedOwner, SYSTEM_AUTHORITIES } from './domainSecurity.js';
+import { assertActiveAccount, assertHealthConsent, resolveAuthenticatedOwner, SYSTEM_AUTHORITIES } from './domainSecurity.js';
 import { DOMAIN_SCHEMAS, physicalName } from './domainSchemas.js';
 import { normalizeDomainRead, validateDomainRecord } from './domainValidation.js';
 import { resolveTimezone, serverLocalDate } from './onboardingValidation.js';
@@ -24,12 +24,19 @@ const domainFields = entity => Object.keys(DOMAIN_SCHEMAS[entity].properties);
 async function normalDailyMessageOperation(client, body, { now = () => new Date(), atomic = null, native = false, library = null, random = Math.random, resetFlow = false } = {}) {
   const principal = await requireAuthenticatedUser(client);
   const owner = resolveAuthenticatedOwner(principal, body);
+  const admit = async () => { if ((await requireAuthenticatedUser(client)).id !== owner) fail('AUTH_REQUIRED', 401); };
+  return produceDailyForOwner(client, owner, body, { now, atomic, native, library, random, resetFlow, syncTimezone: native }, admit);
+}
+// Shared domain engine. Caller must supply fresh owner admission; HTTP users and
+// the scheduler have separate entry authorization. Never accepts a request role.
+export async function produceDailyForOwner(client, owner, body, { now = () => new Date(), atomic = null, native = false, library = null, random = Math.random, resetFlow = false, syncTimezone = false } = {}, admit) {
+  await admit();
   if (body.action !== 'today' || Object.keys(body).some(key => !['action', 'timezone'].includes(key))) fail('INVALID_REQUEST', 400);
   const store = client.asServiceRole.entities;
   const read = async (entity, limit, filter = {}, sort = '-created_date', fields = domainFields(entity)) => {
     const rows = await store[physicalName(entity)].filter({ user_id: owner, ...filter }, sort, limit, 0, ['id', 'user_id', ...fields]);
     if (!Array.isArray(rows)) fail('DAILY_READ_FAILED', 503);
-    rows.forEach(row => assertOwner(principal, row));
+    rows.forEach(row => { if (row.user_id !== owner) fail('FORGED_OWNER', 403); });
     return rows;
   };
   const singleton = async entity => {
@@ -39,8 +46,15 @@ async function normalDailyMessageOperation(client, body, { now = () => new Date(
   };
   const profile = await singleton('user_profile');
   assertActiveAccount(owner, profile);
-  const preferences = await singleton('user_preferences');
+  let preferences = await singleton('user_preferences');
   const timezone = resolveTimezone(body.timezone, preferences?.timezone);
+  if (syncTimezone && preferences && preferences.timezone !== timezone) {
+    await admit();
+    await store.UserPreferences.updateMany({ id:preferences.id,user_id:owner,timezone:preferences.timezone }, { $set:{ timezone } });
+    preferences = await singleton('user_preferences');
+    if (preferences?.timezone !== timezone) fail('DAILY_TIMEZONE_UNCONFIRMED');
+    await admit();
+  }
   const instant = now(), day = serverLocalDate(instant, timezone);
   const persistence = native ? nativeDailyPersistence(client, owner) : null;
   if (resetFlow && !isOnboardingProfileReady(profile, preferences, day)) fail('PROFILE_COMPLETION_REQUIRED');
@@ -48,7 +62,7 @@ async function normalDailyMessageOperation(client, body, { now = () => new Date(
   const existing = persistence ? (reconciled.record ? [reconciled.record] : []) : await read('user_daily_message', 2, { shinka_date: day });
   if (existing.length > 1) fail('DUPLICATE_DAILY_MESSAGE');
   if (existing.length) {
-    await client.auth.me();
+    await admit();
     assertActiveAccount(owner, await singleton('user_profile'));
     return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: false, notice: reconciled?.notice || null, daily: verifiedDailyRecord(existing[0], owner, day), profile: { display_name: profile.display_name }, timezone };
   }
@@ -84,7 +98,7 @@ async function normalDailyMessageOperation(client, body, { now = () => new Date(
   const { pair } = selectDailyPair({ pairs: content.actual.message_pair, history, categoryId: mappings[0].category_id, day, random });
   const record = dailySnapshot({ owner, day, timezone, pair, now: instant });
   const guard = async () => {
-    await client.auth.me();
+    await admit();
   assertActiveAccount(owner, await singleton('user_profile'));
   if (healthGuard) {
     const latest = await singleton('user_health_consent');

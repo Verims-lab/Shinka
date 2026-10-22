@@ -2,11 +2,19 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-028
+**Current BuildMarker:** Buildmarker-030
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-028.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-030.0; repository, synthetic and external evidence separated.
+
+## HC-030.0 — existing notification cases aligned with actual guards
+
+H14-001/002 retain their IDs and 029 daily reconciliation/window/retry assertions. H14-003 now includes NC01–09: actual shared fresh-admin admission, missing/error/demoted/deleted/changed identity, forged workflow flags, positive synthetic manual admin, revocation before send, reported input bounds/mapping and unknown-result suppression. H14-004 retains NU01–03 and now describes NS01–09 actual TS entry checks with substituted SDK: unauthorized rejection and authorized DISABLED. The old injected-verifier / all-calls-before-SDK description is superseded.
+
+No new or deleted Health ID is needed: these assertions extend the existing admission/entry cases. Existing suite registration, backend H14 plan [001,002,003] and execution scopes stay aligned; H14-004 remains local-only, H14-901 external. H14-901 records implemented manual guard/reported input separately from unverified workflow identity, recipient/result/error/device semantics. H16-901 remains physical Android/iOS acceptance, never local PASS. Content allowlist explicitly adds only 030 without loosening predicates.
+
+Health uses fake providers/clocks and in-memory SDK transport. It never calls the production scheduler or sends real push. Catalog inventory remains 175 total / 149 in-app / 12 local / 14 external / 0 future. Final 030 counts and gate receipts are in the [existing notification report](reports/SHINKA_NOTIFICATIONS_029.md) and notifications-030 evidence. 030 final: Chromium **617/617**, WebKit **617/617**, per command **8/8 server + 9/9 actual-entry checks**; local Health **136 PASS / 0 FAIL / 13 prerequisite BLOCKED**. Required quality/dependency/history/performance gates pass with zero audit advisories. The prior 029 result remains historical: 608/608 per engine, 8 server + 3 inactive-entry checks, local Health 136 PASS/13 prerequisite BLOCKED, zero dependency advisories. Its original files/failures are preserved. User-reported published 028 success is separate historical evidence.
 
 ## HC-028.0 — security closure and completed local verification
 

@@ -1,0 +1,52 @@
+{
+  "scope": "DOCUMENTATION_AND_LEDGER_CLARIFICATION_ONLY",
+  "startedAt": "2026-10-22T13:57:38.344Z",
+  "completedAt": "2026-10-22T13:57:39.972Z",
+  "implementationCommit": "a51cdd4c44c0a8e44b7f5f7819ae62e8a0e34427",
+  "buildMarker": "Buildmarker-029",
+  "healthCatalog": "HC-029.0",
+  "openImplementationContracts": [
+    "Provider connection, including its payload/response and recipient/device eligibility",
+    "Scheduler caller authorization"
+  ],
+  "incomingExamplePolicy": "Verify Base44 source and SDK/platform compatibility; no guessed parameters/authentication and no service-role-as-caller-proof.",
+  "browserRegressionsRerun": false,
+  "browserEvidence": "Unchanged original 029 evidence: 608/608 per engine; not real push delivery",
+  "liveSend": "NOT_RUN",
+  "workflow": "NOT_CREATED",
+  "healthCasesChanged": false,
+  "checks": [
+    {
+      "name": "repository",
+      "chunk_id": "85ebe4",
+      "wall_time_seconds": 1.404573666,
+      "exit_code": 0,
+      "original_token_count": 428,
+      "output": "npm warn Unknown project config \"min-release-age-exclude\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n\n> base44-app@0.0.0 health:repo\n> node scripts/repoHealth.mjs\n\n{\n  \"scope\": \"REPOSITORY_ONLY\",\n  \"buildMarker\": \"Buildmarker-029\",\n  \"healthCatalog\": \"HC-029.0\",\n  \"checks\": {\n    \"dependencyBoundaries\": true,\n    \"boundedGeneratedHistory\": true,\n    \"twentyPhysicalProductSchemas\": true,\n    \"noUnexpectedProductSchemas\": true,\n    \"guardedNotificationSchedule\": true,\n    \"guardedHealthHistory\": true,\n    \"separateBuiltinUserAndTooling\": true,\n    \"exactAuthoritativeFields\": true,\n    \"completeAccessMatrix\": true,\n    \"directSdkOperationsDenied\": true,\n    \"onboardingCopyAndProxy\": true,\n    \"onboardingGeoNamesEntry\": true,\n    \"noProductSeedCalls\": true,\n    \"canonicalMarker\": true,\n    \"docsAligned\": true,\n    \"noLegacyImport\": true,\n    \"noCredentialFindings\": true,\n    \"noPersonalEmails\": true\n  },\n  \"failed\": [],\n  \"domain\": {\n    \"expected\": 20,\n    \"present\": 20,\n    \"unexpected\": [],\n    \"mismatches\": [],\n    \"internal\": 6,\n    \"builtinUserSeparate\": true,\n    \"healthHistoryPolicy\": true,\n    \"testOperationPolicy\": true,\n    \"calendarActionPolicy\": true,\n    \"notificationSchedulePolicy\": true,\n    \"privacyPolicies\": true,\n    \"accessMatrixRows\": 20,\n    \"accessMatrixComplete\": true,\n    \"directOperationsDenied\": true,\n    \"source\": \"PHYSICAL_REPOSITORY_SCHEMAS_NOT_DEPLOYMENT_PROOF\",\n    \"writeSurface\": {\n      \"ok\": true,\n      \"unexpected\": [],\n      \"changedAllowlistedCounts\": [],\n      \"metadataWriteCalls\": 19,\n      \"onboardingWriteCalls\": 2,\n      \"scope\": \"STATIC_IMPORT_SEED_CALL_INSPECTION\"\n    }\n  }\n}\n"
+    },
+    {
+      "name": "buildHistory",
+      "chunk_id": "4591b6",
+      "wall_time_seconds": 0.333043375,
+      "exit_code": 0,
+      "original_token_count": 9,
+      "output": "Active history verified: 5 packages\n"
+    },
+    {
+      "name": "closedEntry",
+      "chunk_id": "b02be3",
+      "wall_time_seconds": 0.578425416,
+      "exit_code": 0,
+      "original_token_count": 166,
+      "output": "{\n  \"scope\": \"LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION\",\n  \"passed\": true,\n  \"results\": [\n    {\n      \"id\": \"NS01\",\n      \"status\": \"PASS\",\n      \"assertion\": \"Actual inactive entry denies call before any SDK/client creation; not platform authentication proof\"\n    },\n    {\n      \"id\": \"NS02\",\n      \"status\": \"PASS\",\n      \"assertion\": \"Actual inactive entry denies call before any SDK/client creation; not platform authentication proof\"\n    },\n    {\n      \"id\": \"NS03\",\n      \"status\": \"PASS\",\n      \"assertion\": \"Actual inactive entry denies call before any SDK/client creation; not platform authentication proof\"\n    }\n  ],\n  \"hostedVerified\": false\n}\n"
+    },
+    {
+      "name": "sourceIdentity",
+      "chunk_id": "5dd375",
+      "wall_time_seconds": 0.381172417,
+      "exit_code": 0,
+      "original_token_count": 33,
+      "output": "{\"checkedFiles\": 493, \"changedFiles\": [], \"aggregateSha256\": \"c20214bf200be2ba383c10ca057449fca505fe9b4c8c73a707d32acb4d9c6233\"}\n"
+    }
+  ]
+}

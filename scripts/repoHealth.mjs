@@ -2,7 +2,7 @@
 import { REQUIRED_DOCS } from '../src/foundation/inspection/docRules.js';
 import { buildStaticEvidence } from './staticEvidence.mjs';
 import { DOMAIN_SCHEMAS } from '../base44/shared/domainSchemas.js';
-import { SOURCE_FIELD_NAMES } from '../base44/shared/domainSourceReceipt.js';
+import { SOURCE_FIELD_NAMES, expectedDomainFields } from '../base44/shared/domainSourceReceipt.js';
 import { BUILD_MARKER } from '../src/foundation/buildMarker.js';
 import { BUILD_LEDGER } from '../src/foundation/buildLedger.js';
 import { HEALTH_CATALOG_VERSION } from '../base44/shared/healthConstants.js';
@@ -13,9 +13,10 @@ const checks={
   boundedGeneratedHistory:e.activeBuildHistory.generatedMatches,
   twentyPhysicalProductSchemas:e.domain.expected===20&&e.domain.present===20&&e.domain.mismatches.length===0,
   noUnexpectedProductSchemas:e.domain.unexpected.length===0,
+  guardedNotificationSchedule:e.domain.notificationSchedulePolicy,
   guardedHealthHistory:e.domain.healthHistoryPolicy,
-  separateBuiltinUserAndTooling:e.domain.builtinUserSeparate&&e.domain.internal===5&&e.domain.testOperationPolicy&&e.domain.calendarActionPolicy&&e.domain.privacyPolicies,
-  exactAuthoritativeFields:Object.keys(SOURCE_FIELD_NAMES).length===20&&Object.entries(SOURCE_FIELD_NAMES).every(([entity,fields])=>JSON.stringify([...fields].sort())===JSON.stringify(Object.keys(DOMAIN_SCHEMAS[entity].properties).sort())),
+  separateBuiltinUserAndTooling:e.domain.builtinUserSeparate&&e.domain.internal===6&&e.domain.testOperationPolicy&&e.domain.calendarActionPolicy&&e.domain.privacyPolicies,
+  exactAuthoritativeFields:Object.keys(SOURCE_FIELD_NAMES).length===20&&Object.entries(SOURCE_FIELD_NAMES).every(([entity,fields])=>JSON.stringify([...expectedDomainFields(entity,fields)].sort())===JSON.stringify(Object.keys(DOMAIN_SCHEMAS[entity].properties).sort())),
   completeAccessMatrix:e.domain.accessMatrixComplete&&e.domain.accessMatrixRows===20,
   directSdkOperationsDenied:e.domain.directOperationsDenied,
   onboardingCopyAndProxy:e.onboarding.ok,

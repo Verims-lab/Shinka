@@ -1,0 +1,113 @@
+{
+  "buildMarker": "Buildmarker-029",
+  "healthCatalog": "HC-029.0",
+  "recordedAt": "2026-10-22T13:49:05.645965+00:00",
+  "status": "LOCAL_VALIDATION_PASS_PRODUCTION_BINDING_BLOCKED",
+  "baseCommit": "060ba7678a259db704217026a372b08c45dd5695",
+  "testedSource": "source-manifest.json",
+  "engines": {
+    "chromium": {
+      "status": "PASS",
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "tests": 608,
+      "passed": 608,
+      "failed": 0,
+      "missingRequiredIds": [],
+      "serverFixtures": 8,
+      "closedEntryFixtures": 3,
+      "health": {
+        "PASS": 136,
+        "BLOCKED": 13
+      },
+      "blockedHealthIds": [
+        "H04-019",
+        "H05-001",
+        "H05-002",
+        "H05-003",
+        "H05-004",
+        "H05-005",
+        "H05-006",
+        "H05-007",
+        "H05-008",
+        "H05-009",
+        "H08-005",
+        "H09-004",
+        "H12-031"
+      ],
+      "pageErrors": []
+    },
+    "webkit": {
+      "status": "PASS",
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "tests": 608,
+      "passed": 608,
+      "failed": 0,
+      "missingRequiredIds": [],
+      "serverFixtures": 8,
+      "closedEntryFixtures": 3,
+      "health": {
+        "PASS": 136,
+        "BLOCKED": 13
+      },
+      "blockedHealthIds": [
+        "H04-019",
+        "H05-001",
+        "H05-002",
+        "H05-003",
+        "H05-004",
+        "H05-005",
+        "H05-006",
+        "H05-007",
+        "H05-008",
+        "H05-009",
+        "H08-005",
+        "H09-004",
+        "H12-031"
+      ],
+      "pageErrors": []
+    }
+  },
+  "catalog": {
+    "version": "HC-029.0",
+    "suites": 16,
+    "cases": 175,
+    "localRegression": 12,
+    "current": 149,
+    "future": 0,
+    "external": 14
+  },
+  "dependencyAudit": {
+    "critical": 0,
+    "high": 0,
+    "moderate": 0,
+    "low": 0
+  },
+  "qualityGates": "quality-gates.json",
+  "performance": "performance.json",
+  "initialFailures": "initial-failures.json",
+  "external": {
+    "schedulerAuthentication": "BLOCKED_UNBOUND",
+    "pushPayloadResponseEligibility": "BLOCKED_UNBOUND",
+    "workflow": "NOT_CREATED",
+    "livePush": "NOT_RUN",
+    "hostedFullHealth029": "NOT_RUN",
+    "deviceAndroidIOS": "NOT_RUN",
+    "mainMergePublish": "NOT_RUN",
+    "existing12BackendFindings": "OPEN_USER_DEFERRED"
+  },
+  "activePackages": [
+    "025",
+    "026",
+    "027",
+    "028",
+    "029"
+  ]
+}

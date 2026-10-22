@@ -2,11 +2,21 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-028
+**Current BuildMarker:** Buildmarker-030
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 030 — reported push input and shared manual admin admission
+
+Started from clean Test/origin Test 758d6af; main 060ba76 is already an ancestor, no user work or Base44 change overwritten. Completed 029 implementation a51cdd4 and clarification 758d6af remain in history. Corrected the workflow-admin assumption from user-relayed support; manual shared admin guard replaces the placeholder verifier. A narrow input adapter follows the relayed schema and preserves unknown responses/errors. Production stays disabled. Existing Health cases gain NC01–09/NS01–09 coverage; no case removed. CAP-13/17 now record partial documentation/local evidence consistently (their old source entries still said UNVERIFIED despite the 029 report). Final Chromium/WebKit each 617/617, with 8 server + 9 actual-entry checks per command; local Health 136 PASS/13 prerequisite BLOCKED. Required quality/dependency/history/performance gates pass, audit zero; initial JS 479543/160180 gzip and CSS 77521/14262 bytes. Initial type/lint diagnostics and external limits are recorded in the existing notification report and notifications-030 artifacts.
+
+## 029 — local notification verification complete; platform binding blocked
+
+Owner's follow-up confirms no verified contract samples are available. Remaining implementation is limited to provider connection and scheduler caller authorization; provider-side eligibility/permission semantics stay within the former. Record the two open contracts and review criteria in the existing 029 report/continuation/Health records. Core source and executable Health cases remain unchanged; prior local evidence is preserved and not relabeled as new execution or real delivery. Real sends and schedules stay closed pending verified sourced examples.
+
+Started from clean Test 414b05d; safely fast-forwarded merged main to 060ba76 (Base44 SDK 0.8.57/Vite plugin lock update). No user edits overwritten. Read-only workflow list returned zero entries; current app uses Workflows. Completed source/SDK/original-document inspection, shared generation/admission, bounded scheduler core, delivery journal/retry, UI states, explicit schema extensions and Health registrations. Production endpoint remains closed pending authoritative scheduler/push/device binding. Initial focused run: 21 PASS/1 FAIL (NT16 expected p-24 versus generated p-024); test fixture corrected without changing paging predicate. Initial sandbox run could not bind localhost; rerun uses approved local browser execution. Final Chromium/WebKit each 608/608, 8 retained server + 3 actual inactive-entry checks per command, local Health 136 PASS/13 expected prerequisite BLOCKED. Mandatory local gates and unchanged byte budgets pass; dependency audit zero. Full evidence and remaining implementation in SHINKA_NOTIFICATIONS_029.md. No live mutations, push, workflow create/run, scan or publish.
 
 ## 028 — completed local verification continuation
 

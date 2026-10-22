@@ -12,13 +12,13 @@ import { createPreviewSigner } from '../../../base44/shared/adminTestPreview.js'
 const clone = value => structuredClone(value);
 const matches = (row, query) => Object.entries(query).every(([key, value]) => {
   if (key === '$or') return value.some(q => matches(row, q));
-  if (value && typeof value === 'object') return Object.entries(value).every(([op, v]) => ({ $ne: () => row[key] !== v, $in: () => v.includes(row[key]), $gte: () => row[key] >= v, $lte: () => row[key] <= v })[op]?.());
+  if (value && typeof value === 'object') return Object.entries(value).every(([op, v]) => ({ $ne: () => row[key] !== v, $gt: () => row[key] > v, $in: () => v.includes(row[key]), $gte: () => row[key] >= v, $lte: () => row[key] <= v })[op]?.());
   return row[key] === value;
 });
 export function nativeFixture({ granted = true } = {}) {
   const daily = dailyFixture();
   const tables = Object.fromEntries(Object.keys(DOMAIN_SCHEMAS).map(name => [physicalName(name), clone(daily.rows[name])]));
-  Object.assign(tables, { User: [{ id: 'ownerA', role: 'user' }, { id: 'ownerB', role: 'user' }, { id: 'adminA', role: 'admin' }, { id: 'adminB', role: 'admin' }], AdminTestOperation: [], UserCalendarAction: [], InternalHealthRun: [], UserPrivacyRequest: [], PrivacyRecoveryReceipt: [] });
+  Object.assign(tables, { User: [{ id: 'ownerA', role: 'user' }, { id: 'ownerB', role: 'user' }, { id: 'adminA', role: 'admin' }, { id: 'adminB', role: 'admin' }], AdminTestOperation: [], UserCalendarAction: [], InternalHealthRun: [], UserPrivacyRequest: [], PrivacyRecoveryReceipt: [], NotificationSchedule: [] });
   if (granted) {
     tables.UserHealthConsent.push({ id: 'consent', user_id: 'ownerA', consent_status: 'GRANTED', consent_version: HEALTH_CONSENT_VERSION, granted_at: DAILY_NOW, withdrawn_at: null });
     tables.UserHealthConsentEvent.push({ id: 'grant', user_id: 'ownerA', event_type: 'GRANTED', consent_version: HEALTH_CONSENT_VERSION, occurred_at: DAILY_NOW });
@@ -54,7 +54,7 @@ export function nativeFixture({ granted = true } = {}) {
   };
   const execute = view => tools({ action: 'execute', target_id: 'ownerA', operation: view.operation, confirmation: true, preview_token: view.preview_token, request_id: crypto.randomUUID() });
   const once = (when, predicate) => { state[when] = async call => { if (predicate(call)) { state[when] = null; throw new Error('SYNTHETIC_LOST_RESPONSE'); } }; };
-  return { tables, state, client, raw, now, cal, change, today, tools, preview, execute, once };
+  return { tables, state, client, raw, now, library, cal, change, today, tools, preview, execute, once };
 }
 export function barrier(count) {
   let arrived = 0, release;

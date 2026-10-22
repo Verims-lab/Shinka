@@ -2,11 +2,23 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-028
+**Current BuildMarker:** Buildmarker-030
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## 030 — corrected notification platform continuation
+
+On 2026-10-22 the owner relayed Base44 support: workflow auth.me identity, creator downgrade/deletion behavior, signed headers/run-ID verification and workflow-only access are undocumented. The earlier Base44 AI “creator admin” statement is therefore unverified, not an authoritative contract and not proof of non-support. Beta Workflow Run APIs are management/observation, not caller authentication. No secure workflow credential transport/storage contract was supplied; secrets.get alone would not establish it. No guessed header, URL/body secret or custom signature service is introduced.
+
+Manual native-admin starts are now expressly acceptable. The common backend guard checks authentication then fresh native role/lifecycle and the same principal. Missing/error identity never becomes system. The real entry remains enabled:false: admin receives DISABLED, others 401/403, zero job/provider IO. Enabling a workflow still requires a verified supported caller contract. Service-role access is only post-auth privileged transport, not identity proof.
+
+Frontend and notification entry retain SDK 0.8.57, Vite plugin 1.0.47 and the existing lockfile (other native entries retain 0.8.54). Installed SDK exposes a dynamic Core proxy rather than a named push type. The user-relayed platform input is implemented narrowly: user_id/title/content required, 100/500 limits, optional nullable action_label/action_url with label limit 50. It is not live verified. Unknown output and exceptions do not establish SENT or retry safety. Native User.id mapping, accepted/queued/delivered distinction, error/no-device semantics, eligibility/token lifecycle and provider idempotency remain open. CAP-13/17 are PARTIALLY_VERIFIED from documentation/local evidence only.
+
+Use one Workflows path; historical 029 read-only list was empty, not freshly queried in 030. No workflow created/run/activated, no function.jsonc automation or call chain. Existing 25-row/20-second between-owner budget and checkpoints are retained; real latency/capacity must be measured before activation under the platform five-minute ceiling. No exact-once guarantee. No 030 schema delta; when the owner merges/publishes, include the unmerged 029 five delivery fields/sixth operational schema, all shared/backend modules and matching frontend/HC-030.0.
+
+Owner setup stays APNs .p8 + Key ID (separate from App Store Connect key), Android google-services.json + service-account JSON from the same Firebase project/package, trusted Base44 UI only. Generate/install updated native builds. Firebase remains push configuration only; application data stays Base44. After verified bindings/setup, select one test account for controlled push → physical display → guarded Home/current content → in-app Health, plus OS denial/logout/account-switch checks. Main merge/publish and all live/device actions stay with the owner. [Single existing delivery report](reports/SHINKA_NOTIFICATIONS_029.md).
 
 ## 028 security continuation (ACTIVE)
 

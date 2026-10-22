@@ -1,0 +1,35 @@
+{
+  "id": "NC04",
+  "passed": true,
+  "costs": [
+    {
+      "label": "existing-day manual admin intent",
+      "reads": 84,
+      "writes": 4
+    },
+    {
+      "label": "manual admin accepted fixture dispatch",
+      "reads": 119,
+      "writes": 4
+    },
+    {
+      "label": "manual admin settled pass",
+      "reads": 61,
+      "writes": 2
+    }
+  ],
+  "scope": "synthetic entity calls including fresh admin/lifecycle guards; excludes auth.me and real SDK/provider latency or credits",
+  "execution": "Direct NC04 function bundled with the existing Vite/static-evidence plugin under Node; additive local entity cost measurement, not a browser run or hosted call.",
+  "receipt": {
+    "command": [
+      "node",
+      "/private/tmp/shinka-030/cost-bundle-final/manual.mjs"
+    ],
+    "exitCode": 0,
+    "startedAt": "2026-10-22T14:30:07.005037+00:00",
+    "completedAt": "2026-10-22T14:30:07.139338+00:00",
+    "log": "manual-entity-cost-final.log"
+  },
+  "measurementEntry": "import { NOTIFICATION_CONTRACT_TESTS } from '/Users/verimsari/Documents/Shinka/src/foundation/tests/notificationContractTests.js';\nconst test = NOTIFICATION_CONTRACT_TESTS.find(([id]) => id === 'NC04');\nconsole.log(JSON.stringify({id:test[0],passed:true,...await test[2]()},null,2));\n",
+  "buildRecipe": "Use locked Vite build with configFile:false, staticEvidencePlugin(root), @ alias to src, ssr:noExternal:true and measurementEntry as SSR input; execute resulting ES module under Node."
+}

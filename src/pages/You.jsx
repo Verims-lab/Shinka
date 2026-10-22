@@ -1,3 +1,4 @@
+import NotificationStatus from '@/features/you/NotificationStatus';
 import { Link, useInRouterContext } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import ShinkaButton from '@/components/shinka/ShinkaButton';
@@ -34,7 +35,7 @@ export default function You({ language = 'en', request = undefined, placeRequest
           <form noValidate className="space-y-4" data-you-preferences-form onSubmit={event => { event.preventDefault(); void controller.savePreferences(); }}>
             <div className="space-y-2"><label htmlFor="you-language">{copy('language')}</label><ShinkaSelect id="you-language" disabled={busy || !!error?.unknown} value={state.preferences.language_code} onChange={event => controller.preference('language_code', event.target.value)}><option value="tr">Türkçe</option><option value="en">English</option></ShinkaSelect></div>
             <label className="flex min-h-11 items-center gap-3"><span className="min-w-11 min-h-11 flex items-center justify-center"><input type="checkbox" checked={state.preferences.notifications_enabled} disabled={busy || !!error?.unknown} onChange={event => controller.preference('notifications_enabled', event.target.checked)} className="h-6 w-6 accent-shinka-plum"/></span>{copy('notifications')}</label>
-            <p>{copy('notificationTime')}</p><p className="text-shinka-caption">{copy('notificationPending')}</p>
+            <p>{copy('notificationTime')}</p><NotificationStatus language={language} enabled={value.preferences.notifications_enabled}/>
             <ShinkaButton type="submit" disabled={busy || !!error?.unknown}>{copy(busy ? 'saving' : 'save')}</ShinkaButton>
           </form>
         </ShinkaCard>

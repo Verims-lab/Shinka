@@ -2,14 +2,22 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-028
+**Current BuildMarker:** Buildmarker-030
 **Last Updated:** 2026-10-22
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
-**Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and notification delivery.
+**Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+## 030 — daily notification behavior and current boundary
+
+UC-10/20, KK-13/24: the shared daily engine is callable by authenticated Home and a separately admitted scheduler owner. The local scheduler processes completed ACTIVE accounts in bounded pages at/after local 06:00, produces/reconciles today's immutable daily message first, then evaluates notification preference and verified device eligibility. No permitted health input means UNKNOWN-cycle generation, using the existing algorithm. Preference off or OS denial does not suppress content. Home saves a newly detected valid IANA zone with readback; invalid detection retains the saved zone, never rewriting historical snapshots.
+
+New 029 decisions (not claimed as original-source rules): send only during the current local day, 06:00 inclusive to 12:00 exclusive; late runs/new opt-ins/zone changes receive at most the current day's opportunity, never a backlog. First delivery intent settles until the next scheduler pass (minimum one minute), then at most three attempts; definite transient rejection backs off 5 then 15 minutes. Uncertain response/in-flight crash never automatically resends. A timezone change cancels the old in-flight admission; normal next traversal evaluates the new local day. Same-day terminal delivery suppresses another delivery even if canonical daily reconciliation changes the winning candidate. Native uniqueness remains unproven.
+
+**Current repository boundary (030):** manual calls use the shared backend guard and fresh native admin role. A verified admin receives DISABLED with zero job/provider work while the real entry remains disabled; unauthorized callers are rejected. The independently tested enabled handler can run the bounded job directly for an admin. Workflow identity is unverified, never inferred from missing auth or service-role access. The input adapter now follows the user-relayed schema, but response/recipient/device semantics remain unverified; every actual adapter result stays UNKNOWN. No workflow was created. Home/You and 029 policy remain implemented. Central neutral copy maps to title/content; optional destination is omitted for the documented default app opening through guarded Home. No historical date is transmitted. [Current delivery and retained 029 evidence](reports/SHINKA_NOTIFICATIONS_029.md).
 
 ## Birthplace request limit and deletion flow — 028 (ACTIVE)
 
@@ -39,7 +47,7 @@ Completed owners open `/you` from the top-right profile icon. Bottom navigation 
 
 My Profile edits name (trimmed, optional, ≤50 Unicode characters), required adult date, optional genuine HH:mm and the shared country/region/settlement picker. Saved place is displayed without reconstructing hierarchy. Unchanged ID preserves its validated five fields despite a provider outage; a changed ID resolves again on the server; Clear sends NULL for all five. Sun is recomputed by the existing birth-date-only server authority, shown read-only and updated only with verified save. Blank time stays NULL. Cancel discards an unsent draft; validation/failure preserves it, with field focus.
 
-Profile and preferences save separately, with section-specific verified success. Only current owner rows are updated; no onboarding initialize/reset, consent/event/cycle or daily/Pattern writes. Language and notification opt-in persist in existing UserPreferences; notification_time stays 06:00, automatic device IANA falls back to last valid saved zone. Delivery is explicitly unavailable and no permission prompt/scheduler is added. Header language changes also use this preference boundary and retain the previous language until verification; no new daily generation. Saved language propagates through Home/Calendar/Pattern/You/menu navigation. Existing daily bilingual snapshots and category history remain unchanged; Home reads the updated name; a verified NULL name never falls back to an older hydrated name.
+Profile and preferences save separately, with section-specific verified success. Only current owner rows are updated; no onboarding initialize/reset, consent/event/cycle or daily/Pattern writes. Language and notification opt-in persist in existing UserPreferences; notification_time stays 06:00, automatic device IANA falls back to last valid saved zone. 029 adds the independently tested scheduler/delivery core and honest device-status UI; production bindings remain blocked and no permission bridge is invented. Header language changes also use this preference boundary and retain the previous language until verification; no new daily generation. Saved language propagates through Home/Calendar/Pattern/You/menu navigation. Existing daily bilingual snapshots and category history remain unchanged; Home reads the updated name; a verified NULL name never falls back to an older hydrated name.
 
 Each editor retains its base revision and intended values in memory. Timeout/lost response is unconfirmed, never a success or rollback claim. Read-only Check verifies the desired state; explicit retry reuses the same intent. Matching saved values return verified without another update. A different observed revision refuses overwrite and asks the user to reopen saved values; the draft remains until that explicit action. Reload only reads current authority, never resubmits. Profile/consent data is not kept in storage/URL. Logout/session replacement disposes pending UI generations.
 
