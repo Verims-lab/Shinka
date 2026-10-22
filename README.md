@@ -6,7 +6,7 @@ Any change pushed to the repo will also be reflected in the Base44 Builder.
 
 ## Current Test notification package (Buildmarker-029)
 
-The local DAILY_SHINKA core shares the existing daily engine, uses fixed local 06:00 with a same-day bounded window, and separates saved preference from native device permission. The production scheduler is deliberately closed: verified platform caller authentication, named push parameters/response and native eligibility still require implementation before activation. **Mobile credentials alone do not complete this binding.** No workflow was created or live push sent. See the [029 report and exact next work](docs/shinka/reports/SHINKA_NOTIFICATIONS_029.md). Test delivery is not production notification acceptance; main merge/publish remain owner-owned.
+The local DAILY_SHINKA core shares the existing daily engine, uses fixed local 06:00 with a same-day bounded window, and separates saved preference from native device permission. Independent code/UI/local validation are complete. Two bindings remain open: provider connection (named payload/response and recipient/device eligibility) and scheduler caller authorization. The owner will obtain sourced Base44 examples; compare them with the actual SDK/platform contract before implementation. The production scheduler stays deliberately closed. **Mobile credentials alone do not complete these bindings.** No workflow was created or live push sent. See the [029 report and exact next work](docs/shinka/reports/SHINKA_NOTIFICATIONS_029.md). Test delivery is not production notification acceptance; main merge/publish remain owner-owned.
 
 ## Existing data authority (Buildmarker-023 onward)
 

@@ -41,11 +41,18 @@ Read-only CLI confirms this app supports **Workflows**, with no configured workf
 
 [Client authentication](https://docs.base44.com/developers/references/sdk/getting-started/client) and [backend execution](https://docs.base44.com/developers/backend/resources/backend-functions/overview) distinguish request identity from service-role access. A service-role client is not proof that an HTTP caller is a platform scheduler. A verified workflow caller identity/token validation method was not established. The real `notificationSchedule` entry returns `503 SCHEDULER_AUTH_CONTRACT_UNVERIFIED` for ordinary, body-forged and apparent-service-header requests, with zero SDK creation. Injected verifier tests prove handler policy only. No secret, header name or privileged body flag was invented as a workaround.
 
-Before activation, obtain authoritative, key-free contract examples for: (1) named send payload/result and definite vs ambiguous failures, (2) trusted recipient/device eligibility and permission/session lifecycle, (3) workflow-to-function caller authentication. Implement those bindings and their negative tests, connect a request-bound provider client, then repeat relevant local gates. **CAP-13 and CAP-17 are PARTIALLY_VERIFIED**, not hosted/device verified. H14-901 tracks this unfinished engineering acceptance.
+The owner's 2026-10-22 clarification confirms that verified examples are not yet available; the owner will request them from Base44 with their sources. Independent daily generation, records, UI, documentation and local validation are complete in `a51cdd4`. The remaining implementation is limited to **two contract bindings**:
+
+| Open contract | Required evidence and remaining implementation |
+|---|---|
+| Provider connection | Authoritative `SendPushNotification` parameter/response examples, definite versus ambiguous failure semantics, and recipient/device eligibility within that provider contract. Compare the example with the installed SDK and the cited platform version, then bind the request-scoped backend adapter. Device permission/session behavior belongs here, not to a third independent feature. |
+| Scheduler caller authorization | Authoritative workflow-to-function caller identity and server-side verification contract. Verify ordinary-user, missing/invalid credential and forged-body/header rejection before binding the real entry. Service-role access alone never establishes caller authorization. |
+
+Do not implement from an example alone: check its origin, SDK/platform compatibility and documented security/error semantics first. If it does not establish those facts, retain the open contract and closed entry rather than guessing. Add relevant positive/negative tests when the verified bindings are supplied. **CAP-13 and CAP-17 remain PARTIALLY_VERIFIED**; H14-901 tracks these two unfinished bindings. H16-901 remains separate external physical-device evidence, not a local implementation task or a local PASS. No real send or schedule is enabled by this clarification.
 
 ## Execution evidence
 
-All 029 results are fresh. Real desktop engines ran the pinned canonical runner; external network was blocked and SDK/provider inputs were synthetic. Server entry tests are counted separately. [Chromium](notifications-029/chromium.json), [WebKit](notifications-029/webkit.json), [quality receipts](notifications-029/quality-gates.json), [source manifest](notifications-029/source-manifest.json).
+The 029 execution results below belong to the original implementation validation, not a new browser run for this documentation clarification. Its 493 executable/config inputs remain unchanged. Real desktop engines ran the pinned canonical runner; external network was blocked and SDK/provider inputs were synthetic. Server entry tests are counted separately. [Chromium](notifications-029/chromium.json), [WebKit](notifications-029/webkit.json), [quality receipts](notifications-029/quality-gates.json), [source manifest](notifications-029/source-manifest.json). [Clarification checks](notifications-029/boundary-followup.json) separately record repository/history checks and actual closed-entry denial.
 
 | Check | Actual result | Scope / not run |
 |---|---|---|
@@ -76,7 +83,7 @@ Estimate monthly push credits as `days × opted-in eligible users/day × mean pr
 
 ## Owner setup and acceptance
 
-First finish the three platform bindings above; the current entry cannot be enabled just by adding credentials. Then sync the optional delivery fields, new closed operational schema, complete shared/backend graph and matching frontend through the usual owner-controlled merge/publish workflow. Configure one **inactive Workflows** schedule; do not create function.jsonc automations. Verify its real caller authorization before deliberate activation.
+First finish the two contract bindings above; the current entry cannot be enabled just by adding credentials. Then sync the optional delivery fields, new closed operational schema, complete shared/backend graph and matching frontend through the usual owner-controlled merge/publish workflow. Configure one **inactive Workflows** schedule; do not create function.jsonc automations. Verify its real caller authorization before deliberate activation.
 
 [Official store setup](https://docs.base44.com/documentation/building-your-app/uploading-to-app-stores):
 
