@@ -1,6 +1,7 @@
 import { createGeoNamesHierarchy } from './geonamesHierarchy.js';
 import { OnboardingError, normalizeGeoNamesPlace } from './onboardingValidation.js';
 import { GeoNamesError, classifyGeoNamesTransport } from './geonamesDiagnostics.js';
+import { isGuardRateLimit } from './geonamesGuard.js';
 export function sanitizePlaceQuery(input) {
   if(typeof input!=='string')throw new OnboardingError('GEONAMES_QUERY_INVALID','birthplace',400);
   const query=input.normalize('NFKC').trim().replace(/\s+/g,' ');
@@ -68,6 +69,8 @@ export function createGeoNamesAdapter({username,fetcher=fetch,timeoutMs=8000,tim
         if(error.failureStage==='UNKNOWN')error.failureStage=stage;
         throw error;
       }
+      // The guard's own limit decision passes through unchanged (429 + retry).
+      if(isGuardRateLimit(error))throw error;
       throw new GeoNamesError(abort.signal.aborted?'GEONAMES_REQUEST_TIMEOUT':'GEONAMES_NETWORK_ERROR',httpStatus,null,stage,abort.signal.aborted?'TIMEOUT':classifyGeoNamesTransport(error));
     }finally{timers.clear(timer);}
   };

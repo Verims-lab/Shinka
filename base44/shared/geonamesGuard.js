@@ -14,13 +14,19 @@ export const GEONAMES_LIMITS = Object.freeze({
 });
 
 const copy = value => (value === undefined ? value : structuredClone(value));
+// Only errors created by this module's limiter are trusted; a same-shaped error
+// from a provider/network layer is not in the set and stays classified as such.
+const guardErrors = new WeakSet();
+export const isGuardRateLimit = error => guardErrors.has(error);
 
 export function createGeoNamesGuard({ limits = GEONAMES_LIMITS, now = () => Date.now(), fetcher = (...args) => fetch(...args) } = {}) {
   const users = new Map(), cache = new Map(), inflight = new Map();
   let worker = { start: 0, count: 0 };
   const limited = start => {
     const retryAfterSeconds = Math.max(1, Math.ceil((start + limits.windowMs - now()) / 1000));
-    throw Object.assign(new OnboardingError('GEONAMES_RATE_LIMITED', 'birthplace', 429), { retryAfterSeconds });
+    const error = Object.assign(new OnboardingError('GEONAMES_RATE_LIMITED', 'birthplace', 429), { retryAfterSeconds });
+    guardErrors.add(error);
+    throw error;
   };
   const windowFor = owner => {
     const t = now(); let w = users.get(owner);

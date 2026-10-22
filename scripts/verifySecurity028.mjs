@@ -5,6 +5,8 @@ import { readBoundedJson } from '../base44/shared/boundedJson.js';
 import { createGeoNamesGuard } from '../base44/shared/geonamesGuard.js';
 import { handleYouRequest } from '../base44/shared/youOperation.js';
 import { handleOnboardingRequest } from '../base44/shared/onboardingOperations.js';
+import { createGeoNamesAdapter } from '../base44/shared/geonamesAdapter.js';
+import { OnboardingError } from '../base44/shared/onboardingValidation.js';
 
 const fail = (code, status) => { throw Object.assign(new Error(code), { code, status }); };
 const req = (text, headers = {}) => new Request('https://fixture.invalid', { method: 'POST', body: text, headers });
@@ -64,7 +66,47 @@ const TESTS = [
       assert.equal(res.status, 413); assert.equal(calls.length, 0);
     }
   }],
+  ['SC07', 'Real guard + real adapter: app, user-upstream and worker-upstream limits keep 429/retry and stop provider fetches', async () => {
+    for (const [kind, lim, owners] of [['app', { appRequests: 2, upstreamCalls: 99, workerUpstreamCalls: 99 }, ['A', 'A', 'A']], ['user', { appRequests: 99, upstreamCalls: 2, workerUpstreamCalls: 99 }, ['A', 'A', 'A']], ['worker', { appRequests: 99, upstreamCalls: 99, workerUpstreamCalls: 2 }, ['A', 'B', 'C']]]) {
+      const chain = realChain({ ...limits, ...lim }); let t = 0; chain.clock(() => t);
+      await chain.search(owners[0], 'aa'); await chain.search(owners[1], 'bb'); t = 20000;
+      const before = chain.fetches();
+      const e = await rejects(() => chain.search(owners[2], 'cc'), 'GEONAMES_RATE_LIMITED');
+      assert.equal(e.status, 429, kind); assert.equal(e.retryAfterSeconds, 40, kind); assert.equal(e.field, 'birthplace', kind);
+      assert.equal(chain.fetches(), before, `${kind}: no provider fetch after limit`);
+    }
+  }],
+  ['SC08', 'Onboarding and You handlers return 429, GEONAMES_RATE_LIMITED, Retry-After and retry_after_seconds for the real chain error', async () => {
+    const chain = realChain({ ...limits, appRequests: 99, upstreamCalls: 1 });
+    const { client } = recordingClient({ id: 'ownerA' });
+    const call = q => handleOnboardingRequest(req(JSON.stringify({ action: 'searchPlaces', query: q, language_code: 'en' })), () => client, { geoNamesFor: chain.forOwner });
+    assert.equal((await call('aa')).status, 200);
+    const before = chain.fetches(), res = await call('bb'), body = await res.json();
+    assert.equal(res.status, 429); assert.equal(body.error_code, 'GEONAMES_RATE_LIMITED'); assert.equal(res.headers.get('Retry-After'), '60'); assert.equal(body.retry_after_seconds, 60); assert.equal(chain.fetches(), before);
+    // You: the full saveProfile path needs a ready profile fixture; this checks the handler error contract with the real chain-produced error.
+    const limitError = await rejects(() => chain.search('ownerA', 'cc'), 'GEONAMES_RATE_LIMITED');
+    const you = recordingClient({ id: 'ownerA' }); you.client.asServiceRole = { entities: new Proxy({}, { get: () => ({ filter: async () => { throw limitError; } }) }) };
+    const yres = await handleYouRequest(req(JSON.stringify({ action: 'read' })), () => you.client, { geoNamesFor: chain.forOwner }), ybody = await yres.json();
+    assert.equal(yres.status, 429); assert.equal(ybody.error_code, 'GEONAMES_RATE_LIMITED'); assert.equal(yres.headers.get('Retry-After'), '60'); assert.equal(ybody.retry_after_seconds, 60);
+  }],
+  ['SC09', 'Negative: network failure and a forged 429-shaped error from fetch stay GEONAMES_UNAVAILABLE, never rate-limited', async () => {
+    for (const thrown of [new TypeError('fetch failed'), Object.assign(new OnboardingError('GEONAMES_RATE_LIMITED', 'birthplace', 429), { retryAfterSeconds: 5 })]) {
+      const chain = realChain(limits, async () => { throw thrown; });
+      const { client } = recordingClient({ id: 'ownerA' });
+      const res = await handleOnboardingRequest(req(JSON.stringify({ action: 'searchPlaces', query: 'aa', language_code: 'en' })), () => client, { geoNamesFor: chain.forOwner });
+      const body = await res.json();
+      assert.equal(res.status, 503); assert.equal(body.error_code, 'GEONAMES_UNAVAILABLE'); assert.equal(res.headers.get('Retry-After'), null); assert.equal(body.retry_after_seconds, undefined);
+    }
+  }],
 ];
+
+// Real createGeoNamesGuard + createGeoNamesAdapter; only the provider fetch is synthetic (no network).
+function realChain(lim, provider = async () => new Response(JSON.stringify({ geonames: [], totalResultsCount: 0 }), { status: 200 })) {
+  let count = 0, now = () => 0;
+  const guard = createGeoNamesGuard({ limits: lim, now: () => now(), fetcher: async (...a) => { count++; return provider(...a); } });
+  const forOwner = owner => guard.forOwner(owner, fetcher => createGeoNamesAdapter({ username: 'fixture', fetcher }));
+  return { forOwner, fetches: () => count, clock: fn => { now = fn; }, search: (owner, q) => forOwner(owner).search(q, 'en') };
+}
 
 export async function verifySecurity028() {
   const results = [];
