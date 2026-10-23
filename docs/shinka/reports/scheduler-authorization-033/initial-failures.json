@@ -1,0 +1,39 @@
+{
+  "scope": "LOCAL_ONLY",
+  "failures": [
+    {
+      "gate": "typecheck",
+      "receipt": {
+        "command": [
+          "npm",
+          "run",
+          "typecheck"
+        ],
+        "exitCode": 2,
+        "startedAt": "2026-10-22T21:10:23.361915+00:00",
+        "completedAt": "2026-10-22T21:10:31.058476+00:00",
+        "log": "typecheck.log"
+      },
+      "evidence": "typecheck.txt",
+      "detail": "The newly included server-only module needed an explicit JSDoc string type predicate before TextEncoder. Added the predicate without changing executable code; typecheck-final and all NS/SM checks pass."
+    }
+  ],
+  "focusedInitial": {
+    "receipt": {
+      "command": [
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:05:52.543001+00:00",
+      "completedAt": "2026-10-22T21:05:55.940646+00:00",
+      "log": "focused-initial.log"
+    },
+    "tests": 11,
+    "failed": 0
+  },
+  "assertionsRemoved": false,
+  "securityRulesRelaxed": false,
+  "postBrowserCheck": "post-browser-source-check.json"
+}

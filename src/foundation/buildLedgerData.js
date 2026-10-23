@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-028",
-    "package_name": "Güvenlik Kapanışı 028",
-    "package_type": "AUDIT_FIX",
-    "created_at": "2026-10-22T14:30:00+03:00",
-    "health_catalog_version": "HC-028.0",
-    "short_summary": "028 local verification complete: Chromium/WebKit 582/582 each, plus 8/8 server fixtures per command; required O32/NA07/NA22/SC06/SC10/SC11 present. Fixed type errors, omitted 028 content-policy registration and missing H12-040 server plan. No assertions weakened; original failures retained.",
-    "full_health_status": "MANUAL_USER_VALIDATION_PENDING",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "Synced Base44 source 0f243df plus the recorded local correction patch. Local Health 133 PASS/13 hosted-prerequisite BLOCKED per engine. Clean install/tree/audit, repository/type/lint/build, history and production budgets PASS; zero dependency advisories. Active 024–028. Worker-local quotas; SC08 You error injection is not full saveProfile proof. Owner main merge, complete Base44 sync/publish, Full Health/private readback, Security scan and physical/live enforcement acceptance pending. No live import/user operation. Evidence: reports/SHINKA_SECURITY_CLOSURE_028.md."
-  },
-  {
     "build_marker": "Buildmarker-029",
     "package_name": "Daily notifications and inactive scheduler",
     "package_type": "FEATURE",
@@ -69,5 +55,19 @@ export default [
     "tests_changed": false,
     "health_changed": true,
     "notes": "Health add 0/update 2/delete 0 (H14-901/H16-901 external descriptions); executable tests unchanged. Required local gates pass; audit zero; 031 budgets unchanged at 69/104/46 entity reads. Initial JS 479543/160180 gzip, CSS 77521/14262 bytes. Native setup may proceed independently; verified contracts still gate activation, superseding historical 029 setup ordering. Base44 remains identity/data authority; Firebase is Android push setup only. Actual entry enabled:false; no credentials/build/live calls/main merge/publish. Existing 12 findings OPEN / USER-DEFERRED. Internal Build 028–032; SHINKA_NATIVE_NOTIFICATION_READINESS_032.md."
+  },
+  {
+    "build_marker": "Buildmarker-033",
+    "package_name": "Scheduler machine authorization preparation",
+    "package_type": "FIX",
+    "created_at": "2026-10-22T21:05:49.321095+00:00",
+    "health_catalog_version": "HC-033.0",
+    "short_summary": "Prepared scheduler-only machine credential admission; current-native-admin path retained. Chromium/WebKit 632/632 each; per command 8 server, 11 entry, 7 crypto checks. Real entry unbound/disabled; local Health 136 PASS/13 prerequisite BLOCKED.",
+    "full_health_status": "PLATFORM_BINDING_BLOCKED",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "H14-003/004/901 updated; add 0/delete 0. Required local gates pass; audit zero. Admin reads 69/104/46 unchanged; separate machine reads 36/62/22 with 11/14/8 credential checks and zero auth.me. Initial JS 479543/160179 gzip, CSS 77521/14262 bytes. Initial typecheck error and executable-equivalent JSDoc correction retained. No secret generated/stored, real secrets.get/transport binding, workflow/push/live Health/scan/user/native build/main merge/publish. 12 findings OPEN / USER-DEFERRED. Active 029–033; SHINKA_SCHEDULER_AUTHORIZATION_033.md."
   }
 ];

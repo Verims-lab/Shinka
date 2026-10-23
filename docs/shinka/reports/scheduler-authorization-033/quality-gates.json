@@ -1,0 +1,241 @@
+{
+  "status": "PASS",
+  "recordedAt": "2026-10-22T21:16:05.415371+00:00",
+  "source": "source-manifest.json; browser/measurement code before JSDoc-only type predicate is mapped in browser-source-manifest.json and post-browser-source-check.json",
+  "logNormalization": "Trailing whitespace normalized; raw and saved SHA-256 retained",
+  "gates": [
+    {
+      "command": [
+        "npm",
+        "ci"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:07:43.078740+00:00",
+      "completedAt": "2026-10-22T21:07:48.818140+00:00",
+      "log": "clean-install.txt",
+      "label": "clean-install",
+      "rawLogSha256": "39af9528b9fa4af5f63fcfd961dee6f869bf5e1bba638f16e1669ac5ef3d0c2d",
+      "savedLogSha256": "39af9528b9fa4af5f63fcfd961dee6f869bf5e1bba638f16e1669ac5ef3d0c2d"
+    },
+    {
+      "command": [
+        "npm",
+        "ls",
+        "--depth=0"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:10:41.570948+00:00",
+      "completedAt": "2026-10-22T21:10:42.130056+00:00",
+      "log": "tree-top.txt",
+      "label": "tree-top",
+      "rawLogSha256": "636fc7fe42b2d5f59a7695d9f53ee472f00447d271bc268566ce9b072009d9ee",
+      "savedLogSha256": "19e7272accfa0bea976cb7f4011672aa67e300c88c65b1d01fccf021815d6668"
+    },
+    {
+      "command": [
+        "npm",
+        "ls",
+        "--all"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:10:41.571005+00:00",
+      "completedAt": "2026-10-22T21:10:42.217024+00:00",
+      "log": "tree.txt",
+      "label": "tree",
+      "rawLogSha256": "0ae4ff988ec4fe59008b6adc33daaac03e68940818cf6940d2caca2872e44119",
+      "savedLogSha256": "b89e8fca594a2e9375015baa5af2818f55f959c60a24c549b197d0c5830df2c5"
+    },
+    {
+      "command": [
+        "npm",
+        "audit",
+        "--json"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:10:45.166116+00:00",
+      "completedAt": "2026-10-22T21:10:45.823121+00:00",
+      "log": "audit.txt",
+      "label": "audit",
+      "rawLogSha256": "433afea046aa62fec794af08a30e91c61504aff7f880b5367802cb68f214f667",
+      "savedLogSha256": "433afea046aa62fec794af08a30e91c61504aff7f880b5367802cb68f214f667"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "security:deps"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:10:43.807884+00:00",
+      "completedAt": "2026-10-22T21:10:44.663474+00:00",
+      "log": "security-deps.txt",
+      "label": "security-deps",
+      "rawLogSha256": "ba5a55cc48eca8e7c392d3754b663e0bd7b6233525429a1d8a5d44768df5b507",
+      "savedLogSha256": "ba5a55cc48eca8e7c392d3754b663e0bd7b6233525429a1d8a5d44768df5b507"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:11:20.939011+00:00",
+      "completedAt": "2026-10-22T21:11:25.426222+00:00",
+      "log": "typecheck-final.txt",
+      "label": "typecheck-final",
+      "rawLogSha256": "2e1c7db5ac28fb733e8c1d3d7c2c3bf8a4bb6628ed45eb56ce2e7328388598de",
+      "savedLogSha256": "219c73819fb104986577380376528635b8bf8b0f1eb490283a0b22ac6a011ba0"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:10:23.361926+00:00",
+      "completedAt": "2026-10-22T21:10:30.694565+00:00",
+      "log": "lint.txt",
+      "label": "lint",
+      "rawLogSha256": "8423c1a66df3f2a021733ae12f217befbeb04b23971e056cb4e3739c7fb936cf",
+      "savedLogSha256": "f1f78baa67d3a65a4400919a9b9191a804c8d990e3b2bf860089ff4f3182055e"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "health:repo"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:15:29.338186+00:00",
+      "completedAt": "2026-10-22T21:15:30.576818+00:00",
+      "log": "repo.txt",
+      "label": "repo",
+      "rawLogSha256": "4859ce79e02e6e4ebe4bc7f5b3d559dffbd48036c331c820361956ee6f372ce8",
+      "savedLogSha256": "4859ce79e02e6e4ebe4bc7f5b3d559dffbd48036c331c820361956ee6f372ce8"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:15:29.347281+00:00",
+      "completedAt": "2026-10-22T21:15:31.477893+00:00",
+      "log": "build.txt",
+      "label": "build",
+      "rawLogSha256": "307b120c76c9226b5fb24ac27737258d98178f9f8968f3d7fdc24130e969b3be",
+      "savedLogSha256": "307b120c76c9226b5fb24ac27737258d98178f9f8968f3d7fdc24130e969b3be"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/recordBuild.mjs",
+        "--check"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:15:29.337420+00:00",
+      "completedAt": "2026-10-22T21:15:29.420912+00:00",
+      "log": "history.txt",
+      "label": "history",
+      "rawLogSha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f",
+      "savedLogSha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/measureMaintenance.mjs",
+        "/private/tmp/shinka-033/performance"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:12:15.508679+00:00",
+      "completedAt": "2026-10-22T21:12:35.478635+00:00",
+      "log": "performance.txt",
+      "label": "performance",
+      "rawLogSha256": "af6751d72d87be9d3b5a1857c73bc707b7ff8bba293d5af5f4b48bec79391bbd",
+      "savedLogSha256": "af6751d72d87be9d3b5a1857c73bc707b7ff8bba293d5af5f4b48bec79391bbd"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:10:25.440093+00:00",
+      "completedAt": "2026-10-22T21:11:32.007768+00:00",
+      "log": "chromium.txt",
+      "label": "chromium",
+      "rawLogSha256": "d8b71dd2ffe9b0f1cfaaac422ff2b12b19d33411651a9e1dd478ab21d85e782f",
+      "savedLogSha256": "d8b71dd2ffe9b0f1cfaaac422ff2b12b19d33411651a9e1dd478ab21d85e782f",
+      "environment": {
+        "FOUNDATION_BROWSER": "chromium",
+        "FOUNDATION_AUDIT_DIR": "/private/tmp/shinka-033/chromium"
+      }
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:10:27.104910+00:00",
+      "completedAt": "2026-10-22T21:11:44.907569+00:00",
+      "log": "webkit.txt",
+      "label": "webkit",
+      "rawLogSha256": "d78bf78328c1f340638b42e37d0239eef19213b275bd9b8281b88310d3ff802d",
+      "savedLogSha256": "d78bf78328c1f340638b42e37d0239eef19213b275bd9b8281b88310d3ff802d",
+      "environment": {
+        "FOUNDATION_BROWSER": "webkit",
+        "FOUNDATION_AUDIT_DIR": "/private/tmp/shinka-033/webkit"
+      }
+    },
+    {
+      "command": [
+        "node",
+        "scripts/measureNotifications.mjs",
+        "/private/tmp/shinka-033/cost-admin"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:10:23.375144+00:00",
+      "completedAt": "2026-10-22T21:10:29.499569+00:00",
+      "log": "cost-admin.txt",
+      "label": "cost-admin",
+      "rawLogSha256": "36f288bfbb8ec60e68f08c7cb62ff7998de904e6b909e478f60c53c6588d85e5",
+      "savedLogSha256": "36f288bfbb8ec60e68f08c7cb62ff7998de904e6b909e478f60c53c6588d85e5"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/measureNotifications.mjs",
+        "/private/tmp/shinka-033/cost-machine",
+        "--machine"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:10:23.371929+00:00",
+      "completedAt": "2026-10-22T21:10:29.498604+00:00",
+      "log": "cost-machine.txt",
+      "label": "cost-machine",
+      "rawLogSha256": "01caa3d68fa1a03c2a982792a74c734d77fbc3ed9ddc14105ab1b2e63df14d78",
+      "savedLogSha256": "01caa3d68fa1a03c2a982792a74c734d77fbc3ed9ddc14105ab1b2e63df14d78"
+    },
+    {
+      "command": [
+        "node",
+        "--input-type=module",
+        "-e",
+        "import {verifyNotifications} from './scripts/verifyNotifications.mjs'; console.log(JSON.stringify(await verifyNotifications(process.cwd()),null,2));"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-10-22T21:11:22.134144+00:00",
+      "completedAt": "2026-10-22T21:11:22.501132+00:00",
+      "log": "server-final.txt",
+      "label": "server-final",
+      "rawLogSha256": "ac7a6e745a810f9f4e4e350d720ebb318387dacbe860f69f6a768f6d6346c874",
+      "savedLogSha256": "ac7a6e745a810f9f4e4e350d720ebb318387dacbe860f69f6a768f6d6346c874"
+    }
+  ]
+}

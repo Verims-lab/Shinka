@@ -2,14 +2,20 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-032
-**Last Updated:** 2026-10-22
+**Current BuildMarker:** Buildmarker-033
+**Last Updated:** 2026-10-23
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+## 033 — scheduler machine identity and push acceptance
+
+Manual invocation still requires a current native admin. The approved shared secret may authorize only the bounded daily-notification scheduler, without a user session; it grants no account/role/admin-tool authority or caller-selected recipients/content/dates. The real entry remains disabled and unbound until registration and safe workflow transport are demonstrated. Recipient account/lifecycle/preferences/consent and daily independence stay unchanged.
+
+Support describes successful push as provider acceptance only. Until the concrete response is verified, fulfilled promises/2xx remain UNKNOWN; no blind retry or alternate-channel fallback. Missing eligibility/idempotency may be an explicit platform limitation if support confirms it, but alternative behavior requires an explicit risk/product decision. No UNKNOWN-as-allowed shortcut. [033 technical handoff](reports/SHINKA_SCHEDULER_AUTHORIZATION_033.md).
 
 ## 032 — preparation and delivery are separate
 

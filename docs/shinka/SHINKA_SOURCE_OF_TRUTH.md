@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-032
-**Last Updated:** 2026-10-22
+**Current BuildMarker:** Buildmarker-033
+**Last Updated:** 2026-10-23
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## 033 — accepted scheduler credential boundary
+
+The owner relayed a new Base44 support answer and explicitly accepts a narrowly scoped scheduler shared secret (attachment e9324e5d-cdc7-4cd6-9c29-58313afe379e, reviewed 2026-10-23). This supersedes keyless/admin-session-only scheduler assumptions and any earlier rejection of a shared secret. It does not restore SHINKA_WRITE_MODE or grant general admin access. Manual calls retain fresh native-admin checks; machine calls require explicit credential verification, never null auth or service-role possession.
+
+Support says push success means acceptance, not physical display; its exact wire representation and earlier AI-relayed input remain unverified. Official secret lifecycle documentation, relayed support, local fixture proof and missing hosted/device evidence are separately recorded in [033 delivery](reports/SHINKA_SCHEDULER_AUTHORIZATION_033.md). Real registration/transport remains unbound and entry enabled:false.
 
 ## 032 — native preparation authority (2026-10-22)
 

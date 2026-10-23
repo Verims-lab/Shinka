@@ -1,5 +1,10 @@
 # Shinka — Android/iOS native bildirim hazırlığı 032
 
+## 033 — new support and accepted scheduler secret
+
+[Scheduler Authorization 033](SHINKA_SCHEDULER_AUTHORIZATION_033.md) supersedes keyless/admin-session-only assumptions for automatic calls. A scoped shared secret is accepted; local comparison/machine separation is prepared, but real registration and workflow transport remain unbound. Support says success is acceptance, not display; exact push wire contracts remain unknown. All historical evidence below is retained. 032 remains the native setup/device plan; physical acceptance is still NOT_RUN.
+
+
 **Paket:** Buildmarker-032 / HC-032.0
 **İnceleme tarihi:** 2026-10-22
 **Durum:** Hazırlık tamamlandı; platform sözleşmeleri ve fiziksel kabul açık. Cihaz adımları **NOT_RUN**.

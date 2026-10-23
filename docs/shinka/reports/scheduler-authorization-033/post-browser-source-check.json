@@ -1,0 +1,11 @@
+{
+  "file": "base44/shared/notificationMachineAuth.js",
+  "change": "Only JSDoc type predicate added after initial typecheck failure; no executable change",
+  "beforeSha256": "c4d587f2168770525ff37794397d97db0af92bff09373e8620583ac976b9a2a8",
+  "afterSha256": "46e61f69a3fbe0eaf06b9953dc8888fa22db7afb4e65b048b10ce495e90aa924",
+  "executableSha256": "cad2f167ef642d0b7fdd2baa7214dd5265229b6975f054185c40f79c017615be",
+  "executableEqual": true,
+  "affectedChecksRerun": "server-final: NS01–11 and SM01–07; typecheck-final",
+  "fullBrowserSource": "browser-source-manifest.json",
+  "finalSource": "source-manifest.json"
+}

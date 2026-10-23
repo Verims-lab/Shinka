@@ -1,0 +1,7 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 typecheck
+> tsc -p ./jsconfig.json
+
+base44/shared/notificationMachineAuth.js(21,51): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string'.
+base44/shared/notificationMachineAuth.js(21,86): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string'.

@@ -2,14 +2,20 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-032
-**Last Updated:** 2026-10-22
+**Current BuildMarker:** Buildmarker-033
+**Last Updated:** 2026-10-23
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## 033 — separate prepared machine admission
+
+handleNotificationSchedule accepts an optional trusted server-only admitMachine callback; default null follows the unchanged current-native-admin path. A configured callback must succeed before SDK construction, then repeats through the existing tick/owner/write/send admissions. Machine work uses the raw service-role client after verification, never a forged User/admin or replaced auth.me. Recipient guards and narrow POST/{action:tick}/512-byte body remain.
+
+notificationMachineAuth is a small server-only node:crypto comparator with request-time readers. It accepts only the Shinka 64-lowercase-hex format and returns no principal. It is deliberately absent from the real entry/import graph; no Base44 runtime secret binding or transport parser is installed. No schema/dependency/UI change. New Node comparator checks and browser orchestration fixtures have distinct scopes. The provider still returns UNKNOWN for fulfilled results/errors; acceptance wire semantics and eligibility/idempotency remain unresolved. [033 report](reports/SHINKA_SCHEDULER_AUTHORIZATION_033.md).
 
 ## 032 — native preparation with unchanged runtime
 
@@ -26,6 +32,8 @@ No admission/result cache or TTL is added. A record returned by one callback inv
 Same-fixture SDK counts: preparation 84→69 reads, dispatch 119→104, settled pass 61→46; writes 4/4/2 unchanged; auth.me 14→12, 17→15, 11→9. [Focused measurement, traces and limits](reports/SHINKA_NOTIFICATION_PERFORMANCE_031.md). Existing ≤25 rows/20-second between-owner budget and native race limitations are retained. Production enabled:false and platform blockers are unchanged.
 
 ## 030 — one scheduler path, shared engine and provider boundary
+
+**033 scope amendment:** the following 030 description remains the manual/unbound-entry baseline; its keyless/session-only assumption is superseded for the prepared scheduler machine path by §033. General admin guards are unchanged.
 
 Read-only Base44 CLI workflows list returned an empty supported list on 2026-10-22; the UI also exposes Workflows. Choose Workflows only. Do not add function.jsonc automations: current documentation rejects those on workflow apps. No remote workflow is created, activated or executed by this package. Intended owner-configured cadence is every five minutes in UTC, one scheduled function, no frontend polling. Configuration/activation remains blocked by the missing verified authentication and push binding, in addition to mobile setup.
 

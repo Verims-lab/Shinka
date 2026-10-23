@@ -1,5 +1,10 @@
 # Shinka Notifications 029–030 — local delivery and platform blockers
 
+## 033 — new support and accepted scheduler secret
+
+[Scheduler Authorization 033](SHINKA_SCHEDULER_AUTHORIZATION_033.md) supersedes keyless/admin-session-only assumptions for automatic calls. A scoped shared secret is accepted; local comparison/machine separation is prepared, but real registration and workflow transport remain unbound. Support says success is acceptance, not display; exact push wire contracts remain unknown. All historical evidence below is retained. 032 remains the native setup/device plan; physical acceptance is still NOT_RUN.
+
+
 ## 032 — native setup and device acceptance preparation
 
 [Native Notification Readiness 032](SHINKA_NATIVE_NOTIFICATION_READINESS_032.md) is the current setup inventory and owner runbook, with two-stage physical acceptance marked NOT_RUN. No notification/UI runtime change, native bridge, credential or real sending is added. H14-901/H16-901 descriptions are clarified without closing them. Earlier package evidence below stays historical; it is not a 032 execution result.

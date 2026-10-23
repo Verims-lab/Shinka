@@ -7,9 +7,10 @@ import { CONTENT_CATEGORY_DECISION } from '../../shared/contentCategoryDecision.
 
 // No automation block: this app uses Workflows. Never deploy an active schedule
 // by default. A service-role client is NOT proof that a caller is a scheduler.
-// Manual callers must pass the shared current-native-admin guard. Workflow
-// identity remains unverified; an absent user is never a trusted system caller.
-// Provider response/recipient semantics and safe scheduled invocation stay open.
+// Manual callers pass the shared current-native-admin guard. The prepared 033
+// machine verifier is deliberately NOT bound: secret registration and secure
+// workflow transport are unverified. No secrets.get/header syntax is invented.
+// An absent user still fails here; real sending remains disabled.
 export default (req) => handleNotificationSchedule(req, {
   createClient: createClientFromRequest,
   enabled: false,

@@ -2,11 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-032
-**Last Updated:** 2026-10-22
+**Current BuildMarker:** Buildmarker-033
+**Last Updated:** 2026-10-23
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
+
+## 033 — bounded authorization preparation
+
+Continue clean owner-merged PR #34 (c9d2d04, same tree as Test 8498cf4), advance once to 033 / HC-033.0 and retain 029–033. Implement the accepted scheduler credential comparison and machine/manual separation independently of missing platform binding. Never generate/store/read a real secret, invent workflow reference/header syntax, add a general admin bypass or wire an unregistered secrets.get into the entry. No live workflow/push/Health/scan/user/native build/main merge/publish.
+
+Preserve admin 031 budgets and separately measure the prepared machine path. Runtime authorization changes require fresh Chromium/WebKit, meaningful negatives and all existing quality gates. Update existing H14 cases, keep H14-901/H16-901 external and historical failures intact. Deliver Test only; [033 evidence/runbook](reports/SHINKA_SCHEDULER_AUTHORIZATION_033.md).
 
 ## 032 — independent native readiness, bounded delivery
 

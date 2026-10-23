@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-032
-**Last Updated:** 2026-10-22
+**Current BuildMarker:** Buildmarker-033
+**Last Updated:** 2026-10-23
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
 **Scope:** All source (client, backend, internal tooling).
@@ -36,11 +36,19 @@
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
+## 033 — machine credential scope
+
+The scheduler-only server callback is separate from authenticated User/admin principals. Only trusted backend composition may provide it; request roles, owner IDs or workflow flags cannot choose authority. No fallback from failed machine admission to a user session. Validate before client/work/provider construction; retain fresh recipient lifecycle/preference/consent and write/send checks.
+
+Use the platform-supported node:crypto timingSafeEqual on the fixed public 64-lowercase-hex credential format; never implement a comparison loop/crypto primitive. Each admission reads current configuration within the request; no global credential/auth cache or value logging. The real entry leaves the prepared verifier unbound. [033 scope](reports/SHINKA_SCHEDULER_AUTHORIZATION_033.md).
+
 ## 032 — native evidence and credential boundary
 
 Native permission/registration must use a documented Base44 wrapper contract; browser Notification.permission, user-agent and PWA behavior cannot substitute. Do not invent bridges or token stores. OS permission, persisted app preference, platform recipient/device eligibility and sending activation are independent claims. Source/credential presence cannot produce native PASS. No new dependency or runtime permission UI is needed for preparation; keep unverified state honest. [032 inventory and owner plan](reports/SHINKA_NATIVE_NOTIFICATION_READINESS_032.md).
 
 ## 030 — narrow integration contracts and fresh caller admission
+
+**033 scope amendment:** the following 030 description remains the manual/unbound-entry baseline; its keyless/session-only assumption is superseded for the prepared scheduler machine path by §033. General admin guards are unchanged.
 
 Use the existing shared native-admin guard, repeated at protected work boundaries; no scheduler-specific role shortcut. Authenticate before lifecycle service-role construction. Keep ReportedPushInput and Promise<unknown> in the backend provider boundary; do not augment the whole SDK or add project-wide any. Runtime validation precedes narrow nullable-field casts. Unknown provider results/errors never establish sent/no-send semantics. Test adapters may establish explicit synthetic acceptance; evidence must identify that substitution.
 
