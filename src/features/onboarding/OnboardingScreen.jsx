@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Sparkles } from "lucide-react";
+import OnboardingIntro, { IntroArt } from "@/features/onboarding/OnboardingIntro";
 import PageContainer from "@/components/shinka/PageContainer";
 import ShinkaCard from "@/components/shinka/ShinkaCard";
 import ShinkaButton from "@/components/shinka/ShinkaButton";
@@ -117,24 +117,14 @@ export default function OnboardingScreen({
   };
   const fieldError = (key) => <FieldError name={key} error={error} t={t} />;
   const formProps = { form, update, error, busy, t, today, run, submit };
+  const intro = state === "UNAUTHENTICATED_INTRO";
   const body = () => {
     if (state === "UNAUTHENTICATED_INTRO")
       return (
-        <>
-          <div
-            aria-hidden="true"
-            className="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-shinka-lavender"
-          >
-            <Sparkles className="h-12 w-12 text-shinka-plum" />
-          </div>
-          <p className="text-center text-shinka-taupe">{t("birthChart")}</p>
-          <ShinkaButton
-            className="w-full"
-            onClick={() => onState("UNAUTHENTICATED_NAME")}
-          >
-            {t("begin")}
-          </ShinkaButton>
-        </>
+        <OnboardingIntro
+          t={t}
+          onBegin={() => onState("UNAUTHENTICATED_NAME")}
+        />
       );
     if (state === "UNAUTHENTICATED_NAME")
       return (
@@ -252,14 +242,15 @@ export default function OnboardingScreen({
           <p aria-hidden="true" className="text-shinka-small text-shinka-taupe">
             {Math.min(STEPS.indexOf(state) + 1, 6)} / 6
           </p>
+          {intro && <IntroArt />}
           <h1
             ref={title}
             tabIndex={-1}
-            className="font-heading text-shinka-h1 text-shinka-plum-deep outline-none"
+            className={`font-heading text-shinka-h1 text-shinka-plum-deep outline-none ${intro ? "text-center" : ""}`}
           >
             {t(TITLES[state])}
           </h1>
-          <ShinkaCard>
+          <ShinkaCard className={intro ? "shinka-intro-shell" : ""}>
             <div className="space-y-5" aria-busy={busy}>
               {body()}
               {error && !error.field && (

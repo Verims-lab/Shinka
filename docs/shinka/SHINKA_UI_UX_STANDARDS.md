@@ -158,7 +158,7 @@ Centralized states: LOADING, OFFLINE, LOAD_FAILURE, NOT_READY, VALIDATION_ERROR,
 
 ## Onboarding UX
 Introduction → Optional name → Welcome / Sign In → Personal Details → Your cycle, your choice → First Shinka preparation → Home (five main steps + interstitial).
-- ON-01: "A gentle guide to your daily rhythm"; "Your birth chart" kept verbatim; primary Begin; no input.
+- ON-01 (user decision 2026-10-26): brand + TR/EN → decorative moon/botanical illustration (aria-hidden, separate asset) → centered title "A gentle guide to your daily rhythm" / "Günlük ritmine nazik bir rehber" → intro paragraph → three rows together from first render (no carousel/auto-advance): Your cycle (Flower2) "Understand your unique rhythm"; The Moon (Moon) "Discover its influence on your day"; Your birth chart (Sun) "See the bigger picture about you" → primary Begin (→ ON-02 once). Rows sit on the watercolor shell (no single white card); vertical scroll on short screens; step indicator unchanged; no new consent/legal text. New TR strings (Döngün, Ay, descriptions, paragraph) pending user copy approval.
 - ON-02: optional name ≤50; Continue / Prefer not to say; blank not stored.
 - ON-03: 18+ checkbox default empty; Apple/Google auth not started until checked; no warning on user cancel.
 - ON-04: DOB required; Birth time optional 24h HH:mm; Birthplace optional country-led cascading GeoNames selection (no text search); birth_date alone determines Sun; missing time stays NULL, no 00:00 fallback; no UNCERTAIN.

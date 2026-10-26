@@ -287,3 +287,6 @@ The user expressly requires unsafe mutations to stay closed when durable safety 
 ## Historical checkpoint — Production closure boundary — Buildmarker-014
 
 The same explicit request authorizes independent OD-012/security/rollout work and requires approval before any external service or live migration. [Persistence decision](reports/SHINKA_PERSISTENCE_DECISION_014.md) proposes single-authority PostgreSQL with Base44 identity; it is **AWAITING_USER_ARCHITECTURE_APPROVAL**, not a production implementation. No new logical source, provider account, content change, live migration/reset/delete or publish is implied. Current native limitations, exact mechanisms, alternatives, recovery, ownership and required resources are recorded there.
+
+## Explicit user decision — ON-01 three-row introduction, 2026-10-26
+User request with target mockup: ON-01 shows Your cycle / The Moon / Your birth chart with descriptions and an intro paragraph together, plus a decorative illustration, on the existing watercolor shell. EN copy is user-supplied verbatim; TR title and "Doğum haritan" retained; other TR strings are new translations pending approval. SRC-03 docx is not present in the repository, so this request is the governing source for the layout. Step indicator, legal/consent behaviour and ON-02–ON-06 unchanged.

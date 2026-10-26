@@ -226,4 +226,15 @@ export const ONBOARDING_UI_TESTS=[
    check(doc.documentElement.scrollWidth<=361,`${language} ${step} overflow`);
   },{language},context);
  }],
+ ['U16','ON-01 shows all three intro rows with descriptions together in EN/TR; Begin goes to ON-02 once; no overflow at 320/360',async(context={})=>{
+  const expect={en:['Your cycle','The Moon','Your birth chart'],tr:['Döngün','Ay','Doğum haritan']};
+  for(const language of ['en','tr'])for(const width of [320,360])await onboardingProbe('UNAUTHENTICATED_INTRO',width,async(doc,win)=>{
+   const rows=[...doc.querySelectorAll('[data-intro-row]')];check(rows.length===3,`${language} rows ${rows.length}`);
+   rows.forEach((row,i)=>{const spans=row.querySelectorAll('span.block');check(spans[0]?.textContent===expect[language][i]&&spans[1]?.textContent.trim().length>0,`${language} row ${i}`);});
+   check(doc.querySelector('img.shinka-intro-art')?.getAttribute('aria-hidden')==='true','decorative art hidden');
+   check(doc.documentElement.scrollWidth<=width+1,`${language} ${width} overflow`);
+   const begin=[...doc.querySelectorAll('button')].find(b=>b.textContent.trim()===(language==='en'?'Begin':'Başla'));check(begin,'begin');
+   begin.click();await new Promise(r=>win.setTimeout(r,50));check(doc.querySelector('#display_name'),`${language} ON-02 reached`);check(!doc.querySelector('[data-onboarding-intro]'),'intro left');
+  },{language},context);
+ }],
 ];

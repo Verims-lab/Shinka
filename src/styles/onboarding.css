@@ -20,3 +20,7 @@ html:not(.dark) .shinka-onboarding {
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+/* ON-01: three-row intro sits directly on the watercolor shell (no single white card). */
+.shinka-onboarding .shinka-intro-shell { background: transparent; border: 0; box-shadow: none; padding: 0; }
+html:not(.dark) .shinka-intro-art { mix-blend-mode: multiply; }
+html.dark .shinka-intro-art { opacity: 0.85; border-radius: 9999px; }
