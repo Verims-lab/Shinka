@@ -27,14 +27,14 @@ const DEFAULT_PENDING = {
 };
 // Single screen metadata map (SRC-03 + 2026-10-26 user decision). Five numbered main steps;
 // preparation/inactive are unnumbered interstitials. `back` is a pure local view change:
-// only pre-authentication steps go back (no logout, no OAuth restart, no write). ON-04/ON-05
-// follow sign-in and have no safe previous step, so they render no back control.
+// no logout, no OAuth restart, no write. ON-05 → ON-04 keeps the form values; re-saving
+// ON-04 is allowed server-side only while onboarding is unfinished. ON-04 has no back (sign-in).
 const SCREENS = {
   UNAUTHENTICATED_INTRO: { step: 1, title: "intro" },
   UNAUTHENTICATED_NAME: { step: 2, title: "nameTitle", subtitle: "nameSubtitle", back: "UNAUTHENTICATED_INTRO" },
   UNAUTHENTICATED_SIGN_IN: { step: 3, title: "signIn", subtitle: "signInSubtitle", back: "UNAUTHENTICATED_NAME" },
   AUTHENTICATED_PROFILE_REQUIRED: { step: 4, title: "aboutTitle", subtitle: "aboutSubtitle" },
-  AUTHENTICATED_CYCLE_STEP: { step: 5, title: "cycle", subtitle: "cycleSubtitle" },
+  AUTHENTICATED_CYCLE_STEP: { step: 5, title: "cycle", subtitle: "cycleSubtitle", back: "AUTHENTICATED_PROFILE_REQUIRED" },
   FIRST_SHINKA_DEPENDENCY: { title: "preparation" },
   INACTIVE_ACCOUNT: { title: "inactive" },
 };

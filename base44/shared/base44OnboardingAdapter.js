@@ -75,7 +75,9 @@ export function createBase44OnboardingAdapter(client,principal,{now=()=>new Date
       birth_time:optionalBirthTime(input.birth_time),account_status:'ACTIVE',
     });
     if(before&&identical('user_profile',before,expected))return before;
-    if(!allowReadyProfile&&isOnboardingProfileReady(before,preferences,today))fail('PROFILE_ALREADY_READY'); // Onboarding is not the You editing endpoint.
+    // ON-05 → ON-04 back: a ready profile may be corrected only until the first daily
+    // message exists (onboarding not finished). After that, onboarding is not the You editing endpoint.
+    if(!allowReadyProfile&&isOnboardingProfileReady(before,preferences,today)&&await read('user_daily_message'))fail('PROFILE_ALREADY_READY');
     if(before){
       assertProtectedRecordMutationAllowed('user_profile','update',S.PROFILE);
       const patch={...expected};delete patch.account_status;

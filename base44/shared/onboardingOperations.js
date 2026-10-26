@@ -82,7 +82,7 @@ async function normalOnboardingOperation(client,body,dependencies,principal) {
   }
   if(!preferences)fail('PREFERENCES_INITIALIZATION_REQUIRED',409);
   if(body.action==='saveProfile') {
-    if(!dependencies.resetFlow&&profile&&SUN_SIGN_CODES.includes(profile.sun_sign_code)&&resolveOnboardingState({authenticated:true,profile,preferences,today})!=='AUTHENTICATED_PROFILE_REQUIRED')return {...await state(),persisted:true};
+    if(!dependencies.resetFlow&&profile&&SUN_SIGN_CODES.includes(profile.sun_sign_code)&&!['AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP'].includes(resolveOnboardingState({authenticated:true,profile,preferences,today})))return {...await state(),persisted:true};
     const input={...await prepareProfileInput(body,{today,geoNames,sunSign}),account_status:'ACTIVE'};
     const {sun_sign_code}=input;
     let saved;
