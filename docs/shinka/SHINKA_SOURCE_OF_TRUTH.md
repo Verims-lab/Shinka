@@ -10,6 +10,12 @@
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
+## 034 — support-confirmed push field names (2026-10-26)
+
+Evidence: the owner relayed **Dmytro / Base44 Support** in this continuation; no support ticket was independently retrieved and no hosted call was made. Alongside the earlier Base44 AI relay, this confirms only the names `user_id`, `title`, `content`, `action_label`, `action_url`. Support also warns that unknown/misnamed fields can be silently discarded while a success response is returned; success proves neither intended processing of every field nor device display.
+
+The full types/requiredness/nullability/limits, `user_id` → native User.id mapping and concrete acceptance/error/no-device JSON remain unverified. Existing narrow types/validation are retained local rules, not a newly verified platform schema. Workflow secret registration/reference/header transport, native eligibility, idempotency and logout/account rebinding remain open. The adapter stays UNKNOWN and the actual entry `enabled:false`; H14-901/H16-901 remain external. Historical 030/033 statements below must be read with this names-only clarification. [034 addendum and unchanged validation blockers](reports/SHINKA_STABILIZATION_034.md).
+
 ## 033 — accepted scheduler credential boundary
 
 The owner relayed a new Base44 support answer and explicitly accepts a narrowly scoped scheduler shared secret (attachment e9324e5d-cdc7-4cd6-9c29-58313afe379e, reviewed 2026-10-23). This supersedes keyless/admin-session-only scheduler assumptions and any earlier rejection of a shared secret. It does not restore SHINKA_WRITE_MODE or grant general admin access. Manual calls retain fresh native-admin checks; machine calls require explicit credential verification, never null auth or service-role possession.

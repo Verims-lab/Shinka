@@ -8,7 +8,25 @@
 
 Başlangıç çalışma ağacı temizdi: Test/origin Test `ca964e03e3bfc243338372ad1571e92d0137b88a`. Güncel fetch, origin/main'in `041b40b` olduğunu doğruladı; Test 0 yerel/8 uzak commit gerideydi. `git merge --ff-only origin/main` ile Base44 çalışmaları kayıpsız alındı. Main'e yazılmadı, reset/force kullanılmadı. `f9eae0c` tarihsel referanstır.
 
-Test edilen Node kaynağı bu main tabanı + aşağıdaki 034 değişiklikleridir. Son [kaynak manifesti](stabilization-034/source-manifest.json), [kaynak koruma kaydı](stabilization-034/source-review.json) ve [komut makbuzları](stabilization-034/verification.json) tam hash/kapsamı taşır. package.json ve package-lock.json, güncel main ile byte olarak aynı kalır. Base44'ün onboarding arka planı ve silme sonrası guard'ı korunur.
+Test edilen Node kaynağı bu main tabanı + aşağıdaki 034 düzeltmeleridir; doğrulama checkpoint'i `f3dbba195e67644147ae6012543465bb14694c7f` ile teslim edildi. O checkpoint'in [kaynak manifesti](stabilization-034/source-manifest.json), [kaynak koruma kaydı](stabilization-034/source-review.json) ve [komut makbuzları](stabilization-034/verification.json) tam hash/kapsamı taşır; sonraki açıklama/doküman ek notunun test edildiği anlamına gelmez. package.json ve package-lock.json, main `041b40b` ile byte olarak aynı kalır. Base44'ün onboarding arka planı ve silme sonrası guard'ı korunur.
+
+## Bildirim destek ek notu — 2026-10-26, aynı 034 / PR #36
+
+**Kaynak:** Kullanıcının bu devam talimatında ilettiği **Dmytro / Base44 Support** yanıtı (`USER_RELAYED_SUPPORT_EVIDENCE`). Destek kaydına bağımsız erişilmedi; hosted SDK çağrısı veya cihaz denemesi yapılmadı. Bu bilgi, 030'daki Base44 AI aktarımına ek kaynaktır; aşağıdaki alan adları dışında tam platform sözleşmesi doğrulaması değildir.
+
+| Konu | Yeni kanıtın yanıtladığı / açık kalan |
+|---|---|
+| Alan adları | `user_id`, `title`, `content`, `action_label`, `action_url` destek yanıtıyla doğrulandı. |
+| Yanlış alan ve başarı | Bilinmeyen/yanlış adlandırılmış alanlar sessizce atılıp başarı dönebilir. Genel başarı bütün alanların amaçlandığı gibi işlendiğini veya cihazda görünmeyi kanıtlamaz. |
+| Girdi şeması | Tam tip, zorunluluk, nullability ve uzunluk limitleri **açık**. Mevcut narrow type/strict validator korunmuş yerel kurallardır; yeni doğrulanmış platform sözleşmesi değildir. |
+| Alıcı ve sonuç | `user_id` → native User.id eşlemesi, somut kabul göstergesi ve başarı/hata/no-device JSON şemaları **açık**. Fulfilled promise/genel başarı otomatik SENT/ACCEPTED olmaz; adapter UNKNOWN kalır. |
+| Diğer bağlar ve cihaz | Workflow secret kaydı/referansı/header taşıması, native uygunluk/izin, idempotency, logout/hesap değişimi ve cihaz-token yeniden bağlama davranışları **açık**. |
+
+`base44PushProvider.js` ve `notificationProviderTypes.js` yalnız kaynak açıklamalarıyla güncellendi; çalıştırılabilir gövde ve typedef'ler değişmedi. NC06'nın gönderim anahtarlarını birebir `{user_id,title,content}` olarak denetlemesi ve fazladan `message` alanını reddetmesi kaynakta mevcut; NC07 genel başarı nesnesini UNKNOWN tutar ve kör retry'ı reddeder. Bu not için gerçek kapsam eksiği bulunmadı: assertion kaldırılmadı, gevşetilmedi veya yeni test eklenmedi. Bunlar **kaynak incelemesidir, bu tur test yürütmesi değildir**.
+
+H14-901 yalnız açıklama güncellemesi alır; EXTERNAL / BLOCKED_EXTERNAL sınıflandırması korunur. H16-901 değişmez ve kapanmaz. CAP-17 PARTIALLY_VERIFIED kalır. Gerçek entry `enabled:false`, machine binding bağlı değil; yeni workflow, secret bağlantısı veya canlı gönderim yok. 12 backend bulgusu OPEN / USER-DEFERRED kalır.
+
+Kullanıcının açık talimatıyla bu tur **kurulum, browser, audit ve kalite kapıları yeniden başlatılmadı**. Önceki BLOCKED/NOT_RUN/NOT_COMPLETED kayıtları ve tüm başarısızlık makbuzları aynen korunur; aşağıdaki PASS sonuçları önceki checkpoint'e aittir. Bu açıklama/metadata değişikliği de 034'ün kalan doğrulamasına dahildir; ağ düzeldikten sonra ayrıca devam talimatı beklenir. Yeni paket veya HC sürümü açılmadı; mevcut Test teslimi ve [PR #36](https://github.com/Verims-lab/Shinka/pull/36) kullanılır.
 
 ## Kanıtlanan hata ve odaklı düzeltmeler
 
@@ -53,7 +71,7 @@ T81 kaynakta açık/koyu temayı ayrı doğrular ve finally ile geri yükler. U1
 
 ## Health / sürüm kaydı
 
-**Add 0 / update 8 / delete 0**; katalog envanteri/planı korunur.
+**034 toplamı: add 0 / update 9 / delete 0**; katalog envanteri/planı korunur. İlk doğrulama checkpoint'i ve onun değiştirilmeyen `verification.json` kaydı 8 güncellemedir; bu destek ek notu yalnız **add 0 / update 1 / delete 0** ekler (H14-901 açıklaması), yeni koşu veya kabul sonucu eklemez.
 
 | ID | Güncelleme gerekçesi |
 |---|---|
@@ -62,12 +80,13 @@ T81 kaynakta açık/koyu temayı ayrı doğrular ve finally ile geri yükler. U1
 | H12-033 | NA34A–C actor/başka kullanıcı, role-loss ve yanlış hedef/operasyon negatifleri. |
 | H13-016 | TP01–04 pacing, iptal, bütçe, aynı operasyon ve status-only recovery; AU kanıtları korunur. |
 | H13-012 | T81/U15 onboarding tema/taşma eşlemesi; fiziksel kabul ayrımı. |
+| H14-901 | Kullanıcının ilettiği teknik destek yalnız alan adlarını doğrular; sessiz alan atma/genel başarı sınırı ve açık sözleşmeler açıklanır. ID, assertion, applicability ve BLOCKED_EXTERNAL sınıfı değişmez; H16-901 açık kalır. |
 
 `recordBuild.mjs` ile **034 / HC-034.0** ve son beş paket **030–034** kaydedildi; marker ayrıca ikinci kez artırılmaz. Strict içerik politikası yalnız 034 ekler, gelecekteki sürümleri serbest bırakmaz. Eski Health/Git/audit kanıtları silinmez. `full_health_status: NOT_RUN`, yerel doğrulama **OPEN/BLOCKED**.
 
 ## Devam ve kullanıcı kabulü
 
-1. Önce güvenilir ağda aynı lock ile npm ci; tree/peer, audit/security, typecheck/lint/build/Repo Health/performance ve ayrı Chromium/WebKit komutlarını tamamla. Tam sonuçlar olmadan bu taslak PR'ı yayın kabulü sayma.
+1. Kullanıcının ağ düzeldikten sonraki ayrı devam talimatıyla, güvenilir ağda aynı lock ile npm ci; tree/peer, audit/security, typecheck/lint/build/Repo Health/performance ve ayrı Chromium/WebKit komutlarını tamamla. Bu destek ek notu da aynı 034 doğrulamasına dahildir. Tam sonuçlar olmadan bu taslak PR'ı yayın kabulü sayma.
 2. Yerel kapılar tamamlandıktan sonra kullanıcı mevcut Test → main/sync/publish akışını yürütür. Backend/shared modüller ve frontend birlikte eşleşmeli.
 3. Yayın sonrası normal oturumla uygulamaya dönme, admin paneline girme, geçici hata sonrası Retry ve rol kaybında erişimin kapanmasını uygulama ekranından kontrol et. Canlı OAuth/native davranışı ayrıca kabul edilir.
 4. Kullanıcı Full Health çalıştırıp raporu kaydeder/açar; 429 varsa BLOCKED ile gerçek sözleşme hatasını ayırır. Ajan bu çalışmada canlı Health/scan yapmadı.

@@ -10,6 +10,8 @@
 
 ## 034 — actual local results and unfinished gates
 
+Support addendum, 2026-10-26: user-relayed Dmytro / Base44 Support confirms the five input names only and warns that success can accompany silent unknown/misnamed-field discard. Updated provider/type comments, source/capability records and H14-901 description; runtime, typedefs, strict validator and NC06/NC07 assertions are unchanged. Full input schema, native User mapping, concrete acceptance/error/no-device response, workflow secret/header transport, eligibility, idempotency and logout/account rebinding remain open. Entry enabled:false; H14-901/H16-901 remain external. Health delta for this note 0/1/0, cumulative 034 0/9/0. Same 034 / HC-034.0 / PR #36; active history 030–034. No install/browser/audit/quality rerun under the owner's explicit instruction; prior BLOCKED/NOT_RUN receipts remain. Await separate instruction after network recovery; [support evidence and scope](reports/SHINKA_STABILIZATION_034.md).
+
 Node initial 7/7 PASS; new pending-reset SS02b FAIL reproduced, then fixed. Final Node 9/9 PASS includes a separate actual readiness-predicate matrix. New actual-component SS06–09/TP01–04 and SS10 case/memoization tests are written, NOT_RUN. Install, audit and security-deps failed on untrusted Fortinet TLS; offline zod tarball absent. User requested reporting the blocker. No complete peer/type/lint/build/performance/browser success claimed. Initial failures retained; [034 evidence](reports/SHINKA_STABILIZATION_034.md).
 
 ## Onboarding background (UI-only, 2026-10-26)

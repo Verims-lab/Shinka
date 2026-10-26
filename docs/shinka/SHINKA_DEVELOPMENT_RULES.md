@@ -10,6 +10,8 @@
 
 ## 034 — focused closure with an explicit environment blocker
 
+2026-10-26 continuation is explicitly limited to notification support evidence/comments/docs within 034 / HC-034.0 / PR #36. Do not restart incomplete installation, browsers, audit or quality gates; preserve BLOCKED/NOT_RUN and await the owner's separate instruction after network recovery. Names-only support confirmation does not establish a complete input/recipient/response/workflow contract. Keep strict validation/tests, external H14-901/H16-901 and enabled:false. Same-marker recordBuild may refresh descriptive metadata without opening a new package or claiming a new validation run.
+
 Continue fresh origin/main 041b40b and preserve its package/lock and Base44 changes. Record 034 / HC-034.0 once with recordBuild; retain 030–034. Complete independent Node/source/docs checks; failed clean installation/audit and zero browser execution are BLOCKED, never PASS. The owner explicitly chose to report the Fortinet TLS blocker. Test draft delivery is permitted with incomplete validation clearly stated; no main merge/publish/live operation. [034 handoff](reports/SHINKA_STABILIZATION_034.md).
 
 ## 033 — bounded authorization preparation

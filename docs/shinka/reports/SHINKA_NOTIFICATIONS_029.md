@@ -1,5 +1,13 @@
 # Shinka Notifications 029–030 — local delivery and platform blockers
 
+## 034 — support evidence addendum (2026-10-26)
+
+The owner relayed **Dmytro / Base44 Support** confirming the field names `user_id`, `title`, `content`, `action_label`, `action_url`. This adds technical-support provenance to the earlier Base44 AI relay; it is not an independently retrieved ticket or hosted validation. Unknown/misnamed fields can be silently discarded with a success response. Generic success proves neither intended processing of every field nor notification display, and supplies no concrete acceptance indicator.
+
+Only the names are confirmed. The historical input table below records retained local/AI-reported types, requiredness, nullability and limits; those properties, native User.id mapping and success/error/no-device JSON are still unverified. Workflow secret registration/reference/header transport, native eligibility/permission, idempotency and logout/account-switch rebinding also remain open. The actual entry remains `enabled:false`; the provider still returns UNKNOWN for fulfilled promises and errors, never automatic SENT/ACCEPTED.
+
+NC06 already asserts exact outgoing `{user_id,title,content}` and rejection of an extra `message` key; NC07 already covers generic success staying UNKNOWN without blind retry. Source inspection found no coverage gap for this note, so assertions and tests are unchanged, with no new execution claimed. Only source comments, evidence/descriptions and same-package records change. H14-901 description is updated; H14-901/H16-901 stay external and open. All earlier results/failures below remain historical. [034 report](SHINKA_STABILIZATION_034.md) retains BLOCKED/NOT_RUN gates; no install, browser, audit or quality check is restarted for this addendum.
+
 ## 033 — new support and accepted scheduler secret
 
 [Scheduler Authorization 033](SHINKA_SCHEDULER_AUTHORIZATION_033.md) supersedes keyless/admin-session-only assumptions for automatic calls. A scoped shared secret is accepted; local comparison/machine separation is prepared, but real registration and workflow transport remain unbound. Support says success is acceptance, not display; exact push wire contracts remain unknown. All historical evidence below is retained. 032 remains the native setup/device plan; physical acceptance is still NOT_RUN.

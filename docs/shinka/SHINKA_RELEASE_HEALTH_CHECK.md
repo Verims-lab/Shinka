@@ -10,7 +10,9 @@
 
 ## HC-034.0 — local stabilization validation remains blocked
 
-Add 0 / update 8 / delete 0: H04-019, H08-005, H09-004, H12-031 (strict shared readiness); H12-025 (real session/routes/login); H12-033 (NA34A–C); H13-016 (TP01–04); H13-012 (T81/U15). Node 9/9 PASS includes separate SS04n, not browser SS04/SS10. Chromium/WebKit each 0 executed / NOT_RUN; all required browser IDs remain unverified. npm ci/audit blocked by Fortinet TLS. Full Health NOT_RUN; no READY/closure claim. Details, exact IDs and failures: [034 report](reports/SHINKA_STABILIZATION_034.md).
+Add 0 / update 9 / delete 0 across 034: H04-019, H08-005, H09-004, H12-031 (strict shared readiness); H12-025 (real session/routes/login); H12-033 (NA34A–C); H13-016 (TP01–04); H13-012 (T81/U15); H14-901 (support evidence description only). The original verification checkpoint records eight updates; its evidence is preserved. Node 9/9 PASS includes separate SS04n, not browser SS04/SS10. Chromium/WebKit each 0 executed / NOT_RUN; all required browser IDs remain unverified. npm ci/audit blocked by Fortinet TLS. Full Health NOT_RUN; no READY/closure claim. Details, exact IDs and failures: [034 report](reports/SHINKA_STABILIZATION_034.md).
+
+2026-10-26 support addendum: user-relayed Dmytro / Base44 Support confirms only user_id/title/content/action_label/action_url names and warns of silent unknown-field discard on success. Types/requiredness/nullability/limits, native recipient mapping, concrete acceptance/error/no-device JSON, eligibility, idempotency, workflow secret/header transport and logout/account rebinding stay open. NC06 exact outgoing keys/wrong-field rejection and NC07 UNKNOWN assertions are unchanged; no coverage gap or new test is claimed. H14-901 stays EXTERNAL / BLOCKED_EXTERNAL; H16-901 remains open unchanged. This addendum reruns no install, browser, audit or quality gates at the owner's request; prior BLOCKED/NOT_RUN statuses remain, pending separate continuation instructions.
 
 ## Base44 onboarding handoff before 034 recording — retained historical NOT_RUN
 

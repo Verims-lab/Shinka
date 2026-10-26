@@ -10,6 +10,8 @@
 
 ## 034 — Test draft; full local validation pending
 
+2026-10-26 support note: user-relayed Dmytro / Base44 Support confirms user_id/title/content/action_label/action_url names only; unknown/misnamed fields may be silently discarded on success. Generic success is no proof of all-field processing or device display. Full schema, native User mapping, concrete acceptance/error/no-device JSON, workflow secret/header transport, eligibility, idempotency and logout/account rebinding remain open. Provider remains UNKNOWN, actual entry enabled:false. H14-901/H16-901 stay open. Same 034 / PR #36, comments/docs only; do not restart blocked checks until the owner separately requests continuation after network recovery.
+
 Fresh main 041b40b was fast-forwarded into clean Test; lock versions zod 4.6.7/resolvers 5.9.2 are preserved. Independent stabilization corrections and Node checks are prepared; TLS blocks clean install/audit and therefore browser/build acceptance. Owner chose to report the network blocker. Complete the remaining local gates before owner merge/publish, then in-app session/Health acceptance. Two existing deletion targets were previously reported PARTIAL; current lookup and same-operation continuation remain owner actions. [034 handoff](reports/SHINKA_STABILIZATION_034.md).
 
 ## 033 — local secret preparation, hosted binding still closed
