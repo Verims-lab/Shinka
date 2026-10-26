@@ -8,6 +8,10 @@
 **Purpose:** Define the executable regression framework and gate.
 **Scope:** Health catalog HC-033.0; repository, synthetic and external evidence separated.
 
+## Onboarding background (no catalog version change)
+
+H13 Health cases: none added, updated or deleted (no H13 case asserted a flat onboarding background; T75/T80 check token utilities, not the shell). Foundation test **T81** added: onboarding shell keeps PageContainer classes and has 5 radial + 1 linear layer in light; plain PageContainer has no image; dark shell is flat dark ivory. T81 not yet executed in a browser (Chromium missing locally).
+
 ## HC-033.0 — local machine authorization, external workflow acceptance
 
 Health add 0 / update 3 / delete 0. H14-003 adds NM01–08 browser orchestration fixtures for fail-before-client, strict body/disabled behavior, no admin authority, userless execution, recipient/consent guards, admission revocation and UNKNOWN suppression; these substitute the machine callback and do not test crypto. H14-004 adds SM01–07 real node:crypto checks with synthetic readers and NS10–11 actual unbound/disabled entry checks; NS11 injects the prepared binding only in the fixture. Existing NC/NP/NT/NU assertions remain.

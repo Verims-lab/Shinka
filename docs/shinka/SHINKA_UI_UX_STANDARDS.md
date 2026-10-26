@@ -111,6 +111,8 @@ ON-01 Introduction · ON-02 What should we call you? · ON-03 Welcome · ON-04 P
 ## Light palette (system-theme decision 026 supersedes light-only)
 Primary Plum #6F415A · Deep Plum Text #4C263F · Muted Mauve #93637B · Dusty Rose #D8A5AA · Blush Pink #F2D7D4 · Soft Lavender #E7DCE8 · Warm Ivory #FFF8F3 · Soft Cream #F9EEE8 · Muted Taupe #77636C (026 contrast correction) · Divider #EDE3E3 · White #FFFFFF.
 
+**Onboarding background (user-approved 2026-10-26, onboarding-only, light theme).** ON-01–ON-06 use a static layered watercolor background on the full-width onboarding shell (`PageContainer className="shinka-onboarding"`, rendered only by `OnboardingScreen`): five translucent radial gradients over a 165° linear base. Separate tokens: Soft Blush #FCEDEA, Pale Rose #F8E3E5, Warm Ivory #FFF9F5, Peach Mist #FBE9E5, Rose Haze #F5DDE3; global Warm Ivory #FFF8F3 and Blush Pink are unchanged. Distribution: powder pink/peach at top, asymmetric pink at left/right edges, near-white center, faint pink at the bottom. No animation, image, canvas, blur or dependency. Dark theme keeps the existing flat dark surface. Home, Calendar, Pattern, You, the onboarding loading/retry shell and admin keep the flat Warm Ivory surface; this is the only exception to the flat-surface rule.
+
 ## Typography
 Headings: Cormorant Garamond Medium — 34/40, 28/34, 24/30, 20/26. Body: Inter Regular — 17/25, 15/22, 13/18. Label/Button: Inter Medium. Classes: `text-shinka-h1…h4`, `text-shinka-body-lg|body|caption`.
 

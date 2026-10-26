@@ -1,0 +1,22 @@
+/* Onboarding-only light background (ON-01–ON-06), user-approved 2026-10-26.
+   Static layers on the full-width shell; global tokens unchanged. Dark keeps bg-shinka-ivory. */
+:root {
+  --onboarding-soft-blush: #FCEDEA;
+  --onboarding-pale-rose: #F8E3E5;
+  --onboarding-warm-ivory: #FFF9F5;
+  --onboarding-peach-mist: #FBE9E5;
+  --onboarding-rose-haze: #F5DDE3;
+}
+.shinka-onboarding { min-height: 100vh; min-height: 100dvh; }
+html:not(.dark) .shinka-onboarding {
+  background-color: var(--onboarding-warm-ivory);
+  background-image:
+    radial-gradient(ellipse 75% 42% at 8% 12%, rgba(248, 212, 219, 0.50), transparent 78%),
+    radial-gradient(ellipse 60% 30% at 70% 0%, rgba(251, 233, 229, 0.70), transparent 80%),
+    radial-gradient(ellipse 65% 48% at 100% 42%, rgba(244, 201, 211, 0.40), transparent 80%),
+    radial-gradient(ellipse 80% 48% at 50% 58%, rgba(255, 255, 250, 0.72), transparent 82%),
+    radial-gradient(ellipse 85% 44% at 30% 100%, rgba(245, 221, 227, 0.55), transparent 80%),
+    linear-gradient(165deg, var(--onboarding-soft-blush) 0%, var(--onboarding-warm-ivory) 45%, var(--onboarding-pale-rose) 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

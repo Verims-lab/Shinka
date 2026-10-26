@@ -1,3 +1,4 @@
+@import "./onboarding.css";
 /* Native Tailwind theme mappings; Shinka values mirror designTokens.js. */
 @theme inline {
   --color-background: hsl(var(--background));

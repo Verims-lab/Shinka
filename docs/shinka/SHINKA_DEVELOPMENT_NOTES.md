@@ -8,6 +8,10 @@
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
+## Onboarding background (UI-only, 2026-10-26)
+
+`src/styles/onboarding.css` (new; imported from `theme.css`), `PageContainer` accepts and appends `className` (existing classes kept), `OnboardingScreen` passes `shinka-onboarding`. No logic, copy, layout, global token or dependency change. No BuildMarker change. Verified: `vite build` OK, ESLint OK on changed files, `repoHealth` `failed: []`, preview screenshots before/after ON-01 at mobile 390 and desktop 1440 (EN, light). Not verified: new T81 and existing T75/H13 browser runs (Chromium binary missing in sandbox), dark theme, TR, ON-04/ON-05 (need a signed-in onboarding user; not created), physical devices.
+
 ## 033 — scheduler secret authorization preparation
 
 Started clean at Test/origin Test 8498cf4; owner-merged PR #34 main c9d2d04 has the same tree. Fast-forward preserved all work; 033 was free. Updated Base44 skills and reviewed current official runtime/secret lifecycle documentation. Support is relayed by the owner, not an independently accessed ticket.

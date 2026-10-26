@@ -96,6 +96,18 @@ export const CSS_CONTRACT_TESTS = [
     stop(); assert(listener === null, 'theme listener cleanup');
     await rendered(h('div', {className:'hidden'}), host => assert(measure(host.firstElementChild).display === 'none', 'hidden class lost'));
   }],
+  ["T81","Onboarding shell has layered light background; plain PageContainer and dark stay flat",async()=>{
+    const root=document.documentElement,dark=root.classList.contains("dark");
+    await rendered(h("div",null,h(PageContainer,{className:"shinka-onboarding","data-onb":1},"a"),h(PageContainer,{"data-plain":1},"b")),host=>{
+      const onb=host.querySelector("[data-onb]"),plain=host.querySelector("[data-plain]");
+      for(const c of ["shinka-viewport","bg-shinka-ivory","text-shinka-ink","font-body","shinka-onboarding"]) assert(onb.classList.contains(c),`class ${c}`);
+      assert(onb.firstElementChild.classList.contains("shinka-safe-content"),"safe content kept");
+      assert(measure(plain).backgroundImage==="none","non-onboarding background changed");
+      const img=measure(onb).backgroundImage;
+      if(dark) assert(img==="none"&&measure(onb).backgroundColor===rgb(DESIGN_TOKENS.darkColor.warmIvory),"dark surface");
+      else assert((img.match(/radial-gradient/g)||[]).length===5&&/linear-gradient/.test(img)&&measure(onb).backgroundRepeat==="no-repeat","light layers");
+    });
+  }],
   ["T80","Existing rendered Health typography/color/touch/system-theme checks remain passing",async()=>{
     const context=createHealthContext();
     for(const id of ["H13-002","H13-003","H13-006","H13-007","H13-009","H13-010"]){const c=H13_CASES.find(c=>c.id===id),r=await c.run(context);assert(r.status==="PASS",`${id}: ${JSON.stringify(r.evidence.actual)}`);}
