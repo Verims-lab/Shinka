@@ -1,0 +1,19 @@
+{
+  "name": "baseline-ui",
+  "command": [
+    "env",
+    "FOUNDATION_TEST_IDS=OU01,OU02,OU03,OU04,OU05,OU06",
+    "npm",
+    "run",
+    "test:foundation"
+  ],
+  "started_at": "2026-10-26T16:30:57.790735+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "7c5f2b898cf61473b5abd908b6d90782224aed7d9efb0175f5d0578c134fcffc",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:31:03.883857+00:00",
+  "exit_code": 1,
+  "log": "baseline-ui.txt",
+  "log_sha256": "cec31c37522adf70d8ddb233c823747e2aa517811ab762262b9f3462e7d919c4",
+  "original_log": "baseline-ui.log"
+}

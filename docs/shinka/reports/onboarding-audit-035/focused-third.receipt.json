@@ -1,0 +1,19 @@
+{
+  "name": "focused-third",
+  "command": [
+    "env",
+    "FOUNDATION_TEST_IDS=OA01,OA02,OA03,OA04,OA05,OU01,OU02,OU03,OU04,OU05,OU06,OU07,OU08,G10,G14,YU02",
+    "npm",
+    "run",
+    "test:foundation"
+  ],
+  "started_at": "2026-10-26T16:38:19.609500+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "47feb943fc7586dcfc9afa746e34d3bad988125c3dd67c01c199386dcffd8a67",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:38:26.326388+00:00",
+  "exit_code": 1,
+  "log": "focused-third.txt",
+  "log_sha256": "2bcda0983eb632b11bb3dc6a35a0e715939700bb3f5b04a995cf75df51af2cc5",
+  "original_log": "focused-third.log"
+}

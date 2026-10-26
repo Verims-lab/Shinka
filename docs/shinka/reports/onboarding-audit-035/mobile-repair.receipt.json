@@ -1,0 +1,20 @@
+{
+  "name": "mobile-repair",
+  "command": [
+    "env",
+    "FOUNDATION_MOBILE_EXPERIENCE_ONLY=1",
+    "FOUNDATION_MOBILE_DIR=/private/tmp/shinka-035-audit/mobile-repair",
+    "npm",
+    "run",
+    "test:foundation"
+  ],
+  "started_at": "2026-10-26T16:55:53.208482+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "9149aa4bf55f88d990036a49b6cc55f4ce0fd937bd791efd9bcfc09b1e260efb",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:56:44.181652+00:00",
+  "exit_code": 1,
+  "log": "mobile-repair.txt",
+  "log_sha256": "660fbca1fb558a6e2c62ee2659f1bbfd2e0092dc4f65c450873158d7b0a12fb1",
+  "original_log": "mobile-repair.log"
+}

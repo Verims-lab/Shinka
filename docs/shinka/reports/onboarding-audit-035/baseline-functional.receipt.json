@@ -1,0 +1,19 @@
+{
+  "name": "baseline-functional",
+  "command": [
+    "env",
+    "FOUNDATION_TEST_IDS=OA01,OA02,OA03,OA04,BS01,BS02,BS03,BS04,BS05,BS06,BS07,BS08,BS09,BS10,BS11,BS12,U02,U03,U04,U05,U06,U08,U09,U10,U11,U12,U16,U17,U18",
+    "npm",
+    "run",
+    "test:foundation"
+  ],
+  "started_at": "2026-10-26T16:29:18.994575+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "ea7cafe8147f918f91a561aa97930b3d87688c2c094625902ae4c4c0c60e35f3",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:29:38.078109+00:00",
+  "exit_code": 1,
+  "log": "baseline-functional.txt",
+  "log_sha256": "edab8bed8da95b08b41ced8bf358d51790b68e55534a5b19c79b38f47d0b7d73",
+  "original_log": "baseline-functional.log"
+}

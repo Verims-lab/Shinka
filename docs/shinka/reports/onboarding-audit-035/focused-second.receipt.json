@@ -1,0 +1,19 @@
+{
+  "name": "focused-second",
+  "command": [
+    "env",
+    "FOUNDATION_TEST_IDS=OA01,OA02,OA03,OA04,OU01,OU02,OU03,OU04,OU05,OU06,G01,G02,G03,G04,G05,G06,G07,G08,G09,G10,G11,G12,G13,G14,G15,G16,G17,G18,G19,G20,G21,G22,G23,G24,O11,O25",
+    "npm",
+    "run",
+    "test:foundation"
+  ],
+  "started_at": "2026-10-26T16:34:38.937329+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "a4314406a036b9f8306323dac16167f8c5e12bea3d33780418e7c032ff1ce435",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:34:54.415420+00:00",
+  "exit_code": 1,
+  "log": "focused-second.txt",
+  "log_sha256": "25478b8924917d156cb7bc109608b4040809b38fc14fddce7e5c6e5c78a14157",
+  "original_log": "focused-second.log"
+}

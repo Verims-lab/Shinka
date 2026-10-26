@@ -1,0 +1,19 @@
+{
+  "name": "chromium-fourth",
+  "command": [
+    "env",
+    "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-035-audit/chromium-fourth-audit",
+    "npm",
+    "run",
+    "test:foundation"
+  ],
+  "started_at": "2026-10-26T17:03:52.187020+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "123f27bfad2c6738e08ba67cbb2992684b5be1756058cf8c1473e6562f530d7c",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T17:05:52.581500+00:00",
+  "exit_code": 0,
+  "log": "chromium-fourth.txt",
+  "log_sha256": "ab9e46ce8ca1641f92e84a92f39560d50c0ae567b3a0482c6f9fed78af5d12be",
+  "original_log": "chromium-fourth.log"
+}

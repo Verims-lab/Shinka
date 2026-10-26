@@ -1,0 +1,17 @@
+const assert = require('node:assert/strict');
+const {createRequire} = require('node:module');
+const read = createRequire(process.cwd() + '/package.json');
+const {z} = read('zod');
+const {zodResolver} = read('@hookform/resolvers/zod');
+const {useForm} = read('react-hook-form');
+(async () => {
+  assert.equal(typeof useForm, 'function');
+  const resolver = zodResolver(z.object({name:z.string().min(1),age:z.number().int().min(0)}));
+  const options = {criteriaMode:'all',shouldUseNativeValidation:false,fields:{}};
+  assert.deepEqual(await resolver({name:'synthetic',age:1},{},options), {values:{name:'synthetic',age:1},errors:{}});
+  const invalid = await resolver({name:'',age:-1},{},options);
+  assert.deepEqual(invalid.values, {});
+  assert.equal(invalid.errors.name.type, 'too_small');
+  assert.equal(invalid.errors.age.type, 'too_small');
+  console.log(JSON.stringify({scope:'LOCAL_NODE_RUNTIME_PEER_SMOKE',zod:read('zod/package.json').version,resolvers:read('@hookform/resolvers/package.json').version,reactHookForm:read('react-hook-form/package.json').version,validValues:'PASS',invalidFieldErrors:'PASS',physicalOrHosted:false}));
+})().catch(error=>{console.error(error);process.exitCode=1;});

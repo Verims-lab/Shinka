@@ -1,0 +1,82 @@
+{
+  "base_main": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "origin_test_before_delivery": "d2299c8622e0f7de631b52641fdc97f5b1ac6b49",
+  "post_browser_source_delta": [
+    {
+      "path": "src/foundation/buildLedgerData.js",
+      "tested_sha256": "9a415ca8a9da40373cd5dfa9447af73bbaf208092b68f6e3fca37686cab4a27f",
+      "delivery_sha256": "96c6fd8add49fc3c39d646018d0b91a6027b1d0b5fca42fe8d853a42486a488e"
+    }
+  ],
+  "delta_reason": "Only generated ledger explanatory metadata after browser runs. Final build/performance/repo/history include it. Documentation/evidence finalization is not application behavior.",
+  "protected": [
+    {
+      "path": "package.json",
+      "sha256": "b1829dad5488e50f4a06d618c0ccd32088fc8e9371df1513fb593ff6d4e758f5",
+      "byte_identical_to_main": true
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+      "byte_identical_to_main": true
+    },
+    {
+      "path": "src/styles/theme.css",
+      "sha256": "944981cc403f73a4bd8458e1f449b234a65d7d5f8396672613a2801ecc427408",
+      "byte_identical_to_main": true
+    },
+    {
+      "path": "src/components/shinka/PageContainer.jsx",
+      "sha256": "340510438508fea635602a042956d4746ed552b7289fc1eb61da2186b55dd7e5",
+      "byte_identical_to_main": true
+    },
+    {
+      "path": "src/features/onboarding/OnboardingIntro.jsx",
+      "sha256": "1eff17ae3b619a934df40a53fcc764003f2d5daaa0115563e386555c1cf349e5",
+      "byte_identical_to_main": true
+    },
+    {
+      "path": "base44/functions/notificationSchedule/entry.ts",
+      "sha256": "2bc77b04e593cb93aff136eb84ccc5fd02571d57d7b4f1d14d3eda5e2ef4f3f3",
+      "byte_identical_to_main": true
+    },
+    {
+      "path": "base44/shared/base44PushProvider.js",
+      "sha256": "a9f5b9933a4f5421b224dff0ac1dfb56f5c45e49e5d4bbc37f27390fd54d1052",
+      "byte_identical_to_main": true
+    },
+    {
+      "path": "base44/shared/notificationProviderTypes.js",
+      "sha256": "12de967793e45d9751899c40123e05d86bcaa612d11339a8f05d63fd11fc4c5a",
+      "byte_identical_to_main": true
+    },
+    {
+      "path": "base44/shared/notificationScheduler.js",
+      "sha256": "5bad992228771ac741784ac72e0f601572274c424a4cc9bd77d7b5de1102d48e",
+      "byte_identical_to_main": true
+    },
+    {
+      "path": "base44/shared/nativeAdminTestOperation.js",
+      "sha256": "ee3718caf12e305dfe1d9f05a57c0d5465c0ff4d4d6197041fb8901f8974b8ee",
+      "byte_identical_to_main": true
+    },
+    {
+      "path": "src/foundation/tests/notificationContractTests.js",
+      "sha256": "ab05c3ed71d1549413390b0479c8c5a4a14576661f7aa93437e36e910c85fc35",
+      "byte_identical_to_main": true
+    },
+    {
+      "path": "src/foundation/tests/sessionStabilityTests.js",
+      "sha256": "d9bbbeaf9f85a07c3719fdaffde3c7ae454218ca47ab32e082a0c2ec0a2c5e44",
+      "byte_identical_to_main": true
+    }
+  ],
+  "prior_reports_byte_unchanged": true,
+  "onboarding_css_delta": "Date/time control and native picker hit area raised from 32 to 44px; shell/art/theme rules unchanged.",
+  "schema_delta": false,
+  "budgets_relaxed": false,
+  "live_actions": "NOT_RUN",
+  "marker_advanced_once": "Buildmarker-035 / HC-035.0; 031–035",
+  "implementation_commit": "67ca094e57d4cf37389577cb9d69ef856e32e939",
+  "delivery_branch": "Test"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "performance-first",
+  "command": [
+    "node",
+    "scripts/measureMaintenance.mjs",
+    "/private/tmp/shinka-035-audit/performance-first"
+  ],
+  "started_at": "2026-10-26T16:44:29.726869+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "aba20c89272c9bcaf9e9d6ffc88a6d4443fe81159642ed272ee83404f0be4619",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:44:54.333162+00:00",
+  "exit_code": 0,
+  "log": "performance-first.txt",
+  "log_sha256": "2398ae1e7f730dd472baef336a7d82ea1e6ef5aee85b84f297212cf146476a74",
+  "original_log": "performance-first.log"
+}

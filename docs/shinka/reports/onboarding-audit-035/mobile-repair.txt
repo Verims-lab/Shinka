@@ -1,0 +1,39 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 test:foundation
+> node scripts/runFoundationTests.mjs
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/HealthCenter.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/BuildEnvironment.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/features/onboarding/OnboardingScreen.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/probes/AuthShellProbe.jsx, src/foundation/tests/OnboardingTestScreen.jsx, src/foundation/tests/onboardingAuditUiTests.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/You.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/notificationUiTests.js, src/foundation/tests/youUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/Pattern.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/patternUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/TestTools.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/adminTestToolsUiTests.js, src/foundation/tests/testToolsPacingTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/Calendar.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/calendarUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/probes/AuthShellProbe.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/authProbeTests.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/tests/foundationTests.js is dynamically imported by src/foundation/tests/localRunnerTests.js but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/health/catalog.js is dynamically imported by src/foundation/health/cases/h16.js, src/foundation/tests/closure018Tests.js, src/foundation/tests/closure020Tests.js, src/foundation/tests/foundationTests.js, src/foundation/tests/sessionStabilityTests.js but also statically imported by scripts/testHarness/healthTiming.js, scripts/testHarness/main.jsx, src/foundation/health/report.js, src/foundation/health/runner.js, src/pages/internal/HealthCenter.jsx, dynamic import will not move module into another chunk.
+
+locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-place-popup]') to be detached[22m
+[2m    63 × locator resolved to visible <div data-place-popup="true" class="absolute inset-x-0 top-full z-30 mt-2 max-h-80 overflow-y-auto rounded-shinka-md border border-shinka-line bg-shinka-white p-1 shadow-lg">…</div>[22m
+
+    at checkMobileInteractions (/Users/verimsari/Documents/Shinka/scripts/checkMobileInteractions.mjs:33:80)
+    at async checkMobileExperience (/Users/verimsari/Documents/Shinka/scripts/checkMobileExperience.mjs:43:60)
+    at async file:///Users/verimsari/Documents/Shinka/scripts/runFoundationTests.mjs:80:28 {
+  log: [
+    "  - waiting for locator('[data-place-popup]') to be detached",
+    '    63 × locator resolved to visible <div data-place-popup="true" class="absolute inset-x-0 top-full z-30 mt-2 max-h-80 overflow-y-auto rounded-shinka-md border border-shinka-line bg-shinka-white p-1 shadow-lg">…</div>'
+  ],
+  name: 'TimeoutError'
+}

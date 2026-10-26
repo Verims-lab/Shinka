@@ -1,0 +1,17 @@
+{
+  "name": "performance-delivery",
+  "command": [
+    "node",
+    "scripts/measureMaintenance.mjs",
+    "/private/tmp/shinka-035-audit/performance-delivery"
+  ],
+  "started_at": "2026-10-26T17:06:25.225301+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "aa9c06cadab6d9203a035fe0043f9a8876490c2c83c77785b76b62d7168676db",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T17:06:46.744295+00:00",
+  "exit_code": 0,
+  "log": "performance-delivery.txt",
+  "log_sha256": "c1f09a9d012b5a9a35ca00bc5c8bbaf050f28bf404903cb035d877de6346e487",
+  "original_log": "performance-delivery.log"
+}

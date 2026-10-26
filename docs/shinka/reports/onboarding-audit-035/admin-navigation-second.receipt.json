@@ -1,0 +1,19 @@
+{
+  "name": "admin-navigation-second",
+  "command": [
+    "env",
+    "FOUNDATION_ADMIN_ONLY=1",
+    "npm",
+    "run",
+    "test:foundation"
+  ],
+  "started_at": "2026-10-26T16:51:14.609091+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "48cc582a3c173bfe87b6bb320a6698bbb648d258681a09f33b7598ee7fa64eeb",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:51:29.862512+00:00",
+  "exit_code": 0,
+  "log": "admin-navigation-second.txt",
+  "log_sha256": "408d69142d214908d2933cf06db525140922c4efc5138de1ace8a77386f42ed9",
+  "original_log": "admin-navigation-second.log"
+}

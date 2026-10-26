@@ -1,0 +1,21 @@
+import datetime, hashlib, json, pathlib, subprocess, sys
+work = pathlib.Path('/private/tmp/shinka-035-audit')
+name, *command = sys.argv[1:]
+log = work / (name + '.log')
+receipt = work / (name + '.receipt.json')
+if log.exists() or receipt.exists():
+    raise SystemExit('Refusing to overwrite evidence: ' + name)
+stamp = lambda: datetime.datetime.now(datetime.timezone.utc).isoformat()
+head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+diff = subprocess.check_output(['git', 'diff', '--binary', 'HEAD'])
+record = {'name': name, 'command': command, 'started_at': stamp(), 'source_head': head,
+          'source_diff_sha256': hashlib.sha256(diff).hexdigest(),
+          'lock_sha256': hashlib.sha256(pathlib.Path('package-lock.json').read_bytes()).hexdigest()}
+with log.open('w') as stream:
+    result = subprocess.run(command, stdout=stream, stderr=subprocess.STDOUT)
+record.update(ended_at=stamp(), exit_code=result.returncode, log=log.name,
+              log_sha256=hashlib.sha256(log.read_bytes()).hexdigest())
+receipt.write_text(json.dumps(record, indent=2) + '\n')
+print(json.dumps(record))
+print('\n'.join(log.read_text(errors='replace').splitlines()[-12:]))
+sys.exit(result.returncode)

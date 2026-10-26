@@ -1,0 +1,19 @@
+{
+  "name": "baseline-browser-unblocked",
+  "command": [
+    "env",
+    "FOUNDATION_TEST_IDS=BS01,BS02,BS03,BS04,BS05,BS06,BS07,BS08,BS09,BS10,BS11,BS12,U02,U03,U04,U05,U06,U08,U09,U10,U11,U12,U16,U17,U18",
+    "npm",
+    "run",
+    "test:foundation"
+  ],
+  "started_at": "2026-10-26T16:27:55.394695+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "91986b69661572e1b9b5da5e3d2c7ac2a21c189a05e11b34aa90ff3620763354",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:28:00.240582+00:00",
+  "exit_code": 1,
+  "log": "baseline-browser-unblocked.txt",
+  "log_sha256": "26478bf0aa15b40ce8cf8757467099616fd64f4d09853e5ec00d790e38aa6c73",
+  "original_log": "baseline-browser-unblocked.log"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "types-fourth",
+  "command": [
+    "npm",
+    "run",
+    "typecheck"
+  ],
+  "started_at": "2026-10-26T16:51:10.551914+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "48cc582a3c173bfe87b6bb320a6698bbb648d258681a09f33b7598ee7fa64eeb",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:51:14.840040+00:00",
+  "exit_code": 0,
+  "log": "types-fourth.txt",
+  "log_sha256": "2e1c7db5ac28fb733e8c1d3d7c2c3bf8a4bb6628ed45eb56ce2e7328388598de",
+  "original_log": "types-fourth.log"
+}

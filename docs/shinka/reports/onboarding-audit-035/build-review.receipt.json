@@ -1,0 +1,17 @@
+{
+  "name": "build-review",
+  "command": [
+    "npm",
+    "run",
+    "build"
+  ],
+  "started_at": "2026-10-26T17:04:28.049716+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "eee7a4b887a629112c760e0a0b6b0c3ff6a787ce926505e55e08ca2f72336919",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T17:04:31.831175+00:00",
+  "exit_code": 0,
+  "log": "build-review.txt",
+  "log_sha256": "d18604bbfeb5fbb5e95a62db54676251e25279d8e4f3d4aae114f5e6e7966810",
+  "original_log": "build-review.log"
+}
