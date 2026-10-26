@@ -12,6 +12,8 @@
 
 H13 Health cases: none added, updated or deleted (no H13 case asserted a flat onboarding background; T75/T80 check token utilities, not the shell). Foundation test **T81** added: onboarding shell keeps PageContainer classes and has 5 radial + 1 linear layer in light; plain PageContainer has no image; dark shell is flat dark ivory. T81 not yet executed in a browser (Chromium missing locally).
 
+Update 2026-10-26: T81 now tests light and dark explicitly in one run with guaranteed theme/DOM restoration. Foundation test **U15** added for ON-04/ON-05 EN/TR background and overflow via the isolated fixture. H13 is still unchanged (0 added/updated/deleted). Status of T81, U15 and the ON-04/ON-05 visual capture: **NOT_RUN** (browser executable missing), so the next Codex verification has to run them. Rotation/viewport (U13) is NOT_RUN. Physical keyboard acceptance is owner/device only.
+
 ## HC-033.0 — local machine authorization, external workflow acceptance
 
 Health add 0 / update 3 / delete 0. H14-003 adds NM01–08 browser orchestration fixtures for fail-before-client, strict body/disabled behavior, no admin authority, userless execution, recipient/consent guards, admission revocation and UNKNOWN suppression; these substitute the machine callback and do not test crypto. H14-004 adds SM01–07 real node:crypto checks with synthetic readers and NS10–11 actual unbound/disabled entry checks; NS11 injects the prepared binding only in the fixture. Existing NC/NP/NT/NU assertions remain.

@@ -97,16 +97,21 @@ export const CSS_CONTRACT_TESTS = [
     await rendered(h('div', {className:'hidden'}), host => assert(measure(host.firstElementChild).display === 'none', 'hidden class lost'));
   }],
   ["T81","Onboarding shell has layered light background; plain PageContainer and dark stay flat",async()=>{
-    const root=document.documentElement,dark=root.classList.contains("dark");
-    await rendered(h("div",null,h(PageContainer,{className:"shinka-onboarding","data-onb":1},"a"),h(PageContainer,{"data-plain":1},"b")),host=>{
-      const onb=host.querySelector("[data-onb]"),plain=host.querySelector("[data-plain]");
-      for(const c of ["shinka-viewport","bg-shinka-ivory","text-shinka-ink","font-body","shinka-onboarding"]) assert(onb.classList.contains(c),`class ${c}`);
-      assert(onb.firstElementChild.classList.contains("shinka-safe-content"),"safe content kept");
-      assert(measure(plain).backgroundImage==="none","non-onboarding background changed");
-      const img=measure(onb).backgroundImage;
-      if(dark) assert(img==="none"&&measure(onb).backgroundColor===rgb(DESIGN_TOKENS.darkColor.warmIvory),"dark surface");
-      else assert((img.match(/radial-gradient/g)||[]).length===5&&/linear-gradient/.test(img)&&measure(onb).backgroundRepeat==="no-repeat","light layers");
-    });
+    const root=document.documentElement,original=root.className,originalScheme=root.style.colorScheme;
+    try{
+      for(const theme of ["light","dark"]){
+        root.classList.remove("light","dark");root.classList.add(theme);root.style.colorScheme=theme;
+        await rendered(h("div",null,h(PageContainer,{className:"shinka-onboarding","data-onb":1},"a"),h(PageContainer,{"data-plain":1},"b")),host=>{
+          const onb=host.querySelector("[data-onb]"),plain=host.querySelector("[data-plain]");
+          for(const c of ["shinka-viewport","bg-shinka-ivory","text-shinka-ink","font-body","shinka-onboarding"]) assert(onb.classList.contains(c),`${theme} class ${c}`);
+          assert(onb.firstElementChild.classList.contains("shinka-safe-content"),`${theme} safe content kept`);
+          assert(measure(plain).backgroundImage==="none",`${theme} non-onboarding background changed`);
+          const img=measure(onb).backgroundImage;
+          if(theme==="dark") assert(img==="none"&&measure(onb).backgroundColor===rgb(DESIGN_TOKENS.darkColor.warmIvory),"dark surface");
+          else assert((img.match(/radial-gradient/g)||[]).length===5&&/linear-gradient/.test(img)&&measure(onb).backgroundRepeat==="no-repeat","light layers");
+        });
+      }
+    }finally{root.className=original;root.style.colorScheme=originalScheme;}
   }],
   ["T80","Existing rendered Health typography/color/touch/system-theme checks remain passing",async()=>{
     const context=createHealthContext();

@@ -12,6 +12,15 @@
 
 `src/styles/onboarding.css` (new; imported from `theme.css`), `PageContainer` accepts and appends `className` (existing classes kept), `OnboardingScreen` passes `shinka-onboarding`. No logic, copy, layout, global token or dependency change. No BuildMarker change. Verified: `vite build` OK, ESLint OK on changed files, `repoHealth` `failed: []`, preview screenshots before/after ON-01 at mobile 390 and desktop 1440 (EN, light). Not verified: new T81 and existing T75/H13 browser runs (Chromium binary missing in sandbox), dark theme, TR, ON-04/ON-05 (need a signed-in onboarding user; not created), physical devices.
 
+### Onboarding background — test completion (2026-10-26)
+
+- T81 now checks light (5 radial + linear layers) and dark (flat `darkColor.warmIvory`, no image) explicitly in one test. It also keeps the plain-PageContainer check in both themes. `try/finally` restores the root `className`/`colorScheme`, and `rendered()` unmounts and removes the host even when a check fails.
+- U15 (new, onboardingUiTests) checks ON-04 (`AUTHENTICATED_PROFILE_REQUIRED`) and ON-05 (`AUTHENTICATED_CYCLE_STEP`) in EN/TR at 360px through the existing isolated fixture (`OnboardingTestScreen`). It checks the layered shell and that there is no horizontal overflow. No live account and no production route.
+- Actually run: `vite build` OK; ESLint 0 errors on changed tests (one pre-existing unused-var warning in U01); `repoHealth` `failed: []`.
+- **Open, handed to the next Codex verification:** run T81 and U15, plus `scripts/captureFoundationVisuals.mjs` for ON-04/ON-05 TR/EN screenshots. Browser launch failed with "Chromium headless shell executable doesn't exist"; I did not retry installation.
+- **Rotation/viewport (separate, open):** U13 (small portrait/landscape/reduced viewport) exists but was not run here.
+- **Real device keyboard (separate, open):** not testable in a fixture; needs physical iOS/Android acceptance by the owner.
+
 ## 033 — scheduler secret authorization preparation
 
 Started clean at Test/origin Test 8498cf4; owner-merged PR #34 main c9d2d04 has the same tree. Fast-forward preserved all work; 033 was free. Updated Base44 skills and reviewed current official runtime/secret lifecycle documentation. Support is relayed by the owner, not an independently accessed ticket.

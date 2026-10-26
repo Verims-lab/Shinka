@@ -218,4 +218,12 @@ export const ONBOARDING_UI_TESTS=[
     check(doc.documentElement.scrollWidth<=width+1&&doc.querySelectorAll('*').length<450&&findUnlabeledControls(doc.querySelector('main')).length===0);
   },{language:'tr',requestOverride});
  }],
+ ['U15','ON-04/ON-05 fixtures render the layered onboarding shell in EN/TR without overflow',async(context={})=>{
+  for(const language of ['en','tr'])for(const step of ['AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP'])await onboardingProbe(step,360,async(doc,win)=>{
+   const shell=doc.querySelector('.shinka-onboarding');check(shell,`${language} ${step} shell`);
+   const img=win.getComputedStyle(shell).backgroundImage;
+   check((img.match(/radial-gradient/g)||[]).length===5&&/linear-gradient/.test(img),`${language} ${step} layers`);
+   check(doc.documentElement.scrollWidth<=361,`${language} ${step} overflow`);
+  },{language},context);
+ }],
 ];
