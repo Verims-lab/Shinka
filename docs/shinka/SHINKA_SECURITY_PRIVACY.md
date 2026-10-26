@@ -29,9 +29,13 @@ Internal route gates are UX only. Both `validateContentArtifacts` and `internalH
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
 
-## 034 — dependency evidence and guarded stabilization
+## 034 — resumed dependency and stabilization evidence
 
-The owner reports the Base44 zod finding closed after updating zod 4.6.7 / resolvers 5.9.2; this is USER_REPORTED_PLATFORM_EVIDENCE, not an agent scan. Local npm audit and clean installation failed TLS verification; local vulnerability counts are UNKNOWN, not zero. No CA/TLS/registry/lock relaxation. Native deletion pre/post guards and the 12 OPEN / USER-DEFERRED backend findings remain. Session-generation and strict readiness fixes have scoped Node proof; browser and hosted acceptance remain open. [034 report](reports/SHINKA_STABILIZATION_034.md).
+The owner-reported Base44 zod finding closure remains USER_REPORTED_PLATFORM_EVIDENCE. Independently, the resumed local npm audit --json and security:deps both succeed with **0 Info/Low/Moderate/High/Critical** after clean npm ci on unchanged zod 4.6.7/resolvers 5.9.2 lock. Full peer tree and positive/negative Zod resolver runtime checks pass. Original TLS failures and unknown audit counts are retained as historical evidence, not overwritten. No CA/TLS/registry/lock relaxation. The existing npm min-release-age-exclude warning is recorded; configuration is unchanged.
+
+Native deletion pre/post-write guards remain unchanged. SS01/02/04/06–10, NA34A–C and TP01–04 execute in both full 649/649 browser runs; Node 9/9 separately reruns. Unknown transport is 503/SESSION_UNAVAILABLE and denies access, while proven missing identity is 401/AUTH_REQUIRED; fixture expectations now reflect this, without service-role/job/provider access. All other local quality gates pass; hosted enforcement remains separate. **12 backend findings remain OPEN / USER-DEFERRED**; no live scan, mutation or physical acceptance. [034 results and evidence](reports/SHINKA_STABILIZATION_034.md).
+
+Official push documentation confirms 100/500/50 limits, optional action/link and Home default; support-relayed names/silent discard do not verify full wire types/nullability/Unicode counting, recipient mapping or acceptance/error/no-device semantics. Generic success stays UNKNOWN; entry enabled:false, workflow transport unbound, H14-901/H16-901 open.
 
 ## 033 — accepted secret, no general admin authority
 

@@ -1,95 +1,89 @@
-# Shinka 034 — stabilizasyon kapanış hazırlığı ve doğrulama engeli
+# Shinka 034 — yerel stabilizasyon doğrulaması
 
 **Paket:** Buildmarker-034 / HC-034.0
-**Tarih:** 2026-10-26 (Europe/Istanbul; makbuzlar UTC)
-**Durum:** LOCAL_VALIDATION_BLOCKED — bağımsız düzeltmeler ve Node kontrolleri tamamlandı; tam browser/bağımlılık kabulü tamamlanmadı. Yayına hazır veya FULLY_CLOSED değildir.
+**Tarih:** 2026-10-26 (Europe/Istanbul; komut makbuzları UTC)
+**Durum:** LOCAL_VERIFIED / USER_PUBLISH_AND_HOSTED_ACCEPTANCE_PENDING
+**Teslim:** Mevcut Test dalı ve [taslak PR #36](https://github.com/Verims-lab/Shinka/pull/36). Main merge/publish veya canlı kabul yapılmadı.
 
 ## Kaynak ve koruma
 
-Başlangıç çalışma ağacı temizdi: Test/origin Test `ca964e03e3bfc243338372ad1571e92d0137b88a`. Güncel fetch, origin/main'in `041b40b` olduğunu doğruladı; Test 0 yerel/8 uzak commit gerideydi. `git merge --ff-only origin/main` ile Base44 çalışmaları kayıpsız alındı. Main'e yazılmadı, reset/force kullanılmadı. `f9eae0c` tarihsel referanstır.
+Yeni ağdaki devam, temiz Test/origin Test `1f061ec5ac79bf225ce644e2c400c45d8487f613` üzerinde başladı. Güncel fetch ile main `041b40b6dc216b7da99d67ab4ed2da82a0b535b2` doğrulandı; main-only commit yok, Test iki commit ilerideydi. Kullanıcı çalışması ezilmedi, reset/force veya yeni paket kullanılmadı. Önceki `f3dbba1` stabilizasyonu ve `1f061ec` destek kaydı korundu.
 
-Test edilen Node kaynağı bu main tabanı + aşağıdaki 034 düzeltmeleridir; doğrulama checkpoint'i `f3dbba195e67644147ae6012543465bb14694c7f` ile teslim edildi. O checkpoint'in [kaynak manifesti](stabilization-034/source-manifest.json), [kaynak koruma kaydı](stabilization-034/source-review.json) ve [komut makbuzları](stabilization-034/verification.json) tam hash/kapsamı taşır; sonraki açıklama/doküman ek notunun test edildiği anlamına gelmez. package.json ve package-lock.json, main `041b40b` ile byte olarak aynı kalır. Base44'ün onboarding arka planı ve silme sonrası guard'ı korunur.
+Test edilen kaynak bu taban ve aşağıdaki odaklı düzeltmelerdir: [yürütme kaynak manifesti](stabilization-034/resumed-20261026/source-manifest.json), [teslim kaynak eşlemesi ve korunan dosyalar](stabilization-034/resumed-20261026/source-review.json), [gerçek sonuçlar/komut makbuzları](stabilization-034/resumed-20261026/verification.json). Browser koşusundan sonra yalnız üretilmiş ledger açıklaması ve doküman/kanıt kayıtları tamamlandı; fark kaynak eşlemesinde açıkça belirtilir. Son repo/history kontrolleri teslim metadata'sını kapsar.
 
-## Bildirim destek ek notu — 2026-10-26, aynı 034 / PR #36
+`package.json` ve lock main ile byte olarak aynı: **zod 4.6.7**, **@hookform/resolvers 5.9.2**, react-hook-form 7.71.1, SDK 0.8.57, Vite plugin 1.0.48, Vite 8.2.4, Playwright 1.64.0. Onboarding CSS/shell, native silme pre/post-write guard'ları, session-generation/pacing düzeltmeleri, bildirim entry'si ve scheduler korunur. NC06/NC07 gövdeleri değişmedi; provider değişiklikleri yalnız açıklamadır.
 
-**Kaynak:** Kullanıcının bu devam talimatında ilettiği **Dmytro / Base44 Support** yanıtı (`USER_RELAYED_SUPPORT_EVIDENCE`). Destek kaydına bağımsız erişilmedi; hosted SDK çağrısı veya cihaz denemesi yapılmadı. Bu bilgi, 030'daki Base44 AI aktarımına ek kaynaktır; aşağıdaki alan adları dışında tam platform sözleşmesi doğrulaması değildir.
+## Doğrulamada bulunan ve düzeltilen sorunlar
 
-| Konu | Yeni kanıtın yanıtladığı / açık kalan |
-|---|---|
-| Alan adları | `user_id`, `title`, `content`, `action_label`, `action_url` destek yanıtıyla doğrulandı. |
-| Yanlış alan ve başarı | Bilinmeyen/yanlış adlandırılmış alanlar sessizce atılıp başarı dönebilir. Genel başarı bütün alanların amaçlandığı gibi işlendiğini veya cihazda görünmeyi kanıtlamaz. |
-| Girdi şeması | Tam tip, zorunluluk, nullability ve uzunluk limitleri **açık**. Mevcut narrow type/strict validator korunmuş yerel kurallardır; yeni doğrulanmış platform sözleşmesi değildir. |
-| Alıcı ve sonuç | `user_id` → native User.id eşlemesi, somut kabul göstergesi ve başarı/hata/no-device JSON şemaları **açık**. Fulfilled promise/genel başarı otomatik SENT/ACCEPTED olmaz; adapter UNKNOWN kalır. |
-| Diğer bağlar ve cihaz | Workflow secret kaydı/referansı/header taşıması, native uygunluk/izin, idempotency, logout/hesap değişimi ve cihaz-token yeniden bağlama davranışları **açık**. |
+- **Tip/lint:** T81 createElement children biçimi, readiness union alanlarının güvenli daraltılması, test promise resolver ve sahte oturum/auth dönüş tipleri düzeltildi. App'teki kullanılmayan Navigate import'u kaldırıldı; compiler/lint kuralı gevşetilmedi.
+- **Eski hata beklentileri:** NS02/NC01, belirsiz auth taşıma hatasını yanlışlıkla 401 bekliyordu. Mevcut 034 sözleşmesine göre tam **503 / SESSION_UNAVAILABLE**, eksik kimlikte **401 / AUTH_REQUIRED** beklenir; service-role/job IO/provider erişiminin sıfır olması assertion'ları korunur. HD02, geçerli sözleşmedeki 429/5xx/timeout için BLOCKED; şema/strateji/bozuk satır için FAIL bekler. SS04/SS10, 429'un bozuk sözleşmeyi gizleyemediğini ayrıca çalıştırır.
+- **Gerçek DOM sırası:** SS08 yeni hesap React commit'ini, TP fixture'ı preview kapanıp status görünmesini bekler. Eski render üzerinden assertion yapılmaz; yeni kimlik, UNKNOWN, aynı operasyon, unmount ve bütçe kontrolleri korunur.
+- **CSS motor farkı:** Chromium çok katmanlı background-repeat değerini altı kez, WebKit tek kez yazabiliyor. T81 her katmanın no-repeat olmasını, tam 5 radial + 1 linear katmanı ve karanlık düz yüzeyi denetler; assertion kaldırılmadı.
+- **CLI ekran fixture'ları:** Anonim sahte SDK artık açık 401 üretir; belirsiz ağ hatasıyla karıştırılmaz. Admin/You pasif yenileme testleri 15 saniyelik coalescing sınırını kontrollü saatle aşar ve saati geri yükler. Product navigation yakın focus'un throttle edilmesini ve bfcache dönüşünde açık yeniden doğrulamayı kontrol eder. Gerçek uzun bekleme veya büyütülmüş timeout yok.
 
-`base44PushProvider.js` ve `notificationProviderTypes.js` yalnız kaynak açıklamalarıyla güncellendi; çalıştırılabilir gövde ve typedef'ler değişmedi. NC06'nın gönderim anahtarlarını birebir `{user_id,title,content}` olarak denetlemesi ve fazladan `message` alanını reddetmesi kaynakta mevcut; NC07 genel başarı nesnesini UNKNOWN tutar ve kör retry'ı reddeder. Bu not için gerçek kapsam eksiği bulunmadı: assertion kaldırılmadı, gevşetilmedi veya yeni test eklenmedi. Bunlar **kaynak incelemesidir, bu tur test yürütmesi değildir**.
+Bu tur yeni ürün özelliği veya yeni test ID'si eklenmedi. Önceden hazırlanmış oturum nesli ayrımı, bekleme sonrası silme bütçesi/iptali ve exact readiness düzeltmeleri artık gerçek browser koşularıyla doğrulandı. İlk hatalar ve ara başarısız koşular [yeni başarısızlık kaydında](stabilization-034/resumed-20261026/initial-failures.json) saklanır.
 
-H14-901 yalnız açıklama güncellemesi alır; EXTERNAL / BLOCKED_EXTERNAL sınıflandırması korunur. H16-901 değişmez ve kapanmaz. CAP-17 PARTIALLY_VERIFIED kalır. Gerçek entry `enabled:false`, machine binding bağlı değil; yeni workflow, secret bağlantısı veya canlı gönderim yok. 12 backend bulgusu OPEN / USER-DEFERRED kalır.
+## Güncel yürütme sonuçları
 
-Kullanıcının açık talimatıyla bu tur **kurulum, browser, audit ve kalite kapıları yeniden başlatılmadı**. Önceki BLOCKED/NOT_RUN/NOT_COMPLETED kayıtları ve tüm başarısızlık makbuzları aynen korunur; aşağıdaki PASS sonuçları önceki checkpoint'e aittir. Bu açıklama/metadata değişikliği de 034'ün kalan doğrulamasına dahildir; ağ düzeldikten sonra ayrıca devam talimatı beklenir. Yeni paket veya HC sürümü açılmadı; mevcut Test teslimi ve [PR #36](https://github.com/Verims-lab/Shinka/pull/36) kullanılır.
-
-## Kanıtlanan hata ve odaklı düzeltmeler
-
-- **Oturum nesli:** yeni SS02b, reset sonrasında eski in-flight isteğin tekrar kullanıldığını gerçekten FAIL ile gösterdi. Coalescer reset artık hem eski isteği hem başarı zamanını ayırır; eski completion yeni isteğin kilidini açamaz. AuthProvider app/account yenilemesi, logout ve bfcache dönüşünde önceki nesli geçersiz kılar; yeni oturum eski kullanıcı/rolü devralmaz. Manuel/normal route ve admin yetkisi ayrımı korunur.
-- **Silme pacing:** kaynak incelemesi, 1,5 saniyelik bekleme sonrasında 60 saniye bütçesinin tekrar kontrol edilmediğini gösterdi. Enjekte edilen monotonic clock ile bekleme sonrası sınır eklendi; bütçe dolunca PARTIAL görünümü korunur. Unmount, session-ended ve account/privacy invalidation eski devam/status döngüsünü keser. Bu React davranışı için yazılan AP testleri henüz çalıştırılamadı.
-- **Health sözleşmesi:** readable=true satırında eksik/negatif/taşan/string sampledRows kabul edilebiliyordu. Aynı predicate artık 0 veya 1 integer örnek sayısı, tam feature/authority/version/strateji ve beş eşsiz satır ister. Geçerli geçici 429/timeout BLOCKED; uyuşmazlık+429 ve bozuk şema FAIL. Bağımsız gerçek predicate Node matrisi SS04n geçti; SS04/SS10 browser ve gerçek dört case/memoization koşusu NOT_RUN.
-- **Korunan güvenlik:** nativeAdminTestOperation pre/post-write guard'ı main ile aynı. NA34C'ye yanlış operasyon ID'sinin yazmasız reddi eklendi; NA34A/B ve önceki residual/readback/response-loss assertion'ları kaldırılmadı. Native User yokluğu tek başına silinme başarısı sayılmaz. Gerçek iki hedefin güncel durumu okunmadı.
-- **Test altyapısı:** AuthProvider pasif timer/clock ve TestTools wait/clock varsayılanları geriye uyumludur. Yeni testler kontrollü promise/saat kullanır; gerçek 1,5 saniye beklemez. AN07 eski paralel-refresh varsayımı yerine açık yeni app/account sınırında geç yanıt reddini test eder. Server testleri scripts/ altında; yeni src dosyalarına base44 import'u, test endpoint'i veya gevşetilmiş güvenlik kuralı eklenmedi.
-
-## Bağımlılıklar ve ağ engeli
-
-Lock: **zod 4.6.7**, **@hookform/resolvers 5.9.2**, **react-hook-form 7.71.1**, SDK 0.8.57, Vite plugin 1.0.48. Resolvers'ın zod ^3.25.0 || ^4.0.0 ve react-hook-form ^7.55.0 aralıkları lock sürümlerini kapsar; bu yalnız manifest incelemesidir, kurulu peer ağacı veya Zod runtime uyumluluğu değildir.
-
-Kullanıcı, Base44 Security scan'de zod bulgusunun güncelleme sonrası kapandığını bildirdi. **USER_REPORTED_PLATFORM_EVIDENCE** olarak kaydedildi; scan yeniden çalıştırılmadı veya bağımsız doğrulanmadı. Yerel npm audit'in sonucu ayrıdır: **BLOCKED/ERROR, vulnerability sayıları UNKNOWN**; sıfır bulgu değildir. Ertelenmiş **12 backend bulgusu OPEN / USER-DEFERRED** kalır.
-
-`npm ci` zod tarball TLS zincirini doğrulayamadı (UNABLE_TO_VERIFY_LEAF_SIGNATURE). Node --use-system-ca denemesi de başarısız; curl doğrulaması aynı problemi gösterdi. Salt sertifika metadata'sında Fortinet issuer görüldü. Bu bilgi güven vermek için kullanılmadı. Offline temiz kurulum zod 4.6.7 önbellekte olmadığı için ENOTCACHED verdi. Kullanıcı “Şimdilik ağ engelini raporla” dedi. TLS kapatılmadı, CA eklenmedi, registry/dependency/lock değiştirilmedi.
-
-Ağdan bağımsız statik kontrol için yalnız lock'taki **Acorn 8.19.0, acorn-jsx 5.3.2, TypeScript 5.9.3** mevcut npm önbelleğinden /private/tmp altında kuruldu ve bu üç araç ignored node_modules'a bağlandı. Bu kısmi araç kurulumu, tam npm ci/peer/test/build başarısı değildir. Node_modules artık tam uygulama kurulumu değildir; güvenilir ağ sağlanınca yeniden npm ci gerekir.
-
-## Gerçek yürütme ve çalışmayan kapsam
-
-| Kontrol | Bu paketin sonucu | Sınır |
+| Kontrol | Sonuç | Kanıt sınırı |
 |---|---|---|
-| İlk verifySessionStability | 7/7 PASS, exit 0 | Gerçek provider/route değil |
-| Yeni SS02b ilk koşu | 7 PASS / 1 FAIL, exit 1 | Eski pending request yeniden kullanımı; kanıt korundu |
-| Son verifySessionStability | **9/9 PASS, exit 0** | SS03a/b/c, SS01, SS02, SS02b, SS05, SS05b, SS04n; Node/sentetik |
-| Chromium canonical runner | **0 test, NOT_RUN, exit 1** | Kurulum eksik; sonuç listesi yok, hiçbir ID PASS sayılmadı |
-| WebKit canonical runner | **0 test, NOT_RUN, exit 1** | Kurulum eksik; sonuç listesi yok, hiçbir ID PASS sayılmadı |
-| Canlı/in-app Full Health | NOT_RUN | Yerel saf predicate gerçek Health çalıştırması değildir |
-| Temiz kurulum / kurulu peer ağacı | BLOCKED | TLS ve eksik paketler |
-| npm audit / security:deps | ERROR/BLOCKED, exit 1 | Yerel bulgu sayısı bilinmiyor |
-| Kaynak sözdizimi | PASS | Aynı kilitli TS parser'ı; typecheck/runtime değildir |
-| Repo Health / build-history | **PASS / exit 0** | Bağımsız statik/metadata kontrolleri |
-| Typecheck / lint / build / performans | NOT_COMPLETED | npm komutları exit 127; doğrudan kilitli tsc exit 2 (node type definitions yok), performans exit 1 (Vite yok). Tam kurulum eksik; makbuzlar korunur |
-| ON-04/ON-05 görsel / fiziksel cihaz | NOT_RUN | İzole fixture mevcut; canlı onboarding veya veri yazma yok |
+| Mevcut lock ile npm ci | PASS, exit 0 | Temiz tam kurulum; eski üç statik araç kurulumu yerine geçti. TLS/CA/registry gevşetilmedi. |
+| npm ls --all + peer/runtime | PASS | Zod/resolver geçerli ve hatalı veri dönüşleri gerçek kurulu modüllerle çalıştı; optional/platform paketleri zorunlu eksik peer sayılmadı. |
+| npm audit --json / security:deps | PASS / PASS | Info/Low/Moderate/High/Critical: **0/0/0/0/0**; canlı Base44 scan değildir. |
+| Typecheck / lint / production build | PASS / PASS / PASS | Kilitli proje komutları; ilk hata kayıtları korundu. |
+| Repository Health / build-history | PASS / PASS | 034 / HC-034.0; son beş paket 030–034. |
+| verifySessionStability | **9/9 PASS**, exit 0 | Yeni ağda yeniden çalıştı; Node/sentetik, browser yerine sayılmadı. |
+| Chromium 156.0.8078.4 | **649 PASS / 0 FAIL**, exit 0 | Tam canonical runner, 17 zorunlu ID tekil PASS, pageErrors boş. |
+| WebKit 27.2 | **649 PASS / 0 FAIL**, exit 0 | Ayrı tam canonical runner, 17 zorunlu ID tekil PASS, pageErrors boş. |
+| Her motorda yerel in-app Health | **136 PASS / 0 FAIL / 13 BLOCKED** | 149 case; sahte backend/DOM, canlı Full Health değildir. |
+| Performans / grafik / lazy retry | PASS | Production byte bütçeleri, döngüsüz import grafiği, ilk yüklemede internal/test modülü olmaması ve gerçek App'te sentetik asset hatasından recovery. |
+| Hosted/device/gerçek kullanıcı işlemleri | NOT_RUN | Ayrı kullanıcı kabulü; yerel başarı bunları kapatmaz. |
 
-Browser sonuç listesinde **eksik/çalışmayan** zorunlu ID'ler: **T81, U15, SS01, SS02, SS04, SS06–SS09, SS10, NA34A, NA34B, NA34C, TP01–TP04**. Retained AN02–AN07, AU01–AU10, RM01–RM03 ve tüm diğer regresyonlar da bu pakette browser'da çalışmadı. SS01/SS02'nin Node sonucu bunların browser yürütmesi değildir. 033'ün 632/632 sonucu 034'e taşınmadı. Hiçbir assertion kaldırılmadı veya timeout büyütülmedi.
+Her iki gerçek sonuç listesinde **tam bir kez PASS**: `T81`, `U15`, `SS01`, `SS02`, `SS04`, `SS06`, `SS07`, `SS08`, `SS09`, `SS10`, `NA34A`, `NA34B`, `NA34C`, `TP01`, `TP02`, `TP03`, `TP04`. Eksik/çift ID, atlanan zorunlu kontrol veya sıfır-test başarısı yok. [Chromium sonuç listesi](stabilization-034/resumed-20261026/chromium-results.json), [WebKit sonuç listesi](stabilization-034/resumed-20261026/webkit-results.json).
 
-T81 kaynakta açık/koyu temayı ayrı doğrular ve finally ile geri yükler. U15 ON-04/ON-05 EN/TR arka plan/taşma kontrolleridir. SS06–09 gerçek AuthProvider, ProtectedRoute, AdminGate, LoginRedirect ve SignIn kullanır; platform IO sentetiktir. TP01–04 gerçek TestTools/useTestTools, kontrollü bekleme/saat ve sentetik operation yanıtlarını kullanır. Bu testlerin tamamı hazır fakat NOT_RUN; OAuth sağlayıcısı veya gerçek hesap kabulü iddiası yoktur.
+Ek olarak her canonical koşuda 150 mobile experience, 87 compatibility, 24 You, 23 privacy, 19 admin navigation ve 4 Health timing kontrolü ile product navigation geçti; bunlar 649 temel test sayısına eklenip tek toplam diye sunulmadı. Mevcut runner sunucu/entry/secret kontrollerini de çalıştırır; ayrı tekrar gerekmedi. T81 açık/koyu temayı gerçekten çalıştırdı; U15 ON-04/ON-05 TR/EN arka plan ve taşmayı izole fixture'da doğruladı. Bu tur ayrı görsel screenshot paketi veya fiziksel cihaz testi yapılmadı.
 
-İlk Base44 SS02 başarısızlığı ve 7/7 handoff'u [orijinal raporda](stabilization-034/base44-handoff-original.md), [orijinal build taslağı](stabilization-034/build-entry-original.json) ile korundu. Yeni SS02b failure, test yazımı sırasında düzeltilen ilk syntax hatası ve statik kontrolde yakalanıp TP01–04 olarak ayrılan test-ID çakışması ve bütün kurulum/audit engelleri [ilk başarısızlıklar](stabilization-034/initial-failures.json) altında tutulur.
+Production ölçümü: initial JS **481660 raw / 160876 gzip** byte (bütçe 500000/165000); CSS **78364 / 14534** (90000/16000). Döngü yok, lazy retry PASS. Ölçümler sentetik yerel laboratuvar; saha INP, canlı SDK gecikmesi veya cihaz hızı değildir. [Performans kanıtı](stabilization-034/resumed-20261026/performance.json).
 
-## Health / sürüm kaydı
+Node v26.0.0 / npm 11.12.1 kullanıldı. npm mevcut `min-release-age-exclude` ayarına tanınmayan seçenek uyarısı verdi; `.npmrc` değiştirilmedi, kurulum/audit exit 0. Vite'ın test/lazy modüllere ilişkin mevcut dynamic-import uyarıları hata sayılmadı; production grafik ve boyut kapıları ayrıca geçti.
 
-**034 toplamı: add 0 / update 9 / delete 0**; katalog envanteri/planı korunur. İlk doğrulama checkpoint'i ve onun değiştirilmeyen `verification.json` kaydı 8 güncellemedir; bu destek ek notu yalnız **add 0 / update 1 / delete 0** ekler (H14-901 açıklaması), yeni koşu veya kabul sonucu eklemez.
+## Bildirim kaynakları: resmî belge, destek aktarımı ve açık sözleşmeler
 
-| ID | Güncelleme gerekçesi |
+[Resmî built-in integration belgesi](https://docs.base44.com/Integrations/built-in-integrations#sending-push-notifications), **2026-10-26** tarihinde yeniden okundu: başlık en çok **100**, mesaj **500**, isteğe bağlı aksiyon etiketi **50** karakter; uygulama içi bağlantı isteğe bağlıdır ve verilmezse **Home** açılır. Önceki açıklamada sayısal sınırların tamamen belirsiz/yalnız AI aktarımı gibi gösterilmesi düzeltildi. Bu, hosted uygulama veya cihaz kanıtı değildir.
+
+Kullanıcının ilettiği **Dmytro / Base44 Support** yanıtı (`USER_RELAYED_SUPPORT_EVIDENCE`), `user_id`, `title`, `content`, `action_label`, `action_url` alan adlarını ve bilinmeyen/yanlış alanların sessizce atılıp başarı dönebilmesini doğrular. Destek kaydına bağımsız erişilmedi. Genel başarı bütün alanların amaçlandığı gibi işlendiğini veya bildirimin cihazda göründüğünü kanıtlamaz.
+
+**Açık:** tam wire tipleri/alan zorunluluğu/nullability, Unicode karakter sayım ayrıntıları, `user_id` → native User.id eşlemesi, somut kabul/başarı/hata/no-device JSON, güvenli workflow secret kaydı/referansı/header taşıması, native uygunluk/izin, idempotency ve logout/hesap değişimi/token yeniden bağlama. Validator Unicode code point sayar; platformun aynı sayımı yaptığı varsayılmaz. Fulfilled promise/genel başarı SENT/ACCEPTED/DELIVERED üretmez; adapter UNKNOWN kalır. Gerçek entry `enabled:false`, machine binding bağlı değil; H14-901/H16-901 açık.
+
+## Health değişiklikleri ve dış blokajlar
+
+**034 toplamı: 0 ekleme / 9 güncelleme / 0 silme.** Bu devamda yeni Health ID veya ek case kapsamı gerekmedi; mevcut 9 ID yeterli. Katalog: 16 suite / 175 case; 149 in-app, 12 local, 14 external, 0 future.
+
+| ID | Güncelleme gerekçesi / gerçek kapsam |
 |---|---|
-| H04-019, H08-005, H09-004, H12-031 | Ortak exact readiness sözleşmesi ve transient/mismatch ayrımı; SS04/SS10 yerel eşlemesi. Aynı per-run memoized kaynak korunur. |
-| H12-025 | Gerçek provider/route/login, transient ve nesil regresyonları SS06–09; saf SS01/02'den ayrı. |
-| H12-033 | NA34A–C actor/başka kullanıcı, role-loss ve yanlış hedef/operasyon negatifleri. |
-| H13-016 | TP01–04 pacing, iptal, bütçe, aynı operasyon ve status-only recovery; AU kanıtları korunur. |
-| H13-012 | T81/U15 onboarding tema/taşma eşlemesi; fiziksel kabul ayrımı. |
-| H14-901 | Kullanıcının ilettiği teknik destek yalnız alan adlarını doğrular; sessiz alan atma/genel başarı sınırı ve açık sözleşmeler açıklanır. ID, assertion, applicability ve BLOCKED_EXTERNAL sınıfı değişmez; H16-901 açık kalır. |
+| H04-019, H08-005, H09-004, H12-031 | Exact readiness, transient/mismatch ayrımı ve per-run memoization; SS04/SS10 gerçek case yürütmesi. |
+| H12-025 | SS01/02, SS06–09 ve gerçek App navigation: transient, role/session kaybı, hesap nesli, login dönüşü, kontrollü pasif yenileme. Canlı OAuth kanıtı değil. |
+| H12-033 | NA34A–C: A'nın kimliği/rolü korunarak B silme, role-loss sonrası yazma reddi, yanlış hedef/operasyonun yazmasız reddi. |
+| H13-016 | TP01–04: pacing, unmount/session/hesap iptali, bekleme sonrası bütçe, aynı ID ve status-only recovery; AU kanıtları korundu. |
+| H13-012 | T81/U15: iki tema, ON-04/ON-05 EN/TR arka plan ve taşma. Fiziksel cihaz kanıtı değil. |
+| H14-901 | Resmî sayısal sınırlar/Home varsayılanı ile kullanıcıdan gelen alan adı/sessiz atma kanıtı ayrıldı. External/BLOCKED_EXTERNAL korunur; H16-901 değişmez. |
 
-`recordBuild.mjs` ile **034 / HC-034.0** ve son beş paket **030–034** kaydedildi; marker ayrıca ikinci kez artırılmaz. Strict içerik politikası yalnız 034 ekler, gelecekteki sürümleri serbest bırakmaz. Eski Health/Git/audit kanıtları silinmez. `full_health_status: NOT_RUN`, yerel doğrulama **OPEN/BLOCKED**.
+Yerel 13 BLOCKED: **H04-019, H05-001–H05-009, H08-005, H09-004, H12-031**. Fixture'da hosted/content önkoşulları bulunmaması PASS'e çevrilmedi. Canlı Full Health ve özel raporun gerçek ortamda kaydet/listele/aç kabulü kullanıcıya aittir.
 
-## Devam ve kullanıcı kabulü
+Kullanıcı Base44 zod scan kapanışını bildirmişti; bu **USER_REPORTED_PLATFORM_EVIDENCE**, yeni yerel npm audit sıfır sonucundan ayrıdır. **12 backend bulgusu OPEN / USER-DEFERRED** kalır. İki gerçek silme operasyonunun önceki **PARTIAL** durumu yeniden okunmadı veya tamamlandı sayılmadı.
 
-1. Kullanıcının ağ düzeldikten sonraki ayrı devam talimatıyla, güvenilir ağda aynı lock ile npm ci; tree/peer, audit/security, typecheck/lint/build/Repo Health/performance ve ayrı Chromium/WebKit komutlarını tamamla. Bu destek ek notu da aynı 034 doğrulamasına dahildir. Tam sonuçlar olmadan bu taslak PR'ı yayın kabulü sayma.
-2. Yerel kapılar tamamlandıktan sonra kullanıcı mevcut Test → main/sync/publish akışını yürütür. Backend/shared modüller ve frontend birlikte eşleşmeli.
-3. Yayın sonrası normal oturumla uygulamaya dönme, admin paneline girme, geçici hata sonrası Retry ve rol kaybında erişimin kapanmasını uygulama ekranından kontrol et. Canlı OAuth/native davranışı ayrıca kabul edilir.
-4. Kullanıcı Full Health çalıştırıp raporu kaydeder/açar; 429 varsa BLOCKED ile gerçek sözleşme hatasını ayırır. Ajan bu çalışmada canlı Health/scan yapmadı.
-5. İki mevcut hedef daha önce Base44 tarafından PARTIAL bildirildi. Kullanıcı önce güncel durumu yeniden lookup ile okur; gerekirse **aynı operation ID** ile devam eder. Yerel fixture bu kullanıcıların silindiği kanıtı değildir.
+## Korunan tarihsel kanıtlar
 
-Bildirim entry'si kapalı; gerçek secret/workflow/push, kullanıcı silme/resume/reset, import, native build, main merge ve publish yapılmadı.
+`f3dbba1` checkpoint'indeki [verification.json](stabilization-034/verification.json), [ilk başarısızlıklar](stabilization-034/initial-failures.json), kaynak manifesti ve TLS/audit/browser makbuzları değiştirilmedi: eski temiz kurulum/audit BLOCKED, iki motorda 0 test/NOT_RUN ve eksik type/lint/build/performance kayıtları tarihsel olarak kalır. Yeni başarı bunların yerine yazılmadı; [resumed-20261026](stabilization-034/resumed-20261026/verification.json) ayrı kayıttır.
+
+Base44'ün ilk SS02 failure/handoff'u [orijinal raporda](stabilization-034/base44-handoff-original.md) korunur. Sonraki SS02b failure, syntax/ID çakışması ve bu devamdaki tip/lint/NS02/T81/SS08/TP03/navigation hataları da saklandı. `1f061ec` destek notu turunda kullanıcı talimatıyla test çalıştırılmamıştı; yeni ağdaki bu açık devam talimatı o beklemeyi sona erdirdi. Önceki paketlerin 632/632 veya diğer sayıları 034 kanıtı olarak kullanılmadı.
+
+## Kullanıcının yayın sonrası kısa kabulü
+
+1. Hazır olduğunuzda mevcut Test → main/sync/publish akışını yürütün; eşleşen backend/shared/frontend kaynaklarını birlikte taşıyın. Bu ajan main merge veya publish yapmadı.
+2. Normal oturumla dönüş, admin paneli, geçici hatada Retry, rol kaybında kapalı erişim ve login callback akışını uygulamada kontrol edin. ON-04/ON-05 tema/klavye ve fiziksel Android/iOS ayrıca kabul edilir.
+3. Güncel 034 / HC-034.0 Full Health'i çalıştırıp özel raporu kaydedin, listeden açın; gerçek hosted önkoşulları yerel fixture sonuçlarından ayırın.
+4. Önceki iki PARTIAL silme hedefinin güncel durumunu okuyun; gerekirse aynı operation ID ile devam edin. Bu çalışma gerçek kullanıcı silme/resume/reset yapmadı.
+5. Bildirim göndermeyi/scheduler'ı kapalı tutun. Açık provider/workflow sözleşmeleri ve onaylı cihaz denemeleri ayrı tamamlanmadan H14-901/H16-901 kapanmaz.
+
+Canlı Full Health/Security scan, push/workflow, import, gerçek kullanıcı işlemi, native build, main merge ve publish **NOT_RUN**.

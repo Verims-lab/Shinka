@@ -1,0 +1,227 @@
+{
+  "scope": "RESUMED_034_INITIAL_AND_INTERMEDIATE_FAILURES_PRESERVED",
+  "earlier_TLS_and_failure_evidence": "../initial-failures.json (unchanged)",
+  "failures": [
+    {
+      "name": "chromium-complete",
+      "command": [
+        "env",
+        "FOUNDATION_BROWSER=chromium",
+        "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-034-resume/chromium-complete-audit",
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "started_at": "2026-10-26T14:01:38.108039+00:00",
+      "source_head": "1f061ec5ac79bf225ce644e2c400c45d8487f613",
+      "source_diff_sha256": "7ae497690b5184640a459b80a742c93012a119f15439e32765db307c1b535596",
+      "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+      "ended_at": "2026-10-26T14:02:53.104725+00:00",
+      "exit_code": 1,
+      "log": "chromium-complete.txt",
+      "log_sha256": "67081419ad8c7f5bd9f5eb960e1e24bf7fad49f9d01dbc270a2fc4b0a3353543",
+      "saved_sha256": "677dff2e56da1b20235670c599bc7949ba32aa1239761d15f2f84d5a6179b0bc"
+    },
+    {
+      "name": "chromium-final",
+      "command": [
+        "env",
+        "FOUNDATION_BROWSER=chromium",
+        "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-034-resume/chromium-final-audit",
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "started_at": "2026-10-26T13:58:18.664720+00:00",
+      "source_head": "1f061ec5ac79bf225ce644e2c400c45d8487f613",
+      "source_diff_sha256": "351d2ef1c78885635dfbce50a77cffb576416005542bb5c599c71b00008de086",
+      "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+      "ended_at": "2026-10-26T13:59:24.210196+00:00",
+      "exit_code": 1,
+      "log": "chromium-final.txt",
+      "log_sha256": "fba8ca2aefed9172e5dfae293eb9dcee3459ef13ddd87419c32c864af861594b",
+      "saved_sha256": "abb4cb920490947bc1d328d1bfde5b183e4dc4bc3b0b623fcbed55765fe0c8b3"
+    },
+    {
+      "name": "chromium-initial",
+      "command": [
+        "env",
+        "FOUNDATION_BROWSER=chromium",
+        "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-034-resume/chromium-audit",
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "started_at": "2026-10-26T13:52:28.595065+00:00",
+      "source_head": "1f061ec5ac79bf225ce644e2c400c45d8487f613",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+      "ended_at": "2026-10-26T13:52:29.352896+00:00",
+      "exit_code": 1,
+      "log": "chromium-initial.txt",
+      "log_sha256": "e4c886b9f0f09f4bf138f0fe7688291e9ebf4de097a4e0816142232f88b8874f",
+      "saved_sha256": "145632b51f542169f7b88d9d605551c6e9bb1e4411ab5d77c024fa92adc9b036"
+    },
+    {
+      "name": "chromium-repaired",
+      "command": [
+        "env",
+        "FOUNDATION_BROWSER=chromium",
+        "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-034-resume/chromium-audit",
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "started_at": "2026-10-26T13:54:26.732842+00:00",
+      "source_head": "1f061ec5ac79bf225ce644e2c400c45d8487f613",
+      "source_diff_sha256": "e06f07db7164edb11f18005988cf252732d73eb3fcdfb91c69b1cb711ba73d3b",
+      "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+      "ended_at": "2026-10-26T13:55:31.451666+00:00",
+      "exit_code": 1,
+      "log": "chromium-repaired.txt",
+      "log_sha256": "61015f07af781a9fb03ede41fee62f495a2afa12aa8c8a27909e4da105e75ca6",
+      "saved_sha256": "16543b8160107df74080e83ae3bd3087d9dc3639119e30b71d4ad30a97a2ee40"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "started_at": "2026-10-26T13:52:01.158254+00:00",
+      "source_head": "1f061ec5ac79bf225ce644e2c400c45d8487f613",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+      "ended_at": "2026-10-26T13:52:04.772506+00:00",
+      "exit_code": 1,
+      "log": "lint.txt",
+      "log_sha256": "3d6283053a398ef0eab455863aa4ae74f6892a9faeeb84b81120da48bd4269a0",
+      "saved_sha256": "0dbeda5e3c9ea61766180bd6305c492d0bc328565e6459070b7c5d7f5d36acf3"
+    },
+    {
+      "name": "typecheck-fixed",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "started_at": "2026-10-26T13:54:24.896509+00:00",
+      "source_head": "1f061ec5ac79bf225ce644e2c400c45d8487f613",
+      "source_diff_sha256": "e06f07db7164edb11f18005988cf252732d73eb3fcdfb91c69b1cb711ba73d3b",
+      "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+      "ended_at": "2026-10-26T13:54:27.816648+00:00",
+      "exit_code": 2,
+      "log": "typecheck-fixed.txt",
+      "log_sha256": "e23dc9b304f6f859fa7aa1aa804ce5b588f4064951c3a8ba7fec57da85e960ce",
+      "saved_sha256": "e23dc9b304f6f859fa7aa1aa804ce5b588f4064951c3a8ba7fec57da85e960ce"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "started_at": "2026-10-26T13:52:01.323112+00:00",
+      "source_head": "1f061ec5ac79bf225ce644e2c400c45d8487f613",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+      "ended_at": "2026-10-26T13:52:04.973632+00:00",
+      "exit_code": 2,
+      "log": "typecheck.txt",
+      "log_sha256": "ddaff9d37a1a1ec76ee91574cbf7af1e33291673aefbda86378f5ce62c8d3451",
+      "saved_sha256": "ddaff9d37a1a1ec76ee91574cbf7af1e33291673aefbda86378f5ce62c8d3451"
+    },
+    {
+      "name": "webkit-complete",
+      "command": [
+        "env",
+        "FOUNDATION_BROWSER=webkit",
+        "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-034-resume/webkit-complete-audit",
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "started_at": "2026-10-26T14:01:39.945324+00:00",
+      "source_head": "1f061ec5ac79bf225ce644e2c400c45d8487f613",
+      "source_diff_sha256": "7ae497690b5184640a459b80a742c93012a119f15439e32765db307c1b535596",
+      "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+      "ended_at": "2026-10-26T14:02:56.817398+00:00",
+      "exit_code": 1,
+      "log": "webkit-complete.txt",
+      "log_sha256": "67081419ad8c7f5bd9f5eb960e1e24bf7fad49f9d01dbc270a2fc4b0a3353543",
+      "saved_sha256": "677dff2e56da1b20235670c599bc7949ba32aa1239761d15f2f84d5a6179b0bc"
+    },
+    {
+      "name": "webkit-final",
+      "command": [
+        "env",
+        "FOUNDATION_BROWSER=webkit",
+        "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-034-resume/webkit-final-audit",
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "started_at": "2026-10-26T13:58:17.260679+00:00",
+      "source_head": "1f061ec5ac79bf225ce644e2c400c45d8487f613",
+      "source_diff_sha256": "351d2ef1c78885635dfbce50a77cffb576416005542bb5c599c71b00008de086",
+      "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+      "ended_at": "2026-10-26T13:59:25.949315+00:00",
+      "exit_code": 1,
+      "log": "webkit-final.txt",
+      "log_sha256": "fba8ca2aefed9172e5dfae293eb9dcee3459ef13ddd87419c32c864af861594b",
+      "saved_sha256": "abb4cb920490947bc1d328d1bfde5b183e4dc4bc3b0b623fcbed55765fe0c8b3"
+    },
+    {
+      "name": "webkit-initial",
+      "command": [
+        "env",
+        "FOUNDATION_BROWSER=webkit",
+        "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-034-resume/webkit-audit",
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "started_at": "2026-10-26T13:52:27.601966+00:00",
+      "source_head": "1f061ec5ac79bf225ce644e2c400c45d8487f613",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+      "ended_at": "2026-10-26T13:52:29.216453+00:00",
+      "exit_code": 1,
+      "log": "webkit-initial.txt",
+      "log_sha256": "e4c886b9f0f09f4bf138f0fe7688291e9ebf4de097a4e0816142232f88b8874f",
+      "saved_sha256": "145632b51f542169f7b88d9d605551c6e9bb1e4411ab5d77c024fa92adc9b036"
+    },
+    {
+      "name": "webkit-repaired",
+      "command": [
+        "env",
+        "FOUNDATION_BROWSER=webkit",
+        "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-034-resume/webkit-audit",
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "started_at": "2026-10-26T13:54:27.149441+00:00",
+      "source_head": "1f061ec5ac79bf225ce644e2c400c45d8487f613",
+      "source_diff_sha256": "e06f07db7164edb11f18005988cf252732d73eb3fcdfb91c69b1cb711ba73d3b",
+      "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+      "ended_at": "2026-10-26T13:55:36.249155+00:00",
+      "exit_code": 1,
+      "log": "webkit-repaired.txt",
+      "log_sha256": "80fd5582f64728aad6b8a3c0aec2b745737660d1c81cf8bfcd75fa983a81fbe6",
+      "saved_sha256": "338928549b0b3cc451678f7afbd7ee283a2752baf02b79c42a1896eb59487dda"
+    }
+  ],
+  "explanations": {
+    "typecheck": "Uninitialized resolver, fixture union/return/children inference; first repair retained two never-return inference diagnostics before final correction.",
+    "lint": "Unused Navigate import.",
+    "browser-initial": "NS02 obsolete 401 expectation on unclassified transport; server prelude failed, browser did not launch.",
+    "browser-repaired": "Chromium T81 CSS serialization, both SS08/TP03 premature DOM checks, then anonymous fixture default error caused route wait failure.",
+    "browser-final": "All 649 assertions passed but product navigation assumed unthrottled focus; full command failed.",
+    "browser-complete": "All 649 assertions passed but admin focus fixture assumed unthrottled refresh; full command failed.",
+    "fixes": "Exact 401/503 and readiness verdicts retained; DOM waits strengthened, CSS serialization normalized, passive refresh uses controlled clock/bfcache. No guard/assertion removal or larger budgets."
+  },
+  "log_normalization": "ANSI color escapes removed, local paths normalized, trailing EOF whitespace removed; original log_sha256 retained."
+}

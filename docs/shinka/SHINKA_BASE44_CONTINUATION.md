@@ -8,11 +8,13 @@
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
 
-## 034 — Test draft; full local validation pending
+## 034 — local verification complete; owner publication and hosted acceptance pending
 
-2026-10-26 support note: user-relayed Dmytro / Base44 Support confirms user_id/title/content/action_label/action_url names only; unknown/misnamed fields may be silently discarded on success. Generic success is no proof of all-field processing or device display. Full schema, native User mapping, concrete acceptance/error/no-device JSON, workflow secret/header transport, eligibility, idempotency and logout/account rebinding remain open. Provider remains UNKNOWN, actual entry enabled:false. H14-901/H16-901 stay open. Same 034 / PR #36, comments/docs only; do not restart blocked checks until the owner separately requests continuation after network recovery.
+Resumed from clean Test 1f061ec with current main 041b40b; zod 4.6.7/resolvers 5.9.2 package/lock are unchanged. Clean install/tree/runtime peers/audit and mandatory local gates pass. Chromium/WebKit each 649/649, required 17 IDs unique PASS, Node 9/9; local Health retains 13 hosted-prerequisite BLOCKED cases. Existing Test / draft PR #36 and 034 / HC-034.0 continue, no new package. Original blockers/failures are retained. [034 results and evidence](reports/SHINKA_STABILIZATION_034.md).
 
-Fresh main 041b40b was fast-forwarded into clean Test; lock versions zod 4.6.7/resolvers 5.9.2 are preserved. Independent stabilization corrections and Node checks are prepared; TLS blocks clean install/audit and therefore browser/build acceptance. Owner chose to report the network blocker. Complete the remaining local gates before owner merge/publish, then in-app session/Health acceptance. Two existing deletion targets were previously reported PARTIAL; current lookup and same-operation continuation remain owner actions. [034 handoff](reports/SHINKA_STABILIZATION_034.md).
+Official integration documentation confirms 100/500/50 character limits, optional action/link and Home default. User-relayed Dmytro / Base44 Support confirms field names and possible silent field discard on success. Full wire types/requiredness/nullability/Unicode counting, native User mapping, concrete acceptance/error/no-device JSON, secure workflow secret/header transport, eligibility, idempotency and logout/account rebinding remain open. Provider UNKNOWN, actual entry enabled:false; H14-901/H16-901 stay open.
+
+Owner actions: merge/sync/publish matching backend/shared/frontend, then current 034 in-app Full Health save/list/open and session/admin/Retry/OAuth/device checks. The two existing deletion targets were previously PARTIAL; current lookup and same-operation continuation remain owner actions. This local work performs no live operation or publication. Twelve backend findings remain OPEN / USER-DEFERRED.
 
 ## 033 — local secret preparation, hosted binding still closed
 

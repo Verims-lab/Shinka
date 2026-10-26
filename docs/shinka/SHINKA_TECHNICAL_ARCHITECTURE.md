@@ -11,9 +11,11 @@
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
-## 034 — stabilization preparation
+## 034 — stabilization locally verified
 
-AuthProvider session/account boundaries invalidate pending coalescer generations; transient errors do not grant admin. Test Tools cancels pending continuation on session/account/privacy invalidation and checks its start budget after the 1.5 s wait. The 60 s limit and nativeReadiness retry budget are not hard cancellation of in-flight SDK reads. Four readiness cases keep one per-run memoized source. Node 9/9 passed; actual browser integration remains NOT_RUN. [034 evidence](reports/SHINKA_STABILIZATION_034.md).
+AuthProvider session/account boundaries invalidate pending coalescer generations; transient errors do not grant admin. Test Tools cancels continuation on session/account/privacy invalidation and rechecks its start budget after the 1.5 s wait. The 60 s limit and nativeReadiness retry budget are not hard cancellation of in-flight SDK reads. Four readiness cases keep one per-run memoized source. Fresh Node 9/9 and both full browser runs 649/649 verify these scopes; hosted/device acceptance remains separate. This continuation corrects test types/timing/provenance and an unused import, preserving runtime guards and dependency lock. [034 results and evidence](reports/SHINKA_STABILIZATION_034.md).
+
+Push source distinction: official documentation confirms 100/500/50 character limits, optional action/link and Home default; user-relayed support confirms exact field names and silent unknown-field discard. Full wire types/nullability/Unicode counting and native recipient/response/workflow/device contracts remain open. Strict local validation and UNKNOWN output policy are unchanged; actual entry disabled.
 
 ## 033 — separate prepared machine admission
 

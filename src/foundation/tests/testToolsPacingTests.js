@@ -32,7 +32,7 @@ async function fixture(run,context={},restored=null) {
     const input=q('#test-user-id');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(input,target.id);input.dispatchEvent(new Event('input',{bubbles:true}));
     await turn();q('#test-lookup-button').click();await until(()=>q('[data-test-target]'));
     q('[data-destructive="true"]').click();await until(()=>q('[data-test-preview]'));
-    q('[data-test-preview] [data-variant="primary"]').click();await turn();await until(()=>f.waits.length===1);
+    q('[data-test-preview] [data-variant="primary"]').click();await turn();await until(()=>f.waits.length===1&&!q('[data-test-preview]')&&q('[role="status"]'));
   };
   try {await until(()=>q('#test-user-id'));await run({f,q,host,until,begin,dispose,turn,result});}
   finally {dispose();for(const release of f.waits)release();if(saved===null)sessionStorage.removeItem(KEY);else sessionStorage.setItem(KEY,saved);}

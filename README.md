@@ -4,9 +4,9 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Any change pushed to the repo will also be reflected in the Base44 Builder.
 
-## Current Test stabilization preparation (Buildmarker-034)
+## Current Test stabilization verification (Buildmarker-034)
 
-034 preserves the latest Base44 dependency lock and onboarding/session/deletion work. Focused session-generation, pacing and readiness fixes have Node/source evidence; clean install/audit and full Chromium/WebKit validation remain blocked by registry TLS. This is a draft with incomplete acceptance. [034 results and remaining gates](docs/shinka/reports/SHINKA_STABILIZATION_034.md).
+034 preserves the latest Base44 dependency lock and onboarding/session/deletion work. Resumed clean installation and all local gates pass: Chromium/WebKit 649/649 each, 17 required IDs unique PASS, Node 9/9, audit zero. Local Health retains 13 hosted-prerequisite blockers. LOCAL_VERIFIED / USER_PUBLISH_AND_HOSTED_ACCEPTANCE_PENDING; existing draft PR #36 awaits owner publication and hosted/device acceptance. [034 results and remaining gates](docs/shinka/reports/SHINKA_STABILIZATION_034.md).
 
 ## Previous scheduler authorization preparation (Buildmarker-033)
 

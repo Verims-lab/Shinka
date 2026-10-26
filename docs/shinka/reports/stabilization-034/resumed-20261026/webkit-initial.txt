@@ -1,0 +1,18 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 test:foundation
+> node scripts/runFoundationTests.mjs
+
+AssertionError [ERR_ASSERTION]: NS02
+
+503 !== 401
+
+    at verifyNotifications (file://<repo>/scripts/verifyNotifications.mjs:59:45)
+    at async file://<repo>/scripts/runFoundationTests.mjs:42:28 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 503,
+  expected: 401,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

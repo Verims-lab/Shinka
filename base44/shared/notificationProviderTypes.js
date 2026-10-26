@@ -1,6 +1,7 @@
 // Local narrow input based on user-relayed Base44 AI (030). User-relayed Dmytro /
-// Base44 Support confirms only these field names (034), not types, requiredness,
-// nullability or limits. Native User.id mapping and response/error JSON are open;
+// Base44 Support confirms these field names (034). Official integration docs
+// confirm 100/500/50 limits and optional action/link with Home default. Full wire
+// types/requiredness/nullability/Unicode counting, User.id and response JSON are open;
 // this is not a hosted-verified SDK contract. Provider output stays unknown.
 /**
  * @typedef {object} ReportedPushInput

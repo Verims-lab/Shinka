@@ -8,11 +8,11 @@
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
-## 034 — focused closure with an explicit environment blocker
+## 034 — authorized continuation on the restored network
 
-2026-10-26 continuation is explicitly limited to notification support evidence/comments/docs within 034 / HC-034.0 / PR #36. Do not restart incomplete installation, browsers, audit or quality gates; preserve BLOCKED/NOT_RUN and await the owner's separate instruction after network recovery. Names-only support confirmation does not establish a complete input/recipient/response/workflow contract. Keep strict validation/tests, external H14-901/H16-901 and enabled:false. Same-marker recordBuild may refresh descriptive metadata without opening a new package or claiming a new validation run.
+The owner’s 2026-10-26 attachment 71da2d1f-ad7a-4fe0-af92-66a0a9e1d6ac explicitly resumes the incomplete local gates from Test 1f061ec / PR #36. This supersedes the preceding support-note-only no-rerun instruction. Keep Buildmarker-034 / HC-034.0, preserve main 041b40b package/lock and all user/Base44 work, record one same-marker summary, retain 030–034. Use pinned npm ci/tree/runtime/audit, Node, separate full Chromium/WebKit and mandatory quality/performance/history checks; preserve every old BLOCKED/NOT_RUN/failure receipt and add new results separately. No downgrade, TLS relaxation, assertion removal or time-budget increase.
 
-Continue fresh origin/main 041b40b and preserve its package/lock and Base44 changes. Record 034 / HC-034.0 once with recordBuild; retain 030–034. Complete independent Node/source/docs checks; failed clean installation/audit and zero browser execution are BLOCKED, never PASS. The owner explicitly chose to report the Fortinet TLS blocker. Test draft delivery is permitted with incomplete validation clearly stated; no main merge/publish/live operation. [034 handoff](reports/SHINKA_STABILIZATION_034.md).
+Reconcile official push limits/Home with support-relayed field names; keep unknown wire/native/provider/workflow/device contracts open, strict validation, H14-901/H16-901 external and entry enabled:false. Test-only delivery updates existing PR #36; no new package, main merge/publish, hosted Health/scan, user mutation, workflow/push/import or native build. All local gates passing permits LOCAL_VERIFIED / USER_PUBLISH_AND_HOSTED_ACCEPTANCE_PENDING, never live closure. [034 results and evidence](reports/SHINKA_STABILIZATION_034.md).
 
 ## 033 — bounded authorization preparation
 

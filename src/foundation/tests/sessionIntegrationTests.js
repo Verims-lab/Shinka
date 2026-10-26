@@ -12,9 +12,10 @@ import { waitForFixture } from './domWait';
 import { testEventTurn } from './testClock';
 
 const check = (ok, message) => { if (!ok) throw new Error(message); };
-const deferred = () => { let resolve; const promise = new Promise(r => { resolve = r; }); return { promise, resolve }; };
+const deferred = () => { let resolve = value => { check(false, `Uninitialized fixture gate: ${value}`); }; const promise = new Promise(r => { resolve = r; }); return { promise, resolve }; };
 const identity = (id = 'synthetic-A', role = 'admin') => ({ id, role, authority: 'BASE44_NATIVE_V1' });
-const transientErrors = () => [429,503].map(status => ({status})).concat([{code:'ETIMEDOUT'},{code:'ERR_NETWORK'},new TypeError('synthetic network'),new Error('unclassified')]);
+const transientErrors = () => [...[429,503].map(status => ({status})),{code:'ETIMEDOUT'},{code:'ERR_NETWORK'},new TypeError('synthetic network'),new Error('unclassified')];
+/** @param {string} path @param {Function} run @param {Parameters<import('./testTypes').FoundationTest[2]>[0]} [context] @param {ReturnType<typeof identity> | (() => Promise<unknown>) | null} [initial] */
 async function fixture(path, run, context = {}, initial = identity()) {
   const f = { auth: null, location: null, calls: 0, logouts: 0, logins: [], now: 0, timer: null, result: initial, me: async () => typeof f.result === 'function' ? f.result() : f.result };
   const timing = { now: () => f.now, every: fn => { f.timer = fn; return 1; }, cancel: () => { f.timer = null; } };
@@ -28,7 +29,7 @@ async function fixture(path, run, context = {}, initial = identity()) {
   function Observer() { f.auth = useAuth(); f.location = useLocation(); return h('output', {'data-auth-observed':true}, JSON.stringify({id:f.auth.user?.id,admin:f.auth.isAdmin,checked:f.auth.authChecked,error:f.auth.authError,refresh:f.auth.isRefreshingAuth,path:f.location.pathname})); }
   const screen = name => h('div', {[`data-${name}`]:true}, name);
   root.render(h(AuthProvider,{client,sessionTiming:timing},h(MemoryRouter,{initialEntries:[path]},h(Observer),h(Routes,null,
-    h(Route,{path:'/login',element:h(ProtectedRoute,{unauthenticatedElement:h(SignIn,{authenticate:async (...args)=>{f.logins.push(args);return {ok:true};}})},screen('callback-accepted'))}),
+    h(Route,{path:'/login',element:h(ProtectedRoute,{unauthenticatedElement:h(SignIn,{authenticate:async (...args)=>{f.logins.push(args);return {ok:true,code:null};}})},screen('callback-accepted'))}),
     h(Route,{element:h(ProtectedRoute,{unauthenticatedElement:h(LoginRedirect)})},
       h(Route,{path:'/private',element:screen('private')}),
       h(Route,{element:h(AdminGate)},h(Route,{path:'/internal/test-tools',element:screen('admin-operation')})))))));
@@ -73,9 +74,9 @@ export const SESSION_INTEGRATION_TESTS = [
       check(f.calls===before+1,'passive requests not coalesced');
       // Explicit app/session boundary must not reuse that older pending check.
       f.me=async()=>identity('synthetic-B','user');const current=f.auth.checkAppState();await testEventTurn(context.signal);
-      gate.resolve(identity('synthetic-A','admin'));await current;await wait(()=>!f.auth.isLoadingAuth&&!f.auth.isLoadingPublicSettings);
+      gate.resolve(identity('synthetic-A','admin'));await current;await wait(()=>f.auth.user?.id==='synthetic-B'&&f.auth.authChecked&&!f.auth.isLoadingAuth&&!f.auth.isLoadingPublicSettings);
       check(f.auth.user?.id==='synthetic-B'&&!f.auth.isAdmin,'old account response or success reused');
-      await f.auth.logout(false);f.me=async()=>identity('synthetic-C','user');await f.auth.checkAppState();await wait(()=>!f.auth.isLoadingAuth);
+      await f.auth.logout(false);f.me=async()=>identity('synthetic-C','user');await f.auth.checkAppState();await wait(()=>f.auth.user?.id==='synthetic-C'&&f.auth.authChecked&&!f.auth.isLoadingAuth);
       check(f.auth.user?.id==='synthetic-C'&&f.auth.isAuthenticated,'new session after logout not reverified');
     },context);
   }],

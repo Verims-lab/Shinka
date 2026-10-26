@@ -35,7 +35,7 @@ export const HEALTH_READ_TESTS = [
   ['HD01','Readiness distinguishes a successful empty table from a bounded positive sample',async()=>{
     for(const rows of [[],[{id:'synthetic',body:'PRIVATE'}]]){
       const value=await nativeReadiness(readyClient(rows));
-      check(value.schemas.every(row=>row.readable&&row.sampledRows===rows.length));safe(value);
+      check(value.schemas.every(row=>row.readable&&'sampledRows' in row&&row.sampledRows===rows.length));safe(value);
       check((await nativePrerequisite({nativeReadiness:async()=>value},'daily')).status==='PASS');
       check(value.hostedMutationVerified===false);
     }
@@ -44,14 +44,15 @@ export const HEALTH_READ_TESTS = [
     for(const [status,code] of kinds){
       const c=readyClient([]); c.asServiceRole.entities.AdminTestOperation.filter=async()=>{throw failure(status);};
       const value=await nativeReadiness(c), row=value.schemas[0];
-      check(row.readable===false&&row.diagnostic.code===code&&row.diagnostic.stage==='ENTITY_READ');safe(value);
-      check((await nativePrerequisite({nativeReadiness:async()=>value},'reset')).status==='FAIL');
+      check(row.readable===false&&'diagnostic' in row&&row.diagnostic.code===code&&row.diagnostic.stage==='ENTITY_READ');safe(value);
+      const expected=['RATE_LIMITED','SERVICE_UNAVAILABLE','TIMEOUT'].includes(String(code))?'BLOCKED':'FAIL';
+      check((await nativePrerequisite({nativeReadiness:async()=>value},'reset')).status===expected);
     }
     for(const rows of [null,{},[{}],[{id:'a'},{id:'b'}]]){
-      const value=await nativeReadiness(readyClient(rows));check(value.schemas.every(r=>!r.readable&&r.diagnostic.code==='INVALID_RESPONSE'));
+      const value=await nativeReadiness(readyClient(rows));check(value.schemas.every(r=>!r.readable&&'diagnostic' in r&&r.diagnostic.code==='INVALID_RESPONSE'));
     }
     const value=await nativeReadiness(client(Object.fromEntries(names.map(name=>[name,{}]))));
-    check(value.schemas.every(r=>r.diagnostic.code==='SDK_METHOD_UNAVAILABLE'));
+    check(value.schemas.every(r=>'diagnostic' in r&&r.diagnostic.code==='SDK_METHOD_UNAVAILABLE'));
   }],
   ['HD03','Aggregate zero is measured; absent, denied, transient and malformed aggregates stay null',async()=>{
     for(const value of [0,260]){

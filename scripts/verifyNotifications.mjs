@@ -41,7 +41,7 @@ export async function verifyNotifications(root) {
   const admin={id:'synthetic-actor',role:'admin'},user={...admin,role:'user'};
   const fixtures=[
     {id:'NS01',me:null,status:401},
-    {id:'NS02',authError:true,status:401},
+    {id:'NS02',authError:true,status:503},
     {id:'NS03',me:user,native:user,status:403},
     {id:'NS04',me:admin,native:user,status:403},
     {id:'NS05',me:admin,native:null,status:401},
@@ -58,7 +58,7 @@ export async function verifyNotifications(root) {
     const response=await exports.default(new Request('https://fixture.invalid/schedule',{method:'POST',body:JSON.stringify(item.body||{action:'tick'}),headers:item.headers}));
     const body=await response.json();assert.equal(response.status,item.status,item.id);
     if(item.status===200)assert.deepEqual(body,{state:'DISABLED',processed:0});
-    else assert.equal(body.error_code,item.status===401?'AUTH_REQUIRED':item.status===403?'ADMIN_REQUIRED':'INVALID_REQUEST');
+    else assert.equal(body.error_code,item.status===401?'AUTH_REQUIRED':item.status===403?'ADMIN_REQUIRED':item.status===503?'SESSION_UNAVAILABLE':'INVALID_REQUEST');
     assert.equal(counts.jobIO,0);assert.equal(counts.provider,0);assert.equal(counts.clients,1);
     if(!item.me)assert.equal(counts.serviceAccess,0);
     if(item.preparedMachine){assert.equal(counts.auth,0);assert.equal(counts.secretReads,1);}

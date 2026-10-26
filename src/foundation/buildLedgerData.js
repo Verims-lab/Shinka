@@ -62,12 +62,12 @@ export default [
     "package_type": "FIX",
     "created_at": "2026-10-26T12:10:32.352494+00:00",
     "health_catalog_version": "HC-034.0",
-    "short_summary": "034 local corrections prepared: session-generation reset, post-wait deletion budget/cancellation and strict readiness rows. Node 9/9 PASS; Chromium/WebKit 0 executed, clean install/audit blocked by untrusted Fortinet TLS. Full local validation remains OPEN; no live acceptance.",
+    "short_summary": "034 local validation completed on preserved zod 4.6.7/resolvers 5.9.2 lock: Chromium/WebKit 649/649 each, all 17 required IDs unique PASS, Node 9/9; install/tree/runtime peer/audit/type/lint/build/repo/performance gates pass. Hosted/device and owner publish acceptance remain pending.",
     "full_health_status": "NOT_RUN",
     "docs_aligned": true,
     "source_changed": true,
     "tests_changed": true,
     "health_changed": true,
-    "notes": "Base origin/main 041b40b; preserve zod 4.6.7/resolvers 5.9.2 lock. Prior f3dbba1 checkpoint: Repo Health/last-five PASS; Node initial 7/7, new SS02b FAIL then fixed, final 9/9 incl. separate SS04n (not browser). SS06–SS09/TP01–TP04/SS10 prepared, NOT_RUN. 034 Health total add 0/update 9/delete 0: original 8 plus H14-901 description only. 2026-10-26 user-relayed Dmytro/Base44 Support confirms five input names only; silent field discard on success is possible. Full schema/recipient/acceptance/error/no-device/workflow/eligibility/idempotency/logout contracts open; adapter UNKNOWN, entry disabled, H14-901/H16-901 open. Comments/docs addendum, no new tests or install/browser/audit/quality runs; preserved BLOCKED/NOT_RUN. Await owner instruction after network recovery. Partial static tools are not npm ci/browser proof. Live Full Health/native/push/delete/resume NOT_RUN; 12 backend findings OPEN/USER-DEFERRED. See SHINKA_STABILIZATION_034.md."
+    "notes": "LOCAL_VERIFIED / USER_PUBLISH_AND_HOSTED_ACCEPTANCE_PENDING. Base origin/main 041b40b; resumed from clean Test 1f061ec. Original TLS/NOT_RUN and all new failures preserved. Corrected fixture types/React commit waits, CSS layer serialization, explicit anonymous 401 and transport 503 expectations, controlled passive-refresh timing. Strict guards and NC06/NC07 unchanged. Health add 0/update 9/delete 0; local in-app 136 PASS/13 prerequisite BLOCKED, no FAIL. Official docs: 100/500/50 limits, optional action/link, Home default; user-relayed support: field names/silent discard. Wire types/nullability/Unicode/native User/response/workflow/device contracts open, adapter UNKNOWN, entry disabled, H14-901/H16-901 open. Full Health/native/push/delete/resume NOT_RUN; 12 backend findings OPEN/USER-DEFERRED; prior two live targets PARTIAL not reread. See SHINKA_STABILIZATION_034.md and resumed-20261026 evidence."
   }
 ];
