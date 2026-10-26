@@ -4,6 +4,12 @@
 **İnceleme tarihi:** 2026-10-23 (Europe/Istanbul; koşu kayıtları UTC)
 **Durum:** Yerel hazırlık; gerçek secret kaydı/taşıması bağlı değil, entry `enabled:false`.
 
+## 034 ek notu — resmî belge ve destek kanıtı ayrımı (2026-10-26)
+
+Kullanıcının ilettiği **Dmytro / Base44 Support** yanıtı `user_id`, `title`, `content`, `action_label`, `action_url` adlarını doğrular; önceki AI aktarımına ek kaynak budur. Destek kaydına bağımsız erişilmedi veya hosted çağrı yapılmadı. Bilinmeyen/yanlış alanlar sessizce atılıp başarı dönebilir; genel başarı bütün alanların işlendiğini ya da cihaz gösterimini kanıtlamaz. Aşağıdaki tarihsel “provider kabulü” ifadesi somut bir yanıt eşlemesi değildir; ACCEPTED/SENT çıkarımı yapılmaz.
+
+[Resmî entegrasyon belgesi](https://docs.base44.com/Integrations/built-in-integrations#sending-push-notifications), 2026-10-26 tarihinde yeniden incelendi: başlık/mesaj/aksiyon etiketi 100/500/50 karakter; etiket ve uygulama içi bağlantı isteğe bağlı, bağlantısız açılış Home. Bunlar yalnız AI aktarımı değildir; gerçek cihaz kabulü de değildir. Tam wire tipleri, zorunluluk, nullability ve Unicode sayımı, native User.id eşlemesi, somut kabul/başarı/hata/no-device JSON, uygunluk, idempotency ve logout/hesap değişimi hâlâ açık. Workflow secret kaydı/referansı/header taşıması için yeni sözleşme gelmedi; bağlantı kurulmadı. Bu raporun 033 koşuları ve başarısızlıkları tarihsel kalır; yeni ağdaki 034 doğrulaması ayrı kayıttır. Güncel [034 sonucu](SHINKA_STABILIZATION_034.md): Chromium/WebKit 649/649 ve yerel kapılar PASS; eski TLS/BLOCKED/NOT_RUN kanıtları korunur, hosted/device kabulü açık kalır. Entry `enabled:false`, H14-901/H16-901 açık.
+
 ## Kaynak ve bilginin niteliği
 
 Başlangıç Test/origin Test `8498cf40ce14f0f65800a65781b1816b714e48f6`, çalışma ağacı temizdi. Kullanıcı PR #34'ü main'e `c9d2d04a1176f9e936456eaddaf14dd420d81721` ile birleştirmişti; ağaçlar aynıydı. Test güvenli fast-forward ile ilerletildi. 033 boştu; kullanıcı/Base44 içeriği ezilmedi.

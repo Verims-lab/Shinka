@@ -1,0 +1,28 @@
+{
+  "scope": "LOCK_METADATA_NOT_INSTALLED_PEER_OR_RUNTIME_PROOF",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "versions": {
+    "zod": "4.6.7",
+    "@hookform/resolvers": "5.9.2",
+    "react-hook-form": "7.71.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "@base44/sdk": "0.8.57",
+    "@base44/vite-plugin": "1.0.48",
+    "vite": "8.2.4",
+    "playwright": "1.64.0",
+    "typescript": "5.9.3",
+    "acorn": "8.19.0",
+    "acorn-jsx": "5.3.2"
+  },
+  "resolver_required_peers": {
+    "zod": "^3.25.0 || ^4.0.0",
+    "react-hook-form": "^7.55.0"
+  },
+  "platform_zod_closure": "USER_REPORTED_2026-10-26_NOT_INDEPENDENTLY_VERIFIED",
+  "local_audit": "TLS_ERROR_VULNERABILITY_COUNTS_UNKNOWN",
+  "backend_findings": {
+    "count": 12,
+    "status": "OPEN / USER-DEFERRED"
+  }
+}

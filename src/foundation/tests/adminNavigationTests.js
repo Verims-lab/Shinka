@@ -103,7 +103,10 @@ export const ADMIN_NAV_TESTS = [
       await wait(() => q('[data-admin-panel]'));
       const delayed = deferred(); f.me = () => delayed.promise;
       const old = f.auth.checkUserAuth();
-      f.me = async () => user; await f.auth.checkUserAuth();
+      await testEventTurn(context.signal);
+      // A new account/app boundary invalidates the pending request. Ordinary
+      // concurrent checks intentionally share it and cannot express this case.
+      f.me = async () => user; await f.auth.checkAppState();
       await wait(() => q('[data-error-code="FORBIDDEN"]'));
       delayed.resolve(admin); await old; await testEventTurn(context.signal);
       assert(!f.auth.isAdmin && !q('[data-admin-panel]'), 'stale role restored');

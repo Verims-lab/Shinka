@@ -2,12 +2,19 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-033
-**Stabilization 034 (pending record):** New `src/` files may not import `base44/`, and edits may not add such imports; server tests live in `scripts/verifySessionStability.mjs`. Post-write deletion guard restored (equivalence unproven). See reports/SHINKA_STABILIZATION_034.md.
-**Last Updated:** 2026-10-23
+**Current BuildMarker:** Buildmarker-034
+**Last Updated:** 2026-10-26
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 034 — resumed local verification, 2026-10-26
+
+**LOCAL_VERIFIED / USER_PUBLISH_AND_HOSTED_ACCEPTANCE_PENDING.** Continued clean Test 1f061ec and verified origin/main 041b40b; unchanged zod 4.6.7/resolvers 5.9.2 lock installed successfully on the new network. npm ls --all and real resolver success/error runtime checks pass. Local audit/security:deps report zero at every severity. Node 9/9 reran; Chromium/WebKit each 649/649 with all 17 required IDs unique PASS, plus canonical navigation/mobile/Health flows. Local in-app Health: 136 PASS/13 prerequisite BLOCKED/0 FAIL. Type/lint/build/repo/performance/history pass. JS 481660/160876 gzip, CSS 78364/14534 bytes, unchanged budgets; no graph cycles and lazy recovery passes. [034 results and evidence](reports/SHINKA_STABILIZATION_034.md).
+
+Fixed test type errors, unused Navigate import, T81 engine-specific repeat serialization, SS08/TP fixture DOM commit waits, stale 401/503 and readiness verdict expectations, explicit anonymous SDK 401 and passive-refresh timing in real App navigation checks. Existing assertions remain; NC06/NC07 and security guards are unchanged, no timeout/budget increase or new test ID. Health cumulative 0/9/0; 034 / HC-034.0 and 030–034 retained. Official documented limits/Home are distinct from support-relayed names and unknown wire/provider/workflow contracts. Entry disabled; H14-901/H16-901 open.
+
+Historical f3dbba1 contained the first 7/7 Node result, new SS02b FAIL then 9/9, incomplete component tests and Fortinet TLS blockers. The 1f061ec support-only continuation ran no gates by explicit instruction. Those receipts and initial syntax/ID collisions remain unchanged. The new network continuation authorizes fresh checks and stores all new initial failures and final results under stabilization-034/resumed-20261026. No hosted/device/main/publish action occurred; 12 backend findings remain OPEN / USER-DEFERRED and the two real PARTIAL deletion operations were not reread.
 
 ## Onboarding background (UI-only, 2026-10-26)
 

@@ -12,7 +12,7 @@ export const NOTIFICATION_CONTRACT_TESTS = [
    const f=notificationFixture();let service=0,providers=0;
    const raw=()=>({auth:{me:async()=>{if(throws)throw new Error('private auth detail');return null;}},get asServiceRole(){service++;throw new Error('UNAUTHORIZED_SERVICE');}});
    const response=await call(f,{raw,createProvider:()=>{providers++;return f.provider;}});
-   check(response.status===401&&(await response.json()).error_code==='AUTH_REQUIRED');check(service===0&&providers===0&&f.state.calls.length===0);
+   check(response.status===(throws?503:401)&&(await response.json()).error_code===(throws?'SESSION_UNAVAILABLE':'AUTH_REQUIRED'));check(service===0&&providers===0&&f.state.calls.length===0);
   }
  }],
  ['NC02','Normal, demoted cached-admin and removed native User cannot start work',async()=>{

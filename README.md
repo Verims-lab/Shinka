@@ -4,7 +4,11 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Any change pushed to the repo will also be reflected in the Base44 Builder.
 
-## Current Test scheduler authorization preparation (Buildmarker-033)
+## Current Test stabilization verification (Buildmarker-034)
+
+034 preserves the latest Base44 dependency lock and onboarding/session/deletion work. Resumed clean installation and all local gates pass: Chromium/WebKit 649/649 each, 17 required IDs unique PASS, Node 9/9, audit zero. Local Health retains 13 hosted-prerequisite blockers. LOCAL_VERIFIED / USER_PUBLISH_AND_HOSTED_ACCEPTANCE_PENDING; existing draft PR #36 awaits owner publication and hosted/device acceptance. [034 results and remaining gates](docs/shinka/reports/SHINKA_STABILIZATION_034.md).
+
+## Previous scheduler authorization preparation (Buildmarker-033)
 
 033 prepares scheduler-only shared-secret comparison and a separate machine admission path. Manual admin checks stay intact; real secret registration/transport is unbound and the actual entry stays disabled. [033 implementation, evidence and owner setup](docs/shinka/reports/SHINKA_SCHEDULER_AUTHORIZATION_033.md).
 

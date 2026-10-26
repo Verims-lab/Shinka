@@ -1,0 +1,45 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 typecheck
+> tsc -p ./jsconfig.json
+
+src/foundation/tests/cssContractTests.js(104,53): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '{ className: string; "data-onb": number; }' is not assignable to parameter of type 'Attributes & { [x: string]: any; children: any; className?: string; }'.
+      Property 'children' is missing in type '{ className: string; "data-onb": number; }' but required in type '{ [x: string]: any; children: any; className?: string; }'.
+src/foundation/tests/cssContractTests.js(104,119): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '{ "data-plain": number; }' is not assignable to parameter of type 'Attributes & { [x: string]: any; children: any; className?: string; }'.
+      Property 'children' is missing in type '{ "data-plain": number; }' but required in type '{ [x: string]: any; children: any; className?: string; }'.
+src/foundation/tests/healthReadTests.js(38,56): error TS2339: Property 'sampledRows' does not exist on type '{ name: string; readable: boolean; sampledRows: number; } | { name: string; readable: boolean; diagnostic: { code: any; httpStatus: any; stage: any; durationMs: any; requestId: string; }; }'.
+  Property 'sampledRows' does not exist on type '{ name: string; readable: boolean; diagnostic: { code: any; httpStatus: any; stage: any; durationMs: any; requestId: string; }; }'.
+src/foundation/tests/healthReadTests.js(47,39): error TS2339: Property 'diagnostic' does not exist on type '{ name: string; readable: boolean; sampledRows: number; } | { name: string; readable: boolean; diagnostic: { code: any; httpStatus: any; stage: any; durationMs: any; requestId: string; }; }'.
+  Property 'diagnostic' does not exist on type '{ name: string; readable: boolean; sampledRows: number; }'.
+src/foundation/tests/healthReadTests.js(47,67): error TS2339: Property 'diagnostic' does not exist on type '{ name: string; readable: boolean; sampledRows: number; } | { name: string; readable: boolean; diagnostic: { code: any; httpStatus: any; stage: any; durationMs: any; requestId: string; }; }'.
+  Property 'diagnostic' does not exist on type '{ name: string; readable: boolean; sampledRows: number; }'.
+src/foundation/tests/healthReadTests.js(51,104): error TS2339: Property 'diagnostic' does not exist on type '{ name: string; readable: boolean; sampledRows: number; } | { name: string; readable: boolean; diagnostic: { code: any; httpStatus: any; stage: any; durationMs: any; requestId: string; }; }'.
+  Property 'diagnostic' does not exist on type '{ name: string; readable: boolean; sampledRows: number; }'.
+src/foundation/tests/healthReadTests.js(54,36): error TS2339: Property 'diagnostic' does not exist on type '{ name: string; readable: boolean; sampledRows: number; } | { name: string; readable: boolean; diagnostic: { code: any; httpStatus: any; stage: any; durationMs: any; requestId: string; }; }'.
+  Property 'diagnostic' does not exist on type '{ name: string; readable: boolean; sampledRows: number; }'.
+src/foundation/tests/sessionIntegrationTests.js(17,67): error TS2769: No overload matches this call.
+  Overload 2 of 2, '(...items: ({ status: number; } | ConcatArray<{ status: number; }>)[]): { status: number; }[]', gave the following error.
+    Object literal may only specify known properties, and 'code' does not exist in type '{ status: number; }'.
+  Overload 2 of 2, '(...items: ({ status: number; } | ConcatArray<{ status: number; }>)[]): { status: number; }[]', gave the following error.
+    Object literal may only specify known properties, and 'code' does not exist in type '{ status: number; }'.
+  Overload 2 of 2, '(...items: ({ status: number; } | ConcatArray<{ status: number; }>)[]): { status: number; }[]', gave the following error.
+    Property 'status' is missing in type 'TypeError' but required in type '{ status: number; }'.
+  Overload 2 of 2, '(...items: ({ status: number; } | ConcatArray<{ status: number; }>)[]): { status: number; }[]', gave the following error.
+    Property 'status' is missing in type 'Error' but required in type '{ status: number; }'.
+src/foundation/tests/sessionIntegrationTests.js(19,166): error TS2349: This expression is not callable.
+  Type 'never' has no call signatures.
+src/foundation/tests/sessionIntegrationTests.js(31,87): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type '(provider: string, returnTo: string, ageConfirmed: boolean, auth?: Pick<AuthModule, "loginWithProvider">) => Promise<{ ok: true; }>' is not assignable to type '(provider: string, returnTo: string, ageConfirmed: boolean, auth?: Pick<AuthModule, "loginWithProvider">) => Promise<{ ok: boolean; code: string; }>'.
+      Type 'Promise<{ ok: true; }>' is not assignable to type 'Promise<{ ok: boolean; code: string; }>'.
+        Property 'code' is missing in type '{ ok: true; }' but required in type '{ ok: boolean; code: string; }'.
+src/foundation/tests/sessionIntegrationTests.js(52,221): error TS2345: Argument of type '() => Promise<never>' is not assignable to parameter of type '{ id: string; role: string; authority: string; }'.
+src/foundation/tests/sessionIntegrationTests.js(63,34): error TS2722: Cannot invoke an object which is possibly 'undefined'.
+src/foundation/tests/sessionIntegrationTests.js(76,7): error TS2722: Cannot invoke an object which is possibly 'undefined'.
+src/foundation/tests/sessionStabilityTests.js(21,80): error TS2722: Cannot invoke an object which is possibly 'undefined'.
+src/foundation/tests/sessionStabilityTests.js(42,68): error TS2741: Property 'sampledRows' is missing in type '{ name: any; readable: boolean; diagnostic: { code: any; httpStatus: any; }; }' but required in type '{ name: any; readable: boolean; sampledRows: number; }'.
+src/foundation/tests/sessionStabilityTests.js(53,28): error TS2741: Property 'sampledRows' is missing in type '{ name: any; readable: boolean; diagnostic: { code: any; httpStatus: any; }; }' but required in type '{ name: any; readable: boolean; sampledRows: number; }'.

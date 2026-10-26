@@ -74,11 +74,15 @@ export async function checkAdminNavigation(page, origin, directory) {
     results.push({ scenario: `${session}-direct-${route}`, passed: true });
   }
   await open('/internal', 'admin'); await page.waitForSelector('[data-admin-panel]');
-  await page.evaluate(() => { window.__authFixture.hold(); window.dispatchEvent(new Event('focus')); });
-  await page.waitForSelector('[data-state="LOADING"]');
-  assert(!(await page.locator('[data-admin-panel]').isVisible()));
-  await page.evaluate(() => { window.__authFixture.setSession('user'); window.__authFixture.release(); });
-  await page.waitForSelector('[data-error-code="FORBIDDEN"]');
+  // Advance the passive-check clock without sleeping or changing its 15 s policy.
+  await page.clock.setSystemTime(await page.evaluate(() => Date.now()+16000));
+  try {
+    await page.evaluate(() => { window.__authFixture.hold(); window.dispatchEvent(new Event('focus')); });
+    await page.waitForSelector('[data-state="LOADING"]');
+    assert(!(await page.locator('[data-admin-panel]').isVisible()));
+    await page.evaluate(() => { window.__authFixture.setSession('user'); window.__authFixture.release(); });
+    await page.waitForSelector('[data-error-code="FORBIDDEN"]');
+  } finally { await page.clock.setSystemTime(Date.now()); }
   results.push({ scenario: 'focus-refresh-pending-then-revoked', passed: true });
   await open('/', 'admin', 'en', 'ACTIVE_EXISTING_USER');
   await page.waitForSelector('[data-profile-trigger]:not(:disabled)');

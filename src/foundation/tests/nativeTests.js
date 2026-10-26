@@ -131,6 +131,9 @@ export const NATIVE_TESTS = [
   const f=nativeFixture();const r=await f.execute(await f.preview('DELETE_USER'));const before=JSON.stringify(f.tables.User.filter(u=>u.id!=='ownerA'));
   let threw=false;try{await f.tools({action:'resume',target_id:'ownerB',operation_id:r.job?.operation_id});}catch{threw=true;}
   check(threw,'cross-target resume rejected');check(JSON.stringify(f.tables.User.filter(u=>u.id!=='ownerA'))===before,'other users untouched');
+  const start=f.state.calls.length;
+  await rejects(()=>f.tools({action:'resume',target_id:'ownerA',operation_id:crypto.randomUUID()}),'TEST_OPERATION_NOT_FOUND');
+  check(f.state.calls.slice(start).every(c=>c.method==='filter'),'wrong operation wrote data');
  }],
 
 ];

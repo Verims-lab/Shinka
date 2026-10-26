@@ -1,0 +1,1871 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 test:foundation
+> node scripts/runFoundationTests.mjs
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/internal/HealthCenter.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/internal/BuildEnvironment.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/features/onboarding/OnboardingScreen.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/probes/AuthShellProbe.jsx, src/foundation/tests/OnboardingTestScreen.jsx, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/You.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/notificationUiTests.js, src/foundation/tests/youUiTests.js, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/Pattern.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/patternUiTests.js, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/internal/TestTools.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/adminTestToolsUiTests.js, src/foundation/tests/testToolsPacingTests.js, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/Calendar.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/calendarUiTests.js, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/foundation/probes/AuthShellProbe.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/authProbeTests.jsx, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/foundation/tests/foundationTests.js is dynamically imported by src/foundation/tests/localRunnerTests.js but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/foundation/health/catalog.js is dynamically imported by src/foundation/health/cases/h16.js, src/foundation/tests/closure018Tests.js, src/foundation/tests/closure020Tests.js, src/foundation/tests/foundationTests.js, src/foundation/tests/sessionStabilityTests.js but also statically imported by scripts/testHarness/healthTiming.js, scripts/testHarness/main.jsx, src/foundation/health/report.js, src/foundation/health/runner.js, src/pages/internal/HealthCenter.jsx, dynamic import will not move module into another chunk.
+
+{
+  "diagnosticOnly": true,
+  "youFlow": [
+    {
+      "scenario": "you-320-tr-1x",
+      "passed": true,
+      "geometry": {
+        "width": 320,
+        "scroll": 320,
+        "controls": [
+          {
+            "width": 119.171875,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 117.0625,
+            "height": 44
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 220.96875,
+            "height": 44
+          },
+          {
+            "width": 80.65625,
+            "height": 52
+          },
+          {
+            "width": 85.203125,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 80.65625,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 44
+          },
+          {
+            "width": 238,
+            "height": 44
+          },
+          {
+            "width": 97.109375,
+            "height": 44
+          },
+          {
+            "width": 106.65625,
+            "height": 56
+          },
+          {
+            "width": 106.671875,
+            "height": 56
+          },
+          {
+            "width": 106.65625,
+            "height": 56
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-320-tr-2x",
+      "passed": true,
+      "geometry": {
+        "width": 320,
+        "scroll": 320,
+        "controls": [
+          {
+            "width": 228.609375,
+            "height": 48
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 188.890625,
+            "height": 46
+          },
+          {
+            "width": 238,
+            "height": 102
+          },
+          {
+            "width": 238,
+            "height": 102
+          },
+          {
+            "width": 238,
+            "height": 132
+          },
+          {
+            "width": 124.921875,
+            "height": 52
+          },
+          {
+            "width": 131.109375,
+            "height": 46
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 124.921875,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 96
+          },
+          {
+            "width": 238,
+            "height": 48
+          },
+          {
+            "width": 154.328125,
+            "height": 46
+          },
+          {
+            "width": 106.65625,
+            "height": 96
+          },
+          {
+            "width": 106.671875,
+            "height": 96
+          },
+          {
+            "width": 106.65625,
+            "height": 96
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-320-en-1x",
+      "passed": true,
+      "geometry": {
+        "width": 320,
+        "scroll": 320,
+        "controls": [
+          {
+            "width": 125.3125,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 71.515625,
+            "height": 44
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 226.40625,
+            "height": 44
+          },
+          {
+            "width": 65.71875,
+            "height": 52
+          },
+          {
+            "width": 82.15625,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 65.71875,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 48
+          },
+          {
+            "width": 238,
+            "height": 44
+          },
+          {
+            "width": 94.5,
+            "height": 44
+          },
+          {
+            "width": 106.65625,
+            "height": 56
+          },
+          {
+            "width": 106.671875,
+            "height": 56
+          },
+          {
+            "width": 106.65625,
+            "height": 56
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-320-en-2x",
+      "passed": true,
+      "geometry": {
+        "width": 320,
+        "scroll": 320,
+        "controls": [
+          {
+            "width": 239.578125,
+            "height": 48
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 102
+          },
+          {
+            "width": 105.078125,
+            "height": 46
+          },
+          {
+            "width": 238,
+            "height": 152
+          },
+          {
+            "width": 238,
+            "height": 152
+          },
+          {
+            "width": 238,
+            "height": 88
+          },
+          {
+            "width": 97.421875,
+            "height": 52
+          },
+          {
+            "width": 126.78125,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 52
+          },
+          {
+            "width": 97.421875,
+            "height": 52
+          },
+          {
+            "width": 238,
+            "height": 144
+          },
+          {
+            "width": 238,
+            "height": 96
+          },
+          {
+            "width": 149.203125,
+            "height": 46
+          },
+          {
+            "width": 106.65625,
+            "height": 60
+          },
+          {
+            "width": 106.671875,
+            "height": 60
+          },
+          {
+            "width": 106.65625,
+            "height": 60
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-360-tr-1x",
+      "passed": true,
+      "geometry": {
+        "width": 360,
+        "scroll": 360,
+        "controls": [
+          {
+            "width": 119.171875,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 117.0625,
+            "height": 44
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 220.96875,
+            "height": 44
+          },
+          {
+            "width": 80.65625,
+            "height": 52
+          },
+          {
+            "width": 85.203125,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 80.65625,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 44
+          },
+          {
+            "width": 278,
+            "height": 44
+          },
+          {
+            "width": 97.109375,
+            "height": 44
+          },
+          {
+            "width": 120,
+            "height": 56
+          },
+          {
+            "width": 120,
+            "height": 56
+          },
+          {
+            "width": 120,
+            "height": 56
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-360-tr-2x",
+      "passed": true,
+      "geometry": {
+        "width": 360,
+        "scroll": 360,
+        "controls": [
+          {
+            "width": 228.609375,
+            "height": 48
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 188.890625,
+            "height": 46
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 88
+          },
+          {
+            "width": 124.921875,
+            "height": 52
+          },
+          {
+            "width": 131.109375,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 124.921875,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 96
+          },
+          {
+            "width": 278,
+            "height": 48
+          },
+          {
+            "width": 154.328125,
+            "height": 46
+          },
+          {
+            "width": 120,
+            "height": 60
+          },
+          {
+            "width": 120,
+            "height": 60
+          },
+          {
+            "width": 120,
+            "height": 60
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-360-en-1x",
+      "passed": true,
+      "geometry": {
+        "width": 360,
+        "scroll": 360,
+        "controls": [
+          {
+            "width": 125.3125,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 71.515625,
+            "height": 44
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 226.40625,
+            "height": 44
+          },
+          {
+            "width": 65.71875,
+            "height": 52
+          },
+          {
+            "width": 82.15625,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 65.71875,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 44
+          },
+          {
+            "width": 278,
+            "height": 44
+          },
+          {
+            "width": 94.5,
+            "height": 44
+          },
+          {
+            "width": 120,
+            "height": 56
+          },
+          {
+            "width": 120,
+            "height": 56
+          },
+          {
+            "width": 120,
+            "height": 56
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-360-en-2x",
+      "passed": true,
+      "geometry": {
+        "width": 360,
+        "scroll": 360,
+        "controls": [
+          {
+            "width": 239.578125,
+            "height": 48
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 102
+          },
+          {
+            "width": 105.078125,
+            "height": 46
+          },
+          {
+            "width": 278,
+            "height": 102
+          },
+          {
+            "width": 278,
+            "height": 102
+          },
+          {
+            "width": 278,
+            "height": 88
+          },
+          {
+            "width": 97.421875,
+            "height": 52
+          },
+          {
+            "width": 126.78125,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 52
+          },
+          {
+            "width": 97.421875,
+            "height": 52
+          },
+          {
+            "width": 278,
+            "height": 96
+          },
+          {
+            "width": 278,
+            "height": 48
+          },
+          {
+            "width": 149.203125,
+            "height": 46
+          },
+          {
+            "width": 120,
+            "height": 60
+          },
+          {
+            "width": 120,
+            "height": 60
+          },
+          {
+            "width": 120,
+            "height": 60
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-390-tr-1x",
+      "passed": true,
+      "geometry": {
+        "width": 390,
+        "scroll": 390,
+        "controls": [
+          {
+            "width": 119.171875,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 117.0625,
+            "height": 44
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 220.96875,
+            "height": 44
+          },
+          {
+            "width": 80.65625,
+            "height": 52
+          },
+          {
+            "width": 85.203125,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 80.65625,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 44
+          },
+          {
+            "width": 308,
+            "height": 44
+          },
+          {
+            "width": 97.109375,
+            "height": 44
+          },
+          {
+            "width": 130,
+            "height": 56
+          },
+          {
+            "width": 130,
+            "height": 56
+          },
+          {
+            "width": 130,
+            "height": 56
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-390-tr-2x",
+      "passed": true,
+      "geometry": {
+        "width": 390,
+        "scroll": 390,
+        "controls": [
+          {
+            "width": 228.609375,
+            "height": 48
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 188.890625,
+            "height": 46
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 88
+          },
+          {
+            "width": 124.921875,
+            "height": 52
+          },
+          {
+            "width": 131.109375,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 124.921875,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 96
+          },
+          {
+            "width": 308,
+            "height": 48
+          },
+          {
+            "width": 154.328125,
+            "height": 46
+          },
+          {
+            "width": 130,
+            "height": 60
+          },
+          {
+            "width": 130,
+            "height": 60
+          },
+          {
+            "width": 130,
+            "height": 60
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-390-en-1x",
+      "passed": true,
+      "geometry": {
+        "width": 390,
+        "scroll": 390,
+        "controls": [
+          {
+            "width": 125.3125,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 71.515625,
+            "height": 44
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 226.40625,
+            "height": 44
+          },
+          {
+            "width": 65.71875,
+            "height": 52
+          },
+          {
+            "width": 82.15625,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 65.71875,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 44
+          },
+          {
+            "width": 308,
+            "height": 44
+          },
+          {
+            "width": 94.5,
+            "height": 44
+          },
+          {
+            "width": 130,
+            "height": 56
+          },
+          {
+            "width": 130,
+            "height": 56
+          },
+          {
+            "width": 130,
+            "height": 56
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-390-en-2x",
+      "passed": true,
+      "geometry": {
+        "width": 390,
+        "scroll": 390,
+        "controls": [
+          {
+            "width": 239.578125,
+            "height": 48
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 102
+          },
+          {
+            "width": 105.078125,
+            "height": 46
+          },
+          {
+            "width": 308,
+            "height": 102
+          },
+          {
+            "width": 308,
+            "height": 102
+          },
+          {
+            "width": 308,
+            "height": 88
+          },
+          {
+            "width": 97.421875,
+            "height": 52
+          },
+          {
+            "width": 126.78125,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 52
+          },
+          {
+            "width": 97.421875,
+            "height": 52
+          },
+          {
+            "width": 308,
+            "height": 96
+          },
+          {
+            "width": 308,
+            "height": 48
+          },
+          {
+            "width": 149.203125,
+            "height": 46
+          },
+          {
+            "width": 130,
+            "height": 60
+          },
+          {
+            "width": 130,
+            "height": 60
+          },
+          {
+            "width": 130,
+            "height": 60
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-430-tr-1x",
+      "passed": true,
+      "geometry": {
+        "width": 430,
+        "scroll": 430,
+        "controls": [
+          {
+            "width": 119.171875,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 117.0625,
+            "height": 44
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 220.96875,
+            "height": 44
+          },
+          {
+            "width": 80.65625,
+            "height": 52
+          },
+          {
+            "width": 85.203125,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 80.65625,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 44
+          },
+          {
+            "width": 348,
+            "height": 44
+          },
+          {
+            "width": 97.109375,
+            "height": 44
+          },
+          {
+            "width": 143.328125,
+            "height": 56
+          },
+          {
+            "width": 143.328125,
+            "height": 56
+          },
+          {
+            "width": 143.328125,
+            "height": 56
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-430-tr-2x",
+      "passed": true,
+      "geometry": {
+        "width": 430,
+        "scroll": 430,
+        "controls": [
+          {
+            "width": 228.609375,
+            "height": 48
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 188.890625,
+            "height": 46
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 88
+          },
+          {
+            "width": 124.921875,
+            "height": 52
+          },
+          {
+            "width": 131.109375,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 124.921875,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 96
+          },
+          {
+            "width": 348,
+            "height": 48
+          },
+          {
+            "width": 154.328125,
+            "height": 46
+          },
+          {
+            "width": 143.328125,
+            "height": 60
+          },
+          {
+            "width": 143.328125,
+            "height": 60
+          },
+          {
+            "width": 143.328125,
+            "height": 60
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-430-en-1x",
+      "passed": true,
+      "geometry": {
+        "width": 430,
+        "scroll": 430,
+        "controls": [
+          {
+            "width": 125.3125,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 71.515625,
+            "height": 44
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 226.40625,
+            "height": 44
+          },
+          {
+            "width": 65.71875,
+            "height": 52
+          },
+          {
+            "width": 82.15625,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 65.71875,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 44
+          },
+          {
+            "width": 348,
+            "height": 44
+          },
+          {
+            "width": 94.5,
+            "height": 44
+          },
+          {
+            "width": 143.328125,
+            "height": 56
+          },
+          {
+            "width": 143.328125,
+            "height": 56
+          },
+          {
+            "width": 143.328125,
+            "height": 56
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-430-en-2x",
+      "passed": true,
+      "geometry": {
+        "width": 430,
+        "scroll": 430,
+        "controls": [
+          {
+            "width": 239.578125,
+            "height": 48
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 105.078125,
+            "height": 46
+          },
+          {
+            "width": 348,
+            "height": 102
+          },
+          {
+            "width": 348,
+            "height": 102
+          },
+          {
+            "width": 348,
+            "height": 88
+          },
+          {
+            "width": 97.421875,
+            "height": 52
+          },
+          {
+            "width": 126.78125,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 52
+          },
+          {
+            "width": 97.421875,
+            "height": 52
+          },
+          {
+            "width": 348,
+            "height": 96
+          },
+          {
+            "width": 348,
+            "height": 48
+          },
+          {
+            "width": 149.203125,
+            "height": 46
+          },
+          {
+            "width": 143.328125,
+            "height": 60
+          },
+          {
+            "width": 143.328125,
+            "height": 60
+          },
+          {
+            "width": 143.328125,
+            "height": 60
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-844-tr-1x",
+      "passed": true,
+      "geometry": {
+        "width": 844,
+        "scroll": 844,
+        "controls": [
+          {
+            "width": 119.171875,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 117.0625,
+            "height": 44
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 220.96875,
+            "height": 44
+          },
+          {
+            "width": 80.65625,
+            "height": 52
+          },
+          {
+            "width": 85.203125,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 80.65625,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 44
+          },
+          {
+            "width": 494,
+            "height": 44
+          },
+          {
+            "width": 97.109375,
+            "height": 44
+          },
+          {
+            "width": 281.328125,
+            "height": 56
+          },
+          {
+            "width": 281.328125,
+            "height": 56
+          },
+          {
+            "width": 281.34375,
+            "height": 56
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-844-tr-2x",
+      "passed": true,
+      "geometry": {
+        "width": 844,
+        "scroll": 844,
+        "controls": [
+          {
+            "width": 228.609375,
+            "height": 48
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 188.890625,
+            "height": 46
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 386.1875,
+            "height": 44
+          },
+          {
+            "width": 124.921875,
+            "height": 52
+          },
+          {
+            "width": 131.109375,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 124.921875,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 48
+          },
+          {
+            "width": 494,
+            "height": 48
+          },
+          {
+            "width": 154.328125,
+            "height": 46
+          },
+          {
+            "width": 281.328125,
+            "height": 60
+          },
+          {
+            "width": 281.328125,
+            "height": 60
+          },
+          {
+            "width": 281.34375,
+            "height": 60
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-844-en-1x",
+      "passed": true,
+      "geometry": {
+        "width": 844,
+        "scroll": 844,
+        "controls": [
+          {
+            "width": 125.3125,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 71.515625,
+            "height": 44
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 226.40625,
+            "height": 44
+          },
+          {
+            "width": 65.71875,
+            "height": 52
+          },
+          {
+            "width": 82.15625,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 65.71875,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 44
+          },
+          {
+            "width": 494,
+            "height": 44
+          },
+          {
+            "width": 94.5,
+            "height": 44
+          },
+          {
+            "width": 281.328125,
+            "height": 56
+          },
+          {
+            "width": 281.328125,
+            "height": 56
+          },
+          {
+            "width": 281.34375,
+            "height": 56
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-844-en-2x",
+      "passed": true,
+      "geometry": {
+        "width": 844,
+        "scroll": 844,
+        "controls": [
+          {
+            "width": 239.578125,
+            "height": 48
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 105.078125,
+            "height": 46
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 398.5,
+            "height": 44
+          },
+          {
+            "width": 97.421875,
+            "height": 52
+          },
+          {
+            "width": 126.78125,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 52
+          },
+          {
+            "width": 97.421875,
+            "height": 52
+          },
+          {
+            "width": 494,
+            "height": 48
+          },
+          {
+            "width": 494,
+            "height": 48
+          },
+          {
+            "width": 149.203125,
+            "height": 46
+          },
+          {
+            "width": 281.328125,
+            "height": 60
+          },
+          {
+            "width": 281.328125,
+            "height": 60
+          },
+          {
+            "width": 281.34375,
+            "height": 60
+          }
+        ]
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-save-reopen-all-product-locales-name-snapshot-and-logout",
+      "passed": true,
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-current-admin-revoke",
+      "passed": true,
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-route-anonymous-incomplete",
+      "passed": true,
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "you-route-user-incomplete",
+      "passed": true,
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    }
+  ],
+  "pageErrors": []
+}

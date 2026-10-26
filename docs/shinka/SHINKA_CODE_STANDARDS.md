@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-033
-**Last Updated:** 2026-10-23
+**Current BuildMarker:** Buildmarker-034
+**Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
 **Scope:** All source (client, backend, internal tooling).
@@ -35,6 +35,10 @@
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+
+## 034 — session generations and paced continuation
+
+Keep coalescing inside a session generation; reset invalidates both in-flight ownership and the last success. Actual AuthProvider/route tests are separate from pure helpers. Controlled scheduler/wait/clock dependencies preserve production defaults; no global timer patch or longer test timeout. Recheck generation and between-request budget after every pacing wait; unknown writes reconcile by status only. Native readiness requires exact named rows and valid sample counts. Browser tests remain NOT_RUN under the documented installation blocker.
 
 ## 033 — machine credential scope
 

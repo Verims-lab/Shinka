@@ -2,9 +2,8 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-033
-**Stabilization 034 (pending record):** Transient session failure shows "Oturum doğrulanamadı / Tekrar dene" (no logout, admin actions disabled); Test Tools passes paced 1.5 s. Browser acceptance not run.
-**Last Updated:** 2026-10-23
+**Current BuildMarker:** Buildmarker-034
+**Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
@@ -12,6 +11,10 @@
 **Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+## 034 — retained onboarding and completed local browser acceptance
+
+The onboarding-only light background and flat dark surface are preserved. T81 executes both themes with finally restoration and verifies six non-repeating light layers using each engine’s CSS serialization. U15 covers ON-04/ON-05 EN/TR background/overflow. SS06–09 exercise actual session/route/login components; TP01–04 exercise Test Tools pacing, partial/unknown/completed states with controlled wait/clock and real DOM commit observation. All pass within Chromium/WebKit 649/649; the 17 required IDs are unique. CLI admin/You passive refresh uses controlled elapsed time without long waits or changing product budgets. Physical keyboard/device/live acceptance remains pending. [034 results and evidence](reports/SHINKA_STABILIZATION_034.md).
 
 ## 032 — native readiness review, no UI behavior change
 

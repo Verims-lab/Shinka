@@ -1,0 +1,38 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 test:foundation
+> node scripts/runFoundationTests.mjs
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/internal/HealthCenter.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/internal/BuildEnvironment.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/features/onboarding/OnboardingScreen.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/probes/AuthShellProbe.jsx, src/foundation/tests/OnboardingTestScreen.jsx, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/You.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/notificationUiTests.js, src/foundation/tests/youUiTests.js, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/Pattern.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/patternUiTests.js, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/internal/TestTools.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/adminTestToolsUiTests.js, src/foundation/tests/testToolsPacingTests.js, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/Calendar.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/calendarUiTests.js, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/foundation/probes/AuthShellProbe.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/authProbeTests.jsx, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/foundation/tests/foundationTests.js is dynamically imported by src/foundation/tests/localRunnerTests.js but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/foundation/health/catalog.js is dynamically imported by src/foundation/health/cases/h16.js, src/foundation/tests/closure018Tests.js, src/foundation/tests/closure020Tests.js, src/foundation/tests/foundationTests.js, src/foundation/tests/sessionStabilityTests.js but also statically imported by scripts/testHarness/healthTiming.js, scripts/testHarness/main.jsx, src/foundation/health/report.js, src/foundation/health/runner.js, src/pages/internal/HealthCenter.jsx, dynamic import will not move module into another chunk.
+
+{
+  "productNavigation": {
+    "passed": true,
+    "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+    "hydrationPerProductSession": 1,
+    "noBackendPrefetch": true,
+    "backForwardReload": true,
+    "rapidNavigationLateResponse": true,
+    "privacyAndAccountSwitchInvalidate": true,
+    "logoutBackConcealsData": true
+  },
+  "pageErrors": []
+}

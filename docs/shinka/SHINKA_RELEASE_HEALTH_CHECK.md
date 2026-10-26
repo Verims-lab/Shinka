@@ -2,14 +2,21 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-033
-**Stabilization 034 (pending record):** Native prerequisite → BLOCKED only for transient unavailability on a fully valid contract (feature, authority, strategies, five schemas exactly once); mismatch (incl. mismatch + 429) → FAIL. Node 7/7 PASS; SS04 written, not run. See reports/SHINKA_STABILIZATION_034.md.
-**Last Updated:** 2026-10-23
+**Current BuildMarker:** Buildmarker-034
+**Last Updated:** 2026-10-26
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-033.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-034.0; repository, synthetic and external evidence separated.
 
-## Onboarding background (no catalog version change)
+## HC-034.0 — local verification complete; external acceptance pending
+
+**LOCAL_VERIFIED / USER_PUBLISH_AND_HOSTED_ACCEPTANCE_PENDING.** On the resumed 2026-10-26 run, Chromium/WebKit each **649 PASS / 0 FAIL**, all 17 required IDs unique and executed: T81, U15, SS01/02/04/06/07/08/09/10, NA34A–C, TP01–04. Each engine also runs the canonical server/entry/secret, navigation, mobile and Health checks. Node 9/9 separately reran. Fresh install/tree/runtime peer/audit/type/lint/build/repo/performance/history pass; no zero-test or historical-package evidence substitution. [034 results and evidence](reports/SHINKA_STABILIZATION_034.md).
+
+034 remains **add 0 / update 9 / delete 0**: H04-019, H08-005, H09-004, H12-031 (strict readiness, SS04/SS10); H12-025 (real session/routes/login); H12-033 (NA34A–C); H13-016 (TP01–04); H13-012 (T81/U15); H14-901 (evidence description only). No additional case is needed for fixture timing/types or documentation provenance corrections. Catalog stays 175 / 149 in-app / 12 local / 14 external / 0 future. Local in-app results are **136 PASS / 0 FAIL / 13 BLOCKED**: H04-019, H05-001–009, H08-005, H09-004, H12-031. These hosted/content prerequisites remain unverified, not waived.
+
+Official integration docs confirm 100/500/50 character limits, optional action/link and Home default; user-relayed Dmytro / Base44 Support confirms field names and silent unknown-field discard. Full wire types/requiredness/nullability/Unicode counting, native recipient/response/error/no-device, workflow transport, eligibility/idempotency and logout/rebinding remain open. NC06/NC07 assertions are unchanged; generic success stays UNKNOWN. H14-901 remains EXTERNAL / BLOCKED_EXTERNAL and H16-901 remains external/device, not closed. Prior TLS/BLOCKED/NOT_RUN and failed-run receipts are retained separately. Live Full Health NOT_RUN.
+
+## Base44 onboarding handoff before 034 recording — retained historical NOT_RUN
 
 H13 Health cases: none added, updated or deleted (no H13 case asserted a flat onboarding background; T75/T80 check token utilities, not the shell). Foundation test **T81** added: onboarding shell keeps PageContainer classes and has 5 radial + 1 linear layer in light; plain PageContainer has no image; dark shell is flat dark ivory. T81 not yet executed in a browser (Chromium missing locally).
 

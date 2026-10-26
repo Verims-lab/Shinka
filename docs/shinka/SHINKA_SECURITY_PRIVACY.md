@@ -2,10 +2,9 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-033
-**Stabilization 034 (pending record):** 401 only with explicit invalidity evidence; transient failures → 503 and never grant admin (SS03c PASS). Admin deletion keeps pre- AND post-write guards; NA34A–C written, not run.
+**Current BuildMarker:** Buildmarker-034
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
-**Last Updated:** 2026-10-23
+**Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
@@ -29,6 +28,14 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+## 034 — resumed dependency and stabilization evidence
+
+The owner-reported Base44 zod finding closure remains USER_REPORTED_PLATFORM_EVIDENCE. Independently, the resumed local npm audit --json and security:deps both succeed with **0 Info/Low/Moderate/High/Critical** after clean npm ci on unchanged zod 4.6.7/resolvers 5.9.2 lock. Full peer tree and positive/negative Zod resolver runtime checks pass. Original TLS failures and unknown audit counts are retained as historical evidence, not overwritten. No CA/TLS/registry/lock relaxation. The existing npm min-release-age-exclude warning is recorded; configuration is unchanged.
+
+Native deletion pre/post-write guards remain unchanged. SS01/02/04/06–10, NA34A–C and TP01–04 execute in both full 649/649 browser runs; Node 9/9 separately reruns. Unknown transport is 503/SESSION_UNAVAILABLE and denies access, while proven missing identity is 401/AUTH_REQUIRED; fixture expectations now reflect this, without service-role/job/provider access. All other local quality gates pass; hosted enforcement remains separate. **12 backend findings remain OPEN / USER-DEFERRED**; no live scan, mutation or physical acceptance. [034 results and evidence](reports/SHINKA_STABILIZATION_034.md).
+
+Official push documentation confirms 100/500/50 limits, optional action/link and Home default; support-relayed names/silent discard do not verify full wire types/nullability/Unicode counting, recipient mapping or acceptance/error/no-device semantics. Generic success stays UNKNOWN; entry enabled:false, workflow transport unbound, H14-901/H16-901 open.
 
 ## 033 — accepted secret, no general admin authority
 

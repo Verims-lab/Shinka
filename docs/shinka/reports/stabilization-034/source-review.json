@@ -1,0 +1,61 @@
+{
+  "base_commit": "041b40b6dc216b7da99d67ab4ed2da82a0b535b2",
+  "protected_files": [
+    {
+      "file": "package.json",
+      "unchanged_from_latest_main": true,
+      "sha256": "b1829dad5488e50f4a06d618c0ccd32088fc8e9371df1513fb593ff6d4e758f5"
+    },
+    {
+      "file": "package-lock.json",
+      "unchanged_from_latest_main": true,
+      "sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab"
+    },
+    {
+      "file": "base44/shared/nativeAdminTestOperation.js",
+      "unchanged_from_latest_main": true,
+      "sha256": "ee3718caf12e305dfe1d9f05a57c0d5465c0ff4d4d6197041fb8901f8974b8ee"
+    },
+    {
+      "file": "base44/shared/internalAuthorization.js",
+      "unchanged_from_latest_main": true,
+      "sha256": "624f866336a401a569b51f236e505daffec0bea000b8a18534f9ff7742846c89"
+    },
+    {
+      "file": "base44/functions/applicationSession/entry.ts",
+      "unchanged_from_latest_main": true,
+      "sha256": "d573e85eedf87c98613aee13c4c4d2c052a193ccdb14a2319c9f318ffc299dee"
+    },
+    {
+      "file": "base44/functions/notificationSchedule/entry.ts",
+      "unchanged_from_latest_main": true,
+      "sha256": "2bc77b04e593cb93aff136eb84ccc5fd02571d57d7b4f1d14d3eda5e2ef4f3f3"
+    },
+    {
+      "file": "base44/shared/notificationScheduler.js",
+      "unchanged_from_latest_main": true,
+      "sha256": "5bad992228771ac741784ac72e0f601572274c424a4cc9bd77d7b5de1102d48e"
+    },
+    {
+      "file": "src/styles/onboarding.css",
+      "unchanged_from_latest_main": true,
+      "sha256": "bc301fa6ec6622406de98dfdc82e5fc82168114266596b87eec8e74b55bc6f9a"
+    },
+    {
+      "file": "src/styles/theme.css",
+      "unchanged_from_latest_main": true,
+      "sha256": "944981cc403f73a4bd8458e1f449b234a65d7d5f8396672613a2801ecc427408"
+    },
+    {
+      "file": "src/features/onboarding/OnboardingScreen.jsx",
+      "unchanged_from_latest_main": true,
+      "sha256": "3e689a139bf3ea3b090f8eb32c74f261d95746ad12359eb74e6dc33dba24d402"
+    },
+    {
+      "file": "src/components/shinka/PageContainer.jsx",
+      "unchanged_from_latest_main": true,
+      "sha256": "340510438508fea635602a042956d4746ed552b7289fc1eb61da2186b55dd7e5"
+    }
+  ],
+  "real_notification_entry_disabled": true
+}

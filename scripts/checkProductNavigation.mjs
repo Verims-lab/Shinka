@@ -35,7 +35,12 @@ export async function checkProductNavigation(page, origin) {
   await page.waitForFunction(() => !document.querySelector('[data-pattern-root]'));
   await page.evaluate(() => window.__authFixture.releaseOperation('onboarding'));
   await page.locator(ready.pattern).waitFor();
+  const beforeSwitch=(await calls()).filter(c=>c.name==='applicationSession').length;
   await page.evaluate(() => { window.__authFixture.holdOperation('onboarding'); window.__authFixture.setSession('admin'); window.dispatchEvent(new Event('focus')); });
+  assert.equal((await calls()).filter(c=>c.name==='applicationSession').length,beforeSwitch,'recent passive focus bypassed throttle');
+  // A restored document is an explicit re-verification boundary. SS08 separately
+  // advances an injected clock to cover passive focus after the throttle expires.
+  await page.evaluate(() => window.dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true})));
   await page.waitForFunction(() => !document.querySelector('[data-pattern-root]'));
   await page.evaluate(() => window.__authFixture.releaseOperation('onboarding'));
   await page.locator(ready.pattern).waitFor();

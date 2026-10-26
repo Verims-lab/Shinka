@@ -18,7 +18,7 @@ export const DAILY_HEALTH_CASES = [
   c('H09')('H09-001', 'Native day reuse and candidate conflict behavior', 'No physical one/day prerequisite; retain candidates and deterministically reconcile.', nativeProbe(['NA02','NA03','NA04','NA05'])),
   c('H09')('H09-002', '40-day repeat window and local day', 'Day 41 eligibility and backend timezone/DST boundaries.', probe(['DM11','DM12'])),
   c('H09')('H09-003', 'Fallback chain and immutable TR/EN snapshot', 'Mapped → other categories → least recent; actual category and both snapshots.', probe(['DM13','DM14','DM18','DM19'])),
-  makeCase('H09', { runnerType: RUNNER.BACKEND, classification: CLASS.LIVE_RUNTIME })('H09-004', 'Production first-Shinka prerequisites', 'Read-only native strategy plus approved content and Moon readiness; hosted writes checked separately.', async ctx => {
+  makeCase('H09', { runnerType: RUNNER.BACKEND, classification: CLASS.LIVE_RUNTIME })('H09-004', 'Production first-Shinka prerequisites', 'Shared exact native contract: valid transient reads BLOCKED, malformed/mismatched rows FAIL; approved content and Moon readiness remain required. SS04/SS10 local matrix; hosted writes separate.', async ctx => {
     let library = null; try { library = await ctx.contentLibrary(); } catch { /* remains blocked */ }
     const prerequisite = await nativePrerequisite(ctx, 'daily');
     if (prerequisite.status !== 'PASS') return prerequisite;

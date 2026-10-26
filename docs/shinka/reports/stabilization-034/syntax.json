@@ -1,0 +1,157 @@
+{
+  "scope": "SYNTAX_AND_STATIC_REGISTRATION_ONLY_NOT_TYPECHECK_OR_TEST_EXECUTION",
+  "at": "2026-10-26T12:16:45.320Z",
+  "typescript": "5.9.3",
+  "results": [
+    {
+      "file": "base44/shared/contentStateContract.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "base44/shared/healthConstants.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "base44/shared/healthExecutionScope.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "base44/shared/nativeReadiness.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "scripts/verifySessionStability.mjs",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/features/adminTestTools/useTestTools.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/foundation/buildLedgerData.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/foundation/buildMarker.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/foundation/health/cases/adminTestTools.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/foundation/health/cases/calendar.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/foundation/health/cases/daily.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/foundation/health/cases/h12.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/foundation/health/cases/h13static.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/foundation/health/cases/native.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/foundation/health/nativeReadinessContract.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/foundation/tests/adminNavigationTests.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/foundation/tests/foundationTests.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/foundation/tests/nativeTests.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/foundation/tests/sessionStabilityTests.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/lib/AuthContext.jsx",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/lib/sessionCheck.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/pages/internal/TestTools.jsx",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/foundation/tests/sessionIntegrationTests.js",
+      "syntaxErrors": []
+    },
+    {
+      "file": "src/foundation/tests/testToolsPacingTests.js",
+      "syntaxErrors": []
+    }
+  ],
+  "requiredDefinitions": {
+    "T81": [
+      "src/foundation/tests/cssContractTests.js"
+    ],
+    "U15": [
+      "src/foundation/tests/onboardingUiTests.js"
+    ],
+    "SS01": [
+      "src/foundation/tests/sessionStabilityTests.js"
+    ],
+    "SS02": [
+      "src/foundation/tests/sessionStabilityTests.js"
+    ],
+    "SS04": [
+      "src/foundation/tests/sessionStabilityTests.js"
+    ],
+    "SS06": [
+      "src/foundation/tests/sessionIntegrationTests.js"
+    ],
+    "SS07": [
+      "src/foundation/tests/sessionIntegrationTests.js"
+    ],
+    "SS08": [
+      "src/foundation/tests/sessionIntegrationTests.js"
+    ],
+    "SS09": [
+      "src/foundation/tests/sessionIntegrationTests.js"
+    ],
+    "SS10": [
+      "src/foundation/tests/sessionStabilityTests.js"
+    ],
+    "NA34A": [
+      "src/foundation/tests/nativeTests.js"
+    ],
+    "NA34B": [
+      "src/foundation/tests/nativeTests.js"
+    ],
+    "NA34C": [
+      "src/foundation/tests/nativeTests.js"
+    ],
+    "TP01": [
+      "src/foundation/tests/testToolsPacingTests.js"
+    ],
+    "TP02": [
+      "src/foundation/tests/testToolsPacingTests.js"
+    ],
+    "TP03": [
+      "src/foundation/tests/testToolsPacingTests.js"
+    ],
+    "TP04": [
+      "src/foundation/tests/testToolsPacingTests.js"
+    ]
+  },
+  "missingOrDuplicateRequiredIds": []
+}

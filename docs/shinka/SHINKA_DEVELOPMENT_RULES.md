@@ -2,11 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-033
-**Last Updated:** 2026-10-23
+**Current BuildMarker:** Buildmarker-034
+**Last Updated:** 2026-10-26
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
+
+## 034 — authorized continuation on the restored network
+
+The owner’s 2026-10-26 attachment 71da2d1f-ad7a-4fe0-af92-66a0a9e1d6ac explicitly resumes the incomplete local gates from Test 1f061ec / PR #36. This supersedes the preceding support-note-only no-rerun instruction. Keep Buildmarker-034 / HC-034.0, preserve main 041b40b package/lock and all user/Base44 work, record one same-marker summary, retain 030–034. Use pinned npm ci/tree/runtime/audit, Node, separate full Chromium/WebKit and mandatory quality/performance/history checks; preserve every old BLOCKED/NOT_RUN/failure receipt and add new results separately. No downgrade, TLS relaxation, assertion removal or time-budget increase.
+
+Reconcile official push limits/Home with support-relayed field names; keep unknown wire/native/provider/workflow/device contracts open, strict validation, H14-901/H16-901 external and entry enabled:false. Test-only delivery updates existing PR #36; no new package, main merge/publish, hosted Health/scan, user mutation, workflow/push/import or native build. All local gates passing permits LOCAL_VERIFIED / USER_PUBLISH_AND_HOSTED_ACCEPTANCE_PENDING, never live closure. [034 results and evidence](reports/SHINKA_STABILIZATION_034.md).
 
 ## 033 — bounded authorization preparation
 

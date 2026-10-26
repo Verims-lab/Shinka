@@ -1,6 +1,7 @@
 import { classifySessionFailure } from "@/foundation/authErrors";
 import { createSessionCoalescer } from "@/lib/sessionCheck";
 import { nativePrerequisite } from "@/foundation/health/nativeReadinessContract";
+import { createHealthContext } from '@/foundation/health/context';
 const check = (ok, msg = "assertion failed") => { if (!ok) throw new Error(msg); };
 const http = status => Object.assign(new Error("x"), { status });
 const NAMES = ["AdminTestOperation", "UserCalendarAction", "InternalHealthRun", "UserPrivacyRequest", "PrivacyRecoveryReceipt"];
@@ -15,7 +16,7 @@ export const SESSION_STABILITY_TESTS = [
     for (const e of [http(401), { response: { status: 403, data: { error_code: "ACCOUNT_DELETION_IN_PROGRESS" } } }, new Error("APPLICATION_SESSION_UNVERIFIED"), { response: { status: 401, data: { error_code: "AUTH_REQUIRED" } } }]) check(classifySessionFailure(e) === "INVALID", JSON.stringify(e));
   }],
   ["SS02", "Concurrent focus/visibility/timer/route checks coalesce; passive checks throttle after success", async () => {
-    let runs = 0, release; const gate = new Promise(r => { release = r; });
+    let runs = 0, release = () => { check(false, 'Uninitialized fixture gate'); }; const gate = new Promise(r => { release = () => r(undefined); });
     let time = 0; const c = createSessionCoalescer(async () => { runs++; await gate; return true; }, { minPassiveGapMs: 15000, now: () => time });
     const all = Promise.all([c.check(), c.passive(), c.passive(), c.check()]); release(); await all;
     check(runs === 1, `runs ${runs}`);
@@ -29,5 +30,33 @@ export const SESSION_STABILITY_TESTS = [
     check((await nativePrerequisite(ctx({ ...limited, deletion: "OTHER" }), "daily")).status === "FAIL", "mismatch with 429 still fails");
     check((await nativePrerequisite(ctx({ ...STRATEGY, schemas: NAMES.map(n => n === "UserPrivacyRequest" ? unreadable(n, "NOT_FOUND", 404) : readable(n)) }), "daily")).status === "FAIL", "not found fails");
     check((await nativePrerequisite(ctx({ ...STRATEGY, schemas: NAMES.map(readable) }), "daily")).status === "PASS", "all readable passes");
+    check((await nativePrerequisite(ctx({...STRATEGY,schemas:NAMES.map(n=>n==='UserPrivacyRequest'?unreadable(n,'TIMEOUT',504):readable(n))}), 'daily')).status==='BLOCKED','timeout blocked');
+    const changes=[
+      v=>{v.authority='OTHER';},v=>{v.strategyVersion='old';},
+      ...['daily','calendar','reset','deletion'].map(key=>v=>{v[key]='OTHER';}),
+      v=>{v.schemas.pop();},v=>{v.schemas[1]={...v.schemas[0]};},v=>{v.schemas[1].name='Foreign';},
+      v=>{v.schemas[1]=null;},v=>{v.schemas[1].readable='true';},v=>{delete v.schemas[1].sampledRows;},
+      v=>{v.schemas[1].sampledRows=-1;},v=>{v.schemas[1].sampledRows=2;},v=>{v.schemas[1].sampledRows='1';},
+    ];
+    for(const with429 of [false,true]) for(const change of changes) {
+      const schemas=NAMES.map(n=>with429&&n===NAMES[4]?unreadable(n,'RATE_LIMITED',429):readable(n));
+      const v={...STRATEGY,schemas};change(v);
+      check((await nativePrerequisite(ctx(v),'daily')).status==='FAIL','malformed/mismatch concealed by transient');
+    }
+    check((await nativePrerequisite(ctx(limited),'unknown-feature')).status==='FAIL','wrong feature');
+    check((await nativePrerequisite({nativeReadiness:async()=>{throw http(429);}},'unknown-feature')).status==='FAIL','wrong feature hidden by thrown 429');
+  }],
+  ['SS10','Four actual readiness Health cases share one read per run and enforce transient versus mismatch verdicts',async()=>{
+    const {HEALTH_CASES}=await import('../health/catalog');
+    const cases=['H04-019','H08-005','H09-004','H12-031'].map(id=>HEALTH_CASES.find(c=>c.id===id));let reads=0;
+    for(const expected of ['PASS','BLOCKED','FAIL']){
+      const value={...STRATEGY,schemas:NAMES.map(n=>expected!=='PASS'&&n===NAMES[4]?unreadable(n,'RATE_LIMITED',429):readable(n))};
+      if(expected==='FAIL')value.daily='WRONG';
+      const loaders={nativeReadiness:async()=>{reads++;return value;},contentLibrary:async()=>({ready:true}),moonReadiness:async()=>({ready:true})};
+      const first=createHealthContext(loaders),before=reads;
+      for(const c of cases)check((await c.run(first)).status===expected,`${c.id} ${expected}`);
+      check(reads===before+1,'per-run source repeated');
+      await cases[0].run(createHealthContext(loaders));check(reads===before+2,'cross-run cached result');
+    }
   }],
 ];

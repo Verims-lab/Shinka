@@ -1,0 +1,528 @@
+{
+  "package": "034",
+  "catalog": "HC-034.0",
+  "date": "2026-10-26",
+  "status": "LOCAL_VALIDATION_BLOCKED",
+  "base_commit": "041b40b6dc216b7da99d67ab4ed2da82a0b535b2",
+  "source_manifest_sha256": "1b216c5baaa706a149fab87784d17ed77cd5ea31834bf7cbe59425a7daa2cc22",
+  "node": {
+    "command": "node scripts/verifySessionStability.mjs",
+    "results": [
+      [
+        "SS03a server transient -> 503",
+        "PASS"
+      ],
+      [
+        "SS03b server real invalidity -> 401",
+        "PASS"
+      ],
+      [
+        "SS03c role loss closes admin; transient never grants admin",
+        "PASS"
+      ],
+      [
+        "SS01 client classification",
+        "PASS"
+      ],
+      [
+        "SS02 coalescing/throttle/reset",
+        "PASS"
+      ],
+      [
+        "SS02b reset separates in-flight work and stale success",
+        "PASS"
+      ],
+      [
+        "SS05 nativeReadiness sequential, one retry per schema",
+        "PASS"
+      ],
+      [
+        "SS05b budget only gates retries (not a hard timeout)",
+        "PASS"
+      ],
+      [
+        "SS04n actual Health predicate in Node (not browser SS04/SS10)",
+        "PASS"
+      ]
+    ],
+    "unique_count": 9,
+    "passed": 9,
+    "failed": 0,
+    "scope": "PURE_NODE_AND_SYNTHETIC_BACKEND; NOT_BROWSER_OR_HOSTED"
+  },
+  "browser": {
+    "chromium": {
+      "attempted_command": true,
+      "exit_code": 1,
+      "executed_unique_tests": 0,
+      "passed_ids": [],
+      "failed_ids": null,
+      "missing_required_ids": [
+        "T81",
+        "U15",
+        "SS01",
+        "SS02",
+        "SS04",
+        "SS06",
+        "SS07",
+        "SS08",
+        "SS09",
+        "SS10",
+        "NA34A",
+        "NA34B",
+        "NA34C",
+        "TP01",
+        "TP02",
+        "TP03",
+        "TP04"
+      ],
+      "all_other_regressions": "NOT_RUN",
+      "reason": "ERR_MODULE_NOT_FOUND vite after TLS-blocked npm ci",
+      "engine_launch": "NOT_REACHED",
+      "visuals": "NOT_RUN"
+    },
+    "webkit": {
+      "attempted_command": true,
+      "exit_code": 1,
+      "executed_unique_tests": 0,
+      "passed_ids": [],
+      "failed_ids": null,
+      "missing_required_ids": [
+        "T81",
+        "U15",
+        "SS01",
+        "SS02",
+        "SS04",
+        "SS06",
+        "SS07",
+        "SS08",
+        "SS09",
+        "SS10",
+        "NA34A",
+        "NA34B",
+        "NA34C",
+        "TP01",
+        "TP02",
+        "TP03",
+        "TP04"
+      ],
+      "all_other_regressions": "NOT_RUN",
+      "reason": "ERR_MODULE_NOT_FOUND vite after TLS-blocked npm ci",
+      "engine_launch": "NOT_REACHED",
+      "visuals": "NOT_RUN"
+    }
+  },
+  "health": {
+    "added": [],
+    "updated": [
+      "H04-019",
+      "H08-005",
+      "H09-004",
+      "H12-031",
+      "H12-025",
+      "H12-033",
+      "H13-016",
+      "H13-012"
+    ],
+    "deleted": [],
+    "full_health": "NOT_RUN"
+  },
+  "receipts": [
+    {
+      "command": [
+        "npm",
+        "audit",
+        "--json",
+        "--fetch-timeout=15000",
+        "--fetch-retries=0"
+      ],
+      "started_at": "2026-10-26T12:03:39.357142+00:00",
+      "ended_at": "2026-10-26T12:03:40.097113+00:00",
+      "exit_code": 1,
+      "log": "audit.txt",
+      "name": "audit",
+      "raw_sha256": "025c39ab2d32f855284a548b491f1a42050540aca48c8e9d0672f563d4113699",
+      "saved_sha256": "025c39ab2d32f855284a548b491f1a42050540aca48c8e9d0672f563d4113699"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "started_at": "2026-10-26T12:10:43.800631+00:00",
+      "ended_at": "2026-10-26T12:10:44.128159+00:00",
+      "exit_code": 127,
+      "log": "build.txt",
+      "name": "build",
+      "raw_sha256": "1ab0cee25863eea3b7fe86f7b66b60edf1c86206641f2567fc23ae00083201b7",
+      "saved_sha256": "1ab0cee25863eea3b7fe86f7b66b60edf1c86206641f2567fc23ae00083201b7"
+    },
+    {
+      "command": [
+        "npm",
+        "install",
+        "--offline",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--prefix",
+        "/private/tmp/shinka-034/static-tools",
+        "acorn@8.19.0",
+        "acorn-jsx@5.3.2",
+        "typescript@5.9.3"
+      ],
+      "started_at": "2026-10-26T12:02:23.578909+00:00",
+      "ended_at": "2026-10-26T12:02:24.405927+00:00",
+      "exit_code": 0,
+      "log": "cached-static-tools.txt",
+      "name": "cached-static-tools",
+      "raw_sha256": "540182e5ffc34ebd450a5a6d397b7ed0fe5692044a11e2f1e04925387a582188",
+      "saved_sha256": "540182e5ffc34ebd450a5a6d397b7ed0fe5692044a11e2f1e04925387a582188"
+    },
+    {
+      "command": [
+        "env",
+        "FOUNDATION_BROWSER=chromium",
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "started_at": "2026-10-26T12:10:51.531748+00:00",
+      "ended_at": "2026-10-26T12:10:51.964338+00:00",
+      "exit_code": 1,
+      "log": "chromium.txt",
+      "name": "chromium",
+      "raw_sha256": "219ce512316da78fb65466060537e07cd5f8b456cb6647a0fb0faef7e6247f6e",
+      "saved_sha256": "8c0e87c54726dbac41a20ebc5d44eedc67fdcd73b9d2ce8f7f732c2e0147fb53"
+    },
+    {
+      "command": [
+        "npm",
+        "ci",
+        "--offline"
+      ],
+      "started_at": "2026-10-26T11:55:15.776624+00:00",
+      "ended_at": "2026-10-26T11:55:21.165678+00:00",
+      "exit_code": 1,
+      "log": "clean-install-offline.txt",
+      "name": "clean-install-offline",
+      "raw_sha256": "1d93622591b79c6bc9b7e0945f8ce07ca72866c15680fc4ed2dd19d40ed70119",
+      "saved_sha256": "1d93622591b79c6bc9b7e0945f8ce07ca72866c15680fc4ed2dd19d40ed70119"
+    },
+    {
+      "command": [
+        "env",
+        "NODE_OPTIONS=--use-system-ca",
+        "npm",
+        "ci"
+      ],
+      "started_at": "2026-10-26T11:51:56.030825+00:00",
+      "ended_at": "2026-10-26T11:53:09.456656+00:00",
+      "exit_code": 1,
+      "log": "clean-install-system-ca.txt",
+      "name": "clean-install-system-ca",
+      "raw_sha256": "330821c787121383f9c57d1824b4939482cdaca6305c2ff8ff83d70478127210",
+      "saved_sha256": "330821c787121383f9c57d1824b4939482cdaca6305c2ff8ff83d70478127210"
+    },
+    {
+      "command": [
+        "npm",
+        "ci"
+      ],
+      "started_at": "2026-10-26T11:50:25.435487+00:00",
+      "ended_at": "2026-10-26T11:51:40.675400+00:00",
+      "exit_code": 1,
+      "log": "clean-install.txt",
+      "name": "clean-install",
+      "raw_sha256": "b424be724d386808bc32d5844ae4d5eb1d23277ac0cfec08f765631dab579686",
+      "saved_sha256": "b424be724d386808bc32d5844ae4d5eb1d23277ac0cfec08f765631dab579686"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/recordBuild.mjs",
+        "--check"
+      ],
+      "started_at": "2026-10-26T12:17:24.224654+00:00",
+      "ended_at": "2026-10-26T12:17:24.404735+00:00",
+      "exit_code": 0,
+      "log": "history-delivery.txt",
+      "name": "history-delivery",
+      "raw_sha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f",
+      "saved_sha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/recordBuild.mjs",
+        "--check"
+      ],
+      "started_at": "2026-10-26T12:16:03.589671+00:00",
+      "ended_at": "2026-10-26T12:16:03.665727+00:00",
+      "exit_code": 0,
+      "log": "history-final.txt",
+      "name": "history-final",
+      "raw_sha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f",
+      "saved_sha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/recordBuild.mjs",
+        "--check"
+      ],
+      "started_at": "2026-10-26T12:10:43.667087+00:00",
+      "ended_at": "2026-10-26T12:10:43.928440+00:00",
+      "exit_code": 0,
+      "log": "history.txt",
+      "name": "history",
+      "raw_sha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f",
+      "saved_sha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "src/foundation/tests/sessionIntegrationTests.js"
+      ],
+      "started_at": "2026-10-26T11:58:21.124619+00:00",
+      "ended_at": "2026-10-26T11:58:21.201996+00:00",
+      "exit_code": 1,
+      "log": "integration-syntax-initial.txt",
+      "name": "integration-syntax-initial",
+      "raw_sha256": "38eaaae2685aa27f3ffc3b9d776608e7cc2b3b24e2838910a5f7e9cd69fa419f",
+      "saved_sha256": "43756079a49006135f6e9d7c8ebb705d3f3c6b38ba0cf2a046072474e2ae519b"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "started_at": "2026-10-26T12:10:43.790578+00:00",
+      "ended_at": "2026-10-26T12:10:44.128160+00:00",
+      "exit_code": 127,
+      "log": "lint.txt",
+      "name": "lint",
+      "raw_sha256": "6e0907f4e054e087f9a417fa4b36ca7f21c5406acf8b122944071520f54e072d",
+      "saved_sha256": "6e0907f4e054e087f9a417fa4b36ca7f21c5406acf8b122944071520f54e072d"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/measureMaintenance.mjs",
+        "/private/tmp/shinka-034/performance"
+      ],
+      "started_at": "2026-10-26T12:10:43.806815+00:00",
+      "ended_at": "2026-10-26T12:10:43.989561+00:00",
+      "exit_code": 1,
+      "log": "performance.txt",
+      "name": "performance",
+      "raw_sha256": "48df38914d73b96adbe2a89701e34ca66476a2724deb7a19d4e7bafc821032ab",
+      "saved_sha256": "c4b7a5fc00393a0f8e990783c6c6654711d501771eec1e3e49ae4a7932106ab7"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/repoHealth.mjs"
+      ],
+      "started_at": "2026-10-26T12:17:24.466928+00:00",
+      "ended_at": "2026-10-26T12:17:25.629155+00:00",
+      "exit_code": 0,
+      "log": "repo-delivery.txt",
+      "name": "repo-delivery",
+      "raw_sha256": "ee9cb75d42873aae7b98a8dcfbf5401b3dbb630dca6715459c4a9df54e37a153",
+      "saved_sha256": "ee9cb75d42873aae7b98a8dcfbf5401b3dbb630dca6715459c4a9df54e37a153"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/repoHealth.mjs"
+      ],
+      "started_at": "2026-10-26T12:16:02.556711+00:00",
+      "ended_at": "2026-10-26T12:16:03.524514+00:00",
+      "exit_code": 0,
+      "log": "repo-final.txt",
+      "name": "repo-final",
+      "raw_sha256": "ee9cb75d42873aae7b98a8dcfbf5401b3dbb630dca6715459c4a9df54e37a153",
+      "saved_sha256": "ee9cb75d42873aae7b98a8dcfbf5401b3dbb630dca6715459c4a9df54e37a153"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/repoHealth.mjs"
+      ],
+      "started_at": "2026-10-26T12:10:43.723668+00:00",
+      "ended_at": "2026-10-26T12:10:44.925683+00:00",
+      "exit_code": 0,
+      "log": "repo.txt",
+      "name": "repo",
+      "raw_sha256": "ee9cb75d42873aae7b98a8dcfbf5401b3dbb630dca6715459c4a9df54e37a153",
+      "saved_sha256": "ee9cb75d42873aae7b98a8dcfbf5401b3dbb630dca6715459c4a9df54e37a153"
+    },
+    {
+      "command": [
+        "env",
+        "npm_config_fetch_timeout=15000",
+        "npm_config_fetch_retries=0",
+        "npm",
+        "run",
+        "security:deps"
+      ],
+      "started_at": "2026-10-26T12:04:52.018738+00:00",
+      "ended_at": "2026-10-26T12:04:52.905330+00:00",
+      "exit_code": 1,
+      "log": "security-deps.txt",
+      "name": "security-deps",
+      "raw_sha256": "b7af8cc42f2a16985b90b012a70ce0d1cfdf36576f357d0e31ea408a249b1d25",
+      "saved_sha256": "b7af8cc42f2a16985b90b012a70ce0d1cfdf36576f357d0e31ea408a249b1d25"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/verifySessionStability.mjs"
+      ],
+      "started_at": "2026-10-26T12:12:24.267505+00:00",
+      "ended_at": "2026-10-26T12:12:24.463818+00:00",
+      "exit_code": 0,
+      "log": "server-final-feature.txt",
+      "name": "server-final-feature",
+      "raw_sha256": "063fc7308e6a494ba80b203935883bfa0fce6dec6d0503edd41b438349a1625b",
+      "saved_sha256": "063fc7308e6a494ba80b203935883bfa0fce6dec6d0503edd41b438349a1625b"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/verifySessionStability.mjs"
+      ],
+      "started_at": "2026-10-26T12:06:52.331334+00:00",
+      "ended_at": "2026-10-26T12:06:52.519620+00:00",
+      "exit_code": 0,
+      "log": "server-final.txt",
+      "name": "server-final",
+      "raw_sha256": "063fc7308e6a494ba80b203935883bfa0fce6dec6d0503edd41b438349a1625b",
+      "saved_sha256": "063fc7308e6a494ba80b203935883bfa0fce6dec6d0503edd41b438349a1625b"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/verifySessionStability.mjs"
+      ],
+      "started_at": "2026-10-26T11:57:56.144569+00:00",
+      "ended_at": "2026-10-26T11:57:56.345168+00:00",
+      "exit_code": 0,
+      "log": "server-fixed.txt",
+      "name": "server-fixed",
+      "raw_sha256": "6ab09073b521c6f277c2587f2f84dc099c31298d3387a9138a7b644b61501138",
+      "saved_sha256": "6ab09073b521c6f277c2587f2f84dc099c31298d3387a9138a7b644b61501138"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/verifySessionStability.mjs"
+      ],
+      "started_at": "2026-10-26T11:56:03.310969+00:00",
+      "ended_at": "2026-10-26T11:56:03.385659+00:00",
+      "exit_code": 0,
+      "log": "server-initial.txt",
+      "name": "server-initial",
+      "raw_sha256": "2cc2b5895a1e48647e2a3a8ba4f44b3e685e464b517b992c9e4351b65d245a61",
+      "saved_sha256": "2cc2b5895a1e48647e2a3a8ba4f44b3e685e464b517b992c9e4351b65d245a61"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/verifySessionStability.mjs"
+      ],
+      "started_at": "2026-10-26T11:56:58.994950+00:00",
+      "ended_at": "2026-10-26T11:56:59.184232+00:00",
+      "exit_code": 1,
+      "log": "server-reset-negative.txt",
+      "name": "server-reset-negative",
+      "raw_sha256": "c3474a0d4805c6f8657f4ab9f3dc96abddac2bd7931c3f0b38b49cb99a60be48",
+      "saved_sha256": "c3474a0d4805c6f8657f4ab9f3dc96abddac2bd7931c3f0b38b49cb99a60be48"
+    },
+    {
+      "command": [
+        "npm",
+        "ls",
+        "--depth=0"
+      ],
+      "started_at": "2026-10-26T12:10:43.777255+00:00",
+      "ended_at": "2026-10-26T12:10:44.393442+00:00",
+      "exit_code": 1,
+      "log": "tree-top.txt",
+      "name": "tree-top",
+      "raw_sha256": "0fc39a3784ace0459ca5470f327a18db2a61fce05e06e1c872302237a267b8bb",
+      "saved_sha256": "03ac63e797436f31a7907287376ae90d2468c791c7cf2c1b9cf3be8cfd1ec8f5"
+    },
+    {
+      "command": [
+        "npm",
+        "ls",
+        "--all"
+      ],
+      "started_at": "2026-10-26T12:10:43.623244+00:00",
+      "ended_at": "2026-10-26T12:10:44.393474+00:00",
+      "exit_code": 1,
+      "log": "tree.txt",
+      "name": "tree",
+      "raw_sha256": "5a94cafa327eb1e3d321661e4ec6ccea5fe46231ad81b72a857d4d3474edd0a1",
+      "saved_sha256": "f8ac11cc626dec889c8502ddf375f29fa8984e5bfb50a68b16b506a6a0cdf7d7"
+    },
+    {
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "-p",
+        "jsconfig.json"
+      ],
+      "started_at": "2026-10-26T12:12:24.619787+00:00",
+      "ended_at": "2026-10-26T12:12:25.253389+00:00",
+      "exit_code": 2,
+      "log": "typecheck-cached.txt",
+      "name": "typecheck-cached",
+      "raw_sha256": "22d754e33e5e414d820e237c9e477c81ec8db495c45ab51f7665351a89a3c783",
+      "saved_sha256": "22d754e33e5e414d820e237c9e477c81ec8db495c45ab51f7665351a89a3c783"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "started_at": "2026-10-26T12:10:43.818930+00:00",
+      "ended_at": "2026-10-26T12:10:44.134069+00:00",
+      "exit_code": 127,
+      "log": "typecheck.txt",
+      "name": "typecheck",
+      "raw_sha256": "8195f4082c4997dc278052604b99fb489068d89442cab2eb1000974edb65013c",
+      "saved_sha256": "8195f4082c4997dc278052604b99fb489068d89442cab2eb1000974edb65013c"
+    },
+    {
+      "command": [
+        "env",
+        "FOUNDATION_BROWSER=webkit",
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "started_at": "2026-10-26T12:10:51.538921+00:00",
+      "ended_at": "2026-10-26T12:10:51.964396+00:00",
+      "exit_code": 1,
+      "log": "webkit.txt",
+      "name": "webkit",
+      "raw_sha256": "219ce512316da78fb65466060537e07cd5f8b456cb6647a0fb0faef7e6247f6e",
+      "saved_sha256": "8c0e87c54726dbac41a20ebc5d44eedc67fdcd73b9d2ce8f7f732c2e0147fb53"
+    }
+  ],
+  "external": {
+    "workflow": "NOT_RUN",
+    "push": "NOT_RUN",
+    "real_user_operations": "NOT_RUN",
+    "native_build_device": "NOT_RUN",
+    "main_merge_publish": "NOT_RUN",
+    "two_existing_targets": "PREVIOUS_BASE44_PARTIAL_REPORT_NOT_REREAD"
+  }
+}

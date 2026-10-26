@@ -1,0 +1,9 @@
+{
+  "scope": "LOCAL_NODE_RUNTIME_PEER_SMOKE",
+  "zod": "4.6.7",
+  "resolvers": "5.9.2",
+  "reactHookForm": "7.71.1",
+  "validValues": "PASS",
+  "invalidFieldErrors": "PASS",
+  "physicalOrHosted": false
+}

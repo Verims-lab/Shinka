@@ -51,9 +51,12 @@ export async function checkYouFlow(page, origin, directory) {
   results.push({scenario:'you-save-reopen-all-product-locales-name-snapshot-and-logout',passed:true,scope:'LOCAL_BROWSER_SYNTHETIC'});
   await page.goto(`${origin}/you?appFixture=1&sdkSession=admin&onboardingState=ACTIVE_EXISTING_USER&language=en`);
   await page.waitForSelector('[data-you-consent]');await page.waitForSelector('a[href="/internal"]');
-  await page.evaluate(()=>window.__authFixture.setSession('user'));
-  await page.evaluate(()=>window.dispatchEvent(new Event('focus')));
-  await page.waitForFunction(()=>!document.querySelector('a[href="/internal"]'));
+  await page.clock.setSystemTime(await page.evaluate(()=>Date.now()+16000));
+  try {
+    await page.evaluate(()=>window.__authFixture.setSession('user'));
+    await page.evaluate(()=>window.dispatchEvent(new Event('focus')));
+    await page.waitForFunction(()=>!document.querySelector('a[href="/internal"]'));
+  } finally { await page.clock.setSystemTime(Date.now()); }
   results.push({scenario:'you-current-admin-revoke',passed:true,scope:'LOCAL_BROWSER_SYNTHETIC'});
   for(const session of ['anonymous','user']) {
     await page.goto(`${origin}/you?appFixture=1&sdkSession=${session}`);await page.waitForSelector('[data-onboarding-state]');

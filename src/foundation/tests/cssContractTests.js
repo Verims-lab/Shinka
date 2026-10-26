@@ -101,14 +101,18 @@ export const CSS_CONTRACT_TESTS = [
     try{
       for(const theme of ["light","dark"]){
         root.classList.remove("light","dark");root.classList.add(theme);root.style.colorScheme=theme;
-        await rendered(h("div",null,h(PageContainer,{className:"shinka-onboarding","data-onb":1},"a"),h(PageContainer,{"data-plain":1},"b")),host=>{
+        await rendered(h("div",null,h(PageContainer,{className:"shinka-onboarding","data-onb":1,children:"a"}),h(PageContainer,{"data-plain":1,children:"b"})),host=>{
           const onb=host.querySelector("[data-onb]"),plain=host.querySelector("[data-plain]");
           for(const c of ["shinka-viewport","bg-shinka-ivory","text-shinka-ink","font-body","shinka-onboarding"]) assert(onb.classList.contains(c),`${theme} class ${c}`);
           assert(onb.firstElementChild.classList.contains("shinka-safe-content"),`${theme} safe content kept`);
           assert(measure(plain).backgroundImage==="none",`${theme} non-onboarding background changed`);
           const img=measure(onb).backgroundImage;
           if(theme==="dark") assert(img==="none"&&measure(onb).backgroundColor===rgb(DESIGN_TOKENS.darkColor.warmIvory),"dark surface");
-          else assert((img.match(/radial-gradient/g)||[]).length===5&&/linear-gradient/.test(img)&&measure(onb).backgroundRepeat==="no-repeat","light layers");
+          else {
+            // Engines serialize identical layer repeats once or once per layer.
+            const repeats=measure(onb).backgroundRepeat.split(',').map(value=>value.trim());
+            assert((img.match(/radial-gradient/g)||[]).length===5&&(img.match(/linear-gradient/g)||[]).length===1&&[1,6].includes(repeats.length)&&repeats.every(value=>value==='no-repeat'),`light layers: ${img}; repeats=${repeats.join(',')}`);
+          }
         });
       }
     }finally{root.className=original;root.style.colorScheme=originalScheme;}

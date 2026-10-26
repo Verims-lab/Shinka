@@ -2,12 +2,19 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-033
-**Stabilization 034 (pending record):** Not published. Codex handoff list in reports/SHINKA_STABILIZATION_034.md §6.
-**Last Updated:** 2026-10-23
+**Current BuildMarker:** Buildmarker-034
+**Last Updated:** 2026-10-26
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## 034 — local verification complete; owner publication and hosted acceptance pending
+
+Resumed from clean Test 1f061ec with current main 041b40b; zod 4.6.7/resolvers 5.9.2 package/lock are unchanged. Clean install/tree/runtime peers/audit and mandatory local gates pass. Chromium/WebKit each 649/649, required 17 IDs unique PASS, Node 9/9; local Health retains 13 hosted-prerequisite BLOCKED cases. Existing Test / draft PR #36 and 034 / HC-034.0 continue, no new package. Original blockers/failures are retained. [034 results and evidence](reports/SHINKA_STABILIZATION_034.md).
+
+Official integration documentation confirms 100/500/50 character limits, optional action/link and Home default. User-relayed Dmytro / Base44 Support confirms field names and possible silent field discard on success. Full wire types/requiredness/nullability/Unicode counting, native User mapping, concrete acceptance/error/no-device JSON, secure workflow secret/header transport, eligibility, idempotency and logout/account rebinding remain open. Provider UNKNOWN, actual entry enabled:false; H14-901/H16-901 stay open.
+
+Owner actions: merge/sync/publish matching backend/shared/frontend, then current 034 in-app Full Health save/list/open and session/admin/Retry/OAuth/device checks. The two existing deletion targets were previously PARTIAL; current lookup and same-operation continuation remain owner actions. This local work performs no live operation or publication. Twelve backend findings remain OPEN / USER-DEFERRED.
 
 ## 033 — local secret preparation, hosted binding still closed
 

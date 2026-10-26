@@ -45,7 +45,7 @@ export const base44 = {
     me: async () => {
       if (delayed) await delayed.promise;
       if (session === 'admin' || session === 'user') return { id: `synthetic-${session}`, role: session };
-      throw new Error('SYNTHETIC_ANONYMOUS');
+      throw Object.assign(new Error('SYNTHETIC_ANONYMOUS'), {status:401});
     },
     logout: () => { session = 'anonymous'; },
     loginWithProvider: async () => { throw new Error('SYNTHETIC_AUTH_NO_REDIRECT'); },

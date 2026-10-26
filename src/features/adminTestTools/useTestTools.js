@@ -7,7 +7,7 @@ const remember = value => { try {if(value)sessionStorage.setItem(KEY,JSON.string
 // Paced passes: back-to-back resume/status calls (each with nested admission
 // reads) were a measured source of 429s. Never an automatic new deletion.
 const PASS_GAP_MS = 1500;
-export function useTestTools(request = adminTestRequest, wait = ms => new Promise(resolve => setTimeout(resolve, ms))) {
+export function useTestTools(request = adminTestRequest, wait = ms => new Promise(resolve => setTimeout(resolve, ms)), clock = () => performance.now()) {
   const initial = useRef(readPending());
   const [input,setInput] = useState(initial.current?.target || ''), [value,setValue] = useState(null);
   const [preview,setPreview] = useState(null), [job,setJob] = useState(null), [pendingId,setPendingId] = useState(initial.current?.id || null);
@@ -26,7 +26,7 @@ export function useTestTools(request = adminTestRequest, wait = ms => new Promis
     const version=generation.current;
     inFlight.current=true;setBusy(true);setError(null);
     if(action==='execute'||action==='resume')setPhase(preview?.operation==='RESET_ONBOARDING'||job?.operation==='RESET_ONBOARDING'?'RESETTING':'DELETING');
-    const started=performance.now();
+    const started=clock();
     try {
       let result=await request(action,payload);
       if(version!==generation.current)return;
@@ -34,12 +34,13 @@ export function useTestTools(request = adminTestRequest, wait = ms => new Promis
       const operationId=payload.request_id||payload.operation_id;
       // Only an acknowledged partial response can continue the already approved
       // operation. Unknown responses leave this loop and only reconcile reads.
-      for(let pass=1;['execute','resume'].includes(action)&&pass<12&&performance.now()-started<60000;pass++) {
+      for(let pass=1;['execute','resume'].includes(action)&&pass<12&&clock()-started<60000;pass++) {
         if(result.result_state!=='PARTIAL'||!result.resume_enabled||result.job?.operation!=='DELETE_USER'||result.job.operation_id!==operationId)break;
         if(result.job.status!=='RUNNING'&&result.job.error_code!=='TEST_CLEANUP_MORE_REQUIRED')break;
         if(version!==generation.current)break;
         setPhase('DELETING');
         await wait(PASS_GAP_MS);if(version!==generation.current)break;
+        if(clock()-started>=60000){onResult(result);break;}
         result=await request('resume',{target_id:payload.target_id,operation_id:operationId});
         if(version!==generation.current)break;
         onResult(result);
@@ -55,6 +56,7 @@ export function useTestTools(request = adminTestRequest, wait = ms => new Promis
         for(let attempt=0;attempt<2&&version===generation.current;attempt++) {
           try {
             await wait(PASS_GAP_MS);if(version!==generation.current)break;
+            if(clock()-started>=60000)break;
             const result=await request('status',{target_id:payload.target_id,operation_id:payload.request_id||payload.operation_id});
             if(version!==generation.current)break;
             accept(result);setError(null);
@@ -72,7 +74,16 @@ export function useTestTools(request = adminTestRequest, wait = ms => new Promis
     setInput(next);setValue(null);setPreview(null);setJob(null);setPendingId(null);setError(null);setBusy(false);setPhase('IDLE');
   }
   function lookup() { if(inFlight.current)return;setValue(null);setPreview(null);setJob(null);return run('lookup',{target_id:input.trim()}); }
-  useEffect(()=>{if(initial.current)void lookup();return()=>{generation.current++;};},[]);
+  useEffect(()=>{
+    const invalidate=()=>{
+      generation.current++;inFlight.current=false;remember(null);
+      setInput('');setValue(null);setPreview(null);setJob(null);setPendingId(null);setError(null);setBusy(false);setPhase('IDLE');
+    };
+    window.addEventListener('shinka-session-ended',invalidate);
+    window.addEventListener('shinka-health-access-changed',invalidate);
+    if(initial.current)void lookup();
+    return()=>{generation.current++;window.removeEventListener('shinka-session-ended',invalidate);window.removeEventListener('shinka-health-access-changed',invalidate);};
+  },[]);
   const inspect=operation=>{if(!value?.target||busy)return;setPreview(null);return run('preview',{target_id:value.target.id,operation},result=>{setPreview(result);setJob(result.active_operation||null);});};
   function cancel(){if(inFlight.current)return;setPreview(null);setError(null);}
   function execute(){

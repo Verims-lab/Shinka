@@ -1,0 +1,535 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 test:foundation
+> node scripts/runFoundationTests.mjs
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/internal/HealthCenter.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/internal/BuildEnvironment.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/features/onboarding/OnboardingScreen.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/probes/AuthShellProbe.jsx, src/foundation/tests/OnboardingTestScreen.jsx, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/You.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/notificationUiTests.js, src/foundation/tests/youUiTests.js, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/Pattern.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/patternUiTests.js, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/internal/TestTools.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/adminTestToolsUiTests.js, src/foundation/tests/testToolsPacingTests.js, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/pages/Calendar.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/calendarUiTests.js, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/foundation/probes/AuthShellProbe.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/authProbeTests.jsx, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/foundation/tests/foundationTests.js is dynamically imported by src/foundation/tests/localRunnerTests.js but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/foundation/health/catalog.js is dynamically imported by src/foundation/health/cases/h16.js, src/foundation/tests/closure018Tests.js, src/foundation/tests/closure020Tests.js, src/foundation/tests/foundationTests.js, src/foundation/tests/sessionStabilityTests.js but also statically imported by scripts/testHarness/healthTiming.js, scripts/testHarness/main.jsx, src/foundation/health/report.js, src/foundation/health/runner.js, src/pages/internal/HealthCenter.jsx, dynamic import will not move module into another chunk.
+
+{
+  "diagnosticOnly": true,
+  "adminNavigation": [
+    {
+      "scenario": "admin-menu-panel-tools-return-360-tr",
+      "passed": true,
+      "menu": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 44,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 190,
+            "height": 44,
+            "named": true
+          }
+        ]
+      },
+      "panel": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 114.21875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 141.1875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 132,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 132,
+            "named": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        }
+      ]
+    },
+    {
+      "scenario": "user-no-menu-360-tr",
+      "passed": true
+    },
+    {
+      "scenario": "admin-menu-panel-tools-return-360-en",
+      "passed": true,
+      "menu": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 44,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 190,
+            "height": 44,
+            "named": true
+          }
+        ]
+      },
+      "panel": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 99.203125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 129.296875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 320,
+            "height": 132,
+            "named": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        }
+      ]
+    },
+    {
+      "scenario": "user-no-menu-360-en",
+      "passed": true
+    },
+    {
+      "scenario": "admin-menu-panel-tools-return-1280-tr",
+      "passed": true,
+      "menu": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 44,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 190,
+            "height": 44,
+            "named": true
+          }
+        ]
+      },
+      "panel": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 114.21875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 141.1875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 482,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 482,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 482,
+            "height": 110,
+            "named": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        }
+      ]
+    },
+    {
+      "scenario": "user-no-menu-1280-tr",
+      "passed": true
+    },
+    {
+      "scenario": "admin-menu-panel-tools-return-1280-en",
+      "passed": true,
+      "menu": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 44,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 190,
+            "height": 44,
+            "named": true
+          }
+        ]
+      },
+      "panel": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 99.203125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 129.296875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 482,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 482.00006103515625,
+            "height": 110,
+            "named": true
+          },
+          {
+            "width": 482,
+            "height": 110,
+            "named": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "internalHealth",
+          "action": "list"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        }
+      ]
+    },
+    {
+      "scenario": "user-no-menu-1280-en",
+      "passed": true
+    },
+    {
+      "scenario": "user-direct-/internal",
+      "passed": true
+    },
+    {
+      "scenario": "user-direct-/internal/health",
+      "passed": true
+    },
+    {
+      "scenario": "user-direct-/internal/build",
+      "passed": true
+    },
+    {
+      "scenario": "user-direct-/internal/test-tools",
+      "passed": true
+    },
+    {
+      "scenario": "anonymous-direct-/internal",
+      "passed": true
+    },
+    {
+      "scenario": "anonymous-direct-/internal/health",
+      "passed": true
+    },
+    {
+      "scenario": "anonymous-direct-/internal/build",
+      "passed": true
+    },
+    {
+      "scenario": "anonymous-direct-/internal/test-tools",
+      "passed": true
+    },
+    {
+      "scenario": "focus-refresh-pending-then-revoked",
+      "passed": true
+    },
+    {
+      "scenario": "existing-user-home-entry-and-return",
+      "passed": true
+    },
+    {
+      "scenario": "pending-onboarding-admin-entry-no-late-write",
+      "passed": true,
+      "actions": [
+        {
+          "name": "applicationSession"
+        },
+        {
+          "name": "onboarding",
+          "action": "hydrate"
+        },
+        {
+          "name": "applicationSession"
+        }
+      ]
+    }
+  ],
+  "pageErrors": []
+}

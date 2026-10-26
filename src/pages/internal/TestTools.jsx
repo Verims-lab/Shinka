@@ -12,9 +12,9 @@ import { ADMIN_TEST_TOOLS } from '@/features/adminTestTools/catalog';
 import { useTestTools } from '@/features/adminTestTools/useTestTools';
 import ImpactPreview from '@/features/adminTestTools/ImpactPreview';
 
-export default function TestTools({ request = undefined }) {
+export default function TestTools({ request = undefined, wait = undefined, clock = undefined }) {
   const language = internalLanguage(useLocation().state), text = key => copy(key, language);
-  const tools = useTestTools(request);
+  const tools = useTestTools(request, wait, clock);
   const target = tools.value?.target, environment = tools.preview?.environment || tools.value?.environment;
   const lookupButton = useRef(null);
   return <PageContainer>

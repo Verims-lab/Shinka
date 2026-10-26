@@ -1,0 +1,38 @@
+[
+ [
+  "SS03a server transient -> 503",
+  "PASS"
+ ],
+ [
+  "SS03b server real invalidity -> 401",
+  "PASS"
+ ],
+ [
+  "SS03c role loss closes admin; transient never grants admin",
+  "PASS"
+ ],
+ [
+  "SS01 client classification",
+  "PASS"
+ ],
+ [
+  "SS02 coalescing/throttle/reset",
+  "PASS"
+ ],
+ [
+  "SS02b reset separates in-flight work and stale success",
+  "PASS"
+ ],
+ [
+  "SS05 nativeReadiness sequential, one retry per schema",
+  "PASS"
+ ],
+ [
+  "SS05b budget only gates retries (not a hard timeout)",
+  "PASS"
+ ],
+ [
+  "SS04n actual Health predicate in Node (not browser SS04/SS10)",
+  "PASS"
+ ]
+]
