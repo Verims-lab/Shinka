@@ -31,11 +31,11 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
   const adapter=createGeoNamesAdapter({username:'  fixture-configured \n',fetcher:async(url,options)=>{
     check(url.origin==='https://secure.geonames.org'&&url.pathname==='/searchJSON');
     check(url.searchParams.get('username')==='fixture-configured'&&url.searchParams.get('q')==='İstanbul City');
-    check(url.searchParams.get('lang')==='tr'&&url.searchParams.get('maxRows')==='8'&&options.redirect==='manual'&&!('headers' in options));
-    return Response.json({geonames:[{...fixturePlace,username:'discard-provider-field'}]});
+    check(url.searchParams.get('lang')==='tr'&&url.searchParams.get('maxRows')==='50'&&options.redirect==='manual'&&!('headers' in options));
+    return Response.json({geonames:[{...fixturePlace,name:'İstanbul City',username:'discard-provider-field'}]});
   }});
   const response=await post(sdkOnboardingFixture(),adapter);
-  check(response.status===200&&JSON.stringify(await response.json())===JSON.stringify({places:[normalizeGeoNamesPlace(fixturePlace)]}));
+  check(response.status===200&&JSON.stringify(await response.json())===JSON.stringify({places:[{...normalizeGeoNamesPlace({...fixturePlace,name:'İstanbul City'}),place_kind:'PLACE',place_path:['Türkiye','Fixture Region']}],page:0,next_page:null,limited:false}));
  }],
  ['G02','Network failure and request/body timeout have distinct safe classes and bounded abort',withTestClock(async(clock,context)=>{
   const network=createGeoNamesAdapter({username:'fixture',fetcher:async()=>{throw new Error('private URL and username');}});
@@ -75,7 +75,7 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
   check((await bounded.search('City','en')).places.length===1,'duplicate provider IDs collapse');
  }],
  ['G06','Malformed JSON/envelope/records and oversized payloads are safe invalid responses',async()=>{
-  for(const text of ['invalid','null','[]','{}','{"geonames":{}}','{"status":null}','{"status":{"value":"10"}}',JSON.stringify({geonames:[null]}),JSON.stringify({geonames:[{...fixturePlace,lat:''}]}),JSON.stringify({geonames:[],extra:'ı'.repeat(50001)})]){
+  for(const text of ['invalid','null','[]','{}','{"geonames":{}}','{"status":null}','{"status":{"value":"10"}}',JSON.stringify({geonames:[null]}),JSON.stringify({geonames:[{...fixturePlace,lat:''}]}),JSON.stringify({geonames:[],extra:'ı'.repeat(524289)})]){
     const adapter=createGeoNamesAdapter({username:'fixture',fetcher:async()=>new Response(text)});
     await failure(()=>adapter.search('City','en'),'GEONAMES_INVALID_RESPONSE',200);
   }
@@ -142,7 +142,7 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
  ['G10','Fetch invocation versus body-read stage is precise; successful search and ID resolve preserved',async()=>{
   const invocation=createGeoNamesAdapter({username:'fixture',fetcher:()=>{throw Object.assign(new TypeError('fixture'),{code:'ERR_INVALID_THIS'});}});
   await failure(()=>invocation.search('City','en'),'GEONAMES_NETWORK_ERROR',null,null,null,'FETCH','INVOCATION_INPUT');
-  const body=createGeoNamesAdapter({username:'fixture',fetcher:async()=>Object.assign(new Response('fixture'),{text:async()=>{throw Object.assign(new Error('fixture'),{code:'ECONNRESET'});}})});
+  const body=createGeoNamesAdapter({username:'fixture',fetcher:async()=>new Response(new ReadableStream({pull(controller){controller.error(Object.assign(new Error('fixture'),{code:'ECONNRESET'}));}}))});
   await failure(()=>body.search('City','en'),'GEONAMES_NETWORK_ERROR',200,null,null,'RESPONSE_BODY','CONNECTION');
   const paths=[];
   const success=createGeoNamesAdapter({username:'fixture',fetcher:async(url,options)=>{

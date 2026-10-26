@@ -6,7 +6,8 @@ import ShinkaCard from "@/components/shinka/ShinkaCard";
 import ShinkaButton from "@/components/shinka/ShinkaButton";
 import ShinkaInput from "@/components/shinka/ShinkaInput";
 import SignIn from "./SignIn";
-import { ProfileForm, CycleForm, FieldError } from "./OnboardingForms";
+import { ProfileForm, CycleForm } from "./OnboardingForms";
+import FieldError from "./FieldError";
 import { beginProviderAuth } from "@/services/authService";
 import {
   readPendingName,
@@ -18,7 +19,7 @@ import {
   optionalName,
   OnboardingError,
 } from "../../../base44/shared/onboardingValidation.js";
-import { onboardingRequest } from "@/services/onboardingService";
+import { onboardingRequest, assertOnboardingProgress } from "@/services/onboardingService";
 import FirstShinka from '@/features/daily/FirstShinka';
 const DEFAULT_PENDING = {
   read: readPendingName,
@@ -38,7 +39,7 @@ const SCREENS = {
   FIRST_SHINKA_DEPENDENCY: { title: "preparation" },
   INACTIVE_ACCOUNT: { title: "inactive" },
 };
-/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,onLanguage?:Function,pending?:typeof DEFAULT_PENDING,authenticate?:typeof beginProviderAuth,dependencies?:string[],renderProfileAccess?:(language:string)=>import("react").ReactNode}} props */
+/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,onLanguage?:Function,pending?:typeof DEFAULT_PENDING,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
 export default function OnboardingScreen({
   state,
   initialLanguage = "en",
@@ -51,11 +52,10 @@ export default function OnboardingScreen({
   pending = DEFAULT_PENDING,
   authenticate = beginProviderAuth,
   dependencies = [],
-  renderProfileAccess = () => null,
 }) {
   const [language, setLanguage] = useState(initialLanguage),
     [name, setName] = useState(
-      () => pending.read() ?? profile?.display_name ?? "",
+      () => profile ? profile.display_name ?? "" : pending.read() ?? "",
     ),
     [form, setForm] = useState({
       birth_date: profile?.birth_date || "",
@@ -73,8 +73,16 @@ export default function OnboardingScreen({
     [error, setError] = useState(null);
   const title = useRef(null),
     lock = useRef(false),
-    action = useRef(null);
+    action = useRef(null),
+    mounted = useRef(false),
+    generation = useRef(0);
   const t = (key) => onboardingCopy(key, language);
+  useEffect(() => {
+    mounted.current = true;
+    const invalidate = () => { generation.current++; };
+    window.addEventListener('shinka-session-ended', invalidate);
+    return () => { mounted.current = false; invalidate(); window.removeEventListener('shinka-session-ended', invalidate); };
+  }, []);
   useEffect(() => {
     setError(null);
     title.current?.focus();
@@ -91,28 +99,34 @@ export default function OnboardingScreen({
   };
   const run = async (fn) => {
     if (lock.current) return;
+    const ticket = generation.current;
     lock.current = true;
     setBusy(true);
     setError(null);
     try {
       await fn();
     } catch (e) {
-      showError(e);
+      if (mounted.current && ticket === generation.current) showError(e);
     } finally {
-      lock.current = false;
-      setBusy(false);
+      if (mounted.current && ticket === generation.current) { lock.current = false; setBusy(false); }
     }
   };
   const submit = async (actionName, payload) => {
+    const ticket = generation.current;
     const key = JSON.stringify([actionName, payload]);
     if (action.current?.key !== key)
       action.current = { key, id: crypto.randomUUID() };
     const result = await request(actionName, {
       ...payload,
-      action_id: action.current.id,
+      ...(actionName === 'skipCycle' ? {} : { action_id: action.current.id }),
     });
+    if (!mounted.current || ticket !== generation.current) return;
+    assertOnboardingProgress(actionName, payload, result);
     if (result.persisted && actionName === "saveProfile") pending.clear();
-    if (result.profile) setName(result.profile.display_name || "");
+    if (result.profile) {
+      setName(result.profile.display_name || "");
+      setForm(value => ({ ...value, birth_date: result.profile.birth_date || "", birth_time: result.profile.birth_time || "" }));
+    }
     onState(result.state, result);
   };
   const update = (key, value) => {
@@ -129,7 +143,7 @@ export default function OnboardingScreen({
       return (
         <OnboardingIntro
           t={t}
-          onBegin={() => onState("UNAUTHENTICATED_NAME")}
+          onBegin={() => run(async () => onState("UNAUTHENTICATED_NAME"))}
         />
       );
     if (state === "UNAUTHENTICATED_NAME")
@@ -166,18 +180,18 @@ export default function OnboardingScreen({
           <ShinkaButton
             variant="ghost"
             className="w-full"
-            onClick={() => {
+            onClick={() => run(async () => {
               pending.clear();
               setName("");
               onState("UNAUTHENTICATED_SIGN_IN");
-            }}
+            })}
           >
             {t("preferNot")}
           </ShinkaButton>
         </>
       );
     if (state === "UNAUTHENTICATED_SIGN_IN")
-      return <SignIn language={language} authenticate={authenticate} />;
+      return <SignIn language={language} authenticate={authenticate} onBusy={setBusy} />;
     if (state === "AUTHENTICATED_PROFILE_REQUIRED")
       return (
         <ProfileForm
@@ -196,10 +210,7 @@ export default function OnboardingScreen({
       return (
         <CycleForm
           {...formProps}
-          onSkip={async () => {
-            const result = await request("skipCycle");
-            onState(result.state, result);
-          }}
+          onSkip={() => submit("skipCycle", {})}
         />
       );
     if (state === "FIRST_SHINKA_DEPENDENCY")

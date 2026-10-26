@@ -2,11 +2,19 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-034
+**Current BuildMarker:** Buildmarker-035
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 035 — onboarding functional audit and corrections
+
+Clean Test d2299c8 was fast-forwarded to fetched main f52b1c3 (seven commits; no divergence/user edits). The Base44 delta covers 40 files: shared ON-01–05 presentation/back, unfinished profile edit and replacement of the hierarchy with the A/P combobox. Dependency lock and design shell are retained; date/time and birthplace hit areas are raised from 32px to the existing 44px policy. This new package advances once, with 031–035 active history.
+
+Initial runs exposed stale countries() runner wiring, timer typing, obsolete eight-result/error-envelope assertions and an observer waiting on a non-DOM provider counter. Added negative tests exposed duplicate Begin, unconfirmed advancement, late unmounted save, inaccessible popup action focus, Escape reopening from a popup action, failed-page retry/reset and 32px date/time/place controls. Completed-owner writes are now blocked independently of profile readiness; new tests retain the real production adapter and owner/readback protections. The Forms↔FramedDateField import cycle is removed through shared FieldError. Every failed first/intermediate run is retained separately; final evidence and outstanding acceptance: [035 audit, execution and evidence](reports/SHINKA_ONBOARDING_AUDIT_035.md).
+
+035 final local result: Chromium/WebKit **657/657 each**, 53 focused IDs unique PASS, Node **9/9**, local in-app Health **136 PASS / 13 BLOCKED / 0 FAIL**. Install/tree/runtime peers/audit/security/type/lint/build/repo/history/performance pass. JS 482582/161301 gzip, CSS 79922/14861 bytes within unchanged budgets; no cycles. Health 0/7/0; active 031–035. Server SC01–05/07–09 are 8 separate fixture checks, not browser counts. Main merge/publish and hosted/provider/OAuth/physical acceptance remain owner-only.
 
 ## 034 — resumed local verification, 2026-10-26
 

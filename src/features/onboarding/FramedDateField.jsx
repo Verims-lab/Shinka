@@ -1,5 +1,5 @@
 import { CalendarDays, Clock } from "lucide-react";
-import { FieldError } from "./OnboardingForms";
+import FieldError from "./FieldError";
 
 // ON-04 date/time field: label inside a soft frame; native control kept (values,
 // validation and formats unchanged). The decorative icon never intercepts taps.

@@ -9,10 +9,10 @@ export const HEALTH_SCOPE_TRANSFERS = Object.freeze([
   {id:'H03-007', localOnly:true, tests:'All canonical Foundation regressions', coverage:'Chromium/WebKit, auth, contracts, security and UI'},
   {id:'H07-013', localOnly:true, tests:'DU01–DU05', coverage:'ON-06/Home components, locale and late navigation'},
   {id:'H12-025', localOnly:true, tests:'AN02–AN07, SS01–SS02, SS06–SS09; scripts/verifySessionStability.mjs SS03a–c/SS02b', coverage:'Real AuthProvider/ProtectedRoute/AdminGate/SignIn with synthetic IO: transient retry, invalid/role-lost access, passive coalescing, account/logout generations and safe login return. Server classification separately in Node'},
-  {id:'H13-012', localOnly:true, tests:'U12–U15, T76/T79/T81, MI04–MI05, scripts/checkMobile.mjs, scripts/checkMobileExperience.mjs', coverage:'320/360/390/430px and landscape/reduced viewport; TR/EN light/dark and 200% text, contrast, shared sheet/focus/history, refresh/unknown intent and reduced motion; not physical devices'},
+  {id:'H13-012', localOnly:true, tests:'U01–U18, OU01–OU08, T76/T79/T81, MI04–MI05, scripts/checkMobile.mjs, scripts/checkMobileExperience.mjs', coverage:'Five-step/back/draft/readback/session/router and A/P combobox keyboard/paging; 320/360/390/430px and landscape/reduced viewport; TR/EN light/dark and 200% text, contrast, shared sheet/focus/history, refresh/unknown intent and reduced motion; not physical devices'},
   {id:'H13-015', localOnly:true, tests:'Calendar UI regressions', coverage:'TR/EN, keyboard, consent and explicit actions'},
   {id:'H13-016', localOnly:true, tests:'AU01–AU10, TP01–TP04', coverage:'Actual Test Tools with injected wait/clock: unmount/session cancellation, post-wait budget, same operation, status-only unknown reconciliation, visible partial/error/completion and reopen lookup; synthetic IO only'},
-  {id:'H10-003', localOnly:false, tests:'U09–U12', coverage:'GeoNames selection UI; pure provider/cache/validation checks stay in-app'},
+  {id:'H10-003', localOnly:false, tests:'BS01–BS12, OA01/OA03/OA04 in-app; U09–U12, OU05–OU06 local', coverage:'A/P own-name search, bounds/failed-page retry and backend ID/NULL validation in-app; actual combobox interaction runs only locally'},
   {id:'H13-004', localOnly:false, tests:'T24/T41/T74/HC01 and CLI mobile checks', coverage:'360px Health/Build and auth viewport; in-app case measures only the current viewport'},
 ]);
 export const LOCAL_HEALTH_IDS = new Set(HEALTH_SCOPE_TRANSFERS.filter(item=>item.localOnly).map(item=>item.id));

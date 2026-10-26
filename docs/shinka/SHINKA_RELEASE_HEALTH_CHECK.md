@@ -2,11 +2,19 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-034
+**Current BuildMarker:** Buildmarker-035
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-034.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-035.0; repository, synthetic and external evidence separated.
+
+## HC-035.0 — local functional verification complete; external acceptance pending
+
+**LOCAL_VERIFIED / USER_PUBLISH_AND_HOSTED_ACCEPTANCE_PENDING.** New Chromium/WebKit canonical runs each pass **657/657**, zero page errors; 53 focused IDs unique PASS, including every OA01–05, OU01–08, BS01–12 and U01–18. Existing server SC01–05/07–09 execute separately, 8/8; browser SC06/10/11 remain in the result list. Fresh install/tree/runtime peer/audit/security, Node 9/9, type/lint/build/repo/history and unchanged performance budgets pass. In-app synthetic Health: **136 PASS / 0 FAIL / 13 BLOCKED**; 175 catalog cases / 149 in-app / 12 local / 14 external. 034 results remain historical.
+
+Health **0 added / 7 updated / 0 deleted**: H07-004, H07-007, H07-012, H10-003, H13-012, H13-014, H15-004. Real runner IDs, retained initial failures, current source manifests and per-case execution evidence: [035 audit, execution and evidence](reports/SHINKA_ONBOARDING_AUDIT_035.md). Internal Build retains 031–035. No zero-test, missing-ID or unavailable-browser success.
+
+H06-007, H10-004, H11-006 and H13-013 remain external; local fixtures do not close real OAuth, GeoNames, ON-05 incident or physical-device acceptance. H14-901/H16-901 and the 12 USER-DEFERRED backend findings are unchanged. No live Full Health or scan runs in this package.
 
 ## HC-034.0 — local verification complete; external acceptance pending
 
@@ -240,7 +248,7 @@ No suite or case deleted, no existing applicability downgraded, no failed case d
 
 Final local results and exact environment are recorded in [Development Notes](SHINKA_DEVELOPMENT_NOTES.md) and [Android/iOS report](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md). Baseline Chromium: 287/287; baseline WebKit: 285/287 (T80, U12). New canonical registry: 298 tests, all prior 287 retained. Current local static/general subset contains 52 cases; onboarding contains 21. These subsets are not deployed Full Health. The five extra mobile scenarios and eight routing/Preview scenarios are reported separately from canonical tests.
 
-## Required external closure
+## Historical external closure — 014 (current 035 acceptance is above)
 
 Run the deployed **current** marker/catalog Full Health and save/list/open its private report. Verify current function bundles, live Apple/Google callbacks, GeoNames country/region/settlement/resolve/save, owner A/B/admin/anonymous boundaries, explicit NULLs, timestamp authority, proven uniqueness/conditional commits and protected-history behavior. H04-006, H06-007, H10-004, H12-901, H13-013, H16-901/902/903, H11-006, H09-901, H08-901 and H12-902 are the twelve explicit external requirements in HC-014.0. First Shinka modules/UI are implemented; production creation remains blocked by durable persistence and current import prerequisites.
 

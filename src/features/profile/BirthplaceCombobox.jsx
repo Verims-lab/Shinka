@@ -55,19 +55,22 @@ export default function BirthplaceCombobox({ language, request, selection = null
   };
   const showPopup = open && state.status !== "IDLE";
   const activeId = showPopup && state.results[active] ? `birthplace-option-${state.results[active].birthplace_geonames_id}` : undefined;
+  useEffect(() => { if (activeId) input.current?.ownerDocument.getElementById(activeId)?.scrollIntoView({ block: "nearest" }); }, [activeId]);
   return (
-    <div className="relative min-w-0" data-birthplace-picker data-birthplace-combobox>
+    <div className="relative min-w-0" data-birthplace-picker data-birthplace-combobox
+      onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false); }}
+      onKeyDown={event => { if (event.key === "Escape" && open) { event.preventDefault(); input.current?.focus(); setOpen(false); } }}>
       <div className="shinka-framed-field flex items-center gap-3">
         <span className="min-w-0 flex-1">
           <label htmlFor="birthplace" className="block text-shinka-small text-shinka-plum">
             {t("birthplace")} <span className="text-shinka-taupe">{t("placeOptional")}</span>
           </label>
           <input ref={input} id="birthplace" type="text" role="combobox" autoComplete="off" autoCapitalize="words" spellCheck={false} enterKeyHint="search"
-            aria-autocomplete="list" aria-expanded={showPopup} aria-controls="birthplace-listbox" aria-activedescendant={activeId}
+            aria-autocomplete="list" aria-expanded={showPopup} aria-controls={showPopup ? "birthplace-listbox" : undefined} aria-activedescendant={activeId}
             aria-invalid={error} aria-describedby={error ? "birthplace-error" : undefined} disabled={disabled}
             placeholder={t("placeSearchPlaceholder")} value={text} maxLength={80}
-            onChange={(e) => type(e.target.value)} onKeyDown={keyDown} onBlur={() => setOpen(false)} onFocus={() => text && !selection && setOpen(true)}
-            className="block min-h-8 w-full min-w-0 bg-transparent text-shinka-ink outline-none placeholder:text-shinka-taupe" />
+            onChange={(e) => type(e.target.value)} onKeyDown={keyDown} onFocus={() => text && !selection && setOpen(true)}
+            className="block min-h-11 w-full min-w-0 bg-transparent text-shinka-ink outline-none placeholder:text-shinka-taupe" />
         </span>
         {text ? (
           <button type="button" onClick={clear} disabled={disabled} aria-label={t("placeClear")} className="-mr-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-shinka-taupe" data-place-clear>

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import ShinkaButton from '@/components/shinka/ShinkaButton';
 import ShinkaInput from '@/components/shinka/ShinkaInput';
 import BirthplaceCombobox from '@/features/profile/BirthplaceCombobox';
-import { FieldError } from '@/features/onboarding/OnboardingForms';
+import FieldError from '@/features/onboarding/FieldError';
 import { youCopy } from '@/foundation/i18n/youCopy';
 export default function ProfileEditor({ state, language, placeRequest }) {
   const { controller, draft, value, busy, error } = state, copy = key => youCopy(key, language);

@@ -13,13 +13,12 @@ export default function BirthplaceResults({ t, search, active, onPick, onMore, o
   );
   const message = status === "SHORT" ? t("placeMinChars")
     : status === "LOADING" ? t("placeSearching")
-    : status === "ERROR" ? t(error === "GEONAMES_RATE_LIMITED" ? "GEONAMES_RATE_LIMITED" : "placeError")
-    : status === "READY" && !results.length ? t(next_page != null ? "placeNoMatchYet" : "placeEmpty")
+    : error ? t(error === "GEONAMES_RATE_LIMITED" ? "GEONAMES_RATE_LIMITED" : "placeError")
+    : status === "READY" && !results.length && !limited ? t(next_page != null ? "placeNoMatchYet" : "placeEmpty")
     : null;
   return (
     <div className="absolute inset-x-0 top-full z-30 mt-2 max-h-80 overflow-y-auto rounded-shinka-md border border-shinka-line bg-shinka-white p-1 shadow-lg" data-place-popup>
-      {results.length > 0 && (
-        <ul id="birthplace-listbox" role="listbox" aria-label={t("birthplace")}>
+        <ul id="birthplace-listbox" role="listbox" aria-label={t("birthplace")} aria-busy={status === "LOADING" || loadingMore}>
           {results.map((p, i) => (
             <li key={p.birthplace_geonames_id} id={`birthplace-option-${p.birthplace_geonames_id}`} role="option" aria-selected={i === active}
               data-place-option={p.birthplace_geonames_id} onMouseDown={keep} onClick={() => onPick(p)}
@@ -29,11 +28,9 @@ export default function BirthplaceResults({ t, search, active, onPick, onMore, o
             </li>
           ))}
         </ul>
-      )}
       <div role="status" aria-live="polite" className="px-3 py-2 text-shinka-small text-shinka-taupe" data-place-status={status}>
         {status === "LOADING" && <Loader2 aria-hidden="true" className="mr-2 inline h-4 w-4 animate-spin" />}
         {message}
-        {status === "READY" && results.length > 0 && error && <span data-place-more-error>{t(error === "GEONAMES_RATE_LIMITED" ? "GEONAMES_RATE_LIMITED" : "placeError")}</span>}
         {limited && <span className="block" data-place-limited>{t("placeNarrow")}</span>}
       </div>
       {error && action(t("placeRetry"), onRetry, "data-place-retry")}

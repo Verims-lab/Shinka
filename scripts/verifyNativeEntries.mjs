@@ -69,13 +69,13 @@ export async function verifyNativeEntries(root) {
     '../../shared/nativeClient.ts': native,
     'base44:runtime': { secrets: { get: name => { assert.equal(name, 'GEONAMES_USERNAME'); youSecretReads++; return 'synthetic-public-provider-name'; } } },
     '../../shared/geonamesGuard.js': geonamesGuard,
-    '../../shared/geonamesAdapter.js': { createGeoNamesAdapter: config => ({ countries: async () => ({ fixture: config.username }) }) },
+    '../../shared/geonamesAdapter.js': { createGeoNamesAdapter: config => ({ resolve: async id => { assert.equal(id, 123); return { fixture: config.username }; } }) },
     '../../shared/youOperation.js': { handleYouRequest: (_req, createClient, deps) => { assert.equal(createClient, native.createNativeClient); assert.equal(typeof deps.geoNamesFor, 'function'); assert.equal(deps.geoNames, undefined); youDeps = deps; return 'you-route'; } },
   });
   let youSecretReads = 0, youDeps = null;
   assert.equal(await you.default({}), 'you-route');
   assert.equal(youSecretReads, 0, 'You read/hydrate must not read the GeoNames secret');
-  assert.equal((await youDeps.geoNamesFor('synthetic-owner').countries('en')).fixture, 'synthetic-public-provider-name');
+  assert.equal((await youDeps.geoNamesFor('synthetic-owner').resolve(123)).fixture, 'synthetic-public-provider-name');
   assert.equal(youSecretReads, 1);
   const rawClient = () => client;
   const privacy = await load('base44/functions/accountPrivacy/entry.ts', {

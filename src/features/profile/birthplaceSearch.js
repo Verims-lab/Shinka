@@ -6,6 +6,7 @@ export const PLACE_DEBOUNCE_MS = 350;
 const idle = { status: "IDLE", query: "", results: [], next_page: null, limited: false, loadingMore: false, error: null };
 const defaultTimers = { set: (fn, ms) => setTimeout(fn, ms), clear: (id) => clearTimeout(id) };
 
+/** @param {{request:Function, language?:string, debounceMs?:number, timers?:{set:Function,clear:Function}}} options */
 export function createBirthplaceSearch({ request, language = "en", debounceMs = PLACE_DEBOUNCE_MS, timers = defaultTimers }) {
   let state = idle, lang = language, generation = 0, timer = null, disposed = false;
   const listeners = new Set();
@@ -59,8 +60,9 @@ export function createBirthplaceSearch({ request, language = "en", debounceMs = 
       return fetchPage(state.next_page);
     },
     retry() {
+      if (disposed || [...state.query].length < PLACE_MIN_CHARS || state.loadingMore || state.status === "LOADING") return Promise.resolve();
       stop();
-      return state.results.length && state.next_page != null && state.error ? fetchPage(state.next_page) : fetchPage(0);
+      return state.next_page != null && state.error ? fetchPage(state.next_page) : fetchPage(0);
     },
     cancel() { stop(); emit(idle); },
     dispose() { stop(); disposed = true; listeners.clear(); },

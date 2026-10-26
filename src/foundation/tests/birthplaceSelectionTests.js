@@ -10,6 +10,10 @@ import { placeFetch, placeFetchFor, KAN_CANDIDATES, KAN_EXPECTED, KAN_REJECTED, 
 const adapter=(fetcher=placeFetch)=>createGeoNamesAdapter({username:'fixture',fetcher});
 const manualTimers=()=>{const q=[];return {set:(fn)=>{q.push(fn);return q.length;},clear:id=>{if(id)q[id-1]=null;},flush:()=>{const fns=q.splice(0);fns.forEach(fn=>fn?.());},pending:()=>q.filter(Boolean).length};};
 const settle=()=>new Promise(r=>setTimeout(r,0));
+const rejectsInvalid=async(fn)=>{
+ let caught=false;try{await fn();}catch(error){caught=true;check(error.code==='GEONAMES_UNAVAILABLE'&&error.diagnosticCode==='GEONAMES_INVALID_RESPONSE','public/diagnostic error contract');}
+ check(caught,'invalid response unexpectedly succeeded');
+};
 const post=(f,body,geoNames)=>handleOnboardingRequest(new Request('https://fixture.invalid',{method:'POST',body:JSON.stringify(body)}),()=>f.client,{geoNames});
 
 /** @type {import('./testTypes').FoundationTest[]} */
@@ -81,7 +85,7 @@ export const BIRTHPLACE_SELECTION_TESTS=[
    const out=await geo.resolve(row.geonameId);
    check(out.birthplace_name===row.name&&out.birthplace_country_code===row.countryCode&&out.birthplace_latitude===Number(row.lat)&&out.birthplace_longitude===Number(row.lng));
   }
-  await rejects(()=>geo.resolve(fixtureStream.geonameId),'GEONAMES_INVALID_RESPONSE');
+  await rejectsInvalid(()=>geo.resolve(fixtureStream.geonameId));
  }],
  ['BS10','Free text and client-supplied place fields cannot be saved',async()=>{
   for(const extra of [{birthplace_name:'Kansas'},{birthplace_latitude:1},{query:'Kansas'}]){
@@ -98,6 +102,6 @@ export const BIRTHPLACE_SELECTION_TESTS=[
  }],
  ['BS12','Bounded transport kept: oversized search envelope is invalid, never empty',async()=>{
   const big=JSON.stringify({geonames:[],pad:'x'.repeat(1100000)});
-  await rejects(()=>adapter(async()=>new Response(big)).search('Kansas','en'),'GEONAMES_INVALID_RESPONSE');
+  await rejectsInvalid(()=>adapter(async()=>new Response(big)).search('Kansas','en'));
  }],
 ];

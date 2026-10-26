@@ -2,13 +2,23 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-034
+**Current BuildMarker:** Buildmarker-035
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## Current onboarding authority — 035 / 2026-10-26
+
+The owner’s audit/fix request (attachment 53e55c57-8889-48fd-aec8-94d443b8e4f8) adopts **Shinka_GeoNames_Birthplace_Arama_Kurallari_v1.0.docx**, SHA-256 `b2bcd76b7524831c42f7918518ab2d36777b8f69de427863337f229832beaa63`, as the current birthplace behavior. The attached document is requirements evidence; execution authorization comes from the request. This replaces the 008 country cascade / P-only selection and 026 birthplace sheet; their decisions and observations below are historical. It does not alter the original ten-source inventory, the five stored fields or existing consent/content decisions.
+
+Current sequence: ON-01 Introduction → ON-02 optional name → ON-03 Apple/Google + separate unchecked 18+ → ON-04 profile → ON-05 optional cycle + explicit health consent → unnumbered ON-06 verified preparation → Home. Only ON-01–05 count. Back is local ON-02→01, ON-03→02, ON-05→04; ON-04 has no Back because auth is complete. No logout/OAuth restart or automatic write is attached to Back. Same mounted screen keeps cycle drafts; durable records govern reopen. There is no new draft persistence/rollback guarantee.
+
+One combobox searches after three characters and 350 ms debounce. Own displayed name must contain the case-insensitive literal query; no accent folding/fuzzy/parent-name-only match. A and P may be selected; typing invalidates the old ID. Server resolves that ID and saves all five canonical fields or all NULL. Four pages × 50 candidates is Shinka’s bound, not GeoNames’s provider maximum or global completeness. Errors, filtered empty pages and local limits remain distinct. [035 audit, execution and evidence](reports/SHINKA_ONBOARDING_AUDIT_035.md).
+
+Main f52b1c3 is the preserved Base44 baseline. 034's old 649/649 evidence does not validate these changes. No live provider/OAuth/device acceptance is inferred. Onboarding header privacy access is removed; /you links and direct /account-privacy authorization remain.
 
 ## 034 — support-confirmed push field names (2026-10-26)
 
@@ -218,7 +228,7 @@ Canonical consent version: `health-consent-v1.0`. EN: “I consent to Shinka pro
 
 At the package-008 checkpoint FIRST_SHINKA_ENGINE_REQUIRED was a next-package dependency. In 011 the implementation exists, but production atomic persistence remains blocked; the dependency is retained on that failed path. Production SDK persistence is implemented with verified readback. Cross-instance enforcement/native metadata and deployed Full Health remain external verification; no native transaction guarantee is asserted. Package: CLOSED_PENDING_BASE44_VERIFICATION.
 
-## ON-04 cascading birthplace decision — 2026-10-20
+## Historical ON-04 cascading decision — superseded by 035
 
 Explicit user authority: “Ülke seçerek seçenekleri daraltarak aşağı insin. Search ederek değil, seçe seçe ilerleyelim.” Request SHA-256: `80f5f4d30ec070cdfdb3365564fc308fd55c9c588e9a4a5bbe5b66cc382f6cda`. This is a product decision within the existing ON-04 closure, not an eleventh logical source. It supersedes only the previous ON-04 typed search/debounce/search-button interaction in SRC-03 and subsequent implementation notes. Country → available administrative subdivisions → explicit populated settlement replaces it; no automatic country or first-result selection. A valid settlement can finish the flow at any available level. Administrative records only filter lists. The optional field, server selected-ID resolution and SRC-05/07 five-field persistence contract remain authoritative.
 
@@ -295,4 +305,4 @@ User request with target mockup: ON-01 shows Your cycle / The Moon / Your birth 
 Five user references (1–5 by counter) govern the shared onboarding presentation, subtitles, Finish label and removal of Account & Privacy from all onboarding headers. Business flow, validation, consent and save contracts are unchanged.
 
 ## Explicit user decision — ON-04 presentation, 2026-10-26
-User request with target mockup governs ON-04 visible title/subtitle (EN/TR as in UI/UX standards), five-step indicator with separate preparation interstitial, compact birthplace summary field opening the existing hierarchical picker, and removal of the Account & Privacy link from the ON-04 header only. Validation, value formats, NULL birth time, server re-resolution of the GeoNames ID and five-field save are unchanged. SRC-03 docx is still not in the repository.
+User request with target mockup governs ON-04 visible title/subtitle (EN/TR as in UI/UX standards), five-step indicator with separate preparation interstitial, the then-current compact hierarchical picker (superseded by the 035 combobox), and removal of the Account & Privacy link from the ON-04 header only. Validation, value formats, NULL birth time, server re-resolution of the GeoNames ID and five-field save are unchanged. SRC-03 docx is still not in the repository.

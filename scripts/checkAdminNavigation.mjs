@@ -24,23 +24,14 @@ export async function checkAdminNavigation(page, origin, directory) {
   };
   for (const width of [360, 1280]) for (const language of ['tr', 'en']) {
     await page.setViewportSize({ width, height: 900 });
-    await open('/', 'admin', language);
-    await page.waitForSelector('[data-onboarding-state="AUTHENTICATED_CYCLE_STEP"]');
+    await open('/', 'admin', language, 'ACTIVE_EXISTING_USER');
     const trigger = page.locator('[data-profile-trigger]');
-    await trigger.focus(); await page.keyboard.press('Enter');
-    const entry = page.getByRole('menuitem', { name: 'Admin Panel' });
-    await entry.waitFor();
-    const menu = await geometry('[data-profile-trigger],[role="menuitem"]');
-    if (language === 'tr') await screenshot(`admin-menu-${width}`);
-    await page.keyboard.press('Escape');
-    await entry.waitFor({ state: 'hidden' });
-    await page.waitForFunction(() => document.activeElement?.matches('[data-profile-trigger]'), null, { timeout: 3000 });
-    assert(await trigger.evaluate(el => document.activeElement === el), 'Escape must restore focus');
-    assert(await trigger.evaluate(el => getComputedStyle(el).outlineStyle !== 'none'), 'trigger keyboard focus invisible');
-    await page.keyboard.press('ArrowDown'); await entry.waitFor();
-    await page.keyboard.press('Tab'); await entry.waitFor({ state: 'hidden' });
-    assert(!(await trigger.evaluate(el => document.activeElement === el)), 'Tab must leave menu');
-    await trigger.focus(); await page.keyboard.press('ArrowUp'); await entry.waitFor(); await page.keyboard.press('Enter');
+    await trigger.focus();
+    assert(await trigger.evaluate(el => getComputedStyle(el).outlineStyle !== 'none'), 'profile link keyboard focus invisible');
+    const menu = await geometry('[data-profile-trigger]');
+    await page.keyboard.press('Enter'); await page.waitForSelector('[data-you-root]');
+    const entry = page.getByRole('link', { name: 'Admin Panel' });
+    await entry.focus(); await page.keyboard.press('Enter');
     await page.waitForSelector('[data-admin-panel]');
     assert.equal(await page.locator('[data-admin-panel] a').count(), 3);
     const panel = await geometry('nav a,[data-admin-panel] a');
@@ -54,15 +45,15 @@ export async function checkAdminNavigation(page, origin, directory) {
       await page.waitForSelector('[data-admin-panel]');
     }
     await page.locator('nav a[href="/"]').click();
-    await page.waitForSelector('[data-onboarding-state="AUTHENTICATED_CYCLE_STEP"]');
+    await page.waitForSelector('[data-home-root]');
     const actions = await page.evaluate(() => window.__authFixture.calls);
-    assert(actions.every(c => c.name === 'applicationSession' || (c.name === 'onboarding' && c.action === 'hydrate') || c.action === 'list'), 'navigation wrote data or started Health');
-    results.push({ scenario: `admin-menu-panel-tools-return-${width}-${language}`, passed: true, menu, panel, actions });
+    assert(actions.every(c => c.name === 'applicationSession' || (c.name === 'onboarding' && c.action === 'hydrate') || c.action === 'list' || (c.name === 'you' && c.action === 'read') || (c.name === 'dailyMessage' && c.action === 'today')), `navigation wrote data or started Health: ${JSON.stringify(actions)}`);
+    results.push({ scenario: `admin-you-panel-tools-return-${width}-${language}`, passed: true, menu, panel, actions });
     await open('/', 'user', language);
     await page.waitForSelector('[data-onboarding-state]');
-    assert(await page.locator('[data-profile-trigger]').isDisabled());
+    assert.equal(await page.locator('[data-profile-trigger],a[href*="account-privacy"]').count(), 0, 'onboarding header access reintroduced');
     assert.equal(await page.getByText('Admin Panel', { exact: true }).count(), 0);
-    await geometry('[data-profile-trigger]');
+    await geometry('button[data-onboarding-back]');
     if (language === 'tr') await screenshot(`user-onboarding-${width}`);
     results.push({ scenario: `user-no-menu-${width}-${language}`, passed: true });
   }
@@ -93,8 +84,9 @@ export async function checkAdminNavigation(page, origin, directory) {
   assert.equal(await page.locator('[data-onboarding-state]').count(), 0);
   results.push({ scenario: 'existing-user-home-entry-and-return', passed: true });
   await page.goto(`${origin}/?appFixture=1&sdkSession=admin&holdHydration=1&uninitialized=1`);
-  await page.locator('[data-profile-trigger]:not(:disabled)').click();
-  await page.getByRole('menuitem', { name: 'Admin Panel' }).click();
+  await page.waitForFunction(() => window.__authFixture.calls.some(call => call.name === 'onboarding' && call.action === 'hydrate'));
+  // Actual BrowserRouter navigation while its prior hydration remains pending.
+  await page.evaluate(() => { history.pushState(null, '', '/internal'); window.dispatchEvent(new PopStateEvent('popstate')); });
   await page.waitForSelector('[data-admin-panel]');
   await page.evaluate(() => window.__authFixture.releaseHydration());
   await page.waitForFunction(() => window.__authFixture.hydrationReturned);

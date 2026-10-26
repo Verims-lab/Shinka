@@ -14,7 +14,7 @@ const You = lazy(() => import('./You'));
 const Pattern = lazy(() => import('./Pattern'));
 const Calendar = lazy(() => import('./Calendar'));
 const OnboardingScreen = lazy(() => import('@/features/onboarding/OnboardingScreen'));
-export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destination='home'}){
+export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destination='home',request=onboardingRequest}){
   const {user,isAuthenticated,isAdmin,logout}=useAuth();
   const [snapshot,setSnapshot]=useState(null),[entry,setEntry]=useState(initialEntry),[error,setError]=useState(''),[language,setLanguage]=useState(resolveLanguage);
   const generation=useRef(0),initialization=useRef(crypto.randomUUID());
@@ -22,16 +22,17 @@ export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destina
   const load=useCallback(async()=>{
     const ticket=++generation.current;setError('');setSnapshot(null);
     try {
-      let value=await onboardingRequest('hydrate');
+      let value=await request('hydrate');
       if(ticket!==generation.current)return;
       if(value.state!=='INACTIVE_ACCOUNT'&&(!value.preferences||!validTimezone(value.preferences.timezone))){
         let timezone=null;try{timezone=Intl.DateTimeFormat().resolvedOptions().timeZone;}catch{/* Backend requires retry; no fake timezone. */}
-        await onboardingRequest('initialize',{language_code:language,timezone,action_id:initialization.current});
-        value=await onboardingRequest('hydrate');
+        await request('initialize',{language_code:language,timezone,action_id:initialization.current});
+        if(ticket!==generation.current)return;
+        value=await request('hydrate');
       }
       if(ticket===generation.current)setSnapshot({...value,ownerSession:user.id});
     }catch(e){if(ticket===generation.current)setError(e.code);}
-  },[language,user?.id]);
+  },[language,user?.id,request]);
   useEffect(()=>{if(isAuthenticated)load();else {generation.current++;setSnapshot(null);}return()=>{generation.current++;};},[isAuthenticated,user?.id,load]);
   useEffect(()=>{
     const invalidate=()=>{generation.current++;setSnapshot(null);if(isAuthenticated)void load();};
@@ -49,7 +50,7 @@ export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destina
     if(ticket===generation.current)setSnapshot(s=>({...s,uiLanguage:result.preferences.language_code,preferences:result.preferences}));
   };
   if(!isAuthenticated)return <RouteBoundary><OnboardingScreen state={entry} initialLanguage={language} onState={setEntry} onLanguage={setLanguage}/></RouteBoundary>;
-  if(!snapshot||snapshot.ownerSession!==user?.id)return <PageContainer><header className="flex items-center justify-between mx-auto max-w-md pt-6"><span className="font-heading text-2xl">Shinka</span><ProfileAccess language={language}/></header><main className="mx-auto max-w-md space-y-5 py-10" aria-busy={!error}>
+  if(!snapshot||snapshot.ownerSession!==user?.id)return <PageContainer><header className="flex items-center justify-between mx-auto max-w-md pt-6"><span className="font-heading text-2xl">Shinka</span></header><main className="mx-auto max-w-md space-y-5 py-10" aria-busy={!error}>
     {error?<><p role="alert">{onboardingCopy('systemError',language)}</p><p className="break-words text-shinka-small">{error}</p><ShinkaButton onClick={load}>{onboardingCopy('retry',language)}</ShinkaButton></>:<p role="status" aria-label="Shinka">…</p>}
   </main></PageContainer>;
   if(snapshot.state==='ACTIVE_EXISTING_USER') {
@@ -59,5 +60,5 @@ export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destina
     if(destination==='calendar')return <RouteBoundary><Calendar key={user.id} language={displayLanguage} renderProfileAccess={lang=><ProfileAccess language={lang} productReady/>} onLanguageChange={saveProductLanguage} /></RouteBoundary>;
     return <Home key={user.id} language={displayLanguage} initialDaily={snapshot.daily?snapshot:null} profile={snapshot.profile} renderProfileAccess={lang=><ProfileAccess language={lang} productReady/>} onLanguageChange={saveProductLanguage} />;
   }
-  return <RouteBoundary><OnboardingScreen renderProfileAccess={lang=><ProfileAccess language={lang}/>} key={user.id} state={snapshot.state} initialLanguage={snapshot.preferences?.language_code||language} today={snapshot.today} profile={snapshot.profile} dependencies={snapshot.dependencies||[]} onState={(state,result)=>setSnapshot(s=>({...s,...result,state}))}/></RouteBoundary>;
+  return <RouteBoundary><OnboardingScreen request={request} key={user.id} state={snapshot.state} initialLanguage={snapshot.preferences?.language_code||language} today={snapshot.today} profile={snapshot.profile} dependencies={snapshot.dependencies||[]} onState={(state,result)=>setSnapshot(s=>s?.ownerSession===user.id?{...s,...result,state}:s)}/></RouteBoundary>;
 }

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-034
+**Current BuildMarker:** Buildmarker-035
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -12,6 +12,12 @@
 **External Verification Required:** Base44 native UNIQUE is unsupported; no multi-record transaction/CAS guarantee is claimed. Native handler tests use synthetic transport; hosted schema/authorization/mutation recovery remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+
+## 035 onboarding data boundary — no schema change
+
+The 20 product entities and five birthplace fields are unchanged. Selected GeoNames **A or P** IDs are independently resolved; client label/coordinates are not writable request fields. Search query, display hierarchy, page and draft cycle inputs are memory-only; bounded same-tab pending name is the existing exception. No extra completion flag, cache entity, rollback or draft-recovery guarantee is added.
+
+An existing verified daily row closes onboarding profile/cycle mutations independently of profile readiness. Direct persistence rechecks completion before profile/health writes; reset retains its separately authorized lifecycle adapter. Before completion profile correction keeps owner/ACTIVE/revision/readback guards, and back/Skip does not change consent/history. [035 audit, execution and evidence](reports/SHINKA_ONBOARDING_AUDIT_035.md).
 
 ## 030 continuation — retained 029 notification extensions
 
@@ -448,9 +454,9 @@ Exactly 20 product entities remain. No onboarding entity, progress field, calcul
 
 Canonical validation normalizes absent values to logical NULL. The production onboarding adapter explicitly sends NULL for absent optional fields because SDK updates merge, and verifies the cleared values on readback; native NULL support remains a live obligation. No 00:00 fallback reaches the Sun resolver; 5/28 remain UI placeholders and future calculation defaults only. Existing direct SDK deny policies and generic mutation denials remain. Profile/preferences retain user_id keys; new ON-05 consent/settings use insert-only create plus bounded singleton readback. Consent-event keys include all four domain fields; period keys use user_id + period_start_date. Existing period state rejects a different onboarding start. No action-receipt field/entity is added. The generic atomic protocol remains unchanged and synthetic-only; onboarding uses a separate sequential SDK adapter with explicit partial-failure behavior. All four onboarding source decisions are RESOLVED_BY_PRODUCT_DECISION. A real owner user_daily_message is the final completion marker; before it exists Skip may resume at ON-05 after restart. No product schema changed. Native live capabilities remain unverified.
 
-## ON-04 cascade persistence invariant
+## Current birthplace persistence invariant
 
-Country, administrative path, page offsets and list state exist only in the in-memory picker. No schema, entity, seed or profile field is added. Final selection must be a populated GeoNames record (featureClass P); administrative A/ADM records only narrow lists and are rejected by selected-ID resolution. Continue sends birthplace_geonames_id only. The backend resolves it independently and persists exactly birthplace_geonames_id, birthplace_name, birthplace_country_code, birthplace_latitude, birthplace_longitude, together or all NULL. Existing stored birthplace is displayed without requiring its hierarchy; loading failure cannot silently clear it. Native hosted NULL clearing and readback remain external proof requirements.
+035 supersedes the historical P-only/cascade rule. A country/administrative A record or populated P record may be a selected birthplace. Continue sends only its numeric ID; the backend resolves and validates birthplace_geonames_id, birthplace_name, birthplace_country_code, birthplace_latitude and birthplace_longitude together. Explicit clearing writes five NULLs. Existing saved values display without provider access; text editing invalidates the old ID. Native hosted NULL/readback and real provider availability remain external acceptance.
 
 ## Maintenance data impact
 

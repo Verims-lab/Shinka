@@ -32,8 +32,12 @@ export const YOU_UI_TESTS=[
  })],
  ['YU02','Saved place survives provider outage and explicit clear remains coherent through actual form',async()=>probe(async(root,host)=>{
    const f=youFixture();Object.assign(f.tables.UserProfile[0],f.place);root.render(createElement(You,{language:'en',request:f.request,placeRequest:places}));
-   await until(()=>button(host,'Edit profile'));button(host,'Edit profile').click();await until(()=>host.querySelector('[data-place-summary]'));
-   check(host.querySelector('[data-place-summary]').textContent.includes('Synthetic Settlement'));setInput(host.querySelector('#display_name'),'Preserved');await pause();host.querySelector('[data-you-profile-form]').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
+   await until(()=>button(host,'Edit profile'));button(host,'Edit profile').click();await until(()=>host.querySelector('#birthplace[role=combobox]'));
+   check(host.querySelector('#birthplace[role=combobox]').value.includes('Synthetic Settlement'));
+   setInput(host.querySelector('#birthplace'),'Edited label');await pause();host.querySelector('[data-you-profile-form]').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
+   await until(()=>host.querySelector('#birthplace-error'));check(f.tables.UserProfile[0].birthplace_geonames_id===123&&f.resolves===0);
+   button(host,'Cancel').click();await until(()=>!host.querySelector('[data-you-profile-form]'));button(host,'Edit profile').click();await until(()=>host.querySelector('#birthplace'));
+   check(host.querySelector('#birthplace').value.includes('Synthetic Settlement'),'cancel/re-edit did not restore persisted selection');setInput(host.querySelector('#display_name'),'Preserved');await pause();host.querySelector('[data-you-profile-form]').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
    await until(()=>host.textContent.includes('Your profile has been updated'));check(f.tables.UserProfile[0].birthplace_geonames_id===123&&f.resolves===0);
    button(host,'Edit profile').click();await until(()=>host.querySelector('[data-place-clear]'));host.querySelector('[data-place-clear]').click();await pause();host.querySelector('[data-you-profile-form]').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));await until(()=>f.tables.UserProfile[0].birthplace_geonames_id===null);
  })],

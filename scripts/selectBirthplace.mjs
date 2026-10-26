@@ -1,8 +1,6 @@
-// Interact with the actual responsive UI; no hidden synthetic select shortcut.
-export async function selectBirthplace(page, id, value) {
-  const control = page.locator(`#${id}`);
-  if (await control.evaluate(el => el.tagName === 'SELECT')) return control.selectOption(String(value));
-  await control.click();
+// Actual single-search combobox; only an explicit option click supplies an ID.
+export async function selectBirthplace(page, query, value) {
+  await page.locator('#birthplace').fill(query);
   await page.locator(`[data-place-option="${value}"]`).click();
-  await page.locator('dialog[open]').waitFor({ state: 'detached' });
+  await page.locator('[data-place-popup]').waitFor({state:'detached'});
 }

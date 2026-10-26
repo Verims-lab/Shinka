@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-034
+**Current BuildMarker:** Buildmarker-035
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -35,6 +35,10 @@
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+
+## Current onboarding engineering contract — 035
+
+Use existing OnboardingScreen form state and backend resolver; generation/session checks guard async UI completion. No new large screen/state framework. Reuse FieldError across fields without circular imports. A/P combobox replaces the historical cascade standard below; query is ≥3 characters, matching is displayed-name literal substring, and only explicit provider ID selection can save. Worker public-data guards remain; no browser hierarchy cache, fuzzy match or complete-world claim. Actual handler/component regressions and registry/Health execution are required. [035 audit, execution and evidence](reports/SHINKA_ONBOARDING_AUDIT_035.md).
 
 ## 034 — session generations and paced continuation
 
@@ -128,7 +132,7 @@ Keep copy in the canonical onboarding catalog; do not invent translations or an 
 
 `AUTH_TESTS`, `ONBOARDING_TESTS` and `ONBOARDING_UI_TESTS` join the existing canonical Foundation runner. The UI fixture injects fake provider and persistence adapters and a private in-memory name store; Health execution cannot initiate real OAuth or write product rows. Static inspection rejects duplicated approved onboarding validation copy and frontend GeoNames credential/host/geolocation use. Missing live dependencies are Health BLOCKED/external states, never green by fixture substitution.
 
-## ON-04 selection regression contract
+## Historical ON-04 cascade regression — superseded by 035
 
 The explicit 2026-10-20 product decision is recorded in SOURCE_OF_TRUTH; its new selector/help/status copy is centralized in onboardingCopy.js. Preserve the earlier exact-copy receipt. Keep provider hierarchy validation in the existing backend adapter and transient UI races in birthplaceSelection.js. Do not persist the path, infer a country, autoselect a result, accept an administrative record as a settlement, assume childrenJSON pagination, silently truncate lists or add a new UI dependency. B01…B18 and U09…U12 run through the local canonical runner; H10-003 retains only pure helper checks in 018. Fixtures remain synthetic and cannot close H10-004. Native keyboard/device observations must be recorded separately from programmatic selectOption tests.
 
@@ -138,7 +142,7 @@ Internal Build/Health and probe implementations load through lazy routes after e
 
 `node scripts/measureMaintenance.mjs /tmp/shinka-measure` enforces new measured regression budgets: initial production JS ≤500,000 raw / 165,000 gzip bytes; CSS ≤90,000 raw / 16,000 gzip bytes; no initial test modules, static cycles or page exceptions. These allow modest headroom over the measured fix and are not LCP/INP targets. Keep field performance separate. Preserve the shared 44px touch minimum; test Chromium and WebKit after form/layout changes. See [mobile evidence](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md).
 
-Prefer cohesive forms, resource-list presentation and controllers; no artificial line-count cap or compressed long-line application code. Generated data and fixtures are assessed separately. List labels use one linear count pass for duplicate context, not repeated nested scans. Cache public place lists per picker only: 16 entries, 1 MiB serialized values, 60 seconds, language/parent/page scoped; clear on Clear/dispose; explicit Retry bypasses cache. Never cache owner profiles or writes. Ignore late SDK completions; do not claim invoke cancellation that its API cannot provide. User-started completed Health runs retain audit persistence after navigation, with duplicate starts and stale UI updates prevented.
+Prefer cohesive forms, resource-list presentation and controllers; no artificial line-count cap or compressed long-line application code. Generated data and fixtures are assessed separately. List labels use one linear count pass for duplicate context, not repeated nested scans. The historical hierarchy cache (16 entries/1 MiB/60 seconds) was removed in the Base44 combobox change; birthplaceSearch retains only transient results and no cross-picker cache. Never cache owner profiles or writes. Ignore late SDK completions; do not claim invoke cancellation that its API cannot provide. User-started completed Health runs retain audit persistence after navigation, with duplicate starts and stale UI updates prevented.
 
 Active build history obeys the permanent five-package rule in DEVELOPMENT_RULES. Run `recordBuild.mjs --check`; source and generated output must agree. H01-006 and M01…M05 cover this policy. No security or evidence check may be removed solely to make the result green.
 
