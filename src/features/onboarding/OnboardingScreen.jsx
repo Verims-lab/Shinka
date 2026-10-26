@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { ChevronLeft } from "lucide-react";
 import OnboardingIntro, { IntroArt } from "@/features/onboarding/OnboardingIntro";
 import PageContainer from "@/components/shinka/PageContainer";
 import ShinkaCard from "@/components/shinka/ShinkaCard";
@@ -24,22 +25,18 @@ const DEFAULT_PENDING = {
   save: savePendingName,
   clear: clearPendingName,
 };
-const TITLES = {
-  UNAUTHENTICATED_INTRO: "intro",
-  UNAUTHENTICATED_NAME: "nameTitle",
-  UNAUTHENTICATED_SIGN_IN: "signIn",
-  AUTHENTICATED_PROFILE_REQUIRED: "aboutTitle",
-  AUTHENTICATED_CYCLE_STEP: "cycle",
-  FIRST_SHINKA_DEPENDENCY: "preparation",
-  INACTIVE_ACCOUNT: "inactive",
-};
-// SRC-03: five main steps; preparation (and inactive) is a separate interstitial without a number.
-const STEP_NUMBER = {
-  UNAUTHENTICATED_INTRO: 1,
-  UNAUTHENTICATED_NAME: 2,
-  UNAUTHENTICATED_SIGN_IN: 3,
-  AUTHENTICATED_PROFILE_REQUIRED: 4,
-  AUTHENTICATED_CYCLE_STEP: 5,
+// Single screen metadata map (SRC-03 + 2026-10-26 user decision). Five numbered main steps;
+// preparation/inactive are unnumbered interstitials. `back` is a pure local view change:
+// only pre-authentication steps go back (no logout, no OAuth restart, no write). ON-04/ON-05
+// follow sign-in and have no safe previous step, so they render no back control.
+const SCREENS = {
+  UNAUTHENTICATED_INTRO: { step: 1, title: "intro" },
+  UNAUTHENTICATED_NAME: { step: 2, title: "nameTitle", subtitle: "nameSubtitle", back: "UNAUTHENTICATED_INTRO" },
+  UNAUTHENTICATED_SIGN_IN: { step: 3, title: "signIn", subtitle: "signInSubtitle", back: "UNAUTHENTICATED_NAME" },
+  AUTHENTICATED_PROFILE_REQUIRED: { step: 4, title: "aboutTitle", subtitle: "aboutSubtitle" },
+  AUTHENTICATED_CYCLE_STEP: { step: 5, title: "cycle", subtitle: "cycleSubtitle" },
+  FIRST_SHINKA_DEPENDENCY: { title: "preparation" },
+  INACTIVE_ACCOUNT: { title: "inactive" },
 };
 /** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,onLanguage?:Function,pending?:typeof DEFAULT_PENDING,authenticate?:typeof beginProviderAuth,dependencies?:string[],renderProfileAccess?:(language:string)=>import("react").ReactNode}} props */
 export default function OnboardingScreen({
@@ -124,10 +121,9 @@ export default function OnboardingScreen({
   };
   const fieldError = (key) => <FieldError name={key} error={error} t={t} />;
   const formProps = { form, update, error, busy, t, today, run, submit };
-  const intro = state === "UNAUTHENTICATED_INTRO";
-  const personal = state === "AUTHENTICATED_PROFILE_REQUIRED";
-  const airy = intro || personal;
-  const step = STEP_NUMBER[state];
+  const screen = SCREENS[state] || {};
+  const step = screen.step;
+  const airy = Boolean(step);
   const body = () => {
     if (state === "UNAUTHENTICATED_INTRO")
       return (
@@ -224,9 +220,16 @@ export default function OnboardingScreen({
         data-onboarding-state={state}
         lang={language}
       >
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <span className="font-heading text-2xl">Shinka</span>
-          <div className="flex flex-wrap items-center gap-1">
+        <div className="grid grid-cols-[minmax(2.75rem,1fr)_auto_minmax(2.75rem,1fr)] items-center gap-2">
+          <div>
+            {screen.back && (
+              <ShinkaButton variant="ghost" aria-label={t("back")} data-onboarding-back disabled={busy} onClick={() => onState(screen.back)}>
+                <ChevronLeft aria-hidden="true" className="h-5 w-5" />
+              </ShinkaButton>
+            )}
+          </div>
+          <span className="font-heading text-3xl text-shinka-plum-deep">Shinka</span>
+          <div className="flex flex-wrap items-center justify-end gap-1">
             {["tr", "en"].map((lang) => (
               <ShinkaButton
                 key={lang}
@@ -240,7 +243,7 @@ export default function OnboardingScreen({
                 {lang.toUpperCase()}
               </ShinkaButton>
             ))}
-            {!personal && renderProfileAccess(language)}
+
           </div>
         </div>
         <>
@@ -261,9 +264,9 @@ export default function OnboardingScreen({
               tabIndex={-1}
               className={`font-heading text-shinka-h1 text-shinka-plum-deep outline-none ${airy ? "text-center" : ""}`}
             >
-              {t(TITLES[state])}
+              {t(screen.title)}
             </h1>
-            {personal && <p className="text-shinka-taupe">{t("aboutSubtitle")}</p>}
+            {screen.subtitle && <p className="text-shinka-taupe">{t(screen.subtitle)}</p>}
           </div>
           <ShinkaCard className={airy ? "shinka-intro-shell" : ""}>
             <div className="space-y-5" aria-busy={busy}>

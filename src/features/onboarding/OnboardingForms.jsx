@@ -181,7 +181,7 @@ export function CycleForm({
       </label>
       <FieldError name="health_consent" error={error} t={t} />
       <ShinkaButton type="submit" className="w-full" disabled={busy}>
-        {t("continue")}
+        {t("finish")}
       </ShinkaButton>
       <ShinkaButton
         variant="ghost"

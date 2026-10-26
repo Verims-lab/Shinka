@@ -333,5 +333,8 @@ Actual hosted read-only UI/official CLI evidence: AdminTestOperation is readable
 ## ON-01 introduction (2026-10-26, under Buildmarker-034 pending record)
 New `src/features/onboarding/OnboardingIntro.jsx` (three rows + decorative `IntroArt`); `OnboardingScreen.jsx` delegates the intro body and makes its card transparent via `.shinka-intro-shell` (onboarding.css only). Copy keys `introBody`, `introCycle(Text)`, `introMoon(Text)`, `introChartText` added to `onboardingCopy.js`. New UI test U16. Lint/build pass; U16, T81, U15 NOT_RUN (no browser).
 
+## ON-01–ON-05 shared presentation (2026-10-26)
+`OnboardingScreen` replaces TITLES/STEP_NUMBER with one `SCREENS` map (step, title, subtitle, back). Header is a three-slot grid; back calls `onState(screen.back)` only (no request, no auth). New copy keys nameSubtitle, signInSubtitle, cycleSubtitle, finish, back (EN/TR, Turkish pending approval). `renderProfileAccess` is no longer rendered on onboarding.
+
 ## ON-04 presentation (2026-10-26)
 New `FramedDateField.jsx` (framed native date/time + non-interactive icon) and `profile/BirthplaceCompact.jsx` (summary field + inline panel). `BirthplacePicker` gains `compact` (default off, so You/Profile unchanged) and the shared editor fragment; `birthplaceSelection` gains `restore(selection)` for Cancel. `OnboardingScreen` uses `aboutTitle/aboutSubtitle`, `stepOf` (five steps), hides `renderProfileAccess` on ON-04. Overflow root cause: iOS Safari native-appearance date/time inputs keep an intrinsic min-width; fixed with `appearance:none; min-width:0; box-sizing:border-box` in onboarding.css. Lint/build pass; browser tests NOT_RUN.

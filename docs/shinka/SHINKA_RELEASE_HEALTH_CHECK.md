@@ -309,5 +309,8 @@ H09-004, H08-005 and H12-031 remain current BLOCKED. The read-only live schema/i
 ## ON-01 introduction (2026-10-26)
 Health catalog cases: add 0 / update 0 / delete 0 — no existing case asserted the old single-card layout. Foundation UI test added: U16 (three rows + descriptions EN/TR, decorative art hidden, Begin → ON-02, no overflow at 320/360). Status NOT_RUN until the browser runner executes it; no PASS claimed.
 
+## ON-01–ON-05 shared presentation (2026-10-26)
+Health catalog: add 0 / update 0 / delete 0. Foundation UI tests: added U18 (1–5 order/counter EN/TR, back only ON-02/ON-03, no Account & Privacy, Finish on ON-05, preparation unnumbered, 360px overflow); updated the TR ON-05 consent assertion to the Bitir label. NOT_RUN (no browser).
+
 ## ON-04 presentation (2026-10-26)
 Health catalog cases: add 0 / update 0 / delete 0 (no case required Account & Privacy on every onboarding screen, and none asserted "N / 6"). Foundation UI tests updated: U09, U10, U11, U12 now open the compact birthplace panel before using the lists; added U17 (EN/TR title/subtitle, "4 of 5", no Account & Privacy on ON-04, compact field, Cancel, date/time inside frame at 320/360, no overflow). T81/U15 scope unchanged. All NOT_RUN (no browser); playwright scripts checkMobileInteractions/captureFoundationVisuals may need the same panel-open step.

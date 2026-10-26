@@ -108,8 +108,8 @@ export const ONBOARDING_UI_TESTS=[
   await probe('UNAUTHENTICATED_SIGN_IN',360,async doc=>{check(doc.querySelector('label[for=age-declaration]').textContent===ONBOARDING_COPY.tr.age&&!doc.querySelector('#age-declaration').checked);},{language:'tr'});
   await probe('AUTHENTICATED_CYCLE_STEP',360,async doc=>{
     check(doc.querySelector('label[for=health_consent]').textContent===ONBOARDING_COPY.tr.health_consent&&!doc.querySelector('#health_consent').checked);
-    input(doc,'period_start_date','2026-10-01');await pause();button(doc,'Devam et').click();await pause();check(doc.querySelector('#health_consent-error').textContent===ONBOARDING_COPY.tr.CONSENT_REQUIRED);
-    doc.querySelector('#health_consent').click();await pause();button(doc,'Devam et').click();await pause();check(doc.querySelector('[data-dependency]'));
+    input(doc,'period_start_date','2026-10-01');await pause();button(doc,'Bitir').click();await pause();check(doc.querySelector('#health_consent-error').textContent===ONBOARDING_COPY.tr.CONSENT_REQUIRED);
+    doc.querySelector('#health_consent').click();await pause();button(doc,'Bitir').click();await pause();check(doc.querySelector('[data-dependency]'));
   },{language:'tr'});
  }],
  ['U08','Reloaded partial profile preserves structured birthplace through Sun completion',async(context={})=>{
@@ -237,6 +237,18 @@ export const ONBOARDING_UI_TESTS=[
    const begin=[...doc.querySelectorAll('button')].find(b=>b.textContent.trim()===(language==='en'?'Begin':'Başla'));check(begin,'begin');
    begin.click();await new Promise(r=>win.setTimeout(r,50));check(doc.querySelector('#display_name'),`${language} ON-02 reached`);check(!doc.querySelector('[data-onboarding-intro]'),'intro left');
   },{language},context);
+ }],
+ ['U18','ON-01–ON-05 share header/art/subtitle, steps 1–5 in order, back only on ON-02/ON-03, Finish on ON-05, no Account & Privacy',async(context={})=>{
+  const states=['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_NAME','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP'];
+  for(const language of ['en','tr'])for(const [i,state] of states.entries())await onboardingProbe(state,360,async doc=>{
+   const c=ONBOARDING_COPY[language];
+   check(doc.querySelector('[data-onboarding-step]')?.textContent===c.stepOf.replace('{n}',String(i+1)),`${language} ${state} step`);
+   check(Boolean(doc.querySelector('[data-onboarding-back]'))===(i===1||i===2),`${state} back presence`);
+   check(!doc.body.textContent.includes('Account & Privacy')&&!doc.body.textContent.includes('Hesap ve Gizlilik'),`${state} no privacy link`);
+   check(doc.documentElement.scrollWidth<=361,`${state} overflow`);
+   if(i===4)check(button(doc,c.finish),'Finish label');
+  },{language},context);
+  await onboardingProbe('FIRST_SHINKA_DEPENDENCY',360,async doc=>check(!doc.querySelector('[data-onboarding-step]'),'preparation unnumbered'),{language:'en'},context);
  }],
  ['U17','ON-04 shows new title/subtitle, 4 of 5, compact birthplace, no Account & Privacy; cancel keeps prior selection; date/time fit 320/360',async(context={})=>{
   const pause=()=>testDelay(50,context.signal);
