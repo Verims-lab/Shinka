@@ -290,3 +290,6 @@ The same explicit request authorizes independent OD-012/security/rollout work an
 
 ## Explicit user decision — ON-01 three-row introduction, 2026-10-26
 User request with target mockup: ON-01 shows Your cycle / The Moon / Your birth chart with descriptions and an intro paragraph together, plus a decorative illustration, on the existing watercolor shell. EN copy is user-supplied verbatim; TR title and "Doğum haritan" retained; other TR strings are new translations approved by the user on 2026-10-26. SRC-03 docx is not present in the repository, so this request is the governing source for the layout. Step indicator, legal/consent behaviour and ON-02–ON-06 unchanged.
+
+## Explicit user decision — ON-04 presentation, 2026-10-26
+User request with target mockup governs ON-04 visible title/subtitle (EN/TR as in UI/UX standards), five-step indicator with separate preparation interstitial, compact birthplace summary field opening the existing hierarchical picker, and removal of the Account & Privacy link from the ON-04 header only. Validation, value formats, NULL birth time, server re-resolution of the GeoNames ID and five-field save are unchanged. SRC-03 docx is still not in the repository.

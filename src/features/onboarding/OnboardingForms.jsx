@@ -1,6 +1,7 @@
 import ShinkaButton from "@/components/shinka/ShinkaButton";
 import ShinkaInput from "@/components/shinka/ShinkaInput";
 import BirthplacePicker from "../profile/BirthplacePicker";
+import FramedDateField from "./FramedDateField";
 import {
   optionalName,
   optionalBirthTime,
@@ -80,15 +81,16 @@ export function ProfileForm({
         void run(save);
       }}
     >
-      <Field
+      <FramedDateField
         {...fields}
         name="birth_date"
         type="date"
         required
         max={today || undefined}
       />
-      <Field {...fields} name="birth_time" type="time" />
+      <FramedDateField {...fields} name="birth_time" type="time" optional />
       <BirthplacePicker
+        compact
         language={language}
         request={request}
         selection={birthplace.selection}

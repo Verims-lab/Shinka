@@ -28,12 +28,19 @@ const TITLES = {
   UNAUTHENTICATED_INTRO: "intro",
   UNAUTHENTICATED_NAME: "nameTitle",
   UNAUTHENTICATED_SIGN_IN: "signIn",
-  AUTHENTICATED_PROFILE_REQUIRED: "personal",
+  AUTHENTICATED_PROFILE_REQUIRED: "aboutTitle",
   AUTHENTICATED_CYCLE_STEP: "cycle",
   FIRST_SHINKA_DEPENDENCY: "preparation",
   INACTIVE_ACCOUNT: "inactive",
 };
-const STEPS = Object.keys(TITLES);
+// SRC-03: five main steps; preparation (and inactive) is a separate interstitial without a number.
+const STEP_NUMBER = {
+  UNAUTHENTICATED_INTRO: 1,
+  UNAUTHENTICATED_NAME: 2,
+  UNAUTHENTICATED_SIGN_IN: 3,
+  AUTHENTICATED_PROFILE_REQUIRED: 4,
+  AUTHENTICATED_CYCLE_STEP: 5,
+};
 /** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,onLanguage?:Function,pending?:typeof DEFAULT_PENDING,authenticate?:typeof beginProviderAuth,dependencies?:string[],renderProfileAccess?:(language:string)=>import("react").ReactNode}} props */
 export default function OnboardingScreen({
   state,
@@ -118,6 +125,9 @@ export default function OnboardingScreen({
   const fieldError = (key) => <FieldError name={key} error={error} t={t} />;
   const formProps = { form, update, error, busy, t, today, run, submit };
   const intro = state === "UNAUTHENTICATED_INTRO";
+  const personal = state === "AUTHENTICATED_PROFILE_REQUIRED";
+  const airy = intro || personal;
+  const step = STEP_NUMBER[state];
   const body = () => {
     if (state === "UNAUTHENTICATED_INTRO")
       return (
@@ -230,7 +240,7 @@ export default function OnboardingScreen({
                 {lang.toUpperCase()}
               </ShinkaButton>
             ))}
-            {renderProfileAccess(language)}
+            {!personal && renderProfileAccess(language)}
           </div>
         </div>
         <>
@@ -239,18 +249,23 @@ export default function OnboardingScreen({
               {dependencies.join(" · ")}
             </div>
           )}
-          <p aria-hidden="true" className="text-shinka-small text-shinka-taupe">
-            {Math.min(STEPS.indexOf(state) + 1, 6)} / 6
-          </p>
-          {intro && <IntroArt />}
-          <h1
-            ref={title}
-            tabIndex={-1}
-            className={`font-heading text-shinka-h1 text-shinka-plum-deep outline-none ${intro ? "text-center" : ""}`}
-          >
-            {t(TITLES[state])}
-          </h1>
-          <ShinkaCard className={intro ? "shinka-intro-shell" : ""}>
+          {step && (
+            <p aria-hidden="true" className="text-shinka-small text-shinka-taupe" data-onboarding-step={step}>
+              {t("stepOf").replace("{n}", String(step))}
+            </p>
+          )}
+          {airy && <IntroArt />}
+          <div className={airy ? "space-y-2 text-center" : ""}>
+            <h1
+              ref={title}
+              tabIndex={-1}
+              className={`font-heading text-shinka-h1 text-shinka-plum-deep outline-none ${airy ? "text-center" : ""}`}
+            >
+              {t(TITLES[state])}
+            </h1>
+            {personal && <p className="text-shinka-taupe">{t("aboutSubtitle")}</p>}
+          </div>
+          <ShinkaCard className={airy ? "shinka-intro-shell" : ""}>
             <div className="space-y-5" aria-busy={busy}>
               {body()}
               {error && !error.field && (

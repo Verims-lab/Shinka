@@ -23,4 +23,12 @@ html:not(.dark) .shinka-onboarding {
 /* ON-01: three-row intro sits directly on the watercolor shell (no single white card). */
 .shinka-onboarding .shinka-intro-shell { background: transparent; border: 0; box-shadow: none; padding: 0; }
 html:not(.dark) .shinka-intro-art { mix-blend-mode: multiply; }
+/* ON-04 soft framed fields. Root cause of the old overflow: iOS Safari renders
+   date/time inputs with native appearance and an intrinsic min-width that ignores
+   width:100%; appearance:none + min-width:0 + border-box keeps them in the parent. */
+.shinka-framed-field { box-sizing: border-box; min-width: 0; max-width: 100%; min-height: 64px; padding: 10px 16px; border: 1px solid rgb(var(--shinka-control)); border-radius: 16px; background: rgb(var(--shinka-white) / 0.75); }
+.shinka-framed-field:focus-within, button.shinka-framed-field:focus-visible { outline: 2px solid rgb(var(--shinka-plum)); outline-offset: 2px; }
+.shinka-datetime { box-sizing: border-box; -webkit-appearance: none; appearance: none; min-width: 0; min-height: 32px; line-height: 1.5; }
+.shinka-datetime::-webkit-date-and-time-value { text-align: left; min-height: 1.5em; }
+.shinka-datetime::-webkit-calendar-picker-indicator { position: absolute; right: 10px; bottom: 8px; width: 32px; height: 32px; opacity: 0; cursor: pointer; }
 html.dark .shinka-intro-art { opacity: 0.85; border-radius: 9999px; }

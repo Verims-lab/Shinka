@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useSyncExternalStore } from "react";
 import ShinkaButton from "@/components/shinka/ShinkaButton";
 import BirthplaceList from "./BirthplaceList";
+import BirthplaceCompact from "./BirthplaceCompact";
 import { onboardingCopy } from "@/foundation/i18n/onboardingCopy";
 import { createBirthplacePicker } from "./birthplaceSelection";
 
@@ -12,6 +13,7 @@ export default function BirthplacePicker({
   onChange,
   disabled = false,
   error = false,
+  compact = false,
 }) {
   const callback = useRef(onChange);
   callback.current = onChange;
@@ -57,6 +59,30 @@ export default function BirthplacePicker({
       language={language}
     />
   );
+  const editor = (
+    <>
+      {list("countries", t("placeCountry"), t("placeChooseCountry"), state.countries, state.country, picker.country)}
+      {!state.country &&
+        list("region", t("placeRegion"), t("placeChooseCountryFirst"), { status: "IDLE", options: [], previous_offset: null, next_offset: null }, null, () => {}, true)}
+      {state.country &&
+        state.regions.map((data, index) => {
+          const level = data.level ?? state.path[index]?.level ?? (state.path[index - 1]?.level || 0) + 1;
+          return list(String(index), t(level === 1 ? "placeRegion" : level === 2 ? "placeDistrict" : "placeSubregion"), t("placeChooseRegion"), data, state.path[index], (id) => picker.region(index, id));
+        })}
+      {list(
+        "places",
+        t("placeSettlement"),
+        t(state.country ? "placeChooseSettlement" : "placeChooseCountryFirst"),
+        state.places,
+        state.selection ? { id: state.selection.birthplace_geonames_id, name: state.selection.birthplace_name, context: state.selection.birthplace_country_code } : null,
+        picker.place,
+        !state.country,
+      )}
+      {state.incomplete && <p className="text-shinka-small text-shinka-taupe">{t("PLACE_SELECTION_INCOMPLETE")}</p>}
+    </>
+  );
+  if (compact)
+    return <BirthplaceCompact t={t} state={state} picker={picker} disabled={disabled} error={error} editor={editor} />;
   return (
     <fieldset
       id="birthplace"
@@ -99,76 +125,7 @@ export default function BirthplacePicker({
           {t("placeChange")}
         </ShinkaButton>
       ) : (
-        <>
-          {list(
-            "countries",
-            t("placeCountry"),
-            t("placeChooseCountry"),
-            state.countries,
-            state.country,
-            picker.country,
-          )}
-          {!state.country &&
-            list(
-              "region",
-              t("placeRegion"),
-              t("placeChooseCountryFirst"),
-              {
-                status: "IDLE",
-                options: [],
-                previous_offset: null,
-                next_offset: null,
-              },
-              null,
-              () => {},
-              true,
-            )}
-          {state.country &&
-            state.regions.map((data, index) => {
-              const level =
-                data.level ??
-                state.path[index]?.level ??
-                (state.path[index - 1]?.level || 0) + 1;
-              return list(
-                String(index),
-                t(
-                  level === 1
-                    ? "placeRegion"
-                    : level === 2
-                      ? "placeDistrict"
-                      : "placeSubregion",
-                ),
-                t("placeChooseRegion"),
-                data,
-                state.path[index],
-                (id) => picker.region(index, id),
-              );
-            })}
-          {list(
-            "places",
-            t("placeSettlement"),
-            t(
-              state.country
-                ? "placeChooseSettlement"
-                : "placeChooseCountryFirst",
-            ),
-            state.places,
-            state.selection
-              ? {
-                  id: state.selection.birthplace_geonames_id,
-                  name: state.selection.birthplace_name,
-                  context: state.selection.birthplace_country_code,
-                }
-              : null,
-            picker.place,
-            !state.country,
-          )}
-          {state.incomplete && (
-            <p className="text-shinka-small text-shinka-taupe">
-              {t("PLACE_SELECTION_INCOMPLETE")}
-            </p>
-          )}
-        </>
+        editor
       )}
       <ShinkaButton
         variant="ghost"

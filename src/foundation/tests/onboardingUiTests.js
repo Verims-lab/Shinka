@@ -69,7 +69,8 @@ async function select(doc,id,value){
   doc.querySelector(`[data-place-option="${value}"]`).click();
   await waitForFixture(() => !doc.querySelector('dialog[open]'), doc.body);
 }
-const clearButton=doc=>doc.querySelector('[data-place-clear]');
+const openPlace=doc=>doc.querySelector('[data-place-open][aria-expanded=false]')?.click();
+const clearButton=doc=>{openPlace(doc);return doc.querySelector('[data-place-clear]');};
 /** @type {import('./testTypes').FoundationTest[]} */
 export const ONBOARDING_UI_TESTS=[
  ['U01','EN/TR six screens fit 360/430px with named controls and 17px inputs',async(context={})=>{
@@ -127,7 +128,7 @@ export const ONBOARDING_UI_TESTS=[
   const requests=[];
   const {f,calls,requestOverride}=await geoNamesUiFixture(async url=>{requests.push(url);return hierarchyFetch(url);});
   await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
-    await pause();check(doc.querySelector('#place-countries').value===''&&doc.querySelector('#place-places').disabled);
+    await pause();openPlace(doc);await pause();check(doc.querySelector('#place-countries').value===''&&doc.querySelector('#place-places').disabled);
     check(!doc.querySelector('input#birthplace')&&!doc.querySelector('input[type=search]'));
     await select(doc,'place-countries',100);await pause();check(doc.querySelector('#place-0').value==='');
     await select(doc,'place-0',1001);await pause();await select(doc,'place-1',1002);await pause();
@@ -150,7 +151,7 @@ export const ONBOARDING_UI_TESTS=[
       return url.pathname==='/searchJSON'?Response.json({geonames:[],totalResultsCount:0}):hierarchyFetch(url);
     });
     await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
-      await pause();
+      await pause();openPlace(doc);await pause();
       if(failed){check(doc.body.textContent.includes(ONBOARDING_COPY.en['GEONAMES_UNAVAILABLE']));const before=countryCalls;await pause();check(countryCalls===before);button(doc,ONBOARDING_COPY.en.retry).click();await pause();check(countryCalls===before+1);}
       else {await select(doc,'place-countries',100);await pause();check(doc.body.textContent.includes(ONBOARDING_COPY.en.placeEmpty)&&doc.body.textContent.includes(ONBOARDING_COPY.en.placeNoRegions));}
       check(!doc.body.textContent.includes('private provider text'));clearButton(doc).click();input(doc,'birth_date','1990-01-01');await pause();button(doc,'Continue').click();await pause();
@@ -168,7 +169,7 @@ export const ONBOARDING_UI_TESTS=[
   const saved={id:'partial-place-fixture',user_id:'ownerA',account_status:'ACTIVE',birth_date:'1990-01-01',birth_time:null,sun_sign_code:null,...normalizeGeoNamesPlace(fixturePlace)};f.rows.user_profile.push(saved);
   await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
     check(doc.querySelector('[data-place-summary]')&&calls===0);
-    button(doc,ONBOARDING_COPY.en.placeChange).click();await pause();check(doc.querySelector('[data-place-summary]'));
+    openPlace(doc);await pause();check(doc.querySelector('[data-place-summary]'));
     clearButton(doc).click();await pause();release();await pause();
     check(!doc.querySelector('[data-place-summary]')&&doc.querySelector('#place-countries').value===''&&doc.querySelector('#place-places').disabled);
     button(doc,'Continue').click();await pause();check(BIRTHPLACE_FIELDS.every(key=>saved[key]===null));
@@ -178,7 +179,7 @@ export const ONBOARDING_UI_TESTS=[
  ['U12','TR/EN cascading selection controls fit mobile/desktop, have visible labels, focus and no automatic selections',async(context={})=>{
   const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);
   for(const language of ['tr','en'])for(const width of [360,1280])await probe('AUTHENTICATED_PROFILE_REQUIRED',width,async(doc,win)=>{
-    await pause();await select(doc,'place-countries',100);await pause();await select(doc,'place-0',1001);await pause();
+    await pause();openPlace(doc);await pause();await select(doc,'place-countries',100);await pause();await select(doc,'place-0',1001);await pause();
     check(doc.querySelector('#place-1').value===''&&doc.querySelector('#place-places').value==='');
     check(doc.documentElement.scrollWidth<=width+1&&findUnlabeledControls(doc.querySelector('main')).length===0);
     for(const el of doc.querySelectorAll('[data-place-control]')){check(doc.querySelector(`label[for="${el.id}"]`)&&el.getBoundingClientRect().height>=44&&parseFloat(win.getComputedStyle(el).fontSize)>=16);if(!el.disabled){el.focus();check(doc.activeElement===el);}}
@@ -235,6 +236,20 @@ export const ONBOARDING_UI_TESTS=[
    check(doc.documentElement.scrollWidth<=width+1,`${language} ${width} overflow`);
    const begin=[...doc.querySelectorAll('button')].find(b=>b.textContent.trim()===(language==='en'?'Begin':'Başla'));check(begin,'begin');
    begin.click();await new Promise(r=>win.setTimeout(r,50));check(doc.querySelector('#display_name'),`${language} ON-02 reached`);check(!doc.querySelector('[data-onboarding-intro]'),'intro left');
+  },{language},context);
+ }],
+ ['U17','ON-04 shows new title/subtitle, 4 of 5, compact birthplace, no Account & Privacy; cancel keeps prior selection; date/time fit 320/360',async(context={})=>{
+  const pause=()=>testDelay(50,context.signal);
+  for(const language of ['en','tr'])for(const width of [320,360])await onboardingProbe('AUTHENTICATED_PROFILE_REQUIRED',width,async doc=>{
+   const c=ONBOARDING_COPY[language];
+   check(doc.querySelector('h1').textContent===c.aboutTitle&&doc.body.textContent.includes(c.aboutSubtitle),`${language} title`);
+   check(doc.querySelector('[data-onboarding-step]')?.textContent===c.stepOf.replace('{n}','4'),`${language} step`);
+   check(!doc.body.textContent.includes('Account & Privacy')&&!doc.body.textContent.includes('Hesap ve Gizlilik'),'no privacy link on ON-04');
+   check(doc.querySelector('[data-place-open]')&&!doc.querySelector('#place-countries'),'compact field, lists closed');
+   for(const id of ['birth_date','birth_time']){const el=doc.querySelector(`#${id}`),box=el.closest('.shinka-framed-field').getBoundingClientRect(),r=el.getBoundingClientRect();check(r.right<=box.right+0.5&&r.left>=box.left-0.5,`${id} inside frame ${width}`);check(doc.querySelector(`label[for=${id}]`),`${id} label`);}
+   check(doc.documentElement.scrollWidth<=width+1,`${language} ${width} overflow`);
+   openPlace(doc);await pause();check(doc.querySelector('#place-countries'),'panel opens lists');
+   doc.querySelector('[data-place-cancel]').click();await pause();check(!doc.querySelector('#place-countries')&&!doc.querySelector('[data-place-summary]'),'cancel keeps prior (empty) selection');
   },{language},context);
  }],
 ];

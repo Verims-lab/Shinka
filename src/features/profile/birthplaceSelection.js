@@ -159,6 +159,19 @@ export function createBirthplacePicker({
       if (state.countries.status !== "READY") return load("countries");
       return Promise.resolve();
     },
+    // Cancel in the compact panel: return to the selection held before opening.
+    restore: (selection) => {
+      invalidate();
+      changed({
+        country: null,
+        path: [],
+        regions: [],
+        places: resource(),
+        selection,
+        incomplete: false,
+        editing: !selection,
+      });
+    },
     country: (id) => {
       const country = state.countries.options.find((x) => x.id === id);
       if (!country) return Promise.resolve();
