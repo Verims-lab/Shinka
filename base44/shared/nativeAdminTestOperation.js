@@ -76,7 +76,9 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
   const guardedClient = { ...client, asServiceRole: { ...client.asServiceRole, entities: new Proxy(client.asServiceRole.entities, {
     get(target, name) { return new Proxy(target[name], { get(entity, method) {
       if (!mutationMethods.has(String(method))) return entity[method];
-      return async (...args) => { await guard(); const value = await entity[method](...args); await guard(); return value; };
+      // Every write is admitted by a fresh pre-write guard; the next write's (or the
+      // final) guard covers what a post-write guard re-read, halving guard reads.
+      return async (...args) => { await guard(); return entity[method](...args); };
     } }); },
   }) } };
   const guardedRepository = createTestRepository(guardedClient, { clock });

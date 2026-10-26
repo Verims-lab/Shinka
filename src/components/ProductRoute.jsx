@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import LoginRedirect from './LoginRedirect';
 import ProtectedRoute from './ProtectedRoute';
 import Onboarding from '@/pages/Onboarding';
 
@@ -8,7 +8,7 @@ import Onboarding from '@/pages/Onboarding';
 export default function ProductRoute({ destination = 'home', initialEntry = 'UNAUTHENTICATED_INTRO', publicEntry = false }) {
   return <ProtectedRoute unauthenticatedElement={publicEntry
     ? <Onboarding initialEntry={initialEntry}/>
-    : <Navigate to="/login" replace/>}>
+    : <LoginRedirect/>}>
     <Onboarding destination={destination} initialEntry={initialEntry}/>
   </ProtectedRoute>;
 }

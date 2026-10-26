@@ -3,11 +3,12 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "@/lib/AuthContext";
 import PageContainer from "@/components/shinka/PageContainer";
 import StatePanel from "@/components/shinka/StatePanel";
+import SessionRetry from "@/components/SessionRetry";
 import { internalLanguage, internalLinkClass } from "@/foundation/internalNavigation";
 import { t } from "@/foundation/i18n/strings";
 
 export default function AdminGate() {
-  const { isAdmin, isRefreshingAuth, checkUserAuth } = useAuth();
+  const { isAdmin, isRefreshingAuth, checkUserAuth, authError } = useAuth();
   const { pathname, state } = useLocation();
   const [checkedPath, setCheckedPath] = useState(null);
   const previouslyAllowed = useRef(false);
@@ -26,6 +27,8 @@ export default function AdminGate() {
     {pending && <PageContainer><StatePanel state="LOADING" message={t("admin.checking", language)} /></PageContainer>}
     {retainTool && <div hidden={pending} aria-hidden={pending || undefined} {...(pending ? { inert: "" } : {})}><Outlet /></div>}
   </>;
+  // Unverified authority is neither admin access nor a role loss.
+  if (!isAdmin && authError?.type === "session_unverified") return <SessionRetry language={language} />;
   if (!isAdmin) return <PageContainer>
     <StatePanel state="DISABLED" message={t("admin.unavailable", language)} code="FORBIDDEN" />
     <Link to="/" state={{ language }} className={`${internalLinkClass} border-shinka-line text-shinka-plum`}>{t("admin.returnApp", language)}</Link>

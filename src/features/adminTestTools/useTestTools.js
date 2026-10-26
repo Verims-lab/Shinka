@@ -4,7 +4,10 @@ const KEY = 'shinka.pending-test-operation';
 const readPending = () => { try { const p=JSON.parse(sessionStorage.getItem(KEY)); return p && /^[a-zA-Z0-9_-]{1,100}$/.test(p.target) && /^[a-zA-Z0-9_-]{16,100}$/.test(p.id) ? p : null; } catch {return null;} };
 const remember = value => { try {if(value)sessionStorage.setItem(KEY,JSON.stringify(value));else sessionStorage.removeItem(KEY);} catch { /* Lookup by ID still recovers server state. */ } };
 
-export function useTestTools(request = adminTestRequest) {
+// Paced passes: back-to-back resume/status calls (each with nested admission
+// reads) were a measured source of 429s. Never an automatic new deletion.
+const PASS_GAP_MS = 1500;
+export function useTestTools(request = adminTestRequest, wait = ms => new Promise(resolve => setTimeout(resolve, ms))) {
   const initial = useRef(readPending());
   const [input,setInput] = useState(initial.current?.target || ''), [value,setValue] = useState(null);
   const [preview,setPreview] = useState(null), [job,setJob] = useState(null), [pendingId,setPendingId] = useState(initial.current?.id || null);
@@ -36,6 +39,7 @@ export function useTestTools(request = adminTestRequest) {
         if(result.job.status!=='RUNNING'&&result.job.error_code!=='TEST_CLEANUP_MORE_REQUIRED')break;
         if(version!==generation.current)break;
         setPhase('DELETING');
+        await wait(PASS_GAP_MS);if(version!==generation.current)break;
         result=await request('resume',{target_id:payload.target_id,operation_id:operationId});
         if(version!==generation.current)break;
         onResult(result);
@@ -50,6 +54,7 @@ export function useTestTools(request = adminTestRequest) {
         // Unknown completion: read only; no automatic destructive retry.
         for(let attempt=0;attempt<2&&version===generation.current;attempt++) {
           try {
+            await wait(PASS_GAP_MS);if(version!==generation.current)break;
             const result=await request('status',{target_id:payload.target_id,operation_id:payload.request_id||payload.operation_id});
             if(version!==generation.current)break;
             accept(result);setError(null);

@@ -28,6 +28,7 @@ const BuildEnvironment = lazy(
 const HealthCenter = lazy(() => import("@/pages/internal/HealthCenter"));
 const AuthShellProbe = lazy(() => import("@/foundation/probes/AuthShellProbe"));
 import { isAuthProbePath } from "@/foundation/probes/authProbeRoute";
+import LoginRedirect from "@/components/LoginRedirect";
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError } = useAuth();
@@ -62,7 +63,7 @@ const AuthenticatedApp = () => {
       <Route
         element={
           <ProtectedRoute
-            unauthenticatedElement={<Navigate to="/login" replace />}
+            unauthenticatedElement={<LoginRedirect />}
           />
         }
       >

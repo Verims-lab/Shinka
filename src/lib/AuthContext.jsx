@@ -1,6 +1,7 @@
-import { createContext, useState, useContext, useEffect, useCallback, useRef } from "react";
+import { createContext, useState, useContext, useEffect, useCallback, useRef, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
-import { safeAuthError } from "@/foundation/authErrors";
+import { safeAuthError, classifySessionFailure, AUTH_ERROR_CODES } from "@/foundation/authErrors";
+import { createSessionCoalescer } from "@/lib/sessionCheck";
 import { PRIVACY_SIGNAL, privacyRecoveryStore } from '@/services/privacyService';
 import { queryClientInstance } from '@/lib/query-client';
 
@@ -19,7 +20,7 @@ export const AuthProvider = ({ children, client = base44 }) => {
   const generation = useRef(0), signedOut = useRef(false);
   const privacyVersion = useRef(null);
 
-  const checkUserAuth = useCallback(async () => {
+  const verifySession = useCallback(async () => {
     if (signedOut.current) return false;
     const ticket = ++generation.current;
     setIsRefreshingAuth(true);
@@ -35,8 +36,14 @@ export const AuthProvider = ({ children, client = base44 }) => {
       return true;
     } catch (error) {
       if (ticket !== generation.current) return false;
-      setUser(null); setIsAuthenticated(false);
-      setAuthError({ type: "auth_required", code: safeAuthError(error, "session") });
+      if (classifySessionFailure(error) === "INVALID") {
+        setUser(null); setIsAuthenticated(false);
+        setAuthError({ type: "auth_required", code: safeAuthError(error, "session") });
+      } else {
+        // Transient: no logout or login redirect. authError blocks isAdmin, so a
+        // previously seen role grants no new admin operation until re-verified.
+        setAuthError({ type: "session_unverified", code: AUTH_ERROR_CODES.SESSION_FAILED });
+      }
       return false;
     } finally {
       if (ticket === generation.current) {
@@ -44,6 +51,8 @@ export const AuthProvider = ({ children, client = base44 }) => {
       }
     }
   }, [client]);
+  const coalescer = useMemo(() => createSessionCoalescer(verifySession), [verifySession]);
+  const checkUserAuth = coalescer.check;
 
   const checkAppState = useCallback(async () => {
     const ticket = ++generation.current;
@@ -84,10 +93,11 @@ export const AuthProvider = ({ children, client = base44 }) => {
   // Refresh privilege without unmounting the onboarding form. No push/revocation guarantee.
   useEffect(() => {
     if (!isAuthenticated) return;
-    const refresh = () => { if (document.visibilityState === "visible") void checkUserAuth(); };
+    const refresh = () => { if (document.visibilityState === "visible") void coalescer.passive(); };
     const restore = event => {
       if (!event.persisted) return;
-      queryClientInstance.clear(); setUser(null); setIsAuthenticated(false);
+      // Loading (not logged-out) while re-verifying, so routes never flash login.
+      queryClientInstance.clear(); setUser(null); setIsAuthenticated(false); setIsLoadingAuth(true); coalescer.reset();
       window.dispatchEvent(new Event('shinka-health-access-changed'));
       void checkUserAuth();
     };
@@ -101,7 +111,7 @@ export const AuthProvider = ({ children, client = base44 }) => {
       document.removeEventListener("visibilitychange", refresh);
       clearInterval(timer);
     };
-  }, [isAuthenticated, user?.role, checkUserAuth]);
+  }, [isAuthenticated, user?.role, checkUserAuth, coalescer]);
 
   const logout = async (shouldRedirect = true, { preservePrivacyRecovery = false } = {}) => {
     signedOut.current = true; generation.current++;

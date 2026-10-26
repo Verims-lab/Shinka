@@ -15,6 +15,8 @@ export const STRINGS = Object.freeze({
     "admin.navigation": "Admin navigation",
     "admin.checking": "Checking access…",
     "admin.unavailable": "This area is not available.",
+    "session.unverified": "Your session could not be verified right now. You are still signed in.",
+    "session.retry": "Try again",
 
     "auth.title": "Welcome to Shinka", "auth.intro": "Sign in with Apple or Google",
     "auth.apple": "Continue with Apple", "auth.google": "Continue with Google",
@@ -40,6 +42,8 @@ export const STRINGS = Object.freeze({
     "admin.navigation": "Yönetim gezinmesi",
     "admin.checking": "Erişim kontrol ediliyor…",
     "admin.unavailable": "Bu alana erişilemiyor.",
+    "session.unverified": "Oturum şu an doğrulanamadı. Oturumun kapatılmadı.",
+    "session.retry": "Tekrar dene",
 
     "auth.title": "Shinka’ya hoş geldin", "auth.intro": "Apple veya Google ile giriş yap",
     "auth.apple": "Apple ile devam et", "auth.google": "Google ile devam et",

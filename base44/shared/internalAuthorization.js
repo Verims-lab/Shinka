@@ -10,8 +10,11 @@ export async function requireAuthenticatedUser(client) {
   let me;
   try { me = await client.auth.me(); } catch (error) {
     if (error instanceof InternalError) throw error;
-    const failure = new InternalError("AUTH_REQUIRED", 401);
-    failure.diagnostic = healthReadDiagnostic(error, { stage: 'SESSION_AUTH' });
+    const diagnostic = healthReadDiagnostic(error, { stage: 'SESSION_AUTH' });
+    // A rate limit/outage is not proof the session is invalid; never answer 401 for it.
+    const transient = ['RATE_LIMITED', 'TIMEOUT', 'SERVICE_UNAVAILABLE', 'NETWORK_UNAVAILABLE'].includes(diagnostic.code);
+    const failure = transient ? new InternalError("SESSION_UNAVAILABLE", 503) : new InternalError("AUTH_REQUIRED", 401);
+    failure.diagnostic = diagnostic;
     throw failure;
   }
   if (!me?.id || typeof me.id !== "string") throw new InternalError("AUTH_REQUIRED", 401);

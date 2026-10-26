@@ -13,7 +13,9 @@ export default async function (req) {
     const privacyRevision = await privacyHash(JSON.stringify(requests.map(row => [row.id, row.status])));
     return Response.json({ id: user.id, role: user.role, privacyRevision, authority: 'BASE44_NATIVE_V1' });
   } catch (error) {
-    return Response.json({ error_code: error instanceof InternalError ? error.code : 'APPLICATION_SESSION_FAILED' },
-      { status: error instanceof InternalError ? error.status : 500 });
+    // Unclassified read failures (e.g. 429 on the privacy read) are retryable
+    // unavailability, never session invalidity.
+    return Response.json({ error_code: error instanceof InternalError ? error.code : 'SESSION_UNAVAILABLE' },
+      { status: error instanceof InternalError ? error.status : 503 });
   }
 }
