@@ -1,47 +1,76 @@
-# SHINKA — Stabilization 034 (session, Health 429, admin deletion load)
+# Shinka 034 — stabilizasyon kapanış hazırlığı ve doğrulama engeli
 
-**Status:** LOCAL FIXES DONE — browser acceptance, BuildMarker recording, publish and live Health NOT RUN
-**Base marker:** Buildmarker-033 (034 entry prepared, not recorded — see §6)
-**Date:** 2026-10-26
+**Paket:** Buildmarker-034 / HC-034.0
+**Tarih:** 2026-10-26 (Europe/Istanbul; makbuzlar UTC)
+**Durum:** LOCAL_VALIDATION_BLOCKED — bağımsız düzeltmeler ve Node kontrolleri tamamlandı; tam browser/bağımlılık kabulü tamamlanmadı. Yayına hazır veya FULLY_CLOSED değildir.
 
-## 1. Changes
-| Area | Change |
+## Kaynak ve koruma
+
+Başlangıç çalışma ağacı temizdi: Test/origin Test `ca964e03e3bfc243338372ad1571e92d0137b88a`. Güncel fetch, origin/main'in `041b40b` olduğunu doğruladı; Test 0 yerel/8 uzak commit gerideydi. `git merge --ff-only origin/main` ile Base44 çalışmaları kayıpsız alındı. Main'e yazılmadı, reset/force kullanılmadı. `f9eae0c` tarihsel referanstır.
+
+Test edilen Node kaynağı bu main tabanı + aşağıdaki 034 değişiklikleridir. Son [kaynak manifesti](stabilization-034/source-manifest.json), [kaynak koruma kaydı](stabilization-034/source-review.json) ve [komut makbuzları](stabilization-034/verification.json) tam hash/kapsamı taşır. package.json ve package-lock.json, güncel main ile byte olarak aynı kalır. Base44'ün onboarding arka planı ve silme sonrası guard'ı korunur.
+
+## Kanıtlanan hata ve odaklı düzeltmeler
+
+- **Oturum nesli:** yeni SS02b, reset sonrasında eski in-flight isteğin tekrar kullanıldığını gerçekten FAIL ile gösterdi. Coalescer reset artık hem eski isteği hem başarı zamanını ayırır; eski completion yeni isteğin kilidini açamaz. AuthProvider app/account yenilemesi, logout ve bfcache dönüşünde önceki nesli geçersiz kılar; yeni oturum eski kullanıcı/rolü devralmaz. Manuel/normal route ve admin yetkisi ayrımı korunur.
+- **Silme pacing:** kaynak incelemesi, 1,5 saniyelik bekleme sonrasında 60 saniye bütçesinin tekrar kontrol edilmediğini gösterdi. Enjekte edilen monotonic clock ile bekleme sonrası sınır eklendi; bütçe dolunca PARTIAL görünümü korunur. Unmount, session-ended ve account/privacy invalidation eski devam/status döngüsünü keser. Bu React davranışı için yazılan AP testleri henüz çalıştırılamadı.
+- **Health sözleşmesi:** readable=true satırında eksik/negatif/taşan/string sampledRows kabul edilebiliyordu. Aynı predicate artık 0 veya 1 integer örnek sayısı, tam feature/authority/version/strateji ve beş eşsiz satır ister. Geçerli geçici 429/timeout BLOCKED; uyuşmazlık+429 ve bozuk şema FAIL. Bağımsız gerçek predicate Node matrisi SS04n geçti; SS04/SS10 browser ve gerçek dört case/memoization koşusu NOT_RUN.
+- **Korunan güvenlik:** nativeAdminTestOperation pre/post-write guard'ı main ile aynı. NA34C'ye yanlış operasyon ID'sinin yazmasız reddi eklendi; NA34A/B ve önceki residual/readback/response-loss assertion'ları kaldırılmadı. Native User yokluğu tek başına silinme başarısı sayılmaz. Gerçek iki hedefin güncel durumu okunmadı.
+- **Test altyapısı:** AuthProvider pasif timer/clock ve TestTools wait/clock varsayılanları geriye uyumludur. Yeni testler kontrollü promise/saat kullanır; gerçek 1,5 saniye beklemez. AN07 eski paralel-refresh varsayımı yerine açık yeni app/account sınırında geç yanıt reddini test eder. Server testleri scripts/ altında; yeni src dosyalarına base44 import'u, test endpoint'i veya gevşetilmiş güvenlik kuralı eklenmedi.
+
+## Bağımlılıklar ve ağ engeli
+
+Lock: **zod 4.6.7**, **@hookform/resolvers 5.9.2**, **react-hook-form 7.71.1**, SDK 0.8.57, Vite plugin 1.0.48. Resolvers'ın zod ^3.25.0 || ^4.0.0 ve react-hook-form ^7.55.0 aralıkları lock sürümlerini kapsar; bu yalnız manifest incelemesidir, kurulu peer ağacı veya Zod runtime uyumluluğu değildir.
+
+Kullanıcı, Base44 Security scan'de zod bulgusunun güncelleme sonrası kapandığını bildirdi. **USER_REPORTED_PLATFORM_EVIDENCE** olarak kaydedildi; scan yeniden çalıştırılmadı veya bağımsız doğrulanmadı. Yerel npm audit'in sonucu ayrıdır: **BLOCKED/ERROR, vulnerability sayıları UNKNOWN**; sıfır bulgu değildir. Ertelenmiş **12 backend bulgusu OPEN / USER-DEFERRED** kalır.
+
+`npm ci` zod tarball TLS zincirini doğrulayamadı (UNABLE_TO_VERIFY_LEAF_SIGNATURE). Node --use-system-ca denemesi de başarısız; curl doğrulaması aynı problemi gösterdi. Salt sertifika metadata'sında Fortinet issuer görüldü. Bu bilgi güven vermek için kullanılmadı. Offline temiz kurulum zod 4.6.7 önbellekte olmadığı için ENOTCACHED verdi. Kullanıcı “Şimdilik ağ engelini raporla” dedi. TLS kapatılmadı, CA eklenmedi, registry/dependency/lock değiştirilmedi.
+
+Ağdan bağımsız statik kontrol için yalnız lock'taki **Acorn 8.19.0, acorn-jsx 5.3.2, TypeScript 5.9.3** mevcut npm önbelleğinden /private/tmp altında kuruldu ve bu üç araç ignored node_modules'a bağlandı. Bu kısmi araç kurulumu, tam npm ci/peer/test/build başarısı değildir. Node_modules artık tam uygulama kurulumu değildir; güvenilir ağ sağlanınca yeniden npm ci gerekir.
+
+## Gerçek yürütme ve çalışmayan kapsam
+
+| Kontrol | Bu paketin sonucu | Sınır |
+|---|---|---|
+| İlk verifySessionStability | 7/7 PASS, exit 0 | Gerçek provider/route değil |
+| Yeni SS02b ilk koşu | 7 PASS / 1 FAIL, exit 1 | Eski pending request yeniden kullanımı; kanıt korundu |
+| Son verifySessionStability | **9/9 PASS, exit 0** | SS03a/b/c, SS01, SS02, SS02b, SS05, SS05b, SS04n; Node/sentetik |
+| Chromium canonical runner | **0 test, NOT_RUN, exit 1** | Kurulum eksik; sonuç listesi yok, hiçbir ID PASS sayılmadı |
+| WebKit canonical runner | **0 test, NOT_RUN, exit 1** | Kurulum eksik; sonuç listesi yok, hiçbir ID PASS sayılmadı |
+| Canlı/in-app Full Health | NOT_RUN | Yerel saf predicate gerçek Health çalıştırması değildir |
+| Temiz kurulum / kurulu peer ağacı | BLOCKED | TLS ve eksik paketler |
+| npm audit / security:deps | ERROR/BLOCKED, exit 1 | Yerel bulgu sayısı bilinmiyor |
+| Kaynak sözdizimi | PASS | Aynı kilitli TS parser'ı; typecheck/runtime değildir |
+| Repo Health / build-history | **PASS / exit 0** | Bağımsız statik/metadata kontrolleri |
+| Typecheck / lint / build / performans | NOT_COMPLETED | npm komutları exit 127; doğrudan kilitli tsc exit 2 (node type definitions yok), performans exit 1 (Vite yok). Tam kurulum eksik; makbuzlar korunur |
+| ON-04/ON-05 görsel / fiziksel cihaz | NOT_RUN | İzole fixture mevcut; canlı onboarding veya veri yazma yok |
+
+Browser sonuç listesinde **eksik/çalışmayan** zorunlu ID'ler: **T81, U15, SS01, SS02, SS04, SS06–SS09, SS10, NA34A, NA34B, NA34C, TP01–TP04**. Retained AN02–AN07, AU01–AU10, RM01–RM03 ve tüm diğer regresyonlar da bu pakette browser'da çalışmadı. SS01/SS02'nin Node sonucu bunların browser yürütmesi değildir. 033'ün 632/632 sonucu 034'e taşınmadı. Hiçbir assertion kaldırılmadı veya timeout büyütülmedi.
+
+T81 kaynakta açık/koyu temayı ayrı doğrular ve finally ile geri yükler. U15 ON-04/ON-05 EN/TR arka plan/taşma kontrolleridir. SS06–09 gerçek AuthProvider, ProtectedRoute, AdminGate, LoginRedirect ve SignIn kullanır; platform IO sentetiktir. TP01–04 gerçek TestTools/useTestTools, kontrollü bekleme/saat ve sentetik operation yanıtlarını kullanır. Bu testlerin tamamı hazır fakat NOT_RUN; OAuth sağlayıcısı veya gerçek hesap kabulü iddiası yoktur.
+
+İlk Base44 SS02 başarısızlığı ve 7/7 handoff'u [orijinal raporda](stabilization-034/base44-handoff-original.md), [orijinal build taslağı](stabilization-034/build-entry-original.json) ile korundu. Yeni SS02b failure, test yazımı sırasında düzeltilen ilk syntax hatası ve statik kontrolde yakalanıp TP01–04 olarak ayrılan test-ID çakışması ve bütün kurulum/audit engelleri [ilk başarısızlıklar](stabilization-034/initial-failures.json) altında tutulur.
+
+## Health / sürüm kaydı
+
+**Add 0 / update 8 / delete 0**; katalog envanteri/planı korunur.
+
+| ID | Güncelleme gerekçesi |
 |---|---|
-| Server session (`base44/shared/internalAuthorization.js`) | `auth.me()` failure → 401 `AUTH_REQUIRED` only with explicit evidence (HTTP 401/403 or `AUTH_REQUIRED`). 429/5xx/timeout/network/unclassified transport → 503 `SESSION_UNAVAILABLE`. |
-| `applicationSession` | Unclassified failures → 503 `SESSION_UNAVAILABLE` (was 500). |
-| Client session (`src/lib/sessionCheck.js`, `AuthContext`) | Concurrent checks coalesced; passive triggers throttled; `reset()` on logout/account change now forces re-verification (bug found by SS02: reset to `0` did not force). |
-| Health native prerequisite | BLOCKED for transient unavailability only if feature valid, authority/strategy match, and the five schemas each appear exactly once with well-formed rows. Otherwise FAIL. |
-| `nativeReadiness` | Sequential reads; at most one retry per schema on `RATE_LIMITED`. `budgetMs` **only gates whether a retry wait is started**; it is NOT a hard total timeout (individual reads are unbounded by it). |
-| Admin deletion guard | Post-write `guard()` was removed in an earlier step and is now **restored**. Equivalence of "next pre-write/final guard" was not proven, so the read reduction was withdrawn. |
-| `useTestTools` | 1.5 s gap between automatic resume/status passes via injectable `wait`; generation check after each wait. |
+| H04-019, H08-005, H09-004, H12-031 | Ortak exact readiness sözleşmesi ve transient/mismatch ayrımı; SS04/SS10 yerel eşlemesi. Aynı per-run memoized kaynak korunur. |
+| H12-025 | Gerçek provider/route/login, transient ve nesil regresyonları SS06–09; saf SS01/02'den ayrı. |
+| H12-033 | NA34A–C actor/başka kullanıcı, role-loss ve yanlış hedef/operasyon negatifleri. |
+| H13-016 | TP01–04 pacing, iptal, bütçe, aynı operasyon ve status-only recovery; AU kanıtları korunur. |
+| H13-012 | T81/U15 onboarding tema/taşma eşlemesi; fiziksel kabul ayrımı. |
 
-## 2. Executed tests
-Command: `node scripts/verifySessionStability.mjs` → 7/7 PASS
-| ID | Result |
-|---|---|
-| SS03a server 429/503/504/ETIMEDOUT/ERR_NETWORK/`TypeError` without HTTP → 503 | PASS |
-| SS03b real 401, null user, missing id → 401 | PASS |
-| SS03c role loss → FORBIDDEN; 429 during admin check never grants | PASS |
-| SS01 client classification | PASS |
-| SS02 coalescing, throttle, reset | PASS (first run FAIL: reset did not force re-check — fixed, failure retained here) |
-| SS05 sequential + one retry per schema | PASS |
-| SS05b budget gates retries only | PASS |
+`recordBuild.mjs` ile **034 / HC-034.0** ve son beş paket **030–034** kaydedildi; marker ayrıca ikinci kez artırılmaz. Strict içerik politikası yalnız 034 ekler, gelecekteki sürümleri serbest bırakmaz. Eski Health/Git/audit kanıtları silinmez. `full_health_status: NOT_RUN`, yerel doğrulama **OPEN/BLOCKED**.
 
-Also: `npx vite build` exit 0; `npx eslint` on changed files exit 0.
+## Devam ve kullanıcı kabulü
 
-## 3. Written, NOT executed (browser runner required)
-- `src/foundation/tests/sessionStabilityTests.js`: SS01, SS02, SS04 (SS04 = Health BLOCKED/FAIL incl. mismatch+429 negative).
-- `src/foundation/tests/nativeTests.js`: NA34A (A deletes B, A intact, single operation id), NA34B (role removed mid-deletion → zero later writes, no COMPLETED), NA34C (cross-target resume rejected).
-- Not written: `useTestTools` pacing tests (unmount/account change during wait, budget exhaustion, status-only reconciliation, same operation id). They need a React render harness (browser).
+1. Önce güvenilir ağda aynı lock ile npm ci; tree/peer, audit/security, typecheck/lint/build/Repo Health/performance ve ayrı Chromium/WebKit komutlarını tamamla. Tam sonuçlar olmadan bu taslak PR'ı yayın kabulü sayma.
+2. Yerel kapılar tamamlandıktan sonra kullanıcı mevcut Test → main/sync/publish akışını yürütür. Backend/shared modüller ve frontend birlikte eşleşmeli.
+3. Yayın sonrası normal oturumla uygulamaya dönme, admin paneline girme, geçici hata sonrası Retry ve rol kaybında erişimin kapanmasını uygulama ekranından kontrol et. Canlı OAuth/native davranışı ayrıca kabul edilir.
+4. Kullanıcı Full Health çalıştırıp raporu kaydeder/açar; 429 varsa BLOCKED ile gerçek sözleşme hatasını ayırır. Ajan bu çalışmada canlı Health/scan yapmadı.
+5. İki mevcut hedef daha önce Base44 tarafından PARTIAL bildirildi. Kullanıcı önce güncel durumu yeniden lookup ile okur; gerekirse **aynı operation ID** ile devam eder. Yerel fixture bu kullanıcıların silindiği kanıtı değildir.
 
-## 4. Why some tests could not be placed
-Base44 file-write rule: a **new** file under `src/` may not import from `base44/`, and an edit may not **add** new `base44/` imports to an existing `src/` file (pre-existing imports are tolerated). Concretely rejected: new `src/foundation/tests/sessionStabilityTests.js` importing `base44/shared/nativeReadiness.js`, `internalAuthorization.js`, `testDeletionResult.js`; and adding those imports to `src/foundation/tests/nativeTests.js`. Workaround used (no bypass): server-side tests in `scripts/verifySessionStability.mjs` (Node); deletion tests added to `nativeTests.js` using its existing `nativeFixture` import. `nativeFixture` cannot run in plain Node (extensionless ESM imports), so NA34A–C need the browser runner.
-
-## 5. Two target users
-Read-only inspection earlier in this package: both accounts still present; each has one DELETE_USER operation in RUNNING at the same step; profile/preference rows remain. State: **Kısmi (PARTIAL)** for both. Not re-read after these changes; current state must be re-checked by lookup before any resume.
-
-## 6. Codex handoff
-1. `node scripts/recordBuild.mjs docs/shinka/reports/stabilization-034/build-entry.json` then set `BUILD_MARKER` to `Buildmarker-034` and run `node scripts/recordBuild.mjs --check` (not done: the script writes repository files, which my tools may not do via shell).
-2. `node scripts/runFoundationTests.mjs` (Chromium + WebKit) — must include SS01/SS02/SS04, NA34A–C, T81, U15.
-3. Write `useTestTools` pacing tests with injected `wait` (no real timers).
-4. `node scripts/verifySessionStability.mjs`, `node scripts/repoHealth.mjs`.
+Bildirim entry'si kapalı; gerçek secret/workflow/push, kullanıcı silme/resume/reset, import, native build, main merge ve publish yapılmadı.

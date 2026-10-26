@@ -4,7 +4,8 @@ export const NATIVE_READINESS_SCHEMAS = Object.freeze(['AdminTestOperation', 'Us
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
 // Names, bounded sample size and closed diagnostics only. Never return records.
 // Reads are sequential (no 5-read burst after the admission reads) with at most
-// one bounded wait+retry per schema on RATE_LIMITED, inside a fixed total budget.
+// one wait+retry per schema on RATE_LIMITED. The budget only gates retry starts;
+// it does not impose a hard timeout on the reads themselves.
 export async function nativeReadiness(client, { wait = pause, retryDelayMs = 800, budgetMs = 6000, clock = () => Date.now() } = {}) {
   await requireInternalAdmin(client);
   const deadline = clock() + budgetMs, schemas = [];

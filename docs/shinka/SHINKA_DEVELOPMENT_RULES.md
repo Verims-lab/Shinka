@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-033
-**Last Updated:** 2026-10-23
+**Current BuildMarker:** Buildmarker-034
+**Last Updated:** 2026-10-26
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
+
+## 034 — focused closure with an explicit environment blocker
+
+Continue fresh origin/main 041b40b and preserve its package/lock and Base44 changes. Record 034 / HC-034.0 once with recordBuild; retain 030–034. Complete independent Node/source/docs checks; failed clean installation/audit and zero browser execution are BLOCKED, never PASS. The owner explicitly chose to report the Fortinet TLS blocker. Test draft delivery is permitted with incomplete validation clearly stated; no main merge/publish/live operation. [034 handoff](reports/SHINKA_STABILIZATION_034.md).
 
 ## 033 — bounded authorization preparation
 

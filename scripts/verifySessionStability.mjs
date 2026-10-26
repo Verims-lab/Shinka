@@ -4,6 +4,7 @@ import { nativeReadiness } from '../base44/shared/nativeReadiness.js';
 import { requireAuthenticatedUser, requireInternalAdmin } from '../base44/shared/internalAuthorization.js';
 import { classifySessionFailure } from '../src/foundation/authErrors.js';
 import { createSessionCoalescer } from '../src/lib/sessionCheck.js';
+import { nativePrerequisite } from '../src/foundation/health/nativeReadinessContract.js';
 const http = status => Object.assign(new Error('x'), { status });
 const results = [];
 const test = async (id, fn) => { try { await fn(); results.push([id, 'PASS']); } catch (e) { results.push([id, 'FAIL', e.message]); } };
@@ -34,6 +35,16 @@ await test('SS02 coalescing/throttle/reset', async () => {
   const all = Promise.all([c.check(), c.passive(), c.passive(), c.check()]); release(); await all; check(runs === 1, `runs ${runs}`);
   time = 5000; await c.passive(); check(runs === 1, 'throttled'); c.reset(); await c.passive(); check(runs === 2, 'reset (logout/account change) forces fresh check');
 });
+await test('SS02b reset separates in-flight work and stale success', async () => {
+  let release, runs = 0, time = 0;
+  const oldResponse = new Promise(resolve => { release = resolve; });
+  const c = createSessionCoalescer(async () => { runs++; return runs === 1 ? oldResponse : false; }, { now: () => time });
+  const old = c.check(); await Promise.resolve(); c.reset();
+  const fresh = c.passive(); await Promise.resolve();
+  check(runs === 2, 'reset reused old in-flight request');
+  release(true); await Promise.all([old, fresh]); time = 1; await c.passive();
+  check(runs === 3, 'old success throttled the new session');
+});
 await test('SS05 nativeReadiness sequential, one retry per schema', async () => {
   let inFlight = 0, peak = 0, waits = 0; const fails = { UserPrivacyRequest: 1, PrivacyRecoveryReceipt: 9 };
   const entities = new Proxy({}, { get: (_, name) => ({ filter: async () => { inFlight++; peak = Math.max(peak, inFlight); await Promise.resolve(); inFlight--; if ((fails[name] ?? 0) > 0) { fails[name]--; throw http(429); } return [{ id: 'r' }]; } }) });
@@ -45,6 +56,20 @@ await test('SS05b budget only gates retries (not a hard timeout)', async () => {
   let t = 0, waits = 0; const entities = new Proxy({}, { get: () => ({ filter: async () => { t += 4000; throw http(429); } }) });
   await nativeReadiness({ auth: { me: async () => ({ id: 'adminA', role: 'admin' }) }, asServiceRole: { entities } }, { wait: async () => { waits++; }, clock: () => t });
   check(waits === 1, `waits ${waits}`);
+});
+await test('SS04n actual Health predicate in Node (not browser SS04/SS10)', async () => {
+  const names=['AdminTestOperation','UserCalendarAction','InternalHealthRun','UserPrivacyRequest','PrivacyRecoveryReceipt'];
+  const good=()=>({authority:'BASE44_NATIVE_V1',strategyVersion:'native-continuation/2',daily:'IMMUTABLE_CANDIDATES',calendar:'OBSERVATIONS_AND_RECEIPTS',reset:'VERIFIED_STEPS',deletion:'TARGET_LIFECYCLE_RESUMABLE',schemas:names.map(name=>({name,readable:true,sampledRows:0}))});
+  const status=async(value,feature='daily')=>(await nativePrerequisite({nativeReadiness:async()=>value},feature)).status;
+  check(await status(good())==='PASS','valid contract');
+  check((await nativePrerequisite({nativeReadiness:async()=>{throw http(429);}},'wrong-feature')).status==='FAIL','unknown feature hidden by thrown 429');
+  const changes=[v=>{v.authority='OTHER';},v=>{v.strategyVersion='old';},...['daily','calendar','reset','deletion'].map(k=>v=>{v[k]='OTHER';}),v=>{v.schemas.pop();},v=>{v.schemas[1]={...v.schemas[0]};},v=>{v.schemas[1].name='foreign';},v=>{v.schemas[1]=null;},v=>{v.schemas[1].readable='true';},v=>{delete v.schemas[1].sampledRows;},v=>{v.schemas[1].sampledRows=-1;},v=>{v.schemas[1].sampledRows=2;},v=>{v.schemas[1].sampledRows='0';}];
+  for(const transient of [null,'RATE_LIMITED','TIMEOUT']) {
+    const base=good();if(transient)base.schemas[4]={name:names[4],readable:false,diagnostic:{code:transient,httpStatus:transient==='TIMEOUT'?504:429}};
+    check(await status(base)===(transient?'BLOCKED':'PASS'),'valid availability');
+    check(await status(base,'wrong-feature')==='FAIL','unknown feature');
+    for(const change of changes){const value=structuredClone(base);change(value);check(await status(value)==='FAIL','invalid contract concealed by availability');}
+  }
 });
 console.log(JSON.stringify(results, null, 1));
 if (results.some(r => r[1] !== 'PASS')) process.exitCode = 1;

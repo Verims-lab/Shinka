@@ -2,9 +2,8 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-033
-**Stabilization 034 (pending record):** Transient session failure shows "Oturum doğrulanamadı / Tekrar dene" (no logout, admin actions disabled); Test Tools passes paced 1.5 s. Browser acceptance not run.
-**Last Updated:** 2026-10-23
+**Current BuildMarker:** Buildmarker-034
+**Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
@@ -12,6 +11,10 @@
 **Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+## 034 — retained onboarding and pending browser acceptance
+
+Keep the new onboarding-only light background and flat dark surface. T81 tests both themes with finally restoration; U15 covers ON-04/ON-05 EN/TR overflow. SS06–09 cover actual session/route/login components; TP01–04 cover actual Test Tools pacing and visible partial/unknown/completed states with injected wait/clock. These browser/visual checks are NOT_RUN because the locked install is blocked. No physical/live acceptance is inferred.
 
 ## 032 — native readiness review, no UI behavior change
 

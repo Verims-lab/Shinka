@@ -1,0 +1,11 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn audit request to https://registry.npmjs.org/-/npm/v1/security/advisories/bulk failed, reason: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca
+npm error audit endpoint returned an error
+{
+  "message": "request to https://registry.npmjs.org/-/npm/v1/security/advisories/bulk failed, reason: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca",
+  "error": {
+    "summary": "",
+    "detail": ""
+  }
+}
+npm error A complete log of this run can be found in: /Users/verimsari/.npm/_logs/2026-10-26T12_03_39_617Z-debug-0.log

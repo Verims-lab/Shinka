@@ -2,13 +2,13 @@
   "build_marker": "Buildmarker-034",
   "package_name": "Session and Health 429 stabilization",
   "package_type": "FIX",
-  "created_at": "2026-10-26T09:00:00+00:00",
+  "created_at": "2026-10-26T12:10:32.352494+00:00",
   "health_catalog_version": "HC-034.0",
-  "short_summary": "Transient 429/5xx/timeout/network no longer invalidates sessions server- or client-side; Health native prerequisite reports transient unavailability as BLOCKED only on a fully valid contract; sequential nativeReadiness with one bounded retry; post-write deletion guard restored. Node 7/7 PASS; browser suite NOT RUN.",
+  "short_summary": "034 local corrections prepared: session-generation reset, post-wait deletion budget/cancellation and strict readiness rows. Node 9/9 PASS; Chromium/WebKit 0 executed, clean install/audit blocked by untrusted Fortinet TLS. Full local validation remains OPEN; no live acceptance.",
   "full_health_status": "NOT_RUN",
   "docs_aligned": true,
   "source_changed": true,
   "tests_changed": true,
   "health_changed": true,
-  "notes": "Node: scripts/verifySessionStability.mjs 7/7 PASS (SS02 initial FAIL retained). Written not run: SS01/SS02/SS04, NA34A-C. useTestTools pacing tests not written (needs browser harness). No publish, live Health, live delete/resume. See SHINKA_STABILIZATION_034.md."
+  "notes": "Base origin/main 041b40b; preserve zod 4.6.7/resolvers 5.9.2 lock. Repo Health and last-five check PASS. Node initial 7/7; new SS02b initially FAIL then fixed; final 9/9 incl. separate SS04n predicate (not browser). SS06\u2013SS09/TP01\u2013TP04/SS10 prepared, NOT_RUN. Health add 0/update 8/delete 0. Partial cached static tools are not npm ci or browser proof. User asked to report network blocker. Live Full Health/native/push/delete/resume NOT_RUN; 12 backend findings OPEN/USER-DEFERRED. See SHINKA_STABILIZATION_034.md."
 }

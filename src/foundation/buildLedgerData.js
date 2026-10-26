@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-029",
-    "package_name": "Daily notifications and inactive scheduler",
-    "package_type": "FEATURE",
-    "created_at": "2026-10-22T13:47:31.272828+00:00",
-    "health_catalog_version": "HC-029.0",
-    "short_summary": "Shared daily engine, fixed local 06:00 policy, bounded delivery reconciliation/retry and separate preference/device UI. Chromium/WebKit 608/608 each; 8 server + 3 closed-entry checks per command. Production binding remains blocked; no active scheduler or real sends.",
-    "full_health_status": "PLATFORM_BINDING_BLOCKED",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "HC-029.0: H14-001/002 activated, H14-003 security/traversal and H14-004 local UI/entry added, H14-901 external binding added; no Health ID deleted. 175 total/149 in-app; local 136 PASS/13 prerequisite BLOCKED. Install/tree/audit/repo/type/lint/build/history/byte gates PASS; zero dependency advisories. Provider named payload/result/device eligibility and workflow caller authentication still need verified code bindings before APNs/Firebase setup/activation. H16-901 physical proof NOT RUN. No live push/workflow mutation/Full Health, main merge or publish. Active 025–029; previous evidence preserved. Report: SHINKA_NOTIFICATIONS_029.md. Owner clarification: exactly two open code bindings (provider incl. device eligibility; scheduler caller authorization); sourced examples must match SDK/platform contract. Independent work complete; real sending/scheduling remain closed."
-  },
-  {
     "build_marker": "Buildmarker-030",
     "package_name": "Notification admin admission and reported push contract",
     "package_type": "FIX",
@@ -69,5 +55,19 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "notes": "H14-003/004/901 updated; add 0/delete 0. Required local gates pass; audit zero. Admin reads 69/104/46 unchanged; separate machine reads 36/62/22 with 11/14/8 credential checks and zero auth.me. Initial JS 479543/160179 gzip, CSS 77521/14262 bytes. Initial typecheck error and executable-equivalent JSDoc correction retained. No secret generated/stored, real secrets.get/transport binding, workflow/push/live Health/scan/user/native build/main merge/publish. 12 findings OPEN / USER-DEFERRED. Active 029–033; SHINKA_SCHEDULER_AUTHORIZATION_033.md."
+  },
+  {
+    "build_marker": "Buildmarker-034",
+    "package_name": "Session and Health 429 stabilization",
+    "package_type": "FIX",
+    "created_at": "2026-10-26T12:10:32.352494+00:00",
+    "health_catalog_version": "HC-034.0",
+    "short_summary": "034 local corrections prepared: session-generation reset, post-wait deletion budget/cancellation and strict readiness rows. Node 9/9 PASS; Chromium/WebKit 0 executed, clean install/audit blocked by untrusted Fortinet TLS. Full local validation remains OPEN; no live acceptance.",
+    "full_health_status": "NOT_RUN",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "Base origin/main 041b40b; preserve zod 4.6.7/resolvers 5.9.2 lock. Repo Health and last-five check PASS. Node initial 7/7; new SS02b initially FAIL then fixed; final 9/9 incl. separate SS04n predicate (not browser). SS06–SS09/TP01–TP04/SS10 prepared, NOT_RUN. Health add 0/update 8/delete 0. Partial cached static tools are not npm ci or browser proof. User asked to report network blocker. Live Full Health/native/push/delete/resume NOT_RUN; 12 backend findings OPEN/USER-DEFERRED. See SHINKA_STABILIZATION_034.md."
   }
 ];

@@ -2,15 +2,18 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-033
-**Stabilization 034 (pending record):** Session checks coalesced/throttled client-side; `nativeReadiness` sequential with one retry per schema — its `budgetMs` gates retry waits only and is not a hard total timeout.
-**Last Updated:** 2026-10-23
+**Current BuildMarker:** Buildmarker-034
+**Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## 034 — stabilization preparation
+
+AuthProvider session/account boundaries invalidate pending coalescer generations; transient errors do not grant admin. Test Tools cancels pending continuation on session/account/privacy invalidation and checks its start budget after the 1.5 s wait. The 60 s limit and nativeReadiness retry budget are not hard cancellation of in-flight SDK reads. Four readiness cases keep one per-run memoized source. Node 9/9 passed; actual browser integration remains NOT_RUN. [034 evidence](reports/SHINKA_STABILIZATION_034.md).
 
 ## 033 — separate prepared machine admission
 

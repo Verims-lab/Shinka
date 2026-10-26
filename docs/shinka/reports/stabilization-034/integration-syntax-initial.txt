@@ -1,0 +1,8 @@
+<repo>/src/foundation/tests/sessionIntegrationTests.js:23
+  } };
+     ^
+
+SyntaxError: Unexpected token ';'
+    at checkSyntax (node:internal/main/check_syntax:72:5)
+
+Node.js v26.0.0

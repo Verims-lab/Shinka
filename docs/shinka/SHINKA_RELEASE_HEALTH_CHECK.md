@@ -2,14 +2,17 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-033
-**Stabilization 034 (pending record):** Native prerequisite → BLOCKED only for transient unavailability on a fully valid contract (feature, authority, strategies, five schemas exactly once); mismatch (incl. mismatch + 429) → FAIL. Node 7/7 PASS; SS04 written, not run. See reports/SHINKA_STABILIZATION_034.md.
-**Last Updated:** 2026-10-23
+**Current BuildMarker:** Buildmarker-034
+**Last Updated:** 2026-10-26
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-033.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-034.0; repository, synthetic and external evidence separated.
 
-## Onboarding background (no catalog version change)
+## HC-034.0 — local stabilization validation remains blocked
+
+Add 0 / update 8 / delete 0: H04-019, H08-005, H09-004, H12-031 (strict shared readiness); H12-025 (real session/routes/login); H12-033 (NA34A–C); H13-016 (TP01–04); H13-012 (T81/U15). Node 9/9 PASS includes separate SS04n, not browser SS04/SS10. Chromium/WebKit each 0 executed / NOT_RUN; all required browser IDs remain unverified. npm ci/audit blocked by Fortinet TLS. Full Health NOT_RUN; no READY/closure claim. Details, exact IDs and failures: [034 report](reports/SHINKA_STABILIZATION_034.md).
+
+## Base44 onboarding handoff before 034 recording — retained historical NOT_RUN
 
 H13 Health cases: none added, updated or deleted (no H13 case asserted a flat onboarding background; T75/T80 check token utilities, not the shell). Foundation test **T81** added: onboarding shell keeps PageContainer classes and has 5 radial + 1 linear layer in light; plain PageContainer has no image; dark shell is flat dark ivory. T81 not yet executed in a browser (Chromium missing locally).
 

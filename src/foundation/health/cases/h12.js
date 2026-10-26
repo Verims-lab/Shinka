@@ -14,6 +14,6 @@ const groups=[
 ];
 export const H12_CASES=[
  ...groups.map(([id,title,ids])=>c(id,title,'Executes canonical backend/security helpers with isolated synthetic identities.',syntheticProbe(SECURITY_TESTS.filter(([testId])=>ids.includes(testId))))),
-  localCase('H12','H12-025','Admin route and session regression','Preserved in local Chromium/WebKit regression and the separate acceptance list; not executed in-app.'),
+  localCase('H12','H12-025','Admin route and session regression','Local AN02–AN07, SS01–SS02 and SS06–SS09: real AuthProvider/routes/login with synthetic transport; transient retry, denied admin, lost session/role, coalescing and obsolete account responses. Node server classification separate; no live OAuth proof.'),
  c('H12-901','LIVE_ENFORCEMENT_REQUIRED','Separate deployed anonymous / owner A / owner B / admin evidence is mandatory.',async()=>blockedResult(ev(CLASS.LIVE_ENFORCEMENT,'Base44 deployed enforcement',{verified:false},'Independent identity denials, protected mutation rejection, timestamp/readback proof','No synthetic result can close live enforcement')),{classification:CLASS.LIVE_ENFORCEMENT,runnerType:RUNNER.NONE,applicability:APPLICABILITY.EXTERNAL,executionLocation:'EXTERNAL',blocker:false}),
 ];

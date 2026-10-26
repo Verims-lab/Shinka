@@ -2,12 +2,15 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-033
-**Stabilization 034 (pending record):** New `src/` files may not import `base44/`, and edits may not add such imports; server tests live in `scripts/verifySessionStability.mjs`. Post-write deletion guard restored (equivalence unproven). See reports/SHINKA_STABILIZATION_034.md.
-**Last Updated:** 2026-10-23
+**Current BuildMarker:** Buildmarker-034
+**Last Updated:** 2026-10-26
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 034 — actual local results and unfinished gates
+
+Node initial 7/7 PASS; new pending-reset SS02b FAIL reproduced, then fixed. Final Node 9/9 PASS includes a separate actual readiness-predicate matrix. New actual-component SS06–09/TP01–04 and SS10 case/memoization tests are written, NOT_RUN. Install, audit and security-deps failed on untrusted Fortinet TLS; offline zod tarball absent. User requested reporting the blocker. No complete peer/type/lint/build/performance/browser success claimed. Initial failures retained; [034 evidence](reports/SHINKA_STABILIZATION_034.md).
 
 ## Onboarding background (UI-only, 2026-10-26)
 
