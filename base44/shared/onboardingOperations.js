@@ -14,7 +14,7 @@ import { prepareProfileInput } from './profileInput.js';
 import { verifiedDailyRecord } from './dailyRecord.js';
 import { assertPrivacyAccess } from './privacyPolicy.js';
 const fail=(code,status=400)=>{throw new OnboardingError(code,null,status);};
-const allowed={hydrate:[],initialize:['language_code','timezone','action_id'],saveProfile:['display_name','birth_date','birth_time','birthplace_geonames_id','action_id'],saveCycle:['period_start_date','period_duration_days','initial_cycle_length_days','health_consent','action_id'],skipCycle:[],listPlaceCountries:['language_code'],listPlaceRegions:['country','parent_id','offset','language_code'],listPlaceSettlements:['country','parent_id','offset','language_code'],searchPlaces:['query','language_code']};
+const allowed={hydrate:[],initialize:['language_code','timezone','action_id'],saveProfile:['display_name','birth_date','birth_time','birthplace_geonames_id','action_id'],saveCycle:['period_start_date','period_duration_days','initial_cycle_length_days','health_consent','action_id'],skipCycle:[],searchPlaces:['query','language_code','page']};
 // Dependencies are server configuration/injected contract fixtures, never request fields.
 async function normalOnboardingOperation(client,body,dependencies,principal) {
   const {atomic=null,sunSign=SUN_SIGN_RESOLVER,consentVersion=HEALTH_CONSENT_VERSION,now=()=>new Date()}=dependencies;
@@ -38,13 +38,7 @@ async function normalOnboardingOperation(client,body,dependencies,principal) {
   if(profile?.account_status==='INACTIVE')return {state:'INACTIVE_ACCOUNT'};
   if(body.action==='searchPlaces') {
     if(!geoNames)fail('GEONAMES_UNAVAILABLE',503);
-    return {places:await geoNames.search(body.query,body.language_code)};
-  }
-  if(['listPlaceCountries','listPlaceRegions','listPlaceSettlements'].includes(body.action)) {
-    if(!geoNames)fail('GEONAMES_UNAVAILABLE',503);
-    if(body.action==='listPlaceCountries')return geoNames.countries(body.language_code);
-    const input={country:body.country,parent_id:body.parent_id??null,offset:body.offset??0,language_code:body.language_code};
-    return body.action==='listPlaceRegions'?geoNames.regions(input):geoNames.places(input);
+    return geoNames.search(body.query,body.language_code,body.page??0);
   }
   const preferences=await singleton('user_preferences');
   const today=preferences&&validTimezone(preferences.timezone)?serverLocalDate(now(),preferences.timezone):null;
@@ -119,7 +113,7 @@ export async function onboardingOperation(client, body, dependencies = {}) {
   const reset = await readUserLifecycle(client, principal.id);
   if (!reset || reset.operation !== 'RESET_ONBOARDING') return normalOnboardingOperation(client, body, dependencies, principal);
   if (reset.status !== 'RESET_ACTIVE') fail('TEST_TARGET_BUSY', 409);
-  const passive = ['hydrate', 'searchPlaces', 'listPlaceCountries', 'listPlaceRegions', 'listPlaceSettlements'];
+  const passive = ['hydrate', 'searchPlaces'];
   if (passive.includes(body.action)) {
     const result = await normalOnboardingOperation(client, body, { ...dependencies, resetFlow: true }, principal);
     if (!result.state || result.state === 'INACTIVE_ACCOUNT') return result;

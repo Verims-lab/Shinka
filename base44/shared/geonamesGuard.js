@@ -67,10 +67,7 @@ export function createGeoNamesGuard({ limits = GEONAMES_LIMITS, now = () => Date
       return copy(await inflight.get(key));
     };
     return {
-      search: (query, language) => run('search', [query, language]),
-      countries: language => run('countries', [language]),
-      regions: input => run('regions', [input]),
-      places: input => run('places', [input]),
+      search: (query, language, page = 0) => run('search', [query, language, page]),
       resolve: id => run('resolve', [id]),
     };
   }

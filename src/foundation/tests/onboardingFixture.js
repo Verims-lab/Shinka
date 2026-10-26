@@ -1,5 +1,5 @@
 import { createGeoNamesAdapter } from '../../../base44/shared/geonamesAdapter.js';
-import { hierarchyFetch, fixtureProviderPlace } from './geonamesHierarchyFixture';
+import { placeFetch, fixtureProviderPlace } from './geonamesSearchFixture';
 // Contract simulator only. Never imported by a product route, server entry or SDK client.
 import { resolveSunSign } from '../../../base44/shared/sunSign.js';
 import { DOMAIN_SCHEMAS, physicalName, SUN_SIGN_CODES } from '../../../base44/shared/domainSchemas.js';
@@ -39,6 +39,6 @@ export function onboardingFixture({complete=false,preferences=true,role='user',o
     const outcome={status:'COMMITTED',records:saved};actions.set(key,{fingerprint,outcome});return outcome;
   }};
   const calculationInputs=[];
-  const dependencies={atomic,now:()=>new Date(NOW),consentVersion:'SYNTHETIC_TEST_ONLY',sunSign:async input=>{calculationInputs.push(input);return resolveSunSign(input);},geoNames:{...createGeoNamesAdapter({username:'fixture',fetcher:hierarchyFetch}),search:async()=>[normalizeGeoNamesPlace(fixturePlace)],resolve:async()=>normalizeGeoNamesPlace(fixturePlace)}};
+  const dependencies={atomic,now:()=>new Date(NOW),consentVersion:'SYNTHETIC_TEST_ONLY',sunSign:async input=>{calculationInputs.push(input);return resolveSunSign(input);},geoNames:{...createGeoNamesAdapter({username:'fixture',fetcher:placeFetch}),search:async()=>({places:[normalizeGeoNamesPlace(fixturePlace)],page:0,next_page:null,limited:false}),resolve:async()=>normalizeGeoNamesPlace(fixturePlace)}};
   return {client,data,dependencies,calculationInputs,failAt:index=>{failAt=index;}};
 }

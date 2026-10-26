@@ -52,12 +52,12 @@ export async function verifyGeoNamesEntry(root) {
       assert.equal(key,'GEONAMES_USERNAME');reads.push(key);return currentValue;
     }}},
     '../../shared/geonamesGuard.js':{createGeoNamesGuard},
-    '../../shared/geonamesAdapter.js':{createGeoNamesAdapter:({username})=>{bindings.push(username);return {countries:async()=>({binding:bindings.length})};}},
+    '../../shared/geonamesAdapter.js':{createGeoNamesAdapter:({username})=>{bindings.push(username);return {search:async()=>({binding:bindings.length})};}},
     '../../shared/onboardingOperations.js':{handleOnboardingRequest:async(req,client,{geoNamesFor})=>{
       assert.equal(client(req),createClient(req));
       const before=reads.length;
       const guarded=geoNamesFor(`owner-${before}`);assert.equal(reads.length,before,'no secret read before a provider call');
-      assert.equal((await guarded.countries(`fixture-${before}`)).binding,bindings.length);
+      assert.equal((await guarded.search(`fixture-${before}`,'en')).binding,bindings.length);
       return {request:req};
     }},
   };

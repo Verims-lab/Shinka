@@ -12,10 +12,10 @@ const fail = (code, status) => { throw Object.assign(new Error(code), { code, st
 const req = (text, headers = {}) => new Request('https://fixture.invalid', { method: 'POST', body: text, headers });
 const rejects = async (fn, code) => { let e; try { await fn(); } catch (x) { e = x; } assert.equal(e?.code, code); return e; };
 const limits = { windowMs: 60000, appRequests: 3, upstreamCalls: 4, workerUpstreamCalls: 6, cacheTtlMs: 600000, cacheEntries: 50, trackedUsers: 10 };
-// Each app call issues `n` counted fetches, as hierarchy resolution can.
+// Each app call issues `n` counted fetches (synthetic multi-fetch budget probe).
 const adapterFor = (n = 1) => fetcher => {
   const hit = async () => { for (let i = 0; i < n; i++) await fetcher('https://fixture.invalid/geo'); return { ok: true }; };
-  return { search: hit, countries: hit, regions: hit, places: hit, resolve: hit };
+  return { search: hit, resolve: hit };
 };
 // Server-auth contract: auth.me() is the only identity source; every entity call is recorded.
 const recordingClient = me => {
@@ -47,8 +47,8 @@ const TESTS = [
     const g = createGeoNamesGuard({ limits, now: () => 0, fetcher: async () => ({}) });
     const a = g.forOwner('ownerA', adapterFor(3)); await a.resolve(1);
     await rejects(() => a.resolve(2), 'GEONAMES_RATE_LIMITED'); // 3+3 > 4 per user
-    await g.forOwner('ownerB', adapterFor(2)).countries('en');   // worker 3+3(partial)+2
-    await rejects(() => g.forOwner('ownerC', adapterFor(2)).regions({ c: 'TR' }), 'GEONAMES_RATE_LIMITED'); // worker 6
+    await g.forOwner('ownerB', adapterFor(2)).search('worker', 'en');   // worker 3+3(partial)+2
+    await rejects(() => g.forOwner('ownerC', adapterFor(2)).search('worker-limit', 'en'), 'GEONAMES_RATE_LIMITED'); // worker 6
     assert.equal((await a.resolve(1)).ok, true); // cached, no upstream call
   }],
   ['SC04', 'Unauthenticated You/onboarding calls: 401, zero product writes, no GeoNames setup', async () => {
@@ -69,9 +69,9 @@ const TESTS = [
   ['SC07', 'Real guard + real adapter: app, user-upstream and worker-upstream limits keep 429/retry and stop provider fetches', async () => {
     for (const [kind, lim, owners] of [['app', { appRequests: 2, upstreamCalls: 99, workerUpstreamCalls: 99 }, ['A', 'A', 'A']], ['user', { appRequests: 99, upstreamCalls: 2, workerUpstreamCalls: 99 }, ['A', 'A', 'A']], ['worker', { appRequests: 99, upstreamCalls: 99, workerUpstreamCalls: 2 }, ['A', 'B', 'C']]]) {
       const chain = realChain({ ...limits, ...lim }); let t = 0; chain.clock(() => t);
-      await chain.search(owners[0], 'aa'); await chain.search(owners[1], 'bb'); t = 20000;
+      await chain.search(owners[0], 'aaa'); await chain.search(owners[1], 'bbb'); t = 20000;
       const before = chain.fetches();
-      const e = await rejects(() => chain.search(owners[2], 'cc'), 'GEONAMES_RATE_LIMITED');
+      const e = await rejects(() => chain.search(owners[2], 'ccc'), 'GEONAMES_RATE_LIMITED');
       assert.equal(e.status, 429, kind); assert.equal(e.retryAfterSeconds, 40, kind); assert.equal(e.field, 'birthplace', kind);
       assert.equal(chain.fetches(), before, `${kind}: no provider fetch after limit`);
     }
@@ -80,11 +80,11 @@ const TESTS = [
     const chain = realChain({ ...limits, appRequests: 99, upstreamCalls: 1 });
     const { client } = recordingClient({ id: 'ownerA' });
     const call = q => handleOnboardingRequest(req(JSON.stringify({ action: 'searchPlaces', query: q, language_code: 'en' })), () => client, { geoNamesFor: chain.forOwner });
-    assert.equal((await call('aa')).status, 200);
-    const before = chain.fetches(), res = await call('bb'), body = await res.json();
+    assert.equal((await call('aaa')).status, 200);
+    const before = chain.fetches(), res = await call('bbb'), body = await res.json();
     assert.equal(res.status, 429); assert.equal(body.error_code, 'GEONAMES_RATE_LIMITED'); assert.equal(res.headers.get('Retry-After'), '60'); assert.equal(body.retry_after_seconds, 60); assert.equal(chain.fetches(), before);
     // You: the full saveProfile path needs a ready profile fixture; this checks the handler error contract with the real chain-produced error.
-    const limitError = await rejects(() => chain.search('ownerA', 'cc'), 'GEONAMES_RATE_LIMITED');
+    const limitError = await rejects(() => chain.search('ownerA', 'ccc'), 'GEONAMES_RATE_LIMITED');
     const you = recordingClient({ id: 'ownerA' }); you.client.asServiceRole = { entities: new Proxy({}, { get: () => ({ filter: async () => { throw limitError; } }) }) };
     const yres = await handleYouRequest(req(JSON.stringify({ action: 'read' })), () => you.client, { geoNamesFor: chain.forOwner }), ybody = await yres.json();
     assert.equal(yres.status, 429); assert.equal(ybody.error_code, 'GEONAMES_RATE_LIMITED'); assert.equal(yres.headers.get('Retry-After'), '60'); assert.equal(ybody.retry_after_seconds, 60);
@@ -93,7 +93,7 @@ const TESTS = [
     for (const thrown of [new TypeError('fetch failed'), Object.assign(new OnboardingError('GEONAMES_RATE_LIMITED', 'birthplace', 429), { retryAfterSeconds: 5 })]) {
       const chain = realChain(limits, async () => { throw thrown; });
       const { client } = recordingClient({ id: 'ownerA' });
-      const res = await handleOnboardingRequest(req(JSON.stringify({ action: 'searchPlaces', query: 'aa', language_code: 'en' })), () => client, { geoNamesFor: chain.forOwner });
+      const res = await handleOnboardingRequest(req(JSON.stringify({ action: 'searchPlaces', query: 'aaa', language_code: 'en' })), () => client, { geoNamesFor: chain.forOwner });
       const body = await res.json();
       assert.equal(res.status, 503); assert.equal(body.error_code, 'GEONAMES_UNAVAILABLE'); assert.equal(res.headers.get('Retry-After'), null); assert.equal(body.retry_after_seconds, undefined);
     }

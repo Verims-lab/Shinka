@@ -1,5 +1,5 @@
 import { waitForFixture } from "./domWait";
-import { hierarchyFetch } from './geonamesHierarchyFixture';
+import { placeFetch, placeFetchFor, KAN_CANDIDATES } from './geonamesSearchFixture';
 import { createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import OnboardingFixture from './OnboardingTestScreen';
@@ -50,7 +50,7 @@ function input(doc,id,value){const el=doc.getElementById(id);Object.getOwnProper
 const button=(doc,text)=>Array.from(doc.querySelectorAll('button')).find(b=>b.textContent===text);
 // Real UI -> service -> HTTP handler -> provider adapter -> production persistence;
 // only the SDK transport and outbound provider HTTP response are synthetic.
-async function geoNamesUiFixture(fetcher=hierarchyFetch){
+async function geoNamesUiFixture(fetcher=placeFetch){
   const f=sdkOnboardingFixture(),calls=[];
   await onboardingOperation(f.client,{action:'initialize',language_code:'en',timezone:'Europe/Istanbul'});
   const dependencies={now:()=>new Date(NOW),geoNames:createGeoNamesAdapter({username:'synthetic-ui-credential',fetcher})};
@@ -61,16 +61,13 @@ async function geoNamesUiFixture(fetcher=hierarchyFetch){
   }}};
   return {f,calls,requestOverride:(action,payload={})=>onboardingRequest(action,payload,client)};
 }
-async function select(doc,id,value){
-  const el=doc.getElementById(id);
-  if(el.tagName === 'SELECT') { el.value=String(value);el.dispatchEvent(new doc.defaultView.Event('change',{bubbles:true}));return; }
-  el.click();
-  await waitForFixture(() => doc.querySelector(`[data-place-option="${value}"]`), doc.body);
-  doc.querySelector(`[data-place-option="${value}"]`).click();
-  await waitForFixture(() => !doc.querySelector('dialog[open]'), doc.body);
+// Combobox helpers: typing waits out the real debounce; picking is an explicit click.
+const typePlace=(doc,text)=>input(doc,'birthplace',text);
+async function pickPlace(doc,id,context={}){
+  await waitForFixture(()=>doc.querySelector(`[data-place-option="${id}"]`),doc.body,context);
+  doc.querySelector(`[data-place-option="${id}"]`).click();
 }
-const openPlace=doc=>doc.querySelector('[data-place-open][aria-expanded=false]')?.click();
-const clearButton=doc=>{openPlace(doc);return doc.querySelector('[data-place-clear]');};
+const clearButton=doc=>doc.querySelector('[data-place-clear]');
 /** @type {import('./testTypes').FoundationTest[]} */
 export const ONBOARDING_UI_TESTS=[
  ['U01','EN/TR six screens fit 360/430px with named controls and 17px inputs',async(context={})=>{
@@ -86,8 +83,8 @@ export const ONBOARDING_UI_TESTS=[
  ['U03','18+ error is associated; only Apple/Google exposed and failure safe',async(context={})=>{const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);await probe('UNAUTHENTICATED_SIGN_IN',360,async doc=>{
   check([...doc.querySelectorAll('[data-provider]')].map(e=>e.getAttribute('data-provider')).join()==='apple,google');doc.querySelector('[data-provider=apple]').click();await pause();check(doc.querySelector('#age-error')?.textContent==='Please confirm that you are 18 or older');doc.querySelector('#age-declaration').click();await pause();doc.querySelector('[data-provider=google]').click();await pause();check(doc.querySelector('[data-error-code]')?.textContent==='We couldn’t sign you in. Please try again');check(!doc.querySelector('input[type=password]'));
  });}],
- ['U04','DOB errors focus field; incomplete country selection blocked; clearing allows NULL save',async(context={})=>{const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
-  check(doc.querySelector('#birth_time').value==='');button(doc,'Continue').click();await pause();check(doc.activeElement.id==='birth_date'&&doc.querySelector('#birth_date-error'),`DOB focus ${doc.activeElement.id} error ${doc.querySelector('[role=alert]')?.textContent}`);input(doc,'birth_date','1990-01-01');await select(doc,'place-countries',100);await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('#birthplace-error'),`place error ${doc.querySelector('[role=alert]')?.textContent}`);clearButton(doc).click();await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP',`profile save ${doc.querySelector('[role=alert]')?.textContent}`);
+ ['U04','DOB errors focus field; typed-but-unselected birthplace blocked; clearing allows NULL save',async(context={})=>{const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
+  check(doc.querySelector('#birth_time').value==='');button(doc,'Continue').click();await pause();check(doc.activeElement.id==='birth_date'&&doc.querySelector('#birth_date-error'),`DOB focus ${doc.activeElement.id} error ${doc.querySelector('[role=alert]')?.textContent}`);input(doc,'birth_date','1990-01-01');typePlace(doc,'Kansas');await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('#birthplace-error'),`place error ${doc.querySelector('[role=alert]')?.textContent}`);clearButton(doc).click();await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP',`profile save ${doc.querySelector('[role=alert]')?.textContent}`);
  });}],
  ['U05','Cycle placeholders stay blank; consent unchecked; skip reaches finite dependency',async(context={})=>{const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);await probe('AUTHENTICATED_CYCLE_STEP',430,async doc=>{
   check(doc.querySelector('#period_duration_days').value===''&&doc.querySelector('#period_duration_days').placeholder==='5');check(doc.querySelector('#initial_cycle_length_days').value===''&&doc.querySelector('#initial_cycle_length_days').placeholder==='28');check(!doc.querySelector('#health_consent').checked);button(doc,'Skip for now').click();await pause();check(doc.querySelector('[data-dependency="FIRST_SHINKA_ENGINE_REQUIRED"]')&&doc.querySelector('[data-daily-state="notReady"]')&&!doc.querySelector('.animate-spin'));
@@ -118,73 +115,79 @@ export const ONBOARDING_UI_TESTS=[
   const saved={id:'partial-fixture',user_id:'ownerA',account_status:'ACTIVE',display_name:'Ada',birth_date:'1990-01-01',birth_time:null,sun_sign_code:null,...normalizeGeoNamesPlace(fixturePlace)};f.rows.user_profile.push(saved);
   const requestOverride=(action,payload={})=>onboardingOperation(f.client,{...payload,action},{now:()=>new Date(NOW),geoNames:{resolve:async()=>normalizeGeoNamesPlace(fixturePlace)}});
   await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
-    check(doc.querySelector('[data-place-summary]')?.textContent.includes('Fixture City')&&doc.querySelector('#birth_time').value==='');button(doc,'Continue').click();await pause();
+    check(doc.querySelector('#birthplace')?.value.includes('Fixture City')&&doc.querySelector('#birth_time').value==='');button(doc,'Continue').click();await pause();
     check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP');
     check(f.rows.user_profile.length===1&&saved.sun_sign_code==='CAPRICORN'&&saved.birthplace_geonames_id===123&&saved.display_name==='Ada');
   },{profileOverride:saved,requestOverride});
  }],
- ['U09','Selection-only country → region → district → settlement saves server-resolved structured fields',async(context={})=>{
+ ['U09','Combobox: typed query, explicit pick of an A record saves server-resolved fields; editing text drops the old ID',async(context={})=>{
   const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);
   const requests=[];
-  const {f,calls,requestOverride}=await geoNamesUiFixture(async url=>{requests.push(url);return hierarchyFetch(url);});
+  const {f,calls,requestOverride}=await geoNamesUiFixture(async url=>{requests.push(url);return placeFetch(url);});
   await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
-    await pause();openPlace(doc);await pause();check(doc.querySelector('#place-countries').value===''&&doc.querySelector('#place-places').disabled);
-    check(!doc.querySelector('input#birthplace')&&!doc.querySelector('input[type=search]'));
-    await select(doc,'place-countries',100);await pause();check(doc.querySelector('#place-0').value==='');
-    await select(doc,'place-0',1001);await pause();await select(doc,'place-1',1002);await pause();
-    input(doc,'birth_date','1990-01-01');await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('#birthplace-error')&&f.rows.user_profile.length===0);
-    await select(doc,'place-places',123);await pause();check(doc.querySelector('[data-place-summary]').textContent.includes('Fixture City'));
+    const box=doc.querySelector('#birthplace');
+    check(box.getAttribute('role')==='combobox'&&!doc.querySelector('#place-countries')&&doc.querySelector('label[for=birthplace]'));
+    input(doc,'birth_date','1990-01-01');typePlace(doc,'Kan');await pickPlace(doc,9001,context);await pause();
+    check(box.value==='United States — Kansas'&&calls.filter(c=>c.action==='searchPlaces').length===1&&f.rows.user_profile.length===0,'pick does not save');
+    typePlace(doc,'United States — Kansa');await pause();button(doc,'Continue').click();await pause();
+    check(doc.querySelector('#birthplace-error')&&f.rows.user_profile.length===0,'edited text cannot keep old ID');
+    typePlace(doc,'Kansas');await pickPlace(doc,9001,context);await pause();
     button(doc,'Continue').click();await pause();check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP');
-    const saved=f.rows.user_profile[0],expected=normalizeGeoNamesPlace(fixturePlace);check(BIRTHPLACE_FIELDS.every(key=>saved[key]===expected[key]));
-    const payload=calls.find(call=>call.action==='saveProfile');check(payload.birthplace_geonames_id===123&&!('query' in payload)&&!('birthplace_name' in payload)&&!('country' in payload));
-    check(!calls.some(call=>call.action==='searchPlaces')&&!JSON.stringify(calls).includes('username')&&requests.some(url=>url.pathname==='/getJSON'&&url.searchParams.get('geonameId')==='123'));
-    check(!JSON.stringify(saved).includes('synthetic-ui-credential'));
+    const saved=f.rows.user_profile[0];check(saved.birthplace_geonames_id===9001&&saved.birthplace_name==='Kansas'&&saved.birthplace_country_code==='US');
+    const payload=calls.find(call=>call.action==='saveProfile');check(!('query' in payload)&&!('birthplace_name' in payload));
+    check(requests.some(url=>url.pathname==='/getJSON'&&url.searchParams.get('geonameId')==='9001')&&!JSON.stringify(saved).includes('synthetic-ui-credential'));
   },{requestOverride});
  }],
- ['U10','Empty/error lists differ, retry is explicit, and leaving the field empty permits persistence',async(context={})=>{
+ ['U10','Short, empty, error and rate-limit states differ; retry is explicit; empty field persists NULLs',async(context={})=>{
   const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);
   for(const failed of [false,true]){
-    let countryCalls=0;
+    let searches=0;
     const {f,requestOverride}=await geoNamesUiFixture(async url=>{
-      if(url.pathname==='/countryInfoJSON')countryCalls++;
+      if(url.pathname==='/searchJSON')searches++;
       if(failed)return Response.json({status:{value:10,message:'private provider text'}});
-      return url.pathname==='/searchJSON'?Response.json({geonames:[],totalResultsCount:0}):hierarchyFetch(url);
+      return Response.json({geonames:[],totalResultsCount:0});
     });
     await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
-      await pause();openPlace(doc);await pause();
-      if(failed){check(doc.body.textContent.includes(ONBOARDING_COPY.en['GEONAMES_UNAVAILABLE']));const before=countryCalls;await pause();check(countryCalls===before);button(doc,ONBOARDING_COPY.en.retry).click();await pause();check(countryCalls===before+1);}
-      else {await select(doc,'place-countries',100);await pause();check(doc.body.textContent.includes(ONBOARDING_COPY.en.placeEmpty)&&doc.body.textContent.includes(ONBOARDING_COPY.en.placeNoRegions));}
+      typePlace(doc,'Ka');await pause();check(doc.querySelector('[data-place-status=SHORT]')&&searches===0);
+      typePlace(doc,'Kanx');await waitForFixture(()=>doc.querySelector('[data-place-status=READY],[data-place-status=ERROR]'),doc.body,context);
+      if(failed){const before=searches;check(doc.body.textContent.includes(ONBOARDING_COPY.en.placeError));await pause();check(searches===before);doc.querySelector('[data-place-retry]').click();await pause();await pause();check(searches===before+1);}
+      else check(doc.body.textContent.includes(ONBOARDING_COPY.en.placeEmpty));
       check(!doc.body.textContent.includes('private provider text'));clearButton(doc).click();input(doc,'birth_date','1990-01-01');await pause();button(doc,'Continue').click();await pause();
       check(BIRTHPLACE_FIELDS.every(key=>f.rows.user_profile[0][key]===null));
-      check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP');
     },{requestOverride});
   }
  }],
- ['U11','Saved summary survives unavailable hierarchy; explicit clear ignores late lists and persists all NULLs',async(context={})=>{
+ ['U11','Saved birthplace shown without provider calls; explicit clear ignores late results and persists all NULLs',async(context={})=>{
   const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);
   let release,calls=0;
-  const {f,requestOverride}=await geoNamesUiFixture(async url=>{
-    calls++;if(calls===1)return new Promise(resolve=>{release=()=>hierarchyFetch(url).then(resolve);});return hierarchyFetch(url);
-  });
+  const {f,requestOverride}=await geoNamesUiFixture(async url=>{calls++;return new Promise(resolve=>{release=()=>placeFetch(url).then(resolve);});});
   const saved={id:'partial-place-fixture',user_id:'ownerA',account_status:'ACTIVE',birth_date:'1990-01-01',birth_time:null,sun_sign_code:null,...normalizeGeoNamesPlace(fixturePlace)};f.rows.user_profile.push(saved);
   await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
-    check(doc.querySelector('[data-place-summary]')&&calls===0);
-    openPlace(doc);await pause();check(doc.querySelector('[data-place-summary]'));
+    check(doc.querySelector('#birthplace').value.includes('Fixture City')&&calls===0);
+    typePlace(doc,'Kansas');await waitForFixture(()=>calls===1,doc.body,context);
     clearButton(doc).click();await pause();release();await pause();
-    check(!doc.querySelector('[data-place-summary]')&&doc.querySelector('#place-countries').value===''&&doc.querySelector('#place-places').disabled);
+    check(doc.querySelector('#birthplace').value===''&&!doc.querySelector('[data-place-option]'));
     button(doc,'Continue').click();await pause();check(BIRTHPLACE_FIELDS.every(key=>saved[key]===null));
-    check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP');
   },{requestOverride,profileOverride:saved});
  }],
- ['U12','TR/EN cascading selection controls fit mobile/desktop, have visible labels, focus and no automatic selections',async(context={})=>{
+ ['U12','TR/EN combobox: ARIA relations, arrow/Enter/Escape keyboard, no automatic selection, fits mobile/desktop',async(context={})=>{
   const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);
-  for(const language of ['tr','en'])for(const width of [360,1280])await probe('AUTHENTICATED_PROFILE_REQUIRED',width,async(doc,win)=>{
-    await pause();openPlace(doc);await pause();await select(doc,'place-countries',100);await pause();await select(doc,'place-0',1001);await pause();
-    check(doc.querySelector('#place-1').value===''&&doc.querySelector('#place-places').value==='');
-    check(doc.documentElement.scrollWidth<=width+1&&findUnlabeledControls(doc.querySelector('main')).length===0);
-    for(const el of doc.querySelectorAll('[data-place-control]')){check(doc.querySelector(`label[for="${el.id}"]`)&&el.getBoundingClientRect().height>=44&&parseFloat(win.getComputedStyle(el).fontSize)>=16);if(!el.disabled){el.focus();check(doc.activeElement===el);}}
-    button(doc,language==='tr'?'EN':'TR').click();await pause();check(doc.querySelector('#place-countries').value==='100'&&doc.querySelector('#place-0').value==='1001');
-  },{language});
+  for(const language of ['tr','en'])for(const width of [360,1280]){
+    const {requestOverride}=await geoNamesUiFixture();
+    await probe('AUTHENTICATED_PROFILE_REQUIRED',width,async(doc,win)=>{
+      const box=doc.querySelector('#birthplace');box.focus();typePlace(doc,'Kan');
+      await waitForFixture(()=>doc.querySelectorAll('[role=option]').length>0,doc.body,context);
+      check(box.getAttribute('aria-expanded')==='true'&&box.getAttribute('aria-controls')==='birthplace-listbox'&&doc.querySelector('#birthplace-listbox[role=listbox]'));
+      check(!box.getAttribute('aria-activedescendant'),'no automatic first selection');
+      const key=k=>box.dispatchEvent(new win.KeyboardEvent('keydown',{key:k,bubbles:true}));
+      key('ArrowDown');await pause();const first=box.getAttribute('aria-activedescendant');check(first&&doc.getElementById(first).getAttribute('aria-selected')==='true');
+      key('ArrowDown');key('ArrowUp');await pause();check(box.getAttribute('aria-activedescendant')===first&&box.value==='Kan','navigation never selects');
+      key('Escape');await pause();check(box.getAttribute('aria-expanded')==='false');
+      key('ArrowDown');await pause();key('ArrowDown');await pause();key('Enter');await pause();check(box.value!=='Kan'&&box.getAttribute('aria-expanded')==='false');
+      check(doc.documentElement.scrollWidth<=width+1&&findUnlabeledControls(doc.querySelector('main')).length===0&&parseFloat(win.getComputedStyle(box).fontSize)>=16);
+      check(doc.body.textContent.includes(ONBOARDING_COPY[language].birthplace));
+    },{language,requestOverride});
+  }
  }],
  ['U13','Small portrait, landscape, reduced viewport and enlarged text keep fields and submit reachable',async(context={})=>{
   const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);
@@ -200,22 +203,15 @@ export const ONBOARDING_UI_TESTS=[
     check(doc.querySelector('#birth_date').value==='1990-01-01'&&doc.querySelector('#birth_time').value==='08:30');
   },{language,probeHeight:height});
  }],
- ['U14','Long Turkish homonyms keep identity context, ID disambiguation, labels and bounded DOM',async(context={})=>{
-  const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);
-  const long='İğdır Şişli Çeşme Ömerli Uzun Yer Adı '.repeat(5);
-  const requestOverride=async()=>({options:Array.from({length:300},(_,i)=>({id:i+1,country:'TR',name:long,context:'Türkiye'})),total:300,offset:0,next_offset:null,previous_offset:null});
+ ['U14','Long Turkish same-name results stay distinct by ID with path context, labels and bounded DOM',async(context={})=>{
+  const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context);
+  const long='İğdır Şişli Çeşme Ömerli Uzun Kan Yer Adı '.repeat(4).trim();
+  const rows=Array.from({length:50},(_,i)=>({...KAN_CANDIDATES[2],geonameId:40000+i,name:long,adminName1:`Bölge ${i}`}));
+  const {requestOverride}=await geoNamesUiFixture(placeFetchFor(rows));
   for (const width of [320,1024]) await probe('AUTHENTICATED_PROFILE_REQUIRED',width,async doc=>{
-    await pause();check(doc.documentElement.scrollWidth<=width+1);
-    const control=doc.querySelector('#place-countries');
-    if(control.tagName==='SELECT') {
-      const options=[...control.querySelectorAll('option')];
-      check(options.length===301&&options[1].textContent.endsWith('#1')&&options[300].textContent.endsWith('#300'));
-    } else {
-      control.click(); await waitForFixture(()=>doc.querySelectorAll('[data-place-option]').length===300,doc.body,context);
-      const options=[...doc.querySelectorAll('[data-place-option]')];
-      check(options[0].textContent.endsWith('#1')&&options[299].textContent.endsWith('#300'));
-      check(doc.querySelector('dialog').getAttribute('aria-labelledby')==='place-sheet-title');
-    }
+    typePlace(doc,'Kan');await waitForFixture(()=>doc.querySelectorAll('[data-place-option]').length===50,doc.body,context);
+    const options=[...doc.querySelectorAll('[data-place-option]')];
+    check(new Set(options.map(o=>o.textContent)).size===50&&options[0].textContent.includes('Bölge 0'));
     check(doc.documentElement.scrollWidth<=width+1&&doc.querySelectorAll('*').length<450&&findUnlabeledControls(doc.querySelector('main')).length===0);
   },{language:'tr',requestOverride});
  }],
@@ -257,11 +253,10 @@ export const ONBOARDING_UI_TESTS=[
    check(doc.querySelector('h1').textContent===c.aboutTitle&&doc.body.textContent.includes(c.aboutSubtitle),`${language} title`);
    check(doc.querySelector('[data-onboarding-step]')?.textContent===c.stepOf.replace('{n}','4'),`${language} step`);
    check(!doc.body.textContent.includes('Account & Privacy')&&!doc.body.textContent.includes('Hesap ve Gizlilik'),'no privacy link on ON-04');
-   check(doc.querySelector('[data-place-open]')&&!doc.querySelector('#place-countries'),'compact field, lists closed');
+   check(doc.querySelector('#birthplace[role=combobox]')&&!doc.querySelector('#place-countries')&&!doc.querySelector('[role=listbox]'),'single combobox, popup closed');
    for(const id of ['birth_date','birth_time']){const el=doc.querySelector(`#${id}`),box=el.closest('.shinka-framed-field').getBoundingClientRect(),r=el.getBoundingClientRect();check(r.right<=box.right+0.5&&r.left>=box.left-0.5,`${id} inside frame ${width}`);check(doc.querySelector(`label[for=${id}]`),`${id} label`);}
    check(doc.documentElement.scrollWidth<=width+1,`${language} ${width} overflow`);
-   openPlace(doc);await pause();check(doc.querySelector('#place-countries'),'panel opens lists');
-   doc.querySelector('[data-place-cancel]').click();await pause();check(!doc.querySelector('#place-countries')&&!doc.querySelector('[data-place-summary]'),'cancel keeps prior (empty) selection');
+   doc.querySelector('#birthplace').focus();await pause();check(!doc.querySelector('[role=listbox]'),'focus alone makes no request or popup');
   },{language},context);
  }],
 ];

@@ -1,11 +1,24 @@
-import { createGeoNamesHierarchy } from './geonamesHierarchy.js';
 import { OnboardingError, normalizeGeoNamesPlace } from './onboardingValidation.js';
 import { GeoNamesError, classifyGeoNamesTransport } from './geonamesDiagnostics.js';
 import { isGuardRateLimit } from './geonamesGuard.js';
+// Birthplace search (v1.0, 26.10.2026): the provider only collects A+P name candidates;
+// Shinka's literal, case-insensitive substring rule on the displayed name decides.
+export const PLACE_SEARCH_LIMITS=Object.freeze({minLength:3,pageSize:50,maxPages:4});
+const matchKey=(value,language)=>value.normalize('NFC').toLocaleLowerCase(language);
+export const placeNameMatches=(name,query,language='en')=>matchKey(name,language).includes(matchKey(query.trim(),language));
+const placeKind=raw=>raw.fcl==='P'?'PLACE':/^PCL/.test(raw.fcode??'')?'COUNTRY':'REGION';
+const text=value=>typeof value==='string'&&value.trim()&&value.length<=200?value.trim():null;
+// Country — Region before the name, only levels that exist; never repeated or invented.
+export function placePath(raw,name){
+  const parts=[];
+  const levels=placeKind(raw)==='COUNTRY'?[]:[text(raw.countryName),raw.fcode==='ADM1'?null:text(raw.adminName1)];
+  for(const part of levels)if(part&&part!==name&&!parts.includes(part))parts.push(part);
+  return parts;
+}
 export function sanitizePlaceQuery(input) {
   if(typeof input!=='string')throw new OnboardingError('GEONAMES_QUERY_INVALID','birthplace',400);
   const query=input.normalize('NFKC').trim().replace(/\s+/g,' ');
-  if(query.length<2||query.length>80||!/^[\p{L}\p{M}\p{N}\s'’.,()-]+$/u.test(query))throw new OnboardingError('GEONAMES_QUERY_INVALID','birthplace',400);
+  if([...query].length<PLACE_SEARCH_LIMITS.minLength||query.length>80||!/^[\p{L}\p{M}\p{N}\s'’.,()-]+$/u.test(query))throw new OnboardingError('GEONAMES_QUERY_INVALID','birthplace',400);
   return query;
 }
 export function createGeoNamesAdapter({username,fetcher=fetch,timeoutMs=8000,timers={set:(fn,ms)=>setTimeout(fn,ms),clear:timer=>clearTimeout(timer)}}) {
@@ -14,7 +27,7 @@ export function createGeoNamesAdapter({username,fetcher=fetch,timeoutMs=8000,tim
     if(!configuredUsername)throw new GeoNamesError('GEONAMES_SECRET_MISSING',null,null,'CONFIGURATION');
     // Server-owned HTTPS destination. Client input can never override its host/path.
     const url=new URL(`https://secure.geonames.org/${path}`);
-    Object.entries({...params,username:configuredUsername}).forEach(([key,value])=>url.searchParams.set(key,String(value)));
+    Object.entries({...params,username:configuredUsername}).forEach(([key,value])=>Array.isArray(value)?value.forEach(item=>url.searchParams.append(key,String(item))):url.searchParams.set(key,String(value)));
     const abort=new AbortController();let timer,httpStatus=null,stage='FETCH';
     try {
       return await Promise.race([
@@ -78,16 +91,28 @@ export function createGeoNamesAdapter({username,fetcher=fetch,timeoutMs=8000,tim
     try{return normalizeGeoNamesPlace(raw);}catch{throw new GeoNamesError('GEONAMES_INVALID_RESPONSE',httpStatus,null,'RESPONSE_VALIDATION');}
   };
   return {
-    ...createGeoNamesHierarchy(request),
-    search:async(query,language)=>{
-      const {data,httpStatus}=await request('searchJSON',{q:sanitizePlaceQuery(query),maxRows:8,lang:language==='tr'?'tr':'en',style:'FULL',featureClass:'P'});
-      if(!Array.isArray(data.geonames))throw new GeoNamesError('GEONAMES_INVALID_RESPONSE',httpStatus,null,'RESPONSE_VALIDATION');
-      return data.geonames.slice(0,8).map(raw=>normalize(raw,httpStatus));
+    search:async(query,language,page=0)=>{
+      const q=sanitizePlaceQuery(query),lang=language==='tr'?'tr':'en',{pageSize,maxPages}=PLACE_SEARCH_LIMITS;
+      if(!Number.isSafeInteger(page)||page<0||page>=maxPages)throw new OnboardingError('INVALID_REQUEST',null,400);
+      const startRow=page*pageSize;
+      const {data,httpStatus}=await request('searchJSON',{q,isNameRequired:'true',featureClass:['A','P'],maxRows:pageSize,startRow,lang,style:'FULL'},{maxBytes:1048576});
+      if(!Array.isArray(data.geonames)||data.geonames.length>pageSize)throw new GeoNamesError('GEONAMES_INVALID_RESPONSE',httpStatus,null,'RESPONSE_VALIDATION');
+      const total=Number.isSafeInteger(data.totalResultsCount)&&data.totalResultsCount>=0?data.totalResultsCount:startRow+data.geonames.length;
+      const seen=new Set(),places=[];
+      for(const raw of data.geonames){
+        const place=normalize(raw,httpStatus);
+        if(!['A','P'].includes(raw.fcl)||seen.has(place.birthplace_geonames_id)||!placeNameMatches(place.birthplace_name,q,lang))continue;
+        seen.add(place.birthplace_geonames_id);
+        places.push({...place,place_kind:placeKind(raw),place_path:placePath(raw,place.birthplace_name)});
+      }
+      const more=data.geonames.length>0&&startRow+data.geonames.length<total;
+      // One provider page per explicit request; never a background sweep of all pages.
+      return {places,page,next_page:more&&page+1<maxPages?page+1:null,limited:more&&page+1>=maxPages};
     },
     resolve:async(id)=>{
       if(!Number.isSafeInteger(id)||id<=0)throw new OnboardingError('BIRTHPLACE_SELECTION_REQUIRED','birthplace');
       const {data,httpStatus}=await request('getJSON',{geonameId:id,style:'FULL'});
-      if(data.fcl!=='P')throw new GeoNamesError('GEONAMES_INVALID_RESPONSE',httpStatus,null,'RESPONSE_VALIDATION');
+      if(!['A','P'].includes(data.fcl))throw new GeoNamesError('GEONAMES_INVALID_RESPONSE',httpStatus,null,'RESPONSE_VALIDATION');
       const place=normalize(data,httpStatus);
       if(place.birthplace_geonames_id!==id)throw new GeoNamesError('GEONAMES_INVALID_RESPONSE',httpStatus,null,'RESPONSE_VALIDATION');
       return place;

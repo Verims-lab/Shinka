@@ -82,10 +82,11 @@ export const ONBOARDING_TESTS=[
   const requests=[],fixtureUsername='synthetic-geonames-credential';
   const adapter=createGeoNamesAdapter({username:fixtureUsername,fetcher:async url=>{requests.push(url);return Response.json(url.pathname==='/searchJSON'?{geonames:[{...fixturePlace,username:fixtureUsername,extra:'discard'}]}:{...fixturePlace,username:fixtureUsername});}});
   const f=onboardingFixture();f.dependencies.geoNames=adapter;
-  const search=await run(f,{action:'searchPlaces',query:'  İzmir,  TR  ',language_code:'tr'});
-  check(search.places.length===1&&JSON.stringify(search.places[0])===JSON.stringify(normalizeGeoNamesPlace(fixturePlace)));
+  const search=await run(f,{action:'searchPlaces',query:'  Fixture   City  ',language_code:'tr'});
+  const {place_kind,place_path,...five}=search.places[0];
+  check(search.places.length===1&&JSON.stringify(five)===JSON.stringify(normalizeGeoNamesPlace(fixturePlace))&&place_kind==='PLACE');
   check(!JSON.stringify(search).includes(fixtureUsername)&&f.data.user_profile.length===0);
-  check(requests[0].searchParams.get('q')==='İzmir, TR'&&requests[0].searchParams.get('lang')==='tr'&&requests[0].searchParams.get('featureClass')==='P'&&requests[0].href.includes('%C4%B0zmir'));
+  check(requests[0].searchParams.get('q')==='Fixture City'&&requests[0].searchParams.get('lang')==='tr'&&requests[0].searchParams.getAll('featureClass').join()==='A,P');
   await run(f,{...profileBody,birthplace_geonames_id:123});
   check(requests[1].origin==='https://secure.geonames.org'&&requests[1].pathname==='/getJSON'&&requests[1].searchParams.get('geonameId')==='123');
   check(requests.every(url=>url.searchParams.get('username')===fixtureUsername)&&!JSON.stringify(f.data).includes(fixtureUsername)&&!JSON.stringify(f.data).includes('İzmir'));

@@ -67,12 +67,12 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
  ['G05','Empty array and successful no-result status remain HTTP 200 empty places',async()=>{
   for(const data of [{geonames:[]},{status:{value:15,message:'no result for private query'}}]){
     const adapter=createGeoNamesAdapter({username:'fixture',fetcher:async()=>Response.json(data)});
-    const response=await post(sdkOnboardingFixture(),adapter);check(response.status===200&&JSON.stringify(await response.json())==='{"places":[]}');
+    const response=await post(sdkOnboardingFixture(),adapter);check(response.status===200&&(await response.json()).places.length===0);
   }
   const detail=createGeoNamesAdapter({username:'fixture',fetcher:async()=>Response.json({status:{value:15}})});
   await failure(()=>detail.resolve(123),'GEONAMES_PROVIDER_REJECTED',200,15,'NOT_FOUND');
   const bounded=createGeoNamesAdapter({username:'fixture',fetcher:async()=>Response.json({geonames:Array.from({length:20},()=>fixturePlace)})});
-  check((await bounded.search('City','en')).length===8);
+  check((await bounded.search('City','en')).places.length===1,'duplicate provider IDs collapse');
  }],
  ['G06','Malformed JSON/envelope/records and oversized payloads are safe invalid responses',async()=>{
   for(const text of ['invalid','null','[]','{}','{"geonames":{}}','{"status":null}','{"status":{"value":"10"}}',JSON.stringify({geonames:[null]}),JSON.stringify({geonames:[{...fixturePlace,lat:''}]}),JSON.stringify({geonames:[],extra:'ı'.repeat(50001)})]){
@@ -150,7 +150,7 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
     if(url.pathname==='/getJSON')check(url.searchParams.get('geonameId')===String(fixturePlace.geonameId));
     return Response.json(url.pathname==='/searchJSON'?{geonames:[fixturePlace]}:fixturePlace);
   }});
-  const [place]=await success.search('City','en');
+  const {places:[{place_kind,place_path,...place}]}=await success.search('City','en');
   check(JSON.stringify(await success.resolve(place.birthplace_geonames_id))===JSON.stringify(place));
   check(paths.join()==='/searchJSON,/getJSON');
  }],
@@ -219,7 +219,7 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
     return Response.json(input.pathname==='/searchJSON'?{geonames:[fixturePlace]}:fixturePlace);
   };
   const adapter=createGeoNamesAdapter({username:'fixture',fetcher});
-  const [place]=await adapter.search('City','tr');
+  const {places:[{place_kind,place_path,...place}]}=await adapter.search('City','tr');
   check(JSON.stringify(await adapter.resolve(place.birthplace_geonames_id))===JSON.stringify(place));
   check(seen.length===2&&seen.map(s=>s.url.pathname).join()==='/searchJSON,/getJSON'&&receivers.every(r=>r===undefined));
  }],

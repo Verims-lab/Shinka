@@ -6,7 +6,7 @@ const SAFE_CODES=new Set(['MAINTENANCE_WRITE_PAUSED',...ONBOARDING_ERROR_KEYS,..
 export async function onboardingRequest(action,payload={},client=base44) {
   let timer;
   try {
-    const response=await Promise.race([client.functions.invoke('onboarding',{...payload,action}),new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('timeout')),action.startsWith('listPlace')?30000:15000);})]);
+    const response=await Promise.race([client.functions.invoke('onboarding',{...payload,action}),new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('timeout')),15000);})]);
     if(response.data?.error_code)throw {response:{data:response.data}};
     return response.data;
   }catch(error){

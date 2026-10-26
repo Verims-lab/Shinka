@@ -5,15 +5,10 @@ import { validateLedger } from "../buildMarkerRules";
 import { BUILD_LEDGER } from "../buildLedger";
 import { BUILD_MARKER } from "../buildMarker";
 import { loadStaticEvidence } from "../inspection/sourceScanner";
-import {
-  createPlaceListCache,
-  PLACE_CACHE_LIMITS,
-} from "@/features/profile/placeListCache";
-import { createBirthplacePicker } from "@/features/profile/birthplaceSelection";
 import { createGeoNamesAdapter } from "../../../base44/shared/geonamesAdapter.js";
 import { onboardingOperation } from "../../../base44/shared/onboardingOperations.js";
 import { sdkOnboardingFixture } from "./base44OnboardingFixture";
-import { hierarchyFetch } from "./geonamesHierarchyFixture";
+import { placeFetch } from "./geonamesSearchFixture";
 import { check, rejects } from "./dataModelTests";
 
 const marker = (n) => `Buildmarker-${String(n).padStart(3, "0")}`;
@@ -106,105 +101,18 @@ export const MAINTENANCE_TESTS = [
     },
   ],
   [
-    "M06",
-    "Place cache expires, evicts LRU, bounds bytes/entries and clears",
-    () => {
-      let now = 0;
-      const cache = createPlaceListCache(() => now);
-      for (let i = 0; i < PLACE_CACHE_LIMITS.entries; i++)
-        cache.set(String(i), { options: [i] });
-      cache.get("0");
-      cache.set("extra", { options: [] });
-      check(
-        cache.get("0") &&
-          !cache.get("1") &&
-          cache.stats().entries === PLACE_CACHE_LIMITS.entries,
-      );
-      cache.set("large", { text: "x".repeat(PLACE_CACHE_LIMITS.bytes) });
-      check(!cache.get("large"));
-      for (let i = 0; i < 3; i++)
-        cache.set(`bytes-${i}`, { text: "x".repeat(400000) });
-      check(
-        cache.stats().bytes <= PLACE_CACHE_LIMITS.bytes &&
-          !cache.get("bytes-0"),
-      );
-      now += PLACE_CACHE_LIMITS.ttlMs;
-      check(cache.stats().entries === 0);
-      cache.set("again", {});
-      cache.clear();
-      check(cache.stats().bytes === 0);
-    },
-  ],
-  [
-    "M07",
-    "Picker cache keys isolate country, parent, language and page; clear/dispose force fresh lists",
-    async () => {
-      let calls = 0;
-      const geo = createGeoNamesAdapter({
-        username: "fixture",
-        fetcher: hierarchyFetch,
-      });
-      const picker = createBirthplacePicker({
-        request: async (action, payload) => {
-          calls++;
-          return action === "listPlaceCountries"
-            ? geo.countries(payload.language_code)
-            : action === "listPlaceRegions"
-              ? geo.regions(payload)
-              : geo.places(payload);
-        },
-      });
-      await picker.start("en");
-      await picker.country(100);
-      await picker.region(0, 1001);
-      const cold = calls;
-      await picker.country(100);
-      await picker.region(0, 1001);
-      check(calls === cold);
-      await picker.country(200);
-      check(calls === cold + 2);
-      const beforeLanguage = calls;
-      await picker.language("tr");
-      check(calls > beforeLanguage);
-      const beforeClear = calls;
-      await picker.clear();
-      await picker.country(100);
-      check(calls > beforeClear);
-      picker.dispose();
-      const beforeRestart = calls;
-      await picker.start("tr");
-      check(calls > beforeRestart);
-      picker.dispose();
-      const cache = createPlaceListCache();
-      cache.set(JSON.stringify(["places", "TR", 1001, "tr", 0]), {
-        options: [1],
-      });
-      check(!cache.get(JSON.stringify(["places", "TR", 1001, "tr", 100])));
-    },
-  ],
-  [
     "M08",
-    "Read-only provider lists read one owner profile, skip preferences, and still deny inactive/anonymous",
+    "Read-only place search reads one owner profile, skips preferences, and still denies inactive/anonymous",
     async () => {
       const geo = createGeoNamesAdapter({
         username: "fixture",
-        fetcher: hierarchyFetch,
+        fetcher: placeFetch,
       });
-      for (const action of [
-        "listPlaceCountries",
-        "listPlaceRegions",
-        "listPlaceSettlements",
-      ]) {
+      for (const page of [0, 1]) {
         const f = sdkOnboardingFixture();
         await onboardingOperation(
           f.client,
-          {
-            action,
-            language_code: "en",
-            ...(action === "listPlaceCountries"
-              ? {}
-              : { country: "TR", parent_id: null, offset: 0 }),
-          },
+          { action: "searchPlaces", query: "Kan", language_code: "en", page },
           { geoNames: geo },
         );
         check(
@@ -224,10 +132,10 @@ export const MAINTENANCE_TESTS = [
         const call = () =>
           onboardingOperation(
             f.client,
-            { action: "listPlaceCountries", language_code: "en" },
+            { action: "searchPlaces", query: "Kan", language_code: "en" },
             {
               geoNames: {
-                countries: async () => {
+                search: async () => {
                   outbound++;
                 },
               },
