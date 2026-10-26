@@ -15,9 +15,12 @@ export async function nativePrerequisite(ctx, feature) {
   // unless the readable part already proves a contract mismatch (FAIL).
   const rows = Array.isArray(value?.schemas) ? value.schemas : [];
   const transient = rows.filter(row => row?.readable === false && TRANSIENT.has(row?.diagnostic?.code));
-  const contractOk = value?.authority === 'BASE44_NATIVE_V1' && value.strategyVersion === 'native-continuation/2' &&
-    Object.entries(STRATEGIES).every(([key, expected]) => value[key] === expected) && rows.length === SCHEMAS.length &&
-    rows.every(row => row?.readable === true || TRANSIENT.has(row?.diagnostic?.code));
+  const wellFormed = row => row && typeof row === 'object' && SCHEMAS.includes(row.name) &&
+    (row.readable === true || (row.readable === false && TRANSIENT.has(row.diagnostic?.code)));
+  const contractOk = Object.hasOwn(STRATEGIES, feature) && value?.authority === 'BASE44_NATIVE_V1' && value.strategyVersion === 'native-continuation/2' &&
+    Object.entries(STRATEGIES).every(([key, expected]) => value[key] === expected) && Array.isArray(value.schemas) &&
+    rows.length === SCHEMAS.length && rows.every(wellFormed) &&
+    SCHEMAS.every(name => rows.filter(row => row.name === name).length === 1);
   if (transient.length && contractOk) return { status: 'BLOCKED', evidence: ev(CLASS.BLOCKED_EXTERNAL, 'internalHealth nativeReadiness',
     { state: 'TRANSIENT_UNAVAILABLE', unreadable: transient.map(row => ({ name: row.name, code: row.diagnostic.code, httpStatus: row.diagnostic.httpStatus ?? null })) },
     'every native schema readable', 'Temporary unavailability (rate limit/timeout/outage) is missing evidence, not a contract mismatch.') };

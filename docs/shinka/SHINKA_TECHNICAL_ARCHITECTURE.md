@@ -3,6 +3,7 @@
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
 **Current BuildMarker:** Buildmarker-033
+**Stabilization 034 (pending record):** Session checks coalesced/throttled client-side; `nativeReadiness` sequential with one retry per schema — its `budgetMs` gates retry waits only and is not a hard total timeout.
 **Last Updated:** 2026-10-23
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.

@@ -3,6 +3,7 @@
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
 **Current BuildMarker:** Buildmarker-033
+**Stabilization 034 (pending record):** New `src/` files may not import `base44/`, and edits may not add such imports; server tests live in `scripts/verifySessionStability.mjs`. Post-write deletion guard restored (equivalence unproven). See reports/SHINKA_STABILIZATION_034.md.
 **Last Updated:** 2026-10-23
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.

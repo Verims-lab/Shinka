@@ -114,5 +114,23 @@ export const NATIVE_TESTS = [
  ['NA30','Initial grant period failure resumes after process restart with no extra event',async()=>{
   const f=nativeFixture({granted:false}), body=await request(f,'add',{date:'2026-10-01',health_consent:true});f.once('before',c=>c.name==='UserPeriodRecord'&&c.method==='create');await rejects(()=>f.cal(body));const time=f.tables.UserHealthConsent[0].granted_at;await f.cal(body);check(f.tables.UserHealthConsent.length===1&&f.tables.UserHealthConsentEvent.length===1&&f.tables.UserPeriodRecord.length===1&&f.tables.UserHealthConsent[0].granted_at===time);
  }],
+ ['NA34A','Stabilization 034: admin A deletes B; A record/role intact, B removed, no other user touched, result verified',async()=>{
+  const f=nativeFixture();const others=JSON.stringify(f.tables.User.filter(u=>u.id!=='ownerA'));let result=await f.execute(await f.preview('DELETE_USER'));const id=result.job?.operation_id;
+  for(let pass=0;result.result_state==='PARTIAL'&&pass<20;pass++)result=await f.tools({action:'resume',target_id:'ownerA',operation_id:id});
+  check(result.result_state==='COMPLETED',`state ${result.result_state}`);check(!f.tables.User.some(u=>u.id==='ownerA'));check(JSON.stringify(f.tables.User)===others,'actor/other users unchanged');
+  check(f.tables.AdminTestOperation.length===1&&f.tables.AdminTestOperation[0].operation_id===id,'single operation id');
+ }],
+ ['NA34B','Stabilization 034: admin role removed mid-deletion stops every later write; no COMPLETED shown',async()=>{
+  const f=nativeFixture();const view=await f.preview('DELETE_USER');let writesAfter=0,demoted=false;
+  f.state.after=async c=>{if(demoted&&['create','update','delete','deleteMany','updateMany'].includes(c.method)&&c.name!=='AdminAuditLog')writesAfter++;if(!demoted&&c.name==='UserProfile'&&['delete','deleteMany'].includes(c.method)){demoted=true;f.tables.User.find(u=>u.id==='adminA').role='user';}};
+  let outcome=null;try{outcome=await f.execute(view);}catch(e){outcome={error:e.code};}
+  check(demoted,'demotion triggered');check(outcome.result_state!=='COMPLETED','no success');check(writesAfter===0,`writes after demotion ${writesAfter}`);
+  check(f.tables.User.some(u=>u.id==='adminA'&&u.role==='user')&&f.tables.User.some(u=>u.id==='ownerB'),'others intact');
+ }],
+ ['NA34C','Stabilization 034: late resume for another target/operation id cannot affect a different user',async()=>{
+  const f=nativeFixture();const r=await f.execute(await f.preview('DELETE_USER'));const before=JSON.stringify(f.tables.User.filter(u=>u.id!=='ownerA'));
+  let threw=false;try{await f.tools({action:'resume',target_id:'ownerB',operation_id:r.job?.operation_id});}catch{threw=true;}
+  check(threw,'cross-target resume rejected');check(JSON.stringify(f.tables.User.filter(u=>u.id!=='ownerA'))===before,'other users untouched');
+ }],
 
 ];

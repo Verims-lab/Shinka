@@ -3,6 +3,7 @@
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
 **Current BuildMarker:** Buildmarker-033
+**Stabilization 034 (pending record):** Native prerequisite → BLOCKED only for transient unavailability on a fully valid contract (feature, authority, strategies, five schemas exactly once); mismatch (incl. mismatch + 429) → FAIL. Node 7/7 PASS; SS04 written, not run. See reports/SHINKA_STABILIZATION_034.md.
 **Last Updated:** 2026-10-23
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
