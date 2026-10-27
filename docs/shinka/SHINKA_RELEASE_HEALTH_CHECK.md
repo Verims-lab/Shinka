@@ -6,6 +6,7 @@
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
+**Core Audit 042 (local):** H12-025 covers SS06–SS10 and AR01–AR03; AR PASS (Node), SS10 NOT_RUN (no browser). See reports/SHINKA_CORE_AUDIT_042.md.
 **Scope:** Health catalog HC-040.0; repository, synthetic and external evidence separated.
 
 
