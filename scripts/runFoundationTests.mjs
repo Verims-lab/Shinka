@@ -2,6 +2,7 @@ import { verifyTestDeletionEntry } from './verifyTestDeletionEntry.mjs';
 import { checkOnboardingClosure } from './checkOnboardingClosure.mjs';
 import { verifyNotifications } from './verifyNotifications.mjs';
 import { checkMobileExperience } from "./checkMobileExperience.mjs";
+import { checkStartupRoutes } from './checkStartupRoutes.mjs';
 import { checkProductNavigation } from './checkProductNavigation.mjs';
 import { checkHealthTiming } from './checkHealthTiming.mjs';
 import { checkPrivacyFlow } from './checkPrivacyFlow.mjs';
@@ -48,7 +49,7 @@ try {
   const geoNamesRuntimeProbeEntry=await verifyGeoNamesRuntimeProbeEntry(root);
   const security028=await verifySecurity028();if(!security028.passed)throw new Error(`SECURITY_028_FAILED ${JSON.stringify(security028.results.filter(r=>r.status!=='PASS'))}`);
   await build({root,configFile:false,plugins:[staticEvidencePlugin(root),tailwindcss(),react()],logLevel:"warn",
-    resolve:{alias:[{find:"@/api/base44Client",replacement:path.join(root,"scripts/testHarness/fakeBase44.js")},{find:"@",replacement:path.join(root,"src")}]},
+    resolve:{alias:[{find:"@/lib/AuthContext",replacement:path.join(root,"scripts/testHarness/ObservedAuth.jsx")},{find:"@/api/base44Client",replacement:path.join(root,"scripts/testHarness/fakeBase44.js")},{find:"@",replacement:path.join(root,"src")}]},
     build:{outDir:output,emptyOutDir:true,rollupOptions:{input:path.join(root,"scripts/testHarness/index.html")}}});
   const html=await readFile(path.join(output,"scripts/testHarness/index.html"));
   server=createServer(async(req,res)=>{
@@ -89,6 +90,12 @@ try {
   } else if (process.env.FOUNDATION_ONBOARDING_ONLY === '1') {
     const onboardingClosure=await checkOnboardingClosure(browser,origin,process.env.FOUNDATION_ONBOARDING_DIR);
     console.log(JSON.stringify({onboardingClosure,pageErrors},null,2));
+  } else if (process.env.FOUNDATION_HEALTH_ONLY === '1') {
+    console.log(JSON.stringify({diagnosticOnly:true,inAppHealth:await checkInAppHealth(page,origin),pageErrors},null,2));
+    if(pageErrors.length)process.exitCode=1;
+  } else if (process.env.FOUNDATION_STARTUP_ONLY === '1') {
+    console.log(JSON.stringify({diagnosticOnly:true,startupRoutes:await checkStartupRoutes(page,origin),pageErrors},null,2));
+    if(pageErrors.length)process.exitCode=1;
   } else if (process.env.FOUNDATION_MOBILE_ONLY === '1') {
     const mobile=await checkMobile(browser,origin,process.env.FOUNDATION_MOBILE_DIR);
     console.log(JSON.stringify({diagnosticOnly:true,mobile,pageErrors},null,2));
@@ -143,6 +150,7 @@ try {
     productionRouting.push({session:`${session}-top-level-probe`,passed:await page.locator('[data-onboarding-state]').getAttribute('data-onboarding-state')==='UNAUTHENTICATED_SIGN_IN'});
   }
   const previewProbes = probeBundle.measurements.map(probe=>({probe,passed:['READY','MEASURED'].includes(probe.state)}));
+  const startupRoutes = await checkStartupRoutes(page, origin);
   const productNavigation = await checkProductNavigation(page, origin);
   const adminNavigation = await checkAdminNavigation(page, origin, process.env.FOUNDATION_ADMIN_DIR);
   const mobileExperience = await checkMobileExperience(browser,origin,process.env.FOUNDATION_MOBILE_DIR);
@@ -159,7 +167,7 @@ try {
     const audit=await page.evaluate(()=>({registry:window.__healthAuditRegistry,report:window.__savedHealthReport}));
     await writeHealthAudit(root,process.env.FOUNDATION_AUDIT_DIR,audit.registry,audit.report,results);
   }
-  console.log(JSON.stringify({onboardingClosure,productNavigation,healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,security028,notifications030,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
+  console.log(JSON.stringify({onboardingClosure,startupRoutes,productNavigation,healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,security028,notifications030,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
   if(mobileExperience.some(r=>!r.passed)||mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||calendarHealth.some(c=>c.status!=="PASS")||adminTestHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
   }
   }

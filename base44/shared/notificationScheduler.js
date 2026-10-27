@@ -61,28 +61,18 @@ export async function notificationTick(client, { provider = null, createProvider
     return { state:'COMPLETE',processed,counts,cycleComplete:complete };
   } finally { running = false; }
 }
-export async function handleNotificationSchedule(req, { createClient, enabled = false, createProvider, library, now = () => new Date(), elapsed = () => performance.now(), admitMachine = null }) {
+export async function handleNotificationSchedule(req, { createClient, enabled = false, createProvider, library, now = () => new Date(), elapsed = () => performance.now() }) {
   try {
     if (req.method !== 'POST') fail('METHOD_NOT_ALLOWED',405);
-    let client, admitCaller;
-    // Only a trusted server binding can select machine admission. Request data
-    // cannot supply this callback; no fallback or synthetic user/admin identity.
-    if (admitMachine !== null) {
-      if (typeof admitMachine !== 'function') fail('NOTIFICATION_AUTH_UNAVAILABLE',503);
-      await admitMachine();
-      client = createClient(req);
-      admitCaller = admitMachine;
-    } else {
-      const raw = createClient(req);
-      // Authenticate before constructing a service-role lifecycle repository.
-      const initial = await requireAuthenticatedUser(raw);
-      client = withUserLifecycle(raw);
-      admitCaller = async () => {
-        // Shared guard + fresh native User/lifecycle read; cached role is not used.
-        if ((await requireAdmin(client)).id !== initial.id) fail('AUTH_REQUIRED',401);
-      };
-      await admitCaller();
-    }
+    const raw = createClient(req);
+    // Workflow identity is supplied by Base44, including its owner fallback.
+    // The application never manufactures that identity or trusts request flags.
+    const initial = await requireAuthenticatedUser(raw);
+    const client = withUserLifecycle(raw);
+    const admitCaller = async () => {
+      if ((await requireAdmin(client)).id !== initial.id) fail('AUTH_REQUIRED',401);
+    };
+    await admitCaller();
     const body = await readBoundedJson(req,512,fail);
     if (body?.action !== 'tick' || Object.keys(body).some(key => key !== 'action')) fail('INVALID_REQUEST',400);
     if (!enabled) return Response.json({ state:'DISABLED',processed:0 });

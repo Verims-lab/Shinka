@@ -1,10 +1,8 @@
 import { NOTIFICATION_COPY, notificationFail as fail } from './notificationPolicy.js';
 
-// 030 input came from owner-relayed Base44 AI. In 034, owner-relayed Dmytro /
-// Base44 Support also confirms the five field names, not the complete schema.
-// Official built-in integration docs confirm 100/500/50 character limits and
-// optional action/link with Home default. Full wire types/requiredness/nullability
-// and Unicode counting remain unverified; this is not hosted/response proof.
+// 042 user-relayed Fode/Base44 Support supplies required fields/native User.id
+// and acceptance/error semantics. This is written support evidence, not hosted
+// verification. Existing documented limits and Home-only app policy remain.
 /** @param {unknown} input @returns {import('./notificationProviderTypes.js').ReportedPushInput} */
 export function validateReportedPushInput(input) {
   if (!input || typeof input !== 'object' || Array.isArray(input)) fail('PUSH_INPUT_INVALID',400);
@@ -30,24 +28,40 @@ export function validateReportedPushInput(input) {
   return result;
 }
 
-/** @param {import('./notificationProviderTypes.js').PushClient} client */
-export function base44PushProvider(client) {
+/** @param {import('./notificationProviderTypes.js').PushClient} client
+ * @param {{timeoutMs?:number,timers?:{set:(fn:()=>void,ms:number)=>any,clear:(id:any)=>void}}} [options] */
+export function base44PushProvider(client, { timeoutMs=8000, timers={set:(fn,ms)=>setTimeout(fn,ms),clear:id=>clearTimeout(id)} } = {}) {
   return {
     async eligibility(_owner) {
-      return { support:'UNKNOWN',permission:'UNKNOWN' };
+      // No platform eligibility API exists. Unknown is not granted permission.
+      return { support:'UNKNOWN',permission:'UNKNOWN',observation:'NOT_EXPOSED' };
     },
     async send({ owner, language }) {
       const copy = NOTIFICATION_COPY[language === 'tr' ? 'tr' : 'en'];
       // Docs specify Home when the optional link is omitted; device proof is open.
       // No daily date or personal snapshot enters this minimal notification.
       const params = validateReportedPushInput({ user_id:owner,title:copy.title,content:copy.message });
+      let timer;
       try {
-        // Owner-relayed support warns unknown/misnamed fields can be silently
-        // dropped even on success. No concrete acceptance response is known;
-        // a fulfilled promise proves neither field processing nor device display.
-        await client.asServiceRole.integrations.Core.SendPushNotification(params);
-      } catch { /* 403/502/timeout are not a complete no-send/error contract. */ }
-      // Never forward raw output, infer SENT, or automatically retry this call.
+        // Installed SDK integrations unwrap response.data (unlike functions).
+        const output = await Promise.race([
+          client.asServiceRole.integrations.Core.SendPushNotification(params),
+          new Promise(resolve=>{timer=timers.set(()=>resolve(null),timeoutMs);}),
+        ]);
+        // Channel values are opaque: support gives no inner type contract.
+        // Require both fields to be present and non-null; never log their data.
+        const result = output && typeof output === 'object' && !Array.isArray(output) ? /** @type {Record<string,unknown>} */ (output) : null;
+        if (result &&
+            result.status === 'sent' && Object.hasOwn(result,'successful_channels') &&
+            Object.hasOwn(result,'failed_channels') && result.successful_channels != null && result.failed_channels != null)
+          return { kind:'accepted' }; // provider acceptance, not device delivery
+      } catch (error) {
+        // 404: invalid/removed/outside-app native recipient; 403: not service role.
+        // 502, timeout and unknown transport outcomes never authorize a retry.
+        if (error?.status === 404 || error?.status === 403) return { kind:'permanent' };
+      } finally { timers.clear(timer); }
+      // Deadline does not cancel the SDK request. A late result cannot change
+      // this outcome or authorize a resend; persisted IN_FLIGHT/UNKNOWN wins.
       return { kind:'unknown' };
     },
   };

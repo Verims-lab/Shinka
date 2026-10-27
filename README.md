@@ -4,7 +4,11 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
-## Current Test deletion stabilization (Buildmarker-040)
+## Current Test audit closure (Buildmarker-042 / HC-041.0)
+
+[042 verification and closed notification preparation](docs/shinka/reports/SHINKA_CORE_AUDIT_042.md) preserves Base44 Home/startup/admission work and the original 040 evidence. New written Support resolves workflow native-admin and provider acceptance semantics; entry remains disabled. No workflow creation, send, live user operation or owner publication. Use the normal full-graph GitHub sync/publish workflow; no schema/content import or workflow secret is needed.
+
+## Historical Test deletion stabilization (Buildmarker-040)
 
 [040 deletion fix, regression and live acceptance](docs/shinka/reports/SHINKA_TEST_DELETION_STABILIZATION_040.md) preserves 039. Durable admission, forward checkpoints and separately verified finalization keep the same operation ID. No schema/import step. Owner merges Test to main, waits for full Base44 GitHub sync and publishes matching backend/shared/frontend. Authorized existing-user cleanup remains pending source/identity verification; this delivery does not claim hosted removal.
 
@@ -26,9 +30,9 @@ Git branch, Builder sync, published frontend and backend data environment are se
 
 034 is historical: its local 649/649 Chromium/WebKit results validated that package, and PR #36 has since been merged. They are not 035 evidence. [Retained 034 report](docs/shinka/reports/SHINKA_STABILIZATION_034.md).
 
-## Previous scheduler authorization preparation (Buildmarker-033)
+## Historical scheduler authorization preparation (Buildmarker-033; superseded by 042)
 
-033 prepares scheduler-only shared-secret comparison and a separate machine admission path. Manual admin checks stay intact; real secret registration/transport is unbound and the actual entry stays disabled. [033 implementation, evidence and owner setup](docs/shinka/reports/SHINKA_SCHEDULER_AUTHORIZATION_033.md).
+The following 029–034 contract notes are historical; 042 above replaces the secret/workflow and acceptance assumptions. 033 prepared scheduler-only shared-secret comparison and a separate machine admission path. Manual admin checks stay intact; real secret registration/transport is unbound and the actual entry stays disabled. [033 implementation, evidence and owner setup](docs/shinka/reports/SHINKA_SCHEDULER_AUTHORIZATION_033.md).
 
 032 adds the [native setup inventory and two-stage device plan](docs/shinka/reports/SHINKA_NATIVE_NOTIFICATION_READINESS_032.md), with no notification runtime behavior change. Physical acceptance remains NOT_RUN. 031 reduces redundant backend reads with fresh write/readback/send guards: [matched measurements and validation](docs/shinka/reports/SHINKA_NOTIFICATION_PERFORMANCE_031.md). The completed 029 daily engine/UI is retained. 030 adds the shared fresh native-admin guard for manual starts and a narrow adapter for the user-relayed push input schema. Workflow identity and provider response/recipient/device contracts remain unverified. Actual entry is disabled; unknown adapter output never becomes SENT. No live send or schedule is enabled. Mobile credentials alone cannot complete these contracts. See the [retained 029/030 evidence](docs/shinka/reports/SHINKA_NOTIFICATIONS_029.md). Test delivery is local implementation only; main merge/publish and controlled native acceptance remain owner-owned.
 

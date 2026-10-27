@@ -1,5 +1,10 @@
 # Shinka Notifications 029–030 — local delivery and platform blockers
 
+## 042 superseding contract — historical evidence below retained
+
+The [042 written Support contract and runbook](core-audit-042/support-contract.md) supersedes secret/machine preparation and unknown response/recipient/eligibility assumptions below. Workflow supplies native admin creator or owner fallback, no secret/custom headers; installed SDK unwrapped `status:"sent"` with channel fields is provider acceptance. No eligibility API or provider idempotency exists. Unknown device permission stays UNKNOWN; real entry stays disabled. Physical/workflow acceptance remains open. No old FAIL/NOT_RUN or historical measurement is rewritten.
+
+
 ## 034 — support evidence addendum (2026-10-26)
 
 The owner relayed **Dmytro / Base44 Support** confirming the field names `user_id`, `title`, `content`, `action_label`, `action_url`. This adds technical-support provenance to the earlier Base44 AI relay; it is not an independently retrieved ticket or hosted validation. Unknown/misnamed fields can be silently discarded with a success response. Generic success proves neither intended processing of every field nor notification display, and supplies no concrete acceptance indicator.

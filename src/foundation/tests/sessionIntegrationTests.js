@@ -95,7 +95,7 @@ export const SESSION_INTEGRATION_TESTS = [
       },context,null);
     } finally {window.history.replaceState(null,'',original);}
   }],
-  ['SS10','Parallel startup: settings/session in either order keep membership, logout and account boundaries',async(context={})=>{
+  ['SS11','Parallel startup: settings/session in either order keep membership, logout and account boundaries',async(context={})=>{
     const refusal={status:403,data:{extra_data:{reason:'user_not_registered'}}};
     const refusedState=f=>f.auth.authError?.type==='user_not_registered'&&!f.auth.isAuthenticated&&!f.auth.isAdmin&&!f.auth.user;
     // Session succeeds first, settings then refuses membership: no admin while settings pend; refusal wins.

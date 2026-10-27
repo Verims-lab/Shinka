@@ -6,7 +6,7 @@ import { CORE_QUALITY_TESTS } from './coreQualityTests';
 import { ADDITIONAL_FIX_UI_TESTS } from './additionalFixUiTests';
 import { ONBOARDING_CLOSURE_UI_TESTS } from './onboardingClosureUiTests';
 import { ONBOARDING_AUDIT_UI_TESTS } from './onboardingAuditUiTests';
-import { NOTIFICATION_MACHINE_TESTS } from './notificationMachineTests';
+import { NOTIFICATION_WORKFLOW_TESTS } from './notificationWorkflowTests';
 import { NOTIFICATION_PERFORMANCE_TESTS } from './notificationPerformanceTests';
 import { NOTIFICATION_CONTRACT_TESTS } from './notificationContractTests';
 import { NOTIFICATION_TESTS } from './notificationTests';
@@ -78,7 +78,7 @@ const fixtureCases = (ids) => ids.map((id) => ({ id, suiteId: id.slice(0, 3), ti
 
 /** @type {import("./testTypes").FoundationTest[]} */
 export const FOUNDATION_TESTS = [
-  ...NOTIFICATION_TESTS, ...NOTIFICATION_CONTRACT_TESTS, ...NOTIFICATION_PERFORMANCE_TESTS, ...NOTIFICATION_MACHINE_TESTS, ...NOTIFICATION_UI_TESTS,
+  ...NOTIFICATION_TESTS, ...NOTIFICATION_CONTRACT_TESTS, ...NOTIFICATION_PERFORMANCE_TESTS, ...NOTIFICATION_WORKFLOW_TESTS, ...NOTIFICATION_UI_TESTS,
   ...QUALITY_MILESTONE_TESTS, ...CORE_QUALITY_TESTS, ...DELETION_STABILITY_TESTS,
   ...DELETION_FAULT_TESTS,
   ...MOBILE_INTERACTION_TESTS,

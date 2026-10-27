@@ -1,0 +1,39 @@
+[
+  {
+    "file": "chromium-generated-history.txt",
+    "printedPass": 705,
+    "printedFail": 3,
+    "failedIds": [
+      "HC08",
+      "M05",
+      "DM23"
+    ]
+  },
+  {
+    "file": "chromium-health.txt",
+    "printedPass": 706,
+    "printedFail": 2,
+    "failedIds": [
+      "HC08",
+      "DM23"
+    ]
+  },
+  {
+    "file": "chromium-startup-logout.txt",
+    "printedPass": 706,
+    "printedFail": 2,
+    "failedIds": [
+      "HC08",
+      "DM23"
+    ]
+  },
+  {
+    "file": "chromium-startup.txt",
+    "printedPass": 706,
+    "printedFail": 2,
+    "failedIds": [
+      "HC08",
+      "DM23"
+    ]
+  }
+]

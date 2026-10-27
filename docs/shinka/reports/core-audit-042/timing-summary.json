@@ -1,0 +1,134 @@
+{
+  "before": {
+    "calendar/first": {
+      "samples": 5,
+      "feedbackMedianMs": 18.2,
+      "visibleMedianMs": 82.3,
+      "usableMedianMs": 319.9,
+      "callCounts": {
+        "1": 5
+      }
+    },
+    "pattern/first": {
+      "samples": 5,
+      "feedbackMedianMs": 12.7,
+      "visibleMedianMs": 70.5,
+      "usableMedianMs": 295.8,
+      "callCounts": {
+        "2": 5
+      }
+    },
+    "you/first": {
+      "samples": 5,
+      "feedbackMedianMs": 68.6,
+      "visibleMedianMs": 68.6,
+      "usableMedianMs": 295.2,
+      "callCounts": {
+        "1": 5
+      }
+    },
+    "home/revisit": {
+      "samples": 15,
+      "feedbackMedianMs": 29.8,
+      "visibleMedianMs": 30.2,
+      "usableMedianMs": 246.8,
+      "callCounts": {
+        "1": 15
+      }
+    },
+    "pattern/revisit": {
+      "samples": 10,
+      "feedbackMedianMs": 21.4,
+      "visibleMedianMs": 30.3,
+      "usableMedianMs": 246.8,
+      "callCounts": {
+        "2": 10
+      }
+    },
+    "calendar/revisit": {
+      "samples": 10,
+      "feedbackMedianMs": 30.4,
+      "visibleMedianMs": 30.4,
+      "usableMedianMs": 247.6,
+      "callCounts": {
+        "1": 10
+      }
+    },
+    "you/revisit": {
+      "samples": 10,
+      "feedbackMedianMs": 13.0,
+      "visibleMedianMs": 29.9,
+      "usableMedianMs": 246.5,
+      "callCounts": {
+        "1": 10
+      }
+    }
+  },
+  "after": {
+    "calendar/first": {
+      "samples": 5,
+      "feedbackMedianMs": 18.7,
+      "visibleMedianMs": 82.5,
+      "usableMedianMs": 322.2,
+      "callCounts": {
+        "1": 5
+      }
+    },
+    "pattern/first": {
+      "samples": 5,
+      "feedbackMedianMs": 13.1,
+      "visibleMedianMs": 68.8,
+      "usableMedianMs": 296.4,
+      "callCounts": {
+        "2": 5
+      }
+    },
+    "you/first": {
+      "samples": 5,
+      "feedbackMedianMs": 69.2,
+      "visibleMedianMs": 69.2,
+      "usableMedianMs": 296.4,
+      "callCounts": {
+        "1": 5
+      }
+    },
+    "home/revisit": {
+      "samples": 15,
+      "feedbackMedianMs": 29.7,
+      "visibleMedianMs": 30.5,
+      "usableMedianMs": 246.8,
+      "callCounts": {
+        "1": 15
+      }
+    },
+    "pattern/revisit": {
+      "samples": 10,
+      "feedbackMedianMs": 21.7,
+      "visibleMedianMs": 30.3,
+      "usableMedianMs": 246.8,
+      "callCounts": {
+        "2": 10
+      }
+    },
+    "calendar/revisit": {
+      "samples": 10,
+      "feedbackMedianMs": 30.0,
+      "visibleMedianMs": 30.0,
+      "usableMedianMs": 247.4,
+      "callCounts": {
+        "1": 10
+      }
+    },
+    "you/revisit": {
+      "samples": 10,
+      "feedbackMedianMs": 13.4,
+      "visibleMedianMs": 30.1,
+      "usableMedianMs": 247.1,
+      "callCounts": {
+        "1": 10
+      }
+    }
+  },
+  "scope": "LOCAL_PRODUCTION_ROUTE_TRANSITIONS_REAL_SDK_SYNTHETIC_HTTP",
+  "limitations": "Not cold app startup, hosted latency, field INP, provider throughput or credit cost; separate sequential runs, small sample and scheduling noise; no causal speed percentage claimed."
+}

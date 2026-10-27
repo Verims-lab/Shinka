@@ -1,0 +1,71 @@
+{
+  "recordedAt": "2026-10-27T20:49:53Z",
+  "buildMarker": "Buildmarker-040",
+  "healthCatalog": "HC-040.0",
+  "status": "BLOCKED_PUBLICATION_AND_AUTHENTICATION",
+  "git": {
+    "initialTest": "b3d98ebb3004e69198582d0a93e4403acf02d816",
+    "ownerMergedMain": "c8419d7e555f8de05cd93653b0a363b2db076ca0",
+    "testFastForwardedAndPushed": true,
+    "mergeTreeIdentical": true,
+    "testedSourceFilesChecked": 534,
+    "testedSourceMismatches": 0,
+    "localTestsRerun": false
+  },
+  "builderReadOnlyObservation": {
+    "appId": "6ad5190f4845d4e3af03b420",
+    "workspaceBranch": "Main",
+    "surface": "Code / More actions / Compare with live code / Unpublished changes",
+    "unpublishedFiles": 36,
+    "added": 7,
+    "modified": 29,
+    "markerFile": "foundation/buildMarker.js",
+    "liveMarker": "Buildmarker-038",
+    "workspaceMarker": "Buildmarker-040",
+    "relatedUnpublishedFiles": [
+      "features/adminTestTools/useTestTools.js",
+      "services/internal/adminTestTools.js",
+      "pages/internal/TestTools"
+    ],
+    "publishedFrontendMatch": "NOT_MET",
+    "publishedBackendSharedMatch": "NOT_VERIFIED",
+    "actualSdkDataEnvironment": "NOT_VERIFIED",
+    "builderSessionDoesNotProveNativeAdmin": true
+  },
+  "cli": {
+    "check": "npx base44 whoami",
+    "result": "AUTH_REQUIRED",
+    "automaticDeviceFlowStopped": true,
+    "subsequentRemoteCliCalls": 0
+  },
+  "cleanup": {
+    "existingAuthorizationPreserved": true,
+    "protectedNativeUserResolution": "NOT_RUN",
+    "protectedBeforeAfterVerification": "NOT_RUN",
+    "paginatedUserAndOperationInventory": "NOT_RUN",
+    "initialTargets": null,
+    "attempted": 0,
+    "completed": 0,
+    "failedDeletions": 0,
+    "pendingTargets": null,
+    "finalActiveUsers": null,
+    "directDatabaseBypass": false
+  },
+  "agentActions": {
+    "publish": false,
+    "fullHealth": false,
+    "securityScan": false,
+    "userMutation": false
+  },
+  "limits": [
+    "Null counts mean unknown, not zero.",
+    "An already-running Security scan was visible on arrival; the agent did not start it or use its results.",
+    "A marker diff proves frontend publication mismatch, not the deployed backend revision.",
+    "No credentials, raw user records, operation payloads or health data are included."
+  ],
+  "nextActions": [
+    "Owner publishes the already-synced 040 source through the existing Base44 flow.",
+    "Owner completes npx base44 login without sharing credentials.",
+    "Verify published backend/shared/frontend, actual SDK target and unique protected native admin before inventory and first controlled deletion."
+  ]
+}

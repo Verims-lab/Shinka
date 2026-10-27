@@ -2,11 +2,16 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-041
-**Last Updated:** 2026-10-27
+**Current BuildMarker:** Buildmarker-042
+**Last Updated:** 2026-10-28
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
+
+
+## 042 — limited audit completion and disabled Support adaptation
+
+The owner's 2026-10-28 request authorizes lossless main→Test integration despite divergence, preserving Test's 040 receipts. No reset/force, new general audit, live mutation/Health/scan/workflow/push/store setup/main merge/publish. Generate Buildmarker-042 with recordBuild; retain 038–042. HC-040.0 advances once to HC-041.0 because seven case descriptions/semantics change (041 retained HC-040.0), not to match the package number. Preserve previous FAIL/NOT_RUN, user-reported hosted acceptance and deferred 12 findings. Run final Chromium/WebKit, AR/session/entry checks and existing quality/budget gates. [Single 042 record](reports/SHINKA_CORE_AUDIT_042.md).
 
 
 ## Current package — 040 deletion stabilization
@@ -39,7 +44,7 @@ The owner’s 2026-10-26 attachment 71da2d1f-ad7a-4fe0-af92-66a0a9e1d6ac explici
 
 Reconcile official push limits/Home with support-relayed field names; keep unknown wire/native/provider/workflow/device contracts open, strict validation, H14-901/H16-901 external and entry enabled:false. Test-only delivery updates existing PR #36; no new package, main merge/publish, hosted Health/scan, user mutation, workflow/push/import or native build. All local gates passing permits LOCAL_VERIFIED / USER_PUBLISH_AND_HOSTED_ACCEPTANCE_PENDING, never live closure. [034 results and evidence](reports/SHINKA_STABILIZATION_034.md).
 
-## 033 — bounded authorization preparation
+## Historical 033 — bounded authorization preparation
 
 Continue clean owner-merged PR #34 (c9d2d04, same tree as Test 8498cf4), advance once to 033 / HC-033.0 and retain 029–033. Implement the accepted scheduler credential comparison and machine/manual separation independently of missing platform binding. Never generate/store/read a real secret, invent workflow reference/header syntax, add a general admin bypass or wire an unregistered secrets.get into the entry. No live workflow/push/Health/scan/user/native build/main merge/publish.
 

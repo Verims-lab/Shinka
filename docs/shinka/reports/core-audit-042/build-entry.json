@@ -1,0 +1,14 @@
+{
+  "build_marker": "Buildmarker-042",
+  "package_name": "Base44 audit closure and disabled notification contract",
+  "package_type": "CORRECTIVE_VERIFICATION",
+  "created_at": "2026-10-27T21:58:12Z",
+  "health_catalog_version": "HC-041.0",
+  "short_summary": "Preserve Base44 Home and request-admission improvements; strengthen auth/startup regression; apply user-relayed Support native-admin and push acceptance contract with sending disabled.",
+  "full_health_status": "LOCAL_SYNTHETIC_ONLY / HOSTED_USER_ACCEPTANCE_PRESERVED",
+  "notes": "HC-040.0 → HC-041.0 once for seven changed Health descriptions/semantics; no IDs added/removed. 041 retained HC-040.0. Active 038–042. Main Base44 changes and Test 040 evidence merged losslessly. No live Health/scan/mutation/workflow/push/main publish. 12 backend findings remain USER-DEFERRED. Final results in SHINKA_CORE_AUDIT_042.md.",
+  "docs_aligned": true,
+  "source_changed": true,
+  "tests_changed": true,
+  "health_changed": true
+}

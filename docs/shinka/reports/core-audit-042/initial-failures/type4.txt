@@ -1,0 +1,10 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 typecheck
+> tsc -p ./jsconfig.json
+
+src/foundation/tests/notificationContractTests.js(74,129): error TS2322: Type '{ set: (fn: any, ms: any) => number; clear: (id: any) => void; }' is not assignable to type '{ set: (fn: any, ms: any) => Timeout; clear: (id: any) => void; }'.
+  The types returned by 'set(...)' are incompatible between these types.
+    Type 'number' is not assignable to type 'Timeout'.
+src/foundation/tests/notificationContractTests.js(80,19): error TS2722: Cannot invoke an object which is possibly 'undefined'.
+src/foundation/tests/notificationContractTests.js(80,64): error TS2722: Cannot invoke an object which is possibly 'undefined'.

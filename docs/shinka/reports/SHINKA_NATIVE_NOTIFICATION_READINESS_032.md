@@ -1,5 +1,10 @@
 # Shinka — Android/iOS native bildirim hazırlığı 032
 
+## 042 superseding contract — historical evidence below retained
+
+The [042 written Support contract and runbook](core-audit-042/support-contract.md) supersedes secret/machine preparation and unknown response/recipient/eligibility assumptions below. Workflow supplies native admin creator or owner fallback, no secret/custom headers; installed SDK unwrapped `status:"sent"` with channel fields is provider acceptance. No eligibility API or provider idempotency exists. Unknown device permission stays UNKNOWN; real entry stays disabled. Physical/workflow acceptance remains open. No old FAIL/NOT_RUN or historical measurement is rewritten.
+
+
 ## 033 — new support and accepted scheduler secret
 
 [Scheduler Authorization 033](SHINKA_SCHEDULER_AUTHORIZATION_033.md) supersedes keyless/admin-session-only assumptions for automatic calls. A scoped shared secret is accepted; local comparison/machine separation is prepared, but real registration and workflow transport remain unbound. Support says success is acceptance, not display; exact push wire contracts remain unknown. All historical evidence below is retained. 032 remains the native setup/device plan; physical acceptance is still NOT_RUN.

@@ -1,0 +1,52 @@
+[
+  {
+    "gate": "admission-final",
+    "exitCode": 0,
+    "durationSeconds": 1.46
+  },
+  {
+    "gate": "session-final",
+    "exitCode": 0,
+    "durationSeconds": 0.08
+  },
+  {
+    "gate": "typecheck",
+    "exitCode": 0,
+    "durationSeconds": 2.39
+  },
+  {
+    "gate": "lint",
+    "exitCode": 0,
+    "durationSeconds": 1.97
+  },
+  {
+    "gate": "build",
+    "exitCode": 0,
+    "durationSeconds": 1.75
+  },
+  {
+    "gate": "repo",
+    "exitCode": 0,
+    "durationSeconds": 1.11
+  },
+  {
+    "gate": "history",
+    "exitCode": 0,
+    "durationSeconds": 0.08
+  },
+  {
+    "gate": "tree",
+    "exitCode": 0,
+    "durationSeconds": 0.65
+  },
+  {
+    "gate": "audit",
+    "exitCode": 0,
+    "durationSeconds": 0.7
+  },
+  {
+    "gate": "security-deps",
+    "exitCode": 0,
+    "durationSeconds": 0.8
+  }
+]

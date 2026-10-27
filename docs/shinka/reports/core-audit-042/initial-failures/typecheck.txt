@@ -1,0 +1,213 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 typecheck
+> tsc -p ./jsconfig.json
+
+base44/shared/base44PushProvider.js(49,20): error TS2339: Property 'status' does not exist on type 'object'.
+base44/shared/base44PushProvider.js(50,63): error TS2339: Property 'successful_channels' does not exist on type 'object'.
+base44/shared/base44PushProvider.js(50,101): error TS2339: Property 'failed_channels' does not exist on type 'object'.
+src/foundation/tests/foundationTests.js(81,3): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(81,26): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(81,58): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(81,93): error TS2322: Type '(string | (() => Promise<void>))[]' is not assignable to type 'FoundationTest'.
+  Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(81,125): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(82,3): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(82,31): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(82,54): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(83,3): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(84,3): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(85,3): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(86,3): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(87,3): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(87,17): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(88,3): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(88,21): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(89,3): error TS2322: Type 'FoundationTest | (string | (() => Promise<void>))[] | [string, string, () => void] | [string, string, () => Promise<void>] | [string, string, () => void] | ... 21 more ... | [...]' is not assignable to type 'FoundationTest'.
+  Type '(string | (() => Promise<void>))[]' is not assignable to type '[id: string, name: string, run: (context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown]'.
+    Target requires 3 element(s) but source may have fewer.
+src/foundation/tests/foundationTests.js(90,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(90,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(90,33): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(91,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(91,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(91,40): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(92,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(92,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(92,32): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(93,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(93,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(93,38): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(94,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(94,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(94,47): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(99,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(99,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(99,38): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(104,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(104,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(104,38): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(105,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(105,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(105,37): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(110,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(110,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(110,41): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(114,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(114,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(114,34): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(115,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(115,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(115,37): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(116,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(116,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(116,48): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(117,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(117,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(117,51): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(118,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(118,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(118,37): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(119,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(119,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(119,45): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(124,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(124,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(124,56): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(125,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(125,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(125,38): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(129,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(129,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(129,61): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(130,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(130,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(130,35): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(131,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(131,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(131,49): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(132,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(132,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(132,37): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(144,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(144,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(144,66): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(148,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(148,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(148,33): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(149,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(149,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(149,62): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/foundationTests.js(154,4): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(154,11): error TS2322: Type 'string | (() => Promise<void>)' is not assignable to type 'string'.
+  Type '() => Promise<void>' is not assignable to type 'string'.
+src/foundation/tests/foundationTests.js(154,65): error TS2322: Type 'string | ((context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown) | (() => Promise<void>) | (() => void) | (() => Promise<void>) | ... 22 more ... | (() => void)' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+  Type 'string' is not assignable to type '(context?: { signal?: AbortSignal; stage?: (value: string) => void; cleanup?: (dispose: () => void) => void; }) => unknown'.
+src/foundation/tests/notificationContractTests.js(66,101): error TS2339: Property 'status' does not exist on type 'string | Error | { success: boolean; delivered: boolean; message_id: string; status?: undefined; successful_channels?: undefined; failed_channels?: undefined; data?: undefined; } | { ...; } | { ...; } | { ...; }'.
+  Property 'status' does not exist on type 'string'.
+src/foundation/tests/notificationWorkflowTests.js(24,40): error TS2322: Type '{ action: string; user_id?: undefined; role?: undefined; workflow?: undefined; date?: undefined; message?: undefined; } | { action?: undefined; user_id?: undefined; role?: undefined; workflow?: undefined; date?: undefined; message?: undefined; } | ... 4 more ... | { ...; }' is not assignable to type '{ action: string; }'.
+  Type '{ action?: undefined; user_id?: undefined; role?: undefined; workflow?: undefined; date?: undefined; message?: undefined; }' is not assignable to type '{ action: string; }'.
+    Property 'action' is optional in type '{ action?: undefined; user_id?: undefined; role?: undefined; workflow?: undefined; date?: undefined; message?: undefined; }' but required in type '{ action: string; }'.

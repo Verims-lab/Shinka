@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-041
+**Current BuildMarker:** Buildmarker-042
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -28,6 +28,11 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+
+## 042 — current notification authorization and safety boundary
+
+Owner-relayed Fode/Support resolves workflow identity to native admin creator or platform owner fallback, with no secret/custom-header transport. Remove the unused secret/machine branch; no request flag grants authority and Shinka never manufactures owner identity. Current native admin is revalidated at every existing admission boundary (401 anonymous, 403 ordinary/demoted user, 503 auth outage). Demoting/deleting the creator is not a workflow stop mechanism. Provider remains service-role-only; allowlisted neutral input excludes daily snapshots and optional fields. 403/404 are terminal, 502/malformed/lost/timeout UNKNOWN with no blind resend. Stored SENT is acceptance, not delivery. Unknown device permission is not GRANTED; unsupported eligibility query is not required. Entry remains disabled, native/workflow acceptance external. [Written support provenance/runbook](reports/core-audit-042/support-contract.md). No mutation, live Health/scan or clearance of the 12 USER-DEFERRED backend findings.
 
 
 ## 040 — removal acceptance and protected actor
@@ -56,7 +61,7 @@ Native deletion pre/post-write guards remain unchanged. SS01/02/04/06–10, NA34
 
 Official push documentation confirms 100/500/50 limits, optional action/link and Home default; support-relayed names/silent discard do not verify full wire types/nullability/Unicode counting, recipient mapping or acceptance/error/no-device semantics. Generic success stays UNKNOWN; entry enabled:false, workflow transport unbound, H14-901/H16-901 open.
 
-## 033 — accepted secret, no general admin authority
+## Historical 033 — accepted secret, no general admin authority
 
 The owner accepts a scheduler-only shared secret based on relayed Base44 support. Prepared machine admission returns no User/admin principal and does not change requireAdmin/internal tooling. Manual native-user freshness checks remain. Null auth, service role, body roles/IDs and workflow flags are never credentials. Missing/invalid/unreadable configuration fails closed; fixed-format node:crypto comparison, repeated request-time reads and generic codes expose no secret/raw error.
 

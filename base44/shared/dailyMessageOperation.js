@@ -27,7 +27,14 @@ async function normalDailyMessageOperation(client, body, { now = () => new Date(
   const principal = entryPrincipal || await requireAuthenticatedUser(client);
   const owner = resolveAuthenticatedOwner(principal, body);
   let pending = principal;
-  const admit = async () => { const current = pending || await requireAuthenticatedUser(client); pending = null; if (current.id !== owner) fail('AUTH_REQUIRED', 401); };
+  const admit = async () => {
+    const first = pending !== null;
+    const current = pending || await requireAuthenticatedUser(client); pending = null;
+    if (current.id !== owner) fail('AUTH_REQUIRED',401);
+    // A reset can begin during content/SDK IO after the entry lifecycle read.
+    // Only the explicitly coordinated reset flow may continue through it.
+    if (!first && !resetFlow && await readUserLifecycle(client,owner)) fail('ONBOARDING_RESTART_REQUIRED',409);
+  };
   return produceDailyForOwner(client, owner, body, { now, atomic, native, library, random, resetFlow, syncTimezone: native }, admit);
 }
 // Shared domain engine. Caller must supply fresh owner admission; HTTP users and

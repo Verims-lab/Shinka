@@ -1,0 +1,72 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 build
+> vite build
+
+[base44] Warning: VITE_BASE44_APP_ID is not set — this build
+[base44] will not know its app id and its API calls will fail.
+[base44] Build with:  base44 build   (or base44 deploy --build)
+[base44] Proxy not enabled (VITE_BASE44_APP_BASE_URL not set)
+vite v8.2.4 building client environment for production...
+transforming...
+✓ 2494 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                    2.25 kB │ gzip:   0.93 kB
+dist/assets/index-Ba9NQ2YW.css                    77.71 kB │ gzip:  14.31 kB
+dist/assets/useHealthRunner-Cw9yaDyS.js            0.06 kB │ gzip:   0.07 kB
+dist/assets/chevron-left-CiOKFIgS.js               0.12 kB │ gzip:   0.14 kB
+dist/assets/ShinkaInput-Sgtg0OAR.js                0.55 kB │ gzip:   0.36 kB
+dist/assets/rolldown-runtime-hePW80VL.js           0.71 kB │ gzip:   0.42 kB
+dist/assets/AdminPanel-C_xHn0nJ.js                 0.90 kB │ gzip:   0.50 kB
+dist/assets/ProductLanguageControls-BxEEkOB6.js    0.90 kB │ gzip:   0.56 kB
+dist/assets/useModalSurface-CZKGt0oC.js            0.94 kB │ gzip:   0.53 kB
+dist/assets/adminTestTools-DUD7TQRZ.js             1.20 kB │ gzip:   0.66 kB
+dist/assets/InternalNav-PoMGh3iH.js                1.27 kB │ gzip:   0.65 kB
+dist/assets/report-cXxHJfQg.js                     1.38 kB │ gzip:   0.77 kB
+dist/assets/privacyController-BBPmz7HK.js          1.50 kB │ gzip:   0.81 kB
+dist/assets/birthplaceSearch-F0AzE5_3.js           1.70 kB │ gzip:   0.86 kB
+dist/assets/AuthShellProbe-DEqLfcHp.js             1.94 kB │ gzip:   0.99 kB
+dist/assets/pendingName-DFHtoV0z.js                1.96 kB │ gzip:   1.04 kB
+dist/assets/onboardingUiTests-BIdaHB1G.js          2.55 kB │ gzip:   1.41 kB
+dist/assets/aggregate-C3BuDjhy.js                  2.56 kB │ gzip:   1.16 kB
+dist/assets/uiRules-D8zLoHs9.js                    2.83 kB │ gzip:   1.48 kB
+dist/assets/youCopy-p-2NcCOo.js                    3.10 kB │ gzip:   1.54 kB
+dist/assets/BuildEnvironment-CIuwdVJK.js           3.28 kB │ gzip:   1.37 kB
+dist/assets/onboardingValidation-BuHQ2U9b.js       3.29 kB │ gzip:   1.49 kB
+dist/assets/runner-_qWdUP9t.js                     3.42 kB │ gzip:   1.71 kB
+dist/assets/ShinkaSelect-DfNypqf6.js               3.87 kB │ gzip:   1.58 kB
+dist/assets/internalAuthorization-D5EMc6HA.js      4.19 kB │ gzip:   1.87 kB
+dist/assets/Pattern-K2_bHPk-.js                    4.36 kB │ gzip:   1.90 kB
+dist/assets/AccountPrivacy--tEGOT6e.js             4.73 kB │ gzip:   1.96 kB
+dist/assets/domainAccess-PVf8pjwB.js               4.86 kB │ gzip:   2.05 kB
+dist/assets/FieldError-BerJNVWv.js                 5.72 kB │ gzip:   2.48 kB
+dist/assets/uiuxTables-QPWRJmhy.js                 6.23 kB │ gzip:   2.91 kB
+dist/assets/calendarController-CSze-eZT.js         7.01 kB │ gzip:   2.63 kB
+dist/assets/ShinkaCard-C-LKtc80.js                 7.46 kB │ gzip:   2.89 kB
+dist/assets/patternOperation-B2fzXfLr.js           7.69 kB │ gzip:   3.04 kB
+dist/assets/patternLifecycle-DGeYfuGZ.js           7.74 kB │ gzip:   3.33 kB
+dist/assets/You-33m6xJoX.js                        9.52 kB │ gzip:   3.35 kB
+dist/assets/adminTestRepository-DtirtU-0.js       12.96 kB │ gzip:   4.49 kB
+dist/assets/HealthCenter-CXDgOfUz.js              14.15 kB │ gzip:   5.28 kB
+dist/assets/Calendar-COUexQnC.js                  15.18 kB │ gzip:   5.62 kB
+dist/assets/OnboardingScreen-CQdDY1xR.js          18.49 kB │ gzip:   6.32 kB
+dist/assets/StatusBadge-BbncNGJ6.js               19.08 kB │ gzip:   7.34 kB
+dist/assets/TestTools-DohKzQbv.js                 20.91 kB │ gzip:   7.39 kB
+dist/assets/userLifecycle-DFQIHoc5.js             26.20 kB │ gzip:   8.94 kB
+dist/assets/es-Bk__vKf0.js                        54.52 kB │ gzip:  19.56 kB
+dist/assets/astronomy-DDiaoDFU.js                104.65 kB │ gzip:  43.00 kB
+dist/assets/onboardingFixture-DS5sDGs3.js        364.42 kB │ gzip: 122.54 kB
+dist/assets/index-B7wHaVgh.js                    459.96 kB │ gzip: 151.67 kB
+dist/assets/catalog-BHsb2_mQ.js                  525.09 kB │ gzip: 159.32 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/probes/browserEvidence.js is dynamically imported by src/foundation/probes/authProbeContract.js, src/foundation/probes/domProbes.js but also statically imported by src/foundation/tests/closure017Tests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/health/catalog.js is dynamically imported by src/foundation/health/cases/h16.js, src/foundation/tests/closure018Tests.js, src/foundation/tests/closure020Tests.js but also statically imported by src/foundation/health/report.js, src/foundation/health/runner.js, src/pages/internal/HealthCenter.jsx, dynamic import will not move module into another chunk.
+
+✓ built in 1.07s

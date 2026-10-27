@@ -1,4 +1,4 @@
-// Node runner for AR01–AR03 (synthetic SDK). Run: node scripts/verifyAdmissionReuse.mjs
+// Node runner for AR01–AR08 (synthetic SDK). Run: node scripts/verifyAdmissionReuse.mjs
 import { build } from 'vite';
 import { staticEvidencePlugin } from './staticEvidence.mjs';
 import { writeFile, mkdtemp, rm } from 'node:fs/promises';

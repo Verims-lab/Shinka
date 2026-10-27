@@ -2,11 +2,18 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-041
-**Last Updated:** 2026-10-27
+**Current BuildMarker:** Buildmarker-042
+**Last Updated:** 2026-10-28
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+
+## 2026-10-28 — 042 verification continuation
+
+Final local closure: Chromium/WebKit each 708 unique PASS / 0 FAIL; local Health 138 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL, save/list/open verified. Node AR 8/8 and session 9/9, required quality/security/history and original performance budgets pass (audit zero). Comparable route timings show no material change; no hosted/device or percentage-speed claim. The 537-file tested-source receipt and retained initial failures are in [042 report](reports/SHINKA_CORE_AUDIT_042.md).
+
+Lossless merge of fetched main e368e5a (Base44 audit/startup/admission/Home) and Test f762acd (040 preflight evidence), with no user edits overwritten. The original 042 report, old AR PASS and build-history FAIL are saved separately under core-audit-042/initial-failures. Found duplicate SS10 and permissive AR assertions; startup renamed SS11, readiness unchanged, exact error/side-effect and write/reset boundaries strengthened. Initial expanded reset test expected 401 but the correct existing owner gate is FORGED_OWNER/403; corrected fixture expectation, no guard weakened. Initial JSDoc/type errors retained separately. 042 Support contract removes unused 033 machine preparation and maps strict sent to acceptance with actual installed SDK envelope verification. The valid reset boundary regression also found a normal first-daily write could continue through a newly started reset; subsequent normal admissions now reread lifecycle. Full verification exposed HC08/DM23 because the package-specific content policy stopped at 040; 041/042 now reuse strict source/hash/count verification and the next package stays blocked. Generated-history UTC date normalization was corrected by recordBuild, not by changing its validator. Initial browser attempts had 706 PASS / 2 FAIL (HC08/DM23), or 705 PASS / 3 FAIL with M05, and stopped later at route/Health assertions; they are preserved as failures. Final gates/receipts remain in the single 042 report. No live operation, new general audit or retraction of user-reported successful deletion/Health.
 
 
 ## 2026-10-27 — Buildmarker-041 / HC-040.0
@@ -14,6 +21,8 @@
 Home header TR/EN buttons removed from render. Changed: src/pages/Home.jsx (ProductLanguageControls render/import and unused onLanguageChange prop removed), src/pages/Onboarding.jsx (no longer passes onLanguageChange to Home; saveProductLanguage still serves Calendar/Pattern), src/foundation/tests/dailyUiTests.js (DU01), scripts/checkDailyFlow.mjs. No backend, schema, dependency or content change.
 
 ## 2026-10-27 — Buildmarker-040 / HC-040.0
+
+Read-only cleanup continuation: PR #39 is on main `c8419d7`; Test/local synchronized with the same source tree. All 534 tested hashes match, so passed local tests were not rerun. Builder Compare with live code shows 36 unpublished files, including live marker 038 → workspace 040 and Test Tools frontend changes; backend/shared and actual SDK data environment remain unverified. CLI still requires login. No user inventory or deletion attempted; counts and protected-native-admin before/after remain unverified. Owner publish/login are the concrete prerequisites; existing cleanup authorization remains valid. [040 preflight evidence](reports/deletion-040/hosted-preflight-20261027.json). No new package, live Health or agent-started Security scan.
 
 Final local verification: Chromium and WebKit each 707/707; local Health 138 PASS / 0 FAIL / 13 prerequisite BLOCKED; all required gates and unchanged bundle budgets pass. Hosted source/SDK target and protected-admin inventory remain unverified because CLI login is required and owner publication is pending. No cleanup attempted; authorization remains scoped to the existing request.
 
@@ -68,7 +77,7 @@ Historical f3dbba1 contained the first 7/7 Node result, new SS02b FAIL then 9/9,
 - **Rotation/viewport (separate, open):** U13 (small portrait/landscape/reduced viewport) exists but was not run here.
 - **Real device keyboard (separate, open):** not testable in a fixture; needs physical iOS/Android acceptance by the owner.
 
-## 033 — scheduler secret authorization preparation
+## Historical 033 — scheduler secret authorization preparation
 
 Started clean at Test/origin Test 8498cf4; owner-merged PR #34 main c9d2d04 has the same tree. Fast-forward preserved all work; 033 was free. Updated Base44 skills and reviewed current official runtime/secret lifecycle documentation. Support is relayed by the owner, not an independently accessed ticket.
 

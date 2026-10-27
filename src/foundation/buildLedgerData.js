@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-037",
-    "package_name": "Five focused corrections: name, Calendar, light UI and Home",
-    "package_type": "FIX",
-    "created_at": "2026-10-27",
-    "health_catalog_version": "HC-037.0",
-    "short_summary": "Guard filled-name Skip; future Calendar intent/replay rejects before health writes and legacy rows stay repairable; light-only policy; Home removes only normal Refresh. Existing ON-05 privacy removal preserved.",
-    "full_health_status": "LOCAL_VERIFIED_HOSTED_PENDING",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "Chromium/WebKit 674/674; local Health 136 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED with save/retry/list/open. Mandatory local gates and zero dependency advisories. Source/receipt in SHINKA_ADDITIONAL_FIXES_037.md. User publishes/runs hosted Health; physical OS dialogs and original live First Shinka/ON-05 acceptance remain open. 12 backend findings USER-DEFERRED. No live mutations/import/push."
-  },
-  {
     "build_marker": "Buildmarker-038",
     "package_name": "Calendar recovery and Pattern refresh/lunar presentation",
     "package_type": "FIX",
@@ -65,5 +51,19 @@ export default [
     "source_changed": true,
     "tests_changed": true,
     "health_changed": false
+  },
+  {
+    "build_marker": "Buildmarker-042",
+    "package_name": "Base44 audit closure and disabled notification contract",
+    "package_type": "CORRECTIVE_VERIFICATION",
+    "created_at": "2026-10-27T21:58:12Z",
+    "health_catalog_version": "HC-041.0",
+    "short_summary": "Preserve Base44 Home and request-admission improvements; strengthen auth/startup regression; apply user-relayed Support native-admin and push acceptance contract with sending disabled.",
+    "full_health_status": "LOCAL_SYNTHETIC_ONLY / HOSTED_USER_ACCEPTANCE_PRESERVED",
+    "notes": "HC-040.0 → HC-041.0 once for seven changed Health descriptions/semantics; no IDs added/removed. 041 retained HC-040.0. Active 038–042. Main Base44 changes and Test 040 evidence merged losslessly. No live Health/scan/mutation/workflow/push/main publish. 12 backend findings remain USER-DEFERRED. Final results in SHINKA_CORE_AUDIT_042.md.",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true
   }
 ];
