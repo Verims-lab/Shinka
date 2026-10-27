@@ -363,3 +363,6 @@ Clean npm lockfile install after removing Postgres.js: zero Critical/High, two e
 ## 018 dependency scan and diagnostic boundary
 
 Fresh unchanged-lock audit: **0 Critical / 0 High / 3 Moderate / 0 Low** affected packages. High-threshold security check passes; full audit exits 1 for the retained Moderate findings. The existing react-router/react-router-dom paths remain. The additional Vite finding is [GHSA-698v-4r3x-3vcv](https://github.com/vitejs/launch-editor/security/advisories/GHSA-698v-4r3x-3vcv), involving Windows editor launching with attacker-controlled filenames/environment or alternate data streams. No dependency change or blanket safety claim; macOS local testing does not validate Windows exposure. Exact audit is retained in reports/health-018/dependency-audit.json.
+
+## Birthplace search boundary (2026-10-26)
+GeoNames access is now two owner-bound guarded paths: `search` and `resolve` (hierarchy list paths retired). Same fixed HTTPS host, redirect:manual rejection, bounded response, worker-local quota/burst guard, credential never returned. Free text is never persisted; only an explicitly selected, server-resolved GeoNames ID is saved.
