@@ -14,7 +14,7 @@
     ],
     "clean": true
   },
-  "sourceCommit": "PENDING_COMMIT",
+  "sourceCommit": "62160a38583c053a7a6490eb5d62f46bc4c1b16d",
   "browsers": {
     "chromium": {
       "exitCode": 0,
@@ -191,5 +191,6 @@
     "exitCode": 0,
     "osDarkStillLight": true,
     "physicalDevice": false
-  }
+  },
+  "receiptNote": "Following documentation-only commit records this source commit. Tested executable file hashes remain unchanged."
 }

@@ -2,6 +2,8 @@
 
 **Buildmarker-037 / HC-037.0 · 2026-10-27 · Test teslimi**
 
+**Kaynak commit:** [`62160a3`](https://github.com/Verims-lab/Shinka/commit/62160a38583c053a7a6490eb5d62f46bc4c1b16d); sonraki commit yalnız bu makbuzu tamamlar.
+
 **LOCAL_VERIFIED_HOSTED_PENDING.** Tam makbuz: [verification.json](additional-fixes-037/verification.json); çalıştırılan kaynakların [SHA-256 listesi](additional-fixes-037/tested-source-manifest.json). Önceki 036 sonuçları yeniden kullanılmadı.
 
 Başlangıçta `Test = origin/Test = 1e331e42cbef432661b7ef0e64581aa28f012715`, çalışma ağacı temiz; main `ac0a1b4` karşısında Test 2 commit ilerideydi. Kullanıcı değişikliği/reset/force yok. AGENTS/README ve Base44 CLI/SDK becerileri kullanıldı; beceriler geçici araç klasöründe güncellendi. Base44 hosted erişim/oturum yenileme denenmedi. Salt okunur Git main 035 ve Test 036 karşılaştırıldı; ikisinde de yeni beş-adım yapısı ve privacy bağlantısız başlık var. Bu, hosted kaynak parmak izi değildir.
