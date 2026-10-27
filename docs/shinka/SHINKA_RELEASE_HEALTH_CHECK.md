@@ -2,11 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-039
+**Current BuildMarker:** Buildmarker-040
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-039.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-040.0; repository, synthetic and external evidence separated.
+
+
+## HC-040.0 — deletion stabilization coverage
+
+Registry +1 / update 3 / delete 0: **177 total / 151 in-app / 12 local / 14 external**. H12-029 now executes DX02/03/05–10 alongside NA20–23/CQ05: all destructive/journal interruption points, fresh residual/failed read, actor binding, competing receipts, missing-User jobs and protected actor. New independent H12-043 uses DX01/DX04 for virtual SDK latency, durable pass progress and multi-page shrinking cleanup. H13-016 maps AU/TP plus DXU01–04 and actual TS entry verification to LOCAL_BROWSER/Node; normal Health never dispatches live deletion. H12-902 remains external explicit-target hosted acceptance with source/identity/retention prerequisites; no blanket PASS from local fixtures.
+
+Current backend plan and execution-scope registry carry the same IDs. Initial regression FAIL and intermediate fixture failures stay in the 040 report. Timeout, old COMPLETED and unmeasured read are never promoted to PASS. [040 results and pending hosted cleanup](reports/SHINKA_TEST_DELETION_STABILIZATION_040.md).
 
 ## HC-039.0 — core quality audit
 

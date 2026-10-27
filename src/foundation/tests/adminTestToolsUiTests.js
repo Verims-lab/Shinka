@@ -17,7 +17,7 @@ async function fixture(language, request, run, restore = false) {
   const host = document.createElement('div');
   Object.assign(host.style, { position: 'fixed', left: '-10000px', width: '320px' }); document.body.appendChild(host);
   const root = createRoot(host);
-  root.render(h(MemoryRouter, { initialEntries: [{ pathname: '/internal/test-tools', state: { language } }] }, h(TestTools, { request })));
+  root.render(h(MemoryRouter, { initialEntries: [{ pathname: '/internal/test-tools', state: { language } }] }, h(TestTools, { request, wait:pause })));
   const q = selector => host.querySelector(selector);
   try { await until(() => q('#test-user-id')); await run(q, host); }
   finally { root.unmount(); host.remove(); }
@@ -109,7 +109,7 @@ export const ADMIN_TEST_UI_TESTS = [
     await fixture('tr',request,async(q,host)=>{
       await lookup(q);q('[data-destructive="true"]').click();await until(()=>q('[data-test-preview]'));
       q('[data-test-preview] [data-variant="primary"]').click();await until(()=>host.textContent.includes(TEST_TOOLS_COPY.tr.deleting));
-      release();await until(()=>host.textContent.includes(TEST_TOOLS_COPY.tr.deletedResult));operation=f.tables.AdminTestOperation[0].operation_id;
+      release();await until(()=>host.textContent.includes(TEST_TOOLS_COPY.tr.deletePending)&&!q('#test-user-id').disabled);q('[data-test-resume]').click();await until(()=>host.textContent.includes(TEST_TOOLS_COPY.tr.deletedResult));operation=f.tables.AdminTestOperation[0].operation_id;
       assert(executions===1,'timeout restarted delete');
     });
     await fixture('tr',request,async(q,host)=>{await until(()=>host.textContent.includes(TEST_TOOLS_COPY.tr.deletedResult));assert(!q('[data-test-target]')&&host.textContent.includes(operation)&&executions===1,'reload lost operation');},true);
@@ -133,7 +133,7 @@ export const ADMIN_TEST_UI_TESTS = [
       await lookup(q);q('[data-destructive="true"]').click();await until(()=>q('[data-test-preview]'));
       const button=q('[data-test-preview] [data-variant="primary"]');button.click();button.click();
       await until(()=>host.textContent.includes(TEST_TOOLS_COPY.en.deletedResult));
-      assert(commands.length===3&&commands.filter(c=>c.action==='execute').length===1&&new Set(commands.map(c=>c.id)).size===1,'bounded continuation identity');
+      assert(commands.length>=5&&commands.filter(c=>c.action==='execute').length===1&&new Set(commands.map(c=>c.id)).size===1,'bounded continuation identity');
       assert(f.tables.AdminTestOperation.length===1&&!f.tables.UserPatternSummary.length,'incomplete deletion');
     });
   }],

@@ -1,3 +1,4 @@
+import { verifyTestDeletionEntry } from './verifyTestDeletionEntry.mjs';
 import { checkOnboardingClosure } from './checkOnboardingClosure.mjs';
 import { verifyNotifications } from './verifyNotifications.mjs';
 import { checkMobileExperience } from "./checkMobileExperience.mjs";
@@ -42,6 +43,7 @@ try {
   verifyDependencyRules();
   const notifications030 = await verifyNotifications(root);
   const nativeEntries = await verifyNativeEntries(root);
+  nativeEntries.deletion=await verifyTestDeletionEntry(root);
   const geoNamesEntry=await verifyGeoNamesEntry(root);
   const geoNamesRuntimeProbeEntry=await verifyGeoNamesRuntimeProbeEntry(root);
   const security028=await verifySecurity028();if(!security028.passed)throw new Error(`SECURITY_028_FAILED ${JSON.stringify(security028.results.filter(r=>r.status!=='PASS'))}`);

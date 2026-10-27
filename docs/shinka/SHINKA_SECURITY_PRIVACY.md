@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-039
+**Current BuildMarker:** Buildmarker-040
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -28,6 +28,13 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+
+## 040 — removal acceptance and protected actor
+
+Scoped live cleanup authority is the current private user request, not a permanent bulk-delete capability. Verify the actual app/data area and the uniquely matched protected native admin/session before freezing explicit targets; exclude its ID at every destructive step. No email-specific application permission or new everyone-delete endpoint. Current native actor role and target/operation binding are rechecked at every mutation; role loss stops later writes, transient transport errors never sign out the actor. A missing target User still requires privacy/health-job checks. App lifecycle guards reject target writes while deletion is open and after the tombstone; in-flight platform work has no proven distributed drain/lock guarantee. Fresh residual reconciliation detects late writes; it does not prove platform-wide serializability.
+
+Read failure (including 404/429/5xx from a query) is not absence. A stale COMPLETED status or active native User never yields success. Retention stays canonical and is distinct from self-service erasure. Official Base44 User removal moves the user to Recently deleted, with a separate platform retention/permanent-erasure lifecycle; this operation verifies active app removal only. Do not claim backup/provider erasure or measured old-token revocation. [Official User SDK contract](https://docs.base44.com/developers/references/sdk/docs/type-aliases/entities), accessed 2026-10-27. Per-pass diagnostics allow IDs/stages/counts/durations/codes only, never raw identity, health data, request bodies or credentials.
 
 ## 039 — current local security review
 

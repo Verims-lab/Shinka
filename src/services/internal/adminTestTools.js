@@ -3,10 +3,10 @@ const safeCode = value => typeof value === 'string' && /^[A-Z][A-Z0-9_]{1,79}$/.
 const safeRequest = value => typeof value === 'string' && /^[a-zA-Z0-9_-]{1,100}$/.test(value) ? value : null;
 export function testToolsError(error) {
   const data = error?.response?.data;
-  const code = safeCode(data?.error_code) || (error?.code === 'TEST_TOOLS_TIMEOUT' ? error.code : 'TEST_TOOLS_FAILED');
+  const code = safeCode(data?.error_code) || (['TEST_TOOLS_TIMEOUT','TEST_TOOLS_RESPONSE_INVALID'].includes(error?.code) ? error.code : 'TEST_TOOLS_FAILED');
   return Object.assign(new Error(code), { code, stage:safeCode(data?.stage), requestId:safeRequest(data?.request_id) });
 }
-/** @param {string} action @param {object} payload @param {{functions:{invoke:(name:string,body:object)=>Promise<any>}}} [client] @param {number} [timeoutMs] */
+/** @param {string} action @param {Record<string,any>} payload @param {{functions:{invoke:(name:string,body:object)=>Promise<any>}}} [client] @param {number} [timeoutMs] */
 export async function adminTestRequest(action, payload, client = base44, timeoutMs = 30000) {
   let timer;
   try {
@@ -15,7 +15,14 @@ export async function adminTestRequest(action, payload, client = base44, timeout
       new Promise((_, reject) => { timer = setTimeout(() => reject(Object.assign(new Error('TEST_TOOLS_TIMEOUT'), {code:'TEST_TOOLS_TIMEOUT'})), timeoutMs); }),
     ]);
     if (response.data?.error_code) throw {response:{data:response.data}};
-    return response.data;
+    const value=response.data, job=value?.job, operationId=payload.operation_id||payload.request_id;
+    if(!value||typeof value!=='object'||value.target&&value.target.id!==payload.target_id||
+      job&&(job.target_id!==payload.target_id||operationId&&job.operation_id!==operationId||payload.operation&&job.operation!==payload.operation)||
+      ['execute','resume','status'].includes(action)&&(!job||!['PARTIAL','COMPLETED','RESET_ACTIVE'].includes(value.result_state))||
+      value.result_state==='COMPLETED'&&job?.status!=='COMPLETED') {
+      throw {code:'TEST_TOOLS_RESPONSE_INVALID'};
+    }
+    return value;
   } catch (error) { throw testToolsError(error); }
   finally { clearTimeout(timer); }
 }

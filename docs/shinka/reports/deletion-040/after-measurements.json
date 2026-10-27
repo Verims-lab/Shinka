@@ -1,0 +1,540 @@
+{
+  "scope": "LOCAL_SYNTHETIC_SERIAL_SDK_COST",
+  "hostedVerified": false,
+  "measurements": [
+    {
+      "scenario": {
+        "latency": 0,
+        "periods": 0
+      },
+      "passes": [
+        {
+          "action": "execute",
+          "operationId": "6b93f2c4-5b23-4dd4-a69b-7a9f6bb6ff73",
+          "durationMs": 0,
+          "entityReads": 80,
+          "writes": 2,
+          "auth": 9,
+          "stage": "START",
+          "checkpoints": [],
+          "result": "PARTIAL",
+          "progress": {
+            "contract": "shinka.deletion-pass/1",
+            "operationId": "6b93f2c4-5b23-4dd4-a69b-7a9f6bb6ff73",
+            "stage": "START",
+            "processed": 0,
+            "remainingAtLeast": null,
+            "remainingExact": null,
+            "checkpoints": [],
+            "madeProgress": true,
+            "elapsedMs": 0,
+            "workMs": 0,
+            "writeAttempts": 0,
+            "reason": "START_SAVED",
+            "workBudgetMs": 8000,
+            "writeLimit": 100
+          },
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "6b93f2c4-5b23-4dd4-a69b-7a9f6bb6ff73",
+          "durationMs": 0,
+          "entityReads": 118,
+          "writes": 4,
+          "auth": 13,
+          "stage": "VERIFY",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings",
+            "user_period_record",
+            "user_pattern_summary",
+            "user_preferences",
+            "user_profile",
+            "USER",
+            "VERIFY"
+          ],
+          "result": "PARTIAL",
+          "progress": {
+            "contract": "shinka.deletion-pass/1",
+            "operationId": "6b93f2c4-5b23-4dd4-a69b-7a9f6bb6ff73",
+            "stage": "VERIFY",
+            "processed": 3,
+            "remainingAtLeast": null,
+            "remainingExact": null,
+            "checkpoints": [
+              "NOTIFICATIONS",
+              "user_cycle_phase_day",
+              "user_cycle_prediction",
+              "user_cycle_settings",
+              "user_period_record",
+              "user_pattern_summary",
+              "user_preferences",
+              "user_profile",
+              "USER",
+              "VERIFY"
+            ],
+            "madeProgress": true,
+            "elapsedMs": 0,
+            "workMs": 0,
+            "writeAttempts": 3,
+            "reason": "VERIFICATION_SAVED",
+            "workBudgetMs": 8000,
+            "writeLimit": 100
+          },
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "6b93f2c4-5b23-4dd4-a69b-7a9f6bb6ff73",
+          "durationMs": 0,
+          "entityReads": 86,
+          "writes": 2,
+          "auth": 9,
+          "stage": "VERIFY",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings",
+            "user_period_record",
+            "user_pattern_summary",
+            "user_preferences",
+            "user_profile",
+            "USER",
+            "VERIFY"
+          ],
+          "result": "COMPLETED",
+          "progress": {
+            "contract": "shinka.deletion-pass/1",
+            "operationId": "6b93f2c4-5b23-4dd4-a69b-7a9f6bb6ff73",
+            "stage": "VERIFY",
+            "processed": 0,
+            "remainingAtLeast": 0,
+            "remainingExact": 0,
+            "checkpoints": [
+              "NOTIFICATIONS",
+              "user_cycle_phase_day",
+              "user_cycle_prediction",
+              "user_cycle_settings",
+              "user_period_record",
+              "user_pattern_summary",
+              "user_preferences",
+              "user_profile",
+              "USER",
+              "VERIFY"
+            ],
+            "madeProgress": true,
+            "elapsedMs": 0,
+            "workMs": 0,
+            "writeAttempts": 0,
+            "reason": "COMPLETED",
+            "workBudgetMs": 8000,
+            "writeLimit": 100
+          },
+          "httpStatus": 200
+        }
+      ],
+      "remainingTargetUsers": 0
+    },
+    {
+      "scenario": {
+        "latency": 300,
+        "periods": 0
+      },
+      "passes": [
+        {
+          "action": "execute",
+          "operationId": "2ef89095-1bd2-4912-8432-479c563d0440",
+          "durationMs": 24600,
+          "entityReads": 80,
+          "writes": 2,
+          "auth": 9,
+          "stage": "START",
+          "checkpoints": [],
+          "result": "PARTIAL",
+          "progress": {
+            "contract": "shinka.deletion-pass/1",
+            "operationId": "2ef89095-1bd2-4912-8432-479c563d0440",
+            "stage": "START",
+            "processed": 0,
+            "remainingAtLeast": null,
+            "remainingExact": null,
+            "checkpoints": [],
+            "madeProgress": true,
+            "elapsedMs": 23700,
+            "workMs": 0,
+            "writeAttempts": 0,
+            "reason": "START_SAVED",
+            "workBudgetMs": 8000,
+            "writeLimit": 100
+          },
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "2ef89095-1bd2-4912-8432-479c563d0440",
+          "durationMs": 28200,
+          "entityReads": 91,
+          "writes": 3,
+          "auth": 11,
+          "stage": "user_profile",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings",
+            "user_period_record",
+            "user_pattern_summary",
+            "user_preferences",
+            "user_profile"
+          ],
+          "result": "PARTIAL",
+          "progress": {
+            "contract": "shinka.deletion-pass/1",
+            "operationId": "2ef89095-1bd2-4912-8432-479c563d0440",
+            "stage": "user_profile",
+            "processed": 2,
+            "remainingAtLeast": null,
+            "remainingExact": null,
+            "checkpoints": [
+              "NOTIFICATIONS",
+              "user_cycle_phase_day",
+              "user_cycle_prediction",
+              "user_cycle_settings",
+              "user_period_record",
+              "user_pattern_summary",
+              "user_preferences",
+              "user_profile"
+            ],
+            "madeProgress": true,
+            "elapsedMs": 27300,
+            "workMs": 20400,
+            "writeAttempts": 2,
+            "reason": "TIME_BUDGET",
+            "workBudgetMs": 8000,
+            "writeLimit": 100
+          },
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "2ef89095-1bd2-4912-8432-479c563d0440",
+          "durationMs": 23700,
+          "entityReads": 77,
+          "writes": 2,
+          "auth": 9,
+          "stage": "VERIFY",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings",
+            "user_period_record",
+            "user_pattern_summary",
+            "user_preferences",
+            "user_profile",
+            "USER",
+            "VERIFY"
+          ],
+          "result": "PARTIAL",
+          "progress": {
+            "contract": "shinka.deletion-pass/1",
+            "operationId": "2ef89095-1bd2-4912-8432-479c563d0440",
+            "stage": "VERIFY",
+            "processed": 1,
+            "remainingAtLeast": null,
+            "remainingExact": null,
+            "checkpoints": [
+              "NOTIFICATIONS",
+              "user_cycle_phase_day",
+              "user_cycle_prediction",
+              "user_cycle_settings",
+              "user_period_record",
+              "user_pattern_summary",
+              "user_preferences",
+              "user_profile",
+              "USER",
+              "VERIFY"
+            ],
+            "madeProgress": true,
+            "elapsedMs": 22800,
+            "workMs": 15900,
+            "writeAttempts": 1,
+            "reason": "VERIFICATION_SAVED",
+            "workBudgetMs": 8000,
+            "writeLimit": 100
+          },
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "2ef89095-1bd2-4912-8432-479c563d0440",
+          "durationMs": 26400,
+          "entityReads": 86,
+          "writes": 2,
+          "auth": 9,
+          "stage": "VERIFY",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings",
+            "user_period_record",
+            "user_pattern_summary",
+            "user_preferences",
+            "user_profile",
+            "USER",
+            "VERIFY"
+          ],
+          "result": "COMPLETED",
+          "progress": {
+            "contract": "shinka.deletion-pass/1",
+            "operationId": "2ef89095-1bd2-4912-8432-479c563d0440",
+            "stage": "VERIFY",
+            "processed": 0,
+            "remainingAtLeast": 0,
+            "remainingExact": 0,
+            "checkpoints": [
+              "NOTIFICATIONS",
+              "user_cycle_phase_day",
+              "user_cycle_prediction",
+              "user_cycle_settings",
+              "user_period_record",
+              "user_pattern_summary",
+              "user_preferences",
+              "user_profile",
+              "USER",
+              "VERIFY"
+            ],
+            "madeProgress": true,
+            "elapsedMs": 25500,
+            "workMs": 0,
+            "writeAttempts": 0,
+            "reason": "COMPLETED",
+            "workBudgetMs": 8000,
+            "writeLimit": 100
+          },
+          "httpStatus": 200
+        }
+      ],
+      "remainingTargetUsers": 0
+    },
+    {
+      "scenario": {
+        "latency": 0,
+        "periods": 205
+      },
+      "passes": [
+        {
+          "action": "execute",
+          "operationId": "cfb57b00-6e8a-4093-aa9e-3a1566f4f162",
+          "durationMs": 0,
+          "entityReads": 88,
+          "writes": 2,
+          "auth": 9,
+          "stage": "START",
+          "checkpoints": [],
+          "result": "PARTIAL",
+          "progress": {
+            "contract": "shinka.deletion-pass/1",
+            "operationId": "cfb57b00-6e8a-4093-aa9e-3a1566f4f162",
+            "stage": "START",
+            "processed": 0,
+            "remainingAtLeast": null,
+            "remainingExact": null,
+            "checkpoints": [],
+            "madeProgress": true,
+            "elapsedMs": 0,
+            "workMs": 0,
+            "writeAttempts": 0,
+            "reason": "START_SAVED",
+            "workBudgetMs": 8000,
+            "writeLimit": 100
+          },
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "cfb57b00-6e8a-4093-aa9e-3a1566f4f162",
+          "durationMs": 0,
+          "entityReads": 1558,
+          "writes": 101,
+          "auth": 207,
+          "stage": "user_period_record",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings"
+          ],
+          "result": "PARTIAL",
+          "progress": {
+            "contract": "shinka.deletion-pass/1",
+            "operationId": "cfb57b00-6e8a-4093-aa9e-3a1566f4f162",
+            "stage": "user_period_record",
+            "processed": 100,
+            "remainingAtLeast": 1,
+            "remainingExact": null,
+            "checkpoints": [
+              "NOTIFICATIONS",
+              "user_cycle_phase_day",
+              "user_cycle_prediction",
+              "user_cycle_settings"
+            ],
+            "madeProgress": true,
+            "elapsedMs": 0,
+            "workMs": 0,
+            "writeAttempts": 100,
+            "reason": "WRITE_BUDGET",
+            "workBudgetMs": 8000,
+            "writeLimit": 100
+          },
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "cfb57b00-6e8a-4093-aa9e-3a1566f4f162",
+          "durationMs": 0,
+          "entityReads": 1554,
+          "writes": 101,
+          "auth": 207,
+          "stage": "user_period_record",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings"
+          ],
+          "result": "PARTIAL",
+          "progress": {
+            "contract": "shinka.deletion-pass/1",
+            "operationId": "cfb57b00-6e8a-4093-aa9e-3a1566f4f162",
+            "stage": "user_period_record",
+            "processed": 100,
+            "remainingAtLeast": 1,
+            "remainingExact": null,
+            "checkpoints": [
+              "NOTIFICATIONS",
+              "user_cycle_phase_day",
+              "user_cycle_prediction",
+              "user_cycle_settings"
+            ],
+            "madeProgress": true,
+            "elapsedMs": 0,
+            "workMs": 0,
+            "writeAttempts": 100,
+            "reason": "WRITE_BUDGET",
+            "workBudgetMs": 8000,
+            "writeLimit": 100
+          },
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "cfb57b00-6e8a-4093-aa9e-3a1566f4f162",
+          "durationMs": 0,
+          "entityReads": 192,
+          "writes": 9,
+          "auth": 23,
+          "stage": "VERIFY",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings",
+            "user_period_record",
+            "user_pattern_summary",
+            "user_preferences",
+            "user_profile",
+            "USER",
+            "VERIFY"
+          ],
+          "result": "PARTIAL",
+          "progress": {
+            "contract": "shinka.deletion-pass/1",
+            "operationId": "cfb57b00-6e8a-4093-aa9e-3a1566f4f162",
+            "stage": "VERIFY",
+            "processed": 8,
+            "remainingAtLeast": null,
+            "remainingExact": null,
+            "checkpoints": [
+              "NOTIFICATIONS",
+              "user_cycle_phase_day",
+              "user_cycle_prediction",
+              "user_cycle_settings",
+              "user_period_record",
+              "user_pattern_summary",
+              "user_preferences",
+              "user_profile",
+              "USER",
+              "VERIFY"
+            ],
+            "madeProgress": true,
+            "elapsedMs": 0,
+            "workMs": 0,
+            "writeAttempts": 8,
+            "reason": "VERIFICATION_SAVED",
+            "workBudgetMs": 8000,
+            "writeLimit": 100
+          },
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "cfb57b00-6e8a-4093-aa9e-3a1566f4f162",
+          "durationMs": 0,
+          "entityReads": 86,
+          "writes": 2,
+          "auth": 9,
+          "stage": "VERIFY",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings",
+            "user_period_record",
+            "user_pattern_summary",
+            "user_preferences",
+            "user_profile",
+            "USER",
+            "VERIFY"
+          ],
+          "result": "COMPLETED",
+          "progress": {
+            "contract": "shinka.deletion-pass/1",
+            "operationId": "cfb57b00-6e8a-4093-aa9e-3a1566f4f162",
+            "stage": "VERIFY",
+            "processed": 0,
+            "remainingAtLeast": 0,
+            "remainingExact": 0,
+            "checkpoints": [
+              "NOTIFICATIONS",
+              "user_cycle_phase_day",
+              "user_cycle_prediction",
+              "user_cycle_settings",
+              "user_period_record",
+              "user_pattern_summary",
+              "user_preferences",
+              "user_profile",
+              "USER",
+              "VERIFY"
+            ],
+            "madeProgress": true,
+            "elapsedMs": 0,
+            "workMs": 0,
+            "writeAttempts": 0,
+            "reason": "COMPLETED",
+            "workBudgetMs": 8000,
+            "writeLimit": 100
+          },
+          "httpStatus": 200
+        }
+      ],
+      "remainingTargetUsers": 0
+    }
+  ],
+  "instrumentSha256": "9ea84c0e80baccdfbbf7d9e33e7a3c784ae9ace822d00f5f33158ec1c0703843"
+}

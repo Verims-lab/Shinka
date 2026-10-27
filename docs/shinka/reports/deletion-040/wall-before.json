@@ -1,0 +1,24 @@
+{
+  "scope": "LOCAL_REAL_WALL_TIMERS_400MS_PER_SDK_CALL",
+  "hostedVerified": false,
+  "clientOutcome": "TEST_TOOLS_TIMEOUT",
+  "clientResponseMs": 30002.739458,
+  "backend": {
+    "action": "execute",
+    "operationId": "76c37d02-9803-4db3-9304-774d76e8fff4",
+    "durationMs": 38599.9395,
+    "entityReads": 114,
+    "writes": 4,
+    "auth": 13,
+    "stage": "user_cycle_phase_day",
+    "checkpoints": [
+      "NOTIFICATIONS",
+      "user_cycle_phase_day"
+    ],
+    "result": "PARTIAL",
+    "progress": null,
+    "httpStatus": 200
+  },
+  "remainingTargetUsers": 1,
+  "instrumentSha256": "9ea84c0e80baccdfbbf7d9e33e7a3c784ae9ace822d00f5f33158ec1c0703843"
+}

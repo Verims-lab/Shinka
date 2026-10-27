@@ -1,0 +1,7 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 typecheck
+> tsc -p ./jsconfig.json
+
+src/foundation/tests/nativeTests.js(99,153): error TS2339: Property 'progress' does not exist on type '{ progress: { contract: string; operationId: any; stage: string; processed: number; remainingAtLeast: any; remainingExact: number; checkpoints: any; madeProgress: any; elapsedMs: number; workMs: number; writeAttempts: number; reason: string; workBudgetMs: number; writeLimit: number; }; ... 6 more ...; environment: {...'.
+  Property 'progress' does not exist on type '{ target: { id: any; role: any; full_name: any; email: any; account_status: any; open_deletion: boolean; last_admin: boolean; }; environment: { app_id: any; server: string; label: any; authorized: boolean; }; ... 10 more ...; active_operation: { ...; }; }'.

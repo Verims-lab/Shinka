@@ -2,11 +2,18 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** ACTIVE — historical hosted readiness retained; current hosted acceptance pending
-**Current BuildMarker:** Buildmarker-039
+**Current BuildMarker:** Buildmarker-040
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+
+## 040 — publish before authorized cleanup
+
+Test branch is source control, not a separate data environment. No schema or reference-data migration is required. Owner merges reviewed Test to main through the existing GitHub flow, waits for Base44 “Synced commits from GitHub”, inspects all matching shared/native code (including adminTestTools, applicationSession and HC plan), then publishes matching frontend. Do not deploy a local partial graph or push entities to solve this task. Marker/HC alone is not source matching; compare the exported deployed graph against tested-source hashes.
+
+After matching publication and current protected admin/session verification: paginated initial native User + operation inventory → freeze explicit targets excluding protected ID → one real preview/execute/status/resume/readback → compare protected identity/role/profile/consent/cycle/daily data → sequential remaining targets. Resume old unique receipts; diagnose conflicts without bulk cleanup. Newly created accounts are not automatically included. Check final full active inventory and each target's manifest/pending jobs; preserve retention history and shared content. Owner publication is a prerequisite, not a second deletion-consent request. [040 report and live NOT_RUN/PENDING status](reports/SHINKA_TEST_DELETION_STABILIZATION_040.md).
 
 ## Current delivery — 039 core quality audit
 

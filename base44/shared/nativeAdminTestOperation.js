@@ -5,8 +5,10 @@ import { validateTestRequest, testToolError, DELETED_ENTITIES, RETAINED_ENTITIES
 import { targetGuard, testEnvironment } from './adminTestOperation.js';
 import { executeTestJob } from './adminTestExecution.js';
 import { nativeTestJournal } from './nativeTestJournal.js';
+import { testDeletionPass } from './testDeletionPass.js';
 
 export async function nativeAdminTestOperation(client, body, { policy = {}, signer = null, now = () => new Date(), diagnostics = undefined, clock = undefined } = {}) {
+  const pass=testDeletionPass(clock);
   const actor = await requireInternalAdmin(client);
   validateTestRequest(body);
   diagnostics?.bind(body.operation_id || body.request_id);
@@ -19,9 +21,13 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
   // Every action reports the same fresh removal verification; a saved COMPLETED
   // status alone is not current absence evidence. Read errors propagate as unknown.
   const response = async (job, target = null) => {
+    if(job?.operation==='DELETE_USER'&&(await repository.lifecycle(job.target_id))?.operation_id!==job.operation_id)testToolError('TEST_OPERATION_STATE_INVALID');
     const result_state = await testOperationOutcome(repository, job);
+    const foreignActor=job&&job.actor_id!==actor.id;
+    const progress=job?.operation==='DELETE_USER'&&['execute','resume'].includes(body.action)?pass.summary(job,result_state):undefined;
+    if(progress)diagnostics?.progress(progress);
     return { job, target: result_state === 'COMPLETED' && job?.operation === 'DELETE_USER' ? null : target,
-      result_state, environment, ...recovery, retained: RETAINED_ENTITIES };
+      result_state, environment, ...recovery, ...(foreignActor?{resume_enabled:false,mutation_blocker:'TEST_OPERATION_CONFLICT'}:{}), progress, retained: RETAINED_ENTITIES };
   };
   if (body.action === 'status') {
     const job = await repository.operation(body.target_id, body.operation_id);
@@ -56,7 +62,7 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
   const guard = async () => {
     const [, active, identity] = await Promise.all([freshAdmin(), repository.lifecycle(body.target_id), repository.user(body.target_id)]);
     if(active && active.operation_id !== (previous?.operation_id || body.request_id))testToolError('TEST_OPERATION_CONFLICT');
-    if (identity) targetGuard(actor, await repository.target(body.target_id, identity, { deletionGuard: operation === 'DELETE_USER' }), operation);
+    targetGuard(actor, await repository.target(body.target_id, identity, { deletionGuard: operation === 'DELETE_USER' }), operation);
   };
   await guard();
   let scopeHash = previous?.preview_hash;
@@ -81,9 +87,10 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
       return async (...args) => { await guard(); const value = await entity[method](...args); await guard(); return value; };
     } }); },
   }) } };
-  const guardedRepository = createTestRepository(guardedClient, { clock });
+  const guardedRepository = createTestRepository(guardedClient, { clock, pass });
   const job = await executeTestJob({ journal: nativeTestJournal(guardedClient, guard, now), repository: guardedRepository, actor,
-    target: { id: body.target_id }, operation, requestId: previous?.request_id || body.request_id, previewHash: scopeHash, now, diagnostics, clock });
+    target: { id: body.target_id }, operation, requestId: previous?.request_id || body.request_id, previewHash: scopeHash, now, diagnostics, clock, pass,
+    acknowledgeStart:!previous&&operation==='DELETE_USER', separatePasses:true });
   await guard();
   return response(job);
 }

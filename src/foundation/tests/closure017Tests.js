@@ -55,12 +55,12 @@ export const CLOSURE017_TESTS=[
  ['CL07','Completed deletion rechecks late rows on explicit resume without clearing tombstone',async()=>{
   const f=nativeFixture(),done=await f.execute(await f.preview('DELETE_USER'));
   f.tables.UserPeriodRecord.push({id:'late',user_id:'ownerA',period_start_date:'2026-10-01'});
-  const resumed=await f.tools({action:'resume',target_id:'ownerA',operation_id:done.job.operation_id});assert(resumed.job.status==='COMPLETED'&&!f.tables.UserPeriodRecord.length&&f.tables.AdminTestOperation.length===1);
+  const resumed=await f.complete(await f.tools({action:'resume',target_id:'ownerA',operation_id:done.job.operation_id}));assert(resumed.job.status==='COMPLETED'&&!f.tables.UserPeriodRecord.length&&f.tables.AdminTestOperation.length===1);
  }],
  ['CL08','Cleanup is bounded; reconstructed request resumes and verifies remaining rows',async()=>{
   const f=nativeFixture();f.tables.UserPatternSummary=Array.from({length:102},(_,i)=>({id:'pattern-'+i,user_id:'ownerA'}));
-  const partial=await f.execute(await f.preview('DELETE_USER'));assert(partial.result_state==='PARTIAL' && partial.job.error_code==='TEST_CLEANUP_MORE_REQUIRED');assert(f.tables.User.some(r=>r.id==='ownerA'));
-  const result=await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id});assert(result.job.status==='COMPLETED'&&!f.tables.UserPatternSummary.length);
+  const started=await f.start(await f.preview('DELETE_USER'));const partial=await f.tools({action:'resume',target_id:'ownerA',operation_id:started.job.operation_id});assert(partial.result_state==='PARTIAL' && partial.job.error_code==='TEST_CLEANUP_MORE_REQUIRED');assert(f.tables.User.some(r=>r.id==='ownerA'));
+  const result=await f.complete(await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id}));assert(result.job.status==='COMPLETED'&&!f.tables.UserPatternSummary.length);
   let time=0;const rows=[{id:'slow-a',user_id:'ownerA'},{id:'slow-b',user_id:'ownerA'}];
   const repo=createTestRepository({asServiceRole:{entities:{UserPatternSummary:{filter:async query=>structuredClone(rows.filter(row=>Object.entries(query).every(([key,value])=>row[key]===value))),delete:async id=>{rows.splice(rows.findIndex(r=>r.id===id),1);time+=9000;}}}}},{clock:()=>time});
   time=30000; // Preparation already took 30s: allow progress, then enforce the write budget.

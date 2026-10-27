@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-039
+**Current BuildMarker:** Buildmarker-040
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -12,6 +12,13 @@
 **External Verification Required:** Base44 native UNIQUE is unsupported; no multi-record transaction/CAS guarantee is claimed. Native handler tests use synthetic transport; hosted schema/authorization/mutation recovery remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+
+
+## 040 — removal receipt and progress semantics
+
+No entity/schema migration. Existing AdminTestOperation fields/checkpoints retain their authority. New delete admission persists START before cleanup. One merged, readback-verified ordered checkpoint update per cleanup pass replaces per-stage metadata writes. A VERIFY checkpoint without COMPLETED is an incomplete operation awaiting fresh full-scope verification and final audit/status write. Checkpoints optimize forward work only; they cannot establish current absence. Reopening a stale/completed receipt truncates checkpoints before the earliest observed residual and preserves operation/request/actor/target/preview bindings. No CAS, transaction or distributed lock is implied.
+
+The response's invocation-local `shinka.deletion-pass/1` projection contains safe operation ID, stage, confirmed processed count, checkpoint IDs, elapsed/work duration, data-write attempts, progress boolean and reason. `remainingAtLeast=1` is only a known residual; NULL means uncounted, never zero. Exact remaining zero is emitted only for freshly verified COMPLETED. Metadata/audit writes are measured separately from the 100 data-write ceiling. This projection is not another persisted source. Existing retention manifest is unchanged: consent/events/daily snapshots, stopped notification history, audit/protection/closed health jobs and operation tombstone remain; operational profile/preferences/cycle/Pattern/calendar actions and active User are removed. Shared references and unrelated owners remain untouched.
 
 ## 039 — bounded generic read contract
 

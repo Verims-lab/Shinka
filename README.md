@@ -4,7 +4,11 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
-## Current Test quality milestone (Buildmarker-039)
+## Current Test deletion stabilization (Buildmarker-040)
+
+[040 deletion fix, regression and live acceptance](docs/shinka/reports/SHINKA_TEST_DELETION_STABILIZATION_040.md) preserves 039. Durable admission, forward checkpoints and separately verified finalization keep the same operation ID. No schema/import step. Owner merges Test to main, waits for full Base44 GitHub sync and publishes matching backend/shared/frontend. Authorized existing-user cleanup remains pending source/identity verification; this delivery does not claim hosted removal.
+
+## Historical Test quality milestone (Buildmarker-039)
 
 [039 audit, fixes, measurements and acceptance](docs/shinka/reports/SHINKA_CORE_QUALITY_MILESTONE_039.md) preserves 036–038 and separates local verification from hosted/device evidence. Domain reads explicitly disclose truncation; You preserves uncertain preference saves; Home clears stale access state and stops after session end. Sync the full matching backend/shared graph before frontend. No schema/reference-data migration or notification activation. Owner handles main merge/publish and published Full Health; Test delivery alone does not close ON-05/First Shinka incidents.
 

@@ -52,9 +52,16 @@ export function nativeFixture({ granted = true } = {}) {
     if (!('preview_token' in result) || !('enabled' in result)) throw new Error('EXPECTED_PREVIEW_RESPONSE');
     return result;
   };
-  const execute = view => tools({ action: 'execute', target_id: 'ownerA', operation: view.operation, confirmation: true, preview_token: view.preview_token, request_id: crypto.randomUUID() });
+  // Convenience for pre-existing end-state tests; tools() remains one raw pass.
+  const complete = async result => {
+    for(let i=0;result.result_state==='PARTIAL'&&i<80;i++)result=await tools({action:'resume',target_id:'ownerA',operation_id:result.job.operation_id});
+    if(result.result_state==='PARTIAL')throw new Error('FIXTURE_DELETION_NOT_FINISHED');
+    return result;
+  };
+  const start = view => tools({ action: 'execute', target_id: 'ownerA', operation: view.operation, confirmation: true, preview_token: view.preview_token, request_id: crypto.randomUUID() });
+  const execute = async view => complete(await start(view));
   const once = (when, predicate) => { state[when] = async call => { if (predicate(call)) { state[when] = null; throw new Error('SYNTHETIC_LOST_RESPONSE'); } }; };
-  return { tables, state, client, raw, now, library, cal, change, today, tools, preview, execute, once };
+  return { tables, state, client, raw, now, library, cal, change, today, tools, preview, start, execute, complete, once };
 }
 export function barrier(count) {
   let arrived = 0, release;

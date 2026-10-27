@@ -2,13 +2,18 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-039
+**Current BuildMarker:** Buildmarker-040
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
-## Current package — 039 core quality milestone
+
+## Current package — 040 deletion stabilization
+
+039 is preserved. Fetch/compare main/Test before work and delivery; commit/push only Test. One 040 package, last five 036–040. Local regression/quality verification precedes matching published-source verification and the explicitly authorized cleanup. Owner retains main/publish; no routine hosted Health/security scan, import, notification/scheduler or 12 deferred finding work. Pending publication/access does not block local deliverables and is not permission to bypass the real application deletion flow. Record cleanup NOT_RUN/PENDING until actual inventory, protected-admin checks, per-target mutation/readbacks and final active count exist. [040 single report](reports/SHINKA_TEST_DELETION_STABILIZATION_040.md).
+
+## Historical package — 039 core quality milestone
 
 Fetch before work; 038's main merge was a tree-identical fast-forward, synchronized to Test without overwriting work. Advance once to Buildmarker-039 / HC-039.0; active history is 035–039. Earlier package sections below are historical authorizations/evidence, not new increment or PR instructions. Preserve 036–038, approved light/locale/search/Pattern and all 12 deferred findings.
 

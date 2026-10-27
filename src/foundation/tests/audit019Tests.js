@@ -26,7 +26,8 @@ export const AUDIT019_DELETION_TESTS = [
     f.state.before = async call => { if (call.name === 'UserProfile' && call.method === 'delete') {
       f.state.before = null; throw { response: { status: 403, data: { token: 'private-token', email: 'private-value' } } };
     } };
-    const error = await rejects(()=>f.tools({ action:'execute', target_id:'ownerA', operation:'DELETE_USER', confirmation:true, preview_token:view.preview_token, request_id:crypto.randomUUID() },'adminA',{diagnostics}),'TEST_STORAGE_ACCESS_DENIED');
+    await f.start(view);
+    const error = await rejects(()=>f.tools(resume(f),'adminA',{diagnostics}),'TEST_STORAGE_ACCESS_DENIED');
     check(error.stage === 'USER_PROFILE');
     const job = f.tables.AdminTestOperation[0];
     check(job.stage === 'user_profile' && job.error_code === error.code && job.status === 'RETRY_REQUIRED');
@@ -37,7 +38,8 @@ export const AUDIT019_DELETION_TESTS = [
     f.state.calls.length = 0;logs.length=0;
     const done = await f.tools(resume(f),'adminA',{diagnostics:testOperationDiagnostics({emit:row=>logs.push(row)})});
     const reads = f.state.calls.filter(row=>row.method==='filter').length;
-    check(done.result_state==='COMPLETED' && f.tables.AdminTestOperation.length===1);
+    check(done.result_state==='PARTIAL'&&done.job.checkpoints.includes('VERIFY'),'verification checkpoint not acknowledged');
+    check((await f.complete(done)).result_state==='COMPLETED' && f.tables.AdminTestOperation.length===1);
     check(reads <= 160, `resumed SDK reads ${reads} exceed 160`);
     return { evidence: { resumedSdkReads: reads, failure, stages:logs.filter(row=>row.event==='STAGE_END'), baselineIntent:'late partial job with seven verified stages; no health payload' } };
   }],
@@ -48,7 +50,8 @@ export const AUDIT019_DELETION_TESTS = [
     f.tables.NotificationDelivery=Array.from({length:105},(_,i)=>({id:`notice-${i}`,user_id:'ownerA',daily_message_id:'retained-day',delivery_status:'PENDING'}));
     f.tables.UserCalendarAction=Array.from({length:105},(_,i)=>({id:`receipt-${i}`,user_id:'ownerA'}));
     const retained=JSON.stringify(f.tables.UserHealthConsentEvent);
-    let result=await f.execute(await f.preview('DELETE_USER')), passes=1;
+    await f.start(await f.preview('DELETE_USER'));
+    let result=await f.tools(resume(f)), passes=1;
     check(result.result_state==='PARTIAL' && result.job.error_code==='TEST_CLEANUP_MORE_REQUIRED');
     while(result.result_state==='PARTIAL' && passes++<8) result=await f.tools(resume(f));
     check(result.result_state==='COMPLETED' && !f.tables.UserPatternSummary.length && !f.tables.UserCalendarAction.length && f.tables.AdminTestOperation.length===1);
@@ -74,10 +77,11 @@ export const AUDIT019_DELETION_TESTS = [
   ['AD04','Residual and final-verification failure never become completed; wrong actor cannot resume',async()=>{
     const f=nativeFixture();
     f.state.after=async call=>{if(call.name==='User'&&call.method==='delete'){f.state.after=null;f.tables.UserPeriodRecord.push({id:'late',user_id:'ownerA'});}};
-    await rejects(()=>f.preview('DELETE_USER').then(f.execute),'TEST_DELETE_UNCONFIRMED');
+    await f.start(await f.preview('DELETE_USER'));
+    const partial=await f.tools(resume(f));check(partial.result_state==='PARTIAL'&&'progress' in partial&&partial.progress.reason==='RESIDUAL_RECHECK_REQUIRED','residual not exposed');
     check((await f.tools({action:'lookup',target_id:'ownerA'})).result_state==='PARTIAL');
     await rejects(()=>f.tools(resume(f),'adminB'),'TEST_OPERATION_CONFLICT');
-    check((await f.tools(resume(f))).result_state==='COMPLETED');
+    check((await f.complete(await f.tools(resume(f)))).result_state==='COMPLETED');
     f.state.before=async call=>{if(call.name==='UserPeriodRecord')throw new Error('read unavailable');};
     let failed=false;try{await f.tools({action:'status',target_id:'ownerA',operation_id:resume(f).operation_id});}catch{failed=true;}check(failed);
   }],

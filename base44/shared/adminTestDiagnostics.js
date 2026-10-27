@@ -12,6 +12,7 @@ export function testOperationDiagnostics({ clock = () => performance.now(), emit
     bind(id) { operationId = typeof id === 'string' && /^[a-zA-Z0-9_-]{1,100}$/.test(id) ? id : null; },
     stage(value) { stage = value.toUpperCase(); stageStart = clock(); stageCalls = calls; log('STAGE_START'); },
     end() { log('STAGE_END'); },
+    progress(value) { log('PASS_END',{processed:value.processed,remainingAtLeast:value.remainingAtLeast,checkpoints:value.checkpoints,reason:value.reason,madeProgress:value.madeProgress,workMs:value.workMs}); },
     snapshot,
     wrap(client) {
       return { ...client, asServiceRole: { ...client.asServiceRole, entities: new Proxy(client.asServiceRole.entities, {

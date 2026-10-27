@@ -1,0 +1,155 @@
+{
+  "package": "Buildmarker-040",
+  "catalog": "HC-040.0",
+  "status": "LOCAL_VERIFIED_HOSTED_CLEANUP_PENDING",
+  "source": {
+    "files": 534,
+    "sha256": "3518aca371e050864589ded36b824e87b50f00d62bf1e2f46d7c69ca466b4455",
+    "baselineCommit": "8951c6d871e2adc493ab182fea182b6437fa0431"
+  },
+  "engines": {
+    "chromium": {
+      "engine": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "tests": 707,
+      "unique": 707,
+      "failed": 0,
+      "pageErrors": 0,
+      "health": {
+        "PASS": 138,
+        "BLOCKED": 13
+      },
+      "saveState": "SAVED",
+      "historyListed": true,
+      "privateReportOpened": true,
+      "exitCode": 0
+    },
+    "webkit": {
+      "engine": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "tests": 707,
+      "unique": 707,
+      "failed": 0,
+      "pageErrors": 0,
+      "health": {
+        "PASS": 138,
+        "BLOCKED": 13
+      },
+      "saveState": "SAVED",
+      "historyListed": true,
+      "privateReportOpened": true,
+      "exitCode": 0
+    }
+  },
+  "gates": [
+    {
+      "gate": "typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "durationMs": 2343
+    },
+    {
+      "gate": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "durationMs": 1872
+    },
+    {
+      "gate": "repo",
+      "command": [
+        "npm",
+        "run",
+        "health:repo"
+      ],
+      "exitCode": 0,
+      "durationMs": 1109
+    },
+    {
+      "gate": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "durationMs": 1774
+    },
+    {
+      "gate": "history",
+      "command": [
+        "node",
+        "scripts/recordBuild.mjs",
+        "--check"
+      ],
+      "exitCode": 0,
+      "durationMs": 105
+    },
+    {
+      "gate": "dependency-tree",
+      "command": [
+        "npm",
+        "ls",
+        "--all"
+      ],
+      "exitCode": 0,
+      "durationMs": 577
+    },
+    {
+      "gate": "session",
+      "command": [
+        "node",
+        "scripts/verifySessionStability.mjs"
+      ],
+      "exitCode": 0,
+      "durationMs": 79
+    }
+  ],
+  "dependencyAdvisories": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "performance": {
+    "passed": true,
+    "initialJS": {
+      "raw": 484085,
+      "gzip": 161027
+    },
+    "css": {
+      "raw": 77728,
+      "gzip": 14239
+    },
+    "cycles": []
+  },
+  "hosted": {
+    "sourceMatch": "NOT_VERIFIED",
+    "sdkEnvironment": "NOT_VERIFIED",
+    "access": "CLI_AUTHENTICATION_REQUIRED",
+    "cleanup": "NOT_RUN_PENDING_PUBLICATION_AND_AUTHENTICATED_PROTECTED_ADMIN",
+    "initialTargetCount": null,
+    "completedTargets": null,
+    "failedTargets": null,
+    "protectedBeforeAfter": "NOT_RUN",
+    "finalActiveCount": null,
+    "mutationsPerformed": 0,
+    "reason": "040 has not been merged/published by this agent. CLI whoami required login; device flow was stopped. No native inventory or target identity was assumed."
+  },
+  "physicalDevices": "NOT_RUN"
+}

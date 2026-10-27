@@ -54,7 +54,7 @@ export const CLOSURE018_TESTS=[
    check(f.state.calls.slice(before).every(c=>c.method==='filter'));
    f.tables.UserPeriodRecord.push({id:'late',user_id:'ownerA'});
    const status=await f.tools({action:'status',target_id:'ownerA',operation_id:done.job.operation_id});check(status.result_state==='PARTIAL'&&f.tables.UserPeriodRecord.length===1);
-   const resumed=await f.tools({action:'resume',target_id:'ownerA',operation_id:done.job.operation_id});check(resumed.result_state==='COMPLETED');
+   const resumed=await f.complete(await f.tools({action:'resume',target_id:'ownerA',operation_id:done.job.operation_id}));check(resumed.result_state==='COMPLETED');
  }],
  ['E06','Missing user is distinct from failed reads; incomplete deletion cannot report success',async()=>{
    const f=nativeFixture();await rejects(()=>f.tools({action:'lookup',target_id:'absent'}),'TEST_USER_NOT_FOUND');
@@ -74,13 +74,13 @@ export const CLOSURE018_TESTS=[
    let time=0,userPresent=true;
    const seen=[];
    const row={id:'job',operation_id:'operation-fixture',request_id:'operation-fixture',actor_id:'admin',target_id:'target',operation:'DELETE_USER',status:'RUNNING',stage:'START',preview_hash:'a'.repeat(64),started_at:'2026-10-20T12:00:00Z',progressed_at:'2026-10-20T12:00:00Z',completed_at:null,error_code:null,checkpoints:[]};
-   const journal={begin:async()=>structuredClone(row),checkpoint:async(_job,stage)=>{row.checkpoints=[...new Set([...row.checkpoints,stage])];row.stage=stage;},finish:async(_job,patch)=>Object.assign(row,patch),failed:async()=>{throw new Error('unexpected failure');}};
-   const repository={operation:async()=>projectOperation(structuredClone(row)),stopNotifications:async()=>{time+=9000;seen.push('NOTIFICATIONS');},cleanup:async stage=>{time+=9000;seen.push(stage);},user:async()=>userPresent?{id:'target'}:null,deleteUser:async()=>{userPresent=false;},calendarActions:async()=>[],owned:async()=>[]};
-   for(let pass=0;pass<DELETE_STEPS.length;pass++) {
+   const journal={begin:async()=>structuredClone(row),checkpoint:async(_job,values)=>{const checkpoints=[...new Set([...row.checkpoints,...values.checkpoints])];Object.assign(row,values,{checkpoints});return structuredClone(row);},finish:async(_job,patch)=>Object.assign(row,patch),failed:async()=>{throw new Error('unexpected failure');}};
+   const repository={operation:async()=>projectOperation(structuredClone(row)),stopNotifications:async()=>{time+=9000;seen.push('NOTIFICATIONS');},cleanup:async stage=>{time+=9000;seen.push(stage);},user:async()=>userPresent?{id:'target'}:null,deleteUser:async()=>{userPresent=false;},calendarActions:async()=>[],owned:async()=>[],hasOwned:async()=>false,hasPendingNotifications:async()=>false};
+   for(let pass=0;pass<DELETE_STEPS.length&&row.status!=='COMPLETED';pass++) {
      const previous=row.checkpoints.length;
      const result=await executeTestJob({journal,repository,actor:{id:'admin'},target:{id:'target'},operation:'DELETE_USER',requestId:row.operation_id,previewHash:row.preview_hash,now:()=>new Date(row.started_at),clock:()=>time});
      check(result.operation_id===row.operation_id&&row.checkpoints.length>previous,'retry must advance');
    }
-   check(row.status==='COMPLETED'&&!userPresent&&seen.filter(stage=>stage==='NOTIFICATIONS').length===DELETE_STEPS.length);
+   check(row.status==='COMPLETED'&&!userPresent&&seen.filter(stage=>stage==='NOTIFICATIONS').length===1&&new Set(seen).size===seen.length);
  }],
 ];

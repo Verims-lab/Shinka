@@ -1,0 +1,36 @@
+{
+  "scope": "LOCAL_REAL_WALL_TIMERS_400MS_PER_SDK_CALL",
+  "hostedVerified": false,
+  "clientOutcome": "PARTIAL",
+  "clientResponseMs": 27356.028584,
+  "backend": {
+    "action": "execute",
+    "operationId": "0da91ea7-6494-4c04-97ea-06e036b7b42f",
+    "durationMs": 27355.956458,
+    "entityReads": 80,
+    "writes": 2,
+    "auth": 9,
+    "stage": "START",
+    "checkpoints": [],
+    "result": "PARTIAL",
+    "progress": {
+      "contract": "shinka.deletion-pass/1",
+      "operationId": "0da91ea7-6494-4c04-97ea-06e036b7b42f",
+      "stage": "START",
+      "processed": 0,
+      "remainingAtLeast": null,
+      "remainingExact": null,
+      "checkpoints": [],
+      "madeProgress": true,
+      "elapsedMs": 26148,
+      "workMs": 0,
+      "writeAttempts": 0,
+      "reason": "START_SAVED",
+      "workBudgetMs": 8000,
+      "writeLimit": 100
+    },
+    "httpStatus": 200
+  },
+  "remainingTargetUsers": 1,
+  "instrumentSha256": "9ea84c0e80baccdfbbf7d9e33e7a3c784ae9ace822d00f5f33158ec1c0703843"
+}

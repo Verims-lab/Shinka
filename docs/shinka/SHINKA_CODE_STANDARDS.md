@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-039
+**Current BuildMarker:** Buildmarker-040
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -35,6 +35,11 @@
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+
+
+## 040 — deletion regression integrity
+
+Exercise actual component → service → Request/Response handler → native operation/repository/journal/readback with ordinary SDK IO substituted, not a serialized fake transaction. Preserve deterministic before-fix failures and distinguish fixture scheduling corrections from product defects. Scope pass metrics to safe IDs/counts/stages/durations; report data writes and journal overhead separately. Completed metadata never replaces fresh absence checks. Failed/unknown outcomes must not become automatic destructive retries. Keep Heavy UI LOCAL_BROWSER and all normal Health deletion checks synthetic. [040 execution evidence](reports/SHINKA_TEST_DELETION_STABILIZATION_040.md).
 
 ## 039 — audit and result integrity
 

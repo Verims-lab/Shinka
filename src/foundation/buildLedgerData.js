@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-035",
-    "package_name": "Onboarding functional audit and GeoNames search closure",
-    "package_type": "FIX",
-    "created_at": "2026-10-26T16:42:00Z",
-    "health_catalog_version": "HC-035.0",
-    "short_summary": "Onboarding order/back, verified readback, completed-owner and stale-account guards; A/P combobox retry/focus/44px fixes. Chromium/WebKit 657/657 each; hosted/device acceptance pending.",
-    "full_health_status": "NOT_RUN",
-    "notes": "LOCAL_VERIFIED browser evidence; no live Full Health/provider/user/push or main publish. Health 0 add / 7 update / 0 delete, 13 hosted prerequisites remain BLOCKED; old failure evidence retained.",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true
-  },
-  {
     "build_marker": "Buildmarker-036",
     "package_name": "Onboarding locale, navigation and time closure",
     "package_type": "FIX",
@@ -69,5 +55,15 @@ export default [
     "source_changed": true,
     "tests_changed": true,
     "health_changed": true
+  },
+  {
+    "build_marker": "Buildmarker-040",
+    "package_name": "Test Tools deletion stabilization",
+    "package_type": "CORRECTIVE_STABILIZATION",
+    "created_at": "2026-10-27T20:07:56Z",
+    "health_catalog_version": "HC-040.0",
+    "short_summary": "Durable admission, bounded forward cleanup and separately verified finalization; real service/HTTP/native and UI fault regression. Explicit-target hosted cleanup remains publication gated.",
+    "full_health_status": "LOCAL_SYNTHETIC_ONLY / HOSTED_FULL_HEALTH_NOT_RUN",
+    "notes": "Preserves audit 039. H12-029 strengthened, H12-043 added, H13-016 local full-chain UI and H12-902 external acceptance updated. No entity migration, import, notification enablement, live Full Health, main merge or publish. Owner-authorized sequential cleanup waits for matching published code and protected native admin/session verification; NOT_RUN until evidenced. Active packages 036–040. See SHINKA_TEST_DELETION_STABILIZATION_040.md."
   }
 ];
