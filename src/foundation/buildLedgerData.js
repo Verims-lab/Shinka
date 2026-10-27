@@ -1,48 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-031",
-    "package_name": "Notification admission read reduction",
-    "package_type": "FIX",
-    "created_at": "2026-10-22T15:56:35.323131+00:00",
-    "health_catalog_version": "HC-031.0",
-    "short_summary": "Comparable SDK reads 84→69,119→104,61→46; auth 14→12,17→15,11→9; writes/sends unchanged. Chromium/WebKit 624/624 each; 8 server + 9 entry fixtures, Health 136 PASS/13 prerequisite BLOCKED. Local gates/audit/history/performance PASS; live binding blocked.",
-    "full_health_status": "PLATFORM_BINDING_BLOCKED",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "031 only: no product/schema/SDK contract change. Fresh write/readback/send guards retained; NP07 BUSY gap fixed with initial failure preserved. H14-003 adds NP01–07, no Health IDs added/deleted; H14-901/H16-901 external. Actual entry enabled:false; 12 findings OPEN / USER-DEFERRED. Internal Build 027–031; no live actions/main merge/publish. Focused report SHINKA_NOTIFICATION_PERFORMANCE_031.md; PR32 was owner-merged, Test continuation linked there."
-  },
-  {
-    "build_marker": "Buildmarker-032",
-    "package_name": "Native notification readiness and device acceptance",
-    "package_type": "DOCS",
-    "created_at": "2026-10-22T18:46:33.644742+00:00",
-    "health_catalog_version": "HC-032.0",
-    "short_summary": "Native setup inventory and two-stage device plan; no application behavior fix required. Chromium/WebKit each 624/624; 8 server + 9 actual-entry fixtures per engine; local Health 136 PASS/13 prerequisite BLOCKED. All device steps NOT_RUN.",
-    "full_health_status": "NATIVE_AND_PLATFORM_ACCEPTANCE_NOT_RUN",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": false,
-    "health_changed": true,
-    "notes": "Health add 0/update 2/delete 0 (H14-901/H16-901 external descriptions); executable tests unchanged. Required local gates pass; audit zero; 031 budgets unchanged at 69/104/46 entity reads. Initial JS 479543/160180 gzip, CSS 77521/14262 bytes. Native setup may proceed independently; verified contracts still gate activation, superseding historical 029 setup ordering. Base44 remains identity/data authority; Firebase is Android push setup only. Actual entry enabled:false; no credentials/build/live calls/main merge/publish. Existing 12 findings OPEN / USER-DEFERRED. Internal Build 028–032; SHINKA_NATIVE_NOTIFICATION_READINESS_032.md."
-  },
-  {
-    "build_marker": "Buildmarker-033",
-    "package_name": "Scheduler machine authorization preparation",
-    "package_type": "FIX",
-    "created_at": "2026-10-22T21:05:49.321095+00:00",
-    "health_catalog_version": "HC-033.0",
-    "short_summary": "Prepared scheduler-only machine credential admission; current-native-admin path retained. Chromium/WebKit 632/632 each; per command 8 server, 11 entry, 7 crypto checks. Real entry unbound/disabled; local Health 136 PASS/13 prerequisite BLOCKED.",
-    "full_health_status": "PLATFORM_BINDING_BLOCKED",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "H14-003/004/901 updated; add 0/delete 0. Required local gates pass; audit zero. Admin reads 69/104/46 unchanged; separate machine reads 36/62/22 with 11/14/8 credential checks and zero auth.me. Initial JS 479543/160179 gzip, CSS 77521/14262 bytes. Initial typecheck error and executable-equivalent JSDoc correction retained. No secret generated/stored, real secrets.get/transport binding, workflow/push/live Health/scan/user/native build/main merge/publish. 12 findings OPEN / USER-DEFERRED. Active 029–033; SHINKA_SCHEDULER_AUTHORIZATION_033.md."
-  },
-  {
     "build_marker": "Buildmarker-034",
     "package_name": "Session and Health 429 stabilization",
     "package_type": "FIX",
@@ -69,5 +27,47 @@ export default [
     "source_changed": true,
     "tests_changed": true,
     "health_changed": true
+  },
+  {
+    "build_marker": "Buildmarker-036",
+    "package_name": "Onboarding locale, navigation and time closure",
+    "package_type": "FIX",
+    "created_at": "2026-10-27T14:00:00Z",
+    "health_catalog_version": "HC-036.0",
+    "short_summary": "Automatic locale, DOB-only NULLs, authenticated Back, manual/app time picker and safe Retry diagnostics. Chromium/WebKit each 667/667; actual locale/time CLI 6/6 each. Hosted preparation cause remains unconfirmed.",
+    "full_health_status": "LOCAL_VERIFIED / HOSTED_INCIDENT_AND_DEVICE_ACCEPTANCE_PENDING",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "Fresh install/tree/audit/security/type/lint/build/repo/history/performance gates passed. Local in-app Health 136 PASS / 13 hosted BLOCKED; save/retry/list/open verified. Native create-loss retry and You preference/reset covered. Read-only logs denied 401; user deferred live diagnosis. Android/iOS NOT_RUN; 12 deferred findings unchanged. No live mutation/import/push/Full Health/main publish."
+  },
+  {
+    "build_marker": "Buildmarker-037",
+    "package_name": "Five focused corrections: name, Calendar, light UI and Home",
+    "package_type": "FIX",
+    "created_at": "2026-10-27",
+    "health_catalog_version": "HC-037.0",
+    "short_summary": "Guard filled-name Skip; future Calendar intent/replay rejects before health writes and legacy rows stay repairable; light-only policy; Home removes only normal Refresh. Existing ON-05 privacy removal preserved.",
+    "full_health_status": "LOCAL_VERIFIED_HOSTED_PENDING",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "Chromium/WebKit 674/674; local Health 136 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED with save/retry/list/open. Mandatory local gates and zero dependency advisories. Source/receipt in SHINKA_ADDITIONAL_FIXES_037.md. User publishes/runs hosted Health; physical OS dialogs and original live First Shinka/ON-05 acceptance remain open. 12 backend findings USER-DEFERRED. No live mutations/import/push."
+  },
+  {
+    "build_marker": "Buildmarker-038",
+    "package_name": "Calendar recovery and Pattern refresh/lunar presentation",
+    "package_type": "FIX",
+    "created_at": "2026-10-27",
+    "health_catalog_version": "HC-038.0",
+    "short_summary": "Same-ID pending Calendar recovery without bulk clear; retain and coalesce Pattern refresh; remove visible theme counts; current phase and strictly next Full Moon date only. Preserve 036/037.",
+    "full_health_status": "LOCAL_SYNTHETIC_EXECUTION / HOSTED_ACCEPTANCE_PENDING",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "Final local evidence is recorded in SHINKA_CALENDAR_PATTERN_038.md. User owns publish, hosted Full Health and physical acceptance. No live mutation/import/push/Health. Twelve backend findings remain USER-DEFERRED; original First Shinka and ON-05 incidents stay open."
   }
 ];

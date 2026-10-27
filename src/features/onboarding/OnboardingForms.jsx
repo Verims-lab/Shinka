@@ -1,6 +1,7 @@
 import ShinkaButton from "@/components/shinka/ShinkaButton";
 import ShinkaInput from "@/components/shinka/ShinkaInput";
 import BirthplaceCombobox from "@/features/profile/BirthplaceCombobox";
+import BirthTimeField from "@/features/profile/BirthTimeField";
 import FramedDateField from "./FramedDateField";
 import FieldError from "./FieldError";
 import {
@@ -77,7 +78,7 @@ export function ProfileForm({
         required
         max={today || undefined}
       />
-      <FramedDateField {...fields} name="birth_time" type="time" optional />
+      <BirthTimeField value={form.birth_time} onChange={value => update("birth_time", value)} error={error} disabled={busy} t={t} />
       <BirthplaceCombobox
         language={language}
         request={request}

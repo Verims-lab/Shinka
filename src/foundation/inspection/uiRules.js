@@ -4,11 +4,11 @@ import { BOTTOM_NAV, PROFILE_ENTRY } from "@/foundation/uiContract";
 import { STRINGS, SUPPORTED_LANGUAGES } from "@/foundation/i18n/strings";
 
 // Rendered CSS variables must equal token hex values.
-export function checkCssTokens(readVar, dark = document.documentElement.classList.contains("dark")) {
+export function checkCssTokens(readVar) {
   const mismatches = [];
   for (const [v, key] of Object.entries(DESIGN_TOKENS.cssVars)) {
     const actual = (readVar(v) || "").trim();
-    const expected = hexToRgbChannels(dark ? (v === "--shinka-ink" ? DESIGN_TOKENS.darkColor.ink : DESIGN_TOKENS.darkColor[key]) : DESIGN_TOKENS.color[key]);
+    const expected = hexToRgbChannels(DESIGN_TOKENS.color[key]);
     if (actual !== expected) mismatches.push({ variable: v, actual, expected });
   }
   return { checked: Object.keys(DESIGN_TOKENS.cssVars).length, mismatches };

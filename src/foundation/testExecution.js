@@ -60,3 +60,13 @@ export async function executeTest([id, , run], { signal, timeoutMs = 20000, onSt
     if (cleanupFailed) throw Object.assign(new Error('TEST_CLEANUP_FAILED'), { testId:id, testStage:'CLEANUP' });
   }
 }
+
+// Unique helper IDs are required before selection/report/cache joins. Reject a
+// duplicate registry, even when a focused run would otherwise hide one entry.
+export function assertUniqueTestIds(tests) {
+  const ids = new Set();
+  for (const [id] of tests) {
+    if (ids.has(id)) throw new Error('DUPLICATE_TEST_ID');
+    ids.add(id);
+  }
+}

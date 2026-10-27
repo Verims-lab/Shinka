@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-035
-**Last Updated:** 2026-10-26
+**Current BuildMarker:** Buildmarker-038
+**Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
@@ -11,9 +11,25 @@
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
-## Current onboarding flow and mutation boundary — 035
+## 038 — Calendar result and retry semantics
 
-ON-01→02→03→04→05→unnumbered ON-06→Home. Intro/Name/Back do not call auth or save. Name is optional, trimmed and ≤50 Unicode code points; explicit omission clears its transient value. 18+ is separate from health consent. ON-04 Back is intentionally absent: authenticated users do not return through OAuth. ON-05 Back edits only the unfinished profile and retains in-memory cycle input. Verified profile readback precedes ON-05; fulfilled/ambiguous responses cannot advance. UI state is never backend authority.
+A rejected invalid/future/duplicate/too-close date creates no new receipt/period. Transport failure can mean no write, saved write with lost reply, or partial write: the UI shows unknown and retains the same payload/action ID. Reopen reads a unique pending receipt and reconstructs explicit resume, including add/edit/delete and initial grant. Resume checks current guards, expected state and readback before APPLIED/visible success; pending/error paths never auto-delete/cancel. Saving/resuming a past date selects its month for visible confirmation. A passive read can be superseded by explicit retry, and its late response is ignored. Multiple intents/stale revision remain conflicts with existing records intact; native SDK is not a transaction or distributed lock. Existing OD-012 outlier and future-date protections remain. No reset/new account is required for a recoverable unique intent.
+
+## 037 — correction and observation semantics
+
+ON-02 Continue preserves normalized name; filled Skip cannot erase it through click/keyboard/stale event. Blank/whitespace Skip, reopen/session draft and auth-return save are covered without backfilling old blank accounts. ON-05 remains explicit separate health consent, with privacy under You/direct guarded routes.
+
+Calendar uses backend now + validated request IANA/persisted fallback, never body.today. Check future intent before native recovery (including persisted initial grant), APPLIED receipt replay and immediately before writes; existing grant timestamps remain. Native writes are not transactional: a time boundary during the operation can leave a PENDING receipt, which remains reviewable. Legacy future observations are returned as actual rows with CALENDAR_FUTURE_RECORD and no predictions, never clamped/deleted automatically; explicit edit/delete repairs them. Server readback plus requested visible observation establishes success, not transport completion. Read-only future browsing remains available. Home refresh reuses the immutable day and retains the last verified content on ordinary errors.
+
+## 036 — language, optional profile and preparation
+
+Saved preference is resolved on hydrate/reopen/reset; absent preference initializes from the browser language (TR/EN variants, otherwise EN). Old URL/transient language hints are ignored. ON-04 needs only valid adult DOB; blank time/place remain NULL, no GeoNames call/secret construction. Unselected typed place and partial time remain validation errors with clear/cancel paths.
+
+Preparation Back returns to authenticated welcome, keeping the form draft and resuming preparation on Continue. An issued daily request may still persist; old completion cannot navigate the hidden/replaced view. Retry starts a fresh bounded service invocation and rereads/reconciles today's stored candidate before generating. Only verified persistent daily result opens Home; no synthetic completion flag. Safe allowlisted error code supplements the existing localized error. Unknown outcome does not mean rollback. Same-day content, consent and health records remain governed by existing native rules. [036 single delivery report](reports/SHINKA_ONBOARDING_CLOSURE_036.md).
+
+## Current onboarding flow and mutation boundary — 036
+
+ON-01→02→03→04→05→unnumbered ON-06→Home. Intro/Name/Back do not call auth or save. Name is optional, trimmed and ≤50 Unicode code points; explicit omission clears its transient value. 18+ is separate from health consent. ON-04 Back returns to a welcome view that retains the authenticated session and offers Continue back to the in-memory profile draft; it never invokes OAuth/logout. ON-05 Back edits only the unfinished profile and retains in-memory cycle input. Verified profile readback precedes ON-05; fulfilled/ambiguous responses cannot advance. UI state is never backend authority.
 
 Hydration resolves persistent owner records. Skip creates/revokes/deletes nothing and may return to ON-05 on reopen before a real daily record. Completed owners cannot use onboarding saveProfile/saveCycle even when their profile is damaged; You/Calendar remain the editing boundaries. Partial cycle retries reuse persisted matching consent/event/period data; no rollback or distributed serialization is promised. Session end/unmount discards late UI completion; already-issued backend IO is not claimed cancelled.
 
@@ -79,7 +95,7 @@ Home · Calendar · Pattern share navigation and the existing authenticated/onbo
 
 Themes use saved `UserDailyMessage.category_id` and saved local `shinka_date`. The effective start is max(first recorded day, today−29), end today inclusive. Thus first 1–29 calendar days use existing history, then a rolling 30-day window; gaps do not pull older messages forward. Query only that window plus one earliest-date metadata row. Each day uses Home's generated_at ascending / codepoint ID ascending winner; losing physical candidates remain untouched. Count assigned categories, sort count descending then latest assigned day descending, return at most two approved lookup names. No history is EMPTY; malformed rows, missing lookup and service failures are errors.
 
-Lunar Timeline uses four continuous validated NEW→WAXING→FULL→WANING intervals; the fifth NEW node is the last interval's exact UTC end. Coordinates and Today use actual elapsed instants; intervals are half-open, so an exact boundary activates the new phase. Device IANA timezone falls back to saved preference under the existing resolver, without rewriting historical dates. Independent requests allow one section to remain useful while the other fails. Explicit retry reads only; normal refresh never writes.
+038 Moon summary uses continuous validated NEW→WAXING→FULL→WANING intervals and backend now. Current uses start ≤ now < end; next is the earliest FULL start > now, including when current is FULL. Return only the selected intervals and next IANA-local date, never a guessed cycle. Insufficient future coverage keeps current phase and a null next field; without current coverage neither field is inferred. Device IANA timezone falls back to saved preference, without rewriting history. Theme counts remain calculation inputs only. Ordinary refresh/section errors preserve verified content; five-minute visible refresh and focus/online/visible return coalesce. Access/session/account change clears immediately; entry and retries are read-only.
 
 ## Current implemented flow — 019
 
@@ -116,7 +132,7 @@ Shows the pair for the device's current local calendar day. Reopen/Retry/profile
 Only distinguishes recorded vs predicted period days. Selecting a date never saves. "Mark period start" creates; selecting an existing start + new date updates the same ID. Delete requires confirmation. ≥15 days between distinct starts. Recalculation derives from confirmed actual dates on read; failed writes may have persisted and require retry/review. Last start deleted ⇒ predictions/phases removed, settings kept, messages use UNKNOWN.
 
 ## Pattern (UC-16/17, KK-21/22/34)
-Recurring Themes: 1–29 days use all history, ≥30 rolling last 30; based on user_daily_message.category_id actually assigned; max two categories; ties → most recently seen; no inference. Lunar Timeline: previous New Moon → next New Moon, proportional, local dd.MM HH:mm, no horizontal scroll.
+Recurring Themes: 1–29 days use all history, ≥30 rolling last 30; based on user_daily_message.category_id actually assigned; max two categories; ties → most recently seen; no inference. 038 Moon card: current phase and strictly next FULL start as a local date only; no graph/count/time/zone text.
 
 ## You (UC-18…24)
 Edit name, birth date, time, birthplace in one screen; Sun sign read-only. Language TR/EN. Notifications on/off; time fixed 06:00 (notification_time stored, not editable). Privacy Policy, Terms of Service, Health Data Consent, Sign Out, Delete Account (confirmed owner erasure; active removal and pending platform erasure are distinct; 023 supersedes original deactivation). Presentation per SRC-03 §7 (see SHINKA_UI_UX_STANDARDS.md).
@@ -139,7 +155,7 @@ Delete Account ⇒ owner-confirmed erasure request + blocked target activity + v
 
 ## Authentication/onboarding implementation boundary — package 008 checkpoint
 
-ON-01 Introduction → ON-02 optional trimmed name → ON-03 Apple/Google with a separate unchecked 18+ declaration → ON-04 required adult DOB / optional time / optional structured birthplace → ON-05 optional cycle and independent explicit health consent → ON-06 finite dependency shell. Main steps are counted 1–5; ON-06 is unnumbered. Back (2026-10-26) is a local view change on ON-02→ON-01 and ON-03→ON-02 only; it never logs out, restarts OAuth or writes. ON-05→ON-04 back is also local; a changed ON-04 re-save updates the profile only while onboarding is unfinished (no daily message). ON-04 has no back. The shared server resolver denies INACTIVE, returns incomplete profiles to ON-04 and only returns Home when ready profile/preferences and actual owner daily data exist.
+ON-01 Introduction → ON-02 optional trimmed name → ON-03 Apple/Google with a separate unchecked 18+ declaration → ON-04 required adult DOB / optional time / optional structured birthplace → ON-05 optional cycle and independent explicit health consent → ON-06 finite dependency shell. Main steps are counted 1–5; ON-06 is unnumbered. Back (2026-10-26) is a local view change on ON-02→ON-01 and ON-03→ON-02 only; it never logs out, restarts OAuth or writes. ON-05→ON-04 back is also local; a changed ON-04 re-save updates the profile only while onboarding is unfinished (no daily message). At the 035 checkpoint ON-04 had no back; 036 supersedes that decision with authenticated welcome/Continue (see current contract above). The shared server resolver denies INACTIVE, returns incomplete profiles to ON-04 and only returns Home when ready profile/preferences and actual owner daily data exist.
 
 Pre-auth name is transient only (same-tab session storage, versioned, 30-minute expiry, max 50 Unicode characters). No pre-auth profile/identity is created. Identity comes from auth.me(). Approved fixed-date Sun and EN/TR copy are integrated. Profile/preferences persist through the production SDK adapter; readback must succeed before progression. Restarted partial profiles retain existing optional birthplace/name/time while finishing their derived Sun.
 

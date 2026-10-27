@@ -4,7 +4,7 @@ import { mobileCopy } from '@/foundation/i18n/mobileCopy';
 
 // Passive gesture observation; document overscroll-y containment prevents the
 // browser refresh. Never capture multi-touch, input, layers or nested scrollers.
-export default function RefreshControl({ language, refresh, loading, error, disabled = false }) {
+export default function RefreshControl({ language, refresh, loading, error, disabled = false, showButton = true }) {
   const anchor = useRef(null), pending = useRef(false), latest = useRef(null);
   const [distance, setDistance] = useState(0);
   const invoke = async () => {
@@ -43,8 +43,8 @@ export default function RefreshControl({ language, refresh, loading, error, disa
     return () => { surface.removeEventListener('touchstart', begin); surface.removeEventListener('touchmove', move); surface.removeEventListener('touchend', end); surface.removeEventListener('touchcancel', reset); };
   }, []);
   const t = key => mobileCopy(key, language);
-  return <div ref={anchor} className="shinka-refresh" data-refresh-control>
-    <ShinkaButton variant="ghost" onClick={invoke} disabled={disabled || loading}>{t(loading ? 'refreshing' : 'refresh')}</ShinkaButton>
+  return <div ref={anchor} className={showButton || distance || error ? "shinka-refresh" : "hidden"} data-refresh-control aria-busy={loading}>
+    {showButton && <ShinkaButton variant="ghost" onClick={invoke} disabled={disabled || loading}>{t(loading ? 'refreshing' : 'refresh')}</ShinkaButton>}
     <span role="status" aria-live="polite">{distance ? t(distance >= 72 ? 'release' : 'pull') : error ? t('refreshError') : ''}</span>
   </div>;
 }

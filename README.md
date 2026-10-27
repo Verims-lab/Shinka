@@ -4,7 +4,15 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Any change pushed to the repo will also be reflected in the Base44 Builder.
 
-## Current Test onboarding functional audit (Buildmarker-035)
+## Current Test Calendar/Pattern corrections (Buildmarker-038)
+
+038 retains completed 036/037 and fixes same-ID Calendar recovery, retained/coalesced Pattern refresh, count-free themes and current phase/next Full Moon date. [Single four-item report](docs/shinka/reports/SHINKA_CALENDAR_PATTERN_038.md) separates synthetic evidence from unresolved hosted/device incidents. No schema change; owner syncs all matching native/shared backend code before frontend, then publishes and runs acceptance. Test only; 12 backend findings remain USER-DEFERRED, notification entry/scheduler remain closed.
+
+## Historical Test onboarding closure (Buildmarker-036)
+
+036 applies automatic locale, DOB-only NULL verification, authenticated Back and keyboard/app time selection while preserving 035. [Single six-item report](docs/shinka/reports/SHINKA_ONBOARDING_CLOSURE_036.md) separates local verification from the unresolved hosted preparation incident (log access returned 401). No live user operation, import, Health, notification or publish; owner syncs the complete backend/shared graph before frontend and runs published acceptance.
+
+## Historical onboarding functional audit (Buildmarker-035)
 
 035 preserves Base44 main f52b1c3 and the pinned dependency lock, verifies the five-step onboarding and new A/P birthplace search, and corrects readback, completed-owner writes, async account isolation, focus/retry and 44px controls. Current local results, original failures, Health mapping and owner-only hosted/device acceptance are in the [035 delivery report](docs/shinka/reports/SHINKA_ONBOARDING_AUDIT_035.md). No live provider/user/push action, main merge or publish is performed; notification entry and scheduler remain disabled.
 
@@ -111,7 +119,7 @@ The CLI executes the comprehensive `src/foundation/tests` definitions; Health Ce
 
 Local comparable route timing: `node scripts/measureTransitions.mjs /private/tmp/shinka-transitions` uses production assets and the real SDK with synthetic HTTP, fixed latency/CPU and blocked external traffic; no hosted requests or field INP claim.
 
-CSS is compiled by `@tailwindcss/vite` (Tailwind 4), with `src/index.css` as entry and `src/styles/theme.css` as native theme. There is no separate PostCSS/Tailwind JavaScript config. The same plugin runs in the CLI harness. Optional `FOUNDATION_VISUAL_DIR=/absolute/output/path npm run test:foundation` records Health, Build and login screenshots/layout measurements at 360px and 1280px using synthetic data. The runner emulates OS dark preference to verify the system-following dark theme; it blocks external requests, including hosted fonts, so device font loading still needs live verification.
+CSS is compiled by `@tailwindcss/vite` (Tailwind 4), with `src/index.css` as entry and `src/styles/theme.css` as native theme. There is no separate PostCSS/Tailwind JavaScript config. The same plugin runs in the CLI harness. Optional `FOUNDATION_VISUAL_DIR=/absolute/output/path npm run test:foundation` records Health, Build and login screenshots/layout measurements at 360px and 1280px using synthetic data. The runner emulates OS dark preference to verify the 037 light-only palette under dark OS preference (the mobile matrix also switches OS preference at runtime); it blocks external requests, including hosted fonts, so device font loading still needs live verification.
 
 Current Foundation status and exact remaining advisories are in `docs/shinka/SHINKA_SECURITY_PRIVACY.md` and `SHINKA_RELEASE_HEALTH_CHECK.md`. A successful local run does not certify deployed authentication, server enforcement or history readback.
 

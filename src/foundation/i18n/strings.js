@@ -59,7 +59,11 @@ export const STRINGS = Object.freeze({
   },
 });
 
-export const resolveLanguage = () =>
-  (typeof navigator !== "undefined" && /^tr/i.test(navigator.language || "") ? "tr" : "en");
+// Saved product preference wins. URL/storage hints are deliberately not inputs.
+export const resolveLanguage = (saved = undefined, locale = typeof navigator !== "undefined" ? navigator.language : "en") => {
+  if (SUPPORTED_LANGUAGES.includes(saved)) return saved;
+  const base = String(locale || "").toLowerCase().split(/[-_]/)[0];
+  return SUPPORTED_LANGUAGES.includes(base) ? base : "en";
+};
 
 export const t = (key, lang = resolveLanguage()) => STRINGS[lang]?.[key] ?? STRINGS.en[key] ?? key;

@@ -1,0 +1,7 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 typecheck
+> tsc -p ./jsconfig.json
+
+src/foundation/tests/patternTests.js(3,35): error TS2305: Module '"../../../base44/shared/patternCalculation.js"' has no exported member 'calculateLunarTimeline'.
+src/foundation/tests/patternTests.js(3,59): error TS2305: Module '"../../../base44/shared/patternCalculation.js"' has no exported member 'formatPatternInstant'.

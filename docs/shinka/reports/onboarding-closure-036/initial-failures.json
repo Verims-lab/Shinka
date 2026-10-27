@@ -1,0 +1,126 @@
+[
+  {
+    "log": "type2.log",
+    "sha256": "dcd45921465a6b4aef5b29fc07090aaa3f0bdb16345bf25b86d5313c481341d7",
+    "failures": [
+      "src/foundation/tests/onboardingClosureFixture.js(26,6): error TS1005: ',' expected.",
+      "src/foundation/tests/onboardingClosureFixture.js(27,9): error TS1005: ':' expected.",
+      "src/foundation/tests/onboardingClosureFixture.js(27,87): error TS1005: ',' expected.",
+      "src/foundation/tests/onboardingClosureFixture.js(28,9): error TS1005: ':' expected.",
+      "src/foundation/tests/onboardingClosureFixture.js(28,79): error TS1005: ',' expected.",
+      "src/foundation/tests/onboardingClosureFixture.js(29,10): error TS1005: ':' expected.",
+      "src/foundation/tests/onboardingClosureFixture.js(29,193): error TS1005: ',' expected.",
+      "src/foundation/tests/onboardingClosureFixture.js(31,1): error TS1005: '}' expected."
+    ],
+    "historical": true
+  },
+  {
+    "log": "type3.log",
+    "sha256": "810b4129af7c24661b141fb1975d958f5c7aaa31f57ef3b6b3e5fd4ed74aa31c",
+    "failures": [
+      "src/foundation/tests/onboardingAuditUiTests.jsx(29,102): error TS2339: Property 'locale' does not exist on type '{ backend: { request: (action: any, payload?: {}) => Promise<any>; client: { auth: { me: () => Promise<{ id: string; role: string; }>; }; asServiceRole: { entities: any; }; }; rows: { [k: string]: any[]; }; ... 5 more ...; nativeCreated: (value: any) => void; }; ... 4 more ...; profile: any; }'.",
+      "src/foundation/tests/onboardingClosureFixture.js(29,71): error TS2345: Argument of type '{ functions: { invoke: (name: any, body: any) => Promise<{ data: any; }>; }; }' is not assignable to parameter of type 'Base44Client'.",
+      "src/foundation/tests/onboardingClosureTests.js(28,38): error TS2741: Property 'fetch' is missing in type '{ invoke: () => Promise<any>; }' but required in type 'FunctionsModule'.",
+      "src/foundation/tests/onboardingClosureTests.js(29,73): error TS2722: Cannot invoke an object which is possibly 'undefined'.",
+      "src/foundation/tests/onboardingClosureTests.js(31,42): error TS2741: Property 'fetch' is missing in type '{ invoke: () => Promise<{ data: { persisted: boolean; state: string; daily: { id: string; }; }; }>; }' but required in type 'FunctionsModule'."
+    ],
+    "historical": true
+  },
+  {
+    "log": "type4.log",
+    "sha256": "aa9d45688c0449bac6db27e76f5dd10beecfbe8b47319032c72f7f73b8fe74e1",
+    "failures": [
+      "src/foundation/tests/onboardingClosureTests.js(28,71): error TS2741: Property '__promisify__' is missing in type '(fn: any) => number' but required in type 'typeof setTimeout'."
+    ],
+    "historical": true
+  },
+  {
+    "log": "focused.log",
+    "sha256": "8400ad48c36cd0293aa0f0191b43c5d61800d46f20c9d8cb0c5533278331c0f3",
+    "failures": [
+      "page.evaluate: Execution context was destroyed, most likely because of a navigation."
+    ],
+    "historical": true
+  },
+  {
+    "log": "focused2.log",
+    "sha256": "8400ad48c36cd0293aa0f0191b43c5d61800d46f20c9d8cb0c5533278331c0f3",
+    "failures": [
+      "page.evaluate: Execution context was destroyed, most likely because of a navigation."
+    ],
+    "historical": true
+  },
+  {
+    "log": "focused3.log",
+    "sha256": "cfeefa9da9e14993b13feccba66f89b6f9a2b6019d06897b8ff9ca8212c8a9bd",
+    "failures": [
+      "FAIL OF03 Daily service deadline is bounded/cleared, late response is not success, fresh retry reads the same persisted daily — OF03:START:Illegal invocation",
+      "FAIL OF04 Consent path and partial daily create response loss reconcile one immutable day without another health write — OF04:START:expected rejection DAILY_OPERATION_FAILED; got unclassified error"
+    ],
+    "historical": true
+  },
+  {
+    "log": "ov02.log",
+    "sha256": "00a8b3d7c6c0ee08f990d80192e49bc9f00f5e301e7a2c727b163f7e5e3e3773",
+    "failures": [
+      "FAIL OV02 DOB-only real form/service/native backend -> Skip -> transient error -> Retry -> verified daily; no provider or consent — OV02:DOM_WAIT:()=>iu(n)===`ACTIVE_EXISTING_USER` FIRST_SHINKA_DEPENDENCY busy=false"
+    ],
+    "historical": true
+  },
+  {
+    "log": "focused4.log",
+    "sha256": "8400ad48c36cd0293aa0f0191b43c5d61800d46f20c9d8cb0c5533278331c0f3",
+    "failures": [
+      "page.evaluate: Execution context was destroyed, most likely because of a navigation."
+    ],
+    "historical": true
+  },
+  {
+    "log": "ov04.log",
+    "sha256": "8400ad48c36cd0293aa0f0191b43c5d61800d46f20c9d8cb0c5533278331c0f3",
+    "failures": [
+      "page.evaluate: Execution context was destroyed, most likely because of a navigation."
+    ],
+    "historical": true
+  },
+  {
+    "log": "focused5.log",
+    "sha256": "48ac5527833c9c7f7c614467f3c97cb19bb4b0f645e73b06f132d4a53e32060c",
+    "failures": [
+      "FAIL OF04 Consent path and partial daily create response loss reconcile one immutable day without another health write — OF04:START:fixture did not write before losing response",
+      "FAIL OV05 App time picker fits 320px/200% text and reduced height, scroll exposes all actions, focus and Escape close only layer — OV05:DOM_WAIT:Escape/focus changed form"
+    ],
+    "historical": true
+  },
+  {
+    "log": "focused6.log",
+    "sha256": "7d145a2e304ab0e3ff8425de572a540c28c58b21a55266c119ead1260a4bf2f9",
+    "failures": [
+      "FAIL OV04 Time keyboard and icon share HH:mm; invalid/incomplete values rejected, cancel preserves, Set and Clear are explicit — OV04:DOM_WAIT:()=>t.ownerDocument.querySelector(`[data-time-dialog]`) AUTHENTICATED_PROFILE_REQUIRED busy=false",
+      "FAIL OV05 App time picker fits 320px/200% text and reduced height, scroll exposes all actions, focus and Escape close only layer — OV05:DOM_WAIT:Escape focus not restored"
+    ],
+    "historical": true
+  },
+  {
+    "log": "focused-final.log",
+    "sha256": "6c9621a1d4866b6e2cd971f57a77aeb91bdd57893ca203b0810188213b9f51db",
+    "failures": [
+      "FAIL OV03 Authenticated ON-04 Back/Continue preserves draft and session; preparation Back ignores late daily and resumes readback — OV03:DOM_WAIT:()=>o FIRST_SHINKA_DEPENDENCY busy=true"
+    ],
+    "historical": true
+  },
+  {
+    "log": "lint-first.log",
+    "sha256": "6e0907f4e054e087f9a417fa4b36ca7f21c5406acf8b122944071520f54e072d",
+    "failures": [
+      "sh: eslint: command not found"
+    ],
+    "historical": true
+  },
+  {
+    "check": "git diff --cached --check",
+    "failure": "New delivery report line 3 Markdown hard-break trailing whitespace",
+    "resolution": "Removed trailing whitespace; staged whitespace gate rerun",
+    "historical": true
+  }
+]

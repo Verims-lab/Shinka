@@ -2,11 +2,25 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-035
-**Last Updated:** 2026-10-26
+**Current BuildMarker:** Buildmarker-038
+**Last Updated:** 2026-10-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 038 — four Calendar/Pattern corrections
+
+Started clean at Test/origin-Test 051e987; main ac0a1b4 was four commits behind, with no divergent local commits. 036/037 are completed historical packages, so this delivery advances once to 038 (active 034–038). Screenshots show the old dark palette; the deployed source/outcome was not inspected. Code confirms 60-second Pattern invalidation clears both cards; baseline-source controlled clock reproduces it. Normal receipt recovery was absent after reopen; passive reads could disable its retry, while bulk cancellation was unsuitable. These findings do not prove the photographed write outcome. New tests also guard withdrawal projection and late task ownership. Delivery evidence detected two new helper IDs colliding with existing Privacy IDs; Pattern helpers were renamed PF01/PF02, existing Privacy IDs retained, and canonical runner now rejects duplicate IDs before execution. Intermediate evidence is retained and excluded from final verification. Final Chromium/WebKit each pass 683/683 with 683 unique IDs, local Health 136 PASS / 13 hosted BLOCKED and successful save/retry/list/open. All mandatory gates pass; initial JS 483391/160915 gzip, CSS 77728/14239 under unchanged budgets. [One delivery report](reports/SHINKA_CALENDAR_PATTERN_038.md) retains initial checks, final evidence, scope and owner acceptance. No hosted incident is closed by local success.
+
+## 037 — five-item delivery record
+
+Name Skip now checks trimmed current draft, Home keeps gesture/Error Retry without normal refresh button, and application uses light-only palette. Existing ON-05 privacy removal is confirmed in source; the provided old 5/6 screenshot differs from current five-step source. Exact deployed bundle/cache cause remains unverified because live diagnosis is deferred. Calendar fresh requests already rejected future dates; confirmed gaps were native receipt recovery before validation and legacy future rows preventing read/repair. Focused correction/tests preserve owner/ACTIVE/consent/lifecycle checks and original grant time. No hosted mutation or data repair executed. [037 report and fresh verification](reports/SHINKA_ADDITIONAL_FIXES_037.md); 036 evidence remains historical and unchanged.
+
+037 final local evidence: Chromium **674/674**, WebKit **674/674**, zero page errors; local Health **136 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED**, save/retry/list/open passed. All mandatory gates and zero-advisory audit passed; initial JS 483391/160917 gzip, CSS 77728/14239, existing budgets unchanged. Hosted/device acceptance remains separate.
+
+## 036 — onboarding closure work and retained evidence
+
+Main ac0a1b4 was two commits ahead of clean local/remote Test 14bfc79; fast-forward and Test push preserved the user's Base44 changes. Applied six-item decision; Chromium/WebKit each 667/667 plus 6/6 actual-locale/time CLI scenarios. Local Health 136 PASS/13 expected hosted BLOCKED; save/retry/list/open verified. Fresh dependency, type/lint/build/repo/history/performance gates pass. Tested actual services/HTTP handlers/native persistence using isolated SDK IO. No evidence supports changing the daily generation engine or nullable backend profile contract. Native time input was replaced with accessible manual/app-modal input. New tests exposed modal form/history/observer setup issues and a missing fixture privacy table; first failures remain in the delivery evidence. Read-only logs returned 401, no live work was generated. [036 single delivery report](reports/SHINKA_ONBOARDING_CLOSURE_036.md) holds current results, limits and owner sync/publish acceptance.
 
 ## 035 — onboarding functional audit and corrections
 

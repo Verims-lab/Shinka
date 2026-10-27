@@ -2,13 +2,14 @@ import { APPROVED_COPY } from '../uiuxTables';
 
 const en = {
   unconfirmed: 'We couldn’t confirm the change. It may have been saved. Refresh and review your dates before retrying',
-  resumePending: 'Your previous save is incomplete. Retry to finish it with the consent already given.', pendingReview: 'A previous change is unconfirmed. Review the recorded dates below. Retry the same change, or keep these dates and clear pending attempts. Another open device may still finish its request', keepDates: 'Keep these dates and clear pending attempts', reviewed: 'Current dates confirmed; pending attempts cleared',
+  pendingReview: 'A previous change is not yet confirmed. Check and try again',
   title: 'Calendar', previous: 'Previous month', next: 'Next month', period: 'Period', predicted: 'Predicted', selected: 'Selected',
   mark: 'Mark period start', date: 'Period start date', editing: 'Editing period start', stopEditing: 'Cancel editing',
   loading: 'Loading your calendar', saving: 'Saving your changes', retry: 'Retry', reload: 'Refresh calendar',
   loadError: 'We couldn’t load your calendar. Please try again',
   unavailable: 'Changes are temporarily unavailable. Refresh before trying again',
   calculation: 'Predictions are unavailable for this cycle interval. Your recorded dates are unchanged',
+  futureRecord: 'A recorded period start is in the future. Correct or delete that record to restore predictions',
   estimateUnavailable: 'Your recorded dates are preserved. A prediction or current phase cannot be calculated because the latest completed intervals are longer than 60 days',
   changed: 'Your calendar has changed. Refresh it before trying again',
   saved: 'Period start saved', start: 'Recorded period start',
@@ -21,14 +22,14 @@ const en = {
 };
 const tr = {
   unconfirmed: 'Değişiklik doğrulanamadı; kaydedilmiş olabilir. Tekrar denemeden önce yenile ve tarihlerini kontrol et',
-  resumePending: 'Önceki kayıt işlemin yarım kaldı. Daha önce verdiğin rızayı koruyarak tamamlamak için tekrar dene',
-  pendingReview: 'Önceki bir değişiklik doğrulanamadı. Aşağıdaki kayıtlı tarihleri kontrol et. Aynı değişikliği tekrar dene veya bu tarihleri koruyup bekleyen denemeleri temizle. Başka bir açık cihazdaki istek hâlâ tamamlanabilir', keepDates: 'Bu tarihleri koru, bekleyen denemeleri temizle', reviewed: 'Mevcut tarihler onaylandı; bekleyen denemeler temizlendi',
+  pendingReview: 'Önceki değişiklik henüz doğrulanamadı. Kontrol edip tekrar dene',
   title: 'Takvim', previous: 'Önceki ay', next: 'Sonraki ay', period: 'Regl', predicted: 'Tahmini', selected: 'Seçili',
   mark: 'Regl başlangıcını işaretle', date: 'Regl başlangıç tarihi', editing: 'Düzenlenen regl başlangıcı', stopEditing: 'Düzenlemeyi iptal et',
   loading: 'Takvimin yükleniyor', saving: 'Değişikliklerin kaydediliyor', retry: 'Tekrar dene', reload: 'Takvimi yenile',
   loadError: 'Takvimin yüklenemedi. Lütfen tekrar dene',
   unavailable: 'Değişiklikler şu anda kullanılamıyor. Tekrar denemeden önce yenile',
   calculation: 'Bu döngü aralığı için tahmin hesaplanamıyor. Kayıtlı tarihlerin korunuyor',
+  futureRecord: 'Kayıtlı bir regl başlangıcı gelecekte. Tahminleri yeniden görmek için bu kaydı düzelt veya sil',
   estimateUnavailable: 'Kayıtlı tarihlerin korunuyor. Son tamamlanmış aralıklar 60 günden uzun olduğu için tahmin ve güncel evre hesaplanamıyor',
   changed: 'Takvimin değişti. Tekrar denemeden önce yenile',
   saved: 'Regl başlangıcı kaydedildi', start: 'Kayıtlı regl başlangıcı',

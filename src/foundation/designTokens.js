@@ -1,20 +1,15 @@
 // Shinka design token authority — reconciled with UI/UX Tasarım v1.1 (SRC-03).
-// CSS variables in src/index.css mirror `color` via `cssVars` (RGB channels). System theme decision: canonical UI/UX standards.
+// CSS variables in src/index.css mirror `color` via `cssVars` (RGB channels). Light-only decision: canonical UI/UX standards.
 // Accessibility amendment from the current mobile compatibility request. Original SRC-03 table stays intact.
 export const UIUX_COLOR_AMENDMENTS = Object.freeze({ mutedTaupe: '#77636C' });
 export const DESIGN_TOKENS = Object.freeze({
   status: "APPROVED_UIUX_V1_1",
   source: "SRC-03",
-  theme: "system",
+  theme: "light",
   color: Object.freeze({
     primaryPlum: "#6F415A", deepPlumText: "#4C263F", mutedMauve: "#93637B", dustyRose: "#D8A5AA",
     blushPink: "#F2D7D4", softLavender: "#E7DCE8", warmIvory: "#FFF8F3", softCream: "#F9EEE8",
     mutedTaupe: UIUX_COLOR_AMENDMENTS.mutedTaupe, divider: "#EDE3E3", white: "#FFFFFF",
-  }),
-  darkColor: Object.freeze({
-    primaryPlum: "#E0B0CD", deepPlumText: "#F2CEE5", ink: "#F6E6F0", mutedMauve: "#CEA2B9", dustyRose: "#A96D82",
-    blushPink: "#553041", softLavender: "#40314C", warmIvory: "#1E1720", softCream: "#2C212B",
-    mutedTaupe: "#C3AFBA", divider: "#544250", white: "#291F2A",
   }),
   // CSS variable → color token. Legacy-free aliases used by Foundation classes (plum, ink, line…).
   cssVars: Object.freeze({

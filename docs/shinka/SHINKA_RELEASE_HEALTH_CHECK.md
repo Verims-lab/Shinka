@@ -2,11 +2,31 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-035
-**Last Updated:** 2026-10-26
+**Current BuildMarker:** Buildmarker-038
+**Last Updated:** 2026-10-27
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-035.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-038.0; repository, synthetic and external evidence separated.
+
+## HC-038.0 — Calendar recovery and Pattern refresh/presentation
+
+Add 0 / update 7 / delete 0: H08-004 (RC01/RC02 saved native intents/readback/counts, retained NA08–13 and CF03); H08-007 (RC03/RC04 hung read, task ownership, controlled service deadline plus MI01–03); H12-027 (RC05 withdrawn/lifecycle privacy plus existing cases); H10-001 (PT07–09 strict future FULL/partial/IANA, original theme math retained); H13-015 (CU06/CU07 real native recovery UI); H13-017 (PU01–07 count-free order, two lunar fields, real hook 120s/300s refresh and partial coverage); H15-004 (PF01/PF02 clock/event coalescing, section retention and account isolation plus prior retry cases).
+
+Registry/backend plan remain **175 total / 149 in-app / 12 local / 14 external**. No removed IDs or weaker validation. Old five-node/count display assertions are replaced by the explicit 038 user presentation decision; historical reports/failures stay intact. Normal in-app probes use isolated SDK fixtures and controlled timers, never live period writes. Actual component/route geometry remains local-only. Full final browser results, required gates and hosted-prerequisite blocks are recorded in [038 single report](reports/SHINKA_CALENDAR_PATTERN_038.md). User runs published Full Health; no local or browser result substitutes for hosted/device evidence.
+
+038 final: Chromium/WebKit each **683/683**, 683 unique test IDs; local in-app Health **136 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED**, save/retry/list/open passed. All required gates pass. Intermediate duplicate helper IDs were corrected without renaming existing Privacy IDs; canonical runner rejects duplicates and CL10 verifies rejection. H12-037 retains its transport scope while PT14 now uses a controlled deadline. No prior failure is hidden.
+
+## HC-037.0 — date, name, theme and Home correction coverage
+
+Add 0 / update 8 / delete 0. Updated: H08-002 (CF01/02/04 native future rejection, server boundaries, legacy repair); H08-004 (CF03 pending/resume/APPLIED revalidation); H12-027 (CF05 transport/selected-date false-success rejection); H13-001 (single light token authority); H13-010 (light root/form scheme independent of OS); H13-012 (FX01 stale/empty name and auth save, retained OV/OU/036, actual OS matrix); H13-015 (FX02 future browsing/form/repair); H07-013 (Home no normal Refresh, pull/coalescing/error Retry retains daily). Existing H07-002 name normalization/max length, You/privacy/access regressions and all 036 cases remain. No failed case removed.
+
+Registry is the canonical foundationTests runner; CF01–CF05 join CALENDAR_TESTS, FX01/FX02 join local UI execution. Scope transfers and backend plan retain IDs (175 total / 149 in-app / 12 local / 14 external). The old dark expectations T39/T79/T81/H13-010 are replaced by positive light/token/form/watercolor assertions; actual mobile matrix emulates light/dark startup and runtime changes across all nine surfaces. Hosted Full Health and physical H13-013 remain owner-run. [Fresh result receipts](reports/SHINKA_ADDITIONAL_FIXES_037.md).
+
+037 final local evidence: Chromium **674/674**, WebKit **674/674**, zero page errors; local Health **136 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED**, save/retry/list/open passed. All mandatory gates and zero-advisory audit passed; initial JS 483391/160917 gzip, CSS 77728/14239, existing budgets unchanged. Hosted/device acceptance remains separate.
+
+## HC-036.0 — current local closure scope
+
+Chromium and WebKit each **667/667 PASS**, 6/6 actual-locale/time CLI scenarios and zero page errors. Local in-app Health: 136 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED; save/retry/list/open verified. Mandatory gates passed. Current execution is recorded in [036 single delivery report](reports/SHINKA_ONBOARDING_CLOSURE_036.md); 035 totals below are historical and are not reused. No IDs added/deleted; H07-003 adds OF02 (DOB-only/NULL/no provider), H07-006 adds OF01 (locale/persisted preference), H09-001 adds OF03/OF04 (deadline/lost-create recovery), H07-013 updates preparation UI coverage, H13-012 adds OV01–OV06 and the actual-locale/time CLI matrix, H13-013 names app-time rather than native-time acceptance. Backend plan retains 175 total / 149 in-app / 12 local / 14 external; version changes with semantics to HC-036.0. Local UI cases stay local and are actually wired to the canonical runner. Content policy explicitly extends through 036 with unchanged predicates. User runs published Full Health; physical and hosted incident acceptance remain open. Previous failures are retained.
 
 ## HC-035.0 — local functional verification complete; external acceptance pending
 

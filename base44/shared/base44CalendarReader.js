@@ -62,6 +62,7 @@ export function calendarReader(client, principal) {
   };
   return {
     access,
+    preferences: () => one('user_preferences'),
     snapshot,
     // Best-effort detection of read races, NOT a native snapshot transaction.
     async confirmedSnapshot() {

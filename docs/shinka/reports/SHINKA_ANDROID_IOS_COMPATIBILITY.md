@@ -1,5 +1,9 @@
 # Shinka Android / iOS compatibility evidence
 
+## 037 current acceptance policy
+
+System dark no longer changes Shinka colors. Fresh local matrix covers light/dark OS startup and live changes with the same light tokens/form scheme across onboarding, cycle, Home, Calendar, Pattern, You, privacy, admin and Health; 200% text/contrast/safe area checks remain. Home has no normal Refresh target; pull, last confirmed content and error Retry remain. FX01/02 cover name and future-date interactions. The old screenshot with 5/6 + privacy differs from current source; hosted bundle/cache matching and physical OS dialogs remain unverified. Historical 026/027 measurements below are preserved as evidence, not current dark acceptance. See [037 report](SHINKA_ADDITIONAL_FIXES_037.md).
+
 ## 032 — native setup and device acceptance preparation
 
 [Native Notification Readiness 032](SHINKA_NATIVE_NOTIFICATION_READINESS_032.md) is the current setup inventory and owner runbook, with two-stage physical acceptance marked NOT_RUN. No notification/UI runtime change, native bridge, credential or real sending is added. H14-901/H16-901 descriptions are clarified without closing them. Earlier package evidence below stays historical; it is not a 032 execution result.
@@ -30,7 +34,7 @@ This section supersedes historical light-only/mobile native-select presentation 
 | Finding / recommendation | Implemented decision | Executed evidence path | Remaining device/platform acceptance |
 |---|---|---|---|
 | Insets, bars and keyboard reach | Document scroll remains. Env-backed top/side insets; ProductNavigation owns the only product bottom inset; no fixed save bar or zoom cap. | Retained mobile matrix plus 026 simulated 24/28/28/34px inset accounting; narrow/landscape/reduced viewport and 200% text. Simulation proves arithmetic, not OS insets. | Physical notch/system bars, rotating keyboard, OS text scaling. |
-| System light/dark | One media-query owner applies initial/live root class and color-scheme. Separate semantic dark palette, on-primary/control tokens, chart colors; subtle light secondary-text contrast correction. | Both engines measure actual text/control/focus contrast and root changes on product/admin/Health surfaces. | Native wrapper status/navigation bars and forced-color/device settings. |
+| Light-only (037 supersedes 026 system theme) | No media listener/dark palette; light bootstrap/form scheme with retained central accessibility tokens. | Both engines measure invariant colors at OS light/dark startup and changes, text/control/focus contrast on product/admin/Health surfaces. | Native wrapper status/navigation bars and forced-color/device settings. |
 | Android Back and layer dismissal | Real browser history: one same-URL entry per open layer; shared native modal focus/Back dismissal. No keydown hardware emulation or root history trap. Pending requests remain controller-owned. | Drawer/dialog focus and Back before route traversal; Back/Forward, logout/back and reduced-motion route regression. | Android system/predictive Back in the actual Base44 wrapper; iOS swipe-back and OS eviction. |
 | Overscroll/touch | Vertical containment on the document and modal/list scroll owners. Passive single-touch observation, no touchmove preventDefault. Text remains selectable. Unsupported containment keeps accessible Refresh only. | Computed scrolling owner/Y containment, bounded list scroll, threshold/multi-touch rejection and no duplicate refresh. | Native bounce/pull-to-refresh interaction and physical pinch/horizontal navigation. |
 | Mobile birthplace selection | Lazy native dialog bottom sheet at narrow/coarse-pointer viewports; desktop select retained. Existing single paged controller/backend ID resolution remains. Vaul was evaluated; existing dialog avoids another gesture/scroll engine. | U04/U09–U12 preserve hierarchy/empty/error/retry/stale/NULL behavior; real 50-row long/homonym list, next page, keyboard/selected labels/return focus and Back measured. | VoiceOver/TalkBack spoken labels, native keyboard and provider latency. |
@@ -75,7 +79,7 @@ Representative WebKit synthetic views: [Home dark at 200%](mobile-026/home-dark-
 
 ### Owner acceptance after the existing sync/publish flow (maximum five steps)
 
-1. In TR and EN, open Home, Calendar, Pattern and You; switch the phone between light/dark while the app stays open. Rotate and enlarge text. Confirm all content/buttons remain reachable above system bars and with the keyboard open.
+1. In TR and EN, open Home, Calendar, Pattern and You; switch the phone between light/dark while the app stays open. Rotate and enlarge text. Confirm the app stays light and all content/buttons remain reachable above system bars and with the keyboard open.
 2. In ON-04 or You editing, open country/region/settlement sheets; try a long list/page, Back, close and keyboard selection. Verify the saved birthplace stays until explicitly changed/cleared.
 3. On Home and Calendar, pull at the top and use Refresh. Confirm today's Shinka stays the same, Calendar's unsaved date stays, and offline retry keeps the last view. Never interpret an unknown save as rollback; use the same-change Check/Retry.
 4. Open a confirmation then use system Back; verify the layer closes before the page. Try browser Back/Forward, reduced motion and sign out; prior private content must not return. Repeat native wrapper system Back/status-bar checks separately if that host is available.

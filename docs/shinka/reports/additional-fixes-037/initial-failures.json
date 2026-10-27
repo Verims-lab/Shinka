@@ -1,0 +1,60 @@
+{
+  "preserved": true,
+  "runs": [
+    {
+      "stage": "typecheck-initial.log",
+      "sha256": "1ed9268f84a918810d8cf920643e5883243a97562ff11ec186707cd28369d73f",
+      "failures": [
+        "src/foundation/tests/cssContractTests.js(90,23): error TS2488: Type 'NodeListOf<Element>' must have a '[Symbol.iterator]()' method that returns an iterator."
+      ]
+    },
+    {
+      "stage": "typecheck-2.log",
+      "sha256": "a90637a57f3119b3824955655eef852139c9c544c5a2243f4b5754d1d6baf3a4",
+      "failures": [
+        "src/foundation/tests/additionalFixUiTests.jsx(45,61): error TS2339: Property 'click' does not exist on type 'Element'.",
+        "src/foundation/tests/additionalFixUiTests.jsx(46,67): error TS2339: Property 'dataset' does not exist on type 'Element'.",
+        "src/foundation/tests/additionalFixUiTests.jsx(47,53): error TS2339: Property 'disabled' does not exist on type 'Element'.",
+        "src/foundation/tests/additionalFixUiTests.jsx(51,93): error TS2339: Property 'click' does not exist on type 'Element'.",
+        "src/foundation/tests/additionalFixUiTests.jsx(55,61): error TS2339: Property 'click' does not exist on type 'Element'.",
+        "src/foundation/tests/additionalFixUiTests.jsx(56,127): error TS2339: Property 'disabled' does not exist on type 'Element'.",
+        "src/foundation/tests/additionalFixUiTests.jsx(57,136): error TS2339: Property 'disabled' does not exist on type 'Element'."
+      ]
+    },
+    {
+      "stage": "focused-initial.log",
+      "sha256": "1ac5c436caaaaf8e98ef73c5be12db2076950ddbb60318233ee24f7b2f3be8c7",
+      "failures": [
+        "FAIL T81 Light onboarding keeps watercolor layers; plain product/internal containers stay flat \u2014 T81:START:approved light surface"
+      ]
+    },
+    {
+      "stage": "focused-2.log",
+      "sha256": "37c8b70f2c89bc9068674dacfd20e297c64f534f9c6912f2906bdbda94c1ad73",
+      "failures": [
+        "FAIL FX01 ON-02 stale enabled handler cannot skip a just-entered name; blank skip and auth-return save remain safe \u2014 FX01:DOM_WAIT:empty skip",
+        "FAIL T81 Light onboarding keeps watercolor layers; plain product/internal containers stay flat \u2014 T81:START:approved light surface"
+      ]
+    },
+    {
+      "stage": "chromium-initial-full.log",
+      "sha256": "bee443aa6e3803fbe2db003d6ae871fdf0da8cad02e38f316d3016a1321c5cfd",
+      "failures": [
+        "FAIL U02 Introduction \u2192 name \u2192 sign-in; invalid name stays inline; skip clears it \u2014 U02:INTERACTION:contract failed"
+      ]
+    },
+    {
+      "stage": "webkit-initial-full.log",
+      "sha256": "fccbc82e4dbe3cae7ca2a560091e687353328f9828850fc9ecf3af0e456204d7",
+      "failures": [
+        "FAIL U02 Introduction \u2192 name \u2192 sign-in; invalid name stays inline; skip clears it \u2014 U02:INTERACTION:contract failed"
+      ]
+    }
+  ],
+  "resolutions": [
+    "Narrow DOM node typing / iterable conversion only; runtime unchanged",
+    "FX01 waits for the actual locale DOM commit, no fixed sleep or timeout increase",
+    "T81 compares the existing approved watercolor background variable, not the distinct base ivory token",
+    "U02 retains invalid-name/error assertions and now requires explicitly clearing the field before Skip"
+  ]
+}

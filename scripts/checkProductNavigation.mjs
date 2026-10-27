@@ -11,7 +11,7 @@ export async function checkProductNavigation(page, origin) {
   await page.locator('nav a').nth(1).hover();
   await page.locator('nav a').nth(2).focus();
   assert.deepEqual(await calls(), initial, 'navigation focus/hover triggered backend prefetch');
-  const ready = { calendar: '#calendar-start-date', pattern: '[data-lunar-timeline]', you: '[data-you-consent]', home: '[data-daily-id]' };
+  const ready = { calendar: '#calendar-start-date', pattern: '[data-lunar-summary]', you: '[data-you-consent]', home: '[data-daily-id]' };
   for (const to of ['calendar','pattern','you','home','pattern','calendar','home','you']) {
     await page.locator(to === 'you' ? 'a[data-profile-trigger]' : `nav a[href^="${to === 'home' ? '/' : '/' + to}?lang="]`).first().click();
     await page.locator(ready[to]).waitFor();

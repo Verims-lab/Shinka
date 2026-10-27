@@ -1,0 +1,144 @@
+{
+  "chromium": {
+    "browser": {
+      "engine": "chromium",
+      "version": "156.0.8078.4",
+      "physicalDevice": false
+    },
+    "tests": 683,
+    "passed": 683,
+    "failed": 0,
+    "pageErrors": [],
+    "catalog": {
+      "version": "HC-038.0",
+      "suites": 16,
+      "cases": 175,
+      "localRegression": 12,
+      "current": 149,
+      "future": 0,
+      "external": 14
+    },
+    "healthCounts": {
+      "PASS": 136,
+      "BLOCKED": 13
+    },
+    "healthPersistence": {
+      "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+      "saveState": "SAVED",
+      "retrySave": true,
+      "historyListed": true,
+      "privateReportOpened": true
+    },
+    "patternRouteChecks": 22
+  },
+  "webkit": {
+    "browser": {
+      "engine": "webkit",
+      "version": "27.2",
+      "physicalDevice": false
+    },
+    "tests": 683,
+    "passed": 683,
+    "failed": 0,
+    "pageErrors": [],
+    "catalog": {
+      "version": "HC-038.0",
+      "suites": 16,
+      "cases": 175,
+      "localRegression": 12,
+      "current": 149,
+      "future": 0,
+      "external": 14
+    },
+    "healthCounts": {
+      "PASS": 136,
+      "BLOCKED": 13
+    },
+    "healthPersistence": {
+      "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+      "saveState": "SAVED",
+      "retrySave": true,
+      "historyListed": true,
+      "privateReportOpened": true
+    },
+    "patternRouteChecks": 22
+  },
+  "scope": "LOCAL_SYNTHETIC_ONLY",
+  "buildMarker": "Buildmarker-038",
+  "healthCatalog": "HC-038.0",
+  "gates": [
+    {
+      "command": "npm ci",
+      "exitCode": 0
+    },
+    {
+      "command": "npm ls --all --json",
+      "exitCode": 0
+    },
+    {
+      "command": "npm audit --json",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run security:deps",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run health:repo",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/recordBuild.mjs --check",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verifySessionStability.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/measureMaintenance.mjs /private/tmp/shinka-038/performance-final",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/measurePatternRefresh.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run test:foundation",
+      "exitCode": 0
+    },
+    {
+      "command": "FOUNDATION_BROWSER=webkit npm run test:foundation",
+      "exitCode": 0
+    }
+  ],
+  "initialJS": {
+    "raw": 483391,
+    "gzip": 160915
+  },
+  "css": {
+    "raw": 77728,
+    "gzip": 14239
+  },
+  "sourceFileCount": 521,
+  "healthDelta": {
+    "added": 0,
+    "updated": 7,
+    "deleted": 0
+  },
+  "hosted": "NOT_RUN_OWNER_ACCEPTANCE",
+  "physicalAndroidIOS": "NOT_RUN",
+  "backendFindings": "12 OPEN / USER-DEFERRED"
+}

@@ -1,3 +1,5 @@
+import { CALENDAR_RECOVERY_TESTS } from './calendarRecoveryTests';
+import { CALENDAR_FUTURE_TESTS } from './calendarFutureTests';
 import { CYCLE_RANGE_TESTS } from './cycleRangeTests';
 import { check } from './dataModelTests';
 import { calendarFixture, CALENDAR_NOW } from './calendarFixture';
@@ -15,6 +17,8 @@ const period = (id, date) => ({ id, user_id: 'ownerA', period_start_date: date }
 const read = f => f.request('read');
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CALENDAR_TESTS = [
+ ...CALENDAR_RECOVERY_TESTS,
+ ...CALENDAR_FUTURE_TESTS,
  ...CYCLE_RANGE_TESTS,
  ['CA01', 'Source 28/5 phases, three future cycles, real/predicted basis and NULL inputs', () => {
    const settings = { period_duration_days: null, initial_cycle_length_days: null };

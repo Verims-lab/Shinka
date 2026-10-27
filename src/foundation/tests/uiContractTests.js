@@ -54,7 +54,7 @@ export const UI_CONTRACT_TESTS = [
     assert(k.primaryMinHeight === 52 && k.inputMinHeight === 52 && k.inputPaddingX === 16 && k.primaryRadius === 16 && k.disabledOpacity === 0.45 && DESIGN_TOKENS.pagePaddingX === 20, "geometry");
     assert(JSON.stringify(DESIGN_TOKENS.spacing) === "[4,8,12,16,20,24,32,40]" && JSON.stringify(DESIGN_TOKENS.radii) === '{"sm":12,"md":16,"lg":20,"pill":999}', "scale");
   }],
-  ["T39", "System theme has a separate semantic dark palette", () => assert(DESIGN_TOKENS.theme === "system" && Object.keys(DESIGN_TOKENS.darkColor).length === 12, "system palette")],
+  ["T39", "Approved light-only theme has one semantic palette", () => assert(DESIGN_TOKENS.theme === "light" && !Object.hasOwn(DESIGN_TOKENS, "darkColor"), "light palette")],
   ["T40", "Icon-only controls require accessible labels", () => {
     const d = document.createElement("div");
     const btn = document.createElement("button");

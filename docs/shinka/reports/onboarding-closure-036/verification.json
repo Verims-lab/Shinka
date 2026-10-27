@@ -1,0 +1,166 @@
+{
+  "package": "Buildmarker-036",
+  "healthCatalog": "HC-036.0",
+  "scope": "LOCAL_VERIFIED / USER_PUBLISH_AND_HOSTED_INCIDENT_ACCEPTANCE_PENDING",
+  "measuredAt": "2026-10-27T17:39:57.541270+00:00",
+  "baseline": "ac0a1b4",
+  "branch": "Test",
+  "preflight": {
+    "localRemoteTest": "14bfc7922ec9fb1bae0dc931495f5fd9dfa25cba",
+    "mainAhead": 2,
+    "action": "fast-forward main into Test; push Test"
+  },
+  "checks": [
+    {
+      "command": "npm ci",
+      "exitCode": 0,
+      "logSha256": "84a745d1cf79d95e6443b4c56f53db02f7af8b36acfb014bf8bec47a2c7d690e"
+    },
+    {
+      "command": "npm ls --all --json",
+      "exitCode": 0,
+      "logSha256": "d761edb559aa43b9c017ba35e4351da2bf21940e45eaf575ae2465da81f6a289"
+    },
+    {
+      "command": "npm audit --json",
+      "exitCode": 0,
+      "logSha256": "637d5aa27adb8054ebb92254957be8fb48a1bac7399071f011680879ad5e2d95"
+    },
+    {
+      "command": "npm run security:deps",
+      "exitCode": 0,
+      "logSha256": "ba5a55cc48eca8e7c392d3754b663e0bd7b6233525429a1d8a5d44768df5b507"
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "logSha256": "2e1c7db5ac28fb733e8c1d3d7c2c3bf8a4bb6628ed45eb56ce2e7328388598de"
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "logSha256": "8423c1a66df3f2a021733ae12f217befbeb04b23971e056cb4e3739c7fb936cf"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "logSha256": "5da54863b93f74a0873b18afa0861971a401a962e4b4c5d65d36ee0c9f8500e4"
+    },
+    {
+      "command": "npm run health:repo",
+      "exitCode": 0,
+      "logSha256": "2a7eaeff7619422d97af2c023652a29100b0bf5e956b3eba1cf9d7ea293f5818"
+    },
+    {
+      "command": "node scripts/recordBuild.mjs --check",
+      "exitCode": 0,
+      "logSha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f"
+    },
+    {
+      "command": "node scripts/verifySessionStability.mjs",
+      "exitCode": 0,
+      "logSha256": "063fc7308e6a494ba80b203935883bfa0fce6dec6d0503edd41b438349a1625b"
+    },
+    {
+      "command": "node scripts/measureMaintenance.mjs /private/tmp/shinka-036-performance-final",
+      "exitCode": 0,
+      "logSha256": "a5906332bdbf580043ff37aeaeeab2d2fb7a70bec48004950aba5277fbfbf72d"
+    },
+    {
+      "command": "npm run test:foundation",
+      "exitCode": 0,
+      "logSha256": "86aa33724ec583ed29b64fc6799e3cbb3f42510ff8ce2227c8937443967f6e02"
+    },
+    {
+      "command": "FOUNDATION_BROWSER=webkit npm run test:foundation",
+      "exitCode": 0,
+      "logSha256": "36e22c30fcc8f1665dcd183edb04103509a2ca7911295167c16313a58749b5a6"
+    },
+    {
+      "command": "npm run health:repo (final canonical prose)",
+      "exitCode": 0,
+      "logSha256": "2a7eaeff7619422d97af2c023652a29100b0bf5e956b3eba1cf9d7ea293f5818"
+    }
+  ],
+  "browser": {
+    "chromium": {
+      "pass": 667,
+      "fail": 0,
+      "pageErrors": 0,
+      "additionalOnboardingScenarios": 6
+    },
+    "webkit": {
+      "pass": 667,
+      "fail": 0,
+      "pageErrors": 0,
+      "additionalOnboardingScenarios": 6
+    }
+  },
+  "health": {
+    "catalog": 175,
+    "inApp": 149,
+    "local": 12,
+    "external": 14,
+    "localInAppPass": 136,
+    "localInAppBlocked": 13,
+    "fail": 0,
+    "saveRetryListOpen": true,
+    "added": [],
+    "updated": [
+      "H07-003",
+      "H07-006",
+      "H07-013",
+      "H09-001",
+      "H13-012",
+      "H13-013"
+    ],
+    "removed": []
+  },
+  "readOnlyDiagnosis": {
+    "method": "Base44 CLI logs dailyMessage prod 2026-10-27 bounded 20 error rows",
+    "result": "API_ERROR",
+    "statusCode": 401,
+    "userDecision": "Defer live diagnosis and complete local delivery",
+    "incidentRootCause": "UNCONFIRMED",
+    "deployedSourceFingerprint": "NOT_VERIFIED"
+  },
+  "notRun": [
+    "live Full Health",
+    "live product mutation/reset/deletion",
+    "content or Moon import",
+    "GeoNames probe",
+    "notification send",
+    "main merge",
+    "publish",
+    "physical Android",
+    "physical iOS"
+  ],
+  "deferredBackendFindings": 12,
+  "activeBuilds": [
+    "032",
+    "033",
+    "034",
+    "035",
+    "036"
+  ],
+  "source": {
+    "testedManifest": "tested-source-manifest.json",
+    "afterBrowserChanges": [
+      "src/foundation/buildLedgerData.js"
+    ],
+    "explanation": "Only ledger status/notes and documentation/evidence completed after browser runs. Final build/performance/repo checks include ledger.",
+    "finalLedgerSha256": "e2f39006c20bb73ab78b751c515125dac3f43e8f4fdb9e140e07618fe995cdc0"
+  },
+  "performance": {
+    "initialJS": {
+      "raw": 483699,
+      "gzip": 160983
+    },
+    "css": {
+      "raw": 79943,
+      "gzip": 14860
+    }
+  },
+  "sourceCommit": "733956db4caacede320e9301e10e568ed7ad06be",
+  "deliveryReceipt": "This following docs-only commit binds the tested source commit; main/publish remain user-owned."
+}

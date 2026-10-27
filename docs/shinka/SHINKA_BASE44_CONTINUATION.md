@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-035
+**Current BuildMarker:** Buildmarker-038
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## 038 — owner rollout and remaining hosted acceptance
+
+No entity migration. Owner syncs the complete matching shared graph and native entries, especially `calendar`, `pattern`, `applicationSession` and `internalHealth`, before frontend assets. Lunar response and Calendar recovery projection must deploy with their matching frontend. Do not mix 037 frontend with 038 lunar response. Agent delivers Test only; owner handles main merge/publish. No schema/function push, live mutation/import/Health/scan or notification/scheduler call in this package. Existing 12 backend findings stay OPEN / USER-DEFERRED. Hosted Calendar incident, original First Shinka/ON-05 and physical Android/iOS acceptance remain open. [Four-item report and in-app checks](reports/SHINKA_CALENDAR_PATTERN_038.md).
 
 ## Current delivery — 035 onboarding audit
 
@@ -160,11 +164,11 @@ Every candidate must validate owner, local day, persisted business `generated_at
 
 ### Calendar receipts and recovery
 
-Backend-only UserCalendarAction stores owner/action ID, canonical intent fingerprint, base/result revision, operation, target period ID, desired/previous dates, initial_grant, persisted grant_at, status and started_at. It contains **health data**, not audit metadata; direct CRUD is false. Same action with different input rejects. New action ID with the same single pending fingerprint resumes that intent after reload. New requests compare the displayed revision. Edit/delete include exact previous date in the filter and require a one-row result; readback verifies the outcome. Losing response after mutation leaves the receipt pending; retry verifies already-saved desired state before advancing it, rather than applying the mutation again.
+Backend-only UserCalendarAction stores owner/action ID, canonical intent fingerprint, base/result revision, operation, target period ID, desired/previous dates, initial_grant, persisted grant_at, status and started_at. It contains **health data**, not audit metadata; direct CRUD is false. Same action with different input rejects. 038 UI reload uses the original saved action ID/base revision for a unique pending intent. The existing single-fingerprint fallback remains for older submitted requests; it is not used to mint a new UI retry ID. New requests compare the displayed revision. Edit/delete include exact previous date in the filter and require a one-row result; readback verifies the outcome. Losing response after mutation leaves the receipt pending; retry verifies already-saved desired state before advancing it, rather than applying the mutation again.
 
 Initial explicit add+consent persists a grant intent time before current consent/event/period. Subsequent retries reuse this time and verify the matching current grant. Missing event after current consent is recoverable: read returns a limited recovery view, with no predictions/health history presented as complete; the user's Retry sends the owner-scoped receipt ID and resumes. No new consent instant, fabricated grant or auto-grant on selection occurs. A withdrawn grant still requires valid completed deletion, matching withdrawal evidence and no residual health state. Ordinary dates remain YYYY-MM-DD; >60-day actual intervals are preserved under OD-012. No physical UserCyclePrediction/UserCyclePhaseDay writes occur; old caches are ignored, retained until approved cleanup. Receipts must also be removed by future health-withdrawal cleanup (that workflow is not implemented here).
 
-Visible conflicting pending intents suppress predictions and show review instructions. “Keep these dates and clear pending attempts” marks pending receipts CANCELLED after revision check and checks no pending rows remain; it never changes actual dates. Close other clients before confirming: cancellation cannot recall an SDK call already sent. A subsequent read detects pending/invalid actual state; revision detection cannot prove that no undetectable race occurred. Conflicting intents retain previous/desired dates for authorized recovery. Duplicate actual-date rows or invalid spacing remain a hard conflict: an operator reviews owner-scoped receipts and actual IDs with the user under a maintenance window, preserves evidence, and makes only an explicitly approved correction. There is no arbitrary deletion or automatic date clamping.
+038: a unique pending add/edit/delete intent offers one explicit same-ID resume after reload; confirmed data and original grant time are preserved. Visible competing intents suppress predictions and require review. Bulk acknowledge/“clear pending attempts” is removed from both UI and backend; no automatic deletion or cancellation unlocks the screen. A transmitted SDK call cannot be recalled. A subsequent read detects pending/invalid actual state; revision detection cannot prove that no undetectable race occurred. Conflicting intents retain previous/desired dates for authorized recovery. Duplicate actual-date rows or invalid spacing remain a hard conflict: an operator reviews owner-scoped receipts and actual IDs with the user under a maintenance window, preserves evidence, and makes only an explicitly approved correction. There is no arbitrary deletion or automatic date clamping.
 
 ### Reset continuation
 

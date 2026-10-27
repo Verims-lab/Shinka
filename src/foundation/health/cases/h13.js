@@ -17,7 +17,7 @@ export const H13_CASES = [
   c("H13-001", "Design token source exists", "Token module defines color, typography, spacing, radii, control sizes, touch target, icons, motion and card.", async () => {
     const keys = ["color", "typography", "spacing", "radii", "control", "touchTargetMin", "iconFamily", "motion", "card"];
     const missing = keys.filter((k) => DESIGN_TOKENS[k] === undefined);
-    return verdict(missing.length === 0 && DESIGN_TOKENS.theme === "system", ev(CLASS.STATIC, "src/foundation/designTokens.js", { missing, theme: DESIGN_TOKENS.theme, status: DESIGN_TOKENS.status }, { missing: [], theme: "system" }, "Token inspection"));
+    return verdict(missing.length === 0 && DESIGN_TOKENS.theme === "light", ev(CLASS.STATIC, "src/foundation/designTokens.js", { missing, theme: DESIGN_TOKENS.theme, status: DESIGN_TOKENS.status }, { missing: [], theme: "light" }, "Token inspection"));
   }),
   c("H13-002", "Minimum 44x44 touch target", "Token is 44 and every rendered Health control is at least 44x44.", async () => {
     if (!root()) return noRoot();

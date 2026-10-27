@@ -1,0 +1,41 @@
+{
+  "scope": "LOCAL_CONTROLLED_CLOCK_SYNTHETIC_NO_NETWORK",
+  "before": {
+    "source": "051e98779fca00b9c3cb139d75b7cde84317337d",
+    "sha256": {
+      "src/features/pattern/patternController.js": "b841031baa8015df7ba1a0fdb08e82d762933310c124b53063e6dc553091b0a3",
+      "src/features/pattern/usePattern.js": "4fcb3af1630f37dc93aaa002c35f4b22001726887def1b248243e3870f1653f2"
+    },
+    "initialCalls": 2,
+    "at120": {
+      "calls": 6,
+      "blankTransitions": 6
+    },
+    "at300": {
+      "calls": 12,
+      "blankTransitions": 15
+    },
+    "burstCalls": 6,
+    "remainingTimers": 0
+  },
+  "after": {
+    "source": "working-source",
+    "sha256": {
+      "src/features/pattern/patternController.js": "ea428443205323b1c0a8208128475b356fa987428d7a8c7ea2c2fbcd3f111a2d",
+      "src/features/pattern/patternLifecycle.js": "4f1b4f450b9a285ebc1918cf1d5e2f6e2ea2f8071cd45ee6bf22bbcef7a09dc5",
+      "src/features/pattern/usePattern.js": "63b6097b4d60f878ab161e7543b3e7ee60ea39b12e54b310594fea686f2b1ff1"
+    },
+    "initialCalls": 2,
+    "at120": {
+      "calls": 2,
+      "blankTransitions": 0
+    },
+    "at300": {
+      "calls": 4,
+      "blankTransitions": 0
+    },
+    "burstCalls": 2,
+    "remainingTimers": 0
+  },
+  "limitations": "Request counts and blank transitions only; no live speed, credit or physical-device claim. React lifecycle wiring stubbed; real hook/component covered by PU06."
+}

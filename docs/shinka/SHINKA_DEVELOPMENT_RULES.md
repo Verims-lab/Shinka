@@ -2,11 +2,19 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-035
-**Last Updated:** 2026-10-26
+**Current BuildMarker:** Buildmarker-038
+**Last Updated:** 2026-10-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
+
+## 037 — focused five-item package
+
+036 is complete; increment once to 037 / HC-037.0 and keep active 033–037. Preserve previous six fixes/receipts and 12 USER-DEFERRED backend findings. Fresh local Chromium/WebKit and mandatory gates; no live Full Health/provider diagnosis/user mutation/reset/delete/import/push/notification. Test only; owner merges/syncs/publishes and performs separate hosted/physical acceptance. Record initial failures separately from final passing evidence. [Single delivery report](reports/SHINKA_ADDITIONAL_FIXES_037.md).
+
+## 036 — six focused corrections
+
+Advance exactly once from 035 to Buildmarker-036 / HC-036.0; retain 032–036. Latest six-item request supersedes only manual onboarding locale and ON-04 no-Back. Preserve 035 visual/search/safety scope, native authority, source content and deferred 12 backend findings. Complete code/tests/execution/Health/docs and fresh Chromium/WebKit, install/tree/audit, type/lint/build/repo/history/performance gates. Narrow read-only daily logs returned 401; this is not incident closure. No live Health, provider probe, import, user mutation, push or main publish. [036 single delivery report](reports/SHINKA_ONBOARDING_CLOSURE_036.md).
 
 ## Current package — 035 onboarding functional audit
 

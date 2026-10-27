@@ -1,3 +1,5 @@
+import { ADDITIONAL_FIX_UI_TESTS } from './additionalFixUiTests';
+import { ONBOARDING_CLOSURE_UI_TESTS } from './onboardingClosureUiTests';
 import { ONBOARDING_AUDIT_UI_TESTS } from './onboardingAuditUiTests';
 import { NOTIFICATION_MACHINE_TESTS } from './notificationMachineTests';
 import { NOTIFICATION_PERFORMANCE_TESTS } from './notificationPerformanceTests';
@@ -19,7 +21,7 @@ import { CLOSURE020_READINESS_TESTS, CLOSURE020_REMOVAL_TESTS } from './closure0
 import { LOCAL_RUNNER_TESTS } from './localRunnerTests';
 import { AUDIT019_DELETION_TESTS, AUDIT019_INTEGRITY_TESTS } from './audit019Tests';
 import { CLOSURE018_TESTS } from './closure018Tests';
-import { executeTest } from '../testExecution';
+import { executeTest, assertUniqueTestIds } from '../testExecution';
 import { CLOSURE017_TESTS } from './closure017Tests';
 import { NATIVE_TESTS } from './nativeTests';
 import { ADMIN_TEST_TOOLS_TESTS } from './adminTestToolsTests';
@@ -151,7 +153,9 @@ export const FOUNDATION_TESTS = [
 
 export async function runFoundationTests({ signal = undefined, ids = undefined } = {}) {
   const out = [];
-  for (const [id, name, fn] of [...FOUNDATION_TESTS, ...PRIVACY_TESTS, ...SECURITY_028_UI_TESTS, ...PRIVACY_UI_TESTS, ...CLOSURE020_READINESS_TESTS, ...CLOSURE020_REMOVAL_TESTS, ...LOCAL_RUNNER_TESTS, ...AUDIT019_DELETION_TESTS, ...AUDIT019_INTEGRITY_TESTS, ...CLOSURE018_TESTS, ...CLOSURE017_TESTS, ...UI_CONTRACT_TESTS, ...HARDENING_TESTS, ...CSS_CONTRACT_TESTS, ...SESSION_STABILITY_TESTS, ...SESSION_INTEGRATION_TESTS, ...TEST_TOOLS_PACING_TESTS, ...DATA_MODEL_TESTS, ...SECURITY_TESTS, ...AUTH_TESTS, ...ONBOARDING_TESTS, ...ONBOARDING_UI_TESTS, ...ONBOARDING_AUDIT_UI_TESTS, ...PRODUCTION_ONBOARDING_TESTS, ...ONBOARDING_DECISION_TESTS, ...HEALTH_CLOSURE_TESTS, ...AUTH_PROBE_TESTS, ...MAINTENANCE_TESTS, ...ADMIN_NAV_TESTS, ...DAILY_TESTS, ...DAILY_UI_TESTS, ...CALENDAR_TESTS, ...CALENDAR_UI_TESTS, ...ADMIN_TEST_TOOLS_TESTS, ...ADMIN_TEST_UI_TESTS]) {
+  const tests = [...FOUNDATION_TESTS, ...ADDITIONAL_FIX_UI_TESTS, ...PRIVACY_TESTS, ...SECURITY_028_UI_TESTS, ...PRIVACY_UI_TESTS, ...CLOSURE020_READINESS_TESTS, ...CLOSURE020_REMOVAL_TESTS, ...LOCAL_RUNNER_TESTS, ...AUDIT019_DELETION_TESTS, ...AUDIT019_INTEGRITY_TESTS, ...CLOSURE018_TESTS, ...CLOSURE017_TESTS, ...UI_CONTRACT_TESTS, ...HARDENING_TESTS, ...CSS_CONTRACT_TESTS, ...SESSION_STABILITY_TESTS, ...SESSION_INTEGRATION_TESTS, ...TEST_TOOLS_PACING_TESTS, ...DATA_MODEL_TESTS, ...SECURITY_TESTS, ...AUTH_TESTS, ...ONBOARDING_TESTS, ...ONBOARDING_UI_TESTS, ...ONBOARDING_AUDIT_UI_TESTS, ...ONBOARDING_CLOSURE_UI_TESTS, ...PRODUCTION_ONBOARDING_TESTS, ...ONBOARDING_DECISION_TESTS, ...HEALTH_CLOSURE_TESTS, ...AUTH_PROBE_TESTS, ...MAINTENANCE_TESTS, ...ADMIN_NAV_TESTS, ...DAILY_TESTS, ...DAILY_UI_TESTS, ...CALENDAR_TESTS, ...CALENDAR_UI_TESTS, ...ADMIN_TEST_TOOLS_TESTS, ...ADMIN_TEST_UI_TESTS];
+  assertUniqueTestIds(tests);
+  for (const [id, name, fn] of tests) {
     if (signal?.aborted) break;
     if (ids && !ids.includes(id)) continue;
     try { const result=await executeTest([id,name,fn],{signal}); if(signal?.aborted)break; out.push({ id, name, passed: true, blocked:false, detail: "ok", ...(result&&typeof result==="object"&&"evidence" in result?{evidence:result.evidence}:{}) }); }

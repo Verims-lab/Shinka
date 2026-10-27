@@ -77,8 +77,8 @@ export const ONBOARDING_UI_TESTS=[
     for(const el of doc.querySelectorAll('button'))check(el.getBoundingClientRect().height>=44,'touch target');
     for(const el of doc.querySelectorAll('input:not([type=checkbox])')){check(parseFloat(win.getComputedStyle(el).fontSize)>=16,`${step} ${el.id} input font ${win.getComputedStyle(el).fontSize}`);el.focus();el.scrollIntoView({block:'center'});check(doc.activeElement===el,'focus');}
   },{language});}],
- ['U02','Introduction → name → sign-in; invalid name stays inline; skip clears it',async(context={})=>{const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);await probe('UNAUTHENTICATED_INTRO',360,async doc=>{
-  button(doc,'Begin').click();await pause();input(doc,'display_name','x'.repeat(51));await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('#display_name-error')?.textContent==='Please enter a shorter name');button(doc,'Prefer not to say').click();await pause();check(doc.querySelectorAll('[data-provider]').length===2&&!doc.querySelector('#age-declaration').checked);
+ ['U02','Introduction → name → sign-in; invalid name stays inline and blocks skip until explicitly cleared',async(context={})=>{const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);await probe('UNAUTHENTICATED_INTRO',360,async doc=>{
+  button(doc,'Begin').click();await pause();input(doc,'display_name','x'.repeat(51));await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('#display_name-error')?.textContent==='Please enter a shorter name');check(button(doc,'Prefer not to say').disabled);button(doc,'Prefer not to say').click();await pause();check(doc.querySelector('#display_name').value.length===51&&!doc.querySelector('[data-provider]'));input(doc,'display_name','');await pause();check(!button(doc,'Prefer not to say').disabled);button(doc,'Prefer not to say').click();await pause();check(doc.querySelectorAll('[data-provider]').length===2&&!doc.querySelector('#age-declaration').checked);
  });}],
  ['U03','18+ error is associated; only Apple/Google exposed and failure safe',async(context={})=>{const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);await probe('UNAUTHENTICATED_SIGN_IN',360,async doc=>{
   check([...doc.querySelectorAll('[data-provider]')].map(e=>e.getAttribute('data-provider')).join()==='apple,google');doc.querySelector('[data-provider=apple]').click();await pause();check(doc.querySelector('#age-error')?.textContent==='Please confirm that you are 18 or older');doc.querySelector('#age-declaration').click();await pause();doc.querySelector('[data-provider=google]').click();await pause();check(doc.querySelector('[data-error-code]')?.textContent==='We couldn’t sign you in. Please try again');check(!doc.querySelector('input[type=password]'));
@@ -235,12 +235,12 @@ export const ONBOARDING_UI_TESTS=[
    begin.click();await new Promise(r=>win.setTimeout(r,50));check(doc.querySelector('#display_name'),`${language} ON-02 reached`);check(!doc.querySelector('[data-onboarding-intro]'),'intro left');
   },{language},context);
  }],
- ['U18','ON-01–ON-05 share header/art/subtitle, steps 1–5 in order, back on ON-02/ON-03/ON-05 (not ON-04), Finish on ON-05, no Account & Privacy',async(context={})=>{
+ ['U18','ON-01–ON-05 share header/art/subtitle, steps 1–5 in order, back on ON-02/ON-03/ON-04/ON-05, Finish on ON-05, no Account & Privacy',async(context={})=>{
   const states=['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_NAME','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP'];
   for(const language of ['en','tr'])for(const [i,state] of states.entries())await onboardingProbe(state,360,async doc=>{
    const c=ONBOARDING_COPY[language];
    check(doc.querySelector('[data-onboarding-step]')?.textContent===c.stepOf.replace('{n}',String(i+1)),`${language} ${state} step`);
-   check(Boolean(doc.querySelector('[data-onboarding-back]'))===(i===1||i===2||i===4),`${state} back presence`);
+   check(Boolean(doc.querySelector('[data-onboarding-back]'))===(i>0),`${state} back presence`);
    check(!doc.body.textContent.includes('Account & Privacy')&&!doc.body.textContent.includes('Hesap ve Gizlilik'),`${state} no privacy link`);
    check(doc.documentElement.scrollWidth<=361,`${state} overflow`);
    if(i===4)check(button(doc,c.finish),'Finish label');

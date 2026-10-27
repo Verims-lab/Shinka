@@ -4,7 +4,7 @@ import { resolveAuthenticatedOwner } from './domainSecurity.js';
 import { guardDomainOwner } from './nativeDomainGuard.js';
 import { resolveTimezone, serverLocalDate } from './onboardingValidation.js';
 import { patternReader } from './patternReader.js';
-import { patternWindowStart, calculatePatternSummary, calculateLunarTimeline } from './patternCalculation.js';
+import { patternWindowStart, calculatePatternSummary, calculateLunarSummary } from './patternCalculation.js';
 
 export async function patternOperation(client, body, { now = () => new Date() } = {}) {
   const principal = await requireAuthenticatedUser(client), owner = resolveAuthenticatedOwner(principal, body);
@@ -25,7 +25,10 @@ export async function patternOperation(client, body, { now = () => new Date() } 
       return id ? [{ ...categories.find(c => c.id === id), count: summary[`${prefix}_count`] }] : [];
     });
     result = { section: 'themes', state: themes.length ? 'READY' : 'EMPTY', summary, themes };
-  } else result = { section: 'lunar', state: 'READY', timeline: calculateLunarTimeline(await reader.moon(instant), instant, timezone) };
+  } else {
+    const lunar = calculateLunarSummary(await reader.moon(instant), instant, timezone);
+    result = { section: 'lunar', state: lunar.current && lunar.next_full ? 'READY' : 'PARTIAL', lunar };
+  }
   // Fresh admission before returning personal data; not snapshot isolation.
   const latest = await requireAuthenticatedUser(client);
   if (latest.id !== owner) throw new InternalError('AUTH_REQUIRED', 401);

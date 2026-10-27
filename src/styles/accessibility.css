@@ -1,0 +1,3 @@
+/* Semantic surfaces/text retain the light brand; contrast corrections are
+   limited to secondary text and interactive boundaries. */
+:root { --shinka-on-primary: 255 255 255; --shinka-control: 149 132 141; --shinka-taupe: 119 99 108; --shinka-muted: 119 99 108; }

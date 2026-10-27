@@ -8,7 +8,7 @@ import { HEALTH_CLEANUP, assertPrivacyAccess } from './privacyPolicy.js';
 
 const fail = code => { throw new InternalError(code, 409); };
 // Only an explicit add+consent with a persisted owner receipt can enter here.
-export async function completeCalendarGrant(client, owner, receipt) {
+export async function completeCalendarGrant(client, owner, receipt, assertDate) {
   const store = client.asServiceRole.entities;
   const one = async (name, query = {}) => {
     const rows = await store[name].filter({ user_id: owner, ...query }, 'id', 3);
@@ -16,6 +16,7 @@ export async function completeCalendarGrant(client, owner, receipt) {
     return rows[0] || null;
   };
   const guard = async () => {
+    await assertDate();
     if (client.shinkaNative) await assertPrivacyAccess(client, owner, { health: true });
     await client.auth.me();
     await client.shinkaAssertWritable?.();
