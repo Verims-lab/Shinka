@@ -18,11 +18,12 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
   const [authError, setAuthError] = useState(null);
   const [authChecked, setAuthChecked] = useState(false);
   const [appPublicSettings, setAppPublicSettings] = useState(null);
-  const generation = useRef(0), signedOut = useRef(false);
+  const generation = useRef(0), appGeneration = useRef(0), signedOut = useRef(false), refused = useRef(false);
   const privacyVersion = useRef(null);
 
   const verifySession = useCallback(async () => {
-    if (signedOut.current) return false;
+    // A platform membership refusal stays authoritative until the next checkAppState.
+    if (signedOut.current || refused.current) return false;
     const ticket = ++generation.current;
     setIsRefreshingAuth(true);
     try {
@@ -58,31 +59,37 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
 
   const checkAppState = useCallback(async () => {
     const ticket = ++generation.current;
-    coalescer.reset(); signedOut.current = false;
+    coalescer.reset(); signedOut.current = false; refused.current = false;
     setUser(null); setIsAuthenticated(false); setAuthChecked(false); setAuthError(null);
     setIsLoadingAuth(true); setIsRefreshingAuth(false);
     window.dispatchEvent(new Event('shinka-health-access-changed'));
     setIsLoadingPublicSettings(true);
+    // Settings and session verification are independent reads: run them in
+    // parallel. App renders nothing until both settle; a membership refusal
+    // cancels (generation bump) any session result that arrived first.
+    const appTicket = ++appGeneration.current;
+    const session = ticket === generation.current ? checkUserAuth() : Promise.resolve(false);
     try {
       const settings = await client.app.getPublicSettings();
-      if (ticket !== generation.current) return;
+      if (appTicket !== appGeneration.current) return;
       setAppPublicSettings(settings);
     } catch (error) {
-      if (ticket !== generation.current) return;
+      if (appTicket !== appGeneration.current) return;
       // Preserve the platform membership boundary without surfacing its payload.
       if (error?.status === 403 && error?.data?.extra_data?.reason === "user_not_registered") {
-        setUser(null); setIsAuthenticated(false); setAuthChecked(true); setIsLoadingAuth(false);
+        refused.current = true; generation.current++; coalescer.reset();
+        setUser(null); setIsAuthenticated(false); setAuthChecked(true); setIsLoadingAuth(false); setIsRefreshingAuth(false);
         setAuthError({ type: "user_not_registered", code: safeAuthError(error, "session") });
         return;
       }
     } finally {
-      if (ticket === generation.current) setIsLoadingPublicSettings(false);
+      if (appTicket === appGeneration.current) setIsLoadingPublicSettings(false);
     }
-    if (ticket === generation.current) await checkUserAuth();
+    await session;
   }, [client, checkUserAuth, coalescer]);
   useEffect(() => {
     void checkAppState();
-    return () => { generation.current++; coalescer.reset(); };
+    return () => { generation.current++; appGeneration.current++; coalescer.reset(); };
   }, [checkAppState, coalescer]);
   useEffect(() => {
     const changed = () => { queryClientInstance.clear(); };
@@ -120,7 +127,7 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
   }, [isAuthenticated, user?.role, checkUserAuth, coalescer, sessionTiming]);
 
   const logout = async (shouldRedirect = true, { preservePrivacyRecovery = false } = {}) => {
-    signedOut.current = true; generation.current++; coalescer.reset();
+    signedOut.current = true; generation.current++; appGeneration.current++; coalescer.reset();
     window.dispatchEvent(new Event('shinka-session-ended'));
     queryClientInstance.clear();
     if (!preservePrivacyRecovery) privacyRecoveryStore.clear();

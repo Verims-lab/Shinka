@@ -16,10 +16,10 @@ const deferred = () => { let resolve = value => { check(false, `Uninitialized fi
 const identity = (id = 'synthetic-A', role = 'admin') => ({ id, role, authority: 'BASE44_NATIVE_V1' });
 const transientErrors = () => [...[429,503].map(status => ({status})),{code:'ETIMEDOUT'},{code:'ERR_NETWORK'},new TypeError('synthetic network'),new Error('unclassified')];
 /** @param {string} path @param {Function} run @param {Parameters<import('./testTypes').FoundationTest[2]>[0]} [context] @param {ReturnType<typeof identity> | (() => Promise<unknown>) | null} [initial] */
-async function fixture(path, run, context = {}, initial = identity()) {
-  const f = { auth: null, location: null, calls: 0, logouts: 0, logins: [], now: 0, timer: null, result: initial, me: async () => typeof f.result === 'function' ? f.result() : f.result };
+async function fixture(path, run, context = {}, initial = identity(), settings = async () => ({})) {
+  const f = { auth: null, location: null, calls: 0, logouts: 0, logins: [], now: 0, timer: null, result: initial, settings, me: async () => typeof f.result === 'function' ? f.result() : f.result };
   const timing = { now: () => f.now, every: fn => { f.timer = fn; return 1; }, cancel: () => { f.timer = null; } };
-  const client = { app: { getPublicSettings: async () => ({}) }, auth: { logout: async () => { f.logouts++; } }, functions: { invoke: async name => {
+  const client = { app: { getPublicSettings: () => f.settings() }, auth: { logout: async () => { f.logouts++; } }, functions: { invoke: async name => {
     check(name === 'applicationSession', 'unexpected platform call'); f.calls++; return {data: await f.me()};
   } } };
   const host = document.createElement('div'); host.style.cssText = 'position:fixed;left:-10000px;width:360px'; document.body.appendChild(host);
@@ -94,5 +94,39 @@ export const SESSION_INTEGRATION_TESTS = [
         check(safeReturnTo('?returnTo=https%3A%2F%2Fevil.invalid')==='/'&&safeReturnTo('?returnTo=%2Fprivate%3Faccess_token%3Dfake')==='/private','unsafe returnTo');
       },context,null);
     } finally {window.history.replaceState(null,'',original);}
+  }],
+  ['SS10','Parallel startup: settings/session in either order keep membership, logout and account boundaries',async(context={})=>{
+    const refusal={status:403,data:{extra_data:{reason:'user_not_registered'}}};
+    const refusedState=f=>f.auth.authError?.type==='user_not_registered'&&!f.auth.isAuthenticated&&!f.auth.isAdmin&&!f.auth.user;
+    // Session succeeds first, settings then refuses membership: no admin while settings pend; refusal wins.
+    const late=deferred();
+    await fixture('/private',async(f,q,wait)=>{
+      await wait(()=>f.auth.user?.id==='synthetic-A');check(!f.auth.isAdmin&&f.auth.isLoadingPublicSettings,'admin before settings settled');
+      late.resolve(Promise.reject(refusal));await wait(()=>refusedState(f));check(!q('[data-private]')&&!q('[data-admin-operation]'),'product mounted after refusal');
+      await f.auth.checkUserAuth();await testEventTurn(context.signal);check(refusedState(f),'later session check reopened refused account');
+    },context,identity(),()=>late.promise);
+    // Settings refuses first, session answers later: the late identity is discarded.
+    const session=deferred();let refusedFirst=null;
+    await fixture('/private',async(f,q,wait)=>{
+      await wait(()=>refusedState(f));refusedFirst=f;session.resolve(identity());await testEventTurn(context.signal);await testEventTurn(context.signal);
+      check(refusedState(f)&&!q('[data-private]'),'late session overrode membership refusal');
+    },context,()=>session.promise,async()=>{throw refusal;});
+    check(refusedFirst,'refusal-first scenario did not run');
+    // Transient settings failure keeps the verified session; no admin escalation is withheld wrongly.
+    await fixture('/internal/test-tools',async(f,q,wait)=>{
+      await wait(()=>q('[data-admin-operation]'));check(f.auth.isAdmin&&!f.auth.authError,'transient settings failure changed session');
+    },context,identity(),async()=>{throw {status:503};});
+    // Logout and account change while both startup reads pend: old answers never open the new state.
+    await fixture('/private',async(f,q,wait)=>{
+      await wait(()=>q('[data-private]'));const s1=deferred(),m1=deferred();f.settings=()=>s1.promise;f.me=()=>m1.promise;
+      const pending=f.auth.checkAppState();await testEventTurn(context.signal);
+      await f.auth.logout(false);s1.resolve({});m1.resolve(identity('synthetic-A','admin'));await pending;await testEventTurn(context.signal);
+      check(!f.auth.isAuthenticated&&!f.auth.isAdmin&&!f.auth.user,'pending startup answer restored a logged-out session');
+      const s2=deferred(),m2=deferred();f.settings=()=>s2.promise;f.me=()=>m2.promise;const next=f.auth.checkAppState();await testEventTurn(context.signal);
+      f.settings=async()=>({});f.me=async()=>identity('synthetic-B','user');const current=f.auth.checkAppState();
+      s2.resolve({});m2.resolve(identity('synthetic-A','admin'));await Promise.all([next,current]);
+      await wait(()=>f.auth.user?.id==='synthetic-B'&&!f.auth.isLoadingPublicSettings&&!f.auth.isLoadingAuth);
+      check(!f.auth.isAdmin,'older account response reused after account change');
+    },context);
   }],
 ];
