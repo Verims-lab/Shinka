@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-035
-**Last Updated:** 2026-10-26
+**Current BuildMarker:** Buildmarker-036
+**Last Updated:** 2026-10-27
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## 036 — explicit six-item onboarding decision, 2026-10-27
+
+Authority: user request `9b08acc7-f978-4827-acc3-e29781663998/Pasted text.txt`, including three incident screenshots. These are the current user decisions, not claims that the original sources contained them. Preserve 035 visual concept, five main steps, unnumbered preparation and A/P single-search birthplace. Saved UserPreferences language wins; otherwise device TR/EN variant, unsupported→EN. No manual onboarding language controls or URL/storage override. Only valid adult DOB is required; time and all five place fields may be NULL. ON-04 Back now returns to an authenticated welcome with Continue and no OAuth/logout, superseding the 035 no-Back decision. ON-02/03/05 retain Back. Preparation Back hides the pending view and resumes preparation via welcome; it does not undo a server write. Birth time accepts keyboard HH:mm and an app-owned modal with explicit Set/Cancel/Clear, no timezone/default time.
+
+The screenshots show the historical six-step/header/hierarchy variant, unlike current source. They do not identify the published asset/function/shared hashes or establish a live error code. Read-only daily log diagnosis returned API_ERROR/401; exact published cause remains unresolved. No live generation, Health, mutation/reset/delete/import/push or publish is authorized. 12 deferred backend findings remain unchanged. [036 single delivery report](reports/SHINKA_ONBOARDING_CLOSURE_036.md).
 
 ## Current onboarding authority — 035 / 2026-10-26
 

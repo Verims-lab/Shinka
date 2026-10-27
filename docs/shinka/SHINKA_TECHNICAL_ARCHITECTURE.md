@@ -2,14 +2,20 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-035
-**Last Updated:** 2026-10-26
+**Current BuildMarker:** Buildmarker-036
+**Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## 036 — focused onboarding implementation
+
+resolveLanguage(saved, locale) is the shared pure TR/EN authority; Onboarding initialization uses the stored preference when present. Screen presentation uses that prop directly, with no manual toggle state. Authenticated welcome is a local view in the existing screen map; server resolver/owner/adult/completed-account guards are unchanged.
+
+BirthTimeField owns only visibility; parent owns committed time. The modal's disposable uncontrolled hour/minute draft cannot persist until explicit Set, and is rendered through a same-document portal outside the outer form. useModalSurface includes input/select focus and consumes its history entry before explicit dismissal, preventing rapid reopen from racing cleanup. Daily service keeps its 20s budget, injectable fixture timers, cleared deadlines and fresh retries. Safe codes are allowlisted; raw provider exceptions remain hidden. Existing hook generation/owner mounting protects late responses; no global cache or transaction claim. Full backend shared graph (including HC plan) must sync before the matching frontend; no schema push required. [036 single delivery report](reports/SHINKA_ONBOARDING_CLOSURE_036.md).
 
 ## Current onboarding architecture — 035
 

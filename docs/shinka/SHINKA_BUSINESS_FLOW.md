@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-035
-**Last Updated:** 2026-10-26
+**Current BuildMarker:** Buildmarker-036
+**Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
@@ -11,9 +11,15 @@
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
-## Current onboarding flow and mutation boundary — 035
+## 036 — language, optional profile and preparation
 
-ON-01→02→03→04→05→unnumbered ON-06→Home. Intro/Name/Back do not call auth or save. Name is optional, trimmed and ≤50 Unicode code points; explicit omission clears its transient value. 18+ is separate from health consent. ON-04 Back is intentionally absent: authenticated users do not return through OAuth. ON-05 Back edits only the unfinished profile and retains in-memory cycle input. Verified profile readback precedes ON-05; fulfilled/ambiguous responses cannot advance. UI state is never backend authority.
+Saved preference is resolved on hydrate/reopen/reset; absent preference initializes from the browser language (TR/EN variants, otherwise EN). Old URL/transient language hints are ignored. ON-04 needs only valid adult DOB; blank time/place remain NULL, no GeoNames call/secret construction. Unselected typed place and partial time remain validation errors with clear/cancel paths.
+
+Preparation Back returns to authenticated welcome, keeping the form draft and resuming preparation on Continue. An issued daily request may still persist; old completion cannot navigate the hidden/replaced view. Retry starts a fresh bounded service invocation and rereads/reconciles today's stored candidate before generating. Only verified persistent daily result opens Home; no synthetic completion flag. Safe allowlisted error code supplements the existing localized error. Unknown outcome does not mean rollback. Same-day content, consent and health records remain governed by existing native rules. [036 single delivery report](reports/SHINKA_ONBOARDING_CLOSURE_036.md).
+
+## Current onboarding flow and mutation boundary — 036
+
+ON-01→02→03→04→05→unnumbered ON-06→Home. Intro/Name/Back do not call auth or save. Name is optional, trimmed and ≤50 Unicode code points; explicit omission clears its transient value. 18+ is separate from health consent. ON-04 Back returns to a welcome view that retains the authenticated session and offers Continue back to the in-memory profile draft; it never invokes OAuth/logout. ON-05 Back edits only the unfinished profile and retains in-memory cycle input. Verified profile readback precedes ON-05; fulfilled/ambiguous responses cannot advance. UI state is never backend authority.
 
 Hydration resolves persistent owner records. Skip creates/revokes/deletes nothing and may return to ON-05 on reopen before a real daily record. Completed owners cannot use onboarding saveProfile/saveCycle even when their profile is damaged; You/Calendar remain the editing boundaries. Partial cycle retries reuse persisted matching consent/event/period data; no rollback or distributed serialization is promised. Session end/unmount discards late UI completion; already-issued backend IO is not claimed cancelled.
 
@@ -139,7 +145,7 @@ Delete Account ⇒ owner-confirmed erasure request + blocked target activity + v
 
 ## Authentication/onboarding implementation boundary — package 008 checkpoint
 
-ON-01 Introduction → ON-02 optional trimmed name → ON-03 Apple/Google with a separate unchecked 18+ declaration → ON-04 required adult DOB / optional time / optional structured birthplace → ON-05 optional cycle and independent explicit health consent → ON-06 finite dependency shell. Main steps are counted 1–5; ON-06 is unnumbered. Back (2026-10-26) is a local view change on ON-02→ON-01 and ON-03→ON-02 only; it never logs out, restarts OAuth or writes. ON-05→ON-04 back is also local; a changed ON-04 re-save updates the profile only while onboarding is unfinished (no daily message). ON-04 has no back. The shared server resolver denies INACTIVE, returns incomplete profiles to ON-04 and only returns Home when ready profile/preferences and actual owner daily data exist.
+ON-01 Introduction → ON-02 optional trimmed name → ON-03 Apple/Google with a separate unchecked 18+ declaration → ON-04 required adult DOB / optional time / optional structured birthplace → ON-05 optional cycle and independent explicit health consent → ON-06 finite dependency shell. Main steps are counted 1–5; ON-06 is unnumbered. Back (2026-10-26) is a local view change on ON-02→ON-01 and ON-03→ON-02 only; it never logs out, restarts OAuth or writes. ON-05→ON-04 back is also local; a changed ON-04 re-save updates the profile only while onboarding is unfinished (no daily message). At the 035 checkpoint ON-04 had no back; 036 supersedes that decision with authenticated welcome/Continue (see current contract above). The shared server resolver denies INACTIVE, returns incomplete profiles to ON-04 and only returns Home when ready profile/preferences and actual owner daily data exist.
 
 Pre-auth name is transient only (same-tab session storage, versioned, 30-minute expiry, max 50 Unicode characters). No pre-auth profile/identity is created. Identity comes from auth.me(). Approved fixed-date Sun and EN/TR copy are integrated. Profile/preferences persist through the production SDK adapter; readback must succeed before progression. Restarted partial profiles retain existing optional birthplace/name/time while finishing their derived Sun.
 

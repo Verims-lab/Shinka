@@ -1,3 +1,4 @@
+import { ONBOARDING_CLOSURE_TESTS } from './onboardingClosureTests';
 import { ONBOARDING_AUDIT_TESTS } from './onboardingAuditTests';
 import { withTestClock } from './testClock';
 import { dailyRecordFixture } from './dailyRecordFixture';
@@ -100,5 +101,6 @@ export const ONBOARDING_TESTS=[
  ...GEONAMES_DIAGNOSTIC_TESTS,
  ...BIRTHPLACE_SELECTION_TESTS,
  ...ONBOARDING_AUDIT_TESTS,
+ ...ONBOARDING_CLOSURE_TESTS,
  ...GEONAMES_RUNTIME_PROBE_TESTS,
 ];

@@ -14,6 +14,7 @@ import {
   savePendingName,
   clearPendingName,
 } from "./pendingName";
+import { resolveLanguage } from "@/foundation/i18n/strings";
 import { onboardingCopy } from "@/foundation/i18n/onboardingCopy";
 import {
   optionalName,
@@ -26,35 +27,36 @@ const DEFAULT_PENDING = {
   save: savePendingName,
   clear: clearPendingName,
 };
-// Single screen metadata map (SRC-03 + 2026-10-26 user decision). Five numbered main steps;
+// Single screen metadata map (SRC-03 + 2026-10-27 user decision). Five numbered main steps;
 // preparation/inactive are unnumbered interstitials. `back` is a pure local view change:
 // no logout, no OAuth restart, no write. ON-05 → ON-04 keeps the form values; re-saving
-// ON-04 is allowed server-side only while onboarding is unfinished. ON-04 has no back (sign-in).
+// ON-04 is allowed server-side only while onboarding is unfinished.
 const SCREENS = {
   UNAUTHENTICATED_INTRO: { step: 1, title: "intro" },
   UNAUTHENTICATED_NAME: { step: 2, title: "nameTitle", subtitle: "nameSubtitle", back: "UNAUTHENTICATED_INTRO" },
   UNAUTHENTICATED_SIGN_IN: { step: 3, title: "signIn", subtitle: "signInSubtitle", back: "UNAUTHENTICATED_NAME" },
-  AUTHENTICATED_PROFILE_REQUIRED: { step: 4, title: "aboutTitle", subtitle: "aboutSubtitle" },
+  AUTHENTICATED_PROFILE_REQUIRED: { step: 4, title: "aboutTitle", subtitle: "aboutSubtitle", back: "UNAUTHENTICATED_SIGN_IN" },
   AUTHENTICATED_CYCLE_STEP: { step: 5, title: "cycle", subtitle: "cycleSubtitle", back: "AUTHENTICATED_PROFILE_REQUIRED" },
-  FIRST_SHINKA_DEPENDENCY: { title: "preparation" },
+  FIRST_SHINKA_DEPENDENCY: { title: "preparation", back: "UNAUTHENTICATED_SIGN_IN" },
   INACTIVE_ACCOUNT: { title: "inactive" },
 };
-/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,onLanguage?:Function,pending?:typeof DEFAULT_PENDING,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
+/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,authenticated?:boolean,pending?:typeof DEFAULT_PENDING,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
 export default function OnboardingScreen({
   state,
-  initialLanguage = "en",
+  initialLanguage = undefined,
+  authenticated = false,
   today = null,
   profile = null,
   request = onboardingRequest,
   dailyRequest = undefined,
   onState = () => {},
-  onLanguage = () => {},
   pending = DEFAULT_PENDING,
   authenticate = beginProviderAuth,
   dependencies = [],
 }) {
-  const [language, setLanguage] = useState(initialLanguage),
-    [name, setName] = useState(
+  const language = resolveLanguage(initialLanguage);
+  const resume = useRef("AUTHENTICATED_PROFILE_REQUIRED");
+  const [name, setName] = useState(
       () => profile ? profile.display_name ?? "" : pending.read() ?? "",
     ),
     [form, setForm] = useState({
@@ -191,7 +193,9 @@ export default function OnboardingScreen({
         </>
       );
     if (state === "UNAUTHENTICATED_SIGN_IN")
-      return <SignIn language={language} authenticate={authenticate} onBusy={setBusy} />;
+      return authenticated
+        ? <ShinkaButton className="w-full" onClick={() => onState(resume.current)}>{t("continue")}</ShinkaButton>
+        : <SignIn language={language} authenticate={authenticate} onBusy={setBusy} />;
     if (state === "AUTHENTICATED_PROFILE_REQUIRED")
       return (
         <ProfileForm
@@ -234,28 +238,16 @@ export default function OnboardingScreen({
         <div className="grid grid-cols-[minmax(2.75rem,1fr)_auto_minmax(2.75rem,1fr)] items-center gap-2">
           <div>
             {screen.back && (
-              <ShinkaButton variant="ghost" aria-label={t("back")} data-onboarding-back disabled={busy} onClick={() => onState(screen.back)}>
+              <ShinkaButton variant="ghost" aria-label={t("back")} data-onboarding-back disabled={busy} onClick={() => {
+                if (state === "FIRST_SHINKA_DEPENDENCY" || state === "AUTHENTICATED_PROFILE_REQUIRED") resume.current = state;
+                onState(screen.back);
+              }}>
                 <ChevronLeft aria-hidden="true" className="h-5 w-5" />
               </ShinkaButton>
             )}
           </div>
           <span className="font-heading text-3xl text-shinka-plum-deep">Shinka</span>
-          <div className="flex flex-wrap items-center justify-end gap-1">
-            {["tr", "en"].map((lang) => (
-              <ShinkaButton
-                key={lang}
-                variant="ghost"
-                aria-pressed={language === lang}
-                onClick={() => {
-                  setLanguage(lang);
-                  onLanguage(lang);
-                }}
-              >
-                {lang.toUpperCase()}
-              </ShinkaButton>
-            ))}
-
-          </div>
+          <div aria-hidden="true" />
         </div>
         <>
           {dependencies.length > 0 && (

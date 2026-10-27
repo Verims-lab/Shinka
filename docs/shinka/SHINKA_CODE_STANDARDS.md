@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-035
-**Last Updated:** 2026-10-26
+**Current BuildMarker:** Buildmarker-036
+**Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
 **Scope:** All source (client, backend, internal tooling).
@@ -35,6 +35,10 @@
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+
+## 036 — field/modal and diagnostic boundaries
+
+Keep one parent-owned time value and a disposable selection draft; portal dialog forms outside profile forms and stop submit bubbling. Editable modal controls participate in focus traversal; consume layer history before closing/reopening. Keep original daily deadline and generation checks; safe error codes only. Test device locale via browser context or pure resolver inputs, never invisible language buttons. No live cause inferred from generic error copy.
 
 ## Current onboarding engineering contract — 035
 

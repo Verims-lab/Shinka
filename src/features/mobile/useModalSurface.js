@@ -5,7 +5,9 @@ import { useLayerHistory } from './useLayerHistory';
 // controllers keep dispatched intents/recovery and pending guards separately.
 export function useModalSurface(ref, onDismiss) {
   const latest = useRef(onDismiss); latest.current = onDismiss;
-  useLayerHistory(true, () => latest.current(), ref);
+  const leaving = useRef(false);
+  const leave = useLayerHistory(true, () => latest.current(), ref);
+  const dismiss = () => { if (!leaving.current) { leaving.current = true; leave(() => {}); } };
   useEffect(() => {
     const dialog = ref.current, doc = dialog.ownerDocument, previous = doc.activeElement;
     dialog.showModal();
@@ -13,12 +15,13 @@ export function useModalSurface(ref, onDismiss) {
     return () => { dialog.close(); if (previous?.isConnected) previous.focus(); };
   }, [ref]);
   return {
-    onCancel: event => { event.preventDefault(); latest.current(); },
+    dismiss,
+    onCancel: event => { event.preventDefault(); dismiss(); },
     onKeyDown: event => {
-      if (event.key === 'Escape') { event.preventDefault(); latest.current(); }
+      if (event.key === 'Escape') { event.preventDefault(); dismiss(); }
       if (event.key === 'Tab') {
         event.preventDefault();
-        const dialog = ref.current, controls = [...dialog.querySelectorAll('button:not(:disabled):not([tabindex="-1"])')];
+        const dialog = ref.current, controls = [...dialog.querySelectorAll('button:not(:disabled):not([tabindex="-1"]), input:not(:disabled), select:not(:disabled), textarea:not(:disabled)')];
         const index = controls.indexOf(dialog.ownerDocument.activeElement);
         (controls[(index + (event.shiftKey ? -1 : 1) + controls.length) % controls.length] || dialog).focus();
       }

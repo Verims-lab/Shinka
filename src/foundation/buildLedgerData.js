@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-031",
-    "package_name": "Notification admission read reduction",
-    "package_type": "FIX",
-    "created_at": "2026-10-22T15:56:35.323131+00:00",
-    "health_catalog_version": "HC-031.0",
-    "short_summary": "Comparable SDK reads 84→69,119→104,61→46; auth 14→12,17→15,11→9; writes/sends unchanged. Chromium/WebKit 624/624 each; 8 server + 9 entry fixtures, Health 136 PASS/13 prerequisite BLOCKED. Local gates/audit/history/performance PASS; live binding blocked.",
-    "full_health_status": "PLATFORM_BINDING_BLOCKED",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "031 only: no product/schema/SDK contract change. Fresh write/readback/send guards retained; NP07 BUSY gap fixed with initial failure preserved. H14-003 adds NP01–07, no Health IDs added/deleted; H14-901/H16-901 external. Actual entry enabled:false; 12 findings OPEN / USER-DEFERRED. Internal Build 027–031; no live actions/main merge/publish. Focused report SHINKA_NOTIFICATION_PERFORMANCE_031.md; PR32 was owner-merged, Test continuation linked there."
-  },
-  {
     "build_marker": "Buildmarker-032",
     "package_name": "Native notification readiness and device acceptance",
     "package_type": "DOCS",
@@ -69,5 +55,19 @@ export default [
     "source_changed": true,
     "tests_changed": true,
     "health_changed": true
+  },
+  {
+    "build_marker": "Buildmarker-036",
+    "package_name": "Onboarding locale, navigation and time closure",
+    "package_type": "FIX",
+    "created_at": "2026-10-27T14:00:00Z",
+    "health_catalog_version": "HC-036.0",
+    "short_summary": "Automatic locale, DOB-only NULLs, authenticated Back, manual/app time picker and safe Retry diagnostics. Chromium/WebKit each 667/667; actual locale/time CLI 6/6 each. Hosted preparation cause remains unconfirmed.",
+    "full_health_status": "LOCAL_VERIFIED / HOSTED_INCIDENT_AND_DEVICE_ACCEPTANCE_PENDING",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "Fresh install/tree/audit/security/type/lint/build/repo/history/performance gates passed. Local in-app Health 136 PASS / 13 hosted BLOCKED; save/retry/list/open verified. Native create-loss retry and You preference/reset covered. Read-only logs denied 401; user deferred live diagnosis. Android/iOS NOT_RUN; 12 deferred findings unchanged. No live mutation/import/push/Full Health/main publish."
   }
 ];

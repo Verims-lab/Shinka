@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-035
-**Last Updated:** 2026-10-26
+**Current BuildMarker:** Buildmarker-036
+**Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
 **Scope:** Product domain entities + separately listed internal tooling storage.
@@ -12,6 +12,10 @@
 **External Verification Required:** Base44 native UNIQUE is unsupported; no multi-record transaction/CAS guarantee is claimed. Native handler tests use synthetic transport; hosted schema/authorization/mutation recovery remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+
+## 036 — unchanged NULL and daily authority
+
+No entity, field, default, consent timestamp or content data changes. Birth time is optional local HH:mm, including genuine 00:00; it is never generated on opening and receives no timezone conversion. Blank birthplace is all five canonical NULL fields, distinct from an unselected text draft. The source already allowed DOB-only profiles; actual native-adapter service/readback tests now cover that path explicitly with zero provider construction. Saved UserPreferences.language_code is the language authority; no parallel locale field/storage. Daily generated_at/day-key/snapshots and duplicate-candidate reconciliation remain unchanged. [036 single delivery report](reports/SHINKA_ONBOARDING_CLOSURE_036.md).
 
 ## 035 onboarding data boundary — no schema change
 

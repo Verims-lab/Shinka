@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-035
-**Last Updated:** 2026-10-26
+**Current BuildMarker:** Buildmarker-036
+**Last Updated:** 2026-10-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 036 — onboarding closure work and retained evidence
+
+Main ac0a1b4 was two commits ahead of clean local/remote Test 14bfc79; fast-forward and Test push preserved the user's Base44 changes. Applied six-item decision; Chromium/WebKit each 667/667 plus 6/6 actual-locale/time CLI scenarios. Local Health 136 PASS/13 expected hosted BLOCKED; save/retry/list/open verified. Fresh dependency, type/lint/build/repo/history/performance gates pass. Tested actual services/HTTP handlers/native persistence using isolated SDK IO. No evidence supports changing the daily generation engine or nullable backend profile contract. Native time input was replaced with accessible manual/app-modal input. New tests exposed modal form/history/observer setup issues and a missing fixture privacy table; first failures remain in the delivery evidence. Read-only logs returned 401, no live work was generated. [036 single delivery report](reports/SHINKA_ONBOARDING_CLOSURE_036.md) holds current results, limits and owner sync/publish acceptance.
 
 ## 035 — onboarding functional audit and corrections
 

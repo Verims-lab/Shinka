@@ -4,7 +4,11 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Any change pushed to the repo will also be reflected in the Base44 Builder.
 
-## Current Test onboarding functional audit (Buildmarker-035)
+## Current Test onboarding closure (Buildmarker-036)
+
+036 applies automatic locale, DOB-only NULL verification, authenticated Back and keyboard/app time selection while preserving 035. [Single six-item report](docs/shinka/reports/SHINKA_ONBOARDING_CLOSURE_036.md) separates local verification from the unresolved hosted preparation incident (log access returned 401). No live user operation, import, Health, notification or publish; owner syncs the complete backend/shared graph before frontend and runs published acceptance.
+
+## Historical onboarding functional audit (Buildmarker-035)
 
 035 preserves Base44 main f52b1c3 and the pinned dependency lock, verifies the five-step onboarding and new A/P birthplace search, and corrects readback, completed-owner writes, async account isolation, focus/retry and 44px controls. Current local results, original failures, Health mapping and owner-only hosted/device acceptance are in the [035 delivery report](docs/shinka/reports/SHINKA_ONBOARDING_AUDIT_035.md). No live provider/user/push action, main merge or publish is performed; notification entry and scheduler remain disabled.
 

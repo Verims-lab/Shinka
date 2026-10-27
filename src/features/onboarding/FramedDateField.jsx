@@ -1,10 +1,10 @@
-import { CalendarDays, Clock } from "lucide-react";
+import { CalendarDays } from "lucide-react";
 import FieldError from "./FieldError";
 
-// ON-04 date/time field: label inside a soft frame; native control kept (values,
+// ON-04 date field: label inside a soft frame; native calendar kept (values,
 // validation and formats unchanged). The decorative icon never intercepts taps.
 export default function FramedDateField({ name, type, form, update, error, busy, t, required = false, optional = false, ...rest }) {
-  const Icon = type === "time" ? Clock : CalendarDays;
+
   return (
     <div className="min-w-0 space-y-2">
       <div className="shinka-framed-field relative">
@@ -25,7 +25,7 @@ export default function FramedDateField({ name, type, form, update, error, busy,
           className="shinka-datetime block w-full min-w-0 max-w-full bg-transparent pr-10 text-[17px] text-shinka-ink outline-none"
           {...rest}
         />
-        <Icon aria-hidden="true" className="pointer-events-none absolute bottom-3 right-4 h-5 w-5 text-shinka-taupe" />
+        <CalendarDays aria-hidden="true" className="pointer-events-none absolute bottom-3 right-4 h-5 w-5 text-shinka-taupe" />
       </div>
       <FieldError name={name} error={error} t={t} />
     </div>

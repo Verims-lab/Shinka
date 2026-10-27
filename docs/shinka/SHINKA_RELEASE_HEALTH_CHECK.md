@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-035
-**Last Updated:** 2026-10-26
+**Current BuildMarker:** Buildmarker-036
+**Last Updated:** 2026-10-27
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-035.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-036.0; repository, synthetic and external evidence separated.
+
+## HC-036.0 — current local closure scope
+
+Chromium and WebKit each **667/667 PASS**, 6/6 actual-locale/time CLI scenarios and zero page errors. Local in-app Health: 136 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED; save/retry/list/open verified. Mandatory gates passed. Current execution is recorded in [036 single delivery report](reports/SHINKA_ONBOARDING_CLOSURE_036.md); 035 totals below are historical and are not reused. No IDs added/deleted; H07-003 adds OF02 (DOB-only/NULL/no provider), H07-006 adds OF01 (locale/persisted preference), H09-001 adds OF03/OF04 (deadline/lost-create recovery), H07-013 updates preparation UI coverage, H13-012 adds OV01–OV06 and the actual-locale/time CLI matrix, H13-013 names app-time rather than native-time acceptance. Backend plan retains 175 total / 149 in-app / 12 local / 14 external; version changes with semantics to HC-036.0. Local UI cases stay local and are actually wired to the canonical runner. Content policy explicitly extends through 036 with unchanged predicates. User runs published Full Health; physical and hosted incident acceptance remain open. Previous failures are retained.
 
 ## HC-035.0 — local functional verification complete; external acceptance pending
 

@@ -19,21 +19,21 @@ const type=(host,id,value)=>{const el=host.querySelector(`#${id}`);Object.getOwn
 const button=(host,text)=>[...host.querySelectorAll('button')].find(el=>el.textContent.trim()===text);
 const stateOf=host=>host.querySelector('[data-onboarding-state]')?.getAttribute('data-onboarding-state');
 const key=(el,value)=>el.dispatchEvent(new KeyboardEvent('keydown',{key:value,bubbles:true,cancelable:true}));
-async function screen(initial,run,context={},options={}) {
+export async function auditScreen(initial,run,context={},options={}) {
  const backend=await auditBackend(),host=document.createElement('div');host.style.cssText='position:fixed;left:-10000px;width:360px';document.body.append(host);
- const f={backend,transitions:[],calls:[],clears:0,name:null,profile:null,...options};
+ const f={backend,transitions:[],calls:[],clears:0,name:null,profile:null,locale:(_language)=>{},...options};
  const request=async(action,payload={})=>{f.calls.push({action,payload});return (options.request||backend.request)(action,payload);};
  const pending={read:()=>f.name,save:name=>{f.name=name;return true;},clear:()=>{f.clears++;f.name=null;}};
  const root=createRoot(host);let disposed=false;
  const dispose=()=>{if(disposed)return;disposed=true;root.unmount();host.remove();};context.cleanup?.(dispose);
- function Fixture(){const [state,setState]=useState(initial);return h(OnboardingScreen,{state,profile:f.profile,today:'2026-10-19',request,pending,...options.props,onState:(next,result)=>{f.transitions.push({next,result});setState(next);}});}
- root.render(h(Fixture));const wait=async fn=>{try{await waitForFixture(fn,host,context);}catch{throw new Error(`${String(fn).slice(0,65)} ${stateOf(host)} busy=${!!host.querySelector('[aria-busy=\"true\"]')}`);}},turn=()=>testEventTurn(context.signal);
+ function Fixture(){const [state,setState]=useState(initial),[language,setLanguage]=useState('en');f.locale=setLanguage;return h(OnboardingScreen,{state,initialLanguage:language,authenticated:initial.startsWith('AUTHENTICATED'),profile:f.profile,today:'2026-10-19',request,pending,...options.props,onState:(next,result)=>{f.transitions.push({next,result});setState(next);}});}
+ root.render(h(Fixture));const wait=async fn=>{try{await waitForFixture(fn,host.ownerDocument.body,context);}catch{throw new Error(`${String(fn).slice(0,65)} ${stateOf(host)} busy=${!!host.querySelector('[aria-busy=\"true\"]')}`);}},turn=()=>testEventTurn(context.signal);
  try{await wait(()=>stateOf(host));await run(f,host,wait,turn,dispose);}finally{dispose();}
 }
 /** @type {import('./testTypes').FoundationTest[]} */
 export const ONBOARDING_AUDIT_UI_TESTS=[
  ['OU01','Actual ON-01/02/03 back/forward: one Begin, trimmed optional name, explicit skip clears draft, no backend/auth',async(context={})=>{
-  await screen('UNAUTHENTICATED_INTRO',async(f,host,wait,turn)=>{
+  await auditScreen('UNAUTHENTICATED_INTRO',async(f,host,wait,turn)=>{
    check(host.querySelectorAll('[data-intro-row]').length===3,'three initial rows');
    const begin=button(host,'Begin');begin.click();begin.click();await wait(()=>stateOf(host)==='UNAUTHENTICATED_NAME');
    check(f.transitions.length===1,'duplicate Begin transition');await turn();
@@ -50,13 +50,13 @@ export const ONBOARDING_AUDIT_UI_TESTS=[
  }],
  ['OU02','ON-05 back restores persisted profile; edit/save and locale preserve cycle drafts, age and health consent stay separate',async(context={})=>{
   const backend=await auditBackend();const saved=await backend.request('saveProfile',auditProfile);
-  await screen('AUTHENTICATED_CYCLE_STEP',async(f,host,wait,turn)=>{
+  await auditScreen('AUTHENTICATED_CYCLE_STEP',async(f,host,wait,turn)=>{
    type(host,'period_start_date','2026-10-01');type(host,'period_duration_days','4');type(host,'initial_cycle_length_days','29');await turn();
    host.querySelector('#health_consent').click();await turn();
    const before=JSON.stringify(backend.rows);host.querySelector('button[data-onboarding-back]').click();await wait(()=>host.querySelector('input#birth_date'));
    check(JSON.stringify(backend.rows)===before&&f.calls.length===0,'back wrote data');
-   check(host.querySelector('input#birth_date').value==='1990-01-01'&&!host.querySelector('button[data-onboarding-back]'),'profile restore / unsafe auth back');
-   type(host,'birth_date','1991-04-20');await turn();button(host,'TR').click();await turn();
+   check(host.querySelector('input#birth_date').value==='1990-01-01'&&host.querySelector('button[data-onboarding-back]'),'profile restore / unsafe auth back');
+   type(host,'birth_date','1991-04-20');await turn();f.locale('tr');await turn();
    check(host.querySelector('input#birth_date').value==='1991-04-20','locale lost profile draft');
    host.querySelector('button[type=submit]').click();await wait(()=>host.querySelector('#period_start_date'));
    check(host.querySelector('#period_start_date').value==='2026-10-01'&&host.querySelector('#period_duration_days').value==='4'&&host.querySelector('#initial_cycle_length_days').value==='29'&&host.querySelector('#health_consent').checked,'back/forward lost cycle draft');
@@ -65,7 +65,7 @@ export const ONBOARDING_AUDIT_UI_TESTS=[
  }],
  ['OU03','Unconfirmed save response cannot advance or clear pending name; verified retry keeps the action ID',async(context={})=>{
   const backend=await auditBackend();let unconfirmed=true;
-  await screen('AUTHENTICATED_PROFILE_REQUIRED',async(f,host,wait,turn)=>{
+  await auditScreen('AUTHENTICATED_PROFILE_REQUIRED',async(f,host,wait,turn)=>{
    type(host,'birth_date','1990-01-01');await turn();button(host,'Continue').click();await wait(()=>host.querySelector('[data-onboarding-error]'));
    check(stateOf(host)==='AUTHENTICATED_PROFILE_REQUIRED'&&f.clears===0,'unconfirmed response advanced');
    check(host.querySelector('[data-onboarding-error]'),'missing unconfirmed error');
@@ -76,7 +76,7 @@ export const ONBOARDING_AUDIT_UI_TESTS=[
  ['OU04','Unmount or session end makes late saves inert: no next screen, pending-name clear or old profile',async(context={})=>{
   for(const end of ['unmount','session']){
    const gate=deferred(),backend=await auditBackend();
-   await screen('AUTHENTICATED_PROFILE_REQUIRED',async(f,host,wait,turn,dispose)=>{
+   await auditScreen('AUTHENTICATED_PROFILE_REQUIRED',async(f,host,wait,turn,dispose)=>{
     type(host,'birth_date','1990-01-01');await turn();const save=button(host,'Continue');save.click();save.click();await turn();check(f.calls.length===1,'double submit');
     if(end==='unmount')dispose();else window.dispatchEvent(new Event('shinka-session-ended'));
     gate.resolve(await backend.request('saveProfile',auditProfile));await turn();await turn();
@@ -87,7 +87,7 @@ export const ONBOARDING_AUDIT_UI_TESTS=[
  ['OU05','Combobox keyboard can select/escape; empty popup owns its listbox; next-page actions remain focused and actionable',async(context={})=>{
   const noise=Array.from({length:50},(_,i)=>({...KAN_CANDIDATES[6],geonameId:20000+i}));
   const geo=createGeoNamesAdapter({username:'fixture',fetcher:placeFetchFor([...noise,...KAN_CANDIDATES])});
-  await screen('AUTHENTICATED_PROFILE_REQUIRED',async(f,host,wait,turn)=>{
+  await auditScreen('AUTHENTICATED_PROFILE_REQUIRED',async(f,host,wait,turn)=>{
    type(host,'birthplace','Kan');await wait(()=>host.querySelector('[data-place-more]'));
    const box=host.querySelector('#birthplace');box.focus();
    check(box.getAttribute('aria-expanded')==='true'&&host.querySelector(`#${box.getAttribute('aria-controls')}`),'expanded combobox missing controlled listbox');
@@ -101,19 +101,19 @@ export const ONBOARDING_AUDIT_UI_TESTS=[
  }],
  ['OU06','Empty filtered page plus failed More shows explicit error and retries the failed page; locale retains open query',async(context={})=>{
   let calls=0;
-  await screen('AUTHENTICATED_PROFILE_REQUIRED',async(f,host,wait,turn)=>{
+  await auditScreen('AUTHENTICATED_PROFILE_REQUIRED',async(f,host,wait,turn)=>{
    type(host,'birthplace','Kan');await wait(()=>host.querySelector('[data-place-more]'));host.querySelector('[data-place-more]').click();await wait(()=>host.querySelector('[data-place-retry]'));
    check(host.textContent.includes('Too many place requests'),'empty page hides rate-limit error');
    host.querySelector('[data-place-retry]').click();await wait(()=>host.querySelectorAll('[data-place-option]').length===1);
    check(f.calls.map(c=>c.payload.page).join()==='0,1,1','UI retry page');
-   button(host,'TR').click();await turn();check(host.querySelector('#birthplace').value==='Kan','locale lost query');await wait(()=>host.querySelector('[data-place-more]'));
+   f.locale('tr');await turn();check(host.querySelector('#birthplace').value==='Kan','locale lost query');await wait(()=>host.querySelector('[data-place-more]'));
    check(host.querySelector('#birthplace').getAttribute('aria-expanded')==='true','locale closed search');
   },context,{request:async(_action,payload)=>{calls++;if(payload.page===0)return {places:[],next_page:1};if(calls===2)throw {code:'GEONAMES_RATE_LIMITED'};return {places:[{birthplace_geonames_id:9001,birthplace_name:'Kansas',birthplace_country_code:'US'}],next_page:null};}});
  }],
  ['OU07','SignIn gates provider on age, coalesces double taps, handles cancel/failure and protects Back during pending OAuth',async(context={})=>{
   const gate=deferred();let calls=0,mode='pending';
   const authenticate=(provider,url,age)=>beginProviderAuth(provider,url,age,{loginWithProvider:async()=>{calls++;if(mode==='pending')return gate.promise;if(mode==='cancel')throw {code:'popup_closed_by_user'};throw new Error('private fixture error');}});
-  await screen('UNAUTHENTICATED_SIGN_IN',async(f,host,wait,turn)=>{
+  await auditScreen('UNAUTHENTICATED_SIGN_IN',async(f,host,wait,turn)=>{
    host.querySelector('[data-provider=apple]').click();await wait(()=>host.querySelector('#age-error'));check(calls===0,'provider called without age');
    host.querySelector('#age-declaration').click();await turn();const google=host.querySelector('[data-provider=google]');google.click();google.click();
    await wait(()=>host.querySelector('button[data-onboarding-back]').disabled);check(calls===1&&host.querySelector('#age-declaration').disabled,'pending double auth/back');
