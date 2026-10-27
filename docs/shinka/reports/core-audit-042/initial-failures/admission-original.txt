@@ -1,0 +1,17 @@
+[
+ [
+  "AR01",
+  "PASS",
+  "Home reopen and You read verify the session at most twice per request"
+ ],
+ [
+  "AR02",
+  "PASS",
+  "Identity change after the entry principal is rejected by a later admission phase"
+ ],
+ [
+  "AR03",
+  "PASS",
+  "Signed-out session after the entry principal is rejected"
+ ]
+]

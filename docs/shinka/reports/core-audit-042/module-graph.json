@@ -1,0 +1,3331 @@
+[
+  {
+    "id": "/src/foundation/buildLedger.js",
+    "imports": [
+      "/src/foundation/buildLedgerData.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/index.css",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/integrity.js",
+    "imports": [
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/aggregate.js",
+      "/src/foundation/health/evidence.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/notificationPolicy.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/mobile/RefreshControl.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/foundation/i18n/mobileCopy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/main.jsx",
+    "imports": [
+      "/src/App.jsx",
+      "/src/index.css"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/dailyRecordFixture.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/nativeCalendarPersistence.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/base44CalendarReader.js",
+      "/base44/shared/calendarState.js",
+      "/base44/shared/calendarCalculation.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/nativeCalendarGrant.js",
+      "/base44/shared/adminTestPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/notificationTests.js",
+    "imports": [
+      "/base44/shared/dailyMessageOperation.js",
+      "/src/foundation/tests/privacyFixture.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/notificationFixture.js",
+      "/src/foundation/tests/nativeFixture.js",
+      "/base44/shared/notificationPolicy.js",
+      "/base44/shared/notificationOwner.js",
+      "/base44/shared/notificationScheduler.js",
+      "/base44/shared/base44PushProvider.js",
+      "/base44/shared/privacyPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/h13static.js",
+    "imports": [
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/designTokens.js",
+      "/src/foundation/inspection/uiRules.js",
+      "/src/foundation/health/evidence.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/capabilityRegister.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/you/useYou.js",
+    "imports": [
+      "/src/services/youService.js",
+      "/src/features/you/youController.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/h13.js",
+    "imports": [
+      "/src/foundation/designTokens.js",
+      "/src/foundation/sourceInventory.js",
+      "/src/foundation/probes/domProbes.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/evidence.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/health/cases/h13contract.js",
+      "/src/foundation/health/cases/h13nav.js",
+      "/src/foundation/health/cases/h13static.js"
+    ],
+    "dynamic": [
+      "/src/foundation/inspection/uiRules.js"
+    ]
+  },
+  {
+    "id": "/base44/shared/youRepository.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/domainValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/privacyAccountDeletion.js",
+    "imports": [
+      "/base44/shared/privacyPolicy.js",
+      "/base44/shared/ownedCleanup.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/domainProbe.js",
+    "imports": [
+      "/src/foundation/health/evidence.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/testExecution.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/shinka/ShinkaButton.jsx",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/healthExecutionEvidence.js",
+    "imports": [
+      "/base44/shared/healthEvidence.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/domainValidation.js",
+    "imports": [
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/internalAuthorization.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/internal/LatestHealthCard.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/components/shinka/StatusBadge.jsx",
+      "/src/components/shinka/StatePanel.jsx",
+      "/src/components/shinka/KeyValueGrid.jsx",
+      "/src/services/internal/healthRunStore.js",
+      "/src/foundation/errors.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/errors.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/pages/Home.jsx",
+    "imports": [
+      "/src/features/mobile/RefreshControl.jsx",
+      "/src/components/shinka/ProductNavigation.jsx",
+      "/src/components/profile/ProfileMenu.jsx",
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/foundation/i18n/strings.js",
+      "/src/foundation/i18n/dailyCopy.js",
+      "/src/features/daily/useDailyMessage.js",
+      "/src/features/daily/DailyStatus.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/pages/You.jsx",
+    "imports": [
+      "/src/features/you/NotificationStatus.jsx",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/components/shinka/ShinkaSelect.jsx",
+      "/src/components/shinka/ProductNavigation.jsx",
+      "/src/features/you/useYou.js",
+      "/src/features/you/ProfileEditor.jsx",
+      "/src/foundation/i18n/youCopy.js",
+      "/src/foundation/i18n/strings.js",
+      "/src/services/onboardingService.js",
+      "/src/foundation/i18n/privacyCopy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/shinka/ShinkaCard.jsx",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/ownedCleanup.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/caseFactory.js",
+    "imports": [
+      "/src/foundation/health/constants.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/dailyCandidateSelection.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/domainSourceReceipt.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/pattern/LunarSummary.jsx",
+    "imports": [
+      "/src/foundation/i18n/patternCopy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/base44OnboardingFixture.js",
+    "imports": [
+      "/base44/shared/onboardingCycleGate.js",
+      "/base44/shared/domainSchemas.js",
+      "/src/foundation/tests/dataModelTests.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/closure017Tests.js",
+    "imports": [
+      "/src/foundation/sourceInventory.js",
+      "/base44/shared/healthExecutionEvidence.js",
+      "/base44/shared/healthPlan.js",
+      "/base44/shared/internalHealthOperations.js",
+      "/src/foundation/buildMarker.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/tests/nativeFixture.js",
+      "/base44/shared/adminTestRepository.js",
+      "/base44/shared/healthPersistence.js",
+      "/base44/shared/internalAuthorization.js",
+      "/src/foundation/health/aggregate.js",
+      "/src/foundation/probes/browserEvidence.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/authPolicy.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/onboardingOperations.js",
+    "imports": [
+      "/base44/shared/userLifecycle.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/boundedJson.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/base44OnboardingAdapter.js",
+      "/base44/shared/domainAtomic.js",
+      "/base44/shared/onboardingRoute.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/base44/shared/geonamesDiagnostics.js",
+      "/base44/shared/profileInput.js",
+      "/base44/shared/dailyRecord.js",
+      "/base44/shared/privacyPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/services/calendarService.js",
+    "imports": [
+      "/src/api/base44Client.js",
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/inspection/uiRules.js",
+    "imports": [
+      "/src/foundation/designTokens.js",
+      "/src/foundation/uiContract.js",
+      "/src/foundation/i18n/strings.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/dailySelection.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/you/ProfileEditor.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/components/shinka/ShinkaInput.jsx",
+      "/src/features/profile/BirthplaceCombobox.jsx",
+      "/src/features/onboarding/FieldError.jsx",
+      "/src/foundation/i18n/youCopy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/internal/SuiteSection.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/components/internal/CaseRow.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/daily/DailyStatus.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/foundation/i18n/dailyCopy.js",
+      "/src/services/dailyMessageService.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/privacy/PrivacyActions.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/foundation/i18n/privacyCopy.js",
+      "/src/services/privacyService.js",
+      "/src/features/privacy/privacyController.js",
+      "/src/features/privacy/PrivacyDialog.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/uiuxTables.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/shinka/ShinkaInput.jsx",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/domainSecurity.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSchemas.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/calendar/useCalendar.js",
+    "imports": [
+      "/src/features/calendar/calendarController.js",
+      "/src/services/calendarService.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/adminTestTools/catalog.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/nativeReadinessContract.js",
+    "imports": [
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/evidence.js",
+      "/base44/shared/healthReadDiagnostics.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/calendar/CalendarMonth.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/foundation/i18n/calendarCopy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/domainAccess.js",
+    "imports": [
+      "/base44/shared/patternOperation.js",
+      "/base44/shared/nativeDomainGuard.js",
+      "/base44/shared/base44CalendarReader.js",
+      "/base44/shared/calendarCalculation.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/boundedJson.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/domainReadPage.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/domainAudit.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/internal/CapabilityList.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/components/shinka/StatusBadge.jsx",
+      "/src/foundation/capabilityRegister.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/onboardingCyclePersistence.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/onboardingConsent.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/notificationDelivery.js",
+    "imports": [
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/notificationPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/pages/Calendar.jsx",
+    "imports": [
+      "/src/features/mobile/RefreshControl.jsx",
+      "/src/foundation/i18n/mobileCopy.js",
+      "/src/components/profile/ProductLanguageControls.jsx",
+      "/src/components/profile/ProfileMenu.jsx",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/components/shinka/ShinkaInput.jsx",
+      "/src/components/shinka/ProductNavigation.jsx",
+      "/src/foundation/i18n/calendarCopy.js",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/src/features/calendar/useCalendar.js",
+      "/src/features/calendar/CalendarMonth.jsx",
+      "/src/features/calendar/CalendarDeleteDialog.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/youTests.js",
+    "imports": [
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/youFixture.js",
+      "/src/features/you/youController.js",
+      "/src/services/youService.js",
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/healthTimingTests.js",
+    "imports": [
+      "/src/foundation/tests/fixtureConsole.js",
+      "/src/foundation/testExecution.js",
+      "/src/foundation/health/cases/domainProbe.js",
+      "/src/foundation/health/testProgress.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/tests/testClock.js",
+      "/src/foundation/tests/adminNavigationTests.js"
+    ],
+    "dynamic": [
+      "/src/foundation/health/runner.js"
+    ]
+  },
+  {
+    "id": "/src/features/profile/BirthTimeField.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/features/onboarding/FieldError.jsx",
+      "/src/features/mobile/useModalSurface.js",
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/dailyCycle.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/dailySelection.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/privacyTests.js",
+    "imports": [
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/privacyFixture.js",
+      "/base44/shared/privacyPolicy.js",
+      "/src/features/privacy/privacyController.js",
+      "/src/services/privacyService.js",
+      "/base44/shared/onboardingCycleGate.js",
+      "/base44/shared/privacyRepository.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/shinka/ShinkaSelect.jsx",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/evidence.js",
+    "imports": [
+      "/base44/shared/healthEvidence.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/healthPersistence.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/healthHistoryContract.js",
+      "/base44/shared/adminTestPolicy.js",
+      "/base44/shared/adminTestPreview.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/shinka/PageHeader.jsx",
+    "imports": [
+      "/src/foundation/buildMarker.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/completion.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/onboardingConsent.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/onboardingDependencies.js",
+    "imports": [
+      "/base44/shared/sunSign.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/adminTestExecution.js",
+    "imports": [
+      "/base44/shared/testDeletionResult.js",
+      "/base44/shared/adminTestPolicy.js",
+      "/base44/shared/adminTestAudit.js",
+      "/base44/shared/adminTestDiagnostics.js",
+      "/base44/shared/testDeletionPass.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/pages/Pattern.jsx",
+    "imports": [
+      "/src/components/profile/ProductLanguageControls.jsx",
+      "/src/components/profile/ProfileMenu.jsx",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/components/shinka/ProductNavigation.jsx",
+      "/src/foundation/i18n/patternCopy.js",
+      "/src/features/pattern/usePattern.js",
+      "/src/features/pattern/LunarSummary.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/contentArtifactFixture.js",
+    "imports": [
+      "/base44/shared/contentArtifactValidator.ts"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/environment.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/inspection/onboardingRules.js",
+    "imports": [
+      "/src/foundation/inspection/sourceRules.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/shinka/PageContainer.jsx",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/onboarding/OnboardingScreen.jsx",
+    "imports": [
+      "/src/features/onboarding/OnboardingIntro.jsx",
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/components/shinka/ShinkaInput.jsx",
+      "/src/features/onboarding/SignIn.jsx",
+      "/src/features/onboarding/OnboardingForms.jsx",
+      "/src/features/onboarding/FieldError.jsx",
+      "/src/services/authService.js",
+      "/src/features/onboarding/pendingName.js",
+      "/src/foundation/i18n/strings.js",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/base44/shared/onboardingValidation.js",
+      "/src/services/onboardingService.js",
+      "/src/features/daily/FirstShinka.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/pattern/patternLifecycle.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/services/dailyMessageService.js",
+    "imports": [
+      "/src/api/base44Client.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/onboarding/FramedDateField.jsx",
+    "imports": [
+      "/src/features/onboarding/FieldError.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/onboardingCycleGate.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/adminTestRepository.js",
+    "imports": [
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/privacyPolicy.js",
+      "/base44/shared/ownedCleanup.js",
+      "/base44/shared/testDeletionPass.js",
+      "/base44/shared/adminTestPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/calendarFixture.js",
+    "imports": [
+      "/src/foundation/tests/base44OnboardingFixture.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/base44CalendarReader.js",
+      "/base44/shared/calendarState.js",
+      "/base44/shared/calendarOperation.js",
+      "/base44/shared/onboardingDependencies.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/GoogleIcon.jsx",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/geonamesRuntimeProbeTests.js",
+    "imports": [
+      "/src/foundation/tests/fixtureConsole.js",
+      "/src/foundation/tests/testClock.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/base44/shared/geonamesRuntimeProbe.js",
+      "/base44/shared/geonamesAdapter.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/internalHealthOperations.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/internalHealthOperations.js",
+    "imports": [
+      "/base44/shared/healthHistoryContract.js",
+      "/base44/shared/nativeReadiness.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/healthPersistence.js",
+      "/base44/shared/domainContract.js",
+      "/base44/shared/contentStateContract.js",
+      "/base44/shared/healthReadDiagnostics.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/security028UiTests.js",
+    "imports": [
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/src/services/onboardingService.js",
+      "/src/services/youService.js",
+      "/src/features/profile/birthplaceSearch.js",
+      "/src/features/you/youController.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/i18n/privacyCopy.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/daily/useDailyMessage.js",
+    "imports": [
+      "/src/services/dailyMessageService.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/inspection/sourceScanner.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/onboardingClosureFixture.js",
+    "imports": [
+      "/src/foundation/tests/dailyFixture.js",
+      "/base44/shared/onboardingOperations.js",
+      "/base44/shared/dailyMessageOperation.js",
+      "/src/services/onboardingService.js",
+      "/src/services/dailyMessageService.js",
+      "/base44/shared/geonamesGuard.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/privacyOperation.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/boundedJson.js",
+      "/base44/shared/adminTestRepository.js",
+      "/base44/shared/privacyRepository.js",
+      "/base44/shared/privacyPolicy.js",
+      "/base44/shared/privacyWithdrawal.js",
+      "/base44/shared/privacyAccountDeletion.js",
+      "/base44/shared/onboardingCycleGate.js",
+      "/base44/shared/onboardingConsent.js",
+      "/base44/shared/onboardingDependencies.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/geonamesGuard.js",
+    "imports": [
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/services/patternService.js",
+    "imports": [
+      "/src/api/base44Client.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/contentCategoryDecision.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/context.js",
+    "imports": [
+      "/src/foundation/inspection/sourceScanner.js",
+      "/src/services/internal/artifactService.js",
+      "/src/services/internal/entityProbeService.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/dailyFixture.js",
+    "imports": [
+      "/src/foundation/tests/base44OnboardingFixture.js",
+      "/base44/shared/contentArtifactValidator.ts",
+      "/base44/shared/contentImportPlan.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/pattern.js",
+    "imports": [
+      "/src/foundation/tests/patternTests.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/cases/domainProbe.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/productionOnboardingTests.js",
+    "imports": [
+      "/src/foundation/tests/consentPersistenceTests.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/base44OnboardingFixture.js",
+      "/base44/shared/base44OnboardingAdapter.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/onboardingOperations.js",
+      "/base44/shared/onboardingValidation.js",
+      "/src/foundation/tests/onboardingFixture.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/calendar.js",
+    "imports": [
+      "/src/foundation/tests/mobileInteractionTests.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/tests/nativeTests.js",
+      "/src/foundation/health/nativeReadinessContract.js",
+      "/src/foundation/tests/calendarTests.js",
+      "/src/foundation/health/cases/domainProbe.js",
+      "/src/foundation/health/constants.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/ProtectedRoute.jsx",
+    "imports": [
+      "/src/lib/AuthContext.jsx",
+      "/src/components/UserNotRegisteredError.jsx",
+      "/src/components/SessionRetry.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/lib/app-params.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/contentArtifactSources.ts",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/onboardingFixture.js",
+    "imports": [
+      "/base44/shared/geonamesAdapter.js",
+      "/src/foundation/tests/geonamesSearchFixture.js",
+      "/base44/shared/sunSign.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/internalAuthorization.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/onboardingDecisionTests.js",
+    "imports": [
+      "/src/foundation/tests/dailyRecordFixture.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/base44OnboardingFixture.js",
+      "/src/foundation/tests/onboardingFixture.js",
+      "/base44/shared/sunSign.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/base44/shared/onboardingOperations.js",
+      "/base44/shared/onboardingRoute.js",
+      "/base44/shared/onboardingValidation.js",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/src/foundation/inspection/onboardingRules.js",
+      "/src/foundation/tests/onboardingCopyReceipt.json"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/constants.js",
+    "imports": [
+      "/base44/shared/healthConstants.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/ProductRoute.jsx",
+    "imports": [
+      "/src/components/LoginRedirect.jsx",
+      "/src/components/ProtectedRoute.jsx",
+      "/src/pages/Onboarding.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/calendar/CalendarDeleteDialog.jsx",
+    "imports": [
+      "/src/features/mobile/useModalSurface.js",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/foundation/i18n/calendarCopy.js",
+      "/src/features/calendar/CalendarMonth.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/domainAudit.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/domainValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/i18n/strings.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/calendarRecoveryTests.js",
+    "imports": [
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/nativeFixture.js",
+      "/src/features/calendar/calendarController.js",
+      "/src/services/calendarService.js",
+      "/src/foundation/tests/testClock.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/services/internal/healthRunStore.js",
+    "imports": [
+      "/src/foundation/errors.js",
+      "/src/api/base44Client.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/daily.js",
+    "imports": [
+      "/src/foundation/tests/onboardingClosureTests.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/tests/nativeTests.js",
+      "/src/foundation/health/nativeReadinessContract.js",
+      "/src/foundation/tests/dailyTests.js",
+      "/src/foundation/tests/calendarTests.js",
+      "/src/foundation/health/cases/domainProbe.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/evidence.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/patternOperation.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/boundedJson.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/nativeDomainGuard.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/patternReader.js",
+      "/base44/shared/patternCalculation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/UserNotRegisteredError.jsx",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/nativeDomainGuard.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/onboardingConsent.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/userLifecycle.js",
+      "/base44/shared/privacyPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/healthReadTests.js",
+    "imports": [
+      "/base44/shared/nativeReadiness.js",
+      "/base44/shared/internalHealthOperations.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/userLifecycle.js",
+      "/base44/shared/healthReadDiagnostics.js",
+      "/base44/shared/contentArtifactOperation.ts",
+      "/base44/shared/contentArtifactSources.ts",
+      "/src/services/internal/healthReadService.js",
+      "/src/foundation/health/context.js",
+      "/src/foundation/health/nativeReadinessContract.js",
+      "/src/foundation/health/cases/h05.js",
+      "/src/foundation/tests/contentArtifactFixture.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/domainAtomic.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/domainContract.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/onboarding/pendingName.js",
+    "imports": [
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/onboarding/OnboardingForms.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/components/shinka/ShinkaInput.jsx",
+      "/src/features/profile/BirthplaceCombobox.jsx",
+      "/src/features/profile/BirthTimeField.jsx",
+      "/src/features/onboarding/FramedDateField.jsx",
+      "/src/features/onboarding/FieldError.jsx",
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/onboardingClosureTests.js",
+    "imports": [
+      "/src/foundation/tests/youFixture.js",
+      "/base44/shared/onboardingOperations.js",
+      "/src/foundation/i18n/strings.js",
+      "/src/services/dailyMessageService.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/onboardingClosureFixture.js",
+      "/src/foundation/tests/onboardingAuditTests.js",
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/calendarCalculation.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/dailySelection.js",
+      "/base44/shared/dailyCycle.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/healthEvidence.js",
+    "imports": [
+      "/base44/shared/healthConstants.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/dailyRecord.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/domainValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/healthConstants.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/aggregate.js",
+    "imports": [
+      "/base44/shared/healthAggregate.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/xlsxReader.ts",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/probes/authProbeContract.js",
+    "imports": [
+      "/src/foundation/probes/authProbeRoute.js",
+      "/src/foundation/probes/inspectAuthShell.js"
+    ],
+    "dynamic": [
+      "/src/foundation/probes/browserEvidence.js"
+    ]
+  },
+  {
+    "id": "/src/foundation/health/cases/you.js",
+    "imports": [
+      "/src/foundation/tests/youTests.js",
+      "/src/foundation/tests/coreQualityTests.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/cases/domainProbe.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/h15.js",
+    "imports": [
+      "/src/foundation/tests/onboardingAuditTests.js",
+      "/src/foundation/tests/patternTests.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/cases/domainProbe.js",
+      "/src/foundation/tests/closure018Tests.js",
+      "/src/foundation/tests/birthplaceSelectionTests.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/openDecisions.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/onboardingUiTests.js",
+    "imports": [
+      "/src/foundation/tests/domWait.js",
+      "/src/foundation/tests/geonamesSearchFixture.js",
+      "/src/foundation/tests/OnboardingTestScreen.jsx",
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/base44/shared/onboardingValidation.js",
+      "/src/foundation/tests/onboardingFixture.js",
+      "/src/foundation/tests/base44OnboardingFixture.js",
+      "/base44/shared/onboardingOperations.js",
+      "/src/foundation/probes/domProbes.js",
+      "/src/services/onboardingService.js",
+      "/base44/shared/geonamesAdapter.js",
+      "/src/foundation/testExecution.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/notificationPerformanceTests.js",
+    "imports": [
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/notificationFixture.js",
+      "/src/foundation/tests/notificationCostFixture.js",
+      "/base44/shared/notificationOwner.js",
+      "/base44/shared/dailyMessageOperation.js",
+      "/base44/shared/notificationScheduler.js",
+      "/base44/shared/userLifecycle.js",
+      "/base44/shared/internalAuthorization.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/api/base44Client.js",
+    "imports": [
+      "/src/lib/app-params.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/LoginRedirect.jsx",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/probes/browserEvidence.js",
+    "imports": [
+      "/src/foundation/buildMarker.js",
+      "/src/foundation/inspection/sourceScanner.js",
+      "/src/foundation/environment.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/reportExport.js",
+    "imports": [
+      "/src/foundation/health/report.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/pages/internal/BuildEnvironment.jsx",
+    "imports": [
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/PageHeader.jsx",
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/components/shinka/KeyValueGrid.jsx",
+      "/src/components/internal/InternalNav.jsx",
+      "/src/components/internal/LatestHealthCard.jsx",
+      "/src/components/internal/LedgerList.jsx",
+      "/src/components/internal/CapabilityList.jsx",
+      "/src/foundation/buildMarker.js",
+      "/src/foundation/buildLedger.js",
+      "/src/foundation/environment.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/sourceInventory.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/privacy/PrivacyDialog.jsx",
+    "imports": [
+      "/src/features/mobile/useModalSurface.js",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/foundation/i18n/privacyCopy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/qualityMilestoneTests.js",
+    "imports": [
+      "/src/foundation/health/privateReportOpening.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/nativeFixture.js",
+      "/base44/shared/onboardingOperations.js",
+      "/src/foundation/tests/dailyRecordFixture.js",
+      "/src/lib/authReturnTo.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/geonamesAdapter.js",
+    "imports": [
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/geonamesDiagnostics.js",
+      "/base44/shared/geonamesGuard.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/services/privacyService.js",
+    "imports": [
+      "/src/api/base44Client.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/native.js",
+    "imports": [
+      "/src/foundation/tests/closure020Tests.js",
+      "/src/foundation/tests/closure018Tests.js",
+      "/src/foundation/tests/audit019Tests.js",
+      "/src/foundation/tests/closure017Tests.js",
+      "/src/foundation/tests/nativeTests.js",
+      "/src/foundation/health/cases/domainProbe.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/nativeReadinessContract.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/contentStateContract.js",
+    "imports": [
+      "/base44/shared/contentSourceReceipt.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/calendarFutureTests.js",
+    "imports": [
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/nativeFixture.js",
+      "/src/foundation/tests/calendarFixture.js",
+      "/base44/shared/calendarOperation.js",
+      "/src/services/calendarService.js",
+      "/src/features/calendar/calendarController.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/internal/InternalNav.jsx",
+    "imports": [
+      "/src/foundation/internalNavigation.js",
+      "/src/foundation/i18n/strings.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/ui/toaster.jsx",
+    "imports": [
+      "/src/components/ui/use-toast.jsx",
+      "/src/components/ui/toast.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/dailyMessageOperation.js",
+    "imports": [
+      "/base44/shared/userLifecycle.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/boundedJson.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/onboardingRoute.js",
+      "/base44/shared/onboardingConsent.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/base44/shared/domainAtomic.js",
+      "/base44/shared/sunSign.js",
+      "/base44/shared/dailyCycle.js",
+      "/base44/shared/dailySelection.js",
+      "/base44/shared/moonIntervals.js",
+      "/base44/shared/dailyRecord.js",
+      "/base44/shared/nativeDailyPersistence.js",
+      "/base44/shared/privacyPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/nativeWriteChecks.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/adminTestRepository.js",
+      "/base44/shared/privacyPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/adminTestPreview.js",
+    "imports": [
+      "/base44/shared/adminTestPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/youOperation.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/boundedJson.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/nativeDomainGuard.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/onboardingRoute.js",
+      "/base44/shared/dailyRecord.js",
+      "/base44/shared/profileInput.js",
+      "/base44/shared/youRepository.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/calendarOperation.js",
+    "imports": [
+      "/base44/shared/userLifecycle.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/boundedJson.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/calendarCalculation.js",
+      "/base44/shared/calendarState.js",
+      "/base44/shared/base44CalendarReader.js",
+      "/base44/shared/nativeCalendarRecovery.js",
+      "/base44/shared/nativeCalendarPersistence.js",
+      "/base44/shared/domainAtomic.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/profile/ProfileAccess.jsx",
+    "imports": [
+      "/src/lib/AuthContext.jsx",
+      "/src/components/profile/ProfileMenu.jsx",
+      "/src/foundation/i18n/strings.js",
+      "/src/foundation/i18n/privacyCopy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/adminTestTools.js",
+    "imports": [
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/tests/coreQualityTests.js",
+      "/src/foundation/tests/nativeTests.js",
+      "/src/foundation/tests/deletionStabilityTests.js",
+      "/src/foundation/tests/deletionFaultTests.js",
+      "/src/foundation/health/nativeReadinessContract.js",
+      "/src/foundation/tests/adminTestToolsTests.js",
+      "/src/foundation/health/cases/domainProbe.js",
+      "/src/foundation/health/constants.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/h01.js",
+    "imports": [
+      "/src/foundation/buildMarker.js",
+      "/src/foundation/buildMarkerRules.js",
+      "/src/foundation/buildLedger.js",
+      "/src/foundation/environment.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/evidence.js",
+      "/src/foundation/health/caseFactory.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/sunSign.js",
+    "imports": [
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/deletionFaultTests.js",
+    "imports": [
+      "/src/foundation/tests/deletionFixture.js",
+      "/base44/shared/adminTestPolicy.js",
+      "/base44/shared/domainSchemas.js",
+      "/src/foundation/tests/dataModelTests.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/testExecution.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/notificationContractTests.js",
+    "imports": [
+      "/src/foundation/tests/testClock.js",
+      "/src/foundation/tests/notificationFixture.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/base44/shared/notificationScheduler.js",
+      "/base44/shared/base44PushProvider.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/lib/AuthContext.jsx",
+    "imports": [
+      "/src/api/base44Client.js",
+      "/src/foundation/authErrors.js",
+      "/src/lib/sessionCheck.js",
+      "/src/services/privacyService.js",
+      "/src/lib/query-client.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/daily/FirstShinka.jsx",
+    "imports": [
+      "/src/features/daily/useDailyMessage.js",
+      "/src/features/daily/DailyStatus.jsx",
+      "/src/foundation/i18n/onboardingCopy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/onboarding/FieldError.jsx",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/suites.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/patternTests.js",
+    "imports": [
+      "/src/foundation/tests/patternRefreshTests.js",
+      "/src/foundation/tests/testClock.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/patternFixture.js",
+      "/base44/shared/patternCalculation.js",
+      "/base44/shared/nativeDailyPersistence.js",
+      "/base44/shared/patternOperation.js",
+      "/src/services/patternService.js",
+      "/src/features/pattern/patternController.js"
+    ],
+    "dynamic": [
+      "/base44/shared/patternOperation.js",
+      "/base44/shared/domainAccess.js"
+    ]
+  },
+  {
+    "id": "/src/lib/utils.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/moonIntervals.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/calendarState.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/onboardingConsent.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/base44/shared/calendarCalculation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/patternReader.js",
+    "imports": [
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/contentCategoryDecision.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/probes/inspectAuthShell.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/securityTests.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/src/foundation/tests/nativeFixture.js",
+      "/base44/shared/onboardingOperations.js",
+      "/base44/shared/youOperation.js",
+      "/base44/shared/domainAccess.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/domainAudit.js",
+      "/base44/shared/domainAtomic.js",
+      "/src/foundation/tests/dataModelTests.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/index.html",
+    "imports": [
+      "/src/main.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/dailyTests.js",
+    "imports": [
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/buildMarker.js",
+      "/src/foundation/tests/dailyFixture.js",
+      "/src/foundation/tests/base44OnboardingFixture.js",
+      "/base44/shared/contentImportPlan.js",
+      "/base44/shared/base44ContentLibrary.js",
+      "/base44/shared/contentLibraryOperation.js",
+      "/base44/shared/dailyCycle.js",
+      "/base44/shared/moonIntervals.js",
+      "/base44/shared/dailySelection.js",
+      "/base44/shared/dailyMessageOperation.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/onboardingOperations.js",
+      "/base44/shared/contentSourceReceipt.js",
+      "/base44/shared/contentStateContract.js",
+      "/base44/shared/moonImport.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/base44/shared/contentCategoryDecision.js",
+      "/src/foundation/openDecisions.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/testDeletionResult.js",
+    "imports": [
+      "/base44/shared/adminTestPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/contentArtifactOperation.ts",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/healthReadDiagnostics.js",
+      "/base44/shared/xlsxReader.ts",
+      "/base44/shared/contentArtifactSources.ts",
+      "/base44/shared/contentArtifactValidator.ts"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/lib/sessionCheck.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/internal/AdminGate.jsx",
+    "imports": [
+      "/src/lib/AuthContext.jsx",
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/StatePanel.jsx",
+      "/src/components/SessionRetry.jsx",
+      "/src/foundation/internalNavigation.js",
+      "/src/foundation/i18n/strings.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/services/authService.js",
+    "imports": [
+      "/src/api/base44Client.js",
+      "/src/foundation/authPolicy.js",
+      "/src/foundation/authErrors.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/healthHistoryContract.js",
+    "imports": [
+      "/base44/shared/healthExecutionScope.js",
+      "/base44/shared/healthAggregate.js",
+      "/base44/shared/reportPrivacy.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/healthPlan.js",
+      "/base44/shared/healthExecutionEvidence.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/profile/ProductLanguageControls.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/foundation/i18n/youCopy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/domainContract.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/privacyPolicy.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/uiContract.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/i18n/testToolsCopy.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/pattern/patternController.js",
+    "imports": [
+      "/src/services/patternService.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/mobileInteractionTests.js",
+    "imports": [
+      "/src/features/calendar/calendarController.js",
+      "/src/features/daily/useDailyMessage.js",
+      "/src/features/mobile/RouteMotion.jsx",
+      "/src/foundation/tests/domWait.js",
+      "/src/foundation/tests/dataModelTests.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/mobile/useLayerHistory.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/authErrors.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/privacyWithdrawal.js",
+    "imports": [
+      "/base44/shared/privacyPolicy.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/domainSecurity.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/base44ContentLibrary.js",
+    "imports": [
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/contentImportPlan.js",
+      "/base44/shared/domainSecurity.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/profile/ProfileMenu.jsx",
+    "imports": [
+      "/src/features/mobile/useLayerHistory.js",
+      "/src/foundation/internalNavigation.js",
+      "/src/foundation/i18n/strings.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/closure020Tests.js",
+    "imports": [
+      "/src/foundation/tests/nativeFixture.js",
+      "/base44/shared/nativeReadiness.js",
+      "/base44/shared/adminTestRepository.js"
+    ],
+    "dynamic": [
+      "/src/foundation/health/catalog.js"
+    ]
+  },
+  {
+    "id": "/src/components/internal/LedgerList.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/foundation/buildLedger.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/notificationScheduler.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/userLifecycle.js",
+      "/base44/shared/boundedJson.js",
+      "/base44/shared/dailyMessageOperation.js",
+      "/base44/shared/notificationOwner.js",
+      "/base44/shared/notificationDelivery.js",
+      "/base44/shared/notificationPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/future.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/nativeAdminTestOperation.js",
+    "imports": [
+      "/base44/shared/testDeletionResult.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/adminTestRepository.js",
+      "/base44/shared/adminTestPolicy.js",
+      "/base44/shared/adminTestOperation.js",
+      "/base44/shared/adminTestExecution.js",
+      "/base44/shared/nativeTestJournal.js",
+      "/base44/shared/testDeletionPass.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/i18n/calendarCopy.js",
+    "imports": [
+      "/src/foundation/uiuxTables.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/buildMarkerRules.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/onboarding.js",
+    "imports": [
+      "/src/foundation/tests/youTests.js",
+      "/src/foundation/tests/qualityMilestoneTests.js",
+      "/src/foundation/tests/maintenanceTests.jsx",
+      "/src/foundation/tests/onboardingDecisionTests.js",
+      "/src/foundation/tests/productionOnboardingTests.js",
+      "/src/foundation/tests/onboardingTests.js",
+      "/src/foundation/tests/securityTests.js",
+      "/src/foundation/health/cases/domainProbe.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/health/constants.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/domainContract.js",
+    "imports": [
+      "/base44/shared/domainContract.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/geonamesDiagnostics.js",
+    "imports": [
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/nativeResetStep.js",
+    "imports": [
+      "/base44/shared/base44OnboardingAdapter.js",
+      "/base44/shared/adminTestRepository.js",
+      "/base44/shared/adminTestPolicy.js",
+      "/base44/shared/adminTestAudit.js",
+      "/base44/shared/base44CalendarReader.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSecurity.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/coreQualityTests.js",
+    "imports": [
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/nativeFixture.js",
+      "/src/foundation/tests/youFixture.js",
+      "/base44/shared/domainAccess.js",
+      "/src/features/you/youController.js",
+      "/src/foundation/health/cases/domainProbe.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/deletionFixture.js",
+    "imports": [
+      "/src/foundation/tests/nativeFixture.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/nativeAdminTestOperation.js",
+      "/base44/shared/adminTestPreview.js",
+      "/base44/shared/adminTestDiagnostics.js",
+      "/base44/shared/userLifecycle.js",
+      "/src/services/internal/adminTestTools.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/shinka/ProductNavigation.jsx",
+    "imports": [
+      "/src/foundation/uiContract.js",
+      "/src/foundation/i18n/strings.js",
+      "/src/foundation/i18n/dailyCopy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/nativeCalendarRecovery.js",
+    "imports": [
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/onboardingConsent.js",
+      "/base44/shared/onboardingDependencies.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/services/internal/entityProbeService.js",
+    "imports": [
+      "/src/api/base44Client.js",
+      "/src/services/internal/healthReadService.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/contentLibraryOperation.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainAudit.js",
+      "/base44/shared/base44ContentLibrary.js",
+      "/base44/shared/moonImport.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/services/internal/healthReadService.js",
+    "imports": [
+      "/src/api/base44Client.js",
+      "/src/foundation/errors.js",
+      "/base44/shared/healthReadDiagnostics.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/onboardingRoute.js",
+    "imports": [
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/sunSign.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/internal/CaseRow.jsx",
+    "imports": [
+      "/src/components/shinka/StatusBadge.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/pattern/usePattern.js",
+    "imports": [
+      "/src/services/patternService.js",
+      "/src/features/pattern/patternController.js",
+      "/src/features/pattern/patternLifecycle.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/i18n/notificationCopy.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/deletionStabilityTests.js",
+    "imports": [
+      "/src/foundation/tests/deletionFixture.js",
+      "/src/foundation/tests/dataModelTests.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/SessionRetry.jsx",
+    "imports": [
+      "/src/lib/AuthContext.jsx",
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/foundation/i18n/strings.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/healthAggregate.js",
+    "imports": [
+      "/base44/shared/healthEvidence.js",
+      "/base44/shared/healthConstants.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/services/internal/artifactService.js",
+    "imports": [
+      "/src/services/internal/healthReadService.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/adminTestFixture.js",
+    "imports": [
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/adminTestOperation.js",
+      "/base44/shared/adminTestPreview.js",
+      "/base44/shared/userLifecycle.js",
+      "/base44/shared/adminTestPolicy.js",
+      "/src/foundation/tests/dailyFixture.js",
+      "/base44/shared/adminTestAudit.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/nativeDailyPersistence.js",
+    "imports": [
+      "/base44/shared/dailyCandidateSelection.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/dailyRecord.js",
+      "/base44/shared/domainValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/h03.js",
+    "imports": [
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/evidence.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/authPolicy.js",
+      "/src/foundation/tests/securityScenarios.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/notificationOwner.js",
+    "imports": [
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/privacyPolicy.js",
+      "/base44/shared/onboardingRoute.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/notificationPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/probes/domProbes.js",
+    "imports": [],
+    "dynamic": [
+      "/src/foundation/probes/browserEvidence.js"
+    ]
+  },
+  {
+    "id": "/src/foundation/tests/securityScenarios.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/internalHealthOperations.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/youFixture.js",
+    "imports": [
+      "/src/foundation/tests/nativeFixture.js",
+      "/src/foundation/tests/dailyRecordFixture.js",
+      "/base44/shared/youOperation.js",
+      "/src/services/youService.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/adminNavigationTests.js",
+    "imports": [
+      "/src/foundation/tests/domWait.js",
+      "/src/foundation/tests/testClock.js",
+      "/src/lib/AuthContext.jsx",
+      "/src/components/ProtectedRoute.jsx",
+      "/src/components/internal/AdminGate.jsx",
+      "/src/components/profile/ProfileAccess.jsx",
+      "/src/pages/internal/AdminPanel.jsx",
+      "/src/components/internal/InternalNav.jsx",
+      "/src/foundation/internalNavigation.js",
+      "/src/foundation/i18n/strings.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/h12.js",
+    "imports": [
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/tests/securityTests.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/evidence.js",
+      "/src/foundation/health/cases/domainProbe.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/onboardingTests.js",
+    "imports": [
+      "/src/foundation/tests/onboardingClosureTests.js",
+      "/src/foundation/tests/onboardingAuditTests.js",
+      "/src/foundation/tests/testClock.js",
+      "/src/foundation/tests/dailyRecordFixture.js",
+      "/src/foundation/tests/birthplaceSelectionTests.js",
+      "/src/foundation/tests/geonamesDiagnosticTests.js",
+      "/src/foundation/tests/geonamesRuntimeProbeTests.js",
+      "/src/foundation/inspection/sourceScanner.js",
+      "/src/foundation/inspection/sourceRules.js",
+      "/src/foundation/inspection/onboardingRules.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/onboardingFixture.js",
+      "/base44/shared/onboardingOperations.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/onboardingRoute.js",
+      "/base44/shared/geonamesAdapter.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/src/foundation/uiuxTables.js",
+      "/src/services/authService.js",
+      "/src/features/onboarding/pendingName.js",
+      "/base44/shared/domainValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/services/onboardingService.js",
+    "imports": [
+      "/src/api/base44Client.js",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/buildLedgerData.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/adminTestTools/ImpactPreview.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/foundation/i18n/testToolsCopy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/useHealthRunner.js",
+    "imports": [
+      "/src/foundation/health/runner.js",
+      "/src/services/internal/healthRunStore.js",
+      "/src/foundation/errors.js",
+      "/src/foundation/health/completion.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/h13nav.js",
+    "imports": [
+      "/src/foundation/tests/adminNavigationTests.js",
+      "/src/foundation/health/cases/domainProbe.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/inspection/uiRules.js",
+      "/src/foundation/probes/iconProbe.js",
+      "/src/foundation/health/evidence.js",
+      "/src/foundation/health/caseFactory.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/base44PushProvider.js",
+    "imports": [
+      "/base44/shared/notificationPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/privacy.js",
+    "imports": [
+      "/src/foundation/tests/privacyTests.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/cases/domainProbe.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/h04.js",
+    "imports": [
+      "/src/foundation/inspection/docRules.js",
+      "/src/foundation/domainContract.js",
+      "/src/foundation/capabilityRegister.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/base44/shared/domainSchemas.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/evidence.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/health/cases/domainProbe.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/onboarding/SignIn.jsx",
+    "imports": [
+      "/src/components/GoogleIcon.jsx",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/services/authService.js",
+      "/src/lib/authReturnTo.js",
+      "/src/foundation/i18n/onboardingCopy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/i18n/youCopy.js",
+    "imports": [
+      "/src/foundation/uiuxTables.js",
+      "/src/foundation/i18n/onboardingCopy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/birthplaceSelectionTests.js",
+    "imports": [
+      "/src/foundation/tests/dataModelTests.js",
+      "/base44/shared/geonamesAdapter.js",
+      "/base44/shared/onboardingOperations.js",
+      "/src/features/profile/birthplaceSearch.js",
+      "/src/foundation/tests/base44OnboardingFixture.js",
+      "/src/foundation/tests/geonamesSearchFixture.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/runner.js",
+    "imports": [
+      "/src/foundation/health/testProgress.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/evidence.js",
+      "/src/foundation/health/aggregate.js",
+      "/src/foundation/health/integrity.js",
+      "/src/foundation/health/report.js",
+      "/src/foundation/health/context.js",
+      "/src/foundation/health/suites.js",
+      "/src/foundation/health/catalog.js",
+      "/src/foundation/errors.js",
+      "/src/foundation/buildMarker.js",
+      "/src/foundation/sourceInventory.js",
+      "/base44/shared/healthExecutionEvidence.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/patternFixture.js",
+    "imports": [
+      "/src/foundation/tests/nativeFixture.js",
+      "/src/foundation/tests/dailyRecordFixture.js",
+      "/base44/shared/contentCategoryDecision.js",
+      "/base44/shared/patternOperation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/testDeletionPass.js",
+    "imports": [
+      "/base44/shared/adminTestPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/h16.js",
+    "imports": [
+      "/src/foundation/tests/healthTimingTests.js",
+      "/src/foundation/tests/coreQualityTests.js",
+      "/src/foundation/tests/qualityMilestoneTests.js",
+      "/src/foundation/tests/healthReadTests.js",
+      "/src/foundation/tests/closure020Tests.js",
+      "/src/foundation/health/integrity.js",
+      "/src/foundation/health/aggregate.js",
+      "/src/foundation/health/suites.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/evidence.js",
+      "/src/foundation/health/caseFactory.js",
+      "/base44/shared/healthPlan.js",
+      "/base44/shared/healthExecutionEvidence.js",
+      "/src/foundation/tests/audit019Tests.js",
+      "/src/foundation/health/cases/domainProbe.js"
+    ],
+    "dynamic": [
+      "/src/foundation/health/catalog.js"
+    ]
+  },
+  {
+    "id": "/src/pages/internal/HealthCenter.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/foundation/internalNavigation.js",
+      "/src/foundation/i18n/healthCopy.js",
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/PageHeader.jsx",
+      "/src/components/shinka/StatePanel.jsx",
+      "/src/components/internal/InternalNav.jsx",
+      "/src/components/internal/HealthControls.jsx",
+      "/src/components/internal/HealthSummary.jsx",
+      "/src/components/internal/SuiteSection.jsx",
+      "/src/components/internal/RunHistory.jsx",
+      "/src/foundation/health/useHealthRunner.js",
+      "/src/foundation/health/suites.js",
+      "/src/foundation/health/catalog.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/reportExport.js",
+      "/src/foundation/environment.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/lib/PageNotFound.jsx",
+    "imports": [
+      "/src/lib/AuthContext.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/audit019Tests.js",
+    "imports": [
+      "/src/foundation/tests/nativeFixture.js",
+      "/base44/shared/adminTestDiagnostics.js",
+      "/src/foundation/inspection/sourceRules.js",
+      "/base44/shared/healthExecutionEvidence.js",
+      "/src/foundation/health/integrity.js",
+      "/base44/shared/healthPlan.js",
+      "/base44/shared/healthHistoryContract.js",
+      "/src/foundation/health/aggregate.js",
+      "/src/foundation/health/evidence.js",
+      "/src/foundation/buildMarker.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/sourceInventory.js",
+      "/src/foundation/health/cases/domainProbe.js"
+    ],
+    "dynamic": [
+      "/base44/shared/adminTestRepository.js",
+      "/src/foundation/health/runner.js"
+    ]
+  },
+  {
+    "id": "/base44/shared/nativeCalendarGrant.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/onboardingConsent.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/base44/shared/privacyPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/consentPersistenceTests.js",
+    "imports": [
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/base44OnboardingFixture.js",
+      "/base44/shared/onboardingOperations.js",
+      "/base44/shared/onboardingCycleGate.js",
+      "/base44/shared/domainValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/geonamesSearchFixture.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/inspection/sourceIntegrity.js",
+    "imports": [
+      "/src/foundation/sourceInventory.js",
+      "/src/foundation/uiuxTables.js",
+      "/src/foundation/designTokens.js",
+      "/src/foundation/uiContract.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/profileInput.js",
+    "imports": [
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/onboarding/OnboardingIntro.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaButton.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/reportPrivacy.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/security.js",
+    "imports": [
+      "/src/foundation/tests/security028UiTests.js",
+      "/src/foundation/tests/coreQualityTests.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/cases/domainProbe.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/contentImportPlan.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/contentArtifactValidator.ts",
+      "/base44/shared/moonIntervals.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/pages/Onboarding.jsx",
+    "imports": [
+      "/src/components/RouteBoundary.jsx",
+      "/src/lib/AuthContext.jsx",
+      "/src/foundation/i18n/strings.js",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/src/services/onboardingService.js",
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/pages/Home.jsx",
+      "/src/components/profile/ProfileAccess.jsx",
+      "/src/services/youService.js",
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": [
+      "/src/pages/You.jsx",
+      "/src/pages/Pattern.jsx",
+      "/src/pages/Calendar.jsx",
+      "/src/features/onboarding/OnboardingScreen.jsx"
+    ]
+  },
+  {
+    "id": "/src/features/privacy/privacyController.js",
+    "imports": [
+      "/src/services/privacyService.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/calendar/calendarController.js",
+    "imports": [
+      "/base44/shared/onboardingValidation.js",
+      "/src/services/calendarService.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/profile/BirthplaceCombobox.jsx",
+    "imports": [
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/src/features/profile/birthplaceSearch.js",
+      "/src/features/profile/BirthplaceResults.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/notifications.js",
+    "imports": [
+      "/src/foundation/tests/notificationWorkflowTests.js",
+      "/src/foundation/tests/notificationPerformanceTests.js",
+      "/src/foundation/tests/notificationContractTests.js",
+      "/src/foundation/tests/notificationTests.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/cases/domainProbe.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/profile/BirthplaceResults.jsx",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/pages/internal/TestTools.jsx",
+    "imports": [
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/PageHeader.jsx",
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/components/shinka/ShinkaInput.jsx",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/components/internal/InternalNav.jsx",
+      "/src/foundation/internalNavigation.js",
+      "/src/foundation/i18n/testToolsCopy.js",
+      "/src/features/adminTestTools/catalog.js",
+      "/src/features/adminTestTools/useTestTools.js",
+      "/src/features/adminTestTools/ImpactPreview.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/buildMarker.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/lib/query-client.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/shinka/StatePanel.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/foundation/i18n/strings.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/probes/iconProbe.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/patternRefreshTests.js",
+    "imports": [
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/testClock.js",
+      "/src/features/pattern/patternController.js",
+      "/src/features/pattern/patternLifecycle.js",
+      "/src/foundation/tests/patternFixture.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/lib/authReturnTo.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/buildHistoryPolicy.js",
+    "imports": [
+      "/src/foundation/buildMarkerRules.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/inspection/sourceRules.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/calendarTests.js",
+    "imports": [
+      "/src/foundation/tests/calendarRecoveryTests.js",
+      "/src/foundation/tests/calendarFutureTests.js",
+      "/src/foundation/tests/cycleRangeTests.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/calendarFixture.js",
+      "/base44/shared/calendarCalculation.js",
+      "/base44/shared/calendarOperation.js",
+      "/base44/shared/calendarState.js",
+      "/base44/shared/dailyCycle.js",
+      "/base44/shared/onboardingValidation.js",
+      "/src/features/calendar/calendarController.js",
+      "/src/services/calendarService.js",
+      "/src/foundation/tests/dailyRecordFixture.js",
+      "/base44/shared/dailyMessageOperation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/geonamesDiagnosticTests.js",
+    "imports": [
+      "/src/foundation/tests/fixtureConsole.js",
+      "/src/foundation/tests/testClock.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/onboardingFixture.js",
+      "/src/foundation/tests/base44OnboardingFixture.js",
+      "/base44/shared/geonamesAdapter.js",
+      "/base44/shared/geonamesDiagnostics.js",
+      "/base44/shared/onboardingOperations.js",
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/catalog.js",
+    "imports": [
+      "/src/foundation/health/cases/notifications.js",
+      "/src/foundation/health/cases/privacy.js",
+      "/src/foundation/health/cases/security.js",
+      "/src/foundation/health/cases/you.js",
+      "/src/foundation/health/cases/pattern.js",
+      "/base44/shared/healthExecutionScope.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/cases/native.js",
+      "/src/foundation/health/cases/adminTestTools.js",
+      "/src/foundation/health/cases/h01.js",
+      "/src/foundation/health/cases/h02.js",
+      "/src/foundation/health/cases/h03.js",
+      "/src/foundation/health/cases/h04.js",
+      "/src/foundation/health/cases/h05.js",
+      "/src/foundation/health/cases/h12.js",
+      "/src/foundation/health/cases/h13.js",
+      "/src/foundation/health/cases/h16.js",
+      "/src/foundation/health/cases/h15.js",
+      "/src/foundation/health/cases/onboarding.js",
+      "/src/foundation/health/cases/daily.js",
+      "/src/foundation/health/cases/calendar.js",
+      "/src/foundation/health/cases/future.js",
+      "/src/foundation/health/suites.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/internal/RunHistory.jsx",
+    "imports": [
+      "/src/foundation/health/privateReportOpening.js",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/services/internal/healthRunStore.js",
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/components/shinka/StatusBadge.jsx",
+      "/src/components/shinka/StatePanel.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/onboardingCopyReceipt.json",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/dataModelTests.js",
+    "imports": [
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/domainSourceReceipt.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/domainContract.js",
+      "/base44/shared/domainAtomic.js",
+      "/base44/shared/domainSecurity.js",
+      "/src/foundation/inspection/domainRules.js",
+      "/src/foundation/inspection/sourceScanner.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/testClock.js",
+    "imports": [
+      "/src/foundation/testExecution.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/domWait.js",
+    "imports": [
+      "/src/foundation/testExecution.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/fixtureConsole.js",
+    "imports": [
+      "/src/foundation/testExecution.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/onboardingAuditTests.js",
+    "imports": [
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/base44OnboardingFixture.js",
+      "/base44/shared/onboardingOperations.js",
+      "/src/features/profile/birthplaceSearch.js",
+      "/base44/shared/geonamesAdapter.js",
+      "/src/foundation/tests/geonamesSearchFixture.js",
+      "/base44/shared/onboardingValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/OnboardingTestScreen.jsx",
+    "imports": [
+      "/src/services/authService.js",
+      "/src/features/onboarding/OnboardingScreen.jsx",
+      "/src/foundation/tests/onboardingFixture.js",
+      "/base44/shared/onboardingOperations.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/healthPlan.js",
+    "imports": [
+      "/base44/shared/healthConstants.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/adminTestTools/useTestTools.js",
+    "imports": [
+      "/src/services/internal/adminTestTools.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/patternCalculation.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/dailyCandidateSelection.js",
+      "/base44/shared/moonIntervals.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/internalAuthorization.js",
+    "imports": [
+      "/base44/shared/healthReadDiagnostics.js",
+      "/base44/shared/boundedJson.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/notificationCostFixture.js",
+    "imports": [
+      "/src/foundation/tests/notificationFixture.js",
+      "/base44/shared/notificationScheduler.js",
+      "/base44/shared/privacyPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/internalNavigation.js",
+    "imports": [
+      "/src/foundation/i18n/strings.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/adminTestToolsTests.js",
+    "imports": [
+      "/src/foundation/tests/adminTestFixture.js",
+      "/base44/shared/adminTestPolicy.js",
+      "/base44/shared/adminTestRepository.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/userLifecycle.js",
+      "/base44/shared/onboardingOperations.js",
+      "/base44/shared/dailyMessageOperation.js",
+      "/base44/shared/adminTestOperation.js",
+      "/base44/shared/dailySelection.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/healthExecutionScope.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/h05.js",
+    "imports": [
+      "/base44/shared/contentArtifactValidator.ts",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/buildMarker.js",
+      "/base44/shared/contentStateContract.js",
+      "/src/foundation/health/evidence.js",
+      "/src/foundation/health/caseFactory.js",
+      "/base44/shared/healthReadDiagnostics.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/you/youController.js",
+    "imports": [
+      "/base44/shared/onboardingValidation.js",
+      "/src/services/youService.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/nativeTestJournal.js",
+    "imports": [
+      "/base44/shared/adminTestRepository.js",
+      "/base44/shared/adminTestPolicy.js",
+      "/base44/shared/adminTestAudit.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/adminTestOperation.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/adminTestRepository.js",
+      "/base44/shared/adminTestPolicy.js",
+      "/base44/shared/adminTestExecution.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/probes/uiProbes.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/contentCategoryDecision.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/i18n/onboardingCopy.js",
+    "imports": [
+      "/src/foundation/uiuxTables.js",
+      "/src/foundation/i18n/strings.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/pages/internal/AdminPanel.jsx",
+    "imports": [
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/PageHeader.jsx",
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/components/internal/InternalNav.jsx",
+      "/src/foundation/internalNavigation.js",
+      "/src/foundation/i18n/strings.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/userLifecycle.js",
+    "imports": [
+      "/base44/shared/adminTestRepository.js",
+      "/base44/shared/adminTestPolicy.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/nativeResetStep.js",
+      "/base44/shared/privacyPolicy.js",
+      "/base44/shared/healthReadDiagnostics.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/services/youService.js",
+    "imports": [
+      "/src/api/base44Client.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/domainSchemas.js",
+      "/src/foundation/i18n/onboardingCopy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/pages/AccountPrivacy.jsx",
+    "imports": [
+      "/src/lib/AuthContext.jsx",
+      "/src/foundation/i18n/strings.js",
+      "/src/foundation/i18n/privacyCopy.js",
+      "/src/features/privacy/PrivacyActions.jsx",
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/services/privacyService.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/adminTestDiagnostics.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/ui/use-toast.jsx",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/App.jsx",
+    "imports": [
+      "/src/features/mobile/RouteMotion.jsx",
+      "/src/components/RouteBoundary.jsx",
+      "/src/components/ui/toaster.jsx",
+      "/src/lib/query-client.js",
+      "/src/lib/PageNotFound.jsx",
+      "/src/lib/AuthContext.jsx",
+      "/src/components/UserNotRegisteredError.jsx",
+      "/src/components/ScrollToTop.jsx",
+      "/src/components/ProtectedRoute.jsx",
+      "/src/components/ProductRoute.jsx",
+      "/src/components/internal/AdminGate.jsx",
+      "/src/foundation/probes/authProbeRoute.js",
+      "/src/components/LoginRedirect.jsx"
+    ],
+    "dynamic": [
+      "/src/pages/internal/TestTools.jsx",
+      "/src/pages/AccountPrivacy.jsx",
+      "/src/pages/internal/AdminPanel.jsx",
+      "/src/pages/internal/BuildEnvironment.jsx",
+      "/src/pages/internal/HealthCenter.jsx",
+      "/src/foundation/probes/AuthShellProbe.jsx"
+    ]
+  },
+  {
+    "id": "/src/components/internal/HealthSummary.jsx",
+    "imports": [
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/components/shinka/StatusBadge.jsx",
+      "/src/components/shinka/KeyValueGrid.jsx"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/maintenanceTests.jsx",
+    "imports": [
+      "/src/foundation/buildHistoryPolicy.js",
+      "/src/foundation/buildMarkerRules.js",
+      "/src/foundation/buildLedger.js",
+      "/src/foundation/buildMarker.js",
+      "/src/foundation/inspection/sourceScanner.js",
+      "/base44/shared/geonamesAdapter.js",
+      "/base44/shared/onboardingOperations.js",
+      "/src/foundation/tests/base44OnboardingFixture.js",
+      "/src/foundation/tests/geonamesSearchFixture.js",
+      "/src/foundation/tests/dataModelTests.js"
+    ],
+    "dynamic": [
+      "/src/foundation/health/useHealthRunner.js",
+      "/src/foundation/health/report.js",
+      "/src/foundation/health/aggregate.js"
+    ]
+  },
+  {
+    "id": "/base44/shared/base44CalendarReader.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/calendarCalculation.js",
+      "/base44/shared/calendarState.js",
+      "/base44/shared/privacyPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/ui/toast.jsx",
+    "imports": [
+      "/src/lib/utils.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/h02.js",
+    "imports": [
+      "/src/foundation/sourceInventory.js",
+      "/src/foundation/inspection/sourceIntegrity.js",
+      "/src/foundation/openDecisions.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/evidence.js",
+      "/src/foundation/health/caseFactory.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/you/NotificationStatus.jsx",
+    "imports": [
+      "/src/foundation/i18n/notificationCopy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/notificationWorkflowTests.js",
+    "imports": [
+      "/src/foundation/tests/dataModelTests.js",
+      "/src/foundation/tests/notificationFixture.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/notificationScheduler.js",
+      "/base44/shared/base44PushProvider.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/inspection/docRules.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/probes/authProbeRoute.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/report.js",
+    "imports": [
+      "/base44/shared/healthExecutionScope.js",
+      "/base44/shared/healthExecutionEvidence.js",
+      "/src/foundation/health/catalog.js",
+      "/src/foundation/buildMarker.js",
+      "/src/foundation/environment.js",
+      "/src/foundation/sourceInventory.js",
+      "/src/foundation/openDecisions.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/suites.js",
+      "/src/foundation/health/aggregate.js",
+      "/base44/shared/reportPrivacy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/shinka/StatusBadge.jsx",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/mobile/useModalSurface.js",
+    "imports": [
+      "/src/features/mobile/useLayerHistory.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/privateReportOpening.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/i18n/healthCopy.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/closure018Tests.js",
+    "imports": [
+      "/src/foundation/testExecution.js",
+      "/src/foundation/health/cases/domainProbe.js",
+      "/src/services/internal/adminTestTools.js",
+      "/src/foundation/tests/nativeFixture.js",
+      "/src/foundation/health/completion.js",
+      "/base44/shared/adminTestExecution.js",
+      "/base44/shared/adminTestPolicy.js"
+    ],
+    "dynamic": [
+      "/src/foundation/health/catalog.js",
+      "/src/foundation/tests/onboardingUiTests.js"
+    ]
+  },
+  {
+    "id": "/src/foundation/inspection/domainRules.js",
+    "imports": [
+      "/src/foundation/inspection/sourceRules.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/adminTestPolicy.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSchemas.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/boundedJson.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/onboardingValidation.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/base44OnboardingAdapter.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/dailyRecord.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/base44/shared/onboardingCyclePersistence.js",
+      "/base44/shared/onboardingCycleGate.js",
+      "/base44/shared/onboardingConsent.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/contentArtifactValidator.ts",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/mobile/RouteMotion.jsx",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/notificationFixture.js",
+    "imports": [
+      "/src/foundation/tests/nativeFixture.js",
+      "/src/foundation/tests/dailyRecordFixture.js",
+      "/base44/shared/notificationScheduler.js",
+      "/base44/shared/notificationOwner.js",
+      "/base44/shared/notificationPolicy.js",
+      "/base44/shared/notificationDelivery.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/ScrollToTop.jsx",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/healthReadDiagnostics.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/features/profile/birthplaceSearch.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/cycleRangeTests.js",
+    "imports": [
+      "/src/foundation/tests/dataModelTests.js",
+      "/base44/shared/dailyCycle.js",
+      "/base44/shared/calendarCalculation.js",
+      "/src/foundation/tests/calendarFixture.js",
+      "/src/foundation/tests/dailyFixture.js",
+      "/base44/shared/dailyMessageOperation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/services/internal/adminTestTools.js",
+    "imports": [
+      "/src/api/base44Client.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/geonamesRuntimeProbe.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/geonamesDiagnostics.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/probes/AuthShellProbe.jsx",
+    "imports": [
+      "/src/features/onboarding/OnboardingScreen.jsx",
+      "/src/foundation/probes/authProbeContract.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/sourceInventory.js",
+    "imports": [
+      "/src/foundation/uiuxTables.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/moonImport.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/moonIntervals.js",
+      "/base44/shared/contentImportPlan.js",
+      "/base44/shared/domainSecurity.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/i18n/patternCopy.js",
+    "imports": [
+      "/src/foundation/uiuxTables.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/privacyFixture.js",
+    "imports": [
+      "/src/foundation/tests/nativeFixture.js",
+      "/base44/shared/privacyOperation.js",
+      "/src/services/privacyService.js",
+      "/base44/shared/onboardingCycleGate.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/testProgress.js",
+    "imports": [
+      "/src/foundation/testExecution.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/i18n/dailyCopy.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/privacyRepository.js",
+    "imports": [
+      "/base44/shared/privacyPolicy.js",
+      "/base44/shared/ownedCleanup.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/domainSchemas.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/contentSourceReceipt.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/shinka/KeyValueGrid.jsx",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/nativeReadiness.js",
+    "imports": [
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/healthReadDiagnostics.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/designTokens.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/i18n/mobileCopy.js",
+    "imports": [],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/domainReadPage.js",
+    "imports": [
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/internalAuthorization.js",
+      "/base44/shared/domainSecurity.js",
+      "/base44/shared/domainValidation.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/health/cases/h13contract.js",
+    "imports": [
+      "/src/foundation/designTokens.js",
+      "/src/foundation/health/constants.js",
+      "/src/foundation/health/evidence.js",
+      "/src/foundation/health/caseFactory.js",
+      "/src/foundation/probes/uiProbes.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/nativeTests.js",
+    "imports": [
+      "/src/foundation/tests/nativeFixture.js",
+      "/src/foundation/tests/dataModelTests.js",
+      "/base44/shared/nativeDailyPersistence.js",
+      "/base44/shared/onboardingOperations.js",
+      "/base44/shared/onboardingDependencies.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/base44/shared/adminTestAudit.js",
+    "imports": [
+      "/base44/shared/domainValidation.js",
+      "/base44/shared/adminTestPolicy.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/foundation/tests/nativeFixture.js",
+    "imports": [
+      "/src/foundation/tests/dailyFixture.js",
+      "/base44/shared/domainSchemas.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/base44/shared/userLifecycle.js",
+      "/base44/shared/nativeWriteChecks.js",
+      "/base44/shared/calendarOperation.js",
+      "/base44/shared/dailyMessageOperation.js",
+      "/base44/shared/nativeAdminTestOperation.js",
+      "/base44/shared/adminTestPreview.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/internal/HealthControls.jsx",
+    "imports": [
+      "/src/foundation/i18n/healthCopy.js",
+      "/src/components/shinka/ShinkaSelect.jsx",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/foundation/health/suites.js",
+      "/src/foundation/health/reportExport.js"
+    ],
+    "dynamic": []
+  },
+  {
+    "id": "/src/components/RouteBoundary.jsx",
+    "imports": [
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/StatePanel.jsx",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/src/foundation/i18n/strings.js"
+    ],
+    "dynamic": []
+  }
+]

@@ -1,5 +1,10 @@
 # Shinka 033 — scheduler secret yetkilendirme hazırlığı
 
+## 042 superseding contract — historical evidence below retained
+
+The [042 written Support contract and runbook](core-audit-042/support-contract.md) supersedes secret/machine preparation and unknown response/recipient/eligibility assumptions below. Workflow supplies native admin creator or owner fallback, no secret/custom headers; installed SDK unwrapped `status:"sent"` with channel fields is provider acceptance. No eligibility API or provider idempotency exists. Unknown device permission stays UNKNOWN; real entry stays disabled. Physical/workflow acceptance remains open. No old FAIL/NOT_RUN or historical measurement is rewritten.
+
+
 **Paket:** Buildmarker-033 / HC-033.0
 **İnceleme tarihi:** 2026-10-23 (Europe/Istanbul; koşu kayıtları UTC)
 **Durum:** Yerel hazırlık; gerçek secret kaydı/taşıması bağlı değil, entry `enabled:false`.

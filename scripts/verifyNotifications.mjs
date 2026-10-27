@@ -1,11 +1,10 @@
+import { verifyPushSdk } from './verifyPushSdk.mjs';
 import { readFile } from 'node:fs/promises';
 import { runInNewContext } from 'node:vm';
 import assert from 'node:assert/strict';
 import ts from 'typescript';
 import * as scheduler from '../base44/shared/notificationScheduler.js';
 import * as provider from '../base44/shared/base44PushProvider.js';
-import { createNotificationMachineAdmission } from '../base44/shared/notificationMachineAuth.js';
-import { verifyNotificationMachine } from './verifyNotificationMachine.mjs';
 export async function verifyNotifications(root) {
   let scenario, counts;
   const imports={
@@ -25,11 +24,7 @@ export async function verifyNotifications(root) {
         },
       };
     }},
-    '../../shared/notificationScheduler.js':{...scheduler,handleNotificationSchedule:(req,options)=>scheduler.handleNotificationSchedule(req,{
-      ...options,...(scenario.preparedMachine ? {admitMachine:createNotificationMachineAdmission({
-        readSecret:()=>{counts.secretReads++;return 'a'.repeat(64);},readCredential:()=> 'a'.repeat(64),
-      })}:{}),
-    })},
+    '../../shared/notificationScheduler.js':scheduler,
     '../../shared/base44PushProvider.js':provider,
     '../../shared/base44ContentLibrary.js':{inspectContentLibrary:()=>{counts.jobIO++;throw new Error('UNEXPECTED_PRODUCT_IO');}},
     '../../shared/firstContentSource.js':{FIRST_CONTENT_SOURCE:{}},
@@ -50,20 +45,19 @@ export async function verifyNotifications(root) {
     {id:'NS08',me:admin,native:admin,status:200},
     {id:'NS09',me:admin,native:admin,status:400,body:{action:'tick',user_id:'other',title:'forged',content:'forged',action_url:'https://outside.invalid'}},
     {id:'NS10',me:null,status:401,headers:{'X-Synthetic-Credential':'a'.repeat(64)}},
-    {id:'NS11',me:null,status:200,preparedMachine:true},
+    {id:'NS11',me:admin,native:admin,status:400,body:{}},
   ];
   const results=[];
   for(const item of fixtures) {
-    scenario=item;counts={clients:0,auth:0,serviceAccess:0,reads:[],jobIO:0,provider:0,secretReads:0};
+    scenario=item;counts={clients:0,auth:0,serviceAccess:0,reads:[],jobIO:0,provider:0};
     const response=await exports.default(new Request('https://fixture.invalid/schedule',{method:'POST',body:JSON.stringify(item.body||{action:'tick'}),headers:item.headers}));
     const body=await response.json();assert.equal(response.status,item.status,item.id);
     if(item.status===200)assert.deepEqual(body,{state:'DISABLED',processed:0});
     else assert.equal(body.error_code,item.status===401?'AUTH_REQUIRED':item.status===403?'ADMIN_REQUIRED':item.status===503?'SESSION_UNAVAILABLE':'INVALID_REQUEST');
     assert.equal(counts.jobIO,0);assert.equal(counts.provider,0);assert.equal(counts.clients,1);
     if(!item.me)assert.equal(counts.serviceAccess,0);
-    if(item.preparedMachine){assert.equal(counts.auth,0);assert.equal(counts.secretReads,1);}
     assert.ok(!JSON.stringify(body).includes('private'));
-    results.push({id:item.id,status:'PASS',httpStatus:response.status,response:body,counts,assertion:item.preparedMachine?'Actual disabled entry options with prepared real comparator injected only in this fixture; no workflow transport proof.':'Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof.'});
+    results.push({id:item.id,status:'PASS',httpStatus:response.status,response:body,counts,assertion:'Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof.'});
   }
-  return {scope:'LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION',passed:true,results,secretChecks:await verifyNotificationMachine(),hostedVerified:false};
+  return {scope:'LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION',passed:true,results,sdk:await verifyPushSdk(),hostedVerified:false};
 }

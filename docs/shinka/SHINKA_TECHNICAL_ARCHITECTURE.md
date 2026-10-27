@@ -2,14 +2,21 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-041
-**Last Updated:** 2026-10-27
+**Current BuildMarker:** Buildmarker-042
+**Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+
+## 042 — current startup/admission and notification binding
+
+Base44's dailyMessage/You same-request entry-principal reuse and parallel settings/applicationSession reads are preserved. Every later admission, mutation/readback and reset boundary retains fresh identity, ACTIVE, privacy/lifecycle and relevant consent gates. Real App route tests cover both startup completion orders, obsolete account results and logout; startup SS11 replaces the colliding newly added SS10 identifier, while readiness SS10 remains unchanged.
+
+The disabled notification entry uses only the shared current-native-admin guard; unused `notificationMachineAuth`/admitMachine and its test/measurement scaffolding are removed. Installed SDK integration results are unwrapped JSON, unlike function invocation responses. The strict sent envelope maps to ACCEPTED, channel contents stay opaque, and UNKNOWN/IN_FLIGHT prevent blind resend. Eligibility observation NOT_EXPOSED carries UNKNOWN permission/support without a remote API. Native configuration remains owner acceptance. No schema, shared content or daily engine redesign. [042 contract and runbook](reports/core-audit-042/support-contract.md) supersedes 033's active design; its evidence remains historical.
 
 
 ## 040 — deletion pass boundaries
@@ -54,7 +61,7 @@ AuthProvider session/account boundaries invalidate pending coalescer generations
 
 Push source distinction: official documentation confirms 100/500/50 character limits, optional action/link and Home default; user-relayed support confirms exact field names and silent unknown-field discard. Full wire types/nullability/Unicode counting and native recipient/response/workflow/device contracts remain open. Strict local validation and UNKNOWN output policy are unchanged; actual entry disabled.
 
-## 033 — separate prepared machine admission
+## Historical 033 — separate prepared machine admission
 
 handleNotificationSchedule accepts an optional trusted server-only admitMachine callback; default null follows the unchanged current-native-admin path. A configured callback must succeed before SDK construction, then repeats through the existing tick/owner/write/send admissions. Machine work uses the raw service-role client after verification, never a forged User/admin or replaced auth.me. Recipient guards and narrow POST/{action:tick}/512-byte body remain.
 

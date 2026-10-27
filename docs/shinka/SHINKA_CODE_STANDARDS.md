@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-041
-**Last Updated:** 2026-10-27
+**Current BuildMarker:** Buildmarker-042
+**Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
 **Scope:** All source (client, backend, internal tooling).
@@ -37,6 +37,12 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+## 042 — request admission and supported notification boundary
+
+Keep principal reuse inside the same request's first admission; the two-check Home reopen/You read measurement is not a write budget. Revalidate identity, ACTIVE, consent and lifecycle at subsequent protected boundaries. A normal first-daily operation must stop if reset begins during SDK IO; only the coordinated reset path may continue. Test actual App routes while parallel startup reads are pending or rejected, as well as provider state. Global helper IDs must be unique; readiness SS10 remains and startup uses SS11.
+
+The user-relayed Fode/Base44 Support contract supersedes the historical 033 machine/secret preparation below. Use the shared current-native-admin guard; never manufacture platform owner fallback. Remove unsupported machine transport code. Inspect the installed SDK's actual response envelope, accept only the reported sent envelope with both channel fields, and treat channel internals as opaque. Preserve UNKNOWN/intent readback after malformed, timeout or 502 outcomes; no fallback resend. A local wait deadline does not cancel SDK work. No unsupported eligibility query or fabricated permission is allowed. Entry remains disabled; local checks cannot certify workflow/native delivery. [042 contract and evidence](reports/SHINKA_CORE_AUDIT_042.md).
+
 ## 040 — deletion regression integrity
 
 Exercise actual component → service → Request/Response handler → native operation/repository/journal/readback with ordinary SDK IO substituted, not a serialized fake transaction. Preserve deterministic before-fix failures and distinguish fixture scheduling corrections from product defects. Scope pass metrics to safe IDs/counts/stages/durations; report data writes and journal overhead separately. Completed metadata never replaces fresh absence checks. Failed/unknown outcomes must not become automatic destructive retries. Keep Heavy UI LOCAL_BROWSER and all normal Health deletion checks synthetic. [040 execution evidence](reports/SHINKA_TEST_DELETION_STABILIZATION_040.md).
@@ -63,7 +69,7 @@ Use existing OnboardingScreen form state and backend resolver; generation/sessio
 
 Keep coalescing inside a session generation; reset invalidates both in-flight ownership and the last success. Actual AuthProvider/route tests are separate from pure helpers. Controlled scheduler/wait/clock dependencies preserve production defaults; no global timer patch or longer test timeout. Recheck generation and between-request budget after every pacing wait; unknown writes reconcile by status only. Native readiness requires exact named rows and valid sample counts. The initial 034 browser attempt was NOT_RUN under its installation blocker; the resumed 034 report separately records 649/649 on both engines. Those results are historical, not 039 evidence.
 
-## 033 — machine credential scope
+## Historical 033 — machine credential scope (superseded by 042)
 
 The scheduler-only server callback is separate from authenticated User/admin principals. Only trusted backend composition may provide it; request roles, owner IDs or workflow flags cannot choose authority. No fallback from failed machine admission to a user session. Validate before client/work/provider construction; retain fresh recipient lifecycle/preference/consent and write/send checks.
 
@@ -75,7 +81,7 @@ Native permission/registration must use a documented Base44 wrapper contract; br
 
 ## 030 — narrow integration contracts and fresh caller admission
 
-**033 scope amendment:** the following 030 description remains the manual/unbound-entry baseline; its keyless/session-only assumption is superseded for the prepared scheduler machine path by §033. General admin guards are unchanged.
+**Historical 033 scope amendment (superseded by 042):** the following 030 description remains the manual/unbound-entry baseline; its keyless/session-only assumption is superseded for the prepared scheduler machine path by §033. General admin guards are unchanged.
 
 Use the existing shared native-admin guard, repeated at protected work boundaries; no scheduler-specific role shortcut. Authenticate before lifecycle service-role construction. Keep ReportedPushInput and Promise<unknown> in the backend provider boundary; do not augment the whole SDK or add project-wide any. Runtime validation precedes narrow nullable-field casts. Unknown provider results/errors never establish sent/no-send semantics. Test adapters may establish explicit synthetic acceptance; evidence must identify that substitution.
 

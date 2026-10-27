@@ -2,14 +2,21 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-041
-**Last Updated:** 2026-10-27
+**Current BuildMarker:** Buildmarker-042
+**Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+
+## 042 — current disabled notification preparation
+
+Use current native-admin admission for manual/workflow ticks; platform, not Shinka, supplies creator→owner fallback. Creator role removal does not stop the workflow. Future workflow args must be `{action:"tick"}`; no workflow is created/enabled here. Required app preference/owner/ACTIVE/lifecycle and health-consent checks remain. Device permission/token are UNKNOWN and unobservable via the platform API; missing eligibility API is not a mandatory query gate or permission grant. Only the configured, separately enabled entry can dispatch. Strict sent envelope means provider acceptance; 502/UNKNOWN never blindly retry. See [042 contract/runbook](reports/core-audit-042/support-contract.md); 033 below is superseded history.
+
+Home has no TR/EN header buttons; persisted Profile/You preference remains the language authority. Parallel startup must keep membership refusal authoritative and block actual product/admin routes and data work until admission. Principal reuse is same request/first admission only; exactly two auth checks is a measured Home-reopen/You-read regression, not a general mutation budget.
 
 
 ## 041 — Home language
@@ -52,7 +59,7 @@ Hydration resolves persistent owner records. Skip creates/revokes/deletes nothin
 
 Birthplace is the 035 A/P combobox contract: ≥3 characters, own-name literal substring, no free text or edited-label/stale-ID save. More/Retry is explicit; an empty filtered page can have a next page. Owner/auth/secret/rate-limit checks remain. [035 audit, execution and evidence](reports/SHINKA_ONBOARDING_AUDIT_035.md).
 
-## 033 — scheduler machine identity and push acceptance
+## Historical 033 — scheduler machine identity and push acceptance
 
 Manual invocation still requires a current native admin. The approved shared secret may authorize only the bounded daily-notification scheduler, without a user session; it grants no account/role/admin-tool authority or caller-selected recipients/content/dates. The real entry remains disabled and unbound until registration and safe workflow transport are demonstrated. Recipient account/lifecycle/preferences/consent and daily independence stay unchanged.
 
@@ -70,7 +77,7 @@ UC-10/20, KK-13/24: the shared daily engine is callable by authenticated Home an
 
 New 029 decisions (not claimed as original-source rules): send only during the current local day, 06:00 inclusive to 12:00 exclusive; late runs/new opt-ins/zone changes receive at most the current day's opportunity, never a backlog. First delivery intent settles until the next scheduler pass (minimum one minute), then at most three attempts; definite transient rejection backs off 5 then 15 minutes. Uncertain response/in-flight crash never automatically resends. A timezone change cancels the old in-flight admission; normal next traversal evaluates the new local day. Same-day terminal delivery suppresses another delivery even if canonical daily reconciliation changes the winning candidate. Native uniqueness remains unproven.
 
-**Current repository boundary (030):** manual calls use the shared backend guard and fresh native admin role. A verified admin receives DISABLED with zero job/provider work while the real entry remains disabled; unauthorized callers are rejected. The independently tested enabled handler can run the bounded job directly for an admin. Workflow identity is unverified, never inferred from missing auth or service-role access. The input adapter now follows the user-relayed schema, but response/recipient/device semantics remain unverified; every actual adapter result stays UNKNOWN. No workflow was created. Home/You and 029 policy remain implemented. Central neutral copy maps to title/content; optional destination is omitted for the documented default app opening through guarded Home. No historical date is transmitted. [Current delivery and retained 029 evidence](reports/SHINKA_NOTIFICATIONS_029.md).
+**Historical repository boundary (030; superseded by 042):** manual calls use the shared backend guard and fresh native admin role. A verified admin receives DISABLED with zero job/provider work while the real entry remains disabled; unauthorized callers are rejected. The independently tested enabled handler can run the bounded job directly for an admin. Workflow identity is unverified, never inferred from missing auth or service-role access. The input adapter now follows the user-relayed schema, but response/recipient/device semantics remain unverified; every actual adapter result stays UNKNOWN. No workflow was created. Home/You and 029 policy remain implemented. Central neutral copy maps to title/content; optional destination is omitted for the documented default app opening through guarded Home. No historical date is transmitted. [Current delivery and retained 029 evidence](reports/SHINKA_NOTIFICATIONS_029.md).
 
 ## Birthplace request limit and deletion flow — 028 (ACTIVE)
 

@@ -24,7 +24,6 @@
     "noEmit": true
   },
   "include": [
-    "base44/shared/notificationMachineAuth.js",
     "src/App.jsx",
     "src/foundation/**/*.js",
     "src/services/**/*.js",

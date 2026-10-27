@@ -1,0 +1,28 @@
+{
+  "baseline": "a1c87ca",
+  "baselinePurpose": "After 041 Home header removal, before Base44 admission/startup changes",
+  "sameInstrumentAndDependencies": [
+    {
+      "path": "package.json",
+      "sha256": "bc4ef66f8fca914b585badc0f251140c9cacc400223ae12b1f5a7162625adcdc",
+      "identical": true
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "92a9976f22f72c1872e164bd905f02ce580f27d43a6a225b376302cb18f6e924",
+      "identical": true
+    },
+    {
+      "path": "scripts/measureTransitions.mjs",
+      "sha256": "7f8eeaef8acd2f615baab6b1bb3298c90b1205099730372b42413a455099edc7",
+      "identical": true
+    },
+    {
+      "path": "scripts/testHarness/transitionFixtures.js",
+      "sha256": "278afeb478ed95c49f86d3e03d032a1ff67e33152c4975a72f9800f3e713bba0",
+      "identical": true
+    }
+  ],
+  "execution": "Sequential baseline then final, after full browser gates; same machine/current installed lockfile",
+  "scope": "Local production route transitions, real SDK with synthetic HTTP; not cold app startup, hosted speed, field INP or backend credit measurement"
+}

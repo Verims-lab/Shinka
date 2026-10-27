@@ -28,8 +28,14 @@ async function loadCalendarLab() {
   return calendarLab;
 }
 const hydration = params.has('holdHydration') ? new Promise(resolve => { releaseHydration = resolve; }) : Promise.resolve();
+const startupGates = { settings:[], session:[] };
+const holdStartup = name => { let resolve,reject; const promise=new Promise((ok,no)=>{resolve=ok;reject=no;});startupGates[name].push({promise,resolve,reject}); };
+if(params.has('startupFixture')) { holdStartup('settings');holdStartup('session'); }
 export const authFixture = {
   calls,
+  startupStarted:{settings:0,session:0},
+  holdStartup,
+  settleStartup(name,index,value,refused=false) { const gate=startupGates[name][index]; if(refused)gate.reject({status:403,data:{extra_data:{reason:'user_not_registered'}}}); else gate.resolve(value); },
   holdOperation(name) { let resolve; const promise=new Promise(done=>{resolve=done;});operationGates.set(name,{promise,resolve}); },
   releaseOperation(name) { const gate=operationGates.get(name);operationGates.delete(name);gate?.resolve(); },
   failOperation(name) { operationFailures.add(name); },
@@ -40,7 +46,7 @@ export const authFixture = {
   release() { const pending = delayed; delayed = null; pending?.resolve(); },
 };
 export const base44 = {
-  app: { getPublicSettings: async () => ({}) },
+  app: { getPublicSettings: async () => { const i=authFixture.startupStarted.settings++; return startupGates.settings[i]?.promise || {}; } },
   auth: {
     me: async () => {
       if (delayed) await delayed.promise;
@@ -54,7 +60,7 @@ export const base44 = {
     calls.push({ name, action: body.action }); // Action names only; no user payload.
     if(operationGates.has(name))await operationGates.get(name).promise;
     if(operationFailures.delete(`${name}.${body.action}`)||operationFailures.delete(name))throw new Error('SYNTHETIC_NETWORK_FAILURE');
-    if (name === 'applicationSession') return { data: { ...await base44.auth.me(), authority: 'BASE44_NATIVE_V1' } };
+    if (name === 'applicationSession') { const i=authFixture.startupStarted.session++; return {data: startupGates.session[i] ? await startupGates.session[i].promise : {...await base44.auth.me(),authority:'BASE44_NATIVE_V1'}}; }
     if (name === 'adminTestTools') {
       if (!testToolsLab) testToolsLab = import('@/foundation/tests/nativeFixture').then(({nativeFixture})=>{const fixture=nativeFixture();fixture.state.time=new Date().toISOString();Object.assign(fixture.tables.User.find(row=>row.id==='ownerA'),{full_name:'Synthetic Target',email:'target@example.invalid'});return fixture;});
       const f = await testToolsLab;

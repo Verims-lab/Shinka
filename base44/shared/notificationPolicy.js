@@ -32,6 +32,9 @@ export function notificationEligible(preferences, device) {
   if (!preferences?.notifications_enabled) return 'PREFERENCE_DISABLED';
   if (device?.support === 'UNSUPPORTED') return 'DEVICE_UNSUPPORTED';
   if (device?.permission === 'DENIED') return 'PERMISSION_DENIED';
+  // Native support/permission cannot be queried through Base44. App preference,
+  // owner/consent and the disabled-until-configured entry remain separate gates.
+  if (device?.observation === 'NOT_EXPOSED') return null;
   if (device?.support !== 'SUPPORTED' || device?.permission !== 'GRANTED') return 'DEVICE_PERMISSION_UNKNOWN';
   return null;
 }

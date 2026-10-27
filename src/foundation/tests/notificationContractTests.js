@@ -1,3 +1,4 @@
+import { createTestClock } from './testClock';
 import { notificationFixture } from './notificationFixture';
 import { check, rejects } from './dataModelTests';
 import { handleNotificationSchedule } from '../../../base44/shared/notificationScheduler.js';
@@ -57,22 +58,40 @@ export const NOTIFICATION_CONTRACT_TESTS = [
   check((await adapter.send({owner:'ownerA',language:'en'})).kind==='unknown');
   check(JSON.stringify(sent)===JSON.stringify({user_id:'ownerA',title:'Shinka',content:'Your daily Shinka is ready'}));
  }],
- ['NC07','Resolved objects and 403/502/timeout remain UNKNOWN; no blind retry or raw payload leak',async()=>{
-  for(const response of [{success:true,delivered:true,message_id:'private'},null,'private',Object.assign(new Error('private'),{status:403}),Object.assign(new Error('private'),{status:502}),new Error('timeout')]){
+ ['NC07','Malformed/lost/502 outcomes stay UNKNOWN; 403/404 permanent, never blind retry or raw payload leak',async(context={})=>{
+  for(const response of [{success:true,delivered:true,message_id:'private'},{status:'sent'}, {status:'sent',successful_channels:[],failed_channels:null}, {data:{status:'sent',successful_channels:[],failed_channels:[]}}, null,'private',Object.assign(new Error('private'),{status:403}),Object.assign(new Error('private'),{status:404}),Object.assign(new Error('private'),{status:502}),new Error('timeout')]){
    const f=notificationFixture();let calls=0,params;
    const adapter=base44PushProvider({asServiceRole:{integrations:{Core:{SendPushNotification:async input=>{calls++;params=input;if(response instanceof Error)throw response;return response;}}}}});
    f.options.provider={...adapter,eligibility:async()=>({support:'SUPPORTED',permission:'GRANTED'})};
    const before=JSON.stringify(f.tables.UserDailyMessage);await f.tick();f.advance();await f.tick();f.advance(15);await f.tick();
-   check(calls===1&&f.tables.NotificationDelivery[0].dispatch_state==='UNKNOWN'&&f.tables.NotificationDelivery[0].delivery_status==='FAILED');
+   check(calls===1&&f.tables.NotificationDelivery[0].dispatch_state===((response instanceof Error && [403,404].includes(Reflect.get(response,'status')))?'PERMANENT':'UNKNOWN')&&f.tables.NotificationDelivery[0].delivery_status==='FAILED');
    check(JSON.stringify(params)===JSON.stringify({user_id:'ownerA',title:'Shinka',content:'Günlük Shinka içeriğin hazır'}));
    check(!JSON.stringify(f.tables.NotificationDelivery).includes('private')&&JSON.stringify(f.tables.UserDailyMessage)===before);
   }
+  for(const rejectLate of [false,true]){
+   const clock=createTestClock(context),f=notificationFixture();let calls=0,resolve=value=>{check(false,`Uninitialized resolution: ${value}`);},reject=error=>{check(false,`Uninitialized rejection: ${error}`);};
+   const pending=new Promise((ok,no)=>{resolve=ok;reject=no;});
+   const adapter=base44PushProvider({asServiceRole:{integrations:{Core:{SendPushNotification:()=>{calls++;return pending;}}}}},{timers:clock.timers});
+   f.options.provider=adapter;
+   try{
+    await f.tick();f.advance();await clock.run(()=>f.tick());
+    check(calls===1&&clock.now()===8000&&clock.pending()===0&&f.tables.NotificationDelivery[0].dispatch_state==='UNKNOWN');
+    const saved=JSON.stringify(f.tables.NotificationDelivery);
+    if(rejectLate)reject(new Error('private late error'));else resolve({status:'sent',successful_channels:[],failed_channels:[]});
+    await Promise.resolve();await Promise.resolve();f.advance();await f.tick();
+    check(calls===1&&saved===JSON.stringify(f.tables.NotificationDelivery)&&clock.pending()===0,'late provider result retried/changed receipt');
+   }finally{clock.dispose();}
+  }
  }],
- ['NC08','Unknown actual adapter eligibility keeps sends off while common daily generation works',async()=>{
+ ['NC08','Unavailable eligibility stays UNKNOWN without blocking configured dispatch; sent accepts once',async()=>{
   const f=notificationFixture({current:false});let providerCalls=0;
-  const adapter=base44PushProvider({asServiceRole:{integrations:{Core:{SendPushNotification:async()=>{providerCalls++;return {};}}}}});
-  const response=await call(f,{createProvider:()=>adapter});check(response.status===200&&(await response.json()).counts.INELIGIBLE===1);
-  check(providerCalls===0&&f.tables.NotificationDelivery.length===0&&f.tables.UserDailyMessage.length===2);
+  const adapter=base44PushProvider({asServiceRole:{integrations:{Core:{SendPushNotification:async()=>{providerCalls++;return {status:'sent',successful_channels:{opaque:'private'},failed_channels:[]};}}}}});
+  const device=await adapter.eligibility('ownerA');check(device.permission==='UNKNOWN'&&device.support==='UNKNOWN');
+  const response=await call(f,{createProvider:()=>adapter});check(response.status===200&&(await response.json()).counts.QUEUED===1);
+  check(providerCalls===0&&f.tables.NotificationDelivery.length===1&&f.tables.UserDailyMessage.length===2);
+  f.advance();await call(f,{createProvider:()=>adapter});await call(f,{createProvider:()=>adapter});
+  check(providerCalls===1&&f.tables.NotificationDelivery[0].dispatch_state==='ACCEPTED'&&f.tables.NotificationDelivery[0].delivery_status==='SENT');
+  check(!JSON.stringify(f.tables.NotificationDelivery).includes('private'));
   const d=f.tables.UserDailyMessage[1];await f.today();check(f.tables.UserDailyMessage[1].id===d.id);
  }],
  ['NC09','Changed authenticated principal cannot inherit an earlier admin admission',async()=>{

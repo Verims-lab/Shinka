@@ -1,0 +1,742 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 test:foundation
+> node scripts/runFoundationTests.mjs
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/HealthCenter.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/BuildEnvironment.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/TestTools.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/adminTestToolsUiTests.js, src/foundation/tests/deletionUiTests.js, src/foundation/tests/testToolsPacingTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/You.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/coreQualityUiTests.jsx, src/foundation/tests/notificationUiTests.js, src/foundation/tests/youUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/Calendar.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/additionalFixUiTests.jsx, src/foundation/tests/calendarUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/Pattern.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/patternUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/probes/AuthShellProbe.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/authProbeTests.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/tests/foundationTests.js is dynamically imported by src/foundation/tests/localRunnerTests.js but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/health/catalog.js is dynamically imported by src/foundation/health/cases/h16.js, src/foundation/tests/closure018Tests.js, src/foundation/tests/closure020Tests.js, src/foundation/tests/foundationTests.js, src/foundation/tests/sessionStabilityTests.js but also statically imported by scripts/testHarness/healthTiming.js, scripts/testHarness/main.jsx, src/foundation/health/report.js, src/foundation/health/runner.js, src/pages/internal/HealthCenter.jsx, dynamic import will not move module into another chunk.
+
+PASS NT01 Actual local 06:00 and noon boundary; fractional zones and UTC day rollover
+PASS NT02 DST spring/fall and 30-minute transition use actual local target offset
+PASS NT03 Scheduler creates missing today even with preference off; Home reuses immutable snapshot
+PASS NT04 Same operation queues then accepts once; repeated tick does not send or generate again
+PASS NT05 Transient rejection backoff and max three attempts on same row
+PASS NT06 Permanent rejection, ambiguous timeout and malformed response never blindly retry
+PASS NT07 Lost receipt after accepted call leaves IN_FLIGHT; new worker pass cannot resend
+PASS NT08 Disabled, denied, unknown and unsupported devices never send; content remains available
+PASS NT09 Late/enable/zone change stays same-day window and never mutates previous content
+PASS NT10 Fresh disabled preference after persisted intent prevents provider call
+PASS NT11 Deletion or native account removal immediately before send denies dispatch and recreates no owner data
+PASS NT12 Scheduler/Home concurrent native candidates reconcile with no push-driven regeneration
+PASS NT13 Worker coalescing and competing visible delivery candidates admit only canonical row
+PASS NT14 Shared admin handler denies unauthenticated and body authority/target/copy manipulation before writes
+PASS NT15 Owner-scoped engine refuses forged writes and unfinished/reset/privacy accounts
+PASS NT16 Bounded page checkpoints continue beyond first 25 without historical fanout
+PASS NT17 Unknown eligibility and reported provider call never infer acceptance
+PASS NT19 Owner erasure removes pending/in-flight/unknown notifications; global cursor cannot recreate identity
+PASS NT20 Home saves current valid IANA automatically without changing the current daily snapshot
+PASS NT21 Corrupt checkpoint/delivery and elapsed page budget fail closed without provider calls
+PASS NT22 Expired retry is not sent after noon; caller cannot select a historic day
+PASS NT23 Measure ordinary SDK request counts for existing/new daily, dispatch and Home reuse
+PASS NT18 Withdrawn health consent causes no health-data reads while scheduler produces content
+PASS NC01 Missing/failed identity stops before service role, job IO or provider construction
+PASS NC02 Normal, demoted cached-admin and removed native User cannot start work
+PASS NC03 Fake workflow headers, authority flags and run IDs never establish caller identity
+PASS NC04 Verified native admin can start the bounded job directly with a synthetic provider
+PASS NC05 Admin role revoked after intent write prevents send and further checkpoint mutations
+PASS NC06 Reported input names and character limits are enforced with Home-only optional destination
+PASS NC07 Malformed/lost/502 outcomes stay UNKNOWN; 403/404 permanent, never blind retry or raw payload leak
+PASS NC08 Unavailable eligibility stays UNKNOWN without blocking configured dispatch; sent accepts once
+PASS NC09 Changed authenticated principal cannot inherit an earlier admin admission
+PASS NP01 Same product results within measured query budgets; SDK/auth/provider counters stay separate
+PASS NP02 Fresh admission after daily read observes admin/owner/account/preference changes in the same request
+PASS NP03 Owner and request boundaries do not reuse prior admission state
+PASS NP04 Direct owner writer and shared daily calls still perform fresh guards after a previous admission
+PASS NP05 Admin revoked during body IO stops before provider factory and job access
+PASS NP06 Revoked health consent during generation is checked again before daily persistence
+PASS NP07 Busy worker still checks current caller before returning without job work
+PASS NM01 Native anonymous or auth outage denies before body, work and provider
+PASS NM02 Native admin still honors disabled entry and strict POST/tick body including empty workflow args
+PASS NM03 No application owner fallback for absent or demoted workflow creator
+PASS NM04 Platform-supplied alternative native admin is verified; unchanged daily and same delivery
+PASS NM05 Native admin cannot bypass recipient lifecycle, preference or known device denial
+PASS NM06 Native admin re-admission detects role loss during body IO and after IN_FLIGHT
+PASS NM07 Native admin path preserves fresh consent before daily persistence
+PASS NM08 Written sent envelope accepts once; malformed/timeout stays UNKNOWN without resend
+PASS NU03 Old notification Home URL cannot choose old content; session ending removes the snapshot
+PASS NU01 TR/EN actual You preference error retains opt-in draft and stored off; unknown native permission stays separate
+PASS NU02 Denied, unsupported, granted and unknown presentation has no fake permission/settings bridge
+PASS QM05 OAuth return path refuses external/backslash normalization and strips bootstrap tokens
+PASS QM04 Generic rejection assertion fails successful work and checks explicit error codes
+PASS QM01 Fresh server principal once per onboarding request; next request rechecks identity, no writes
+PASS QM02 Private report reserves popup in gesture, severs opener/referrer and validates HTTPS target
+PASS QM03 Report cancellation or blocked popup never navigates late; errors close pending window and retry works
+PASS CQ09 Health helper groups reject duplicate IDs; empty/failing groups never PASS or enter completed cache
+PASS CQ01 Bounded domain lists signal overflow at 101, exact 100 remains complete, owner and projection stay enforced
+PASS CQ02 Domain read rejects malformed and duplicate readbacks; leaked sentinel owner is not hidden by slicing
+PASS CQ03 Unknown preferences save cannot be discarded by edit, load, cancel or a second section save
+PASS CQ04 Failed read-only verification preserves original unknown save; same payload check later reconciles without another write
+PASS CQ05 Admin acts on synthetic B with reset/deletion, interruption and resume; fresh A session and role remain intact
+PASS DX01 Delayed real handler/native deletion progresses inside the existing service window; stable operation and protected actor
+PASS DX02 A different admin can inspect but cannot adopt or automatically resume another actor’s receipt
+PASS DX03 Completed receipt is not absence evidence: restored User, residual records and read failures remain unconfirmed
+PASS DX04 Native multi-page shrinking cleanup preserves all actor business data, shared content and retained target history
+PASS DX05 Every destructive SDK stage survives before-write failure and lost write acknowledgement using the same receipt
+PASS DX06 Lost journal/start audit/checkpoint/final audit/terminal acknowledgements recover from persisted state without duplicate audits
+PASS DX07 Two native clients resume one acknowledged receipt; completed status is reverified and competing receipts block without bulk clearing
+PASS DX08 Missing target User still enforces privacy/health jobs and lifecycle fences; wrong target and revoked admin cause zero further writes
+PASS DX09 VERIFY read failure and late earlier-stage residual cannot produce completion; retry rewinds only necessary checkpoints
+PASS DX10 Concurrent admission never hides duplicate native receipts or deletes through an ambiguous operation
+PASS MI01 Calendar read refresh coalesces and retains dirty draft / confirmed data on error
+PASS MI02 Calendar pending/rejected/unknown preserve confirmed view and replay one intent
+PASS MI03 Calendar privacy, disposal and late refresh cannot revive a previous view
+PASS MI04 Home refresh keeps daily snapshots, coalesces, retains offline view and drops late session result
+PASS MI05 Route transitions distinguish tabs/hierarchy/back and respect reduced motion
+PASS HT01 Outer timeout retains completed helpers and active phase; late work cannot cache or dispatch
+PASS HT02 Per-helper budget stops sequential dispatch and never caches an unfinished success
+PASS HT03 Pre-cancelled and active cancelled cases stop immediately; cleanup precedes next case
+PASS HT04 Only completed successes reuse within a run; failed/pending entries and new runs re-execute
+PASS HT05 Controlled timers are fixture-local; parent cancellation disposes pending jobs before returning
+PASS HT06 Cancelled real admin navigation removes its React root and waiters; a fresh fixture succeeds
+PASS HT07 Progress records closed safe IDs/phases/durations only and freezes at close
+PASS HT08 Late timer delivery cannot accept over-budget work; disposal failures cannot cache PASS
+PASS HT09 Abort restores console hooks once; late cleanup cannot overwrite the following fixture
+PASS HD01 Readiness distinguishes a successful empty table from a bounded positive sample
+PASS HD02 Readiness preserves query/access/not-found/transient/unknown classes without inferring schema absence
+PASS HD03 Aggregate zero is measured; absent, denied, transient and malformed aggregates stay null
+PASS HD04 Lifecycle failures retain original safe status and prevent the internal operation
+PASS HD05 SDK data, Axios response and nested original error carry only closed diagnostic fields to Health
+PASS HD06 Run context shares one successful or rejected read across all callers without retry
+PASS HD07 Artifact download errors and real corrupt ZIP parse errors have different safe stages
+PASS HD08 Valid synthetic workbook rows pass actual H05 runners; content inconsistency remains FAIL
+PASS HD09 Internal handler and H05 retain download/parse/validation stages instead of generic backend failure
+PASS HD10 H05-009 exposes count invocation diagnostics while preserving unavailable versus zero
+PASS YT13 Header language confirms lost response by readonly check; failed check retains unknown without auto retry
+PASS YT01 Actual HTTP owner read, profile update, normalized optional values and backend Sun
+PASS YT02 Forbidden owner, role/status/Sun/consent fields; anonymous, inactive, unfinished and reset
+PASS YT03 Shared required DOB, leap/18+ dates, 50 Unicode name, genuine optional time
+PASS YT04 Changed place re-resolves; saved place preserved; explicit clear removes all five together
+PASS YT05 Language/notification persistent readback, fixed 06:00, IANA fallback; protected history unchanged
+PASS YT06 Response loss after write; verification and same payload retry never rewrite verified values
+PASS YT07 Pre-write failure remains unknown, readonly check and explicit retry recover without false success
+PASS YT08 Stale editor conflicts, observed competing updates and duplicate same request reconcile
+PASS YT09 Health deletion and post-read inactive boundary; read-only consent never grants or withdraws
+PASS YT10 Controller double-click, lost response/check, partial section status and dispose prevent stale success
+PASS YT11 Transport validates actual success, malformed success, deadline uncertainty and safe errors
+PASS YT12 Failure after one section never marks another section saved; stale identity invalidation clears drafts
+PASS YU06 Cleared name in fresh Home response never falls back to an older hydrated name
+PASS YU01 Real You form save/cancel, error retains draft, field focus, saved readback and no protected writes
+PASS YU02 Saved place survives provider outage and explicit clear remains coherent through actual form
+PASS YU03 Unconfirmed save locks draft, readonly result check confirms; logout invalidates a late response
+PASS YU04 TR/EN 320px 200% real form labels, min touch, no fake legal or notification actions; privacy links point to confirmed workflows
+PASS YU05 Admin link only current verified prop; unsaved preferences never switch locale and reopen persisted state
+PASS PF01 Controlled 120s idle, 300s refresh and return-event burst retain confirmed sections with bounded calls
+PASS PF02 Refresh failure and section retry retain values/order; privacy/account generation drops both old requests
+PASS PT01 Empty and single assigned category, no current mapping or writes
+PASS PT02 More than two categories ranks by count then most recently assigned local day
+PASS PT03 29/30 calendar-day window includes boundary and gaps, excludes day 31/future
+PASS PT04 Duplicate day chooses Home business instant then codepoint ID, one counted day
+PASS PT05 Stored day is not reinterpreted by timezone and local DST/year boundary is respected
+PASS PT06 Malformed candidate and missing/conflicting approved category fail instead of empty
+PASS PT07 Current half-open phase and strictly future FULL before/exactly at/after its start
+PASS PT08 Next FULL local date uses IANA across year/DST; no client clock or fabricated suffix
+PASS PT09 Partial coverage preserves current phase; missing/current gaps, overlap and bad stamps never fabricate next
+PASS PT10 Actual HTTP handler returns both valid sections, safe non-2xx error paths and no writes
+PASS PT11 Anonymous, other user, forged authority, inactive, reset and deletion are denied
+PASS PT12 Fresh post-read identity/account guard prevents returning old owner results
+PASS PT13 Beyond default page size read is complete; sentinel/duplicate IDs reject truncation
+PASS PT14 Transport success, malformed response, server denial and deadline are separately executed
+PASS PT15 Independent section failure/retry retains other success and prevents duplicate requests
+PASS PT16 Late responses, session invalidation/disposal and privacy errors cannot revive data
+PASS PT18 Bounded projected queries and late first-day conflict are explicit read failures
+PASS PT19 Generic native summary reader uses current daily projection and never exposes a stale cache row
+PASS PT17 Old summary/cache is ignored; all assigned native IDs must match approved lookup
+PASS PU01 Real Pattern TR/EN preserves selected IDs without refetch or writes; active nav and two lunar fields without visible counts
+PASS PU02 Real component failure is not empty; section retry leaves successful lunar data visible
+PASS PU03 320px and 200% text keep two fields separate, within card and all controls at least 44px
+PASS PU05 Lunar error preserves themes; offline retains confirmed sections, access change clears both immediately
+PASS PU06 Real hook/component keeps both cards through 120s idle, 300s refresh and failed section retry
+PASS PU07 Partial Moon coverage keeps known phase and no invented date/time/graph in either language
+PASS PU04 Unmount discards pending response in real component
+PASS NA01 Current native User role and tombstone override cached identity
+PASS NA02 Immutable daily record reused after locale/profile/catalog changes
+PASS NA03 Independent ordinary clients can create duplicates; deterministic winner retains both
+PASS NA04 Conflicting daily candidates and late visibility preserve all snapshots
+PASS NA05 Lost daily create response recovered by reconstructed client with no extra write
+PASS NA06 Every daily candidate counts toward the 40-day repeat exclusion
+PASS NA07 Inactive daily account and signed-out identity are rejected without creating a daily row
+PASS NA08 Calendar actual add/edit/delete; same ID; no derived writes or duration defaults
+PASS NA09 Calendar stale revision and changed action fingerprint do not silently overwrite
+PASS NA10 Lost period create response resumes same intent after reload with saved action ID
+PASS NA11 Lost edit/delete acknowledgements recover without repeating actual mutation
+PASS NA12 Two simultaneous distinct date intents conflict visibly and retain intent records
+PASS NA13 Readback failure leaves intent pending; retry completes without false rollback
+PASS NA14 Initial grant event failure survives reload; resume preserves business timestamp
+PASS NA15 Consent-free request, inactive account and open deletion job cannot write health
+PASS NA16 Minimum interval and approved >60 actual dates remain unchanged
+PASS NA17 Reset preparation changes only durable onboarding progress, preserves identity/role/history
+PASS NA18 Reset normal profile write then progress failure can retry without changing intended input
+PASS NA19 Reset Skip creates no health data and final step reuses same-day snapshot
+PASS NA20 Native target deletion needs no operator maintenance and leaves other users writable
+PASS NA21 Deletion staged failure resumes with fresh client and retains consent/audit evidence
+PASS NA22 Post-write identity re-check rejects sign-out after SDK create; the persisted daily row remains
+PASS NA23 Fresh admin role revocation stops destructive stages
+PASS NA24 Native regrant never skips withdrawal cleanup proof
+PASS NA25 Late residual write before final deletion verification cannot be success
+PASS NA26 Final VERIFY reruns after audit failure even with a persisted checkpoint
+PASS NA27 Reset pending step rejects changed input without replacing first saved input
+PASS NA28 New competing intent during resume is retained and blocks success without bulk clear
+PASS NA29 Calendar owner fields and unsupported affected-count results fail closed
+PASS NA30 Initial grant period failure resumes after process restart with no extra event
+PASS NA34A Stabilization 034: admin A deletes B; A record/role intact, B removed, no other user touched, result verified
+PASS NA34B Stabilization 034: admin role removed mid-deletion stops every later write; no COMPLETED shown
+PASS NA34C Stabilization 034: late resume for another target/operation id cannot affect a different user
+PASS T01 BuildMarker format
+PASS T02 BuildMarker single source
+PASS T03 Next-marker logic
+PASS T04 Marker cannot decrement
+PASS T05 Marker increments by exactly one
+PASS T06 Build Ledger uniqueness
+PASS T07 Health suite IDs unique
+PASS T08 Health case IDs unique
+PASS T09 Health summary aggregation
+PASS T10 FAIL prevents READY
+PASS T11 WARNING prevents READY
+PASS T12 Applicable BLOCKED prevents READY
+PASS T13 Future NOT_APPLICABLE does not block
+PASS T14 PASS requires evidence
+PASS T15 Report BuildMarker = canonical
+PASS T16 No empty applicable suite silently passes
+PASS T17 Health report redaction
+PASS T18 Source inventory has 10 unique logical sources
+PASS T19 Canonical docs exist
+PASS T20 Docs reference current BuildMarker
+PASS T21 Legacy-source firewall
+PASS T22 Content validator detects duplicates/missing fields
+PASS T23 Design tokens load
+PASS T24 Health page has no horizontal overflow at 360px
+PASS T25 Interactive Health controls have accessible labels
+PASS DXU01 Real component/service/HTTP/native slow passes: bounded pause, explicit same-operation resume, fresh completion and reload
+PASS DXU02 Real admitted request with late acknowledgement: unmount and account invalidation suppress all later UI resumes
+PASS DXU03 Actual service deadline leaves a live admitted request unknown; later readback uses same ID and rejects foreign response
+PASS DXU04 Acknowledged zero progress stops automatic passes and exposes stage and one recovery action
+PASS FX01 ON-02 stale enabled handler cannot skip a just-entered name; blank skip and auth-return save remain safe
+PASS FX02 Calendar future browsing/selection is distinct from recording, localized disabled form and legacy correction remain available
+PASS PR20 Cleanup cannot report complete before the durable request fence is released
+PASS PR19 Slow preparation allows first cleanup progress, then deadline stops the next delete
+PASS PR18 An unrelated open health deletion job is not overwritten or duplicated
+PASS PR15 Reload only reads the retained request; disposal discards a delayed personal result
+PASS PR16 Ambiguous duplicate requests and restored residuals never certify erasure
+PASS PR17 Old native session cannot recreate data, and a new identity has no old personal history
+PASS PR01 Opening/cancelling never mutates; one explicit confirmation before dispatch
+PASS PR02 Actual withdrawal stops grant, cleans all five health scopes and preserves account/history
+PASS PR03 Partial withdrawal remains revoked; reconstructed worker resumes same time/event/job
+PASS PR04 After verified withdrawal only a fresh explicit Calendar consent grants new time
+PASS PR05 Normal self-delete includes personal history, leaves shared content and other users intact
+PASS PR06 Incomplete profile/daily absence does not prevent self deletion; inactive alone is not success
+PASS PR07 Lost native User deletion reply resolves by scoped read-only receipt after auth is gone
+PASS PR08 Forged owner/role, anonymous/stale identities and admin self-delete remain refused
+PASS PR09 Bounded first-page cleanup resumes without skipping and checks residuals after every pass
+PASS PR10 Foreign indirect edge and failed absence read cannot claim cleanup success
+PASS PR11 Withdrawal/account deletion collisions and admin reset respect persisted target admission
+PASS PR12 Double tap/warm-worker duplicate, lost response, reopen, and disposed late reply
+PASS PR13 Partial durable request fences product writes even before consent mutation
+PASS PR14 Recovery expires and malformed or permanent-success claims are refused
+PASS SC06 Rate-limit code maps to approved TR/EN copy in onboarding and You services; raw backend detail never surfaces
+PASS SC10 Birthplace search keeps the typed query on a rate limit, makes no automatic retry, and retries once only on request
+PASS SC11 You profile draft survives a rate-limited save; no automatic resend; save is definite (not unconfirmed)
+PASS PV01 Real confirmation cancel/Escape restores focus and causes zero mutation
+PASS PV02 Actual withdrawal confirms active cleanup separately and keeps account; pending scope does not lie
+PASS PV03 Lost removal reply offers read-only check and truthful platform-pending result, not permanent success
+PASS PV04 TR/EN 200% modal has labelled scope, keyboard containment and minimum controls
+PASS RG01 All four actual readiness cases pass a successful native backend shape with evaluated boolean assertions
+PASS RG02 Wrong strategy/version/authority and missing, duplicate, foreign or unreadable schemas fail all four readiness cases
+PASS RG03 Unavailable readiness is BLOCKED, never PASS; daily content and Moon prerequisites remain required
+PASS RM01 Execute and resume reverify active User and operational residuals after completion persistence
+PASS RM02 Absent active User is separate from retained history and same-operation read-only recovery
+PASS RM03 Denied, failed, malformed or wrong-owner native User reads never establish absence
+PASS CL10 Canonical registry rejects duplicate IDs; cancelled run starts no tests or stale results
+PASS AD01 SDK failure retains safe cause/stage and resumes the same durable partial deletion
+PASS AD02 Bounded cleanup of shrinking pages resumes without skipped rows or lost retention
+PASS AD03 Concurrent missing-row delete is idempotent only after successful absence read
+PASS AD04 Residual and final-verification failure never become completed; wrong actor cannot resume
+PASS AD06 Competing resumes retain one target operation and never infer successful cleanup
+PASS AD05 Password regeneration is detected in every named slot without a filename exemption
+PASS AI01 Missing runner, no-op result, unevaluated assertion and empty helper set cannot PASS
+PASS AI02 Missing result, null measurement, wrong build and contradictory assertion fail evidence checks
+PASS AI04 Persisted current reports require the canonical plan; legacy failures remain readable
+PASS AI03 Supplied totals are checked against results; tampering cannot reconcile
+PASS E01 In-app scope keeps transferred IDs without executing or relabeling them
+PASS E02 Synthetic helpers share results once and abort their active delay before the next suite
+PASS E03 Blocked iframe CSS and active fixture abort leave no frame; next fixture succeeds
+PASS E04 Client timeout and safe backend stage/request survive without leaking exceptions
+PASS E05 Deleted User lookup verifies the saved job; late residuals are partial and preserved until resume
+PASS E06 Missing user is distinct from failed reads; incomplete deletion cannot report success
+PASS E07 Save confirmation remains saved if list fails; uncertain write has a separate state
+PASS E08 Slow rechecks cannot starve deletion retries; every pass advances the same journal
+PASS CL01 FAIL report upload survives create failure; same run retry reuses private artifact
+PASS CL02 Lost row acknowledgement returns verified existing history, no second upload or row
+PASS CL03 Conflict or unavailable history prevents new artifact; old report remains immutable
+PASS CL04 Upload capability cannot be moved to another report or modified
+PASS CL05 Session/lifecycle errors retain safe stage and request ID without raw error
+PASS CL06 Target-bound service-role writes and unscoped writes cannot bypass a deletion tombstone
+PASS CL07 Completed deletion rechecks late rows on explicit resume without clearing tombstone
+PASS CL08 Cleanup is bounded; reconstructed request resumes and verifies remaining rows
+PASS CL09 Unmeasured viewport stays blocked and wrong build evidence cannot be imported
+PASS CL11 Upload and post-create readback failures have distinct safe stages; retry reuses stored run
+PASS CL12 Ambiguous target operations stop service-role writes and destructive resume
+PASS CL13 A MEASURED label without numeric geometry cannot produce PASS
+PASS T26 Logical source count = 10
+PASS T27 Physical UI/UX parts = 4
+PASS T28 All four UI/UX parts present and read
+PASS T29 Part order valid (reversed order detected)
+PASS T30 UI/UX logical source authority valid
+PASS T31 UI/UX not counted as four logical sources
+PASS T32 Original design colors preserved with the documented accessible text amendment
+PASS T33 Typography contract exact
+PASS T34 Icon contract exact
+PASS T35 Bottom navigation = Home/Calendar/Pattern
+PASS T36 You is not a bottom-nav item
+PASS T37 Touch target contract 44
+PASS T38 Primary control geometry contract
+PASS T39 Approved light-only theme has one semantic palette
+PASS T40 Icon-only controls require accessible labels
+PASS T41 Build & Environment has no horizontal overflow at 360px
+PASS T42 SHINKA_UI_UX_STANDARDS BuildMarker aligned
+PASS T43 No legacy UI import
+PASS T44 Health BuildMarker / catalog synchronization
+PASS T45 Build History records each package exactly once
+PASS T46 All 11 UI/UX tables machine-readable and consistent
+PASS T47 Companion is a supporting artifact, not a logical source
+PASS T48 Auth policy detects unapproved methods
+PASS T49 Missing external viewport measurement is explicitly BLOCKED (no false PASS)
+PASS T50 History record matches the run, fits storage, carries no sensitive data
+PASS T51 History persistence failure has its own error code
+PASS HB01 Internal Test Tools presentation modules pass the actual repository boundary scan
+PASS HB02 Internal feature UI cannot hide direct SDK calls or unreviewed imports
+PASS T52 Legacy dynamic imports detected; strings/comments/templates remain data
+PASS T53 Personal email detector retains application/config/test coverage
+PASS T54 Auth syntax policy detects removed flows and unapproved providers
+PASS T55 Provider errors sanitized; unsupported methods never call SDK
+PASS T56 PASS without execution cannot make gate READY
+PASS T57 PASS without attempt cannot make gate READY
+PASS T58 Fully executed evidenced PASS is eligible for READY
+PASS T59 Future/external unexecuted requirements do not block Foundation
+PASS T60 Incomplete or invalid evidence never makes PASS valid
+PASS T61 Valid synthetic content and mappings pass canonical H05 decisions
+PASS T62 260 rows with absent approved category fail content Health
+PASS T63 192 mapping missing category cell or coverage fails Health
+PASS T64 240 mapping missing category cell or coverage fails Health
+PASS T65 Unknown/empty content category and unknown mapping category fail
+PASS T66 Duplicate mapping fails uniqueness and coverage Health
+PASS T67 Missing EN/TR and malformed Pair ID fail appropriate Health
+PASS T68 Server request guard denies anonymous/user/forged roles
+PASS T69 Completed result survives save failure with explicit safe code
+PASS T70 Stored summary is verified; compact JSON bounded without truncation
+PASS T71 Private report redacts sensitive values and rejects public artifacts
+PASS T72 Private save/readback selects stored URI and limited signed lifetime
+PASS T73 Static manifest carries scoped metadata and hashes, no raw sources
+PASS T74 Rendered auth shell uses only Apple/Google, 52px controls and 20px padding
+PASS T75 Canonical CSS channels and all eleven color utilities render exactly
+PASS T76 Heading and body font families, weights, sizes and line heights survive CSS changes
+PASS T77 Real Shinka primitives preserve geometry, borders, colors and disabled state
+PASS T78 Canonical spacing/radius utilities retain their pixel values
+PASS T79 Light root and supported form controls use the same approved palette
+PASS T81 Light onboarding keeps watercolor layers; plain product/internal containers stay flat
+PASS T80 Existing rendered Health typography/color/touch/light-policy checks remain passing
+PASS SS01 Session refresh: 429/503/timeout/network stay UNVERIFIED; 401/deleted/invalid payload are INVALID
+PASS SS02 Concurrent focus/visibility/timer/route checks coalesce; passive checks throttle after success
+PASS SS04 Health native prerequisite: 429 is BLOCKED, proven mismatch is FAIL, PASS only with every schema read
+PASS SS10 Four actual readiness Health cases share one read per run and enforce transient versus mismatch verdicts
+PASS SS06 AuthProvider + routes: transient transport preserves ordinary session, blocks admin and offers retry without login
+PASS SS07 Real role loss preserves ordinary login; proven session loss closes access and late logout response cannot restore it
+PASS SS08 Focus/visibility/timer share one request; account refresh discards pending old identity and throttle success
+PASS SS09 Actual login redirect/SignIn callback: safe returnTo, one provider start and no second application sign-in
+PASS SS11 Parallel startup: settings/session in either order keep membership, logout and account boundaries
+PASS TP01 Actual Test Tools cancels paced continuation on unmount, logout and account/privacy invalidation
+PASS TP02 Elapsed budget is checked after pacing; no extra resume after 60 seconds and partial result stays visible
+PASS TP03 Lost response reconciles only status, retains operation, and displays unknown then verified completion
+PASS TP04 Acknowledged partial work resumes the same operation after one injected gap and only then shows verified success
+PASS D01 20 schemas match original source fields plus explicit 029 extensions
+PASS D02 One logical/physical mapping; builtin identity and tooling separate
+PASS D03 Required fields enforced; unsupported uniqueness properties absent
+PASS D04 Logical NULL stays absent on write and NULL on read; no 5/28 defaults
+PASS D05 Date is a calendar date; impossible dates and UTC conversions rejected
+PASS D06 Birthplace coherence, optional time and display name bounds
+PASS D07 12 Sun codes; UNKNOWN allowed only for mapping cycle
+PASS D08 Numeric ranges and cycle day relative bound reject invalid records
+PASS D09 Preferences enforce IANA timezone, fixed 06:00 and false default
+PASS D10 25 source relationships reference real fields and valid target entities
+PASS D11 Reference precheck rejects absent and cross-owner targets
+PASS D12 All 11 uniqueness contracts and open deletion key are collision-safe
+PASS D13 Concurrent daily creates preserve the first immutable snapshot
+PASS D14 Repeated singleton create returns same row
+PASS D15 Unsupported atomic primitives fail closed before any write
+PASS D16 Conditional mutation detects stale revision and identity changes
+PASS D17 Unsafe readback cannot report idempotent success
+PASS D22 Repository seed tripwire catches an injected live product writer
+PASS D21 Conditional NULL update verifies actual removal, not a merge-only success
+PASS D18 Metadata timestamps remain native and data reads remove platform emails
+PASS D19 Consent and Pattern field pairs preserve state semantics
+PASS D20 No inactive content state or backwards Moon interval accepted
+PASS S01 Unauthenticated private read denied
+PASS S02 Unauthenticated private mutation denied
+PASS S03 User A cannot read User B; private query is owner scoped
+PASS S04 User A cannot mutate User B; actual native handlers deny and preserve all persisted rows
+PASS S05 Forged client user_id rejected instead of changing canonical owner
+PASS S06 Admin path requires server-authenticated admin role
+PASS S07 Client admin and process flags rejected
+PASS S08 Internal tooling retains existing admin-only boundary
+PASS S09 Lookup reads require ACTIVE authentication and never grant writes
+PASS S10 INACTIVE, missing and wrong-owner profiles block access
+PASS S11 Health read requires consent and no unfinished deletion, including FAILED
+PASS S12 Users and admins cannot update/delete any protected record
+PASS S13 Daily create needs specific server grant; even system cannot rewrite snapshot
+PASS S14 Audit/consent append-only and protection metadata not system-deletable
+PASS S15 Admin cannot complete/delete jobs; fake completion receipt rejected
+PASS S16 Deletion completion requires zero counts and binds proof to job/owner
+PASS S17 12-operation access matrix covers exactly 20 entities
+PASS S18 Admin reads audited; users own reads create no admin audit
+PASS S19 Failed protected admin mutation is audited without raw payload
+PASS S20 Logging rejects secrets, raw health and snapshot content including nesting
+PASS S21 Safe logs retain only validated machine codes and bounded identifiers
+PASS S22 Backend error responses never expose raw error details
+PASS S23 Audit persistence failure prevents privileged data return
+PASS S24 Backend readback checks owner even if an adapter leaks another row
+PASS A01 Unchecked/missing declaration never reaches either provider
+PASS A02 Checked declaration permits exactly Apple and Google
+PASS A03 Cancel maps silently; provider payload never crosses boundary
+PASS A04 Callback retries and concurrent profile requests create one singleton
+PASS A05 Preferences initialize once with canonical defaults
+PASS A06 Forged owner and role rejected for onboarding; unauthenticated blocked
+PASS A07 INACTIVE account cannot bootstrap, reactivate, or store cycle data
+PASS A08 Existing legitimate daily state routes Home without profile recreation
+PASS A09 HTTP boundary redacts unexpected provider/store failures
+PASS O01 Name optional, trimmed and Unicode-aware 50-character bound
+PASS O02 Pending name is bounded, expires, restores and clears
+PASS O03 DOB required, valid calendar, adult and exact-18 boundary
+PASS O04 Leap-day age and date-only semantics avoid UTC shifting
+PASS O05 Backend rejects bypassed underage/future input before persistence
+PASS O06 Optional birth time validates HH:mm; resolver receives only birth_date
+PASS O07 Missing Sun permits partial persistence but never final completion; UNCERTAIN rejected
+PASS O08 Optional birthplace empty is coherent NULL; client free text rejected
+PASS O09 Structured selection maps only approved fields and is backend-resolved
+PASS O10 Incomplete profile completion clears entire old birthplace group
+PASS O11 GeoNames query bounded/sanitized, empty results and safe mapping
+PASS O12 GeoNames failure is sanitized; no birthplace remains allowed
+PASS O13 Malformed GeoNames records and mismatched detail identity rejected
+PASS O14 Empty cycle / Skip produces no health rows or grant
+PASS O15 Period start required for settings; future and invalid dates rejected
+PASS O16 Duration 1..10, cycle length 15..60, integers only
+PASS O17 Cycle data requires separate explicit true consent
+PASS O18 Grant, immutable event and period confirmed; NULL settings stay NULL
+PASS O19 Retries, concurrent taps and new page action never duplicate consent/period
+PASS O20 Partial write failure rolls back and retry commits all required rows
+PASS O21 Unavailable SDK storage and missing consent source cannot return save success
+PASS O22 Open deletion and withdrawn consent block onboarding grants
+PASS O23 Timezone fallback uses only persisted valid zone; new missing zone retries
+PASS O24 Central resolver covers all eight states and safe skipped-cycle resume
+PASS O25 Copy keys have parity, exact EN errors and approved nonempty TR
+PASS O26 Hydration only returns canonical fields; owner leakage detected
+PASS O27 Onboarding copy/proxy scanner rejects duplicate text and client credentials
+PASS O28 GeoNames timeout aborts bounded request and returns safe error
+PASS O29 Atomic readback owner mismatch cannot claim successful onboarding
+PASS O30 Initialization preserves existing preference and identity on language change
+PASS O31 Cleared birthplace requires actual NULL readback, not merge-only success
+PASS O32 Production GeoNames entry uses exact backend secret; client provider calls rejected
+PASS O33 GeoNames search/detail normalize only five fields and suppress provider secrets
+PASS G01 Missing/blank secret fails safely before provider call; configured value is trimmed
+PASS G02 Network failure and request/body timeout have distinct safe classes and bounded abort
+PASS G03 Non-provider HTTP failures retain only numeric HTTP status
+PASS G04 Provider JSON errors classify authorization/quota/service on success and error HTTP
+PASS G05 Empty array and successful no-result status remain HTTP 200 empty places
+PASS G06 Malformed JSON/envelope/records and oversized payloads are safe invalid responses
+PASS G07 Every search outcome is read-only across all product entities and missing preferences
+PASS G08 Diagnostics never return raw provider data; forged URLs/owners and anonymous search blocked
+PASS G09 Pre-response transport causes classify only explicit runtime evidence; ambiguity stays UNKNOWN
+PASS G10 Fetch invocation versus body-read stage is precise; successful search and ID resolve preserved
+PASS G11 Settled requests clear deadlines; abort and late fetch/body rejection never escape unhandled
+PASS G12 Sensitive exceptions/cause/stack and unknown names/codes never reach response, console or entities
+PASS G21 Manual compatibility processes search and selected-ID resolution when error mode is unsupported
+PASS G22 Every 3xx and opaque redirect is rejected before parsing; search and resolve never send a second request
+PASS G23 Redirect cleanup is deadline-bounded; late responses are cancelled unread without unhandled rejection
+PASS G24 Redirect projection discards Location, body and cancellation errors without logs or product writes
+PASS BS01 0–2 trimmed characters make zero provider calls in adapter, handler and controller
+PASS BS02 Debounce sends one request for the final query only
+PASS BS03 Late responses after a new query, language change, cancel or dispose cannot change results
+PASS BS04 Document "Kan" examples: literal case-insensitive substring of the own name; upper-region-only match rejected
+PASS BS05 Mid-word match without prefix rule; no diacritic folding or fuzzy match
+PASS BS06 Path is Country — Region — Name with only existing, non-repeated levels; duplicate IDs removed
+PASS BS07 Provider request: q + isNameRequired, repeated featureClass A/P, bounded rows, manual redirect, no name_startsWith
+PASS BS08 Empty first page after filtering keeps next page; bounded last page reports limit; controller appends
+PASS BS09 A (country/region) and P IDs resolve to provider fields; other classes rejected
+PASS BS10 Free text and client-supplied place fields cannot be saved
+PASS BS11 429 and provider errors are distinct from empty results; retry is explicit and single
+PASS BS12 Bounded transport kept: oversized search envelope is invalid, never empty
+PASS OA01 Rejection helper fails on successful work and wrong codes; awaited async rejection is observed
+PASS OA02 Completed owner cannot mutate profile or add cycle/consent through onboarding, even with a damaged profile
+PASS OA03 Unfinished profile correction re-resolves all five place fields and preserves cycle history; reload uses durable state
+PASS OA04 Empty filtered first page retains failed next-page retry and deduplicates append; short retry makes no request
+PASS OA05 UI step claims and legacy list actions cannot bypass persisted profile/owner; empty Skip has no writes
+PASS OF01 Device variants/fallback and saved language precedence; initialization never replaces a saved preference
+PASS OF02 DOB alone crosses actual service/handler/native readback with NULL time/all five place fields and zero provider construction
+PASS OF03 Daily service deadline is bounded/cleared, late response is not success, fresh retry reads the same persisted daily
+PASS OF04 Consent path and partial daily create response loss reconcile one immutable day without another health write
+PASS G13 Runtime probe uses existing admin guard and rejects all caller-controlled target/credential options
+PASS G14 Four credentialed policy samples preserve actual adapter URL, input form and all other options
+PASS G15 Unsupported error policy compares against manual twice with the same captured detached fetch
+PASS G16 Comparison completes both pairs despite inconsistent responses and never asserts a runtime identity or root cause
+PASS G17 Manual probe samples observe redirects without following or reading headers/body/Location
+PASS G18 Probe deadlines abort sequential requests, clear timers, reject concurrent/cooldown runs and do not leak rejections
+PASS G19 Caller abort/total deadline stop further samples; unconfirmed cancellation keeps the worker blocked
+PASS G20 Probe returns only technical projections; no body/header/error/credential or console disclosure
+PASS U01 EN/TR six screens fit 360/430px with named controls and 17px inputs
+PASS U02 Introduction → name → sign-in; invalid name stays inline and blocks skip until explicitly cleared
+PASS U03 18+ error is associated; only Apple/Google exposed and failure safe
+PASS U04 DOB errors focus field; typed-but-unselected birthplace blocked; clearing allows NULL save
+PASS U05 Cycle placeholders stay blank; consent unchecked; skip reaches finite dependency
+PASS U06 Real adapter storage failure keeps UI/form pending; verified retry advances once
+PASS U07 Approved TR consent is explicit, unchecked and separate from age
+PASS U08 Reloaded partial profile preserves structured birthplace through Sun completion
+PASS U09 Combobox: typed query, explicit pick of an A record saves server-resolved fields; editing text drops the old ID
+PASS U10 Short, empty, error and rate-limit states differ; retry is explicit; empty field persists NULLs
+PASS U11 Saved birthplace shown without provider calls; explicit clear ignores late results and persists all NULLs
+PASS U12 TR/EN combobox: ARIA relations, arrow/Enter/Escape keyboard, no automatic selection, fits mobile/desktop
+PASS U13 Small portrait, landscape, reduced viewport and enlarged text keep fields and submit reachable
+PASS U14 Long Turkish same-name results stay distinct by ID with path context, labels and bounded DOM
+PASS U15 ON-04/ON-05 fixtures render the layered onboarding shell in EN/TR without overflow
+PASS U16 ON-01 shows all three intro rows with descriptions together in EN/TR; Begin goes to ON-02 once; no overflow at 320/360
+PASS U18 ON-01–ON-05 share header/art/subtitle, steps 1–5 in order, back on ON-02/ON-03/ON-04/ON-05, Finish on ON-05, no Account & Privacy
+PASS U17 ON-04 shows new title/subtitle, 4 of 5, compact birthplace, no Account & Privacy; focus alone does not search; date/time fit 320/360
+PASS OU01 Actual ON-01/02/03 back/forward: one Begin, trimmed optional name, filled name blocks skip, empty skip clears draft, no backend/auth
+PASS OU02 ON-05 back restores persisted profile; edit/save and locale preserve cycle drafts, age and health consent stay separate
+PASS OU03 Unconfirmed save response cannot advance or clear pending name; verified retry keeps the action ID
+PASS OU04 Unmount or session end makes late saves inert: no next screen, pending-name clear or old profile
+PASS OU05 Combobox keyboard can select/escape; empty popup owns its listbox; next-page actions remain focused and actionable
+PASS OU06 Empty filtered page plus failed More shows explicit error and retries the failed page; locale retains open query
+PASS OU07 SignIn gates provider on age, coalesces double taps, handles cancel/failure and protects Back during pending OAuth
+PASS OU08 Real AuthProvider/router/Onboarding: new account ignores old save, reload uses persistent profile, no logout or OAuth
+PASS OV01 Onboarding has no language toggle; actual locale preference input rerenders without losing typed values
+PASS OV02 DOB-only real form/service/native backend -> Skip -> transient error -> Retry -> verified daily; no provider or consent
+PASS OV03 Authenticated ON-04 Back/Continue preserves draft and session; preparation Back ignores late daily and resumes readback
+PASS OV04 Time keyboard and icon share HH:mm; invalid/incomplete values rejected, cancel preserves, Set and Clear are explicit
+PASS OV05 App time picker fits 320px/200% text and reduced height, scroll exposes all actions, focus and Escape close only layer
+PASS OV06 Account replacement during actual daily request ignores old response and delivers only the current owner readback
+PASS P21 Native UTC/offset/zone-less/missing/invalid metadata cannot replace grant time
+PASS P22 Missing/invalid business grant time fails without native/device fallback or mutation
+PASS P23 Consent survives event write failure/lost response and later retry uses same grant
+PASS P24 Period failure before/after commit is safely reconciled without duplicate event or defaults
+PASS P25 Conflicting consent/history/settings/period and duplicates are refused before writes
+PASS P26 Withdrawal/inactive/deletion changes after event stop subsequent health writes
+PASS P27 Reload and simultaneous retries of partial consent preserve exact grant and immutable rows
+PASS P28 Independent workers cannot overwrite first grant; detected insert race fails closed
+PASS P29 Worker coalescing is bounded, rejects differing in-flight payload and releases on failure
+PASS P30 Lost consent insert response resumes existing time rather than issuing a new grant
+PASS P31 Hydration requires grant event even with period; retry completes partial legacy state
+PASS P32 Consent false, forged timestamps and Skip never create health/consent data
+PASS P01 Production path uses real SDK keyed upsert and server owner
+PASS P02 Forged owner/admin fields rejected before production mutations
+PASS P03 Preferences retry/reload/concurrent requests create one singleton
+PASS P04 Profile repeat and concurrent submit create one singleton with approved Sun
+PASS P05 Production partial profile readback cannot report completion
+PASS P06 Inactive account cannot be recreated/reactivated through real adapter
+PASS P07 Profile update uses owner/active/revision predicate and clears full place
+PASS P08 Preferences update and valid persisted timezone fallback are verified
+PASS P09 Explicit missing-source fixture blocks before health writes
+PASS P10 Approved profile and no-health Skip defer Home until actual daily state
+PASS P11 Lost write response stays unconfirmed; retry reads the same saved row
+PASS P12 Storage failure is sanitized by production HTTP boundary
+PASS P13 Duplicate rows fail closed instead of selecting an arbitrary identity
+PASS P14 Guarded adapter refuses forged principal and invalid dates/Sun values
+PASS P15 Approved-fixture health path uses real adapter and stable grant/event keys
+PASS P16 Health partial failure leaves durable evidence; retry repairs without rollback
+PASS P17 Same-worker duplicate grants coalesce on first persisted backend grant time
+PASS P18 Timezone-less native metadata preserves durable UTC business consent and resumes
+PASS P19 Initialization repairs invalid persisted timezone using current valid IANA
+PASS P20 Conditional profile update cannot reactivate a concurrently inactive row
+PASS C01 CAPRICORN: first/last day and adjacent boundaries
+PASS C02 AQUARIUS: first/last day and adjacent boundaries
+PASS C03 PISCES: first/last day and adjacent boundaries
+PASS C04 ARIES: first/last day and adjacent boundaries
+PASS C05 TAURUS: first/last day and adjacent boundaries
+PASS C06 GEMINI: first/last day and adjacent boundaries
+PASS C07 CANCER: first/last day and adjacent boundaries
+PASS C08 LEO: first/last day and adjacent boundaries
+PASS C09 VIRGO: first/last day and adjacent boundaries
+PASS C10 LIBRA: first/last day and adjacent boundaries
+PASS C11 SCORPIO: first/last day and adjacent boundaries
+PASS C12 SAGITTARIUS: first/last day and adjacent boundaries
+PASS C13 Leap dates valid; invalid dates rejected before backend Sun invocation
+PASS C14 Only birth_date reaches resolver; optional time/place never change Sun
+PASS C15 Every day of leap year deterministically yields one of exactly 12 signs
+PASS C16 Profile readiness requires adult valid domain data and derived Sun
+PASS C17 Approved production consent version persists once across taps and retries
+PASS C18 Skip restart safely resumes cycle; only actual owner daily record completes
+PASS C19 Approved EN/TR copy matches independent request receipt with full parity
+PASS C20 Four decisions resolved without new product entity, flag or completion authority
+PASS C21 Approved default consent is still explicit and never accepts client version/owner
+PASS HC01 Real isolated auth root is READY within deadline without age or OAuth grant
+PASS HC02 Only the exact probe path selects isolated presentation
+PASS HC03 Missing probe root explicitly times out within its bound
+PASS HC04 Mounted root without READY has a separate bounded timeout
+PASS HC05 Redirect-loop navigation signals ERROR even with a READY shell
+PASS HC06 Render error and inaccessible iframe are explicit ERROR results
+PASS HC07 READY requires the actual expected screen, root and geometry
+FAIL HC08 H05-009 accepts all three present empty schemas with live counts — HC08:START:schema presence treated as import
+PASS HC09 Any positive content count fails with entity/count provenance
+PASS HC10 Missing duplicate malformed unavailable counts cannot imply zero
+PASS HC11 Import true fails and missing import evidence blocks; positive rows still fail
+PASS HC12 Future content package requires approved imported-content validation
+PASS HC13 Admin count action uses only three exact unfiltered aggregates
+PASS HC14 Failed aggregate returns sanitized inconclusive, never zero
+PASS HC15 Live content count action denies anonymous/user/forged admin before access
+PASS HC16 H05-009 unavailable live transport is BLOCKED, not PASS
+PASS AP01 READY is committed synchronously from the real DOM without an animation frame
+PASS AP02 StrictMode and explicit unmount/remount leave a durable verified READY
+PASS AP03 Parent observation started before child commit sees READY
+PASS AP04 Parent observation started after child commit sees durable READY
+PASS AP05 Unmount before readiness produces ERROR and removes the fixture
+PASS AP06 Missing external browser measurement blocks immediately without creating a frame
+PASS AP07 Timeout and propagated failures retain complete non-sensitive probe diagnostics
+PASS AP08 A present but unmeasurable shell cannot signal READY
+PASS M01 Active ledger preserves all packages below five and exactly five
+PASS M02 Six or more unordered packages evict only oldest unique packages, retaining current
+PASS M03 Same-package updates consolidate summary and keep latest status/open issues
+PASS M04 Missing current, future, invalid and discontinuous packages cannot be published
+PASS M05 Real source, generated history and initial dependency closure obey maintenance rules
+PASS M08 Read-only place search reads one owner profile, skips preferences, and still denies inactive/anonymous
+PASS M09 Health runner rejects duplicate starts, ignores stale history and preserves completed audit on unmount
+PASS M10 Failed Health save retries the same completed run without rerunning tests
+PASS AN01 Internal inventory has exactly the panel and three tools; language is display-only
+PASS AN02 Pending identity never exposes admin entry or protected content
+PASS AN03 Ordinary user denied on all internal routes despite forged route state
+PASS AN04 Anonymous direct routes follow existing login redirect
+PASS AN05 Refresh hides admin UI immediately and verified role loss removes it
+PASS AN06 Logout closes access even if transport fails and an older admin response arrives
+PASS AN07 An obsolete admin response cannot overwrite a newer denied role
+PASS AN08 Admin panel TR/EN cards navigate to all three tools, return to panel and existing app entry
+PASS DM01 Category decision required; source blueprint preserves exact paired texts
+PASS DM02 Import dry-run, bounded batches, repeat and source/native crosswalk
+PASS DM03 Partial/lost-response import resumes without overwrite; conflicting content blocks
+PASS DM04 Duplicate/missing/unknown rows and broken category references cannot be ready
+PASS DM05 Importer denies ordinary/anonymous and client source/role authority
+PASS DM06 28/5 lookup and every supported day have one phase; menstrual wins overlap
+PASS DM07 Observed cycle average, single outlier and computation-only defaults
+PASS DM08 Invalid/overlapping cycle observations are errors, never UNKNOWN
+PASS DM09 Astronomy Engine two-year continuous UTC intervals and USNO reference
+PASS DM10 Moon boundaries choose new phase; gaps, overlaps and missing zone rejected
+PASS DM11 Backend local calendar days across UTC, travel and DST
+PASS DM12 Day 40 protected, day 41 eligible with explicit calendar boundary
+PASS DM13 All fallback stages, least-recent and random ties store actual pair category
+PASS DM14 Daily commit/readback, reopen and changed profile/copy keep both snapshots
+PASS DM15 Concurrent request protocol returns one winning immutable snapshot
+PASS DM16 Unverified production primitive refuses new writes; pre-existing row stays readable
+PASS DM17 Owner/anonymous/inactive and forged day/category are rejected
+PASS DM18 Absent/withdrawn consent uses UNKNOWN without reading health data
+PASS DM19 Valid consent enables known phase; deletion and malformed consent fail closed
+PASS DM20 Missing content, Moon gap and failed readback never complete ON-06
+PASS DM21 Lost write response retry reads prior winner; earlier day still resolves Home
+PASS DM22 Skip is no-write and daily error response contains no private payload
+FAIL DM23 Staged content Health rejects positive partial counts and wrong source hash — DM23:START:contract failed
+PASS DM24 Moon import dry-run, partial tail, reviewed batches and repeat
+PASS DM25 Malformed durable snapshot cannot mark onboarding complete
+PASS DM26 OD-002 exact user-approved codes and TR/EN names with honest provenance
+PASS DM27 Category definition requires six unique codes, exact labels and both names
+PASS DM28 Approved category import preserves source Pair text and mapping identity
+PASS DU01 ON-06 failed write, retry readback, Home and locale retain same pair
+PASS DU02 Completed Home error stays Home; late unmounted preparation cannot navigate
+PASS DU03 A day or timezone change during preparation discards the stale response
+PASS CQ10 Real Home renders strings as text and hides hydrated name through access denial and pending retry
+PASS CQ06 Home discards retained daily after lifecycle/owner/profile denial through actual service and hook
+PASS CQ07 Session-ended daily hook rejects late results and remains stopped across day/focus/manual reload
+PASS CQ08 Real You screen locks edit after preferences response loss and failed check; verified check unlocks
+PASS RC01 Past/today native save readback/reopen and duplicate/near-date rejection preserve exact counts
+PASS RC02 No-write and lost entire response retry same ID; partial add/edit/delete resumes saved receipt after reload
+PASS RC03 Explicit retry supersedes hung passive read; old read and old mutation finally cannot change new account
+PASS RC04 Actual service 20s controlled deadline clears timer; late SDK response cannot confirm or reuse aborted view
+PASS RC05 Pending intent exposes no health after withdrawal; current owner/active/lifecycle gates still prevent resume
+PASS CF01 Native future add/edit rejected before every health/receipt write; today/past still save
+PASS CF02 Server IANA day controls year/month/midnight boundaries; forged today and synthetic atomic path fail closed
+PASS CF03 Pending initial grant resume and APPLIED replay cannot bypass fresh day; no implicit repair or duplicate writes
+PASS CF04 Legacy future observation remains visible and correctable/deletable with predictions withheld
+PASS CF05 Selection/prediction is not saved; future UI handler and false success envelopes cannot confirm mutation
+PASS CR01 OD-012 filters after the last-three window; no older backfill or invented dates
+PASS CR02 Empty history differs from unsupported history; inclusive 15/60, mean/outlier and half-up remain
+PASS CR03 Mixed supported/unsupported real cycles keep history; no phases inside >60-day closed interval
+PASS CR04 Accepted long add/edit remove stale current predictions; null settings, grant and daily stay unchanged
+PASS CR05 Long-interval partial transaction failure and retry use the existing receipt model
+PASS CR06 Home generates UNKNOWN for unsupported window; existing daily snapshot never changes
+PASS CR07 Unsupported observations do not conceal invalid duration, access, consent or storage errors
+PASS CA01 Source 28/5 phases, three future cycles, real/predicted basis and NULL inputs
+PASS CA02 Source 26/27/45 preserves actual outlier, half-up 27 and unsupported history
+PASS CA03 Duplicate and 14 days rejected, 15 accepted on both sides outside displayed month
+PASS CA04 Leap/year/local date and DST boundaries; invalid/future starts fail
+PASS CA05 Add, reopen, edit same ID, delete last and retain settings and grant time
+PASS CA06 Failed derived commit preserves every previous collection; repeat completes once
+PASS CA07 Lost response and independent worker retry replay durable receipt without duplicate writes
+PASS CA08 Two independent workers serialize conflicting revisions; distinct IDs cannot bypass duplicate rule
+PASS CA09 Production refuses mutations without SDK writes; no forged owner/authority/derived input
+PASS CA10 No consent means no health reads; entry/selection cannot grant consent
+PASS CA11 Inactive, open deletion job, missing event and other owner are refused
+PASS CA12 Explicit regrant only after verified deletion; no restoration or new timestamp on retry
+PASS CA13 Full paginated history, no per-day queries and no silent truncation
+PASS CA14 Historical phases preserve unaffected values; immutable daily TR/EN survives mutations
+PASS CA15 Controller selection/edit/delete cancel writes nothing; failure preserves date and prior data
+PASS CA16 Old responses cannot restore health after invalidation/session disposal; double submits coalesce
+PASS CA17 Malformed durable readback, unsafe transport and raw error disclosure fail closed
+PASS CA18 Real days override predictions; delete non-start refused and changed references have no dangling IDs
+PASS CA19 Regrant with residual health rejected; consent changes cannot be bypassed by prior action receipt
+PASS CA20 Initial grant and late conflict are all-or-nothing; fresh transaction guards beat earlier UI reads
+PASS CA21 Late mutation cannot restore health after access invalidation; monthly navigation retains edit ID
+PASS CA22 Late-day receipt replay does not recalculate the committed cache or issue consent again
+PASS CA23 Superseded receipt never restores deleted records or reports a stale save as success
+PASS CU06 Partial native grant reopens in TR/EN and Retry uses saved consent intent
+PASS CU07 Reload resumes saved native add intent and confirms visible date without a new ID
+PASS CU05 Unsupported estimate is central TR/EN information with real dates and no stale predicted days
+PASS CU01 Monthly TR/EN, labeled real/predicted/selected days, ≥44px keyboard controls and no selection writes
+PASS CU02 Actual start delete confirmation, cancel and last-delete empty state
+PASS CU03 No consent hides health; exact approved checkbox starts unchecked; production block is visible
+PASS CU04 Known withdrawal invalidates in-flight health, and unmount cannot revive data
+PASS AT17 Missing lifecycle schema fails closed before product work; additive schema restores reads
+PASS AT01 Every Test Tools action denies anonymous/user/forged roles before entity access
+PASS AT02 Closed payload, absent target and real server environment; no client authority
+PASS AT03 Lookup/preview shows selected identity only; excludes health, snapshots and credentials
+PASS AT04 Confirmation is actor/target/action/app/expiry bound; changed scope fails
+PASS AT05 Self-delete and last admin denied in backend, including role changes after preview
+PASS AT06 Delete pages through operational rows, stops pending jobs, preserves history/shared/other owner
+PASS AT07 Incoming and outgoing foreign-reference corruption blocks deletion
+PASS AT08 No coordinator and failed start audit never mutate a user
+PASS AT09 Partial cleanup/retry and lost delete response resume one durable operation
+PASS AT10 Duplicate requests and reset/delete race serialize in two fixture workers
+PASS AT11 Deleted user with old auth token is denied; deletion tombstone also denies recreated ID
+PASS AT12 Reset preserves every product row, identity/provider/role and old daily; survives new client
+PASS AT13 Reset normal profile validation, Skip and final readback reuse the same daily without new consent
+PASS AT14 Reset inactive/open deletion gates, unchanged withdrawn consent and admin self reset
+PASS AT15 Lifecycle guard reads current role; reset commit failure retains previous stage/product state
+PASS AT16 Scope explicitly covers all product schemas; shared/error/history never enter delete allowlist
+PASS AU01 Test Tools TR/EN, mobile touch controls and explicit blocked preview
+PASS AU02 Changing User ID invalidates target/preview/confirmation and ignores late lookup
+PASS AU03 Single explicit confirmation shows target; cancel restores focus without mutation
+PASS AU04 Double click submits one reset; resulting operation remains visible for status
+PASS AU05 Native delete shows current identity and needs one confirmation in TR/EN
+PASS AU06 Deletion announces progress, reconciles lost response and restores the same operation after reload
+PASS AU07 Unknown response stays unknown after bounded reads; partial job offers same-operation resume
+PASS AU08 Acknowledged bounded passes continue one approval; no second operation on double click
+PASS AU09 Lost continuation response switches to read-only reconciliation and never resumes again
+PASS AU10 TR/EN completed removal clears the old identity and reopens the same operation without writes
+locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-onboarding-state="UNAUTHENTICATED_SIGN_IN"]') to be visible[22m
+
+    at checkStartupRoutes (/Users/verimsari/Documents/Shinka/scripts/checkStartupRoutes.mjs:38:75)
+    at async file:///Users/verimsari/Documents/Shinka/scripts/runFoundationTests.mjs:147:25 {
+  log: [
+    `  - waiting for locator('[data-onboarding-state="UNAUTHENTICATED_SIGN_IN"]') to be visible`
+  ],
+  name: 'TimeoutError'
+}

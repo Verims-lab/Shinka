@@ -1,0 +1,32 @@
+[
+ [
+  "AR01",
+  "PASS",
+  "Home reopen and You read each verify exactly two phases; no global write budget"
+ ],
+ [
+  "AR02",
+  "PASS",
+  "Changed identity at later Home/You admission rejects without writes or state changes"
+ ],
+ [
+  "AR03",
+  "PASS",
+  "Logout is specifically AUTH_REQUIRED/401, with two checks and no writes"
+ ],
+ [
+  "AR04",
+  "PASS",
+  "First daily and profile/preference writes recheck identity before mutation and after write"
+ ],
+ [
+  "AR05",
+  "PASS",
+  "Fresh account/consent gates survive first-daily principal reuse"
+ ],
+ [
+  "AR06",
+  "FAIL",
+  "Expected AUTH_REQUIRED/401; got FORGED_OWNER/403: FORGED_OWNER"
+ ]
+]

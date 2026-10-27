@@ -2,13 +2,18 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-041
-**Last Updated:** 2026-10-27
+**Current BuildMarker:** Buildmarker-042
+**Last Updated:** 2026-10-28
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+
+## 042 — audit closure and written Support decision
+
+The 2026-10-28 user request relays Fode/Base44 Support, recorded in [042 support contract](reports/core-audit-042/support-contract.md). This is WRITTEN_SUPPORT_RELAY, not published documentation or hosted acceptance. It supersedes 033 secret/machine preparation: workflow identity is a native admin creator or platform owner fallback, no secret/custom header support; service-role push has native User.id and sent/channel-field acceptance semantics, no eligibility API or idempotency. The complete mapping, unknown outcomes and remaining physical/workflow acceptance are recorded there. Earlier 029–034 statements below remain historical. Sending stays disabled. The user's successful deletion and reported live Health acceptance remain accepted with their original provenance, not independently repeated here.
 
 
 ## 041 — Home language control removal
@@ -59,7 +64,7 @@ Separately, [official built-in integration documentation](https://docs.base44.co
 
 The full wire types/requiredness/nullability/Unicode counting, `user_id` → native User.id mapping and concrete acceptance/error/no-device JSON remain unverified. Existing narrow types/validation are retained local rules, not a newly verified platform schema. Workflow secret registration/reference/header transport, native eligibility, idempotency and logout/account rebinding remain open. The adapter stays UNKNOWN and the actual entry `enabled:false`; H14-901/H16-901 remain external. Historical 030/033 statements below must be read with this documentation/support distinction. [034 evidence and remaining acceptance](reports/SHINKA_STABILIZATION_034.md).
 
-## 033 — accepted scheduler credential boundary
+## Historical 033 — accepted scheduler credential boundary
 
 The owner relayed a new Base44 support answer and explicitly accepts a narrowly scoped scheduler shared secret (attachment e9324e5d-cdc7-4cd6-9c29-58313afe379e, reviewed 2026-10-23). This supersedes keyless/admin-session-only scheduler assumptions and any earlier rejection of a shared secret. It does not restore SHINKA_WRITE_MODE or grant general admin access. Manual calls retain fresh native-admin checks; machine calls require explicit credential verification, never null auth or service-role possession.
 

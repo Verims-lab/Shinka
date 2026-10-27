@@ -1,0 +1,42 @@
+[
+ [
+  "AR01",
+  "PASS",
+  "Home reopen and You read each verify exactly two phases; no global write budget"
+ ],
+ [
+  "AR02",
+  "PASS",
+  "Changed identity at later Home/You admission rejects without writes or state changes"
+ ],
+ [
+  "AR03",
+  "PASS",
+  "Logout is specifically AUTH_REQUIRED/401, with two checks and no writes"
+ ],
+ [
+  "AR04",
+  "PASS",
+  "First daily and profile/preference writes recheck identity before mutation and after write"
+ ],
+ [
+  "AR05",
+  "PASS",
+  "Fresh account/consent gates survive first-daily principal reuse"
+ ],
+ [
+  "AR06",
+  "PASS",
+  "Reset first-daily path does not reuse the pre-reset principal across admission"
+ ],
+ [
+  "AR07",
+  "PASS",
+  "Identity loss after persisted first daily/profile/preference write never returns verified success or continues writes"
+ ],
+ [
+  "AR08",
+  "FAIL",
+  "Expected ONBOARDING_RESTART_REQUIRED/409; got TEST_OPERATION_STATE_INVALID/409: TEST_OPERATION_STATE_INVALID"
+ ]
+]

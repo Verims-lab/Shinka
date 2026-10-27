@@ -2,12 +2,19 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-041
-**Last Updated:** 2026-10-27
+**Current BuildMarker:** Buildmarker-042
+**Last Updated:** 2026-10-28
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Core Audit 042 (local):** H12-025 covers SS06–SS10 and AR01–AR03; AR PASS (Node), SS10 NOT_RUN (no browser). See reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-040.0; repository, synthetic and external evidence separated.
+**Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
+**Scope:** Health catalog HC-041.0; repository, synthetic and external evidence separated.
+
+
+## Buildmarker-042 — HC-041.0
+
+Final local closure: Chromium/WebKit each 708 unique PASS / 0 FAIL; local Health 138 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL, save/list/open verified. Node AR 8/8 and session 9/9, required quality/security/history and original performance budgets pass (audit zero). Comparable route timings show no material change; no hosted/device or percentage-speed claim. The 537-file tested-source receipt and retained initial failures are in [042 report](reports/SHINKA_CORE_AUDIT_042.md).
+
+HC-040.0 → HC-041.0: add 0 / update 7 / delete 0. H05-009 retains the verified-content policy for approved 041/042; HC08/DM23 preserve strict source checks and HC12 still rejects the next unapproved package. H12-025 adds exact/nonzero AR01–08 boundary checks and real App startup routes. Existing readiness SS10 stays; colliding startup SS10 becomes SS11. H14-002/003 update acceptance/unknown and NM01–08 to native-admin workflow fixtures, H14-004 maps real disabled NS01–11 and installed SDK loopback SDK01, H14-901 records written Support contract while hosted acceptance stays open, and H16-901 retains physical acceptance. Unused 033 SM01–07 comparator tests retire with their removed runtime; original receipts remain, replacement NC/NM/NS denial coverage remains. No Health case removed or false PASS. IDs/plan scope remain 177 total / 151 in-app / 12 local / 14 external. H14-901/H16-901 are not certified by fixtures. Final execution evidence: [042 report](reports/SHINKA_CORE_AUDIT_042.md).
 
 
 ## Buildmarker-041 — Home header (HC-040.0 retained)

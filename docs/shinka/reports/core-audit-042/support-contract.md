@@ -1,0 +1,24 @@
+# 042 — User-relayed Fode / Base44 Support contract
+
+Received in the owner's 2026-10-28 request. **WRITTEN_SUPPORT_RELAY**, not a public documentation assertion, independently retrieved support ticket or live verification. Supersedes 033's proposed secret transport and 034's unresolved response contract. Original reports/evidence remain historical.
+
+- Workflows do not support a secret reference or custom header. They execute as their admin creator; if that person is demoted/deleted, the platform falls back to the app owner. `auth.me()` returns that admin. A current admin's manual call is accepted.
+- Push requires service role. Required fields: `user_id`, `title`, `content`; optional: `action_label`, `action_url`. Recipient is native `User.id`; invalid/deleted/outside-app recipient returns 404. Unknown input fields are silently ignored.
+- Success JSON has `status: "sent"`, `successful_channels`, `failed_channels`. It denotes **provider acceptance**, not device delivery. Channel inner types are not specified by the relay.
+- Non-service role returns 403; inability to send returns 502. No provider idempotency or device-eligibility API exists. Native logout/account switching requires physical acceptance.
+
+## Closed implementation preparation
+
+The actual notification entry stays `enabled:false`; no workflow is created, scheduled, executed or activated. `handleNotificationSchedule` authenticates a native principal, then repeatedly rechecks its current native admin role and identity with the existing shared lifecycle guard. Anonymous is 401, ordinary/demoted user 403, transient auth infrastructure 503. Shinka never supplies an owner fallback or creates an admin principal. The unused 033 machine verifier and branch, test comparator and measurement mode are removed after reference checks. Historical receipts are not deleted.
+
+A future owner-controlled workflow must call `notificationSchedule` with **`args: {"action":"tick"}`**. Support's `args:{}` is invalid for Shinka. **Demoting/deleting the creator does not stop the workflow**: the platform may run it as owner. To stop it, disable the workflow and keep the backend entry disabled; verify no in-flight send remains. No workflow-only authentication restriction is claimed; current admins can manually invoke the same handler.
+
+The installed `@base44/sdk` 0.8.57 dynamic integration forwards to `axios.post`; its service-role integration client uses default response interception returning `response.data`. Functions use a different raw Axios response contract. `SDK01` tests the actual installed client against loopback HTTP only. The push adapter therefore inspects the unwrapped JSON body. Only an object with `status:"sent"` and both own, non-null channel fields is accepted. Channel contents are opaque and not persisted/logged; no device count or channel-specific success is invented. Missing/malformed/wrapped payloads remain UNKNOWN. The adapter has an eight-second local wait deadline with timer cleanup; it cannot cancel the SDK operation. Late resolution/rejection cannot change a persisted UNKNOWN or trigger resend. Controlled-clock fixtures test both late outcomes. 403/404 are permanent refusal; 502/unknown/timeout stay UNKNOWN. None triggers adapter fallback or blind resending. Delivery readback and IN_FLIGHT/UNKNOWN suppression remain. SENT in storage means provider acceptance only. Native multiworker uniqueness/exactly-once sending is not guaranteed.
+
+Input allowlist, 100/500/50 Unicode-code-point local limits and Home-only destination policy remain. Only `user_id/title/content` are sent; unused optional fields are omitted. The relay does not specify optional-field nullability or provider Unicode counting; existing validation is local app policy, not a new platform guarantee.
+
+The provider exposes a **local observation** `{support:"UNKNOWN",permission:"UNKNOWN",observation:"NOT_EXPOSED"}`; this does not call an eligibility API or claim GRANTED. That documented absence is not a mandatory remote prerequisite. Known device denial/unsupported states in other observations remain ineligible. Saved app preference, ACTIVE/owner/lifecycle, permitted health input and native setup are separate boundaries. Actual native configuration and physical permission/token availability are unverified; live entry enablement remains outside this task.
+
+## External acceptance still required
+
+Owner checks native build/app identity/configuration; then in a separately authorized acceptance window verifies real workflow native identity/fallback and strict args, service-role acceptance/refusal and no-device behavior. Physical iOS/Android checks cover OS permission, foreground/background/closed delivery, guarded Home, logout/account rebinding. Support resolves the written contract only. H14-901/H16-901 remain external; no local fixture makes them PASS. Do not rotate a nonexistent workflow secret or create an external database/service.
