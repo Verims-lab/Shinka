@@ -27,7 +27,15 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
     const ticket = ++generation.current;
     setIsRefreshingAuth(true);
     try {
-      const response = await client.functions.invoke('applicationSession', {});
+      // Transient (503/429/network) failures get two quiet retries before the retry screen.
+      let response;
+      for (let attempt = 0; ; attempt++) {
+        try { response = await client.functions.invoke('applicationSession', {}); break; }
+        catch (error) {
+          if (attempt >= 2 || classifySessionFailure(error) === "INVALID" || ticket !== generation.current) throw error;
+          await new Promise(resolve => setTimeout(resolve, 700 * (attempt + 1)));
+        }
+      }
       const currentUser = response?.data;
       if (currentUser?.authority !== 'BASE44_NATIVE_V1' || !['admin','user'].includes(currentUser?.role)) throw new Error('APPLICATION_SESSION_UNVERIFIED');
       if (ticket !== generation.current) return false;
