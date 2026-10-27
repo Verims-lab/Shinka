@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+## 041 — Home language control removal
+
+Explicit user decision (2026-10-27): remove TR/EN buttons from the Home header only. Language preference is owned by Profile/You and persisted per owner; Home consumes it. Daily content ID, selected content and snapshots are unaffected. Calendar/Pattern headers are out of scope and unchanged.
+
 ## 040 — deletion stabilization and scoped cleanup authority
 
 Authority: explicit user request `a2e85156-40d3-4d49-b203-2ee57cc0cc2c/Pasted text.txt`, 2026-10-27. Preserve audit 039; one Buildmarker-040 / HC-040.0 package. This request exceptionally authorizes sequential removal of the initially enumerated existing users except the exact protected native admin designated in the private request. The identifier/email is not a code privilege or public report field. Before any live deletion: match tested published backend/shared/frontend, verify actual SDK app/environment, unique exact protected identity/current admin/session, freeze paginated explicit target IDs and protect that ID at every action. First target/readback/protected-data comparison precedes the rest. No new targets are inferred; conflicts stop the sequence. Same receipt resumes; no direct DB cleanup. Main merge/publish remain owner actions; authorization continues after publication without another deletion approval. Shared references, Health history and canonical retained records stay intact. Routine live Health/security scans, notification/scheduler changes and 12 deferred findings remain outside scope. [040 evidence and publication dependency](reports/SHINKA_TEST_DELETION_STABILIZATION_040.md).

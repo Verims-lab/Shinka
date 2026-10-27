@@ -13,6 +13,10 @@
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
 
+## 041 — Home header
+
+Home header shows only Shinka (left) and the existing Profile/You access (right, ≥44×44; menu and admin entry unchanged). Home no longer renders TR/EN language buttons; no placeholder, hidden target or separator remains. Language changes in Profile/You and Home renders the persisted preference. Calendar and Pattern keep the shared ProductLanguageControls unchanged.
+
 ## 040 — Test Tools removal result
 
 Use canonical TR/EN testToolsCopy. User-approved TR success is exactly “Kullanıcı silindi.”; a separate paragraph describes verified active User/operational absence and retained history, without promising permanent platform erasure. Pending, unknown and budget/no-progress states remain distinct. Pending authorized operation offers one Resume action; unknown/blocked/completed offers status read. Technical details expose safe operation/stage/progress/checkpoint/duration values, with uncounted remaining shown as unknown, never fabricated zero. Stage labels are neutral, not assertions that unfinished work completed. Completed/status responses clear the old target card. Reload uses the saved target/operation; session/account invalidation clears that local recovery context. No new confirmation is inserted between acknowledged same-operation passes.

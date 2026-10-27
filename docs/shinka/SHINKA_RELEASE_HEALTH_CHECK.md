@@ -9,6 +9,10 @@
 **Scope:** Health catalog HC-040.0; repository, synthetic and external evidence separated.
 
 
+## Buildmarker-041 — Home header (HC-040.0 retained)
+
+Catalog: add 0 / update 0 / delete 0. DU01 (mapped by H07-013) now asserts no TR/EN buttons in the Home header and renders the persisted TR preference with the same data-daily-id and no extra daily request. checkDailyFlow asserts no Home header TR/EN buttons and no extra dailyMessage call. Profile/You language coverage unchanged. Local: lint, typecheck, build PASS. DU01 / checkDailyFlow (320/360/desktop, TR/EN): NOT_RUN — no Playwright browser in sandbox. No live Full Health or Security scan.
+
 ## HC-040.0 — deletion stabilization coverage
 
 Registry +1 / update 3 / delete 0: **177 total / 151 in-app / 12 local / 14 external**. H12-029 now executes DX02/03/05–10 alongside NA20–23/CQ05: all destructive/journal interruption points, fresh residual/failed read, actor binding, competing receipts, missing-User jobs and protected actor. New independent H12-043 uses DX01/DX04 for virtual SDK latency, durable pass progress and multi-page shrinking cleanup. H13-016 maps AU/TP plus DXU01–04 and actual TS entry verification to LOCAL_BROWSER/Node; normal Health never dispatches live deletion. H12-902 remains external explicit-target hosted acceptance with source/identity/retention prerequisites; no blanket PASS from local fixtures.

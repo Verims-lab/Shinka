@@ -1,5 +1,4 @@
 import RefreshControl from "@/features/mobile/RefreshControl";
-import ProductLanguageControls from '@/components/profile/ProductLanguageControls';
 import { useEffect, useState } from 'react';
 import ProductNavigation from '@/components/shinka/ProductNavigation';
 import ProfileMenu from '@/components/profile/ProfileMenu';
@@ -8,7 +7,7 @@ import { resolveLanguage } from '@/foundation/i18n/strings';
 import { dailyCopy, greetingKey } from '@/foundation/i18n/dailyCopy';
 import { useDailyMessage } from '@/features/daily/useDailyMessage';
 import DailyStatus from '@/features/daily/DailyStatus';
-export default function Home({ profileAccess = undefined, renderProfileAccess = undefined, onLanguageChange = undefined, language: initialLanguage = undefined, initialDaily = null, profile = null, request = undefined }) {
+export default function Home({ profileAccess = undefined, renderProfileAccess = undefined, language: initialLanguage = undefined, initialDaily = null, profile = null, request = undefined }) {
   const [language, setLanguage] = useState(initialLanguage || resolveLanguage());
   useEffect(() => { if(initialLanguage) setLanguage(initialLanguage); }, [initialLanguage]);
   const daily = useDailyMessage(request, initialDaily);
@@ -18,8 +17,7 @@ export default function Home({ profileAccess = undefined, renderProfileAccess = 
   return <div className="shinka-viewport shinka-safe-shell bg-shinka-ivory text-shinka-ink font-body flex flex-col" lang={language} data-home-root>
     <header className="flex flex-wrap items-center justify-between px-5 pt-6 gap-2">
       <span className="font-heading font-medium text-shinka-h3 text-shinka-plum">Shinka</span>
-      <div className="flex flex-wrap items-center gap-1"><ProductLanguageControls language={language} onChange={async lang => { if (onLanguageChange) await onLanguageChange(lang); else setLanguage(lang); }}/>
-        {renderProfileAccess?.(language) || profileAccess || <ProfileMenu language={language}/>}</div>
+      {renderProfileAccess?.(language) || profileAccess || <ProfileMenu language={language}/>}
     </header>
     <main className="flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6">
       <h1 className="font-heading font-medium text-shinka-h1 break-words">{copy(greetingKey())}{name ? `, ${name}` : ''}</h1>

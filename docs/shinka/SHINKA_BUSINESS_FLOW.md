@@ -12,6 +12,10 @@
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 
+## 041 — Home language
+
+Home has no language-change path; it renders the saved Profile/You language. Preference save/readback, reopen and persistence are unchanged. A language change never re-requests or reselects the daily item; the stored TR/EN snapshots of the same record are shown.
+
 ## 040 — resumable Test Tools removal
 
 One confirmed preview creates/readbacks the target receipt and start audit before destruction. Its acknowledged START can continue under the same operation ID. Each cleanup pass advances forward checkpoints, at most 100 data-write attempts and an 8-second between-work budget; shrinking pages restart at offset zero. Empty completed scopes are recorded together. A verified scope checkpoint and final audit/COMPLETED write use separate acknowledged passes. Existing valid incomplete receipts resume; existing COMPLETED receipts must pass fresh active User and full manifest absence checks. Residuals rewind to their earliest affected stage rather than creating another operation or silently accepting old completion. Conflicting receipts/actors/open jobs remain blockers.

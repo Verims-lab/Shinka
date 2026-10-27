@@ -15,16 +15,17 @@ async function renderProbe(run) {
 /** @type {import('./testTypes').FoundationTest[]} */
 export const DAILY_UI_TESTS = [
  ['DU01', 'ON-06 failed write, retry readback, Home and locale retain same pair', async () => renderProbe(async (root, host) => {
-  const f = dailyFixture(); let fail = true, requests = 0, advances = 0;
+  const f = dailyFixture(); let fail = true, requests = 0, advances = 0, ready = null;
   const request = async () => { requests++; if (fail) throw Object.assign(new Error(), { code: 'DAILY_ATOMIC_CAPABILITY_REQUIRED' }); return dailyMessageOperation(f.client, { action: 'today', timezone: 'Europe/Istanbul' }, f.dependencies); };
-  root.render(createElement(FirstShinka, { language: 'en', request, onReady: result => { advances++; root.render(createElement(Home, { language: 'en', initialDaily: result, request })); } }));
+  root.render(createElement(FirstShinka, { language: 'en', request, onReady: result => { advances++; ready = result; root.render(createElement(Home, { language: 'en', initialDaily: result, request })); } }));
   await eventually(() => host.querySelector('[data-daily-state="notReady"]'));
   check(advances === 0 && f.rows.user_daily_message.length === 0);
   fail = false; host.querySelector('button').click();
   await eventually(() => host.querySelector('[data-daily-id]'));
   check(advances === 1 && f.rows.user_daily_message.length === 1 && requests === 2);
   const before = host.querySelector('[data-daily-id]').getAttribute('data-daily-id');
-  [...host.querySelectorAll('button')].find(button => button.textContent === 'TR').click(); await pause();
+  check(![...host.querySelectorAll('header button')].some(button => ['TR', 'EN'].includes(button.textContent)));
+  root.render(createElement(Home, { language: 'tr', initialDaily: ready, request })); await pause();
   check(host.querySelector('[data-daily-message]').textContent === f.rows.user_daily_message[0].message_tr_snapshot);
   check(host.querySelector('[data-daily-id]').getAttribute('data-daily-id') === before && requests === 2);
  })],

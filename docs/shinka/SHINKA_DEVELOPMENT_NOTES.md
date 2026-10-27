@@ -9,6 +9,10 @@
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+## 2026-10-27 — Buildmarker-041 / HC-040.0
+
+Home header TR/EN buttons removed from render. Changed: src/pages/Home.jsx (ProductLanguageControls render/import and unused onLanguageChange prop removed), src/pages/Onboarding.jsx (no longer passes onLanguageChange to Home; saveProductLanguage still serves Calendar/Pattern), src/foundation/tests/dailyUiTests.js (DU01), scripts/checkDailyFlow.mjs. No backend, schema, dependency or content change.
+
 ## 2026-10-27 — Buildmarker-040 / HC-040.0
 
 Final local verification: Chromium and WebKit each 707/707; local Health 138 PASS / 0 FAIL / 13 prerequisite BLOCKED; all required gates and unchanged bundle budgets pass. Hosted source/SDK target and protected-admin inventory remain unverified because CLI login is required and owner publication is pending. No cleanup attempted; authorization remains scoped to the existing request.
