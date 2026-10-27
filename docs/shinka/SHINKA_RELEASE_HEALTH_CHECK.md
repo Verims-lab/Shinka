@@ -2,12 +2,17 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-040
+**Current BuildMarker:** Buildmarker-041
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
+**Core Audit 042 (local):** H12-025 covers SS06–SS10 and AR01–AR03; AR PASS (Node), SS10 NOT_RUN (no browser). See reports/SHINKA_CORE_AUDIT_042.md.
 **Scope:** Health catalog HC-040.0; repository, synthetic and external evidence separated.
 
+
+## Buildmarker-041 — Home header (HC-040.0 retained)
+
+Catalog: add 0 / update 0 / delete 0. DU01 (mapped by H07-013) now asserts no TR/EN buttons in the Home header and renders the persisted TR preference with the same data-daily-id and no extra daily request. checkDailyFlow asserts no Home header TR/EN buttons and no extra dailyMessage call. Profile/You language coverage unchanged. Local: lint, typecheck, build PASS. DU01 / checkDailyFlow (320/360/desktop, TR/EN): NOT_RUN — no Playwright browser in sandbox. No live Full Health or Security scan.
 
 ## HC-040.0 — deletion stabilization coverage
 

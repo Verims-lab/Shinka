@@ -2,12 +2,16 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-040
+**Current BuildMarker:** Buildmarker-041
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
+
+## 2026-10-27 — Buildmarker-041 / HC-040.0
+
+Home header TR/EN buttons removed from render. Changed: src/pages/Home.jsx (ProductLanguageControls render/import and unused onLanguageChange prop removed), src/pages/Onboarding.jsx (no longer passes onLanguageChange to Home; saveProductLanguage still serves Calendar/Pattern), src/foundation/tests/dailyUiTests.js (DU01), scripts/checkDailyFlow.mjs. No backend, schema, dependency or content change.
 
 ## 2026-10-27 — Buildmarker-040 / HC-040.0
 

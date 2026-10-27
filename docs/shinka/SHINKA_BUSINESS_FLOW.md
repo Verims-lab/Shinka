@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-040
+**Current BuildMarker:** Buildmarker-041
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -11,6 +11,10 @@
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
+
+## 041 — Home language
+
+Home has no language-change path; it renders the saved Profile/You language. Preference save/readback, reopen and persistence are unchanged. A language change never re-requests or reselects the daily item; the stored TR/EN snapshots of the same record are shown.
 
 ## 040 — resumable Test Tools removal
 

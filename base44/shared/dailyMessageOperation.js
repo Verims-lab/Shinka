@@ -21,10 +21,13 @@ const fail = (code, status = 409) => { throw new InternalError(code, status); };
 const domainFields = entity => Object.keys(DOMAIN_SCHEMAS[entity].properties);
 // Deployed native mode reconciles immutable candidates. atomic is retained only
 // for historical executable protocol tests; keyed upsert is never used here.
-async function normalDailyMessageOperation(client, body, { now = () => new Date(), atomic = null, native = false, library = null, random = Math.random, resetFlow = false } = {}) {
-  const principal = await requireAuthenticatedUser(client);
+// entryPrincipal: minted by this same request's entry immediately before; it is
+// consumed by the first admission only. Every later phase re-verifies auth.me().
+async function normalDailyMessageOperation(client, body, { now = () => new Date(), atomic = null, native = false, library = null, random = Math.random, resetFlow = false } = {}, entryPrincipal = null) {
+  const principal = entryPrincipal || await requireAuthenticatedUser(client);
   const owner = resolveAuthenticatedOwner(principal, body);
-  const admit = async () => { if ((await requireAuthenticatedUser(client)).id !== owner) fail('AUTH_REQUIRED', 401); };
+  let pending = principal;
+  const admit = async () => { const current = pending || await requireAuthenticatedUser(client); pending = null; if (current.id !== owner) fail('AUTH_REQUIRED', 401); };
   return produceDailyForOwner(client, owner, body, { now, atomic, native, library, random, resetFlow, syncTimezone: native }, admit);
 }
 // Shared domain engine. Caller must supply fresh owner admission; HTTP users and
@@ -120,7 +123,7 @@ export async function produceDailyForOwner(client, owner, body, { now = () => ne
 export async function dailyMessageOperation(client, body, dependencies = {}) {
   const principal = await requireAuthenticatedUser(client);
   const reset = await readUserLifecycle(client, principal.id);
-  if (!reset || reset.operation !== 'RESET_ONBOARDING') return normalDailyMessageOperation(client, body, dependencies);
+  if (!reset || reset.operation !== 'RESET_ONBOARDING') return normalDailyMessageOperation(client, body, dependencies, principal);
   if (reset.status !== 'RESET_ACTIVE') fail('TEST_TARGET_BUSY', 409);
   return resetOnboardingStep({ client, reset, owner: principal.id, body, coordinator: dependencies.lifecycleCoordinator,
     perform: context => normalDailyMessageOperation(client, body, { ...dependencies, ...context, resetFlow: true }),

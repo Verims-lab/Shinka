@@ -20,11 +20,8 @@ export async function checkDailyFlow(page, origin, directory) {
     assert.equal(await page.locator('[data-daily-message]').textContent(), language === 'tr' ? pair[2] : pair[4]);
     assert.equal(await page.locator('[data-daily-suggestion]').textContent(), language === 'tr' ? pair[3] : pair[5]);
     const before = await page.evaluate(() => window.__authFixture.calls.filter(c => c.name === 'dailyMessage').length);
-    await page.getByRole('button', { name: language === 'tr' ? 'EN' : 'TR', exact: true }).click();
-    await page.waitForFunction(text=>document.querySelector('[data-daily-message]')?.textContent===text,language === 'tr' ? pair[4] : pair[2]);
-    assert.equal(await page.locator('[data-daily-message]').textContent(), language === 'tr' ? pair[4] : pair[2]);
+    assert.equal(await page.locator('[data-home-root] header').getByRole('button', { name: /^(TR|EN)$/ }).count(), 0);
     assert.equal(await page.evaluate(() => window.__authFixture.calls.filter(c => c.name === 'dailyMessage').length), before);
-    await page.getByRole('button', { name: language.toUpperCase(), exact: true }).click();
     const geometry = await page.evaluate(() => ({ width: innerWidth, scrollWidth: document.documentElement.scrollWidth, controls: [...document.querySelectorAll('button')].map(e => ({ width: e.getBoundingClientRect().width, height: e.getBoundingClientRect().height })) }));
     assert(geometry.scrollWidth <= width + 1 && geometry.controls.every(c => c.width >= 44 && c.height >= 44));
     if (directory) await page.screenshot({ path: path.join(directory, `home-${width}-${language}.png`), fullPage: true });

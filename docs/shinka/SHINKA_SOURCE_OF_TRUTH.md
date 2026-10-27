@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-040
+**Current BuildMarker:** Buildmarker-041
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -10,6 +10,10 @@
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
+
+## 041 — Home language control removal
+
+Explicit user decision (2026-10-27): remove TR/EN buttons from the Home header only. Language preference is owned by Profile/You and persisted per owner; Home consumes it. Daily content ID, selected content and snapshots are unaffected. Calendar/Pattern headers are out of scope and unchanged.
 
 ## 040 — deletion stabilization and scoped cleanup authority
 

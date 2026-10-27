@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-036",
-    "package_name": "Onboarding locale, navigation and time closure",
-    "package_type": "FIX",
-    "created_at": "2026-10-27T14:00:00Z",
-    "health_catalog_version": "HC-036.0",
-    "short_summary": "Automatic locale, DOB-only NULLs, authenticated Back, manual/app time picker and safe Retry diagnostics. Chromium/WebKit each 667/667; actual locale/time CLI 6/6 each. Hosted preparation cause remains unconfirmed.",
-    "full_health_status": "LOCAL_VERIFIED / HOSTED_INCIDENT_AND_DEVICE_ACCEPTANCE_PENDING",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "Fresh install/tree/audit/security/type/lint/build/repo/history/performance gates passed. Local in-app Health 136 PASS / 13 hosted BLOCKED; save/retry/list/open verified. Native create-loss retry and You preference/reset covered. Read-only logs denied 401; user deferred live diagnosis. Android/iOS NOT_RUN; 12 deferred findings unchanged. No live mutation/import/push/Full Health/main publish."
-  },
-  {
     "build_marker": "Buildmarker-037",
     "package_name": "Five focused corrections: name, Calendar, light UI and Home",
     "package_type": "FIX",
@@ -65,5 +51,19 @@ export default [
     "short_summary": "Durable admission, bounded forward cleanup and separately verified finalization; real service/HTTP/native and UI fault regression. Explicit-target hosted cleanup remains publication gated.",
     "full_health_status": "LOCAL_SYNTHETIC_ONLY / HOSTED_FULL_HEALTH_NOT_RUN",
     "notes": "Preserves audit 039. H12-029 strengthened, H12-043 added, H13-016 local full-chain UI and H12-902 external acceptance updated. No entity migration, import, notification enablement, live Full Health, main merge or publish. Owner-authorized sequential cleanup waits for matching published code and protected native admin/session verification; NOT_RUN until evidenced. Active packages 036–040. See SHINKA_TEST_DELETION_STABILIZATION_040.md."
+  },
+  {
+    "build_marker": "Buildmarker-041",
+    "package_name": "Home header language control removal",
+    "package_type": "UI_CHANGE",
+    "created_at": "2026-10-27T21:15:00Z",
+    "health_catalog_version": "HC-040.0",
+    "short_summary": "Home header keeps only Shinka and Profile/You; TR/EN buttons removed from render. Home uses the saved Profile/You language; daily ID/snapshots unaffected. Calendar/Pattern unchanged.",
+    "full_health_status": "LOCAL_STATIC_ONLY / BROWSER_NOT_RUN / HOSTED_FULL_HEALTH_NOT_RUN",
+    "notes": "Catalog unchanged (0/0/0). DU01 and checkDailyFlow assert no Home TR/EN buttons. Lint, typecheck, build PASS; browser suites NOT_RUN. No backend, schema, dependency, live user operation, Full Health, Security scan or publish. Active packages 037–041.",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": false
   }
 ];
