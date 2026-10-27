@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { dailyMessageRequest } from '@/services/dailyMessageService';
+import { dailyMessageRequest, isDailyPrivacyError } from '@/services/dailyMessageService';
 const localContext = () => {
   let zone = ''; try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch { /* Backend resolves persisted fallback. */ }
   return `${new Date().toDateString()}/${zone}`;
@@ -7,8 +7,9 @@ const localContext = () => {
 export function useDailyMessage(request = dailyMessageRequest, initial = null, readContext = localContext) {
   const [value, setValue] = useState(initial), [error, setError] = useState(null), [loading, setLoading] = useState(!initial);
   const generation = useRef(0), pending = useRef(false), context = useRef(readContext());
+  const ended = useRef(false);
   const reload = useCallback(async () => {
-    if (pending.current) return;
+    if (pending.current || ended.current) return;
     pending.current = true;
     const ticket = ++generation.current;
     setLoading(true); setError(null);
@@ -25,20 +26,22 @@ export function useDailyMessage(request = dailyMessageRequest, initial = null, r
       }
       throw Object.assign(new Error(), { code: 'DAILY_CONTEXT_CHANGED' });
     } catch (e) { if (ticket === generation.current) {
-      if (/^(AUTH_|ACTIVE_|HEALTH_|CONSENT_)/.test(e.code || '')) setValue(null);
+      if (isDailyPrivacyError(e.code)) setValue(null);
       setError(e.code || 'DAILY_OPERATION_FAILED');
     } }
     finally { if (ticket === generation.current) { pending.current = false; setLoading(false); } }
   }, [request, readContext]);
   useEffect(() => {
+    ended.current = false;
     if (!initial) reload();
     const checkDay = () => { if (document.visibilityState === 'visible' && context.current !== readContext()) reload(); };
     const invalidate = () => { generation.current++; pending.current = false; setValue(null); setError(null); setLoading(false); };
+    const endSession = () => { ended.current = true; invalidate(); setError('AUTH_REQUIRED'); };
     const privacy = () => { invalidate(); if (document.visibilityState === 'visible') void reload(); };
     const timer = setInterval(checkDay, 30000);
     window.addEventListener('focus', checkDay); document.addEventListener('visibilitychange', checkDay);
-    window.addEventListener('shinka-health-access-changed', privacy); window.addEventListener('shinka-session-ended', invalidate);
-    return () => { generation.current++; pending.current = false; clearInterval(timer); window.removeEventListener('focus', checkDay); document.removeEventListener('visibilitychange', checkDay); window.removeEventListener('shinka-health-access-changed', privacy); window.removeEventListener('shinka-session-ended', invalidate); };
+    window.addEventListener('shinka-health-access-changed', privacy); window.addEventListener('shinka-session-ended', endSession);
+    return () => { generation.current++; pending.current = false; ended.current = true; clearInterval(timer); window.removeEventListener('focus', checkDay); document.removeEventListener('visibilitychange', checkDay); window.removeEventListener('shinka-health-access-changed', privacy); window.removeEventListener('shinka-session-ended', endSession); };
   }, [reload, initial, readContext]);
   return { value, error, loading, reload };
 }

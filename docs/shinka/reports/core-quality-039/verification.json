@@ -1,0 +1,1841 @@
+{
+  "status": "LOCAL_MILESTONE_VERIFIED / HOSTED_ACCEPTANCE_PENDING",
+  "buildMarker": "Buildmarker-039",
+  "healthCatalogVersion": "HC-039.0",
+  "date": "2026-10-27",
+  "baselineCommit": "6ec07a4f9cb5a7c63a5a6baf9f19cb0da38dd6d1",
+  "finalBaseCommit": "cf523b68c8efc00de008092bd22315e01a7711b5",
+  "mainSync": {
+    "change": "fast-deep-equal 3.1.3 lock devOptional -> dev only; installed dependency versions identical",
+    "installedDependencyPaths": 1503,
+    "sameInstalledVersions": true,
+    "cleanInstallAndFullRunsRenewed": true
+  },
+  "testedSource": {
+    "manifest": "tested-source.json",
+    "sha256": "34de491c443bda67e1456f775d8a5f8b7416252fa8dea84b7422578ad945e7ca",
+    "files": 526,
+    "changedAfterFullRuns": [],
+    "binding": "Executable/config/test/script manifest captured before full runs and rechecked afterwards; final report/evidence-only files excluded."
+  },
+  "engines": {
+    "chromium": {
+      "command": "FOUNDATION_BROWSER=chromium FOUNDATION_AUDIT_DIR=<outside-checkout-audit> FOUNDATION_PATTERN_DIR=<outside-checkout-images> npm run test:foundation",
+      "exitCode": 0,
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "canonical": {
+        "total": 693,
+        "uniqueIDs": 693,
+        "PASS": 693,
+        "FAIL": 0,
+        "BLOCKED": 0,
+        "NOT_RUN": 0
+      },
+      "pageErrors": [],
+      "catalog": {
+        "version": "HC-039.0",
+        "suites": 16,
+        "cases": 176,
+        "localRegression": 12,
+        "current": 150,
+        "future": 0,
+        "external": 14
+      },
+      "inApp": {
+        "PASS": 137,
+        "FAIL": 0,
+        "BLOCKED": 13,
+        "NOT_RUN": 0
+      },
+      "separateAcceptance": {
+        "localCases": 12,
+        "externalCases": 14,
+        "NOT_RUN_IN_APP": 26
+      },
+      "healthUI": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "passed": true,
+        "durationMs": 2222,
+        "requiresJson": false,
+        "saveState": "SAVED",
+        "retrySave": true,
+        "historyListed": true,
+        "privateReportOpened": true,
+        "frames": 0,
+        "cases": [
+          {
+            "id": "H01-001",
+            "status": "PASS",
+            "reason": "Format check of canonical constant"
+          },
+          {
+            "id": "H01-002",
+            "status": "PASS",
+            "reason": "Static source scan"
+          },
+          {
+            "id": "H01-003",
+            "status": "PASS",
+            "reason": "1 element(s) inspected"
+          },
+          {
+            "id": "H01-004",
+            "status": "PASS",
+            "reason": "Resolved from real runtime location"
+          },
+          {
+            "id": "H01-005",
+            "status": "PASS",
+            "reason": "Constant inspection"
+          },
+          {
+            "id": "H01-006",
+            "status": "PASS",
+            "reason": "Ledger validation"
+          },
+          {
+            "id": "H02-001",
+            "status": "PASS",
+            "reason": "Doc file inspection"
+          },
+          {
+            "id": "H02-002",
+            "status": "PASS",
+            "reason": "Header inspection"
+          },
+          {
+            "id": "H02-003",
+            "status": "PASS",
+            "reason": "Logical inventory inspection"
+          },
+          {
+            "id": "H02-004",
+            "status": "PASS",
+            "reason": "SOURCE_RECEIVED_AND_RECORDED; original artifacts are external, not hash-verified in Git"
+          },
+          {
+            "id": "H02-005",
+            "status": "PASS",
+            "reason": "Authority inspection"
+          },
+          {
+            "id": "H02-006",
+            "status": "PASS",
+            "reason": "12 decisions inspected"
+          },
+          {
+            "id": "H02-007",
+            "status": "PASS",
+            "reason": "Logical/physical source integrity by role"
+          },
+          {
+            "id": "H02-008",
+            "status": "PASS",
+            "reason": "Companion table completeness"
+          },
+          {
+            "id": "H03-010",
+            "status": "PASS",
+            "reason": "Dependency graph; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-001",
+            "status": "PASS",
+            "reason": "Legacy firewall; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-002",
+            "status": "PASS",
+            "reason": "Marker authority; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-003",
+            "status": "PASS",
+            "reason": "Secret scan; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-004",
+            "status": "PASS",
+            "reason": "Email scan; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-005",
+            "status": "PASS",
+            "reason": "Module inventory; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-006",
+            "status": "PASS",
+            "reason": "UI boundary; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-008",
+            "status": "PASS",
+            "reason": "Repository policy only; Base44 Authentication panel and sign-in still require external verification"
+          },
+          {
+            "id": "H03-009",
+            "status": "PASS",
+            "reason": "Injected server principals; not LIVE_ENFORCEMENT"
+          },
+          {
+            "id": "H04-018",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-019",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H04-001",
+            "status": "PASS",
+            "reason": "Canonical inventory"
+          },
+          {
+            "id": "H04-002",
+            "status": "PASS",
+            "reason": "Source/doc consistency"
+          },
+          {
+            "id": "H04-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-005",
+            "status": "PASS",
+            "reason": "Official schema docs + registered evidence"
+          },
+          {
+            "id": "H04-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-009",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-011",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-012",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-013",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-014",
+            "status": "PASS",
+            "reason": "Availability observed on tooling; no immutable/UTC proof"
+          },
+          {
+            "id": "H04-015",
+            "status": "PASS",
+            "reason": "Deployed enforcement checked separately"
+          },
+          {
+            "id": "H05-001",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-002",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-003",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-004",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-005",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-006",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-007",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-008",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-009",
+            "status": "BLOCKED",
+            "reason": "LIVE_CONTENT_COUNT_UNAVAILABLE"
+          },
+          {
+            "id": "H05-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-015",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-009",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-011",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-012",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-005",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H08-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-004",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H10-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H10-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H10-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-039",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-042",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-040",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-038",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-037",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-036",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-035",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-034",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-033",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-026",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-027",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-028",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-029",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-030",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-031",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H12-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-009",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-011",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-012",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-013",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-014",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-015",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-016",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-017",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-018",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-019",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-020",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H13-001",
+            "status": "PASS",
+            "reason": "Token inspection"
+          },
+          {
+            "id": "H13-002",
+            "status": "PASS",
+            "reason": "Rendered size check"
+          },
+          {
+            "id": "H13-003",
+            "status": "PASS",
+            "reason": "Computed font check"
+          },
+          {
+            "id": "H13-004",
+            "status": "PASS",
+            "reason": "Current viewport only; no inferred 320/360px or physical-device evidence",
+            "actual": {
+              "width": 1280,
+              "height": 900,
+              "scrollWidth": 1280,
+              "path": "/internal/health"
+            }
+          },
+          {
+            "id": "H13-005",
+            "status": "PASS",
+            "reason": "Accessible name scan"
+          },
+          {
+            "id": "H13-006",
+            "status": "PASS",
+            "reason": "Rendered token comparison"
+          },
+          {
+            "id": "H13-007",
+            "status": "PASS",
+            "reason": "Typography check"
+          },
+          {
+            "id": "H13-008",
+            "status": "PASS",
+            "reason": "Contract inspection"
+          },
+          {
+            "id": "H13-009",
+            "status": "PASS",
+            "reason": "Rendered height check"
+          },
+          {
+            "id": "H13-010",
+            "status": "PASS",
+            "reason": "Light-only application policy; no OS dialog or native bar claim"
+          },
+          {
+            "id": "H13-011",
+            "status": "PASS",
+            "reason": "Localization inspection"
+          },
+          {
+            "id": "H13-014",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H14-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H14-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H14-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H15-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H15-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H15-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H16-001",
+            "status": "PASS",
+            "reason": "Catalog self-test"
+          },
+          {
+            "id": "H16-002",
+            "status": "PASS",
+            "reason": "144 results reconciled"
+          },
+          {
+            "id": "H16-003",
+            "status": "PASS",
+            "reason": "Predicate, result and build binding self-test"
+          },
+          {
+            "id": "H16-004",
+            "status": "PASS",
+            "reason": "Coverage self-test"
+          },
+          {
+            "id": "H16-005",
+            "status": "PASS",
+            "reason": "No N/A placeholders dispatched"
+          },
+          {
+            "id": "H16-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H16-006",
+            "status": "PASS",
+            "reason": "Gate isolation check"
+          }
+        ],
+        "physicalDevice": false
+      },
+      "flowRows": {
+        "onboardingClosure": 6,
+        "healthTiming": 4,
+        "privacyFlow": 23,
+        "youFlow": 24,
+        "adminNavigation": 19,
+        "mobileExperience": 150,
+        "mobile": 87,
+        "dailyFlow": 5,
+        "patternFlow": 22,
+        "calendarFlow": 8,
+        "adminTestFlow": 4,
+        "productionRouting": 5
+      },
+      "productNavigation": {
+        "passed": true,
+        "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+        "hydrationPerProductSession": 1,
+        "noBackendPrefetch": true,
+        "backForwardReload": true,
+        "rapidNavigationLateResponse": true,
+        "privacyAndAccountSwitchInvalidate": true,
+        "logoutBackConcealsData": true
+      },
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 7,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true
+      },
+      "serverSecurityChecks": 8,
+      "notificationEntryChecks": 11,
+      "nodeSecretChecks": 7,
+      "blockedIDs": [
+        "H04-019",
+        "H05-001",
+        "H05-002",
+        "H05-003",
+        "H05-004",
+        "H05-005",
+        "H05-006",
+        "H05-007",
+        "H05-008",
+        "H05-009",
+        "H08-005",
+        "H09-004",
+        "H12-031"
+      ],
+      "caseAudit": "chromium-case-audit.json",
+      "fullOutput": "chromium-final.txt"
+    },
+    "webkit": {
+      "command": "FOUNDATION_BROWSER=webkit FOUNDATION_AUDIT_DIR=<outside-checkout-audit> FOUNDATION_PATTERN_DIR=<outside-checkout-images> npm run test:foundation",
+      "exitCode": 0,
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "canonical": {
+        "total": 693,
+        "uniqueIDs": 693,
+        "PASS": 693,
+        "FAIL": 0,
+        "BLOCKED": 0,
+        "NOT_RUN": 0
+      },
+      "pageErrors": [],
+      "catalog": {
+        "version": "HC-039.0",
+        "suites": 16,
+        "cases": 176,
+        "localRegression": 12,
+        "current": 150,
+        "future": 0,
+        "external": 14
+      },
+      "inApp": {
+        "PASS": 137,
+        "FAIL": 0,
+        "BLOCKED": 13,
+        "NOT_RUN": 0
+      },
+      "separateAcceptance": {
+        "localCases": 12,
+        "externalCases": 14,
+        "NOT_RUN_IN_APP": 26
+      },
+      "healthUI": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "passed": true,
+        "durationMs": 3493,
+        "requiresJson": false,
+        "saveState": "SAVED",
+        "retrySave": true,
+        "historyListed": true,
+        "privateReportOpened": true,
+        "frames": 0,
+        "cases": [
+          {
+            "id": "H01-001",
+            "status": "PASS",
+            "reason": "Format check of canonical constant"
+          },
+          {
+            "id": "H01-002",
+            "status": "PASS",
+            "reason": "Static source scan"
+          },
+          {
+            "id": "H01-003",
+            "status": "PASS",
+            "reason": "1 element(s) inspected"
+          },
+          {
+            "id": "H01-004",
+            "status": "PASS",
+            "reason": "Resolved from real runtime location"
+          },
+          {
+            "id": "H01-005",
+            "status": "PASS",
+            "reason": "Constant inspection"
+          },
+          {
+            "id": "H01-006",
+            "status": "PASS",
+            "reason": "Ledger validation"
+          },
+          {
+            "id": "H02-001",
+            "status": "PASS",
+            "reason": "Doc file inspection"
+          },
+          {
+            "id": "H02-002",
+            "status": "PASS",
+            "reason": "Header inspection"
+          },
+          {
+            "id": "H02-003",
+            "status": "PASS",
+            "reason": "Logical inventory inspection"
+          },
+          {
+            "id": "H02-004",
+            "status": "PASS",
+            "reason": "SOURCE_RECEIVED_AND_RECORDED; original artifacts are external, not hash-verified in Git"
+          },
+          {
+            "id": "H02-005",
+            "status": "PASS",
+            "reason": "Authority inspection"
+          },
+          {
+            "id": "H02-006",
+            "status": "PASS",
+            "reason": "12 decisions inspected"
+          },
+          {
+            "id": "H02-007",
+            "status": "PASS",
+            "reason": "Logical/physical source integrity by role"
+          },
+          {
+            "id": "H02-008",
+            "status": "PASS",
+            "reason": "Companion table completeness"
+          },
+          {
+            "id": "H03-010",
+            "status": "PASS",
+            "reason": "Dependency graph; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-001",
+            "status": "PASS",
+            "reason": "Legacy firewall; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-002",
+            "status": "PASS",
+            "reason": "Marker authority; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-003",
+            "status": "PASS",
+            "reason": "Secret scan; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-004",
+            "status": "PASS",
+            "reason": "Email scan; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-005",
+            "status": "PASS",
+            "reason": "Module inventory; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-006",
+            "status": "PASS",
+            "reason": "UI boundary; repository hash metadata, not live enforcement"
+          },
+          {
+            "id": "H03-008",
+            "status": "PASS",
+            "reason": "Repository policy only; Base44 Authentication panel and sign-in still require external verification"
+          },
+          {
+            "id": "H03-009",
+            "status": "PASS",
+            "reason": "Injected server principals; not LIVE_ENFORCEMENT"
+          },
+          {
+            "id": "H04-018",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-019",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H04-001",
+            "status": "PASS",
+            "reason": "Canonical inventory"
+          },
+          {
+            "id": "H04-002",
+            "status": "PASS",
+            "reason": "Source/doc consistency"
+          },
+          {
+            "id": "H04-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-005",
+            "status": "PASS",
+            "reason": "Official schema docs + registered evidence"
+          },
+          {
+            "id": "H04-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-009",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-011",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-012",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-013",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H04-014",
+            "status": "PASS",
+            "reason": "Availability observed on tooling; no immutable/UTC proof"
+          },
+          {
+            "id": "H04-015",
+            "status": "PASS",
+            "reason": "Deployed enforcement checked separately"
+          },
+          {
+            "id": "H05-001",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-002",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-003",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-004",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-005",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-006",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-007",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-008",
+            "status": "BLOCKED",
+            "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+          },
+          {
+            "id": "H05-009",
+            "status": "BLOCKED",
+            "reason": "LIVE_CONTENT_COUNT_UNAVAILABLE"
+          },
+          {
+            "id": "H05-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H06-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-015",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-009",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-011",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H07-012",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H08-005",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H08-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H09-004",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H10-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H10-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H10-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H11-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-039",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-042",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-040",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-038",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-037",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-036",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-035",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-034",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-033",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-026",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-027",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-028",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-029",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-030",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-031",
+            "status": "BLOCKED",
+            "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+          },
+          {
+            "id": "H12-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-005",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-006",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-008",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-009",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-010",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-011",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-012",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-013",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-014",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-015",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-016",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-017",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-018",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-019",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H12-020",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H13-001",
+            "status": "PASS",
+            "reason": "Token inspection"
+          },
+          {
+            "id": "H13-002",
+            "status": "PASS",
+            "reason": "Rendered size check"
+          },
+          {
+            "id": "H13-003",
+            "status": "PASS",
+            "reason": "Computed font check"
+          },
+          {
+            "id": "H13-004",
+            "status": "PASS",
+            "reason": "Current viewport only; no inferred 320/360px or physical-device evidence",
+            "actual": {
+              "width": 1280,
+              "height": 900,
+              "scrollWidth": 1280,
+              "path": "/internal/health"
+            }
+          },
+          {
+            "id": "H13-005",
+            "status": "PASS",
+            "reason": "Accessible name scan"
+          },
+          {
+            "id": "H13-006",
+            "status": "PASS",
+            "reason": "Rendered token comparison"
+          },
+          {
+            "id": "H13-007",
+            "status": "PASS",
+            "reason": "Typography check"
+          },
+          {
+            "id": "H13-008",
+            "status": "PASS",
+            "reason": "Contract inspection"
+          },
+          {
+            "id": "H13-009",
+            "status": "PASS",
+            "reason": "Rendered height check"
+          },
+          {
+            "id": "H13-010",
+            "status": "PASS",
+            "reason": "Light-only application policy; no OS dialog or native bar claim"
+          },
+          {
+            "id": "H13-011",
+            "status": "PASS",
+            "reason": "Localization inspection"
+          },
+          {
+            "id": "H13-014",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H14-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H14-002",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H14-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H15-001",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H15-003",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H15-004",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H16-001",
+            "status": "PASS",
+            "reason": "Catalog self-test"
+          },
+          {
+            "id": "H16-002",
+            "status": "PASS",
+            "reason": "144 results reconciled"
+          },
+          {
+            "id": "H16-003",
+            "status": "PASS",
+            "reason": "Predicate, result and build binding self-test"
+          },
+          {
+            "id": "H16-004",
+            "status": "PASS",
+            "reason": "Coverage self-test"
+          },
+          {
+            "id": "H16-005",
+            "status": "PASS",
+            "reason": "No N/A placeholders dispatched"
+          },
+          {
+            "id": "H16-007",
+            "status": "PASS",
+            "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+          },
+          {
+            "id": "H16-006",
+            "status": "PASS",
+            "reason": "Gate isolation check"
+          }
+        ],
+        "physicalDevice": false
+      },
+      "flowRows": {
+        "onboardingClosure": 6,
+        "healthTiming": 4,
+        "privacyFlow": 23,
+        "youFlow": 24,
+        "adminNavigation": 19,
+        "mobileExperience": 150,
+        "mobile": 87,
+        "dailyFlow": 5,
+        "patternFlow": 22,
+        "calendarFlow": 8,
+        "adminTestFlow": 4,
+        "productionRouting": 5
+      },
+      "productNavigation": {
+        "passed": true,
+        "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+        "hydrationPerProductSession": 1,
+        "noBackendPrefetch": true,
+        "backForwardReload": true,
+        "rapidNavigationLateResponse": true,
+        "privacyAndAccountSwitchInvalidate": true,
+        "logoutBackConcealsData": true
+      },
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 7,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true
+      },
+      "serverSecurityChecks": 8,
+      "notificationEntryChecks": 11,
+      "nodeSecretChecks": 7,
+      "blockedIDs": [
+        "H04-019",
+        "H05-001",
+        "H05-002",
+        "H05-003",
+        "H05-004",
+        "H05-005",
+        "H05-006",
+        "H05-007",
+        "H05-008",
+        "H05-009",
+        "H08-005",
+        "H09-004",
+        "H12-031"
+      ],
+      "caseAudit": "webkit-case-audit.json",
+      "fullOutput": "webkit-final.txt"
+    }
+  },
+  "gates": [
+    {
+      "command": "npm ci",
+      "exitCode": 0,
+      "evidence": "npm-ci.txt"
+    },
+    {
+      "command": "npm ls --all --json",
+      "exitCode": 0,
+      "evidence": "dependency-tree.json"
+    },
+    {
+      "command": "npm audit --json",
+      "exitCode": 0,
+      "evidence": "npm-audit.json"
+    },
+    {
+      "command": "npm run security:deps",
+      "exitCode": 0,
+      "evidence": "security-final.txt"
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "evidence": "type-final.txt"
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "evidence": "lint-final.txt"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "evidence": "build-final.txt"
+    },
+    {
+      "command": "npm run health:repo",
+      "exitCode": 0,
+      "evidence": "repo-final.txt"
+    },
+    {
+      "command": "node scripts/verifySessionStability.mjs",
+      "exitCode": 0,
+      "evidence": "session-final.txt"
+    },
+    {
+      "command": "node scripts/recordBuild.mjs --check",
+      "exitCode": 0,
+      "evidence": null
+    },
+    {
+      "command": "node scripts/measureMaintenance.mjs <outside-checkout-output>",
+      "exitCode": 0,
+      "evidence": "after-performance.txt"
+    },
+    {
+      "command": "node scripts/measureTransitions.mjs <outside-checkout-output>",
+      "exitCode": 0,
+      "evidence": "after-transitions.json"
+    },
+    {
+      "command": "node scripts/measureCoreData.mjs",
+      "exitCode": 0,
+      "evidence": "after-core-data.json"
+    }
+  ],
+  "npmAuditVulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "repoHealthChecks": 18,
+  "nodeSessionChecks": 9,
+  "bundleBudget": {
+    "initialJSRaw": 500000,
+    "initialJSGzip": 165000,
+    "cssRaw": 90000,
+    "cssGzip": 16000,
+    "changed": false,
+    "passed": true
+  },
+  "measurements": "measurement-summary.json",
+  "helperSourceSupplement": "helper-source-supplement.json",
+  "initialFailures": "initial-failures/",
+  "limits": [
+    "No hosted Health/provider/scan/mutation/import/deployment/scheduler/native build",
+    "Original ON-05/First Shinka and published source mismatch remain unverified",
+    "Physical Android/iOS, real OAuth, provider and field performance NOT_RUN",
+    "Twelve old backend findings remain OPEN / USER-DEFERRED",
+    "Local fixture outcomes do not create Base44 transaction/CAS/uniqueness/rollback guarantees"
+  ],
+  "transcriptExport": "transcript-export.json"
+}

@@ -19,7 +19,7 @@ export default function TestTools({ request = undefined, wait = undefined, clock
   const lookupButton = useRef(null);
   return <PageContainer>
     <InternalNav /><PageHeader eyebrow="Shinka" title={text('title')} />
-    <main data-test-tools className="space-y-5">
+    <main data-test-tools data-test-phase={tools.phase} data-test-busy={tools.busy} className="space-y-5">
       <ShinkaCard title={text('target')}>
         <form className="space-y-4" onSubmit={e => { e.preventDefault(); tools.lookup(); }}>
           <label className="block space-y-2" htmlFor="test-user-id"><span>{text('userId')}</span>
@@ -50,11 +50,16 @@ export default function TestTools({ request = undefined, wait = undefined, clock
         <div role="status">
           <p>{text(tools.phase==='DELETING'?'deleting':tools.phase==='RESETTING'?'resetting':tools.phase==='UNKNOWN'?'unknownResult':tools.phase==='COMPLETED'?(tools.job?.operation==='DELETE_USER'?'deletedResult':'resetCompleted'):tools.phase==='RESET_ACTIVE'?'resetResult':tools.job?.operation==='DELETE_USER'?'deletePending':'pendingResult')}</p>
           {tools.job && ['PARTIAL','DELETING'].includes(tools.phase) && <p>{text('stage')}: {text(tools.job.stage)}</p>}
-          <details><summary className="min-h-11 cursor-pointer">{text('details')}</summary><p className="break-all">{text('operationId')}: {tools.job?.operation_id || tools.pendingId}</p></details>
+          {tools.phase==='COMPLETED'&&tools.job?.operation==='DELETE_USER'&&<p>{text('removalScope')}</p>}
+          {tools.phase==='PARTIAL'&&tools.value?.progress?.madeProgress===false&&<p>{text('noProgress')}</p>}
+          <details><summary className="min-h-11 cursor-pointer">{text('details')}</summary><p className="break-all">{text('operationId')}: {tools.job?.operation_id || tools.pendingId}</p>
+            {tools.value?.progress&&<p data-test-progress className="break-all">{text('processed')}: {tools.value.progress.processed} · {text('remaining')}: {tools.value.progress.remainingExact??(tools.value.progress.remainingAtLeast===1?'≥1':text('notCounted'))} · {tools.value.progress.elapsedMs} ms · {tools.value.progress.reason} · {tools.value.progress.checkpoints.join(', ')}</p>}
+          </details>
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
-          <ShinkaButton variant="secondary" onClick={tools.status} disabled={tools.busy}>{text('check')}</ShinkaButton>
-          {tools.job && tools.phase==='PARTIAL' && <ShinkaButton variant="secondary" onClick={tools.resume} disabled={tools.busy || !tools.value?.resume_enabled}>{text('retry')}</ShinkaButton>}
+          {tools.job&&tools.phase==='PARTIAL'&&tools.value?.resume_enabled
+            ? <ShinkaButton variant="secondary" data-test-resume onClick={tools.resume} disabled={tools.busy}>{text('retry')}</ShinkaButton>
+            : <ShinkaButton variant="secondary" onClick={tools.status} disabled={tools.busy}>{text('check')}</ShinkaButton>}
         </div>
         {tools.job && ['RETRY_REQUIRED', 'AUDIT_PENDING', 'RUNNING'].includes(tools.job.status) && tools.value?.mutation_blocker && <p className="mt-3">{text(tools.value.mutation_blocker)}</p>}
       </ShinkaCard>}

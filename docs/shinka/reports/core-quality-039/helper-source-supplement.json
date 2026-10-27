@@ -1,0 +1,152 @@
+{
+  "scope": "MANUALLY_REVIEWED_SOURCE_POINTERS; no inferred execution. Actual outcomes remain in each engine case audit. Direct-arrow AST extraction does not resolve these generated/wrapped tuples.",
+  "sources": [
+    {
+      "id": "C01",
+      "file": "src/foundation/tests/onboardingDecisionTests.js",
+      "line": 29,
+      "sha256": "5a37c3b4a280a52d0114658be7a254eb0dcac758c790d1be814c235e70d147b8",
+      "kind": "GENERATED_BOUNDARY_TUPLE"
+    },
+    {
+      "id": "C02",
+      "file": "src/foundation/tests/onboardingDecisionTests.js",
+      "line": 29,
+      "sha256": "5a37c3b4a280a52d0114658be7a254eb0dcac758c790d1be814c235e70d147b8",
+      "kind": "GENERATED_BOUNDARY_TUPLE"
+    },
+    {
+      "id": "C03",
+      "file": "src/foundation/tests/onboardingDecisionTests.js",
+      "line": 29,
+      "sha256": "5a37c3b4a280a52d0114658be7a254eb0dcac758c790d1be814c235e70d147b8",
+      "kind": "GENERATED_BOUNDARY_TUPLE"
+    },
+    {
+      "id": "C04",
+      "file": "src/foundation/tests/onboardingDecisionTests.js",
+      "line": 29,
+      "sha256": "5a37c3b4a280a52d0114658be7a254eb0dcac758c790d1be814c235e70d147b8",
+      "kind": "GENERATED_BOUNDARY_TUPLE"
+    },
+    {
+      "id": "C05",
+      "file": "src/foundation/tests/onboardingDecisionTests.js",
+      "line": 29,
+      "sha256": "5a37c3b4a280a52d0114658be7a254eb0dcac758c790d1be814c235e70d147b8",
+      "kind": "GENERATED_BOUNDARY_TUPLE"
+    },
+    {
+      "id": "C06",
+      "file": "src/foundation/tests/onboardingDecisionTests.js",
+      "line": 29,
+      "sha256": "5a37c3b4a280a52d0114658be7a254eb0dcac758c790d1be814c235e70d147b8",
+      "kind": "GENERATED_BOUNDARY_TUPLE"
+    },
+    {
+      "id": "C07",
+      "file": "src/foundation/tests/onboardingDecisionTests.js",
+      "line": 29,
+      "sha256": "5a37c3b4a280a52d0114658be7a254eb0dcac758c790d1be814c235e70d147b8",
+      "kind": "GENERATED_BOUNDARY_TUPLE"
+    },
+    {
+      "id": "C08",
+      "file": "src/foundation/tests/onboardingDecisionTests.js",
+      "line": 29,
+      "sha256": "5a37c3b4a280a52d0114658be7a254eb0dcac758c790d1be814c235e70d147b8",
+      "kind": "GENERATED_BOUNDARY_TUPLE"
+    },
+    {
+      "id": "C09",
+      "file": "src/foundation/tests/onboardingDecisionTests.js",
+      "line": 29,
+      "sha256": "5a37c3b4a280a52d0114658be7a254eb0dcac758c790d1be814c235e70d147b8",
+      "kind": "GENERATED_BOUNDARY_TUPLE"
+    },
+    {
+      "id": "C10",
+      "file": "src/foundation/tests/onboardingDecisionTests.js",
+      "line": 29,
+      "sha256": "5a37c3b4a280a52d0114658be7a254eb0dcac758c790d1be814c235e70d147b8",
+      "kind": "GENERATED_BOUNDARY_TUPLE"
+    },
+    {
+      "id": "C11",
+      "file": "src/foundation/tests/onboardingDecisionTests.js",
+      "line": 29,
+      "sha256": "5a37c3b4a280a52d0114658be7a254eb0dcac758c790d1be814c235e70d147b8",
+      "kind": "GENERATED_BOUNDARY_TUPLE"
+    },
+    {
+      "id": "C12",
+      "file": "src/foundation/tests/onboardingDecisionTests.js",
+      "line": 29,
+      "sha256": "5a37c3b4a280a52d0114658be7a254eb0dcac758c790d1be814c235e70d147b8",
+      "kind": "GENERATED_BOUNDARY_TUPLE"
+    },
+    {
+      "id": "O28",
+      "file": "src/foundation/tests/onboardingTests.js",
+      "line": 69,
+      "sha256": "29feef6e2404bbe47d2067ce341dfbc076273bc561e03dd5bdb2ddabd9cd191b",
+      "kind": "CONTROLLED_CLOCK_WRAPPER"
+    },
+    {
+      "id": "G02",
+      "file": "src/foundation/tests/geonamesDiagnosticTests.js",
+      "line": 40,
+      "sha256": "b8b64c26ba6d8657357d067cdeefe064d5a507f466520f6669ea944c7e70bff5",
+      "kind": "CONTROLLED_CLOCK_WRAPPER"
+    },
+    {
+      "id": "G11",
+      "file": "src/foundation/tests/geonamesDiagnosticTests.js",
+      "line": 157,
+      "sha256": "b8b64c26ba6d8657357d067cdeefe064d5a507f466520f6669ea944c7e70bff5",
+      "kind": "CONTROLLED_CLOCK_WRAPPER"
+    },
+    {
+      "id": "G18",
+      "file": "src/foundation/tests/geonamesRuntimeProbeTests.js",
+      "line": 79,
+      "sha256": "b97a90e90fbc65c36fe45b0f2f179df376b0d53e73825e3486e039cc1d450642",
+      "kind": "CONTROLLED_CLOCK_WRAPPER"
+    },
+    {
+      "id": "G19",
+      "file": "src/foundation/tests/geonamesRuntimeProbeTests.js",
+      "line": 99,
+      "sha256": "b97a90e90fbc65c36fe45b0f2f179df376b0d53e73825e3486e039cc1d450642",
+      "kind": "CONTROLLED_CLOCK_WRAPPER"
+    },
+    {
+      "id": "G23",
+      "file": "src/foundation/tests/geonamesDiagnosticTests.js",
+      "line": 245,
+      "sha256": "b8b64c26ba6d8657357d067cdeefe064d5a507f466520f6669ea944c7e70bff5",
+      "kind": "CONTROLLED_CLOCK_WRAPPER"
+    },
+    {
+      "id": "RC04",
+      "file": "src/foundation/tests/calendarRecoveryTests.js",
+      "line": 50,
+      "sha256": "85f0cacdbbc669e1b05ca2d9bbd7caf9b0a7c52e29390b997113a45a43e99459",
+      "kind": "CONTROLLED_CLOCK_WRAPPER"
+    },
+    {
+      "id": "PT14",
+      "file": "src/foundation/tests/patternTests.js",
+      "line": 136,
+      "sha256": "316cd908aa73f230c8bdc0429b9f6b092372373722f68954cebb8dec454f1130",
+      "kind": "CONTROLLED_CLOCK_WRAPPER"
+    },
+    {
+      "id": "PF01",
+      "file": "src/foundation/tests/patternRefreshTests.js",
+      "line": 8,
+      "sha256": "3931e20746d417747b2f2bdfcaab1da8586c46a03dd23cfe02d3c35320d32998",
+      "kind": "CONTROLLED_CLOCK_WRAPPER"
+    }
+  ]
+}

@@ -6,7 +6,8 @@ import { resolveTimezone, serverLocalDate } from './onboardingValidation.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
 import { readBoundedJson } from './boundedJson.js';
 import { DOMAIN_SCHEMAS, SHARED_ENTITIES, HEALTH_ENTITIES, physicalName } from './domainSchemas.js';
-import { resolveAuthenticatedOwner, assertOwner, assertActiveAccount, assertHealthConsent, assertAdminAccess, assertProtectedRecordMutationAllowed } from './domainSecurity.js';
+import { resolveAuthenticatedOwner, assertActiveAccount, assertHealthConsent, assertAdminAccess, assertProtectedRecordMutationAllowed } from './domainSecurity.js';
+import { readDomainPage } from './domainReadPage.js';
 import { normalizeDomainRead } from './domainValidation.js';
 import { withAdminAudit } from './domainAudit.js';
 const one = (rows) => rows.length===1?rows[0]:null;
@@ -64,10 +65,9 @@ export async function domainAccessOperation(client, body) {
   const shared=SHARED_ENTITIES.includes(entity);
   // Scope in the query as well as after readback. Never get an arbitrary private id before checking owner.
   const query={...(shared?{}:{user_id:ownerId}),...(body.recordId?{id:body.recordId}:{})};
-  const rows=await store[physicalName(entity)].filter(query,'-created_date',100);
-  if(!shared) rows.forEach(row=>assertOwner(principal,row));
+  const page=await readDomainPage(store[physicalName(entity)],entity,query,principal,shared);
   if(client.shinkaNative) await guardDomainOwner(client,ownerId,entity);
-  return {records:rows.map(row=>normalizeDomainRead(entity,row))};
+  return page;
 }
 export async function handleDomainRequest(req,createClient) {
   try {

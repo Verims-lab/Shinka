@@ -59,7 +59,7 @@ export const CLOSURE020_REMOVAL_TESTS = [
       const body = { action: 'execute', target_id: 'ownerA', operation: 'DELETE_USER', confirmation: true, preview_token: preview.preview_token, request_id: crypto.randomUUID() };
       if (action === 'resume') {
         f.once('before', c => c.name === 'UserProfile' && c.method === 'delete');
-        await rejected(() => f.tools(body));
+        await rejected(async () => f.complete(await f.tools(body)));
       }
       let injected = false;
       f.state.after = async c => {
@@ -67,7 +67,8 @@ export const CLOSURE020_REMOVAL_TESTS = [
           injected = true; f.tables[entity].push(entity === 'User' ? { id: 'ownerA', role: 'user' } : { id: 'late-profile', user_id: 'ownerA', account_status: 'ACTIVE' });
         }
       };
-      const response = await f.tools(action === 'execute' ? body : { action, target_id: 'ownerA', operation_id: body.request_id });
+      let response = await f.tools(action === 'execute' ? body : { action, target_id: 'ownerA', operation_id: body.request_id });
+      for(let pass=0;!injected&&pass<20;pass++)response=await f.tools({action:'resume',target_id:'ownerA',operation_id:body.request_id});
       check(injected && response.job.status === 'COMPLETED' && response.result_state === 'PARTIAL', `${action}:${entity}:false completion`);
       f.state.after = null;
       for (const read of ['status','lookup']) {

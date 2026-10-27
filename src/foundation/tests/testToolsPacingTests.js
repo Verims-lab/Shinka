@@ -12,7 +12,7 @@ async function fixture(run,context={},restored=null) {
   const saved=sessionStorage.getItem(KEY);sessionStorage.removeItem(KEY);if(restored)sessionStorage.setItem(KEY,JSON.stringify(restored));
   const target={id:'synthetic-target',role:'user',account_status:'ACTIVE'};
   const f={time:0,calls:[],waits:[],id:restored?.id,execute:null,status:null,resume:null};
-  const result=(state='PARTIAL')=>({target:null,result_state:state,resume_enabled:state==='PARTIAL',job:{operation:'DELETE_USER',operation_id:f.id,status:state==='COMPLETED'?'COMPLETED':'RUNNING',stage:'user_preferences'}});
+  const result=(state='PARTIAL')=>({target:null,progress:{madeProgress:true,processed:0,remainingAtLeast:null,remainingExact:null,elapsedMs:0,reason:'TIME_BUDGET',checkpoints:[]},result_state:state,resume_enabled:state==='PARTIAL',job:{operation:'DELETE_USER',operation_id:f.id,status:state==='COMPLETED'?'COMPLETED':'RUNNING',stage:'user_preferences'}});
   f.execute=async()=>result();f.resume=async()=>result('COMPLETED');f.status=async()=>result();
   const request=async(action,body)=>{
     f.calls.push({action,...body});

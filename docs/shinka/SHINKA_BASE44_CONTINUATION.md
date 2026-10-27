@@ -1,18 +1,31 @@
 # Shinka — Base44 continuation
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
-**Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-038
+**Status:** ACTIVE — historical hosted readiness retained; current hosted acceptance pending
+**Current BuildMarker:** Buildmarker-040
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
 
+
+## 040 — publish before authorized cleanup
+
+Test branch is source control, not a separate data environment. No schema or reference-data migration is required. Owner merges reviewed Test to main through the existing GitHub flow, waits for Base44 “Synced commits from GitHub”, inspects all matching shared/native code (including adminTestTools, applicationSession and HC plan), then publishes matching frontend. Do not deploy a local partial graph or push entities to solve this task. Marker/HC alone is not source matching; compare the exported deployed graph against tested-source hashes.
+
+After matching publication and current protected admin/session verification: paginated initial native User + operation inventory → freeze explicit targets excluding protected ID → one real preview/execute/status/resume/readback → compare protected identity/role/profile/consent/cycle/daily data → sequential remaining targets. Resume old unique receipts; diagnose conflicts without bulk cleanup. Newly created accounts are not automatically included. Check final full active inventory and each target's manifest/pending jobs; preserve retention history and shared content. Owner publication is a prerequisite, not a second deletion-consent request. [040 report and live NOT_RUN/PENDING status](reports/SHINKA_TEST_DELETION_STABILIZATION_040.md).
+
+## Current delivery — 039 core quality audit
+
+No entity/schema/secret/reference-data change. Through the owner's normal Test→main/Base44 sync, deploy matching native entries and the full shared graph (including `domainReadPage`, `domainAccess`, `healthPlan`/HC version and `applicationSession`) before the matching frontend. Keep all 036–038 Calendar/Pattern/onboarding code aligned. No agent schema/function push, hosted Health, provider probe, mutation/import, scheduler or native build in this task.
+
+Owner acceptance: uncertain You preference save → failed Check → same saved-result check/retry; Home access loss/logout/reopen; same-day Home and existing Calendar/Pattern recovery; published HC-039.0 save/list/open. Use the original partial ON-05 account for normal saveCycle/readback acceptance; do not reset it to erase evidence. Original First Shinka error/published-source match and physical Android/iOS remain unverified. [039 delivery and exact limitations](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md).
+
 ## 038 — owner rollout and remaining hosted acceptance
 
 No entity migration. Owner syncs the complete matching shared graph and native entries, especially `calendar`, `pattern`, `applicationSession` and `internalHealth`, before frontend assets. Lunar response and Calendar recovery projection must deploy with their matching frontend. Do not mix 037 frontend with 038 lunar response. Agent delivers Test only; owner handles main merge/publish. No schema/function push, live mutation/import/Health/scan or notification/scheduler call in this package. Existing 12 backend findings stay OPEN / USER-DEFERRED. Hosted Calendar incident, original First Shinka/ON-05 and physical Android/iOS acceptance remain open. [Four-item report and in-app checks](reports/SHINKA_CALENDAR_PATTERN_038.md).
 
-## Current delivery — 035 onboarding audit
+## Historical delivery — 035 onboarding audit
 
 Sync the changed onboarding handler/shared persistence, GeoNames search/diagnostic modules and matching frontend together through the owner’s normal Test→main/Base44 workflow. No schema, secret, dependency or notification activation change. Old list actions/selector modules are retired; A/P ID re-resolution remains server-owned. No agent-run live Health/provider probe/user operation is authorized. Post-publish owner acceptance covers OAuth/callback/reopen, ON-04 A/P search/save/readback, ON-05 back/partial retry/Skip, preparation/Home reuse and current Full Health save/list/open. Physical devices remain separate. [035 audit, execution and evidence](reports/SHINKA_ONBOARDING_AUDIT_035.md).
 

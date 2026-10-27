@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-038
+**Current BuildMarker:** Buildmarker-040
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -10,6 +10,19 @@
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+
+## 040 — deletion pass boundaries
+
+`testDeletionPass` owns invocation-local budget/progress; `adminTestExecution` sequences durable admission, forward cleanup, VERIFY checkpoint and finalization; native journal owns merged checkpoint/readback/audit; repository owns paged scoped deletion and exact notification/User readback. Every individual mutation retains fresh pre/post actor, target lifecycle, open privacy/health-job and last/self-admin checks. Missing target User does not skip open-job guards. Status validates the current target journal, then fresh User/manifest absence; duplicate receipts fail closed. A foreign actor may inspect but receives no resume permission.
+
+The 8-second budget starts after admission and is checked between work units, not a hard abort of an SDK call. The service keeps 30 seconds; a slower provider can still outlive it. Admission/checkpoint/audit/readback overhead is explicitly measured. UI requires acknowledged progress before its next paced pass; unknown requests reconcile only via status. Timeout clears its local timer but does not cancel the remote mutation. No authorization cache, new queue, schema or transaction primitive. Actual TS entry plus real service/HTTP/native fixture, fault matrix and controlled UI clocks are verified separately from hosted acceptance. [040 measurements](reports/SHINKA_TEST_DELETION_STABILIZATION_040.md).
+
+## 039 — small responsibility changes
+
+`domainReadPage` owns bounded projection, sentinel/completeness and malformed/duplicate row checks; `domainAccess` keeps principal/owner/ACTIVE/consent/lifecycle/audit admission. No cross-request data/auth cache. `youController` owns the pending intent lock and preserves uncertainty after failed verification; the page reflects that lock. `dailyMessageService` owns closed safe access-error classification; the hook clears state/stops ended sessions and Home suppresses its stale hydrated-name fallback. Existing generation tickets still reject late responses; SDK calls are not claimed cancelled.
+
+Health probes now reject duplicate helper groups before execution. `auditHealthCatalog` joins each case's actual evidence to canonical helper outcomes and source locations; heavyweight screen/performance checks remain local. `measureCoreData` instruments only synthetic SDK transport and can run the identical fixture on the archived baseline checkout; it does not call hosted Base44. [039 scope, measured costs and acceptance](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md).
 
 ## 038 — Calendar recovery projection and request ownership
 

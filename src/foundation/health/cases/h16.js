@@ -1,4 +1,5 @@
 import { HEALTH_TIMING_TESTS } from '../../tests/healthTimingTests';
+import { CORE_QUALITY_TESTS } from '../../tests/coreQualityTests';
 import { QUALITY_MILESTONE_TESTS } from '../../tests/qualityMilestoneTests';
 import { HEALTH_READ_TESTS } from '../../tests/healthReadTests';
 import { CLOSURE020_READINESS_TESTS } from '../../tests/closure020Tests';
@@ -43,7 +44,7 @@ export const H16_CASES = [
     const planAligned=plan.length===IN_APP_HEALTH_CASES.length && plan.every(id=>IN_APP_HEALTH_CASES.some(c=>c.id===id));
     return verdict(planAligned && fake.length===0 && overlap.length===0 && ACCEPTANCE_REQUIREMENTS.length>0,ev(CLASS.SYNTHETIC_RUNTIME,'execution/acceptance inventories',{fake,overlap,planAligned,tracked:ACCEPTANCE_REQUIREMENTS.map(r=>r.id)},'disjoint and retained','No N/A placeholders dispatched'));
   }),
-  c('H16-007','Negative evidence integrity regressions','Missing runners/assertions/results/measurements, wrong builds and incorrect supplied totals cannot pass. Helper timeout, cleanup, progress and completed-only cache integrity; private report cancellation/target validation are verified without opening real windows.',syntheticProbe([...AUDIT019_INTEGRITY_TESTS, ...CLOSURE020_READINESS_TESTS, ...HEALTH_READ_TESTS, ...HEALTH_TIMING_TESTS, ...QUALITY_MILESTONE_TESTS.filter(([id])=>['QM02','QM03','QM04'].includes(id))])),
+  c('H16-007','Negative evidence integrity regressions','Missing runners/assertions/results/measurements, wrong builds and incorrect supplied totals cannot pass. CQ09 rejects duplicate/empty/failed helper groups. Timeout, cleanup, progress and completed-only cache integrity; private report cancellation/target validation are verified without real windows.',syntheticProbe([...AUDIT019_INTEGRITY_TESTS, ...CLOSURE020_READINESS_TESTS, ...HEALTH_READ_TESTS, ...HEALTH_TIMING_TESTS, ...CORE_QUALITY_TESTS.filter(([id])=>id==='CQ09'), ...QUALITY_MILESTONE_TESTS.filter(([id])=>['QM02','QM03','QM04'].includes(id))])),
   c("H16-006", "Gate reflects only applicable cases", "Gate is unchanged when future cases are removed or a synthetic future FAIL is injected.", async (ctx) => {
     const base = computeGate(ctx.results).status;
     const onlyCurrent = computeGate(ctx.results.filter((r) => r.applicability === APPLICABILITY.CURRENT)).status;

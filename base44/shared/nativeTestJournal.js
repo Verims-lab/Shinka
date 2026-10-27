@@ -1,5 +1,5 @@
 import { createTestRepository } from './adminTestRepository.js';
-import { projectOperation, testToolError } from './adminTestPolicy.js';
+import { projectOperation, testToolError, DELETE_STEPS } from './adminTestPolicy.js';
 import { testAuditRecord } from './adminTestAudit.js';
 
 // Sequential, readback-verified journal. No lock, transaction or rollback claim.
@@ -34,11 +34,16 @@ export function nativeTestJournal(client, guard, now = () => new Date()) {
       await audit(testAuditRecord(job, 'SUCCESS', job.started_at, 'TEST_OPERATION_STARTED'));
       return projectOperation(job);
     },
-    async reopen(job) { return patch(job,{status:'RUNNING',stage:'START',completed_at:null,error_code:null}); },
-    async checkpoint(job, stage) {
+    async reopen(job, stage='NOTIFICATIONS') {
+      const checkpoints=DELETE_STEPS.slice(0,DELETE_STEPS.indexOf(stage));
+      return patch(job,{status:'RUNNING',stage:checkpoints.at(-1)||'START',checkpoints,completed_at:null,error_code:null});
+    },
+    async checkpoint(job, values) {
       const saved = await read(job);
-      if (saved.checkpoints.includes(stage)) return saved; // Executor still reconciles residual rows.
-      return patch(job, { stage, checkpoints: [...new Set([...saved.checkpoints, stage])] });
+      if(!saved)testToolError('TEST_JOB_STATUS_UNCONFIRMED',503);
+      if(saved.status==='COMPLETED')return saved; // Response still verifies actual absence.
+      const checkpoints=DELETE_STEPS.filter(stage=>saved.checkpoints.includes(stage)||values.checkpoints.includes(stage));
+      return patch(job,{...values,checkpoints});
     },
     async finish(job, values, record) {
       // Stable business instant makes a lost audit acknowledgement resumable.

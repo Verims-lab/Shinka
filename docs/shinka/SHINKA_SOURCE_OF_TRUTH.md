@@ -2,13 +2,22 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-038
+**Current BuildMarker:** Buildmarker-040
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+
+## 040 — deletion stabilization and scoped cleanup authority
+
+Authority: explicit user request `a2e85156-40d3-4d49-b203-2ee57cc0cc2c/Pasted text.txt`, 2026-10-27. Preserve audit 039; one Buildmarker-040 / HC-040.0 package. This request exceptionally authorizes sequential removal of the initially enumerated existing users except the exact protected native admin designated in the private request. The identifier/email is not a code privilege or public report field. Before any live deletion: match tested published backend/shared/frontend, verify actual SDK app/environment, unique exact protected identity/current admin/session, freeze paginated explicit target IDs and protect that ID at every action. First target/readback/protected-data comparison precedes the rest. No new targets are inferred; conflicts stop the sequence. Same receipt resumes; no direct DB cleanup. Main merge/publish remain owner actions; authorization continues after publication without another deletion approval. Shared references, Health history and canonical retained records stay intact. Routine live Health/security scans, notification/scheduler changes and 12 deferred findings remain outside scope. [040 evidence and publication dependency](reports/SHINKA_TEST_DELETION_STABILIZATION_040.md).
+
+## 039 — core quality milestone authority
+
+Authority: explicit user request `a52b553b-3741-4bc1-93d0-7e6b0300526c/Pasted text.txt` (2026-10-27). One 039 package audits and fixes existing behavior; 036–038 decisions remain binding: light-only UI, automatic onboarding locale, You preference authority, A/P single search, count-free themes/current Moon/next Full date. No new feature/service/data authority or live operation is authorized. Twelve deferred backend findings remain OPEN / USER-DEFERRED. Main merge/publish and hosted Full Health belong to the owner. [Single milestone report](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md) separates fresh local results, historical incidents and external acceptance.
 
 ## 038 — Calendar recovery and Pattern presentation decision
 
@@ -28,11 +37,11 @@ Authority: user request `9b08acc7-f978-4827-acc3-e29781663998/Pasted text.txt`, 
 
 The screenshots show the historical six-step/header/hierarchy variant, unlike current source. They do not identify the published asset/function/shared hashes or establish a live error code. Read-only daily log diagnosis returned API_ERROR/401; exact published cause remains unresolved. No live generation, Health, mutation/reset/delete/import/push or publish is authorized. 12 deferred backend findings remain unchanged. [036 single delivery report](reports/SHINKA_ONBOARDING_CLOSURE_036.md).
 
-## Current onboarding authority — 035 / 2026-10-26
+## Birthplace authority introduced in 035; navigation amended in 036
 
 The owner’s audit/fix request (attachment 53e55c57-8889-48fd-aec8-94d443b8e4f8) adopts **Shinka_GeoNames_Birthplace_Arama_Kurallari_v1.0.docx**, SHA-256 `b2bcd76b7524831c42f7918518ab2d36777b8f69de427863337f229832beaa63`, as the current birthplace behavior. The attached document is requirements evidence; execution authorization comes from the request. This replaces the 008 country cascade / P-only selection and 026 birthplace sheet; their decisions and observations below are historical. It does not alter the original ten-source inventory, the five stored fields or existing consent/content decisions.
 
-Current sequence: ON-01 Introduction → ON-02 optional name → ON-03 Apple/Google + separate unchecked 18+ → ON-04 profile → ON-05 optional cycle + explicit health consent → unnumbered ON-06 verified preparation → Home. Only ON-01–05 count. Back is local ON-02→01, ON-03→02, ON-05→04; ON-04 has no Back because auth is complete. No logout/OAuth restart or automatic write is attached to Back. Same mounted screen keeps cycle drafts; durable records govern reopen. There is no new draft persistence/rollback guarantee.
+Current sequence: ON-01 Introduction → ON-02 optional name → ON-03 Apple/Google + separate unchecked 18+ → ON-04 profile → ON-05 optional cycle + explicit health consent → unnumbered ON-06 verified preparation → Home. Only ON-01–05 count. Back is local ON-02→01, ON-03→02, ON-05→04; ON-04 now returns to authenticated welcome/Continue under 036; the original no-Back decision is superseded. No logout/OAuth restart or automatic write is attached to Back. Same mounted screen keeps cycle drafts; durable records govern reopen. There is no new draft persistence/rollback guarantee.
 
 One combobox searches after three characters and 350 ms debounce. Own displayed name must contain the case-insensitive literal query; no accent folding/fuzzy/parent-name-only match. A and P may be selected; typing invalidates the old ID. Server resolves that ID and saves all five canonical fields or all NULL. Four pages × 50 candidates is Shinka’s bound, not GeoNames’s provider maximum or global completeness. Errors, filtered empty pages and local limits remain distinct. [035 audit, execution and evidence](reports/SHINKA_ONBOARDING_AUDIT_035.md).
 

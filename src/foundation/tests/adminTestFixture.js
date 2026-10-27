@@ -67,10 +67,11 @@ export function adminTestFixture() {
         return clone(job);
       },
       async isDone(job, stage) { return tables.AdminTestOperation.find(row => row.id === job.id).checkpoints.includes(stage); },
-      async checkpoint(job, stage) {
-        fault(`checkpoint:${stage}`);
+      async checkpoint(job, values) {
+        for(const stage of values.checkpoints)fault(`checkpoint:${stage}`);
         const saved = tables.AdminTestOperation.find(row => row.id === job.id);
-        saved.checkpoints = [...new Set([...saved.checkpoints, stage])]; saved.stage = stage;
+        Object.assign(saved,{...values,checkpoints:[...new Set([...saved.checkpoints,...values.checkpoints])]});
+        return clone(saved);
       },
       async finish(job, patch, audit) {
         fault('finish');

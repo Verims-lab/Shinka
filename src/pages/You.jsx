@@ -29,7 +29,7 @@ export default function You({ language = 'en', request = undefined, placeRequest
       {state.loading && <p role="status">{copy('loading')}</p>}
       {value && <>
         <ShinkaCard title={copy('profile')}>
-          {state.editing ? <ProfileEditor state={state} language={language} placeRequest={placeRequest}/> : <div className="space-y-4"><dl className="space-y-3">{['display_name','birth_date','birth_time','birthplace_name','sun_sign_code'].map(key => <div key={key}><dt className="text-shinka-caption">{copy(key === 'birthplace_name' ? 'birthplace' : key === 'sun_sign_code' ? 'sun' : key)}</dt><dd className="break-words">{key === 'sun_sign_code' ? copy(value.profile[key]) : value.profile[key] ?? '—'}</dd></div>)}</dl><ShinkaButton variant="secondary" disabled={busy} ref={editButton} onClick={controller.edit}>{copy('edit')}</ShinkaButton></div>}
+          {state.editing ? <ProfileEditor state={state} language={language} placeRequest={placeRequest}/> : <div className="space-y-4"><dl className="space-y-3">{['display_name','birth_date','birth_time','birthplace_name','sun_sign_code'].map(key => <div key={key}><dt className="text-shinka-caption">{copy(key === 'birthplace_name' ? 'birthplace' : key === 'sun_sign_code' ? 'sun' : key)}</dt><dd className="break-words">{key === 'sun_sign_code' ? copy(value.profile[key]) : value.profile[key] ?? '—'}</dd></div>)}</dl><ShinkaButton variant="secondary" disabled={busy || !!error?.unknown} ref={editButton} onClick={controller.edit}>{copy('edit')}</ShinkaButton></div>}
         </ShinkaCard>
         <ShinkaCard title={copy('preferences')}>
           <form noValidate className="space-y-4" data-you-preferences-form onSubmit={event => { event.preventDefault(); void controller.savePreferences(); }}>

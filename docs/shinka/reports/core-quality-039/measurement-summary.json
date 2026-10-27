@@ -1,0 +1,612 @@
+{
+  "before": {
+    "transitions": [
+      {
+        "destination": "home",
+        "visit": "revisit",
+        "n": 15,
+        "median": {
+          "feedback": 30.2,
+          "visible": 30.4,
+          "usable": 247,
+          "jsBytes": 0
+        },
+        "usableP95Ms": 280,
+        "sdkRequests": 15,
+        "longTasks": 0
+      },
+      {
+        "destination": "calendar",
+        "visit": "first",
+        "n": 5,
+        "median": {
+          "feedback": 19,
+          "visible": 88.9,
+          "usable": 323.4,
+          "jsBytes": 78333
+        },
+        "usableP95Ms": 351.9,
+        "sdkRequests": 5,
+        "longTasks": 0
+      },
+      {
+        "destination": "calendar",
+        "visit": "revisit",
+        "n": 10,
+        "median": {
+          "feedback": 30.2,
+          "visible": 30.2,
+          "usable": 247.0,
+          "jsBytes": 0.0
+        },
+        "usableP95Ms": 249,
+        "sdkRequests": 10,
+        "longTasks": 0
+      },
+      {
+        "destination": "pattern",
+        "visit": "first",
+        "n": 5,
+        "median": {
+          "feedback": 12.7,
+          "visible": 70.5,
+          "usable": 295.9,
+          "jsBytes": 12057
+        },
+        "usableP95Ms": 296.3,
+        "sdkRequests": 10,
+        "longTasks": 0
+      },
+      {
+        "destination": "pattern",
+        "visit": "revisit",
+        "n": 10,
+        "median": {
+          "feedback": 21.8,
+          "visible": 30.5,
+          "usable": 246.8,
+          "jsBytes": 0.0
+        },
+        "usableP95Ms": 247.5,
+        "sdkRequests": 20,
+        "longTasks": 0
+      },
+      {
+        "destination": "you",
+        "visit": "first",
+        "n": 5,
+        "median": {
+          "feedback": 69.6,
+          "visible": 69.6,
+          "usable": 296.1,
+          "jsBytes": 20740
+        },
+        "usableP95Ms": 297.5,
+        "sdkRequests": 5,
+        "longTasks": 0
+      },
+      {
+        "destination": "you",
+        "visit": "revisit",
+        "n": 10,
+        "median": {
+          "feedback": 13.4,
+          "visible": 29.9,
+          "usable": 247.2,
+          "jsBytes": 0.0
+        },
+        "usableP95Ms": 248.2,
+        "sdkRequests": 10,
+        "longTasks": 0
+      }
+    ],
+    "transitionSamples": 60,
+    "production": {
+      "initialJS": {
+        "raw": 483391,
+        "gzip": 160916
+      },
+      "css": {
+        "raw": 77728,
+        "gzip": 14239
+      },
+      "chunkCount": 47
+    },
+    "coldRoutes": [
+      {
+        "route": "/",
+        "n": 3,
+        "medianDclMs": 20.4,
+        "medianLcpMs": 64,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 1
+          },
+          {
+            "applicationSession.undefined": 1
+          },
+          {
+            "applicationSession.undefined": 1
+          }
+        ]
+      },
+      {
+        "route": "/login",
+        "n": 3,
+        "medianDclMs": 16.8,
+        "medianLcpMs": 48,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 1
+          },
+          {
+            "applicationSession.undefined": 1
+          },
+          {
+            "applicationSession.undefined": 1
+          }
+        ]
+      },
+      {
+        "route": "/?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr",
+        "n": 3,
+        "medianDclMs": 17.7,
+        "medianLcpMs": 52,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "dailyMessage.today": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "dailyMessage.today": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "dailyMessage.today": 1
+          }
+        ]
+      },
+      {
+        "route": "/you?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr",
+        "n": 3,
+        "medianDclMs": 17,
+        "medianLcpMs": 64,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "you.read": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "you.read": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "you.read": 1
+          }
+        ]
+      },
+      {
+        "route": "/pattern?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr",
+        "n": 3,
+        "medianDclMs": 16.7,
+        "medianLcpMs": 52,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "pattern.themes": 1,
+            "pattern.lunar": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "pattern.themes": 1,
+            "pattern.lunar": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "pattern.themes": 1,
+            "pattern.lunar": 1
+          }
+        ]
+      },
+      {
+        "route": "/calendar?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr&calendarScenario=blocked",
+        "n": 3,
+        "medianDclMs": 16.8,
+        "medianLcpMs": 64,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "calendar.read": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "calendar.read": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "calendar.read": 1
+          }
+        ]
+      },
+      {
+        "route": "/account-privacy?sdkSession=user&lang=tr",
+        "n": 3,
+        "medianDclMs": 17.1,
+        "medianLcpMs": 44,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 1,
+            "accountPrivacy.read": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "accountPrivacy.read": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "accountPrivacy.read": 1
+          }
+        ]
+      },
+      {
+        "route": "/internal/build?sdkSession=admin",
+        "n": 3,
+        "medianDclMs": 16.7,
+        "medianLcpMs": 52,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          }
+        ]
+      },
+      {
+        "route": "/internal/health?sdkSession=admin",
+        "n": 3,
+        "medianDclMs": 18.5,
+        "medianLcpMs": 80,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          }
+        ]
+      }
+    ]
+  },
+  "after": {
+    "transitions": [
+      {
+        "destination": "home",
+        "visit": "revisit",
+        "n": 15,
+        "median": {
+          "feedback": 29.8,
+          "visible": 30.1,
+          "usable": 246.6,
+          "jsBytes": 0
+        },
+        "usableP95Ms": 247.9,
+        "sdkRequests": 15,
+        "longTasks": 0
+      },
+      {
+        "destination": "calendar",
+        "visit": "first",
+        "n": 5,
+        "median": {
+          "feedback": 19,
+          "visible": 94,
+          "usable": 327.4,
+          "jsBytes": 78333
+        },
+        "usableP95Ms": 331.2,
+        "sdkRequests": 5,
+        "longTasks": 0
+      },
+      {
+        "destination": "calendar",
+        "visit": "revisit",
+        "n": 10,
+        "median": {
+          "feedback": 30.0,
+          "visible": 30.0,
+          "usable": 247.1,
+          "jsBytes": 0.0
+        },
+        "usableP95Ms": 248.1,
+        "sdkRequests": 10,
+        "longTasks": 0
+      },
+      {
+        "destination": "pattern",
+        "visit": "first",
+        "n": 5,
+        "median": {
+          "feedback": 12.6,
+          "visible": 70.7,
+          "usable": 295.9,
+          "jsBytes": 12057
+        },
+        "usableP95Ms": 296.8,
+        "sdkRequests": 10,
+        "longTasks": 0
+      },
+      {
+        "destination": "pattern",
+        "visit": "revisit",
+        "n": 10,
+        "median": {
+          "feedback": 22.3,
+          "visible": 30.2,
+          "usable": 246.9,
+          "jsBytes": 0.0
+        },
+        "usableP95Ms": 248.4,
+        "sdkRequests": 20,
+        "longTasks": 0
+      },
+      {
+        "destination": "you",
+        "visit": "first",
+        "n": 5,
+        "median": {
+          "feedback": 68.4,
+          "visible": 68.4,
+          "usable": 295.7,
+          "jsBytes": 20903
+        },
+        "usableP95Ms": 296.6,
+        "sdkRequests": 5,
+        "longTasks": 0
+      },
+      {
+        "destination": "you",
+        "visit": "revisit",
+        "n": 10,
+        "median": {
+          "feedback": 13.0,
+          "visible": 30.6,
+          "usable": 246.8,
+          "jsBytes": 0.0
+        },
+        "usableP95Ms": 248.6,
+        "sdkRequests": 10,
+        "longTasks": 0
+      }
+    ],
+    "transitionSamples": 60,
+    "production": {
+      "initialJS": {
+        "raw": 484085,
+        "gzip": 161028
+      },
+      "css": {
+        "raw": 77728,
+        "gzip": 14239
+      },
+      "chunkCount": 47
+    },
+    "coldRoutes": [
+      {
+        "route": "/",
+        "n": 3,
+        "medianDclMs": 17.4,
+        "medianLcpMs": 48,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 1
+          },
+          {
+            "applicationSession.undefined": 1
+          },
+          {
+            "applicationSession.undefined": 1
+          }
+        ]
+      },
+      {
+        "route": "/login",
+        "n": 3,
+        "medianDclMs": 19.2,
+        "medianLcpMs": 60,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 1
+          },
+          {
+            "applicationSession.undefined": 1
+          },
+          {
+            "applicationSession.undefined": 1
+          }
+        ]
+      },
+      {
+        "route": "/?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr",
+        "n": 3,
+        "medianDclMs": 17,
+        "medianLcpMs": 48,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "dailyMessage.today": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "dailyMessage.today": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "dailyMessage.today": 1
+          }
+        ]
+      },
+      {
+        "route": "/you?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr",
+        "n": 3,
+        "medianDclMs": 17.2,
+        "medianLcpMs": 64,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "you.read": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "you.read": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "you.read": 1
+          }
+        ]
+      },
+      {
+        "route": "/pattern?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr",
+        "n": 3,
+        "medianDclMs": 17.1,
+        "medianLcpMs": 52,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "pattern.themes": 1,
+            "pattern.lunar": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "pattern.themes": 1,
+            "pattern.lunar": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "pattern.themes": 1,
+            "pattern.lunar": 1
+          }
+        ]
+      },
+      {
+        "route": "/calendar?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr&calendarScenario=blocked",
+        "n": 3,
+        "medianDclMs": 18.1,
+        "medianLcpMs": 68,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "calendar.read": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "calendar.read": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "calendar.read": 1
+          }
+        ]
+      },
+      {
+        "route": "/account-privacy?sdkSession=user&lang=tr",
+        "n": 3,
+        "medianDclMs": 17.1,
+        "medianLcpMs": 44,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 1,
+            "accountPrivacy.read": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "accountPrivacy.read": 1
+          },
+          {
+            "applicationSession.undefined": 1,
+            "accountPrivacy.read": 1
+          }
+        ]
+      },
+      {
+        "route": "/internal/build?sdkSession=admin",
+        "n": 3,
+        "medianDclMs": 17.5,
+        "medianLcpMs": 52,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          }
+        ]
+      },
+      {
+        "route": "/internal/health?sdkSession=admin",
+        "n": 3,
+        "medianDclMs": 17.6,
+        "medianLcpMs": 76,
+        "sdkCalls": [
+          {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          }
+        ]
+      }
+    ]
+  }
+}

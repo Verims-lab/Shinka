@@ -1,5 +1,9 @@
 # Shinka Android / iOS compatibility evidence
 
+## 039 — local milestone versus physical acceptance
+
+Fresh 039 Chromium/WebKit screen, keyboard/dialog, narrow/TR/EN/200% and light-under-dark-OS results are recorded in the [single milestone report](SHINKA_CORE_QUALITY_MILESTONE_039.md). CQ06–08/CQ10 add Home access/logout and You uncertain-write UI checks. Existing 036–038 time/back/search/Pattern decisions remain. Physical Android/iOS keyboard, native bars/safe area, OAuth, background/device push and published-source matching remain NOT_RUN; browser results do not close them. Historical measurements below are unchanged.
+
 ## 037 current acceptance policy
 
 System dark no longer changes Shinka colors. Fresh local matrix covers light/dark OS startup and live changes with the same light tokens/form scheme across onboarding, cycle, Home, Calendar, Pattern, You, privacy, admin and Health; 200% text/contrast/safe area checks remain. Home has no normal Refresh target; pull, last confirmed content and error Retry remain. FX01/02 cover name and future-date interactions. The old screenshot with 5/6 + privacy differs from current source; hosted bundle/cache matching and physical OS dialogs remain unverified. Historical 026/027 measurements below are preserved as evidence, not current dark acceptance. See [037 report](SHINKA_ADDITIONAL_FIXES_037.md).

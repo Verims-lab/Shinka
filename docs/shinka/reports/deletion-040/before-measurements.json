@@ -1,0 +1,262 @@
+{
+  "scope": "LOCAL_SYNTHETIC_SERIAL_SDK_COST",
+  "hostedVerified": false,
+  "measurements": [
+    {
+      "scenario": {
+        "latency": 0,
+        "periods": 0
+      },
+      "passes": [
+        {
+          "action": "execute",
+          "operationId": "a9b9fd1a-288f-4560-8458-bc3989cec07b",
+          "durationMs": 0,
+          "entityReads": 328,
+          "writes": 17,
+          "auth": 39,
+          "stage": "VERIFY",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings",
+            "user_period_record",
+            "user_pattern_summary",
+            "user_preferences",
+            "user_profile",
+            "USER",
+            "VERIFY"
+          ],
+          "result": "COMPLETED",
+          "progress": null,
+          "httpStatus": 200
+        }
+      ],
+      "remainingTargetUsers": 0
+    },
+    {
+      "scenario": {
+        "latency": 300,
+        "periods": 0
+      },
+      "passes": [
+        {
+          "action": "execute",
+          "operationId": "ca9ec4a0-43d7-4f8a-844c-efc422b7733f",
+          "durationMs": 35400,
+          "entityReads": 114,
+          "writes": 4,
+          "auth": 13,
+          "stage": "user_cycle_phase_day",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day"
+          ],
+          "result": "PARTIAL",
+          "progress": null,
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "ca9ec4a0-43d7-4f8a-844c-efc422b7733f",
+          "durationMs": 21600,
+          "entityReads": 70,
+          "writes": 2,
+          "auth": 9,
+          "stage": "user_cycle_settings",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings"
+          ],
+          "result": "PARTIAL",
+          "progress": null,
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "ca9ec4a0-43d7-4f8a-844c-efc422b7733f",
+          "durationMs": 22500,
+          "entityReads": 73,
+          "writes": 2,
+          "auth": 9,
+          "stage": "user_pattern_summary",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings",
+            "user_period_record",
+            "user_pattern_summary"
+          ],
+          "result": "PARTIAL",
+          "progress": null,
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "ca9ec4a0-43d7-4f8a-844c-efc422b7733f",
+          "durationMs": 22800,
+          "entityReads": 74,
+          "writes": 2,
+          "auth": 9,
+          "stage": "user_preferences",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings",
+            "user_period_record",
+            "user_pattern_summary",
+            "user_preferences"
+          ],
+          "result": "PARTIAL",
+          "progress": null,
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "ca9ec4a0-43d7-4f8a-844c-efc422b7733f",
+          "durationMs": 23100,
+          "entityReads": 75,
+          "writes": 2,
+          "auth": 9,
+          "stage": "user_profile",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings",
+            "user_period_record",
+            "user_pattern_summary",
+            "user_preferences",
+            "user_profile"
+          ],
+          "result": "PARTIAL",
+          "progress": null,
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "ca9ec4a0-43d7-4f8a-844c-efc422b7733f",
+          "durationMs": 20700,
+          "entityReads": 67,
+          "writes": 2,
+          "auth": 9,
+          "stage": "USER",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings",
+            "user_period_record",
+            "user_pattern_summary",
+            "user_preferences",
+            "user_profile",
+            "USER"
+          ],
+          "result": "PARTIAL",
+          "progress": null,
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "ca9ec4a0-43d7-4f8a-844c-efc422b7733f",
+          "durationMs": 29100,
+          "entityReads": 94,
+          "writes": 3,
+          "auth": 11,
+          "stage": "VERIFY",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings",
+            "user_period_record",
+            "user_pattern_summary",
+            "user_preferences",
+            "user_profile",
+            "USER",
+            "VERIFY"
+          ],
+          "result": "COMPLETED",
+          "progress": null,
+          "httpStatus": 200
+        }
+      ],
+      "remainingTargetUsers": 0
+    },
+    {
+      "scenario": {
+        "latency": 0,
+        "periods": 205
+      },
+      "passes": [
+        {
+          "action": "execute",
+          "operationId": "a529baec-ef52-4f7f-9b5b-f88baa69742b",
+          "durationMs": 0,
+          "entityReads": 1692,
+          "writes": 108,
+          "auth": 221,
+          "stage": "user_period_record",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings"
+          ],
+          "result": "PARTIAL",
+          "progress": null,
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "a529baec-ef52-4f7f-9b5b-f88baa69742b",
+          "durationMs": 0,
+          "entityReads": 1559,
+          "writes": 101,
+          "auth": 207,
+          "stage": "user_period_record",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings"
+          ],
+          "result": "PARTIAL",
+          "progress": null,
+          "httpStatus": 200
+        },
+        {
+          "action": "resume",
+          "operationId": "a529baec-ef52-4f7f-9b5b-f88baa69742b",
+          "durationMs": 0,
+          "entityReads": 296,
+          "writes": 16,
+          "auth": 37,
+          "stage": "VERIFY",
+          "checkpoints": [
+            "NOTIFICATIONS",
+            "user_cycle_phase_day",
+            "user_cycle_prediction",
+            "user_cycle_settings",
+            "user_period_record",
+            "user_pattern_summary",
+            "user_preferences",
+            "user_profile",
+            "USER",
+            "VERIFY"
+          ],
+          "result": "COMPLETED",
+          "progress": null,
+          "httpStatus": 200
+        }
+      ],
+      "remainingTargetUsers": 0
+    }
+  ],
+  "instrumentSha256": "9ea84c0e80baccdfbbf7d9e33e7a3c784ae9ace822d00f5f33158ec1c0703843"
+}

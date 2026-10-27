@@ -1,3 +1,4 @@
+import { verifyTestDeletionEntry } from './verifyTestDeletionEntry.mjs';
 import { checkOnboardingClosure } from './checkOnboardingClosure.mjs';
 import { verifyNotifications } from './verifyNotifications.mjs';
 import { checkMobileExperience } from "./checkMobileExperience.mjs";
@@ -42,6 +43,7 @@ try {
   verifyDependencyRules();
   const notifications030 = await verifyNotifications(root);
   const nativeEntries = await verifyNativeEntries(root);
+  nativeEntries.deletion=await verifyTestDeletionEntry(root);
   const geoNamesEntry=await verifyGeoNamesEntry(root);
   const geoNamesRuntimeProbeEntry=await verifyGeoNamesRuntimeProbeEntry(root);
   const security028=await verifySecurity028();if(!security028.passed)throw new Error(`SECURITY_028_FAILED ${JSON.stringify(security028.results.filter(r=>r.status!=='PASS'))}`);
@@ -64,7 +66,7 @@ try {
   // Preserve normal Chromium background/frame scheduling, which Playwright otherwise disables.
   browser=await engine.launch({headless:true,ignoreDefaultArgs:['--disable-background-timer-throttling','--disable-backgrounding-occluded-windows','--disable-renderer-backgrounding']});
   const page=await browser.newPage({viewport:{width:1280,height:900}});
-  await page.emulateMedia({colorScheme:"dark"}); // Exercise the current system-following dark theme.
+  await page.emulateMedia({colorScheme:"dark"}); // Verify light-only application rendering despite a dark OS preference.
   await page.route("**/*",route=>new URL(route.request().url()).origin===origin?route.continue():route.abort());
   const pageErrors=[];page.on("pageerror",error=>pageErrors.push(error.message));
   await page.goto(`${origin}/internal/health`);

@@ -16,21 +16,25 @@ export function createYouController(request, onSaved = (_value) => {}, onLoaded 
     onSaved(value);
   };
   const load = async () => {
-    if (disposed || state.busy || state.loading) return;
+    if (disposed || state.busy || state.loading || state.error?.unknown) return;
     const ticket = ++generation; emit({ loading: true, error: null, result: null, value: null, draft: null, preferences: null, intent: null, editing: false });
     try { const value = await request('read'); if (ticket === generation) { emit({ value, preferences: { ...value.preferences } }); onLoaded(value); } }
     catch (error) { if (ticket === generation) fail(error); }
     finally { if (ticket === generation) emit({ loading: false }); }
   };
   const send = async (intent, verify = false) => {
-    if (disposed || state.busy || !state.value) return;
+    if (disposed || state.busy || !state.value || (state.error?.unknown && intent !== state.intent)) return;
     const ticket = ++generation; emit({ busy: true, error: null, result: null, intent });
     try {
       const result = await request(`${verify ? 'verify' : 'save'}${intent.section === 'profile' ? 'Profile' : 'Preferences'}`, intent.payload);
       if (ticket !== generation) return;
       if (result.state === 'VERIFIED') accept(intent.section, result);
       else emit({ error: { code: 'YOU_WRITE_UNCONFIRMED', unknown: true } });
-    } catch (error) { if (ticket === generation) fail(error); }
+    } catch (error) { if (ticket === generation) {
+      // An unsuccessful read-only check cannot establish the outcome of the
+      // preceding write. Keep its exact intent locked until verified/retried.
+      fail(verify && !isYouPrivacyError(error?.code) ? { ...error, code: error?.code || 'YOU_READ_FAILED', unknown: true } : error);
+    } }
     finally { if (ticket === generation) emit({ busy: false }); }
   };
   const saveProfile = async () => {
@@ -44,12 +48,12 @@ export function createYouController(request, onSaved = (_value) => {}, onLoaded 
   };
   return {
     subscribe: fn => { listeners.add(fn); return () => listeners.delete(fn); }, getSnapshot: () => state, load,
-    edit: () => { if (!state.busy && state.value) emit({ editing: true, draft: profileDraft(state.value.profile), error: null, result: null, intent: null }); },
+    edit: () => { if (!state.busy && state.value && !state.error?.unknown) emit({ editing: true, draft: profileDraft(state.value.profile), error: null, result: null, intent: null }); },
     change: (key, value) => { if (!state.busy && state.draft && !state.error?.unknown) emit({ draft: { ...state.draft, [key]: value }, error: null, result: null, intent: null }); },
     preference: (key, value) => { if (!state.busy && state.preferences && !state.error?.unknown) emit({ preferences: { ...state.preferences, [key]: value }, error: null, result: null, intent: null }); },
     cancel: () => { if (!state.busy && !state.error?.unknown) emit({ editing: false, draft: null, error: null, result: null, intent: null }); },
     saveProfile,
-    savePreferences: () => send({ section: 'preferences', payload: { language_code: state.preferences.language_code, notifications_enabled: state.preferences.notifications_enabled, timezone: deviceTimezone(), revision: state.preferences.revision } }),
+    savePreferences: () => state.preferences && send({ section: 'preferences', payload: { language_code: state.preferences.language_code, notifications_enabled: state.preferences.notifications_enabled, timezone: deviceTimezone(), revision: state.preferences.revision } }),
     retry: () => state.intent && send(state.intent), check: () => state.intent && send(state.intent, true),
     invalidate: () => { generation++; emit({ value: null, draft: null, preferences: null, intent: null, busy: false, loading: false, editing: false, error: { code: 'AUTH_REQUIRED' }, result: null }); },
     dispose: () => { generation++; state = { ...state, value: null, draft: null, preferences: null, intent: null }; disposed = true; listeners.clear(); },

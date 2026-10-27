@@ -36,6 +36,7 @@ export function useTestTools(request = adminTestRequest, wait = ms => new Promis
       // operation. Unknown responses leave this loop and only reconcile reads.
       for(let pass=1;['execute','resume'].includes(action)&&pass<12&&clock()-started<60000;pass++) {
         if(result.result_state!=='PARTIAL'||!result.resume_enabled||result.job?.operation!=='DELETE_USER'||result.job.operation_id!==operationId)break;
+        if(!result.progress?.madeProgress)break;
         if(result.job.status!=='RUNNING'&&result.job.error_code!=='TEST_CLEANUP_MORE_REQUIRED')break;
         if(version!==generation.current)break;
         setPhase('DELETING');

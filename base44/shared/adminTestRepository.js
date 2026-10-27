@@ -1,6 +1,7 @@
 import { physicalName } from './domainSchemas.js';
 import { readPrivacyRequests } from './privacyPolicy.js';
 import { deleteAndVerifyAbsent } from './ownedCleanup.js';
+import { testDeletionPass } from './testDeletionPass.js';
 import { DELETED_ENTITIES, RETAINED_ENTITIES, OPERATION_ENTITY, OPERATION_FIELDS, projectOperation, testToolError, hashToolValue } from './adminTestPolicy.js';
 
 // SDK 0.8.54 positional pagination. Health values/snapshots are never selected;
@@ -15,15 +16,8 @@ const extras = {
   health_data_deletion_job: ['protection_event_id', 'job_status'],
   admin_audit_log: ['admin_user_id', 'target_user_id'],
 };
-export function createTestRepository(client, { clock = () => performance.now() } = {}) {
+export function createTestRepository(client, { clock = () => performance.now(), pass = testDeletionPass(clock) } = {}) {
   const entities = client.asServiceRole.entities;
-  let remainingWrites = 100;
-  let deadline = null;
-  const spend = () => {
-    // Slow authorization/scope reads must not starve every resumed pass.
-    deadline ??= clock() + 8000;
-    if (--remainingWrites < 0 || clock() > deadline) testToolError('TEST_CLEANUP_MORE_REQUIRED', 503);
-  };
   async function scan(name, query, fields, bounded = 20000) {
     const result = [], seen = new Set();
     for (let offset = 0; offset <= bounded; offset += pageSize) {
@@ -76,8 +70,9 @@ export function createTestRepository(client, { clock = () => performance.now() }
   async function target(targetId, identity = undefined, { deletionGuard = false } = {}) {
     const privacy = await readPrivacyRequests(client, targetId);
     if (privacy.some(row => row.kind === 'DELETE_ACCOUNT' || row.status !== 'COMPLETED')) testToolError('PRIVACY_OTHER_OPERATION_PENDING');
-    identity ||= await user(targetId, true);
-    if (!identity) testToolError('TEST_USER_NOT_FOUND', 404);
+    if(identity===undefined)identity=await user(targetId,true);
+    if (!identity && !deletionGuard) testToolError('TEST_USER_NOT_FOUND', 404);
+    identity ||= {id:targetId,role:'deleted'};
     // Deletion admission needs current identity/roster and open jobs, not a
     // profile that this same operation will remove. Lookup/reset still read it.
     const profiles = deletionGuard ? [] : await owned('user_profile', targetId);
@@ -124,20 +119,20 @@ export function createTestRepository(client, { clock = () => performance.now() }
     // deleting from a shrinking collection cannot skip later rows.
     const rows=await ownedPage(entity,targetId);
     if (entity === 'user_period_record') {
-      for (let offset=0;offset<Math.min(rows.length,remainingWrites);offset+=pageSize) {
-        const ids=rows.slice(offset,Math.min(offset+pageSize,remainingWrites)).map(row=>row.id);
+      for (let offset=0;offset<Math.min(rows.length,pass.remainingWrites);offset+=pageSize) {
+        const ids=rows.slice(offset,Math.min(offset+pageSize,pass.remainingWrites)).map(row=>row.id);
         for (const child of ['UserCyclePrediction','UserCyclePhaseDay']) {
           const incoming=await scan(child,{reference_period_id:{$in:ids}},['id','user_id']);
           if(incoming.some(item=>item.user_id!==targetId))testToolError('TEST_REFERENCE_CONFLICT');
         }
       }
     }
-    for (const row of rows) {spend();await deleteOwned(physicalName(entity), row.id, targetId);}
-    if (rows.length && (await ownedPage(entity,targetId,1)).length) testToolError(rows.length===pageSize ? 'TEST_CLEANUP_MORE_REQUIRED' : 'TEST_DELETE_UNCONFIRMED',503);
+    for (const row of rows) {pass.spend();await deleteOwned(physicalName(entity), row.id, targetId);pass.confirmed();}
+    if (rows.length && (await ownedPage(entity,targetId,1)).length) {pass.more();testToolError(rows.length===pageSize ? 'TEST_CLEANUP_MORE_REQUIRED' : 'TEST_DELETE_UNCONFIRMED',503);}
     if (entity === 'user_period_record') {
       const actions = await calendarPage(targetId);
-      for (const row of actions) { spend(); await deleteOwned('UserCalendarAction', row.id, targetId); }
-      if (actions.length && (await calendarPage(targetId,1)).length) testToolError(actions.length===pageSize?'TEST_CLEANUP_MORE_REQUIRED':'TEST_DELETE_UNCONFIRMED',503);
+      for (const row of actions) { pass.spend(); await deleteOwned('UserCalendarAction', row.id, targetId); pass.confirmed(); }
+      if (actions.length && (await calendarPage(targetId,1)).length) {pass.more();testToolError(actions.length===pageSize?'TEST_CLEANUP_MORE_REQUIRED':'TEST_DELETE_UNCONFIRMED',503);}
     }
   }
   async function deleteOwned(name, id, targetId) {
@@ -145,15 +140,23 @@ export function createTestRepository(client, { clock = () => performance.now() }
   }
   async function stopNotifications(targetId) {
     const rows=await pendingPage(targetId);
-    for (const row of rows) { spend(); await entities.NotificationDelivery.update(row.id, { delivery_status: 'SKIPPED', error_code: 'ADMIN_TEST_USER_DELETED' }); }
-    if (rows.length && (await pendingPage(targetId,1)).length) testToolError(rows.length===pageSize?'TEST_CLEANUP_MORE_REQUIRED':'TEST_DELETE_UNCONFIRMED',503);
+    for (const row of rows) {
+      pass.spend(); await entities.NotificationDelivery.update(row.id, { delivery_status: 'SKIPPED', error_code: 'ADMIN_TEST_USER_DELETED' });
+      const saved=await entities.NotificationDelivery.filter({id:row.id,user_id:targetId},'id',2,0,['id','user_id','delivery_status']);
+      if(!Array.isArray(saved)||saved.length!==1||saved[0].id!==row.id||saved[0].user_id!==targetId||saved[0].delivery_status!=='SKIPPED')testToolError('TEST_DELETE_UNCONFIRMED',503);
+      pass.confirmed();
+    }
+    if (rows.length && (await pendingPage(targetId,1)).length) {pass.more();testToolError(rows.length===pageSize?'TEST_CLEANUP_MORE_REQUIRED':'TEST_DELETE_UNCONFIRMED',503);}
   }
   async function deleteUser(id) {
+    pass.spend();
     try { await entities.User.delete(id); }
     catch (error) {
       if (error.code !== 'TEST_STORAGE_NOT_FOUND' && (error?.response?.status || error?.status) !== 404) throw error;
       if (await user(id)) throw error;
     }
+    if(await user(id))testToolError('TEST_DELETE_UNCONFIRMED',503);
+    pass.confirmed();
   }
   return { user, target, impact, operation, lifecycle, owned, hasOwned: async (entity,target) => (await ownedPage(entity,target,1)).length>0, cleanup, stopNotifications, calendarActions: target => calendarPage(target,1), hasPendingNotifications: async target => (await pendingPage(target,1)).length>0, deleteUser };
 }

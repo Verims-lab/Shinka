@@ -1,10 +1,11 @@
 import { ev, verdict } from '../evidence';
 import { CLASS } from '../constants';
-import { executeTest, cancelledTest } from '../../testExecution';
+import { executeTest, cancelledTest, assertUniqueTestIds } from '../../testExecution';
 // Only completed successes are reusable. Pending/failed/cancelled work is never
 // inserted into the run cache, and a late completion cannot mutate that cache.
 export function syntheticProbe(tests) {
   return async (context = {}) => {
+    assertUniqueTestIds(tests);
     const failed = [], diagnostics = [], reused = [], executed = [];
     for (const test of tests) {
       if (context.signal?.aborted) throw cancelledTest();

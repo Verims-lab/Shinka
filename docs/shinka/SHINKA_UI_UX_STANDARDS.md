@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-038
+**Current BuildMarker:** Buildmarker-040
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -11,6 +11,15 @@
 **Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+
+## 040 — Test Tools removal result
+
+Use canonical TR/EN testToolsCopy. User-approved TR success is exactly “Kullanıcı silindi.”; a separate paragraph describes verified active User/operational absence and retained history, without promising permanent platform erasure. Pending, unknown and budget/no-progress states remain distinct. Pending authorized operation offers one Resume action; unknown/blocked/completed offers status read. Technical details expose safe operation/stage/progress/checkpoint/duration values, with uncounted remaining shown as unknown, never fabricated zero. Stage labels are neutral, not assertions that unfinished work completed. Completed/status responses clear the old target card. Reload uses the saved target/operation; session/account invalidation clears that local recovery context. No new confirmation is inserted between acknowledged same-operation passes.
+
+## 039 — recovery lock and privacy presentation
+
+You disables Edit profile as well as changed preference fields while a save is unknown. The existing Check saved result / Retry same save controls remain; a failed check cannot unlock a new edit or show success. Home clears old cards and the hydrated-name fallback after explicit access denial; ordinary network retry still preserves verified content. No copy/theme/layout redesign. CQ06–08/CQ10 cover real local React surfaces; physical Android/iOS acceptance stays separate. [039 milestone](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md).
 
 ## 038 — retained cards and short recovery
 

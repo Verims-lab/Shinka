@@ -2,9 +2,17 @@
 
 Use this repository to run and edit the app locally, then publish changes back through Base44.
 
-Any change pushed to the repo will also be reflected in the Base44 Builder.
+Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
-## Current Test Calendar/Pattern corrections (Buildmarker-038)
+## Current Test deletion stabilization (Buildmarker-040)
+
+[040 deletion fix, regression and live acceptance](docs/shinka/reports/SHINKA_TEST_DELETION_STABILIZATION_040.md) preserves 039. Durable admission, forward checkpoints and separately verified finalization keep the same operation ID. No schema/import step. Owner merges Test to main, waits for full Base44 GitHub sync and publishes matching backend/shared/frontend. Authorized existing-user cleanup remains pending source/identity verification; this delivery does not claim hosted removal.
+
+## Historical Test quality milestone (Buildmarker-039)
+
+[039 audit, fixes, measurements and acceptance](docs/shinka/reports/SHINKA_CORE_QUALITY_MILESTONE_039.md) preserves 036–038 and separates local verification from hosted/device evidence. Domain reads explicitly disclose truncation; You preserves uncertain preference saves; Home clears stale access state and stops after session end. Sync the full matching backend/shared graph before frontend. No schema/reference-data migration or notification activation. Owner handles main merge/publish and published Full Health; Test delivery alone does not close ON-05/First Shinka incidents.
+
+## Historical Test Calendar/Pattern corrections (Buildmarker-038)
 
 038 retains completed 036/037 and fixes same-ID Calendar recovery, retained/coalesced Pattern refresh, count-free themes and current phase/next Full Moon date. [Single four-item report](docs/shinka/reports/SHINKA_CALENDAR_PATTERN_038.md) separates synthetic evidence from unresolved hosted/device incidents. No schema change; owner syncs all matching native/shared backend code before frontend, then publishes and runs acceptance. Test only; 12 backend findings remain USER-DEFERRED, notification entry/scheduler remain closed.
 
@@ -42,8 +50,8 @@ Run `npm ci`, `npm run health:repo`, `npm run test:foundation` (also `FOUNDATION
 
 1. Clone the repository using the project's Git URL.
 2. Navigate to the project directory.
-3. Install dependencies: `npm install`.
-4. Install the Base44 CLI: `npm install -g base44@latest`.
+3. Install the locked dependencies: `npm ci`.
+4. Use `npx base44@latest` or the optional globally installed Base44 CLI.
 5. Install [Deno](https://docs.deno.com/runtime/getting_started/installation/) — the local Base44 backend runs on it.
 
 Run `base44 --help` (or see the [CLI reference](https://docs.base44.com/developers/references/cli/commands/introduction)) for the full command surface.
@@ -63,7 +71,7 @@ Open the frontend URL that `base44 dev` prints (typically `http://localhost:5173
 Notes:
 
 - **Every fresh clone needs `base44 link`.** It writes `base44/.app.jsonc` (the app-id pointer), which is deliberately gitignored. Your app id is in the Builder URL (`app.base44.com/apps/<id>/...`); `base44 link --help` shows the non-interactive flags.
-- **`base44 dev` runs the frontend for you** (via `site.serveCommand` in this repo's `base44/config.jsonc`) — never run `npm run dev` yourself: alone it serves a UI with no backend behind it (`[base44] Proxy not enabled`, every `/api` call fails), and alongside `base44 dev` the second Vite silently takes the next port and you end up looking at the wrong one.
+- **`base44 dev` runs the frontend for you** (via `site.serveCommand` in this repo's `base44/config.jsonc`) — do not start a second Vite alongside it. `npm run dev` is frontend-only and requires the existing hosted-backend configuration; it does not start a local backend or create isolated data.
 - **The app must be published at least once for the UI to load under `base44 dev`.** The frontend boots by fetching app settings from the hosted app; before the first publish that fails and every page redirects to login. The local API works regardless.
 - Entities, functions, and auth run locally — entity data is **in-memory only**, wiped when `base44 dev` restarts. Everything else (Core integrations, OAuth login) is forwarded to your deployed app. Full breakdown: [Local development overview](https://docs.base44.com/developers/backend/overview/local-dev/local-development-overview).
 

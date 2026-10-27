@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-038
+**Current BuildMarker:** Buildmarker-040
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -10,6 +10,19 @@
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+
+## 040 — resumable Test Tools removal
+
+One confirmed preview creates/readbacks the target receipt and start audit before destruction. Its acknowledged START can continue under the same operation ID. Each cleanup pass advances forward checkpoints, at most 100 data-write attempts and an 8-second between-work budget; shrinking pages restart at offset zero. Empty completed scopes are recorded together. A verified scope checkpoint and final audit/COMPLETED write use separate acknowledged passes. Existing valid incomplete receipts resume; existing COMPLETED receipts must pass fresh active User and full manifest absence checks. Residuals rewind to their earliest affected stage rather than creating another operation or silently accepting old completion. Conflicting receipts/actors/open jobs remain blockers.
+
+Automatic continuation requires acknowledged progress, the same ID, current server permission and the existing 12-pass/60-second UI limit with 1.5-second pacing. Unknown results trigger only bounded status reads. No progress stops automatic work with visible stage/reason; explicit same-operation Resume is the next action. Auth/account/unmount invalidation suppresses later UI work, not already-dispatched remote work. Success reads “Kullanıcı silindi.” with scope/retention separately explained; old target identity is cleared. No physical-erasure guarantee. [040 report](reports/SHINKA_TEST_DELETION_STABILIZATION_040.md).
+
+## 039 — uncertain preferences and access-loss behavior
+
+A You preferences save with a lost/ambiguous reply retains its original section, payload and revision. Edit, cancel, fresh save and load cannot discard that pending outcome; read-only verification failure keeps it unknown. Only verified result or the same explicit retry reconciles it; access denial clears the view. UI and controller enforce the same lock. Reopening the route reads persisted state rather than claiming rollback or durable client-draft persistence.
+
+Home retains a confirmed day on ordinary network/content errors, but clears cards and hydrated name on explicit account/owner/profile/consent/lifecycle denial. Session end prevents further automatic/manual hook requests for that lifetime and drops late results; a fresh authenticated mount can load normally. No daily timestamp/content/onam change. [039 evidence](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md).
 
 ## 038 — Calendar result and retry semantics
 
