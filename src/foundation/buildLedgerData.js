@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-036",
-    "package_name": "Onboarding locale, navigation and time closure",
-    "package_type": "FIX",
-    "created_at": "2026-10-27T14:00:00Z",
-    "health_catalog_version": "HC-036.0",
-    "short_summary": "Automatic locale, DOB-only NULLs, authenticated Back, manual/app time picker and safe Retry diagnostics. Chromium/WebKit each 667/667; actual locale/time CLI 6/6 each. Hosted preparation cause remains unconfirmed.",
-    "full_health_status": "LOCAL_VERIFIED / HOSTED_INCIDENT_AND_DEVICE_ACCEPTANCE_PENDING",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "Fresh install/tree/audit/security/type/lint/build/repo/history/performance gates passed. Local in-app Health 136 PASS / 13 hosted BLOCKED; save/retry/list/open verified. Native create-loss retry and You preference/reset covered. Read-only logs denied 401; user deferred live diagnosis. Android/iOS NOT_RUN; 12 deferred findings unchanged. No live mutation/import/push/Full Health/main publish."
-  },
-  {
     "build_marker": "Buildmarker-037",
     "package_name": "Five focused corrections: name, Calendar, light UI and Home",
     "package_type": "FIX",
