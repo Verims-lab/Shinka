@@ -49,17 +49,23 @@ export async function checkMobileInteractions(page,origin,directory){
   assert.deepEqual(inset,{nav:'34px',shell:'0px',left:'28px',right:'28px',overflow:false});
   rows.push({scenario:'simulated-insets-single-bottom-owner',inset,passed:true,physicalInsets:false});
   await page.evaluate(()=>{for(const edge of ['top','left','right','bottom'])document.documentElement.style.removeProperty(`--safe-${edge}`);window.scrollTo(0,0);});
+  assert.equal(await page.locator('[data-refresh-control]').evaluate(el=>el.getBoundingClientRect().height),0,'empty refresh row retained');
   const daily=await page.locator('[data-daily-id]').getAttribute('data-daily-id'), before=await count(page,'dailyMessage');
   await pull(page,{distance:25});await pull(page,{multi:true});assert.equal(await count(page,'dailyMessage'),before);
   await page.evaluate(()=>window.__authFixture.holdOperation('dailyMessage'));await pull(page);
-  await page.getByRole('button',{name:'Refreshing',exact:true}).waitFor();
+  await page.locator('[data-refresh-control][aria-busy=true]').waitFor({state:'attached'});
+  assert.equal(await page.locator('[data-refresh-control] button').count(),0,'Home hidden refresh target');
   await pull(page);assert.equal(await count(page,'dailyMessage'),before+1);
   assert.equal(await page.locator('[data-daily-id]').getAttribute('data-daily-id'),daily);
-  await page.evaluate(()=>window.__authFixture.releaseOperation('dailyMessage'));await page.getByRole('button',{name:'Refresh',exact:true}).waitFor();
-  await page.evaluate(()=>window.__authFixture.failOperation('dailyMessage'));await page.getByRole('button',{name:'Refresh',exact:true}).click();
+  await page.evaluate(()=>window.__authFixture.releaseOperation('dailyMessage'));await page.locator('[data-refresh-control][aria-busy=false]').waitFor({state:'attached'});
+  await page.evaluate(()=>window.__authFixture.failOperation('dailyMessage'));await pull(page);
   await page.locator('[data-refresh-control] [role=status]').filter({hasText:'Couldn’t refresh'}).waitFor();
   assert.equal(await page.locator('[data-daily-id]').getAttribute('data-daily-id'),daily);
-  rows.push({scenario:'home-pull-threshold-multitouch-coalescing-offline-retention',passed:true});
+  await page.getByRole('button',{name:'Retry',exact:true}).click();
+  await page.locator('[data-daily-state]').waitFor({state:'detached'});
+  assert.equal(await page.locator('[data-daily-id]').getAttribute('data-daily-id'),daily);
+  assert.equal(await page.locator('[data-refresh-control] button').count(),0);
+  rows.push({scenario:'home-no-refresh-target-pull-coalescing-offline-retry-retains-daily',passed:true});
 
   await page.locator('nav a').nth(1).click();await page.locator('[data-calendar-date]').first().waitFor();
   await page.locator('[data-calendar-date="2026-10-01"]').click();await page.locator('#calendar-start-date').fill('2026-10-02');

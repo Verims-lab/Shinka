@@ -1,5 +1,5 @@
 /* Onboarding-only light background (ON-01–ON-06), user-approved 2026-10-26.
-   Static layers on the full-width shell; global tokens unchanged. Dark keeps bg-shinka-ivory. */
+   Static layers on the full-width shell; global tokens unchanged. Always active under the 037 light-only policy. */
 :root {
   --onboarding-soft-blush: #FCEDEA;
   --onboarding-pale-rose: #F8E3E5;
@@ -8,7 +8,7 @@
   --onboarding-rose-haze: #F5DDE3;
 }
 .shinka-onboarding { min-height: 100vh; min-height: 100dvh; }
-html:not(.dark) .shinka-onboarding {
+.shinka-onboarding {
   background-color: var(--onboarding-warm-ivory);
   background-image:
     radial-gradient(ellipse 75% 42% at 8% 12%, rgba(248, 212, 219, 0.50), transparent 78%),
@@ -22,7 +22,7 @@ html:not(.dark) .shinka-onboarding {
 }
 /* ON-01: three-row intro sits directly on the watercolor shell (no single white card). */
 .shinka-onboarding .shinka-intro-shell { background: transparent; border: 0; box-shadow: none; padding: 0; }
-html:not(.dark) .shinka-intro-art { mix-blend-mode: multiply; }
+.shinka-intro-art { mix-blend-mode: multiply; }
 /* ON-04 soft framed fields. Root cause of the old overflow: iOS Safari renders
    date/time inputs with native appearance and an intrinsic min-width that ignores
    width:100%; appearance:none + min-width:0 + border-box keeps them in the parent. */
@@ -31,4 +31,3 @@ html:not(.dark) .shinka-intro-art { mix-blend-mode: multiply; }
 .shinka-datetime { box-sizing: border-box; -webkit-appearance: none; appearance: none; min-width: 0; min-height: 44px; line-height: 1.5; }
 .shinka-datetime::-webkit-date-and-time-value { text-align: left; min-height: 1.5em; }
 .shinka-datetime::-webkit-calendar-picker-indicator { position: absolute; right: 4px; bottom: 4px; width: 44px; height: 44px; opacity: 0; cursor: pointer; }
-html.dark .shinka-intro-art { opacity: 0.85; border-radius: 9999px; }

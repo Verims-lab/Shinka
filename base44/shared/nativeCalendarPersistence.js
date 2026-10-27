@@ -1,7 +1,7 @@
 import { InternalError } from './internalAuthorization.js';
 import { calendarReader } from './base44CalendarReader.js';
 import { calendarRevision, validateCalendarAccess, validateCalendarHealth } from './calendarState.js';
-import { validatePeriodChange } from './calendarCalculation.js';
+import { validatePeriodChange, validatePeriodDate } from './calendarCalculation.js';
 import { resolveTimezone, serverLocalDate } from './onboardingValidation.js';
 import { completeCalendarGrant } from './nativeCalendarGrant.js';
 import { hashToolValue } from './adminTestPolicy.js';
@@ -49,9 +49,16 @@ export async function nativeCalendarChange(client, principal, body, now) {
   if (receipt?.status === 'CANCELLED') fail('CALENDAR_STATE_CHANGED');
   if (receipt && receipt.fingerprint !== digest) fail('ACTION_CONFLICT');
   const reader = calendarReader(client, principal);
+  // Server date is checked before any receipt/grant recovery, including APPLIED replay.
+  // Read preferences independently: a partial grant may not yet have its event.
+  const assertDate = async () => {
+    const preferences = await reader.preferences();
+    validatePeriodDate(body.action, body.date, serverLocalDate(now(), resolveTimezone(body.timezone, preferences?.timezone)));
+  };
+  await assertDate();
   // Recover the same explicit initial grant after consent/event/period failure.
   if (receipt?.status === 'PENDING' && receipt.initial_grant && body.health_consent === true) {
-    await completeCalendarGrant(client, owner, receipt);
+    await completeCalendarGrant(client, owner, receipt, assertDate);
   }
   let state = await reader.confirmedSnapshot();
   const revision = await calendarRevision(state);
@@ -59,6 +66,7 @@ export async function nativeCalendarChange(client, principal, body, now) {
     ? !state.periods.some(row => row.id === body.period_id)
     : state.periods.filter(row => body.action === 'add' ? row.period_start_date === body.date : row.id === body.period_id && row.period_start_date === body.date).length === 1;
   const finish = async state => {
+    await assertDate();
     validateCalendarHealth(state, owner);
     if (!validateCalendarAccess(state, owner) || !sameResult(state)) fail('CALENDAR_READBACK_CONFLICT');
     await client.auth.me();
@@ -96,13 +104,14 @@ export async function nativeCalendarChange(client, principal, body, now) {
   const rivals = await journal.filter({ user_id: owner, base_revision: revision, status: { $ne: 'CANCELLED' } }, 'id', 101);
   if (!Array.isArray(rivals) || rivals.length > 100 || rivals.some(row => row.user_id !== owner || row.fingerprint !== digest)) fail('CALENDAR_ACTION_CONFLICT');
   if (!consent) {
-    await completeCalendarGrant(client, owner, receipt);
+    await completeCalendarGrant(client, owner, receipt, assertDate);
     return finish(await reader.confirmedSnapshot());
   }
   state = await reader.confirmedSnapshot();
   if (await calendarRevision(state) !== revision) fail('CALENDAR_STATE_CHANGED');
   await client.shinkaAssertWritable?.();
   if ((await lookup())?.status !== 'PENDING') fail('CALENDAR_STATE_CHANGED');
+  await assertDate();
   if (body.action === 'add') await entities.UserPeriodRecord.create({ user_id: owner, period_start_date: body.date });
   else {
     const before = state.periods.find(row => row.id === body.period_id);

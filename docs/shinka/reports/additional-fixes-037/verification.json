@@ -1,0 +1,195 @@
+{
+  "buildMarker": "Buildmarker-037",
+  "healthCatalogVersion": "HC-037.0",
+  "date": "2026-10-27",
+  "status": "LOCAL_VERIFIED_HOSTED_PENDING",
+  "baseCommit": "1e331e42cbef432661b7ef0e64581aa28f012715",
+  "originMainAtPreflight": "ac0a1b419b6efccdfdea0db198d62b17695b808c",
+  "gitPreflight": {
+    "mainAhead": 0,
+    "testAhead": 2,
+    "localVsOriginTest": [
+      0,
+      0
+    ],
+    "clean": true
+  },
+  "sourceCommit": "PENDING_COMMIT",
+  "browsers": {
+    "chromium": {
+      "exitCode": 0,
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "tests": 674,
+      "passed": 674,
+      "failed": 0,
+      "pageErrors": 0,
+      "requiredIdsPresent": true,
+      "flows": {
+        "onboardingClosure": 6,
+        "mobileExperience": 150,
+        "mobile": 87,
+        "dailyFlow": 5,
+        "calendarFlow": 8,
+        "patternFlow": 22,
+        "youFlow": 24,
+        "privacyFlow": 23,
+        "adminTestFlow": 4
+      },
+      "inAppHealth": {
+        "PASS": 136,
+        "FAIL": 0,
+        "BLOCKED": 13
+      },
+      "history": {
+        "saveState": "SAVED",
+        "retrySave": true,
+        "historyListed": true,
+        "privateReportOpened": true
+      }
+    },
+    "webkit": {
+      "exitCode": 0,
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "tests": 674,
+      "passed": 674,
+      "failed": 0,
+      "pageErrors": 0,
+      "requiredIdsPresent": true,
+      "flows": {
+        "onboardingClosure": 6,
+        "mobileExperience": 150,
+        "mobile": 87,
+        "dailyFlow": 5,
+        "calendarFlow": 8,
+        "patternFlow": 22,
+        "youFlow": 24,
+        "privacyFlow": 23,
+        "adminTestFlow": 4
+      },
+      "inAppHealth": {
+        "PASS": 136,
+        "FAIL": 0,
+        "BLOCKED": 13
+      },
+      "history": {
+        "saveState": "SAVED",
+        "retrySave": true,
+        "historyListed": true,
+        "privateReportOpened": true
+      }
+    }
+  },
+  "qualityGates": [
+    {
+      "command": "npm ci",
+      "exitCode": 0
+    },
+    {
+      "command": "npm ls --all --json",
+      "exitCode": 0
+    },
+    {
+      "command": "npm audit --json",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run security:deps",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run health:repo",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/recordBuild.mjs --check",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verifySessionStability.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/measureMaintenance.mjs /private/tmp/shinka-037-performance",
+      "exitCode": 0
+    }
+  ],
+  "dependencies": {
+    "auditVulnerabilities": 0,
+    "removedDirectDependency": "next-themes",
+    "changedExistingVersions": 0
+  },
+  "production": {
+    "initialJS": {
+      "raw": 483391,
+      "gzip": 160917
+    },
+    "css": {
+      "raw": 77728,
+      "gzip": 14239
+    },
+    "cycles": [],
+    "lazyRetry": {
+      "passed": true,
+      "scope": "Synthetic network asset failure and full-reload retry, real App route"
+    },
+    "budgetsUnchanged": true
+  },
+  "healthChanges": {
+    "added": [],
+    "updated": [
+      "H08-002",
+      "H08-004",
+      "H12-027",
+      "H13-001",
+      "H13-010",
+      "H13-012",
+      "H13-015",
+      "H07-013"
+    ],
+    "deleted": []
+  },
+  "live": {
+    "fullHealth": "NOT_RUN",
+    "providerDiagnosis": "DEFERRED_BY_USER",
+    "mutation": "NOT_RUN",
+    "import": "NOT_RUN",
+    "notification": "NOT_RUN",
+    "mainPublish": "OWNER_ONLY",
+    "physicalDevices": "NOT_RUN"
+  },
+  "deferredBackendFindings": 12,
+  "activePackages": [
+    "033",
+    "034",
+    "035",
+    "036",
+    "037"
+  ],
+  "visualAcceptance": {
+    "scope": "LOCAL_BROWSER_SYNTHETIC",
+    "command": "FOUNDATION_MOBILE_EXPERIENCE_ONLY=1 FOUNDATION_MOBILE_SURFACE=home npm run test:foundation",
+    "exitCode": 0,
+    "osDarkStillLight": true,
+    "physicalDevice": false
+  }
+}

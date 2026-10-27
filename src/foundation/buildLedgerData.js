@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-032",
-    "package_name": "Native notification readiness and device acceptance",
-    "package_type": "DOCS",
-    "created_at": "2026-10-22T18:46:33.644742+00:00",
-    "health_catalog_version": "HC-032.0",
-    "short_summary": "Native setup inventory and two-stage device plan; no application behavior fix required. Chromium/WebKit each 624/624; 8 server + 9 actual-entry fixtures per engine; local Health 136 PASS/13 prerequisite BLOCKED. All device steps NOT_RUN.",
-    "full_health_status": "NATIVE_AND_PLATFORM_ACCEPTANCE_NOT_RUN",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": false,
-    "health_changed": true,
-    "notes": "Health add 0/update 2/delete 0 (H14-901/H16-901 external descriptions); executable tests unchanged. Required local gates pass; audit zero; 031 budgets unchanged at 69/104/46 entity reads. Initial JS 479543/160180 gzip, CSS 77521/14262 bytes. Native setup may proceed independently; verified contracts still gate activation, superseding historical 029 setup ordering. Base44 remains identity/data authority; Firebase is Android push setup only. Actual entry enabled:false; no credentials/build/live calls/main merge/publish. Existing 12 findings OPEN / USER-DEFERRED. Internal Build 028–032; SHINKA_NATIVE_NOTIFICATION_READINESS_032.md."
-  },
-  {
     "build_marker": "Buildmarker-033",
     "package_name": "Scheduler machine authorization preparation",
     "package_type": "FIX",
@@ -69,5 +55,19 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "notes": "Fresh install/tree/audit/security/type/lint/build/repo/history/performance gates passed. Local in-app Health 136 PASS / 13 hosted BLOCKED; save/retry/list/open verified. Native create-loss retry and You preference/reset covered. Read-only logs denied 401; user deferred live diagnosis. Android/iOS NOT_RUN; 12 deferred findings unchanged. No live mutation/import/push/Full Health/main publish."
+  },
+  {
+    "build_marker": "Buildmarker-037",
+    "package_name": "Five focused corrections: name, Calendar, light UI and Home",
+    "package_type": "FIX",
+    "created_at": "2026-10-27",
+    "health_catalog_version": "HC-037.0",
+    "short_summary": "Guard filled-name Skip; future Calendar intent/replay rejects before health writes and legacy rows stay repairable; light-only policy; Home removes only normal Refresh. Existing ON-05 privacy removal preserved.",
+    "full_health_status": "LOCAL_VERIFIED_HOSTED_PENDING",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "Chromium/WebKit 674/674; local Health 136 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED with save/retry/list/open. Mandatory local gates and zero dependency advisories. Source/receipt in SHINKA_ADDITIONAL_FIXES_037.md. User publishes/runs hosted Health; physical OS dialogs and original live First Shinka/ON-05 acceptance remain open. 12 backend findings USER-DEFERRED. No live mutations/import/push."
   }
 ];

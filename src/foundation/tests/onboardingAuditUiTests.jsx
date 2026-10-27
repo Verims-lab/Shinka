@@ -32,7 +32,7 @@ export async function auditScreen(initial,run,context={},options={}) {
 }
 /** @type {import('./testTypes').FoundationTest[]} */
 export const ONBOARDING_AUDIT_UI_TESTS=[
- ['OU01','Actual ON-01/02/03 back/forward: one Begin, trimmed optional name, explicit skip clears draft, no backend/auth',async(context={})=>{
+ ['OU01','Actual ON-01/02/03 back/forward: one Begin, trimmed optional name, filled name blocks skip, empty skip clears draft, no backend/auth',async(context={})=>{
   await auditScreen('UNAUTHENTICATED_INTRO',async(f,host,wait,turn)=>{
    check(host.querySelectorAll('[data-intro-row]').length===3,'three initial rows');
    const begin=button(host,'Begin');begin.click();begin.click();await wait(()=>stateOf(host)==='UNAUTHENTICATED_NAME');
@@ -43,7 +43,10 @@ export const ONBOARDING_AUDIT_UI_TESTS=[
    type(host,'display_name','  Ada  ');await turn();button(host,'Continue').click();await wait(()=>host.querySelector('#age-declaration'));
    check(f.name==='Ada'&&!host.querySelector('#age-declaration').checked,'name/age contract');await turn();
    await wait(()=>!host.querySelector('button[data-onboarding-back]').disabled);host.querySelector('button[data-onboarding-back]').click();await wait(()=>host.querySelector('#display_name'));
-   button(host,'Prefer not to say').click();await wait(()=>host.querySelector('#age-declaration'));await turn();
+   const skip=button(host,'Prefer not to say');check(skip.disabled,'filled name skip must be disabled');skip.click();await turn();
+   check(host.querySelector('#display_name').value==='  Ada  '&&f.name==='Ada','skip lost name');
+   type(host,'display_name','   ');await turn();check(!skip.disabled,'whitespace permits skip');
+   skip.click();await wait(()=>host.querySelector('#age-declaration'));await turn();
    await wait(()=>!host.querySelector('button[data-onboarding-back]').disabled);host.querySelector('button[data-onboarding-back]').click();await wait(()=>host.querySelector('#display_name'));
    check(f.name===null&&host.querySelector('#display_name').value===''&&f.calls.length===0,'back/skip wrote or retained name');
   },context);

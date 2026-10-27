@@ -1,4 +1,3 @@
-import SystemTheme from "@/features/mobile/SystemThemeBinding";
 import RouteMotion from "@/features/mobile/RouteMotion";
 import { lazy } from "react";
 import RouteBoundary from "@/components/RouteBoundary";
@@ -101,7 +100,6 @@ function App() {
     );
   return (
     <>
-    <SystemTheme />
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
         <Router>

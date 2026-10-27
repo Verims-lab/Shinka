@@ -3,7 +3,7 @@ import { InternalError, requireAuthenticatedUser } from './internalAuthorization
 import { readBoundedJson } from './boundedJson.js';
 import { resolveAuthenticatedOwner } from './domainSecurity.js';
 import { resolveTimezone, serverLocalDate, isCalendarDate } from './onboardingValidation.js';
-import { calculateCalendar, calendarMonthView } from './calendarCalculation.js';
+import { calculateCalendar, calendarMonthView, validatePeriodDate } from './calendarCalculation.js';
 import { validateCalendarAccess, validateCalendarHealth, calendarRevision, planCalendarChange, verifyCalendarCommit } from './calendarState.js';
 import { calendarReader } from './base44CalendarReader.js';
 import { nativeCalendarRecovery } from './nativeCalendarRecovery.js';
@@ -40,6 +40,7 @@ export async function calendarOperation(client, body, { now = () => new Date(), 
   let today = serverLocalDate(now(), timezone);
   const writable = native || typeof atomic?.transactCalendar === 'function';
   if (body.action !== 'read' && !native) {
+    validatePeriodDate(body.action, body.date, today);
     const fingerprint = JSON.stringify([body.action, body.period_id ?? null, body.date ?? null, body.health_consent ?? false]);
     const outcome = await commitCalendarAction(principal, { actionId: body.action_id, fingerprint, revision: body.revision }, atomic,
       (snapshot, newId) => {
@@ -67,7 +68,7 @@ export async function calendarOperation(client, body, { now = () => new Date(), 
     validateCalendarHealth(state, owner);
     try { calculation = calculateCalendar({ periods: state.periods, settings: state.settings, today }); }
     catch (error) {
-      if (!(error instanceof InternalError) || error.code !== 'CALENDAR_HISTORY_LIMIT') throw error;
+      if (!(error instanceof InternalError) || !['CALENDAR_HISTORY_LIMIT', 'CALENDAR_FUTURE_RECORD'].includes(error.code)) throw error;
       calculationError = error.code;
     }
   }

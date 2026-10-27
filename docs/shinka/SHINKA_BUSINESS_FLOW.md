@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-036
+**Current BuildMarker:** Buildmarker-037
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -10,6 +10,12 @@
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+## 037 — correction and observation semantics
+
+ON-02 Continue preserves normalized name; filled Skip cannot erase it through click/keyboard/stale event. Blank/whitespace Skip, reopen/session draft and auth-return save are covered without backfilling old blank accounts. ON-05 remains explicit separate health consent, with privacy under You/direct guarded routes.
+
+Calendar uses backend now + validated request IANA/persisted fallback, never body.today. Check future intent before native recovery (including persisted initial grant), APPLIED receipt replay and immediately before writes; existing grant timestamps remain. Native writes are not transactional: a time boundary during the operation can leave a PENDING receipt, which remains reviewable. Legacy future observations are returned as actual rows with CALENDAR_FUTURE_RECORD and no predictions, never clamped/deleted automatically; explicit edit/delete repairs them. Server readback plus requested visible observation establishes success, not transport completion. Read-only future browsing remains available. Home refresh reuses the immutable day and retains the last verified content on ordinary errors.
 
 ## 036 — language, optional profile and preparation
 

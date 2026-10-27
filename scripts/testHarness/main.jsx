@@ -1,5 +1,4 @@
 import MobileSheetFixture from "./MobileSheetFixture";
-import { followSystemTheme } from "@/features/mobile/systemTheme";
 import { runHealthTiming } from './healthTiming';
 import { LOCAL_HEALTH_IDS } from '../../base44/shared/healthExecutionScope.js';
 import { probeIdentity, acceptBrowserEvidence } from '@/foundation/probes/browserEvidence';
@@ -30,7 +29,6 @@ import { SUITES } from "@/foundation/health/suites";
 import { HEALTH_CATALOG_VERSION, APPLICABILITY as A } from "@/foundation/health/constants";
 import "@/index.css";
 
-followSystemTheme();
 // The harness mounts real pages without claiming that a synthetic admin is a live login.
 const productionRoute=isAuthProbePath(window.location.pathname)||window.location.pathname==='/login'||new URLSearchParams(location.search).has('appFixture');
 createRoot(document.getElementById("root")).render(productionRoute?<App/>:<BrowserRouter><Routes>

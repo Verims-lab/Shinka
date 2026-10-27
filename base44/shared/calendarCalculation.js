@@ -21,15 +21,20 @@ export function orderedPeriods(periods) {
   return rows;
 }
 
+export function validatePeriodDate(action, date, today) {
+  if (!['add', 'edit'].includes(action)) return;
+  if (!date) fail('PERIOD_DATE_REQUIRED');
+  if (!isCalendarDate(date)) fail('PERIOD_DATE_INVALID');
+  if (date > today) fail('PERIOD_START_FUTURE');
+}
+
 export function validatePeriodChange(periods, action, id, date, today) {
   const rows = orderedPeriods(periods);
   if (!['add', 'edit', 'delete'].includes(action)) fail('INVALID_REQUEST');
   const existing = rows.find(row => row.id === id);
   if (action !== 'add' && !existing) fail('PERIOD_NOT_FOUND');
   if (action === 'delete') return existing;
-  if (!date) fail('PERIOD_DATE_REQUIRED');
-  if (!isCalendarDate(date)) fail('PERIOD_DATE_INVALID');
-  if (date > today) fail('PERIOD_START_FUTURE');
+  validatePeriodDate(action, date, today);
   for (const row of rows) {
     if (action === 'edit' && row.id === id) continue;
     const distance = Math.abs(calendarDayNumber(date) - calendarDayNumber(row.period_start_date));
@@ -44,7 +49,8 @@ export function validatePeriodChange(periods, action, id, date, today) {
 export function calculateCalendar({ periods, settings = null, today }) {
   const rows = orderedPeriods(periods);
   if (!rows.length) return { predictions: [], phases: [], observations: [], estimate: null, coverageEnd: null };
-  if (!isCalendarDate(today) || rows.some(row => row.period_start_date > today)) fail('CALENDAR_DATA_CONFLICT');
+  if (!isCalendarDate(today)) fail('CALENDAR_DATA_CONFLICT');
+  if (rows.some(row => row.period_start_date > today)) fail('CALENDAR_FUTURE_RECORD');
   const duration = settings?.period_duration_days ?? 5;
   const observations = rows.slice(1).map((row, i) => ({
     from: rows[i].id, to: row.id,

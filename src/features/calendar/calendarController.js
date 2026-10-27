@@ -1,5 +1,5 @@
 import { isCalendarDate } from '../../../base44/shared/onboardingValidation.js';
-import { isCalendarPrivacyError } from '@/services/calendarService';
+import { isCalendarPrivacyError, assertCalendarMutation } from '@/services/calendarService';
 
 // Transient UI state only: no health values, receipts or dates in browser storage.
 export function createCalendarController(request) {
@@ -35,6 +35,7 @@ export function createCalendarController(request) {
     let payload = replay ? retry?.payload : null;
     if (!payload) {
       if (!['delete','acknowledge','resume'].includes(action) && !isCalendarDate(state.selected)) { set({ error: state.selected ? 'PERIOD_DATE_INVALID' : 'PERIOD_DATE_REQUIRED', action }); return; }
+      if (['add', 'edit'].includes(action) && state.selected > state.value.today) { set({ error: 'PERIOD_START_FUTURE', action, success: null, outcome: 'rejected' }); return; }
       payload = { month: state.month, action_id: crypto.randomUUID(), revision: state.value.revision,
         ...(action === 'resume' ? { action_id: state.value.recovery.action_id, revision: state.value.recovery.revision } : action === 'acknowledge' ? {} : action === 'delete' ? { period_id: state.editing?.id } : { date: state.selected, ...(action === 'edit' ? { period_id: state.editing?.id } : { health_consent: state.consent }) }) };
       retry = { action, payload };
@@ -45,6 +46,7 @@ export function createCalendarController(request) {
     try {
       const value = await request(action, payload);
       if (ticket !== generation || disposed) return;
+      assertCalendarMutation(action, payload, value);
       retry = null;
       set({ value, month: value.month, outcome: 'confirmed', editing: null, confirmDelete: false, consent: false, success: action === 'acknowledge' ? 'reviewed' : action === 'delete' ? 'deleted' : 'saved' });
     } catch (e) {

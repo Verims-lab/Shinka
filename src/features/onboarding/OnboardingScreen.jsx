@@ -67,6 +67,8 @@ export default function OnboardingScreen({
       initial_cycle_length_days: "",
       health_consent: false,
     });
+  const nameDraft = useRef(name);
+  nameDraft.current = name;
   const [birthplace, setBirthplace] = useState({
     selection: profile?.birthplace_geonames_id ? profile : null,
     incomplete: false,
@@ -157,6 +159,7 @@ export default function OnboardingScreen({
             autoComplete="given-name"
             value={name}
             onChange={(e) => {
+              nameDraft.current = e.target.value;
               setName(e.target.value);
               setError(null);
             }}
@@ -170,7 +173,7 @@ export default function OnboardingScreen({
             className="w-full"
             onClick={() =>
               run(async () => {
-                const value = optionalName(name);
+                const value = optionalName(nameDraft.current);
                 if (!pending.save(value) && value)
                   throw new OnboardingError("TRANSIENT_STORAGE_UNAVAILABLE");
                 onState("UNAUTHENTICATED_SIGN_IN");
@@ -182,7 +185,9 @@ export default function OnboardingScreen({
           <ShinkaButton
             variant="ghost"
             className="w-full"
+            disabled={busy || Boolean(name.trim())}
             onClick={() => run(async () => {
+              if (nameDraft.current.trim()) return;
               pending.clear();
               setName("");
               onState("UNAUTHENTICATED_SIGN_IN");

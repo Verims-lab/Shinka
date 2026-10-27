@@ -28,7 +28,10 @@ export async function checkMobileExperience(browser, origin, directory) {
     for(const scheme of ['light','dark'])for(const language of ['tr','en'])for(const [width,height] of [[320,568],[844,390]])for(const [surface,url,ready] of selectedSurfaces){
       await page.emulateMedia({colorScheme:scheme});await page.setViewportSize({width,height});
       await page.goto(`${origin}${url}&language=${language}&lang=${language}`);await page.locator(ready).first().waitFor();
-      await page.waitForFunction(scheme=>getComputedStyle(document.documentElement).colorScheme===scheme,scheme);
+      await page.waitForFunction(()=>getComputedStyle(document.documentElement).colorScheme==='light');
+      const colors=()=>page.evaluate(()=>[document.documentElement,...document.querySelectorAll('main,header,section,input,select,dialog')].map(el=>{const s=getComputedStyle(el);return [s.backgroundColor,s.color,s.colorScheme,s.backgroundImage];}));
+      const initialColors=await colors();
+      assert(!(await page.locator('html').getAttribute('class')||'').split(' ').includes('dark'),'dark root');
       for(const scale of [1,2]){
         if(scale===2)await doubleText(page);
         const measured=await inspectMobileSurface(page);
@@ -38,7 +41,8 @@ export async function checkMobileExperience(browser, origin, directory) {
       }
       // Change the OS preference while the same page remains mounted.
       const other=scheme==='dark'?'light':'dark';await page.emulateMedia({colorScheme:other});
-      await page.waitForFunction(other=>getComputedStyle(document.documentElement).colorScheme===other,other);
+      await page.waitForFunction(()=>getComputedStyle(document.documentElement).colorScheme==='light');
+      assert.deepEqual(await colors(),initialColors,`${surface}: OS preference changed app colors`);
     }
     if(!process.env.FOUNDATION_MOBILE_SURFACE)rows.push(...await checkMobileInteractions(page,origin,directory));
     rows.push({scenario:'mobile-page-errors',errors,passed:!errors.length});

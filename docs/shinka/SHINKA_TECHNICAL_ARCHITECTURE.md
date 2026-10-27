@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-036
+**Current BuildMarker:** Buildmarker-037
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -10,6 +10,12 @@
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## 037 — focused UI and date boundaries
+
+Remove systemTheme.js/SystemThemeBinding and semantic dark overrides after callsite audit; root CSS and pre-React color-scheme meta require light. Preserve central light accessibility tokens and watercolor styles. RefreshControl.showButton defaults true; Home sets false while keeping passive touch listeners/coalescing/cleanup. Home error Retry is independent of its normal controls.
+
+validatePeriodDate is the shared date-only validation. nativeCalendarPersistence resolves server day using independently owner-scoped preferences before PENDING grant recovery and APPLIED/same-result shortcuts; completeCalendarGrant repeats this guard at each health write boundary. Normal/atomic-model changes reuse it; no Base44 transaction promise. Only the named CALENDAR_FUTURE_RECORD calculation error returns recoverable raw observations with predictions withheld; malformed data and other conflicts still fail. calendarRequest/controller assert mutation confirmation and the requested observation within the returned month; no optimistic saved label. Schema/entity/contracts and the 12 deferred backend findings are unchanged.
 
 ## 036 — focused onboarding implementation
 
@@ -78,7 +84,7 @@ Onboarding authenticates once in the public dispatcher and passes that non-seria
 
 ## Mobile web responsibilities — 026
 
-`features/mobile` owns system-theme binding, passive RefreshControl, layer/modal focus-history and RouteMotion. No backend data authority is moved to the browser. RouteMotion animates an existing container after navigation without holding the old page; guarded owner keys/invalidation remain. AuthProvider also clears private cached UI before checking a persisted pageshow restoration. No undocumented native bridge is used.
+`features/mobile` owns passive RefreshControl (037 light policy is static CSS, no binding), layer/modal focus-history and RouteMotion. No backend data authority is moved to the browser. RouteMotion animates an existing container after navigation without holding the old page; guarded owner keys/invalidation remain. AuthProvider also clears private cached UI before checking a persisted pageshow restoration. No undocumented native bridge is used.
 
 BirthplaceList selects presentation from its own window's media query; lazy BirthplaceSheet reuses useModalSurface and the existing paged controller. Hierarchy/selected-ID resolution stays in the existing provider/backend. Calendar controller separates read coalescing, draft, confirmed value, mutation intent and outcome. Refresh never dispatches mutation or clears an unknown receipt; another mutation is refused until same-intent retry resolves. Definite rejections retain editable draft; unknown responses retain prior verified value. Ordinary network failure retains the view, but explicit session/consent events, privacy denial and disposal invalidate generations. Home reuses the existing today operation and immutable server snapshot selection; refreshing does not clear a same-context snapshot. SDK requests already sent are not claimed canceled.
 

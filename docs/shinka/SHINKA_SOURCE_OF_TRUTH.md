@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-036
+**Current BuildMarker:** Buildmarker-037
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## 037 — five additional corrections; light-only decision
+
+Authority: user request `929ca633-808a-4368-8e13-3259d8212be9/Pasted text.txt`, SHA-256 `a7307d8bbde75c7df95414d1a516be789c08e62f19dfadaf271ae128c5e156f3`. This supersedes the 026 system-theme decision: Shinka always uses the approved light palette, even at dark OS startup or preference changes. No setting or second theme source. ON-02 nonblank trimmed names disable Skip and its handler; blank/whitespace may skip. ON-05 has no Account & Privacy header (already implemented in 035/036); You/direct routes and guards stay. Calendar future browsing/predictions remain, future actual add/edit/resume are rejected by server time + validated IANA zone; old future rows remain visible for explicit correction/delete. Home loses only the normal Refresh button, retaining pull/automatic load and error Retry. The 036 six fixes and historical failures remain. [Single 037 report](reports/SHINKA_ADDITIONAL_FIXES_037.md).
 
 ## 036 — explicit six-item onboarding decision, 2026-10-27
 
@@ -64,7 +68,7 @@ The user's 2026-10-22 “Bildirim Öncesi Kalite Milestone’u” request author
 
 ## Mobile interaction and theme decision — 026, 2026-10-21
 
-Authority: explicit user request in attachment `d425bafc-2da2-4a48-9edc-a7e39dc561da/Pasted text.txt`; SHA-256 `c19174f7d4d5539a4506248b2bf0124de4c607dd25f9e8c0deba175a2bf35942`. This supersedes the light-only and mobile native-select presentation decisions, including those historical statements below. It is not an eleventh logical source. System light/dark, mobile birthplace bottom sheet, safe-area/scroll ownership, browser layer/back behavior, short reduced-motion-aware transitions and guarded Home/Calendar refresh are authorized. New helper copy is centralized in `mobileCopy.js`; source content, exact consent copy, five birthplace fields and backend authority are unchanged.
+Authority: explicit user request in attachment `d425bafc-2da2-4a48-9edc-a7e39dc561da/Pasted text.txt`; SHA-256 `c19174f7d4d5539a4506248b2bf0124de4c607dd25f9e8c0deba175a2bf35942`. Historical 026 decision (its system-theme portion superseded by 037 above) replaced the then-current light-only and mobile native-select presentation decisions, including those historical statements below. It is not an eleventh logical source. System light/dark, mobile birthplace bottom sheet, safe-area/scroll ownership, browser layer/back behavior, short reduced-motion-aware transitions and guarded Home/Calendar refresh are authorized. New helper copy is centralized in `mobileCopy.js`; source content, exact consent copy, five birthplace fields and backend authority are unchanged.
 
 The light brand remains; secondary text darkens from #87757D to #77636C and interactive boundaries use #95848D for contrast. Separate dark semantic values live in designTokens/dark.css; primary labels have their own on-primary token. No notification delivery, new theme setting, external infrastructure, native project or store build is authorized. Existing 025 timeout/cancellation/progress behavior remains. [Single mobile evidence report](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md) separates executed browser evidence from native/device acceptance.
 

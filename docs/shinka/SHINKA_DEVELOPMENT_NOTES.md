@@ -2,11 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-036
+**Current BuildMarker:** Buildmarker-037
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 037 — five-item delivery record
+
+Name Skip now checks trimmed current draft, Home keeps gesture/Error Retry without normal refresh button, and application uses light-only palette. Existing ON-05 privacy removal is confirmed in source; the provided old 5/6 screenshot differs from current five-step source. Exact deployed bundle/cache cause remains unverified because live diagnosis is deferred. Calendar fresh requests already rejected future dates; confirmed gaps were native receipt recovery before validation and legacy future rows preventing read/repair. Focused correction/tests preserve owner/ACTIVE/consent/lifecycle checks and original grant time. No hosted mutation or data repair executed. [037 report and fresh verification](reports/SHINKA_ADDITIONAL_FIXES_037.md); 036 evidence remains historical and unchanged.
+
+037 final local evidence: Chromium **674/674**, WebKit **674/674**, zero page errors; local Health **136 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED**, save/retry/list/open passed. All mandatory gates and zero-advisory audit passed; initial JS 483391/160917 gzip, CSS 77728/14239, existing budgets unchanged. Hosted/device acceptance remains separate.
 
 ## 036 — onboarding closure work and retained evidence
 

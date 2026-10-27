@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-036
+**Current BuildMarker:** Buildmarker-037
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
+
+## 037 — focused five-item package
+
+036 is complete; increment once to 037 / HC-037.0 and keep active 033–037. Preserve previous six fixes/receipts and 12 USER-DEFERRED backend findings. Fresh local Chromium/WebKit and mandatory gates; no live Full Health/provider diagnosis/user mutation/reset/delete/import/push/notification. Test only; owner merges/syncs/publishes and performs separate hosted/physical acceptance. Record initial failures separately from final passing evidence. [Single delivery report](reports/SHINKA_ADDITIONAL_FIXES_037.md).
 
 ## 036 — six focused corrections
 

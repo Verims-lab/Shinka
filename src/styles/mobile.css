@@ -2,8 +2,6 @@
 /* The document is the scrolling owner. Contain only Y: preserve horizontal
    navigation and zoom. Sheets have their own bounded, contained scroll area. */
 html { overscroll-behavior-y: contain; background: rgb(var(--shinka-ivory)); color-scheme: light; }
-html.dark { color-scheme: dark; }
-@media (prefers-color-scheme: dark) { html:not(.light) { background: #1e1720; color-scheme: dark; } }
 button, [role="tab"], nav a, svg[aria-hidden="true"] { -webkit-user-select: none; user-select: none; }
 :focus-visible { outline: 2px solid rgb(var(--shinka-plum)); outline-offset: 2px; }
 .shinka-product-nav { padding-bottom: var(--safe-bottom); }

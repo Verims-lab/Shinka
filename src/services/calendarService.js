@@ -10,6 +10,15 @@ const SAFE_CODES = new Set([
   'PERIOD_NOT_FOUND', 'CYCLE_RANGE_DECISION_REQUIRED', 'WRITE_CONFLICT', 'ACTION_CONFLICT', 'DUPLICATE_OWNER_STATE',
 ]);
 export const isCalendarPrivacyError = code => /^(AUTH_|ACTIVE_|HEALTH_|CONSENT_|DUPLICATE_OWNER)/.test(code || '');
+// A successful transport alone never confirms the requested visible observation.
+export function assertCalendarMutation(action, payload, value) {
+  if (action === 'read') return;
+  const fail = () => { throw Object.assign(new Error(), { code: 'CALENDAR_READBACK_CONFLICT' }); };
+  if (value?.mutationConfirmed !== true || value.state === 'RECOVERY_REQUIRED') fail();
+  if (action === 'delete' && value.starts?.some(row => row.id === payload.period_id)) fail();
+  if (['add', 'edit'].includes(action) && payload.date?.slice(0, 7) === value.month &&
+    value.starts?.filter(row => row.date === payload.date && (action !== 'edit' || row.id === payload.period_id)).length !== 1) fail();
+}
 /** @param {string} action @param {object} payload @param {any} client */
 export async function calendarRequest(action, payload = {}, client = base44) {
   let timer, timezone = null;
@@ -34,6 +43,7 @@ export async function calendarRequest(action, payload = {}, client = base44) {
       (payload.month && value.month !== payload.month) ||
       (value.state === 'CONSENT_REQUIRED' && (value.starts.length || value.recordedDays.length || value.predictedDays.length)) ||
       (action !== 'read' && value.mutationConfirmed !== true)) throw Object.assign(new Error(), { code: 'CALENDAR_READBACK_CONFLICT' });
+    assertCalendarMutation(action, payload, value);
     return value;
   } catch (error) {
     const raw = error?.response?.data?.error_code ?? error?.code;

@@ -1,4 +1,3 @@
-import { followSystemTheme } from "@/features/mobile/systemTheme";
 // Rendered CSS regression: the canonical suite runs unchanged in Health Center and CLI.
 import { createElement as h } from "react";
 import { createRoot } from "react-dom/client";
@@ -25,7 +24,7 @@ async function rendered(children, check) {
   try {flushSync(()=>root.render(children));await check(host);}
   finally {flushSync(()=>root.unmount());host.remove();}
 }
-const palette = () => document.documentElement.classList.contains("dark") ? DESIGN_TOKENS.darkColor : DESIGN_TOKENS.color;
+const palette = () => DESIGN_TOKENS.color;
 const COLORS = [
   ["bg-shinka-plum","primaryPlum"],["bg-shinka-plum-deep","deepPlumText"],["bg-shinka-mauve","mutedMauve"],
   ["bg-shinka-rose","dustyRose"],["bg-shinka-blush","blushPink"],["bg-shinka-lavender","softLavender"],
@@ -85,39 +84,25 @@ export const CSS_CONTRACT_TESTS = [
       for(const el of Array.from(host.querySelectorAll("[data-radius]")))assert(measure(el).borderRadius===`${[12,16,20][Number(el.getAttribute("data-radius"))]}px`,el.className);
     });
   }],
-  ["T79","System theme initial/change/cleanup aligns class and native form scheme",async()=>{
-    const root = document.createElement('div');
-    let listener = () => {};
-    const media = { matches: true, addEventListener: (_event, fn) => { listener = fn; }, removeEventListener: (_event, fn) => { if (listener === fn) listener = null; } };
-    const stop = followSystemTheme(root, /** @type {any} */ (media));
-    assert(root.classList.contains('dark') && root.style.colorScheme === 'dark', 'initial dark');
-    media.matches = false; listener();
-    assert(root.classList.contains('light') && !root.classList.contains('dark') && root.style.colorScheme === 'light', 'live light');
-    stop(); assert(listener === null, 'theme listener cleanup');
-    await rendered(h('div', {className:'hidden'}), host => assert(measure(host.firstElementChild).display === 'none', 'hidden class lost'));
+  ["T79","Light root and supported form controls use the same approved palette",async()=>{
+    assert(!document.documentElement.classList.contains('dark') && measure(document.documentElement).colorScheme === 'light', 'light root');
+    await rendered(h('div',null,h('input',{type:'date'}),h('select',null,h('option',null,'Time')),h('div',{className:'hidden'})),host=>{
+      for(const el of Array.from(host.querySelectorAll('input,select'))) assert(measure(el).colorScheme==='light','form scheme');
+      assert(measure(host.lastElementChild.lastElementChild).display==='none','hidden class lost');
+    });
   }],
-  ["T81","Onboarding shell has layered light background; plain PageContainer and dark stay flat",async()=>{
-    const root=document.documentElement,original=root.className,originalScheme=root.style.colorScheme;
-    try{
-      for(const theme of ["light","dark"]){
-        root.classList.remove("light","dark");root.classList.add(theme);root.style.colorScheme=theme;
-        await rendered(h("div",null,h(PageContainer,{className:"shinka-onboarding","data-onb":1,children:"a"}),h(PageContainer,{"data-plain":1,children:"b"})),host=>{
-          const onb=host.querySelector("[data-onb]"),plain=host.querySelector("[data-plain]");
-          for(const c of ["shinka-viewport","bg-shinka-ivory","text-shinka-ink","font-body","shinka-onboarding"]) assert(onb.classList.contains(c),`${theme} class ${c}`);
-          assert(onb.firstElementChild.classList.contains("shinka-safe-content"),`${theme} safe content kept`);
-          assert(measure(plain).backgroundImage==="none",`${theme} non-onboarding background changed`);
-          const img=measure(onb).backgroundImage;
-          if(theme==="dark") assert(img==="none"&&measure(onb).backgroundColor===rgb(DESIGN_TOKENS.darkColor.warmIvory),"dark surface");
-          else {
-            // Engines serialize identical layer repeats once or once per layer.
-            const repeats=measure(onb).backgroundRepeat.split(',').map(value=>value.trim());
-            assert((img.match(/radial-gradient/g)||[]).length===5&&(img.match(/linear-gradient/g)||[]).length===1&&[1,6].includes(repeats.length)&&repeats.every(value=>value==='no-repeat'),`light layers: ${img}; repeats=${repeats.join(',')}`);
-          }
-        });
-      }
-    }finally{root.className=original;root.style.colorScheme=originalScheme;}
+  ["T81","Light onboarding keeps watercolor layers; plain product/internal containers stay flat",async()=>{
+    await rendered(h("div",null,h(PageContainer,{className:"shinka-onboarding","data-onb":1,children:"a"}),h(PageContainer,{"data-plain":1,children:"b"})),host=>{
+      const onb=host.querySelector("[data-onb]"),plain=host.querySelector("[data-plain]");
+      for(const c of ["shinka-viewport","bg-shinka-ivory","text-shinka-ink","font-body","shinka-onboarding"]) assert(onb.classList.contains(c),`class ${c}`);
+      assert(onb.firstElementChild.classList.contains("shinka-safe-content"),'safe content kept');
+      assert(measure(plain).backgroundImage==="none",'non-onboarding background changed');
+      const img=measure(onb).backgroundImage,repeats=measure(onb).backgroundRepeat.split(',').map(value=>value.trim());
+      assert((img.match(/radial-gradient/g)||[]).length===5&&(img.match(/linear-gradient/g)||[]).length===1&&[1,6].includes(repeats.length)&&repeats.every(value=>value==='no-repeat'),'watercolor layers');
+      assert(measure(onb).backgroundColor===rgb(measure(document.documentElement).getPropertyValue("--onboarding-warm-ivory").trim()),'approved watercolor surface');
+    });
   }],
-  ["T80","Existing rendered Health typography/color/touch/system-theme checks remain passing",async()=>{
+  ["T80","Existing rendered Health typography/color/touch/light-policy checks remain passing",async()=>{
     const context=createHealthContext();
     for(const id of ["H13-002","H13-003","H13-006","H13-007","H13-009","H13-010"]){const c=H13_CASES.find(c=>c.id===id),r=await c.run(context);assert(r.status==="PASS",`${id}: ${JSON.stringify(r.evidence.actual)}`);}
   }],

@@ -1,0 +1,474 @@
+{
+  "rows": [
+    {
+      "scenario": "home-light-tr-320-1x",
+      "textOverflow": [],
+      "clientWidth": 320,
+      "overflow": [],
+      "width": 320,
+      "scrollWidth": 320,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "home-light-tr-320-2x",
+      "textOverflow": [],
+      "clientWidth": 320,
+      "overflow": [],
+      "width": 320,
+      "scrollWidth": 320,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "home-light-tr-844-1x",
+      "textOverflow": [],
+      "clientWidth": 844,
+      "overflow": [],
+      "width": 844,
+      "scrollWidth": 844,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "home-light-tr-844-2x",
+      "textOverflow": [],
+      "clientWidth": 844,
+      "overflow": [],
+      "width": 844,
+      "scrollWidth": 844,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "home-light-en-320-1x",
+      "textOverflow": [],
+      "clientWidth": 320,
+      "overflow": [],
+      "width": 320,
+      "scrollWidth": 320,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "home-light-en-320-2x",
+      "textOverflow": [],
+      "clientWidth": 320,
+      "overflow": [],
+      "width": 320,
+      "scrollWidth": 320,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "home-light-en-844-1x",
+      "textOverflow": [],
+      "clientWidth": 844,
+      "overflow": [],
+      "width": 844,
+      "scrollWidth": 844,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "home-light-en-844-2x",
+      "textOverflow": [],
+      "clientWidth": 844,
+      "overflow": [],
+      "width": 844,
+      "scrollWidth": 844,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "home-dark-tr-320-1x",
+      "textOverflow": [],
+      "clientWidth": 320,
+      "overflow": [],
+      "width": 320,
+      "scrollWidth": 320,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "home-dark-tr-320-2x",
+      "textOverflow": [],
+      "clientWidth": 320,
+      "overflow": [],
+      "width": 320,
+      "scrollWidth": 320,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "home-dark-tr-844-1x",
+      "textOverflow": [],
+      "clientWidth": 844,
+      "overflow": [],
+      "width": 844,
+      "scrollWidth": 844,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "home-dark-tr-844-2x",
+      "textOverflow": [],
+      "clientWidth": 844,
+      "overflow": [],
+      "width": 844,
+      "scrollWidth": 844,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "home-dark-en-320-1x",
+      "textOverflow": [],
+      "clientWidth": 320,
+      "overflow": [],
+      "width": 320,
+      "scrollWidth": 320,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "home-dark-en-320-2x",
+      "textOverflow": [],
+      "clientWidth": 320,
+      "overflow": [],
+      "width": 320,
+      "scrollWidth": 320,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "home-dark-en-844-1x",
+      "textOverflow": [],
+      "clientWidth": 844,
+      "overflow": [],
+      "width": 844,
+      "scrollWidth": 844,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "home-dark-en-844-2x",
+      "textOverflow": [],
+      "clientWidth": 844,
+      "overflow": [],
+      "width": 844,
+      "scrollWidth": 844,
+      "small": [],
+      "dark": false,
+      "scheme": "light",
+      "documentScroll": true,
+      "overscrollY": "contain",
+      "contrastCount": 11,
+      "minText": 7.74,
+      "contrastFailures": [],
+      "boundaries": [
+        {
+          "surface": "--shinka-white",
+          "focus": 8.140616423687025,
+          "input": 3.5216963723454904
+        },
+        {
+          "surface": "--shinka-ivory",
+          "focus": 7.742568813868914,
+          "input": 3.349497763473764
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "mobile-page-errors",
+      "errors": [],
+      "passed": true
+    }
+  ],
+  "errors": []
+}
