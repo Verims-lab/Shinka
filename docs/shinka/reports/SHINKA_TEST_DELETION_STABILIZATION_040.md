@@ -74,13 +74,25 @@ New 300ms-model pass durations: **24,600 / 28,200 / 23,700 / 26,400ms**. Checkpo
 
 [Before](deletion-040/before-measurements.json) and [after](deletion-040/after-measurements.json) retain per-pass operation ID, stage, processed/known-minimum remaining, checkpoints, elapsed/work duration, reads/writes/auth and result. NULL remaining means uncounted, not zero; exact zero appears only after verified completion. Safe metadata only. Reproduce with `node scripts/measureTestDeletion.mjs [archived-source-directory]`, or add `--wall` for the actual timer experiment; the archived checkout needs the same locked dependencies.
 
-## Hosted cleanup — NOT_RUN / PENDING
+## Hosted cleanup — NOT_RUN / BLOCKED on publication and authentication
 
-The request's cleanup authorization remains valid. No second deletion consent is required after publication. The CLI authentication check returned “You need to login first”; its device flow was stopped. No native user identity, SDK environment or deployed-source match was inferred from local config, Git Test or Preview. The task used no remote fallback or direct data deletion.
+### Read-only continuation check, 2026-10-27
+
+The owner merged 040 through PR #39: fetched main `c8419d7e555f8de05cd93653b0a363b2db076ca0` was one merge commit ahead of Test, with an identical tree. Test/local were fast-forwarded and Test pushed. All **534** tested-source file hashes still match; no executable change or local test rerun. Buildmarker-040 / HC-040.0 and the five-package ledger remain unchanged.
+
+The existing authenticated Base44 Builder tab identifies Shinka workspace `6ad5190f4845d4e3af03b420`, Main. Its **Code → More actions → Compare with live code** dialog shows **36 unpublished files (7 added / 29 modified)**. The `foundation/buildMarker.js` diff explicitly removes **Buildmarker-038** from live and adds **Buildmarker-040** from the workspace. The unpublished list also includes `features/adminTestTools/useTestTools.js`, `services/internal/adminTestTools.js` and `pages/internal/TestTools`. Thus the required matching published frontend is **not satisfied**. This UI evidence does not establish the deployed backend/shared revision or actual SDK data environment; those remain unverified. A Builder collaborator/session is not proof of the protected native User or application-admin role.
+
+The fresh `npx base44 whoami` check again reported **“You need to login first”**. Its automatic device flow was stopped; no further remote CLI request was made. Neither account inventory nor a deletion was attempted. Initial target/pending and final active-user counts remain unknown; attempts/completions/deletion failures are **0 / 0 / 0**, because execution has not started. Protected identity/role/data before-and-after checks are **NOT_RUN**, not an unchanged-data claim. No Full Health or Security scan was started by this agent. An already-running scan was visible in the pre-existing Builder tab and was left alone; it supplies no evidence for this task.
+
+Next owner actions are **Publish the synced 040 workspace through the existing Base44 flow**, and run **`npx base44 login`** from this repository. A new Git merge is not needed for the executable 040 source, already present on main. These are publication/access prerequisites, not a new cleanup authorization request. Then verify the whole published backend/shared/frontend graph and SDK target, resolve the protected native admin, and perform the existing bounded sequential workflow below. [Sanitized continuation evidence](deletion-040/hosted-preflight-20261027.json).
+
+### Original local-delivery record (retained)
+
+The request's cleanup authorization remains valid. No second deletion consent is required after publication. The original CLI authentication check returned “You need to login first”; its device flow was stopped. No native user identity, SDK environment or deployed-source match was inferred from local config, Git Test or Preview. That original local delivery used no remote fallback or direct data deletion. The later read-only Builder check above supersedes its unknown frontend publication state.
 
 | Required evidence | Current state |
 |---|---|
-| Matching published backend/shared/frontend | **NOT_VERIFIED**; owner 040 merge/sync/publish required |
+| Matching published backend/shared/frontend | **NOT_MET**; live frontend marker 038 versus unpublished 040; backend/shared still unverified. Main merge is complete; owner publish/access required |
 | Actual SDK app/data area | **NOT_VERIFIED**; authenticated readonly access required |
 | Unique exact protected native User/current admin/session | **NOT_RUN** |
 | Paginated initial User + old-operation inventory, frozen target list | **NOT_RUN**; initial target count unknown |
@@ -90,7 +102,7 @@ The request's cleanup authorization remains valid. No second deletion consent is
 
 Publication and access steps:
 
-1. In GitHub `Verims-lab/Shinka`, review **Test → main** and merge using the owner's existing flow. This agent did not merge or publish.
+1. **Complete by owner:** GitHub PR #39 merged 040 into main `c8419d7`. This agent only fast-forwarded Test/local; it did not merge into main or publish.
 2. In the existing Shinka Base44 app, wait for **“Synced commits from GitHub”** to include this package. Review `src/foundation/buildMarker.js`, HC constants/plan and the **whole matching native entry/shared graph**, including `adminTestTools`, `applicationSession`, execution, repository, journal, progress and frontend service/hook. Then use **Publish**. No entities push, schema change, import or new secret is required. A frontend-only publication or marker check is insufficient.
 3. In the repository terminal, run **`npx base44 login`** and complete the browser login without sharing credentials. Make the request-designated protected admin's application session available. The [CLI skill](../../../.agents/skills/base44-cli/SKILL.md) requires authentication before further CLI operations; it explicitly says “DO NOT proceed with any CLI operations” when unauthenticated.
 4. Continue this same task. First compare exported/published sources against the tested manifest and verify the actual SDK target. Then resolve the exact protected email from the private request to one native ID/current admin, freeze the paginated initial target list excluding that ID, and inspect existing operations. Do not auto-add newly created accounts.
