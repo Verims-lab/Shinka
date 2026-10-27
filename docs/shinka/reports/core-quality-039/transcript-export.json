@@ -1,0 +1,30 @@
+{
+  "normalization": "Trailing horizontal whitespace and extra EOF blank lines only, for git diff --check. All diagnostic text/results retained. Original terminal outputs remain outside checkout in /private/tmp/shinka-039.",
+  "files": [
+    {
+      "file": "after-performance.txt",
+      "originalSha256": "454db5f6719ea5aa4f3b82e63a5de93facc611b08d63110904c019a88402ab32",
+      "exportSha256": "8133c5c45f50082f444a8b3e07cf32c7135839f250bcc985001fb57c5fafeace"
+    },
+    {
+      "file": "before-performance.txt",
+      "originalSha256": "93ad2d09a4b1f73348bf5fe765b24c9b68de85d93bb56fdc432914ff14a32890",
+      "exportSha256": "397e267fe5bd3266b3e6a1d5db2cfc33687038b6eab114737942c99b88429c9e"
+    },
+    {
+      "file": "build-final.txt",
+      "originalSha256": "7de3345255b15a2d59f36673623e1fec5197aefa56e3f4733bcd8c6038ce7eeb",
+      "exportSha256": "ceb25f0f74d3f20bd62c7300b4ac467b1d4d28359bd48218c7181c190219f0e9"
+    },
+    {
+      "file": "lint-final.txt",
+      "originalSha256": "8423c1a66df3f2a021733ae12f217befbeb04b23971e056cb4e3739c7fb936cf",
+      "exportSha256": "f1f78baa67d3a65a4400919a9b9191a804c8d990e3b2bf860089ff4f3182055e"
+    },
+    {
+      "file": "type-final.txt",
+      "originalSha256": "2e1c7db5ac28fb733e8c1d3d7c2c3bf8a4bb6628ed45eb56ce2e7328388598de",
+      "exportSha256": "219c73819fb104986577380376528635b8bf8b0f1eb490283a0b22ac6a011ba0"
+    }
+  ]
+}

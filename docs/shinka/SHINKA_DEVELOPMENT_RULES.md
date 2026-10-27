@@ -2,11 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-038
+**Current BuildMarker:** Buildmarker-039
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
+
+## Current package — 039 core quality milestone
+
+Fetch before work; 038's main merge was a tree-identical fast-forward, synchronized to Test without overwriting work. Advance once to Buildmarker-039 / HC-039.0; active history is 035–039. Earlier package sections below are historical authorizations/evidence, not new increment or PR instructions. Preserve 036–038, approved light/locale/search/Pattern and all 12 deferred findings.
+
+Run fresh matched pre/post measurements, all active Health case audit, full Chromium/WebKit, server/Node, install/tree/audit/security/type/lint/build/repo/budgets/history/cycle gates. Only passing final local evidence permits LOCAL_MILESTONE_VERIFIED / HOSTED_ACCEPTANCE_PENDING. Preserve initial product and fixture failures. No live Full Health/security scan, user operation/import/push/scheduler/native build; owner merges/publishes/runs hosted acceptance. [Single 039 report](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md).
 
 ## 037 — focused five-item package
 
@@ -16,7 +22,7 @@
 
 Advance exactly once from 035 to Buildmarker-036 / HC-036.0; retain 032–036. Latest six-item request supersedes only manual onboarding locale and ON-04 no-Back. Preserve 035 visual/search/safety scope, native authority, source content and deferred 12 backend findings. Complete code/tests/execution/Health/docs and fresh Chromium/WebKit, install/tree/audit, type/lint/build/repo/history/performance gates. Narrow read-only daily logs returned 401; this is not incident closure. No live Health, provider probe, import, user mutation, push or main publish. [036 single delivery report](reports/SHINKA_ONBOARDING_CLOSURE_036.md).
 
-## Current package — 035 onboarding functional audit
+## Historical package — 035 onboarding functional audit
 
 The 2026-10-26 owner request authorizes a new local/synthetic onboarding audit and fixes. Fetch established clean Test d2299c8 behind main f52b1c3 by seven commits without divergence; fast-forward preserves all Base44 work. Advance once to Buildmarker-035 / HC-035.0 and retain 031–035 with recordBuild. Keep pinned package/lock, design shell, session/admin/deletion guards and historical evidence. New runs, not 034 receipts, validate this package.
 

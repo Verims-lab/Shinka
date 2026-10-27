@@ -1,7 +1,7 @@
 import { HEALTH_CATALOG_VERSION } from './healthConstants.js';
 
 // Backend persistence inventory. H16 compares this closed ID set with the actual
-// executable catalog (HC-038.0 keeps the same IDs; H08/H10/H13/H15 semantics and local execution evidence change); a client cannot omit cases by shrinking its submitted plan.
+// executable catalog (HC-039.0 adds H12-042 and strengthens recovery/evidence checks); a client cannot omit cases by shrinking its submitted plan.
 export const HEALTH_SERVER_PLAN = Object.freeze({
   H01: ["H01-001","H01-002","H01-003","H01-004","H01-005","H01-006"],
   H02: ["H02-001","H02-002","H02-003","H02-004","H02-005","H02-006","H02-007","H02-008"],
@@ -14,7 +14,7 @@ export const HEALTH_SERVER_PLAN = Object.freeze({
   H09: ["H09-001","H09-002","H09-003","H09-004","H09-006"],
   H10: ["H10-001","H10-002","H10-003"],
   H11: ["H11-001","H11-003","H11-002","H11-004","H11-005","H11-007"],
-  H12: ["H12-001","H12-002","H12-003","H12-004","H12-005","H12-006","H12-007","H12-008","H12-009","H12-010","H12-011","H12-012","H12-013","H12-014","H12-015","H12-016","H12-017","H12-018","H12-019","H12-020","H12-026","H12-027","H12-028","H12-029","H12-030","H12-031","H12-033","H12-034","H12-035","H12-036","H12-037","H12-038","H12-039","H12-040"],
+  H12: ["H12-001","H12-002","H12-003","H12-004","H12-005","H12-006","H12-007","H12-008","H12-009","H12-010","H12-011","H12-012","H12-013","H12-014","H12-015","H12-016","H12-017","H12-018","H12-019","H12-020","H12-026","H12-027","H12-028","H12-029","H12-030","H12-031","H12-033","H12-034","H12-035","H12-036","H12-037","H12-038","H12-039","H12-040","H12-042"],
   H13: ["H13-001","H13-002","H13-003","H13-004","H13-005","H13-006","H13-007","H13-008","H13-009","H13-010","H13-011","H13-014"],
   H14: ["H14-001","H14-002","H14-003"],
   H15: ["H15-001","H15-003","H15-004"],

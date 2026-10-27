@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-034",
-    "package_name": "Session and Health 429 stabilization",
-    "package_type": "FIX",
-    "created_at": "2026-10-26T12:10:32.352494+00:00",
-    "health_catalog_version": "HC-034.0",
-    "short_summary": "034 local validation completed on preserved zod 4.6.7/resolvers 5.9.2 lock: Chromium/WebKit 649/649 each, all 17 required IDs unique PASS, Node 9/9; install/tree/runtime peer/audit/type/lint/build/repo/performance gates pass. Hosted/device and owner publish acceptance remain pending.",
-    "full_health_status": "NOT_RUN",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "LOCAL_VERIFIED / USER_PUBLISH_AND_HOSTED_ACCEPTANCE_PENDING. Base origin/main 041b40b; resumed from clean Test 1f061ec. Original TLS/NOT_RUN and all new failures preserved. Corrected fixture types/React commit waits, CSS layer serialization, explicit anonymous 401 and transport 503 expectations, controlled passive-refresh timing. Strict guards and NC06/NC07 unchanged. Health add 0/update 9/delete 0; local in-app 136 PASS/13 prerequisite BLOCKED, no FAIL. Official docs: 100/500/50 limits, optional action/link, Home default; user-relayed support: field names/silent discard. Wire types/nullability/Unicode/native User/response/workflow/device contracts open, adapter UNKNOWN, entry disabled, H14-901/H16-901 open. Full Health/native/push/delete/resume NOT_RUN; 12 backend findings OPEN/USER-DEFERRED; prior two live targets PARTIAL not reread. See SHINKA_STABILIZATION_034.md and resumed-20261026 evidence."
-  },
-  {
     "build_marker": "Buildmarker-035",
     "package_name": "Onboarding functional audit and GeoNames search closure",
     "package_type": "FIX",
@@ -69,5 +55,19 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "notes": "Final local evidence is recorded in SHINKA_CALENDAR_PATTERN_038.md. User owns publish, hosted Full Health and physical acceptance. No live mutation/import/push/Health. Twelve backend findings remain USER-DEFERRED; original First Shinka and ON-05 incidents stay open."
+  },
+  {
+    "build_marker": "Buildmarker-039",
+    "package_name": "Core product quality audit and recovery hardening",
+    "package_type": "AUDIT_FIX",
+    "created_at": "2026-10-27T19:10:28Z",
+    "health_catalog_version": "HC-039.0",
+    "short_summary": "Preserves 036–038; bounded projected domain reads disclose overflow, uncertain You saves retain their intent, Home clears denied data/name and stops ended-session work. Adds per-group Health integrity and actor/target regressions. Local evidence and hosted acceptance are separate.",
+    "full_health_status": "NOT_RUN",
+    "notes": "One quality milestone; active history 035–039. H12-042 added, seven case descriptions/coverage strengthened, none removed; 176 total / 150 in-app / 12 local / 14 external. Final fresh local browser/server/gate results and matched measurements are in SHINKA_CORE_QUALITY_MILESTONE_039.md. No hosted Health, scan, user mutation, import, notification/scheduler/native build or main publish. Twelve backend findings OPEN / USER-DEFERRED; original ON-05/First Shinka, published-source matching and physical devices remain pending. Initial failures preserved.",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true
   }
 ];

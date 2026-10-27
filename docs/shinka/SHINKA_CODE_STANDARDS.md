@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-038
+**Current BuildMarker:** Buildmarker-039
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -29,12 +29,18 @@
 - **R. Validation commands:** `npm ci`, `npm ls --all`, `npm audit --json`, `npm run security:deps`, `npm run typecheck`, `npm run test:foundation`, `npm run lint`, `npm run build`. Type checking remains enabled; Foundation, application entry, services and imported shared modules are checked. Lint includes Foundation, auth/internal code, backend JS/TS and scripts (generic generated UI is excluded).
 - **S. Security closure:** Critical/High advisories have no waiver. An unresolved High keeps repository Foundation OPEN even if regression and browser Health pass. Moderate/Low disposition must identify affected paths and actual application exposure.
 
-- **T. CSS pipeline:** native Tailwind 4 through `@tailwindcss/vite` in both application and canonical test harness. Theme mappings live in `src/styles/theme.css`; explicit content sources and class-only dark variant live in `src/index.css`. Keep Shinka tokens exact and test computed styles, dimensions and small-screen overflow when changing CSS. No duplicate PostCSS pipeline or legacy JS config.
+- **T. CSS pipeline:** native Tailwind 4 through `@tailwindcss/vite` in both application and canonical test harness. Theme mappings live in `src/styles/theme.css`; explicit content sources and the light-only scheme live in `src/index.css`. Keep Shinka tokens exact and test computed styles, dimensions and small-screen overflow when changing CSS. No duplicate PostCSS pipeline or legacy JS config.
 - **U. Dependency guard:** `npm run security:deps` invokes `npm audit --audit-level=high --include=dev`; use native npm failure semantics, no suppression or arbitrary override. A registry/audit failure is not a clean result. Document each remaining Moderate/Low advisory with exposure and fix path.
 
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+
+## 039 — audit and result integrity
+
+Bounded generic lists must expose truncation via an extra sentinel or reject overflow; never infer completeness from exactly one full page. Project requested fields, validate all returned owners (including sentinel) and reject malformed/duplicate IDs. Feature pagination and pre/post authorization cannot be removed to improve counts.
+
+Unknown writes keep their exact intent across UI actions and failed read-only checks. Privacy/lifecycle rejection clears old rendered values and profile fallback; logout stops that component's future work as well as late completions. Test helpers must be unique within each in-app group, not only in the full local registry. Evidence joins include real canonical outcomes/source locations; static checks claim only source properties. [039 regression and measurement contract](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md).
 
 ## 037 — light policy and receipt date validation
 
@@ -50,7 +56,7 @@ Use existing OnboardingScreen form state and backend resolver; generation/sessio
 
 ## 034 — session generations and paced continuation
 
-Keep coalescing inside a session generation; reset invalidates both in-flight ownership and the last success. Actual AuthProvider/route tests are separate from pure helpers. Controlled scheduler/wait/clock dependencies preserve production defaults; no global timer patch or longer test timeout. Recheck generation and between-request budget after every pacing wait; unknown writes reconcile by status only. Native readiness requires exact named rows and valid sample counts. Browser tests remain NOT_RUN under the documented installation blocker.
+Keep coalescing inside a session generation; reset invalidates both in-flight ownership and the last success. Actual AuthProvider/route tests are separate from pure helpers. Controlled scheduler/wait/clock dependencies preserve production defaults; no global timer patch or longer test timeout. Recheck generation and between-request budget after every pacing wait; unknown writes reconcile by status only. Native readiness requires exact named rows and valid sample counts. The initial 034 browser attempt was NOT_RUN under its installation blocker; the resumed 034 report separately records 649/649 on both engines. Those results are historical, not 039 evidence.
 
 ## 033 — machine credential scope
 

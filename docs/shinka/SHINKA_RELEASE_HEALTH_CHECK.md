@@ -2,11 +2,19 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-038
+**Current BuildMarker:** Buildmarker-039
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-038.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-039.0; repository, synthetic and external evidence separated.
+
+## HC-039.0 — core quality audit
+
+Registry changes **+1 / update 7 / delete 0**: add H12-042 for bounded domain completeness/projection/negative readbacks (CQ01/CQ02). Strengthen H12-038 (CQ03/04 uncertain preferences), H12-029 (CQ05 actor/target isolation), H16-007 (CQ09 duplicate/empty/failed helper groups), H07-013 (CQ06/07/CQ10 Home clearing/logout/text escaping), H13-018 (CQ08 actual form lock); correct H13-008's duplicate Pattern wording and H15-002's measurement inventory. No old failure/case is removed. H12-042 joins the closed backend plan; local transfers stay 12, external stay 14. **176 total / 150 in-app / 12 local / 14 external**.
+
+All active registrations/predicates/runner claims reviewed against actual source. Static cases keep their static scope, synthetic cases run actual modules with substituted IO, DOM cases measure the current rendered surface, and 13 hosted prerequisites remain distinct from local success. The generated per-case audit now joins helper IDs to canonical result and source location. Missing helper execution fails the audit; duplicate/zero-test/failure caches cannot produce PASS. Heavy UI/SDK transport/performance checks stay outside normal Health. [039 single report and complete per-case evidence](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md). Owner runs published Full Health; no agent live run.
+
+039 final: each engine passes **693/693 unique canonical tests**, with **137 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED** in the 150-case local in-app run. Save/retry/list/private open, all required gates and unchanged production budgets pass. Twelve local and fourteen external cases remain separate from in-app dispatch. The per-case source supplement covers generated/wrapped test locations without inferring execution; first failures are retained. Status: **LOCAL_MILESTONE_VERIFIED / HOSTED_ACCEPTANCE_PENDING**.
 
 ## HC-038.0 — Calendar recovery and Pattern refresh/presentation
 

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-038
+**Current BuildMarker:** Buildmarker-039
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -12,6 +12,10 @@
 **External Verification Required:** Base44 native UNIQUE is unsupported; no multi-record transaction/CAS guarantee is claimed. Native handler tests use synthetic transport; hosted schema/authorization/mutation recovery remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+
+## 039 — bounded generic read contract
+
+No schema/field/policy/content migration. `domainAccess` ordinary reads return at most 100 declared-field records plus explicit `truncated:boolean`, using a 101st sentinel. Exact 100 is complete; 101+ is partial. Owner validation includes the sentinel; malformed/duplicate/missing-ID readbacks fail with DOMAIN_READ_INVALID. The SDK projection requests only schema fields, ID and native timestamp aliases. This view is not an export or complete-history endpoint; Calendar/Pattern/import/deletion retain their dedicated bounded pagination/readers. Guard rechecks before return remain. [039 measured boundary](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md).
 
 ## 038 — read-only response evolution; no entity migration
 

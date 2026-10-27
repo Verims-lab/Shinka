@@ -64,7 +64,7 @@ try {
   // Preserve normal Chromium background/frame scheduling, which Playwright otherwise disables.
   browser=await engine.launch({headless:true,ignoreDefaultArgs:['--disable-background-timer-throttling','--disable-backgrounding-occluded-windows','--disable-renderer-backgrounding']});
   const page=await browser.newPage({viewport:{width:1280,height:900}});
-  await page.emulateMedia({colorScheme:"dark"}); // Exercise the current system-following dark theme.
+  await page.emulateMedia({colorScheme:"dark"}); // Verify light-only application rendering despite a dark OS preference.
   await page.route("**/*",route=>new URL(route.request().url()).origin===origin?route.continue():route.abort());
   const pageErrors=[];page.on("pageerror",error=>pageErrors.push(error.message));
   await page.goto(`${origin}/internal/health`);

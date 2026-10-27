@@ -2,11 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-038
+**Current BuildMarker:** Buildmarker-039
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 039 — core quality audit and focused fixes
+
+Final local verification: Chromium/WebKit each 693 unique PASS; local Health 137 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL. Node/server, clean install/tree/current audit (0 advisories), typecheck/lint/build, Repo Health, five-package history, source/Health integrity and unchanged production budgets pass. Before/after SDK/route evidence and initial failures are retained in the [039 report](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md). The 526-file tested source manifest matches final code. Hosted, original incident and physical acceptance stay open; twelve backend findings remain USER-DEFERRED.
+
+Clean Test/origin-Test 0fb6b5e; fetched main 6ec07a4 was one merge commit ahead with an identical tree. Fast-forwarded and synchronized Test before edits. Baseline local route measurements captured before product changes; the identical instrumented native fixture also runs on an archived 6ec07a4 tree. Confirmed incomplete generic list disclosure, uncertain You intent loss, Home stale-access presentation and session-ended reload work; fixed at existing responsibility boundaries. Added a duplicate-group Health guard and explicit actor/target regression. No broad redesign, auth/dependency downgrade, live operation or reused 038 test receipt. Initial product/fixture failures and final gates are recorded separately in [one 039 milestone report](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md). Original hosted incidents, physical acceptance, disabled push and 12 deferred findings remain open.
 
 ## 038 — four Calendar/Pattern corrections
 

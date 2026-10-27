@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-038
+**Current BuildMarker:** Buildmarker-039
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -28,6 +28,12 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+## 039 — current local security review
+
+New confirmed exposure was stale local Home content/name after an explicit lifecycle/profile/owner denial; CQ06/CQ07/CQ10 now cover clearing, stopped-session requests and late replies. No server owner bypass was observed in the scoped negative matrices. General domain lists now disclose truncation, request declared fields only and reject malformed/duplicate results; CQ01/CQ02 include sentinel owner and withdrawn consent. CQ03/CQ04/CQ08 preserve unconfirmed write intent; CQ05 proves actor A keeps its current native session/role while operating on synthetic B. No runtime RLS/FLS relaxation or service-role identity shortcut.
+
+Official Base44 entity-security and current OWASP authorization/BOLA/mass-assignment/XSS/redirect/resource-limit sources were reviewed on **2026-10-27**, with direct links and control mapping in the [039 milestone security matrix](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md). Repository policy/entry, synthetic negative, dependency-audit and live enforcement evidence remain distinct. GeoNames limits remain worker-local, never distributed quota. Production notification entry/scheduler remain disabled. **12 backend findings OPEN / USER-DEFERRED** are not acknowledged or rescanned; original ON-05/First Shinka and hosted/device acceptance remain open.
 
 ## 035 — scoped onboarding verification
 
@@ -133,7 +139,7 @@ Fresh unchanged-lock npm ci/tree/audit completed: 0 Critical / 0 High / 2 Modera
 
 Closed themes/lunar payloads accept only action and timezone. Client owner/role/process/derived data is rejected. createNativeClient rechecks native User and deletion tombstone; guardDomainOwner checks ACTIVE and reset lifecycle at admission and before response. Returned themes belong only to the session owner. Themes read retained assigned categories, not cycle/consent records, so a missing/withdrawn health grant does not authorize health access and does not erase retained history. Existing health-data consent/open-job controls remain unchanged on their relevant operations; Pattern performs none of those operations.
 
-Only minimal daily/category/timezone fields are fetched; no full health/profile/message rows, tokens or raw provider errors are logged or exported. UI clears data on privacy denial/session replacement, hidden/offline state and unmount; obsolete requests cannot revive it. There is no persistent personal cache. Normal H10/H12/H15 checks exercise isolated in-memory stores only, including successful and denied actual handler paths; no live mutation or reference import occurs. Hosted owner/RLS proof remains H12-901 and physical proof H13-013.
+Only minimal daily/category/timezone fields are fetched; no full health/profile/message rows, tokens or raw provider errors are logged or exported. Under 038, UI retains confirmed sections on ordinary hidden/offline refresh and clears data on privacy denial/session replacement/unmount; obsolete requests cannot revive it. There is no persistent personal cache. Normal H10/H12/H15 checks exercise isolated in-memory stores only, including successful and denied actual handler paths; no live mutation or reference import occurs. Hosted owner/RLS proof remains H12-901 and physical proof H13-013.
 
 ## 020 removal verification and platform boundary
 

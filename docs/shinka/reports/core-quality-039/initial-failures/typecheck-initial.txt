@@ -1,0 +1,18 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 typecheck
+> tsc -p ./jsconfig.json
+
+src/foundation/tests/coreDataMeasurement.js(24,32): error TS2769: No overload matches this call.
+  Overload 1 of 4, '(iterable: Iterable<any> | ArrayLike<any>, mapfn: (v: any, k: number) => any, thisArg?: any): any[]', gave the following error.
+    Type 'string | number' is not assignable to type 'number'.
+      Type 'string' is not assignable to type 'number'.
+  Overload 2 of 4, '(arrayLike: ArrayLike<any>, mapfn: (v: any, k: number) => any, thisArg?: any): any[]', gave the following error.
+    Type 'string | number' is not assignable to type 'number'.
+      Type 'string' is not assignable to type 'number'.
+src/foundation/tests/coreDataMeasurement.js(40,163): error TS2349: This expression is not callable.
+  Not all constituents of type 'string | ((client: any) => Promise<any>)' are callable.
+    Type 'string' has no call signatures.
+src/foundation/tests/coreQualityUiTests.jsx(38,24): error TS18048: 'current' is possibly 'undefined'.
+src/foundation/tests/coreQualityUiTests.jsx(47,60): error TS2722: Cannot invoke an object which is possibly 'undefined'.
+src/foundation/tests/coreQualityUiTests.jsx(48,58): error TS18048: 'current' is possibly 'undefined'.

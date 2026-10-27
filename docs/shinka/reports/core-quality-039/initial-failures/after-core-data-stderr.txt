@@ -1,0 +1,82 @@
+file:///private/var/folders/wy/hxs_rpdn11nfq1fm189l7l7c0000gn/T/shinka-core-data-6Tmr6c/out/entry.mjs:15409
+	throw new InternalError(code, 409);
+	      ^
+
+InternalError: PATTERN_CATEGORY_CONFLICT
+    at fail$2 (file:///private/var/folders/wy/hxs_rpdn11nfq1fm189l7l7c0000gn/T/shinka-core-data-6Tmr6c/out/entry.mjs:15409:8)
+    at Object.categories (file:///private/var/folders/wy/hxs_rpdn11nfq1fm189l7l7c0000gn/T/shinka-core-data-6Tmr6c/out/entry.mjs:15468:8)
+    at async patternOperation (file:///private/var/folders/wy/hxs_rpdn11nfq1fm189l7l7c0000gn/T/shinka-core-data-6Tmr6c/out/entry.mjs:15576:36)
+    at async measureCoreData (file:///private/var/folders/wy/hxs_rpdn11nfq1fm189l7l7c0000gn/T/shinka-core-data-6Tmr6c/out/entry.mjs:16090:14)
+    at async file:///private/var/folders/wy/hxs_rpdn11nfq1fm189l7l7c0000gn/T/shinka-core-data-6Tmr6c/out/entry.mjs:16108:28 {
+  code: 'PATTERN_CATEGORY_CONFLICT',
+  status: 409,
+  stage: undefined,
+  uploadReceipt: undefined,
+  diagnostic: undefined
+}
+
+Node.js v26.0.0
+node:internal/errors:998
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /opt/homebrew/Cellar/node/26.0.0/bin/node /var/folders/wy/hxs_rpdn11nfq1fm189l7l7c0000gn/T/shinka-core-data-6Tmr6c/out/entry.mjs
+file:///private/var/folders/wy/hxs_rpdn11nfq1fm189l7l7c0000gn/T/shinka-core-data-6Tmr6c/out/entry.mjs:15409
+	throw new InternalError(code, 409);
+	      ^
+
+InternalError: PATTERN_CATEGORY_CONFLICT
+    at fail$2 (file:///private/var/folders/wy/hxs_rpdn11nfq1fm189l7l7c0000gn/T/shinka-core-data-6Tmr6c/out/entry.mjs:15409:8)
+    at Object.categories (file:///private/var/folders/wy/hxs_rpdn11nfq1fm189l7l7c0000gn/T/shinka-core-data-6Tmr6c/out/entry.mjs:15468:8)
+    at async patternOperation (file:///private/var/folders/wy/hxs_rpdn11nfq1fm189l7l7c0000gn/T/shinka-core-data-6Tmr6c/out/entry.mjs:15576:36)
+    at async measureCoreData (file:///private/var/folders/wy/hxs_rpdn11nfq1fm189l7l7c0000gn/T/shinka-core-data-6Tmr6c/out/entry.mjs:16090:14)
+    at async file:///private/var/folders/wy/hxs_rpdn11nfq1fm189l7l7c0000gn/T/shinka-core-data-6Tmr6c/out/entry.mjs:16108:28 {
+  code: 'PATTERN_CATEGORY_CONFLICT',
+  status: 409,
+  stage: undefined,
+  uploadReceipt: undefined,
+  diagnostic: undefined
+}
+
+Node.js v26.0.0
+
+    at genericNodeError (node:internal/errors:998:15)
+    at wrappedFn (node:internal/errors:543:14)
+    at checkExecSyncError (node:child_process:925:11)
+    at execFileSync (node:child_process:961:15)
+    at file:///Users/verimsari/Documents/Shinka/scripts/measureCoreData.mjs:17:27 {
+  status: 1,
+  signal: null,
+  output: [
+    null,
+    Buffer(0) [Uint8Array] [],
+    Buffer(1013) [Uint8Array] [
+      102, 105, 108, 101,  58,  47,  47,  47, 112, 114, 105, 118,
+       97, 116, 101,  47, 118,  97, 114,  47, 102, 111, 108, 100,
+      101, 114, 115,  47, 119, 121,  47, 104, 120, 115,  95, 114,
+      112, 100, 110,  49,  49, 110, 102, 113,  49, 102, 109,  49,
+       56,  57, 108,  55, 108,  55,  99,  48,  48,  48,  48, 103,
+      110,  47,  84,  47, 115, 104, 105, 110, 107,  97,  45,  99,
+      111, 114, 101,  45, 100,  97, 116,  97,  45,  54,  84, 109,
+      114,  54,  99,  47, 111, 117, 116,  47, 101, 110, 116, 114,
+      121,  46, 109, 106,
+      ... 913 more items
+    ]
+  ],
+  pid: 74329,
+  stdout: Buffer(0) [Uint8Array] [],
+  stderr: Buffer(1013) [Uint8Array] [
+    102, 105, 108, 101,  58,  47,  47,  47, 112, 114, 105, 118,
+     97, 116, 101,  47, 118,  97, 114,  47, 102, 111, 108, 100,
+    101, 114, 115,  47, 119, 121,  47, 104, 120, 115,  95, 114,
+    112, 100, 110,  49,  49, 110, 102, 113,  49, 102, 109,  49,
+     56,  57, 108,  55, 108,  55,  99,  48,  48,  48,  48, 103,
+    110,  47,  84,  47, 115, 104, 105, 110, 107,  97,  45,  99,
+    111, 114, 101,  45, 100,  97, 116,  97,  45,  54,  84, 109,
+    114,  54,  99,  47, 111, 117, 116,  47, 101, 110, 116, 114,
+    121,  46, 109, 106,
+    ... 913 more items
+  ]
+}
+
+Node.js v26.0.0

@@ -12,7 +12,7 @@ export default function Home({ profileAccess = undefined, renderProfileAccess = 
   const [language, setLanguage] = useState(initialLanguage || resolveLanguage());
   useEffect(() => { if(initialLanguage) setLanguage(initialLanguage); }, [initialLanguage]);
   const daily = useDailyMessage(request, initialDaily);
-  const name = daily.value?.profile ? daily.value.profile.display_name : profile?.display_name;
+  const name = daily.value ? daily.value.profile ? daily.value.profile.display_name : profile?.display_name : null;
   const row = daily.value?.daily;
   const copy = key => dailyCopy(key, language);
   return <div className="shinka-viewport shinka-safe-shell bg-shinka-ivory text-shinka-ink font-body flex flex-col" lang={language} data-home-root>
