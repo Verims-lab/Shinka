@@ -1,0 +1,17 @@
+{
+  "name": "build-complete",
+  "command": [
+    "npm",
+    "run",
+    "build"
+  ],
+  "started_at": "2026-10-26T17:07:01.697411+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "aa9c06cadab6d9203a035fe0043f9a8876490c2c83c77785b76b62d7168676db",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T17:07:05.378895+00:00",
+  "exit_code": 0,
+  "log": "build-complete.txt",
+  "log_sha256": "6d6da558c8ce40e45cb6277246294169e43c20ed8759763962b9056265fd1300",
+  "original_log": "build-complete.log"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "types-repair",
+  "command": [
+    "npm",
+    "run",
+    "typecheck"
+  ],
+  "started_at": "2026-10-26T16:33:21.330859+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "75df82b024831cb4e0c4e0ccb99043aeec56160028a5aeb4b59a77832938dedf",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:33:25.641594+00:00",
+  "exit_code": 2,
+  "log": "types-repair.txt",
+  "log_sha256": "7ee2cd36d66cb96c5c14e1246e254d9acf4288e225ba47b61590bcf5d264d219",
+  "original_log": "types-repair.log"
+}

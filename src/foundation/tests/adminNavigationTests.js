@@ -116,6 +116,18 @@ export const ADMIN_NAV_TESTS = [
     for (const language of ['tr', 'en']) await fixture(admin, '/internal', async (_f, q, host, wait) => {
       await wait(() => q('[data-admin-panel]'));
       assert(q('[data-admin-panel]').querySelectorAll('a').length === 3, 'extra tools');
+      // Retained fallback menu is exercised here; the production onboarding
+      // header no longer mounts it. Production Home -> You is covered by CLI.
+      const key = (element, value) => element.dispatchEvent(new KeyboardEvent('keydown', {key:value,bubbles:true}));
+      q('[data-profile-trigger]').click(); await wait(() => q('[role=menuitem]'));
+      key(q('[role=menuitem]'), 'Escape'); await wait(() => !q('[role=menuitem]'));
+      assert(document.activeElement===q('[data-profile-trigger]'), 'Escape focus restoration');
+      key(q('[data-profile-trigger]'), 'ArrowDown'); await wait(() => q('[role=menuitem]'));
+      key(q('[role=menuitem]'), 'Tab'); await wait(() => !q('[role=menuitem]'));
+      key(q('[data-profile-trigger]'), 'ArrowUp'); await wait(() => q('[role=menuitem]'));
+      assert(document.activeElement===q('[role=menuitem]'), 'arrow menu focus');
+      q('[role=menuitem]').click(); await wait(() => !q('[role=menuitem]'));
+
       for (const tool of INTERNAL_TOOLS) {
         assert(host.textContent.includes(t(tool.descriptionKey, language)), `localized description ${language} ${tool.path}: ${host.textContent}`);
         q(`[data-admin-panel] a[href="${tool.path}"]`).click(); context.stage?.('DOM_NAVIGATION');

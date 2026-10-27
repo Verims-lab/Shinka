@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-034
+**Current BuildMarker:** Buildmarker-035
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
-## 034 — authorized continuation on the restored network
+## Current package — 035 onboarding functional audit
+
+The 2026-10-26 owner request authorizes a new local/synthetic onboarding audit and fixes. Fetch established clean Test d2299c8 behind main f52b1c3 by seven commits without divergence; fast-forward preserves all Base44 work. Advance once to Buildmarker-035 / HC-035.0 and retain 031–035 with recordBuild. Keep pinned package/lock, design shell, session/admin/deletion guards and historical evidence. New runs, not 034 receipts, validate this package.
+
+Use actual components/router/backend validation with only external IO replaced. Map changed Health definitions to executed IDs; keep hosted prerequisites separate. Required gates remain clean install/tree/audit/security, type/lint/build, Repo Health, both full canonical engines, performance and history. No assertion removal, skipped checks or increased time/byte budgets. No live Full Health/provider probe/user mutation/import/push, main merge or publish. Existing PR #36 is merged; deliver Test in a new draft continuation PR. [035 audit, execution and evidence](reports/SHINKA_ONBOARDING_AUDIT_035.md).
+
+## Historical 034 — authorized continuation on the restored network
 
 The owner’s 2026-10-26 attachment 71da2d1f-ad7a-4fe0-af92-66a0a9e1d6ac explicitly resumes the incomplete local gates from Test 1f061ec / PR #36. This supersedes the preceding support-note-only no-rerun instruction. Keep Buildmarker-034 / HC-034.0, preserve main 041b40b package/lock and all user/Base44 work, record one same-marker summary, retain 030–034. Use pinned npm ci/tree/runtime/audit, Node, separate full Chromium/WebKit and mandatory quality/performance/history checks; preserve every old BLOCKED/NOT_RUN/failure receipt and add new results separately. No downgrade, TLS relaxation, assertion removal or time-budget increase.
 

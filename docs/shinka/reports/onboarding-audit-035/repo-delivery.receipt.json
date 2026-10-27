@@ -1,0 +1,17 @@
+{
+  "name": "repo-delivery",
+  "command": [
+    "npm",
+    "run",
+    "health:repo"
+  ],
+  "started_at": "2026-10-26T17:08:33.478769+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "87019c77e3e086704172f6ed479dc9d834470c98cb79c522a9faa816ff18ec08",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T17:08:35.202113+00:00",
+  "exit_code": 0,
+  "log": "repo-delivery.txt",
+  "log_sha256": "4ddfe2eaecfbcb310a72e525875ccf37169a6fbb06fbd40cc06ebb7f370cb465",
+  "original_log": "repo-delivery.log"
+}

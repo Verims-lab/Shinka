@@ -1,0 +1,16 @@
+{
+  "name": "npm-ci",
+  "command": [
+    "npm",
+    "ci"
+  ],
+  "started_at": "2026-10-26T16:25:20.319479+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:25:32.672624+00:00",
+  "exit_code": 0,
+  "log": "npm-ci.txt",
+  "log_sha256": "5b94cf84589f0ce05fa86058d36d4af332b7d9d870e37fb09960f3aabf918e26",
+  "original_log": "npm-ci.log"
+}

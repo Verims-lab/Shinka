@@ -1,0 +1,19 @@
+{
+  "name": "focused-repair",
+  "command": [
+    "env",
+    "FOUNDATION_TEST_IDS=OA01,OA02,OA03,OA04,OU01,OU02,OU03,OU04,OU05,OU06,BS09,BS12,U06,U09,U11,U12",
+    "npm",
+    "run",
+    "test:foundation"
+  ],
+  "started_at": "2026-10-26T16:33:24.922276+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "75df82b024831cb4e0c4e0ccb99043aeec56160028a5aeb4b59a77832938dedf",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:33:43.737140+00:00",
+  "exit_code": 1,
+  "log": "focused-repair.txt",
+  "log_sha256": "a677417c591659762385b882e37c4b6f035ff12f8d671e74d17fede80cf40aeb",
+  "original_log": "focused-repair.log"
+}

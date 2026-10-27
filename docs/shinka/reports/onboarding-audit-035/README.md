@@ -1,0 +1,7 @@
+# 035 local evidence
+
+The canonical full Chromium/WebKit runs are `chromium-fourth` and `webkit-fourth`: 657/657 each. `*-results.json` is the executed registry list; `*-summary.json` includes separate server checks, production routes, mobile and Health. The two `case-audit.json` files join actual case registrations with observed results; 13 hosted prerequisites remain BLOCKED. These are local synthetic results, not hosted or device acceptance.
+
+`verification.json` indexes every command receipt. Each receipt records UTC, exit code, baseline HEAD, tracked diff SHA and pinned lock SHA. `log_sha256` verifies the exact command output saved as `.txt`; `original_log` retains its temporary `.log` name. Early tracked-diff hashes exclude newly untracked files, so the 510-file execution manifests explicitly include new tests and modules. `fourth-execution-source-manifest.json` is the final full-run source; `source-review.json` explains the sole subsequent code-file delta (ledger description) and protected source checks.
+
+`initial-failures.json` and original output files preserve failed attempts. No failure was rewritten as PASS. Source-only, Node/server, browser, local in-app and unexecuted external evidence stay separate. `performance.json` is the final production budget/graph/lab output. Optional screenshots and generated builds are not part of this source delivery. See the [single delivery report](../SHINKA_ONBOARDING_AUDIT_035.md) for findings, Health changes and owner acceptance.

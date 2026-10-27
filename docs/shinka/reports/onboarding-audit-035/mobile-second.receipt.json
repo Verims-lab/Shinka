@@ -1,0 +1,20 @@
+{
+  "name": "mobile-second",
+  "command": [
+    "env",
+    "FOUNDATION_MOBILE_EXPERIENCE_ONLY=1",
+    "FOUNDATION_MOBILE_DIR=/private/tmp/shinka-035-audit/mobile-second",
+    "npm",
+    "run",
+    "test:foundation"
+  ],
+  "started_at": "2026-10-26T16:57:09.037328+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "5e6b6d4b03c705e69ab40f35975a9ccadc95f97f75b8b53503ed2d67d2cbb216",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:57:30.407340+00:00",
+  "exit_code": 1,
+  "log": "mobile-second.txt",
+  "log_sha256": "4759c5d18a48aa9ca9ca464d4bdc3dfa899867bb5c79c1b402c0703cae2b1e1a",
+  "original_log": "mobile-second.log"
+}

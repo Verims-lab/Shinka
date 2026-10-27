@@ -1,0 +1,20 @@
+{
+  "name": "webkit-fourth",
+  "command": [
+    "env",
+    "FOUNDATION_BROWSER=webkit",
+    "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-035-audit/webkit-fourth-audit",
+    "npm",
+    "run",
+    "test:foundation"
+  ],
+  "started_at": "2026-10-26T17:03:55.817134+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "123f27bfad2c6738e08ba67cbb2992684b5be1756058cf8c1473e6562f530d7c",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T17:06:05.074705+00:00",
+  "exit_code": 0,
+  "log": "webkit-fourth.txt",
+  "log_sha256": "3a3dd25039bea88cd6ccf09a77ff3285b0fab772b7d06aa0fe0ab2deb9d7e7a7",
+  "original_log": "webkit-fourth.log"
+}

@@ -2,6 +2,7 @@ import ShinkaButton from "@/components/shinka/ShinkaButton";
 import ShinkaInput from "@/components/shinka/ShinkaInput";
 import BirthplaceCombobox from "@/features/profile/BirthplaceCombobox";
 import FramedDateField from "./FramedDateField";
+import FieldError from "./FieldError";
 import {
   optionalName,
   optionalBirthTime,
@@ -9,18 +10,6 @@ import {
   validateCycleInput,
   OnboardingError,
 } from "../../../base44/shared/onboardingValidation.js";
-
-export function FieldError({ name, error, t }) {
-  return error?.field === name ? (
-    <p
-      id={`${name}-error`}
-      role="alert"
-      className="text-shinka-small text-shinka-ink"
-    >
-      {t(error.code)}
-    </p>
-  ) : null;
-}
 
 function Field({ name, type, form, update, error, busy, t, ...inputProps }) {
   return (

@@ -1,0 +1,19 @@
+{
+  "name": "mobile-compat",
+  "command": [
+    "env",
+    "FOUNDATION_MOBILE_ONLY=1",
+    "npm",
+    "run",
+    "test:foundation"
+  ],
+  "started_at": "2026-10-26T16:57:12.156751+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "5e6b6d4b03c705e69ab40f35975a9ccadc95f97f75b8b53503ed2d67d2cbb216",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:57:33.233623+00:00",
+  "exit_code": 1,
+  "log": "mobile-compat.txt",
+  "log_sha256": "7a4c67d298a878c36b1a806accf4c1e9c0be8689bdd61f5d5f8b30688b02a24f",
+  "original_log": "mobile-compat.log"
+}

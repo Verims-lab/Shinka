@@ -22,7 +22,7 @@ export function createGeoNamesRuntimeProbe({getFetch=()=>globalThis.fetch,now=()
       // One captured function, URL form, receiver and credential across all samples.
       const fetcher=getFetch();
       const target=new URL('https://secure.geonames.org/searchJSON');
-      Object.entries({q:'Istanbul',maxRows:8,lang:'tr',style:'FULL',featureClass:'P',username:configured}).forEach(([k,v])=>target.searchParams.set(k,String(v)));
+      Object.entries({q:'Istanbul',isNameRequired:'true',featureClass:['A','P'],maxRows:50,startRow:0,lang:'tr',style:'FULL',username:configured}).forEach(([k,v])=>(Array.isArray(v)?v:[v]).forEach(value=>target.searchParams.append(k,String(value))));
       const elapsed=from=>Math.max(0,Math.round(now()-from));
 
       /** @param {RequestRedirect} policy */

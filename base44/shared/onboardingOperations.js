@@ -75,8 +75,14 @@ async function normalOnboardingOperation(client,body,dependencies,principal) {
     return {state:'AUTHENTICATED_PROFILE_REQUIRED',persisted:true};
   }
   if(!preferences)fail('PREFERENCES_INITIALIZATION_REQUIRED',409);
+  // A completed owner edits through You/Calendar, never the onboarding writer.
+  // Check durable completion independently of profile readiness (a damaged or
+  // stale profile must not reopen this mutation path). Reset has its own gate.
+  if(!dependencies.resetFlow&&['saveProfile','saveCycle'].includes(body.action)){
+    const daily=await rows('user_daily_message',1);
+    if(daily.length){verifiedDailyRecord(daily[0],owner);fail('ONBOARDING_ALREADY_SAVED',409);}
+  }
   if(body.action==='saveProfile') {
-    if(!dependencies.resetFlow&&profile&&SUN_SIGN_CODES.includes(profile.sun_sign_code)&&!['AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP'].includes(resolveOnboardingState({authenticated:true,profile,preferences,today})))return {...await state(),persisted:true};
     const input={...await prepareProfileInput(body,{today,geoNames,sunSign}),account_status:'ACTIVE'};
     const {sun_sign_code}=input;
     let saved;

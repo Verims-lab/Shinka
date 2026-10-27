@@ -1,0 +1,724 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 test:foundation
+> node scripts/runFoundationTests.mjs
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/HealthCenter.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/BuildEnvironment.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/features/onboarding/OnboardingScreen.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/probes/AuthShellProbe.jsx, src/foundation/tests/OnboardingTestScreen.jsx, src/foundation/tests/onboardingAuditUiTests.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/You.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/notificationUiTests.js, src/foundation/tests/youUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/Pattern.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/patternUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/TestTools.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/adminTestToolsUiTests.js, src/foundation/tests/testToolsPacingTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/Calendar.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/calendarUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/probes/AuthShellProbe.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/authProbeTests.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/tests/foundationTests.js is dynamically imported by src/foundation/tests/localRunnerTests.js but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/health/catalog.js is dynamically imported by src/foundation/health/cases/h16.js, src/foundation/tests/closure018Tests.js, src/foundation/tests/closure020Tests.js, src/foundation/tests/foundationTests.js, src/foundation/tests/sessionStabilityTests.js but also statically imported by scripts/testHarness/healthTiming.js, scripts/testHarness/main.jsx, src/foundation/health/report.js, src/foundation/health/runner.js, src/pages/internal/HealthCenter.jsx, dynamic import will not move module into another chunk.
+
+[33m[PLUGIN_TIMINGS] [0mJavaScript callbacks ran for 4.5s of this 4.9s build (92%).
+The slowest callbacks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):
+  - plugin @tailwindcss/vite:generate:build transform (88%, 4.3s, 1 call)
+  - plugin shinka-static-evidence load (75%, 3.6s, 2359 calls)
+These rows add up to more than the total. Callbacks can overlap, so the same time counts for more than one row.
+See https://rolldown.rs/reference/InputOptions.checks#bundlertimings for more details.
+
+PASS O11 GeoNames query bounded/sanitized, empty results and safe mapping
+PASS O25 Copy keys have parity, exact EN errors and approved nonempty TR
+PASS G01 Missing/blank secret fails safely before provider call; configured value is trimmed
+PASS G02 Network failure and request/body timeout have distinct safe classes and bounded abort
+PASS G03 Non-provider HTTP failures retain only numeric HTTP status
+PASS G04 Provider JSON errors classify authorization/quota/service on success and error HTTP
+PASS G05 Empty array and successful no-result status remain HTTP 200 empty places
+PASS G06 Malformed JSON/envelope/records and oversized payloads are safe invalid responses
+PASS G07 Every search outcome is read-only across all product entities and missing preferences
+PASS G08 Diagnostics never return raw provider data; forged URLs/owners and anonymous search blocked
+PASS G09 Pre-response transport causes classify only explicit runtime evidence; ambiguity stays UNKNOWN
+FAIL G10 Fetch invocation versus body-read stage is precise; successful search and ID resolve preserved — G10:START:diagnostic GEONAMES_NETWORK_ERROR
+PASS G11 Settled requests clear deadlines; abort and late fetch/body rejection never escape unhandled
+PASS G12 Sensitive exceptions/cause/stack and unknown names/codes never reach response, console or entities
+PASS G21 Manual compatibility processes search and selected-ID resolution when error mode is unsupported
+PASS G22 Every 3xx and opaque redirect is rejected before parsing; search and resolve never send a second request
+PASS G23 Redirect cleanup is deadline-bounded; late responses are cancelled unread without unhandled rejection
+PASS G24 Redirect projection discards Location, body and cancellation errors without logs or product writes
+PASS OA01 Rejection helper fails on successful work and wrong codes; awaited async rejection is observed
+PASS OA02 Completed owner cannot mutate profile or add cycle/consent through onboarding, even with a damaged profile
+PASS OA03 Unfinished profile correction re-resolves all five place fields and preserves cycle history; reload uses durable state
+PASS OA04 Empty filtered first page retains failed next-page retry and deduplicates append; short retry makes no request
+PASS G13 Runtime probe uses existing admin guard and rejects all caller-controlled target/credential options
+FAIL G14 Four credentialed policy samples preserve actual adapter URL, input form and all other options — G14:START:contract failed
+PASS G15 Unsupported error policy compares against manual twice with the same captured detached fetch
+PASS G16 Comparison completes both pairs despite inconsistent responses and never asserts a runtime identity or root cause
+PASS G17 Manual probe samples observe redirects without following or reading headers/body/Location
+PASS G18 Probe deadlines abort sequential requests, clear timers, reject concurrent/cooldown runs and do not leak rejections
+PASS G19 Caller abort/total deadline stop further samples; unconfirmed cancellation keeps the worker blocked
+PASS G20 Probe returns only technical projections; no body/header/error/credential or console disclosure
+FAIL OU01 Actual ON-01/02/03 back/forward: one Begin, trimmed optional name, explicit skip clears draft, no backend/auth — OU01:DOM_WAIT:FIXTURE_DOM_TIMEOUT
+PASS OU02 ON-05 back restores persisted profile; edit/save and locale preserve cycle drafts, age and health consent stay separate
+PASS OU03 Unconfirmed save response cannot advance or clear pending name; verified retry keeps the action ID
+PASS OU04 Unmount or session end makes late saves inert: no next screen, pending-name clear or old profile
+PASS OU05 Combobox keyboard can select/escape; empty popup owns its listbox; next-page actions remain focused and actionable
+PASS OU06 Empty filtered page plus failed More shows explicit error and retries the failed page; locale retains open query
+{
+  "focused": true,
+  "security028": {
+    "scope": "LOCAL_SERVER_FIXTURE",
+    "hostedVerified": false,
+    "results": [
+      {
+        "id": "SC01",
+        "name": "Bounded JSON: streaming byte limit, Content-Length, malformed and non-object",
+        "status": "PASS"
+      },
+      {
+        "id": "SC02",
+        "name": "GeoNames guard: no owner 401, lazy adapter/secret, per-user app limit with retry seconds, window reset",
+        "status": "PASS"
+      },
+      {
+        "id": "SC03",
+        "name": "GeoNames guard counts real upstream fetches and the worker-local total across owners; cache avoids refetch",
+        "status": "PASS"
+      },
+      {
+        "id": "SC04",
+        "name": "Unauthenticated You/onboarding calls: 401, zero product writes, no GeoNames setup",
+        "status": "PASS"
+      },
+      {
+        "id": "SC05",
+        "name": "Oversize bodies: 413 from real You/onboarding handlers with no entity call",
+        "status": "PASS"
+      },
+      {
+        "id": "SC07",
+        "name": "Real guard + real adapter: app, user-upstream and worker-upstream limits keep 429/retry and stop provider fetches",
+        "status": "PASS"
+      },
+      {
+        "id": "SC08",
+        "name": "Onboarding and You handlers return 429, GEONAMES_RATE_LIMITED, Retry-After and retry_after_seconds for the real chain error",
+        "status": "PASS"
+      },
+      {
+        "id": "SC09",
+        "name": "Negative: network failure and a forged 429-shaped error from fetch stay GEONAMES_UNAVAILABLE, never rate-limited",
+        "status": "PASS"
+      }
+    ],
+    "passed": true
+  },
+  "notifications030": {
+    "scope": "LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION",
+    "passed": true,
+    "results": [
+      {
+        "id": "NS01",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0,
+          "secretReads": 0
+        },
+        "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+      },
+      {
+        "id": "NS02",
+        "status": "PASS",
+        "httpStatus": 503,
+        "response": {
+          "error_code": "SESSION_UNAVAILABLE"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0,
+          "secretReads": 0
+        },
+        "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+      },
+      {
+        "id": "NS03",
+        "status": "PASS",
+        "httpStatus": 403,
+        "response": {
+          "error_code": "ADMIN_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0,
+          "secretReads": 0
+        },
+        "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+      },
+      {
+        "id": "NS04",
+        "status": "PASS",
+        "httpStatus": 403,
+        "response": {
+          "error_code": "ADMIN_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0,
+          "secretReads": 0
+        },
+        "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+      },
+      {
+        "id": "NS05",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 2,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0,
+          "secretReads": 0
+        },
+        "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+      },
+      {
+        "id": "NS06",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0,
+          "secretReads": 0
+        },
+        "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+      },
+      {
+        "id": "NS07",
+        "status": "PASS",
+        "httpStatus": 400,
+        "response": {
+          "error_code": "INVALID_REQUEST"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0,
+          "secretReads": 0
+        },
+        "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+      },
+      {
+        "id": "NS08",
+        "status": "PASS",
+        "httpStatus": 200,
+        "response": {
+          "state": "DISABLED",
+          "processed": 0
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0,
+          "secretReads": 0
+        },
+        "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+      },
+      {
+        "id": "NS09",
+        "status": "PASS",
+        "httpStatus": 400,
+        "response": {
+          "error_code": "INVALID_REQUEST"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0,
+          "secretReads": 0
+        },
+        "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+      },
+      {
+        "id": "NS10",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0,
+          "secretReads": 0
+        },
+        "assertion": "Actual unbound entry/shared fresh native admin guard with synthetic SDK; dispatch disabled. No workflow/real delivery proof."
+      },
+      {
+        "id": "NS11",
+        "status": "PASS",
+        "httpStatus": 200,
+        "response": {
+          "state": "DISABLED",
+          "processed": 0
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 0,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0,
+          "secretReads": 1
+        },
+        "assertion": "Actual disabled entry options with prepared real comparator injected only in this fixture; no workflow transport proof."
+      }
+    ],
+    "secretChecks": {
+      "scope": "LOCAL_NODE_CRYPTO_REAL_COMPARISON_SYNTHETIC_READERS",
+      "passed": true,
+      "results": [
+        {
+          "id": "SM01",
+          "status": "PASS",
+          "assertion": "Missing, blank, malformed and unreadable configuration: no client/work/provider"
+        },
+        {
+          "id": "SM02",
+          "status": "PASS",
+          "assertion": "Missing, malformed, unreadable and equal-length wrong credential: no client/work/provider"
+        },
+        {
+          "id": "SM03",
+          "status": "PASS",
+          "assertion": "Factory performs no reads; every admission rereads configuration and credential"
+        },
+        {
+          "id": "SM04",
+          "status": "PASS",
+          "assertion": "Request-local callbacks share no authorization or configuration cache"
+        },
+        {
+          "id": "SM05",
+          "status": "PASS",
+          "assertion": "Successful comparison returns no User/admin authority and leaves common guards closed"
+        },
+        {
+          "id": "SM06",
+          "status": "PASS",
+          "assertion": "Valid credential still returns DISABLED with zero service access/work/provider"
+        },
+        {
+          "id": "SM07",
+          "status": "PASS",
+          "assertion": "Unavailable reader callbacks fail closed; no native identity fallback"
+        }
+      ],
+      "hostedVerified": false
+    },
+    "hostedVerified": false
+  },
+  "results": [
+    {
+      "id": "O11",
+      "name": "GeoNames query bounded/sanitized, empty results and safe mapping",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "O25",
+      "name": "Copy keys have parity, exact EN errors and approved nonempty TR",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G01",
+      "name": "Missing/blank secret fails safely before provider call; configured value is trimmed",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G02",
+      "name": "Network failure and request/body timeout have distinct safe classes and bounded abort",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G03",
+      "name": "Non-provider HTTP failures retain only numeric HTTP status",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G04",
+      "name": "Provider JSON errors classify authorization/quota/service on success and error HTTP",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G05",
+      "name": "Empty array and successful no-result status remain HTTP 200 empty places",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G06",
+      "name": "Malformed JSON/envelope/records and oversized payloads are safe invalid responses",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G07",
+      "name": "Every search outcome is read-only across all product entities and missing preferences",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G08",
+      "name": "Diagnostics never return raw provider data; forged URLs/owners and anonymous search blocked",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G09",
+      "name": "Pre-response transport causes classify only explicit runtime evidence; ambiguity stays UNKNOWN",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G10",
+      "name": "Fetch invocation versus body-read stage is precise; successful search and ID resolve preserved",
+      "passed": false,
+      "blocked": false,
+      "detail": "G10:START:diagnostic GEONAMES_NETWORK_ERROR"
+    },
+    {
+      "id": "G11",
+      "name": "Settled requests clear deadlines; abort and late fetch/body rejection never escape unhandled",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G12",
+      "name": "Sensitive exceptions/cause/stack and unknown names/codes never reach response, console or entities",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G21",
+      "name": "Manual compatibility processes search and selected-ID resolution when error mode is unsupported",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G22",
+      "name": "Every 3xx and opaque redirect is rejected before parsing; search and resolve never send a second request",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G23",
+      "name": "Redirect cleanup is deadline-bounded; late responses are cancelled unread without unhandled rejection",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G24",
+      "name": "Redirect projection discards Location, body and cancellation errors without logs or product writes",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "OA01",
+      "name": "Rejection helper fails on successful work and wrong codes; awaited async rejection is observed",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "OA02",
+      "name": "Completed owner cannot mutate profile or add cycle/consent through onboarding, even with a damaged profile",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "OA03",
+      "name": "Unfinished profile correction re-resolves all five place fields and preserves cycle history; reload uses durable state",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "OA04",
+      "name": "Empty filtered first page retains failed next-page retry and deduplicates append; short retry makes no request",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G13",
+      "name": "Runtime probe uses existing admin guard and rejects all caller-controlled target/credential options",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G14",
+      "name": "Four credentialed policy samples preserve actual adapter URL, input form and all other options",
+      "passed": false,
+      "blocked": false,
+      "detail": "G14:START:contract failed"
+    },
+    {
+      "id": "G15",
+      "name": "Unsupported error policy compares against manual twice with the same captured detached fetch",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G16",
+      "name": "Comparison completes both pairs despite inconsistent responses and never asserts a runtime identity or root cause",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G17",
+      "name": "Manual probe samples observe redirects without following or reading headers/body/Location",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G18",
+      "name": "Probe deadlines abort sequential requests, clear timers, reject concurrent/cooldown runs and do not leak rejections",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G19",
+      "name": "Caller abort/total deadline stop further samples; unconfirmed cancellation keeps the worker blocked",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "G20",
+      "name": "Probe returns only technical projections; no body/header/error/credential or console disclosure",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "OU01",
+      "name": "Actual ON-01/02/03 back/forward: one Begin, trimmed optional name, explicit skip clears draft, no backend/auth",
+      "passed": false,
+      "blocked": false,
+      "detail": "OU01:DOM_WAIT:FIXTURE_DOM_TIMEOUT"
+    },
+    {
+      "id": "OU02",
+      "name": "ON-05 back restores persisted profile; edit/save and locale preserve cycle drafts, age and health consent stay separate",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "OU03",
+      "name": "Unconfirmed save response cannot advance or clear pending name; verified retry keeps the action ID",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "OU04",
+      "name": "Unmount or session end makes late saves inert: no next screen, pending-name clear or old profile",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "OU05",
+      "name": "Combobox keyboard can select/escape; empty popup owns its listbox; next-page actions remain focused and actionable",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "OU06",
+      "name": "Empty filtered page plus failed More shows explicit error and retries the failed page; locale retains open query",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    }
+  ],
+  "pageErrors": []
+}

@@ -10,7 +10,7 @@ import { makeCase } from "../caseFactory";
 
 const c = makeCase("H13");
 export const H13_STATIC_CASES = [
-  localCase('H13','H13-012','Mobile forms and localized list regression','Local Chromium/WebKit: T81 explicit light/dark restoration, U15 ON-04/ON-05 layered background and TR/EN overflow, plus retained onboarding, Home, Calendar, Profile menu and Admin; 320/360/390/430/landscape, 200% text, 44px targets and dialog/menu focus. System light/dark, drawer/history, reduced motion and refresh included; separate from physical keyboard/safe-area/native back acceptance.'),
+  localCase('H13','H13-012','Mobile forms and localized list regression','Local Chromium/WebKit: U01–U18 and OU01–OU08 actual onboarding order/back/drafts, readback, unmount/account isolation, OAuth lock and combobox keyboard/paging; T81/U15 retained shell checks, Home, Calendar, Profile menu and Admin; 320/360/390/430/landscape, 200% text, 44px targets and dialog/menu focus. System light/dark, drawer/history, reduced motion and refresh included; separate from physical keyboard/safe-area/native back acceptance.'),
   futureCase('H13','H13-013','Physical Android Chrome and iOS Safari acceptance','Real keyboard, safe-area/browser bars, native date/time, bottom sheet, zoom, background return and provider callbacks need paired devices. Playwright is not physical Safari.',APPLICABILITY.EXTERNAL,CLASS.DEVICE),
   c("H13-010", "System theme follows the current preference", "Root class and computed color-scheme match the OS preference; live changes/contrast run in local browser acceptance.", async () => {
     const expected = matchMedia('(prefers-color-scheme: dark)').matches;

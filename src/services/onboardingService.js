@@ -1,6 +1,16 @@
 import { base44 } from '@/api/base44Client';
 import { ONBOARDING_ERROR_KEYS } from '@/foundation/i18n/onboardingCopy';
 import { ONBOARDING_DEPENDENCIES } from '../../base44/shared/onboardingDependencies.js';
+import { OnboardingError } from '../../base44/shared/onboardingValidation.js';
+// UI advancement requires the operation's explicit readback envelope. A fulfilled
+// invocation or arbitrary state string is not a successful save.
+export function assertOnboardingProgress(action, payload, result) {
+  if (result?.state === 'INACTIVE_ACCOUNT') return;
+  const valid = action === 'saveProfile'
+    ? result?.persisted === true && typeof result.profile?.id === 'string' && result.profile.birth_date === payload.birth_date && ['AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP'].includes(result.state)
+    : ['FIRST_SHINKA_DEPENDENCY','ACTIVE_EXISTING_USER'].includes(result?.state) && result.persisted === (action === 'saveCycle' && !!payload.period_start_date);
+  if (!valid) throw new OnboardingError('ONBOARDING_READBACK_CONFLICT');
+}
 const SAFE_CODES=new Set(['MAINTENANCE_WRITE_PAUSED',...ONBOARDING_ERROR_KEYS,...Object.values(ONBOARDING_DEPENDENCIES),'TIMEZONE_INITIALIZATION_REQUIRED','PREFERENCES_INITIALIZATION_REQUIRED','AUTH_REQUIRED','HEALTH_DELETION_PENDING','CONSENT_REGRANT_WORKFLOW_REQUIRED','DUPLICATE_OWNER_STATE','ACTION_CONFLICT','ONBOARDING_ALREADY_SAVED','ONBOARDING_WRITE_UNCONFIRMED','ONBOARDING_READBACK_CONFLICT','SUN_SIGN_RULE_REQUIRED','HEALTH_CONSENT_SOURCE_REQUIRED','CONSENT_TIMESTAMP_INVALID','CONSENT_VERSION_CONFLICT','IMMUTABLE_RECORD','ONBOARDING_BUSY']);
 /** @param {{functions:{invoke:(name:string,payload:object)=>Promise<{data:any}>}}} client */
 export async function onboardingRequest(action,payload={},client=base44) {

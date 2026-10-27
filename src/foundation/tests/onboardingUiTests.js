@@ -159,12 +159,13 @@ export const ONBOARDING_UI_TESTS=[
  }],
  ['U11','Saved birthplace shown without provider calls; explicit clear ignores late results and persists all NULLs',async(context={})=>{
   const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);
-  let release,calls=0;
-  const {f,requestOverride}=await geoNamesUiFixture(async url=>{calls++;return new Promise(resolve=>{release=()=>placeFetch(url).then(resolve);});});
+  let release,calls=0,started;
+  const providerStarted=new Promise(resolve=>{started=resolve;});
+  const {f,requestOverride}=await geoNamesUiFixture(async url=>{calls++;started();return new Promise(resolve=>{release=()=>placeFetch(url).then(resolve);});});
   const saved={id:'partial-place-fixture',user_id:'ownerA',account_status:'ACTIVE',birth_date:'1990-01-01',birth_time:null,sun_sign_code:null,...normalizeGeoNamesPlace(fixturePlace)};f.rows.user_profile.push(saved);
   await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
     check(doc.querySelector('#birthplace').value.includes('Fixture City')&&calls===0);
-    typePlace(doc,'Kansas');await waitForFixture(()=>calls===1,doc.body,context);
+    typePlace(doc,'Kansas');await providerStarted;check(calls===1,'one provider request');
     clearButton(doc).click();await pause();release();await pause();
     check(doc.querySelector('#birthplace').value===''&&!doc.querySelector('[data-place-option]'));
     button(doc,'Continue').click();await pause();check(BIRTHPLACE_FIELDS.every(key=>saved[key]===null));
@@ -246,7 +247,7 @@ export const ONBOARDING_UI_TESTS=[
   },{language},context);
   await onboardingProbe('FIRST_SHINKA_DEPENDENCY',360,async doc=>check(!doc.querySelector('[data-onboarding-step]'),'preparation unnumbered'),{language:'en'},context);
  }],
- ['U17','ON-04 shows new title/subtitle, 4 of 5, compact birthplace, no Account & Privacy; cancel keeps prior selection; date/time fit 320/360',async(context={})=>{
+ ['U17','ON-04 shows new title/subtitle, 4 of 5, compact birthplace, no Account & Privacy; focus alone does not search; date/time fit 320/360',async(context={})=>{
   const pause=()=>testDelay(50,context.signal);
   for(const language of ['en','tr'])for(const width of [320,360])await onboardingProbe('AUTHENTICATED_PROFILE_REQUIRED',width,async doc=>{
    const c=ONBOARDING_COPY[language];

@@ -16,7 +16,7 @@ export async function checkMobileExperience(browser, origin, directory) {
   if(directory)await mkdir(directory,{recursive:true});
   const query='appFixture=1&sdkSession=admin&onboardingState=ACTIVE_EXISTING_USER';
   const surfaces=[
-    ['onboarding','/onboarding-fixture?step=AUTHENTICATED_PROFILE_REQUIRED','#place-countries'],
+    ['onboarding','/onboarding-fixture?step=AUTHENTICATED_PROFILE_REQUIRED','#birthplace'],
     ['cycle','/onboarding-fixture?step=AUTHENTICATED_CYCLE_STEP','input[type=date]'],
     ['home',`/?${query}`,'[data-daily-id]'], ['calendar',`/calendar?${query}`,'[data-calendar-date]'],
     ['pattern',`/pattern?${query}`,'[data-lunar-timeline]'], ['you',`/you?${query}`,'#you-language'],

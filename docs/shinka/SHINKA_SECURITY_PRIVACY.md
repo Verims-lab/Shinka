@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-034
+**Current BuildMarker:** Buildmarker-035
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -28,6 +28,12 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+## 035 — scoped onboarding verification
+
+Completed-owner daily state now closes ordinary onboarding profile/cycle writes independently of profile readiness, including lower adapter write guards; existing guarded reset remains separate. Actual SDK fixtures and both browser engines verify the boundary and stale account/unmount suppression. No native transaction/distributed uniqueness or live enforcement guarantee is added. Birthplace keeps owner/ACTIVE/lifecycle, request-scoped secret, transport and rate-limit controls; A/P ID resolution and five-field readback remain authoritative.
+
+New clean install/tree/runtime peer checks pass on unchanged zod 4.6.7/resolvers 5.9.2 lock. Local audit/security:deps show zero across all severity levels. Chromium/WebKit 657/657 each and existing security/notification regressions pass; 13 local Health hosted/content prerequisites stay BLOCKED. The prior user-reported Base44 zod scan closure remains separate evidence. **12 backend findings OPEN / USER-DEFERRED**, H14-901/H16-901 external, actual entry enabled:false and scheduler unbound are unchanged. No live scan/provider/user/push action. [035 source, failures, results and external acceptance](reports/SHINKA_ONBOARDING_AUDIT_035.md).
 
 ## 034 — resumed dependency and stabilization evidence
 

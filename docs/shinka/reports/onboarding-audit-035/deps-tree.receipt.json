@@ -1,0 +1,17 @@
+{
+  "name": "deps-tree",
+  "command": [
+    "npm",
+    "ls",
+    "--all"
+  ],
+  "started_at": "2026-10-26T16:38:16.549669+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "47feb943fc7586dcfc9afa746e34d3bad988125c3dd67c01c199386dcffd8a67",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:38:17.438213+00:00",
+  "exit_code": 0,
+  "log": "deps-tree.txt",
+  "log_sha256": "6d9b4d160de46569832eef624585e1879c3a11b6224473732296b9aeb36aa413",
+  "original_log": "deps-tree.log"
+}

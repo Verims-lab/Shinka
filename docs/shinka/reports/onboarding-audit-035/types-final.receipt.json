@@ -1,0 +1,17 @@
+{
+  "name": "types-final",
+  "command": [
+    "npm",
+    "run",
+    "typecheck"
+  ],
+  "started_at": "2026-10-26T16:44:23.386700+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "aba20c89272c9bcaf9e9d6ffc88a6d4443fe81159642ed272ee83404f0be4619",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:44:28.782299+00:00",
+  "exit_code": 2,
+  "log": "types-final.txt",
+  "log_sha256": "50d5a48cf6f75e5c1a7ff9e04455ba65f3e4175457fce6fd2c06b40a3271426e",
+  "original_log": "types-final.log"
+}

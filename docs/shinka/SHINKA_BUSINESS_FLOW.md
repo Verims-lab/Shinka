@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-034
+**Current BuildMarker:** Buildmarker-035
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -10,6 +10,14 @@
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+## Current onboarding flow and mutation boundary — 035
+
+ON-01→02→03→04→05→unnumbered ON-06→Home. Intro/Name/Back do not call auth or save. Name is optional, trimmed and ≤50 Unicode code points; explicit omission clears its transient value. 18+ is separate from health consent. ON-04 Back is intentionally absent: authenticated users do not return through OAuth. ON-05 Back edits only the unfinished profile and retains in-memory cycle input. Verified profile readback precedes ON-05; fulfilled/ambiguous responses cannot advance. UI state is never backend authority.
+
+Hydration resolves persistent owner records. Skip creates/revokes/deletes nothing and may return to ON-05 on reopen before a real daily record. Completed owners cannot use onboarding saveProfile/saveCycle even when their profile is damaged; You/Calendar remain the editing boundaries. Partial cycle retries reuse persisted matching consent/event/period data; no rollback or distributed serialization is promised. Session end/unmount discards late UI completion; already-issued backend IO is not claimed cancelled.
+
+Birthplace is the 035 A/P combobox contract: ≥3 characters, own-name literal substring, no free text or edited-label/stale-ID save. More/Retry is explicit; an empty filtered page can have a next page. Owner/auth/secret/rate-limit checks remain. [035 audit, execution and evidence](reports/SHINKA_ONBOARDING_AUDIT_035.md).
 
 ## 033 — scheduler machine identity and push acceptance
 
@@ -33,7 +41,7 @@ New 029 decisions (not claimed as original-source rules): send only during the c
 
 ## Birthplace request limit and deletion flow — 028 (ACTIVE)
 
-If birthplace lookups exceed the limit, onboarding and You show the approved message (“Çok fazla yer isteği yapıldı…” / “Too many place requests…”), keep the chosen country/region/settlement and every unsaved field, and wait for the user to try again; there is no automatic retry. This message now also appears when the limit is reached on provider calls (not only on app requests); before the fix those cases showed the generic “place service unavailable” message. Limits are counted separately for onboarding and You. Admin test deletion and owner privacy flows no longer require pausing the whole app; they rely on per-user lifecycle, consent and tombstone checks.
+If birthplace lookups exceed the limit, onboarding and You show the approved message (“Çok fazla yer isteği yapıldı…” / “Too many place requests…”), keep the selected place or typed query and every unsaved field, and wait for the user to try again; there is no automatic retry. This message now also appears when the limit is reached on provider calls (not only on app requests); before the fix those cases showed the generic “place service unavailable” message. Limits are counted separately for onboarding and You. Admin test deletion and owner privacy flows no longer require pausing the whole app; they rely on per-user lifecycle, consent and tombstone checks.
 
 ## Refresh and dismissal contract — 026
 
@@ -44,7 +52,7 @@ Closing a drawer/dialog or browser Back is not consent, save, cancellation of a 
 
 ## Current owner privacy flow — 023
 
-You → Account & Privacy exposes Withdraw my health data consent and Delete my account separately. Each shows scope → one explicit confirmation → progress → verified result or Check status / Continue. Opening, cancelling, closing or reloading never starts cleanup. Incomplete accounts use the header Account & Privacy entry or `/account-privacy`; no profile/daily completion is required. `/delete-account` provides the external web entry and existing Apple/Google sign-in, with the same confirmation and owner-only backend.
+You → Account & Privacy exposes Withdraw my health data consent and Delete my account separately. Each shows scope → one explicit confirmation → progress → verified result or Check status / Continue. Opening, cancelling, closing or reloading never starts cleanup. Incomplete accounts retain direct protected `/account-privacy` access without profile/daily completion; the onboarding header entry was removed in 035. `/delete-account` provides the external web entry and existing Apple/Google sign-in, with the same confirmation and owner-only backend.
 
 Withdrawal persists a target health-processing fence before changing consent. The original grant timestamp/version remain; a stable backend request instant becomes withdrawn_at and the immutable withdrawal event instant. HealthDataDeletionJob/DataProtectionEvent track cleanup. Five health scopes, including UserCalendarAction, must reread empty before the UI confirms active cleanup. A failed cleanup never grants consent back. Account/profile and approved daily/consent history remain; no health calculation is reconstructed from them. Regrant is the existing explicit Calendar add+consent only after completed verified cleanup and no residuals; old data never returns. An unfinished onboarding account can skip cycle without a new grant and later use Calendar.
 
@@ -55,9 +63,9 @@ Each Continue starts at the first bounded page of every scope, not blindly after
 
 ## Implemented You flow — 022
 
-Completed owners open `/you` from the top-right profile icon. Bottom navigation remains Home · Calendar · Pattern. Incomplete onboarding keeps its server-derived route and the current verified-admin menu; it does not enter You. The same fresh native admin role controls the You Admin Panel link and backend access; checking/stale/denied role is insufficient.
+Completed owners open `/you` from the top-right profile icon. Bottom navigation remains Home · Calendar · Pattern. Incomplete onboarding keeps its server-derived route without the former header menu; it does not enter You (direct admin routes retain their verified-role guards). The same fresh native admin role controls the You Admin Panel link and backend access; checking/stale/denied role is insufficient.
 
-My Profile edits name (trimmed, optional, ≤50 Unicode characters), required adult date, optional genuine HH:mm and the shared country/region/settlement picker. Saved place is displayed without reconstructing hierarchy. Unchanged ID preserves its validated five fields despite a provider outage; a changed ID resolves again on the server; Clear sends NULL for all five. Sun is recomputed by the existing birth-date-only server authority, shown read-only and updated only with verified save. Blank time stays NULL. Cancel discards an unsent draft; validation/failure preserves it, with field focus.
+My Profile edits name (trimmed, optional, ≤50 Unicode characters), required adult date, optional genuine HH:mm and the shared single-search A/P birthplace combobox (035). Saved place is displayed without reconstructing hierarchy. Unchanged ID preserves its validated five fields despite a provider outage; a changed ID resolves again on the server; Clear sends NULL for all five. Sun is recomputed by the existing birth-date-only server authority, shown read-only and updated only with verified save. Blank time stays NULL. Cancel discards an unsent draft; validation/failure preserves it, with field focus.
 
 Profile and preferences save separately, with section-specific verified success. Only current owner rows are updated; no onboarding initialize/reset, consent/event/cycle or daily/Pattern writes. Language and notification opt-in persist in existing UserPreferences; notification_time stays 06:00, automatic device IANA falls back to last valid saved zone. 029 adds the independently tested scheduler/delivery core and honest device-status UI; production bindings remain blocked and no permission bridge is invented. Header language changes also use this preference boundary and retain the previous language until verification; no new daily generation. Saved language propagates through Home/Calendar/Pattern/You/menu navigation. Existing daily bilingual snapshots and category history remain unchanged; Home reads the updated name; a verified NULL name never falls back to an older hydrated name.
 
@@ -139,13 +147,13 @@ Valid cycle data and explicit consent persist health-consent-v1.0 to current con
 
 FIRST_SHINKA_ENGINE_REQUIRED remains YES. UC-06 generation, imports, engines, Calendar, Pattern, scheduler, push and withdrawal are outside 008. Package: CLOSED_PENDING_BASE44_VERIFICATION.
 
-## ON-04 birthplace selection — explicit current product decision
+## Historical ON-04 cascade decision — superseded by 035
 
 Country is chosen by the user, then available administrative levels narrow the settlement list. TR targets country → province → district → settlement; other countries can skip absent levels or have none. Any explicit valid populated-place selection completes birthplace without forcing deeper regions. Country/administrative selection alone never becomes a birthplace or supplies center coordinates. Lists are authenticated and read-only; only Continue invokes existing saveProfile with a selected numeric ID resolved again on the backend.
 
 Changing a parent clears its descendants and final selection. Partial paths require completion or explicit clearing. Empty and service-error states permit Clear / Leave empty for now, which saves all five optional fields as NULL. Existing saved birthplace survives initial display, missing hierarchy and beginning an edit until the user actually replaces/clears it. DOB/time/name, Sun, cycle/consent and durable onboarding routing are unchanged. User-reported Preview search success is historical connection evidence; new hosted selection → save → readback remains required.
 
-## Maintenance preservation
+## Historical maintenance preservation — 009 cascade, superseded by 035
 
 Package 009 preserves ON-04 country→region→settlement selection, explicit Clear, optional NULL behavior, TR/EN copy, backend selected-ID resolution and durable onboarding decisions. Short-lived cached public lists can satisfy repeated selections; expiry or explicit Retry reads the provider again. No inferred selection, new product flow, content import or successful First Shinka state is introduced. See [mobile validation](reports/SHINKA_ANDROID_IOS_COMPATIBILITY.md) for browser versus device evidence.
 

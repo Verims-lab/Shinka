@@ -1,0 +1,835 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 test:foundation
+> node scripts/runFoundationTests.mjs
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/HealthCenter.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/BuildEnvironment.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/features/onboarding/OnboardingScreen.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/probes/AuthShellProbe.jsx, src/foundation/tests/OnboardingTestScreen.jsx, src/foundation/tests/onboardingAuditUiTests.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/You.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/notificationUiTests.js, src/foundation/tests/youUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/Pattern.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/patternUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/TestTools.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/adminTestToolsUiTests.js, src/foundation/tests/testToolsPacingTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/Calendar.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/calendarUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/probes/AuthShellProbe.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/authProbeTests.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/tests/foundationTests.js is dynamically imported by src/foundation/tests/localRunnerTests.js but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/health/catalog.js is dynamically imported by src/foundation/health/cases/h16.js, src/foundation/tests/closure018Tests.js, src/foundation/tests/closure020Tests.js, src/foundation/tests/foundationTests.js, src/foundation/tests/sessionStabilityTests.js but also statically imported by scripts/testHarness/healthTiming.js, scripts/testHarness/main.jsx, src/foundation/health/report.js, src/foundation/health/runner.js, src/pages/internal/HealthCenter.jsx, dynamic import will not move module into another chunk.
+
+{
+  "diagnosticOnly": true,
+  "mobile": [
+    {
+      "scenario": "touch-viewport-320x568",
+      "width": 320,
+      "scrollWidth": 320,
+      "controls": [
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "birth_date",
+          "height": 32
+        },
+        {
+          "id": "birth_time",
+          "height": 32
+        },
+        {
+          "id": "birthplace",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 52
+        }
+      ],
+      "date": "1990-01-01",
+      "time": "08:30",
+      "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+      "passed": false
+    },
+    {
+      "scenario": "touch-viewport-360x740",
+      "width": 360,
+      "scrollWidth": 360,
+      "controls": [
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "birth_date",
+          "height": 32
+        },
+        {
+          "id": "birth_time",
+          "height": 32
+        },
+        {
+          "id": "birthplace",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 52
+        }
+      ],
+      "date": "1990-01-01",
+      "time": "08:30",
+      "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+      "passed": false
+    },
+    {
+      "scenario": "touch-viewport-390x844",
+      "width": 390,
+      "scrollWidth": 390,
+      "controls": [
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "birth_date",
+          "height": 32
+        },
+        {
+          "id": "birth_time",
+          "height": 32
+        },
+        {
+          "id": "birthplace",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 52
+        }
+      ],
+      "date": "1990-01-01",
+      "time": "08:30",
+      "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+      "passed": false
+    },
+    {
+      "scenario": "touch-viewport-430x900",
+      "width": 430,
+      "scrollWidth": 430,
+      "controls": [
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "birth_date",
+          "height": 32
+        },
+        {
+          "id": "birth_time",
+          "height": 32
+        },
+        {
+          "id": "birthplace",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 52
+        }
+      ],
+      "date": "1990-01-01",
+      "time": "08:30",
+      "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+      "passed": false
+    },
+    {
+      "scenario": "touch-viewport-844x390",
+      "width": 844,
+      "scrollWidth": 844,
+      "controls": [
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "birth_date",
+          "height": 32
+        },
+        {
+          "id": "birth_time",
+          "height": 32
+        },
+        {
+          "id": "birthplace",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 44
+        },
+        {
+          "id": "",
+          "height": 52
+        }
+      ],
+      "date": "1990-01-01",
+      "time": "08:30",
+      "viewport": "width=device-width,initial-scale=1,viewport-fit=cover",
+      "passed": false
+    },
+    {
+      "scenario": "back-forward-reload-session-routing",
+      "passed": true
+    },
+    {
+      "scenario": "profile-tr-320x568-200percent",
+      "width": 320,
+      "scrollWidth": 320,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "cycle-tr-320x568-200percent",
+      "width": 320,
+      "scrollWidth": 320,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "home-tr-320x568-200percent",
+      "width": 320,
+      "scrollWidth": 320,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-you-keyboard-focus-tr-320",
+      "passed": true
+    },
+    {
+      "scenario": "calendar-tr-320x568-200percent",
+      "width": 320,
+      "scrollWidth": 320,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "modal-focus-tr-320",
+      "focusInside": true,
+      "width": 250,
+      "scrollWidth": 248,
+      "restored": true,
+      "passed": true
+    },
+    {
+      "scenario": "admin-tr-320x568-200percent",
+      "width": 320,
+      "scrollWidth": 320,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "test-tools-tr-320x568-200percent",
+      "width": 320,
+      "scrollWidth": 320,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-tr-360x740-200percent",
+      "width": 360,
+      "scrollWidth": 360,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "cycle-tr-360x740-200percent",
+      "width": 360,
+      "scrollWidth": 360,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "home-tr-360x740-200percent",
+      "width": 360,
+      "scrollWidth": 360,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-you-keyboard-focus-tr-360",
+      "passed": true
+    },
+    {
+      "scenario": "calendar-tr-360x740-200percent",
+      "width": 360,
+      "scrollWidth": 360,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "modal-focus-tr-360",
+      "focusInside": true,
+      "width": 290,
+      "scrollWidth": 288,
+      "restored": true,
+      "passed": true
+    },
+    {
+      "scenario": "admin-tr-360x740-200percent",
+      "width": 360,
+      "scrollWidth": 360,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "test-tools-tr-360x740-200percent",
+      "width": 360,
+      "scrollWidth": 360,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-tr-390x844-200percent",
+      "width": 390,
+      "scrollWidth": 390,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "cycle-tr-390x844-200percent",
+      "width": 390,
+      "scrollWidth": 390,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "home-tr-390x844-200percent",
+      "width": 390,
+      "scrollWidth": 390,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-you-keyboard-focus-tr-390",
+      "passed": true
+    },
+    {
+      "scenario": "calendar-tr-390x844-200percent",
+      "width": 390,
+      "scrollWidth": 390,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "modal-focus-tr-390",
+      "focusInside": true,
+      "width": 320,
+      "scrollWidth": 318,
+      "restored": true,
+      "passed": true
+    },
+    {
+      "scenario": "admin-tr-390x844-200percent",
+      "width": 390,
+      "scrollWidth": 390,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "test-tools-tr-390x844-200percent",
+      "width": 390,
+      "scrollWidth": 390,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-tr-430x900-200percent",
+      "width": 430,
+      "scrollWidth": 430,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "cycle-tr-430x900-200percent",
+      "width": 430,
+      "scrollWidth": 430,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "home-tr-430x900-200percent",
+      "width": 430,
+      "scrollWidth": 430,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-you-keyboard-focus-tr-430",
+      "passed": true
+    },
+    {
+      "scenario": "calendar-tr-430x900-200percent",
+      "width": 430,
+      "scrollWidth": 430,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "modal-focus-tr-430",
+      "focusInside": true,
+      "width": 360,
+      "scrollWidth": 358,
+      "restored": true,
+      "passed": true
+    },
+    {
+      "scenario": "admin-tr-430x900-200percent",
+      "width": 430,
+      "scrollWidth": 430,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "test-tools-tr-430x900-200percent",
+      "width": 430,
+      "scrollWidth": 430,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-tr-844x390-200percent",
+      "width": 844,
+      "scrollWidth": 844,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "cycle-tr-844x390-200percent",
+      "width": 844,
+      "scrollWidth": 844,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "home-tr-844x390-200percent",
+      "width": 844,
+      "scrollWidth": 844,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-you-keyboard-focus-tr-844",
+      "passed": true
+    },
+    {
+      "scenario": "calendar-tr-844x390-200percent",
+      "width": 844,
+      "scrollWidth": 844,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "modal-focus-tr-844",
+      "focusInside": true,
+      "width": 440,
+      "scrollWidth": 438,
+      "restored": true,
+      "passed": true
+    },
+    {
+      "scenario": "admin-tr-844x390-200percent",
+      "width": 844,
+      "scrollWidth": 844,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "test-tools-tr-844x390-200percent",
+      "width": 844,
+      "scrollWidth": 844,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-en-320x568-200percent",
+      "width": 320,
+      "scrollWidth": 320,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "cycle-en-320x568-200percent",
+      "width": 320,
+      "scrollWidth": 320,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "home-en-320x568-200percent",
+      "width": 320,
+      "scrollWidth": 320,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-you-keyboard-focus-en-320",
+      "passed": true
+    },
+    {
+      "scenario": "calendar-en-320x568-200percent",
+      "width": 320,
+      "scrollWidth": 320,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "modal-focus-en-320",
+      "focusInside": true,
+      "width": 250,
+      "scrollWidth": 248,
+      "restored": true,
+      "passed": true
+    },
+    {
+      "scenario": "admin-en-320x568-200percent",
+      "width": 320,
+      "scrollWidth": 320,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "test-tools-en-320x568-200percent",
+      "width": 320,
+      "scrollWidth": 320,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-en-360x740-200percent",
+      "width": 360,
+      "scrollWidth": 360,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "cycle-en-360x740-200percent",
+      "width": 360,
+      "scrollWidth": 360,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "home-en-360x740-200percent",
+      "width": 360,
+      "scrollWidth": 360,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-you-keyboard-focus-en-360",
+      "passed": true
+    },
+    {
+      "scenario": "calendar-en-360x740-200percent",
+      "width": 360,
+      "scrollWidth": 360,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "modal-focus-en-360",
+      "focusInside": true,
+      "width": 290,
+      "scrollWidth": 288,
+      "restored": true,
+      "passed": true
+    },
+    {
+      "scenario": "admin-en-360x740-200percent",
+      "width": 360,
+      "scrollWidth": 360,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "test-tools-en-360x740-200percent",
+      "width": 360,
+      "scrollWidth": 360,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-en-390x844-200percent",
+      "width": 390,
+      "scrollWidth": 390,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "cycle-en-390x844-200percent",
+      "width": 390,
+      "scrollWidth": 390,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "home-en-390x844-200percent",
+      "width": 390,
+      "scrollWidth": 390,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-you-keyboard-focus-en-390",
+      "passed": true
+    },
+    {
+      "scenario": "calendar-en-390x844-200percent",
+      "width": 390,
+      "scrollWidth": 390,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "modal-focus-en-390",
+      "focusInside": true,
+      "width": 320,
+      "scrollWidth": 318,
+      "restored": true,
+      "passed": true
+    },
+    {
+      "scenario": "admin-en-390x844-200percent",
+      "width": 390,
+      "scrollWidth": 390,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "test-tools-en-390x844-200percent",
+      "width": 390,
+      "scrollWidth": 390,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-en-430x900-200percent",
+      "width": 430,
+      "scrollWidth": 430,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "cycle-en-430x900-200percent",
+      "width": 430,
+      "scrollWidth": 430,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "home-en-430x900-200percent",
+      "width": 430,
+      "scrollWidth": 430,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-you-keyboard-focus-en-430",
+      "passed": true
+    },
+    {
+      "scenario": "calendar-en-430x900-200percent",
+      "width": 430,
+      "scrollWidth": 430,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "modal-focus-en-430",
+      "focusInside": true,
+      "width": 360,
+      "scrollWidth": 358,
+      "restored": true,
+      "passed": true
+    },
+    {
+      "scenario": "admin-en-430x900-200percent",
+      "width": 430,
+      "scrollWidth": 430,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "test-tools-en-430x900-200percent",
+      "width": 430,
+      "scrollWidth": 430,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-en-844x390-200percent",
+      "width": 844,
+      "scrollWidth": 844,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "cycle-en-844x390-200percent",
+      "width": 844,
+      "scrollWidth": 844,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "home-en-844x390-200percent",
+      "width": 844,
+      "scrollWidth": 844,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "profile-you-keyboard-focus-en-844",
+      "passed": true
+    },
+    {
+      "scenario": "calendar-en-844x390-200percent",
+      "width": 844,
+      "scrollWidth": 844,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "modal-focus-en-844",
+      "focusInside": true,
+      "width": 440,
+      "scrollWidth": 438,
+      "restored": true,
+      "passed": true
+    },
+    {
+      "scenario": "admin-en-844x390-200percent",
+      "width": 844,
+      "scrollWidth": 844,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "test-tools-en-844x390-200percent",
+      "width": 844,
+      "scrollWidth": 844,
+      "tightText": [],
+      "small": [],
+      "passed": true
+    },
+    {
+      "scenario": "javascript-errors",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "pageErrors": []
+}

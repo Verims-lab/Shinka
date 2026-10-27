@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-030",
-    "package_name": "Notification admin admission and reported push contract",
-    "package_type": "FIX",
-    "created_at": "2026-10-22T14:16:35.354495+00:00",
-    "health_catalog_version": "HC-030.0",
-    "short_summary": "Shared fresh-native-admin manual admission and reported push input adapter; unknown results never become SENT. Chromium/WebKit 617/617 each, plus 8 server and 9 actual-entry checks per command. Real sends/schedules remain disabled.",
-    "full_health_status": "PLATFORM_BINDING_BLOCKED",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "H14 existing assertions/descriptions updated; no case removed. Health 136 PASS/13 hosted-prerequisite BLOCKED, 175 total cases. Quality/dependency/history/performance gates pass; audit zero. Original failures preserved. Source/contract provenance in existing SHINKA_NOTIFICATIONS_029.md. 12 backend findings OPEN / USER-DEFERRED; H14-901/H16-901 external. Active 026–030; no live actions/main/publish."
-  },
-  {
     "build_marker": "Buildmarker-031",
     "package_name": "Notification admission read reduction",
     "package_type": "FIX",
@@ -69,5 +55,19 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "notes": "LOCAL_VERIFIED / USER_PUBLISH_AND_HOSTED_ACCEPTANCE_PENDING. Base origin/main 041b40b; resumed from clean Test 1f061ec. Original TLS/NOT_RUN and all new failures preserved. Corrected fixture types/React commit waits, CSS layer serialization, explicit anonymous 401 and transport 503 expectations, controlled passive-refresh timing. Strict guards and NC06/NC07 unchanged. Health add 0/update 9/delete 0; local in-app 136 PASS/13 prerequisite BLOCKED, no FAIL. Official docs: 100/500/50 limits, optional action/link, Home default; user-relayed support: field names/silent discard. Wire types/nullability/Unicode/native User/response/workflow/device contracts open, adapter UNKNOWN, entry disabled, H14-901/H16-901 open. Full Health/native/push/delete/resume NOT_RUN; 12 backend findings OPEN/USER-DEFERRED; prior two live targets PARTIAL not reread. See SHINKA_STABILIZATION_034.md and resumed-20261026 evidence."
+  },
+  {
+    "build_marker": "Buildmarker-035",
+    "package_name": "Onboarding functional audit and GeoNames search closure",
+    "package_type": "FIX",
+    "created_at": "2026-10-26T16:42:00Z",
+    "health_catalog_version": "HC-035.0",
+    "short_summary": "Onboarding order/back, verified readback, completed-owner and stale-account guards; A/P combobox retry/focus/44px fixes. Chromium/WebKit 657/657 each; hosted/device acceptance pending.",
+    "full_health_status": "NOT_RUN",
+    "notes": "LOCAL_VERIFIED browser evidence; no live Full Health/provider/user/push or main publish. Health 0 add / 7 update / 0 delete, 13 hosted prerequisites remain BLOCKED; old failure evidence retained.",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true
   }
 ];

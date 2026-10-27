@@ -1,0 +1,19 @@
+{
+  "name": "ui-transition-debug",
+  "command": [
+    "env",
+    "FOUNDATION_TEST_IDS=OU01,YU02",
+    "npm",
+    "run",
+    "test:foundation"
+  ],
+  "started_at": "2026-10-26T16:36:19.873363+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "5dd2457980f0b95447df63f01f393f7aa87959c1b688075863a3702940fdb498",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:36:29.166032+00:00",
+  "exit_code": 1,
+  "log": "ui-transition-debug.txt",
+  "log_sha256": "a9362e2d585d35379ec9b434ad664f93b26af3b784d7c6893b338ca4a49f5346",
+  "original_log": "ui-transition-debug.log"
+}

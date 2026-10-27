@@ -1,0 +1,17 @@
+{
+  "name": "baseline-types",
+  "command": [
+    "npm",
+    "run",
+    "typecheck"
+  ],
+  "started_at": "2026-10-26T16:26:05.973752+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T16:26:11.327469+00:00",
+  "exit_code": 2,
+  "log": "baseline-types.txt",
+  "log_sha256": "24fc2c95e7b4bd193d5370f00cdac880db0ce3875401061b932f663f4a4c576c",
+  "original_log": "baseline-types.log"
+}

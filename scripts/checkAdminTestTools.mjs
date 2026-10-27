@@ -9,10 +9,11 @@ export async function checkAdminTestTools(page, origin, directory) {
   if (directory) await mkdir(directory, { recursive: true });
   for (const width of [360, 1280]) for (const language of ['tr', 'en']) {
     await page.setViewportSize({ width, height: 900 });
-    await page.goto(`${origin}/?appFixture=1&sdkSession=admin&language=${language}&onboardingState=AUTHENTICATED_CYCLE_STEP`);
+    await page.goto(`${origin}/?appFixture=1&sdkSession=admin&language=${language}&onboardingState=ACTIVE_EXISTING_USER`);
     await page.waitForSelector('[data-profile-trigger]:not(:disabled)');
     await page.locator('[data-profile-trigger]').click();
-    await page.getByRole('menuitem', { name: 'Admin Panel' }).click();
+    await page.waitForSelector('[data-you-root]');
+    await page.getByRole('link', { name: 'Admin Panel' }).click();
     await page.locator('[data-admin-panel] a[href="/internal/test-tools"]').click();
     await page.waitForSelector('[data-test-tools]');
     assert(await page.locator('[data-destructive="true"]').isDisabled());

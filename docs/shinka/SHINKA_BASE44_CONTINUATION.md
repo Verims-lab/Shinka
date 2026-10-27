@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** HOSTED NATIVE READINESS VERIFIED — mutation acceptance remains separate
-**Current BuildMarker:** Buildmarker-034
+**Current BuildMarker:** Buildmarker-035
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+## Current delivery — 035 onboarding audit
+
+Sync the changed onboarding handler/shared persistence, GeoNames search/diagnostic modules and matching frontend together through the owner’s normal Test→main/Base44 workflow. No schema, secret, dependency or notification activation change. Old list actions/selector modules are retired; A/P ID re-resolution remains server-owned. No agent-run live Health/provider probe/user operation is authorized. Post-publish owner acceptance covers OAuth/callback/reopen, ON-04 A/P search/save/readback, ON-05 back/partial retry/Skip, preparation/Home reuse and current Full Health save/list/open. Physical devices remain separate. [035 audit, execution and evidence](reports/SHINKA_ONBOARDING_AUDIT_035.md).
 
 ## 034 — local verification complete; owner publication and hosted acceptance pending
 

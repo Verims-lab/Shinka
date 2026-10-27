@@ -1,0 +1,19 @@
+{
+  "name": "chromium-third",
+  "command": [
+    "env",
+    "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-035-audit/chromium-third-audit",
+    "npm",
+    "run",
+    "test:foundation"
+  ],
+  "started_at": "2026-10-26T16:58:03.593063+00:00",
+  "source_head": "f52b1c3a3e7d0cf783063db24dc5bf14c5aa70ac",
+  "source_diff_sha256": "54e7360cfb3e6df212f1820ad8cea1c133434e6dbb03ebb342dc8a46a5eb316b",
+  "lock_sha256": "085eb9187c1c58856bef5b59b009eb6b4304a3cf752f10eb9d3710c782024eab",
+  "ended_at": "2026-10-26T17:00:07.775024+00:00",
+  "exit_code": 1,
+  "log": "chromium-third.txt",
+  "log_sha256": "aa0813415cb8250cb5c59cd674c5e3db45535570516403f89d39d8b1d6cb74b8",
+  "original_log": "chromium-third.log"
+}

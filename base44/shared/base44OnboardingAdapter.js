@@ -3,7 +3,7 @@ import { assertOwner, assertActiveAccount, assertProtectedRecordMutationAllowed,
 import { DOMAIN_SCHEMAS, physicalName } from './domainSchemas.js';
 import { validateDomainRecord, normalizeDomainRead } from './domainValidation.js';
 import { validateBirthDate, optionalName, optionalBirthTime, resolveTimezone, serverLocalDate } from './onboardingValidation.js';
-import { isOnboardingProfileReady } from './onboardingRoute.js';
+import { verifiedDailyRecord } from './dailyRecord.js';
 import { HEALTH_CONSENT_VERSION } from './onboardingDependencies.js';
 import { createOnboardingCyclePersistence } from './onboardingCyclePersistence.js';
 import { onboardingCycleGate } from './onboardingCycleGate.js';
@@ -32,6 +32,12 @@ export function createBase44OnboardingAdapter(client,principal,{now=()=>new Date
     const profile=await read('user_profile');
     if(profile||!allowAbsent)assertActiveAccount(owner,profile);
     return profile;
+  };
+  const unfinished=async()=>{
+    if(allowReadyProfile)return; // Only the existing guarded reset adapter opts in.
+    const daily=await store.UserDailyMessage.filter({user_id:owner},'-created_date',1);
+    if(!Array.isArray(daily))fail('ONBOARDING_READ_FAILED',503);
+    if(daily.length){assertOwner(principal,daily[0]);verifiedDailyRecord(daily[0],owner);fail('ONBOARDING_ALREADY_SAVED');}
   };
   const record=(entity,input)=>{
     if(input.user_id!==undefined&&input.user_id!==owner)fail('FORGED_OWNER',403);
@@ -77,7 +83,7 @@ export function createBase44OnboardingAdapter(client,principal,{now=()=>new Date
     if(before&&identical('user_profile',before,expected))return before;
     // ON-05 → ON-04 back: a ready profile may be corrected only until the first daily
     // message exists (onboarding not finished). After that, onboarding is not the You editing endpoint.
-    if(!allowReadyProfile&&isOnboardingProfileReady(before,preferences,today)&&await read('user_daily_message'))fail('PROFILE_ALREADY_READY');
+    await unfinished();
     if(before){
       assertProtectedRecordMutationAllowed('user_profile','update',S.PROFILE);
       const patch={...expected};delete patch.account_status;
@@ -95,6 +101,7 @@ export function createBase44OnboardingAdapter(client,principal,{now=()=>new Date
   const healthAllowed=async()=>{
     if(!consentVersion)fail('HEALTH_CONSENT_SOURCE_REQUIRED',503);
     await active();
+    await unfinished();
     if(await read('health_data_deletion_job',{job_status:{$ne:'COMPLETED'}}))fail('HEALTH_DELETION_PENDING');
   };
   const insert=async(entity,expected,authority)=>{
