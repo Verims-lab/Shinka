@@ -2,11 +2,19 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-037
+**Current BuildMarker:** Buildmarker-038
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
-**Scope:** Health catalog HC-036.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-038.0; repository, synthetic and external evidence separated.
+
+## HC-038.0 — Calendar recovery and Pattern refresh/presentation
+
+Add 0 / update 7 / delete 0: H08-004 (RC01/RC02 saved native intents/readback/counts, retained NA08–13 and CF03); H08-007 (RC03/RC04 hung read, task ownership, controlled service deadline plus MI01–03); H12-027 (RC05 withdrawn/lifecycle privacy plus existing cases); H10-001 (PT07–09 strict future FULL/partial/IANA, original theme math retained); H13-015 (CU06/CU07 real native recovery UI); H13-017 (PU01–07 count-free order, two lunar fields, real hook 120s/300s refresh and partial coverage); H15-004 (PF01/PF02 clock/event coalescing, section retention and account isolation plus prior retry cases).
+
+Registry/backend plan remain **175 total / 149 in-app / 12 local / 14 external**. No removed IDs or weaker validation. Old five-node/count display assertions are replaced by the explicit 038 user presentation decision; historical reports/failures stay intact. Normal in-app probes use isolated SDK fixtures and controlled timers, never live period writes. Actual component/route geometry remains local-only. Full final browser results, required gates and hosted-prerequisite blocks are recorded in [038 single report](reports/SHINKA_CALENDAR_PATTERN_038.md). User runs published Full Health; no local or browser result substitutes for hosted/device evidence.
+
+038 final: Chromium/WebKit each **683/683**, 683 unique test IDs; local in-app Health **136 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED**, save/retry/list/open passed. All required gates pass. Intermediate duplicate helper IDs were corrected without renaming existing Privacy IDs; canonical runner rejects duplicates and CL10 verifies rejection. H12-037 retains its transport scope while PT14 now uses a controlled deadline. No prior failure is hidden.
 
 ## HC-037.0 — date, name, theme and Home correction coverage
 

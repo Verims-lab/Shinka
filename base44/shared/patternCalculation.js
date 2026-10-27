@@ -43,21 +43,16 @@ export function calculatePatternSummary({ rows, owner, timezone, instant, firstD
   validateDomainRecord('user_pattern_summary', summary);
   return summary;
 }
-export function formatPatternInstant(instant, timezone) {
-  if (!validTimezone(timezone) || (!/(?:Z|[+-]\d{2}:\d{2})$/.test(instant) || !Number.isFinite(Date.parse(instant)))) fail('PATTERN_DATA_INVALID');
-  const parts = new Intl.DateTimeFormat('en-GB', { timeZone: timezone, day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date(instant));
-  const part = key => parts.find(p => p.type === key).value;
-  return `${part('day')}.${part('month')} ${part('hour')}:${part('minute')}`;
-}
-export function calculateLunarTimeline(rows, instant, timezone) {
-  const sorted = validateMoonIntervals(rows), time = instant.getTime();
-  const startIndex = sorted.findLastIndex(row => row.phase_code === 'NEW' && Date.parse(row.start_at_utc) <= time);
-  const cycle = sorted.slice(startIndex, startIndex + 4);
-  if (startIndex < 0 || cycle.length !== 4 || time >= Date.parse(cycle[3].end_at_utc)) fail('MOON_LOOKUP_COVERAGE_REQUIRED');
-  const start = Date.parse(cycle[0].start_at_utc), end = Date.parse(cycle[3].end_at_utc);
-  const active = cycle.findIndex(row => Date.parse(row.start_at_utc) <= time && time < Date.parse(row.end_at_utc));
-  return {
-    timezone, observed_at: instant.toISOString(), today_position: (time - start) / (end - start), active_index: active,
-    nodes: [...cycle, { phase_code: 'NEW', start_at_utc: cycle[3].end_at_utc }].map(row => ({ phase_code: row.phase_code, instant: row.start_at_utc, position: (Date.parse(row.start_at_utc) - start) / (end - start), label: formatPatternInstant(row.start_at_utc, timezone) })),
-  };
+// Half-open lookup intervals remain authoritative. "Next" is strictly after
+// server now, including at the exact FULL start (then the next lunation wins).
+export function calculateLunarSummary(rows, instant, timezone) {
+  if (!validTimezone(timezone) || !Number.isFinite(instant.getTime())) fail('PATTERN_DATA_INVALID');
+  const sorted = Array.isArray(rows) && !rows.length ? [] : validateMoonIntervals(rows);
+  const time = instant.getTime();
+  const current = sorted.find(row => Date.parse(row.start_at_utc) <= time && time < Date.parse(row.end_at_utc));
+  // Without coverage at now, we cannot prove that a later FULL is the first one.
+  const next = current && sorted.find(row => row.phase_code === 'FULL' && Date.parse(row.start_at_utc) > time);
+  const interval = row => row ? { phase_code: row.phase_code, start_at_utc: row.start_at_utc, end_at_utc: row.end_at_utc } : null;
+  return { timezone, observed_at: instant.toISOString(), current: interval(current),
+    next_full: next ? { ...interval(next), date: serverLocalDate(new Date(next.start_at_utc), timezone) } : null };
 }

@@ -40,15 +40,15 @@ export const NATIVE_TESTS = [
  ['NA09','Calendar stale revision and changed action fingerprint do not silently overwrite',async()=>{
   const f=nativeFixture(), body=await request(f,'add',{date:'2026-10-01'}); await f.cal(body); await rejects(()=>f.cal({...body,date:'2026-10-02'}),'ACTION_CONFLICT'); await rejects(()=>f.cal({...body,action_id:crypto.randomUUID(),date:'2026-09-01'}),'CALENDAR_STATE_CHANGED'); check(f.tables.UserPeriodRecord.length===1);
  }],
- ['NA10','Lost period create response resumes same intent after reload/new request ID',async()=>{
-  const f=nativeFixture(), body=await request(f,'add',{date:'2026-10-01'}); f.once('after',c=>c.name==='UserPeriodRecord'&&c.method==='create'); await rejects(()=>f.cal(body)); check((await f.cal()).pendingReview); await f.cal({...body,action_id:crypto.randomUUID()}); check(f.tables.UserPeriodRecord.length===1&&f.tables.UserCalendarAction.length===1&&f.tables.UserCalendarAction[0].status==='APPLIED');
+ ['NA10','Lost period create response resumes same intent after reload with saved action ID',async()=>{
+  const f=nativeFixture(), body=await request(f,'add',{date:'2026-10-01'}); f.once('after',c=>c.name==='UserPeriodRecord'&&c.method==='create'); await rejects(()=>f.cal(body)); const v=await f.cal();check(v.pendingReview&&v.recovery.action_id===body.action_id); await f.cal({action:'resume',action_id:v.recovery.action_id,revision:v.recovery.revision}); check(f.tables.UserPeriodRecord.length===1&&f.tables.UserCalendarAction.length===1&&f.tables.UserCalendarAction[0].status==='APPLIED');
  }],
  ['NA11','Lost edit/delete acknowledgements recover without repeating actual mutation',async()=>{
   for(const action of ['edit','delete']){const f=nativeFixture();await add(f);const body=await request(f,action,{period_id:f.tables.UserPeriodRecord[0].id,...(action==='edit'?{date:'2026-10-02'}:{})});f.once('after',c=>c.name==='UserPeriodRecord'&&c.method===(action==='edit'?'updateMany':'deleteMany'));await rejects(()=>f.cal(body));await f.cal(body);check(f.tables.UserPeriodRecord.length===(action==='edit'?1:0));}
  }],
  ['NA12','Two simultaneous distinct date intents conflict visibly and retain intent records',async()=>{
   const f=nativeFixture(), a=await request(f,'add',{date:'2026-10-01'}),wait=barrier(2);f.state.after=async c=>{if(c.name==='UserCalendarAction'&&c.method==='create')await wait();};
-  const values=await Promise.allSettled([f.cal(a),f.cal({...a,action_id:crypto.randomUUID(),date:'2026-09-01'})]);check(values.every(r=>r.status==='rejected'));check(f.tables.UserCalendarAction.length===2&&!f.tables.UserPeriodRecord.length); f.state.after=null;const view=await f.cal();check(view.pendingReview&&view.predictedDays.length===0);await f.cal({action:'acknowledge',action_id:crypto.randomUUID(),revision:view.revision});check(!(await f.cal()).pendingReview);
+  const values=await Promise.allSettled([f.cal(a),f.cal({...a,action_id:crypto.randomUUID(),date:'2026-09-01'})]);check(values.every(r=>r.status==='rejected'));check(f.tables.UserCalendarAction.length===2&&!f.tables.UserPeriodRecord.length); f.state.after=null;const view=await f.cal();check(view.pendingReview&&view.predictedDays.length===0);const before=JSON.stringify(f.tables);await rejects(()=>f.cal({action:'acknowledge',action_id:crypto.randomUUID(),revision:view.revision}),'INVALID_REQUEST');check((await f.cal()).pendingReview&&JSON.stringify(f.tables)===before&&!view.recovery);
  }],
  ['NA13','Readback failure leaves intent pending; retry completes without false rollback',async()=>{
   const f=nativeFixture(),body=await request(f,'add',{date:'2026-10-01'});f.once('before',c=>c.name==='UserCalendarAction'&&c.method==='update');await rejects(()=>f.cal(body));check(f.tables.UserPeriodRecord.length===1&&f.tables.UserCalendarAction[0].status==='PENDING');await f.cal(body);check(f.tables.UserCalendarAction[0].status==='APPLIED');
@@ -104,9 +104,12 @@ export const NATIVE_TESTS = [
  ['NA27','Reset pending step rejects changed input without replacing first saved input',async()=>{
   const f=nativeFixture();await f.execute(await f.preview());const body={action:'saveProfile',birth_date:'1990-01-01',display_name:'First',birth_time:null,birthplace_geonames_id:null};f.once('before',c=>c.name==='AdminTestOperation'&&c.method==='update'&&c.args[1].stage==='CYCLE');await rejects(()=>onboardingOperation(f.client(),body));await rejects(()=>onboardingOperation(f.client(),{...body,display_name:'Second'}),'TEST_RESET_STEP_CONFLICT');check(f.tables.UserProfile[0].display_name==='First');
  }],
- ['NA28','Calendar reconciliation cannot silently clear newly arriving pending intent',async()=>{
-  const f=nativeFixture(), body=await request(f,'add',{date:'2026-10-01'});f.once('before',c=>c.name==='UserPeriodRecord'&&c.method==='create');await rejects(()=>f.cal(body));const view=await f.cal();f.state.after=async c=>{if(c.name==='UserCalendarAction'&&c.method==='update'){f.state.after=null;f.tables.UserCalendarAction.push({...f.tables.UserCalendarAction[0],id:'late-intent',action_id:crypto.randomUUID(),status:'PENDING'});}};
-  await rejects(()=>f.cal({action:'acknowledge',revision:view.revision,action_id:crypto.randomUUID()}),'CALENDAR_ACTION_CONFLICT');check(!f.tables.UserPeriodRecord.length);
+ ['NA28','New competing intent during resume is retained and blocks success without bulk clear',async()=>{
+  const f=nativeFixture(),body=await request(f,'add',{date:'2026-10-01'});f.once('before',c=>c.name==='UserPeriodRecord'&&c.method==='create');await rejects(()=>f.cal(body));
+  const view=await f.cal(),saved=f.tables.UserCalendarAction[0];
+  f.tables.UserCalendarAction.push({...saved,id:'late-intent',action_id:crypto.randomUUID(),fingerprint:'other-intent',desired_date:'2026-09-01'});
+  await rejects(()=>f.cal({action:'resume',revision:view.recovery.revision,action_id:view.recovery.action_id}),'CALENDAR_ACTION_CONFLICT');
+  check(!f.tables.UserPeriodRecord.length&&f.tables.UserCalendarAction.length===2&&f.tables.UserCalendarAction.every(r=>r.status==='PENDING'));
  }],
  ['NA29','Calendar owner fields and unsupported affected-count results fail closed',async()=>{
   const f=nativeFixture();await rejects(()=>f.cal({action:'read',user_id:'ownerB'}),'FORGED_OWNER');await add(f);const body=await request(f,'edit',{period_id:f.tables.UserPeriodRecord[0].id,date:'2026-10-02'});f.state.before=async c=>{if(c.name==='UserPeriodRecord'&&c.method==='updateMany'){f.state.before=null;f.tables.UserPeriodRecord[0].period_start_date='2026-10-03';}};await rejects(()=>f.cal(body),'CALENDAR_WRITE_UNCONFIRMED');check(f.tables.UserPeriodRecord[0].period_start_date==='2026-10-03');

@@ -2,11 +2,15 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-037
+**Current BuildMarker:** Buildmarker-038
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+## 038 — four Calendar/Pattern corrections
+
+Started clean at Test/origin-Test 051e987; main ac0a1b4 was four commits behind, with no divergent local commits. 036/037 are completed historical packages, so this delivery advances once to 038 (active 034–038). Screenshots show the old dark palette; the deployed source/outcome was not inspected. Code confirms 60-second Pattern invalidation clears both cards; baseline-source controlled clock reproduces it. Normal receipt recovery was absent after reopen; passive reads could disable its retry, while bulk cancellation was unsuitable. These findings do not prove the photographed write outcome. New tests also guard withdrawal projection and late task ownership. Delivery evidence detected two new helper IDs colliding with existing Privacy IDs; Pattern helpers were renamed PF01/PF02, existing Privacy IDs retained, and canonical runner now rejects duplicate IDs before execution. Intermediate evidence is retained and excluded from final verification. Final Chromium/WebKit each pass 683/683 with 683 unique IDs, local Health 136 PASS / 13 hosted BLOCKED and successful save/retry/list/open. All mandatory gates pass; initial JS 483391/160915 gzip, CSS 77728/14239 under unchanged budgets. [One delivery report](reports/SHINKA_CALENDAR_PATTERN_038.md) retains initial checks, final evidence, scope and owner acceptance. No hosted incident is closed by local success.
 
 ## 037 — five-item delivery record
 

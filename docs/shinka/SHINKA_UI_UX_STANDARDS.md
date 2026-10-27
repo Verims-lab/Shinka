@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-037
+**Current BuildMarker:** Buildmarker-038
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -11,6 +11,10 @@
 **Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+## 038 — retained cards and short recovery
+
+First Pattern load uses loading text; later reads retain confirmed names and Moon values. A refresh failure shows a section retry with old information, distinct from empty history/first-load failure. Access loss hides both immediately. Calendar unknown outcome has one short explanation and same-operation retry; verified readback is required for success. A saved/recovered past date selects its month so the actual result is visible. Saved controls never imply rollback or cancellation of a transmitted call. [Current evidence and mobile limits](reports/SHINKA_CALENDAR_PATTERN_038.md).
 
 ## 037 — current light, name, Calendar and Home behavior
 
@@ -82,9 +86,9 @@ Unknown write has Check saved result and explicit same-save Retry; edits are loc
 
 ## Implemented Pattern UX — 021
 
-Pattern is enabled at `/pattern` behind the same session/onboarding route as Calendar. Existing Shinka header, top-right Profile/You, language buttons, safe-area shell and three-item bottom navigation remain. Read-only Your Recurring Themes / Lunar Timeline cards load independently with section-specific status, error and ≥44px Retry; error never becomes the approved empty-history message. A privacy denial clears both sections. Locale switch reuses the same verified results.
+Pattern is enabled at `/pattern` behind the same session/onboarding route as Calendar. Existing Shinka header, top-right Profile/You, language buttons, safe-area shell and three-item bottom navigation remain. Read-only Your Recurring Themes / Moon cards load independently with section-specific status, error and ≥44px Retry; error never becomes the approved empty-history message. A privacy denial clears both sections. Locale switch reuses the same verified results.
 
-The narrow-screen timeline has a proportional five-node track and a separate Today pointer; numbered wrapping phase/date rows link to those exact nodes. This placement avoids collisions even at 320px/200% text, rather than shifting the actual node instants into equally spaced slots. Active phase is stated in text and `aria-current=step`, not color alone. UTC instants display local dd.MM HH:mm with visible IANA timezone. EN empty/error strings remain verbatim in uiuxTables; scoped TR labels/state translations are centralized in patternCopy. Existing category names remain exact. No new recommendation or inferred personal text.
+038 supersedes the five-node presentation: Moon / Ay contains exactly two labeled values, Current Moon phase and Next Full Moon date. No diagram, phase list, clock time, timezone or repeated current-phase description. `<dl>` labels and localized date-only `<time>` wrap at 320px/200% text. A missing field shows unavailable while the known field remains. Themes retain exact names/order, without count labels or their spacing. Original source tables remain intact; current scoped TR/EN copy is in patternCopy. No new recommendation or inferred personal text.
 
 Current Pattern source and local browser tests supersede earlier inactive/future descriptions below. Physical screen-reader output, safe-area/browser bars, OS text scaling, hosted font loading and real-device navigation remain manual acceptance.
 
@@ -116,7 +120,7 @@ Health retains “Bu raporu yeniden kaydet” / “Save this report again” for
 
 Profile/You and AdminGate use applicationSession backed by current native User.role; no SQL availability dependency or Supabase login. Onboarding completeness does not decide admin membership. Pending/failed authorization hides privileged UI.
 
-Home localized duplicate-reconciliation notice accompanies the selected stored snapshot. Calendar retains explicit save/delete confirmation, date editing ID, focus/privacy invalidation and responsive controls. Pending conflict suppresses predictions and offers refresh/review; clearing pending attempts never changes actual dates. A partial explicit grant exposes a Retry recovery view. Do not claim unchanged saved state after an unconfirmed write; already-sent calls may have persisted. Reset conflicts direct the user to review/retry matching input or use Calendar for history edits. Deletion disabled preview explains the required operator maintenance window; normal Home/Calendar/reset are not disabled by its missing attestation. [Behavior and limits](SHINKA_BASE44_CONTINUATION.md).
+Home localized duplicate-reconciliation notice accompanies the selected stored snapshot. Calendar retains explicit save/delete confirmation, date editing ID, focus/privacy invalidation and responsive controls. Pending conflict suppresses predictions; a unique saved intent exposes one Check / retry the same change action, including after reopen. Passive loading cannot disable that recovery action. Multiple/conflicting intents require review; no bulk-clear control or endpoint remains. A partial explicit grant resumes its original persisted timestamp and action ID. Do not claim unchanged saved state after an unconfirmed write; already-sent calls may have persisted. Reset conflicts direct the user to review/retry matching input or use Calendar for history edits. Deletion disabled preview explains the required operator maintenance window; normal Home/Calendar/reset are not disabled by its missing attestation. [Behavior and limits](SHINKA_BASE44_CONTINUATION.md).
 
 ## Authority
 SRC-03 v1.1 governs presentation, copy and interaction. Business rules: SRC-01; flows: SRC-02; data: SRC-05/07.
@@ -192,7 +196,7 @@ Greeting Good morning/afternoon/evening by local time (+ optional name); only **
 Monthly view; actual period pastel pink, predicted light lavender, selected day ring; legend Period / Predicted / Selected; phases not color-split. Mark period start (select date → validate → save). Correction: select existing start → new date → same action updates. Delete period start only on actual starts, with confirmation (date + prediction update explained; Cancel changes nothing); busy state blocks re-taps; success only after actual-date readback and recalculation; error keeps prior state + Retry; last start deleted → empty state, mark action available. Health display hidden without consent.
 
 ## Pattern UX
-Read-only: **Your Recurring Themes** (assigned categories, ≤2 themes) and **Lunar Timeline** (previous New → next New Moon, five proportional nodes, active phase + Today marker, local dd.MM HH:mm, no horizontal scroll).
+Read-only: **Your Recurring Themes** (assigned categories, ≤2 names, no day counts) and **Moon / Ay** (current phase and strictly next Full Moon date only). 038 user decision supersedes the original timeline mockup; no horizontal scroll.
 
 ## You UX
 Opened from top-right icon only. **My Profile** (inline edit: optional name, required DOB, optional birth time, optional GeoNames birthplace, read-only Sun sign). **App Preferences** (Language TR/EN; Daily Notifications on/off, local 06:00 shown, no time picker, no timezone picker). **Account & Privacy** (Privacy Policy, Terms of Service, Health Data Consent, Sign Out, Delete Account). Delete Account → one owner-erasure scope confirmation; active account/data removal must be verified and platform erasure stays explicitly pending (023). No menstrual data editing in You.

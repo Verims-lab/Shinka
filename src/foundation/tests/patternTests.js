@@ -1,6 +1,8 @@
+import { PATTERN_REFRESH_TESTS } from './patternRefreshTests';
+import { withTestClock } from './testClock';
 import { check } from './dataModelTests';
 import { patternFixture, patternRow, PATTERN_NOW } from './patternFixture';
-import { calculatePatternSummary, calculateLunarTimeline, formatPatternInstant, patternWindowStart } from '../../../base44/shared/patternCalculation.js';
+import { calculatePatternSummary, calculateLunarSummary, patternWindowStart } from '../../../base44/shared/patternCalculation.js';
 import { reconcileDailyRows } from '../../../base44/shared/nativeDailyPersistence.js';
 import { handlePatternRequest } from '../../../base44/shared/patternOperation.js';
 import { patternRequest, validatePatternResponse } from '@/services/patternService';
@@ -9,6 +11,7 @@ const reject = async (run, code = null) => { try { await run(); } catch (error) 
 const summary = (rows, firstDay = null) => calculatePatternSummary({ rows, firstDay, owner: 'ownerA', timezone: 'Europe/Istanbul', instant: new Date(PATTERN_NOW) });
 /** @type {import('./testTypes').FoundationTest[]} */
 export const PATTERN_TESTS = [
+ ...PATTERN_REFRESH_TESTS,
  ['PT01', 'Empty and single assigned category, no current mapping or writes', async () => {
    const f = patternFixture(), empty = await f.request('themes');
    check(empty.state === 'EMPTY' && !empty.themes.length && empty.summary.primary_count === null);
@@ -50,24 +53,45 @@ export const PATTERN_TESTS = [
    f.tables.UserDailyMessage[0].category_id='category-0'; f.tables.MessageCategoryLookup[0].display_name_en='Unapproved';
    await reject(() => f.request('themes'), 'PATTERN_CATEGORY_CONFLICT');
  }],
- ['PT07', 'Unequal actual Moon intervals, five proportional nodes and half-open phase boundaries', () => {
-   const f = patternFixture(), rows = f.tables.MoonPhaseLookup;
-   const view = calculateLunarTimeline(rows,new Date(PATTERN_NOW),'Europe/Istanbul');
-   check(view.nodes.length === 5 && view.nodes[1].position === 7/31 && view.nodes[2].position === 16/31 && view.active_index === 2);
-   check(view.nodes[0].label === '01.10 03:00');
-   for (let i=0;i<4;i++) check(calculateLunarTimeline(rows,new Date(rows[i].start_at_utc),'UTC').active_index === i);
-   const next = calculateLunarTimeline(rows,new Date('2026-11-01T00:00:00Z'),'UTC');
-   check(next.nodes[0].instant === rows[4].start_at_utc && next.today_position === 0 && next.active_index === 0);
- }],
- ['PT08', 'Moon DST offset and UTC-to-local dd.MM HH:mm, no fabricated zone suffix', () => {
-   check(formatPatternInstant('2026-03-29T00:30:00Z','Europe/Berlin') === '29.03 01:30');
-   check(formatPatternInstant('2026-03-29T01:30:00Z','Europe/Berlin') === '29.03 03:30');
-   check(formatPatternInstant('2026-10-25T01:30:00Z','Europe/Berlin') === '25.10 02:30');
-   check(formatPatternInstant('2026-01-01T00:30:00Z','America/Los_Angeles') === '31.12 16:30');
- }],
- ['PT09', 'Missing, overlapping, gapped or wrongly ordered Moon intervals reject', async () => {
+ ['PT07', 'Current half-open phase and strictly future FULL before/exactly at/after its start', () => {
    const rows = patternFixture().tables.MoonPhaseLookup;
-   for (const altered of [[],rows.slice(1),rows.filter((_,i)=>i!==2),rows.slice(0,3),rows.map((r,i)=>i===1?{...r,phase_code:'FULL'}:r),rows.map((r,i)=>i===1?{...r,start_at_utc:'2026-10-07T00:00:00Z'}:r),rows.map((r,i)=>i===1?{...r,start_at_utc:'2026-10-08T00:00:00'}:r)]) await reject(() => calculateLunarTimeline(altered,new Date(PATTERN_NOW),'UTC'));
+   for (const [instant, phase, next] of [
+     ['2026-10-16T23:59:59.999Z','WAXING','2026-10-17'],
+     ['2026-10-17T00:00:00.000Z','FULL','2026-11-17'],
+     [PATTERN_NOW,'FULL','2026-11-17'],
+     ['2026-10-25T00:00:00.000Z','WANING','2026-11-17'],
+   ]) {
+     const view=calculateLunarSummary(rows,new Date(instant),'Europe/Istanbul');
+     check(view.current.phase_code===phase && view.next_full.date===next);
+     validatePatternResponse({section:'lunar',state:'READY',lunar:view},'lunar');
+     check(Date.parse(view.next_full.start_at_utc)>Date.parse(instant));
+   }
+ }],
+ ['PT08', 'Next FULL local date uses IANA across year/DST; no client clock or fabricated suffix', () => {
+   const rows=[{phase_code:'WAXING',start_at_utc:'2025-12-25T00:00:00Z',end_at_utc:'2026-01-01T00:30:00Z'},
+     {phase_code:'FULL',start_at_utc:'2026-01-01T00:30:00Z',end_at_utc:'2026-01-08T00:00:00Z'}];
+   check(calculateLunarSummary(rows,new Date('2025-12-30T12:00:00Z'),'America/Los_Angeles').next_full.date==='2025-12-31');
+   check(calculateLunarSummary(rows,new Date('2025-12-30T12:00:00Z'),'Europe/Istanbul').next_full.date==='2026-01-01');
+   for(const start of ['2026-03-29T01:30:00Z','2026-10-25T01:30:00Z']) {
+     const t=Date.parse(start), pair=[{phase_code:'WAXING',start_at_utc:new Date(t-86400000).toISOString(),end_at_utc:start},
+       {phase_code:'FULL',start_at_utc:start,end_at_utc:new Date(t+86400000).toISOString()}];
+     check(calculateLunarSummary(pair,new Date(t-1),'Europe/Berlin').next_full.date===start.slice(0,10));
+   }
+ }],
+ ['PT09', 'Partial coverage preserves current phase; missing/current gaps, overlap and bad stamps never fabricate next', async () => {
+   const rows=patternFixture().tables.MoonPhaseLookup;
+   for(const altered of [[],rows.slice(4)]) {
+     const lunar=calculateLunarSummary(altered,new Date(PATTERN_NOW),'UTC');
+     check(lunar.current===null&&lunar.next_full===null);
+     validatePatternResponse({section:'lunar',state:'PARTIAL',lunar},'lunar');
+   }
+   const partial=calculateLunarSummary(rows.slice(0,3),new Date(PATTERN_NOW),'UTC');
+   check(partial.current.phase_code==='FULL'&&partial.next_full===null);
+   validatePatternResponse({section:'lunar',state:'PARTIAL',lunar:partial},'lunar');
+   await reject(()=>validatePatternResponse({section:'lunar',state:'READY',lunar:partial},'lunar'),'PATTERN_RESPONSE_INVALID');
+   const past={...partial,current:partial.current,next_full:{...partial.current,date:'2026-10-17'}};
+   await reject(()=>validatePatternResponse({section:'lunar',state:'READY',lunar:past},'lunar'),'PATTERN_RESPONSE_INVALID');
+   for(const altered of [rows.filter((_,i)=>i!==2),rows.map((r,i)=>i===1?{...r,phase_code:'FULL'}:r),rows.map((r,i)=>i===1?{...r,start_at_utc:'2026-10-07T00:00:00Z'}:r),rows.map((r,i)=>i===1?{...r,start_at_utc:'2026-10-08T00:00:00'}:r)]) await reject(()=>calculateLunarSummary(altered,new Date(PATTERN_NOW),'UTC'));
  }],
  ['PT10', 'Actual HTTP handler returns both valid sections, safe non-2xx error paths and no writes', async () => {
    const f = patternFixture(); f.tables.UserDailyMessage.push(patternRow('2026-10-19'));
@@ -109,19 +133,20 @@ export const PATTERN_TESTS = [
    f.tables.UserDailyMessage = Array.from({length:4001},(_,i)=>patternRow('2026-10-19','category-0',`candidate-${i}`));
    await reject(()=>f.request('themes'),'PATTERN_READ_FAILED');
  }],
- ['PT14', 'Transport success, malformed response, server denial and deadline are separately executed', async () => {
+ ['PT14', 'Transport success, malformed response, server denial and deadline are separately executed', withTestClock(async clock => {
    const f=patternFixture(), valid=await f.request('themes');
    check((await patternRequest('themes',{functions:{invoke:async()=>({data:valid})}})).state==='EMPTY');
    await reject(()=>patternRequest('themes',{functions:{invoke:async()=>({data:{state:'EMPTY'}})}}),'PATTERN_RESPONSE_INVALID');
    await reject(()=>patternRequest('themes',{functions:{invoke:async()=>{throw {response:{data:{error_code:'AUTH_REQUIRED'}}};}}}),'AUTH_REQUIRED');
-   await reject(()=>patternRequest('themes',{functions:{invoke:()=>new Promise(()=>{})}},5),'TIMEOUT');
- }],
+   await clock.run(()=>reject(()=>patternRequest('themes',{functions:{invoke:()=>new Promise(()=>{})}},20000,clock.timers),'TIMEOUT'));
+   check(clock.now()===20000&&clock.pending()===0);
+ })],
  ['PT15', 'Independent section failure/retry retains other success and prevents duplicate requests', async () => {
    const f=patternFixture(); let failed=true, calls=0;
    const controller=createPatternController(async section=>{calls++; if(section==='lunar'&&failed)throw {code:'MOON_LOOKUP_COVERAGE_REQUIRED'};return f.request(section);});
    await controller.refresh(); check(controller.getSnapshot().themes.value.state==='EMPTY'&&controller.getSnapshot().lunar.error);
    failed=false; await Promise.all([controller.load('lunar'),controller.load('lunar')]);
-   check(calls===3&&controller.getSnapshot().lunar.value.timeline.nodes.length===5);controller.dispose();
+   check(calls===3&&controller.getSnapshot().lunar.value.lunar.next_full.date==='2026-11-17');controller.dispose();
  }],
  ['PT16', 'Late responses, session invalidation/disposal and privacy errors cannot revive data', async () => {
    /** @type {(value: any) => void} */ let release; const pending=new Promise(resolve=>{release=resolve;});

@@ -1,0 +1,11 @@
+{
+  "state": "REJECTED_INTERMEDIATE_DELIVERY_EVIDENCE",
+  "reason": "683 executions but 681 unique IDs; new Pattern PR01/PR02 collided with existing Privacy IDs",
+  "rows": [
+    "PASS PR01 Controlled 120s idle, 300s refresh and return-event burst retain confirmed sections with bounded calls",
+    "PASS PR02 Refresh failure and section retry retain values/order; privacy/account generation drops both old requests",
+    "PASS PR01 Opening/cancelling never mutates; one explicit confirmation before dispatch",
+    "PASS PR02 Actual withdrawal stops grant, cleans all five health scopes and preserves account/history"
+  ],
+  "fix": "Rename Pattern only to PF01/PF02, preserve Privacy IDs; canonical runner now rejects any duplicate registry before execution"
+}

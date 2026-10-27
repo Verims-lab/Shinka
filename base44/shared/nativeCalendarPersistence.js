@@ -24,21 +24,6 @@ export async function nativeCalendarChange(client, principal, body, now) {
     if (!saved || !['PENDING', 'APPLIED'].includes(saved.status)) fail('CALENDAR_STATE_CHANGED');
     body = { ...body, action: saved.operation, date: saved.desired_date, period_id: saved.period_id, health_consent: saved.initial_grant, revision: saved.base_revision };
   }
-  if (body.action === 'acknowledge') {
-    const reader = calendarReader(client, principal);
-    const current = await reader.confirmedSnapshot();
-    validateCalendarAccess(current, owner);
-    if (await calendarRevision(current) !== body.revision) fail('CALENDAR_STATE_CHANGED');
-    await client.shinkaAssertWritable?.();
-    const pending = await journal.filter({ user_id: owner, status: 'PENDING' }, 'id', 101);
-    if (!Array.isArray(pending) || pending.length > 100 || pending.some(row => row.user_id !== owner)) fail('CALENDAR_ACTION_CONFLICT');
-    for (const row of pending) { await client.shinkaAssertWritable?.(); await journal.update(row.id, { status: 'CANCELLED' }); }
-    const outstanding = await journal.filter({ user_id: owner, status: 'PENDING' }, 'id', 1);
-    if (!Array.isArray(outstanding) || outstanding.length) fail('CALENDAR_ACTION_CONFLICT');
-    const after = await reader.confirmedSnapshot();
-    if (await calendarRevision(after) !== body.revision) fail('CALENDAR_STATE_CHANGED');
-    return after;
-  }
   const digest = await fingerprint(body);
   let receipt = await lookup();
   if (!receipt) {

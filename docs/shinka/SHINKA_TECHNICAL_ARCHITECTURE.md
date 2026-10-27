@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-037
+**Current BuildMarker:** Buildmarker-038
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -10,6 +10,12 @@
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+## 038 — Calendar recovery projection and request ownership
+
+`nativeCalendarRecovery` owns bounded pending receipt projection/validation; `calendarOperation` exposes one eligible original intent (operation/date/period ID/action ID/base revision). No recovery health fields are returned after withdrawal. `nativeCalendarPersistence` alone resumes/finishes; it preserves business grant time and verifies real desired state, receipt and readback. The obsolete bulk acknowledge branch is removed. Pending competitors cannot produce mutationConfirmed success.
+
+Calendar controller owns explicit retry and task identity. Read coalescing uses the requested month; retry supersedes passive reads, generation checks drop late completions, and an old mutation finally cannot clear a new request's busy state. SDK deadlines remain 20 seconds, with timer cleanup and injected test scheduler; SDK invoke has no assumed AbortSignal/cancellation guarantee. The existing AuthProvider passive session refresh does not set initial loading; ProtectedRoute retains verified session children, and stable product routes are not keyed to every session read. Privacy revision/account change and genuine route remount remain separate, intentional invalidation boundaries.
 
 ## 037 — focused UI and date boundaries
 
@@ -126,9 +132,9 @@ SDK invocation already sent cannot be canceled. In-memory generations prevent ob
 
 Native generic domainAccess also returns this same calculated summary; recordId-based owner/admin reads refuse with DERIVED_PATTERN_READ_REQUIRED rather than exposing an obsolete physical cache. Generic mutations remain denied.
 
-`pattern/entry.ts` uses createNativeClient and the common lifecycle wrapper. `patternOperation` admits the current owner and dispatches only themes/lunar, performs fresh post-read admission and returns safe error codes. `patternReader` owns bounded projected SDK reads; `patternCalculation` is the single summary/timeline/time-format authority; `dailyCandidateSelection` is shared with Home. `patternService` owns deadline/strict response validation, controller owns independent section generations and privacy invalidation, hook owns lifecycle events, and lazy Pattern/LunarTimeline own presentation only.
+`pattern/entry.ts` uses createNativeClient and the common lifecycle wrapper. `patternOperation` admits the current owner and dispatches only themes/lunar, performs fresh post-read admission and returns safe error codes. `patternReader` owns bounded projected SDK reads; `patternCalculation` is the single theme/lunar selection and IANA-date authority; `dailyCandidateSelection` is shared with Home. `patternService` owns deadline/strict response validation, controller owns independent section generations and privacy invalidation, hook owns lifecycle events, and lazy Pattern/LunarSummary own presentation only.
 
-No server cache, parallel summary model, direct browser CRUD, new transaction coordinator or external database is introduced. API calls already sent cannot be canceled by the SDK; timeout/unmount/refresh generations discard obsolete completions. Memory is component-scoped; no personal storage/URL/report/log data. Focus/visibility/online/access refresh and visible 60s refresh use the existing product lifecycle convention. A language switch needs no request. Local process restart simply rereads authority, with no persistent summary cache to recover.
+No server cache, parallel summary model, direct browser CRUD, new transaction coordinator or external database is introduced. API calls already sent cannot be canceled by the SDK; timeout/unmount/refresh generations discard obsolete completions. Memory is component-scoped; no personal storage/URL/report/log data. 038 separates refresh from invalidation: independent in-flight sections coalesce, retain values/errors and refresh every five visible minutes; focus/online/visibility bursts share requests and a one-second burst window. Privacy/access clears before a fresh read; session end clears and stops future refreshes. The lifecycle binding injects a fixture-local scheduler for tests, never patches globals. A language switch needs no request. Local process restart simply rereads authority, with no persistent summary cache to recover.
 
 ## 019 corrective boundaries
 

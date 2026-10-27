@@ -2,13 +2,21 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-037
+**Current BuildMarker:** Buildmarker-038
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+## 038 — Calendar recovery and Pattern presentation decision
+
+Authority: explicit user request `95da1b20-7fd7-4762-9684-53257241899e/Pasted text.txt`, SHA-256 `5c78316a4200f752235cfc8156d60342d493da77a5a1823abd8e89a46d453f43` (2026-10-27). The completed 036/037 packages remain intact. The supplied dark screenshots differ from current 037 light-only source; their deployed version and Calendar write outcome are unverified.
+
+This decision supersedes the original five-node Lunar Timeline presentation: show only current Moon phase and the first FULL start strictly after backend now, as an IANA-local TR/EN date without time/zone/graph. At the exact FULL start, next means the following lunation. Partial coverage preserves the provable current phase; no inferred future date. Theme names/order and all count/ranking fields remain, but no visible day counters. Scoped new labels and error copy live in patternCopy; original source tables remain historical provenance.
+
+Ordinary Pattern refresh retains verified sections, with five-minute visible freshness and coalesced return/online events. Privacy/account/logout invalidates immediately. Calendar recovers a unique saved intent for add/edit/delete using its original action ID after reload; no bulk cancellation or health-data deletion to unlock the screen. Conflicts remain explicit. Owner/ACTIVE/consent/lifecycle, future/minimum-15-day/duplicate/OD-012 rules are unchanged. [038 implementation, evidence and remaining owner acceptance](reports/SHINKA_CALENDAR_PATTERN_038.md).
 
 ## 037 — five additional corrections; light-only decision
 

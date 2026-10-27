@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-037
+**Current BuildMarker:** Buildmarker-038
 **Last Updated:** 2026-10-27
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -10,6 +10,10 @@
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+## 038 — Calendar result and retry semantics
+
+A rejected invalid/future/duplicate/too-close date creates no new receipt/period. Transport failure can mean no write, saved write with lost reply, or partial write: the UI shows unknown and retains the same payload/action ID. Reopen reads a unique pending receipt and reconstructs explicit resume, including add/edit/delete and initial grant. Resume checks current guards, expected state and readback before APPLIED/visible success; pending/error paths never auto-delete/cancel. Saving/resuming a past date selects its month for visible confirmation. A passive read can be superseded by explicit retry, and its late response is ignored. Multiple intents/stale revision remain conflicts with existing records intact; native SDK is not a transaction or distributed lock. Existing OD-012 outlier and future-date protections remain. No reset/new account is required for a recoverable unique intent.
 
 ## 037 — correction and observation semantics
 
@@ -91,7 +95,7 @@ Home · Calendar · Pattern share navigation and the existing authenticated/onbo
 
 Themes use saved `UserDailyMessage.category_id` and saved local `shinka_date`. The effective start is max(first recorded day, today−29), end today inclusive. Thus first 1–29 calendar days use existing history, then a rolling 30-day window; gaps do not pull older messages forward. Query only that window plus one earliest-date metadata row. Each day uses Home's generated_at ascending / codepoint ID ascending winner; losing physical candidates remain untouched. Count assigned categories, sort count descending then latest assigned day descending, return at most two approved lookup names. No history is EMPTY; malformed rows, missing lookup and service failures are errors.
 
-Lunar Timeline uses four continuous validated NEW→WAXING→FULL→WANING intervals; the fifth NEW node is the last interval's exact UTC end. Coordinates and Today use actual elapsed instants; intervals are half-open, so an exact boundary activates the new phase. Device IANA timezone falls back to saved preference under the existing resolver, without rewriting historical dates. Independent requests allow one section to remain useful while the other fails. Explicit retry reads only; normal refresh never writes.
+038 Moon summary uses continuous validated NEW→WAXING→FULL→WANING intervals and backend now. Current uses start ≤ now < end; next is the earliest FULL start > now, including when current is FULL. Return only the selected intervals and next IANA-local date, never a guessed cycle. Insufficient future coverage keeps current phase and a null next field; without current coverage neither field is inferred. Device IANA timezone falls back to saved preference, without rewriting history. Theme counts remain calculation inputs only. Ordinary refresh/section errors preserve verified content; five-minute visible refresh and focus/online/visible return coalesce. Access/session/account change clears immediately; entry and retries are read-only.
 
 ## Current implemented flow — 019
 
@@ -128,7 +132,7 @@ Shows the pair for the device's current local calendar day. Reopen/Retry/profile
 Only distinguishes recorded vs predicted period days. Selecting a date never saves. "Mark period start" creates; selecting an existing start + new date updates the same ID. Delete requires confirmation. ≥15 days between distinct starts. Recalculation derives from confirmed actual dates on read; failed writes may have persisted and require retry/review. Last start deleted ⇒ predictions/phases removed, settings kept, messages use UNKNOWN.
 
 ## Pattern (UC-16/17, KK-21/22/34)
-Recurring Themes: 1–29 days use all history, ≥30 rolling last 30; based on user_daily_message.category_id actually assigned; max two categories; ties → most recently seen; no inference. Lunar Timeline: previous New Moon → next New Moon, proportional, local dd.MM HH:mm, no horizontal scroll.
+Recurring Themes: 1–29 days use all history, ≥30 rolling last 30; based on user_daily_message.category_id actually assigned; max two categories; ties → most recently seen; no inference. 038 Moon card: current phase and strictly next FULL start as a local date only; no graph/count/time/zone text.
 
 ## You (UC-18…24)
 Edit name, birth date, time, birthplace in one screen; Sun sign read-only. Language TR/EN. Notifications on/off; time fixed 06:00 (notification_time stored, not editable). Privacy Policy, Terms of Service, Health Data Consent, Sign Out, Delete Account (confirmed owner erasure; active removal and pending platform erasure are distinct; 023 supersedes original deactivation). Presentation per SRC-03 §7 (see SHINKA_UI_UX_STANDARDS.md).

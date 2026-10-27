@@ -4,7 +4,11 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Any change pushed to the repo will also be reflected in the Base44 Builder.
 
-## Current Test onboarding closure (Buildmarker-036)
+## Current Test Calendar/Pattern corrections (Buildmarker-038)
+
+038 retains completed 036/037 and fixes same-ID Calendar recovery, retained/coalesced Pattern refresh, count-free themes and current phase/next Full Moon date. [Single four-item report](docs/shinka/reports/SHINKA_CALENDAR_PATTERN_038.md) separates synthetic evidence from unresolved hosted/device incidents. No schema change; owner syncs all matching native/shared backend code before frontend, then publishes and runs acceptance. Test only; 12 backend findings remain USER-DEFERRED, notification entry/scheduler remain closed.
+
+## Historical Test onboarding closure (Buildmarker-036)
 
 036 applies automatic locale, DOB-only NULL verification, authenticated Back and keyboard/app time selection while preserving 035. [Single six-item report](docs/shinka/reports/SHINKA_ONBOARDING_CLOSURE_036.md) separates local verification from the unresolved hosted preparation incident (log access returned 401). No live user operation, import, Health, notification or publish; owner syncs the complete backend/shared graph before frontend and runs published acceptance.
 

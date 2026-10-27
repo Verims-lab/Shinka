@@ -19,7 +19,7 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
   const state = useCalendar(request), { controller, value } = state;
   const copy = key => calendarCopy(key, language);
   const unresolved = state.outcome === 'unknown';
-  const needsConsent = value?.state === 'CONSENT_REQUIRED';
+  const needsConsent = value?.state === 'CONSENT_REQUIRED' && !value.recovery;
   const realSelected = value?.starts.find(row => row.id === state.editing?.id && row.date === state.selected);
   const futureSelected = Boolean(value && state.selected > value.today);
   const dateError = futureSelected ? 'PERIOD_START_FUTURE' : state.error;
@@ -36,10 +36,9 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
       {state.loading && <p role="status">{copy('loading')}</p>}
       {value && <>
         <CalendarMonth value={value} selected={state.selected} disabled={state.busy || unresolved} language={language} onSelect={controller.select} onMonth={controller.load}/>
-        {!value.writable && <p role="status" data-calendar-blocked>{copy('unavailable')}</p>}
-        {value.calculationError && <p role="alert">{copy(value.pendingReview ? 'pendingReview' : value.calculationError === 'CALENDAR_FUTURE_RECORD' ? 'futureRecord' : 'calculation')}</p>}
-        {value.recovery && !unresolved && <div role="alert"><p>{copy('resumePending')}</p><ShinkaButton disabled={state.busy || unresolved} onClick={() => controller.submit('resume')}>{copy('retry')}</ShinkaButton></div>}
-        {value.pendingReview && !value.recovery && !unresolved && <ShinkaButton variant="secondary" disabled={state.busy || unresolved} onClick={() => controller.submit('acknowledge')}>{copy('keepDates')}</ShinkaButton>}
+        {!value.writable && !value.pendingReview && <p role="status" data-calendar-blocked>{copy('unavailable')}</p>}
+        {value.calculationError && !unresolved && <p role="alert">{copy(value.pendingReview ? 'pendingReview' : value.calculationError === 'CALENDAR_FUTURE_RECORD' ? 'futureRecord' : 'calculation')}</p>}
+        {value.pendingReview && !unresolved && <ShinkaButton variant="secondary" disabled={state.busy} onClick={controller.retry}>{mobileCopy('check', language)}</ShinkaButton>}
         {value.calculationNotice && <p role="status" data-calendar-estimate-unavailable>{copy('estimateUnavailable')}</p>}
         {!value.recovery && !needsConsent && !value.hasPeriods && <p role="status">{copy('empty')}</p>}
         <ShinkaCard>
@@ -59,7 +58,7 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
       </>}
       {state.error && !validationError && <div role="alert" data-calendar-error={state.error} className="space-y-3">
         <p>{unresolved ? mobileCopy('unknown', language) : copy(calendarErrorKey(state.error, state.action))}</p>
-        <ShinkaButton variant="secondary" disabled={state.busy || state.loading} onClick={controller.retry}>{unresolved ? mobileCopy('check', language) : copy('retry')}</ShinkaButton>
+        <ShinkaButton variant="secondary" disabled={state.busy || (state.loading && !unresolved)} onClick={controller.retry}>{unresolved ? mobileCopy('check', language) : copy('retry')}</ShinkaButton>
       </div>}
       {!value && !state.loading && !state.error && <p role="status">{copy(globalThis.navigator?.onLine === false ? 'offline' : 'loadError')}</p>}
       {state.success && <p role="status">{copy(state.success)}</p>}

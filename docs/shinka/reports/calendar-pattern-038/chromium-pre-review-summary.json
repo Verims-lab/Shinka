@@ -1,0 +1,12 @@
+{
+  "scope": "INTERMEDIATE_BEFORE_PAST_MONTH_VISIBILITY_REVIEW_NOT_FINAL",
+  "browser": {
+    "engine": "chromium",
+    "version": "156.0.8078.4",
+    "physicalDevice": false
+  },
+  "tests": 683,
+  "passed": 683,
+  "failed": 0,
+  "pageErrors": []
+}
