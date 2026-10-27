@@ -75,6 +75,11 @@
       "command": "FOUNDATION_BROWSER=webkit npm run test:foundation",
       "exitCode": 0,
       "logSha256": "36e22c30fcc8f1665dcd183edb04103509a2ca7911295167c16313a58749b5a6"
+    },
+    {
+      "command": "npm run health:repo (final canonical prose)",
+      "exitCode": 0,
+      "logSha256": "2a7eaeff7619422d97af2c023652a29100b0bf5e956b3eba1cf9d7ea293f5818"
     }
   ],
   "browser": {
@@ -156,5 +161,6 @@
       "gzip": 14860
     }
   },
-  "sourceCommit": "Recorded in delivery receipt after commit"
+  "sourceCommit": "733956db4caacede320e9301e10e568ed7ad06be",
+  "deliveryReceipt": "This following docs-only commit binds the tested source commit; main/publish remain user-owned."
 }

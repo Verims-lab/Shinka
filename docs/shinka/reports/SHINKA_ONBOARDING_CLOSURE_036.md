@@ -1,6 +1,8 @@
 # Shinka 036 — altı onboarding düzeltmesi
 
 **Buildmarker-036 / HC-036.0 · 2026-10-27 · Test teslimi**
+**Kaynak commit:** [`733956d`](https://github.com/Verims-lab/Shinka/commit/733956db4caacede320e9301e10e568ed7ad06be); takip eden commit yalnız bu teslim makbuzudur.
+
 **Durum:** **LOCAL_VERIFIED**; yayın ve hosted olay kabulü kullanıcıda. Kaynak/commit ve son komut makbuzları [verification.json](onboarding-closure-036/verification.json) içinde.
 
 ## Başlangıç, kaynak ve canlı kanıt sınırı
