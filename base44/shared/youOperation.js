@@ -19,8 +19,11 @@ export async function youOperation(client, body, { now = () => new Date(), geoNa
   const allowed = typeof body.action === 'string' && Object.hasOwn(actions, body.action) ? actions[body.action] : null;
   if (!allowed || Object.keys(body).some(key => !['action', ...allowed].includes(key))) fail('INVALID_REQUEST', 400);
   const repository = youRepository(client, principal), store = client.asServiceRole.entities;
+  // First admission reuses the entry principal minted just above (same phase).
+  let pending = principal;
   const admit = async (writing = false) => {
-    if ((await requireAuthenticatedUser(client)).id !== owner) fail('AUTH_REQUIRED', 401);
+    const current = pending || await requireAuthenticatedUser(client); pending = null;
+    if (current.id !== owner) fail('AUTH_REQUIRED', 401);
     await guardDomainOwner(client, owner, 'user_profile');
     if (writing) {
       const jobs = await store.HealthDataDeletionJob.filter({ user_id: owner, job_status: { $ne: 'COMPLETED' } }, 'id', 1);
