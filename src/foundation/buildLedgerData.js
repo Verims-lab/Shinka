@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-045",
-    "package_name": "ID-based daily content and bounded legacy cleanup",
-    "package_type": "AUDIT_FIX",
-    "created_at": "2026-10-28T12:00:00Z",
-    "health_catalog_version": "HC-044.0",
-    "short_summary": "MessagePair sole text authority; immutable daily assignments and projected ID reads. Reviewed offline cleanup, reference ownership and matched byte measurements; main theme/kept tabs preserved.",
-    "full_health_status": "NOT_RUN_HOSTED_ACCEPTANCE_PENDING",
-    "notes": "Explicit owner decision supersedes historical immutable text snapshots without changing assignment IDs, retention or shared source content. H09-007 added; H09-003/H07-013/H09-901/H05-009 updated. Local gates recorded in SHINKA_ID_MODEL_045.md; hosted field cleanup/device/workflow acceptance remains open. No live migration, import, provider call, Full Health, Security scan or main publish. Active packages 041–045."
-  },
-  {
     "build_marker": "Buildmarker-046",
     "package_name": "Unified section backgrounds",
     "package_type": "UI_UPDATE",
@@ -57,5 +47,19 @@ export default [
     "health_cases_updated": true,
     "docs_aligned": true,
     "notes": "Chromium/WebKit each 734/734 PASS, 0 page errors; local Health 140 PASS/13 hosted-prerequisite BLOCKED/0 FAIL. Preserves 048 theme/art and ID-only writes. Health add 0/update 6/delete 0. Original SS13/DU06 failures retained. Hosted 048 reopening succeeded; intermittent failure not reproduced. Web dryRun rejected INVALID_INTERNAL_ACTION: 0 inspected/0 cleaned/remaining unknown, verify NOT_RUN. Compatibility schema retained. No main/publish, live Full Health/scan or maintenance write. Active 045–049; evidence in SHINKA_LOADING_CLEANUP_049.md."
+  },
+  {
+    "build_marker": "Buildmarker-050",
+    "package_name": "Mobile preference sheets and Calendar feedback verification",
+    "package_type": "FIX",
+    "created_at": "2026-10-28T17:38:48.940547Z",
+    "health_catalog_version": "HC-049.0",
+    "short_summary": "Preserve Base44 sheets and 049; complete choice keyboard/cancel semantics, Calendar draft/pending feedback and real-App mobile regressions.",
+    "full_health_status": "LOCAL_140_PASS_13_BLOCKED_0_FAIL_HOSTED_NOT_RUN",
+    "source_of_truth_updated": true,
+    "tests_updated": true,
+    "health_cases_updated": true,
+    "docs_aligned": true,
+    "notes": "Chromium/WebKit each 735/735 PASS, zero page errors; 25 sheet + 2 Calendar continuity checks per engine. Local Health 140 PASS/13 hosted-prerequisite BLOCKED/0 FAIL; save/list/open verified. All quality/budget gates pass. Original Base44 NOT_RUN and reproduced keyboard/WebKit focus/Calendar feedback failures retained. Health 0 added/4 updated/0 removed. 049 and verified manual theme preserved; no live DB cleanup/Full Health/scan/publish. Physical Android/iOS/wrapper open; active 046–050."
   }
 ];

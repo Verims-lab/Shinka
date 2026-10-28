@@ -1,0 +1,35 @@
+{
+  "baseline": "f5856bc",
+  "historicalBase44": {
+    "typecheck": "PASS_REPORTED_BY_BASE44",
+    "lint": "PASS_REPORTED_BY_BASE44",
+    "build": "PASS_REPORTED_BY_BASE44",
+    "browser": "NOT_RUN_NO_CHROMIUM",
+    "calendarFeedback": "NOT_REVIEWED",
+    "nativeBackPhysicalSafeArea": "OPEN"
+  },
+  "reproduced": [
+    {
+      "test": "checkPreferenceSheets",
+      "result": "FAIL",
+      "reason": "ArrowDown left focus on tr instead of en; missing radio keyboard navigation"
+    },
+    {
+      "test": "CU08",
+      "result": "FAIL",
+      "reason": "Selection lacked unsaved live feedback"
+    },
+    {
+      "test": "checkPreferenceSheets WebKit full run",
+      "result": "FAIL",
+      "reason": "Cancel returned focus to body rather than you-language: WebKit pointer activation does not implicitly focus buttons"
+    }
+  ],
+  "intermediateFixtureCorrections": [
+    "TR Cancel assertion aligned to existing central Vazge\u00e7 copy",
+    "CU08 language loop waits for new keyed root instead of interacting with old form",
+    "Scroll test uses measured available document range instead of assuming 300px",
+    "Deferred resolver signature corrected for typecheck",
+    "Pending live region moved outside aria-busy form so assistive technology need not defer it; no new date formatting on draft values"
+  ]
+}

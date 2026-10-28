@@ -6,7 +6,11 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
-## Current Test opening/cleanup delivery (Buildmarker-049 / HC-048.0)
+## Current Test mobile closure (Buildmarker-050 / HC-049.0)
+
+[050 focused mobile verification](docs/shinka/reports/SHINKA_MOBILE_CLOSURE_050.md) preserves Base44 preference sheets and 049. Radio keyboard/cancel/focus and Calendar draft/pending feedback are verified on the real App with local synthetic transport; physical Android/iOS and wrapper acceptance remain external. No schema, import or live cleanup step belongs to this package. Owner handles main/sync/publish; 045 cleanup remains a separate open task.
+
+## Preserved opening/cleanup delivery (Buildmarker-049 / HC-048.0)
 
 Bounded session opening, failed-Home foreground recovery and safe stage diagnostics preserve 048 theme and the ID model. [049 results and web cleanup handoff](docs/shinka/reports/SHINKA_LOADING_CLEANUP_049.md). The web Test Function exists but deployed internalHealth lacks migration dispatch; Test contains the narrow guarded addition. Four optional fields remain until full hosted cleanup verify. Owner handles main/sync/publish; no CLI login is requested.
 

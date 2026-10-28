@@ -1,0 +1,81 @@
+{
+  "baseline": "f5856bc",
+  "contains049": true,
+  "files": [
+    {
+      "path": "src/lib/AuthContext.jsx",
+      "unchangedFromBase44Main": true,
+      "sha256": "b6a2742c40eb2ad9cf891541460ca3f115a10b980e5d99e57df4d3bbc35675c4"
+    },
+    {
+      "path": "src/lib/sessionCheck.js",
+      "unchangedFromBase44Main": true,
+      "sha256": "f2df0b077129f8e1c544b93ec01d79eeb60eff21e3e7f564952844b1da998353"
+    },
+    {
+      "path": "src/features/daily/useDailyMessage.js",
+      "unchangedFromBase44Main": true,
+      "sha256": "83840bdaaec101457f2d0f7ab8f00072490b71b1b42fca27416edcef274956f4"
+    },
+    {
+      "path": "base44/shared/dailyMessageOperation.js",
+      "unchangedFromBase44Main": true,
+      "sha256": "9262a63124b755d15d197432a2e7fa3671f619204e3fc5a0590466cb9360a036"
+    },
+    {
+      "path": "base44/shared/dailyReferenceMigration.js",
+      "unchangedFromBase44Main": true,
+      "sha256": "038538653108eaa75374a994d3f836a74b9a81a7b5e4709fbc4a86dfa91d407e"
+    },
+    {
+      "path": "base44/shared/internalHealthOperations.js",
+      "unchangedFromBase44Main": true,
+      "sha256": "0a47ba4ea96951c907938b84be4a0da8853b734b1a9d71331152d1d37b4669e3"
+    },
+    {
+      "path": "src/features/you/youController.js",
+      "unchangedFromBase44Main": true,
+      "sha256": "3de1f85bddeda52155c8ef9946db01d6c5ec426b1d33eb1bd265a17818bff544"
+    },
+    {
+      "path": "src/features/calendar/calendarController.js",
+      "unchangedFromBase44Main": true,
+      "sha256": "ea511566bb37da5863a64dd3fadd5f032f7aee637d10dafdba22d74a777330b8"
+    },
+    {
+      "path": "src/components/shinka/ProductTabs.jsx",
+      "unchangedFromBase44Main": true,
+      "sha256": "e20cabbf4a558beb1df9000c2c4cf518ba2b639b738f3752ee1c59820d57cea3"
+    },
+    {
+      "path": "src/features/mobile/useModalSurface.js",
+      "unchangedFromBase44Main": true,
+      "sha256": "ba97f04d73c65628cfdfec9c8edb39b74e6c2ab16814405c96ba15da5a90741f"
+    },
+    {
+      "path": "src/features/mobile/useLayerHistory.js",
+      "unchangedFromBase44Main": true,
+      "sha256": "2fc0b16293b69e3c2c6d1f43a18a7450b803e94c68646aaaa28f653502826525"
+    },
+    {
+      "path": "src/lib/appTheme.js",
+      "unchangedFromBase44Main": true,
+      "sha256": "f80377c8686db1932dbd4a5df250970f738d84266edea23d693278c1118c15a4"
+    },
+    {
+      "path": "src/styles/theme.css",
+      "unchangedFromBase44Main": true,
+      "sha256": "8becfd7c89777d166fb8228519a523e1cff70a6dd423276f3aab67861872e358"
+    },
+    {
+      "path": "src/styles/mobile.css",
+      "unchangedFromBase44Main": true,
+      "sha256": "644e9a348984925fa1ed510697f004aa7f538a1d2010ab2c20e94e40f1813594"
+    },
+    {
+      "path": "src/foundation/sectionBackgrounds.js",
+      "unchangedFromBase44Main": true,
+      "sha256": "23a81dc0a642f62e2f625cf9f0bd48b2f3fdc4faf25e4887dc596f80f4774a79"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "build_marker": "Buildmarker-050",
+  "package_name": "Mobile preference sheets and Calendar feedback verification",
+  "package_type": "FIX",
+  "created_at": "2026-10-28T17:38:48.940547Z",
+  "health_catalog_version": "HC-049.0",
+  "short_summary": "Preserve Base44 sheets and 049; complete choice keyboard/cancel semantics, Calendar draft/pending feedback and real-App mobile regressions.",
+  "full_health_status": "LOCAL_140_PASS_13_BLOCKED_0_FAIL_HOSTED_NOT_RUN",
+  "source_of_truth_updated": true,
+  "tests_updated": true,
+  "health_cases_updated": true,
+  "docs_aligned": true,
+  "notes": "Chromium/WebKit each 735/735 PASS, zero page errors; 25 sheet + 2 Calendar continuity checks per engine. Local Health 140 PASS/13 hosted-prerequisite BLOCKED/0 FAIL; save/list/open verified. All quality/budget gates pass. Original Base44 NOT_RUN and reproduced keyboard/WebKit focus/Calendar feedback failures retained. Health 0 added/4 updated/0 removed. 049 and verified manual theme preserved; no live DB cleanup/Full Health/scan/publish. Physical Android/iOS/wrapper open; active 046\u2013050."
+}

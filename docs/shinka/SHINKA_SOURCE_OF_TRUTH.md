@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-049
+**Current BuildMarker:** Buildmarker-050
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 050 — Owner mobile follow-up decision
+
+Authority: the owner’s 2026-10-28 mobile verification request. Preserve Base44 preference sheets, 049 opening/cleanup integration, manual verified light/dark choice and all light assets/colors. Complete keyboard/cancel/draft/state feedback and real App browser checks; physical/native acceptance remains open. This task does not authorize running the deferred DB cleanup, live Full Health/Security scan or publishing. New Calendar helper copy is scoped to the requested unsaved/pending feedback; no source content or business validation changed.
 
 ## 049 scope decision — existing web session and four-field cleanup
 

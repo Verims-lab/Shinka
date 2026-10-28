@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-049
+**Current BuildMarker:** Buildmarker-050
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 050 — Focused Base44 mobile closure
+
+Fast-forward clean Test from 41820e0 to main f5856bc, preserving 049 and Base44 changes. Advance once to Buildmarker-050 / HC-049.0 through recordBuild; retain 046–050. Strengthen four existing Health cases, no new/deleted IDs. Preserve Base44 browser NOT_RUN as historical evidence and record fresh local results separately. Mandatory quality/performance and Chromium/WebKit run locally with synthetic transport. Do not execute hosted DB cleanup, Full Health, Security scan, publish or main merge; disabled notification/native and deferred backend work remain unchanged.
 
 ## Current 049 — opening stability and authorized 045 cleanup only
 

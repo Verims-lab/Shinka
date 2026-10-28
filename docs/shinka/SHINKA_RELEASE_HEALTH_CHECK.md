@@ -2,14 +2,20 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-049
+**Current BuildMarker:** Buildmarker-050
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-048.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-049.0; repository, synthetic and external evidence separated.
 
 
+
+## 050 — Mobile closure (HC-049.0)
+
+Health: 0 added / 4 updated / 0 removed; inventory remains 179 (153 in-app / 12 local / 14 external). H13-018 maps checkPreferenceSheets plus existing You/theme save/unknown/retry/account tests; H13-015 maps CU08/checkCalendarContinuity; H13-012 includes sheet/mobile geometry and retention; H05-009 approves only 050 under unchanged exact staged-content checks. No static-PASS or synthetic device claim. Base44’s 2026-10-28 browser NOT_RUN below remains historical. Current actual results go in reports/mobile-050; H13-013/H14-901/H16-901 and wrapper acceptance remain external.
+
+Final local results: Chromium/WebKit each 735/735 PASS and zero page errors; 25 preference-sheet checks and two Calendar continuity checks per engine. Local in-app Health 140 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL, including verified report save/list/open on synthetic transport. Quality and performance gates passed; no hosted Full Health or device result is inferred. The receipt lists every remaining blocked ID and preserves the reproduced pre-fix failures separately.
 
 ## 049 — startup and reviewed maintenance mapping (HC-048.0)
 

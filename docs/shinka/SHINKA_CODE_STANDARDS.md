@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-049
+**Current BuildMarker:** Buildmarker-050
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 050 — Sheet and feedback regression scope
+
+Keep sheet navigation local until explicit option activation. Radio keyboard behavior, selected semantics and modal focus/history must be exercised in real browsers. Do not clear unrelated parent drafts on dismissal. Derive Calendar feedback from actual operation state; selected is not persisted and local timeout is not rollback. checkPreferenceSheets/checkCalendarContinuity and CU08 are executable checks; they cannot certify physical back, keyboard or native safe areas.
 
 ## 049 — Bounded waits and maintenance evidence
 

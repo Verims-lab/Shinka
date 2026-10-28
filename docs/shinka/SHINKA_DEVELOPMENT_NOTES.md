@@ -2,13 +2,21 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-049
+**Current BuildMarker:** Buildmarker-050
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 050 — Mobile follow-up
+
+Base44 f5856bc moved You choices to shared sheets and added centralized dirty copy; its browser suite was NOT_RUN. Reproduced missing radio arrow navigation and missing Calendar draft/live pending feedback before fixes. Added local choice/roving keyboard and presentation-only Calendar status, retaining confirmed-save and same-intent recovery. Real App test matrix and native CU08 extend existing coverage; initial failures and final receipts are separate in reports/mobile-050. 049 code and pending cleanup remain intact. See reports/SHINKA_MOBILE_CLOSURE_050.md.
+
+WebKit regression also reproduced lost trigger focus after dismissal. PreferencePicker now explicitly focuses its activating button before opening, so the shared modal captures the correct return target. Calendar pending status sits outside the aria-busy form to avoid deferring the announcement.
+
+Final 2026-10-28 local execution: Chromium/WebKit each 735/735 PASS, zero page errors, 25 sheet and two Calendar continuity checks per engine. Local Health 140 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL; save/list/open verified with synthetic transport. Required quality and unchanged performance budgets passed. Health 0 added / 4 updated / 0 removed, HC-049.0; generated active history is 046–050. Physical Android/iOS and wrapper acceptance stay open. No live cleanup, Full Health, Security scan or publish.
 
 ## 049 — narrow stability and maintenance continuation
 

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-049
+**Current BuildMarker:** Buildmarker-050
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -12,6 +12,12 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 050 — Mobile interaction closure
+
+PreferenceSheet adds transient local radio navigation; it still uses useModalSurface/useLayerHistory, with no native bridge/listener or new history manager. You controller remains the authority for confirmed value, preference/profile drafts and pending intent. Calendar adds presentation-only status/aria-busy derived from the existing controller; no persistence/controller/retry algorithm change. ProductTabs memory and single inset ownership stay intact. Real App Chromium/WebKit use only isolated SDK transport; native CU08 separately verifies lost response and identical action replay. 049 opening, diagnostics and admin migration dispatch are unchanged; cleanup is a separate pending task.
+
+WebKit regression also reproduced lost trigger focus after dismissal. PreferencePicker now explicitly focuses its activating button before opening, so the shared modal captures the correct return target. Calendar pending status sits outside the aria-busy form to avoid deferring the announcement.
 
 ## 049 — Startup waits, safe stages and narrow maintenance
 
