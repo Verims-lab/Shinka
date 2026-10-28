@@ -1,7 +1,17 @@
 let privacyLab;
 const loadPrivacyLab = () => privacyLab ||= import('@/foundation/tests/privacyFixture').then(({privacyFixture})=>{const f=privacyFixture();globalThis.__privacyLab=f;return f;});
 let youLab;
-const loadYouLab = () => youLab ||= import("@/foundation/tests/youFixture").then(({youFixture})=>{const f=youFixture();f.tables.UserPreferences[0].language_code=params.get("language")==="tr"?"tr":"en";globalThis.__youLab=f;return f;});
+const themeLabs = new Map();
+const loadYouLab = (actor = session) => {
+  const key = params.has('themeFixture') ? actor : 'default';
+  if (!themeLabs.has(key)) themeLabs.set(key, import('@/foundation/tests/youFixture').then(({youFixture})=>{
+    const f=youFixture();f.tables.UserPreferences[0].language_code=params.get('language')==='tr'?'tr':'en';
+    f.tables.UserPreferences[0].theme_code=params.has('themeFixture') && actor==='admin' && params.get('theme')==='dark'?'dark':'light';
+    return f;
+  }));
+  youLab=themeLabs.get(key);
+  return youLab.then(f=>{globalThis.__youLab=f;return f;});
+};
 // CLI-only substitution; no application build imports this module or its URL controls.
 const params = new URLSearchParams(location.search);
 let session = params.get('sdkSession') || 'anonymous';
@@ -57,6 +67,7 @@ export const base44 = {
     loginWithProvider: async () => { throw new Error('SYNTHETIC_AUTH_NO_REDIRECT'); },
   },
   functions: { invoke: async (name, body) => {
+    const actor = session;
     calls.push({ name, action: body.action }); // Action names only; no user payload.
     if(operationGates.has(name))await operationGates.get(name).promise;
     if(operationFailures.delete(`${name}.${body.action}`)||operationFailures.delete(name))throw new Error('SYNTHETIC_NETWORK_FAILURE');
@@ -69,7 +80,7 @@ export const base44 = {
       catch (error) { return { data: { error_code: error.code || 'TEST_TOOLS_FAILED' } }; }
     }
     if (name === 'accountPrivacy') { const f = await loadPrivacyLab(); return {data:await(await f.http(body, session === 'admin' ? 'adminA' : session === 'user' ? 'ownerA' : null)).json()}; }
-    if (name === 'you') { const f=await loadYouLab();return {data:await(await f.http(body)).json()}; }
+    if (name === 'you') { const f=await loadYouLab(actor);return {data:await(await f.http(body)).json()}; }
     if (name === 'pattern') {
       if (!patternLab) patternLab = import('@/foundation/tests/patternFixture').then(({patternFixture,patternRow})=>{const f=patternFixture();f.tables.UserDailyMessage.push(patternRow('2026-10-19'));globalThis.__patternLab=f;return f;});
       const f=await patternLab;
@@ -90,8 +101,8 @@ export const base44 = {
       await hydration; authFixture.hydrationReturned = true;
       return { data: {
       state: ['AUTHENTICATED_CYCLE_STEP', 'FIRST_SHINKA_DEPENDENCY', 'ACTIVE_EXISTING_USER'].includes(params.get('onboardingState')) ? params.get('onboardingState') : 'AUTHENTICATED_PROFILE_REQUIRED',
-      profile: youLab ? (await (await loadYouLab()).request('read')).profile : undefined,
-      preferences: youLab ? (await (await loadYouLab()).request('read')).preferences : params.has('uninitialized') ? null : { language_code: params.get('language') === 'tr' ? 'tr' : 'en', timezone: 'UTC' }, today: '2026-10-20',
+      profile: (youLab || params.has('themeFixture')) ? (await (await loadYouLab(actor)).request('read')).profile : undefined,
+      preferences: (youLab || params.has('themeFixture')) ? (await (await loadYouLab(actor)).request('read')).preferences : params.has('uninitialized') ? null : { language_code: params.get('language') === 'tr' ? 'tr' : 'en', timezone: 'UTC' }, today: '2026-10-20',
     } };
     }
     if (name === 'dailyMessage') {

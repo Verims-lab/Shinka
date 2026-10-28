@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-047
+**Current BuildMarker:** Buildmarker-048
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -14,6 +14,10 @@
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
 
 
+
+## 048 — Hosted four-field cleanup remains pending
+
+The owner's 048 request authorizes only the four 045 legacy text-field removals in the named existing app/prod, preserving daily native IDs and every assignment plus NotificationDelivery references. Current actual result: **0 inspected / 0 cleaned / remaining unknown**, full verify NOT_RUN. CLI login was unavailable twice; the owner then explicitly deferred live cleanup and requested local theme delivery. No app data was read or changed. Consequently the four fields stay optional in the canonical physical schema, generator/inspector and D23; the logical/write ID-only model and current MessagePair reads stay unchanged. No final-cleanup claim or final schema deployment. [045 continuation](reports/SHINKA_ID_MODEL_045.md) · [safe receipt](reports/theme-cleanup-048/cleanup-status.json).
 
 ## 045 — Native IDs and current text (current)
 

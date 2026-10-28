@@ -1,0 +1,3437 @@
+{
+  "scope": "LOCAL_SYNTHETIC_CSS_AND_COMPOSITION_BOUNDS",
+  "appTheme": [
+    {
+      "scenario": "theme-light-light-tr-360-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-tr-360-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 371.798002243042,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 371.798002243042,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 371.798002243042,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 371.798002243042,
+            "width": 360
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 371.798002243042,
+            "width": 360
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 371.798002243042,
+            "width": 360
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 371.798002243042,
+            "width": 360
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 371.7980041503906,
+            "width": 120
+          }
+        ],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-tr-360-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-tr-360-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-tr-360-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 370.8193054199219,
+            "width": 120
+          }
+        ],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-tr-390-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-tr-390-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-tr-390-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-tr-390-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-tr-390-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 400.91657066345215,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 400.91657066345215,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 400.91657066345215,
+            "width": 390
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 400.91657066345215,
+            "width": 390
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 400.91657066345215,
+            "width": 390
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 400.91657066345215,
+            "width": 390
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 400.91656494140625,
+            "width": 130
+          }
+        ],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-en-360-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-en-360-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-en-360-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-en-360-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-en-360-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 370.8193054199219,
+            "width": 120
+          }
+        ],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-en-390-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-en-390-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-en-390-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-en-390-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-light-en-390-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 400.8193054199219,
+            "width": 130
+          }
+        ],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-tr-360-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-tr-360-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 371.89716625213623,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 371.89716625213623,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 371.89716625213623,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 371.89716625213623,
+            "width": 360
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 371.89716625213623,
+            "width": 360
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 371.89716625213623,
+            "width": 360
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 371.89716625213623,
+            "width": 360
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 371.89715576171875,
+            "width": 119.99998474121094
+          }
+        ],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-tr-360-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-tr-360-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-tr-360-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 370.72430419921875,
+            "width": 119.99998474121094
+          }
+        ],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-tr-390-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-tr-390-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-tr-390-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-tr-390-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-tr-390-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 400.8193054199219,
+            "width": 130
+          }
+        ],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-en-360-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-en-360-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-en-360-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-en-360-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-en-360-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 370.72430419921875,
+            "width": 119.99998474121094
+          }
+        ],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-en-390-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-en-390-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-en-390-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-en-390-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-light-dark-en-390-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 400.7243137359619,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 400.7243137359619,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 400.7243137359619,
+            "width": 390
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 400.7243137359619,
+            "width": 390
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 400.7243137359619,
+            "width": 390
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 400.7243137359619,
+            "width": 390
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 400.72430419921875,
+            "width": 130
+          }
+        ],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-tr-360-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-tr-360-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-tr-360-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-tr-360-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-tr-360-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 370.72430419921875,
+            "width": 119.99998474121094
+          }
+        ],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-tr-390-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-tr-390-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-tr-390-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-tr-390-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-tr-390-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 400.8193054199219,
+            "width": 130
+          }
+        ],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-en-360-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-en-360-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-en-360-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-en-360-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-en-360-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 370.7243137359619,
+            "width": 360
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 370.72430419921875,
+            "width": 119.99998474121094
+          }
+        ],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-en-390-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-en-390-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-en-390-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-en-390-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-light-en-390-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 400.8193054199219,
+            "width": 130
+          }
+        ],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": false,
+        "scheme": "light",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 7.74,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 8.140616423687025,
+            "input": 3.5216963723454904
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 7.742568813868914,
+            "input": 3.349497763473764
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-tr-360-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-tr-360-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-tr-360-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-tr-360-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-tr-360-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 369.795521736145,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 369.795521736145,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 369.795521736145,
+            "width": 360
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 369.795521736145,
+            "width": 360
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 369.795521736145,
+            "width": 360
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 369.795521736145,
+            "width": 360
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 369.7955322265625,
+            "width": 120.00001525878906
+          }
+        ],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-tr-390-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-tr-390-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-tr-390-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-tr-390-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-tr-390-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 400.7243137359619,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 400.7243137359619,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 400.7243137359619,
+            "width": 390
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 400.7243137359619,
+            "width": 390
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 400.7243137359619,
+            "width": 390
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 400.7243137359619,
+            "width": 390
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 400.72430419921875,
+            "width": 130
+          }
+        ],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-en-360-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-en-360-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-en-360-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-en-360-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-en-360-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 360,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 370.81930351257324,
+            "width": 360
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 370.8193054199219,
+            "width": 120
+          }
+        ],
+        "width": 360,
+        "scrollWidth": 360,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-en-390-you",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-en-390-home",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 9,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-en-390-calendar",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 50,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-en-390-pattern",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 12,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "theme-dark-dark-en-390-you-200percent",
+      "measurement": {
+        "textOverflow": [],
+        "clientWidth": 390,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-section-backdrop",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "HEADER",
+            "id": "",
+            "className": "flex flex-wrap items-center justify-between px-5 pt-6 gap-2",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "MAIN",
+            "id": "",
+            "className": "flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "NAV",
+            "id": "",
+            "className": "shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white",
+            "right": 400.81930351257324,
+            "width": 390
+          },
+          {
+            "tag": "A",
+            "id": "",
+            "className": "min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum",
+            "right": 400.8193054199219,
+            "width": 130
+          }
+        ],
+        "width": 390,
+        "scrollWidth": 390,
+        "small": [],
+        "dark": true,
+        "scheme": "dark",
+        "documentScroll": true,
+        "overscrollY": "contain",
+        "contrastCount": 38,
+        "minText": 4.6,
+        "contrastFailures": [],
+        "boundaries": [
+          {
+            "surface": "--shinka-white",
+            "focus": 6.225217248791909,
+            "input": 4.564296229717506
+          },
+          {
+            "surface": "--shinka-ivory",
+            "focus": 6.955378566902929,
+            "input": 5.099646630859964
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "scenario": "draft-save-verified-reopen-os-change",
+      "passed": true
+    },
+    {
+      "scenario": "before-write-response-check-retry-theme-boundary",
+      "passed": true
+    },
+    {
+      "scenario": "after-write-response-check-retry-theme-boundary",
+      "passed": true
+    },
+    {
+      "scenario": "account-change-old-pending-save-discarded",
+      "passed": true
+    },
+    {
+      "scenario": "logout-from-admin-route-clears-account-theme",
+      "passed": true
+    },
+    {
+      "scenario": "unverified-identity-default-before-rehydrate",
+      "passed": true
+    },
+    {
+      "scenario": "onboarding-keeps-light-despite-stored-dark",
+      "passed": true
+    },
+    {
+      "scenario": "unverified-preference-light-until-readback",
+      "passed": true
+    },
+    {
+      "scenario": "theme-page-errors",
+      "errors": [],
+      "passed": true
+    }
+  ],
+  "pageErrors": []
+}

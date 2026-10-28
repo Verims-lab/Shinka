@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-047
+**Current BuildMarker:** Buildmarker-048
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
@@ -10,6 +10,12 @@
 **Scope:** Health catalog HC-046.0; repository, synthetic and external evidence separated.
 
 
+
+## 048 — Manual theme and cleanup evidence alignment
+
+**0 added / 7 updated / 0 deleted.** H13-001 declares account preference with light default; H13-006 checks the palette selected by independent resolver expectation; H13-010 compares accepted input against DOM class/scheme/meta. T79 exercises both form schemes and restores prior authority; new helper T83 deliberately corrupts class/scheme and expects FAIL, also testing both H13-006 palettes. H13-012/H13-018 map `checkAppTheme` (actual App/AuthProvider/You, OS × app, TR/EN 360/390px, 200% text, background/contrast, draft/save/reopen/failed/unknown/retry and account/logout/late response); H05-009 approves 048 without weakening source verification. H13-014 now scopes its embedded synthetic AuthProvider to detached theme/events; T83 verifies that it cannot reset the active account preference. Catalog advances once to HC-047.0, with unchanged 179 IDs and scope.
+
+H04-007/D23 and migration tests retain the **optional compatibility** expectation: no hosted verify occurred. Their local PASS cannot certify field cleanup. Preserve all earlier failures, external H13-013/H14-901/H16-901 and native/workflow acceptance. Current actual local execution and safe cleanup status are in [048](reports/SHINKA_THEME_CLEANUP_048.md); no live Full Health or Security scan is run.
 
 ## Buildmarker-047 — HC-046.0
 

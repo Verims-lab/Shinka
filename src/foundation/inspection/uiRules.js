@@ -1,14 +1,14 @@
 // UI/UX v1.1 contract checks (pure; used by Health H13 and tests).
-import { DESIGN_TOKENS, hexToRgbChannels } from "@/foundation/designTokens";
+import { DESIGN_TOKENS, DARK_THEME_CHANNELS, hexToRgbChannels } from "@/foundation/designTokens";
 import { BOTTOM_NAV, PROFILE_ENTRY } from "@/foundation/uiContract";
 import { STRINGS, SUPPORTED_LANGUAGES } from "@/foundation/i18n/strings";
 
 // Rendered CSS variables must equal token hex values.
-export function checkCssTokens(readVar) {
+export function checkCssTokens(readVar, theme = 'light') {
   const mismatches = [];
   for (const [v, key] of Object.entries(DESIGN_TOKENS.cssVars)) {
     const actual = (readVar(v) || "").trim();
-    const expected = hexToRgbChannels(DESIGN_TOKENS.color[key]);
+    const expected = theme === 'dark' ? DARK_THEME_CHANNELS[v] : hexToRgbChannels(DESIGN_TOKENS.color[key]);
     if (actual !== expected) mismatches.push({ variable: v, actual, expected });
   }
   return { checked: Object.keys(DESIGN_TOKENS.cssVars).length, mismatches };

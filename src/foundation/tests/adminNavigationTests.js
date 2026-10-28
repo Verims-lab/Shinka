@@ -32,7 +32,7 @@ async function fixture(identity, path, run, language = 'en', context = {}) {
   const dispose=()=>{if(disposed)return;disposed=true;root.unmount();host.remove();};
   context.cleanup?.(dispose);
   const wait=check=>waitForFixture(check,host,context);
-  root.render(h(AuthProvider, { client }, h(MemoryRouter, { initialEntries: [{ pathname: path, state: { language, role: 'admin' } }] },
+  root.render(h(AuthProvider, { client, events:new EventTarget(), themeDocument:document.implementation.createHTMLDocument('synthetic theme') }, h(MemoryRouter, { initialEntries: [{ pathname: path, state: { language, role: 'admin' } }] },
     h(Controls), h(Routes, null,
       h(Route, { path: '/login', element: h('p', { 'data-isolated-login': true }, 'Synthetic login') }),
       h(Route, { path: '/', element: h('p', { 'data-isolated-app': true }, 'Existing app resolver destination') }),

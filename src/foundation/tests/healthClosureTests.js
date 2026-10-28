@@ -82,7 +82,7 @@ export const HEALTH_CLOSURE_TESTS=[
     for(const marker of [futureMarker,'Buildmarker-006','invalid'])assert(decide(counts(),false,marker).status==='BLOCKED','zero rows permanently hardcoded');
     assert(decide(counts(),false,futureMarker).code==='APPROVED_CONTENT_VALIDATION_REQUIRED','content transition not explicit');
     assert(decide(counts(),false,'Buildmarker-013').code==='CONTENT_VERIFICATION_UNAVAILABLE','Test Tools must retain staged content evidence, not assume an import');
-    for(const marker of ['Buildmarker-041','Buildmarker-042','Buildmarker-043','Buildmarker-044','Buildmarker-045','Buildmarker-046','Buildmarker-047'])assert(decide(counts(),false,marker).code==='CONTENT_VERIFICATION_UNAVAILABLE','audit packages retain source verification, not inferred readiness');
+    for(const marker of ['Buildmarker-041','Buildmarker-042','Buildmarker-043','Buildmarker-044','Buildmarker-045','Buildmarker-046','Buildmarker-047','Buildmarker-048'])assert(decide(counts(),false,marker).code==='CONTENT_VERIFICATION_UNAVAILABLE','audit packages retain source verification, not inferred readiness');
     assert(decide(counts(),false,'Buildmarker-014').code==='CONTENT_VERIFICATION_UNAVAILABLE','Persistence closure retains staged content evidence and does not imply readiness');
   }],
   ['HC13','Admin count action uses only three exact unfiltered aggregates',async()=>{

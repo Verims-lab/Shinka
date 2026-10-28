@@ -108,3 +108,14 @@ The first focused run failed HC12 on both browsers: main's HC12/H05-009 already 
 - Health changes in this follow-up: **0 added / 1 updated (H04-007) / 0 removed**; D23 is a helper under that existing case. Main's H13-020 stays present. Existing external/native/device acceptance remains open.
 
 **READY_FOR_OWNER_PUBLICATION / OPTIONAL_LEGACY_FIELDS_CLEANUP_PENDING.** No live cleanup, Full Health, Security scan, main merge or publish. Existing historical local/hosted failure evidence is retained. The publication and post-publication operator procedure is above; the owner does not need to construct an intermediate schema or commit.
+
+
+## 048 authorized cleanup continuation — actual result
+
+Owner's current request authorized exactly the four legacy text fields on app `6ad5190f4845d4e3af03b420`, existing `prod`, with all-page dryRun, reviewed ≤25-ID batches and complete assignment/NotificationDelivery preservation checks. This supersedes the older report's owner-executed-cleanup handoff for that narrow scope; main/publish remains owner-controlled.
+
+**NOT_RUN / CLI_LOGIN_REQUIRED; subsequently OWNER_DEFERRED.** Initial `npx base44 whoami` and the recheck after the owner reported login both requested device authentication. Both waits were cancelled; no application command, data read or mutation followed. The expected CLI auth file was absent. No secret, token or raw application data was inspected or recorded. The owner's next instruction was “Yerel tema teslimini tamamla; canlı temizlik beklesin”.
+
+Actual counts: **inspected 0 / cleaned 0 / pending unknown (not inventoried)**. App/environment/current-admin/published compatibility/drain verification, dryRun, applyBatch, full verify, unchanged-assignment comparison and NotificationDelivery comparison are all **NOT_RUN**. No hosted completion is claimed. See [safe execution receipt](theme-cleanup-048/cleanup-status.json).
+
+The four optional fields remain in the checked-in compatibility schema; physical generator, inspector and D23 retain `OPTIONAL_LEGACY_FIELDS_CLEANUP_PENDING` / `cleanupVerified:false`. Final canonical schema is **not prepared or deployed** because hosted completion is unproven. Existing `prepareSchemaStage final` is only a post-cleanup candidate. The current Test theme release can use the existing compatible schema. To resume this authorized cleanup, restore usable CLI login and repeat the actual read-only prerequisites, then execute the existing full paginated protocol above. Do not request scope approval again or delegate construction of an intermediate commit to the owner. Local migration regression results are in [048](SHINKA_THEME_CLEANUP_048.md); they are not hosted evidence.

@@ -9,7 +9,7 @@
 @source "../index.html";
 @plugin "tailwindcss-animate";
 
-/* Generic template variants require an explicit class; Shinka never activates dark mode. */
+/* Generic template variants require an explicit class; only the verified appTheme boundary activates dark mode. */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {

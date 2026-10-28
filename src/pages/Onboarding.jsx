@@ -20,7 +20,7 @@ const Pattern = lazy(() => import('./Pattern'));
 const Calendar = lazy(() => import('./Calendar'));
 const OnboardingScreen = lazy(() => import('@/features/onboarding/OnboardingScreen'));
 export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destination='home',request=onboardingRequest}){
-  const {user,isAuthenticated,isAdmin,logout}=useAuth();
+  const {user,isAuthenticated,isAdmin,logout,authError,isLoadingAuth,isLoadingPublicSettings}=useAuth();
   const [snapshot,setSnapshot]=useState(null),[entry,setEntry]=useState(initialEntry),[error,setError]=useState(''),[language]=useState(resolveLanguage);
   const generation=useRef(0),initialization=useRef(crypto.randomUUID());
   useEffect(()=>{setEntry(initialEntry);},[initialEntry]);
@@ -46,7 +46,7 @@ export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destina
   },[isAuthenticated,load]);
   // Only a verified snapshot of the current owner may select dark; logout,
   // account switch, loading and onboarding all resolve to the light default.
-  const ownTheme=isAuthenticated&&snapshot?.ownerSession===user?.id&&snapshot?.state==='ACTIVE_EXISTING_USER'?snapshot.preferences?.theme_code:null;
+  const ownTheme=isAuthenticated&&!authError&&!isLoadingAuth&&!isLoadingPublicSettings&&snapshot?.ownerSession===user?.id&&snapshot?.state==='ACTIVE_EXISTING_USER'?snapshot.preferences?.theme_code:null;
   useEffect(()=>{applyAppTheme(ownTheme);},[ownTheme]);
   if(!isAuthenticated)return inSection('onboarding',<RouteBoundary><OnboardingScreen state={entry} initialLanguage={language} onState={setEntry}/></RouteBoundary>);
   if(!snapshot||snapshot.ownerSession!==user?.id)return inSection('neutral',<PageContainer><header className="flex items-center justify-between mx-auto max-w-md pt-6"><span className="font-heading text-2xl">Shinka</span></header><main className="mx-auto max-w-md space-y-5 py-10" aria-busy={!error}>

@@ -1,0 +1,1793 @@
+{
+  "scope": "LOCAL_SYNTHETIC",
+  "runs": [
+    {
+      "stage": "Original dark palette contrast",
+      "total": 87,
+      "failed": 16,
+      "evidence": [
+        {
+          "scenario": "theme-light-dark-tr-360-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 3.7,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-tr-360-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 3.7,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-tr-390-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 3.7,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-tr-390-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 3.7,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-en-360-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 3.7,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-en-360-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 3.7,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-en-390-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 3.7,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-en-390-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 3.7,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-tr-360-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 3.7,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-tr-360-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 3.7,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-tr-390-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 3.7,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-tr-390-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 3.7,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-en-360-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 3.7,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-en-360-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 3.7,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-en-390-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 3.7,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-11 rounded-shinka-sm bg-shinka-white text-shinka-plum border border-shinka-control hover:bg-shinka-lavender ",
+                "ratio": 4.35,
+                "min": 4.5
+              },
+              {
+                "tag": "A",
+                "className": "flex min-h-11 items-center text-shinka-plum",
+                "ratio": 4.35,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-en-390-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 3.7,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 3.7,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 4.3480886158916805,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 4.8580798319667675,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        }
+      ],
+      "logSha256": "d32fcd6e64f07e58f427c7fcb6c6f4bdc32b005cb55380d003496b408aafad77"
+    },
+    {
+      "stage": "Intermediate token specificity",
+      "total": 87,
+      "failed": 24,
+      "evidence": [
+        {
+          "scenario": "theme-light-dark-tr-360-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-tr-360-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-tr-360-you-200percent",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 3
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-tr-390-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-tr-390-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-tr-390-you-200percent",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 3
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-en-360-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-en-360-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-en-360-you-200percent",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 3
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-en-390-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-en-390-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-light-dark-en-390-you-200percent",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 3
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-tr-360-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-tr-360-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-tr-360-you-200percent",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 3
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-tr-390-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-tr-390-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-tr-390-you-200percent",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 3
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-en-360-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-en-360-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-en-360-you-200percent",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 360,
+            "overflow": [],
+            "width": 360,
+            "scrollWidth": 360,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 3
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-en-390-you",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-en-390-calendar",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 50,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep w-full",
+                "ratio": 2.8,
+                "min": 4.5
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        },
+        {
+          "scenario": "theme-dark-dark-en-390-you-200percent",
+          "measurement": {
+            "textOverflow": [],
+            "clientWidth": 390,
+            "overflow": [],
+            "width": 390,
+            "scrollWidth": 390,
+            "small": [],
+            "dark": true,
+            "scheme": "dark",
+            "documentScroll": true,
+            "overscrollY": "contain",
+            "contrastCount": 38,
+            "minText": 2.8,
+            "contrastFailures": [
+              {
+                "tag": "BUTTON",
+                "className": "min-w-11 px-4 text-shinka-body font-body font-medium inline-flex items-center justify-center gap-2 transition-colors duration-200 disabled:opacity-45 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-shinka-plum min-h-[52px] rounded-shinka-md bg-shinka-plum text-shinka-on-primary hover:bg-shinka-plum-deep ",
+                "ratio": 2.8,
+                "min": 3
+              }
+            ],
+            "boundaries": [
+              {
+                "surface": "--shinka-white",
+                "focus": 5.7481732708866735,
+                "input": 4.564296229717506
+              },
+              {
+                "surface": "--shinka-ivory",
+                "focus": 6.422381672692354,
+                "input": 5.099646630859964
+              }
+            ]
+          },
+          "passed": false
+        }
+      ],
+      "logSha256": "a49f82f21456a7d1f64fd5dc705c8f9c858ab5f33b70cc3dfe2f339011f2bd6a"
+    },
+    {
+      "stage": "Initial theme harness",
+      "error": "Retry button locator used Try again instead of canonical Retry the same save. Locator corrected; no product assertion removed."
+    },
+    {
+      "stage": "Embedded Health fixture isolation regression",
+      "test": "T83",
+      "passed": false,
+      "detail": "T83:DOM_WAIT:synthetic admin fixture changed the real account theme",
+      "scope": "LOCAL_SYNTHETIC",
+      "fix": "Admin navigation fixture injects detached theme Document and EventTarget into the same AuthProvider. Actual App defaults unchanged; no blind restoration that could resurrect a signed-out preference."
+    }
+  ]
+}

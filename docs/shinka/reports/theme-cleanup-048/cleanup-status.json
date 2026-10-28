@@ -1,0 +1,32 @@
+{
+  "scope": "HOSTED_NOT_RUN",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "dataEnvironment": "prod",
+  "authorization": "Exactly four legacy UserDailyMessage fields; authorization retained. Owner subsequently requested local theme delivery and deferred live cleanup.",
+  "preflight": [
+    {
+      "step": "npx base44 whoami",
+      "result": "CLI_LOGIN_REQUIRED",
+      "observed": "You need to login first to continue; device-login wait cancelled without app calls"
+    },
+    {
+      "step": "whoami after owner reported login",
+      "result": "CLI_LOGIN_REQUIRED",
+      "observed": "Same login-required response; expected CLI auth file absent. No token read or recorded."
+    }
+  ],
+  "inspectedRecords": 0,
+  "cleanedRecords": 0,
+  "remainingRecords": null,
+  "remainingReason": "NOT_ENUMERATED",
+  "dryRun": "NOT_RUN",
+  "applyBatch": "NOT_RUN",
+  "fullVerify": "NOT_RUN",
+  "appEnvironmentAdminVerification": "NOT_RUN",
+  "publishedCompatibilityAndOldWriterDrain": "NOT_RUN",
+  "assignmentBeforeAfterComparison": "NOT_RUN",
+  "notificationLinksBeforeAfterComparison": "NOT_RUN",
+  "schemaPhase": "OPTIONAL_LEGACY_FIELDS_CLEANUP_PENDING",
+  "finalCanonicalSchemaPrepared": false,
+  "nextAction": "Usable Base44 CLI login, then recheck app/admin/published compatible graph and old-writer drain; full dryRun before sequential reviewed batches and complete verify. No renewed scope approval required."
+}

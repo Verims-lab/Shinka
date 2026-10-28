@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-047
+**Current BuildMarker:** Buildmarker-048
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 048 — Focused theme alignment and 045 access-blocked continuation
+
+Started clean local Test/origin-Test `7bf84b8`; main `e21cd41` was ahead with the same file tree. Fast-forward preserved 045 compatibility, 046 artwork and 047 onboarding fixes. H13-010 and H13-006 incorrectly assumed light even for verified dark. Auth invalidation now resets through the existing resolver outside product routes too. Local matrix reproduced dark contrast failures; a two-token/specificity correction preserves light palette/assets. Both full local browser engines pass 729/729; final theme matrix 89/89 each, zero page errors. Synthetic in-app Health is 140 PASS / 13 hosted-prerequisite BLOCKED, with save/list/open. Initial failures, execution and seven Health updates are recorded in [048](reports/SHINKA_THEME_CLEANUP_048.md).
+
+045 live cleanup did not start. Both `whoami` attempts requested login, including the check after reported login; expected auth-file presence was absent, without token inspection. Owner then explicitly deferred live cleanup. No rows read or mutated; counts are 0/0/unknown, full verify NOT_RUN, compatible schema retained. Do not report final cleanup or final canonical schema readiness. Authorization scope remains in the [045 continuation](reports/SHINKA_ID_MODEL_045.md). Generated active history retains 044–048; main/publish remain owner actions.
 
 ## 047 — Three onboarding visual corrections
 

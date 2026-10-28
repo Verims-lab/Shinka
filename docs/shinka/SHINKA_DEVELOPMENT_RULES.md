@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-047
+**Current BuildMarker:** Buildmarker-048
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## Current 048 — theme and 045 cleanup only
+
+Preserve main/Test and Base44 visuals/onboarding/ID model. Advance once to Buildmarker-048 / HC-047.0 with recordBuild; retain 044–048. Seven existing Health cases change; no new case is needed. The owner explicitly authorizes only four-field cleanup on the named existing app/prod after app/admin/published-version/drain checks, complete dryRun, reviewed ≤25-ID sequential batches and full before/after verify. If real access or publication blocks cleanup, retain the optional compatibility schema and deliver independent theme work. No new general audit, main merge/publish, live Full Health/Security scan, sending/scheduler or deferred twelve-finding work. Execute both local browser engines and unchanged quality/performance gates; historical failures remain evidence.
 
 ## 045 continuation — publishable compatibility under existing main 046
 
