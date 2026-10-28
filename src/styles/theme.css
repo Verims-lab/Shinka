@@ -1,4 +1,23 @@
 @import "./onboarding.css";
+/* 045 manual dark theme: applied only via the account-bound theme_code (.dark on <html>). */
+html.dark { color-scheme: dark; }
+.dark {
+  --shinka-plum: 176 114 148;
+  --shinka-plum-deep: 226 180 203;
+  --shinka-ink: 246 233 238;
+  --shinka-mauve: 211 166 189;
+  --shinka-rose: 196 132 140;
+  --shinka-blush: 74 48 60;
+  --shinka-lavender: 61 43 58;
+  --shinka-plum-soft: 61 43 58;
+  --shinka-ivory: 30 20 25;
+  --shinka-cream: 38 26 33;
+  --shinka-taupe: 194 173 183;
+  --shinka-muted: 194 173 183;
+  --shinka-line: 74 55 66;
+  --shinka-white: 43 29 38;
+  --shinka-surface: 43 29 38;
+}
 /* Native Tailwind theme mappings; Shinka values mirror designTokens.js. */
 @theme inline {
   --color-background: hsl(var(--background));
