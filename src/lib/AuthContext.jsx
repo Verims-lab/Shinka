@@ -1,15 +1,15 @@
 import { createContext, useState, useContext, useEffect, useCallback, useRef, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
 import { safeAuthError, classifySessionFailure, AUTH_ERROR_CODES } from "@/foundation/authErrors";
-import { createSessionCoalescer } from "@/lib/sessionCheck";
+import { createSessionCoalescer, waitForSessionRetry } from "@/lib/sessionCheck";
 import { PRIVACY_SIGNAL, privacyRecoveryStore } from '@/services/privacyService';
 import { queryClientInstance } from '@/lib/query-client';
 
 const AuthContext = createContext(null);
 const SESSION_TIMING = { now: () => Date.now(), every: (fn, ms) => window.setInterval(fn, ms), cancel: id => window.clearInterval(id) };
 // Isolated canonical tests inject a client; production uses the existing SDK.
-/** @param {{children?:import("react").ReactNode,sessionTiming?:typeof SESSION_TIMING,client?:{app:{getPublicSettings:()=>Promise<any>},functions:{invoke:(name:string,body:object)=>Promise<any>},auth:{logout:(redirect?:string)=>void|Promise<any>}}}} props */
-export const AuthProvider = ({ children, client = base44, sessionTiming = SESSION_TIMING }) => {
+/** @param {{children?:import("react").ReactNode,sessionTiming?:typeof SESSION_TIMING,sessionWait?:typeof waitForSessionRetry,client?:{app:{getPublicSettings:()=>Promise<any>},functions:{invoke:(name:string,body:object)=>Promise<any>},auth:{logout:(redirect?:string)=>void|Promise<any>}}}} props */
+export const AuthProvider = ({ children, client = base44, sessionTiming = SESSION_TIMING, sessionWait = waitForSessionRetry }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
@@ -20,20 +20,24 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
   const [appPublicSettings, setAppPublicSettings] = useState(null);
   const generation = useRef(0), appGeneration = useRef(0), signedOut = useRef(false), refused = useRef(false);
   const privacyVersion = useRef(null);
+  const retryController = useRef(null);
 
   const verifySession = useCallback(async () => {
     // A platform membership refusal stays authoritative until the next checkAppState.
     if (signedOut.current || refused.current) return false;
     const ticket = ++generation.current;
+    retryController.current?.abort();
+    const controller = new AbortController(); retryController.current = controller;
     setIsRefreshingAuth(true);
     try {
       // Transient (503/429/network) failures get two quiet retries before the retry screen.
       let response;
       for (let attempt = 0; ; attempt++) {
+        if (controller.signal.aborted || ticket !== generation.current) return false;
         try { response = await client.functions.invoke('applicationSession', {}); break; }
         catch (error) {
           if (attempt >= 2 || classifySessionFailure(error) === "INVALID" || ticket !== generation.current) throw error;
-          await new Promise(resolve => setTimeout(resolve, 700 * (attempt + 1)));
+          if (!await sessionWait(700 * (attempt + 1),controller.signal)) return false;
         }
       }
       const currentUser = response?.data;
@@ -57,16 +61,19 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
       }
       return false;
     } finally {
+      controller.abort();
+      if (retryController.current === controller) retryController.current = null;
       if (ticket === generation.current) {
         setIsLoadingAuth(false); setIsRefreshingAuth(false); setAuthChecked(true);
       }
     }
-  }, [client]);
+  }, [client, sessionWait]);
   const coalescer = useMemo(() => createSessionCoalescer(verifySession, { now: sessionTiming.now }), [verifySession, sessionTiming]);
   const checkUserAuth = coalescer.check;
 
   const checkAppState = useCallback(async () => {
     const ticket = ++generation.current;
+    retryController.current?.abort();
     coalescer.reset(); signedOut.current = false; refused.current = false;
     setUser(null); setIsAuthenticated(false); setAuthChecked(false); setAuthError(null);
     setIsLoadingAuth(true); setIsRefreshingAuth(false);
@@ -86,6 +93,7 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
       // Preserve the platform membership boundary without surfacing its payload.
       if (error?.status === 403 && error?.data?.extra_data?.reason === "user_not_registered") {
         refused.current = true; generation.current++; coalescer.reset();
+        retryController.current?.abort();
         setUser(null); setIsAuthenticated(false); setAuthChecked(true); setIsLoadingAuth(false); setIsRefreshingAuth(false);
         setAuthError({ type: "user_not_registered", code: safeAuthError(error, "session") });
         return;
@@ -97,7 +105,7 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
   }, [client, checkUserAuth, coalescer]);
   useEffect(() => {
     void checkAppState();
-    return () => { generation.current++; appGeneration.current++; coalescer.reset(); };
+    return () => { generation.current++; appGeneration.current++; retryController.current?.abort(); coalescer.reset(); };
   }, [checkAppState, coalescer]);
   useEffect(() => {
     const changed = () => { queryClientInstance.clear(); };
@@ -119,6 +127,7 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
       if (!event.persisted) return;
       // Loading (not logged-out) while re-verifying, so routes never flash login.
       generation.current++; queryClientInstance.clear(); setUser(null); setIsAuthenticated(false); setIsLoadingAuth(true); coalescer.reset();
+      retryController.current?.abort();
       window.dispatchEvent(new Event('shinka-health-access-changed'));
       void checkUserAuth();
     };
@@ -136,6 +145,7 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
 
   const logout = async (shouldRedirect = true, { preservePrivacyRecovery = false } = {}) => {
     signedOut.current = true; generation.current++; appGeneration.current++; coalescer.reset();
+    retryController.current?.abort();
     window.dispatchEvent(new Event('shinka-session-ended'));
     queryClientInstance.clear();
     if (!preservePrivacyRecovery) privacyRecoveryStore.clear();

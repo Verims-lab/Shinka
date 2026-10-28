@@ -16,12 +16,18 @@ function YouLink({ to, children, state = undefined, ...props }) {
   return useInRouterContext() ? <Link to={to} state={state} {...props}>{children}</Link> : <a href={to} {...props}>{children}</a>;
 }
 
-export default function You({ language = 'en', request = undefined, placeRequest = onboardingRequest, onSaved = undefined, onLoaded = undefined, isAdmin = false, onLogout = () => {}, renderProfileAccess = undefined }) {
+export default function You({ language = 'en', request = undefined, placeRequest = onboardingRequest, onSaved = undefined, onLoaded = undefined, isAdmin = false, onLogout = () => {}, renderProfileAccess = undefined, notificationDevice = undefined }) {
   const state = useYou(request, onSaved, onLoaded), { value, controller, busy, error } = state;
   const copy = key => youCopy(key, language), editButton = useRef(null), wasEditing = useRef(false);
   const heading = useRef(null);
   useEffect(() => { heading.current?.focus(); }, []);
   useEffect(() => { if (wasEditing.current && !state.editing) editButton.current?.focus(); wasEditing.current = state.editing; }, [state.editing]);
+  const preferenceIntent = state.intent?.section === 'preferences';
+  const errorContent = error && <div role="alert" className="space-y-3" data-you-error>
+    {!error.field && <p>{copy(error.unknown ? 'unknown' : error.code === 'YOU_EDIT_CONFLICT' ? 'conflict' : value ? 'saveError' : 'loadError')}</p>}
+    {error.unknown && state.intent && <><ShinkaButton variant="secondary" disabled={busy} onClick={controller.check}>{copy('check')}</ShinkaButton><ShinkaButton variant="secondary" disabled={busy} onClick={controller.retry}>{copy('retry')}</ShinkaButton></>}
+    {(!value || error.code === 'YOU_EDIT_CONFLICT') && <ShinkaButton disabled={busy} onClick={controller.load}>{copy('reopen')}</ShinkaButton>}
+  </div>;
   return <div lang={language} data-you-root className="shinka-viewport shinka-safe-shell bg-shinka-ivory text-shinka-ink font-body flex flex-col">
     <header className="flex flex-wrap items-center justify-between px-5 pt-6 gap-2"><YouLink to={`/?lang=${language}`} aria-label={copy('back')} className="inline-flex items-center justify-center min-h-11 min-w-11 text-shinka-plum">← {copy('back')}</YouLink>{renderProfileAccess?.(language)}</header>
     <main className="flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6">
@@ -34,9 +40,11 @@ export default function You({ language = 'en', request = undefined, placeRequest
         <ShinkaCard title={copy('preferences')}>
           <form noValidate className="space-y-4" data-you-preferences-form onSubmit={event => { event.preventDefault(); void controller.savePreferences(); }}>
             <div className="space-y-2"><label htmlFor="you-language">{copy('language')}</label><ShinkaSelect id="you-language" disabled={busy || !!error?.unknown} value={state.preferences.language_code} onChange={event => controller.preference('language_code', event.target.value)}><option value="tr">Türkçe</option><option value="en">English</option></ShinkaSelect></div>
-            <label className="flex min-h-11 items-center gap-3"><span className="min-w-11 min-h-11 flex items-center justify-center"><input type="checkbox" checked={state.preferences.notifications_enabled} disabled={busy || !!error?.unknown} onChange={event => controller.preference('notifications_enabled', event.target.checked)} className="h-6 w-6 accent-shinka-plum"/></span>{copy('notifications')}</label>
-            <p>{copy('notificationTime')}</p><NotificationStatus language={language} enabled={value.preferences.notifications_enabled}/>
+            <label htmlFor="you-notifications" className="flex min-h-11 items-center gap-3"><span className="min-w-11 min-h-11 flex items-center justify-center"><input id="you-notifications" type="checkbox" aria-describedby="you-notification-save-state you-notification-guidance" checked={state.preferences.notifications_enabled} disabled={busy || !!error?.unknown} onChange={event => controller.preference('notifications_enabled', event.target.checked)} className="h-6 w-6 accent-shinka-plum"/></span>{copy('notifications')}</label>
+            <p>{copy('notificationTime')}</p><NotificationStatus language={language} enabled={value.preferences.notifications_enabled} draftEnabled={state.preferences.notifications_enabled} saving={busy && preferenceIntent} unconfirmed={!!error?.unknown && preferenceIntent} device={notificationDevice}/>
             <ShinkaButton type="submit" disabled={busy || !!error?.unknown}>{copy(busy ? 'saving' : 'save')}</ShinkaButton>
+            {preferenceIntent && errorContent}
+            {state.result === 'preferences' && <p role="status">{copy('preferencesSaved')}</p>}
           </form>
         </ShinkaCard>
         <ShinkaCard title={copy('account')}><div className="space-y-5">
@@ -49,12 +57,8 @@ export default function You({ language = 'en', request = undefined, placeRequest
           {isAdmin && <YouLink to="/internal" state={{language}} className="flex min-h-11 items-center text-shinka-plum">{t('admin.panel',language)}</YouLink>}
         </div></ShinkaCard>
       </>}
-      {error && <div role="alert" className="space-y-3" data-you-error>
-        {!error.field && <p>{copy(error.unknown ? 'unknown' : error.code === 'YOU_EDIT_CONFLICT' ? 'conflict' : value ? 'saveError' : 'loadError')}</p>}
-        {error.unknown && state.intent && <><ShinkaButton variant="secondary" disabled={busy} onClick={controller.check}>{copy('check')}</ShinkaButton><ShinkaButton variant="secondary" disabled={busy} onClick={controller.retry}>{copy('retry')}</ShinkaButton></>}
-        {(!value || error.code === 'YOU_EDIT_CONFLICT') && <ShinkaButton disabled={busy} onClick={controller.load}>{copy('reopen')}</ShinkaButton>}
-      </div>}
-      {state.result && <p role="status">{copy(state.result === 'profile' ? 'saved' : 'preferencesSaved')}</p>}
+      {!preferenceIntent && errorContent}
+      {state.result === 'profile' && <p role="status">{copy('saved')}</p>}
     </main>
     <ProductNavigation current="you" language={language}/>
   </div>;

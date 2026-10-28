@@ -1,0 +1,14 @@
+{
+  "build_marker": "Buildmarker-044",
+  "package_name": "Profile notification preference and phone permission guidance",
+  "package_type": "FEATURE_VERIFICATION",
+  "created_at": "2026-10-28T11:08:53Z",
+  "health_catalog_version": "HC-043.0",
+  "short_summary": "Separate saved, draft and unconfirmed notification choices in You; simple TR/EN phone-permission and pending-setup guidance; verify retry, account boundaries and fresh opt-out admission.",
+  "full_health_status": "LOCAL_SYNTHETIC_ONLY / NATIVE_AND_HOSTED_ACCEPTANCE_OPEN",
+  "notes": "Preserves main Base44 043 auth/header/dependency changes. Adds six regressions; HC-042.0 → HC-043.0 once, five existing Health cases updated, no IDs added/removed. Cancel pending auth retry on account/logout; controlled tests preserve two 700/1400ms retries. Sending remains disabled. No workflow, native setup, live mutation/Health/scan or main publish. Active 040–044. Final evidence: SHINKA_NOTIFICATION_PREFERENCES_044.md.",
+  "docs_aligned": true,
+  "source_changed": true,
+  "tests_changed": true,
+  "health_changed": true
+}

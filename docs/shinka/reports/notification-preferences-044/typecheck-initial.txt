@@ -1,0 +1,17 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 typecheck
+> tsc -p ./jsconfig.json
+
+src/foundation/tests/notificationTests.js(20,97): error TS2339: Property 'language_code' does not exist on type '{ revision: string; }'.
+src/foundation/tests/notificationTests.js(20,162): error TS2339: Property 'timezone' does not exist on type '{ revision: string; }'.
+src/foundation/tests/notificationTests.js(21,48): error TS2339: Property 'notifications_enabled' does not exist on type '{ revision: string; }'.
+src/foundation/tests/notificationTests.js(21,85): error TS2339: Property 'notification_time' does not exist on type '{ revision: string; }'.
+src/foundation/tests/notificationTests.js(38,96): error TS2339: Property 'language_code' does not exist on type '{ revision: string; }'.
+src/foundation/tests/notificationTests.js(38,161): error TS2339: Property 'timezone' does not exist on type '{ revision: string; }'.
+src/foundation/tests/notificationTests.js(39,47): error TS2339: Property 'notifications_enabled' does not exist on type '{ revision: string; }'.
+src/foundation/tests/notificationTests.js(40,12): error TS2722: Cannot invoke an object which is possibly 'undefined'.
+src/foundation/tests/notificationUiTests.js(70,89): error TS2722: Cannot invoke an object which is possibly 'undefined'.
+src/foundation/tests/notificationUiTests.js(78,4): error TS2722: Cannot invoke an object which is possibly 'undefined'.
+src/foundation/tests/notificationUiTests.js(119,118): error TS2722: Cannot invoke an object which is possibly 'undefined'.
+src/foundation/tests/notificationUiTests.js(124,4): error TS2722: Cannot invoke an object which is possibly 'undefined'.

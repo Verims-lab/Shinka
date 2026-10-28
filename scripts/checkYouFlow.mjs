@@ -4,6 +4,8 @@ import path from 'node:path';
 export async function checkYouFlow(page, origin, directory) {
   if(directory)await mkdir(directory,{recursive:true});
   const results=[];
+  // WebKit's macOS default skips non-text controls with Tab; Option+Tab visits all controls.
+  const controlTab=page.context().browser().browserType().name()==='webkit'?'Alt+Tab':'Tab';
   for(const width of [320,360,390,430,844]) for(const language of ['tr','en']) {
     await page.setViewportSize({width,height:width===844?390:900});
     await page.goto(`${origin}/you?appFixture=1&sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=${language}`);
@@ -15,12 +17,20 @@ export async function checkYouFlow(page, origin, directory) {
     await page.waitForSelector('[data-you-profile-form]');
     await page.waitForFunction(()=>document.activeElement?.id==='display_name');
     await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement?.id),'birth_date');
+    const notifications=page.getByRole('checkbox',{name:language==='tr'?'Günlük Bildirimler':'Daily Notifications',exact:true});
+    await notifications.focus();await page.keyboard.press('Space');assert(await notifications.isChecked());
+    await page.locator('[data-notification-save-state="unsaved"]').waitFor();
+    assert((await page.locator('[data-notification-preference]').innerText()).endsWith(language==='tr'?'Kapalı':'Off'));
+    assert((await page.locator('[data-notification-permission]').innerText()).endsWith(language==='tr'?'Doğrulanmadı':'Not verified'));
+    for(const id of (await notifications.getAttribute('aria-describedby')).split(' '))assert.equal(await page.locator('#'+id).count(),1);
+    await page.keyboard.press(controlTab);assert.equal(await page.evaluate(()=>document.activeElement?.closest('[data-you-preferences-form]')!==null&&document.activeElement?.getAttribute('type')==='submit'),true);
+
     for(const scale of [1,2]) {
       if(scale===2)await page.evaluate(()=>{const sizes=[...document.querySelectorAll('[data-you-root] h1,[data-you-root] h2,[data-you-root] p,[data-you-root] dt,[data-you-root] dd,[data-you-root] button,[data-you-root] a,[data-you-root] span,[data-you-root] label,[data-you-root] input,[data-you-root] select,[data-you-root] legend')].map(el=>({el,size:parseFloat(getComputedStyle(el).fontSize)}));for(const {el,size} of sizes)el.style.fontSize=`${size*2}px`;});
-      const geometry=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,controls:[...document.querySelectorAll('[data-you-root] button,[data-you-root] a,[data-you-root] select,[data-you-root] input:not([type="checkbox"])')].map(el=>{const r=el.getBoundingClientRect();return {width:r.width,height:r.height};})}));
-      assert(geometry.scroll<=width+1&&geometry.controls.every(r=>r.width>=44&&r.height>=44));
+      const geometry=await page.evaluate(()=>({tightNotificationText:[...document.querySelectorAll('[data-notification-status] p')].filter(el=>parseFloat(getComputedStyle(el).lineHeight)<parseFloat(getComputedStyle(el).fontSize)).length,width:innerWidth,scroll:document.documentElement.scrollWidth,controls:[...document.querySelectorAll('[data-you-root] button,[data-you-root] a,[data-you-root] select,[data-you-root] input:not([type="checkbox"])')].map(el=>{const r=el.getBoundingClientRect();return {width:r.width,height:r.height};})}));
+      assert(geometry.tightNotificationText===0&&geometry.scroll<=width+1&&geometry.controls.every(r=>r.width>=44&&r.height>=44));
       if(directory)await page.screenshot({path:path.join(directory,`you-${width}-${language}-${scale}x.png`),fullPage:true});
-      results.push({scenario:`you-${width}-${language}-${scale}x`,passed:true,geometry,scope:'LOCAL_BROWSER_SYNTHETIC'});
+      results.push({scenario:`you-${width}-${language}-${scale}x`,passed:true,geometry,controlTab,scope:'LOCAL_BROWSER_SYNTHETIC'});
     }
     assert.equal(await page.evaluate(()=>window.__sdkLabCalls.filter(c=>c.name==='dailyMessage').length),0);
     assert(await page.evaluate(()=>window.__youLab.state.calls.every(c=>c.method==='filter')));

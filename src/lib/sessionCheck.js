@@ -1,3 +1,16 @@
+/** @param {number} ms @param {AbortSignal} signal
+ * @param {{set:(fn:()=>void,ms:number)=>any,clear:(id:any)=>void}} [timers] */
+export function waitForSessionRetry(ms, signal, timers = { set:(fn,delay)=>setTimeout(fn,delay),clear:id=>clearTimeout(id) }) {
+  return new Promise(resolve => {
+    if (signal.aborted) return resolve(false);
+    let timer;
+    const done = completed => { timers.clear(timer); signal.removeEventListener('abort',abort); resolve(completed); };
+    const abort = () => done(false);
+    signal.addEventListener('abort',abort,{once:true});
+    timer = timers.set(()=>done(true),ms);
+  });
+}
+
 // Coalesces concurrent session checks (focus, visibilitychange, timer, route
 // callbacks) into one request, and throttles passive triggers after success.
 export function createSessionCoalescer(run, { minPassiveGapMs = 15000, now = () => Date.now() } = {}) {
