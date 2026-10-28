@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — approved references imported; native daily snapshot observed; hosted acceptance remains partial
-**Current BuildMarker:** Buildmarker-044
+**Current BuildMarker:** Buildmarker-045
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
@@ -10,6 +10,12 @@
 **Implemented:** Workbook validator, exact backend manifest, dry-run/apply/verify importer, Moon preparation, daily selection and snapshot protocol, ON-06/Home integration.
 **Not Implemented:** Distributed physical uniqueness guarantee; scheduled lookup renewal. Remaining hosted/device evidence is tracked separately.
 **Open Decisions:** OD-005, OD-008 (noted); OD-002 RESOLVED_BY_PRODUCT_DECISION
+
+
+## 045 — MessagePair authority (current)
+
+Current text is resolved by the existing message_pair_id, never by a source row number, old text match or guessed replacement. Four response `_snapshot` names are compatibility DTO fields, not persisted copies. Changed text appears on the next read; kept-mounted Home reactivation performs that read. Existing inactive Pair assignments remain readable; new selection still chooses Active. Missing/invalid Pair text is a safe error, never random reassignment. Selection metadata reads only IDs/category/eligibility; selected text uses bounded ID batches. Category/mapping manifest checks, 40-day exclusion, all-candidate history and Pattern's assigned-category counting remain. Source importer still refuses text conflicts/overwrites; an approved catalog edit may therefore produce an import conflict, not an excuse to restore source text. This package changes no reference texts or source hash. Historical immutable-text rules below are superseded by the explicit 045 owner decision; source provenance is retained.
+
 
 ## 030 — notification continuation preserves daily content
 
@@ -34,7 +40,7 @@ Withdrawal preserves existing daily bilingual snapshots and assigned Pattern cat
 
 ## You preservation — 022
 
-No content, category mapping, text, Moon reference or import changes. Profile/name/language/preference edits never update or regenerate an existing daily snapshot or reassign historical Pattern categories. Language selects the stored bilingual snapshot. A changed birth date/Sun affects only the existing selection inputs for a future ungenerated day; the current-day reuse rule is unchanged. Tests compare all protected fixture tables before/after actual owner updates.
+No content, category mapping, text, Moon reference or import changes. Profile/name/language/preference edits never update or regenerate an existing daily snapshot or reassign historical Pattern categories. Language selects current linked Pair text (045). A changed birth date/Sun affects only the existing selection inputs for a future ungenerated day; the current-day reuse rule is unchanged. Tests compare all protected fixture tables before/after actual owner updates.
 
 ## Pattern historical assignment — 021
 
@@ -77,7 +83,7 @@ One Pair ID (`SHF-001`…`SHF-260`) = Your Shinka + Today's Suggestion, TR and E
 - 240 total. Live validation: 240 file = 192 file row-for-row (same categories) + 48 UNKNOWN; 0 duplicates; 0 missing combinations; 0 missing TR/EN cells.
 
 ## Selection rules (implemented H09; native acceptance evidence bounded above)
-Existing local-day record → return. Else mapping category → random Active pair not shown in last 40 days (first show day counts; day 41 eligible) → other categories → least-recently-shown Active (ties random; only here 40-day rule may be exceeded). Store actual category_id; TR/EN snapshots immutable; language switch shows the other snapshot of the same pair.
+Existing local-day record → return. Else mapping category → random Active pair not shown in last 40 days (first show day counts; day 41 eligible) → other categories → least-recently-shown Active (ties random; only here 40-day rule may be exceeded). Store actual category_id; Assignment immutable; language switch shows the other current language of the same Pair (045).
 
 ## Ownership
 Workbooks are the content authority; any edit to copy/mapping is a source change and requires a new package.
@@ -109,7 +115,7 @@ No source Pair ID field was added to the 20-entity contract. Exact category plus
 
 H05-009 now distinguishes PRE_IMPORT (or SOURCE_DECISION_REQUIRED) with verified zero counts from VERIFIED_IMPORTED with exact expected source hash, counts, every relation/text and a complete one-to-one crosswalk. Partial/conflicting data fails; absent evidence blocks. Pre-import PASS does not mean production-ready. Current native H09-004 verifies read-only reference prerequisites and now passes on the approved target; hosted mutation acceptance remains separate.
 
-The pure engine implements mapped-category random selection, other-category fallback, then least-recent active/ties random. History query is only [today−39,today], at most 41 rows to detect duplicate-day overflow. A showing on day 1 is eligible on day 41 (difference 40). Final fallback needs no older history: when every active pair is protected, each latest showing is necessarily in the bounded window. Saved category is the chosen pair's category. Both language snapshots are immutable.
+The pure engine implements mapped-category random selection, other-category fallback, then least-recent active/ties random. History query is only [today−39,today], at most 41 rows to detect duplicate-day overflow. A showing on day 1 is eligible on day 41 (difference 40). Final fallback needs no older history: when every active pair is protected, each latest showing is necessarily in the bounded window. Saved category is the chosen pair's category. Both languages resolve the current assigned Pair (045); assignment identity remains immutable.
 
 ## Approved category definition — OD-002 continuation
 

@@ -11,7 +11,7 @@ export async function checkAdminTestTools(page, origin, directory) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto(`${origin}/?appFixture=1&sdkSession=admin&language=${language}&onboardingState=ACTIVE_EXISTING_USER`);
     await page.waitForSelector('[data-profile-trigger]:not(:disabled)');
-    await page.locator('[data-profile-trigger]').click();
+    await page.locator('[data-profile-trigger]:visible').click();
     await page.waitForSelector('[data-you-root]');
     await page.getByRole('link', { name: 'Admin Panel' }).click();
     await page.locator('[data-admin-panel] a[href="/internal/test-tools"]').click();

@@ -8,7 +8,7 @@ export function notificationFixture({ current = true, granted = false } = {}) {
   const f = nativeFixture({ granted });
   f.state.time = '2026-10-20T03:00:00.000Z';
   f.tables.UserPreferences[0].notifications_enabled = true;
-  const daily = { ...dailyRecordFixture(), shinka_date:current ? '2026-10-20' : '2026-10-19' };
+  const daily = { ...dailyRecordFixture(), message_pair_id:f.tables.MessagePair[0].id, category_id:f.tables.MessagePair[0].category_id, shinka_date:current ? '2026-10-20' : '2026-10-19' };
   f.tables.UserDailyMessage.push(daily);
   const sent = [], device = { support:'SUPPORTED',permission:'GRANTED' }, outcomes = [];
   const provider = { eligibility:async()=>device, send:async value=>{ sent.push(value); const outcome=outcomes.shift() || {kind:'accepted'};if(outcome instanceof Error)throw outcome;return outcome; } };

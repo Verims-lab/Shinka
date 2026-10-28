@@ -1,3 +1,4 @@
+import { DAILY_REFERENCE_TESTS } from './dailyReferenceTests';
 import { DELETION_UI_TESTS } from './deletionUiTests';
 import { DELETION_FAULT_TESTS } from './deletionFaultTests';
 import { DELETION_STABILITY_TESTS } from './deletionStabilityTests';
@@ -78,6 +79,7 @@ const fixtureCases = (ids) => ids.map((id) => ({ id, suiteId: id.slice(0, 3), ti
 
 /** @type {import("./testTypes").FoundationTest[]} */
 export const FOUNDATION_TESTS = [
+  ...DAILY_REFERENCE_TESTS,
   ...NOTIFICATION_TESTS, ...NOTIFICATION_CONTRACT_TESTS, ...NOTIFICATION_PERFORMANCE_TESTS, ...NOTIFICATION_WORKFLOW_TESTS, ...NOTIFICATION_UI_TESTS,
   ...QUALITY_MILESTONE_TESTS, ...CORE_QUALITY_TESTS, ...DELETION_STABILITY_TESTS,
   ...DELETION_FAULT_TESTS,

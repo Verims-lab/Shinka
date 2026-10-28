@@ -74,16 +74,17 @@ try {
           result.start = performance.now();
           const tick = () => {
             const elapsed = performance.now() - result.start;
-            const target = document.querySelector(`[data-${to}-root]`);
+            const candidate = document.querySelector(`[data-${to}-root]`);
+            const target = candidate?.getClientRects().length ? candidate : null;
             if (result.feedback === null && (target || document.querySelector('[aria-busy="true"], [role="status"]'))) result.feedback = elapsed;
             if (result.visible === null && target) result.visible = elapsed;
-            if (target && document.querySelector(ready)) { requestAnimationFrame(() => { result.usable = performance.now() - result.start; }); return; }
+            if (target && document.querySelector(ready)?.getClientRects().length) { requestAnimationFrame(() => { result.usable = performance.now() - result.start; }); return; }
             requestAnimationFrame(tick);
           };
           requestAnimationFrame(tick);
         }, { once: true, capture: true });
       }, { to, ready: ready[to] });
-      const selector = to === 'you' ? 'a[data-profile-trigger]' : `nav a[href^="${routeOf(to)}?lang="]`;
+      const selector = to === 'you' ? 'a[data-profile-trigger]:visible' : `nav a:visible[href^="${routeOf(to)}?lang="]`;
       await page.locator(selector).first().click();
       await page.waitForFunction(() => window.__transition.usable !== null);
       const measured = await page.evaluate(() => {
@@ -94,6 +95,9 @@ try {
       rows.push({ sample: sample + 1, from, to, visit: visited.has(to) ? 'revisit' : 'first', ...measured, calls: calls.filter(c => c.start >= measured.start && c.start < measured.start + measured.usable) });
       visited.add(to); from = to;
     }
+    // Kept tabs may paint a retained value before their fresh read finishes.
+    // Drain routed work before closing; do not discard callback failures.
+    await page.unrouteAll({behavior:'wait'});
     await context.close();
   }
 } finally { await browser.close(); await new Promise(resolve => server.close(resolve)); }

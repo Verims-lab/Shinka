@@ -6,7 +6,7 @@ import { withUserLifecycle } from '../../../base44/shared/userLifecycle.js';
 import { onboardingOperation } from '../../../base44/shared/onboardingOperations.js';
 import { dailyMessageOperation } from '../../../base44/shared/dailyMessageOperation.js';
 import { adminTestOperation, handleAdminTestRequest } from '../../../base44/shared/adminTestOperation.js';
-import { dailySnapshot } from '../../../base44/shared/dailySelection.js';
+import { dailyAssignment } from '../../../base44/shared/dailySelection.js';
 const assert = (ok, reason) => { if (!ok) throw new Error(reason); };
 async function rejects(run, code) {
   try { await run(); } catch (e) { assert(!code || e.code === code, `expected ${code}, got ${e.code}`); return; }
@@ -19,7 +19,7 @@ const retained = f => JSON.stringify(Object.fromEntries([...RETAINED_ENTITIES, .
 const reset = async f => (await f.execute(await f.preview('RESET_ONBOARDING'))).job;
 function daily(f) {
   const pair = f.tables.MessagePair[0];
-  f.tables.UserDailyMessage.push({ id: 'old-daily', ...dailySnapshot({ owner: 'ownerA', day: '2026-10-20', timezone: 'Europe/Istanbul', pair, now: f.now() }) });
+  f.tables.UserDailyMessage.push({ id: 'old-daily', ...dailyAssignment({ owner: 'ownerA', day: '2026-10-20', timezone: 'Europe/Istanbul', pair, now: f.now() }) });
 }
 /** @type {import('./testTypes').FoundationTest[]} */
 export const ADMIN_TEST_TOOLS_TESTS = [

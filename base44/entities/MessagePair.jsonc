@@ -26,7 +26,8 @@
     "is_active": {
       "type": "string",
       "enum": [
-        "Active"
+        "Active",
+        "Inactive"
       ],
       "default": "Active"
     }

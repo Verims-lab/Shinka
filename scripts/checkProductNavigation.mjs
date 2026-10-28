@@ -8,12 +8,12 @@ export async function checkProductNavigation(page, origin) {
   await page.locator('[data-daily-id]').waitFor();
   const calls = () => page.evaluate(() => window.__authFixture.calls);
   const initial = await calls();
-  await page.locator('nav a').nth(1).hover();
-  await page.locator('nav a').nth(2).focus();
+  await page.locator('nav a:visible').nth(1).hover();
+  await page.locator('nav a:visible').nth(2).focus();
   assert.deepEqual(await calls(), initial, 'navigation focus/hover triggered backend prefetch');
   const ready = { calendar: '#calendar-start-date', pattern: '[data-lunar-summary]', you: '[data-you-consent]', home: '[data-daily-id]' };
   for (const to of ['calendar','pattern','you','home','pattern','calendar','home','you']) {
-    await page.locator(to === 'you' ? 'a[data-profile-trigger]' : `nav a[href^="${to === 'home' ? '/' : '/' + to}?lang="]`).first().click();
+    await page.locator(to === 'you' ? 'a[data-profile-trigger]:visible' : `nav a:visible[href^="${to === 'home' ? '/' : '/' + to}?lang="]`).first().click();
     await page.locator(ready[to]).waitFor();
   }
   assert.equal((await calls()).filter(c => c.name === 'onboarding' && c.action === 'hydrate').length, 1, 'product navigation remounted resolver');
@@ -26,11 +26,11 @@ export async function checkProductNavigation(page, origin) {
   await page.reload(); await page.locator(ready.you).waitFor();
   assert.equal((await calls()).filter(c => c.name === 'onboarding').length, 1, 'fresh document did not hydrate once');
   await page.evaluate(() => window.__authFixture.holdOperation('calendar'));
-  await page.locator('nav a').nth(1).click();
+  await page.locator('nav a:visible').nth(1).click();
   await page.locator('[data-calendar-root]').waitFor();
-  await page.locator('nav a').nth(2).click(); await page.locator(ready.pattern).waitFor();
+  await page.locator('nav a:visible').nth(2).click(); await page.locator(ready.pattern).waitFor();
   await page.evaluate(() => window.__authFixture.releaseOperation('calendar'));
-  assert.equal(await page.locator('[data-calendar-root]').count(), 0, 'late unmounted response revived Calendar');
+  assert.equal(await page.locator('[data-calendar-root]:visible').count(), 0, 'late response revealed the kept-hidden Calendar');
   await page.evaluate(() => { window.__authFixture.holdOperation('onboarding'); window.dispatchEvent(new Event('shinka-health-access-changed')); });
   await page.waitForFunction(() => !document.querySelector('[data-pattern-root]'));
   await page.evaluate(() => window.__authFixture.releaseOperation('onboarding'));
@@ -44,7 +44,7 @@ export async function checkProductNavigation(page, origin) {
   await page.waitForFunction(() => !document.querySelector('[data-pattern-root]'));
   await page.evaluate(() => window.__authFixture.releaseOperation('onboarding'));
   await page.locator(ready.pattern).waitFor();
-  await page.locator('a[data-profile-trigger]').click(); await page.locator(ready.you).waitFor();
+  await page.locator('a[data-profile-trigger]:visible').click(); await page.locator(ready.you).waitFor();
   await page.getByRole('button', { name: 'Çıkış yap', exact: true }).click();
   await page.locator('[data-onboarding-state="UNAUTHENTICATED_SIGN_IN"]').waitFor();
   await page.goBack();

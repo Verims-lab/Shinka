@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-044
+**Current BuildMarker:** Buildmarker-045
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -12,6 +12,14 @@
 **External Verification Required:** Base44 native UNIQUE is unsupported; no multi-record transaction/CAS guarantee is claimed. Native handler tests use synthetic transport; hosted schema/authorization/mutation recovery remains pending.
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
+
+
+
+## 045 — Native IDs and current text (current)
+
+27 repository schemas = 20 product + 6 operational + native User extension. All have Base44 native `id`; no manual replacement ID is added. UserDailyMessage's six domain fields plus native `id` define its immutable assignment. Four legacy text fields are removed from the final schema/new writes; DTO names are derived from current MessagePair. Source receipt keeps SRC-05/07's original fields and declares the explicit 045 removals. MessagePair.is_active permits Active/Inactive; historical references ignore eligibility. Category ID on the daily row records the actual assignment and must not follow a later Pair category edit. NotificationDelivery's daily_message_id is now checked in a bounded projected owner/date reference query before admission; no link rewrite.
+
+Schema removal does not delete old stored fields. The operator-only reviewed migration unsets precisely four keys, preserving all assignment fields/native IDs. Optional compatibility schema precedes backend rollout and cleanup, final schema follows full verification. No live migration ran. [All-entity inventory, measurements and release steps](reports/SHINKA_ID_MODEL_045.md). Retention, consent/privacy and historical evidence are unchanged.
 
 
 ## 040 — removal receipt and progress semantics
@@ -136,7 +144,7 @@ UserDailyMessage may have multiple physical candidates; ordering and conflict no
 | 10 | message_category_lookup | six categories | system | reference | UNIQUE(category_code) | not deletable |
 | 11 | message_category_mapping | 240 mappings | system | reference | UNIQUE(sun_sign_code, moon_phase_code, cycle_phase_code) | not deletable |
 | 12 | message_pair | 260+ TR/EN pairs, is_active "Active" | system | editable text | INDEX(category_id, is_active) | no delete function |
-| 13 | user_daily_message | one immutable snapshot per user/local day | user | immutable | UNIQUE(user_id, shinka_date); INDEX(user_id, generated_at) | ordinary/admin immutable; owner erasure removes all candidates |
+| 13 | user_daily_message | immutable assignment candidates per user/local day | user | immutable | UNIQUE(user_id, shinka_date); INDEX(user_id, generated_at) | ordinary/admin immutable; owner erasure removes all candidates |
 | 14 | notification_delivery | push job per message | user | stateful | UNIQUE(daily_message_id, notification_type) | withdrawal retains history; owner erasure removes |
 | 15 | user_pattern_summary | single current summary | user | derived single row | UNIQUE(user_id) | legacy cache ignored; owner erasure removes |
 | 16 | moon_phase_lookup | UTC phase intervals | system | rolling reference | INDEX(start_at_utc) | not user-deletable |
@@ -325,7 +333,7 @@ Required fields are listed in each JSONC; optional fields are marked NULL below.
 | suggestion_tr | string | required |
 | message_en | string | required |
 | suggestion_en | string | required |
-| is_active | string; enum=['Active']; default=Active | required |
+| is_active | string; enum=['Active','Inactive']; default=Active | required |
 
 **user_daily_message**
 
@@ -336,10 +344,6 @@ Required fields are listed in each JSONC; optional fields are marked NULL below.
 | timezone | string | required |
 | category_id | string | required |
 | message_pair_id | string | required |
-| message_tr_snapshot | string | required |
-| suggestion_tr_snapshot | string | required |
-| message_en_snapshot | string | required |
-| suggestion_en_snapshot | string | required |
 | generated_at | string; format=date-time | required |
 
 **notification_delivery**
@@ -496,7 +500,7 @@ The agent observed one live consent row with visible granted_at and Created valu
 
 No product field/entity/RLS declaration changes. Source Pair ID → native pair ID is reconstructed by exact canonical content identity and verified in the controlled import result; the native id remains platform-owned. Source hash/version/counts live in the repository manifest/receipt and returned verification, not invented entity fields. Admin apply audit uses existing metadata-only admin_audit_log; dry-run and verify do not write.
 
-Daily snapshot fields are precisely the existing source contract: authenticated user_id, backend-derived shinka_date, validated timezone, actual category_id, message_pair_id, all four TR/EN text snapshots and backend UTC generated_at. Existing same-day rows are returned unchanged regardless of locale/profile/library changes. A legitimate earlier daily row remains the completion signal even if today's generation fails.
+Daily assignment fields, with the explicit 045 source-contract amendment: authenticated user_id, backend-derived shinka_date, validated timezone, actual category_id, message_pair_id, backend UTC generated_at. The original four text fields are superseded by 045: same-day assignment stays unchanged and response text resolves current MessagePair. A legitimate earlier daily row remains the completion signal even if today's generation fails.
 
 > Historical contract (superseded by the current 016 native contract above):
 > Native compound uniqueness remains UNSUPPORTED. `createOnce` is used with its documented atomic requirements, now including an exact consent input predicate when health data influenced selection. Production has no accepted adapter and new daily writes are disabled. The SDK's upsert merge semantics cannot implement immutable winner selection. A native platform conditional-create guarantee, or an approved authoritative transactional store with UNIQUE(user_id,shinka_date) and a crash-safe integration/guard protocol, is required before enabling production. In-memory fixture concurrency is protocol proof only. No transaction/rollback/distributed-lock guarantee is claimed.

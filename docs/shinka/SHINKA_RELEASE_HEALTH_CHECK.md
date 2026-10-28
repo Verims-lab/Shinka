@@ -2,12 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-044
+**Current BuildMarker:** Buildmarker-045
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-043.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-044.0; repository, synthetic and external evidence separated.
+
+
+
+## Buildmarker-045 — HC-044.0
+
+Add **1 / update 4 / delete 0**: H09-007 executes ID05–09 (reviewed bounded cleanup, lost response/partial/resume, invalid reference, role/lifecycle and notification ownership). H09-003 executes ID01–04 plus DM13/14/18/19 for assignment identity/current text and bounded metadata/ID reads. H07-013 adds DU05 kept-tab reopening/current text to existing UI checks; H09-901 stays external and adds real reference/cleanup acceptance; H05-009 explicitly includes 045, leaving next unapproved package blocked. No case is removed or weakened. 178 total / 152 in-app / 12 local / 14 external; H14-901/H16-901 stay open. SDK02 is installed-SDK loopback only. Final actual results and retained failures are recorded in [045 delivery](reports/SHINKA_ID_MODEL_045.md); no live Health/scan is run.
 
 
 ## Buildmarker-044 — HC-043.0

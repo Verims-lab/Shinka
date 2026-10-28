@@ -2,12 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-044
+**Current BuildMarker:** Buildmarker-045
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
+
+
+## 045 — ID content and bounded cleanup
+
+Explicit owner request makes MessagePair current text authoritative, including historical display. Native daily assignment IDs/metadata and retention remain. New writes omit four copies; projected selection/history and batched text resolution added. Delivery daily-link owner/date validation tightened. Offline reviewed <=25 cleanup with SDK $unset/readback, partial/lost-response tests prepared; not run hosted. Main e602a65 theme/kept tabs preserved; inherited type/schema/fixture mismatches recorded. [Single delivery, all 27 entities and matched measurements](reports/SHINKA_ID_MODEL_045.md) holds actual final gates and open hosted acceptance. Final Chromium/WebKit 725/725 each, local Health 139 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL; SDK02/quality/performance PASS. Generated active ledger 041–045, HC-044.0; no main/publish, live Health/scan/import/push.
 
 ## 044 — Profile notification preference delivery
 

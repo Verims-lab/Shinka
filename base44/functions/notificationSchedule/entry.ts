@@ -1,7 +1,7 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.57';
 import { handleNotificationSchedule } from '../../shared/notificationScheduler.js';
 import { base44PushProvider } from '../../shared/base44PushProvider.js';
-import { inspectContentLibrary } from '../../shared/base44ContentLibrary.js';
+import { readDailySelectionLibrary } from '../../shared/dailySelectionLibrary.js';
 import { FIRST_CONTENT_SOURCE } from '../../shared/firstContentSource.js';
 import { CONTENT_CATEGORY_DECISION } from '../../shared/contentCategoryDecision.js';
 
@@ -13,5 +13,5 @@ export default (req) => handleNotificationSchedule(req, {
   createClient: createClientFromRequest,
   enabled: false,
   createProvider: base44PushProvider,
-  library: client => inspectContentLibrary(client, FIRST_CONTENT_SOURCE, CONTENT_CATEGORY_DECISION),
+  library: client => readDailySelectionLibrary(client, FIRST_CONTENT_SOURCE, CONTENT_CATEGORY_DECISION),
 });

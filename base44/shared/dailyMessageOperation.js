@@ -11,9 +11,9 @@ import { HEALTH_CONSENT_VERSION } from './onboardingDependencies.js';
 import { createOnce } from './domainAtomic.js';
 import { resolveSunSign } from './sunSign.js';
 import { resolveDailyCycle } from './dailyCycle.js';
-import { repeatWindowStart, selectDailyPair, dailySnapshot } from './dailySelection.js';
+import { repeatWindowStart, selectDailyPair, dailyAssignment } from './dailySelection.js';
 import { resolveMoonPhase } from './moonIntervals.js';
-import { verifiedDailyRecord } from './dailyRecord.js';
+import { dailyResponseRecord, readMessageTextMap } from './dailyContent.js';
 import { nativeDailyPersistence } from './nativeDailyPersistence.js';
 import { assertPrivacyAccess } from './privacyPolicy.js';
 
@@ -75,9 +75,10 @@ export async function produceDailyForOwner(client, owner, body, { now = () => ne
   const existing = persistence ? (reconciled.record ? [reconciled.record] : []) : await read('user_daily_message', 2, { shinka_date: day });
   if (existing.length > 1) fail('DUPLICATE_DAILY_MESSAGE');
   if (existing.length) {
+    const daily = await dailyResponseRecord(client, existing[0], owner, day);
     const current = await admit();
     assertActiveAccount(owner, await singleton('user_profile', current?.profile));
-    return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: false, notice: reconciled?.notice || null, daily: verifiedDailyRecord(existing[0], owner, day), profile: { display_name: profile.display_name }, timezone };
+    return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: false, notice: reconciled?.notice || null, daily, profile: { display_name: profile.display_name }, timezone };
   }
   if (!isOnboardingProfileReady(profile, preferences, day)) fail('PROFILE_COMPLETION_REQUIRED');
   if (!atomic && !persistence) fail('DAILY_ATOMIC_CAPABILITY_REQUIRED', 503);
@@ -109,7 +110,8 @@ export async function produceDailyForOwner(client, owner, body, { now = () => ne
   const history = persistence ? await persistence.history(repeatWindowStart(day), day) : await read('user_daily_message', 41, { shinka_date: { $gte: repeatWindowStart(day), $lte: day } }, '-shinka_date', ['shinka_date', 'message_pair_id']);
   if (!persistence && (history.length > 40 || new Set(history.map(row => row.shinka_date)).size !== history.length)) fail('DUPLICATE_DAILY_MESSAGE');
   const { pair } = selectDailyPair({ pairs: content.actual.message_pair, history, categoryId: mappings[0].category_id, day, random });
-  const record = dailySnapshot({ owner, day, timezone, pair, now: instant });
+  const currentTexts = await readMessageTextMap(client, [pair.id]);
+  const record = dailyAssignment({ owner, day, timezone, pair, now: instant });
   const guard = async () => {
     const current = await admit();
   assertActiveAccount(owner, await singleton('user_profile', current?.profile));
@@ -124,8 +126,9 @@ export async function produceDailyForOwner(client, owner, body, { now = () => ne
     read: (entity, id) => atomic.read(entity, id),
     createIfAbsent: request => atomic.createIfAbsent({ ...request, requirements: { ...request.requirements, healthInput: healthGuard } }),
   });
+  const daily = await dailyResponseRecord(client, outcome.record, owner, day, currentTexts);
   await guard();
-  return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: outcome.created, notice: outcome.notice || null, daily: verifiedDailyRecord(outcome.record, owner, day), profile: { display_name: profile.display_name }, timezone };
+  return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: outcome.created, notice: outcome.notice || null, daily, profile: { display_name: profile.display_name }, timezone };
 }
 export async function dailyMessageOperation(client, body, dependencies = {}) {
   const principal = await requireAuthenticatedUser(client);
@@ -142,6 +145,6 @@ export async function handleDailyMessageRequest(req, createClient, dependencies 
     const body = await readBoundedJson(req, 2000, fail);
     return Response.json(await dailyMessageOperation(createClient(req), body, dependencies));
   } catch (error) {
-    return Response.json({ error_code: error instanceof InternalError ? error.code : 'DAILY_OPERATION_FAILED' }, { status: error instanceof InternalError ? error.status : 500 });
+    return Response.json({ error_code: error instanceof InternalError ? error.code : 'DAILY_OPERATION_FAILED', ...(error instanceof InternalError && error.diagnostic?.stage === 'DAILY_CONTENT_REFERENCE' ? {diagnostic:error.diagnostic} : {}) }, { status: error instanceof InternalError ? error.status : 500 });
   }
 }

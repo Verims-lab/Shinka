@@ -1,0 +1,53 @@
+{
+  "finalChecks": [
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "npm run health:repo",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node scripts/recordBuild.mjs --check",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "status": "PASS"
+    }
+  ],
+  "cleanInstall": "PASS: npm ci, 457 packages; lockfile unchanged",
+  "dependencyTree": "PASS: npm ls --depth=0 and --all",
+  "audit": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "dependencies": {
+      "prod": 217,
+      "dev": 291,
+      "optional": 55,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 507
+    }
+  },
+  "securityDeps": "PASS: npm run security:deps (registry audit, not hosted scan)",
+  "productionBuild": "PASS: npm run build",
+  "schemaStage": "PASS: 27-schema optional/final stages generated and readback-hashed",
+  "migrationBundle": "PASS: dryRun artifact generated and node --check; hosted NOT_RUN"
+}

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-044
+**Current BuildMarker:** Buildmarker-045
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -28,6 +28,14 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+
+
+## 045 — Reference ownership and narrow cleanup
+
+Daily assignments remain owner-scoped, ACTIVE/lifecycle/consent guarded and immutable through product routes. Source text RLS stays denied; no ordinary-user MessagePair edit route. Current text responses include no source table dump or fallback legacy copy. NotificationDelivery validates linked daily native IDs with owner and recorded date; malformed/missing/foreign links block sending. Neutral notification content, unknown device permission and disabled scheduler remain unchanged.
+
+Offline operator cleanup is the only new daily-field mutation: freshly verified native admin + ACTIVE profile, actor/target lifecycle/privacy, reviewed digest, exact native ID and original assignment predicate, four-key `$unset`, independent readback. No new persistent audit/snapshot table or retention change. Operator output includes IDs/status/count/digest only; no message/profile/health values, token or SDK raw errors. No live execution in 045. Existing withdrawal/admin-test retention and owner-erasure manifests remain exact; shared reference content survives those actions.
 
 
 ## 044 — Preference and session boundary verification

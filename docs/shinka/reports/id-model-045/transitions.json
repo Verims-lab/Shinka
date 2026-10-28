@@ -1,0 +1,1009 @@
+{
+  "scope": "LOCAL_PRODUCTION_BUILD_REAL_SDK_SYNTHETIC_HTTP_NO_HOSTED_NO_FIELD_INP",
+  "nodeEnv": "production",
+  "commit": "working-Buildmarker-045",
+  "browser": "Chromium",
+  "profile": {
+    "apiLatencyMs": 200,
+    "assetLatencyMs": 40,
+    "cpuSlowdown": 4,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "samples": 5,
+    "bandwidthLimit": null,
+    "externalFonts": "BLOCKED_IN_BOTH_RUNS"
+  },
+  "rows": [
+    {
+      "sample": 1,
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "start": 1331.7999999970198,
+      "feedback": 4.700000002980232,
+      "visible": 97.70000000298023,
+      "usable": 361.20000000298023,
+      "jsBytes": 78155,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 1431.3999999985099,
+          "end": 1665.2000000029802,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "start": 1724.7999999970198,
+      "feedback": 11.400000005960464,
+      "visible": 85.40000000596046,
+      "usable": 310.20000000298023,
+      "jsBytes": 18396,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 1814.7000000029802,
+          "end": 2027.7000000029802,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 1814.7999999970198,
+          "end": 2027.7000000029802,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "start": 2076.7000000029802,
+      "feedback": 8.399999998509884,
+      "visible": 76.29999999701977,
+      "usable": 302,
+      "jsBytes": 28030,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 2148.10000000149,
+          "end": 2357.39999999851,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2423.2999999970198,
+      "feedback": 12,
+      "visible": 30.5,
+      "usable": 45.80000000447035,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 1,
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 2724.60000000149,
+      "feedback": 10.399999998509884,
+      "visible": 28,
+      "usable": 44.899999998509884,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 1,
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 2807,
+      "feedback": 11.700000002980232,
+      "visible": 29,
+      "usable": 46,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 1,
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2906.2000000029802,
+      "feedback": 13.199999995529652,
+      "visible": 31.899999998509884,
+      "usable": 45.29999999701977,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 1,
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "start": 2988.39999999851,
+      "feedback": 13.800000004470348,
+      "visible": 31.80000000447035,
+      "usable": 263.6000000014901,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3018.2999999970198,
+          "end": 3224.2000000029802,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 3289.10000000149,
+      "feedback": 12.699999995529652,
+      "visible": 29.899999998509884,
+      "usable": 46.899999998509884,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 1,
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3573.2000000029802,
+      "feedback": 12.599999994039536,
+      "visible": 30.69999999552965,
+      "usable": 245.19999999552965,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3599.2000000029802,
+          "end": 3803.60000000149,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 3856.7000000029802,
+      "feedback": 11.799999997019768,
+      "visible": 27.899999998509884,
+      "usable": 45.599999994039536,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 1,
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "start": 4138.70000000298,
+      "feedback": 13.699999995529652,
+      "visible": 30.099999994039536,
+      "usable": 47.69999999552965,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 2,
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "start": 947.2999999970198,
+      "feedback": 19.200000002980232,
+      "visible": 102.40000000596046,
+      "usable": 345.5,
+      "jsBytes": 78155,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 1053,
+          "end": 1277.8999999985099,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "start": 1327.5,
+      "feedback": 13.5,
+      "visible": 81,
+      "usable": 296.20000000298023,
+      "jsBytes": 18396,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 1404.7999999970198,
+          "end": 1613.6000000014901,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 1404.7999999970198,
+          "end": 1613.7000000029802,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "start": 1663.3999999985099,
+      "feedback": 11.300000004470348,
+      "visible": 77.70000000298023,
+      "usable": 294.6000000014901,
+      "jsBytes": 28030,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 1737.1000000014901,
+          "end": 1944,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "start": 1994.2999999970198,
+      "feedback": 14,
+      "visible": 30.200000002980232,
+      "usable": 47,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 2,
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 2279.89999999851,
+      "feedback": 10.899999998509884,
+      "visible": 26.899999998509884,
+      "usable": 45.20000000298023,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 2,
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 2362.2000000029802,
+      "feedback": 12.699999995529652,
+      "visible": 30.099999994039536,
+      "usable": 45.899999998509884,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 2,
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2445.2999999970198,
+      "feedback": 12.400000005960464,
+      "visible": 31.400000005960464,
+      "usable": 45.20000000298023,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 2,
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "start": 2529.89999999851,
+      "feedback": 11.700000002980232,
+      "visible": 29.80000000447035,
+      "usable": 260.80000000447035,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 2557.60000000149,
+          "end": 2762.2999999970198,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 2828.39999999851,
+      "feedback": 13.200000002980232,
+      "visible": 29.399999998509884,
+      "usable": 46.399999998509884,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 2,
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3112.10000000149,
+      "feedback": 12.100000001490116,
+      "visible": 29.69999999552965,
+      "usable": 245.39999999850988,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3136.2000000029802,
+          "end": 3340.10000000149,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 3393.60000000149,
+      "feedback": 13.199999995529652,
+      "visible": 30.899999998509884,
+      "usable": 47.79999999701977,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 2,
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "start": 3677.5,
+      "feedback": 14,
+      "visible": 30.200000002980232,
+      "usable": 47.20000000298023,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 3,
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "start": 950.8999999985099,
+      "feedback": 6.299999997019768,
+      "visible": 78.89999999850988,
+      "usable": 324.1000000014901,
+      "jsBytes": 78155,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 1037.2999999970198,
+          "end": 1260.1000000014901,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "start": 1311.1000000014901,
+      "feedback": 13.799999997019768,
+      "visible": 80.5,
+      "usable": 313.29999999701977,
+      "jsBytes": 18396,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 1389.1999999955297,
+          "end": 1598.2999999970198,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 1389.1999999955297,
+          "end": 1598.3999999985099,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "start": 1663,
+      "feedback": 10.600000001490116,
+      "visible": 78.10000000149012,
+      "usable": 295.8999999985099,
+      "jsBytes": 28030,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 1737,
+          "end": 1943.6000000014901,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "start": 1994.1000000014901,
+      "feedback": 13.799999997019768,
+      "visible": 30.19999999552965,
+      "usable": 47.29999999701977,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 3,
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 2278.2999999970198,
+      "feedback": 12.200000002980232,
+      "visible": 29.899999998509884,
+      "usable": 45.600000001490116,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 3,
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 2363,
+      "feedback": 10.399999998509884,
+      "visible": 28.69999999552965,
+      "usable": 44.600000001490116,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 3,
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2444,
+      "feedback": 13.399999998509884,
+      "visible": 32.29999999701977,
+      "usable": 46.19999999552965,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 3,
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "start": 2527.60000000149,
+      "feedback": 13.199999995529652,
+      "visible": 29.799999997019768,
+      "usable": 247.09999999403954,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 2553.10000000149,
+          "end": 2757.6999999955297,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 2810.39999999851,
+      "feedback": 13.700000002980232,
+      "visible": 30.799999997019768,
+      "usable": 47.600000001490116,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 3,
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3094,
+      "feedback": 12.699999995529652,
+      "visible": 31.600000001490116,
+      "usable": 246.19999999552965,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3119.10000000149,
+          "end": 3324,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 3377.39999999851,
+      "feedback": 13.700000002980232,
+      "visible": 30.200000002980232,
+      "usable": 47.600000001490116,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 3,
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "start": 3659.60000000149,
+      "feedback": 13.699999995529652,
+      "visible": 31.899999998509884,
+      "usable": 47.5,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 4,
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "start": 964.8000000044703,
+      "feedback": 20.799999997019768,
+      "visible": 97.59999999403954,
+      "usable": 335,
+      "jsBytes": 78155,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 1070.2000000029802,
+          "end": 1289.8999999985099,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "start": 1328.7000000029802,
+      "feedback": 12.899999998509884,
+      "visible": 80.29999999701977,
+      "usable": 311.1000000014901,
+      "jsBytes": 18396,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 1408.1000000014901,
+          "end": 1613.3999999985099,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 1409.8000000044703,
+          "end": 1615.8999999985099,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "start": 1678.3000000044703,
+      "feedback": 11.5,
+      "visible": 79.19999999552965,
+      "usable": 297.19999999552965,
+      "jsBytes": 28030,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 1749.2000000029802,
+          "end": 1955.8999999985099,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2009.8000000044703,
+      "feedback": 13.599999994039536,
+      "visible": 30,
+      "usable": 48,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 4,
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 2294.5,
+      "feedback": 12.200000002980232,
+      "visible": 29.5,
+      "usable": 47.20000000298023,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 4,
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 2376.7000000029802,
+      "feedback": 13.899999998509884,
+      "visible": 30.69999999552965,
+      "usable": 46.5,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 4,
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2459.60000000149,
+      "feedback": 14.399999998509884,
+      "visible": 32.600000001490116,
+      "usable": 47.70000000298023,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 4,
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "start": 2544.39999999851,
+      "feedback": 12.100000001490116,
+      "visible": 29.5,
+      "usable": 246.20000000298023,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 2568.89999999851,
+          "end": 2774.39999999851,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 2826.5,
+      "feedback": 14.300000004470348,
+      "visible": 31.100000001490116,
+      "usable": 47.399999998509884,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 4,
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3109.60000000149,
+      "feedback": 14.299999997019768,
+      "visible": 31.799999997019768,
+      "usable": 247.60000000149012,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3136.10000000149,
+          "end": 3340.89999999851,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 3393.7000000029802,
+      "feedback": 13.100000001490116,
+      "visible": 29.600000001490116,
+      "usable": 46.899999998509884,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 4,
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "start": 3677.60000000149,
+      "feedback": 12.899999998509884,
+      "visible": 28.899999998509884,
+      "usable": 46.70000000298023,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 5,
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "start": 946.1000000014901,
+      "feedback": 19.19999999552965,
+      "visible": 83.29999999701977,
+      "usable": 318.3999999985099,
+      "jsBytes": 78155,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 1031,
+          "end": 1251.3999999985099,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "start": 1293.7000000029802,
+      "feedback": 14.5,
+      "visible": 80.79999999701977,
+      "usable": 298,
+      "jsBytes": 18396,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 1370.1000000014901,
+          "end": 1580.2000000029802,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 1370.1000000014901,
+          "end": 1580.2000000029802,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "start": 1628.7000000029802,
+      "feedback": 11.599999994039536,
+      "visible": 79.09999999403954,
+      "usable": 298.3999999985099,
+      "jsBytes": 28030,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 1702.1000000014901,
+          "end": 1911,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "start": 1961.5,
+      "feedback": 12.5,
+      "visible": 31.399999998509884,
+      "usable": 46.70000000298023,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 5,
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 2261.7999999970198,
+      "feedback": 12.200000002980232,
+      "visible": 28.600000001490116,
+      "usable": 46.100000001490116,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 5,
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 2344.10000000149,
+      "feedback": 13.899999998509884,
+      "visible": 31,
+      "usable": 46.69999999552965,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 5,
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2428.60000000149,
+      "feedback": 11.600000001490116,
+      "visible": 31.19999999552965,
+      "usable": 45.600000001490116,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 5,
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "start": 2510.7999999970198,
+      "feedback": 13,
+      "visible": 30.600000001490116,
+      "usable": 263.40000000596046,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 2540.10000000149,
+          "end": 2744.60000000149,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 2810.2000000029802,
+      "feedback": 13.5,
+      "visible": 30.19999999552965,
+      "usable": 47,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 5,
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3093.7999999970198,
+      "feedback": 13.400000005960464,
+      "visible": 31.5,
+      "usable": 246.5,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3118.7000000029802,
+          "end": 3323.5,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 3377.39999999851,
+      "feedback": 12.600000001490116,
+      "visible": 29.600000001490116,
+      "usable": 47,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    },
+    {
+      "sample": 5,
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "start": 3660,
+      "feedback": 14.200000002980232,
+      "visible": 31,
+      "usable": 47.600000001490116,
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": []
+    }
+  ],
+  "errors": [],
+  "blocked": [
+    "https://fonts.googleapis.com"
+  ]
+}

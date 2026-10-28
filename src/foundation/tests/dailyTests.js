@@ -127,13 +127,14 @@ export const DAILY_TESTS = [
   history.push({ message_pair_id: 'b', shinka_date: '2026-10-18' }, { message_pair_id: 'c', shinka_date: '2026-10-18' });
   check(select(history, () => 0.99).stage === 'LEAST_RECENT' && select(history, () => 0.99).pair.id === 'c');
  }],
- ['DM14', 'Daily commit/readback, reopen and changed profile/copy keep both snapshots', async () => {
+ ['DM14', 'Daily commit/readback, reopen and changed profile/copy preserve assignment and resolve current text', async () => {
   const f = dailyFixture(); const first = await call(f);
   f.rows.user_profile[0].birth_date = '1992-04-01'; f.rows.message_pair.forEach(p => { p.message_tr = 'changed later'; });
   f.dependencies.library = async () => { throw new Error('existing day must not load library'); };
-  const again = await call(f); check(JSON.stringify(first.daily) === JSON.stringify(again.daily) && !again.created && f.rows.user_daily_message.length === 1);
+  const again = await call(f); check(first.daily.id === again.daily.id && first.daily.message_pair_id === again.daily.message_pair_id && again.daily.message_tr_snapshot === 'changed later' && !again.created && f.rows.user_daily_message.length === 1);
+  check(Object.entries(f.rows.user_daily_message[0]).every(([k,v]) => again.daily[k] === v));
  }],
- ['DM15', 'Concurrent request protocol returns one winning immutable snapshot', async () => {
+ ['DM15', 'Concurrent request protocol returns one winning immutable assignment', async () => {
   const f = dailyFixture();
   const results = await Promise.all(Array.from({ length: 8 }, (_, index) => dailyMessageOperation(f.client, request, { ...f.dependencies, random: () => index / 10 })));
   check(f.rows.user_daily_message.length === 1 && new Set(results.map(r => JSON.stringify(r.daily))).size === 1);
@@ -178,7 +179,8 @@ export const DAILY_TESTS = [
   const f = dailyFixture(), commit = f.atomic.createIfAbsent;
   f.atomic.createIfAbsent = async value => { await commit(value); throw new Error('lost response'); };
   await rejects(() => call(f)); const saved = structuredClone(f.rows.user_daily_message[0]);
-  check(JSON.stringify((await call(f)).daily) === JSON.stringify(saved));
+  check(Object.entries(saved).every(([k,v]) => v === f.rows.user_daily_message[0][k]));
+  check((await call(f)).daily.id === saved.id);
   f.fail('user_period_record');
   const hydrated = await onboardingOperation(f.client, { action: 'hydrate' }, { now: () => new Date('2026-10-21T12:00:00Z') });
   check(hydrated.state === 'ACTIVE_EXISTING_USER');
@@ -216,7 +218,7 @@ export const DAILY_TESTS = [
   f.rows.moon_phase_lookup[0].phase_code = 'INVALID';
   await rejects(() => inspectMoonImport(f.client, astronomy, new Date(DAILY_NOW)));
  }],
- ['DM25', 'Malformed durable snapshot cannot mark onboarding complete', async () => {
+ ['DM25', 'Malformed durable assignment cannot mark onboarding complete', async () => {
   const f = dailyFixture(); f.rows.user_daily_message.push({ id: 'incomplete', user_id: 'ownerA' });
   await rejects(() => onboardingOperation(f.client, { action: 'hydrate' }, { now: f.dependencies.now }), 'INVALID_DOMAIN_RECORD');
   f.rows.user_daily_message[0].id = 123;

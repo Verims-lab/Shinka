@@ -10,6 +10,7 @@ export function useTabVisibility(active = true, onShown = () => {}) {
     get visibilityState() { return visible() ? 'visible' : 'hidden'; },
     addEventListener: (type, fn) => document.addEventListener(type, fn),
     removeEventListener: (type, fn) => document.removeEventListener(type, fn),
+    dispatchEvent: event => document.dispatchEvent(event),
   }), [visible]);
   const first = useRef(true);
   useEffect(() => { if (first.current) { first.current = false; return; } if (active) shown.current(); }, [active]);

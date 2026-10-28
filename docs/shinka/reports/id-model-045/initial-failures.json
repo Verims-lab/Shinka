@@ -1,0 +1,33 @@
+{
+  "baseline": "e602a65",
+  "baselineTypecheck": "npm warn Unknown project config \"min-release-age-exclude\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n\n> base44-app@0.0.0 typecheck\n> tsc -p ./jsconfig.json\n\nsrc/features/pattern/usePattern.js(10,69): error TS2345: Argument of type '{ readonly visibilityState: \"hidden\" | \"visible\"; addEventListener: (type: any, fn: any) => void; removeEventListener: (type: any, fn: any) => void; }' is not assignable to parameter of type 'EventTarget & { visibilityState: string; }'.\n  Property 'dispatchEvent' is missing in type '{ readonly visibilityState: \"hidden\" | \"visible\"; addEventListener: (type: any, fn: any) => void; removeEventListener: (type: any, fn: any) => void; }' but required in type 'EventTarget'.\n",
+  "firstFullFailures": [
+    "FAIL NT24 Verified Profile opt-out after READY or IN_FLIGHT prevents the next provider admission without changing protected data \u2014 NT24:START:YOU_WRITE_UNCONFIRMED",
+    "FAIL NT25 Verified opt-out cannot recall an already dispatched call; accepted receipt stays truthful and is never resent \u2014 NT25:START:YOU_WRITE_UNCONFIRMED",
+    "FAIL NU04 TR/EN notification on/off save and reopen use verified values; draft/busy never claim success or alter other data \u2014 NU04:DOM_WAIT:FIXTURE_DOM_TIMEOUT",
+    "FAIL NU05 Notification failed/lost save, failed status check and same-intent retry keep draft until verified, without duplicate writes \u2014 NU05:DOM_WAIT:FIXTURE_DOM_TIMEOUT",
+    "FAIL NU06 Logout/account boundary removes notification draft and ignores an already-written late response for the next account \u2014 NU06:DOM_WAIT:TEST_TIMEOUT",
+    "FAIL CQ03 Unknown preferences save cannot be discarded by edit, load, cancel or a second section save \u2014 CQ03:START:contract failed",
+    "FAIL CQ04 Failed read-only verification preserves original unknown save; same payload check later reconciles without another write \u2014 CQ04:START:contract failed",
+    "FAIL YT13 Header language confirms lost response by readonly check; failed check retains unknown without auto retry \u2014 YT13:START:YOU_WRITE_UNCONFIRMED",
+    "FAIL YT05 Language/notification persistent readback, fixed 06:00, IANA fallback; protected history unchanged \u2014 YT05:START:YOU_WRITE_UNCONFIRMED",
+    "FAIL YT07 Pre-write failure remains unknown, readonly check and explicit retry recover without false success \u2014 YT07:START:YOU_WRITE_UNCONFIRMED",
+    "FAIL YT10 Controller double-click, lost response/check, partial section status and dispose prevent stale success \u2014 YT10:START:contract failed",
+    "FAIL YU06 Cleared name in fresh Home response never falls back to an older hydrated name \u2014 YU06:START:YOU_UI_TIMEOUT",
+    "FAIL YU05 Admin link only current verified prop; unsaved preferences never switch locale and reopen persisted state \u2014 YU05:START:YOU_UI_TIMEOUT",
+    "FAIL D01 20 schemas match original source fields plus explicit 029 extensions \u2014 D01:START:contract failed",
+    "FAIL D20 No inactive content state or backwards Moon interval accepted \u2014 D20:START:expected rejection INVALID_DOMAIN_RECORD; got success",
+    "FAIL OF01 Device variants/fallback and saved language precedence; initialization never replaces a saved preference \u2014 OF01:START:YOU_WRITE_UNCONFIRMED",
+    "FAIL DU04 Reconciled daily success shows no technical notice; same ID, TR/EN content, no extra request \u2014 DU04:START:contract failed",
+    "FAIL CQ08 Real You screen locks edit after preferences response loss and failed check; verified check unlocks \u2014 CQ08:DOM_WAIT:FIXTURE_DOM_TIMEOUT",
+    "FAIL CA14 Historical phases preserve unaffected values; immutable daily TR/EN survives mutations \u2014 CA14:START:DAILY_CONTENT_REFERENCE_MISSING"
+  ],
+  "firstFullStoppedAt": "checkProductNavigation selected hidden mounted tab",
+  "initialSdkExpectation": "Expected update but installed updateMany envelope is data; corrected wire assertion",
+  "initialID09": "Prior owner completion removed by fixture, got PROFILE_COMPLETION_REQUIRED before target check; fixture now retains another valid completion",
+  "laterHarnessCorrections": [
+    "DU04 locale assertion awaited actual React language commit; hidden empty live region excluded from visible-only assertion",
+    "Main kept-tab nav/main selectors aligned to visible active content; late hidden Calendar assertion retained",
+    "Transition lab legacy fixture-pair replaced by real fixture native ID; pending routed request drained with unrouteAll behavior wait before context.close; no errors ignored"
+  ]
+}

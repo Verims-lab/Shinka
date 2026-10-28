@@ -35,9 +35,7 @@ export function selectDailyPair({ pairs, history, categoryId, day, random = Math
   return { pair: candidates[Math.floor(sample * candidates.length)], stage };
 }
 
-export function dailySnapshot({ owner, day, timezone, pair, now }) {
+export function dailyAssignment({ owner, day, timezone, pair, now }) {
   return { user_id: owner, shinka_date: day, timezone, category_id: pair.category_id,
-    message_pair_id: pair.id, message_tr_snapshot: pair.message_tr,
-    suggestion_tr_snapshot: pair.suggestion_tr, message_en_snapshot: pair.message_en,
-    suggestion_en_snapshot: pair.suggestion_en, generated_at: now.toISOString() };
+    message_pair_id: pair.id, generated_at: now.toISOString() };
 }

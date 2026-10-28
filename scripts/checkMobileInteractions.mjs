@@ -67,7 +67,7 @@ export async function checkMobileInteractions(page,origin,directory){
   assert.equal(await page.locator('[data-refresh-control] button').count(),0);
   rows.push({scenario:'home-no-refresh-target-pull-coalescing-offline-retry-retains-daily',passed:true});
 
-  await page.locator('nav a').nth(1).click();await page.locator('[data-calendar-date]').first().waitFor();
+  await page.locator('nav a:visible').nth(1).click();await page.locator('[data-calendar-date]').first().waitFor();
   await page.locator('[data-calendar-date="2026-10-01"]').click();await page.locator('#calendar-start-date').fill('2026-10-02');
   const writes=await page.evaluate(()=>window.__authFixture.calls.filter(c=>c.name==='calendar'&&c.action!=='read').length);
   await page.getByRole('button',{name:'Refresh',exact:true}).click();await page.getByRole('button',{name:'Refresh',exact:true}).waitFor();
@@ -79,9 +79,9 @@ export async function checkMobileInteractions(page,origin,directory){
   await page.goBack();await page.locator('[data-home-root]').waitFor();await page.goForward();await page.locator('[data-calendar-root]').waitFor();
   rows.push({scenario:'calendar-read-refresh-draft-and-layer-before-route-back-forward',passed:true});
 
-  await page.emulateMedia({reducedMotion:'reduce'});await page.locator('nav a').nth(0).click();await page.locator('[data-home-root]').waitFor();
+  await page.emulateMedia({reducedMotion:'reduce'});await page.locator('nav a:visible').nth(0).click();await page.locator('[data-home-root]').waitFor();
   assert.equal(await page.locator('[data-route-motion]').evaluate(el=>getComputedStyle(el).transform),'none');
-  await page.locator('[data-profile-trigger]').click();await page.locator('[data-you-heading]').waitFor();
+  await page.locator('[data-profile-trigger]:visible').click();await page.locator('[data-you-heading]').waitFor();
   await page.getByRole('button',{name:'Sign Out',exact:true}).click();await page.locator('[data-onboarding-state]').waitFor();
   await page.goBack();await page.locator('[data-onboarding-state]').waitFor();
   assert.equal(await page.locator('[data-daily-id],[data-calendar-date],[data-you-root]').count(),0);

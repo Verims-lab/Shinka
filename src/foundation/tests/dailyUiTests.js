@@ -14,8 +14,17 @@ async function renderProbe(run) {
 }
 /** @type {import('./testTypes').FoundationTest[]} */
 export const DAILY_UI_TESTS = [
+ ['DU05','Reopened kept-mounted Home reads current MessagePair text and retains daily ID',async()=>renderProbe(async(root,host)=>{
+  const f=dailyFixture();const request=()=>dailyMessageOperation(f.client,{action:'today',timezone:'Europe/Istanbul'},f.dependencies);
+  root.render(createElement(Home,{language:'tr',request,active:true}));await eventually(()=>host.querySelector('[data-daily-id]'));
+  const id=host.querySelector('[data-daily-id]').getAttribute('data-daily-id');
+  root.render(createElement(Home,{language:'tr',request,active:false}));await pause();
+  const pair=f.rows.message_pair.find(p=>p.id===f.rows.user_daily_message[0].message_pair_id);pair.message_tr='current updated TR';
+  root.render(createElement(Home,{language:'tr',request,active:true}));await eventually(()=>host.querySelector('[data-daily-message]')?.textContent==='current updated TR');
+  check(host.querySelector('[data-daily-id]').getAttribute('data-daily-id')===id&&f.rows.user_daily_message.length===1);
+ })],
  ['DU01', 'ON-06 failed write, retry readback, Home and locale retain same pair', async () => renderProbe(async (root, host) => {
-  const f = dailyFixture(); let fail = true, requests = 0, advances = 0, ready = null;
+  const f = dailyFixture(); let fail = true, requests = 0, advances = 0; /** @type {any} */ let ready = null;
   const request = async () => { requests++; if (fail) throw Object.assign(new Error(), { code: 'DAILY_ATOMIC_CAPABILITY_REQUIRED' }); return dailyMessageOperation(f.client, { action: 'today', timezone: 'Europe/Istanbul' }, f.dependencies); };
   root.render(createElement(FirstShinka, { language: 'en', request, onReady: result => { advances++; ready = result; root.render(createElement(Home, { language: 'en', initialDaily: result, request })); } }));
   await eventually(() => host.querySelector('[data-daily-state="notReady"]'));
@@ -26,7 +35,7 @@ export const DAILY_UI_TESTS = [
   const before = host.querySelector('[data-daily-id]').getAttribute('data-daily-id');
   check(![...host.querySelectorAll('header button')].some(button => ['TR', 'EN'].includes(button.textContent)));
   root.render(createElement(Home, { language: 'tr', initialDaily: ready, request })); await pause();
-  check(host.querySelector('[data-daily-message]').textContent === f.rows.user_daily_message[0].message_tr_snapshot);
+  check(host.querySelector('[data-daily-message]').textContent === f.rows.message_pair.find(p=>p.id===f.rows.user_daily_message[0].message_pair_id).message_tr);
   check(host.querySelector('[data-daily-id]').getAttribute('data-daily-id') === before && requests === 2);
  })],
  ['DU02', 'Completed Home error stays Home; late unmounted preparation cannot navigate', async () => renderProbe(async (root, host) => {
@@ -69,10 +78,10 @@ export const DAILY_UI_TESTS = [
   const result = { persisted: true, state: 'ACTIVE_EXISTING_USER', notice: 'DAILY_DUPLICATE_RECONCILED', daily: { id: 'earlier', message_tr_snapshot: 'TR mesaj', suggestion_tr_snapshot: 'TR öneri', message_en_snapshot: 'EN message', suggestion_en_snapshot: 'EN suggestion' } };
   const technical = ['Different versions were saved', 'farklı içerikler kaydedilmiş'];
   for (const language of ['en', 'tr']) {
-    root.render(createElement(Home, { language, initialDaily: result, request })); await eventually(() => host.querySelector('[data-daily-id]'));
+    root.render(createElement(Home, { language, initialDaily: result, request })); await eventually(() => host.querySelector('[data-daily-message]')?.textContent === (language === 'tr' ? 'TR mesaj' : 'EN message'));
     check(host.querySelector('[data-daily-id]').getAttribute('data-daily-id') === 'earlier');
     check(host.querySelector('[data-daily-message]').textContent === (language === 'tr' ? 'TR mesaj' : 'EN message'));
-    check(!technical.some(text => host.textContent.includes(text)) && !host.querySelector('[data-home-root] [role="status"]:empty'));
+    check(!technical.some(text => host.textContent.includes(text)) && ![...host.querySelectorAll('[data-home-root] [role="status"]:empty')].some(node=>node.getClientRects().length));
   }
   check(requests === 0 && result.notice === 'DAILY_DUPLICATE_RECONCILED');
   const failure = async () => { throw Object.assign(new Error(), { code: 'NETWORK' }); };

@@ -135,8 +135,9 @@ export const CALENDAR_TESTS = [
    // Existing old observation remains in the validation set even off-screen.
    await reject(()=>f.change('add',{date:'2020-01-15'}),'PERIOD_CONFLICT');
  }],
- ['CA14', 'Historical phases preserve unaffected values; immutable daily TR/EN survives mutations', async () => {
+ ['CA14', 'Historical phases preserve unaffected values; daily assignment and current linked TR/EN survive mutations', async () => {
    const f=calendarFixture(); f.rows.user_daily_message.push({...dailyRecordFixture('saved-day','ownerA'),shinka_date:'2026-10-20'});
+   f.rows.message_pair.push({id:'fixture-pair',category_id:'fixture-category',message_tr:'TR now',suggestion_tr:'TR suggestion now',message_en:'EN now',suggestion_en:'EN suggestion now',is_active:'Active'});
    const before=JSON.stringify(f.rows.user_daily_message);
    await f.change('add',{date:'2026-09-01'}); await f.change('add',{date:'2026-10-01'});
    const old=f.rows.user_cycle_phase_day.find(row=>row.phase_date==='2026-09-01');

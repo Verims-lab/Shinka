@@ -32,8 +32,7 @@ export function useDailyMessage(request = dailyMessageRequest, initial = null, r
     } }
     finally { if (ticket === generation.current) { pending.current = false; setLoading(false); } }
   }, [request, readContext]);
-  const latest = useRef({ value, loading }); latest.current = { value, loading };
-  const { visible } = useTabVisibility(active, () => { if (!ended.current && !latest.current.value && !latest.current.loading) void reload(); else if (context.current !== readContext()) void reload(); });
+  const { visible } = useTabVisibility(active, () => { if (!ended.current) void reload(); });
   useEffect(() => {
     ended.current = false;
     if (!initial) reload();

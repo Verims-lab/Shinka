@@ -18,8 +18,8 @@ export async function checkPatternFlow(page, origin, directory) {
     }
     assert.equal(await page.evaluate(()=>window.__sdkLabCalls.filter(c=>c.name==='dailyMessage').length),0);
     assert(await page.evaluate(()=>window.__patternLab.state.calls.every(c=>c.method==='filter')));
-    await page.locator('nav a').nth(1).click();await page.waitForSelector('[data-calendar-root]');
-    await page.locator('nav a').nth(2).click();await page.waitForSelector('[data-pattern-root]');
+    await page.locator('nav a:visible').nth(1).click();await page.waitForSelector('[data-calendar-root]');
+    await page.locator('nav a:visible').nth(2).click();await page.waitForSelector('[data-pattern-root]');
   }
   for(const session of ['anonymous','user']) {
     await page.goto(`${origin}/pattern?appFixture=1&sdkSession=${session}`);

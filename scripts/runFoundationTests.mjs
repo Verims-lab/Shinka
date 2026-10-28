@@ -1,3 +1,4 @@
+import { verifyDailyEntitySdk } from './verifyDailyEntitySdk.mjs';
 import { verifyTestDeletionEntry } from './verifyTestDeletionEntry.mjs';
 import { checkOnboardingClosure } from './checkOnboardingClosure.mjs';
 import { verifyNotifications } from './verifyNotifications.mjs';
@@ -42,6 +43,7 @@ if (!engine) throw new Error('FOUNDATION_BROWSER must be chromium or webkit');
 let server,browser;
 try {
   verifyDependencyRules();
+  console.log(JSON.stringify(await verifyDailyEntitySdk()));
   const notifications030 = await verifyNotifications(root);
   const nativeEntries = await verifyNativeEntries(root);
   nativeEntries.deletion=await verifyTestDeletionEntry(root);

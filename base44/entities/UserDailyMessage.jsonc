@@ -23,22 +23,6 @@
       "type": "string",
       "minLength": 1
     },
-    "message_tr_snapshot": {
-      "type": "string",
-      "minLength": 1
-    },
-    "suggestion_tr_snapshot": {
-      "type": "string",
-      "minLength": 1
-    },
-    "message_en_snapshot": {
-      "type": "string",
-      "minLength": 1
-    },
-    "suggestion_en_snapshot": {
-      "type": "string",
-      "minLength": 1
-    },
     "generated_at": {
       "type": "string",
       "format": "date-time"
@@ -50,10 +34,6 @@
     "timezone",
     "category_id",
     "message_pair_id",
-    "message_tr_snapshot",
-    "suggestion_tr_snapshot",
-    "message_en_snapshot",
-    "suggestion_en_snapshot",
     "generated_at"
   ],
   "rls": {
