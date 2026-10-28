@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
+import { pickPreference } from './preferencePicker.mjs';
 export async function checkYouFlow(page, origin, directory) {
   if(directory)await mkdir(directory,{recursive:true});
   const results=[];
@@ -42,7 +43,7 @@ export async function checkYouFlow(page, origin, directory) {
   await page.locator('#display_name').fill('Synthetic updated name');
   await page.locator('[data-you-profile-form] button[type="submit"]').click();
   await page.getByText('Your profile has been updated',{exact:true}).waitFor();
-  await page.locator('#you-language').selectOption('tr');
+  await pickPreference(page,'you-language','tr');
   await page.locator('[data-you-preferences-form] button[type="submit"]').click();
   await page.getByText('Tercihlerin güncellendi',{exact:true}).waitFor();
   await page.locator('nav a:visible').nth(0).click();await page.waitForSelector('[data-daily-id]');

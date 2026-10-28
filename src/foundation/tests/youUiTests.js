@@ -65,7 +65,7 @@ export const YOU_UI_TESTS=[
  ['YU05','Admin link only current verified prop; unsaved preferences never switch locale and reopen persisted state',async()=>probe(async(root,host)=>{
    const f=youFixture();let saved=0;const render=isAdmin=>root.render(createElement(You,{language:'en',request:f.request,placeRequest:places,isAdmin,onSaved:()=>{saved++;}}));
    render(false);await until(()=>host.querySelector('#you-language'));check(!host.querySelector('a[href="/internal"]'));
-   const select=host.querySelector('#you-language');select.value='en';select.dispatchEvent(new Event('change',{bubbles:true}));await pause();check(saved===0&&host.querySelector('[data-you-root]').lang==='en');
+   host.querySelector('#you-language').click();const pickEn=()=>/** @type {HTMLElement|null} */(document.querySelector('[data-pref-sheet="you-language"] [data-option="en"]'));await until(pickEn);pickEn().click();await pause();check(saved===0&&host.querySelector('[data-you-root]').lang==='en');
    host.querySelector('[data-you-preferences-form]').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));await until(()=>saved===1);check(f.tables.UserPreferences[0].language_code==='en');
    render(true);await until(()=>host.querySelector('a[href="/internal"]'));render(false);await until(()=>!host.querySelector('a[href="/internal"]'));
  })],

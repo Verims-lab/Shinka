@@ -3,7 +3,7 @@ import { Link, useInRouterContext } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import ShinkaButton from '@/components/shinka/ShinkaButton';
 import ShinkaCard from '@/components/shinka/ShinkaCard';
-import ShinkaSelect from '@/components/shinka/ShinkaSelect';
+import PreferencePicker from '@/features/you/PreferencePicker';
 import ProductNavigation from '@/components/shinka/ProductNavigation';
 import { useYou } from '@/features/you/useYou';
 import ProfileEditor from '@/features/you/ProfileEditor';
@@ -23,6 +23,8 @@ export default function You({ language = 'en', request = undefined, placeRequest
   useEffect(() => { heading.current?.focus(); }, []);
   useEffect(() => { if (wasEditing.current && !state.editing) editButton.current?.focus(); wasEditing.current = state.editing; }, [state.editing]);
   const preferenceIntent = state.intent?.section === 'preferences';
+  // Draft feedback only; "saved" still appears solely after a verified save.
+  const preferencesDirty = !!(value && state.preferences) && (state.preferences.language_code !== value.preferences.language_code || (state.preferences.theme_code === 'dark') !== (value.preferences.theme_code === 'dark') || state.preferences.notifications_enabled !== value.preferences.notifications_enabled);
   const errorContent = error && <div role="alert" className="space-y-3" data-you-error>
     {!error.field && <p>{copy(error.unknown ? 'unknown' : error.code === 'YOU_EDIT_CONFLICT' ? 'conflict' : value ? 'saveError' : 'loadError')}</p>}
     {error.unknown && state.intent && <><ShinkaButton variant="secondary" disabled={busy} onClick={controller.check}>{copy('check')}</ShinkaButton><ShinkaButton variant="secondary" disabled={busy} onClick={controller.retry}>{copy('retry')}</ShinkaButton></>}
@@ -39,9 +41,10 @@ export default function You({ language = 'en', request = undefined, placeRequest
         </ShinkaCard>
         <ShinkaCard title={copy('preferences')}>
           <form noValidate className="space-y-4" data-you-preferences-form onSubmit={event => { event.preventDefault(); void controller.savePreferences(); }}>
-            <div className="space-y-2"><label htmlFor="you-language">{copy('language')}</label><ShinkaSelect id="you-language" disabled={busy || !!error?.unknown} value={state.preferences.language_code} onChange={event => controller.preference('language_code', event.target.value)}><option value="tr">Türkçe</option><option value="en">English</option></ShinkaSelect></div>
+            <PreferencePicker id="you-language" label={copy('language')} cancelLabel={copy('cancel')} disabled={busy || !!error?.unknown} value={state.preferences.language_code} onChange={next => controller.preference('language_code', next)} options={[{ value: 'tr', label: 'Türkçe' }, { value: 'en', label: 'English' }]}/>
             {/* Draft only: the theme changes after a VERIFIED save, never on an unconfirmed/failed one. */}
-            <div className="space-y-2"><label htmlFor="you-theme">{copy('appearance')}</label><ShinkaSelect id="you-theme" data-you-theme disabled={busy || !!error?.unknown} value={state.preferences.theme_code === 'dark' ? 'dark' : 'light'} onChange={event => controller.preference('theme_code', event.target.value)}><option value="light">{copy('themeLight')}</option><option value="dark">{copy('themeDark')}</option></ShinkaSelect></div>
+            <PreferencePicker id="you-theme" data-you-theme label={copy('appearance')} cancelLabel={copy('cancel')} disabled={busy || !!error?.unknown} value={state.preferences.theme_code === 'dark' ? 'dark' : 'light'} onChange={next => controller.preference('theme_code', next)} options={[{ value: 'light', label: copy('themeLight') }, { value: 'dark', label: copy('themeDark') }]}/>
+            {preferencesDirty && !busy && !error && <p role="status" className="text-shinka-caption" data-you-pref-draft>{copy('preferencesDraft')}</p>}
             <label htmlFor="you-notifications" className="flex min-h-11 items-center gap-3"><span className="min-w-11 min-h-11 flex items-center justify-center"><input id="you-notifications" type="checkbox" aria-describedby="you-notification-save-state you-notification-guidance" checked={state.preferences.notifications_enabled} disabled={busy || !!error?.unknown} onChange={event => controller.preference('notifications_enabled', event.target.checked)} className="h-6 w-6 accent-shinka-plum"/></span>{copy('notifications')}</label>
             <p>{copy('notificationTime')}</p><NotificationStatus language={language} enabled={value.preferences.notifications_enabled} draftEnabled={state.preferences.notifications_enabled} saving={busy && preferenceIntent} unconfirmed={!!error?.unknown && preferenceIntent} device={notificationDevice}/>
             <ShinkaButton type="submit" disabled={busy || !!error?.unknown}>{copy(busy ? 'saving' : 'save')}</ShinkaButton>

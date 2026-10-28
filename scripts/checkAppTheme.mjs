@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { doubleText, inspectMobileSurface } from './mobileSurfaceMeasurements.mjs';
+import { pickPreference, preferenceValue } from './preferencePicker.mjs';
 
 // Real App/AuthProvider/Onboarding/You; only SDK IO is replaced by native fixtures.
 // All external requests are denied. No physical-device or hosted claim.
@@ -33,33 +34,33 @@ export async function checkAppTheme(browser, origin) {
       rows.push({scenario:`theme-${os}-${app}-${language}-${width}-you-200percent`,measurement:measured,passed:measured.scrollWidth<=width+1&&!measured.textOverflow.length&&!measured.contrastFailures.length&&!measured.small.length&&measured.boundaries.every(r=>r.focus>=3&&r.input>=3)});
     }
     await page.goto(url('light'));await page.locator('#you-theme').waitFor();
-    await page.locator('#you-theme').selectOption('dark');assert.equal(await current(),'light');
+    await pickPreference(page,'you-theme','dark');assert.equal(await current(),'light');
     await save();await saved();await theme('dark');
     await page.locator('nav a:visible').first().click();await page.locator('[data-home-root]').waitFor();await theme('dark');
     await page.locator('[data-profile-trigger]:visible').click();await page.locator('#you-theme').waitFor();
-    assert.equal(await page.locator('#you-theme').inputValue(),'dark');await theme('dark');
+    assert.equal(await preferenceValue(page,'you-theme'),'dark');await theme('dark');
     await page.emulateMedia({colorScheme:'light'});assert.equal(await current(),'dark');
     rows.push({scenario:'draft-save-verified-reopen-os-change',passed:true});
     for(const when of ['before','after']) {
-      await page.locator('#you-theme').selectOption('light');
+      await pickPreference(page,'you-theme','light');
       await page.evaluate(when=>window.__youLab.once(when,c=>c.name==='UserPreferences'&&c.method==='updateMany'),when);
       await save();await page.getByRole('button',{name:'Check saved result',exact:true}).waitFor();
-      assert.equal(await current(),'dark');assert.equal(await page.locator('#you-theme').inputValue(),'light');
+      assert.equal(await current(),'dark');assert.equal(await preferenceValue(page,'you-theme'),'light');
       await page.getByRole('button',{name:'Check saved result',exact:true}).click();
       if(when==='before'){await page.getByRole('button',{name:'Retry the same save',exact:true}).waitFor();assert.equal(await current(),'dark');await page.getByRole('button',{name:'Retry the same save',exact:true}).click();}
       await saved();await theme('light');
       assert.equal(await page.evaluate(()=>window.__youLab.tables.UserPreferences[0].theme_code),'light');
       rows.push({scenario:`${when}-write-response-check-retry-theme-boundary`,passed:true});
-      await page.locator('#you-theme').selectOption('dark');await save();await saved();await theme('dark');
+      await pickPreference(page,'you-theme','dark');await save();await saved();await theme('dark');
     }
     // Pending dark save must not apply to the next account's verified light choice.
-    await page.locator('#you-theme').selectOption('light');await save();await saved();await theme('light');
-    await page.locator('#you-theme').selectOption('dark');
+    await pickPreference(page,'you-theme','light');await save();await saved();await theme('light');
+    await pickPreference(page,'you-theme','dark');
     await page.evaluate(()=>window.__authFixture.holdOperation('you'));await save();
     await page.waitForFunction(()=>document.querySelector('#you-theme').disabled);
     await page.evaluate(async()=>{window.__authFixture.setSession('user');await window.__appAuth.checkAppState();});
     await theme('light');await page.evaluate(()=>window.__authFixture.releaseOperation('you'));
-    await page.locator('#you-theme:not(:disabled)').waitFor();assert.equal(await current(),'light');assert.equal(await page.locator('#you-theme').inputValue(),'light');
+    await page.locator('#you-theme:not(:disabled)').waitFor();assert.equal(await current(),'light');assert.equal(await preferenceValue(page,'you-theme'),'light');
     rows.push({scenario:'account-change-old-pending-save-discarded',passed:true});
     // Test reset from a route that has no Onboarding theme effect mounted.
     await page.goto(url('dark'));await page.locator('#you-theme').waitFor();await theme('dark');

@@ -431,3 +431,6 @@ Home greeting is fixed `greeting` copy (EN Hello / TR Merhaba) at all hours, plu
 
 ## ON-04 presentation (2026-10-26)
 New `FramedDateField.jsx` (framed native date/time + non-interactive icon) and `profile/BirthplaceCompact.jsx` (summary field + inline panel). `BirthplacePicker` gains `compact` (default off, so You/Profile unchanged) and the shared editor fragment; `birthplaceSelection` gains `restore(selection)` for Cancel. `OnboardingScreen` uses `aboutTitle/aboutSubtitle`, `stepOf` (five steps), hides `renderProfileAccess` on ON-04. Overflow root cause: iOS Safari native-appearance date/time inputs keep an intrinsic min-width; fixed with `appearance:none; min-width:0; box-sizing:border-box` in onboarding.css. Lint/build pass; browser tests NOT_RUN.
+
+## Store scan review (2026-10-28)
+New `features/you/PreferencePicker.jsx` + `PreferenceSheet.jsx` replace the You language/theme `ShinkaSelect`. Draft notice `preferencesDraft` added (TR/EN). Test drivers use `scripts/preferencePicker.mjs`. Theme, Calendar, GeoNames, 049 loading and the DB cleanup paths are untouched. Safe area: `--safe-*` already uses `env()`, viewport-fit=cover is set, and the sheet reuses `.shinka-place-sheet` (`max(20px, var(--safe-*))`, no double inset), so no CSS change was needed. Live DB cleanup, Full Health, the security scan, notifications and publish were not run.

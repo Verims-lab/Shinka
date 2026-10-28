@@ -368,3 +368,7 @@ Five user references (1–5 by counter) govern the shared onboarding presentatio
 
 ## Explicit user decision — ON-04 presentation, 2026-10-26
 User request with target mockup governs ON-04 visible title/subtitle (EN/TR as in UI/UX standards), five-step indicator with separate preparation interstitial, the then-current compact hierarchical picker (superseded by the 035 combobox), and removal of the Account & Privacy link from the ON-04 header only. Validation, value formats, NULL birth time, server re-resolution of the GeoNames ID and five-field save are unchanged. SRC-03 docx is still not in the repository.
+
+## Theme decision vs platform guidance (2026-10-28)
+User decision (governing): Shinka's theme is an account-bound app preference (light/dark) set only in You → Appearance. Light is the default, and anonymous users and onboarding stay light. OS changes never change it, and there is no System/Auto option. A draft or unconfirmed save never applies, and a new account never inherits the previous account's theme.
+Platform guidance (advisory, not adopted): Android's dark theme guide recommends following the system setting, and Apple's Dark Interface evaluation criteria assess whether the app supports a dark interface. Shinka supports a full dark interface through the in-app choice. The store scan's "Dark Mode (Mandatory on Android)" label is the scan's expectation that the app follows the system theme. It is recorded as a deliberate product deviation, not an app bug, and the scan result is not reported as changed.

@@ -387,3 +387,9 @@ OD-012 is implemented once in `dailyCycle`, consumed by Home and `calendarCalcul
 
 ## Current birthplace search (2026-10-26, supersedes hierarchy picker notes above)
 `BirthplaceCombobox` + `birthplaceSearch.js` controller replace BirthplacePicker/birthplaceSelection. Single `searchPlaces` onboarding action (≥3 chars, debounced, stale responses dropped, bounded paging, A+P feature classes, server-side substring filter) and `resolvePlace` on explicit selection only. listPlaceCountries/Regions/Settlements are retired; historical sections above describe earlier builds.
+
+## Mobile navigation and back (2026-10-28)
+- The bottom tabs are flat routes (`/`, `/calendar`, `/pattern`). `ProductTabs` keeps visited tabs mounted (scroll position, Calendar month, drafts and pending operations survive). Re-pressing the active tab (`reselectTab`) scrolls to the top without pushing history. No sub-routes or second router were added.
+- `useLayerHistory` pushes one same-URL entry per open layer, so web back (popstate) closes the top sheet/dialog before the page navigates. The You preference sheet reuses it.
+- Android hardware back: Base44's published app-store documentation does not document a JS `backbutton` event or a wrapper contract, so no listener was added. Web history is correct. Forwarding the hardware back key to WebView history (`canGoBack/goBack`) is the native wrapper's responsibility and must be confirmed on a physical device or with Base44 support.
+- Theme: `appTheme.js` remains the only writer of `.dark`, root `color-scheme` and `meta[name=color-scheme]`. `index.html` keeps `content="light"` (the resolved default), so form controls follow the resolved app theme.
