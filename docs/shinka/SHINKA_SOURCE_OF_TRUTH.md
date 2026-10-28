@@ -2,13 +2,20 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-042
+**Current BuildMarker:** Buildmarker-044
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+
+## 044 — Notification preference and copy decision
+
+The owner's 2026-10-28 notification step-1 request authorizes short TR/EN Profile guidance and explicit draft/confirmed/unknown states. `notificationCopy` is the canonical scoped copy; this request supersedes the old technical native-support display and exact denial wording, without altering source notification content or other product copy. New users default off, existing values persist, local 06:00/timezone policy stays. No source document is claimed to contain these new helper strings.
+
+The [042 user-relayed Support contract](reports/core-audit-042/support-contract.md) remains authoritative over 029/033 secret assumptions. No secret/header workflow transport, native permission bridge, browser/native equivalence or device acceptance is invented. H14-901/H16-901 remain external. The owner retains main/publish and next-stage native acceptance; sending remains disabled. The explicit 044 package retains exact staged content verification (6/240/260 and source hash); unapproved 045 still blocks. No import runs.
 
 
 ## 042 — audit closure and written Support decision

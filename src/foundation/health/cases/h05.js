@@ -44,7 +44,7 @@ export const H05_CASES = [
   })),
   c("H05-008", "No missing mandatory language cells", "All TR and EN Your Shinka / Suggestion cells are filled.", withArtifacts((a) =>
     check(a.content260.missingCellCount === 0, { missingCellCount: a.content260.missingCellCount }, { missingCellCount: 0 }, "Cell completeness"))),
-  c("H05-009", "Content import stage and exact verified readiness", "Approved 041/042/043 retain staged source/hash/count verification; pre-import differs from complete import and partial/conflicting rows fail.", async (ctx) => {
+  c("H05-009", "Content import stage and exact verified readiness", "Approved 041/042/043/044 retain staged source/hash/count verification; pre-import differs from complete import and partial/conflicting rows fail.", async (ctx) => {
     let counts=null;
     const diagnostics = {};
     try { counts=await ctx.contentCounts(); } catch (error) { diagnostics.counts = healthReadDiagnostic(error); }

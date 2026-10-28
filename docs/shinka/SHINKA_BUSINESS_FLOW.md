@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-042
+**Current BuildMarker:** Buildmarker-044
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -10,6 +10,13 @@
 **Implemented:** Data/security foundation plus authentication/onboarding screens and guarded contracts; approved Sun/TR/consent/durable-route decisions are implemented; CLOSED_PENDING_BASE44_VERIFICATION.
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
+
+
+## 044 — Notification preference step 1
+
+Existing users retain their saved preference; new users initialize false. Profile saves use the existing owner-bound You revision/readback contract, with no new persistence or delivery path. Failure/lost response keeps the draft and original intent; Check reads that intent and Retry resubmits it. An unsuccessful check cannot authorize a different save. Session/account invalidation removes old values and ignores late callbacks. Confirmed opt-out blocks the next fresh provider admission, including after READY/IN_FLIGHT persistence; it cannot recall a call already sent to the provider. Profile-only changes generate neither daily content nor push. Health consent and access to other product screens are independent of opt-in.
+
+Phone permission is a separate OS setting, currently unverified. Local 06:00 and existing IANA timezone handling remain. Actual sending stays disabled; the 042 Support contract governs future workflow/provider acceptance. [044 evidence](reports/SHINKA_NOTIFICATION_PREFERENCES_044.md).
 
 
 ## 042 — current disabled notification preparation

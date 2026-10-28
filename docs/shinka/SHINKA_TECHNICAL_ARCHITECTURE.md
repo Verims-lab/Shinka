@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-043
+**Current BuildMarker:** Buildmarker-044
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -10,6 +10,13 @@
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+
+## 044 — Reuse of You and notification boundaries
+
+`You`/`NotificationStatus` render saved preference, draft/busy/unknown and localized phone/settings guidance using the existing `youController` → `youService` → `youOperation`/repository path. Controller/backend contracts are unchanged: VERIFIED readback alone accepts a save, check/retry retains the same revision and payload, and generation invalidation blocks obsolete responses. Error/recovery and success for preferences now sit beside that form. No new bridge, provider access or browser Notification API is added; production device observation remains UNKNOWN.
+
+Main-043's transient session retries are preserved with an injected abortable wait, allowing controlled tests without 25+ seconds of real waits. `AuthProvider` aborts pending wait work at identity/lifecycle boundaries and checks generation before another invocation; in-flight network cancellation is not implied. The native-admin/strict acceptance contract in 042 and actual `notificationSchedule` enabled:false remain unchanged. [044 test/report](reports/SHINKA_NOTIFICATION_PREFERENCES_044.md).
 
 
 ## 042 — current startup/admission and notification binding

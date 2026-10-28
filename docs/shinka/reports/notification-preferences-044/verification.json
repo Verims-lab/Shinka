@@ -1,0 +1,796 @@
+{
+  "status": "LOCAL_VERIFIED_DEVICE_AND_HOSTED_ACCEPTANCE_OPEN",
+  "buildMarker": "Buildmarker-044",
+  "healthCatalogVersion": "HC-043.0",
+  "baseCommit": "3b9fc0c9870f9cd5c63372c8fdf60a2fb39ef185",
+  "testedSource": {
+    "files": 535,
+    "sha256": "f33baee72c8f6b37f8411678ddc86b226055412947b1ad00567eabc31a924eff",
+    "manifest": "tested-source.json",
+    "hashesMatch": true
+  },
+  "browsers": {
+    "chromium": {
+      "commandExitCode": 0,
+      "engineVersion": "156.0.8078.4",
+      "tests": 714,
+      "passed": 714,
+      "failed": 0,
+      "uniqueIds": 714,
+      "pageErrors": [],
+      "youFlowScenarios": 24,
+      "youTextMatrix": 20,
+      "localHealth": {
+        "PASS": 138,
+        "BLOCKED": 13
+      },
+      "healthHistory": {
+        "saveState": "SAVED",
+        "retrySave": true,
+        "historyListed": true,
+        "privateReportOpened": true
+      },
+      "catalog": {
+        "version": "HC-043.0",
+        "suites": 16,
+        "cases": 177,
+        "localRegression": 12,
+        "current": 151,
+        "future": 0,
+        "external": 14
+      },
+      "serverTests": 8,
+      "notificationEntry": {
+        "scope": "LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION",
+        "passed": true,
+        "results": [
+          {
+            "id": "NS01",
+            "status": "PASS",
+            "httpStatus": 401,
+            "response": {
+              "error_code": "AUTH_REQUIRED"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 1,
+              "serviceAccess": 0,
+              "reads": [],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS02",
+            "status": "PASS",
+            "httpStatus": 503,
+            "response": {
+              "error_code": "SESSION_UNAVAILABLE"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 1,
+              "serviceAccess": 0,
+              "reads": [],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS03",
+            "status": "PASS",
+            "httpStatus": 403,
+            "response": {
+              "error_code": "ADMIN_REQUIRED"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 2,
+              "serviceAccess": 3,
+              "reads": [
+                {
+                  "entity": "User",
+                  "query": {
+                    "id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "UserPrivacyRequest",
+                  "query": {
+                    "user_id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "AdminTestOperation",
+                  "query": {
+                    "target_id": "synthetic-actor"
+                  }
+                }
+              ],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS04",
+            "status": "PASS",
+            "httpStatus": 403,
+            "response": {
+              "error_code": "ADMIN_REQUIRED"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 2,
+              "serviceAccess": 3,
+              "reads": [
+                {
+                  "entity": "User",
+                  "query": {
+                    "id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "UserPrivacyRequest",
+                  "query": {
+                    "user_id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "AdminTestOperation",
+                  "query": {
+                    "target_id": "synthetic-actor"
+                  }
+                }
+              ],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS05",
+            "status": "PASS",
+            "httpStatus": 401,
+            "response": {
+              "error_code": "AUTH_REQUIRED"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 2,
+              "serviceAccess": 2,
+              "reads": [
+                {
+                  "entity": "User",
+                  "query": {
+                    "id": "synthetic-actor"
+                  }
+                }
+              ],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS06",
+            "status": "PASS",
+            "httpStatus": 401,
+            "response": {
+              "error_code": "AUTH_REQUIRED"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 1,
+              "serviceAccess": 0,
+              "reads": [],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS07",
+            "status": "PASS",
+            "httpStatus": 400,
+            "response": {
+              "error_code": "INVALID_REQUEST"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 2,
+              "serviceAccess": 3,
+              "reads": [
+                {
+                  "entity": "User",
+                  "query": {
+                    "id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "UserPrivacyRequest",
+                  "query": {
+                    "user_id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "AdminTestOperation",
+                  "query": {
+                    "target_id": "synthetic-actor"
+                  }
+                }
+              ],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS08",
+            "status": "PASS",
+            "httpStatus": 200,
+            "response": {
+              "state": "DISABLED",
+              "processed": 0
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 2,
+              "serviceAccess": 3,
+              "reads": [
+                {
+                  "entity": "User",
+                  "query": {
+                    "id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "UserPrivacyRequest",
+                  "query": {
+                    "user_id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "AdminTestOperation",
+                  "query": {
+                    "target_id": "synthetic-actor"
+                  }
+                }
+              ],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS09",
+            "status": "PASS",
+            "httpStatus": 400,
+            "response": {
+              "error_code": "INVALID_REQUEST"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 2,
+              "serviceAccess": 3,
+              "reads": [
+                {
+                  "entity": "User",
+                  "query": {
+                    "id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "UserPrivacyRequest",
+                  "query": {
+                    "user_id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "AdminTestOperation",
+                  "query": {
+                    "target_id": "synthetic-actor"
+                  }
+                }
+              ],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS10",
+            "status": "PASS",
+            "httpStatus": 401,
+            "response": {
+              "error_code": "AUTH_REQUIRED"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 1,
+              "serviceAccess": 0,
+              "reads": [],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS11",
+            "status": "PASS",
+            "httpStatus": 400,
+            "response": {
+              "error_code": "INVALID_REQUEST"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 2,
+              "serviceAccess": 3,
+              "reads": [
+                {
+                  "entity": "User",
+                  "query": {
+                    "id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "UserPrivacyRequest",
+                  "query": {
+                    "user_id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "AdminTestOperation",
+                  "query": {
+                    "target_id": "synthetic-actor"
+                  }
+                }
+              ],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          }
+        ],
+        "sdk": {
+          "id": "SDK01",
+          "status": "PASS",
+          "scope": "INSTALLED_SDK_LOOPBACK_HTTP_ONLY",
+          "integrationEnvelope": "UNWRAPPED_JSON_BODY",
+          "optionalFieldsOmitted": true,
+          "providerCalls": 0
+        },
+        "hostedVerified": false
+      },
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 7,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true,
+        "deletion": {
+          "passed": true,
+          "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+          "hostedVerified": false,
+          "checks": 7
+        }
+      },
+      "physicalDevice": false
+    },
+    "webkit": {
+      "commandExitCode": 0,
+      "engineVersion": "27.2",
+      "tests": 714,
+      "passed": 714,
+      "failed": 0,
+      "uniqueIds": 714,
+      "pageErrors": [],
+      "youFlowScenarios": 24,
+      "youTextMatrix": 20,
+      "localHealth": {
+        "PASS": 138,
+        "BLOCKED": 13
+      },
+      "healthHistory": {
+        "saveState": "SAVED",
+        "retrySave": true,
+        "historyListed": true,
+        "privateReportOpened": true
+      },
+      "catalog": {
+        "version": "HC-043.0",
+        "suites": 16,
+        "cases": 177,
+        "localRegression": 12,
+        "current": 151,
+        "future": 0,
+        "external": 14
+      },
+      "serverTests": 8,
+      "notificationEntry": {
+        "scope": "LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION",
+        "passed": true,
+        "results": [
+          {
+            "id": "NS01",
+            "status": "PASS",
+            "httpStatus": 401,
+            "response": {
+              "error_code": "AUTH_REQUIRED"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 1,
+              "serviceAccess": 0,
+              "reads": [],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS02",
+            "status": "PASS",
+            "httpStatus": 503,
+            "response": {
+              "error_code": "SESSION_UNAVAILABLE"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 1,
+              "serviceAccess": 0,
+              "reads": [],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS03",
+            "status": "PASS",
+            "httpStatus": 403,
+            "response": {
+              "error_code": "ADMIN_REQUIRED"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 2,
+              "serviceAccess": 3,
+              "reads": [
+                {
+                  "entity": "User",
+                  "query": {
+                    "id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "UserPrivacyRequest",
+                  "query": {
+                    "user_id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "AdminTestOperation",
+                  "query": {
+                    "target_id": "synthetic-actor"
+                  }
+                }
+              ],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS04",
+            "status": "PASS",
+            "httpStatus": 403,
+            "response": {
+              "error_code": "ADMIN_REQUIRED"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 2,
+              "serviceAccess": 3,
+              "reads": [
+                {
+                  "entity": "User",
+                  "query": {
+                    "id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "UserPrivacyRequest",
+                  "query": {
+                    "user_id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "AdminTestOperation",
+                  "query": {
+                    "target_id": "synthetic-actor"
+                  }
+                }
+              ],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS05",
+            "status": "PASS",
+            "httpStatus": 401,
+            "response": {
+              "error_code": "AUTH_REQUIRED"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 2,
+              "serviceAccess": 2,
+              "reads": [
+                {
+                  "entity": "User",
+                  "query": {
+                    "id": "synthetic-actor"
+                  }
+                }
+              ],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS06",
+            "status": "PASS",
+            "httpStatus": 401,
+            "response": {
+              "error_code": "AUTH_REQUIRED"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 1,
+              "serviceAccess": 0,
+              "reads": [],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS07",
+            "status": "PASS",
+            "httpStatus": 400,
+            "response": {
+              "error_code": "INVALID_REQUEST"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 2,
+              "serviceAccess": 3,
+              "reads": [
+                {
+                  "entity": "User",
+                  "query": {
+                    "id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "UserPrivacyRequest",
+                  "query": {
+                    "user_id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "AdminTestOperation",
+                  "query": {
+                    "target_id": "synthetic-actor"
+                  }
+                }
+              ],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS08",
+            "status": "PASS",
+            "httpStatus": 200,
+            "response": {
+              "state": "DISABLED",
+              "processed": 0
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 2,
+              "serviceAccess": 3,
+              "reads": [
+                {
+                  "entity": "User",
+                  "query": {
+                    "id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "UserPrivacyRequest",
+                  "query": {
+                    "user_id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "AdminTestOperation",
+                  "query": {
+                    "target_id": "synthetic-actor"
+                  }
+                }
+              ],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS09",
+            "status": "PASS",
+            "httpStatus": 400,
+            "response": {
+              "error_code": "INVALID_REQUEST"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 2,
+              "serviceAccess": 3,
+              "reads": [
+                {
+                  "entity": "User",
+                  "query": {
+                    "id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "UserPrivacyRequest",
+                  "query": {
+                    "user_id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "AdminTestOperation",
+                  "query": {
+                    "target_id": "synthetic-actor"
+                  }
+                }
+              ],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS10",
+            "status": "PASS",
+            "httpStatus": 401,
+            "response": {
+              "error_code": "AUTH_REQUIRED"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 1,
+              "serviceAccess": 0,
+              "reads": [],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          },
+          {
+            "id": "NS11",
+            "status": "PASS",
+            "httpStatus": 400,
+            "response": {
+              "error_code": "INVALID_REQUEST"
+            },
+            "counts": {
+              "clients": 1,
+              "auth": 2,
+              "serviceAccess": 3,
+              "reads": [
+                {
+                  "entity": "User",
+                  "query": {
+                    "id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "UserPrivacyRequest",
+                  "query": {
+                    "user_id": "synthetic-actor"
+                  }
+                },
+                {
+                  "entity": "AdminTestOperation",
+                  "query": {
+                    "target_id": "synthetic-actor"
+                  }
+                }
+              ],
+              "jobIO": 0,
+              "provider": 0
+            },
+            "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+          }
+        ],
+        "sdk": {
+          "id": "SDK01",
+          "status": "PASS",
+          "scope": "INSTALLED_SDK_LOOPBACK_HTTP_ONLY",
+          "integrationEnvelope": "UNWRAPPED_JSON_BODY",
+          "optionalFieldsOmitted": true,
+          "providerCalls": 0
+        },
+        "hostedVerified": false
+      },
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 7,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true,
+        "deletion": {
+          "passed": true,
+          "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+          "hostedVerified": false,
+          "checks": 7
+        }
+      },
+      "physicalDevice": false
+    }
+  },
+  "server": {
+    "session": 9,
+    "admission": 8,
+    "failed": 0
+  },
+  "healthChanges": {
+    "added": 0,
+    "updated": 5,
+    "deleted": 0,
+    "ids": [
+      "H05-009",
+      "H12-025",
+      "H13-018",
+      "H14-003",
+      "H14-004"
+    ]
+  },
+  "newRegressionIds": [
+    "NU04",
+    "NU05",
+    "NU06",
+    "NT24",
+    "NT25",
+    "SS12"
+  ],
+  "external": {
+    "nativePermission": "NOT_RUN",
+    "physicalAndroid": "NOT_RUN",
+    "physicalIos": "NOT_RUN",
+    "workflow": "NOT_RUN",
+    "provider": "NOT_RUN",
+    "hostedFullHealth": "NOT_RUN_USER_OWNED",
+    "liveSecurityScan": "NOT_RUN_SCOPE_EXCLUDED",
+    "actualEntryEnabled": false,
+    "H14-901": "EXTERNAL_OPEN",
+    "H16-901": "EXTERNAL_OPEN"
+  },
+  "recordedAt": "2026-10-28T11:21:04.482477+00:00",
+  "quality": "quality-gates.json",
+  "performance": "performance.json"
+}

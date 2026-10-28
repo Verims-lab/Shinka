@@ -1,0 +1,51 @@
+{
+  "baseline": {
+    "passed": 7,
+    "failed": [
+      {
+        "id": "SS06",
+        "name": "AuthProvider + routes: transient transport preserves ordinary session, blocks admin and offers retry without login",
+        "passed": false,
+        "blocked": false,
+        "detail": "SS06:DOM_WAIT:TEST_TIMEOUT"
+      }
+    ],
+    "cause": "Main 043 added two real 700/1400ms session retry delays; SS06 runs multiple transient failures and exceeded the unchanged test budget. No provider or background-tab cause inferred."
+  },
+  "initialFocused": {
+    "passed": 14,
+    "failed": [
+      {
+        "id": "NU05",
+        "name": "Notification failed/lost save, failed status check and same-intent retry keep draft until verified, without duplicate writes",
+        "passed": false,
+        "blocked": false,
+        "detail": "NU05:DOM_WAIT:Cannot read properties of undefined (reading 'click')"
+      }
+    ],
+    "resolution": "NU05 waited for old DOM state after a check click. Wait now observes failed-check completion and committed DOM; same-intent/count assertions retained."
+  },
+  "initialFullChromium": {
+    "tests": 714,
+    "passed": 712,
+    "failed": 2,
+    "failedIds": [
+      "CU05",
+      "CU06"
+    ]
+  },
+  "initialFullWebKit": {
+    "canonicalFailures": [
+      "CU05",
+      "CU06"
+    ],
+    "stoppedAt": "checkYouFlow keyboard submit focus assertion",
+    "resolution": "CU05/CU06 now rerender the same actual Calendar with saved-language prop rather than click removed header buttons. WebKit macOS Tab skips buttons; isolated HTML proved Alt+Tab visits the save button. Same focus assertion retained with engine-appropriate key."
+  },
+  "visualReview": {
+    "evidence": "initial-200percent-lineheight.png",
+    "cause": "Caption line-height computed on parent was inherited as pixels by resized child paragraphs.",
+    "resolution": "Apply the unchanged caption typography to each paragraph; added tightNotificationText assertion at every width/locale/scale."
+  },
+  "typecheck": "Initial fixture inferred types and uninitialized deferred resolver diagnostics retained in typecheck-initial.txt; corrected annotations/initialized gate resolvers, no runtime validation removed."
+}

@@ -2,11 +2,16 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-042
+**Current BuildMarker:** Buildmarker-044
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
+
+
+## 044 — Profile notification preference delivery
+
+Main 3b9fc0c was four commits ahead of clean Test 9161937 and was fast-forwarded without discarding Base44 auth/header/dependency work. Reused existing You persistence/recovery; changed scoped display/copy, added six functional regressions and keyboard coverage. The baseline SS06 timed out because new transient retry waits accumulated beyond the test budget; cancellable injected waits retain the production retry policy and prevent future old-session retries. No external timer-throttling/provider cause is claimed. Full regression also exposed two Calendar tests clicking the header language controls removed by 043; they now apply the same saved-language prop without restoring those controls. A 320px/200% visual review exposed inherited caption line-height overlap; each paragraph now owns the unchanged typography token and the browser matrix asserts readable line boxes. Original failure evidence and final local results are separate in [044 delivery report](reports/SHINKA_NOTIFICATION_PREFERENCES_044.md). Sending stays disabled; no live operation or publish.
 
 
 ## 2026-10-28 — 042 verification continuation

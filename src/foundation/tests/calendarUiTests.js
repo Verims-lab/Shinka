@@ -19,10 +19,11 @@ export const CALENDAR_UI_TESTS = [
    f.once('before',c=>c.name==='UserHealthConsentEvent'&&c.method==='create');
    try {await f.cal({action:'add',date:'2026-10-01',health_consent:true,action_id:crypto.randomUUID(),revision:view.revision});}catch{/* injected write interruption */}
    const stamp=f.tables.UserHealthConsent[0].granted_at;
-   root.render(createElement(Calendar,{language:'tr',request:(action,body)=>calendarRequest(action,body,{functions:{invoke:async(_name,payload)=>({data:await f.cal(payload)})}})}));
+   const request=(action,body)=>calendarRequest(action,body,{functions:{invoke:async(_name,payload)=>({data:await f.cal(payload)})}});
+   root.render(createElement(Calendar,{language:'tr',request}));
    await until(()=>host.querySelector('[data-calendar-error="CALENDAR_PENDING_REVIEW"]'));
    check(host.querySelector('button[type="submit"]').disabled&&!host.querySelector('input[type="checkbox"]'));
-   button(host,'EN').click();await until(()=>host.textContent.includes('This change may have been saved'));
+   root.render(createElement(Calendar,{language:'en',request}));await until(()=>host.textContent.includes('This change may have been saved'));
    button(host,'Check / retry the same change').click();await until(()=>f.tables.UserPeriodRecord.length===1);await pause();
    check(!host.textContent.includes('This change may have been saved')&&f.tables.UserHealthConsent[0].granted_at===stamp&&f.tables.UserHealthConsentEvent.length===1);
  })],
@@ -44,7 +45,7 @@ export const CALENDAR_UI_TESTS = [
    const notice=host.querySelector('[data-calendar-estimate-unavailable]');
    check(notice.getAttribute('role')==='status' && notice.textContent.includes('60 günden uzun'));
    check(!host.querySelector('[aria-label*="Tahmini"]') && !host.querySelector('button[type="submit"]').disabled);
-   button(host,'EN').click();await pause();
+   root.render(createElement(Calendar,{language:'en',request:f.request}));await until(()=>host.querySelector('[data-calendar-estimate-unavailable]')?.textContent.includes('longer than 60 days'));
    check(host.querySelector('[data-calendar-estimate-unavailable]').textContent.includes('longer than 60 days'));
  })],
  ['CU01','Monthly TR/EN, labeled real/predicted/selected days, ≥44px keyboard controls and no selection writes',async()=>probe(async(root,host)=>{

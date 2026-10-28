@@ -2,12 +2,19 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-042
+**Current BuildMarker:** Buildmarker-044
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-041.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-043.0; repository, synthetic and external evidence separated.
+
+
+## Buildmarker-044 — HC-043.0
+
+Add **0 / update 5 / delete 0**. H14-004 maps NU01–06 to real You save/draft/unknown/retry/account/permission fixtures and retains disabled entry NS01–11 plus installed SDK SDK01. H14-003 adds NT24/25: real You opt-out blocks fresh admission but cannot recall provider-dispatched work. H13-018 extends actual `checkYouFlow` keyboard label/description/focus, TR/EN narrow/200% feedback checks. H12-025 adds SS12 cancellation/cleanup and controlled SS06 retry budgets while preserving existing auth/startup/admission tests. H05-009 explicitly carries exact source verification into approved 044; future 045 stays blocked. P03 adds existing-true preference preservation to the existing new-false initialization case.
+
+No runtime/plan ID or applicability change: 177 total / 151 in-app / 12 local / 14 external. NU/SS/component tests remain local-only. H14-901/H16-901 remain external NOT_RUN, not synthetic PASS. Original SS06 timeout after main's retry addition and intermediate fixture/type errors are retained separately from final results. The [single 044 report](reports/SHINKA_NOTIFICATION_PREFERENCES_044.md) records actual final execution and remaining hosted/device work; no live Full Health or Security scan is run.
 
 
 ## Buildmarker-042 — HC-041.0

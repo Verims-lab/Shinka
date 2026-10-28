@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-039",
-    "package_name": "Core product quality audit and recovery hardening",
-    "package_type": "AUDIT_FIX",
-    "created_at": "2026-10-27T19:10:28Z",
-    "health_catalog_version": "HC-039.0",
-    "short_summary": "Preserves 036–038; bounded projected domain reads disclose overflow, uncertain You saves retain their intent, Home clears denied data/name and stops ended-session work. Adds per-group Health integrity and actor/target regressions. Local evidence and hosted acceptance are separate.",
-    "full_health_status": "NOT_RUN",
-    "notes": "One quality milestone; active history 035–039. H12-042 added, seven case descriptions/coverage strengthened, none removed; 176 total / 150 in-app / 12 local / 14 external. Final fresh local browser/server/gate results and matched measurements are in SHINKA_CORE_QUALITY_MILESTONE_039.md. No hosted Health, scan, user mutation, import, notification/scheduler/native build or main publish. Twelve backend findings OPEN / USER-DEFERRED; original ON-05/First Shinka, published-source matching and physical devices remain pending. Initial failures preserved.",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true
-  },
-  {
     "build_marker": "Buildmarker-040",
     "package_name": "Test Tools deletion stabilization",
     "package_type": "CORRECTIVE_STABILIZATION",
@@ -65,5 +51,19 @@ export default [
     "tests_changed": true,
     "health_changed": true,
     "notes": "Health add 0/update 3/delete 0 (H13-015, H13-017, H05-009). Browser tests CU01/PU01/PU07/DU01 NOT_RUN (no Playwright browser). No live Full Health/Security scan/publish."
+  },
+  {
+    "build_marker": "Buildmarker-044",
+    "package_name": "Profile notification preference and phone permission guidance",
+    "package_type": "FEATURE_VERIFICATION",
+    "created_at": "2026-10-28T11:08:53Z",
+    "health_catalog_version": "HC-043.0",
+    "short_summary": "Separate saved, draft and unconfirmed notification choices in You; simple TR/EN phone-permission and pending-setup guidance; verify retry, account boundaries and fresh opt-out admission.",
+    "full_health_status": "LOCAL_SYNTHETIC_ONLY / NATIVE_AND_HOSTED_ACCEPTANCE_OPEN",
+    "notes": "Preserves main Base44 043 auth/header/dependency changes. Adds six regressions; HC-042.0 → HC-043.0 once, five existing Health cases updated, no IDs added/removed. Cancel pending auth retry on account/logout; controlled tests preserve two 700/1400ms retries. Sending remains disabled. No workflow, native setup, live mutation/Health/scan or main publish. Active 040–044. Final evidence: SHINKA_NOTIFICATION_PREFERENCES_044.md.",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true
   }
 ];

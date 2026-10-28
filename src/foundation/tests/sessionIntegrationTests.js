@@ -9,16 +9,18 @@ import LoginRedirect from '@/components/LoginRedirect';
 import SignIn from '@/features/onboarding/SignIn';
 import { safeReturnTo } from '@/lib/authReturnTo';
 import { waitForFixture } from './domWait';
-import { testEventTurn } from './testClock';
+import { testEventTurn, createTestClock } from './testClock';
+import { waitForSessionRetry } from '@/lib/sessionCheck';
 
 const check = (ok, message) => { if (!ok) throw new Error(message); };
 const deferred = () => { let resolve = value => { check(false, `Uninitialized fixture gate: ${value}`); }; const promise = new Promise(r => { resolve = r; }); return { promise, resolve }; };
 const identity = (id = 'synthetic-A', role = 'admin') => ({ id, role, authority: 'BASE44_NATIVE_V1' });
 const transientErrors = () => [...[429,503].map(status => ({status})),{code:'ETIMEDOUT'},{code:'ERR_NETWORK'},new TypeError('synthetic network'),new Error('unclassified')];
 /** @param {string} path @param {Function} run @param {Parameters<import('./testTypes').FoundationTest[2]>[0]} [context] @param {ReturnType<typeof identity> | (() => Promise<unknown>) | null} [initial] */
-async function fixture(path, run, context = {}, initial = identity(), settings = async () => ({})) {
-  const f = { auth: null, location: null, calls: 0, logouts: 0, logins: [], now: 0, timer: null, result: initial, settings, me: async () => typeof f.result === 'function' ? f.result() : f.result };
+async function fixture(path, run, context = {}, initial = identity(), settings = async () => ({}), retryWait = null) {
+  const f = { auth: null, location: null, calls: 0, logouts: 0, logins: [], now: 0, timer: null, waits: [], result: initial, settings, me: async () => typeof f.result === 'function' ? f.result() : f.result };
   const timing = { now: () => f.now, every: fn => { f.timer = fn; return 1; }, cancel: () => { f.timer = null; } };
+  const sessionWait=(ms,signal)=>{f.waits.push(ms);return retryWait ? retryWait(ms,signal) : Promise.resolve(!signal.aborted);};
   const client = { app: { getPublicSettings: () => f.settings() }, auth: { logout: async () => { f.logouts++; } }, functions: { invoke: async name => {
     check(name === 'applicationSession', 'unexpected platform call'); f.calls++; return {data: await f.me()};
   } } };
@@ -28,7 +30,7 @@ async function fixture(path, run, context = {}, initial = identity(), settings =
   context.cleanup?.(dispose);
   function Observer() { f.auth = useAuth(); f.location = useLocation(); return h('output', {'data-auth-observed':true}, JSON.stringify({id:f.auth.user?.id,admin:f.auth.isAdmin,checked:f.auth.authChecked,error:f.auth.authError,refresh:f.auth.isRefreshingAuth,path:f.location.pathname})); }
   const screen = name => h('div', {[`data-${name}`]:true}, name);
-  root.render(h(AuthProvider,{client,sessionTiming:timing},h(MemoryRouter,{initialEntries:[path]},h(Observer),h(Routes,null,
+  root.render(h(AuthProvider,{client,sessionTiming:timing,sessionWait},h(MemoryRouter,{initialEntries:[path]},h(Observer),h(Routes,null,
     h(Route,{path:'/login',element:h(ProtectedRoute,{unauthenticatedElement:h(SignIn,{authenticate:async (...args)=>{f.logins.push(args);return {ok:true,code:null};}})},screen('callback-accepted'))}),
     h(Route,{element:h(ProtectedRoute,{unauthenticatedElement:h(LoginRedirect)})},
       h(Route,{path:'/private',element:screen('private')}),
@@ -39,11 +41,26 @@ async function fixture(path, run, context = {}, initial = identity(), settings =
 
 /** @type {import('./testTypes').FoundationTest[]} */
 export const SESSION_INTEGRATION_TESTS = [
+  ['SS12','Session retry wait cancels on logout/account replacement; no old retry or leaked timer reaches the new account',async(context={})=>{
+    for(const boundary of ['logout','account']){
+      const clock=createTestClock(context);
+      try{await fixture('/private',async(f,q,wait)=>{
+        await wait(()=>q('[data-private]'));const before=f.calls;f.me=async()=>{throw {status:503};};
+        const pending=f.auth.checkUserAuth();await testEventTurn(context.signal);check(clock.pending()===1&&f.calls===before+1,'retry not waiting');
+        if(boundary==='logout')await f.auth.logout(false);
+        else {f.me=async()=>identity('synthetic-B','user');await f.auth.checkAppState();}
+        await pending;await testEventTurn(context.signal);const completed=f.calls;
+        check(clock.pending()===0,'cancelled timer retained');await clock.advance(2100);
+        check(f.calls===completed&&(boundary==='logout'?!f.auth.isAuthenticated:f.auth.user?.id==='synthetic-B'),'old retry survived session boundary');
+      },context,identity(),async()=>({}),(ms,signal)=>waitForSessionRetry(ms,signal,clock.timers));}finally{clock.dispose();}
+    }
+  }],
   ['SS06','AuthProvider + routes: transient transport preserves ordinary session, blocks admin and offers retry without login',async(context={})=>{
     for(const path of ['/private','/internal/test-tools']) await fixture(path,async(f,q,wait)=>{
       await wait(()=>q(path==='/private'?'[data-private]':'[data-admin-operation]'));
       for(const error of transientErrors()) {
-        f.me=async()=>{throw error;}; await f.auth.checkUserAuth();
+        f.me=async()=>{throw error;}; const before=f.calls;await f.auth.checkUserAuth();
+        check(f.calls===before+3&&f.waits.slice(-2).join(',')==='700,1400','bounded retry contract');
         await wait(()=>f.auth.authError?.type==='session_unverified');
         check(f.auth.isAuthenticated&&!f.auth.isAdmin&&f.logouts===0&&!q('[data-auth-shell]'),'transient became logout/admin/login');
         check(path==='/private'?!!q('[data-private]'):!q('[data-admin-operation]'),'route boundary');

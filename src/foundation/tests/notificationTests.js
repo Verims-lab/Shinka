@@ -1,3 +1,4 @@
+import { youOperation } from '../../../base44/shared/youOperation.js';
 import { dailyMessageOperation } from '../../../base44/shared/dailyMessageOperation.js';
 import { privacyFixture, privacyIntent } from './privacyFixture';
 import { check, rejects } from './dataModelTests';
@@ -11,6 +12,34 @@ import { ACCOUNT_CLEANUP } from '../../../base44/shared/privacyPolicy.js';
 const writes = f => f.state.calls.filter(call => call.method !== 'filter');
 /** @type {import('./testTypes').FoundationTest[]} */
 export const NOTIFICATION_TESTS = [
+ ['NT24','Verified Profile opt-out after READY or IN_FLIGHT prevents the next provider admission without changing protected data',async()=>{
+  for(const boundary of ['READY','IN_FLIGHT']){
+   const f=notificationFixture();await f.send();f.advance();
+   const before=JSON.stringify(Object.fromEntries(Object.entries(f.tables).filter(([name])=>!['UserPreferences','NotificationDelivery'].includes(name))));
+   const optOut=async()=>{const v=/** @type {any} */(await youOperation(f.client(),{action:'read'},{now:f.now}));
+    const r=/** @type {any} */(await youOperation(f.client(),{action:'savePreferences',language_code:v.preferences.language_code,notifications_enabled:false,timezone:v.preferences.timezone,revision:v.preferences.revision},{now:f.now}));
+    check(r.state==='VERIFIED'&&!r.preferences.notifications_enabled&&r.preferences.notification_time==='06:00');
+   };
+   if(boundary==='READY')await optOut();
+   else f.state.after=async c=>{if(c.name==='NotificationDelivery'&&c.method==='update'&&c.args[1].dispatch_state==='IN_FLIGHT'){f.state.after=null;await optOut();}};
+   const result=await f.send();check(result.state==='INELIGIBLE'&&result.code==='PREFERENCE_DISABLED'&&f.sent.length===0);
+   check(before===JSON.stringify(Object.fromEntries(Object.entries(f.tables).filter(([name])=>!['UserPreferences','NotificationDelivery'].includes(name)))));
+   check(f.tables.UserPreferences[0].language_code==='tr'&&f.tables.UserPreferences[0].timezone==='Europe/Istanbul');
+   await f.today();check(f.tables.UserDailyMessage.length===1&&!f.sent.length);
+  }
+ }],
+ ['NT25','Verified opt-out cannot recall an already dispatched call; accepted receipt stays truthful and is never resent',async()=>{
+  const f=notificationFixture();await f.send();f.advance();let release=()=>{},started=()=>{},dispatches=0;
+  const gate=new Promise(resolve=>{release=()=>resolve(undefined);}),seen=new Promise(resolve=>{started=()=>resolve(undefined);});
+  f.provider.send=async()=>{dispatches++;started();await gate;return {kind:'accepted'};};
+  const pending=f.send();await seen;
+  try{
+   const v=/** @type {any} */(await youOperation(f.client(),{action:'read'},{now:f.now}));
+   const r=/** @type {any} */(await youOperation(f.client(),{action:'savePreferences',language_code:v.preferences.language_code,notifications_enabled:false,timezone:v.preferences.timezone,revision:v.preferences.revision},{now:f.now}));
+   check(r.state==='VERIFIED'&&!r.preferences.notifications_enabled&&f.tables.NotificationDelivery[0].dispatch_state==='IN_FLIGHT');
+  }finally{release();}
+  check((await pending).state==='ACCEPTED');await f.send();check(dispatches===1&&f.tables.NotificationDelivery[0].delivery_status==='SENT');
+ }],
  ['NT01','Actual local 06:00 and noon boundary; fractional zones and UTC day rollover',()=>{
   for(const [zone,instant,target] of [
    ['Europe/Istanbul','2026-10-20T03:00:00Z','2026-10-20T03:00:00.000Z'],

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-042
+**Current BuildMarker:** Buildmarker-044
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -11,6 +11,13 @@
 **Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+
+## 044 — Profile notification choice and phone permission
+
+You shows the saved on/off choice separately from the checkbox draft. An unsaved choice has an explicit status; while saving it says the saved choice is being checked. Unknown outcome retains and locks the draft with Check result / Retry same save beside it. Success appears only after VERIFIED readback; reopening shows the stored choice without old success. Existing language/profile editing and fixed local 06:00 display remain.
+
+Central `notificationCopy` TR/EN uses short phone-settings guidance, a phone permission row and honest setup-pending text. This replaces 029/030's technical support-status row and exact denial wording for this surface, under the owner's 044 request. There is no native permission bridge: production remains UNKNOWN regardless of opt-in. Synthetic supported/denied/allowed props are test inputs, not observations. No browser Notification API, permission prompt, settings button or URI is introduced. Permission denial never gates product navigation; preference is separate from health consent. Each explanatory paragraph owns the existing caption token so its line box scales with enlarged text; no inherited fixed-pixel caption line box. Checkbox label/descriptions and live status are linked; keyboard, narrow widths and 200% text are exercised locally. Physical Android/iOS and assistive technology remain open.
 
 
 ## 041 — Home header
@@ -59,9 +66,9 @@ The platform's documented first-open prompt is a setup expectation, not an obser
 
 ## 030 continuation — notification settings and honest permission states
 
-030 retains the completed 029 UI without a new permission bridge or navigation-time send. The new manual admin backend guard and reported input adapter do not imply delivery activation. You keeps one on/off preference, fixed local 06:00 target, language selection and existing save/unknown/conflict/draft contract. The saved preference is displayed independently from the unsaved checkbox draft. Device permission and native platform support are separate labeled states. Production currently reports both unverified/unknown because no Base44 JavaScript native permission/registration bridge was documented. Browser Notification.permission, service workers and user-agent inference are not substitutes. No automatic permission request, unsupported settings URI, or pretend permission button is added.
+030 retains the completed 029 UI without a new permission bridge or navigation-time send. The new manual admin backend guard and reported input adapter do not imply delivery activation. You keeps one on/off preference, fixed local 06:00 target, language selection and existing save/unknown/conflict/draft contract. The saved preference is displayed independently from the unsaved checkbox draft. 044 supersedes the technical support row with a simple phone permission row; native platform support remains an internal unknown. Production permission is unverified/unknown because no Base44 JavaScript native permission/registration bridge was documented. Browser Notification.permission, service workers and user-agent inference are not substitutes. No automatic permission request, unsupported settings URI, or pretend permission button is added.
 
-Denied permission shows the original English device-settings instruction and scoped Turkish translation. Manual guidance points to Shinka in OS notification settings; Base44 documentation describes a native permission prompt on first opening of a push-enabled store build; its behavior on Shinka devices is unverified. The current setup-pending text is truthful while the production binding is closed. Switching account/logout clears the You view through the existing session boundary; native device-token reassignment/revocation still needs physical acceptance. No health, birth, cycle or daily snapshot appears in lock-screen copy. Neutral 029 TR/EN text is centralized in notificationPolicy; UI states in notificationCopy.
+044 replaces the former denial wording with the scoped short EN/TR settings guidance in notificationCopy. Manual guidance points to Shinka in OS notification settings; Base44 documentation describes a native permission prompt on first opening of a push-enabled store build; its behavior on Shinka devices is unverified. The current setup-pending text is truthful while the production binding is closed. Switching account/logout clears the You view through the existing session boundary; native device-token reassignment/revocation still needs physical acceptance. No health, birth, cycle or daily snapshot appears in lock-screen copy. Neutral 029 TR/EN text is centralized in notificationPolicy; UI states in notificationCopy.
 
 ## 027 — navigation quality boundary
 

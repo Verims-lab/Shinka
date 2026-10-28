@@ -2,11 +2,16 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-043
+**Current BuildMarker:** Buildmarker-044
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
+
+
+## 044 — Notification preference step 1 delivery
+
+Preserve main's 043 changes; new focused package is 044 and Health advances once from HC-042.0 to HC-043.0. Generate ledger/history with `recordBuild.mjs`, retaining 040–044. Update five existing Health cases without new/deleted IDs; preserve old failures and external native/workflow prerequisites. Run complete local Chromium/WebKit, server fixtures and unchanged quality/performance gates. This scope excludes workflows, native keys/builds, live user changes, live Full Health/Security scan, content import and main merge/publish. Only Test is pushed; owner performs publishing and next-stage device acceptance.
 
 
 ## 042 — limited audit completion and disabled Support adaptation

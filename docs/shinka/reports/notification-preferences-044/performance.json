@@ -1,0 +1,735 @@
+{
+  "budget": {
+    "initialRaw": 500000,
+    "initialGzip": 165000,
+    "cssRaw": 90000,
+    "cssGzip": 16000
+  },
+  "passed": true,
+  "label": "maintenance",
+  "production": {
+    "chunks": [
+      {
+        "file": "assets/index-CP3iNDdJ.js",
+        "entry": true,
+        "raw": 446179,
+        "gzip": 145013
+      },
+      {
+        "file": "assets/AccountPrivacy-DraRFcIZ.js",
+        "entry": false,
+        "raw": 4763,
+        "gzip": 1978
+      },
+      {
+        "file": "assets/AdminPanel-DOBvwKve.js",
+        "entry": false,
+        "raw": 935,
+        "gzip": 517
+      },
+      {
+        "file": "assets/AuthShellProbe-CK_rq0v_.js",
+        "entry": false,
+        "raw": 1946,
+        "gzip": 996
+      },
+      {
+        "file": "assets/BuildEnvironment-CjqAnJOo.js",
+        "entry": false,
+        "raw": 3287,
+        "gzip": 1376
+      },
+      {
+        "file": "assets/Calendar-Cck4_fLC.js",
+        "entry": false,
+        "raw": 14958,
+        "gzip": 5488
+      },
+      {
+        "file": "assets/FieldError-BnCtqqie.js",
+        "entry": false,
+        "raw": 5723,
+        "gzip": 2462
+      },
+      {
+        "file": "assets/HealthCenter-Dyls3Mg5.js",
+        "entry": false,
+        "raw": 14151,
+        "gzip": 5244
+      },
+      {
+        "file": "assets/InternalNav-XSwmtdY3.js",
+        "entry": false,
+        "raw": 1308,
+        "gzip": 671
+      },
+      {
+        "file": "assets/OnboardingScreen-BHWJ-G0H.js",
+        "entry": false,
+        "raw": 18517,
+        "gzip": 6279
+      },
+      {
+        "file": "assets/Pattern-CHuFYEku.js",
+        "entry": false,
+        "raw": 4140,
+        "gzip": 1823
+      },
+      {
+        "file": "assets/ShinkaCard-C-LKtc80.js",
+        "entry": false,
+        "raw": 7462,
+        "gzip": 2914
+      },
+      {
+        "file": "assets/ShinkaInput-Sgtg0OAR.js",
+        "entry": false,
+        "raw": 551,
+        "gzip": 363
+      },
+      {
+        "file": "assets/ShinkaSelect-DlYnJxq6.js",
+        "entry": false,
+        "raw": 6587,
+        "gzip": 2677
+      },
+      {
+        "file": "assets/StatusBadge-UBKnS8Oi.js",
+        "entry": false,
+        "raw": 18829,
+        "gzip": 7151
+      },
+      {
+        "file": "assets/TestTools-BW0IEwpp.js",
+        "entry": false,
+        "raw": 20915,
+        "gzip": 7317
+      },
+      {
+        "file": "assets/You-CSZ1CS6d.js",
+        "entry": false,
+        "raw": 13349,
+        "gzip": 4793
+      },
+      {
+        "file": "assets/adminTestRepository-C4ZJPcCa.js",
+        "entry": false,
+        "raw": 12973,
+        "gzip": 4461
+      },
+      {
+        "file": "assets/adminTestTools-hvDtrfWe.js",
+        "entry": false,
+        "raw": 1207,
+        "gzip": 669
+      },
+      {
+        "file": "assets/aggregate-nAl9WMxG.js",
+        "entry": false,
+        "raw": 2561,
+        "gzip": 1154
+      },
+      {
+        "file": "assets/astronomy-DDiaoDFU.js",
+        "entry": false,
+        "raw": 104655,
+        "gzip": 42503
+      },
+      {
+        "file": "assets/birthplaceSearch-F0AzE5_3.js",
+        "entry": false,
+        "raw": 1701,
+        "gzip": 860
+      },
+      {
+        "file": "assets/calendarController-Bxi_gyqD.js",
+        "entry": false,
+        "raw": 7017,
+        "gzip": 2613
+      },
+      {
+        "file": "assets/catalog-DNa2Z7Da.js",
+        "entry": false,
+        "raw": 527115,
+        "gzip": 157905
+      },
+      {
+        "file": "assets/chevron-left-CiOKFIgS.js",
+        "entry": false,
+        "raw": 123,
+        "gzip": 138
+      },
+      {
+        "file": "assets/domainAccess-CNQESwZX.js",
+        "entry": false,
+        "raw": 4876,
+        "gzip": 2059
+      },
+      {
+        "file": "assets/domainSchemas-Dk8P4EK3.js",
+        "entry": false,
+        "raw": 6399,
+        "gzip": 2455
+      },
+      {
+        "file": "assets/es-Bk__vKf0.js",
+        "entry": false,
+        "raw": 54521,
+        "gzip": 19344
+      },
+      {
+        "file": "assets/internalAuthorization-D5EMc6HA.js",
+        "entry": false,
+        "raw": 4198,
+        "gzip": 1857
+      },
+      {
+        "file": "assets/onboardingFixture-D85xlSDE.js",
+        "entry": false,
+        "raw": 364613,
+        "gzip": 121518
+      },
+      {
+        "file": "assets/onboardingUiTests-BiZpqjL6.js",
+        "entry": false,
+        "raw": 2550,
+        "gzip": 1399
+      },
+      {
+        "file": "assets/onboardingValidation-BuHQ2U9b.js",
+        "entry": false,
+        "raw": 3293,
+        "gzip": 1471
+      },
+      {
+        "file": "assets/patternLifecycle-BCih2dPS.js",
+        "entry": false,
+        "raw": 7784,
+        "gzip": 3322
+      },
+      {
+        "file": "assets/patternOperation-IqaXoGCh.js",
+        "entry": false,
+        "raw": 7739,
+        "gzip": 3059
+      },
+      {
+        "file": "assets/pendingName-DfpTKH6s.js",
+        "entry": false,
+        "raw": 1967,
+        "gzip": 1044
+      },
+      {
+        "file": "assets/privacyController-KjpHe3B5.js",
+        "entry": false,
+        "raw": 1506,
+        "gzip": 806
+      },
+      {
+        "file": "assets/report-D9DQWZwN.js",
+        "entry": false,
+        "raw": 1386,
+        "gzip": 772
+      },
+      {
+        "file": "assets/rolldown-runtime-hePW80VL.js",
+        "entry": false,
+        "raw": 716,
+        "gzip": 430
+      },
+      {
+        "file": "assets/runner-Dz1zKkZZ.js",
+        "entry": false,
+        "raw": 3421,
+        "gzip": 1726
+      },
+      {
+        "file": "assets/strings-C2kfL8oU.js",
+        "entry": false,
+        "raw": 3206,
+        "gzip": 1377
+      },
+      {
+        "file": "assets/uiRules-fpFf078w.js",
+        "entry": false,
+        "raw": 2868,
+        "gzip": 1473
+      },
+      {
+        "file": "assets/uiuxTables-QPWRJmhy.js",
+        "entry": false,
+        "raw": 6238,
+        "gzip": 2890
+      },
+      {
+        "file": "assets/useHealthRunner-CjlZV0iv.js",
+        "entry": false,
+        "raw": 61,
+        "gzip": 77
+      },
+      {
+        "file": "assets/useModalSurface-Dh-nwiLE.js",
+        "entry": false,
+        "raw": 947,
+        "gzip": 531
+      },
+      {
+        "file": "assets/userLifecycle-Br2Tv1ei.js",
+        "entry": false,
+        "raw": 26242,
+        "gzip": 8896
+      }
+    ],
+    "initialJS": {
+      "raw": 471292,
+      "gzip": 155952
+    },
+    "allJS": {
+      "raw": 1745483,
+      "gzip": 583871
+    },
+    "css": {
+      "raw": 77682,
+      "gzip": 14230
+    },
+    "initialModules": [
+      "/src/features/mobile/RouteMotion.jsx",
+      "/src/components/shinka/PageContainer.jsx",
+      "/src/components/shinka/ShinkaButton.jsx",
+      "/src/components/shinka/StatePanel.jsx",
+      "/src/foundation/i18n/onboardingCopy.js",
+      "/src/components/RouteBoundary.jsx",
+      "/src/components/ui/use-toast.jsx",
+      "/src/lib/utils.js",
+      "/src/components/ui/toast.jsx",
+      "/src/components/ui/toaster.jsx",
+      "/src/lib/query-client.js",
+      "/src/lib/app-params.js",
+      "/src/api/base44Client.js",
+      "/src/foundation/authErrors.js",
+      "/src/lib/sessionCheck.js",
+      "/src/services/privacyService.js",
+      "/src/lib/AuthContext.jsx",
+      "/src/lib/PageNotFound.jsx",
+      "/src/components/UserNotRegisteredError.jsx",
+      "/src/components/ScrollToTop.jsx",
+      "/src/components/SessionRetry.jsx",
+      "/src/components/ProtectedRoute.jsx",
+      "/src/components/LoginRedirect.jsx",
+      "/base44/shared/sunSign.js",
+      "/base44/shared/onboardingDependencies.js",
+      "/src/services/onboardingService.js",
+      "/src/foundation/i18n/mobileCopy.js",
+      "/src/features/mobile/RefreshControl.jsx",
+      "/src/foundation/uiContract.js",
+      "/src/foundation/i18n/dailyCopy.js",
+      "/src/components/shinka/ProductNavigation.jsx",
+      "/src/features/mobile/useLayerHistory.js",
+      "/src/foundation/internalNavigation.js",
+      "/src/components/profile/ProfileMenu.jsx",
+      "/src/services/dailyMessageService.js",
+      "/src/features/daily/useDailyMessage.js",
+      "/src/features/daily/DailyStatus.jsx",
+      "/src/pages/Home.jsx",
+      "/src/foundation/i18n/privacyCopy.js",
+      "/src/components/profile/ProfileAccess.jsx",
+      "/src/pages/Onboarding.jsx",
+      "/src/components/ProductRoute.jsx",
+      "/src/components/internal/AdminGate.jsx",
+      "/src/foundation/probes/authProbeRoute.js",
+      "/src/App.jsx",
+      "/src/index.css",
+      "/src/main.jsx",
+      "/index.html",
+      "/src/components/shinka/ShinkaCard.jsx",
+      "/src/foundation/uiuxTables.js",
+      "/src/foundation/i18n/strings.js",
+      "/base44/shared/onboardingValidation.js",
+      "/base44/shared/healthReadDiagnostics.js",
+      "/base44/shared/boundedJson.js",
+      "/base44/shared/internalAuthorization.js"
+    ],
+    "chunkCount": 45
+  },
+  "cycles": [],
+  "pages": [
+    {
+      "route": "/",
+      "samples": [
+        {
+          "js": 375015,
+          "dom": 83,
+          "dcl": 19.700000002980232,
+          "cls": 0,
+          "lcpMs": 64,
+          "sdkCalls": {
+            "applicationSession.undefined": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 375015,
+          "dom": 83,
+          "dcl": 16.600000001490116,
+          "cls": 0,
+          "lcpMs": 44,
+          "sdkCalls": {
+            "applicationSession.undefined": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 375015,
+          "dom": 83,
+          "dcl": 17.100000001490116,
+          "cls": 0,
+          "lcpMs": 48,
+          "sdkCalls": {
+            "applicationSession.undefined": 1
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/login",
+      "samples": [
+        {
+          "js": 375015,
+          "dom": 63,
+          "dcl": 16.700000002980232,
+          "cls": 0,
+          "lcpMs": 48,
+          "sdkCalls": {
+            "applicationSession.undefined": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 375015,
+          "dom": 63,
+          "dcl": 16.80000000447035,
+          "cls": 0,
+          "lcpMs": 48,
+          "sdkCalls": {
+            "applicationSession.undefined": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 375015,
+          "dom": 63,
+          "dcl": 17.899999998509884,
+          "cls": 0,
+          "lcpMs": 48,
+          "sdkCalls": {
+            "applicationSession.undefined": 1
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr",
+      "samples": [
+        {
+          "js": 345468,
+          "dom": 64,
+          "dcl": 16.399999998509884,
+          "cls": 0,
+          "lcpMs": 48,
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "dailyMessage.today": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 345468,
+          "dom": 64,
+          "dcl": 15.899999998509884,
+          "cls": 0,
+          "lcpMs": 60,
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "dailyMessage.today": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 345468,
+          "dom": 64,
+          "dcl": 16.5,
+          "cls": 0,
+          "lcpMs": 60,
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "dailyMessage.today": 1
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/you?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr",
+      "samples": [
+        {
+          "js": 821653,
+          "dom": 124,
+          "dcl": 17.600000001490116,
+          "cls": 0.07702702702702703,
+          "lcpMs": 76,
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "you.read": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 821653,
+          "dom": 124,
+          "dcl": 15.799999997019768,
+          "cls": 0.07702702702702703,
+          "lcpMs": 64,
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "you.read": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 821653,
+          "dom": 124,
+          "dcl": 18.400000005960464,
+          "cls": 0,
+          "lcpMs": 76,
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "you.read": 1
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/pattern?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr",
+      "samples": [
+        {
+          "js": 802984,
+          "dom": 80,
+          "dcl": 17,
+          "cls": 0,
+          "lcpMs": 76,
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "pattern.themes": 1,
+            "pattern.lunar": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 802984,
+          "dom": 80,
+          "dcl": 16.19999999552965,
+          "cls": 0,
+          "lcpMs": 52,
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "pattern.themes": 1,
+            "pattern.lunar": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 802984,
+          "dom": 80,
+          "dcl": 16.600000001490116,
+          "cls": 0,
+          "lcpMs": 48,
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "pattern.themes": 1,
+            "pattern.lunar": 1
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/calendar?sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr&calendarScenario=blocked",
+      "samples": [
+        {
+          "js": 772462,
+          "dom": 171,
+          "dcl": 18.200000002980232,
+          "cls": 0.02487764791818846,
+          "lcpMs": 68,
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "calendar.read": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 772462,
+          "dom": 171,
+          "dcl": 17.899999998509884,
+          "cls": 0.02487764791818846,
+          "lcpMs": 64,
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "calendar.read": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 772462,
+          "dom": 171,
+          "dcl": 17,
+          "cls": 0.02487764791818846,
+          "lcpMs": 64,
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "onboarding.hydrate": 1,
+            "calendar.read": 1
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/account-privacy?sdkSession=user&lang=tr",
+      "samples": [
+        {
+          "js": 805252,
+          "dom": 42,
+          "dcl": 15.700000002980232,
+          "cls": 0.005527148770392014,
+          "lcpMs": 44,
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "accountPrivacy.read": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 805252,
+          "dom": 42,
+          "dcl": 16.700000002980232,
+          "cls": 0.005527148770392014,
+          "lcpMs": 44,
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "accountPrivacy.read": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 805252,
+          "dom": 42,
+          "dcl": 16.100000001490116,
+          "cls": 0.005527148770392014,
+          "lcpMs": 44,
+          "sdkCalls": {
+            "applicationSession.undefined": 1,
+            "accountPrivacy.read": 1
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/internal/build?sdkSession=admin",
+      "samples": [
+        {
+          "js": 368892,
+          "dom": 210,
+          "dcl": 17.200000002980232,
+          "cls": 0,
+          "lcpMs": 52,
+          "sdkCalls": {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 368892,
+          "dom": 210,
+          "dcl": 16.399999998509884,
+          "cls": 0,
+          "lcpMs": 52,
+          "sdkCalls": {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 368892,
+          "dom": 210,
+          "dcl": 16.19999999552965,
+          "cls": 0,
+          "lcpMs": 52,
+          "sdkCalls": {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "route": "/internal/health?sdkSession=admin",
+      "samples": [
+        {
+          "js": 1373768,
+          "dom": 1591,
+          "dcl": 16.600000001490116,
+          "cls": 0,
+          "lcpMs": 80,
+          "sdkCalls": {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 1373768,
+          "dom": 1591,
+          "dcl": 20.299999997019768,
+          "cls": 0,
+          "lcpMs": 84,
+          "sdkCalls": {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          "errors": []
+        },
+        {
+          "js": 1373768,
+          "dom": 1591,
+          "dcl": 18,
+          "cls": 0,
+          "lcpMs": 84,
+          "sdkCalls": {
+            "applicationSession.undefined": 2,
+            "internalHealth.list": 1
+          },
+          "errors": []
+        }
+      ]
+    }
+  ]
+}

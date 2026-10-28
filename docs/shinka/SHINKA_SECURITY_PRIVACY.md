@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-043
+**Current BuildMarker:** Buildmarker-044
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -28,6 +28,13 @@
 Internal route gates are UX only. Both `validateContentArtifacts` and `internalHealth` use request-derived SDK identity and server `auth.me()` before any operation: anonymous 401, ordinary/forged-role user 403, admin allowed. InternalHealthRun RLS denies all direct client CRUD, including read; current-admin backend history operations provide access; guarded backend writes use service role. T68/H03-009 exercise this boundary synthetically. Live two-user/direct-invocation/RLS enforcement remains required.
 
 Reports are diagnostic counts/IDs/status/evidence, not product health records. Server save validates structure/summary/gate and strips extra top-level fields; canonical recursive redaction removes credential, email, health-record/symptom, birth/profile and message-body keys and token/email value patterns. Compact JSON is bounded and never truncated. Private file creation plus record-based, admin-only signed readback is tested synthetically (T69–T72); no final live persistence is claimed. Auth UI never renders/logs provider payloads; only AUTH_CANCELLED, AUTH_PROVIDER_FAILED, AUTH_SESSION_FAILED or AUTH_UNSUPPORTED_METHOD may cross its boundary.
+
+
+## 044 — Preference and session boundary verification
+
+Notification UI saves retain the existing native identity/owner, ACTIVE, lifecycle and open deletion/reset guards. The preference is not health consent. No profile, consent, period, daily or delivery write is authorized by changing it. Synthetic tests call the real You backend and demonstrate fresh opt-out refusal before provider dispatch; an already-dispatched provider call may finish and retains its truthful acceptance receipt. No remote cancellation promise.
+
+Account/logout invalidation clears the You draft/confirmed state and rejects stale callbacks. The main-043 session retry policy remains two retries at 700/1400ms; pending retry timers now abort on logout, account replacement, membership refusal, unmount and restored-page recheck. Already-dispatched SDK requests are not claimed cancelled. No credentials, user payloads or permission tokens are added to logs/fixtures. No live user action or Security scan in this package.
 
 
 ## 042 — current notification authorization and safety boundary
