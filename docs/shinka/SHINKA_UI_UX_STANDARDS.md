@@ -210,7 +210,7 @@ Introduction → Optional name → Welcome / Sign In → Personal Details → Yo
 - ON-06: "A little moment, just for you" / "We’re preparing your first Shinka insight"; first pair prepared once, then Home.
 
 ## Home UX
-Greeting is a fixed **Hello** / **Merhaba** at every hour in the saved Profile language (+ optional name as “Hello, Name”; no comma without a name); only **Your Shinka** and **Today’s Suggestion** cards from the day's immutable snapshot; no new pair on reload; IANA timezone auto-detected (fallback last saved); Loading / offline / load failure / not-ready / Retry states.
+Greeting is followed directly by the cards; the technical `DAILY_DUPLICATE_RECONCILED` notice is not rendered (no hidden/empty placeholder). Greeting is a fixed **Hello** / **Merhaba** at every hour in the saved Profile language (+ optional name as “Hello, Name”; no comma without a name); only **Your Shinka** and **Today’s Suggestion** cards from the day's immutable snapshot; no new pair on reload; IANA timezone auto-detected (fallback last saved); Loading / offline / load failure / not-ready / Retry states.
 
 ## Calendar UX
 Monthly view; actual period pastel pink, predicted light lavender, selected day ring; legend Period / Predicted / Selected; phases not color-split. Mark period start (select date → validate → save). Correction: select existing start → new date → same action updates. Delete period start only on actual starts, with confirmation (date + prediction update explained; Cancel changes nothing); busy state blocks re-taps; success only after actual-date readback and recalculation; error keeps prior state + Retry; last start deleted → empty state, mark action available. Health display hidden without consent.

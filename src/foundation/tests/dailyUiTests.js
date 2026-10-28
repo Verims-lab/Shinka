@@ -64,4 +64,20 @@ export const DAILY_UI_TESTS = [
   await eventually(() => host.querySelector('[data-current="current-day"]'));
   check(calls === 2 && !host.querySelector('[data-current="old-day"]'));
  })],
+ ['DU04', 'Reconciled daily success shows no technical notice; same ID, TR/EN content, no extra request', async () => renderProbe(async (root, host) => {
+  let requests = 0; const request = async () => { requests++; throw new Error('UNEXPECTED_REQUEST'); };
+  const result = { persisted: true, state: 'ACTIVE_EXISTING_USER', notice: 'DAILY_DUPLICATE_RECONCILED', daily: { id: 'earlier', message_tr_snapshot: 'TR mesaj', suggestion_tr_snapshot: 'TR öneri', message_en_snapshot: 'EN message', suggestion_en_snapshot: 'EN suggestion' } };
+  const technical = ['Different versions were saved', 'farklı içerikler kaydedilmiş'];
+  for (const language of ['en', 'tr']) {
+    root.render(createElement(Home, { language, initialDaily: result, request })); await eventually(() => host.querySelector('[data-daily-id]'));
+    check(host.querySelector('[data-daily-id]').getAttribute('data-daily-id') === 'earlier');
+    check(host.querySelector('[data-daily-message]').textContent === (language === 'tr' ? 'TR mesaj' : 'EN message'));
+    check(!technical.some(text => host.textContent.includes(text)) && !host.querySelector('[data-home-root] [role="status"]:empty'));
+  }
+  check(requests === 0 && result.notice === 'DAILY_DUPLICATE_RECONCILED');
+  const failure = async () => { throw Object.assign(new Error(), { code: 'NETWORK' }); };
+  root.render(createElement(Home, { language: 'en', request: failure }));
+  await eventually(() => host.querySelector('[data-daily-state="failure"]'));
+  check(host.querySelector('[data-daily-state="failure"]').textContent.trim().length > 0);
+ })],
 ];

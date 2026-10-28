@@ -146,7 +146,7 @@ Admin Test Tools: enter User ID → lookup current ID/name/email/role/account st
 
 ## Historical Base44 behavior — 016
 
-Home reuses valid saved daily content. Competing physical candidates are retained and reconciled by persisted generated_at then ID; a differing candidate displays a notice. All candidates count in the 40-day history. Late visibility can change the chosen display on refresh; no random deletion or snapshot update.
+Home reuses valid saved daily content. Competing physical candidates are retained and reconciled by persisted generated_at then ID; the backend still returns `DAILY_DUPLICATE_RECONCILED`, but Home shows no user-facing notice (2026-10-28). All candidates count in the 40-day history. Late visibility can change the chosen display on refresh; no random deletion or snapshot update.
 
 Calendar persists actual starts and owner/action receipts; derives phases/predictions on read with OD-012. Same intent retries recover from partial writes; stale/competing intent requires refresh/review. Pending conflict hides predictions. Explicit partial grant resumes with its original persisted business time. No transaction/rollback promise. Reset starts progress only, then verifies normal writes before advancing; same-day ON-06 reuses its snapshot. Delete requires Test preview/typed confirmation and operator-controlled write pause/drain, persistent stages, audit/readback and final verification. Exact limits and recovery: [continuation](SHINKA_BASE44_CONTINUATION.md).
 

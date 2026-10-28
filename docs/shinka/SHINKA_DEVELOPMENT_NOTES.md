@@ -393,6 +393,9 @@ New `src/features/onboarding/OnboardingIntro.jsx` (three rows + decorative `Intr
 ## ON-01–ON-05 shared presentation (2026-10-26)
 `OnboardingScreen` replaces TITLES/STEP_NUMBER with one `SCREENS` map (step, title, subtitle, back). Header is a three-slot grid; back calls `onState(screen.back)` only (no request, no auth). New copy keys nameSubtitle, signInSubtitle, cycleSubtitle, finish, back (EN/TR, Turkish pending approval). `renderProfileAccess` is no longer rendered on onboarding.
 
+## Home reconciliation notice removal (2026-10-28)
+Home no longer renders the `DAILY_DUPLICATE_RECONCILED` paragraph; TR/EN `reconciled` copy keys removed (no other users). Backend reconciliation, returned `notice`, selected ID and snapshots unchanged (native test still asserts the code). DU04 covers no technical text, same ID/TR-EN content, zero extra requests and visible real failures.
+
 ## Home greeting simplification (2026-10-28)
 Home greeting is fixed `greeting` copy (EN Hello / TR Merhaba) at all hours, plus `, Name` only for a non-empty trimmed display name. The greeting-only `greetingKey` hour selector and morning/afternoon/evening strings were removed (no other references). Daily content selection and notification scheduling unchanged.
 

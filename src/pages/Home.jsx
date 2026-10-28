@@ -23,7 +23,6 @@ export default function Home({ profileAccess = undefined, renderProfileAccess = 
       <h1 className="font-heading font-medium text-shinka-h1 break-words">{copy('greeting')}{name?.trim() ? `, ${name.trim()}` : ''}</h1>
       <RefreshControl showButton={false} language={language} refresh={daily.reload} loading={daily.loading} error={daily.error}/>
       {row ? <div className="space-y-5" data-daily-id={row.id}>
-        {daily.value?.notice === 'DAILY_DUPLICATE_RECONCILED' && <p role="status" className="text-shinka-caption">{copy('reconciled')}</p>}
         <ShinkaCard title={copy('shinka')}><p className="text-shinka-body-lg whitespace-pre-wrap break-words" data-daily-message>{row[`message_${language}_snapshot`]}</p></ShinkaCard>
         <ShinkaCard title={copy('suggestion')}><p className="text-shinka-body-lg whitespace-pre-wrap break-words" data-daily-suggestion>{row[`suggestion_${language}_snapshot`]}</p></ShinkaCard>
         {daily.error && <DailyStatus {...daily} language={language}/>}
