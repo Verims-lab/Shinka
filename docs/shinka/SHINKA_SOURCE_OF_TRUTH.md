@@ -18,7 +18,7 @@ The 2026-10-28 user request relays Fode/Base44 Support, recorded in [042 support
 
 ## 041 — Home language control removal
 
-Explicit user decision (2026-10-27): remove TR/EN buttons from the Home header only. Language preference is owned by Profile/You and persisted per owner; Home consumes it. Daily content ID, selected content and snapshots are unaffected. Calendar/Pattern headers are out of scope and unchanged.
+Explicit user decision (2026-10-27): remove TR/EN buttons from the Home header only. Language preference is owned by Profile/You and persisted per owner; Home consumes it. Daily content ID, selected content and snapshots are unaffected. Extended by explicit user decision (2026-10-28): Calendar and Pattern headers also drop TR/EN buttons; language changes only in Profile/You → Preferences.
 
 ## 040 — deletion stabilization and scoped cleanup authority
 

@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-038",
-    "package_name": "Calendar recovery and Pattern refresh/lunar presentation",
-    "package_type": "FIX",
-    "created_at": "2026-10-27",
-    "health_catalog_version": "HC-038.0",
-    "short_summary": "Same-ID pending Calendar recovery without bulk clear; retain and coalesce Pattern refresh; remove visible theme counts; current phase and strictly next Full Moon date only. Preserve 036/037.",
-    "full_health_status": "LOCAL_SYNTHETIC_EXECUTION / HOSTED_ACCEPTANCE_PENDING",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "Final local evidence is recorded in SHINKA_CALENDAR_PATTERN_038.md. User owns publish, hosted Full Health and physical acceptance. No live mutation/import/push/Health. Twelve backend findings remain USER-DEFERRED; original First Shinka and ON-05 incidents stay open."
-  },
-  {
     "build_marker": "Buildmarker-039",
     "package_name": "Core product quality audit and recovery hardening",
     "package_type": "AUDIT_FIX",
@@ -65,5 +51,19 @@ export default [
     "source_changed": true,
     "tests_changed": true,
     "health_changed": true
+  },
+  {
+    "build_marker": "Buildmarker-043",
+    "package_name": "Calendar and Pattern header language removal",
+    "package_type": "UI",
+    "created_at": "2026-10-28T10:40:00.000000+00:00",
+    "health_catalog_version": "HC-042.0",
+    "short_summary": "Calendar/Pattern headers keep only Shinka and Profile/You; TR/EN buttons and unused ProductLanguageControls removed. Language changes only in Profile/You; saved preference renders everywhere; daily ID/snapshots unaffected.",
+    "full_health_status": "NOT_RUN",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "notes": "Health add 0/update 3/delete 0 (H13-015, H13-017, H05-009). Browser tests CU01/PU01/PU07/DU01 NOT_RUN (no Playwright browser). No live Full Health/Security scan/publish."
   }
 ];

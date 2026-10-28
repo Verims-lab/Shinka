@@ -15,7 +15,7 @@
 
 ## 041 — Home header
 
-Home header shows only Shinka (left) and the existing Profile/You access (right, ≥44×44; menu and admin entry unchanged). Home no longer renders TR/EN language buttons; no placeholder, hidden target or separator remains. Language changes in Profile/You and Home renders the persisted preference. Calendar and Pattern keep the shared ProductLanguageControls unchanged.
+Home, Calendar and Pattern headers show only Shinka (left) and the existing Profile/You access (right, ≥44×44; menu and admin entry unchanged). None renders TR/EN language buttons; no placeholder, hidden target or separator remains. Language changes only in Profile/You → Preferences; all product screens and bottom navigation render the persisted preference.
 
 ## 040 — Test Tools removal result
 

@@ -15,11 +15,13 @@ async function probe(run) {
 export const PATTERN_UI_TESTS=[
  ['PU01','Real Pattern TR/EN preserves selected IDs without refetch or writes; active nav and two lunar fields without visible counts',async()=>probe(async(root,host)=>{
    const f=patternFixture();f.tables.UserDailyMessage.push(patternRow('2026-10-19'),patternRow('2026-10-18'),patternRow('2026-10-17','category-1'));let calls=0;
-   root.render(createElement(Pattern,{language:'en',request:section=>{calls++;return f.request(section);}}));
+   const counted=section=>{calls++;return f.request(section);};
+   root.render(createElement(Pattern,{language:'en',request:counted}));
    await until(()=>host.querySelector('[data-theme-id]')&&host.querySelector('[data-lunar-summary]'));
    check([...host.querySelectorAll('[data-theme-id]')].map(el=>el.dataset.themeId).join(',')==='category-0,category-1');
    const id=host.querySelector('[data-theme-id]').dataset.themeId;check(host.textContent.includes('Take a Breath'));check(!host.querySelector('[data-theme-id] span')&&!host.textContent.includes('1 day')&&!host.textContent.includes('2 days'));
-   button(host,'TR').click();await until(()=>host.textContent.includes('Kendine Bir Nefes'));
+   check(![...host.querySelectorAll('header button')].some(b=>['TR','EN'].includes(b.textContent.trim())),'no header language buttons');
+   root.render(createElement(Pattern,{language:'tr',request:counted}));await until(()=>host.textContent.includes('Kendine Bir Nefes'));
    check(host.querySelector('[data-theme-id]').dataset.themeId===id&&calls===2&&host.querySelectorAll('[data-lunar-summary] > div').length===2);
    check(host.querySelector('nav a[aria-current="page"]').getAttribute('href')==='/pattern?lang=tr');
    check(host.querySelector('[data-lunar-current]').textContent==='Dolunay'&&host.querySelector('[data-next-full]').textContent.includes('17 Kasım 2026'));
@@ -80,7 +82,7 @@ export const PATTERN_UI_TESTS=[
    root.render(createElement(Pattern,{language:'en',request:f.request}));await until(()=>host.querySelector('[data-lunar-summary]'));
    check(host.querySelector('[data-lunar-current]').textContent==='Full Moon'&&!host.querySelector('[data-next-full] time'));
    check(host.querySelector('[data-next-full]').textContent.includes('temporarily unavailable'));
-   button(host,'TR').click();await until(()=>host.querySelector('[data-lunar-current]').textContent==='Dolunay');
+   root.render(createElement(Pattern,{language:'tr',request:f.request}));await until(()=>host.querySelector('[data-lunar-current]').textContent==='Dolunay');
    check(host.querySelector('[data-next-full]').textContent.includes('kullanılamıyor')&&!host.querySelector('[data-lunar-summary] svg, [data-lunar-summary] ol'));
  })],
  ['PU04','Unmount discards pending response in real component',async()=>probe(async(root,host)=>{

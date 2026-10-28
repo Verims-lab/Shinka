@@ -58,7 +58,8 @@ export const CALENDAR_UI_TESTS = [
    check(day.getBoundingClientRect().width>=44 && day.getBoundingClientRect().height>=44,'touch geometry');
    day.focus();day.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}));
    check(document.activeElement===host.querySelector('[data-calendar-date="2026-10-02"]'),'arrow focus');
-   button(host,'TR').click();await pause();check(host.textContent.includes('Regl başlangıç tarihi') && host.textContent.includes('Tahmini'),'TR labels');
+   check(![...host.querySelectorAll('header button')].some(b=>['TR','EN'].includes(b.textContent.trim())),'no header language buttons');
+   root.render(createElement(Calendar,{language:'tr',request:f.request}));await pause();check(host.textContent.includes('Regl başlangıç tarihi') && host.textContent.includes('Tahmini'),'TR labels');
    check(host.querySelector('label[for="calendar-start-date"]') && host.querySelector('nav a[aria-current="page"]').getAttribute('href')==='/calendar?lang=tr','localized nav and label');
  })],
  ['CU02','Actual start delete confirmation, cancel and last-delete empty state',async()=>probe(async(root,host)=>{
