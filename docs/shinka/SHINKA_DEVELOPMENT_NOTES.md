@@ -393,5 +393,8 @@ New `src/features/onboarding/OnboardingIntro.jsx` (three rows + decorative `Intr
 ## ON-01–ON-05 shared presentation (2026-10-26)
 `OnboardingScreen` replaces TITLES/STEP_NUMBER with one `SCREENS` map (step, title, subtitle, back). Header is a three-slot grid; back calls `onState(screen.back)` only (no request, no auth). New copy keys nameSubtitle, signInSubtitle, cycleSubtitle, finish, back (EN/TR, Turkish pending approval). `renderProfileAccess` is no longer rendered on onboarding.
 
+## Home greeting simplification (2026-10-28)
+Home greeting is fixed `greeting` copy (EN Hello / TR Merhaba) at all hours, plus `, Name` only for a non-empty trimmed display name. The greeting-only `greetingKey` hour selector and morning/afternoon/evening strings were removed (no other references). Daily content selection and notification scheduling unchanged.
+
 ## ON-04 presentation (2026-10-26)
 New `FramedDateField.jsx` (framed native date/time + non-interactive icon) and `profile/BirthplaceCompact.jsx` (summary field + inline panel). `BirthplacePicker` gains `compact` (default off, so You/Profile unchanged) and the shared editor fragment; `birthplaceSelection` gains `restore(selection)` for Cancel. `OnboardingScreen` uses `aboutTitle/aboutSubtitle`, `stepOf` (five steps), hides `renderProfileAccess` on ON-04. Overflow root cause: iOS Safari native-appearance date/time inputs keep an intrinsic min-width; fixed with `appearance:none; min-width:0; box-sizing:border-box` in onboarding.css. Lint/build pass; browser tests NOT_RUN.

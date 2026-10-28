@@ -4,7 +4,7 @@ import ProductNavigation from '@/components/shinka/ProductNavigation';
 import ProfileMenu from '@/components/profile/ProfileMenu';
 import ShinkaCard from '@/components/shinka/ShinkaCard';
 import { resolveLanguage } from '@/foundation/i18n/strings';
-import { dailyCopy, greetingKey } from '@/foundation/i18n/dailyCopy';
+import { dailyCopy } from '@/foundation/i18n/dailyCopy';
 import { useDailyMessage } from '@/features/daily/useDailyMessage';
 import DailyStatus from '@/features/daily/DailyStatus';
 export default function Home({ profileAccess = undefined, renderProfileAccess = undefined, language: initialLanguage = undefined, initialDaily = null, profile = null, request = undefined, active = true }) {
@@ -20,7 +20,7 @@ export default function Home({ profileAccess = undefined, renderProfileAccess = 
       {renderProfileAccess?.(language) || profileAccess || <ProfileMenu language={language}/>}
     </header>
     <main className="flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6">
-      <h1 className="font-heading font-medium text-shinka-h1 break-words">{copy(greetingKey())}{name ? `, ${name}` : ''}</h1>
+      <h1 className="font-heading font-medium text-shinka-h1 break-words">{copy('greeting')}{name?.trim() ? `, ${name.trim()}` : ''}</h1>
       <RefreshControl showButton={false} language={language} refresh={daily.reload} loading={daily.loading} error={daily.error}/>
       {row ? <div className="space-y-5" data-daily-id={row.id}>
         {daily.value?.notice === 'DAILY_DUPLICATE_RECONCILED' && <p role="status" className="text-shinka-caption">{copy('reconciled')}</p>}

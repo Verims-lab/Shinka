@@ -157,7 +157,7 @@ Apple or Google only; no Shinka password; one account per provider identity. 18+
 Intro → optional name (trim, ≤50) → sign-in → birth date (required, valid, not future, 18+) → optional birth time (HH:mm 24h) and GeoNames-selected birthplace (no free text) → optional period info with explicit health consent → ON-06 real preparation/readback flow (native immutable-candidate persistence; see current continuation). Sun sign uses only birth_date and the fixed tropical mapping in SOURCE_OF_TRUTH; birth_time stays NULL when missing, with no 00:00 fallback and no UNCERTAIN.
 
 ## Home (UC-11, KK-11/14)
-Shows the pair for the device's current local calendar day. Reopen/Retry/profile/language changes never create a second Pair ID. Greeting adapts to time and name; does not affect selection.
+Shows the pair for the device's current local calendar day. Reopen/Retry/profile/language changes never create a second Pair ID. Greeting is a fixed Hello / Merhaba in the saved Profile language plus optional name; it no longer depends on time and does not affect selection.
 
 ## Calendar (UC-12/13/15/27, KK-15…20, 29/30)
 Only distinguishes recorded vs predicted period days. Selecting a date never saves. "Mark period start" creates; selecting an existing start + new date updates the same ID. Delete requires confirmation. ≥15 days between distinct starts. Recalculation derives from confirmed actual dates on read; failed writes may have persisted and require retry/review. Last start deleted ⇒ predictions/phases removed, settings kept, messages use UNKNOWN.
