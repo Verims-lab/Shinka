@@ -7,5 +7,5 @@ import { sectionBackground } from '@/foundation/sectionBackgrounds';
 export default function SectionBackdrop({ section }) {
   const background = sectionBackground(section);
   return <div aria-hidden="true" className="shinka-section-backdrop" data-section-backdrop={background ? section : 'neutral'}
-    style={background ? { '--section-image': `url("${background.url}")`, '--section-focus-y': background.focusY } : undefined}/>;
+    style={background ? /** @type {import('react').CSSProperties} */ ({ '--section-image': `url("${background.url}")`, '--section-focus-y': background.focusY }) : undefined}/>;
 }

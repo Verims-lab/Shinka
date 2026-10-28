@@ -13,6 +13,9 @@
 
 
 
+## 046 — Section backdrop ownership
+`sectionBackgrounds.js` maps five logical sections to two CDN assets; `SectionBackdrop` is the single fixed layer per section, styled in `sectionBackground.css`. `PageContainer` and section roots are transparent. Health H13-020 verifies mapping and single ownership.
+
 ## 045 — ID reads, projections and maintenance boundary
 
 `dailySelectionLibrary` reads bounded category/mapping and Pair ID/category/eligibility metadata, independently of the admin exact-source import receipt. `dailyContent` resolves unique Pair IDs in batches of 100 (4000 IDs max), projects id + four text fields and rejects duplicate/missing/malformed links. Cache scope is one request only; persisted daily rows are assignment-only. `nativeDailyPersistence` projects assignment fields for reuse/repeat checks; Pattern's existing six-field history projection is unchanged. No N+1 text loading. The fixed fixture measures one additional SDK read on generation/reopen; response text bytes remain necessary. No hosted latency/physical storage/credit claims.

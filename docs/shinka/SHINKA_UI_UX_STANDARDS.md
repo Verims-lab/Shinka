@@ -13,6 +13,9 @@
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
 
+## 046 — Section backgrounds (current)
+Home, Calendar, Pattern, You and Account Privacy share one watercolor backdrop; Onboarding uses the moon backdrop. One fixed, decorative, non-interactive SectionBackdrop per section, chosen by the rendered section (not the URL); unresolved state shows neutral ivory. Native-size 941×1672 JPEG derivatives via CDN, no stretching on scroll/keyboard; desktop onboarding is contained at full height with ivory side fade. Dark theme darkens the same image with a token overlay, never inverts or recolors it.
+
 ## 044 — Profile notification choice and phone permission
 
 You shows the saved on/off choice separately from the checkbox draft. An unsaved choice has an explicit status; while saving it says the saved choice is being checked. Unknown outcome retains and locks the draft with Check result / Retry same save beside it. Success appears only after VERIFIED readback; reopening shows the stored choice without old success. Existing language/profile editing and fixed local 06:00 display remain.

@@ -12,7 +12,10 @@
 
 
 
-## 045 — Approved ID-based daily content decision (current)
+## 046 — Section background decision (current)
+Owner-provided reference PNGs are the authority: one watercolor image for Home/Calendar/Pattern/You, one moon image for Onboarding. Originals stay unchanged; only optimized native-size derivatives ship.
+
+## 045 — Approved ID-based daily content decision
 
 Owner request `1afa5342-b0b0-457c-85c0-8e385ead8c5b/Pasted text.txt` (2026-10-28) explicitly makes **MessagePair the sole text authority**. A daily assignment preserves native ID, owner, local day, timezone, category, message_pair_id and generated_at; displayed TR/EN message/suggestion resolve the current linked Pair on every backend read. Historical display changing after a Pair edit is accepted. No version/archive/snapshot table. New rows omit the four `_snapshot` fields; those response names remain compatibility projections only. Inactive excludes new selection, not historical reading. Missing/bad links fail safely without reassignment. This supersedes historical immutable-text statements below, SRC-05/07's original four-field contract and earlier versioning proposals; original source receipt/files remain untouched. It is a user decision, not retroactively attributed to the source documents. Source import remains exact and conflict-refusing; no content is edited in this package.
 
