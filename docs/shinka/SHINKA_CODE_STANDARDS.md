@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-045
+**Current BuildMarker:** Buildmarker-046
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -40,7 +40,7 @@
 
 ## 045 — Assignment immutability and text projections
 
-Do not write daily text copies or introduce a replacement version/cache store. Validate native IDs/owner and all assignment fields, resolve current Pair text through bounded projected ID batches, fail closed on broken links, and preserve Pattern/history projections. Response `_snapshot` names are a transitional DTO contract only. Use request-local reuse only. Old source receipt remains an original artifact; explicit removed-field decisions are separate. Maintenance is an offline reviewed tool, no generic update endpoint. Test legacy rows, text edits, inactive eligibility, partial/lost-response unset, exact IDs and ownership with real domain functions; synthetic SDK fixtures are not hosted enforcement. Original immutable-text instructions are superseded only for the 045 approved behavior.
+Do not write daily text copies or introduce a replacement version/cache store. Validate native IDs/owner and all assignment fields, resolve current Pair text through bounded projected ID batches, fail closed on broken links, and preserve Pattern/history projections. Response `_snapshot` names are a transitional DTO contract only. Four physical-only optional legacy fields are retained in the publishable schema until hosted cleanup verification; no defaults, new text writes or blanket mismatch whitelist. D23 verifies this exact exception, while D01 still compares the full generated schema. Use request-local reuse only. Old source receipt remains an original artifact; explicit removed-field decisions are separate. Maintenance is an offline reviewed tool, no generic update endpoint. Test legacy rows, text edits, inactive eligibility, partial/lost-response unset, exact IDs and ownership with real domain functions; synthetic SDK fixtures are not hosted enforcement. Original immutable-text instructions are superseded only for the 045 approved behavior.
 
 
 ## 044 — Functional notification settings evidence

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-045
+**Current BuildMarker:** Buildmarker-046
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -17,9 +17,9 @@ Common: every user entity owns `user_id` → Base44 User.id (owner from auth con
 
 ## 045 — Native IDs and current text (current)
 
-27 repository schemas = 20 product + 6 operational + native User extension. All have Base44 native `id`; no manual replacement ID is added. UserDailyMessage's six domain fields plus native `id` define its immutable assignment. Four legacy text fields are removed from the final schema/new writes; DTO names are derived from current MessagePair. Source receipt keeps SRC-05/07's original fields and declares the explicit 045 removals. MessagePair.is_active permits Active/Inactive; historical references ignore eligibility. Category ID on the daily row records the actual assignment and must not follow a later Pair category edit. NotificationDelivery's daily_message_id is now checked in a bounded projected owner/date reference query before admission; no link rewrite.
+27 repository schemas = 20 product + 6 operational + native User extension. All have Base44 native `id`; no manual replacement ID is added. UserDailyMessage's six domain fields plus native `id` define its immutable assignment. New writes exclude the four legacy text fields. The publishable Test schema now retains exactly those four fields as **optional physical compatibility fields**, without defaults; the logical/write schema still excludes them. DTO names are derived from current MessagePair. Source receipt keeps SRC-05/07's original fields and declares the explicit 045 removals. MessagePair.is_active permits Active/Inactive; historical references ignore eligibility. Category ID on the daily row records the actual assignment and must not follow a later Pair category edit. NotificationDelivery's daily_message_id is now checked in a bounded projected owner/date reference query before admission; no link rewrite.
 
-Schema removal does not delete old stored fields. The operator-only reviewed migration unsets precisely four keys, preserving all assignment fields/native IDs. Optional compatibility schema precedes backend rollout and cleanup, final schema follows full verification. No live migration ran. [All-entity inventory, measurements and release steps](reports/SHINKA_ID_MODEL_045.md). Retention, consent/privacy and historical evidence are unchanged.
+Schema removal does not delete old stored fields. The operator-only reviewed migration unsets precisely four keys, preserving all assignment fields/native IDs. The optional compatibility schema is committed in Test, not an operator-created intermediate. Repository conformity means compatibility readiness, never completed physical cleanup. Final field removal remains pending full hosted cleanup verification. No live migration ran. [All-entity inventory, measurements and release steps](reports/SHINKA_ID_MODEL_045.md). Retention, consent/privacy and historical evidence are unchanged.
 
 
 ## 040 — removal receipt and progress semantics
@@ -345,6 +345,7 @@ Required fields are listed in each JSONC; optional fields are marked NULL below.
 | category_id | string | required |
 | message_pair_id | string | required |
 | generated_at | string; format=date-time | required |
+| message_tr_snapshot / suggestion_tr_snapshot / message_en_snapshot / suggestion_en_snapshot | string; physical schema only; no default | optional legacy compatibility; new writes forbidden; cleanup pending |
 
 **notification_delivery**
 

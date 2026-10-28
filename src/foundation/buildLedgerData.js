@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-041",
-    "package_name": "Home header language control removal",
-    "package_type": "UI_CHANGE",
-    "created_at": "2026-10-27T21:15:00Z",
-    "health_catalog_version": "HC-040.0",
-    "short_summary": "Home header keeps only Shinka and Profile/You; TR/EN buttons removed from render. Home uses the saved Profile/You language; daily ID/snapshots unaffected. Calendar/Pattern unchanged.",
-    "full_health_status": "LOCAL_STATIC_ONLY / BROWSER_NOT_RUN / HOSTED_FULL_HEALTH_NOT_RUN",
-    "notes": "Catalog unchanged (0/0/0). DU01 and checkDailyFlow assert no Home TR/EN buttons. Lint, typecheck, build PASS; browser suites NOT_RUN. No backend, schema, dependency, live user operation, Full Health, Security scan or publish. Active packages 037–041.",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": false
-  },
-  {
     "build_marker": "Buildmarker-042",
     "package_name": "Base44 audit closure and disabled notification contract",
     "package_type": "CORRECTIVE_VERIFICATION",
@@ -74,6 +60,6 @@ export default [
     "health_catalog_version": "HC-045.0",
     "short_summary": "Single fixed SectionBackdrop per section; shared watercolor for Home/Calendar/Pattern/You, onboarding moon; native-size CDN derivatives; neutral unresolved state.",
     "full_health_status": "NOT_RUN_HOSTED_ACCEPTANCE_PENDING",
-    "notes": "Health add 1/update 1/delete 0 (H13-020 added, H05-009 approves 046). Browser tests NOT_RUN (no Playwright browser). No live Full Health/Security scan/publish."
+    "notes": "Health add 1/update 1/delete 0 (H13-020 added, H05-009 approves 046). Browser tests NOT_RUN (no Playwright browser). No live Full Health/Security scan/publish. 045 compatibility follow-up: four physical-only optional daily text fields now committed in Test; new writes remain ID-only. No new package, hosted cleanup/Health/main publish; see SHINKA_ID_MODEL_045.md. Follow-up affected controls: Chromium/WebKit 76/76 each; 27-schema stage/quality/performance PASS. H04-007 adds D23; HC12 046 policy alignment; initial failure retained."
   }
 ];

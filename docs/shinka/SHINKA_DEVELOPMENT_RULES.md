@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-045
+**Current BuildMarker:** Buildmarker-046
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 045 continuation — publishable compatibility under existing main 046
+
+The owner accepted local 045 and requests its actual compatible Test commit, not instructions to construct one. Preserve main c2bd53e's 046/HC-045.0 background package and dependency update; do not downgrade them or create another package/catalog version. Four physical-only optional daily fields remain until verified hosted cleanup. Reuse recordBuild on the existing latest 046 entry to preserve provenance and restore the latest-five 042–046 history; record this as 045 follow-up. Run affected schema/daily/reference/cleanup controls and local quality checks. No live migration, Full Health, main merge or publish.
 
 ## 045 — Focused ID-model audit and fix
 

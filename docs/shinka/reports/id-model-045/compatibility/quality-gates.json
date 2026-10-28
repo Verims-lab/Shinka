@@ -1,0 +1,74 @@
+{
+  "scope": "LOCAL_ONLY",
+  "checks": {
+    "cleanInstall": {
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "53837db3cbf718bd597f07ef7bd00a5a35c7ac99a7bd343a7ad65116432ef075"
+    },
+    "dependencyTree": {
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "e6c38be879b6a8938819c22028805b2135fdfc98ade5608fecc1a965eac79a47"
+    },
+    "dependencyAudit": {
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "ba5a55cc48eca8e7c392d3754b663e0bd7b6233525429a1d8a5d44768df5b507"
+    },
+    "typecheck": {
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "2e1c7db5ac28fb733e8c1d3d7c2c3bf8a4bb6628ed45eb56ce2e7328388598de"
+    },
+    "lint": {
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "8423c1a66df3f2a021733ae12f217befbeb04b23971e056cb4e3739c7fb936cf"
+    },
+    "repoHealth": {
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "17ed1570ec263ec1812de8afdb1d1efc6d69d7daa2428e3c677f4eb650e3bfaa"
+    },
+    "productionBuild": {
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "4d36f5fbca39d7b40cd6726d84189437f9d151a7fb7bc71cc055d7afb8d1ad7b"
+    },
+    "diffCheck": {
+      "status": "PASS"
+    },
+    "buildHistory": {
+      "status": "PASS",
+      "activePackages": [
+        "042",
+        "043",
+        "044",
+        "045",
+        "046"
+      ]
+    },
+    "schemaStage": {
+      "status": "PASS",
+      "modes": [
+        "current",
+        "daily-compat",
+        "final"
+      ],
+      "schemasEach": 27
+    },
+    "dryRunAndVerifyBundles": {
+      "status": "PREPARED_NOT_EXECUTED",
+      "syntaxCheck": "PASS"
+    },
+    "performance": {
+      "status": "PASS",
+      "receipt": "performance-gate.json"
+    }
+  },
+  "vulnerabilities": 0,
+  "preservedMain": "c2bd53e",
+  "visualAndDependencyFilesUnchangedFromMain": true,
+  "note": "No live Security scan or Full Health. Build retains pre-existing internal lazy chunk and ineffective dynamic import warnings. Exact focused browser results are separate."
+}

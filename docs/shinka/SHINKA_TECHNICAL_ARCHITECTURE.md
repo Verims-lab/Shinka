@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-045
+**Current BuildMarker:** Buildmarker-046
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -18,7 +18,7 @@
 
 ## 045 — ID reads, projections and maintenance boundary
 
-`dailySelectionLibrary` reads bounded category/mapping and Pair ID/category/eligibility metadata, independently of the admin exact-source import receipt. `dailyContent` resolves unique Pair IDs in batches of 100 (4000 IDs max), projects id + four text fields and rejects duplicate/missing/malformed links. Cache scope is one request only; persisted daily rows are assignment-only. `nativeDailyPersistence` projects assignment fields for reuse/repeat checks; Pattern's existing six-field history projection is unchanged. No N+1 text loading. The fixed fixture measures one additional SDK read on generation/reopen; response text bytes remain necessary. No hosted latency/physical storage/credit claims.
+`dailySelectionLibrary` reads bounded category/mapping and Pair ID/category/eligibility metadata, independently of the admin exact-source import receipt. `dailyContent` resolves unique Pair IDs in batches of 100 (4000 IDs max), projects id + four text fields and rejects duplicate/missing/malformed links. Cache scope is one request only; new persisted daily rows are assignment-only. The checked-in physical schema temporarily accepts the four optional legacy fields; the logical validator still rejects them in new writes. Existing storage is not declared clean. `nativeDailyPersistence` projects assignment fields for reuse/repeat checks; Pattern's existing six-field history projection is unchanged. No N+1 text loading. The fixed fixture measures one additional SDK read on generation/reopen; response text bytes remain necessary. No hosted latency/physical storage/credit claims.
 
 `dailyReferenceMigration` is operator-bundled, has no HTTP endpoint, and uses current native admin/ACTIVE admission, lifecycle/privacy checks, reviewed digest, <=25-row keyset pages, literal-ID/assignment predicates and `$unset` readback. Partial/lost responses are verified from durable field absence, with a fresh dry-run before retry. It does not grant general update rights or claim multi-record transactions; single operator and old-writer drain are rollout prerequisites. Native updated_date may change on cleanup; generated_at/native ID/assignment cannot. Scope excludes workflow, provider and scheduler enablement.
 
