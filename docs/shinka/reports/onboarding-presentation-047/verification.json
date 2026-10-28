@@ -1,0 +1,58 @@
+{
+  "scope": "LOCAL_VERIFIED_HOSTED_PENDING",
+  "buildMarker": "Buildmarker-047",
+  "healthCatalog": "HC-046.0",
+  "runs": {
+    "chromium": {
+      "total": 728,
+      "passed": 728,
+      "failed": 0,
+      "pageErrors": [],
+      "inAppHealth": {
+        "PASS": 140,
+        "BLOCKED": 13
+      },
+      "saved": "SAVED",
+      "historyListed": true,
+      "privateReportOpened": true,
+      "matrixCombinations": 8
+    },
+    "webkit": {
+      "total": 728,
+      "passed": 728,
+      "failed": 0,
+      "pageErrors": [],
+      "inAppHealth": {
+        "PASS": 140,
+        "BLOCKED": 13
+      },
+      "saved": "SAVED",
+      "historyListed": true,
+      "privateReportOpened": true,
+      "matrixCombinations": 8
+    }
+  },
+  "healthChanges": {
+    "added": 0,
+    "updated": [
+      "H13-012",
+      "H05-009"
+    ],
+    "deleted": 0
+  },
+  "notRun": [
+    "Physical Android/iOS",
+    "Physical keyboard/screen reader/native text settings",
+    "Hosted Full Health",
+    "Live Security scan",
+    "main merge",
+    "publish"
+  ],
+  "git": {
+    "initialTest": "675db64",
+    "initialMain": "c2bd53e",
+    "finalBase": "83401fa",
+    "incomingChange": "Merge of prior 045 compatibility only; tree identical to initial Test",
+    "testedTreeUnchangedByRebase": true
+  }
+}

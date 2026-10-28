@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-046
+**Current BuildMarker:** Buildmarker-047
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 047 — Three onboarding visual corrections
+
+Preflight: clean local Test matched origin/Test 675db64, one commit ahead of main c2bd53e. Keep 045 compatibility and 046 artwork/theme intact. Reproduced U16/U17 failures: the mobile unlayered :focus-visible rule overrides the heading utility after programmatic focus, yielding the reported frame. Scoped h1 suppression preserves semantic focus; ON-02 uses the existing framed field with persistent associated label and wrapper focus ring. No name/skip/storage/backend/navigation behavior change. Chromium/WebKit full regression each 728/728 PASS, zero page errors; local in-app Health 140 PASS/13 hosted-prerequisite BLOCKED/0 FAIL. TR/EN 360/390px at 100/200% text passes in both engines, with actual public assets in the separate screenshot matrix. Clean install/tree/audit (zero), type/lint/build/repo/history/performance gates pass. Physical devices and published acceptance NOT_RUN. Exact evidence: [047 delivery](reports/SHINKA_ONBOARDING_PRESENTATION_047.md).
 
 ## 045 compatibility follow-up — existing Base44 046 preserved
 

@@ -1,0 +1,5484 @@
+{
+  "catalog": {
+    "version": "HC-046.0",
+    "suites": 16,
+    "cases": 179,
+    "localRegression": 12,
+    "current": 153,
+    "future": 0,
+    "external": 14
+  },
+  "browser": {
+    "engine": "chromium",
+    "version": "156.0.8078.4",
+    "physicalDevice": false
+  },
+  "onboardingPresentation": [
+    {
+      "language": "tr",
+      "width": 360,
+      "textScale": 1,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 17
+        },
+        "focused": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 17
+        },
+        "filled": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 17
+        },
+        "longFilled": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 17
+        }
+      },
+      "publicAssets": "BLOCKED_OFFLINE",
+      "pageErrors": []
+    },
+    {
+      "language": "tr",
+      "width": 360,
+      "textScale": 2,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 34
+        },
+        "focused": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 34
+        },
+        "filled": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 34
+        },
+        "longFilled": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 34
+        }
+      },
+      "publicAssets": "BLOCKED_OFFLINE",
+      "pageErrors": []
+    },
+    {
+      "language": "tr",
+      "width": 390,
+      "textScale": 1,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 17
+        },
+        "focused": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 17
+        },
+        "filled": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 17
+        },
+        "longFilled": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 17
+        }
+      },
+      "publicAssets": "BLOCKED_OFFLINE",
+      "pageErrors": []
+    },
+    {
+      "language": "tr",
+      "width": 390,
+      "textScale": 2,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 34
+        },
+        "focused": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 34
+        },
+        "filled": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 34
+        },
+        "longFilled": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 34
+        }
+      },
+      "publicAssets": "BLOCKED_OFFLINE",
+      "pageErrors": []
+    },
+    {
+      "language": "en",
+      "width": 360,
+      "textScale": 1,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 17
+        },
+        "focused": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 17
+        },
+        "filled": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 17
+        },
+        "longFilled": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 17
+        }
+      },
+      "publicAssets": "BLOCKED_OFFLINE",
+      "pageErrors": []
+    },
+    {
+      "language": "en",
+      "width": 360,
+      "textScale": 2,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 34
+        },
+        "focused": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 34
+        },
+        "filled": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 34
+        },
+        "longFilled": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 34
+        }
+      },
+      "publicAssets": "BLOCKED_OFFLINE",
+      "pageErrors": []
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "textScale": 1,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 17
+        },
+        "focused": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 17
+        },
+        "filled": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 17
+        },
+        "longFilled": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 17
+        }
+      },
+      "publicAssets": "BLOCKED_OFFLINE",
+      "pageErrors": []
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "textScale": 2,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "\"Cormorant Garamond\", Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 34
+        },
+        "focused": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 34
+        },
+        "filled": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 34
+        },
+        "longFilled": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 34
+        }
+      },
+      "publicAssets": "BLOCKED_OFFLINE",
+      "pageErrors": []
+    }
+  ],
+  "onboardingClosure": [
+    {
+      "scenario": "locale-tr-TR-saved-en-reopen",
+      "passed": true
+    },
+    {
+      "scenario": "locale-en-US-saved-tr-reopen",
+      "passed": true
+    },
+    {
+      "scenario": "locale-en-GB-saved-tr-reopen",
+      "passed": true
+    },
+    {
+      "scenario": "locale-de-DE-saved-tr-reopen",
+      "passed": true
+    },
+    {
+      "scenario": "keyboard-paste-select-cancel-reopen-history-back-no-submit",
+      "passed": true
+    },
+    {
+      "scenario": "time-actions-320-200percent-reduced-height-clear",
+      "passed": true
+    }
+  ],
+  "nativeEntries": {
+    "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+    "sessionChecks": 7,
+    "nativeRoutes": 5,
+    "artifactEntryChecks": 2,
+    "loginSecretReads": 0,
+    "hostedVerified": false,
+    "passed": true,
+    "deletion": {
+      "passed": true,
+      "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+      "hostedVerified": false,
+      "checks": 7
+    }
+  },
+  "security028": {
+    "scope": "LOCAL_SERVER_FIXTURE",
+    "hostedVerified": false,
+    "results": [
+      {
+        "id": "SC01",
+        "name": "Bounded JSON: streaming byte limit, Content-Length, malformed and non-object",
+        "status": "PASS"
+      },
+      {
+        "id": "SC02",
+        "name": "GeoNames guard: no owner 401, lazy adapter/secret, per-user app limit with retry seconds, window reset",
+        "status": "PASS"
+      },
+      {
+        "id": "SC03",
+        "name": "GeoNames guard counts real upstream fetches and the worker-local total across owners; cache avoids refetch",
+        "status": "PASS"
+      },
+      {
+        "id": "SC04",
+        "name": "Unauthenticated You/onboarding calls: 401, zero product writes, no GeoNames setup",
+        "status": "PASS"
+      },
+      {
+        "id": "SC05",
+        "name": "Oversize bodies: 413 from real You/onboarding handlers with no entity call",
+        "status": "PASS"
+      },
+      {
+        "id": "SC07",
+        "name": "Real guard + real adapter: app, user-upstream and worker-upstream limits keep 429/retry and stop provider fetches",
+        "status": "PASS"
+      },
+      {
+        "id": "SC08",
+        "name": "Onboarding and You handlers return 429, GEONAMES_RATE_LIMITED, Retry-After and retry_after_seconds for the real chain error",
+        "status": "PASS"
+      },
+      {
+        "id": "SC09",
+        "name": "Negative: network failure and a forged 429-shaped error from fetch stay GEONAMES_UNAVAILABLE, never rate-limited",
+        "status": "PASS"
+      }
+    ],
+    "passed": true
+  },
+  "notifications030": {
+    "scope": "LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION",
+    "passed": true,
+    "results": [
+      {
+        "id": "NS01",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS02",
+        "status": "PASS",
+        "httpStatus": 503,
+        "response": {
+          "error_code": "SESSION_UNAVAILABLE"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS03",
+        "status": "PASS",
+        "httpStatus": 403,
+        "response": {
+          "error_code": "ADMIN_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS04",
+        "status": "PASS",
+        "httpStatus": 403,
+        "response": {
+          "error_code": "ADMIN_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS05",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 2,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS06",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS07",
+        "status": "PASS",
+        "httpStatus": 400,
+        "response": {
+          "error_code": "INVALID_REQUEST"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS08",
+        "status": "PASS",
+        "httpStatus": 200,
+        "response": {
+          "state": "DISABLED",
+          "processed": 0
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS09",
+        "status": "PASS",
+        "httpStatus": 400,
+        "response": {
+          "error_code": "INVALID_REQUEST"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS10",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS11",
+        "status": "PASS",
+        "httpStatus": 400,
+        "response": {
+          "error_code": "INVALID_REQUEST"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      }
+    ],
+    "sdk": {
+      "id": "SDK01",
+      "status": "PASS",
+      "scope": "INSTALLED_SDK_LOOPBACK_HTTP_ONLY",
+      "integrationEnvelope": "UNWRAPPED_JSON_BODY",
+      "optionalFieldsOmitted": true,
+      "providerCalls": 0
+    },
+    "hostedVerified": false
+  },
+  "inAppHealth": {
+    "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+    "passed": true,
+    "durationMs": 2795,
+    "requiresJson": false,
+    "saveState": "SAVED",
+    "retrySave": true,
+    "historyListed": true,
+    "privateReportOpened": true,
+    "frames": 0,
+    "cases": [
+      {
+        "id": "H01-001",
+        "status": "PASS",
+        "reason": "Format check of canonical constant"
+      },
+      {
+        "id": "H01-002",
+        "status": "PASS",
+        "reason": "Static source scan"
+      },
+      {
+        "id": "H01-003",
+        "status": "PASS",
+        "reason": "1 element(s) inspected"
+      },
+      {
+        "id": "H01-004",
+        "status": "PASS",
+        "reason": "Resolved from real runtime location"
+      },
+      {
+        "id": "H01-005",
+        "status": "PASS",
+        "reason": "Constant inspection"
+      },
+      {
+        "id": "H01-006",
+        "status": "PASS",
+        "reason": "Ledger validation"
+      },
+      {
+        "id": "H02-001",
+        "status": "PASS",
+        "reason": "Doc file inspection"
+      },
+      {
+        "id": "H02-002",
+        "status": "PASS",
+        "reason": "Header inspection"
+      },
+      {
+        "id": "H02-003",
+        "status": "PASS",
+        "reason": "Logical inventory inspection"
+      },
+      {
+        "id": "H02-004",
+        "status": "PASS",
+        "reason": "SOURCE_RECEIVED_AND_RECORDED; original artifacts are external, not hash-verified in Git"
+      },
+      {
+        "id": "H02-005",
+        "status": "PASS",
+        "reason": "Authority inspection"
+      },
+      {
+        "id": "H02-006",
+        "status": "PASS",
+        "reason": "12 decisions inspected"
+      },
+      {
+        "id": "H02-007",
+        "status": "PASS",
+        "reason": "Logical/physical source integrity by role"
+      },
+      {
+        "id": "H02-008",
+        "status": "PASS",
+        "reason": "Companion table completeness"
+      },
+      {
+        "id": "H03-010",
+        "status": "PASS",
+        "reason": "Dependency graph; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-001",
+        "status": "PASS",
+        "reason": "Legacy firewall; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-002",
+        "status": "PASS",
+        "reason": "Marker authority; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-003",
+        "status": "PASS",
+        "reason": "Secret scan; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-004",
+        "status": "PASS",
+        "reason": "Email scan; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-005",
+        "status": "PASS",
+        "reason": "Module inventory; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-006",
+        "status": "PASS",
+        "reason": "UI boundary; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-008",
+        "status": "PASS",
+        "reason": "Repository policy only; Base44 Authentication panel and sign-in still require external verification"
+      },
+      {
+        "id": "H03-009",
+        "status": "PASS",
+        "reason": "Injected server principals; not LIVE_ENFORCEMENT"
+      },
+      {
+        "id": "H04-018",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-019",
+        "status": "BLOCKED",
+        "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+      },
+      {
+        "id": "H04-001",
+        "status": "PASS",
+        "reason": "Canonical inventory"
+      },
+      {
+        "id": "H04-002",
+        "status": "PASS",
+        "reason": "Source/doc consistency"
+      },
+      {
+        "id": "H04-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-005",
+        "status": "PASS",
+        "reason": "Official schema docs + registered evidence"
+      },
+      {
+        "id": "H04-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-008",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-009",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-010",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-011",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-012",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-013",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-014",
+        "status": "PASS",
+        "reason": "Availability observed on tooling; no immutable/UTC proof"
+      },
+      {
+        "id": "H04-015",
+        "status": "PASS",
+        "reason": "Deployed enforcement checked separately"
+      },
+      {
+        "id": "H05-001",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-002",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-003",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-004",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-005",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-006",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-007",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-008",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-009",
+        "status": "BLOCKED",
+        "reason": "LIVE_CONTENT_COUNT_UNAVAILABLE"
+      },
+      {
+        "id": "H05-010",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-005",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-015",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-005",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-008",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-009",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-010",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-011",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-012",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-008",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-005",
+        "status": "BLOCKED",
+        "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+      },
+      {
+        "id": "H08-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-004",
+        "status": "BLOCKED",
+        "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+      },
+      {
+        "id": "H10-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H10-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H10-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H11-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H11-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H11-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H11-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H11-005",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H11-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-039",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-042",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-040",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-038",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-037",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-036",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-035",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-034",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-033",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-026",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-027",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-028",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-029",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-043",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-030",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-031",
+        "status": "BLOCKED",
+        "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+      },
+      {
+        "id": "H12-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-005",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-008",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-009",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-010",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-011",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-012",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-013",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-014",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-015",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-016",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-017",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-018",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-019",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-020",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H13-001",
+        "status": "PASS",
+        "reason": "Token inspection"
+      },
+      {
+        "id": "H13-002",
+        "status": "PASS",
+        "reason": "Rendered size check"
+      },
+      {
+        "id": "H13-003",
+        "status": "PASS",
+        "reason": "Computed font check"
+      },
+      {
+        "id": "H13-004",
+        "status": "PASS",
+        "reason": "Current viewport only; no inferred 320/360px or physical-device evidence",
+        "actual": {
+          "width": 1280,
+          "height": 900,
+          "scrollWidth": 1280,
+          "path": "/internal/health"
+        }
+      },
+      {
+        "id": "H13-005",
+        "status": "PASS",
+        "reason": "Accessible name scan"
+      },
+      {
+        "id": "H13-006",
+        "status": "PASS",
+        "reason": "Rendered token comparison"
+      },
+      {
+        "id": "H13-007",
+        "status": "PASS",
+        "reason": "Typography check"
+      },
+      {
+        "id": "H13-008",
+        "status": "PASS",
+        "reason": "Contract inspection"
+      },
+      {
+        "id": "H13-009",
+        "status": "PASS",
+        "reason": "Rendered height check"
+      },
+      {
+        "id": "H13-010",
+        "status": "PASS",
+        "reason": "Light-only application policy; no OS dialog or native bar claim"
+      },
+      {
+        "id": "H13-011",
+        "status": "PASS",
+        "reason": "Localization inspection"
+      },
+      {
+        "id": "H13-014",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H13-020",
+        "status": "PASS",
+        "reason": "Mapping and single-owner check; visual/WebView acceptance separate"
+      },
+      {
+        "id": "H14-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H14-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H14-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H15-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H15-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H15-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H16-001",
+        "status": "PASS",
+        "reason": "Catalog self-test"
+      },
+      {
+        "id": "H16-002",
+        "status": "PASS",
+        "reason": "147 results reconciled"
+      },
+      {
+        "id": "H16-003",
+        "status": "PASS",
+        "reason": "Predicate, result and build binding self-test"
+      },
+      {
+        "id": "H16-004",
+        "status": "PASS",
+        "reason": "Coverage self-test"
+      },
+      {
+        "id": "H16-005",
+        "status": "PASS",
+        "reason": "No N/A placeholders dispatched"
+      },
+      {
+        "id": "H16-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H16-006",
+        "status": "PASS",
+        "reason": "Gate isolation check"
+      }
+    ],
+    "physicalDevice": false
+  },
+  "pageErrors": [],
+  "scope": "LOCAL_SYNTHETIC_ONLY",
+  "buildMarker": "Buildmarker-047",
+  "tests": [
+    {
+      "id": "ID01",
+      "status": "PASS",
+      "name": "New/legacy daily rows resolve all current TR/EN text without changing assignment"
+    },
+    {
+      "id": "ID02",
+      "status": "PASS",
+      "name": "Broken references fail safely; no fallback or reassignment; wrong owner denied"
+    },
+    {
+      "id": "ID03",
+      "status": "PASS",
+      "name": "ID batches are bounded/projected; duplicate/unrequested reference rows rejected"
+    },
+    {
+      "id": "ID04",
+      "status": "PASS",
+      "name": "Selection metadata excludes texts; inactive excluded only from new selection; history stays projected"
+    },
+    {
+      "id": "ID05",
+      "status": "PASS",
+      "name": "Migration dry-run hashes review; batch removes only legacy fields; repeat/verify clean"
+    },
+    {
+      "id": "ID06",
+      "status": "PASS",
+      "name": "Migration lost response, partial failure and restart preserve IDs and shared records"
+    },
+    {
+      "id": "ID07",
+      "status": "PASS",
+      "name": "Migration reports broken links, rejects stale review/normal role, guards target lifecycle"
+    },
+    {
+      "id": "ID08",
+      "status": "PASS",
+      "name": "Migration keyset page bound, no hidden invalid-reference success"
+    },
+    {
+      "id": "ID09",
+      "status": "PASS",
+      "name": "Notification daily links are retained; cross-owner or missing link blocks admission"
+    },
+    {
+      "id": "NT24",
+      "status": "PASS",
+      "name": "Verified Profile opt-out after READY or IN_FLIGHT prevents the next provider admission without changing protected data"
+    },
+    {
+      "id": "NT25",
+      "status": "PASS",
+      "name": "Verified opt-out cannot recall an already dispatched call; accepted receipt stays truthful and is never resent"
+    },
+    {
+      "id": "NT01",
+      "status": "PASS",
+      "name": "Actual local 06:00 and noon boundary; fractional zones and UTC day rollover"
+    },
+    {
+      "id": "NT02",
+      "status": "PASS",
+      "name": "DST spring/fall and 30-minute transition use actual local target offset"
+    },
+    {
+      "id": "NT03",
+      "status": "PASS",
+      "name": "Scheduler creates missing today even with preference off; Home reuses immutable snapshot"
+    },
+    {
+      "id": "NT04",
+      "status": "PASS",
+      "name": "Same operation queues then accepts once; repeated tick does not send or generate again"
+    },
+    {
+      "id": "NT05",
+      "status": "PASS",
+      "name": "Transient rejection backoff and max three attempts on same row"
+    },
+    {
+      "id": "NT06",
+      "status": "PASS",
+      "name": "Permanent rejection, ambiguous timeout and malformed response never blindly retry"
+    },
+    {
+      "id": "NT07",
+      "status": "PASS",
+      "name": "Lost receipt after accepted call leaves IN_FLIGHT; new worker pass cannot resend"
+    },
+    {
+      "id": "NT08",
+      "status": "PASS",
+      "name": "Disabled, denied, unknown and unsupported devices never send; content remains available"
+    },
+    {
+      "id": "NT09",
+      "status": "PASS",
+      "name": "Late/enable/zone change stays same-day window and never mutates previous content"
+    },
+    {
+      "id": "NT10",
+      "status": "PASS",
+      "name": "Fresh disabled preference after persisted intent prevents provider call"
+    },
+    {
+      "id": "NT11",
+      "status": "PASS",
+      "name": "Deletion or native account removal immediately before send denies dispatch and recreates no owner data"
+    },
+    {
+      "id": "NT12",
+      "status": "PASS",
+      "name": "Scheduler/Home concurrent native candidates reconcile with no push-driven regeneration"
+    },
+    {
+      "id": "NT13",
+      "status": "PASS",
+      "name": "Worker coalescing and competing visible delivery candidates admit only canonical row"
+    },
+    {
+      "id": "NT14",
+      "status": "PASS",
+      "name": "Shared admin handler denies unauthenticated and body authority/target/copy manipulation before writes"
+    },
+    {
+      "id": "NT15",
+      "status": "PASS",
+      "name": "Owner-scoped engine refuses forged writes and unfinished/reset/privacy accounts"
+    },
+    {
+      "id": "NT16",
+      "status": "PASS",
+      "name": "Bounded page checkpoints continue beyond first 25 without historical fanout"
+    },
+    {
+      "id": "NT17",
+      "status": "PASS",
+      "name": "Unknown eligibility and reported provider call never infer acceptance"
+    },
+    {
+      "id": "NT19",
+      "status": "PASS",
+      "name": "Owner erasure removes pending/in-flight/unknown notifications; global cursor cannot recreate identity"
+    },
+    {
+      "id": "NT20",
+      "status": "PASS",
+      "name": "Home saves current valid IANA automatically without changing the current daily snapshot"
+    },
+    {
+      "id": "NT21",
+      "status": "PASS",
+      "name": "Corrupt checkpoint/delivery and elapsed page budget fail closed without provider calls"
+    },
+    {
+      "id": "NT22",
+      "status": "PASS",
+      "name": "Expired retry is not sent after noon; caller cannot select a historic day"
+    },
+    {
+      "id": "NT23",
+      "status": "PASS",
+      "name": "Measure ordinary SDK request counts for existing/new daily, dispatch and Home reuse"
+    },
+    {
+      "id": "NT18",
+      "status": "PASS",
+      "name": "Withdrawn health consent causes no health-data reads while scheduler produces content"
+    },
+    {
+      "id": "NC01",
+      "status": "PASS",
+      "name": "Missing/failed identity stops before service role, job IO or provider construction"
+    },
+    {
+      "id": "NC02",
+      "status": "PASS",
+      "name": "Normal, demoted cached-admin and removed native User cannot start work"
+    },
+    {
+      "id": "NC03",
+      "status": "PASS",
+      "name": "Fake workflow headers, authority flags and run IDs never establish caller identity"
+    },
+    {
+      "id": "NC04",
+      "status": "PASS",
+      "name": "Verified native admin can start the bounded job directly with a synthetic provider"
+    },
+    {
+      "id": "NC05",
+      "status": "PASS",
+      "name": "Admin role revoked after intent write prevents send and further checkpoint mutations"
+    },
+    {
+      "id": "NC06",
+      "status": "PASS",
+      "name": "Reported input names and character limits are enforced with Home-only optional destination"
+    },
+    {
+      "id": "NC07",
+      "status": "PASS",
+      "name": "Malformed/lost/502 outcomes stay UNKNOWN; 403/404 permanent, never blind retry or raw payload leak"
+    },
+    {
+      "id": "NC08",
+      "status": "PASS",
+      "name": "Unavailable eligibility stays UNKNOWN without blocking configured dispatch; sent accepts once"
+    },
+    {
+      "id": "NC09",
+      "status": "PASS",
+      "name": "Changed authenticated principal cannot inherit an earlier admin admission"
+    },
+    {
+      "id": "NP01",
+      "status": "PASS",
+      "name": "Same product results within measured query budgets; SDK/auth/provider counters stay separate"
+    },
+    {
+      "id": "NP02",
+      "status": "PASS",
+      "name": "Fresh admission after daily read observes admin/owner/account/preference changes in the same request"
+    },
+    {
+      "id": "NP03",
+      "status": "PASS",
+      "name": "Owner and request boundaries do not reuse prior admission state"
+    },
+    {
+      "id": "NP04",
+      "status": "PASS",
+      "name": "Direct owner writer and shared daily calls still perform fresh guards after a previous admission"
+    },
+    {
+      "id": "NP05",
+      "status": "PASS",
+      "name": "Admin revoked during body IO stops before provider factory and job access"
+    },
+    {
+      "id": "NP06",
+      "status": "PASS",
+      "name": "Revoked health consent during generation is checked again before daily persistence"
+    },
+    {
+      "id": "NP07",
+      "status": "PASS",
+      "name": "Busy worker still checks current caller before returning without job work"
+    },
+    {
+      "id": "NM01",
+      "status": "PASS",
+      "name": "Native anonymous or auth outage denies before body, work and provider"
+    },
+    {
+      "id": "NM02",
+      "status": "PASS",
+      "name": "Native admin still honors disabled entry and strict POST/tick body including empty workflow args"
+    },
+    {
+      "id": "NM03",
+      "status": "PASS",
+      "name": "No application owner fallback for absent or demoted workflow creator"
+    },
+    {
+      "id": "NM04",
+      "status": "PASS",
+      "name": "Platform-supplied alternative native admin is verified; unchanged daily and same delivery"
+    },
+    {
+      "id": "NM05",
+      "status": "PASS",
+      "name": "Native admin cannot bypass recipient lifecycle, preference or known device denial"
+    },
+    {
+      "id": "NM06",
+      "status": "PASS",
+      "name": "Native admin re-admission detects role loss during body IO and after IN_FLIGHT"
+    },
+    {
+      "id": "NM07",
+      "status": "PASS",
+      "name": "Native admin path preserves fresh consent before daily persistence"
+    },
+    {
+      "id": "NM08",
+      "status": "PASS",
+      "name": "Written sent envelope accepts once; malformed/timeout stays UNKNOWN without resend"
+    },
+    {
+      "id": "NU03",
+      "status": "PASS",
+      "name": "Old notification Home URL cannot choose old content; session ending removes the snapshot"
+    },
+    {
+      "id": "NU01",
+      "status": "PASS",
+      "name": "TR/EN actual You preference error retains opt-in draft and stored off; unknown native permission stays separate"
+    },
+    {
+      "id": "NU02",
+      "status": "PASS",
+      "name": "TR/EN phone denial/unknown leaves real You usable; opt-in never fabricates permission or settings actions"
+    },
+    {
+      "id": "NU04",
+      "status": "PASS",
+      "name": "TR/EN notification on/off save and reopen use verified values; draft/busy never claim success or alter other data"
+    },
+    {
+      "id": "NU05",
+      "status": "PASS",
+      "name": "Notification failed/lost save, failed status check and same-intent retry keep draft until verified, without duplicate writes"
+    },
+    {
+      "id": "NU06",
+      "status": "PASS",
+      "name": "Logout/account boundary removes notification draft and ignores an already-written late response for the next account"
+    },
+    {
+      "id": "QM05",
+      "status": "PASS",
+      "name": "OAuth return path refuses external/backslash normalization and strips bootstrap tokens"
+    },
+    {
+      "id": "QM04",
+      "status": "PASS",
+      "name": "Generic rejection assertion fails successful work and checks explicit error codes"
+    },
+    {
+      "id": "QM01",
+      "status": "PASS",
+      "name": "Fresh server principal once per onboarding request; next request rechecks identity, no writes"
+    },
+    {
+      "id": "QM02",
+      "status": "PASS",
+      "name": "Private report reserves popup in gesture, severs opener/referrer and validates HTTPS target"
+    },
+    {
+      "id": "QM03",
+      "status": "PASS",
+      "name": "Report cancellation or blocked popup never navigates late; errors close pending window and retry works"
+    },
+    {
+      "id": "CQ09",
+      "status": "PASS",
+      "name": "Health helper groups reject duplicate IDs; empty/failing groups never PASS or enter completed cache"
+    },
+    {
+      "id": "CQ01",
+      "status": "PASS",
+      "name": "Bounded domain lists signal overflow at 101, exact 100 remains complete, owner and projection stay enforced"
+    },
+    {
+      "id": "CQ02",
+      "status": "PASS",
+      "name": "Domain read rejects malformed and duplicate readbacks; leaked sentinel owner is not hidden by slicing"
+    },
+    {
+      "id": "CQ03",
+      "status": "PASS",
+      "name": "Unknown preferences save cannot be discarded by edit, load, cancel or a second section save"
+    },
+    {
+      "id": "CQ04",
+      "status": "PASS",
+      "name": "Failed read-only verification preserves original unknown save; same payload check later reconciles without another write"
+    },
+    {
+      "id": "CQ05",
+      "status": "PASS",
+      "name": "Admin acts on synthetic B with reset/deletion, interruption and resume; fresh A session and role remain intact"
+    },
+    {
+      "id": "DX01",
+      "status": "PASS",
+      "name": "Delayed real handler/native deletion progresses inside the existing service window; stable operation and protected actor"
+    },
+    {
+      "id": "DX02",
+      "status": "PASS",
+      "name": "A different admin can inspect but cannot adopt or automatically resume another actor\u2019s receipt"
+    },
+    {
+      "id": "DX03",
+      "status": "PASS",
+      "name": "Completed receipt is not absence evidence: restored User, residual records and read failures remain unconfirmed"
+    },
+    {
+      "id": "DX04",
+      "status": "PASS",
+      "name": "Native multi-page shrinking cleanup preserves all actor business data, shared content and retained target history"
+    },
+    {
+      "id": "DX05",
+      "status": "PASS",
+      "name": "Every destructive SDK stage survives before-write failure and lost write acknowledgement using the same receipt"
+    },
+    {
+      "id": "DX06",
+      "status": "PASS",
+      "name": "Lost journal/start audit/checkpoint/final audit/terminal acknowledgements recover from persisted state without duplicate audits"
+    },
+    {
+      "id": "DX07",
+      "status": "PASS",
+      "name": "Two native clients resume one acknowledged receipt; completed status is reverified and competing receipts block without bulk clearing"
+    },
+    {
+      "id": "DX08",
+      "status": "PASS",
+      "name": "Missing target User still enforces privacy/health jobs and lifecycle fences; wrong target and revoked admin cause zero further writes"
+    },
+    {
+      "id": "DX09",
+      "status": "PASS",
+      "name": "VERIFY read failure and late earlier-stage residual cannot produce completion; retry rewinds only necessary checkpoints"
+    },
+    {
+      "id": "DX10",
+      "status": "PASS",
+      "name": "Concurrent admission never hides duplicate native receipts or deletes through an ambiguous operation"
+    },
+    {
+      "id": "MI01",
+      "status": "PASS",
+      "name": "Calendar read refresh coalesces and retains dirty draft / confirmed data on error"
+    },
+    {
+      "id": "MI02",
+      "status": "PASS",
+      "name": "Calendar pending/rejected/unknown preserve confirmed view and replay one intent"
+    },
+    {
+      "id": "MI03",
+      "status": "PASS",
+      "name": "Calendar privacy, disposal and late refresh cannot revive a previous view"
+    },
+    {
+      "id": "MI04",
+      "status": "PASS",
+      "name": "Home refresh keeps daily snapshots, coalesces, retains offline view and drops late session result"
+    },
+    {
+      "id": "MI05",
+      "status": "PASS",
+      "name": "Route transitions distinguish tabs/hierarchy/back and respect reduced motion"
+    },
+    {
+      "id": "HT01",
+      "status": "PASS",
+      "name": "Outer timeout retains completed helpers and active phase; late work cannot cache or dispatch"
+    },
+    {
+      "id": "HT02",
+      "status": "PASS",
+      "name": "Per-helper budget stops sequential dispatch and never caches an unfinished success"
+    },
+    {
+      "id": "HT03",
+      "status": "PASS",
+      "name": "Pre-cancelled and active cancelled cases stop immediately; cleanup precedes next case"
+    },
+    {
+      "id": "HT04",
+      "status": "PASS",
+      "name": "Only completed successes reuse within a run; failed/pending entries and new runs re-execute"
+    },
+    {
+      "id": "HT05",
+      "status": "PASS",
+      "name": "Controlled timers are fixture-local; parent cancellation disposes pending jobs before returning"
+    },
+    {
+      "id": "HT06",
+      "status": "PASS",
+      "name": "Cancelled real admin navigation removes its React root and waiters; a fresh fixture succeeds"
+    },
+    {
+      "id": "HT07",
+      "status": "PASS",
+      "name": "Progress records closed safe IDs/phases/durations only and freezes at close"
+    },
+    {
+      "id": "HT08",
+      "status": "PASS",
+      "name": "Late timer delivery cannot accept over-budget work; disposal failures cannot cache PASS"
+    },
+    {
+      "id": "HT09",
+      "status": "PASS",
+      "name": "Abort restores console hooks once; late cleanup cannot overwrite the following fixture"
+    },
+    {
+      "id": "HD01",
+      "status": "PASS",
+      "name": "Readiness distinguishes a successful empty table from a bounded positive sample"
+    },
+    {
+      "id": "HD02",
+      "status": "PASS",
+      "name": "Readiness preserves query/access/not-found/transient/unknown classes without inferring schema absence"
+    },
+    {
+      "id": "HD03",
+      "status": "PASS",
+      "name": "Aggregate zero is measured; absent, denied, transient and malformed aggregates stay null"
+    },
+    {
+      "id": "HD04",
+      "status": "PASS",
+      "name": "Lifecycle failures retain original safe status and prevent the internal operation"
+    },
+    {
+      "id": "HD05",
+      "status": "PASS",
+      "name": "SDK data, Axios response and nested original error carry only closed diagnostic fields to Health"
+    },
+    {
+      "id": "HD06",
+      "status": "PASS",
+      "name": "Run context shares one successful or rejected read across all callers without retry"
+    },
+    {
+      "id": "HD07",
+      "status": "PASS",
+      "name": "Artifact download errors and real corrupt ZIP parse errors have different safe stages"
+    },
+    {
+      "id": "HD08",
+      "status": "PASS",
+      "name": "Valid synthetic workbook rows pass actual H05 runners; content inconsistency remains FAIL"
+    },
+    {
+      "id": "HD09",
+      "status": "PASS",
+      "name": "Internal handler and H05 retain download/parse/validation stages instead of generic backend failure"
+    },
+    {
+      "id": "HD10",
+      "status": "PASS",
+      "name": "H05-009 exposes count invocation diagnostics while preserving unavailable versus zero"
+    },
+    {
+      "id": "YT13",
+      "status": "PASS",
+      "name": "Header language confirms lost response by readonly check; failed check retains unknown without auto retry"
+    },
+    {
+      "id": "YT01",
+      "status": "PASS",
+      "name": "Actual HTTP owner read, profile update, normalized optional values and backend Sun"
+    },
+    {
+      "id": "YT02",
+      "status": "PASS",
+      "name": "Forbidden owner, role/status/Sun/consent fields; anonymous, inactive, unfinished and reset"
+    },
+    {
+      "id": "YT03",
+      "status": "PASS",
+      "name": "Shared required DOB, leap/18+ dates, 50 Unicode name, genuine optional time"
+    },
+    {
+      "id": "YT04",
+      "status": "PASS",
+      "name": "Changed place re-resolves; saved place preserved; explicit clear removes all five together"
+    },
+    {
+      "id": "YT05",
+      "status": "PASS",
+      "name": "Language/notification persistent readback, fixed 06:00, IANA fallback; protected history unchanged"
+    },
+    {
+      "id": "YT06",
+      "status": "PASS",
+      "name": "Response loss after write; verification and same payload retry never rewrite verified values"
+    },
+    {
+      "id": "YT07",
+      "status": "PASS",
+      "name": "Pre-write failure remains unknown, readonly check and explicit retry recover without false success"
+    },
+    {
+      "id": "YT08",
+      "status": "PASS",
+      "name": "Stale editor conflicts, observed competing updates and duplicate same request reconcile"
+    },
+    {
+      "id": "YT09",
+      "status": "PASS",
+      "name": "Health deletion and post-read inactive boundary; read-only consent never grants or withdraws"
+    },
+    {
+      "id": "YT10",
+      "status": "PASS",
+      "name": "Controller double-click, lost response/check, partial section status and dispose prevent stale success"
+    },
+    {
+      "id": "YT11",
+      "status": "PASS",
+      "name": "Transport validates actual success, malformed success, deadline uncertainty and safe errors"
+    },
+    {
+      "id": "YT12",
+      "status": "PASS",
+      "name": "Failure after one section never marks another section saved; stale identity invalidation clears drafts"
+    },
+    {
+      "id": "YU06",
+      "status": "PASS",
+      "name": "Cleared name in fresh Home response never falls back to an older hydrated name"
+    },
+    {
+      "id": "YU01",
+      "status": "PASS",
+      "name": "Real You form save/cancel, error retains draft, field focus, saved readback and no protected writes"
+    },
+    {
+      "id": "YU02",
+      "status": "PASS",
+      "name": "Saved place survives provider outage and explicit clear remains coherent through actual form"
+    },
+    {
+      "id": "YU03",
+      "status": "PASS",
+      "name": "Unconfirmed save locks draft, readonly result check confirms; logout invalidates a late response"
+    },
+    {
+      "id": "YU04",
+      "status": "PASS",
+      "name": "TR/EN 320px 200% real form labels, min touch, no fake legal or notification actions; privacy links point to confirmed workflows"
+    },
+    {
+      "id": "YU05",
+      "status": "PASS",
+      "name": "Admin link only current verified prop; unsaved preferences never switch locale and reopen persisted state"
+    },
+    {
+      "id": "PF01",
+      "status": "PASS",
+      "name": "Controlled 120s idle, 300s refresh and return-event burst retain confirmed sections with bounded calls"
+    },
+    {
+      "id": "PF02",
+      "status": "PASS",
+      "name": "Refresh failure and section retry retain values/order; privacy/account generation drops both old requests"
+    },
+    {
+      "id": "PT01",
+      "status": "PASS",
+      "name": "Empty and single assigned category, no current mapping or writes"
+    },
+    {
+      "id": "PT02",
+      "status": "PASS",
+      "name": "More than two categories ranks by count then most recently assigned local day"
+    },
+    {
+      "id": "PT03",
+      "status": "PASS",
+      "name": "29/30 calendar-day window includes boundary and gaps, excludes day 31/future"
+    },
+    {
+      "id": "PT04",
+      "status": "PASS",
+      "name": "Duplicate day chooses Home business instant then codepoint ID, one counted day"
+    },
+    {
+      "id": "PT05",
+      "status": "PASS",
+      "name": "Stored day is not reinterpreted by timezone and local DST/year boundary is respected"
+    },
+    {
+      "id": "PT06",
+      "status": "PASS",
+      "name": "Malformed candidate and missing/conflicting approved category fail instead of empty"
+    },
+    {
+      "id": "PT07",
+      "status": "PASS",
+      "name": "Current half-open phase and strictly future FULL before/exactly at/after its start"
+    },
+    {
+      "id": "PT08",
+      "status": "PASS",
+      "name": "Next FULL local date uses IANA across year/DST; no client clock or fabricated suffix"
+    },
+    {
+      "id": "PT09",
+      "status": "PASS",
+      "name": "Partial coverage preserves current phase; missing/current gaps, overlap and bad stamps never fabricate next"
+    },
+    {
+      "id": "PT10",
+      "status": "PASS",
+      "name": "Actual HTTP handler returns both valid sections, safe non-2xx error paths and no writes"
+    },
+    {
+      "id": "PT11",
+      "status": "PASS",
+      "name": "Anonymous, other user, forged authority, inactive, reset and deletion are denied"
+    },
+    {
+      "id": "PT12",
+      "status": "PASS",
+      "name": "Fresh post-read identity/account guard prevents returning old owner results"
+    },
+    {
+      "id": "PT13",
+      "status": "PASS",
+      "name": "Beyond default page size read is complete; sentinel/duplicate IDs reject truncation"
+    },
+    {
+      "id": "PT14",
+      "status": "PASS",
+      "name": "Transport success, malformed response, server denial and deadline are separately executed"
+    },
+    {
+      "id": "PT15",
+      "status": "PASS",
+      "name": "Independent section failure/retry retains other success and prevents duplicate requests"
+    },
+    {
+      "id": "PT16",
+      "status": "PASS",
+      "name": "Late responses, session invalidation/disposal and privacy errors cannot revive data"
+    },
+    {
+      "id": "PT18",
+      "status": "PASS",
+      "name": "Bounded projected queries and late first-day conflict are explicit read failures"
+    },
+    {
+      "id": "PT19",
+      "status": "PASS",
+      "name": "Generic native summary reader uses current daily projection and never exposes a stale cache row"
+    },
+    {
+      "id": "PT17",
+      "status": "PASS",
+      "name": "Old summary/cache is ignored; all assigned native IDs must match approved lookup"
+    },
+    {
+      "id": "PU01",
+      "status": "PASS",
+      "name": "Real Pattern TR/EN preserves selected IDs without refetch or writes; active nav and two lunar fields without visible counts"
+    },
+    {
+      "id": "PU02",
+      "status": "PASS",
+      "name": "Real component failure is not empty; section retry leaves successful lunar data visible"
+    },
+    {
+      "id": "PU03",
+      "status": "PASS",
+      "name": "320px and 200% text keep two fields separate, within card and all controls at least 44px"
+    },
+    {
+      "id": "PU05",
+      "status": "PASS",
+      "name": "Lunar error preserves themes; offline retains confirmed sections, access change clears both immediately"
+    },
+    {
+      "id": "PU06",
+      "status": "PASS",
+      "name": "Real hook/component keeps both cards through 120s idle, 300s refresh and failed section retry"
+    },
+    {
+      "id": "PU07",
+      "status": "PASS",
+      "name": "Partial Moon coverage keeps known phase and no invented date/time/graph in either language"
+    },
+    {
+      "id": "PU04",
+      "status": "PASS",
+      "name": "Unmount discards pending response in real component"
+    },
+    {
+      "id": "NA01",
+      "status": "PASS",
+      "name": "Current native User role and tombstone override cached identity"
+    },
+    {
+      "id": "NA02",
+      "status": "PASS",
+      "name": "Daily assignment reused; current catalog text resolves after profile changes"
+    },
+    {
+      "id": "NA03",
+      "status": "PASS",
+      "name": "Independent ordinary clients can create duplicates; deterministic winner retains both"
+    },
+    {
+      "id": "NA04",
+      "status": "PASS",
+      "name": "Conflicting daily candidates and late visibility preserve all assignments"
+    },
+    {
+      "id": "NA05",
+      "status": "PASS",
+      "name": "Lost daily create response recovered by reconstructed client with no extra write"
+    },
+    {
+      "id": "NA06",
+      "status": "PASS",
+      "name": "Every daily candidate counts toward the 40-day repeat exclusion"
+    },
+    {
+      "id": "NA07",
+      "status": "PASS",
+      "name": "Inactive daily account and signed-out identity are rejected without creating a daily row"
+    },
+    {
+      "id": "NA08",
+      "status": "PASS",
+      "name": "Calendar actual add/edit/delete; same ID; no derived writes or duration defaults"
+    },
+    {
+      "id": "NA09",
+      "status": "PASS",
+      "name": "Calendar stale revision and changed action fingerprint do not silently overwrite"
+    },
+    {
+      "id": "NA10",
+      "status": "PASS",
+      "name": "Lost period create response resumes same intent after reload with saved action ID"
+    },
+    {
+      "id": "NA11",
+      "status": "PASS",
+      "name": "Lost edit/delete acknowledgements recover without repeating actual mutation"
+    },
+    {
+      "id": "NA12",
+      "status": "PASS",
+      "name": "Two simultaneous distinct date intents conflict visibly and retain intent records"
+    },
+    {
+      "id": "NA13",
+      "status": "PASS",
+      "name": "Readback failure leaves intent pending; retry completes without false rollback"
+    },
+    {
+      "id": "NA14",
+      "status": "PASS",
+      "name": "Initial grant event failure survives reload; resume preserves business timestamp"
+    },
+    {
+      "id": "NA15",
+      "status": "PASS",
+      "name": "Consent-free request, inactive account and open deletion job cannot write health"
+    },
+    {
+      "id": "NA16",
+      "status": "PASS",
+      "name": "Minimum interval and approved >60 actual dates remain unchanged"
+    },
+    {
+      "id": "NA17",
+      "status": "PASS",
+      "name": "Reset preparation changes only durable onboarding progress, preserves identity/role/history"
+    },
+    {
+      "id": "NA18",
+      "status": "PASS",
+      "name": "Reset normal profile write then progress failure can retry without changing intended input"
+    },
+    {
+      "id": "NA19",
+      "status": "PASS",
+      "name": "Reset Skip creates no health data and final step reuses same-day assignment"
+    },
+    {
+      "id": "NA20",
+      "status": "PASS",
+      "name": "Native target deletion needs no operator maintenance and leaves other users writable"
+    },
+    {
+      "id": "NA21",
+      "status": "PASS",
+      "name": "Deletion staged failure resumes with fresh client and retains consent/audit evidence"
+    },
+    {
+      "id": "NA22",
+      "status": "PASS",
+      "name": "Post-write identity re-check rejects sign-out after SDK create; the persisted daily row remains"
+    },
+    {
+      "id": "NA23",
+      "status": "PASS",
+      "name": "Fresh admin role revocation stops destructive stages"
+    },
+    {
+      "id": "NA24",
+      "status": "PASS",
+      "name": "Native regrant never skips withdrawal cleanup proof"
+    },
+    {
+      "id": "NA25",
+      "status": "PASS",
+      "name": "Late residual write before final deletion verification cannot be success"
+    },
+    {
+      "id": "NA26",
+      "status": "PASS",
+      "name": "Final VERIFY reruns after audit failure even with a persisted checkpoint"
+    },
+    {
+      "id": "NA27",
+      "status": "PASS",
+      "name": "Reset pending step rejects changed input without replacing first saved input"
+    },
+    {
+      "id": "NA28",
+      "status": "PASS",
+      "name": "New competing intent during resume is retained and blocks success without bulk clear"
+    },
+    {
+      "id": "NA29",
+      "status": "PASS",
+      "name": "Calendar owner fields and unsupported affected-count results fail closed"
+    },
+    {
+      "id": "NA30",
+      "status": "PASS",
+      "name": "Initial grant period failure resumes after process restart with no extra event"
+    },
+    {
+      "id": "NA34A",
+      "status": "PASS",
+      "name": "Stabilization 034: admin A deletes B; A record/role intact, B removed, no other user touched, result verified"
+    },
+    {
+      "id": "NA34B",
+      "status": "PASS",
+      "name": "Stabilization 034: admin role removed mid-deletion stops every later write; no COMPLETED shown"
+    },
+    {
+      "id": "NA34C",
+      "status": "PASS",
+      "name": "Stabilization 034: late resume for another target/operation id cannot affect a different user"
+    },
+    {
+      "id": "T01",
+      "status": "PASS",
+      "name": "BuildMarker format"
+    },
+    {
+      "id": "T02",
+      "status": "PASS",
+      "name": "BuildMarker single source"
+    },
+    {
+      "id": "T03",
+      "status": "PASS",
+      "name": "Next-marker logic"
+    },
+    {
+      "id": "T04",
+      "status": "PASS",
+      "name": "Marker cannot decrement"
+    },
+    {
+      "id": "T05",
+      "status": "PASS",
+      "name": "Marker increments by exactly one"
+    },
+    {
+      "id": "T06",
+      "status": "PASS",
+      "name": "Build Ledger uniqueness"
+    },
+    {
+      "id": "T07",
+      "status": "PASS",
+      "name": "Health suite IDs unique"
+    },
+    {
+      "id": "T08",
+      "status": "PASS",
+      "name": "Health case IDs unique"
+    },
+    {
+      "id": "T09",
+      "status": "PASS",
+      "name": "Health summary aggregation"
+    },
+    {
+      "id": "T10",
+      "status": "PASS",
+      "name": "FAIL prevents READY"
+    },
+    {
+      "id": "T11",
+      "status": "PASS",
+      "name": "WARNING prevents READY"
+    },
+    {
+      "id": "T12",
+      "status": "PASS",
+      "name": "Applicable BLOCKED prevents READY"
+    },
+    {
+      "id": "T13",
+      "status": "PASS",
+      "name": "Future NOT_APPLICABLE does not block"
+    },
+    {
+      "id": "T14",
+      "status": "PASS",
+      "name": "PASS requires evidence"
+    },
+    {
+      "id": "T15",
+      "status": "PASS",
+      "name": "Report BuildMarker = canonical"
+    },
+    {
+      "id": "T16",
+      "status": "PASS",
+      "name": "No empty applicable suite silently passes"
+    },
+    {
+      "id": "T17",
+      "status": "PASS",
+      "name": "Health report redaction"
+    },
+    {
+      "id": "T18",
+      "status": "PASS",
+      "name": "Source inventory has 10 unique logical sources"
+    },
+    {
+      "id": "T19",
+      "status": "PASS",
+      "name": "Canonical docs exist"
+    },
+    {
+      "id": "T20",
+      "status": "PASS",
+      "name": "Docs reference current BuildMarker"
+    },
+    {
+      "id": "T21",
+      "status": "PASS",
+      "name": "Legacy-source firewall"
+    },
+    {
+      "id": "T22",
+      "status": "PASS",
+      "name": "Content validator detects duplicates/missing fields"
+    },
+    {
+      "id": "T23",
+      "status": "PASS",
+      "name": "Design tokens load"
+    },
+    {
+      "id": "T24",
+      "status": "PASS",
+      "name": "Health page has no horizontal overflow at 360px"
+    },
+    {
+      "id": "T25",
+      "status": "PASS",
+      "name": "Interactive Health controls have accessible labels"
+    },
+    {
+      "id": "DXU01",
+      "status": "PASS",
+      "name": "Real component/service/HTTP/native slow passes: bounded pause, explicit same-operation resume, fresh completion and reload"
+    },
+    {
+      "id": "DXU02",
+      "status": "PASS",
+      "name": "Real admitted request with late acknowledgement: unmount and account invalidation suppress all later UI resumes"
+    },
+    {
+      "id": "DXU03",
+      "status": "PASS",
+      "name": "Actual service deadline leaves a live admitted request unknown; later readback uses same ID and rejects foreign response"
+    },
+    {
+      "id": "DXU04",
+      "status": "PASS",
+      "name": "Acknowledged zero progress stops automatic passes and exposes stage and one recovery action"
+    },
+    {
+      "id": "FX01",
+      "status": "PASS",
+      "name": "ON-02 stale enabled handler cannot skip a just-entered name; blank skip and auth-return save remain safe"
+    },
+    {
+      "id": "FX02",
+      "status": "PASS",
+      "name": "Calendar future browsing/selection is distinct from recording, localized disabled form and legacy correction remain available"
+    },
+    {
+      "id": "PR20",
+      "status": "PASS",
+      "name": "Cleanup cannot report complete before the durable request fence is released"
+    },
+    {
+      "id": "PR19",
+      "status": "PASS",
+      "name": "Slow preparation allows first cleanup progress, then deadline stops the next delete"
+    },
+    {
+      "id": "PR18",
+      "status": "PASS",
+      "name": "An unrelated open health deletion job is not overwritten or duplicated"
+    },
+    {
+      "id": "PR15",
+      "status": "PASS",
+      "name": "Reload only reads the retained request; disposal discards a delayed personal result"
+    },
+    {
+      "id": "PR16",
+      "status": "PASS",
+      "name": "Ambiguous duplicate requests and restored residuals never certify erasure"
+    },
+    {
+      "id": "PR17",
+      "status": "PASS",
+      "name": "Old native session cannot recreate data, and a new identity has no old personal history"
+    },
+    {
+      "id": "PR01",
+      "status": "PASS",
+      "name": "Opening/cancelling never mutates; one explicit confirmation before dispatch"
+    },
+    {
+      "id": "PR02",
+      "status": "PASS",
+      "name": "Actual withdrawal stops grant, cleans all five health scopes and preserves account/history"
+    },
+    {
+      "id": "PR03",
+      "status": "PASS",
+      "name": "Partial withdrawal remains revoked; reconstructed worker resumes same time/event/job"
+    },
+    {
+      "id": "PR04",
+      "status": "PASS",
+      "name": "After verified withdrawal only a fresh explicit Calendar consent grants new time"
+    },
+    {
+      "id": "PR05",
+      "status": "PASS",
+      "name": "Normal self-delete includes personal history, leaves shared content and other users intact"
+    },
+    {
+      "id": "PR06",
+      "status": "PASS",
+      "name": "Incomplete profile/daily absence does not prevent self deletion; inactive alone is not success"
+    },
+    {
+      "id": "PR07",
+      "status": "PASS",
+      "name": "Lost native User deletion reply resolves by scoped read-only receipt after auth is gone"
+    },
+    {
+      "id": "PR08",
+      "status": "PASS",
+      "name": "Forged owner/role, anonymous/stale identities and admin self-delete remain refused"
+    },
+    {
+      "id": "PR09",
+      "status": "PASS",
+      "name": "Bounded first-page cleanup resumes without skipping and checks residuals after every pass"
+    },
+    {
+      "id": "PR10",
+      "status": "PASS",
+      "name": "Foreign indirect edge and failed absence read cannot claim cleanup success"
+    },
+    {
+      "id": "PR11",
+      "status": "PASS",
+      "name": "Withdrawal/account deletion collisions and admin reset respect persisted target admission"
+    },
+    {
+      "id": "PR12",
+      "status": "PASS",
+      "name": "Double tap/warm-worker duplicate, lost response, reopen, and disposed late reply"
+    },
+    {
+      "id": "PR13",
+      "status": "PASS",
+      "name": "Partial durable request fences product writes even before consent mutation"
+    },
+    {
+      "id": "PR14",
+      "status": "PASS",
+      "name": "Recovery expires and malformed or permanent-success claims are refused"
+    },
+    {
+      "id": "SC06",
+      "status": "PASS",
+      "name": "Rate-limit code maps to approved TR/EN copy in onboarding and You services; raw backend detail never surfaces"
+    },
+    {
+      "id": "SC10",
+      "status": "PASS",
+      "name": "Birthplace search keeps the typed query on a rate limit, makes no automatic retry, and retries once only on request"
+    },
+    {
+      "id": "SC11",
+      "status": "PASS",
+      "name": "You profile draft survives a rate-limited save; no automatic resend; save is definite (not unconfirmed)"
+    },
+    {
+      "id": "PV01",
+      "status": "PASS",
+      "name": "Real confirmation cancel/Escape restores focus and causes zero mutation"
+    },
+    {
+      "id": "PV02",
+      "status": "PASS",
+      "name": "Actual withdrawal confirms active cleanup separately and keeps account; pending scope does not lie"
+    },
+    {
+      "id": "PV03",
+      "status": "PASS",
+      "name": "Lost removal reply offers read-only check and truthful platform-pending result, not permanent success"
+    },
+    {
+      "id": "PV04",
+      "status": "PASS",
+      "name": "TR/EN 200% modal has labelled scope, keyboard containment and minimum controls"
+    },
+    {
+      "id": "RG01",
+      "status": "PASS",
+      "name": "All four actual readiness cases pass a successful native backend shape with evaluated boolean assertions"
+    },
+    {
+      "id": "RG02",
+      "status": "PASS",
+      "name": "Wrong strategy/version/authority and missing, duplicate, foreign or unreadable schemas fail all four readiness cases"
+    },
+    {
+      "id": "RG03",
+      "status": "PASS",
+      "name": "Unavailable readiness is BLOCKED, never PASS; daily content and Moon prerequisites remain required"
+    },
+    {
+      "id": "RM01",
+      "status": "PASS",
+      "name": "Execute and resume reverify active User and operational residuals after completion persistence"
+    },
+    {
+      "id": "RM02",
+      "status": "PASS",
+      "name": "Absent active User is separate from retained history and same-operation read-only recovery"
+    },
+    {
+      "id": "RM03",
+      "status": "PASS",
+      "name": "Denied, failed, malformed or wrong-owner native User reads never establish absence"
+    },
+    {
+      "id": "CL10",
+      "status": "PASS",
+      "name": "Canonical registry rejects duplicate IDs; cancelled run starts no tests or stale results"
+    },
+    {
+      "id": "AD01",
+      "status": "PASS",
+      "name": "SDK failure retains safe cause/stage and resumes the same durable partial deletion"
+    },
+    {
+      "id": "AD02",
+      "status": "PASS",
+      "name": "Bounded cleanup of shrinking pages resumes without skipped rows or lost retention"
+    },
+    {
+      "id": "AD03",
+      "status": "PASS",
+      "name": "Concurrent missing-row delete is idempotent only after successful absence read"
+    },
+    {
+      "id": "AD04",
+      "status": "PASS",
+      "name": "Residual and final-verification failure never become completed; wrong actor cannot resume"
+    },
+    {
+      "id": "AD06",
+      "status": "PASS",
+      "name": "Competing resumes retain one target operation and never infer successful cleanup"
+    },
+    {
+      "id": "AD05",
+      "status": "PASS",
+      "name": "Password regeneration is detected in every named slot without a filename exemption"
+    },
+    {
+      "id": "AI01",
+      "status": "PASS",
+      "name": "Missing runner, no-op result, unevaluated assertion and empty helper set cannot PASS"
+    },
+    {
+      "id": "AI02",
+      "status": "PASS",
+      "name": "Missing result, null measurement, wrong build and contradictory assertion fail evidence checks"
+    },
+    {
+      "id": "AI04",
+      "status": "PASS",
+      "name": "Persisted current reports require the canonical plan; legacy failures remain readable"
+    },
+    {
+      "id": "AI03",
+      "status": "PASS",
+      "name": "Supplied totals are checked against results; tampering cannot reconcile"
+    },
+    {
+      "id": "E01",
+      "status": "PASS",
+      "name": "In-app scope keeps transferred IDs without executing or relabeling them"
+    },
+    {
+      "id": "E02",
+      "status": "PASS",
+      "name": "Synthetic helpers share results once and abort their active delay before the next suite"
+    },
+    {
+      "id": "E03",
+      "status": "PASS",
+      "name": "Blocked iframe CSS and active fixture abort leave no frame; next fixture succeeds"
+    },
+    {
+      "id": "E04",
+      "status": "PASS",
+      "name": "Client timeout and safe backend stage/request survive without leaking exceptions"
+    },
+    {
+      "id": "E05",
+      "status": "PASS",
+      "name": "Deleted User lookup verifies the saved job; late residuals are partial and preserved until resume"
+    },
+    {
+      "id": "E06",
+      "status": "PASS",
+      "name": "Missing user is distinct from failed reads; incomplete deletion cannot report success"
+    },
+    {
+      "id": "E07",
+      "status": "PASS",
+      "name": "Save confirmation remains saved if list fails; uncertain write has a separate state"
+    },
+    {
+      "id": "E08",
+      "status": "PASS",
+      "name": "Slow rechecks cannot starve deletion retries; every pass advances the same journal"
+    },
+    {
+      "id": "CL01",
+      "status": "PASS",
+      "name": "FAIL report upload survives create failure; same run retry reuses private artifact"
+    },
+    {
+      "id": "CL02",
+      "status": "PASS",
+      "name": "Lost row acknowledgement returns verified existing history, no second upload or row"
+    },
+    {
+      "id": "CL03",
+      "status": "PASS",
+      "name": "Conflict or unavailable history prevents new artifact; old report remains immutable"
+    },
+    {
+      "id": "CL04",
+      "status": "PASS",
+      "name": "Upload capability cannot be moved to another report or modified"
+    },
+    {
+      "id": "CL05",
+      "status": "PASS",
+      "name": "Session/lifecycle errors retain safe stage and request ID without raw error"
+    },
+    {
+      "id": "CL06",
+      "status": "PASS",
+      "name": "Target-bound service-role writes and unscoped writes cannot bypass a deletion tombstone"
+    },
+    {
+      "id": "CL07",
+      "status": "PASS",
+      "name": "Completed deletion rechecks late rows on explicit resume without clearing tombstone"
+    },
+    {
+      "id": "CL08",
+      "status": "PASS",
+      "name": "Cleanup is bounded; reconstructed request resumes and verifies remaining rows"
+    },
+    {
+      "id": "CL09",
+      "status": "PASS",
+      "name": "Unmeasured viewport stays blocked and wrong build evidence cannot be imported"
+    },
+    {
+      "id": "CL11",
+      "status": "PASS",
+      "name": "Upload and post-create readback failures have distinct safe stages; retry reuses stored run"
+    },
+    {
+      "id": "CL12",
+      "status": "PASS",
+      "name": "Ambiguous target operations stop service-role writes and destructive resume"
+    },
+    {
+      "id": "CL13",
+      "status": "PASS",
+      "name": "A MEASURED label without numeric geometry cannot produce PASS"
+    },
+    {
+      "id": "T26",
+      "status": "PASS",
+      "name": "Logical source count = 10"
+    },
+    {
+      "id": "T27",
+      "status": "PASS",
+      "name": "Physical UI/UX parts = 4"
+    },
+    {
+      "id": "T28",
+      "status": "PASS",
+      "name": "All four UI/UX parts present and read"
+    },
+    {
+      "id": "T29",
+      "status": "PASS",
+      "name": "Part order valid (reversed order detected)"
+    },
+    {
+      "id": "T30",
+      "status": "PASS",
+      "name": "UI/UX logical source authority valid"
+    },
+    {
+      "id": "T31",
+      "status": "PASS",
+      "name": "UI/UX not counted as four logical sources"
+    },
+    {
+      "id": "T32",
+      "status": "PASS",
+      "name": "Original design colors preserved with the documented accessible text amendment"
+    },
+    {
+      "id": "T33",
+      "status": "PASS",
+      "name": "Typography contract exact"
+    },
+    {
+      "id": "T34",
+      "status": "PASS",
+      "name": "Icon contract exact"
+    },
+    {
+      "id": "T35",
+      "status": "PASS",
+      "name": "Bottom navigation = Home/Calendar/Pattern"
+    },
+    {
+      "id": "T36",
+      "status": "PASS",
+      "name": "You is not a bottom-nav item"
+    },
+    {
+      "id": "T37",
+      "status": "PASS",
+      "name": "Touch target contract 44"
+    },
+    {
+      "id": "T38",
+      "status": "PASS",
+      "name": "Primary control geometry contract"
+    },
+    {
+      "id": "T39",
+      "status": "PASS",
+      "name": "Approved light-only theme has one semantic palette"
+    },
+    {
+      "id": "T40",
+      "status": "PASS",
+      "name": "Icon-only controls require accessible labels"
+    },
+    {
+      "id": "T41",
+      "status": "PASS",
+      "name": "Build & Environment has no horizontal overflow at 360px"
+    },
+    {
+      "id": "T42",
+      "status": "PASS",
+      "name": "SHINKA_UI_UX_STANDARDS BuildMarker aligned"
+    },
+    {
+      "id": "T43",
+      "status": "PASS",
+      "name": "No legacy UI import"
+    },
+    {
+      "id": "T44",
+      "status": "PASS",
+      "name": "Health BuildMarker / catalog synchronization"
+    },
+    {
+      "id": "T45",
+      "status": "PASS",
+      "name": "Build History records each package exactly once"
+    },
+    {
+      "id": "T46",
+      "status": "PASS",
+      "name": "All 11 UI/UX tables machine-readable and consistent"
+    },
+    {
+      "id": "T47",
+      "status": "PASS",
+      "name": "Companion is a supporting artifact, not a logical source"
+    },
+    {
+      "id": "T48",
+      "status": "PASS",
+      "name": "Auth policy detects unapproved methods"
+    },
+    {
+      "id": "T49",
+      "status": "PASS",
+      "name": "Missing external viewport measurement is explicitly BLOCKED (no false PASS)"
+    },
+    {
+      "id": "T50",
+      "status": "PASS",
+      "name": "History record matches the run, fits storage, carries no sensitive data"
+    },
+    {
+      "id": "T51",
+      "status": "PASS",
+      "name": "History persistence failure has its own error code"
+    },
+    {
+      "id": "HB01",
+      "status": "PASS",
+      "name": "Internal Test Tools presentation modules pass the actual repository boundary scan"
+    },
+    {
+      "id": "HB02",
+      "status": "PASS",
+      "name": "Internal feature UI cannot hide direct SDK calls or unreviewed imports"
+    },
+    {
+      "id": "T52",
+      "status": "PASS",
+      "name": "Legacy dynamic imports detected; strings/comments/templates remain data"
+    },
+    {
+      "id": "T53",
+      "status": "PASS",
+      "name": "Personal email detector retains application/config/test coverage"
+    },
+    {
+      "id": "T54",
+      "status": "PASS",
+      "name": "Auth syntax policy detects removed flows and unapproved providers"
+    },
+    {
+      "id": "T55",
+      "status": "PASS",
+      "name": "Provider errors sanitized; unsupported methods never call SDK"
+    },
+    {
+      "id": "T56",
+      "status": "PASS",
+      "name": "PASS without execution cannot make gate READY"
+    },
+    {
+      "id": "T57",
+      "status": "PASS",
+      "name": "PASS without attempt cannot make gate READY"
+    },
+    {
+      "id": "T58",
+      "status": "PASS",
+      "name": "Fully executed evidenced PASS is eligible for READY"
+    },
+    {
+      "id": "T59",
+      "status": "PASS",
+      "name": "Future/external unexecuted requirements do not block Foundation"
+    },
+    {
+      "id": "T60",
+      "status": "PASS",
+      "name": "Incomplete or invalid evidence never makes PASS valid"
+    },
+    {
+      "id": "T61",
+      "status": "PASS",
+      "name": "Valid synthetic content and mappings pass canonical H05 decisions"
+    },
+    {
+      "id": "T62",
+      "status": "PASS",
+      "name": "260 rows with absent approved category fail content Health"
+    },
+    {
+      "id": "T63",
+      "status": "PASS",
+      "name": "192 mapping missing category cell or coverage fails Health"
+    },
+    {
+      "id": "T64",
+      "status": "PASS",
+      "name": "240 mapping missing category cell or coverage fails Health"
+    },
+    {
+      "id": "T65",
+      "status": "PASS",
+      "name": "Unknown/empty content category and unknown mapping category fail"
+    },
+    {
+      "id": "T66",
+      "status": "PASS",
+      "name": "Duplicate mapping fails uniqueness and coverage Health"
+    },
+    {
+      "id": "T67",
+      "status": "PASS",
+      "name": "Missing EN/TR and malformed Pair ID fail appropriate Health"
+    },
+    {
+      "id": "T68",
+      "status": "PASS",
+      "name": "Server request guard denies anonymous/user/forged roles"
+    },
+    {
+      "id": "T69",
+      "status": "PASS",
+      "name": "Completed result survives save failure with explicit safe code"
+    },
+    {
+      "id": "T70",
+      "status": "PASS",
+      "name": "Stored summary is verified; compact JSON bounded without truncation"
+    },
+    {
+      "id": "T71",
+      "status": "PASS",
+      "name": "Private report redacts sensitive values and rejects public artifacts"
+    },
+    {
+      "id": "T72",
+      "status": "PASS",
+      "name": "Private save/readback selects stored URI and limited signed lifetime"
+    },
+    {
+      "id": "T73",
+      "status": "PASS",
+      "name": "Static manifest carries scoped metadata and hashes, no raw sources"
+    },
+    {
+      "id": "T74",
+      "status": "PASS",
+      "name": "Rendered auth shell uses only Apple/Google, 52px controls and 20px padding"
+    },
+    {
+      "id": "T75",
+      "status": "PASS",
+      "name": "Canonical CSS channels and all eleven color utilities render exactly"
+    },
+    {
+      "id": "T76",
+      "status": "PASS",
+      "name": "Heading and body font families, weights, sizes and line heights survive CSS changes"
+    },
+    {
+      "id": "T77",
+      "status": "PASS",
+      "name": "Real Shinka primitives preserve geometry, borders, colors and disabled state"
+    },
+    {
+      "id": "T78",
+      "status": "PASS",
+      "name": "Canonical spacing/radius utilities retain their pixel values"
+    },
+    {
+      "id": "T79",
+      "status": "PASS",
+      "name": "Light root and supported form controls use the same approved palette"
+    },
+    {
+      "id": "T81",
+      "status": "PASS",
+      "name": "046 section shells are transparent over the backdrop; plain internal containers stay flat ivory"
+    },
+    {
+      "id": "T82",
+      "status": "PASS",
+      "name": "046 section backdrop: mapping, shared asset, decorative fixed single layer, neutral and dark adaptation"
+    },
+    {
+      "id": "T80",
+      "status": "PASS",
+      "name": "Existing rendered Health typography/color/touch/light-policy checks remain passing"
+    },
+    {
+      "id": "SS01",
+      "status": "PASS",
+      "name": "Session refresh: 429/503/timeout/network stay UNVERIFIED; 401/deleted/invalid payload are INVALID"
+    },
+    {
+      "id": "SS02",
+      "status": "PASS",
+      "name": "Concurrent focus/visibility/timer/route checks coalesce; passive checks throttle after success"
+    },
+    {
+      "id": "SS04",
+      "status": "PASS",
+      "name": "Health native prerequisite: 429 is BLOCKED, proven mismatch is FAIL, PASS only with every schema read"
+    },
+    {
+      "id": "SS10",
+      "status": "PASS",
+      "name": "Four actual readiness Health cases share one read per run and enforce transient versus mismatch verdicts"
+    },
+    {
+      "id": "SS12",
+      "status": "PASS",
+      "name": "Session retry wait cancels on logout/account replacement; no old retry or leaked timer reaches the new account"
+    },
+    {
+      "id": "SS06",
+      "status": "PASS",
+      "name": "AuthProvider + routes: transient transport preserves ordinary session, blocks admin and offers retry without login"
+    },
+    {
+      "id": "SS07",
+      "status": "PASS",
+      "name": "Real role loss preserves ordinary login; proven session loss closes access and late logout response cannot restore it"
+    },
+    {
+      "id": "SS08",
+      "status": "PASS",
+      "name": "Focus/visibility/timer share one request; account refresh discards pending old identity and throttle success"
+    },
+    {
+      "id": "SS09",
+      "status": "PASS",
+      "name": "Actual login redirect/SignIn callback: safe returnTo, one provider start and no second application sign-in"
+    },
+    {
+      "id": "SS11",
+      "status": "PASS",
+      "name": "Parallel startup: settings/session in either order keep membership, logout and account boundaries"
+    },
+    {
+      "id": "TP01",
+      "status": "PASS",
+      "name": "Actual Test Tools cancels paced continuation on unmount, logout and account/privacy invalidation"
+    },
+    {
+      "id": "TP02",
+      "status": "PASS",
+      "name": "Elapsed budget is checked after pacing; no extra resume after 60 seconds and partial result stays visible"
+    },
+    {
+      "id": "TP03",
+      "status": "PASS",
+      "name": "Lost response reconciles only status, retains operation, and displays unknown then verified completion"
+    },
+    {
+      "id": "TP04",
+      "status": "PASS",
+      "name": "Acknowledged partial work resumes the same operation after one injected gap and only then shows verified success"
+    },
+    {
+      "id": "D23",
+      "status": "PASS",
+      "name": "045 physical compatibility fields remain optional; domain writes reject every legacy text key; cleanup stays pending"
+    },
+    {
+      "id": "D01",
+      "status": "PASS",
+      "name": "20 schemas match original fields plus explicit 029/045 decisions"
+    },
+    {
+      "id": "D02",
+      "status": "PASS",
+      "name": "One logical/physical mapping; builtin identity and tooling separate"
+    },
+    {
+      "id": "D03",
+      "status": "PASS",
+      "name": "Required fields enforced; unsupported uniqueness properties absent"
+    },
+    {
+      "id": "D04",
+      "status": "PASS",
+      "name": "Logical NULL stays absent on write and NULL on read; no 5/28 defaults"
+    },
+    {
+      "id": "D05",
+      "status": "PASS",
+      "name": "Date is a calendar date; impossible dates and UTC conversions rejected"
+    },
+    {
+      "id": "D06",
+      "status": "PASS",
+      "name": "Birthplace coherence, optional time and display name bounds"
+    },
+    {
+      "id": "D07",
+      "status": "PASS",
+      "name": "12 Sun codes; UNKNOWN allowed only for mapping cycle"
+    },
+    {
+      "id": "D08",
+      "status": "PASS",
+      "name": "Numeric ranges and cycle day relative bound reject invalid records"
+    },
+    {
+      "id": "D09",
+      "status": "PASS",
+      "name": "Preferences enforce IANA timezone, fixed 06:00 and false default"
+    },
+    {
+      "id": "D10",
+      "status": "PASS",
+      "name": "25 source relationships reference real fields and valid target entities"
+    },
+    {
+      "id": "D11",
+      "status": "PASS",
+      "name": "Reference precheck rejects absent and cross-owner targets"
+    },
+    {
+      "id": "D12",
+      "status": "PASS",
+      "name": "All 11 uniqueness contracts and open deletion key are collision-safe"
+    },
+    {
+      "id": "D13",
+      "status": "PASS",
+      "name": "Concurrent daily creates preserve the first immutable assignment"
+    },
+    {
+      "id": "D14",
+      "status": "PASS",
+      "name": "Repeated singleton create returns same row"
+    },
+    {
+      "id": "D15",
+      "status": "PASS",
+      "name": "Unsupported atomic primitives fail closed before any write"
+    },
+    {
+      "id": "D16",
+      "status": "PASS",
+      "name": "Conditional mutation detects stale revision and identity changes"
+    },
+    {
+      "id": "D17",
+      "status": "PASS",
+      "name": "Unsafe readback cannot report idempotent success"
+    },
+    {
+      "id": "D22",
+      "status": "PASS",
+      "name": "Repository seed tripwire catches an injected live product writer"
+    },
+    {
+      "id": "D21",
+      "status": "PASS",
+      "name": "Conditional NULL update verifies actual removal, not a merge-only success"
+    },
+    {
+      "id": "D18",
+      "status": "PASS",
+      "name": "Metadata timestamps remain native and data reads remove platform emails"
+    },
+    {
+      "id": "D19",
+      "status": "PASS",
+      "name": "Consent and Pattern field pairs preserve state semantics"
+    },
+    {
+      "id": "D20",
+      "status": "PASS",
+      "name": "Explicit Inactive supported; unknown content states and backwards Moon intervals rejected"
+    },
+    {
+      "id": "S01",
+      "status": "PASS",
+      "name": "Unauthenticated private read denied"
+    },
+    {
+      "id": "S02",
+      "status": "PASS",
+      "name": "Unauthenticated private mutation denied"
+    },
+    {
+      "id": "S03",
+      "status": "PASS",
+      "name": "User A cannot read User B; private query is owner scoped"
+    },
+    {
+      "id": "S04",
+      "status": "PASS",
+      "name": "User A cannot mutate User B; actual native handlers deny and preserve all persisted rows"
+    },
+    {
+      "id": "S05",
+      "status": "PASS",
+      "name": "Forged client user_id rejected instead of changing canonical owner"
+    },
+    {
+      "id": "S06",
+      "status": "PASS",
+      "name": "Admin path requires server-authenticated admin role"
+    },
+    {
+      "id": "S07",
+      "status": "PASS",
+      "name": "Client admin and process flags rejected"
+    },
+    {
+      "id": "S08",
+      "status": "PASS",
+      "name": "Internal tooling retains existing admin-only boundary"
+    },
+    {
+      "id": "S09",
+      "status": "PASS",
+      "name": "Lookup reads require ACTIVE authentication and never grant writes"
+    },
+    {
+      "id": "S10",
+      "status": "PASS",
+      "name": "INACTIVE, missing and wrong-owner profiles block access"
+    },
+    {
+      "id": "S11",
+      "status": "PASS",
+      "name": "Health read requires consent and no unfinished deletion, including FAILED"
+    },
+    {
+      "id": "S12",
+      "status": "PASS",
+      "name": "Users and admins cannot update/delete any protected record"
+    },
+    {
+      "id": "S13",
+      "status": "PASS",
+      "name": "Daily create needs specific server grant; even system cannot rewrite snapshot"
+    },
+    {
+      "id": "S14",
+      "status": "PASS",
+      "name": "Audit/consent append-only and protection metadata not system-deletable"
+    },
+    {
+      "id": "S15",
+      "status": "PASS",
+      "name": "Admin cannot complete/delete jobs; fake completion receipt rejected"
+    },
+    {
+      "id": "S16",
+      "status": "PASS",
+      "name": "Deletion completion requires zero counts and binds proof to job/owner"
+    },
+    {
+      "id": "S17",
+      "status": "PASS",
+      "name": "12-operation access matrix covers exactly 20 entities"
+    },
+    {
+      "id": "S18",
+      "status": "PASS",
+      "name": "Admin reads audited; users own reads create no admin audit"
+    },
+    {
+      "id": "S19",
+      "status": "PASS",
+      "name": "Failed protected admin mutation is audited without raw payload"
+    },
+    {
+      "id": "S20",
+      "status": "PASS",
+      "name": "Logging rejects secrets, raw health and snapshot content including nesting"
+    },
+    {
+      "id": "S21",
+      "status": "PASS",
+      "name": "Safe logs retain only validated machine codes and bounded identifiers"
+    },
+    {
+      "id": "S22",
+      "status": "PASS",
+      "name": "Backend error responses never expose raw error details"
+    },
+    {
+      "id": "S23",
+      "status": "PASS",
+      "name": "Audit persistence failure prevents privileged data return"
+    },
+    {
+      "id": "S24",
+      "status": "PASS",
+      "name": "Backend readback checks owner even if an adapter leaks another row"
+    },
+    {
+      "id": "A01",
+      "status": "PASS",
+      "name": "Unchecked/missing declaration never reaches either provider"
+    },
+    {
+      "id": "A02",
+      "status": "PASS",
+      "name": "Checked declaration permits exactly Apple and Google"
+    },
+    {
+      "id": "A03",
+      "status": "PASS",
+      "name": "Cancel maps silently; provider payload never crosses boundary"
+    },
+    {
+      "id": "A04",
+      "status": "PASS",
+      "name": "Callback retries and concurrent profile requests create one singleton"
+    },
+    {
+      "id": "A05",
+      "status": "PASS",
+      "name": "Preferences initialize once with canonical defaults"
+    },
+    {
+      "id": "A06",
+      "status": "PASS",
+      "name": "Forged owner and role rejected for onboarding; unauthenticated blocked"
+    },
+    {
+      "id": "A07",
+      "status": "PASS",
+      "name": "INACTIVE account cannot bootstrap, reactivate, or store cycle data"
+    },
+    {
+      "id": "A08",
+      "status": "PASS",
+      "name": "Existing legitimate daily state routes Home without profile recreation"
+    },
+    {
+      "id": "A09",
+      "status": "PASS",
+      "name": "HTTP boundary redacts unexpected provider/store failures"
+    },
+    {
+      "id": "O01",
+      "status": "PASS",
+      "name": "Name optional, trimmed and Unicode-aware 50-character bound"
+    },
+    {
+      "id": "O02",
+      "status": "PASS",
+      "name": "Pending name is bounded, expires, restores and clears"
+    },
+    {
+      "id": "O03",
+      "status": "PASS",
+      "name": "DOB required, valid calendar, adult and exact-18 boundary"
+    },
+    {
+      "id": "O04",
+      "status": "PASS",
+      "name": "Leap-day age and date-only semantics avoid UTC shifting"
+    },
+    {
+      "id": "O05",
+      "status": "PASS",
+      "name": "Backend rejects bypassed underage/future input before persistence"
+    },
+    {
+      "id": "O06",
+      "status": "PASS",
+      "name": "Optional birth time validates HH:mm; resolver receives only birth_date"
+    },
+    {
+      "id": "O07",
+      "status": "PASS",
+      "name": "Missing Sun permits partial persistence but never final completion; UNCERTAIN rejected"
+    },
+    {
+      "id": "O08",
+      "status": "PASS",
+      "name": "Optional birthplace empty is coherent NULL; client free text rejected"
+    },
+    {
+      "id": "O09",
+      "status": "PASS",
+      "name": "Structured selection maps only approved fields and is backend-resolved"
+    },
+    {
+      "id": "O10",
+      "status": "PASS",
+      "name": "Incomplete profile completion clears entire old birthplace group"
+    },
+    {
+      "id": "O11",
+      "status": "PASS",
+      "name": "GeoNames query bounded/sanitized, empty results and safe mapping"
+    },
+    {
+      "id": "O12",
+      "status": "PASS",
+      "name": "GeoNames failure is sanitized; no birthplace remains allowed"
+    },
+    {
+      "id": "O13",
+      "status": "PASS",
+      "name": "Malformed GeoNames records and mismatched detail identity rejected"
+    },
+    {
+      "id": "O14",
+      "status": "PASS",
+      "name": "Empty cycle / Skip produces no health rows or grant"
+    },
+    {
+      "id": "O15",
+      "status": "PASS",
+      "name": "Period start required for settings; future and invalid dates rejected"
+    },
+    {
+      "id": "O16",
+      "status": "PASS",
+      "name": "Duration 1..10, cycle length 15..60, integers only"
+    },
+    {
+      "id": "O17",
+      "status": "PASS",
+      "name": "Cycle data requires separate explicit true consent"
+    },
+    {
+      "id": "O18",
+      "status": "PASS",
+      "name": "Grant, immutable event and period confirmed; NULL settings stay NULL"
+    },
+    {
+      "id": "O19",
+      "status": "PASS",
+      "name": "Retries, concurrent taps and new page action never duplicate consent/period"
+    },
+    {
+      "id": "O20",
+      "status": "PASS",
+      "name": "Partial write failure rolls back and retry commits all required rows"
+    },
+    {
+      "id": "O21",
+      "status": "PASS",
+      "name": "Unavailable SDK storage and missing consent source cannot return save success"
+    },
+    {
+      "id": "O22",
+      "status": "PASS",
+      "name": "Open deletion and withdrawn consent block onboarding grants"
+    },
+    {
+      "id": "O23",
+      "status": "PASS",
+      "name": "Timezone fallback uses only persisted valid zone; new missing zone retries"
+    },
+    {
+      "id": "O24",
+      "status": "PASS",
+      "name": "Central resolver covers all eight states and safe skipped-cycle resume"
+    },
+    {
+      "id": "O25",
+      "status": "PASS",
+      "name": "Copy keys have parity, exact EN errors and approved nonempty TR"
+    },
+    {
+      "id": "O26",
+      "status": "PASS",
+      "name": "Hydration only returns canonical fields; owner leakage detected"
+    },
+    {
+      "id": "O27",
+      "status": "PASS",
+      "name": "Onboarding copy/proxy scanner rejects duplicate text and client credentials"
+    },
+    {
+      "id": "O28",
+      "status": "PASS",
+      "name": "GeoNames timeout aborts bounded request and returns safe error"
+    },
+    {
+      "id": "O29",
+      "status": "PASS",
+      "name": "Atomic readback owner mismatch cannot claim successful onboarding"
+    },
+    {
+      "id": "O30",
+      "status": "PASS",
+      "name": "Initialization preserves existing preference and identity on language change"
+    },
+    {
+      "id": "O31",
+      "status": "PASS",
+      "name": "Cleared birthplace requires actual NULL readback, not merge-only success"
+    },
+    {
+      "id": "O32",
+      "status": "PASS",
+      "name": "Production GeoNames entry uses exact backend secret; client provider calls rejected"
+    },
+    {
+      "id": "O33",
+      "status": "PASS",
+      "name": "GeoNames search/detail normalize only five fields and suppress provider secrets"
+    },
+    {
+      "id": "G01",
+      "status": "PASS",
+      "name": "Missing/blank secret fails safely before provider call; configured value is trimmed"
+    },
+    {
+      "id": "G02",
+      "status": "PASS",
+      "name": "Network failure and request/body timeout have distinct safe classes and bounded abort"
+    },
+    {
+      "id": "G03",
+      "status": "PASS",
+      "name": "Non-provider HTTP failures retain only numeric HTTP status"
+    },
+    {
+      "id": "G04",
+      "status": "PASS",
+      "name": "Provider JSON errors classify authorization/quota/service on success and error HTTP"
+    },
+    {
+      "id": "G05",
+      "status": "PASS",
+      "name": "Empty array and successful no-result status remain HTTP 200 empty places"
+    },
+    {
+      "id": "G06",
+      "status": "PASS",
+      "name": "Malformed JSON/envelope/records and oversized payloads are safe invalid responses"
+    },
+    {
+      "id": "G07",
+      "status": "PASS",
+      "name": "Every search outcome is read-only across all product entities and missing preferences"
+    },
+    {
+      "id": "G08",
+      "status": "PASS",
+      "name": "Diagnostics never return raw provider data; forged URLs/owners and anonymous search blocked"
+    },
+    {
+      "id": "G09",
+      "status": "PASS",
+      "name": "Pre-response transport causes classify only explicit runtime evidence; ambiguity stays UNKNOWN"
+    },
+    {
+      "id": "G10",
+      "status": "PASS",
+      "name": "Fetch invocation versus body-read stage is precise; successful search and ID resolve preserved"
+    },
+    {
+      "id": "G11",
+      "status": "PASS",
+      "name": "Settled requests clear deadlines; abort and late fetch/body rejection never escape unhandled"
+    },
+    {
+      "id": "G12",
+      "status": "PASS",
+      "name": "Sensitive exceptions/cause/stack and unknown names/codes never reach response, console or entities"
+    },
+    {
+      "id": "G21",
+      "status": "PASS",
+      "name": "Manual compatibility processes search and selected-ID resolution when error mode is unsupported"
+    },
+    {
+      "id": "G22",
+      "status": "PASS",
+      "name": "Every 3xx and opaque redirect is rejected before parsing; search and resolve never send a second request"
+    },
+    {
+      "id": "G23",
+      "status": "PASS",
+      "name": "Redirect cleanup is deadline-bounded; late responses are cancelled unread without unhandled rejection"
+    },
+    {
+      "id": "G24",
+      "status": "PASS",
+      "name": "Redirect projection discards Location, body and cancellation errors without logs or product writes"
+    },
+    {
+      "id": "BS01",
+      "status": "PASS",
+      "name": "0\u20132 trimmed characters make zero provider calls in adapter, handler and controller"
+    },
+    {
+      "id": "BS02",
+      "status": "PASS",
+      "name": "Debounce sends one request for the final query only"
+    },
+    {
+      "id": "BS03",
+      "status": "PASS",
+      "name": "Late responses after a new query, language change, cancel or dispose cannot change results"
+    },
+    {
+      "id": "BS04",
+      "status": "PASS",
+      "name": "Document \"Kan\" examples: literal case-insensitive substring of the own name; upper-region-only match rejected"
+    },
+    {
+      "id": "BS05",
+      "status": "PASS",
+      "name": "Mid-word match without prefix rule; no diacritic folding or fuzzy match"
+    },
+    {
+      "id": "BS06",
+      "status": "PASS",
+      "name": "Path is Country \u2014 Region \u2014 Name with only existing, non-repeated levels; duplicate IDs removed"
+    },
+    {
+      "id": "BS07",
+      "status": "PASS",
+      "name": "Provider request: q + isNameRequired, repeated featureClass A/P, bounded rows, manual redirect, no name_startsWith"
+    },
+    {
+      "id": "BS08",
+      "status": "PASS",
+      "name": "Empty first page after filtering keeps next page; bounded last page reports limit; controller appends"
+    },
+    {
+      "id": "BS09",
+      "status": "PASS",
+      "name": "A (country/region) and P IDs resolve to provider fields; other classes rejected"
+    },
+    {
+      "id": "BS10",
+      "status": "PASS",
+      "name": "Free text and client-supplied place fields cannot be saved"
+    },
+    {
+      "id": "BS11",
+      "status": "PASS",
+      "name": "429 and provider errors are distinct from empty results; retry is explicit and single"
+    },
+    {
+      "id": "BS12",
+      "status": "PASS",
+      "name": "Bounded transport kept: oversized search envelope is invalid, never empty"
+    },
+    {
+      "id": "OA01",
+      "status": "PASS",
+      "name": "Rejection helper fails on successful work and wrong codes; awaited async rejection is observed"
+    },
+    {
+      "id": "OA02",
+      "status": "PASS",
+      "name": "Completed owner cannot mutate profile or add cycle/consent through onboarding, even with a damaged profile"
+    },
+    {
+      "id": "OA03",
+      "status": "PASS",
+      "name": "Unfinished profile correction re-resolves all five place fields and preserves cycle history; reload uses durable state"
+    },
+    {
+      "id": "OA04",
+      "status": "PASS",
+      "name": "Empty filtered first page retains failed next-page retry and deduplicates append; short retry makes no request"
+    },
+    {
+      "id": "OA05",
+      "status": "PASS",
+      "name": "UI step claims and legacy list actions cannot bypass persisted profile/owner; empty Skip has no writes"
+    },
+    {
+      "id": "OF01",
+      "status": "PASS",
+      "name": "Device variants/fallback and saved language precedence; initialization never replaces a saved preference"
+    },
+    {
+      "id": "OF02",
+      "status": "PASS",
+      "name": "DOB alone crosses actual service/handler/native readback with NULL time/all five place fields and zero provider construction"
+    },
+    {
+      "id": "OF03",
+      "status": "PASS",
+      "name": "Daily service deadline is bounded/cleared, late response is not success, fresh retry reads the same persisted daily"
+    },
+    {
+      "id": "OF04",
+      "status": "PASS",
+      "name": "Consent path and partial daily create response loss reconcile one immutable day without another health write"
+    },
+    {
+      "id": "G13",
+      "status": "PASS",
+      "name": "Runtime probe uses existing admin guard and rejects all caller-controlled target/credential options"
+    },
+    {
+      "id": "G14",
+      "status": "PASS",
+      "name": "Four credentialed policy samples preserve actual adapter URL, input form and all other options"
+    },
+    {
+      "id": "G15",
+      "status": "PASS",
+      "name": "Unsupported error policy compares against manual twice with the same captured detached fetch"
+    },
+    {
+      "id": "G16",
+      "status": "PASS",
+      "name": "Comparison completes both pairs despite inconsistent responses and never asserts a runtime identity or root cause"
+    },
+    {
+      "id": "G17",
+      "status": "PASS",
+      "name": "Manual probe samples observe redirects without following or reading headers/body/Location"
+    },
+    {
+      "id": "G18",
+      "status": "PASS",
+      "name": "Probe deadlines abort sequential requests, clear timers, reject concurrent/cooldown runs and do not leak rejections"
+    },
+    {
+      "id": "G19",
+      "status": "PASS",
+      "name": "Caller abort/total deadline stop further samples; unconfirmed cancellation keeps the worker blocked"
+    },
+    {
+      "id": "G20",
+      "status": "PASS",
+      "name": "Probe returns only technical projections; no body/header/error/credential or console disclosure"
+    },
+    {
+      "id": "U19",
+      "status": "PASS",
+      "name": "ON-02 persistent inner label, framed focus, saved name and Back retain TR/EN name and skip rules"
+    },
+    {
+      "id": "U01",
+      "status": "PASS",
+      "name": "EN/TR six screens fit 360/430px with named controls and 17px inputs"
+    },
+    {
+      "id": "U02",
+      "status": "PASS",
+      "name": "Introduction \u2192 name \u2192 sign-in; invalid name stays inline and blocks skip until explicitly cleared"
+    },
+    {
+      "id": "U03",
+      "status": "PASS",
+      "name": "18+ error is associated; only Apple/Google exposed and failure safe"
+    },
+    {
+      "id": "U04",
+      "status": "PASS",
+      "name": "DOB errors focus field; typed-but-unselected birthplace blocked; clearing allows NULL save"
+    },
+    {
+      "id": "U05",
+      "status": "PASS",
+      "name": "Cycle placeholders stay blank; consent unchecked; skip reaches finite dependency"
+    },
+    {
+      "id": "U06",
+      "status": "PASS",
+      "name": "Real adapter storage failure keeps UI/form pending; verified retry advances once"
+    },
+    {
+      "id": "U07",
+      "status": "PASS",
+      "name": "Approved TR consent is explicit, unchecked and separate from age"
+    },
+    {
+      "id": "U08",
+      "status": "PASS",
+      "name": "Reloaded partial profile preserves structured birthplace through Sun completion"
+    },
+    {
+      "id": "U09",
+      "status": "PASS",
+      "name": "Combobox: typed query, explicit pick of an A record saves server-resolved fields; editing text drops the old ID"
+    },
+    {
+      "id": "U10",
+      "status": "PASS",
+      "name": "Short, empty, error and rate-limit states differ; retry is explicit; empty field persists NULLs"
+    },
+    {
+      "id": "U11",
+      "status": "PASS",
+      "name": "Saved birthplace shown without provider calls; explicit clear ignores late results and persists all NULLs"
+    },
+    {
+      "id": "U12",
+      "status": "PASS",
+      "name": "TR/EN combobox: ARIA relations, arrow/Enter/Escape keyboard, no automatic selection, fits mobile/desktop"
+    },
+    {
+      "id": "U13",
+      "status": "PASS",
+      "name": "Small portrait, landscape, reduced viewport and enlarged text keep fields and submit reachable"
+    },
+    {
+      "id": "U14",
+      "status": "PASS",
+      "name": "Long Turkish same-name results stay distinct by ID with path context, labels and bounded DOM"
+    },
+    {
+      "id": "U15",
+      "status": "PASS",
+      "name": "ON-04/ON-05 fixtures render the layered onboarding shell in EN/TR without overflow"
+    },
+    {
+      "id": "U16",
+      "status": "PASS",
+      "name": "ON-01 shows all three intro rows with descriptions together in EN/TR; Begin goes to ON-02 once; no overflow at 320/360"
+    },
+    {
+      "id": "U18",
+      "status": "PASS",
+      "name": "ON-01\u2013ON-05 share header/art/subtitle, steps 1\u20135 in order, back on ON-02/ON-03/ON-04/ON-05, Finish on ON-05, no Account & Privacy"
+    },
+    {
+      "id": "U17",
+      "status": "PASS",
+      "name": "ON-04 shows new title/subtitle, 4 of 5, compact birthplace, no Account & Privacy; focus alone does not search; date/time fit 320/360"
+    },
+    {
+      "id": "OU01",
+      "status": "PASS",
+      "name": "Actual ON-01/02/03 back/forward: one Begin, trimmed optional name, filled name blocks skip, empty skip clears draft, no backend/auth"
+    },
+    {
+      "id": "OU02",
+      "status": "PASS",
+      "name": "ON-05 back restores persisted profile; edit/save and locale preserve cycle drafts, age and health consent stay separate"
+    },
+    {
+      "id": "OU03",
+      "status": "PASS",
+      "name": "Unconfirmed save response cannot advance or clear pending name; verified retry keeps the action ID"
+    },
+    {
+      "id": "OU04",
+      "status": "PASS",
+      "name": "Unmount or session end makes late saves inert: no next screen, pending-name clear or old profile"
+    },
+    {
+      "id": "OU05",
+      "status": "PASS",
+      "name": "Combobox keyboard can select/escape; empty popup owns its listbox; next-page actions remain focused and actionable"
+    },
+    {
+      "id": "OU06",
+      "status": "PASS",
+      "name": "Empty filtered page plus failed More shows explicit error and retries the failed page; locale retains open query"
+    },
+    {
+      "id": "OU07",
+      "status": "PASS",
+      "name": "SignIn gates provider on age, coalesces double taps, handles cancel/failure and protects Back during pending OAuth"
+    },
+    {
+      "id": "OU08",
+      "status": "PASS",
+      "name": "Real AuthProvider/router/Onboarding: new account ignores old save, reload uses persistent profile, no logout or OAuth"
+    },
+    {
+      "id": "OV01",
+      "status": "PASS",
+      "name": "Onboarding has no language toggle; actual locale preference input rerenders without losing typed values"
+    },
+    {
+      "id": "OV02",
+      "status": "PASS",
+      "name": "DOB-only real form/service/native backend -> Skip -> transient error -> Retry -> verified daily; no provider or consent"
+    },
+    {
+      "id": "OV03",
+      "status": "PASS",
+      "name": "Authenticated ON-04 Back/Continue preserves draft and session; preparation Back ignores late daily and resumes readback"
+    },
+    {
+      "id": "OV04",
+      "status": "PASS",
+      "name": "Time keyboard and icon share HH:mm; invalid/incomplete values rejected, cancel preserves, Set and Clear are explicit"
+    },
+    {
+      "id": "OV05",
+      "status": "PASS",
+      "name": "App time picker fits 320px/200% text and reduced height, scroll exposes all actions, focus and Escape close only layer"
+    },
+    {
+      "id": "OV06",
+      "status": "PASS",
+      "name": "Account replacement during actual daily request ignores old response and delivers only the current owner readback"
+    },
+    {
+      "id": "P21",
+      "status": "PASS",
+      "name": "Native UTC/offset/zone-less/missing/invalid metadata cannot replace grant time"
+    },
+    {
+      "id": "P22",
+      "status": "PASS",
+      "name": "Missing/invalid business grant time fails without native/device fallback or mutation"
+    },
+    {
+      "id": "P23",
+      "status": "PASS",
+      "name": "Consent survives event write failure/lost response and later retry uses same grant"
+    },
+    {
+      "id": "P24",
+      "status": "PASS",
+      "name": "Period failure before/after commit is safely reconciled without duplicate event or defaults"
+    },
+    {
+      "id": "P25",
+      "status": "PASS",
+      "name": "Conflicting consent/history/settings/period and duplicates are refused before writes"
+    },
+    {
+      "id": "P26",
+      "status": "PASS",
+      "name": "Withdrawal/inactive/deletion changes after event stop subsequent health writes"
+    },
+    {
+      "id": "P27",
+      "status": "PASS",
+      "name": "Reload and simultaneous retries of partial consent preserve exact grant and immutable rows"
+    },
+    {
+      "id": "P28",
+      "status": "PASS",
+      "name": "Independent workers cannot overwrite first grant; detected insert race fails closed"
+    },
+    {
+      "id": "P29",
+      "status": "PASS",
+      "name": "Worker coalescing is bounded, rejects differing in-flight payload and releases on failure"
+    },
+    {
+      "id": "P30",
+      "status": "PASS",
+      "name": "Lost consent insert response resumes existing time rather than issuing a new grant"
+    },
+    {
+      "id": "P31",
+      "status": "PASS",
+      "name": "Hydration requires grant event even with period; retry completes partial legacy state"
+    },
+    {
+      "id": "P32",
+      "status": "PASS",
+      "name": "Consent false, forged timestamps and Skip never create health/consent data"
+    },
+    {
+      "id": "P01",
+      "status": "PASS",
+      "name": "Production path uses real SDK keyed upsert and server owner"
+    },
+    {
+      "id": "P02",
+      "status": "PASS",
+      "name": "Forged owner/admin fields rejected before production mutations"
+    },
+    {
+      "id": "P03",
+      "status": "PASS",
+      "name": "Preferences retry/reload/concurrent requests create one singleton"
+    },
+    {
+      "id": "P04",
+      "status": "PASS",
+      "name": "Profile repeat and concurrent submit create one singleton with approved Sun"
+    },
+    {
+      "id": "P05",
+      "status": "PASS",
+      "name": "Production partial profile readback cannot report completion"
+    },
+    {
+      "id": "P06",
+      "status": "PASS",
+      "name": "Inactive account cannot be recreated/reactivated through real adapter"
+    },
+    {
+      "id": "P07",
+      "status": "PASS",
+      "name": "Profile update uses owner/active/revision predicate and clears full place"
+    },
+    {
+      "id": "P08",
+      "status": "PASS",
+      "name": "Preferences update and valid persisted timezone fallback are verified"
+    },
+    {
+      "id": "P09",
+      "status": "PASS",
+      "name": "Explicit missing-source fixture blocks before health writes"
+    },
+    {
+      "id": "P10",
+      "status": "PASS",
+      "name": "Approved profile and no-health Skip defer Home until actual daily state"
+    },
+    {
+      "id": "P11",
+      "status": "PASS",
+      "name": "Lost write response stays unconfirmed; retry reads the same saved row"
+    },
+    {
+      "id": "P12",
+      "status": "PASS",
+      "name": "Storage failure is sanitized by production HTTP boundary"
+    },
+    {
+      "id": "P13",
+      "status": "PASS",
+      "name": "Duplicate rows fail closed instead of selecting an arbitrary identity"
+    },
+    {
+      "id": "P14",
+      "status": "PASS",
+      "name": "Guarded adapter refuses forged principal and invalid dates/Sun values"
+    },
+    {
+      "id": "P15",
+      "status": "PASS",
+      "name": "Approved-fixture health path uses real adapter and stable grant/event keys"
+    },
+    {
+      "id": "P16",
+      "status": "PASS",
+      "name": "Health partial failure leaves durable evidence; retry repairs without rollback"
+    },
+    {
+      "id": "P17",
+      "status": "PASS",
+      "name": "Same-worker duplicate grants coalesce on first persisted backend grant time"
+    },
+    {
+      "id": "P18",
+      "status": "PASS",
+      "name": "Timezone-less native metadata preserves durable UTC business consent and resumes"
+    },
+    {
+      "id": "P19",
+      "status": "PASS",
+      "name": "Initialization repairs invalid persisted timezone using current valid IANA"
+    },
+    {
+      "id": "P20",
+      "status": "PASS",
+      "name": "Conditional profile update cannot reactivate a concurrently inactive row"
+    },
+    {
+      "id": "C01",
+      "status": "PASS",
+      "name": "CAPRICORN: first/last day and adjacent boundaries"
+    },
+    {
+      "id": "C02",
+      "status": "PASS",
+      "name": "AQUARIUS: first/last day and adjacent boundaries"
+    },
+    {
+      "id": "C03",
+      "status": "PASS",
+      "name": "PISCES: first/last day and adjacent boundaries"
+    },
+    {
+      "id": "C04",
+      "status": "PASS",
+      "name": "ARIES: first/last day and adjacent boundaries"
+    },
+    {
+      "id": "C05",
+      "status": "PASS",
+      "name": "TAURUS: first/last day and adjacent boundaries"
+    },
+    {
+      "id": "C06",
+      "status": "PASS",
+      "name": "GEMINI: first/last day and adjacent boundaries"
+    },
+    {
+      "id": "C07",
+      "status": "PASS",
+      "name": "CANCER: first/last day and adjacent boundaries"
+    },
+    {
+      "id": "C08",
+      "status": "PASS",
+      "name": "LEO: first/last day and adjacent boundaries"
+    },
+    {
+      "id": "C09",
+      "status": "PASS",
+      "name": "VIRGO: first/last day and adjacent boundaries"
+    },
+    {
+      "id": "C10",
+      "status": "PASS",
+      "name": "LIBRA: first/last day and adjacent boundaries"
+    },
+    {
+      "id": "C11",
+      "status": "PASS",
+      "name": "SCORPIO: first/last day and adjacent boundaries"
+    },
+    {
+      "id": "C12",
+      "status": "PASS",
+      "name": "SAGITTARIUS: first/last day and adjacent boundaries"
+    },
+    {
+      "id": "C13",
+      "status": "PASS",
+      "name": "Leap dates valid; invalid dates rejected before backend Sun invocation"
+    },
+    {
+      "id": "C14",
+      "status": "PASS",
+      "name": "Only birth_date reaches resolver; optional time/place never change Sun"
+    },
+    {
+      "id": "C15",
+      "status": "PASS",
+      "name": "Every day of leap year deterministically yields one of exactly 12 signs"
+    },
+    {
+      "id": "C16",
+      "status": "PASS",
+      "name": "Profile readiness requires adult valid domain data and derived Sun"
+    },
+    {
+      "id": "C17",
+      "status": "PASS",
+      "name": "Approved production consent version persists once across taps and retries"
+    },
+    {
+      "id": "C18",
+      "status": "PASS",
+      "name": "Skip restart safely resumes cycle; only actual owner daily record completes"
+    },
+    {
+      "id": "C19",
+      "status": "PASS",
+      "name": "Approved EN/TR copy matches independent request receipt with full parity"
+    },
+    {
+      "id": "C20",
+      "status": "PASS",
+      "name": "Four decisions resolved without new product entity, flag or completion authority"
+    },
+    {
+      "id": "C21",
+      "status": "PASS",
+      "name": "Approved default consent is still explicit and never accepts client version/owner"
+    },
+    {
+      "id": "HC01",
+      "status": "PASS",
+      "name": "Real isolated auth root is READY within deadline without age or OAuth grant"
+    },
+    {
+      "id": "HC02",
+      "status": "PASS",
+      "name": "Only the exact probe path selects isolated presentation"
+    },
+    {
+      "id": "HC03",
+      "status": "PASS",
+      "name": "Missing probe root explicitly times out within its bound"
+    },
+    {
+      "id": "HC04",
+      "status": "PASS",
+      "name": "Mounted root without READY has a separate bounded timeout"
+    },
+    {
+      "id": "HC05",
+      "status": "PASS",
+      "name": "Redirect-loop navigation signals ERROR even with a READY shell"
+    },
+    {
+      "id": "HC06",
+      "status": "PASS",
+      "name": "Render error and inaccessible iframe are explicit ERROR results"
+    },
+    {
+      "id": "HC07",
+      "status": "PASS",
+      "name": "READY requires the actual expected screen, root and geometry"
+    },
+    {
+      "id": "HC08",
+      "status": "PASS",
+      "name": "H05-009 accepts all three present empty schemas with live counts"
+    },
+    {
+      "id": "HC09",
+      "status": "PASS",
+      "name": "Any positive content count fails with entity/count provenance"
+    },
+    {
+      "id": "HC10",
+      "status": "PASS",
+      "name": "Missing duplicate malformed unavailable counts cannot imply zero"
+    },
+    {
+      "id": "HC11",
+      "status": "PASS",
+      "name": "Import true fails and missing import evidence blocks; positive rows still fail"
+    },
+    {
+      "id": "HC12",
+      "status": "PASS",
+      "name": "Future content package requires approved imported-content validation"
+    },
+    {
+      "id": "HC13",
+      "status": "PASS",
+      "name": "Admin count action uses only three exact unfiltered aggregates"
+    },
+    {
+      "id": "HC14",
+      "status": "PASS",
+      "name": "Failed aggregate returns sanitized inconclusive, never zero"
+    },
+    {
+      "id": "HC15",
+      "status": "PASS",
+      "name": "Live content count action denies anonymous/user/forged admin before access"
+    },
+    {
+      "id": "HC16",
+      "status": "PASS",
+      "name": "H05-009 unavailable live transport is BLOCKED, not PASS"
+    },
+    {
+      "id": "AP01",
+      "status": "PASS",
+      "name": "READY is committed synchronously from the real DOM without an animation frame"
+    },
+    {
+      "id": "AP02",
+      "status": "PASS",
+      "name": "StrictMode and explicit unmount/remount leave a durable verified READY"
+    },
+    {
+      "id": "AP03",
+      "status": "PASS",
+      "name": "Parent observation started before child commit sees READY"
+    },
+    {
+      "id": "AP04",
+      "status": "PASS",
+      "name": "Parent observation started after child commit sees durable READY"
+    },
+    {
+      "id": "AP05",
+      "status": "PASS",
+      "name": "Unmount before readiness produces ERROR and removes the fixture"
+    },
+    {
+      "id": "AP06",
+      "status": "PASS",
+      "name": "Missing external browser measurement blocks immediately without creating a frame"
+    },
+    {
+      "id": "AP07",
+      "status": "PASS",
+      "name": "Timeout and propagated failures retain complete non-sensitive probe diagnostics"
+    },
+    {
+      "id": "AP08",
+      "status": "PASS",
+      "name": "A present but unmeasurable shell cannot signal READY"
+    },
+    {
+      "id": "M01",
+      "status": "PASS",
+      "name": "Active ledger preserves all packages below five and exactly five"
+    },
+    {
+      "id": "M02",
+      "status": "PASS",
+      "name": "Six or more unordered packages evict only oldest unique packages, retaining current"
+    },
+    {
+      "id": "M03",
+      "status": "PASS",
+      "name": "Same-package updates consolidate summary and keep latest status/open issues"
+    },
+    {
+      "id": "M04",
+      "status": "PASS",
+      "name": "Missing current, future, invalid and discontinuous packages cannot be published"
+    },
+    {
+      "id": "M05",
+      "status": "PASS",
+      "name": "Real source, generated history and initial dependency closure obey maintenance rules"
+    },
+    {
+      "id": "M08",
+      "status": "PASS",
+      "name": "Read-only place search reads one owner profile, skips preferences, and still denies inactive/anonymous"
+    },
+    {
+      "id": "M09",
+      "status": "PASS",
+      "name": "Health runner rejects duplicate starts, ignores stale history and preserves completed audit on unmount"
+    },
+    {
+      "id": "M10",
+      "status": "PASS",
+      "name": "Failed Health save retries the same completed run without rerunning tests"
+    },
+    {
+      "id": "AN01",
+      "status": "PASS",
+      "name": "Internal inventory has exactly the panel and three tools; language is display-only"
+    },
+    {
+      "id": "AN02",
+      "status": "PASS",
+      "name": "Pending identity never exposes admin entry or protected content"
+    },
+    {
+      "id": "AN03",
+      "status": "PASS",
+      "name": "Ordinary user denied on all internal routes despite forged route state"
+    },
+    {
+      "id": "AN04",
+      "status": "PASS",
+      "name": "Anonymous direct routes follow existing login redirect"
+    },
+    {
+      "id": "AN05",
+      "status": "PASS",
+      "name": "Refresh hides admin UI immediately and verified role loss removes it"
+    },
+    {
+      "id": "AN06",
+      "status": "PASS",
+      "name": "Logout closes access even if transport fails and an older admin response arrives"
+    },
+    {
+      "id": "AN07",
+      "status": "PASS",
+      "name": "An obsolete admin response cannot overwrite a newer denied role"
+    },
+    {
+      "id": "AN08",
+      "status": "PASS",
+      "name": "Admin panel TR/EN cards navigate to all three tools, return to panel and existing app entry"
+    },
+    {
+      "id": "DM01",
+      "status": "PASS",
+      "name": "Category decision required; source blueprint preserves exact paired texts"
+    },
+    {
+      "id": "DM02",
+      "status": "PASS",
+      "name": "Import dry-run, bounded batches, repeat and source/native crosswalk"
+    },
+    {
+      "id": "DM03",
+      "status": "PASS",
+      "name": "Partial/lost-response import resumes without overwrite; conflicting content blocks"
+    },
+    {
+      "id": "DM04",
+      "status": "PASS",
+      "name": "Duplicate/missing/unknown rows and broken category references cannot be ready"
+    },
+    {
+      "id": "DM05",
+      "status": "PASS",
+      "name": "Importer denies ordinary/anonymous and client source/role authority"
+    },
+    {
+      "id": "DM06",
+      "status": "PASS",
+      "name": "28/5 lookup and every supported day have one phase; menstrual wins overlap"
+    },
+    {
+      "id": "DM07",
+      "status": "PASS",
+      "name": "Observed cycle average, single outlier and computation-only defaults"
+    },
+    {
+      "id": "DM08",
+      "status": "PASS",
+      "name": "Invalid/overlapping cycle observations are errors, never UNKNOWN"
+    },
+    {
+      "id": "DM09",
+      "status": "PASS",
+      "name": "Astronomy Engine two-year continuous UTC intervals and USNO reference"
+    },
+    {
+      "id": "DM10",
+      "status": "PASS",
+      "name": "Moon boundaries choose new phase; gaps, overlaps and missing zone rejected"
+    },
+    {
+      "id": "DM11",
+      "status": "PASS",
+      "name": "Backend local calendar days across UTC, travel and DST"
+    },
+    {
+      "id": "DM12",
+      "status": "PASS",
+      "name": "Day 40 protected, day 41 eligible with explicit calendar boundary"
+    },
+    {
+      "id": "DM13",
+      "status": "PASS",
+      "name": "All fallback stages, least-recent and random ties store actual pair category"
+    },
+    {
+      "id": "DM14",
+      "status": "PASS",
+      "name": "Daily commit/readback, reopen and changed profile/copy preserve assignment and resolve current text"
+    },
+    {
+      "id": "DM15",
+      "status": "PASS",
+      "name": "Concurrent request protocol returns one winning immutable assignment"
+    },
+    {
+      "id": "DM16",
+      "status": "PASS",
+      "name": "Unverified production primitive refuses new writes; pre-existing row stays readable"
+    },
+    {
+      "id": "DM17",
+      "status": "PASS",
+      "name": "Owner/anonymous/inactive and forged day/category are rejected"
+    },
+    {
+      "id": "DM18",
+      "status": "PASS",
+      "name": "Absent/withdrawn consent uses UNKNOWN without reading health data"
+    },
+    {
+      "id": "DM19",
+      "status": "PASS",
+      "name": "Valid consent enables known phase; deletion and malformed consent fail closed"
+    },
+    {
+      "id": "DM20",
+      "status": "PASS",
+      "name": "Missing content, Moon gap and failed readback never complete ON-06"
+    },
+    {
+      "id": "DM21",
+      "status": "PASS",
+      "name": "Lost write response retry reads prior winner; earlier day still resolves Home"
+    },
+    {
+      "id": "DM22",
+      "status": "PASS",
+      "name": "Skip is no-write and daily error response contains no private payload"
+    },
+    {
+      "id": "DM23",
+      "status": "PASS",
+      "name": "Staged content Health rejects positive partial counts and wrong source hash"
+    },
+    {
+      "id": "DM24",
+      "status": "PASS",
+      "name": "Moon import dry-run, partial tail, reviewed batches and repeat"
+    },
+    {
+      "id": "DM25",
+      "status": "PASS",
+      "name": "Malformed durable assignment cannot mark onboarding complete"
+    },
+    {
+      "id": "DM26",
+      "status": "PASS",
+      "name": "OD-002 exact user-approved codes and TR/EN names with honest provenance"
+    },
+    {
+      "id": "DM27",
+      "status": "PASS",
+      "name": "Category definition requires six unique codes, exact labels and both names"
+    },
+    {
+      "id": "DM28",
+      "status": "PASS",
+      "name": "Approved category import preserves source Pair text and mapping identity"
+    },
+    {
+      "id": "DU05",
+      "status": "PASS",
+      "name": "Reopened kept-mounted Home reads current MessagePair text and retains daily ID"
+    },
+    {
+      "id": "DU01",
+      "status": "PASS",
+      "name": "ON-06 failed write, retry readback, Home and locale retain same pair"
+    },
+    {
+      "id": "DU02",
+      "status": "PASS",
+      "name": "Completed Home error stays Home; late unmounted preparation cannot navigate"
+    },
+    {
+      "id": "DU03",
+      "status": "PASS",
+      "name": "A day or timezone change during preparation discards the stale response"
+    },
+    {
+      "id": "DU04",
+      "status": "PASS",
+      "name": "Reconciled daily success shows no technical notice; same ID, TR/EN content, no extra request"
+    },
+    {
+      "id": "CQ10",
+      "status": "PASS",
+      "name": "Real Home renders strings as text and hides hydrated name through access denial and pending retry"
+    },
+    {
+      "id": "CQ06",
+      "status": "PASS",
+      "name": "Home discards retained daily after lifecycle/owner/profile denial through actual service and hook"
+    },
+    {
+      "id": "CQ07",
+      "status": "PASS",
+      "name": "Session-ended daily hook rejects late results and remains stopped across day/focus/manual reload"
+    },
+    {
+      "id": "CQ08",
+      "status": "PASS",
+      "name": "Real You screen locks edit after preferences response loss and failed check; verified check unlocks"
+    },
+    {
+      "id": "RC01",
+      "status": "PASS",
+      "name": "Past/today native save readback/reopen and duplicate/near-date rejection preserve exact counts"
+    },
+    {
+      "id": "RC02",
+      "status": "PASS",
+      "name": "No-write and lost entire response retry same ID; partial add/edit/delete resumes saved receipt after reload"
+    },
+    {
+      "id": "RC03",
+      "status": "PASS",
+      "name": "Explicit retry supersedes hung passive read; old read and old mutation finally cannot change new account"
+    },
+    {
+      "id": "RC04",
+      "status": "PASS",
+      "name": "Actual service 20s controlled deadline clears timer; late SDK response cannot confirm or reuse aborted view"
+    },
+    {
+      "id": "RC05",
+      "status": "PASS",
+      "name": "Pending intent exposes no health after withdrawal; current owner/active/lifecycle gates still prevent resume"
+    },
+    {
+      "id": "CF01",
+      "status": "PASS",
+      "name": "Native future add/edit rejected before every health/receipt write; today/past still save"
+    },
+    {
+      "id": "CF02",
+      "status": "PASS",
+      "name": "Server IANA day controls year/month/midnight boundaries; forged today and synthetic atomic path fail closed"
+    },
+    {
+      "id": "CF03",
+      "status": "PASS",
+      "name": "Pending initial grant resume and APPLIED replay cannot bypass fresh day; no implicit repair or duplicate writes"
+    },
+    {
+      "id": "CF04",
+      "status": "PASS",
+      "name": "Legacy future observation remains visible and correctable/deletable with predictions withheld"
+    },
+    {
+      "id": "CF05",
+      "status": "PASS",
+      "name": "Selection/prediction is not saved; future UI handler and false success envelopes cannot confirm mutation"
+    },
+    {
+      "id": "CR01",
+      "status": "PASS",
+      "name": "OD-012 filters after the last-three window; no older backfill or invented dates"
+    },
+    {
+      "id": "CR02",
+      "status": "PASS",
+      "name": "Empty history differs from unsupported history; inclusive 15/60, mean/outlier and half-up remain"
+    },
+    {
+      "id": "CR03",
+      "status": "PASS",
+      "name": "Mixed supported/unsupported real cycles keep history; no phases inside >60-day closed interval"
+    },
+    {
+      "id": "CR04",
+      "status": "PASS",
+      "name": "Accepted long add/edit remove stale current predictions; null settings, grant and daily stay unchanged"
+    },
+    {
+      "id": "CR05",
+      "status": "PASS",
+      "name": "Long-interval partial transaction failure and retry use the existing receipt model"
+    },
+    {
+      "id": "CR06",
+      "status": "PASS",
+      "name": "Home generates UNKNOWN for unsupported window; existing daily snapshot never changes"
+    },
+    {
+      "id": "CR07",
+      "status": "PASS",
+      "name": "Unsupported observations do not conceal invalid duration, access, consent or storage errors"
+    },
+    {
+      "id": "CA01",
+      "status": "PASS",
+      "name": "Source 28/5 phases, three future cycles, real/predicted basis and NULL inputs"
+    },
+    {
+      "id": "CA02",
+      "status": "PASS",
+      "name": "Source 26/27/45 preserves actual outlier, half-up 27 and unsupported history"
+    },
+    {
+      "id": "CA03",
+      "status": "PASS",
+      "name": "Duplicate and 14 days rejected, 15 accepted on both sides outside displayed month"
+    },
+    {
+      "id": "CA04",
+      "status": "PASS",
+      "name": "Leap/year/local date and DST boundaries; invalid/future starts fail"
+    },
+    {
+      "id": "CA05",
+      "status": "PASS",
+      "name": "Add, reopen, edit same ID, delete last and retain settings and grant time"
+    },
+    {
+      "id": "CA06",
+      "status": "PASS",
+      "name": "Failed derived commit preserves every previous collection; repeat completes once"
+    },
+    {
+      "id": "CA07",
+      "status": "PASS",
+      "name": "Lost response and independent worker retry replay durable receipt without duplicate writes"
+    },
+    {
+      "id": "CA08",
+      "status": "PASS",
+      "name": "Two independent workers serialize conflicting revisions; distinct IDs cannot bypass duplicate rule"
+    },
+    {
+      "id": "CA09",
+      "status": "PASS",
+      "name": "Production refuses mutations without SDK writes; no forged owner/authority/derived input"
+    },
+    {
+      "id": "CA10",
+      "status": "PASS",
+      "name": "No consent means no health reads; entry/selection cannot grant consent"
+    },
+    {
+      "id": "CA11",
+      "status": "PASS",
+      "name": "Inactive, open deletion job, missing event and other owner are refused"
+    },
+    {
+      "id": "CA12",
+      "status": "PASS",
+      "name": "Explicit regrant only after verified deletion; no restoration or new timestamp on retry"
+    },
+    {
+      "id": "CA13",
+      "status": "PASS",
+      "name": "Full paginated history, no per-day queries and no silent truncation"
+    },
+    {
+      "id": "CA14",
+      "status": "PASS",
+      "name": "Historical phases preserve unaffected values; daily assignment and current linked TR/EN survive mutations"
+    },
+    {
+      "id": "CA15",
+      "status": "PASS",
+      "name": "Controller selection/edit/delete cancel writes nothing; failure preserves date and prior data"
+    },
+    {
+      "id": "CA16",
+      "status": "PASS",
+      "name": "Old responses cannot restore health after invalidation/session disposal; double submits coalesce"
+    },
+    {
+      "id": "CA17",
+      "status": "PASS",
+      "name": "Malformed durable readback, unsafe transport and raw error disclosure fail closed"
+    },
+    {
+      "id": "CA18",
+      "status": "PASS",
+      "name": "Real days override predictions; delete non-start refused and changed references have no dangling IDs"
+    },
+    {
+      "id": "CA19",
+      "status": "PASS",
+      "name": "Regrant with residual health rejected; consent changes cannot be bypassed by prior action receipt"
+    },
+    {
+      "id": "CA20",
+      "status": "PASS",
+      "name": "Initial grant and late conflict are all-or-nothing; fresh transaction guards beat earlier UI reads"
+    },
+    {
+      "id": "CA21",
+      "status": "PASS",
+      "name": "Late mutation cannot restore health after access invalidation; monthly navigation retains edit ID"
+    },
+    {
+      "id": "CA22",
+      "status": "PASS",
+      "name": "Late-day receipt replay does not recalculate the committed cache or issue consent again"
+    },
+    {
+      "id": "CA23",
+      "status": "PASS",
+      "name": "Superseded receipt never restores deleted records or reports a stale save as success"
+    },
+    {
+      "id": "CU06",
+      "status": "PASS",
+      "name": "Partial native grant reopens in TR/EN and Retry uses saved consent intent"
+    },
+    {
+      "id": "CU07",
+      "status": "PASS",
+      "name": "Reload resumes saved native add intent and confirms visible date without a new ID"
+    },
+    {
+      "id": "CU05",
+      "status": "PASS",
+      "name": "Unsupported estimate is central TR/EN information with real dates and no stale predicted days"
+    },
+    {
+      "id": "CU01",
+      "status": "PASS",
+      "name": "Monthly TR/EN, labeled real/predicted/selected days, \u226544px keyboard controls and no selection writes"
+    },
+    {
+      "id": "CU02",
+      "status": "PASS",
+      "name": "Actual start delete confirmation, cancel and last-delete empty state"
+    },
+    {
+      "id": "CU03",
+      "status": "PASS",
+      "name": "No consent hides health; exact approved checkbox starts unchecked; production block is visible"
+    },
+    {
+      "id": "CU04",
+      "status": "PASS",
+      "name": "Known withdrawal invalidates in-flight health, and unmount cannot revive data"
+    },
+    {
+      "id": "AT17",
+      "status": "PASS",
+      "name": "Missing lifecycle schema fails closed before product work; additive schema restores reads"
+    },
+    {
+      "id": "AT01",
+      "status": "PASS",
+      "name": "Every Test Tools action denies anonymous/user/forged roles before entity access"
+    },
+    {
+      "id": "AT02",
+      "status": "PASS",
+      "name": "Closed payload, absent target and real server environment; no client authority"
+    },
+    {
+      "id": "AT03",
+      "status": "PASS",
+      "name": "Lookup/preview shows selected identity only; excludes health, snapshots and credentials"
+    },
+    {
+      "id": "AT04",
+      "status": "PASS",
+      "name": "Confirmation is actor/target/action/app/expiry bound; changed scope fails"
+    },
+    {
+      "id": "AT05",
+      "status": "PASS",
+      "name": "Self-delete and last admin denied in backend, including role changes after preview"
+    },
+    {
+      "id": "AT06",
+      "status": "PASS",
+      "name": "Delete pages through operational rows, stops pending jobs, preserves history/shared/other owner"
+    },
+    {
+      "id": "AT07",
+      "status": "PASS",
+      "name": "Incoming and outgoing foreign-reference corruption blocks deletion"
+    },
+    {
+      "id": "AT08",
+      "status": "PASS",
+      "name": "No coordinator and failed start audit never mutate a user"
+    },
+    {
+      "id": "AT09",
+      "status": "PASS",
+      "name": "Partial cleanup/retry and lost delete response resume one durable operation"
+    },
+    {
+      "id": "AT10",
+      "status": "PASS",
+      "name": "Duplicate requests and reset/delete race serialize in two fixture workers"
+    },
+    {
+      "id": "AT11",
+      "status": "PASS",
+      "name": "Deleted user with old auth token is denied; deletion tombstone also denies recreated ID"
+    },
+    {
+      "id": "AT12",
+      "status": "PASS",
+      "name": "Reset preserves every product row, identity/provider/role and old daily; survives new client"
+    },
+    {
+      "id": "AT13",
+      "status": "PASS",
+      "name": "Reset normal profile validation, Skip and final readback reuse the same daily without new consent"
+    },
+    {
+      "id": "AT14",
+      "status": "PASS",
+      "name": "Reset inactive/open deletion gates, unchanged withdrawn consent and admin self reset"
+    },
+    {
+      "id": "AT15",
+      "status": "PASS",
+      "name": "Lifecycle guard reads current role; reset commit failure retains previous stage/product state"
+    },
+    {
+      "id": "AT16",
+      "status": "PASS",
+      "name": "Scope explicitly covers all product schemas; shared/error/history never enter delete allowlist"
+    },
+    {
+      "id": "AU01",
+      "status": "PASS",
+      "name": "Test Tools TR/EN, mobile touch controls and explicit blocked preview"
+    },
+    {
+      "id": "AU02",
+      "status": "PASS",
+      "name": "Changing User ID invalidates target/preview/confirmation and ignores late lookup"
+    },
+    {
+      "id": "AU03",
+      "status": "PASS",
+      "name": "Single explicit confirmation shows target; cancel restores focus without mutation"
+    },
+    {
+      "id": "AU04",
+      "status": "PASS",
+      "name": "Double click submits one reset; resulting operation remains visible for status"
+    },
+    {
+      "id": "AU05",
+      "status": "PASS",
+      "name": "Native delete shows current identity and needs one confirmation in TR/EN"
+    },
+    {
+      "id": "AU06",
+      "status": "PASS",
+      "name": "Deletion announces progress, reconciles lost response and restores the same operation after reload"
+    },
+    {
+      "id": "AU07",
+      "status": "PASS",
+      "name": "Unknown response stays unknown after bounded reads; partial job offers same-operation resume"
+    },
+    {
+      "id": "AU08",
+      "status": "PASS",
+      "name": "Acknowledged bounded passes continue one approval; no second operation on double click"
+    },
+    {
+      "id": "AU09",
+      "status": "PASS",
+      "name": "Lost continuation response switches to read-only reconciliation and never resumes again"
+    },
+    {
+      "id": "AU10",
+      "status": "PASS",
+      "name": "TR/EN completed removal clears the old identity and reopens the same operation without writes"
+    }
+  ]
+}
