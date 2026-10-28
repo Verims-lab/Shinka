@@ -2,13 +2,21 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-048
+**Current BuildMarker:** Buildmarker-049
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 049 — narrow stability and maintenance continuation
+
+Before-fix Chromium regressions failed: SS13 startup remained loading after the controlled deadline; DU06 same-day foreground recovery never requested. Both pass after bounded session waits and failure-aware Home recovery. Existing retry pacing, lost-response same-day reconciliation, privacy/account guards and 048 theme remain. Safe stage diagnostics and the small internalHealth maintenance dispatch improve diagnosability/operability without new data architecture.
+
+Hosted 048: applicationSession/onboarding/dailyMessage HTTP 200 at 732/1320/1370ms in one normal reload; Pattern→Home retained the same daily ID. Intermittent failure not reproduced. dailyMessage function log UI returned no entries twice; this is not proof of absence of failures. Web applicationSession confirmed native admin; migration dryRun returned INVALID_INTERNAL_ACTION before data inspection. Cleanup remains 0 inspected / 0 cleaned / remaining unknown / full verify NOT_RUN, publication-gated. No maintenance write, explicit profile/consent/cycle mutation, Full Health, scan, sending or publish. See reports/SHINKA_LOADING_CLEANUP_049.md for evidence and exact owner action.
+
+049 final local execution: Chromium/WebKit each 734 PASS / 0 FAIL / 0 page errors; local Health 140 PASS / 13 hosted-prerequisite BLOCKED, with save/list/open verified. Node admission 8/8 and session 9/9, required quality gates and original performance budgets passed. Health changes 0 added / 6 updated / 0 removed; active history 045–049. Hosted/device and final schema acceptance remain open.
 
 ## 048 — Focused theme alignment and 045 access-blocked continuation
 

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-048
+**Current BuildMarker:** Buildmarker-049
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,6 +12,10 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 049 — Bounded opening and Home recovery
+
+Initial session/settings reads settle within a 15-second total budget (including the existing two paced session retries). A transient timeout offers the existing retry state, not logout or a second sign-in. Home keeps its existing simple loading/error/Retry presentation; no technical notice is added. Returning to a visible same-day Home after a failed load starts one fresh coalesced attempt; inactive retained tabs do not request. Verified cards, theme/art and account/unmount guards remain. Local fault injection is not hosted incident closure.
 
 ## 048 — Current manual application theme
 

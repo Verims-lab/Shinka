@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-048
+**Current BuildMarker:** Buildmarker-049
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 049 — Bounded waits and maintenance evidence
+
+One total session deadline covers the existing retry sequence; do not multiply the startup budget per attempt. Dispose local timers/listeners and invalidate stale results without claiming physical SDK cancellation. Use deterministic fixture clocks, retain before-fix failures and test real React providers plus native Request/Response handlers. Safe diagnostics use the existing closed healthReadDiagnostic vocabulary; never log arbitrary SDK error.code/message/body/headers. The daily transport diagnostic is not a user-facing technical label. Maintenance stays the fixed 045 four-field operation: bounded ID pages, reviewed digest, fresh guards, sequential literal-ID update/readback and assignment/link receipts; no generic CRUD endpoint or direct browser service role.
 
 ## 048 — Theme verification integrity
 

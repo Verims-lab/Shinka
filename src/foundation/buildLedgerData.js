@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-044",
-    "package_name": "Profile notification preference and phone permission guidance",
-    "package_type": "FEATURE_VERIFICATION",
-    "created_at": "2026-10-28T11:08:53Z",
-    "health_catalog_version": "HC-043.0",
-    "short_summary": "Separate saved, draft and unconfirmed notification choices in You; simple TR/EN phone-permission and pending-setup guidance; verify retry, account boundaries and fresh opt-out admission.",
-    "full_health_status": "LOCAL_SYNTHETIC_ONLY / NATIVE_AND_HOSTED_ACCEPTANCE_OPEN",
-    "notes": "Preserves main Base44 043 auth/header/dependency changes. Adds six regressions; HC-042.0 → HC-043.0 once, five existing Health cases updated, no IDs added/removed. Cancel pending auth retry on account/logout; controlled tests preserve two 700/1400ms retries. Sending remains disabled. No workflow, native setup, live mutation/Health/scan or main publish. Active 040–044. Final evidence: SHINKA_NOTIFICATION_PREFERENCES_044.md.",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true
-  },
-  {
     "build_marker": "Buildmarker-045",
     "package_name": "ID-based daily content and bounded legacy cleanup",
     "package_type": "AUDIT_FIX",
@@ -57,5 +43,19 @@ export default [
     "short_summary": "Align verified manual theme, rendered Health and canonical rules; retain 045 compatibility until complete hosted cleanup verification.",
     "full_health_status": "NOT_RUN",
     "notes": "Manual theme uses verified account preference, independent of OS; H13 compares independent expectation with DOM. Complete local browser/quality evidence: reports/theme-cleanup-048. 045 hosted cleanup: 0 inspected / 0 cleaned / remaining unknown, verify NOT_RUN; CLI_LOGIN_REQUIRED twice, then explicitly owner-deferred. Optional compatibility schema retained. No live Health/scan, main merge or publish; active packages 044–048."
+  },
+  {
+    "build_marker": "Buildmarker-049",
+    "package_name": "Bounded opening and reviewed daily cleanup web preparation",
+    "package_type": "FIX",
+    "created_at": "2026-10-28T16:45:10.085232Z",
+    "health_catalog_version": "HC-048.0",
+    "short_summary": "Bound session/settings waits, recover failed foreground Home, retain safe stage diagnostics; prepare narrow web dispatch and assignment/link receipts for authorized 045 cleanup.",
+    "full_health_status": "LOCAL_140_PASS_13_BLOCKED_0_FAIL_HOSTED_NOT_RUN",
+    "source_of_truth_updated": true,
+    "tests_updated": true,
+    "health_cases_updated": true,
+    "docs_aligned": true,
+    "notes": "Chromium/WebKit each 734/734 PASS, 0 page errors; local Health 140 PASS/13 hosted-prerequisite BLOCKED/0 FAIL. Preserves 048 theme/art and ID-only writes. Health add 0/update 6/delete 0. Original SS13/DU06 failures retained. Hosted 048 reopening succeeded; intermittent failure not reproduced. Web dryRun rejected INVALID_INTERNAL_ACTION: 0 inspected/0 cleaned/remaining unknown, verify NOT_RUN. Compatibility schema retained. No main/publish, live Full Health/scan or maintenance write. Active 045–049; evidence in SHINKA_LOADING_CLEANUP_049.md."
   }
 ];

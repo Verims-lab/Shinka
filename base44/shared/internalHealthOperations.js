@@ -5,9 +5,17 @@ import { saveHealthReport, findHealthRun } from './healthPersistence.js';
 import { DOMAIN_ENTITIES } from "./domainContract.js";
 import { CONTENT_ENTITY_NAMES } from "./contentStateContract.js";
 import { healthReadDiagnostic, healthReadError } from './healthReadDiagnostics.js';
+import { dailyReferenceMigration } from './dailyReferenceMigration.js';
 
 // Called only inside handleInternalRequest, after server auth.me() succeeds.
 export async function internalHealthOperation(client, body, {geoNamesTransportProbe=null, uploadSigner=null}={}) {
+  if (body.action === 'dailyReferenceMigration') {
+    if (Object.keys(body).some(key => !['action','request'].includes(key))) throw new InternalError('INVALID_REQUEST',400);
+    if (client.getConfig?.().appId !== '6ad5190f4845d4e3af03b420') throw new InternalError('MIGRATION_APP_MISMATCH',409);
+    // The module re-verifies current native admin + ACTIVE/lifecycle; only its
+    // three closed operations and literal four-field unset are available.
+    return dailyReferenceMigration(client, body.request);
+  }
   if (body.action === 'nativeReadiness') {
     if (Object.keys(body).length !== 1) throw new InternalError('INVALID_REQUEST', 400);
     return nativeReadiness(client);

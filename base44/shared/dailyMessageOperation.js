@@ -1,3 +1,4 @@
+import { healthReadDiagnostic } from './healthReadDiagnostics.js';
 import { readUserLifecycle, resetOnboardingStep } from './userLifecycle.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
 import { readBoundedJson } from './boundedJson.js';
@@ -23,7 +24,7 @@ const domainFields = entity => Object.keys(DOMAIN_SCHEMAS[entity].properties);
 // for historical executable protocol tests; keyed upsert is never used here.
 // entryPrincipal: minted by this same request's entry immediately before; it is
 // consumed by the first admission only. Every later phase re-verifies auth.me().
-async function normalDailyMessageOperation(client, body, { now = () => new Date(), atomic = null, native = false, library = null, random = Math.random, resetFlow = false } = {}, entryPrincipal = null) {
+async function normalDailyMessageOperation(client, body, { now = () => new Date(), atomic = null, native = false, library = null, random = Math.random, resetFlow = false, trace = (_stage) => {} } = {}, entryPrincipal = null) {
   const principal = entryPrincipal || await requireAuthenticatedUser(client);
   const owner = resolveAuthenticatedOwner(principal, body);
   let pending = principal;
@@ -35,11 +36,11 @@ async function normalDailyMessageOperation(client, body, { now = () => new Date(
     // Only the explicitly coordinated reset flow may continue through it.
     if (!first && !resetFlow && await readUserLifecycle(client,owner)) fail('ONBOARDING_RESTART_REQUIRED',409);
   };
-  return produceDailyForOwner(client, owner, body, { now, atomic, native, library, random, resetFlow, syncTimezone: native }, admit);
+  return produceDailyForOwner(client, owner, body, { now, atomic, native, library, random, resetFlow, syncTimezone: native, trace }, admit);
 }
 // Shared domain engine. Caller must supply fresh owner admission; HTTP users and
 // the scheduler have separate entry authorization. Never accepts a request role.
-export async function produceDailyForOwner(client, owner, body, { now = () => new Date(), atomic = null, native = false, library = null, random = Math.random, resetFlow = false, syncTimezone = false } = {}, admit) {
+export async function produceDailyForOwner(client, owner, body, { now = () => new Date(), atomic = null, native = false, library = null, random = Math.random, resetFlow = false, syncTimezone = false, trace = (_stage) => {} } = {}, admit) {
   const admitted = await admit();
   if (body.action !== 'today' || Object.keys(body).some(key => !['action', 'timezone'].includes(key))) fail('INVALID_REQUEST', 400);
   const store = client.asServiceRole.entities;
@@ -57,6 +58,7 @@ export async function produceDailyForOwner(client, owner, body, { now = () => ne
     if (rows.length > 1) fail('DUPLICATE_OWNER_STATE');
     return rows[0] ? normalizeDomainRead(entity, rows[0]) : null;
   };
+  trace('DAILY_PROFILE');
   const profile = await singleton('user_profile', admitted?.profile);
   assertActiveAccount(owner, profile);
   let preferences = await singleton('user_preferences', admitted?.preferences);
@@ -71,11 +73,14 @@ export async function produceDailyForOwner(client, owner, body, { now = () => ne
   const instant = now(), day = serverLocalDate(instant, timezone);
   const persistence = native ? nativeDailyPersistence(client, owner) : null;
   if (resetFlow && !isOnboardingProfileReady(profile, preferences, day)) fail('PROFILE_COMPLETION_REQUIRED');
+  trace('DAILY_EXISTING');
   const reconciled = persistence ? await persistence.existing(day) : null;
   const existing = persistence ? (reconciled.record ? [reconciled.record] : []) : await read('user_daily_message', 2, { shinka_date: day });
   if (existing.length > 1) fail('DUPLICATE_DAILY_MESSAGE');
   if (existing.length) {
+    trace('DAILY_CONTENT_REFERENCE');
     const daily = await dailyResponseRecord(client, existing[0], owner, day);
+    trace('DAILY_READBACK');
     const current = await admit();
     assertActiveAccount(owner, await singleton('user_profile', current?.profile));
     return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: false, notice: reconciled?.notice || null, daily, profile: { display_name: profile.display_name }, timezone };
@@ -83,6 +88,7 @@ export async function produceDailyForOwner(client, owner, body, { now = () => ne
   if (!isOnboardingProfileReady(profile, preferences, day)) fail('PROFILE_COMPLETION_REQUIRED');
   if (!atomic && !persistence) fail('DAILY_ATOMIC_CAPABILITY_REQUIRED', 503);
   if (typeof library !== 'function') fail('CONTENT_NOT_READY', 503);
+  trace('DAILY_SELECTION');
   const content = await library(client);
   if (!content.plan.ready) fail('CONTENT_NOT_READY', 503);
   const moonRows = await store.MoonPhaseLookup.filter({}, 'start_at_utc', 1201, 0, ['phase_code', 'start_at_utc', 'end_at_utc']);
@@ -110,6 +116,7 @@ export async function produceDailyForOwner(client, owner, body, { now = () => ne
   const history = persistence ? await persistence.history(repeatWindowStart(day), day) : await read('user_daily_message', 41, { shinka_date: { $gte: repeatWindowStart(day), $lte: day } }, '-shinka_date', ['shinka_date', 'message_pair_id']);
   if (!persistence && (history.length > 40 || new Set(history.map(row => row.shinka_date)).size !== history.length)) fail('DUPLICATE_DAILY_MESSAGE');
   const { pair } = selectDailyPair({ pairs: content.actual.message_pair, history, categoryId: mappings[0].category_id, day, random });
+  trace('DAILY_CONTENT_REFERENCE');
   const currentTexts = await readMessageTextMap(client, [pair.id]);
   const record = dailyAssignment({ owner, day, timezone, pair, now: instant });
   const guard = async () => {
@@ -122,10 +129,12 @@ export async function produceDailyForOwner(client, owner, body, { now = () => ne
     assertHealthConsent(owner, latest, await read('health_data_deletion_job', 1, { job_status: { $ne: 'COMPLETED' } }));
   }
   };
+  trace('DAILY_PERSISTENCE');
   const outcome = persistence ? await persistence.save(record, guard) : await createOnce('user_daily_message', record, SYSTEM_AUTHORITIES.DAILY_MESSAGE, {
     read: (entity, id) => atomic.read(entity, id),
     createIfAbsent: request => atomic.createIfAbsent({ ...request, requirements: { ...request.requirements, healthInput: healthGuard } }),
   });
+  trace('DAILY_READBACK');
   const daily = await dailyResponseRecord(client, outcome.record, owner, day, currentTexts);
   await guard();
   return { state: 'ACTIVE_EXISTING_USER', persisted: true, created: outcome.created, notice: outcome.notice || null, daily, profile: { display_name: profile.display_name }, timezone };
@@ -140,11 +149,15 @@ export async function dailyMessageOperation(client, body, dependencies = {}) {
   });
 }
 export async function handleDailyMessageRequest(req, createClient, dependencies = {}) {
+  const requestId = crypto.randomUUID(), started = Date.now();
+  let stage = 'SESSION_AUTH_LIFECYCLE';
+  const trace = value => { stage = value; };
   try {
     if (req.method !== 'POST') fail('METHOD_NOT_ALLOWED', 405);
     const body = await readBoundedJson(req, 2000, fail);
-    return Response.json(await dailyMessageOperation(createClient(req), body, dependencies));
+    const result = await dailyMessageOperation(createClient(req), body, { ...dependencies, trace });
+    return Response.json({ ...result, diagnostic: { requestId, stage: 'DAILY_READBACK', durationMs: Date.now() - started } });
   } catch (error) {
-    return Response.json({ error_code: error instanceof InternalError ? error.code : 'DAILY_OPERATION_FAILED', ...(error instanceof InternalError && error.diagnostic?.stage === 'DAILY_CONTENT_REFERENCE' ? {diagnostic:error.diagnostic} : {}) }, { status: error instanceof InternalError ? error.status : 500 });
+    return Response.json({ error_code: error instanceof InternalError ? error.code : 'DAILY_OPERATION_FAILED', diagnostic: { ...healthReadDiagnostic(error, { stage, durationMs: Date.now() - started }), stage, requestId } }, { status: error instanceof InternalError ? error.status : 500 });
   }
 }

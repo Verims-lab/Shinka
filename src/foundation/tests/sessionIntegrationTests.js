@@ -17,7 +17,7 @@ const deferred = () => { let resolve = value => { check(false, `Uninitialized fi
 const identity = (id = 'synthetic-A', role = 'admin') => ({ id, role, authority: 'BASE44_NATIVE_V1' });
 const transientErrors = () => [...[429,503].map(status => ({status})),{code:'ETIMEDOUT'},{code:'ERR_NETWORK'},new TypeError('synthetic network'),new Error('unclassified')];
 /** @param {string} path @param {Function} run @param {Parameters<import('./testTypes').FoundationTest[2]>[0]} [context] @param {ReturnType<typeof identity> | (() => Promise<unknown>) | null} [initial] */
-async function fixture(path, run, context = {}, initial = identity(), settings = async () => ({}), retryWait = null) {
+async function fixture(path, run, context = {}, initial = identity(), settings = async () => ({}), retryWait = null, sessionTimers = undefined) {
   const f = { auth: null, location: null, calls: 0, logouts: 0, logins: [], now: 0, timer: null, waits: [], result: initial, settings, me: async () => typeof f.result === 'function' ? f.result() : f.result };
   const timing = { now: () => f.now, every: fn => { f.timer = fn; return 1; }, cancel: () => { f.timer = null; } };
   const sessionWait=(ms,signal)=>{f.waits.push(ms);return retryWait ? retryWait(ms,signal) : Promise.resolve(!signal.aborted);};
@@ -30,7 +30,7 @@ async function fixture(path, run, context = {}, initial = identity(), settings =
   context.cleanup?.(dispose);
   function Observer() { f.auth = useAuth(); f.location = useLocation(); return h('output', {'data-auth-observed':true}, JSON.stringify({id:f.auth.user?.id,admin:f.auth.isAdmin,checked:f.auth.authChecked,error:f.auth.authError,refresh:f.auth.isRefreshingAuth,path:f.location.pathname})); }
   const screen = name => h('div', {[`data-${name}`]:true}, name);
-  root.render(h(AuthProvider,{client,sessionTiming:timing,sessionWait},h(MemoryRouter,{initialEntries:[path]},h(Observer),h(Routes,null,
+  root.render(h(AuthProvider,{client,sessionTiming:timing,sessionWait,sessionTimers},h(MemoryRouter,{initialEntries:[path]},h(Observer),h(Routes,null,
     h(Route,{path:'/login',element:h(ProtectedRoute,{unauthenticatedElement:h(SignIn,{authenticate:async (...args)=>{f.logins.push(args);return {ok:true,code:null};}})},screen('callback-accepted'))}),
     h(Route,{element:h(ProtectedRoute,{unauthenticatedElement:h(LoginRedirect)})},
       h(Route,{path:'/private',element:screen('private')}),
@@ -41,6 +41,24 @@ async function fixture(path, run, context = {}, initial = identity(), settings =
 
 /** @type {import('./testTypes').FoundationTest[]} */
 export const SESSION_INTEGRATION_TESTS = [
+  ['SS13','Hanging session/settings settle within the startup budget; fresh retry and late-response isolation',async(context={})=>{
+    const clock=createTestClock(context);
+    try {await fixture('/private',async(f,q,wait)=>{
+      await wait(()=>q('[data-private]'));
+      const oldSession=deferred(),oldSettings=deferred();
+      f.me=()=>oldSession.promise;f.settings=()=>oldSettings.promise;
+      const pending=f.auth.checkAppState();await testEventTurn(context.signal);
+      try {
+        await clock.advance(15000);await testEventTurn(context.signal);
+        check(!f.auth.isLoadingAuth&&!f.auth.isLoadingPublicSettings,'startup remained loading after deadline');
+        await pending;check(f.auth.authError?.type==='session_unverified'&&f.logouts===0,'timeout became logout/success');
+        f.me=async()=>identity('synthetic-B','user');f.settings=async()=>({});
+        await f.auth.checkAppState();await wait(()=>f.auth.user?.id==='synthetic-B');
+        oldSession.resolve(identity('synthetic-A','admin'));oldSettings.resolve({});await testEventTurn(context.signal);
+        check(f.auth.user.id==='synthetic-B'&&!f.auth.isAdmin&&clock.pending()===0,'late result/timer survived retry');
+      } finally {oldSession.resolve(identity());oldSettings.resolve({});}
+    },context,identity(),async()=>({}),null,clock.timers);}finally{clock.dispose();}
+  }],
   ['SS12','Session retry wait cancels on logout/account replacement; no old retry or leaked timer reaches the new account',async(context={})=>{
     for(const boundary of ['logout','account']){
       const clock=createTestClock(context);

@@ -14,6 +14,14 @@ async function renderProbe(run) {
 }
 /** @type {import('./testTypes').FoundationTest[]} */
 export const DAILY_UI_TESTS = [
+ ['DU06','Same-day foreground return retries failed Home without a stale loading lock or duplicate request',async()=>renderProbe(async(root,host)=>{
+  let calls=0;const f=dailyFixture();
+  const request=async()=>{calls++;if(calls===1)throw Object.assign(new Error(),{code:'NETWORK'});return dailyMessageOperation(f.client,{action:'today',timezone:'Europe/Istanbul'},f.dependencies);};
+  root.render(createElement(Home,{language:'en',request}));await eventually(()=>host.querySelector('[data-daily-state="failure"]'));
+  window.dispatchEvent(new Event('focus'));document.dispatchEvent(new Event('visibilitychange'));
+  await eventually(()=>host.querySelector('[data-daily-id]'));
+  check(calls===2&&f.rows.user_daily_message.length===1,'foreground retry duplicated or did not run');
+ })],
  ['DU05','Reopened kept-mounted Home reads current MessagePair text and retains daily ID',async()=>renderProbe(async(root,host)=>{
   const f=dailyFixture();const request=()=>dailyMessageOperation(f.client,{action:'today',timezone:'Europe/Istanbul'},f.dependencies);
   root.render(createElement(Home,{language:'tr',request,active:true}));await eventually(()=>host.querySelector('[data-daily-id]'));

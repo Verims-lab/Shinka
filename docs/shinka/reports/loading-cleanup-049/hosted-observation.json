@@ -1,0 +1,51 @@
+{
+  "scope": "HOSTED_048_TARGETED_WEB_READS_AND_NORMAL_NAVIGATION",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "frontend": {
+    "build": "Buildmarker-048",
+    "catalog": "HC-047.0",
+    "environment": "PUBLISHED"
+  },
+  "nativeAdminVerified": true,
+  "normalReload": [
+    {
+      "stage": "applicationSession",
+      "httpStatus": 200,
+      "durationMs": 732
+    },
+    {
+      "stage": "onboarding",
+      "httpStatus": 200,
+      "durationMs": 1320
+    },
+    {
+      "stage": "dailyMessage",
+      "httpStatus": 200,
+      "durationMs": 1370
+    }
+  ],
+  "homePatternHomeSameId": true,
+  "failureReproduced": false,
+  "functionLogReads": 2,
+  "functionLogEntriesObserved": 0,
+  "migrationAttempt": {
+    "action": "dryRun",
+    "status": 400,
+    "error_code": "INVALID_INTERNAL_ACTION",
+    "stage": "OPERATION",
+    "durationMs": 439,
+    "requestId": "42e3dcc6-40c6-411a-992f-2a59145714b4"
+  },
+  "migration": {
+    "inspected": 0,
+    "cleaned": 0,
+    "remaining": null,
+    "fullVerify": "NOT_RUN",
+    "blocker": "DEPLOYED_DISPATCH_MISSING",
+    "schemaPhase": "OPTIONAL_LEGACY_FIELDS_CLEANUP_PENDING"
+  },
+  "deployedGraphDrainAndDataEnvProof": "INCOMPLETE_NO_MAINTENANCE_WRITE",
+  "hostedFullHealthExecuted": false,
+  "securityScanExecuted": false,
+  "physicalDeviceVerified": false
+}

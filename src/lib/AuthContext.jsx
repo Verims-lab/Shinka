@@ -1,7 +1,7 @@
 import { createContext, useState, useContext, useEffect, useCallback, useRef, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
 import { safeAuthError, classifySessionFailure, AUTH_ERROR_CODES } from "@/foundation/authErrors";
-import { createSessionCoalescer, waitForSessionRetry } from "@/lib/sessionCheck";
+import { createSessionCoalescer, waitForSessionRetry, boundedSessionRead, SESSION_READ_TIMERS } from "@/lib/sessionCheck";
 import { PRIVACY_SIGNAL, privacyRecoveryStore } from '@/services/privacyService';
 import { queryClientInstance } from '@/lib/query-client';
 import { applyAppTheme } from '@/lib/appTheme';
@@ -11,8 +11,8 @@ const SESSION_TIMING = { now: () => Date.now(), every: (fn, ms) => window.setInt
 // Production uses the existing SDK and browser document/events. Embedded Health
 // fixtures inject their own event scope and detached theme document to avoid
 // changing the active account while exercising the same provider logic.
-/** @param {{children?:import("react").ReactNode,themeDocument?:Document,events?:EventTarget,sessionTiming?:typeof SESSION_TIMING,sessionWait?:typeof waitForSessionRetry,client?:{app:{getPublicSettings:()=>Promise<any>},functions:{invoke:(name:string,body:object)=>Promise<any>},auth:{logout:(redirect?:string)=>void|Promise<any>}}}} props */
-export const AuthProvider = ({ children, client = base44, sessionTiming = SESSION_TIMING, sessionWait = waitForSessionRetry, themeDocument = document, events = window }) => {
+/** @param {{children?:import("react").ReactNode,themeDocument?:Document,events?:EventTarget,sessionTiming?:typeof SESSION_TIMING,sessionWait?:typeof waitForSessionRetry,sessionTimers?:typeof SESSION_READ_TIMERS,client?:{app:{getPublicSettings:()=>Promise<any>},functions:{invoke:(name:string,body:object)=>Promise<any>},auth:{logout:(redirect?:string)=>void|Promise<any>}}}} props */
+export const AuthProvider = ({ children, client = base44, sessionTiming = SESSION_TIMING, sessionWait = waitForSessionRetry, sessionTimers = SESSION_READ_TIMERS, themeDocument = document, events = window }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
@@ -23,7 +23,7 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
   const [appPublicSettings, setAppPublicSettings] = useState(null);
   const generation = useRef(0), appGeneration = useRef(0), signedOut = useRef(false), refused = useRef(false);
   const privacyVersion = useRef(null);
-  const retryController = useRef(null);
+  const retryController = useRef(null), settingsController = useRef(null);
   useEffect(() => {
     if (!isAuthenticated || isLoadingAuth || isLoadingPublicSettings || authError) applyAppTheme(null, themeDocument);
   }, [isAuthenticated, isLoadingAuth, isLoadingPublicSettings, authError, themeDocument]);
@@ -37,15 +37,16 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
     setIsRefreshingAuth(true);
     try {
       // Transient (503/429/network) failures get two quiet retries before the retry screen.
-      let response;
-      for (let attempt = 0; ; attempt++) {
-        if (controller.signal.aborted || ticket !== generation.current) return false;
-        try { response = await client.functions.invoke('applicationSession', {}); break; }
-        catch (error) {
-          if (attempt >= 2 || classifySessionFailure(error) === "INVALID" || ticket !== generation.current) throw error;
-          if (!await sessionWait(700 * (attempt + 1),controller.signal)) return false;
+      const response = await boundedSessionRead(async () => {
+        for (let attempt = 0; ; attempt++) {
+          if (controller.signal.aborted || ticket !== generation.current) return false;
+          try { return await client.functions.invoke('applicationSession', {}); }
+          catch (error) {
+            if (attempt >= 2 || classifySessionFailure(error) === "INVALID" || ticket !== generation.current) throw error;
+            if (!await sessionWait(700 * (attempt + 1),controller.signal)) return false;
+          }
         }
-      }
+      }, controller.signal, sessionTimers);
       const currentUser = response?.data;
       if (currentUser?.authority !== 'BASE44_NATIVE_V1' || !['admin','user'].includes(currentUser?.role)) throw new Error('APPLICATION_SESSION_UNVERIFIED');
       if (ticket !== generation.current) return false;
@@ -73,7 +74,7 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
         setIsLoadingAuth(false); setIsRefreshingAuth(false); setAuthChecked(true);
       }
     }
-  }, [client, sessionWait, events]);
+  }, [client, sessionWait, sessionTimers, events]);
   const coalescer = useMemo(() => createSessionCoalescer(verifySession, { now: sessionTiming.now }), [verifySession, sessionTiming]);
   const checkUserAuth = coalescer.check;
 
@@ -89,9 +90,11 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
     // parallel. App renders nothing until both settle; a membership refusal
     // cancels (generation bump) any session result that arrived first.
     const appTicket = ++appGeneration.current;
+    settingsController.current?.abort();
+    const settingsAbort = new AbortController(); settingsController.current = settingsAbort;
     const session = ticket === generation.current ? checkUserAuth() : Promise.resolve(false);
     try {
-      const settings = await client.app.getPublicSettings();
+      const settings = await boundedSessionRead(() => client.app.getPublicSettings(), settingsAbort.signal, sessionTimers);
       if (appTicket !== appGeneration.current) return;
       setAppPublicSettings(settings);
     } catch (error) {
@@ -105,13 +108,15 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
         return;
       }
     } finally {
+      settingsAbort.abort();
+      if (settingsController.current === settingsAbort) settingsController.current = null;
       if (appTicket === appGeneration.current) setIsLoadingPublicSettings(false);
     }
     await session;
-  }, [client, checkUserAuth, coalescer, events]);
+  }, [client, checkUserAuth, coalescer, sessionTimers, events]);
   useEffect(() => {
     void checkAppState();
-    return () => { generation.current++; appGeneration.current++; retryController.current?.abort(); coalescer.reset(); };
+    return () => { generation.current++; appGeneration.current++; settingsController.current?.abort(); retryController.current?.abort(); coalescer.reset(); };
   }, [checkAppState, coalescer]);
   useEffect(() => {
     const changed = () => { queryClientInstance.clear(); applyAppTheme(null, themeDocument); };
@@ -152,7 +157,7 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
   }, [isAuthenticated, user?.role, checkUserAuth, coalescer, sessionTiming, events]);
 
   const logout = async (shouldRedirect = true, { preservePrivacyRecovery = false } = {}) => {
-    signedOut.current = true; generation.current++; appGeneration.current++; coalescer.reset();
+    signedOut.current = true; generation.current++; appGeneration.current++; settingsController.current?.abort(); coalescer.reset();
     retryController.current?.abort();
     events.dispatchEvent(new Event('shinka-session-ended'));
     queryClientInstance.clear();

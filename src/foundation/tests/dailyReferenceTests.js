@@ -1,3 +1,8 @@
+import { handleDailyMessageRequest } from '../../../base44/shared/dailyMessageOperation.js';
+import { dailyMessageRequest } from '@/services/dailyMessageService';
+import { internalHealthOperation } from '../../../base44/shared/internalHealthOperations.js';
+import { handleInternalRequest } from '../../../base44/shared/internalAuthorization.js';
+import { withUserLifecycle } from '../../../base44/shared/userLifecycle.js';
 import { check } from './dataModelTests';
 import { nativeFixture } from './nativeFixture';
 import { notificationFixture } from './notificationFixture';
@@ -13,6 +18,45 @@ const legacy = async f=>{await f.today();const row=f.tables.UserDailyMessage[0];
 const admin = f=>{f.tables.UserProfile.push({...f.tables.UserProfile[0],id:'admin-profile',user_id:'adminA'});return f.raw('adminA');};
 /** @type {import('./testTypes').FoundationTest[]} */
 export const DAILY_REFERENCE_TESTS=[
+ ['ID10','Web maintenance dispatch remains current-admin/ACTIVE/app bound and rejects arbitrary operations',async()=>{
+  const f=nativeFixture();await legacy(f);const client=admin(f);client.getConfig=()=>({appId:'6ad5190f4845d4e3af03b420'});
+  const invoke=(body,c=client)=>handleInternalRequest(new Request('https://fixture.invalid',{method:'POST',body:JSON.stringify(body)}),()=>withUserLifecycle(c),internalHealthOperation);
+  const body={action:'dailyReferenceMigration',request:{action:'dryRun'}};
+  const ok=await invoke(body);check(ok.status===200&&(await ok.json()).rows.length===1);
+  check((await invoke(body,f.raw())).status===403);
+  check((await invoke(body,f.raw(null))).status===401);
+  const wrong={...client,getConfig:()=>({appId:'wrong'})};check((await invoke(body,wrong)).status===409);
+  for(const patch of [{table:'User'},{request:{action:'delete'}},{request:{action:'applyBatch',ids:['x'],patch:{message_pair_id:'x'}}}])check((await invoke({...body,...patch})).status>=400);
+  f.tables.UserProfile.find(p=>p.user_id==='adminA').account_status='INACTIVE';check((await invoke(body)).status===409);
+  check(!f.state.calls.some(c=>c.method==='updateMany'),'unauthorized write');
+ }],
+ ['ID11','Migration fingerprints retain every assignment and paginated NotificationDelivery link; stale links block writes',async()=>{
+  const f=nativeFixture(),row=await legacy(f),client=admin(f);
+  f.tables.NotificationDelivery=Array.from({length:101},(_,i)=>({id:`link-${String(i).padStart(3,'0')}`,user_id:row.user_id,daily_message_id:row.id}));
+  let plan=await dailyReferenceMigration(client,{action:'dryRun'});check(plan.rows[0].linkCount===101);
+  const links=JSON.stringify(f.tables.NotificationDelivery),receipt=plan.rows[0];
+  const applied=await dailyReferenceMigration(client,{action:'applyBatch',ids:plan.ids,reviewed_digest:plan.reviewed_digest});
+  const after=(await dailyReferenceMigration(client,{action:'verify'})).rows[0];
+  check(applied.complete&&receipt.assignmentDigest===after.assignmentDigest&&receipt.linksDigest===after.linksDigest&&links===JSON.stringify(f.tables.NotificationDelivery));
+  row.message_tr_snapshot='legacy';plan=await dailyReferenceMigration(client,{action:'dryRun'});
+  f.tables.NotificationDelivery[0].user_id='ownerB';
+  await rejects(()=>dailyReferenceMigration(client,{action:'applyBatch',ids:plan.ids,reviewed_digest:plan.reviewed_digest}),'MIGRATION_REVIEW_EXPIRED');
+  check((await dailyReferenceMigration(client,{action:'verify'})).rows[0].status==='LINK_OWNER_INVALID'&&Object.hasOwn(row,'message_tr_snapshot'));
+ }],
+ ['ID12','Existing daily 429/503 transport errors identify reference stage; retry reuses assignment without exposing raw errors',async()=>{
+  const f=nativeFixture();await f.today();const before=JSON.stringify(f.tables.UserDailyMessage);
+  const call=()=>handleDailyMessageRequest(new Request('https://fixture.invalid',{method:'POST',body:JSON.stringify({action:'today',timezone:'Europe/Istanbul'})}),()=>f.client(),{native:true,now:f.now,library:f.library});
+  for(const status of [429,503]){
+    f.state.before=c=>{if(c.name==='MessagePair')throw {status,message:'PRIVATE_RAW_ERROR',response:{status,data:{private:'PRIVATE_RESPONSE'}}};};
+    const response=await call(),body=await response.json();
+    check(response.status===500&&body.diagnostic.stage==='DAILY_CONTENT_REFERENCE'&&body.diagnostic.code===(status===429?'RATE_LIMITED':'SERVICE_UNAVAILABLE'));
+    check(!JSON.stringify(body).includes('PRIVATE')&&/^[a-f0-9-]{36}$/.test(body.diagnostic.requestId));
+    let observed=null;try{await dailyMessageRequest({functions:{invoke:async()=>({data:body})}});}catch(e){observed=e;}
+    check(observed?.diagnostic?.stage==='DAILY_CONTENT_REFERENCE'&&observed.code==='DAILY_OPERATION_FAILED');
+    f.state.before=null;const result=await (await call()).json();
+    check(!result.created&&result.daily.id===f.tables.UserDailyMessage[0].id&&JSON.stringify(f.tables.UserDailyMessage)===before);
+  }
+ }],
  ['ID01','New/legacy daily rows resolve all current TR/EN text without changing assignment',async()=>{
   const f=nativeFixture(), first=await f.today(), row=f.tables.UserDailyMessage[0], before=JSON.stringify(assignment(row));
   check(!LEGACY_DAILY_TEXT_FIELDS.some(k=>Object.hasOwn(row,k)));

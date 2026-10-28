@@ -31,3 +31,21 @@ export function createSessionCoalescer(run, { minPassiveGapMs = 15000, now = () 
   const reset = () => { generation++; inFlight = null; lastSuccess = -Infinity; };
   return { check, passive, reset };
 }
+export const SESSION_READ_BUDGET_MS = 15000;
+export const SESSION_READ_TIMERS = { set: (fn, ms) => setTimeout(fn, ms), clear: id => clearTimeout(id) };
+// Bound the whole session read (including its existing retry waits), not each
+// attempt. Abort releases our wait only; the SDK request may still complete.
+export async function boundedSessionRead(work, signal, timers = SESSION_READ_TIMERS) {
+  let timer, abort;
+  try {
+    return await Promise.race([
+      new Promise((_, reject) => {
+        abort = () => reject(Object.assign(new Error('SESSION_CANCELLED'), { code: 'SESSION_CANCELLED' }));
+        if (signal.aborted) return abort();
+        signal.addEventListener('abort', abort, { once: true });
+        timer = timers.set(() => reject(Object.assign(new Error('TIMEOUT'), { code: 'TIMEOUT' })), SESSION_READ_BUDGET_MS);
+      }),
+      Promise.resolve().then(() => { if (signal.aborted) throw Object.assign(new Error(), { code: 'SESSION_CANCELLED' }); return work(); }),
+    ]);
+  } finally { timers.clear(timer); signal.removeEventListener('abort', abort); }
+}

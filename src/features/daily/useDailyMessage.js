@@ -8,7 +8,8 @@ const localContext = () => {
 export function useDailyMessage(request = dailyMessageRequest, initial = null, readContext = localContext, active = true) {
   const [value, setValue] = useState(initial), [error, setError] = useState(null), [loading, setLoading] = useState(!initial);
   const generation = useRef(0), pending = useRef(false), context = useRef(readContext());
-  const ended = useRef(false);
+  const ended = useRef(false), failed = useRef(false);
+  failed.current = !!error;
   const reload = useCallback(async () => {
     if (pending.current || ended.current) return;
     pending.current = true;
@@ -36,7 +37,7 @@ export function useDailyMessage(request = dailyMessageRequest, initial = null, r
   useEffect(() => {
     ended.current = false;
     if (!initial) reload();
-    const checkDay = () => { if (visible() && context.current !== readContext()) reload(); };
+    const checkDay = () => { if (visible() && (failed.current || context.current !== readContext())) reload(); };
     const invalidate = () => { generation.current++; pending.current = false; setValue(null); setError(null); setLoading(false); };
     const endSession = () => { ended.current = true; invalidate(); setError('AUTH_REQUIRED'); };
     const privacy = () => { invalidate(); if (visible()) void reload(); };
