@@ -68,3 +68,48 @@ export async function checkCalendarFlow(page, origin, directory) {
   }
   return results;
 }
+
+// Real retained tabs and Calendar controller; the fixture is transport-only.
+// Native same-action persistence is separately exercised by CU08/RC/NA fixtures.
+export async function checkCalendarContinuity(page, origin) {
+  const rows=[];
+  await page.setViewportSize({width:390,height:700});
+  for(const language of ['tr','en']) {
+    await page.goto(`${origin}/calendar?appFixture=1&sdkSession=admin&onboardingState=ACTIVE_EXISTING_USER&language=${language}`);
+    await page.locator('[data-calendar-date="2026-10-01"]').waitFor();
+    await page.getByRole('button',{name:language==='tr'?'Önceki ay':'Previous month',exact:true}).click();
+    await page.locator('[data-calendar-date="2026-09-01"]').waitFor();
+    await page.locator('[data-calendar-date="2026-09-01"]').click();await page.locator('[data-calendar-feedback="draft"]').waitFor();
+    const target=await page.evaluate(()=>{const y=Math.min(300,document.documentElement.scrollHeight-innerHeight);window.scrollTo({top:y,behavior:'instant'});return y;});
+    assert(target>0,'Calendar fixture is not scrollable');await page.waitForFunction(y=>Math.abs(scrollY-y)<=1,target);
+    const scroll=await page.evaluate(()=>scrollY);
+    await page.locator('nav a:visible').nth(2).click();await page.locator('[data-lunar-summary]').waitFor();
+    await page.locator('nav a:visible').nth(1).click();await page.locator('[data-calendar-feedback="draft"]:visible').waitFor();
+    await page.waitForFunction(y=>Math.abs(scrollY-y)<=1,scroll);
+    assert.equal(await page.locator('#calendar-start-date').inputValue(),'2026-09-01');
+    assert.equal(await page.locator('[data-calendar-date="2026-09-01"]:visible').count(),1);
+    const writes=()=>page.evaluate(()=>window.__authFixture.calls.filter(c=>c.name==='calendar'&&c.action!=='read').length);
+    assert.equal(await writes(),0);
+    await page.evaluate(()=>{window.__authFixture.holdOperation('calendar');window.__calendarLab.fault('lostResponse');});
+    await page.locator('[data-calendar-root] button[type=submit]').click();await page.locator('[data-calendar-feedback="pending"]').waitFor();
+    assert.equal(await page.locator('[data-calendar-root] form').getAttribute('aria-busy'),'true');
+    assert.equal(await page.evaluate(()=>window.__calendarLab.rows.user_period_record.length),1);
+    await page.locator('nav a:visible').nth(2).click();await page.locator('[data-pattern-root]:visible').waitFor();
+    await page.locator('nav a:visible').nth(1).click();await page.locator('[data-calendar-feedback="pending"]:visible').waitFor();assert.equal(await writes(),1);
+    await page.evaluate(()=>window.__authFixture.releaseOperation('calendar'));
+    await page.locator('[data-calendar-error]').waitFor();
+    assert.equal(await page.locator('[data-calendar-feedback]').count(),0);assert.equal(await page.locator('#calendar-start-date').inputValue(),'2026-09-01');
+    assert.equal(await page.evaluate(()=>window.__calendarLab.rows.user_period_record.length),2);
+    assert.equal(await page.getByText(language==='tr'?'Regl başlangıcı kaydedildi':'Period start saved',{exact:true}).count(),0);
+    await page.evaluate(()=>window.__calendarLab.fault(null));
+    await page.getByRole('button',{name:language==='tr'?'Kontrol et / aynı işlemi tekrar dene':'Check / retry the same change',exact:true}).click();
+    await page.getByText(language==='tr'?'Regl başlangıcı kaydedildi':'Period start saved',{exact:true}).waitFor();
+    assert.equal(await page.evaluate(()=>window.__calendarLab.rows.user_period_record.length),2);assert.equal(await writes(),2);
+    await page.locator('[data-calendar-date="2026-09-01"]').click();
+    await page.getByRole('button',{name:language==='tr'?'Regl başlangıcını sil':'Delete period start',exact:true}).click();await page.locator('dialog[open]').waitFor();
+    const before=page.url();await page.goBack();await page.locator('dialog').waitFor({state:'detached'});
+    assert.equal(page.url(),before);assert.equal(await writes(),2);assert.equal(await page.locator('#calendar-start-date').inputValue(),'2026-09-01');
+    rows.push({scenario:`calendar-scroll-month-draft-pending-unknown-retry-layer-back-${language}`,passed:true,scroll,scope:'LOCAL_REAL_APP_SYNTHETIC_PROTOCOL_TRANSPORT'});
+  }
+  return rows;
+}

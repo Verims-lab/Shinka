@@ -14,6 +14,38 @@ async function probe(run) {
 const button=(host,text)=>[...host.querySelectorAll('button')].find(row=>row.textContent===text);
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CALENDAR_UI_TESTS = [
+ ['CU08','Selection/pending/unknown/confirmed feedback remains distinct and lost response retries the same native action',async()=>probe(async(root,host)=>{
+   for(const language of ['tr','en']) {
+     const f=nativeFixture(),calls=[];let release=()=>{},first=true;
+     const gate=new Promise(resolve=>{release=()=>resolve(undefined);});
+     const request=async(action,body={})=>{
+       if(action==='read')return f.cal({action,...body});
+       calls.push({action,...body});
+       if(first){first=false;await gate;await f.cal({action,...body});throw {code:'NETWORK'};}
+       return f.cal({action,...body});
+     };
+     try {
+       root.render(createElement(Calendar,{key:language,language,request}));
+       await until(()=>host.querySelector('[data-calendar-root]')?.getAttribute('lang')===language&&host.querySelector('[data-calendar-date="2026-10-01"]')&&host.querySelector('#calendar-start-date').value==='');
+       check(!host.querySelector('[data-calendar-feedback]'),'feedback without selection');
+       host.querySelector('[data-calendar-date="2026-10-01"]').click();await pause();
+       check(host.querySelector('[data-calendar-feedback="draft"]')?.getAttribute('role')==='status','selection lacks unsaved feedback');
+       check(!f.tables.UserPeriodRecord.length,'selection wrote data');
+       host.querySelector('form').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
+       await until(()=>calls.length===1);await pause();
+       check(host.querySelector('[data-calendar-feedback="pending"]')?.getAttribute('role')==='status'&&host.querySelector('form').getAttribute('aria-busy')==='true','pending lacks live feedback');
+       check(!host.querySelector('[data-calendar-feedback="pending"]').closest('[aria-busy="true"]'),'busy container suppresses live pending announcement');
+       check(!host.querySelector('[data-calendar-feedback="draft"]')&&!f.tables.UserPeriodRecord.length);
+       release();await until(()=>host.querySelector('[data-calendar-error="NETWORK"]'));
+       check(!host.querySelector('[data-calendar-feedback]')&&host.querySelector('#calendar-start-date').value==='2026-10-01'&&f.tables.UserPeriodRecord.length===1);
+       button(host,language==='tr'?'Kontrol et / aynı işlemi tekrar dene':'Check / retry the same change').click();
+       await until(()=>host.textContent.includes(language==='tr'?'Regl başlangıcı kaydedildi':'Period start saved'));
+       check(calls.length===2&&JSON.stringify(calls[0])===JSON.stringify(calls[1])&&f.tables.UserPeriodRecord.length===1,'retry replaced action or duplicated record');
+       check(!host.querySelector('[data-calendar-feedback]')&&host.querySelector('form').getAttribute('aria-busy')==='false');
+     } finally {release();}
+   }
+ })],
+
  ['CU06','Partial native grant reopens in TR/EN and Retry uses saved consent intent',async()=>probe(async(root,host)=>{
    const f=nativeFixture({granted:false}),view=await f.cal();
    f.once('before',c=>c.name==='UserHealthConsentEvent'&&c.method==='create');

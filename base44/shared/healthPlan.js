@@ -1,7 +1,7 @@
 import { HEALTH_CATALOG_VERSION } from './healthConstants.js';
 
 // Backend persistence inventory. H16 compares this closed ID set with the actual
-// executable catalog (HC-048.0 updates bounded startup, daily retry/diagnostics and reviewed web maintenance evidence, with unchanged case IDs); a client cannot omit cases by shrinking its submitted plan.
+// executable catalog (HC-049.0 updates mobile preference/Calendar local mappings and preserves staged content checks, with unchanged case IDs); a client cannot omit cases by shrinking its submitted plan.
 export const HEALTH_SERVER_PLAN = Object.freeze({
   H01: ["H01-001","H01-002","H01-003","H01-004","H01-005","H01-006"],
   H02: ["H02-001","H02-002","H02-003","H02-004","H02-005","H02-006","H02-007","H02-008"],

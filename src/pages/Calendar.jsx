@@ -21,6 +21,8 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
   const needsConsent = value?.state === 'CONSENT_REQUIRED' && !value.recovery;
   const realSelected = value?.starts.find(row => row.id === state.editing?.id && row.date === state.selected);
   const futureSelected = Boolean(value && state.selected > value.today);
+  const draftSelected = state.selected && state.outcome === null && value?.writable && !futureSelected &&
+    (!value.starts.some(row => row.date === state.selected) || state.editing && state.editing.date !== state.selected);
   const dateError = futureSelected ? 'PERIOD_START_FUTURE' : state.error;
   const validationError = /^PERIOD_(DATE_|START_FUTURE|DUPLICATE|CONFLICT)/.test(dateError || '');
   return <div lang={language} data-calendar-root className="shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col">
@@ -40,7 +42,8 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
         {value.calculationNotice && <p role="status" data-calendar-estimate-unavailable>{copy('estimateUnavailable')}</p>}
         {!value.recovery && !needsConsent && !value.hasPeriods && <p role="status">{copy('empty')}</p>}
         <ShinkaCard>
-          <form noValidate className="space-y-4" onSubmit={event => { event.preventDefault(); controller.submit(state.editing ? 'edit' : 'add'); }}>
+          {state.busy ? <p role="status" className="mb-4" data-calendar-feedback="pending">{copy('saving')}</p> : draftSelected && !state.error && <p role="status" className="mb-4" data-calendar-feedback="draft">{copy('draft')}</p>}
+          <form noValidate aria-busy={state.busy} className="space-y-4" onSubmit={event => { event.preventDefault(); controller.submit(state.editing ? 'edit' : 'add'); }}>
             {state.editing && <div><p>{copy('editing')}: {formatCalendarDate(state.editing.date, language)}</p><ShinkaButton variant="ghost" disabled={state.busy || unresolved} onClick={controller.cancelEdit}>{copy('stopEditing')}</ShinkaButton></div>}
             <div><label htmlFor="calendar-start-date" className="block mb-2">{copy('date')}</label><ShinkaInput id="calendar-start-date" type="date" max={value.today} value={state.selected} disabled={state.busy || unresolved} aria-invalid={validationError} aria-describedby={validationError ? 'calendar-date-error' : undefined} onChange={event => controller.select(event.target.value)}/>
               {validationError && <p id="calendar-date-error" role="alert" className="mt-2">{copy(calendarErrorKey(dateError, state.action))}</p>}

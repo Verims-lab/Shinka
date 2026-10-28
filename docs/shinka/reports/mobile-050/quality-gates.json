@@ -1,0 +1,163 @@
+{
+  "scope": "LOCAL_ONLY",
+  "gates": [
+    {
+      "command": "npm ci",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "b3c990273f1a3dc2fdb738887a9ec56e7e6ecbbd372d7b5351cd16c32d255f73"
+    },
+    {
+      "command": "npm ls --all",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "9279881b5b54cf6e135c5cda518d34590ab883d4c6c4f01458d7a118bfd817a8"
+    },
+    {
+      "command": "npm audit --json",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "d023db939da1b363569c7aabf402295e2daa53f1176fda1428ee679d16270dab"
+    },
+    {
+      "command": "npm run security:deps",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "ba5a55cc48eca8e7c392d3754b663e0bd7b6233525429a1d8a5d44768df5b507"
+    },
+    {
+      "command": "npm run typecheck",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "2e1c7db5ac28fb733e8c1d3d7c2c3bf8a4bb6628ed45eb56ce2e7328388598de"
+    },
+    {
+      "command": "npm run lint",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "8423c1a66df3f2a021733ae12f217befbeb04b23971e056cb4e3739c7fb936cf"
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "023c4167c6a7599e18162f40624d13e23c117d535c787b6a4bb4d7055b009a18"
+    },
+    {
+      "command": "npm run health:repo",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "164b4b2038140a191ce2164f22515ff5ab6c119fcc1f4f23dc6d0b8f1c23e56d"
+    },
+    {
+      "command": "node scripts/recordBuild.mjs --check",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f"
+    }
+  ],
+  "repository": {
+    "scope": "REPOSITORY_ONLY",
+    "buildMarker": "Buildmarker-050",
+    "healthCatalog": "HC-049.0",
+    "checks": {
+      "dependencyBoundaries": true,
+      "boundedGeneratedHistory": true,
+      "twentyPhysicalProductSchemas": true,
+      "noUnexpectedProductSchemas": true,
+      "guardedNotificationSchedule": true,
+      "guardedHealthHistory": true,
+      "separateBuiltinUserAndTooling": true,
+      "exactAuthoritativeFields": true,
+      "completeAccessMatrix": true,
+      "directSdkOperationsDenied": true,
+      "onboardingCopyAndProxy": true,
+      "onboardingGeoNamesEntry": true,
+      "noProductSeedCalls": true,
+      "canonicalMarker": true,
+      "docsAligned": true,
+      "noLegacyImport": true,
+      "noCredentialFindings": true,
+      "noPersonalEmails": true
+    },
+    "failed": [],
+    "domain": {
+      "dailyCompatibility": {
+        "phase": "OPTIONAL_LEGACY_FIELDS_CLEANUP_PENDING",
+        "optionalLegacyFields": [
+          "message_tr_snapshot",
+          "suggestion_tr_snapshot",
+          "message_en_snapshot",
+          "suggestion_en_snapshot"
+        ],
+        "valid": true,
+        "cleanupVerified": false,
+        "scope": "REPOSITORY_ONLY"
+      },
+      "expected": 20,
+      "present": 20,
+      "unexpected": [],
+      "mismatches": [],
+      "internal": 6,
+      "builtinUserSeparate": true,
+      "healthHistoryPolicy": true,
+      "testOperationPolicy": true,
+      "calendarActionPolicy": true,
+      "notificationSchedulePolicy": true,
+      "privacyPolicies": true,
+      "accessMatrixRows": 20,
+      "accessMatrixComplete": true,
+      "directOperationsDenied": true,
+      "source": "PHYSICAL_REPOSITORY_SCHEMAS_NOT_DEPLOYMENT_PROOF",
+      "writeSurface": {
+        "ok": true,
+        "unexpected": [],
+        "changedAllowlistedCounts": [],
+        "metadataWriteCalls": 19,
+        "onboardingWriteCalls": 2,
+        "scope": "STATIC_IMPORT_SEED_CALL_INSPECTION"
+      }
+    }
+  },
+  "audit": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "dependencies": {
+      "prod": 217,
+      "dev": 291,
+      "optional": 55,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 507
+    }
+  },
+  "warnings": [
+    "Existing lazy-chunk/dynamic-import advisories",
+    "npm min-release-age-exclude config warning"
+  ],
+  "hostedScanRun": false,
+  "postEvidenceFinalization": {
+    "scope": "Documentation, execution receipts and generated build-ledger prose only; behavioral sources unchanged after final browser runs",
+    "checks": [
+      {
+        "command": "npm run health:repo",
+        "status": "PASS",
+        "exitCode": 0,
+        "logSha256": "656ec27b977a4bb1a0202e3a9e311008699c1b2ead4c6cdd5c01d1278221084d"
+      },
+      {
+        "command": "node scripts/recordBuild.mjs --check",
+        "status": "PASS",
+        "exitCode": 0,
+        "logSha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f"
+      }
+    ],
+    "gitDiffCheck": "PASS"
+  }
+}
