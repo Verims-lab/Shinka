@@ -28,7 +28,7 @@ export default function You({ language = 'en', request = undefined, placeRequest
     {error.unknown && state.intent && <><ShinkaButton variant="secondary" disabled={busy} onClick={controller.check}>{copy('check')}</ShinkaButton><ShinkaButton variant="secondary" disabled={busy} onClick={controller.retry}>{copy('retry')}</ShinkaButton></>}
     {(!value || error.code === 'YOU_EDIT_CONFLICT') && <ShinkaButton disabled={busy} onClick={controller.load}>{copy('reopen')}</ShinkaButton>}
   </div>;
-  return <div lang={language} data-you-root className="shinka-viewport shinka-safe-shell bg-shinka-ivory text-shinka-ink font-body flex flex-col">
+  return <div lang={language} data-you-root className="shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col">
     <header className="flex flex-wrap items-center justify-between px-5 pt-6 gap-2"><YouLink to={`/?lang=${language}`} aria-label={copy('back')} className="inline-flex items-center justify-center min-h-11 min-w-11 text-shinka-plum">← {copy('back')}</YouLink>{renderProfileAccess?.(language)}</header>
     <main className="flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6">
       <h1 ref={heading} tabIndex={-1} className="font-heading text-shinka-h1 focus:outline-none" data-you-heading>{copy('title')}</h1>

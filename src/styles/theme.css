@@ -1,4 +1,5 @@
 @import "./onboarding.css";
+@import "./sectionBackground.css";
 /* 045 manual dark theme: applied only via the account-bound theme_code (.dark on <html>). */
 html.dark { color-scheme: dark; }
 .dark {

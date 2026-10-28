@@ -219,8 +219,8 @@ export const ONBOARDING_UI_TESTS=[
  ['U15','ON-04/ON-05 fixtures render the layered onboarding shell in EN/TR without overflow',async(context={})=>{
   for(const language of ['en','tr'])for(const step of ['AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP'])await onboardingProbe(step,360,async(doc,win)=>{
    const shell=doc.querySelector('.shinka-onboarding');check(shell,`${language} ${step} shell`);
-   const img=win.getComputedStyle(shell).backgroundImage;
-   check((img.match(/radial-gradient/g)||[]).length===5&&/linear-gradient/.test(img),`${language} ${step} layers`);
+   const style=win.getComputedStyle(shell);
+   check(style.backgroundImage==='none'&&style.backgroundColor==='rgba(0, 0, 0, 0)',`${language} ${step} shell transparent over 046 backdrop`);
    check(doc.documentElement.scrollWidth<=361,`${language} ${step} overflow`);
   },{language},context);
  }],

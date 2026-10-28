@@ -234,7 +234,7 @@ export default function OnboardingScreen({
       : t(error.code)
     : null;
   return (
-    <PageContainer className="shinka-onboarding">
+    <PageContainer className="shinka-onboarding" surface="section">
       <main
         className="mx-auto max-w-md space-y-6 py-6"
         data-onboarding-state={state}

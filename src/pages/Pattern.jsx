@@ -10,7 +10,7 @@ export default function Pattern({ language: initialLanguage = 'en', renderProfil
   const [language, setLanguage] = useState(initialLanguage);
   useEffect(() => { if(initialLanguage) setLanguage(initialLanguage); }, [initialLanguage]);
   const state = usePattern(request, runtime, active), copy = key => patternCopy(key, language);
-  return <div lang={language} data-pattern-root className="shinka-viewport shinka-safe-shell bg-shinka-ivory text-shinka-ink font-body flex flex-col">
+  return <div lang={language} data-pattern-root className="shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col">
     <header className="flex flex-wrap items-center justify-between px-5 pt-6 gap-2">
       <span className="font-heading font-medium text-shinka-h3 text-shinka-plum">Shinka</span>
       {renderProfileAccess?.(language) || <ProfileMenu language={language}/>}

@@ -11,6 +11,10 @@ import ProfileAccess from '@/components/profile/ProfileAccess';
 import { validTimezone } from '../../base44/shared/onboardingValidation.js';
 import { applyAppTheme } from '@/lib/appTheme';
 import ProductTabs from '@/components/shinka/ProductTabs';
+import SectionBackdrop from '@/components/shinka/SectionBackdrop';
+// One stable backdrop slot for whatever section is actually rendered (not the
+// pathname): same element position across branches, so it never remounts.
+const inSection=(section,node)=><><SectionBackdrop section={section}/>{node}</>;
 const You = lazy(() => import('./You'));
 const Pattern = lazy(() => import('./Pattern'));
 const Calendar = lazy(() => import('./Calendar'));
@@ -44,10 +48,10 @@ export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destina
   // account switch, loading and onboarding all resolve to the light default.
   const ownTheme=isAuthenticated&&snapshot?.ownerSession===user?.id&&snapshot?.state==='ACTIVE_EXISTING_USER'?snapshot.preferences?.theme_code:null;
   useEffect(()=>{applyAppTheme(ownTheme);},[ownTheme]);
-  if(!isAuthenticated)return <RouteBoundary><OnboardingScreen state={entry} initialLanguage={language} onState={setEntry}/></RouteBoundary>;
-  if(!snapshot||snapshot.ownerSession!==user?.id)return <PageContainer><header className="flex items-center justify-between mx-auto max-w-md pt-6"><span className="font-heading text-2xl">Shinka</span></header><main className="mx-auto max-w-md space-y-5 py-10" aria-busy={!error}>
+  if(!isAuthenticated)return inSection('onboarding',<RouteBoundary><OnboardingScreen state={entry} initialLanguage={language} onState={setEntry}/></RouteBoundary>);
+  if(!snapshot||snapshot.ownerSession!==user?.id)return inSection('neutral',<PageContainer><header className="flex items-center justify-between mx-auto max-w-md pt-6"><span className="font-heading text-2xl">Shinka</span></header><main className="mx-auto max-w-md space-y-5 py-10" aria-busy={!error}>
     {error?<><p role="alert">{onboardingCopy('systemError',language)}</p><p className="break-words text-shinka-small">{error}</p><ShinkaButton onClick={load}>{onboardingCopy('retry',language)}</ShinkaButton></>:<p role="status" aria-label="Shinka">…</p>}
-  </main></PageContainer>;
+  </main></PageContainer>);
   if(snapshot.state==='ACTIVE_EXISTING_USER') {
     const displayLanguage = snapshot.uiLanguage||snapshot.preferences?.language_code||language;
     const youPage=destination==='you'&&<RouteBoundary><You key={user.id} language={displayLanguage} isAdmin={isAdmin} onLogout={logout} onLoaded={value=>setSnapshot(s=>({...s,profile:value.profile,preferences:value.preferences,uiLanguage:value.preferences.language_code}))} onSaved={value=>setSnapshot(s=>({...s,profile:value.profile,preferences:value.preferences,uiLanguage:value.preferences.language_code}))} renderProfileAccess={lang=><ProfileAccess language={lang} productReady/>}/></RouteBoundary>;
@@ -55,8 +59,8 @@ export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destina
     const tabs=<ProductTabs key={user.id} destination={destination} render={(tab,active)=>tab==='pattern'?<RouteBoundary><Pattern language={displayLanguage} active={active} renderProfileAccess={access}/></RouteBoundary>
       :tab==='calendar'?<RouteBoundary><Calendar language={displayLanguage} active={active} renderProfileAccess={access}/></RouteBoundary>
       :<Home language={displayLanguage} active={active} initialDaily={snapshot.daily?snapshot:null} profile={snapshot.profile} renderProfileAccess={access}/>}/>;
-    if(destination==='you')return <>{youPage}{tabs}</>;
-    return tabs;
+    if(destination==='you')return inSection('you',<>{youPage}{tabs}</>);
+    return inSection(destination,tabs);
   }
-  return <RouteBoundary><OnboardingScreen authenticated request={request} key={user.id} state={snapshot.state} initialLanguage={snapshot.preferences?.language_code||language} today={snapshot.today} profile={snapshot.profile} dependencies={snapshot.dependencies||[]} onState={(state,result)=>setSnapshot(s=>s?.ownerSession===user.id?{...s,...result,state}:s)}/></RouteBoundary>;
+  return inSection('onboarding',<RouteBoundary><OnboardingScreen authenticated request={request} key={user.id} state={snapshot.state} initialLanguage={snapshot.preferences?.language_code||language} today={snapshot.today} profile={snapshot.profile} dependencies={snapshot.dependencies||[]} onState={(state,result)=>setSnapshot(s=>s?.ownerSession===user.id?{...s,...result,state}:s)}/></RouteBoundary>);
 }

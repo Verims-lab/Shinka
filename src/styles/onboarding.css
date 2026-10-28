@@ -1,25 +1,6 @@
-/* Onboarding-only light background (ON-01–ON-06), user-approved 2026-10-26.
-   Static layers on the full-width shell; global tokens unchanged. Always active under the 037 light-only policy. */
-:root {
-  --onboarding-soft-blush: #FCEDEA;
-  --onboarding-pale-rose: #F8E3E5;
-  --onboarding-warm-ivory: #FFF9F5;
-  --onboarding-peach-mist: #FBE9E5;
-  --onboarding-rose-haze: #F5DDE3;
-}
+/* Onboarding shell (ON-01–ON-06). The former gradient background is superseded
+   by the 046 section background (SectionBackdrop "onboarding"); shell is transparent. */
 .shinka-onboarding { min-height: 100vh; min-height: 100dvh; }
-.shinka-onboarding {
-  background-color: var(--onboarding-warm-ivory);
-  background-image:
-    radial-gradient(ellipse 75% 42% at 8% 12%, rgba(248, 212, 219, 0.50), transparent 78%),
-    radial-gradient(ellipse 60% 30% at 70% 0%, rgba(251, 233, 229, 0.70), transparent 80%),
-    radial-gradient(ellipse 65% 48% at 100% 42%, rgba(244, 201, 211, 0.40), transparent 80%),
-    radial-gradient(ellipse 80% 48% at 50% 58%, rgba(255, 255, 250, 0.72), transparent 82%),
-    radial-gradient(ellipse 85% 44% at 30% 100%, rgba(245, 221, 227, 0.55), transparent 80%),
-    linear-gradient(165deg, var(--onboarding-soft-blush) 0%, var(--onboarding-warm-ivory) 45%, var(--onboarding-pale-rose) 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
 /* ON-01: three-row intro sits directly on the watercolor shell (no single white card). */
 .shinka-onboarding .shinka-intro-shell { background: transparent; border: 0; box-shadow: none; padding: 0; }
 .shinka-intro-art { mix-blend-mode: multiply; }

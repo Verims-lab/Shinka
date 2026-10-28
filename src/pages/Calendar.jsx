@@ -23,7 +23,7 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
   const futureSelected = Boolean(value && state.selected > value.today);
   const dateError = futureSelected ? 'PERIOD_START_FUTURE' : state.error;
   const validationError = /^PERIOD_(DATE_|START_FUTURE|DUPLICATE|CONFLICT)/.test(dateError || '');
-  return <div lang={language} data-calendar-root className="shinka-viewport shinka-safe-shell bg-shinka-ivory text-shinka-ink font-body flex flex-col">
+  return <div lang={language} data-calendar-root className="shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col">
     <header className="flex flex-wrap items-center justify-between px-5 pt-6 gap-2">
       <span className="font-heading font-medium text-shinka-h3 text-shinka-plum">Shinka</span>
       {renderProfileAccess?.(language) || <ProfileMenu language={language}/>}

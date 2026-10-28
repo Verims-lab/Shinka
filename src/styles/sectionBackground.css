@@ -1,0 +1,33 @@
+/* 046 section backgrounds: one fixed decorative layer per rendered section
+   (SectionBackdrop). Page roots stay transparent so the layer continues under
+   header, content and safe areas; cards keep their opaque surface tokens. */
+body { background-color: transparent; }
+.shinka-section-backdrop {
+  position: fixed; top: 0; left: 0; right: 0; z-index: -1;
+  height: 100vh; height: 100lvh;
+  pointer-events: none;
+  background-color: rgb(var(--shinka-ivory));
+}
+/* Image layer: cover keeps the aspect ratio (no stretch/tiling). */
+.shinka-section-backdrop::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: var(--section-image, none);
+  background-position: 50% var(--section-focus-y, 50%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* Wide screens: the onboarding moon composition is shown whole at full height
+   (downscaled, never enlarged) and its side edges dissolve into the ivory base. */
+@media (min-aspect-ratio: 3/4) {
+  .shinka-section-backdrop[data-section-backdrop="onboarding"]::before {
+    background-size: auto 100%; background-position: 50% 0;
+    -webkit-mask-image: linear-gradient(to right, transparent calc(50% - 28.2vh), #000 calc(50% - 22vh), #000 calc(50% + 22vh), transparent calc(50% + 28.2vh));
+    mask-image: linear-gradient(to right, transparent calc(50% - 28.2vh), #000 calc(50% - 22vh), #000 calc(50% + 22vh), transparent calc(50% + 28.2vh));
+  }
+}
+/* Dark: same watercolor identity, dimmed under the dark ivory token so dark-mode
+   text/controls keep their contrast; never an inverted or recolored image. */
+.dark .shinka-section-backdrop::after {
+  content: ""; position: absolute; inset: 0;
+  background: rgb(var(--shinka-ivory) / 0.86);
+}

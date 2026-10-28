@@ -3,6 +3,8 @@ import { createElement as h } from "react";
 import { createRoot } from "react-dom/client";
 import { flushSync } from "react-dom";
 import PageContainer from "@/components/shinka/PageContainer";
+import SectionBackdrop from "@/components/shinka/SectionBackdrop";
+import { SECTION_BACKGROUNDS, sectionBackground } from "@/foundation/sectionBackgrounds";
 import PageHeader from "@/components/shinka/PageHeader";
 import ShinkaCard from "@/components/shinka/ShinkaCard";
 import ShinkaButton from "@/components/shinka/ShinkaButton";
@@ -91,15 +93,30 @@ export const CSS_CONTRACT_TESTS = [
       assert(measure(host.lastElementChild.lastElementChild).display==='none','hidden class lost');
     });
   }],
-  ["T81","Light onboarding keeps watercolor layers; plain product/internal containers stay flat",async()=>{
-    await rendered(h("div",null,h(PageContainer,{className:"shinka-onboarding","data-onb":1,children:"a"}),h(PageContainer,{"data-plain":1,children:"b"})),host=>{
+  ["T81","046 section shells are transparent over the backdrop; plain internal containers stay flat ivory",async()=>{
+    await rendered(h("div",null,h(PageContainer,{className:"shinka-onboarding",surface:"section","data-onb":1,children:"a"}),h(PageContainer,{"data-plain":1,children:"b"})),host=>{
       const onb=host.querySelector("[data-onb]"),plain=host.querySelector("[data-plain]");
-      for(const c of ["shinka-viewport","bg-shinka-ivory","text-shinka-ink","font-body","shinka-onboarding"]) assert(onb.classList.contains(c),`class ${c}`);
+      for(const c of ["shinka-viewport","text-shinka-ink","font-body","shinka-onboarding"]) assert(onb.classList.contains(c),`class ${c}`);
+      assert(!onb.classList.contains("bg-shinka-ivory")&&plain.classList.contains("bg-shinka-ivory"),'surface ownership');
       assert(onb.firstElementChild.classList.contains("shinka-safe-content"),'safe content kept');
-      assert(measure(plain).backgroundImage==="none",'non-onboarding background changed');
-      const img=measure(onb).backgroundImage,repeats=measure(onb).backgroundRepeat.split(',').map(value=>value.trim());
-      assert((img.match(/radial-gradient/g)||[]).length===5&&(img.match(/linear-gradient/g)||[]).length===1&&[1,6].includes(repeats.length)&&repeats.every(value=>value==='no-repeat'),'watercolor layers');
-      assert(measure(onb).backgroundColor===rgb(measure(document.documentElement).getPropertyValue("--onboarding-warm-ivory").trim()),'approved watercolor surface');
+      assert(measure(plain).backgroundImage==="none"&&measure(onb).backgroundImage==="none",'no gradient/image on shells');
+      assert(measure(onb).backgroundColor==="rgba(0, 0, 0, 0)",'onboarding shell transparent');
+    });
+  }],
+  ["T82","046 section backdrop: mapping, shared asset, decorative fixed single layer, neutral and dark adaptation",async()=>{
+    const urls=Object.fromEntries(Object.keys(SECTION_BACKGROUNDS).map(s=>[s,sectionBackground(s).url]));
+    assert(Object.keys(urls).join()==="onboarding,home,calendar,pattern,you",'five logical sections');
+    assert(new Set([urls.home,urls.calendar,urls.pattern,urls.you]).size===1&&urls.onboarding!==urls.home,'one shared product asset, separate onboarding asset');
+    assert(Object.values(urls).every(u=>/^https:\/\/media\.base44\.com\/.+\/v1\/fill\/w_941,h_1672,al_c,q_85\/.+\.jpg$/.test(u)&&!u.startsWith("data:")),'native-size CDN derivative, no base64');
+    assert(sectionBackground("neutral")===null,'unresolved is neutral');
+    await rendered(h("div",null,h(SectionBackdrop,{section:"calendar"}),h(SectionBackdrop,{section:"neutral"})),host=>{
+      const [layer,neutral]=Array.from(host.querySelectorAll(".shinka-section-backdrop")),s=measure(layer);
+      assert(layer.getAttribute("aria-hidden")==="true"&&!layer.textContent&&s.pointerEvents==="none"&&s.position==="fixed"&&s.zIndex==="-1",'decorative fixed layer');
+      const art=getComputedStyle(layer,"::before");
+      assert(art.backgroundImage.includes(urls.calendar)&&art.backgroundRepeat==="no-repeat"&&art.backgroundSize==="cover",'cover, no tiling or stretch');
+      assert(neutral.getAttribute("data-section-backdrop")==="neutral"&&getComputedStyle(neutral,"::before").backgroundImage==="none",'neutral base without image');
+      document.documentElement.classList.add("dark");
+      try{assert(getComputedStyle(layer,"::after").content!=="none",'dark overlay present');}finally{document.documentElement.classList.remove("dark");}
     });
   }],
   ["T80","Existing rendered Health typography/color/touch/light-policy checks remain passing",async()=>{
