@@ -24,7 +24,7 @@ export const H13_STATIC_CASES = [
     const hard = (await ctx.inspection()).ui.hardcoded;
     return verdict(l.ok && !hard.length, ev(CLASS.STATIC, "i18n/strings.js + Foundation UI sources", { ...l, hardcoded: hard }, { ok: true, hardcoded: [] }, "Localization inspection"));
   }),
-  c("H13-014", "046 section background mapping and single owner", "Five logical sections map to two native-size CDN assets (one shared watercolor for Home/Calendar/Pattern/You, one onboarding moon); unresolved state is neutral; at most one backdrop layer is rendered.", async () => {
+  c("H13-020", "046 section background mapping and single owner", "Five logical sections map to two native-size CDN assets (one shared watercolor for Home/Calendar/Pattern/You, one onboarding moon); unresolved state is neutral; at most one backdrop layer is rendered.", async () => {
     const urls = Object.keys(SECTION_BACKGROUNDS).map(s => sectionBackground(s).url);
     const layers = document.querySelectorAll(".shinka-section-backdrop").length;
     const actual = { sections: Object.keys(SECTION_BACKGROUNDS), distinctAssets: new Set(urls).size, neutral: sectionBackground("neutral"), layers };
