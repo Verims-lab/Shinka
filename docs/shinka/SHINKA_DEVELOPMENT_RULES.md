@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-048
+**Current BuildMarker:** Buildmarker-049
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## Current 049 — opening stability and authorized 045 cleanup only
+
+Preserve 048 theme, section artwork and ID model. Advance once to Buildmarker-049 / HC-048.0 with recordBuild, keeping 045–049. Six existing Health cases change; no new/deleted case IDs. The owner authorizes normal hosted app diagnosis and four-field maintenance through the web session; missing CLI login is not a blocker and is not requested. Published maintenance dispatch is missing, so prepare its smallest guarded Test integration, retain compatibility fields and report NOT_RUN rather than claiming cleanup. Main merge/publish remains owner-controlled. No hosted Full Health/Security scan, deletion/reset/profile/consent/cycle mutation, send/scheduler or deferred twelve-finding work. Full local Chromium/WebKit and unchanged quality/performance gates remain mandatory.
 
 ## Current 048 — theme and 045 cleanup only
 

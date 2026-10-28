@@ -1,0 +1,153 @@
+{
+  "scope": "LOCAL_REQUIRED_GATES",
+  "gates": [
+    {
+      "command": "npm ci",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "b3c990273f1a3dc2fdb738887a9ec56e7e6ecbbd372d7b5351cd16c32d255f73"
+    },
+    {
+      "command": "npm ls --all",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "9279881b5b54cf6e135c5cda518d34590ab883d4c6c4f01458d7a118bfd817a8"
+    },
+    {
+      "command": "npm audit --json",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "d023db939da1b363569c7aabf402295e2daa53f1176fda1428ee679d16270dab"
+    },
+    {
+      "command": "npm run security:deps",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "ba5a55cc48eca8e7c392d3754b663e0bd7b6233525429a1d8a5d44768df5b507"
+    },
+    {
+      "command": "npm run typecheck",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "2e1c7db5ac28fb733e8c1d3d7c2c3bf8a4bb6628ed45eb56ce2e7328388598de"
+    },
+    {
+      "command": "npm run lint",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "8423c1a66df3f2a021733ae12f217befbeb04b23971e056cb4e3739c7fb936cf"
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "9bb015707ae0e624eb3543aa1a9aec7bfa0d0ff1567ea41d83c9565561de1720"
+    },
+    {
+      "command": "npm run health:repo",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "8469436e68da3610b3077bd000fd9763f55c31e8dbf47b61c62b61a9de8bc78f"
+    },
+    {
+      "command": "node scripts/recordBuild.mjs --check",
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f"
+    }
+  ],
+  "audit": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "dependencies": {
+      "prod": 217,
+      "dev": 291,
+      "optional": 55,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 507
+    }
+  },
+  "repository": {
+    "scope": "REPOSITORY_ONLY",
+    "buildMarker": "Buildmarker-049",
+    "healthCatalog": "HC-048.0",
+    "checks": {
+      "dependencyBoundaries": true,
+      "boundedGeneratedHistory": true,
+      "twentyPhysicalProductSchemas": true,
+      "noUnexpectedProductSchemas": true,
+      "guardedNotificationSchedule": true,
+      "guardedHealthHistory": true,
+      "separateBuiltinUserAndTooling": true,
+      "exactAuthoritativeFields": true,
+      "completeAccessMatrix": true,
+      "directSdkOperationsDenied": true,
+      "onboardingCopyAndProxy": true,
+      "onboardingGeoNamesEntry": true,
+      "noProductSeedCalls": true,
+      "canonicalMarker": true,
+      "docsAligned": true,
+      "noLegacyImport": true,
+      "noCredentialFindings": true,
+      "noPersonalEmails": true
+    },
+    "failed": [],
+    "domain": {
+      "dailyCompatibility": {
+        "phase": "OPTIONAL_LEGACY_FIELDS_CLEANUP_PENDING",
+        "optionalLegacyFields": [
+          "message_tr_snapshot",
+          "suggestion_tr_snapshot",
+          "message_en_snapshot",
+          "suggestion_en_snapshot"
+        ],
+        "valid": true,
+        "cleanupVerified": false,
+        "scope": "REPOSITORY_ONLY"
+      },
+      "expected": 20,
+      "present": 20,
+      "unexpected": [],
+      "mismatches": [],
+      "internal": 6,
+      "builtinUserSeparate": true,
+      "healthHistoryPolicy": true,
+      "testOperationPolicy": true,
+      "calendarActionPolicy": true,
+      "notificationSchedulePolicy": true,
+      "privacyPolicies": true,
+      "accessMatrixRows": 20,
+      "accessMatrixComplete": true,
+      "directOperationsDenied": true,
+      "source": "PHYSICAL_REPOSITORY_SCHEMAS_NOT_DEPLOYMENT_PROOF",
+      "writeSurface": {
+        "ok": true,
+        "unexpected": [],
+        "changedAllowlistedCounts": [],
+        "metadataWriteCalls": 19,
+        "onboardingWriteCalls": 2,
+        "scope": "STATIC_IMPORT_SEED_CALL_INSPECTION"
+      }
+    }
+  },
+  "diffCheck": "PASS",
+  "activePackages": [
+    "Buildmarker-045",
+    "Buildmarker-046",
+    "Buildmarker-047",
+    "Buildmarker-048",
+    "Buildmarker-049"
+  ],
+  "warnings": [
+    "Existing lazy internal chunk size/dynamic import warnings",
+    "npm min-release-age-exclude configuration warning"
+  ],
+  "hostedSecurityScanRun": false
+}

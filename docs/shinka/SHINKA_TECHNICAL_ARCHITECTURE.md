@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-048
+**Current BuildMarker:** Buildmarker-049
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -12,6 +12,12 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 049 — Startup waits, safe stages and narrow maintenance
+
+AuthProvider uses boundedSessionRead for parallel settings and the complete session retry sequence, each bounded to 15 seconds. Abort/disposal removes local deadlines and stops retry dispatch; it cannot cancel an already transmitted SDK request. Coalescer finally releases failed work; generations reject late identities. Home foreground recovery observes failed state as well as day changes. Existing 15-second onboarding and 20-second daily budgets are unchanged. Daily retries still read/reconcile the durable day and recheck before create; no cross-instance uniqueness or cancellation guarantee is added. Session, hydrate and daily failures expose only allowlisted code/stage/request ID/duration diagnostics. Daily stages distinguish profile, existing assignment, reference resolution, selection, persistence and final readback; HTTP transport class does not prove a corrupt reference. No shared content/auth cache is added.
+
+The existing internalHealth dispatcher gains only dailyReferenceMigration with a closed nested request (dryRun/applyBatch/verify). It reuses the 045 module and fresh native-admin/ACTIVE/privacy/lifecycle guards, pins app ID 6ad5190f4845d4e3af03b420, and accepts no table/patch/role/key. Browser Test Function can invoke it after owner publication; no extra frontend privilege or new endpoint. Assignment and paginated NotificationDelivery-link digests support full operator pre/post comparison. No automatic scheduling.
 
 ## 048 — Verified manual theme boundary
 

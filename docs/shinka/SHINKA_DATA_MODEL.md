@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-048
+**Current BuildMarker:** Buildmarker-049
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -14,6 +14,10 @@
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
 
 
+
+## 049 — Cleanup remains pending; verification receipts strengthened
+
+The four optional physical UserDailyMessage legacy text fields remain in the compatibility schema. Hosted cleanup has not run: 0 inspected by migration / 0 cleaned / remaining unknown / full verify NOT_RUN. Current MessagePair text and immutable assignment-only writes are unchanged. Reviewed receipts now include assignmentDigest and linksDigest/linkCount, derived from native daily ID, owner, date, timezone, category, pair, generated_at and linked NotificationDelivery ID/owner/daily ID. Only the existing four-field unset is writable. Native updated_date may change; assignment digests exclude it. Full completion requires every page, identical initial/final assignment and link receipts, zero legacy fields and invalid references. Any missing/new/unreviewed ID or changing old writer requires investigation and another complete inventory; a clean page is not global success. Final generator/inspector/D23/schema removal stays gated on actual hosted verification.
 
 ## 048 — Hosted four-field cleanup remains pending
 

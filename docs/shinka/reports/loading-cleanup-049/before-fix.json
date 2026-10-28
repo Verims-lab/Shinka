@@ -1,0 +1,22 @@
+{
+  "scope": "LOCAL_SYNTHETIC_CHROMIUM",
+  "source": "ecf0e9e plus new regression definitions before implementation",
+  "results": [
+    {
+      "id": "SS13",
+      "passed": false,
+      "detail": "startup remained loading after deadline"
+    },
+    {
+      "id": "DU06",
+      "passed": false,
+      "detail": "DAILY_UI_TIMEOUT"
+    }
+  ],
+  "intermediateIssues": [
+    "Trace callback TypeScript arity corrected without weakening assertions",
+    "Native session entry harness needed actual healthReadDiagnostics import and crypto; fixed, with additional redaction assertions",
+    "First full Chromium/WebKit runs failed DM22/H12-026 because exact legacy envelope assertion excluded new safe diagnostics; corrected to an exact closed diagnostic schema, retaining every privacy/no-write assertion."
+  ],
+  "pageErrors": []
+}

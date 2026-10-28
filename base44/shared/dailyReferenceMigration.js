@@ -1,4 +1,4 @@
-// Operator-only offline bundle; no HTTP route or scheduled execution. Never
+// Reviewed operator maintenance, also dispatched by the existing admin function. Never
 // writes assignments, creates rows, copies text, or changes retention scopes.
 import { InternalError, requireInternalAdmin } from './internalAuthorization.js';
 import { withUserLifecycle } from './userLifecycle.js';
@@ -14,6 +14,20 @@ const fail = code => { throw new InternalError(code, 409); };
 const identity = row => Object.fromEntries(fields.map(key => [key, row[key]]));
 const present = row => LEGACY_DAILY_TEXT_FIELDS.filter(key => Object.hasOwn(row, key));
 const same = (a,b) => JSON.stringify(identity(a)) === JSON.stringify(identity(b));
+async function readLinks(client, rows) {
+  const ids = rows.map(row => row.id), links = [], seen = new Set();
+  if (!ids.length) return links;
+  let cursor = null;
+  for (let count = 0; count <= 4000; count += 100) {
+    const page = await client.asServiceRole.entities.NotificationDelivery.filter({daily_message_id:{$in:ids}, ...(cursor ? {id:{$gt:cursor}} : {})}, 'id', 100, 0, ['id','user_id','daily_message_id']);
+    if (!Array.isArray(page) || page.length > 100 || page.some(row => !row?.id || seen.has(row.id) || cursor && row.id <= cursor || !ids.includes(row.daily_message_id))) fail('MIGRATION_LINK_READ_INVALID');
+    for (const row of page) { seen.add(row.id); links.push(row); }
+    if (links.length > 4000) fail('MIGRATION_LINK_LIMIT');
+    if (page.length < 100) return links;
+    cursor = page.at(-1).id;
+  }
+  fail('MIGRATION_LINK_LIMIT');
+}
 async function admit(client) {
   const actor = await requireInternalAdmin(withUserLifecycle(client));
   const rows = await client.asServiceRole.entities.UserProfile.filter({ user_id: actor.id }, 'id', 2, 0, ['id','user_id','account_status']);
@@ -31,14 +45,17 @@ async function inspect(client, { cursor = null, ids = null }) {
   const pairIds = [...new Set(page.map(row=>row.message_pair_id).filter(id=>typeof id === 'string' && id.trim()))];
   const pairs = pairIds.length ? await store.MessagePair.filter({id:{$in:pairIds}}, 'id', pairIds.length+1, 0, ['id',...DAILY_TEXT_FIELDS]) : [];
   if (!Array.isArray(pairs) || pairs.length > pairIds.length || new Set(pairs.map(p=>p.id)).size !== pairs.length || pairs.some(p=>!pairIds.includes(p.id))) fail('MIGRATION_REFERENCE_READ_INVALID');
-  const reports = page.map(row=>{
+  const links = await readLinks(client, page);
+  const reports = await Promise.all(page.map(async row=>{
     let status = 'READY';
     try { verifiedDailyRecord(row,row.user_id); } catch { status = 'ASSIGNMENT_INVALID'; }
     const pair = pairs.find(p=>p.id===row.message_pair_id);
     if (status === 'READY' && (!pair || DAILY_TEXT_FIELDS.some(key=>typeof pair[key]!=='string'||!pair[key].trim()))) status = pair ? 'REFERENCE_INVALID' : 'REFERENCE_MISSING';
-    return {id:row.id, status, legacyFields:present(row).length};
-  });
-  const digest = await privacyHash(JSON.stringify({contract:'daily-reference/1',rows:page, references:reports.map(r=>[r.id,r.status])}));
+    const ownLinks = links.filter(link => link.daily_message_id === row.id);
+    if (status === 'READY' && ownLinks.some(link => link.user_id !== row.user_id)) status = 'LINK_OWNER_INVALID';
+    return {id:row.id, status, legacyFields:present(row).length, assignmentDigest:await privacyHash(JSON.stringify(identity(row))), linkCount:ownLinks.length, linksDigest:await privacyHash(JSON.stringify(ownLinks))};
+  }));
+  const digest = await privacyHash(JSON.stringify({contract:'daily-reference/2',rows:page, references:reports}));
   return {page, report:{ids:page.map(r=>r.id),reviewed_digest:digest,rows:reports,hasMore:rows.length>DAILY_MIGRATION_LIMIT,nextCursor:page.at(-1)?.id||cursor,clean:reports.every(r=>r.status==='READY'&&r.legacyFields===0)}};
 }
 export async function dailyReferenceMigration(client, body) {
@@ -59,6 +76,8 @@ export async function dailyReferenceMigration(client, body) {
       const current = await store.filter({id:row.id},'id',2,0,select);
       if (!Array.isArray(current) || current.length !== 1 || !same(row,current[0])) fail('MIGRATION_REVIEW_EXPIRED');
       const fresh = current[0];
+      const linksBefore = await readLinks(client, [row]);
+      if (await privacyHash(JSON.stringify(linksBefore)) !== report.linksDigest) fail('MIGRATION_REVIEW_EXPIRED');
       if (present(fresh).length) {
         // Literal native ID + reviewed assignment predicates: no bulk $in write.
         // Recheck is a documented platform contract, not a transaction claim.
@@ -69,7 +88,9 @@ export async function dailyReferenceMigration(client, body) {
       }
       const result = await store.filter({id:row.id},'id',2,0,select);
       if (!Array.isArray(result) || result.length!==1 || !same(row,result[0]) || present(result[0]).length) fail('MIGRATION_READBACK_UNCONFIRMED');
-      outcomes.push({id:row.id,status:'VERIFIED_CLEAN'});
+      const linksAfter = await readLinks(client, [row]);
+      if (JSON.stringify(linksAfter) !== JSON.stringify(linksBefore)) fail('MIGRATION_LINK_READBACK_UNCONFIRMED');
+      outcomes.push({id:row.id,status:'VERIFIED_CLEAN',assignmentDigest:report.assignmentDigest,linksDigest:report.linksDigest,linkCount:report.linkCount});
     } catch (error) {
       outcomes.push({id:row.id,status:error instanceof InternalError ? error.code : 'MIGRATION_IO_UNCONFIRMED'});
       // A partial pass stops here. Re-dry-run this same ID set after recovery;

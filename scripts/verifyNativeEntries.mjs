@@ -9,6 +9,7 @@ import { withUserLifecycle } from '../base44/shared/userLifecycle.js';
 import { withNativeWriteChecks } from '../base44/shared/nativeWriteChecks.js';
 import * as authorization from '../base44/shared/internalAuthorization.js';
 import * as privacyPolicy from '../base44/shared/privacyPolicy.js';
+import * as healthReadDiagnostics from '../base44/shared/healthReadDiagnostics.js';
 import * as boundedJson from '../base44/shared/boundedJson.js';
 import * as geonamesGuard from '../base44/shared/geonamesGuard.js';
 export async function verifyNativeEntries(root) {
@@ -18,10 +19,11 @@ export async function verifyNativeEntries(root) {
     AdminTestOperation: { filter: async () => [] },
     UserPrivacyRequest: { filter: async () => [] },
   } } };
+  const safeLogs=[];
   const load = async (path, imports) => {
     const output = ts.transpileModule(await readFile(`${root}/${path}`, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
     const exports = {};
-    runInNewContext(output, { exports, Request, Response, require: name => { assert.ok(Object.hasOwn(imports,name), `Unexpected import: ${name}`); return imports[name]; } }, { timeout: 1000 });
+    runInNewContext(output, { exports, Request, Response, crypto, console:{error:(...args)=>safeLogs.push(args)}, require: name => { assert.ok(Object.hasOwn(imports,name), `Unexpected import: ${name}`); return imports[name]; } }, { timeout: 1000 });
     return exports;
   };
   const native = await load('base44/shared/nativeClient.ts', {
@@ -31,7 +33,7 @@ export async function verifyNativeEntries(root) {
   });
   const session = await load('base44/functions/applicationSession/entry.ts', {
     '../../shared/nativeClient.ts': native, '../../shared/internalAuthorization.js': authorization,
-    '../../shared/privacyPolicy.js': privacyPolicy, '../../shared/boundedJson.js': boundedJson,
+    '../../shared/privacyPolicy.js': privacyPolicy, '../../shared/healthReadDiagnostics.js': healthReadDiagnostics, '../../shared/boundedJson.js': boundedJson,
   });
   const artifacts = await load('base44/functions/validateContentArtifacts/entry.ts', {
     '../../shared/nativeClient.ts': native,
@@ -49,6 +51,16 @@ export async function verifyNativeEntries(root) {
   exists = true; token = false; assert.equal((await call('{}')).status,401);
   token = true; assert.equal((await call('{')).status,400); assert.equal((await call('{"role":"admin"}')).status,400);
   assert.equal((await call(' '.repeat(1001))).status,413);
+  const originalPrivacyRead=client.asServiceRole.entities.UserPrivacyRequest.filter;
+  for(const status of [429,503,504]) {
+    client.asServiceRole.entities.UserPrivacyRequest.filter=async()=>{throw {status,message:'PRIVATE_RAW_ERROR',response:{status,data:{private:'PRIVATE_RESPONSE'}}};};
+    const response=await call('{}'),data=await response.json();
+    assert.equal(response.status,503);assert.equal(data.diagnostic.stage,'LIFECYCLE_READ');
+    assert.equal(data.diagnostic.code,status===429?'RATE_LIMITED':status===504?'TIMEOUT':'SERVICE_UNAVAILABLE');
+    assert.ok(!JSON.stringify(data).includes('PRIVATE'));
+  }
+  client.asServiceRole.entities.UserPrivacyRequest.filter=originalPrivacyRead;
+  assert.ok(!JSON.stringify(safeLogs).includes('PRIVATE'));
   assert.equal(secretReads,0, 'Session/login must not require a SQL or maintenance secret');
   const handler = (_req, createClient, deps) => { assert.equal(createClient,native.createNativeClient); assert.equal(deps.native,true); return 'native-route'; };
   const daily = await load('base44/functions/dailyMessage/entry.ts', {
@@ -83,5 +95,5 @@ export async function verifyNativeEntries(root) {
     '../../shared/privacyOperation.js': { handlePrivacyRequest: (_req, createClient) => { assert.equal(createClient, rawClient); return 'owner-privacy-route'; } },
   });
   assert.equal(await privacy.default({}), 'owner-privacy-route');
-  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 7, nativeRoutes: 5, artifactEntryChecks: 2, loginSecretReads: secretReads, hostedVerified: false, passed: true };
+  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 10, nativeRoutes: 5, artifactEntryChecks: 2, loginSecretReads: secretReads, hostedVerified: false, passed: true };
 }

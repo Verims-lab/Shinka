@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-048
+**Current BuildMarker:** Buildmarker-049
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 049 scope decision — existing web session and four-field cleanup
+
+The owner's current request authorizes normal app observation and the existing 045 four-field maintenance through the Base44 web session. This supersedes the prior CLI-only execution/owner-deferred access instruction, not ID immutability, content text, retention, permissions or publication ownership. A missing deployed dispatcher is handled by a narrow Test preparation; successful local tests do not authorize final schema removal without hosted full verify. No new service, database or product decision.
 
 ## 048 — Theme alignment and narrowly authorized 045 cleanup
 

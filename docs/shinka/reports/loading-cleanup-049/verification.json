@@ -1,0 +1,154 @@
+{
+  "build": "Buildmarker-049",
+  "catalog": "HC-048.0",
+  "scope": "LOCAL_SYNTHETIC_PLUS_SEPARATE_HOSTED_048_OBSERVATION",
+  "baseline": "ecf0e9e",
+  "browserRuns": [
+    {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "tests": 734,
+      "passed": 734,
+      "failed": 0,
+      "pageErrors": [],
+      "inAppHealth": {
+        "PASS": 140,
+        "BLOCKED": 13
+      },
+      "blockedIds": [
+        "H04-019",
+        "H05-001",
+        "H05-002",
+        "H05-003",
+        "H05-004",
+        "H05-005",
+        "H05-006",
+        "H05-007",
+        "H05-008",
+        "H05-009",
+        "H08-005",
+        "H09-004",
+        "H12-031"
+      ],
+      "saveState": "SAVED",
+      "retrySave": true,
+      "historyListed": true,
+      "privateReportOpened": true,
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 10,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true,
+        "deletion": {
+          "passed": true,
+          "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+          "hostedVerified": false,
+          "checks": 7
+        }
+      },
+      "receipt": "chromium.json"
+    },
+    {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "tests": 734,
+      "passed": 734,
+      "failed": 0,
+      "pageErrors": [],
+      "inAppHealth": {
+        "PASS": 140,
+        "BLOCKED": 13
+      },
+      "blockedIds": [
+        "H04-019",
+        "H05-001",
+        "H05-002",
+        "H05-003",
+        "H05-004",
+        "H05-005",
+        "H05-006",
+        "H05-007",
+        "H05-008",
+        "H05-009",
+        "H08-005",
+        "H09-004",
+        "H12-031"
+      ],
+      "saveState": "SAVED",
+      "retrySave": true,
+      "historyListed": true,
+      "privateReportOpened": true,
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 10,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true,
+        "deletion": {
+          "passed": true,
+          "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+          "hostedVerified": false,
+          "checks": 7
+        }
+      },
+      "receipt": "webkit.json"
+    }
+  ],
+  "identicalUniqueTestIds": true,
+  "healthChanges": {
+    "added": 0,
+    "updated": 6,
+    "removed": 0
+  },
+  "performance": {
+    "passed": true,
+    "initialJS": {
+      "raw": 474918,
+      "gzip": 157886
+    },
+    "css": {
+      "raw": 78478,
+      "gzip": 14447
+    },
+    "cycles": [],
+    "lazyRetry": {
+      "passed": true,
+      "scope": "Synthetic network asset failure and full-reload retry, real App route"
+    }
+  },
+  "hosted": "hosted-observation.json",
+  "initialFailures": "before-fix.json",
+  "fullHostedHealth": "NOT_RUN",
+  "physicalDevices": "NOT_RUN",
+  "cleanup": {
+    "inspected": 0,
+    "cleaned": 0,
+    "remaining": null,
+    "fullVerify": "NOT_RUN",
+    "blockedBy": "DEPLOYED_DISPATCH_MISSING"
+  },
+  "finalSchema": "NOT_READY_OPTIONAL_COMPATIBILITY_FIELDS_RETAINED",
+  "qualityGates": "quality-gates.json",
+  "nodeAdmission": {
+    "passed": 8,
+    "total": 8,
+    "receipt": "admission.json"
+  },
+  "nodeSession": {
+    "passed": 9,
+    "total": 9,
+    "receipt": "session.json"
+  },
+  "finalization": "Only documentation and generated ledger status changed after behavioral runs; repository/history rechecked."
+}

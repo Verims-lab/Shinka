@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-048
+**Current BuildMarker:** Buildmarker-049
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
-**Last Updated:** 2026-10-26
+**Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
 **External Verification Required:** All rows marked UNVERIFIED.
+
+## 049 — narrow web maintenance and opening diagnostics
+
+The existing internalHealth dispatcher admits only the fixed Shinka app and the existing reviewed daily-reference migration operations. The migration rechecks native admin/ACTIVE, target privacy/lifecycle and reviewed ID/digest before the literal four-field unset; no generic table/patch input, token extraction, policy relaxation or additional credential is permitted. Assignment/link fingerprints are metadata receipts, not content snapshots. This is prepared in Test; hosted execution is blocked by the currently deployed missing action, so full cleanup and final schema remain unverified.
+
+Opening diagnostics use the closed code/stage/status vocabulary plus UUID and duration, never raw exceptions, headers, payloads or message/health text. A local deadline releases UI waits without claiming remote cancellation. Transient verification failure grants no fresh admin authority and does not force logout; account/logout/unmount discard old responses. See reports/SHINKA_LOADING_CLEANUP_049.md.
 
 | Topic | PRODUCT REQUIREMENT | BASE44 VERIFIED CAPABILITY |
 |---|---|---|

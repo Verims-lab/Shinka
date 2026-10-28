@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** ACTIVE — historical hosted readiness retained; current hosted acceptance pending
-**Current BuildMarker:** Buildmarker-048
+**Current BuildMarker:** Buildmarker-049
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
 
 
+
+## 049 — Web maintenance handoff supersedes CLI-only cleanup
+
+Current web observation: correct Shinka app, published frontend Buildmarker-048 / HC-047.0 and current native admin verified through applicationSession. Base44 Code → internalHealth/entry.ts → Test Function exists; the read-only dailyReferenceMigration/dryRun request returned INVALID_INTERNAL_ACTION (400, OPERATION), proving the deployed dispatcher lacks this action. No code was edited or published there. No arbitrary server-script executor was exposed in that function test dialog; its input is JSON for the already deployed function.
+
+Owner merges Test and waits for full GitHub sync of applicationSession, onboarding, dailyMessage, internalHealth and all shared dependencies, then publishes matching 049 frontend. No schema push/import/secret setup or notification activation. After publication, verify the target app and current data environment in the web UI, compare the compatible code/schema, drain old writers, then resume the already-authorized cleanup through the existing Test Function and the closed request examples in reports/SHINKA_LOADING_CLEANUP_049.md. The published domain uses the existing shared app; Test/Preview is not an isolated DB. This run did not independently establish a web data-env selector or complete deployed graph/drain proof, and made no maintenance write. Final physical schema remains unchanged until full cleanup evidence.
 
 ## 048 — Current theme delivery; 045 hosted cleanup deferred
 

@@ -189,7 +189,10 @@ export const DAILY_TESTS = [
   const f = dailyFixture(), before = JSON.stringify(f.rows);
   check((await onboardingOperation(f.client, { action: 'skipCycle' }, { now: f.dependencies.now })).state === 'FIRST_SHINKA_DEPENDENCY'); check(before === JSON.stringify(f.rows));
   const response = await handleDailyMessageRequest(new Request('https://fixture.invalid', { method: 'POST', body: JSON.stringify(request) }), () => f.client);
-  check(response.status === 503 && JSON.stringify(await response.json()) === JSON.stringify({ error_code: 'DAILY_ATOMIC_CAPABILITY_REQUIRED' }));
+  const body=await response.json(),diagnostic=body.diagnostic;
+  check(response.status===503&&body.error_code==='DAILY_ATOMIC_CAPABILITY_REQUIRED');
+  check(Object.keys(body).sort().join(',')==='diagnostic,error_code'&&Object.keys(diagnostic).sort().join(',')==='code,durationMs,httpStatus,requestId,stage');
+  check(diagnostic.code==='SERVICE_UNAVAILABLE'&&diagnostic.httpStatus===503&&diagnostic.stage==='DAILY_EXISTING'&&Number.isSafeInteger(diagnostic.durationMs)&&diagnostic.durationMs>=0&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(diagnostic.requestId));
  }],
  ['DM23', 'Staged content Health rejects positive partial counts and wrong source hash', async () => {
   const f = dailyFixture(), { source, decision } = contentFixture();

@@ -2,13 +2,13 @@
 
 Use this repository to run and edit the app locally, then publish changes back through Base44.
 
-[045 ID content delivery and migration runbook](docs/shinka/reports/SHINKA_ID_MODEL_045.md): MessagePair current text with unchanged daily assignment IDs; the publishable optional compatibility schema is already committed in Test → complete backend/shared → frontend → reviewed cleanup → final schema only after hosted verification. No separate intermediate commit is required. No agent-run hosted migration.
+[045 ID content delivery and migration runbook](docs/shinka/reports/SHINKA_ID_MODEL_045.md): MessagePair current text with unchanged daily assignment IDs; the publishable optional compatibility schema is already committed in Test → complete backend/shared → frontend → reviewed cleanup → final schema only after hosted verification. No separate intermediate commit is required. Current 049 authorizes reviewed web maintenance after publication/target/drain checks; no maintenance has executed yet.
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
-## Current Test theme delivery (Buildmarker-048 / HC-047.0)
+## Current Test opening/cleanup delivery (Buildmarker-049 / HC-048.0)
 
-Verified You light/dark preference is independent of OS; unresolved/onboarding defaults light. Health and tests follow the same contract. [048 evidence and publication steps](docs/shinka/reports/SHINKA_THEME_CLEANUP_048.md). The owner deferred live 045 cleanup after unavailable CLI authentication: keep the four optional daily fields; no final-schema cleanup is claimed. Merge/sync/publish remains owner-controlled.
+Bounded session opening, failed-Home foreground recovery and safe stage diagnostics preserve 048 theme and the ID model. [049 results and web cleanup handoff](docs/shinka/reports/SHINKA_LOADING_CLEANUP_049.md). The web Test Function exists but deployed internalHealth lacks migration dispatch; Test contains the narrow guarded addition. Four optional fields remain until full hosted cleanup verify. Owner handles main/sync/publish; no CLI login is requested.
 
 ## Historical Test audit closure (Buildmarker-042 / HC-041.0)
 
