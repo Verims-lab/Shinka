@@ -47,6 +47,11 @@ export async function onboardingProbe(step, width, run, props = {}, context = {}
   } finally { cleanup(); signal?.removeEventListener('abort', cleanup); }
 }
 function input(doc,id,value){const el=doc.getElementById(id);Object.getOwnPropertyDescriptor(doc.defaultView.HTMLInputElement.prototype,'value').set.call(el,value);el.dispatchEvent(new doc.defaultView.Event('input',{bubbles:true}));}
+function unframedTitle(doc,win){
+  const title=doc.querySelector('h1');title.focus();const css=win.getComputedStyle(title);
+  check(doc.activeElement===title&&title.tabIndex===-1,'heading remains the screen announcement target');
+  check(css.outlineStyle==='none'&&parseFloat(css.borderTopWidth)===0&&css.boxShadow==='none','focused onboarding title has no frame');
+}
 const button=(doc,text)=>Array.from(doc.querySelectorAll('button')).find(b=>b.textContent===text);
 // Real UI -> service -> HTTP handler -> provider adapter -> production persistence;
 // only the SDK transport and outbound provider HTTP response are synthetic.
@@ -70,6 +75,29 @@ async function pickPlace(doc,id,context={}){
 const clearButton=doc=>doc.querySelector('[data-place-clear]');
 /** @type {import('./testTypes').FoundationTest[]} */
 export const ONBOARDING_UI_TESTS=[
+ ['U19','ON-02 persistent inner label, framed focus, saved name and Back retain TR/EN name and skip rules',async(context={})=>{
+  for(const language of ['tr','en']){
+   const c=ONBOARDING_COPY[language];let name=null;
+   const pendingOverride={read:()=>name,save:value=>{name=value;return true;},clear:()=>{name=null;}};
+   await onboardingProbe('UNAUTHENTICATED_NAME',360,async(doc,win)=>{
+    const field=doc.querySelector('#display_name'),label=doc.querySelector('label[for=display_name]'),frame=field.closest('.shinka-framed-field');
+    check(frame?.contains(label)&&doc.querySelectorAll('label[for=display_name]').length===1&&label.control===field&&label.textContent===c.display_name,'one persistent associated inner label');
+    check(!field.hasAttribute('placeholder')&&field.autocomplete==='given-name'&&field.value==='','empty named field');
+    field.focus();check(doc.activeElement===field&&parseFloat(win.getComputedStyle(frame).outlineWidth)>=2&&parseFloat(win.getComputedStyle(frame).borderTopWidth)>0,'frame owns visible focus and border');
+    input(doc,'display_name','Ada');await waitForFixture(()=>button(doc,c.preferNot).disabled,doc.body,context);
+    check(label.getBoundingClientRect().bottom<=field.getBoundingClientRect().top&&label.textContent===c.display_name,'filled label stays above input');
+    button(doc,c.continue).click();await waitForFixture(()=>doc.querySelector('[data-provider]')&&!doc.querySelector('[data-onboarding-back]').disabled,doc.body,context);check(name==='Ada','name saved before next screen');
+    doc.querySelector('[data-onboarding-back]').click();await waitForFixture(()=>doc.querySelector('#display_name'),doc.body,context);check(doc.querySelector('#display_name').value==='Ada'&&button(doc,c.preferNot).disabled,'Back keeps saved draft and nonempty skip guard');
+   },{language,pendingOverride},context);
+   const f=sdkOnboardingFixture();await onboardingOperation(f.client,{action:'initialize',language_code:language,timezone:'Europe/Istanbul'});
+   const requestOverride=(action,payload={})=>onboardingOperation(f.client,{...payload,action},{now:()=>new Date(NOW)});
+   await onboardingProbe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
+    input(doc,'birth_date','1990-01-01');await testDelay(50,context.signal);button(doc,c.continue).click();
+    await waitForFixture(()=>doc.querySelector('[data-onboarding-state=AUTHENTICATED_CYCLE_STEP]'),doc.body,context);
+    check(f.rows.user_profile.length===1&&f.rows.user_profile[0].display_name==='Ada'&&name===null,'profile readback persists name and clears transient storage');
+   },{language,pendingOverride,requestOverride},context);
+  }
+ }],
  ['U01','EN/TR six screens fit 360/430px with named controls and 17px inputs',async(context={})=>{
   const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);
   for(const language of ['en','tr'])for(const width of [360,430])for(const step of ['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_NAME','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP','FIRST_SHINKA_DEPENDENCY'])await probe(step,width,async(doc,win)=>{
@@ -227,6 +255,7 @@ export const ONBOARDING_UI_TESTS=[
  ['U16','ON-01 shows all three intro rows with descriptions together in EN/TR; Begin goes to ON-02 once; no overflow at 320/360',async(context={})=>{
   const expect={en:['Your cycle','The Moon','Your birth chart'],tr:['Döngün','Ay','Doğum haritan']};
   for(const language of ['en','tr'])for(const width of [320,360])await onboardingProbe('UNAUTHENTICATED_INTRO',width,async(doc,win)=>{
+   unframedTitle(doc,win);
    const rows=[...doc.querySelectorAll('[data-intro-row]')];check(rows.length===3,`${language} rows ${rows.length}`);
    rows.forEach((row,i)=>{const spans=row.querySelectorAll('span.block');check(spans[0]?.textContent===expect[language][i]&&spans[1]?.textContent.trim().length>0,`${language} row ${i}`);});
    check(doc.querySelector('img.shinka-intro-art')?.getAttribute('aria-hidden')==='true','decorative art hidden');
@@ -249,7 +278,8 @@ export const ONBOARDING_UI_TESTS=[
  }],
  ['U17','ON-04 shows new title/subtitle, 4 of 5, compact birthplace, no Account & Privacy; focus alone does not search; date/time fit 320/360',async(context={})=>{
   const pause=()=>testDelay(50,context.signal);
-  for(const language of ['en','tr'])for(const width of [320,360])await onboardingProbe('AUTHENTICATED_PROFILE_REQUIRED',width,async doc=>{
+  for(const language of ['en','tr'])for(const width of [320,360])await onboardingProbe('AUTHENTICATED_PROFILE_REQUIRED',width,async(doc,win)=>{
+   unframedTitle(doc,win);
    const c=ONBOARDING_COPY[language];
    check(doc.querySelector('h1').textContent===c.aboutTitle&&doc.body.textContent.includes(c.aboutSubtitle),`${language} title`);
    check(doc.querySelector('[data-onboarding-step]')?.textContent===c.stepOf.replace('{n}','4'),`${language} step`);

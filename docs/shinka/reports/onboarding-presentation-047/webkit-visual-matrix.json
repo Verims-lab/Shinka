@@ -1,0 +1,525 @@
+{
+  "onboardingPresentation": [
+    {
+      "language": "tr",
+      "width": 360,
+      "textScale": 1,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 17
+        },
+        "focused": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 17
+        },
+        "filled": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 17
+        }
+      },
+      "publicAssets": "LOADED",
+      "pageErrors": []
+    },
+    {
+      "language": "tr",
+      "width": 360,
+      "textScale": 2,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 34
+        },
+        "focused": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 34
+        },
+        "filled": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 34
+        }
+      },
+      "publicAssets": "LOADED",
+      "pageErrors": []
+    },
+    {
+      "language": "tr",
+      "width": 390,
+      "textScale": 1,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 17
+        },
+        "focused": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 17
+        },
+        "filled": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 17
+        }
+      },
+      "publicAssets": "LOADED",
+      "pageErrors": []
+    },
+    {
+      "language": "tr",
+      "width": 390,
+      "textScale": 2,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 34
+        },
+        "focused": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 34
+        },
+        "filled": {
+          "label": "Ad\u0131n",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 34
+        }
+      },
+      "publicAssets": "LOADED",
+      "pageErrors": []
+    },
+    {
+      "language": "en",
+      "width": 360,
+      "textScale": 1,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 17
+        },
+        "focused": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 17
+        },
+        "filled": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 17
+        }
+      },
+      "publicAssets": "LOADED",
+      "pageErrors": []
+    },
+    {
+      "language": "en",
+      "width": 360,
+      "textScale": 2,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 34
+        },
+        "focused": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 34
+        },
+        "filled": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 34
+        }
+      },
+      "publicAssets": "LOADED",
+      "pageErrors": []
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "textScale": 1,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 17
+        },
+        "focused": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 17
+        },
+        "filled": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 17
+        }
+      },
+      "publicAssets": "LOADED",
+      "pageErrors": []
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "textScale": 2,
+      "passed": true,
+      "intro": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "profile": {
+        "focused": true,
+        "outline": "none",
+        "border": 0,
+        "shadow": "none",
+        "align": "center",
+        "font": "Cormorant Garamond, Georgia, serif"
+      },
+      "name": {
+        "empty": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "none",
+          "focused": false,
+          "empty": true,
+          "inputFont": 34
+        },
+        "focused": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": true,
+          "inputFont": 34
+        },
+        "filled": {
+          "label": "Name",
+          "linked": true,
+          "inside": true,
+          "labelCount": 1,
+          "overlap": false,
+          "fits": true,
+          "border": 1,
+          "focus": "solid",
+          "focused": true,
+          "empty": false,
+          "inputFont": 34
+        }
+      },
+      "publicAssets": "LOADED",
+      "pageErrors": []
+    }
+  ],
+  "pageErrors": []
+}

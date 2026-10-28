@@ -1,0 +1,39 @@
+{
+  "scope": "LOCAL_SYNTHETIC",
+  "runs": [
+    {
+      "run": "before-fix",
+      "failures": [
+        {
+          "id": "U16",
+          "name": "ON-01 shows all three intro rows with descriptions together in EN/TR; Begin goes to ON-02 once; no overflow at 320/360",
+          "passed": false,
+          "blocked": false,
+          "detail": "U16:INTERACTION:focused onboarding title has no frame"
+        },
+        {
+          "id": "U17",
+          "name": "ON-04 shows new title/subtitle, 4 of 5, compact birthplace, no Account & Privacy; focus alone does not search; date/time fit 320/360",
+          "passed": false,
+          "blocked": false,
+          "detail": "U17:INTERACTION:focused onboarding title has no frame"
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "run": "first-focused",
+      "failures": [
+        {
+          "id": "U19",
+          "name": "ON-02 persistent inner label, framed focus, saved name and Back retain TR/EN name and skip rules",
+          "passed": false,
+          "blocked": false,
+          "detail": "U19:DOM_WAIT:FIXTURE_DOM_TIMEOUT"
+        }
+      ],
+      "pageErrors": []
+    }
+  ],
+  "fixtureCorrection": "U19 initially clicked Back while the preceding save was still busy. Wait for the real enabled Back control before interaction; timeout/assertions unchanged. Product name flow was not changed."
+}

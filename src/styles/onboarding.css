@@ -4,6 +4,11 @@
 /* ON-01: three-row intro sits directly on the watercolor shell (no single white card). */
 .shinka-onboarding .shinka-intro-shell { background: transparent; border: 0; box-shadow: none; padding: 0; }
 .shinka-intro-art { mix-blend-mode: multiply; }
+/* ON-01/04 headings receive programmatic focus for screen announcements, but
+   are not interactive controls. Override the global :focus-visible ring only here. */
+.shinka-onboarding h1.shinka-unframed-title:focus { outline: none; }
+/* The existing framed-field focus-within ring owns ON-02's visible focus. */
+.shinka-name-field input:focus { outline: none; }
 /* ON-04 soft framed fields. Root cause of the old overflow: iOS Safari renders
    date/time inputs with native appearance and an intrinsic min-width that ignores
    width:100%; appearance:none + min-width:0 + border-box keeps them in the parent. */

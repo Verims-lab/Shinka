@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-046
+**Current BuildMarker:** Buildmarker-047
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-045.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-046.0; repository, synthetic and external evidence separated.
 
 
+
+## Buildmarker-047 — HC-046.0
+
+Add **0 / update 2 / delete 0**. H13-012 retains its local browser scope and now maps U16/U17 (unframed focused ON-01/04 headings), U19 (inner associated name label, frame focus, saved name/Back/native readback) and checkOnboardingPresentation (actual App, TR/EN, 360/390px, 100/200% text, empty/filled/keyboard focus geometry). H05-009 carries the same strict source-verification policy into approved 047; future packages remain blocked. Existing background controls, native/device H13-013 and historical failures remain. Final local execution: 728/728 PASS in each browser, 8/8 requested layout combinations per engine; local in-app Health 140 PASS/13 hosted-prerequisite BLOCKED/0 FAIL. Results are recorded in [047 focused delivery](reports/SHINKA_ONBOARDING_PRESENTATION_047.md); no live Full Health.
 
 ## 045 compatibility continuation (existing main 046 / HC-045.0 retained)
 

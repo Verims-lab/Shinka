@@ -4,7 +4,6 @@ import OnboardingIntro, { IntroArt } from "@/features/onboarding/OnboardingIntro
 import PageContainer from "@/components/shinka/PageContainer";
 import ShinkaCard from "@/components/shinka/ShinkaCard";
 import ShinkaButton from "@/components/shinka/ShinkaButton";
-import ShinkaInput from "@/components/shinka/ShinkaInput";
 import SignIn from "./SignIn";
 import { ProfileForm, CycleForm } from "./OnboardingForms";
 import FieldError from "./FieldError";
@@ -153,21 +152,24 @@ export default function OnboardingScreen({
     if (state === "UNAUTHENTICATED_NAME")
       return (
         <>
-          <label htmlFor="display_name">{t("display_name")}</label>
-          <ShinkaInput
-            id="display_name"
-            autoComplete="given-name"
-            value={name}
-            onChange={(e) => {
-              nameDraft.current = e.target.value;
-              setName(e.target.value);
-              setError(null);
-            }}
-            aria-invalid={error?.field === "display_name"}
-            aria-describedby={
-              error?.field === "display_name" ? "display_name-error" : undefined
-            }
-          />
+          <div className="shinka-framed-field shinka-name-field">
+            <label htmlFor="display_name" className="block text-shinka-small text-shinka-plum">{t("display_name")}</label>
+            <input
+              id="display_name"
+              autoComplete="given-name"
+              className="block min-h-11 w-full min-w-0 bg-transparent text-[17px] leading-[1.5] text-shinka-ink"
+              value={name}
+              onChange={(e) => {
+                nameDraft.current = e.target.value;
+                setName(e.target.value);
+                setError(null);
+              }}
+              aria-invalid={error?.field === "display_name"}
+              aria-describedby={
+                error?.field === "display_name" ? "display_name-error" : undefined
+              }
+            />
+          </div>
           {fieldError("display_name")}
           <ShinkaButton
             className="w-full"
@@ -270,7 +272,7 @@ export default function OnboardingScreen({
             <h1
               ref={title}
               tabIndex={-1}
-              className={`font-heading text-shinka-h1 text-shinka-plum-deep outline-none ${airy ? "text-center" : ""}`}
+              className={`font-heading text-shinka-h1 text-shinka-plum-deep outline-none ${airy ? "text-center" : ""} ${step === 1 || step === 4 ? "shinka-unframed-title" : ""}`}
             >
               {t(screen.title)}
             </h1>

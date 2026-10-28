@@ -1,6 +1,7 @@
 import { verifyDailyEntitySdk } from './verifyDailyEntitySdk.mjs';
 import { verifyTestDeletionEntry } from './verifyTestDeletionEntry.mjs';
 import { checkOnboardingClosure } from './checkOnboardingClosure.mjs';
+import { checkOnboardingPresentation } from './checkOnboardingPresentation.mjs';
 import { verifyNotifications } from './verifyNotifications.mjs';
 import { checkMobileExperience } from "./checkMobileExperience.mjs";
 import { checkStartupRoutes } from './checkStartupRoutes.mjs';
@@ -89,6 +90,9 @@ try {
   } else if (process.env.FOUNDATION_TIMING_ONLY === '1') {
     const timing = await checkHealthTiming(browser, origin);
     console.log(JSON.stringify({scope:'LOCAL_SYNTHETIC_TIMER_FAULT_INJECTION',timing},null,2));
+  } else if (process.env.FOUNDATION_ONBOARDING_PRESENTATION_ONLY === '1') {
+    const onboardingPresentation=await checkOnboardingPresentation(browser,origin,process.env.FOUNDATION_ONBOARDING_PRESENTATION_DIR);
+    console.log(JSON.stringify({onboardingPresentation,pageErrors},null,2));
   } else if (process.env.FOUNDATION_ONBOARDING_ONLY === '1') {
     const onboardingClosure=await checkOnboardingClosure(browser,origin,process.env.FOUNDATION_ONBOARDING_DIR);
     console.log(JSON.stringify({onboardingClosure,pageErrors},null,2));
@@ -129,6 +133,7 @@ try {
     if(results.some(r=>!r.passed)||!results.length||pageErrors.length)process.exitCode=1;
   } else {
   const onboardingClosure=await checkOnboardingClosure(browser,origin,process.env.FOUNDATION_ONBOARDING_DIR);
+  const onboardingPresentation=await checkOnboardingPresentation(browser,origin,process.env.FOUNDATION_ONBOARDING_PRESENTATION_DIR);
   const health=await page.evaluate(()=>window.__staticHealthEvidence());
   const onboardingHealth=await page.evaluate(()=>window.__onboardingHealthEvidence());
   const dailyHealth=await page.evaluate(()=>window.__dailyHealthEvidence());
@@ -169,7 +174,7 @@ try {
     const audit=await page.evaluate(()=>({registry:window.__healthAuditRegistry,report:window.__savedHealthReport}));
     await writeHealthAudit(root,process.env.FOUNDATION_AUDIT_DIR,audit.registry,audit.report,results);
   }
-  console.log(JSON.stringify({onboardingClosure,startupRoutes,productNavigation,healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,security028,notifications030,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
+  console.log(JSON.stringify({onboardingPresentation,onboardingClosure,startupRoutes,productNavigation,healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,security028,notifications030,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
   if(mobileExperience.some(r=>!r.passed)||mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||calendarHealth.some(c=>c.status!=="PASS")||adminTestHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
   }
   }

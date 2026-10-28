@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-042",
-    "package_name": "Base44 audit closure and disabled notification contract",
-    "package_type": "CORRECTIVE_VERIFICATION",
-    "created_at": "2026-10-27T21:58:12Z",
-    "health_catalog_version": "HC-041.0",
-    "short_summary": "Preserve Base44 Home and request-admission improvements; strengthen auth/startup regression; apply user-relayed Support native-admin and push acceptance contract with sending disabled.",
-    "full_health_status": "LOCAL_SYNTHETIC_ONLY / HOSTED_USER_ACCEPTANCE_PRESERVED",
-    "notes": "HC-040.0 → HC-041.0 once for seven changed Health descriptions/semantics; no IDs added/removed. 041 retained HC-040.0. Active 038–042. Main Base44 changes and Test 040 evidence merged losslessly. No live Health/scan/mutation/workflow/push/main publish. 12 backend findings remain USER-DEFERRED. Final results in SHINKA_CORE_AUDIT_042.md.",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true
-  },
-  {
     "build_marker": "Buildmarker-043",
     "package_name": "Calendar and Pattern header language removal",
     "package_type": "UI",
@@ -61,5 +47,19 @@ export default [
     "short_summary": "Single fixed SectionBackdrop per section; shared watercolor for Home/Calendar/Pattern/You, onboarding moon; native-size CDN derivatives; neutral unresolved state.",
     "full_health_status": "NOT_RUN_HOSTED_ACCEPTANCE_PENDING",
     "notes": "Health add 1/update 1/delete 0 (H13-020 added, H05-009 approves 046). Browser tests NOT_RUN (no Playwright browser). No live Full Health/Security scan/publish. 045 compatibility follow-up: four physical-only optional daily text fields now committed in Test; new writes remain ID-only. No new package, hosted cleanup/Health/main publish; see SHINKA_ID_MODEL_045.md. Follow-up affected controls: Chromium/WebKit 76/76 each; 27-schema stage/quality/performance PASS. H04-007 adds D23; HC12 046 policy alignment; initial failure retained."
+  },
+  {
+    "build_marker": "Buildmarker-047",
+    "package_name": "Onboarding heading and inner name label corrections",
+    "package_type": "UI_CHANGE",
+    "created_at": "2026-10-28T14:14:09.851945Z",
+    "health_catalog_version": "HC-046.0",
+    "short_summary": "ON-01/04 headings remain unframed while retaining semantic focus; ON-02 persistent associated label moves inside the existing field frame. Name/skip/storage/navigation unchanged; 045 optional schema and 046 visuals preserved.",
+    "full_health_status": "LOCAL_140_PASS_13_BLOCKED / HOSTED_NOT_RUN",
+    "notes": "Health add 0/update 2/delete 0: H13-012 U16/U17/U19 plus actual-App TR/EN 360/390px 100/200% text matrix; H05-009 retains exact source policy for 047. No live user operation, Full Health, Security scan, main merge or publish. Initial outline failures retained. Chromium/WebKit each 728/728 PASS; 8/8 mobile/text combinations per engine, screenshots inspected. Local Health 140 PASS/13 hosted-prerequisite BLOCKED/0 FAIL; save/list/open verified. Quality/performance PASS. Physical devices NOT_RUN. See SHINKA_ONBOARDING_PRESENTATION_047.md.",
+    "docs_aligned": true,
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true
   }
 ];
