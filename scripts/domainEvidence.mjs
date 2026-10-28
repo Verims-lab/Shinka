@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { DOMAIN_SCHEMAS, physicalName, base44Schema } from '../base44/shared/domainSchemas.js';
+import { DOMAIN_SCHEMAS, physicalName, base44Schema, LEGACY_DAILY_TEXT_FIELDS, DAILY_SCHEMA_PHASE } from '../base44/shared/domainSchemas.js';
 import { ACCESS_MATRIX } from '../base44/shared/domainSecurity.js';
 export function inspectDomainSchemas(root) {
   const dir=path.join(root,'base44/entities');
@@ -13,7 +13,9 @@ export function inspectDomainSchemas(root) {
     const found=all.filter(({entity})=>entity.name===physicalName(logical));
     if(found.length!==1 || found[0].file!==`${physicalName(logical)}.jsonc` || JSON.stringify(found[0].entity)!==JSON.stringify(base44Schema(logical))) mismatches.push(logical);
   }
-  return {expected:expected.length,present:all.filter(({entity})=>expected.includes(entity.name)).length,unexpected,mismatches,
+  const daily = all.find(({entity})=>entity.name==='UserDailyMessage')?.entity;
+  const compatibilityFieldsValid = LEGACY_DAILY_TEXT_FIELDS.every(key=>daily?.properties?.[key]?.type==='string' && !Object.hasOwn(daily.properties[key],'default') && !daily.required.includes(key));
+  return {dailyCompatibility:{phase:DAILY_SCHEMA_PHASE,optionalLegacyFields:[...LEGACY_DAILY_TEXT_FIELDS],valid:compatibilityFieldsValid,cleanupVerified:false,scope:'REPOSITORY_ONLY'},expected:expected.length,present:all.filter(({entity})=>expected.includes(entity.name)).length,unexpected,mismatches,
     internal:all.filter(({entity})=>['InternalHealthRun','AdminTestOperation','UserCalendarAction','UserPrivacyRequest','PrivacyRecoveryReceipt','NotificationSchedule'].includes(entity.name)).length,builtinUserSeparate:all.filter(({entity})=>entity.name==='User').length===1,
     healthHistoryPolicy:all.filter(({entity})=>entity.name==='InternalHealthRun').every(({entity})=>['read','create','update','delete'].every(op=>entity.rls?.[op]===false)),
     testOperationPolicy:all.filter(({entity})=>entity.name==='AdminTestOperation').length===1&&all.filter(({entity})=>entity.name==='AdminTestOperation').every(({entity})=>['read','create','update','delete'].every(op=>entity.rls?.[op]===false)&&!Object.hasOwn(entity,'unique_fields')&&!Object.hasOwn(entity.properties,'birth_date')&&!Object.hasOwn(entity.properties,'payload')),

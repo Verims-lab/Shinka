@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-045
+**Current BuildMarker:** Buildmarker-046
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-044.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-045.0; repository, synthetic and external evidence separated.
 
 
+
+## 045 compatibility continuation (existing main 046 / HC-045.0 retained)
+
+No new package, catalog version or case ID. H04-007 now includes D23, checking exactly four physical-only optional legacy daily text fields, unchanged required assignment fields/RLS, rejected new text writes and `cleanupVerified:false`. H09's existing ID01–09 and DU/DM/NA controls remain. Local PASS means the migration-compatible repository is ready, not that hosted fields were removed. Base44's existing H13-020/background decision is preserved. Original 045 full-run evidence below remains historical; new affected-control results are in the [same delivery report](reports/SHINKA_ID_MODEL_045.md).
 
 ## Buildmarker-046 — HC-045.0
 

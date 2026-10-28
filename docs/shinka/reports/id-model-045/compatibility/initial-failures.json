@@ -1,0 +1,37 @@
+{
+  "scope": "LOCAL_FOCUSED_ONLY",
+  "inheritedFromMain": "c2bd53e",
+  "reason": "Main HC12/H05-009 already approve Buildmarker-046 but contentStatePolicy enumerates only through 045. Retain the declared main decision; add 46 to the same explicit policy without relaxing source verification or accepting future packages.",
+  "runs": [
+    {
+      "engine": "chromium",
+      "total": 76,
+      "passed": 75,
+      "failed": [
+        {
+          "id": "HC12",
+          "name": "Future content package requires approved imported-content validation",
+          "passed": false,
+          "blocked": false,
+          "detail": "HC12:START:audit packages retain source verification, not inferred readiness"
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "engine": "webkit",
+      "total": 76,
+      "passed": 75,
+      "failed": [
+        {
+          "id": "HC12",
+          "name": "Future content package requires approved imported-content validation",
+          "passed": false,
+          "blocked": false,
+          "detail": "HC12:START:audit packages retain source verification, not inferred readiness"
+        }
+      ],
+      "pageErrors": []
+    }
+  ]
+}

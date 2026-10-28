@@ -1,0 +1,909 @@
+{
+  "focused": true,
+  "security028": {
+    "scope": "LOCAL_SERVER_FIXTURE",
+    "hostedVerified": false,
+    "results": [
+      {
+        "id": "SC01",
+        "name": "Bounded JSON: streaming byte limit, Content-Length, malformed and non-object",
+        "status": "PASS"
+      },
+      {
+        "id": "SC02",
+        "name": "GeoNames guard: no owner 401, lazy adapter/secret, per-user app limit with retry seconds, window reset",
+        "status": "PASS"
+      },
+      {
+        "id": "SC03",
+        "name": "GeoNames guard counts real upstream fetches and the worker-local total across owners; cache avoids refetch",
+        "status": "PASS"
+      },
+      {
+        "id": "SC04",
+        "name": "Unauthenticated You/onboarding calls: 401, zero product writes, no GeoNames setup",
+        "status": "PASS"
+      },
+      {
+        "id": "SC05",
+        "name": "Oversize bodies: 413 from real You/onboarding handlers with no entity call",
+        "status": "PASS"
+      },
+      {
+        "id": "SC07",
+        "name": "Real guard + real adapter: app, user-upstream and worker-upstream limits keep 429/retry and stop provider fetches",
+        "status": "PASS"
+      },
+      {
+        "id": "SC08",
+        "name": "Onboarding and You handlers return 429, GEONAMES_RATE_LIMITED, Retry-After and retry_after_seconds for the real chain error",
+        "status": "PASS"
+      },
+      {
+        "id": "SC09",
+        "name": "Negative: network failure and a forged 429-shaped error from fetch stay GEONAMES_UNAVAILABLE, never rate-limited",
+        "status": "PASS"
+      }
+    ],
+    "passed": true
+  },
+  "notifications030": {
+    "scope": "LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION",
+    "passed": true,
+    "results": [
+      {
+        "id": "NS01",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS02",
+        "status": "PASS",
+        "httpStatus": 503,
+        "response": {
+          "error_code": "SESSION_UNAVAILABLE"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS03",
+        "status": "PASS",
+        "httpStatus": 403,
+        "response": {
+          "error_code": "ADMIN_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS04",
+        "status": "PASS",
+        "httpStatus": 403,
+        "response": {
+          "error_code": "ADMIN_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS05",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 2,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS06",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS07",
+        "status": "PASS",
+        "httpStatus": 400,
+        "response": {
+          "error_code": "INVALID_REQUEST"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS08",
+        "status": "PASS",
+        "httpStatus": 200,
+        "response": {
+          "state": "DISABLED",
+          "processed": 0
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS09",
+        "status": "PASS",
+        "httpStatus": 400,
+        "response": {
+          "error_code": "INVALID_REQUEST"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS10",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS11",
+        "status": "PASS",
+        "httpStatus": 400,
+        "response": {
+          "error_code": "INVALID_REQUEST"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      }
+    ],
+    "sdk": {
+      "id": "SDK01",
+      "status": "PASS",
+      "scope": "INSTALLED_SDK_LOOPBACK_HTTP_ONLY",
+      "integrationEnvelope": "UNWRAPPED_JSON_BODY",
+      "optionalFieldsOmitted": true,
+      "providerCalls": 0
+    },
+    "hostedVerified": false
+  },
+  "results": [
+    {
+      "id": "ID01",
+      "name": "New/legacy daily rows resolve all current TR/EN text without changing assignment",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "ID02",
+      "name": "Broken references fail safely; no fallback or reassignment; wrong owner denied",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "ID03",
+      "name": "ID batches are bounded/projected; duplicate/unrequested reference rows rejected",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "ID04",
+      "name": "Selection metadata excludes texts; inactive excluded only from new selection; history stays projected",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "ID05",
+      "name": "Migration dry-run hashes review; batch removes only legacy fields; repeat/verify clean",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "ID06",
+      "name": "Migration lost response, partial failure and restart preserve IDs and shared records",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "ID07",
+      "name": "Migration reports broken links, rejects stale review/normal role, guards target lifecycle",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "ID08",
+      "name": "Migration keyset page bound, no hidden invalid-reference success",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "ID09",
+      "name": "Notification daily links are retained; cross-owner or missing link blocks admission",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NA02",
+      "name": "Daily assignment reused; current catalog text resolves after profile changes",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NA03",
+      "name": "Independent ordinary clients can create duplicates; deterministic winner retains both",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NA04",
+      "name": "Conflicting daily candidates and late visibility preserve all assignments",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NA05",
+      "name": "Lost daily create response recovered by reconstructed client with no extra write",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NA06",
+      "name": "Every daily candidate counts toward the 40-day repeat exclusion",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NA07",
+      "name": "Inactive daily account and signed-out identity are rejected without creating a daily row",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NA17",
+      "name": "Reset preparation changes only durable onboarding progress, preserves identity/role/history",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "NA19",
+      "name": "Reset Skip creates no health data and final step reuses same-day assignment",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T01",
+      "name": "BuildMarker format",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T02",
+      "name": "BuildMarker single source",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T03",
+      "name": "Next-marker logic",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T04",
+      "name": "Marker cannot decrement",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T05",
+      "name": "Marker increments by exactly one",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T06",
+      "name": "Build Ledger uniqueness",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T07",
+      "name": "Health suite IDs unique",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T08",
+      "name": "Health case IDs unique",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PR05",
+      "name": "Normal self-delete includes personal history, leaves shared content and other users intact",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T75",
+      "name": "Canonical CSS channels and all eleven color utilities render exactly",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T76",
+      "name": "Heading and body font families, weights, sizes and line heights survive CSS changes",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T77",
+      "name": "Real Shinka primitives preserve geometry, borders, colors and disabled state",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T78",
+      "name": "Canonical spacing/radius utilities retain their pixel values",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T79",
+      "name": "Light root and supported form controls use the same approved palette",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T81",
+      "name": "046 section shells are transparent over the backdrop; plain internal containers stay flat ivory",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T82",
+      "name": "046 section backdrop: mapping, shared asset, decorative fixed single layer, neutral and dark adaptation",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "T80",
+      "name": "Existing rendered Health typography/color/touch/light-policy checks remain passing",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D23",
+      "name": "045 physical compatibility fields remain optional; domain writes reject every legacy text key; cleanup stays pending",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D01",
+      "name": "20 schemas match original fields plus explicit 029/045 decisions",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D02",
+      "name": "One logical/physical mapping; builtin identity and tooling separate",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D03",
+      "name": "Required fields enforced; unsupported uniqueness properties absent",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D04",
+      "name": "Logical NULL stays absent on write and NULL on read; no 5/28 defaults",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D05",
+      "name": "Date is a calendar date; impossible dates and UTC conversions rejected",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D06",
+      "name": "Birthplace coherence, optional time and display name bounds",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D07",
+      "name": "12 Sun codes; UNKNOWN allowed only for mapping cycle",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D08",
+      "name": "Numeric ranges and cycle day relative bound reject invalid records",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D09",
+      "name": "Preferences enforce IANA timezone, fixed 06:00 and false default",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D10",
+      "name": "25 source relationships reference real fields and valid target entities",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D11",
+      "name": "Reference precheck rejects absent and cross-owner targets",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D12",
+      "name": "All 11 uniqueness contracts and open deletion key are collision-safe",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D13",
+      "name": "Concurrent daily creates preserve the first immutable assignment",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D14",
+      "name": "Repeated singleton create returns same row",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D15",
+      "name": "Unsupported atomic primitives fail closed before any write",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D16",
+      "name": "Conditional mutation detects stale revision and identity changes",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D17",
+      "name": "Unsafe readback cannot report idempotent success",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D22",
+      "name": "Repository seed tripwire catches an injected live product writer",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D21",
+      "name": "Conditional NULL update verifies actual removal, not a merge-only success",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D18",
+      "name": "Metadata timestamps remain native and data reads remove platform emails",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D19",
+      "name": "Consent and Pattern field pairs preserve state semantics",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "D20",
+      "name": "Explicit Inactive supported; unknown content states and backwards Moon intervals rejected",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "HC12",
+      "name": "Future content package requires approved imported-content validation",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DM11",
+      "name": "Backend local calendar days across UTC, travel and DST",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DM12",
+      "name": "Day 40 protected, day 41 eligible with explicit calendar boundary",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DM13",
+      "name": "All fallback stages, least-recent and random ties store actual pair category",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DM14",
+      "name": "Daily commit/readback, reopen and changed profile/copy preserve assignment and resolve current text",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DM15",
+      "name": "Concurrent request protocol returns one winning immutable assignment",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DM16",
+      "name": "Unverified production primitive refuses new writes; pre-existing row stays readable",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DM17",
+      "name": "Owner/anonymous/inactive and forged day/category are rejected",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DM18",
+      "name": "Absent/withdrawn consent uses UNKNOWN without reading health data",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DM19",
+      "name": "Valid consent enables known phase; deletion and malformed consent fail closed",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DM20",
+      "name": "Missing content, Moon gap and failed readback never complete ON-06",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DM21",
+      "name": "Lost write response retry reads prior winner; earlier day still resolves Home",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DM22",
+      "name": "Skip is no-write and daily error response contains no private payload",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DM25",
+      "name": "Malformed durable assignment cannot mark onboarding complete",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DU05",
+      "name": "Reopened kept-mounted Home reads current MessagePair text and retains daily ID",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DU01",
+      "name": "ON-06 failed write, retry readback, Home and locale retain same pair",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DU02",
+      "name": "Completed Home error stays Home; late unmounted preparation cannot navigate",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DU03",
+      "name": "A day or timezone change during preparation discards the stale response",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "DU04",
+      "name": "Reconciled daily success shows no technical notice; same ID, TR/EN content, no extra request",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    }
+  ],
+  "pageErrors": []
+}

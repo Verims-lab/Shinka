@@ -1,0 +1,9 @@
+{
+  "id": "SDK02",
+  "status": "PASS",
+  "scope": "INSTALLED_SDK_LOOPBACK_ONLY",
+  "projection": true,
+  "idBatch": true,
+  "unsetEnvelope": true,
+  "hostedCleanupVerified": false
+}

@@ -30,6 +30,17 @@ export function atomicFixture() {
 }
 /** @type {import('./testTypes').FoundationTest[]} */
 export const DATA_MODEL_TESTS = [
+ ['D23','045 physical compatibility fields remain optional; domain writes reject every legacy text key; cleanup stays pending',async()=>{
+   const keys=['message_tr_snapshot','suggestion_tr_snapshot','message_en_snapshot','suggestion_en_snapshot'];
+   const physical=base44Schema('user_daily_message'),domain=DOMAIN_SCHEMAS.user_daily_message;
+   check(JSON.stringify(Object.keys(physical.properties).sort())===JSON.stringify([...Object.keys(domain.properties),...keys].sort()));
+   check(JSON.stringify(physical.required)===JSON.stringify(domain.required));
+   for(const key of keys){check(physical.properties[key].type==='string'&&!physical.required.includes(key)&&!Object.hasOwn(physical.properties[key],'default')&&!Object.hasOwn(domain.properties,key));await rejects(()=>validateDomainRecord('user_daily_message',{...dailyFixture(),[key]:'not a new-write field'}),'INVALID_DOMAIN_RECORD');}
+   check(['create','read','update','delete'].every(op=>physical.rls[op]===false)&&!Object.hasOwn(physical.properties,'id'));
+   const evidence=(await loadStaticEvidence()).domain.dailyCompatibility;
+   check(evidence.valid&&evidence.phase==='OPTIONAL_LEGACY_FIELDS_CLEANUP_PENDING'&&evidence.cleanupVerified===false&&JSON.stringify(evidence.optionalLegacyFields)===JSON.stringify(keys));
+ }],
+
  ['D01','20 schemas match original fields plus explicit 029/045 decisions',async()=>{const evidence=(await loadStaticEvidence()).domain;check(evidence.present===20&&evidence.mismatches.length===0&&evidence.unexpected.length===0);check(Object.keys(SOURCE_FIELD_NAMES).length===20);for(const [entity,names] of Object.entries(SOURCE_FIELD_NAMES))check(JSON.stringify([...expectedDomainFields(entity,names)].sort())===JSON.stringify(Object.keys(DOMAIN_SCHEMAS[entity].properties).sort()),entity);} ],
  ['D02','One logical/physical mapping; builtin identity and tooling separate',async()=>{check((await loadStaticEvidence()).domain.testOperationPolicy);const mapped=Object.keys(DOMAIN_SCHEMAS).map(physicalName);check(new Set(mapped).size===20&&!mapped.includes('User')&&!mapped.includes('InternalHealthRun')&&!mapped.includes('AdminTestOperation'));}],
  ['D03','Required fields enforced; unsupported uniqueness properties absent',async()=>{await rejects(()=>validateDomainRecord('user_period_record',{user_id:'ownerA'}),'INVALID_DOMAIN_RECORD');for(const entity of Object.keys(DOMAIN_SCHEMAS)){const schema=base44Schema(entity);check(!Object.hasOwn(schema,'unique_fields')&&!Object.hasOwn(schema.properties,'created_at')&&!Object.hasOwn(schema.properties,'id'));}}],

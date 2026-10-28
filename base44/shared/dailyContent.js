@@ -1,8 +1,8 @@
 import { InternalError } from './internalAuthorization.js';
 import { verifiedDailyRecord } from './dailyRecord.js';
 
-export const DAILY_TEXT_FIELDS = Object.freeze(['message_tr', 'suggestion_tr', 'message_en', 'suggestion_en']);
-export const LEGACY_DAILY_TEXT_FIELDS = Object.freeze(DAILY_TEXT_FIELDS.map(key => `${key}_snapshot`));
+import { DAILY_TEXT_FIELDS, LEGACY_DAILY_TEXT_FIELDS } from './domainSchemas.js';
+export { DAILY_TEXT_FIELDS, LEGACY_DAILY_TEXT_FIELDS };
 export const DAILY_TEXT_BATCH = 100;
 const fail = (code, pairId = null) => {
   const error = new InternalError(code, 409);

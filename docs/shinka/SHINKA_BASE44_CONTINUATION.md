@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** ACTIVE — historical hosted readiness retained; current hosted acceptance pending
-**Current BuildMarker:** Buildmarker-045
-**Last Updated:** 2026-10-26
+**Current BuildMarker:** Buildmarker-046
+**Last Updated:** 2026-10-28
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
@@ -12,7 +12,9 @@
 
 ## 045 — ID-content rollout (current; prepared, not executed)
 
-Keep Base44 native IDs and service-role-only product access. Full inventory remains 27 schemas including native User. Generate optional daily compatibility stage with `node scripts/prepareSchemaStage.mjs /private/tmp/shinka-045-compat origin/main daily-compat`; compare **all** remote schemas before push. Publish matching dailyMessage/notificationSchedule + all entry/shared code, then frontend. Drain old writers before reviewed field cleanup; verify every keyset page including invalid-reference counts. Only then sync the final complete schema stage (`final` mode). No database fallback or secondary message storage. [Exact operator commands and safe recovery](reports/SHINKA_ID_MODEL_045.md).
+Test now contains the publishable 045 compatibility schema: four legacy daily text fields are optional, with no defaults, while all new writes remain assignment-only and reads use current MessagePair. No intermediate commit/schema creation is left to the owner. Main's later 046 section backgrounds and HC-045.0 remain intact; this continuation creates no new package or catalog version. Merge this Test tree through the existing owner flow; verify all 27 schemas, then the complete native entry/shared graph, then matching frontend publication. Keep scheduler disabled. No live cleanup/Health/publish occurred.
+
+`prepareSchemaStage.mjs` now defaults to `current`, copying the complete checked-in compatibility schema; `daily-compat` is an identical alias. `final` remains an explicit **post-cleanup candidate**, never proof of cleanup. The inspector reports `OPTIONAL_LEGACY_FIELDS_CLEANUP_PENDING` and `cleanupVerified:false`. Drain older writers after compatible publication, then run reviewed dryRun/applyBatch/verify across every page. Retain optional fields until hosted absence and unchanged assignment IDs are confirmed. [Short owner runbook and commands](reports/SHINKA_ID_MODEL_045.md#offline-legacy-cleanup-and-publish-sequence).
 
 Installed SDK loopback verifies ID `$in`, positional field projection and updateMany `{query,data:{$unset:…}}` wire format. Official [entity methods](https://docs.base44.com/developers/references/sdk/docs/type-aliases/entities) document `$unset`; [schemas](https://docs.base44.com/developers/backend/resources/entities/entity-schemas) document native IDs and no UNIQUE. This is API-contract evidence, not hosted cleanup/readback proof. All live changes and post-publish acceptance remain owner-owned.
 
