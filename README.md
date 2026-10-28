@@ -2,6 +2,8 @@
 
 Use this repository to run and edit the app locally, then publish changes back through Base44.
 
+[045 ID content delivery and migration runbook](docs/shinka/reports/SHINKA_ID_MODEL_045.md): MessagePair current text with unchanged daily assignment IDs; optional compatibility schema → complete backend/shared → frontend → reviewed cleanup → final schema. No agent-run hosted migration.
+
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
 ## Current Test audit closure (Buildmarker-042 / HC-041.0)

@@ -6,7 +6,7 @@ import { patternFixture, patternRow } from '../../src/foundation/tests/patternFi
 import { handleYouRequest } from '../../base44/shared/youOperation.js';
 export async function transitionFixtures() {
   const f = nativeFixture();
-  f.tables.UserDailyMessage.push({ ...dailyRecordFixture(), shinka_date: '2026-10-20' });
+  f.tables.UserDailyMessage.push({ ...dailyRecordFixture(), message_pair_id:f.tables.MessagePair[0].id, category_id:f.tables.MessagePair[0].category_id, shinka_date: '2026-10-20' });
   await f.change('add', { date: '2026-10-01' });
   const p = patternFixture();
   p.tables.UserDailyMessage.push(patternRow('2026-10-19'));

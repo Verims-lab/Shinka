@@ -38,10 +38,10 @@ export async function checkCalendarFlow(page, origin, directory) {
     await page.waitForSelector('dialog',{state:'detached'});
     assert.equal(await page.evaluate(()=>window.__calendarLab.rows.user_cycle_phase_day.length),0);
     if (directory) await page.screenshot({path:path.join(directory,`calendar-empty-${width}-${language}.png`),fullPage:true});
-    await page.locator('nav a').first().click();
+    await page.locator('nav a:visible').first().click();
     await page.waitForSelector('[data-home-root]');
     await page.waitForSelector('[data-daily-id="local-ui-daily"]');
-    await page.locator('nav a').nth(1).click();
+    await page.locator('nav a:visible').nth(1).click();
     await page.waitForSelector('[data-calendar-date="2026-10-01"]');
     assert.equal(await page.evaluate(()=>window.__calendarLab.rows.user_period_record.length),0);
     results.push({scenario:`calendar-edit-cancel-last-delete-home-${width}-${language}`,passed:true,geometry,scope:'LOCAL_BROWSER_SYNTHETIC'});

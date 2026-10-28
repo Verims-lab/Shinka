@@ -17,6 +17,11 @@ async function dispatch({ client, owner, daily, window, admit, provider, now }) 
     const rows = await store.filter({ user_id: owner, notification_type: NOTIFICATION_TYPE, $or: [{ shinka_date: window.day }, { daily_message_id: daily.id }] }, 'id', 11, 0, ['id',...Object.keys(DOMAIN_SCHEMAS.notification_delivery.properties)]);
     if (!Array.isArray(rows) || rows.length > 10 || rows.some(row => !row.id || row.user_id !== owner || row.notification_type !== NOTIFICATION_TYPE)) fail('NOTIFICATION_RECONCILIATION_BLOCKED');
     for (const row of rows) validateDomainRecord('notification_delivery', Object.fromEntries(Object.keys(DOMAIN_SCHEMAS.notification_delivery.properties).map(key => [key,row[key]])));
+    const ids = [...new Set(rows.map(row=>row.daily_message_id))];
+    if (ids.length) {
+      const linked = await client.asServiceRole.entities.UserDailyMessage.filter({user_id:owner,id:{$in:ids}},'id',ids.length+1,0,['id','user_id','shinka_date']);
+      if (!Array.isArray(linked) || linked.length !== ids.length || new Set(linked.map(r=>r.id)).size !== ids.length || linked.some(r=>r.user_id!==owner||!ids.includes(r.id)) || rows.some(row=>!linked.some(r=>r.id===row.daily_message_id&&(!row.shinka_date||r.shinka_date===row.shinka_date)))) fail('NOTIFICATION_RECONCILIATION_BLOCKED');
+    }
     return rows.sort((a,b) => a.id.localeCompare(b.id));
   };
   const eligible = async (state = null) => {

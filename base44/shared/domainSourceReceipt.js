@@ -169,4 +169,6 @@ export const DATA_SOURCE_RECEIPT = Object.freeze({date:"2026-10-19", workbookSha
 export const NOTIFICATION_029_FIELDS = Object.freeze(['shinka_date','dispatch_state','next_attempt_at','claim_id','error_stage']);
 // User-approved 045 extension: account-bound app theme; absent means light.
 export const PREFERENCES_045_FIELDS = Object.freeze(['theme_code']);
-export const expectedDomainFields = (entity, original) => entity === 'notification_delivery' ? [...original, ...NOTIFICATION_029_FIELDS] : entity === 'user_preferences' ? [...original, ...PREFERENCES_045_FIELDS] : original;
+// 045 owner decision removes duplicated daily text; original source receipt above is unchanged.
+export const DAILY_045_REMOVED_FIELDS = Object.freeze(['message_tr_snapshot','suggestion_tr_snapshot','message_en_snapshot','suggestion_en_snapshot']);
+export const expectedDomainFields = (entity, original) => entity === 'user_daily_message' ? original.filter(key => !DAILY_045_REMOVED_FIELDS.includes(key)) : entity === 'notification_delivery' ? [...original, ...NOTIFICATION_029_FIELDS] : entity === 'user_preferences' ? [...original, ...PREFERENCES_045_FIELDS] : original;

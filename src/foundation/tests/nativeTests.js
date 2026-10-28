@@ -12,17 +12,17 @@ export const NATIVE_TESTS = [
   const f=nativeFixture(); check((await f.client('adminA').auth.me()).role==='admin'); f.tables.User.find(r=>r.id==='adminA').role='user'; check((await f.client('adminA').auth.me()).role==='user');
   await rejects(()=>f.preview(),'FORBIDDEN_INTERNAL_TOOLING'); await rejects(()=>f.client(null).auth.me(),'AUTH_REQUIRED'); f.tables.User=f.tables.User.filter(r=>r.id!=='ownerA'); await rejects(()=>f.today(),'AUTH_REQUIRED');
  }],
- ['NA02','Immutable daily record reused after locale/profile/catalog changes',async()=>{
-  const f=nativeFixture(), first=await f.today(); f.tables.UserProfile[0].birth_date='1991-02-01'; f.tables.MessagePair[0].message_tr='changed catalog';
-  const second=await f.today(); check(JSON.stringify(first.daily)===JSON.stringify(second.daily)&&f.tables.UserDailyMessage.length===1);
+ ['NA02','Daily assignment reused; current catalog text resolves after profile changes',async()=>{
+  const f=nativeFixture(), first=await f.today(); f.tables.UserProfile[0].birth_date='1991-02-01'; f.tables.MessagePair.find(p=>p.id===first.daily.message_pair_id).message_tr='changed catalog';
+  const second=await f.today(); check(first.daily.id===second.daily.id&&first.daily.message_pair_id===second.daily.message_pair_id&&second.daily.message_tr_snapshot==='changed catalog'&&f.tables.UserDailyMessage.length===1);
  }],
  ['NA03','Independent ordinary clients can create duplicates; deterministic winner retains both',async()=>{
   const f=nativeFixture(), wait=barrier(2); f.state.before=async c=>{if(c.name==='UserDailyMessage'&&c.method==='create')await wait();};
   const outcomes=await Promise.all([f.today(),f.today()]); check(f.tables.UserDailyMessage.length===2); check(outcomes[0].daily.id===outcomes[1].daily.id); check(!f.state.calls.some(c=>c.method==='upsert'));
  }],
- ['NA04','Conflicting daily candidates and late visibility preserve all snapshots',async()=>{
-  const f=nativeFixture(), a=(await f.today()).daily, b={...a,id:'earlier',generated_at:'2026-10-20T10:00:00Z',message_tr_snapshot:'Other captured content'};
-  f.tables.UserDailyMessage.push(b); const value=await f.today(); check(value.daily.id==='earlier'&&value.notice==='DAILY_DUPLICATE_RECONCILED'); check(f.tables.UserDailyMessage[0].message_tr_snapshot===a.message_tr_snapshot);
+ ['NA04','Conflicting daily candidates and late visibility preserve all assignments',async()=>{
+  const f=nativeFixture(), a=(await f.today()).daily, b={...a,id:'earlier',generated_at:'2026-10-20T10:00:00Z',message_pair_id:f.tables.MessagePair.find(p=>p.id!==a.message_pair_id).id};
+  f.tables.UserDailyMessage.push(b); const value=await f.today(); check(value.daily.id==='earlier'&&value.notice==='DAILY_DUPLICATE_RECONCILED'); check(f.tables.UserDailyMessage[0].message_pair_id===a.message_pair_id);
   check(reconcileDailyRows([b,a],'ownerA',a.shinka_date).record.id===reconcileDailyRows([a,b],'ownerA',a.shinka_date).record.id);
  }],
  ['NA05','Lost daily create response recovered by reconstructed client with no extra write',async()=>{
@@ -71,7 +71,7 @@ export const NATIVE_TESTS = [
   const f=nativeFixture();await f.execute(await f.preview());const body={action:'saveProfile',display_name:'Ada Updated',birth_date:'1990-01-01',birth_time:null,birthplace_geonames_id:null};
   f.once('before',c=>c.name==='AdminTestOperation'&&c.method==='update'&&c.args[1].stage==='CYCLE');await rejects(()=>onboardingOperation(f.client(),body));check(f.tables.UserProfile[0].display_name==='Ada Updated'&&f.tables.AdminTestOperation[0].stage==='PROFILE');await onboardingOperation(f.client(),body);check(f.tables.AdminTestOperation[0].stage==='CYCLE');
  }],
- ['NA19','Reset Skip creates no health data and final step reuses same-day snapshot',async()=>{
+ ['NA19','Reset Skip creates no health data and final step reuses same-day assignment',async()=>{
   const f=nativeFixture();const first=await f.today();await f.execute(await f.preview());f.tables.AdminTestOperation[0].stage='CYCLE';const count=f.tables.UserHealthConsentEvent.length;await onboardingOperation(f.client(),{action:'skipCycle'});const last=await f.today();check(last.daily.id===first.daily.id&&f.tables.AdminTestOperation[0].status==='COMPLETED'&&f.tables.UserHealthConsentEvent.length===count);
  }],
  ['NA20','Native target deletion needs no operator maintenance and leaves other users writable',async()=>{

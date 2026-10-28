@@ -2,11 +2,19 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** ACTIVE — historical hosted readiness retained; current hosted acceptance pending
-**Current BuildMarker:** Buildmarker-044
+**Current BuildMarker:** Buildmarker-045
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+
+
+
+## 045 — ID-content rollout (current; prepared, not executed)
+
+Keep Base44 native IDs and service-role-only product access. Full inventory remains 27 schemas including native User. Generate optional daily compatibility stage with `node scripts/prepareSchemaStage.mjs /private/tmp/shinka-045-compat origin/main daily-compat`; compare **all** remote schemas before push. Publish matching dailyMessage/notificationSchedule + all entry/shared code, then frontend. Drain old writers before reviewed field cleanup; verify every keyset page including invalid-reference counts. Only then sync the final complete schema stage (`final` mode). No database fallback or secondary message storage. [Exact operator commands and safe recovery](reports/SHINKA_ID_MODEL_045.md).
+
+Installed SDK loopback verifies ID `$in`, positional field projection and updateMany `{query,data:{$unset:…}}` wire format. Official [entity methods](https://docs.base44.com/developers/references/sdk/docs/type-aliases/entities) document `$unset`; [schemas](https://docs.base44.com/developers/backend/resources/entities/entity-schemas) document native IDs and no UNIQUE. This is API-contract evidence, not hosted cleanup/readback proof. All live changes and post-publish acceptance remain owner-owned.
 
 
 ## 040 — publish before authorized cleanup
@@ -173,7 +181,7 @@ Application data stays server-only with closed direct SDK policies. Per-operatio
 
 ### Home reconciliation
 
-Every candidate must validate owner, local day, persisted business `generated_at`, pair/category IDs and four immutable text snapshots. Sort by parsed generated_at ascending, then codepoint ID ascending; choose first. Identical or conflicting rows are **retained**. If stored text/category/pair differ, Home shows a localized reconciliation notice. No category re-assignment, history deletion or text overwrite occurs. A late-visible earlier candidate can change the selected snapshot on refresh; with the same observed candidate set the winner is stable. This is the explicit relaxation of one physical row per user/day, not a seed-based promise. A fixed seed would not freeze changed profile/catalog inputs. All candidates, including losers that might have been shown, count in the 40-day exclusion window. Existing fallback chain and day-41 eligibility remain. Bounded pagination rejects >4000 candidate rows rather than using truncated history. Reference readiness failure is independent from persistence capability.
+Every candidate must validate owner, local day, persisted business `generated_at`, pair/category IDs and current linked Pair text (045; not stored on the candidate). Sort by parsed generated_at ascending, then codepoint ID ascending; choose first. Identical or conflicting rows are **retained**. If assigned category/pair differ, the backend retains its reconciliation notice; main e602a65 hides technical notice copy. Legacy text differences do not conflict (045). No category re-assignment, history deletion or text overwrite occurs. A late-visible earlier candidate can change the selected snapshot on refresh; with the same observed candidate set the winner is stable. This is the explicit relaxation of one physical row per user/day, not a seed-based promise. A fixed seed would not freeze changed profile/catalog inputs. All candidates, including losers that might have been shown, count in the 40-day exclusion window. Existing fallback chain and day-41 eligibility remain. Bounded pagination rejects >4000 candidate rows rather than using truncated history. Reference readiness failure is independent from persistence capability.
 
 ### Calendar receipts and recovery
 

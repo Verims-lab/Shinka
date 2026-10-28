@@ -26,7 +26,7 @@ export async function verifyNotifications(root) {
     }},
     '../../shared/notificationScheduler.js':scheduler,
     '../../shared/base44PushProvider.js':provider,
-    '../../shared/base44ContentLibrary.js':{inspectContentLibrary:()=>{counts.jobIO++;throw new Error('UNEXPECTED_PRODUCT_IO');}},
+    '../../shared/dailySelectionLibrary.js':{readDailySelectionLibrary:()=>{counts.jobIO++;throw new Error('UNEXPECTED_PRODUCT_IO');}},
     '../../shared/firstContentSource.js':{FIRST_CONTENT_SOURCE:{}},
     '../../shared/contentCategoryDecision.js':{CONTENT_CATEGORY_DECISION:{}},
   };

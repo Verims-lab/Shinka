@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-044
+**Current BuildMarker:** Buildmarker-045
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -10,6 +10,14 @@
 **Implemented:** Governance modules, Health framework, internal routes, `validateContentArtifacts` and `internalHealth` backend functions, `InternalHealthRun` internal storage, UI contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), logical/physical source integrity (`src/foundation/inspection/sourceIntegrity.js`).
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
+
+
+
+## 045 — ID reads, projections and maintenance boundary
+
+`dailySelectionLibrary` reads bounded category/mapping and Pair ID/category/eligibility metadata, independently of the admin exact-source import receipt. `dailyContent` resolves unique Pair IDs in batches of 100 (4000 IDs max), projects id + four text fields and rejects duplicate/missing/malformed links. Cache scope is one request only; persisted daily rows are assignment-only. `nativeDailyPersistence` projects assignment fields for reuse/repeat checks; Pattern's existing six-field history projection is unchanged. No N+1 text loading. The fixed fixture measures one additional SDK read on generation/reopen; response text bytes remain necessary. No hosted latency/physical storage/credit claims.
+
+`dailyReferenceMigration` is operator-bundled, has no HTTP endpoint, and uses current native admin/ACTIVE admission, lifecycle/privacy checks, reviewed digest, <=25-row keyset pages, literal-ID/assignment predicates and `$unset` readback. Partial/lost responses are verified from durable field absence, with a fresh dry-run before retry. It does not grant general update rights or claim multi-record transactions; single operator and old-writer drain are rollout prerequisites. Native updated_date may change on cleanup; generated_at/native ID/assignment cannot. Scope excludes workflow, provider and scheduler enablement.
 
 
 ## 044 — Reuse of You and notification boundaries
@@ -201,7 +209,7 @@ Responsibilities: nativeDailyPersistence (bounded immutable-candidate reconcilia
 | GeoNames | authenticated searchPlaces + request-scoped secret | Own-name literal A/P search, 50 candidates/page and at most 200 candidates, explicit selected-ID resolve; old list actions are rejected. |
 | Astronomy Engine | backend function + scheduled rolling job | ≥2 years UTC lookup, [start,end). |
 | Scheduler / jobs | Base44 workflows (scheduled) | 06:00 local generation, retries. |
-| Content engine | single backend module | Pair selection + snapshot. |
+| Content engine | single backend module | Pair selection + immutable assignment/current text. |
 | Cycle engine | shared pure backend module | Current native actual-date/read-time OD-012 projection; historical atomic protocol is not a native guarantee. |
 | Notification | backend + Base44 native push | Bounded ordinary-SDK reconciliation; production binding blocked; no provider idempotency proven. |
 | Internal tooling | `src/foundation/**`, `src/services/internal/**`, `/internal/*`, `Internal*` entities | Admin-only. |
@@ -327,9 +335,9 @@ CLI-only SDK controls live under `scripts/testHarness` and are substituted only 
 
 For new generation, source-verified content is bounded to this manifest; Moon lookup is bounded to 1,200 rows; at most four latest actual starts yield the last three completed cycles; daily history is at most 40 dates plus one overflow sentinel. No owner cache is introduced and no full-history query exists. Consent/current event and no open deletion job precede health reads; absent/withdrawn consent selects UNKNOWN without reading settings/periods. Malformed grants/events, provider/storage failure or invalid cycles throw explicit errors. Atomic requirements carry the exact health-input grant identity/time/version for the adapter to recheck, alongside owner/account/references. Return rechecks active and consent/deletion state. Calendar writes, scheduler and push remain absent.
 
-`contentImportPlan` owns source-to-schema planning and conflict detection; `base44ContentLibrary` owns bounded SDK reads and full-value insert-or-identical batches; `contentLibraryOperation` owns strict admin dispatch/audit. `dailySelection` owns 40-day selection and snapshots; `domainAtomic.createOnce` remains the sole daily commit/readback protocol. Official Base44 schemas explicitly exclude UNIQUE, and installed SDK 0.8.54 upsert merges matching records without a documented cross-instance create-if-absent guarantee. Neither upsert nor Actors' storage examples prove an atomic Entity insertion or crash-safe cross-store commit. No new speculative storage backend is connected.
+`contentImportPlan` owns source-to-schema planning and conflict detection; `base44ContentLibrary` owns bounded SDK reads and full-value insert-or-identical batches; `contentLibraryOperation` owns strict admin dispatch/audit. `dailySelection` owns 40-day selection and assignment construction; `domainAtomic.createOnce` remains the sole daily commit/readback protocol. Official Base44 schemas explicitly exclude UNIQUE, and installed SDK 0.8.54 upsert merges matching records without a documented cross-instance create-if-absent guarantee. Neither upsert nor Actors' storage examples prove an atomic Entity insertion or crash-safe cross-store commit. No new speculative storage backend is connected.
 
-`dailyMessageService` has a 20-second client deadline and safe error projection. `useDailyMessage` discards late results, prevents duplicate pending UI requests and checks local date/timezone changes every 30 seconds while visible plus focus/visibility return. The local clock only triggers refresh; it never determines the saved day. ON-06 advances only on persisted/readback success. Home renders two snapshots, changes language locally without a generation request and preserves admin access during failures. No new completion flag is stored. Existing durable daily history routes to Home before any cycle hydration, so today's engine failure cannot restart onboarding.
+`dailyMessageService` has a 20-second client deadline and safe error projection. `useDailyMessage` discards late results, prevents duplicate pending UI requests and checks local date/timezone changes every 30 seconds while visible plus focus/visibility return. The local clock only triggers refresh; it never determines the saved day. ON-06 advances only on persisted/readback success. Home renders two current Pair-derived text fields, changes language locally without a generation request and preserves admin access during failures. No new completion flag is stored. Existing durable daily history routes to Home before any cycle hydration, so today's engine failure cannot restart onboarding.
 
 Source manifest and astronomy runtime stay backend-only; Astronomy in the internal test suite loads only when its test executes. They do not enter the normal application entry bundle. Existing byte budgets remain unchanged.
 

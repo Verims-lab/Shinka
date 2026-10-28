@@ -1,0 +1,1081 @@
+{
+  "scope": "LOCAL_SYNTHETIC_SERIALIZED_UTF8_NOT_PHYSICAL_DB_LATENCY_OR_CREDITS",
+  "fixtureHash": "b3664c5a708cd431a8955b68c352cfe26b3c5b1a60e2d543a05e9fc57ea411d3",
+  "fixtures": {
+    "historyRows": 39,
+    "pairs": 260,
+    "mappings": 240,
+    "categories": 6
+  },
+  "scenarios": [
+    {
+      "scenario": "daily-generation",
+      "entityReads": 49,
+      "entityWrites": 1,
+      "sdkReadBytes": 113057,
+      "responseBytes": 530,
+      "returnedRows": 1,
+      "responseBytesPerRow": 530,
+      "storedRowBytes": 418,
+      "repeatedTextValueBytes": 62,
+      "trace": [
+        {
+          "entity": "User",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 31,
+          "fields": [
+            "id",
+            "role"
+          ]
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 295,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ]
+        },
+        {
+          "entity": "UserPreferences",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 149,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone",
+            "theme_code"
+          ]
+        },
+        {
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": null
+        },
+        {
+          "entity": "MessageCategoryLookup",
+          "method": "filter",
+          "rows": 6,
+          "bytes": 679,
+          "fields": [
+            "id",
+            "category_code",
+            "display_name_tr",
+            "display_name_en"
+          ]
+        },
+        {
+          "entity": "MessagePair",
+          "method": "filter",
+          "rows": 260,
+          "bytes": 56919,
+          "fields": [
+            "id",
+            "category_id",
+            "message_tr",
+            "suggestion_tr",
+            "message_en",
+            "suggestion_en",
+            "is_active"
+          ]
+        },
+        {
+          "entity": "MessageCategoryMapping",
+          "method": "filter",
+          "rows": 240,
+          "bytes": 38619,
+          "fields": [
+            "id",
+            "sun_sign_code",
+            "moon_phase_code",
+            "cycle_phase_code",
+            "category_id"
+          ]
+        },
+        {
+          "entity": "MoonPhaseLookup",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 96,
+          "fields": [
+            "phase_code",
+            "start_at_utc",
+            "end_at_utc"
+          ]
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "consent_status",
+            "consent_version",
+            "granted_at",
+            "withdrawn_at"
+          ]
+        },
+        {
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "rows": 39,
+          "bytes": 14658,
+          "fields": null
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 31,
+          "fields": [
+            "id",
+            "role"
+          ]
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 295,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ]
+        },
+        {
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": null
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 31,
+          "fields": [
+            "id",
+            "role"
+          ]
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 31,
+          "fields": [
+            "id",
+            "role"
+          ]
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 31,
+          "fields": [
+            "id",
+            "role"
+          ]
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ]
+        },
+        {
+          "entity": "UserDailyMessage",
+          "method": "create",
+          "rows": null,
+          "bytes": 418,
+          "fields": null
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 31,
+          "fields": [
+            "id",
+            "role"
+          ]
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ]
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 31,
+          "fields": [
+            "id",
+            "role"
+          ]
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 31,
+          "fields": [
+            "id",
+            "role"
+          ]
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 295,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ]
+        },
+        {
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 420,
+          "fields": null
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 31,
+          "fields": [
+            "id",
+            "role"
+          ]
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 295,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "home-reopen",
+      "entityReads": 12,
+      "entityWrites": 0,
+      "sdkReadBytes": 1233,
+      "responseBytes": 531,
+      "returnedRows": 1,
+      "responseBytesPerRow": 531,
+      "storedRowBytes": 418,
+      "repeatedTextValueBytes": 62,
+      "trace": [
+        {
+          "entity": "User",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 31,
+          "fields": [
+            "id",
+            "role"
+          ]
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 295,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ]
+        },
+        {
+          "entity": "UserPreferences",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 149,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone",
+            "theme_code"
+          ]
+        },
+        {
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 420,
+          "fields": null
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 31,
+          "fields": [
+            "id",
+            "role"
+          ]
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "rows": 0,
+          "bytes": 2,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ]
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "rows": 1,
+          "bytes": 295,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "pattern-history",
+      "entityReads": 1,
+      "entityWrites": 0,
+      "sdkReadBytes": 5311,
+      "responseBytes": 5311,
+      "returnedRows": 30,
+      "responseBytesPerRow": 177.03333333333333,
+      "storedRowBytes": 418,
+      "repeatedTextValueBytes": 62,
+      "trace": [
+        {
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "rows": 30,
+          "bytes": 5311,
+          "fields": [
+            "id",
+            "user_id",
+            "shinka_date",
+            "timezone",
+            "category_id",
+            "generated_at"
+          ]
+        }
+      ]
+    }
+  ],
+  "instrumentHash": "e87a9bd31cc921e88833902169456c354bd5d7e3c25709147fd9a65990e16b14"
+}

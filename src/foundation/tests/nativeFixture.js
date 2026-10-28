@@ -13,7 +13,7 @@ const clone = value => structuredClone(value);
 const matches = (row, query) => Object.entries(query).every(([key, value]) => {
   if (key === '$or') return value.some(q => matches(row, q));
   if (value && typeof value === 'object') return Object.entries(value).every(([op, v]) => ({ $ne: () => row[key] !== v, $gt: () => row[key] > v, $in: () => v.includes(row[key]), $gte: () => row[key] >= v, $lte: () => row[key] <= v })[op]?.());
-  return row[key] === value;
+  return (row[key] ?? null) === value; // Mongo/Base44 equality to null also matches absent optional fields.
 });
 export function nativeFixture({ granted = true } = {}) {
   const daily = dailyFixture();
@@ -32,10 +32,10 @@ export function nativeFixture({ granted = true } = {}) {
       await state.before?.(call); const result = work(); await state.after?.(call); return clone(result);
     };
     return {
-      filter: (q, sort = 'id', limit = 100, offset = 0, fields) => run('filter', [q], () => tables[name].filter(row => matches(row, q)).sort((a,b) => { const key = sort.replace(/^-/, ''); return String(a[key] ?? '').localeCompare(String(b[key] ?? '')) * (sort.startsWith('-') ? -1 : 1); }).slice(offset, offset + limit).map(row => fields ? Object.fromEntries(fields.filter(key => row[key] !== undefined).map(key => [key, row[key]])) : row)),
+      filter: (q, sort = 'id', limit = 100, offset = 0, fields) => run('filter', [q, sort, limit, offset, fields], () => tables[name].filter(row => matches(row, q)).sort((a,b) => { const key = sort.replace(/^-/, ''); return String(a[key] ?? '').localeCompare(String(b[key] ?? '')) * (sort.startsWith('-') ? -1 : 1); }).slice(offset, offset + limit).map(row => fields ? Object.fromEntries(fields.filter(key => row[key] !== undefined).map(key => [key, row[key]])) : row)),
       create: record => run('create', [record], () => { const row = { id: `native-${++state.sequence}`, created_date: '2026-10-20T12:00:00', ...clone(record) }; tables[name].push(row); return row; }),
       update: (id, patch) => run('update', [id, patch], () => { const row = tables[name].find(row => row.id === id); if (!row) throw new Error('MISSING_FIXTURE_ROW'); Object.assign(row, clone(patch)); return row; }),
-      updateMany: (query, patch) => run('updateMany', [query, patch], () => { const rows = tables[name].filter(row => matches(row, query)); rows.forEach(row => Object.assign(row, clone(patch.$set))); return { success: true, updated: rows.length, has_more: false }; }),
+      updateMany: (query, patch) => run('updateMany', [query, patch], () => { const rows = tables[name].filter(row => matches(row, query)); rows.forEach(row => { Object.assign(row, clone(patch.$set || {})); for (const key of Object.keys(patch.$unset || {})) delete row[key]; }); return { success: true, updated: rows.length, has_more: false }; }),
       delete: id => run('delete', [id], () => { tables[name] = tables[name].filter(row => row.id !== id); return { success: true }; }),
       deleteMany: q => run('deleteMany', [q], () => { const deleted = tables[name].filter(row => matches(row, q)).length; tables[name] = tables[name].filter(row => !matches(row, q)); return { success: true, deleted }; }),
     };

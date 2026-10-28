@@ -25,7 +25,7 @@ export async function checkAdminNavigation(page, origin, directory) {
   for (const width of [360, 1280]) for (const language of ['tr', 'en']) {
     await page.setViewportSize({ width, height: 900 });
     await open('/', 'admin', language, 'ACTIVE_EXISTING_USER');
-    const trigger = page.locator('[data-profile-trigger]');
+    const trigger = page.locator('[data-profile-trigger]:visible');
     await trigger.focus();
     assert(await trigger.evaluate(el => getComputedStyle(el).outlineStyle !== 'none'), 'profile link keyboard focus invisible');
     const menu = await geometry('[data-profile-trigger]');
@@ -77,7 +77,7 @@ export async function checkAdminNavigation(page, origin, directory) {
   results.push({ scenario: 'focus-refresh-pending-then-revoked', passed: true });
   await open('/', 'admin', 'en', 'ACTIVE_EXISTING_USER');
   await page.waitForSelector('[data-profile-trigger]:not(:disabled)');
-  await page.locator('[data-profile-trigger]').click(); await page.waitForSelector('[data-you-root]'); await page.getByRole('link', { name: 'Admin Panel' }).click();
+  await page.locator('[data-profile-trigger]:visible').click(); await page.waitForSelector('[data-you-root]'); await page.getByRole('link', { name: 'Admin Panel' }).click();
   await page.waitForSelector('[data-admin-panel]');
   await page.locator('nav a[href="/"]').click();
   await page.waitForSelector('[data-profile-trigger]:not(:disabled)');

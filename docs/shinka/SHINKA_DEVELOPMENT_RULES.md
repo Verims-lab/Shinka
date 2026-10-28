@@ -2,11 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-044
+**Current BuildMarker:** Buildmarker-045
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
+
+
+
+## 045 — Focused ID-model audit and fix
+
+Preserve main e602a65 (theme/kept tabs/greeting) and 044 notification preferences. Increment once to Buildmarker-045 / HC-044.0 through recordBuild, retaining 041–045. No general UI/security audit, live migration/Full Health/Security scan/provider call, scheduler enablement or main publish. Run full Chromium/WebKit and required quality/performance gates; retain baseline and intermediate failures alongside final evidence. Deliver Test only; operator main/sync/publish and hosted migration acceptance remain separate. [Single 045 delivery](reports/SHINKA_ID_MODEL_045.md).
 
 
 ## 044 — Notification preference step 1 delivery

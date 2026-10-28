@@ -54,7 +54,7 @@ export async function verifyNativeEntries(root) {
   const daily = await load('base44/functions/dailyMessage/entry.ts', {
     '../../shared/nativeClient.ts': native,
     '../../shared/dailyMessageOperation.js': { handleDailyMessageRequest: handler },
-    '../../shared/base44ContentLibrary.js': { inspectContentLibrary() {} },
+    '../../shared/dailySelectionLibrary.js': { readDailySelectionLibrary() {} },
     '../../shared/firstContentSource.js': { FIRST_CONTENT_SOURCE: {} },
     '../../shared/contentCategoryDecision.js': { CONTENT_CATEGORY_DECISION: {} },
   });

@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-040",
-    "package_name": "Test Tools deletion stabilization",
-    "package_type": "CORRECTIVE_STABILIZATION",
-    "created_at": "2026-10-27T20:07:56Z",
-    "health_catalog_version": "HC-040.0",
-    "short_summary": "Durable admission, bounded forward cleanup and separately verified finalization; real service/HTTP/native and UI fault regression. Explicit-target hosted cleanup remains publication gated.",
-    "full_health_status": "LOCAL_SYNTHETIC_ONLY / HOSTED_FULL_HEALTH_NOT_RUN",
-    "notes": "Preserves audit 039. H12-029 strengthened, H12-043 added, H13-016 local full-chain UI and H12-902 external acceptance updated. No entity migration, import, notification enablement, live Full Health, main merge or publish. Owner-authorized sequential cleanup waits for matching published code and protected native admin/session verification; NOT_RUN until evidenced. Active packages 036–040. See SHINKA_TEST_DELETION_STABILIZATION_040.md."
-  },
-  {
     "build_marker": "Buildmarker-041",
     "package_name": "Home header language control removal",
     "package_type": "UI_CHANGE",
@@ -65,5 +55,15 @@ export default [
     "source_changed": true,
     "tests_changed": true,
     "health_changed": true
+  },
+  {
+    "build_marker": "Buildmarker-045",
+    "package_name": "ID-based daily content and bounded legacy cleanup",
+    "package_type": "AUDIT_FIX",
+    "created_at": "2026-10-28T12:00:00Z",
+    "health_catalog_version": "HC-044.0",
+    "short_summary": "MessagePair sole text authority; immutable daily assignments and projected ID reads. Reviewed offline cleanup, reference ownership and matched byte measurements; main theme/kept tabs preserved.",
+    "full_health_status": "NOT_RUN_HOSTED_ACCEPTANCE_PENDING",
+    "notes": "Explicit owner decision supersedes historical immutable text snapshots without changing assignment IDs, retention or shared source content. H09-007 added; H09-003/H07-013/H09-901/H05-009 updated. Local gates recorded in SHINKA_ID_MODEL_045.md; hosted field cleanup/device/workflow acceptance remains open. No live migration, import, provider call, Full Health, Security scan or main publish. Active packages 041–045."
   }
 ];

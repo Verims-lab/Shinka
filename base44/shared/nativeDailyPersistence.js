@@ -1,6 +1,7 @@
 import { selectDailyCandidate } from './dailyCandidateSelection.js';
 import { InternalError } from './internalAuthorization.js';
 import { verifiedDailyRecord } from './dailyRecord.js';
+import { DOMAIN_SCHEMAS } from './domainSchemas.js';
 import { validateDomainRecord } from './domainValidation.js';
 
 const fail = code => { throw new InternalError(code, 409); };
@@ -9,7 +10,7 @@ const fail = code => { throw new InternalError(code, 409); };
 export function reconcileDailyRows(rows, owner, day) {
   const valid = rows.map(row => verifiedDailyRecord(row, owner, day));
   const first = selectDailyCandidate(valid);
-  const content = row => JSON.stringify([row.category_id, row.message_pair_id, row.message_tr_snapshot, row.suggestion_tr_snapshot, row.message_en_snapshot, row.suggestion_en_snapshot]);
+  const content = row => JSON.stringify([row.category_id, row.message_pair_id]);
   const conflict = !!first && valid.some(row => content(row) !== content(first));
   return { record: first || null, notice: conflict ? 'DAILY_DUPLICATE_RECONCILED' : null };
 }
@@ -18,7 +19,7 @@ export function nativeDailyPersistence(client, owner) {
   const read = async query => {
     const rows = [], ids = new Set();
     for (let offset = 0; offset <= 4000; offset += 100) {
-      const page = await store.filter({ user_id: owner, ...query }, 'id', 100, offset);
+      const page = await store.filter({ user_id: owner, ...query }, 'id', 100, offset, ['id', ...Object.keys(DOMAIN_SCHEMAS.user_daily_message.properties)]);
       if (!Array.isArray(page) || page.length > 100) fail('DAILY_READBACK_CONFLICT');
       for (const row of page) {
         if (!row.id || row.user_id !== owner || ids.has(row.id)) fail('DAILY_READBACK_CONFLICT');
@@ -33,7 +34,11 @@ export function nativeDailyPersistence(client, owner) {
     async existing(day) { return reconcileDailyRows(await read({ shinka_date: day }), owner, day); },
     // All stored candidates count: a losing candidate may have been shown.
     async history(start, day) {
-      return (await read({ shinka_date: { $gte: start, $lte: day } })).map(row => verifiedDailyRecord(row, owner));
+      return (await read({ shinka_date: { $gte: start, $lte: day } })).map(row => {
+        const record = verifiedDailyRecord(row, owner);
+        if (record.shinka_date < start || record.shinka_date > day) fail('DAILY_HISTORY_INVALID');
+        return record;
+      });
     },
     async save(record, guard) {
       validateDomainRecord('user_daily_message', record);
@@ -42,7 +47,7 @@ export function nativeDailyPersistence(client, owner) {
       let selected = await this.existing(record.shinka_date);
       if (selected.record) return { ...selected, created: false };
       await client.shinkaAssertWritable?.();
-      await store.create(record); // Never upsert immutable text.
+      await store.create(record); // Never replace an existing daily assignment.
       await guard();
       selected = await this.existing(record.shinka_date);
       if (!selected.record) fail('DAILY_READBACK_CONFLICT');

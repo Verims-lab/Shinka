@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-044
+**Current BuildMarker:** Buildmarker-045
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -35,6 +35,12 @@
 - **V. Domain authority:** new worker code must reuse `domainSchemas`, `domainValidation`, `domainSecurity`, `domainAtomic` and `domainAudit`. Do not accept body user_id/role/process as authority. Never add a direct service-role CRUD endpoint or relax RLS to bypass ACTIVE/consent/audit checks.
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
+
+
+
+## 045 — Assignment immutability and text projections
+
+Do not write daily text copies or introduce a replacement version/cache store. Validate native IDs/owner and all assignment fields, resolve current Pair text through bounded projected ID batches, fail closed on broken links, and preserve Pattern/history projections. Response `_snapshot` names are a transitional DTO contract only. Use request-local reuse only. Old source receipt remains an original artifact; explicit removed-field decisions are separate. Maintenance is an offline reviewed tool, no generic update endpoint. Test legacy rows, text edits, inactive eligibility, partial/lost-response unset, exact IDs and ownership with real domain functions; synthetic SDK fixtures are not hosted enforcement. Original immutable-text instructions are superseded only for the 045 approved behavior.
 
 
 ## 044 — Functional notification settings evidence
@@ -152,7 +158,7 @@ Delete target admission is distinct from actor admin admission. Keep cleanup bou
 
 ## Native persistence standards — 016
 
-Keep mutation responsibility in narrow native modules and reuse existing validation/calculation. Ordinary Entity create/update/updateMany are not transaction/UNIQUE/CAS evidence. For immutable daily snapshots use insert and deterministic reconciliation, never upsert. For date mutation bind receipt/owner/intent, compare revision, verify affected counts and reread actual state. Persist business consent time once; preserve it on retry. No fallback clock/naive-Z patch.
+Keep mutation responsibility in narrow native modules and reuse existing validation/calculation. Ordinary Entity create/update/updateMany are not transaction/UNIQUE/CAS evidence. For immutable daily assignments use insert and deterministic reconciliation, never upsert. For date mutation bind receipt/owner/intent, compare revision, verify affected counts and reread actual state. Persist business consent time once; preserve it on retry. No fallback clock/naive-Z patch.
 
 Normal write/readback must precede reset progress. The historical 016 operator-maintenance contract is superseded by the 017 target-scoped confirmation/lifecycle contract; pre/post admission is not distributed fencing. Tests exercise actual native handlers with ordinary SDK-shaped CRUD, faults and independent reconstructed clients; label those synthetic, separate hosted evidence. Existing historical atomic protocol fixtures do not enable production behavior. No SQL tooling/driver/CI requirement. [Current contract](SHINKA_BASE44_CONTINUATION.md).
 
@@ -188,7 +194,7 @@ Keep destination inventory/localization, role decision, menu interaction and pan
 ## Daily implementation boundaries
 
 > Historical contract (superseded by the current 016 native contract above):
-> Keep source manifest/backend astronomy out of the initial frontend graph. Import planning, SDK batches, phase calculation, selection, persistence and UI have separate modules. The write-surface tripwire adds exactly one upsert call in base44ContentLibrary and one in moonImport, both reachable only through strict admin apply dispatch; arbitrary writers remain rejected. Dry-run and Home must never trigger import. No native atomicity can be inferred from SDK method naming, synthetic concurrency or a local lock. Tests must assert production refusal until a verified adapter is explicitly added. Preserve actual selected category, immutable bilingual snapshots, bounded history and distinction between source/technical failures and UNKNOWN.
+> Keep source manifest/backend astronomy out of the initial frontend graph. Import planning, SDK batches, phase calculation, selection, persistence and UI have separate modules. The write-surface tripwire adds exactly one upsert call in base44ContentLibrary and one in moonImport, both reachable only through strict admin apply dispatch; arbitrary writers remain rejected. Dry-run and Home must never trigger import. No native atomicity can be inferred from SDK method naming, synthetic concurrency or a local lock. Tests must assert production refusal until a verified adapter is explicitly added. Preserve actual selected category, immutable daily assignment and current bilingual text, bounded history and distinction between source/technical failures and UNKNOWN.
 
 
 ## Historical checkpoint — Calendar engineering requirements — Buildmarker-012

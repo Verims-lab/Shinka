@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-044
+**Current BuildMarker:** Buildmarker-045
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
+
+
+
+## 045 — Approved ID-based daily content decision (current)
+
+Owner request `1afa5342-b0b0-457c-85c0-8e385ead8c5b/Pasted text.txt` (2026-10-28) explicitly makes **MessagePair the sole text authority**. A daily assignment preserves native ID, owner, local day, timezone, category, message_pair_id and generated_at; displayed TR/EN message/suggestion resolve the current linked Pair on every backend read. Historical display changing after a Pair edit is accepted. No version/archive/snapshot table. New rows omit the four `_snapshot` fields; those response names remain compatibility projections only. Inactive excludes new selection, not historical reading. Missing/bad links fail safely without reassignment. This supersedes historical immutable-text statements below, SRC-05/07's original four-field contract and earlier versioning proposals; original source receipt/files remain untouched. It is a user decision, not retroactively attributed to the source documents. Source import remains exact and conflict-refusing; no content is edited in this package.
 
 
 ## 044 — Notification preference and copy decision

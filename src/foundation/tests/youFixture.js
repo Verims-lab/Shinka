@@ -4,7 +4,7 @@ import { handleYouRequest } from '../../../base44/shared/youOperation.js';
 import { youRequest } from '@/services/youService';
 export function youFixture() {
   const f = nativeFixture();
-  f.tables.UserDailyMessage.push({...dailyRecordFixture(),shinka_date:'2026-10-20'});
+  f.tables.UserDailyMessage.push({...dailyRecordFixture(),message_pair_id:f.tables.MessagePair[0].id,category_id:f.tables.MessagePair[0].category_id,shinka_date:'2026-10-20'});
   f.tables.UserPeriodRecord.push({id:'period',user_id:'ownerA',period_start_date:'2026-10-01'});
   const place = {birthplace_geonames_id:123,birthplace_name:'Synthetic Settlement',birthplace_country_code:'TR',birthplace_latitude:40,birthplace_longitude:29};
   let resolves=0;
