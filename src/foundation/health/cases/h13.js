@@ -1,3 +1,4 @@
+import { appThemeExpectation } from "@/lib/appTheme";
 import { DESIGN_TOKENS } from "@/foundation/designTokens";
 import { SOURCE_INVENTORY } from "@/foundation/sourceInventory";
 import { findUnlabeledControls, findSmallTargets } from "@/foundation/probes/domProbes";
@@ -17,7 +18,7 @@ export const H13_CASES = [
   c("H13-001", "Design token source exists", "Token module defines color, typography, spacing, radii, control sizes, touch target, icons, motion and card.", async () => {
     const keys = ["color", "typography", "spacing", "radii", "control", "touchTargetMin", "iconFamily", "motion", "card"];
     const missing = keys.filter((k) => DESIGN_TOKENS[k] === undefined);
-    return verdict(missing.length === 0 && DESIGN_TOKENS.theme === "light", ev(CLASS.STATIC, "src/foundation/designTokens.js", { missing, theme: DESIGN_TOKENS.theme, status: DESIGN_TOKENS.status }, { missing: [], theme: "light" }, "Token inspection"));
+    return verdict(missing.length === 0 && DESIGN_TOKENS.theme === "account-preference" && DESIGN_TOKENS.defaultTheme === "light", ev(CLASS.STATIC, "src/foundation/designTokens.js", { missing, theme: DESIGN_TOKENS.theme, defaultTheme: DESIGN_TOKENS.defaultTheme, status: DESIGN_TOKENS.status }, { missing: [], theme: "account-preference", defaultTheme: "light" }, "Token inspection"));
   }),
   c("H13-002", "Minimum 44x44 touch target", "Token is 44 and every rendered Health control is at least 44x44.", async () => {
     if (!root()) return noRoot();
@@ -43,13 +44,14 @@ export const H13_CASES = [
     const unlabeled = findUnlabeledControls(root());
     return verdict(unlabeled.length === 0, ev(CLASS.LIVE_RUNTIME, "DOM accessible-name check", { unlabeled }, { unlabeled: [] }, "Accessible name scan"));
   }, DOM),
-  c("H13-006", "Canonical color tokens rendered exactly", "UI/UX v1.1 is READ, tokens APPROVED, and every rendered shinka CSS variable equals its token hex.", async () => {
+  c("H13-006", "Canonical color tokens rendered exactly", "UI/UX v1.1 is READ, tokens APPROVED, and rendered Shinka CSS variables match the independently resolved light/manual-dark palette.", async () => {
     const src = SOURCE_INVENTORY.find((s) => s.id === "SRC-03");
     if (src.status !== "READ") return { status: STATUS.BLOCKED, evidence: ev(CLASS.BLOCKED_EXTERNAL, "SRC-03", src.status, "READ", "UI/UX v1.1 not received") };
     const { checkCssTokens } = await import("@/foundation/inspection/uiRules");
     const cs = getComputedStyle(document.documentElement);
-    const r = checkCssTokens((v) => cs.getPropertyValue(v));
-    return verdict(DESIGN_TOKENS.status === "APPROVED_UIUX_V1_1" && r.mismatches.length === 0, ev(CLASS.LIVE_RUNTIME, "getComputedStyle(:root)", { status: DESIGN_TOKENS.status, ...r }, { status: "APPROVED_UIUX_V1_1", mismatches: [] }, "Rendered token comparison"));
+    const expectedTheme = appThemeExpectation().theme;
+    const r = checkCssTokens((v) => cs.getPropertyValue(v), expectedTheme);
+    return verdict(DESIGN_TOKENS.status === "APPROVED_UIUX_V1_1" && r.mismatches.length === 0, ev(CLASS.LIVE_RUNTIME, "getComputedStyle(:root)", { status: DESIGN_TOKENS.status, expectedTheme, ...r }, { status: "APPROVED_UIUX_V1_1", mismatches: [] }, "Rendered token comparison"));
   }, DOM),
   ...H13_CONTRACT_CASES,
   ...H13_NAV_CASES,

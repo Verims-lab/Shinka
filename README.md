@@ -6,7 +6,11 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
-## Current Test audit closure (Buildmarker-042 / HC-041.0)
+## Current Test theme delivery (Buildmarker-048 / HC-047.0)
+
+Verified You light/dark preference is independent of OS; unresolved/onboarding defaults light. Health and tests follow the same contract. [048 evidence and publication steps](docs/shinka/reports/SHINKA_THEME_CLEANUP_048.md). The owner deferred live 045 cleanup after unavailable CLI authentication: keep the four optional daily fields; no final-schema cleanup is claimed. Merge/sync/publish remains owner-controlled.
+
+## Historical Test audit closure (Buildmarker-042 / HC-041.0)
 
 [042 verification and closed notification preparation](docs/shinka/reports/SHINKA_CORE_AUDIT_042.md) preserves Base44 Home/startup/admission work and the original 040 evidence. New written Support resolves workflow native-admin and provider acceptance semantics; entry remains disabled. No workflow creation, send, live user operation or owner publication. Use the normal full-graph GitHub sync/publish workflow; no schema/content import or workflow secret is needed.
 
@@ -133,7 +137,7 @@ The CLI executes the comprehensive `src/foundation/tests` definitions; Health Ce
 
 Local comparable route timing: `node scripts/measureTransitions.mjs /private/tmp/shinka-transitions` uses production assets and the real SDK with synthetic HTTP, fixed latency/CPU and blocked external traffic; no hosted requests or field INP claim.
 
-CSS is compiled by `@tailwindcss/vite` (Tailwind 4), with `src/index.css` as entry and `src/styles/theme.css` as native theme. There is no separate PostCSS/Tailwind JavaScript config. The same plugin runs in the CLI harness. Optional `FOUNDATION_VISUAL_DIR=/absolute/output/path npm run test:foundation` records Health, Build and login screenshots/layout measurements at 360px and 1280px using synthetic data. The runner emulates OS dark preference to verify the 037 light-only palette under dark OS preference (the mobile matrix also switches OS preference at runtime); it blocks external requests, including hosted fonts, so device font loading still needs live verification.
+CSS is compiled by `@tailwindcss/vite` (Tailwind 4), with `src/index.css` as entry and `src/styles/theme.css` as native theme. There is no separate PostCSS/Tailwind JavaScript config. The same plugin runs in the CLI harness. Optional `FOUNDATION_VISUAL_DIR=/absolute/output/path npm run test:foundation` records Health, Build and login screenshots/layout measurements at 360px and 1280px using synthetic data. The runner emulates OS dark preference to verify the unresolved light default under dark OS preference; checkAppTheme separately verifies all OS light/dark × saved app light/dark combinations and runtime OS changes; it blocks external requests, including hosted fonts, so device font loading still needs live verification.
 
 Current Foundation status and exact remaining advisories are in `docs/shinka/SHINKA_SECURITY_PRIVACY.md` and `SHINKA_RELEASE_HEALTH_CHECK.md`. A successful local run does not certify deployed authentication, server enforcement or history readback.
 

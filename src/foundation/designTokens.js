@@ -1,11 +1,21 @@
 // Shinka design token authority — reconciled with UI/UX Tasarım v1.1 (SRC-03).
-// CSS variables in src/index.css mirror `color` via `cssVars` (RGB channels). Light-only decision: canonical UI/UX standards.
+// CSS variables in src/index.css mirror `color` via `cssVars` (RGB channels). Light default + verified manual theme: canonical UI/UX standards.
 // Accessibility amendment from the current mobile compatibility request. Original SRC-03 table stays intact.
 export const UIUX_COLOR_AMENDMENTS = Object.freeze({ mutedTaupe: '#77636C' });
+// Independent rendered-color contract for the existing manual dark palette.
+// Mirrors styles/theme.css; only appTheme selects which palette may render.
+export const DARK_THEME_CHANNELS = Object.freeze({
+  '--shinka-plum':'200 145 176', '--shinka-plum-deep':'226 180 203', '--shinka-ink':'246 233 238',
+  '--shinka-mauve':'211 166 189', '--shinka-rose':'196 132 140', '--shinka-blush':'74 48 60',
+  '--shinka-lavender':'61 43 58', '--shinka-plum-soft':'61 43 58', '--shinka-ivory':'30 20 25',
+  '--shinka-cream':'38 26 33', '--shinka-taupe':'194 173 183', '--shinka-muted':'194 173 183',
+  '--shinka-line':'74 55 66', '--shinka-white':'43 29 38', '--shinka-surface':'43 29 38',
+});
 export const DESIGN_TOKENS = Object.freeze({
   status: "APPROVED_UIUX_V1_1",
   source: "SRC-03",
-  theme: "light",
+  theme: "account-preference",
+  defaultTheme: "light",
   color: Object.freeze({
     primaryPlum: "#6F415A", deepPlumText: "#4C263F", mutedMauve: "#93637B", dustyRose: "#D8A5AA",
     blushPink: "#F2D7D4", softLavender: "#E7DCE8", warmIvory: "#FFF8F3", softCream: "#F9EEE8",

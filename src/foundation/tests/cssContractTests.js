@@ -1,3 +1,4 @@
+import { applyAppTheme, appThemeExpectation } from '@/lib/appTheme';
 // Rendered CSS regression: the canonical suite runs unchanged in Health Center and CLI.
 import { createElement as h } from "react";
 import { createRoot } from "react-dom/client";
@@ -86,12 +87,34 @@ export const CSS_CONTRACT_TESTS = [
       for(const el of Array.from(host.querySelectorAll("[data-radius]")))assert(measure(el).borderRadius===`${[12,16,20][Number(el.getAttribute("data-radius"))]}px`,el.className);
     });
   }],
-  ["T79","Light root and supported form controls use the same approved palette",async()=>{
-    assert(!document.documentElement.classList.contains('dark') && measure(document.documentElement).colorScheme === 'light', 'light root');
-    await rendered(h('div',null,h('input',{type:'date'}),h('select',null,h('option',null,'Time')),h('div',{className:'hidden'})),host=>{
-      for(const el of Array.from(host.querySelectorAll('input,select'))) assert(measure(el).colorScheme==='light','form scheme');
-      assert(measure(host.lastElementChild.lastElementChild).display==='none','hidden class lost');
-    });
+  ["T79","Both manual themes and native form schemes follow the resolver, restoring prior authority",async()=>{
+    const before=appThemeExpectation();
+    try{for(const theme of ['light','dark']){
+      applyAppTheme(theme);
+      assert(document.documentElement.classList.contains('dark')===(theme==='dark')&&measure(document.documentElement).colorScheme===theme,'resolved root');
+      await rendered(h('div',null,h('input',{type:'date'}),h('select',null,h('option',null,'Time')),h('div',{className:'hidden'})),host=>{
+        for(const el of Array.from(host.querySelectorAll('input,select')))assert(measure(el).colorScheme===theme,'form scheme');
+        assert(measure(host.lastElementChild.lastElementChild).display==='none','hidden class lost');
+      });
+    }}finally{applyAppTheme(before.source==='UNVERIFIED_DEFAULT'?null:before.theme);}
+  }],
+  ["T83","H13 theme expectations reject tampered DOM and survive the admin navigation fixture",async(context={})=>{
+    const before=appThemeExpectation(),health=H13_CASES.find(c=>c.id==='H13-010'),colors=H13_CASES.find(c=>c.id==='H13-006');
+    try{for(const value of [null,'light','dark']){
+      applyAppTheme(value);assert((await health.run({})).status==='PASS','valid expectation');
+      assert((await colors.run({})).status==='PASS','palette must match independently accepted theme');
+      document.documentElement.classList.toggle('dark');
+      assert((await health.run({})).status==='FAIL','DOM must not define expectation');
+      assert((await colors.run({})).status==='FAIL','wrong palette must fail');
+      applyAppTheme(value);document.documentElement.style.colorScheme=value==='dark'?'light':'dark';
+      assert((await health.run({})).status==='FAIL','scheme mismatch must fail');
+    }
+      applyAppTheme('dark');
+      const {ADMIN_NAV_TESTS}=await import('./adminNavigationTests');
+      await ADMIN_NAV_TESTS.find(([id])=>id==='AN08')[2](context);
+      assert(appThemeExpectation().theme==='dark'&&document.documentElement.classList.contains('dark'),'synthetic admin fixture changed the real account theme');
+      assert((await health.run({})).status==='PASS','Health fixture must preserve theme authority');
+    }finally{applyAppTheme(before.source==='UNVERIFIED_DEFAULT'?null:before.theme);}
   }],
   ["T81","046 section shells are transparent over the backdrop; plain internal containers stay flat ivory",async()=>{
     await rendered(h("div",null,h(PageContainer,{className:"shinka-onboarding",surface:"section","data-onb":1,children:"a"}),h(PageContainer,{"data-plain":1,children:"b"})),host=>{
@@ -115,11 +138,11 @@ export const CSS_CONTRACT_TESTS = [
       const art=getComputedStyle(layer,"::before");
       assert(art.backgroundImage.includes(urls.calendar)&&art.backgroundRepeat==="no-repeat"&&art.backgroundSize==="cover",'cover, no tiling or stretch');
       assert(neutral.getAttribute("data-section-backdrop")==="neutral"&&getComputedStyle(neutral,"::before").backgroundImage==="none",'neutral base without image');
-      document.documentElement.classList.add("dark");
-      try{assert(getComputedStyle(layer,"::after").content!=="none",'dark overlay present');}finally{document.documentElement.classList.remove("dark");}
+      const before=appThemeExpectation();applyAppTheme('dark');
+      try{assert(getComputedStyle(layer,"::after").content!=="none",'dark overlay present');}finally{applyAppTheme(before.source==='UNVERIFIED_DEFAULT'?null:before.theme);}
     });
   }],
-  ["T80","Existing rendered Health typography/color/touch/light-policy checks remain passing",async()=>{
+  ["T80","Existing rendered Health typography/color/touch/account-theme-policy checks remain passing",async()=>{
     const context=createHealthContext();
     for(const id of ["H13-002","H13-003","H13-006","H13-007","H13-009","H13-010"]){const c=H13_CASES.find(c=>c.id===id),r=await c.run(context);assert(r.status==="PASS",`${id}: ${JSON.stringify(r.evidence.actual)}`);}
   }],

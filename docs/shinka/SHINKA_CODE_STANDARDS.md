@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-047
+**Current BuildMarker:** Buildmarker-048
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -38,6 +38,10 @@
 
 
 
+## 048 — Theme verification integrity
+
+Use the existing appTheme resolver, not a second theme source or OS listener. Its explicit transient accepted-input inspection state supports Health without reading `.dark` as the expected answer. Verify both themes and deliberately corrupt class/scheme to prove failure; restore prior resolver input in fixture cleanup. Auth/session invalidation must clear theme even outside product routes. Preserve unknown-save intent and late-response cancellation. Dark CSS tokens must outrank base defaults, with text/non-text contrast measured without weakening thresholds. Hosted cleanup completion requires real full-page evidence, never fixture success.
+
 ## 045 — Assignment immutability and text projections
 
 Do not write daily text copies or introduce a replacement version/cache store. Validate native IDs/owner and all assignment fields, resolve current Pair text through bounded projected ID batches, fail closed on broken links, and preserve Pattern/history projections. Response `_snapshot` names are a transitional DTO contract only. Four physical-only optional legacy fields are retained in the publishable schema until hosted cleanup verification; no defaults, new text writes or blanket mismatch whitelist. D23 verifies this exact exception, while D01 still compares the full generated schema. Use request-local reuse only. Old source receipt remains an original artifact; explicit removed-field decisions are separate. Maintenance is an offline reviewed tool, no generic update endpoint. Test legacy rows, text edits, inactive eligibility, partial/lost-response unset, exact IDs and ownership with real domain functions; synthetic SDK fixtures are not hosted enforcement. Original immutable-text instructions are superseded only for the 045 approved behavior.
@@ -64,9 +68,9 @@ Bounded generic lists must expose truncation via an extra sentinel or reject ove
 
 Unknown writes keep their exact intent across UI actions and failed read-only checks. Privacy/lifecycle rejection clears old rendered values and profile fallback; logout stops that component's future work as well as late completions. Test helpers must be unique within each in-app group, not only in the full local registry. Evidence joins include real canonical outcomes/source locations; static checks claim only source properties. [039 regression and measurement contract](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md).
 
-## 037 — light policy and receipt date validation
+## Historical 037 — light policy superseded by 048; date validation retained
 
-The 037 user decision supersedes the historical system-theme owner requirement below. Use central light tokens/CSS at bootstrap; no theme listener/binding or screen-local palette. Date validation must precede recovery/replay shortcuts as well as fresh writes; partial receipts cannot bypass current server day. Preserve unknown-outcome and normal explicit repair behavior. Synthetic native CRUD tests are evidence of code paths, not distributed atomicity.
+The historical 037 decision replaced the earlier system-theme requirement; 048 now permits verified manual light/dark. Bootstrap still defaults light, with no OS listener or screen-local palette. Date validation must precede recovery/replay shortcuts as well as fresh writes; partial receipts cannot bypass current server day. Preserve unknown-outcome and normal explicit repair behavior. Synthetic native CRUD tests are evidence of code paths, not distributed atomicity.
 
 ## 036 — field/modal and diagnostic boundaries
 

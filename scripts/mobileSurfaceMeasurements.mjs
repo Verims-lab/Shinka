@@ -1,14 +1,18 @@
 // Only geometry/colors/ratios/control identifiers leave this isolated browser.
-export async function inspectMobileSurface(page) {
-  return page.evaluate(() => {
+export async function inspectMobileSurface(page, darkBackdropWorstCase = false) {
+  return page.evaluate(darkBackdropWorstCase => {
     const rgba = color => {
       const parts = color.match(/[\d.]+/g)?.map(Number) || [0,0,0,0];
       return [...parts.slice(0,3), parts[3] ?? 1];
     };
     const over = (front, back) => front.slice(0,3).map((v,i)=>v*front[3]+back[i]*(1-front[3]));
+    // Bound every possible dark-background image pixel by compositing white
+    // under its actual overlay; cards then composite normally above that base.
+    const backdrop=document.querySelector('.shinka-section-backdrop');
+    const overlay=darkBackdropWorstCase&&document.documentElement.classList.contains('dark')&&backdrop?rgba(getComputedStyle(backdrop,'::after').backgroundColor):null;
     const background = el => {
       const chain = []; for(let n=el;n;n=n.parentElement) chain.unshift(n);
-      return chain.reduce((bg,n)=>over(rgba(getComputedStyle(n).backgroundColor),bg), [255,255,255]);
+      return chain.reduce((bg,n)=>n===document.documentElement&&overlay?over(overlay,[255,255,255]):over(rgba(getComputedStyle(n).backgroundColor),bg), [255,255,255]);
     };
     const luminance = rgb => rgb.map(v=>{v/=255;return v<=0.04045?v/12.92:((v+0.055)/1.055)**2.4;}).reduce((sum,v,i)=>sum+v*[0.2126,0.7152,0.0722][i],0);
     const contrast = (a,b) => {const x=luminance(a),y=luminance(b);return (Math.max(x,y)+0.05)/(Math.min(x,y)+0.05);};
@@ -24,7 +28,7 @@ export async function inspectMobileSurface(page) {
     const textOverflow=rows.filter(el=>[...el.childNodes].filter(n=>n.nodeType===3).some(n=>{const range=document.createRange();range.selectNodeContents(n);return range.getBoundingClientRect().right>document.documentElement.clientWidth+1;})).map(el=>({tag:el.tagName,className:el.className}));
     const overflow=[...document.querySelectorAll('body *')].filter(el=>el.getBoundingClientRect().right>document.documentElement.clientWidth+1).slice(0,25).map(el=>({tag:el.tagName,id:el.id,className:el.className,right:el.getBoundingClientRect().right,width:el.getBoundingClientRect().width}));
     return { textOverflow, clientWidth:document.documentElement.clientWidth, overflow, width:innerWidth, scrollWidth:document.documentElement.scrollWidth, small, dark:document.documentElement.classList.contains('dark'), scheme:root.colorScheme, documentScroll:document.scrollingElement === document.documentElement, overscrollY:root.overscrollBehaviorY, contrastCount:contrastRows.length, minText:Math.min(...contrastRows.map(x=>x.ratio)), contrastFailures:contrastRows.filter(x=>x.ratio<x.min), boundaries };
-  });
+  }, darkBackdropWorstCase);
 }
 export async function doubleText(page) {
   await page.evaluate(()=>{

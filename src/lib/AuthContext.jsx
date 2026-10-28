@@ -4,12 +4,15 @@ import { safeAuthError, classifySessionFailure, AUTH_ERROR_CODES } from "@/found
 import { createSessionCoalescer, waitForSessionRetry } from "@/lib/sessionCheck";
 import { PRIVACY_SIGNAL, privacyRecoveryStore } from '@/services/privacyService';
 import { queryClientInstance } from '@/lib/query-client';
+import { applyAppTheme } from '@/lib/appTheme';
 
 const AuthContext = createContext(null);
 const SESSION_TIMING = { now: () => Date.now(), every: (fn, ms) => window.setInterval(fn, ms), cancel: id => window.clearInterval(id) };
-// Isolated canonical tests inject a client; production uses the existing SDK.
-/** @param {{children?:import("react").ReactNode,sessionTiming?:typeof SESSION_TIMING,sessionWait?:typeof waitForSessionRetry,client?:{app:{getPublicSettings:()=>Promise<any>},functions:{invoke:(name:string,body:object)=>Promise<any>},auth:{logout:(redirect?:string)=>void|Promise<any>}}}} props */
-export const AuthProvider = ({ children, client = base44, sessionTiming = SESSION_TIMING, sessionWait = waitForSessionRetry }) => {
+// Production uses the existing SDK and browser document/events. Embedded Health
+// fixtures inject their own event scope and detached theme document to avoid
+// changing the active account while exercising the same provider logic.
+/** @param {{children?:import("react").ReactNode,themeDocument?:Document,events?:EventTarget,sessionTiming?:typeof SESSION_TIMING,sessionWait?:typeof waitForSessionRetry,client?:{app:{getPublicSettings:()=>Promise<any>},functions:{invoke:(name:string,body:object)=>Promise<any>},auth:{logout:(redirect?:string)=>void|Promise<any>}}}} props */
+export const AuthProvider = ({ children, client = base44, sessionTiming = SESSION_TIMING, sessionWait = waitForSessionRetry, themeDocument = document, events = window }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
@@ -21,6 +24,9 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
   const generation = useRef(0), appGeneration = useRef(0), signedOut = useRef(false), refused = useRef(false);
   const privacyVersion = useRef(null);
   const retryController = useRef(null);
+  useEffect(() => {
+    if (!isAuthenticated || isLoadingAuth || isLoadingPublicSettings || authError) applyAppTheme(null, themeDocument);
+  }, [isAuthenticated, isLoadingAuth, isLoadingPublicSettings, authError, themeDocument]);
 
   const verifySession = useCallback(async () => {
     // A platform membership refusal stays authoritative until the next checkAppState.
@@ -44,14 +50,14 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
       if (currentUser?.authority !== 'BASE44_NATIVE_V1' || !['admin','user'].includes(currentUser?.role)) throw new Error('APPLICATION_SESSION_UNVERIFIED');
       if (ticket !== generation.current) return false;
       if (!currentUser?.id) throw new Error("AUTH_SESSION_REQUIRED");
-      if (privacyVersion.current && privacyVersion.current !== `${currentUser.id}:${currentUser.privacyRevision || ''}`) window.dispatchEvent(new Event('shinka-health-access-changed'));
+      if (privacyVersion.current && privacyVersion.current !== `${currentUser.id}:${currentUser.privacyRevision || ''}`) events.dispatchEvent(new Event('shinka-health-access-changed'));
       privacyVersion.current = `${currentUser.id}:${currentUser.privacyRevision || ''}`;
       setUser(currentUser); setIsAuthenticated(true); setAuthError(null);
       return true;
     } catch (error) {
       if (ticket !== generation.current) return false;
       if (classifySessionFailure(error) === "INVALID") {
-        window.dispatchEvent(new Event('shinka-session-ended'));
+        events.dispatchEvent(new Event('shinka-session-ended'));
         setUser(null); setIsAuthenticated(false);
         setAuthError({ type: "auth_required", code: safeAuthError(error, "session") });
       } else {
@@ -67,7 +73,7 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
         setIsLoadingAuth(false); setIsRefreshingAuth(false); setAuthChecked(true);
       }
     }
-  }, [client, sessionWait]);
+  }, [client, sessionWait, events]);
   const coalescer = useMemo(() => createSessionCoalescer(verifySession, { now: sessionTiming.now }), [verifySession, sessionTiming]);
   const checkUserAuth = coalescer.check;
 
@@ -77,7 +83,7 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
     coalescer.reset(); signedOut.current = false; refused.current = false;
     setUser(null); setIsAuthenticated(false); setAuthChecked(false); setAuthError(null);
     setIsLoadingAuth(true); setIsRefreshingAuth(false);
-    window.dispatchEvent(new Event('shinka-health-access-changed'));
+    events.dispatchEvent(new Event('shinka-health-access-changed'));
     setIsLoadingPublicSettings(true);
     // Settings and session verification are independent reads: run them in
     // parallel. App renders nothing until both settle; a membership refusal
@@ -102,22 +108,24 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
       if (appTicket === appGeneration.current) setIsLoadingPublicSettings(false);
     }
     await session;
-  }, [client, checkUserAuth, coalescer]);
+  }, [client, checkUserAuth, coalescer, events]);
   useEffect(() => {
     void checkAppState();
     return () => { generation.current++; appGeneration.current++; retryController.current?.abort(); coalescer.reset(); };
   }, [checkAppState, coalescer]);
   useEffect(() => {
-    const changed = () => { queryClientInstance.clear(); };
+    const changed = () => { queryClientInstance.clear(); applyAppTheme(null, themeDocument); };
+    const ended = () => applyAppTheme(null, themeDocument);
+    events.addEventListener('shinka-session-ended', ended);
     const external = event => {
       if (event.key !== PRIVACY_SIGNAL) return;
-      window.dispatchEvent(new Event('shinka-health-access-changed'));
+      events.dispatchEvent(new Event('shinka-health-access-changed'));
       void checkUserAuth();
     };
-    window.addEventListener('storage', external);
-    window.addEventListener('shinka-health-access-changed', changed);
-    return () => { window.removeEventListener('storage', external); window.removeEventListener('shinka-health-access-changed', changed); };
-  }, [checkUserAuth]);
+    events.addEventListener('storage', external);
+    events.addEventListener('shinka-health-access-changed', changed);
+    return () => { events.removeEventListener('storage', external); events.removeEventListener('shinka-health-access-changed', changed); events.removeEventListener('shinka-session-ended', ended); };
+  }, [checkUserAuth, events, themeDocument]);
 
   // Refresh privilege without unmounting the onboarding form. No push/revocation guarantee.
   useEffect(() => {
@@ -128,25 +136,25 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
       // Loading (not logged-out) while re-verifying, so routes never flash login.
       generation.current++; queryClientInstance.clear(); setUser(null); setIsAuthenticated(false); setIsLoadingAuth(true); coalescer.reset();
       retryController.current?.abort();
-      window.dispatchEvent(new Event('shinka-health-access-changed'));
+      events.dispatchEvent(new Event('shinka-health-access-changed'));
       void checkUserAuth();
     };
-    window.addEventListener('pageshow', restore);
-    window.addEventListener("focus", refresh);
+    events.addEventListener('pageshow', restore);
+    events.addEventListener("focus", refresh);
     document.addEventListener("visibilitychange", refresh);
     const timer = sessionTiming.every(refresh, 60000);
     return () => {
-      window.removeEventListener('pageshow', restore);
-      window.removeEventListener("focus", refresh);
+      events.removeEventListener('pageshow', restore);
+      events.removeEventListener("focus", refresh);
       document.removeEventListener("visibilitychange", refresh);
       sessionTiming.cancel(timer);
     };
-  }, [isAuthenticated, user?.role, checkUserAuth, coalescer, sessionTiming]);
+  }, [isAuthenticated, user?.role, checkUserAuth, coalescer, sessionTiming, events]);
 
   const logout = async (shouldRedirect = true, { preservePrivacyRecovery = false } = {}) => {
     signedOut.current = true; generation.current++; appGeneration.current++; coalescer.reset();
     retryController.current?.abort();
-    window.dispatchEvent(new Event('shinka-session-ended'));
+    events.dispatchEvent(new Event('shinka-session-ended'));
     queryClientInstance.clear();
     if (!preservePrivacyRecovery) privacyRecoveryStore.clear();
     setUser(null); setIsAuthenticated(false); setAuthChecked(true);

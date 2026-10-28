@@ -1,0 +1,70 @@
+{
+  "scope": "LOCAL_VERIFIED_HOSTED_CLEANUP_DEFERRED",
+  "buildMarker": "Buildmarker-048",
+  "healthCatalog": "HC-047.0",
+  "runs": {
+    "chromium": {
+      "total": 729,
+      "passed": 729,
+      "failed": 0,
+      "uniqueIds": 729,
+      "themeCases": 89,
+      "themePassed": 89,
+      "pageErrors": [],
+      "inAppHealth": {
+        "PASS": 140,
+        "BLOCKED": 13
+      },
+      "saved": "SAVED",
+      "historyListed": true,
+      "privateReportOpened": true
+    },
+    "webkit": {
+      "total": 729,
+      "passed": 729,
+      "failed": 0,
+      "uniqueIds": 729,
+      "themeCases": 89,
+      "themePassed": 89,
+      "pageErrors": [],
+      "inAppHealth": {
+        "PASS": 140,
+        "BLOCKED": 13
+      },
+      "saved": "SAVED",
+      "historyListed": true,
+      "privateReportOpened": true
+    }
+  },
+  "healthChanges": {
+    "added": 0,
+    "updated": [
+      "H05-009",
+      "H13-001",
+      "H13-006",
+      "H13-010",
+      "H13-012",
+      "H13-014",
+      "H13-018"
+    ],
+    "deleted": 0
+  },
+  "notRun": [
+    "Hosted app/admin/published compatibility/drain preflight",
+    "Live dryRun/applyBatch/full verify",
+    "Final canonical schema removal",
+    "Hosted Full Health",
+    "Live Security scan",
+    "Physical Android/iOS",
+    "main merge",
+    "publish"
+  ],
+  "cleanupStatus": "cleanup-status.json",
+  "git": {
+    "initialTest": "7bf84b8",
+    "initialMain": "e21cd41",
+    "base": "e21cd41",
+    "preflight": "Fast-forward main into Test; identical file tree preserved. No incoming change at final fetch."
+  },
+  "notes": "Both complete suites executed after the embedded Health theme-isolation fix and final explicit OS-mode observation. All 729 canonical tests and 89 app-theme scenarios pass per engine; no hosted cleanup or physical-device claim."
+}

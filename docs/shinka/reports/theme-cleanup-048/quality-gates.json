@@ -1,0 +1,66 @@
+{
+  "scope": "LOCAL_ONLY",
+  "checks": {
+    "cleanInstall": {
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "b3c990273f1a3dc2fdb738887a9ec56e7e6ecbbd372d7b5351cd16c32d255f73"
+    },
+    "dependencyTree": {
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "9279881b5b54cf6e135c5cda518d34590ab883d4c6c4f01458d7a118bfd817a8"
+    },
+    "dependencyAudit": {
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "d023db939da1b363569c7aabf402295e2daa53f1176fda1428ee679d16270dab"
+    },
+    "securityDeps": {
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "ba5a55cc48eca8e7c392d3754b663e0bd7b6233525429a1d8a5d44768df5b507"
+    },
+    "typecheck": {
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "2e1c7db5ac28fb733e8c1d3d7c2c3bf8a4bb6628ed45eb56ce2e7328388598de"
+    },
+    "lint": {
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "8423c1a66df3f2a021733ae12f217befbeb04b23971e056cb4e3739c7fb936cf"
+    },
+    "productionBuild": {
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "b009ad5139096bbdd1cbc6474ba08f326fe376024c029474dd8336307d57f442"
+    },
+    "repoHealth": {
+      "status": "PASS",
+      "exitCode": 0,
+      "logSha256": "c7c174814630a1d27e39ad2bb8f244b204c351fb45b16c8770229215288ad5d3"
+    },
+    "buildHistory": {
+      "status": "PASS",
+      "packages": [
+        "044",
+        "045",
+        "046",
+        "047",
+        "048"
+      ]
+    },
+    "diffCheck": {
+      "status": "PASS"
+    },
+    "performance": {
+      "status": "PASS",
+      "receipt": "performance-gate.json",
+      "logSha256": "51803a896acaf7eaba04d78dc199647626fbdfed129cc5161db056e5ff109269"
+    }
+  },
+  "vulnerabilities": 0,
+  "warnings": "Existing lazy internal chunk/dynamic import and npm min-release-age-exclude config warnings; no thresholds changed.",
+  "unchanged": "Dependency lock, Base44 images/background mapping, 047 onboarding fixes and 045 compatibility schema/generator/inspector/D23."
+}

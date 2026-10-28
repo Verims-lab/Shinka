@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-047
+**Current BuildMarker:** Buildmarker-048
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,12 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 048 — Theme alignment and narrowly authorized 045 cleanup
+
+Authority: explicit owner request `582ce6cd-b188-4c15-b51d-a745ecbea5d0/Pasted text.txt` (2026-10-28). Default light; verified account-owned light/dark You preference; no OS control. Unverified/onboarding remains light; drafts/unknown results cannot change accepted theme. This supersedes only the 037–039 light-only clauses and the older 026 system-theme rule; all other decisions and historical receipts remain.
+
+The request authorizes removing exactly four legacy daily text fields in app `6ad5190f4845d4e3af03b420`, existing `prod` environment, after read-only app/admin/published compatibility/drain checks. No deletion/recreation/text edit or new data authority. Native daily/owner/day/timezone/category/pair/generated_at and NotificationDelivery links must match before/after. Full paginated verify is mandatory before final schema preparation; updated_date may change separately. CLI access and hosted proof are not inferred from Git, fixtures or user-reported login. Current execution is recorded in the existing [045 report](reports/SHINKA_ID_MODEL_045.md) and [048 report](reports/SHINKA_THEME_CLEANUP_048.md).
 
 ## 046 — Section background decision (current)
 Owner-provided reference PNGs are the authority: one watercolor image for Home/Calendar/Pattern/You, one moon image for Onboarding. Originals stay unchanged; only optimized native-size derivatives ship.
@@ -42,7 +48,7 @@ Authority: explicit user request `a2e85156-40d3-4d49-b203-2ee57cc0cc2c/Pasted te
 
 ## 039 — core quality milestone authority
 
-Authority: explicit user request `a52b553b-3741-4bc1-93d0-7e6b0300526c/Pasted text.txt` (2026-10-27). One 039 package audits and fixes existing behavior; 036–038 decisions remain binding: light-only UI, automatic onboarding locale, You preference authority, A/P single search, count-free themes/current Moon/next Full date. No new feature/service/data authority or live operation is authorized. Twelve deferred backend findings remain OPEN / USER-DEFERRED. Main merge/publish and hosted Full Health belong to the owner. [Single milestone report](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md) separates fresh local results, historical incidents and external acceptance.
+Authority: explicit user request `a52b553b-3741-4bc1-93d0-7e6b0300526c/Pasted text.txt` (2026-10-27). One 039 package audits and fixes existing behavior; Historical 039 decision (theme-only portion superseded by 048): 036–038 decisions included light-only UI, automatic onboarding locale, You preference authority, A/P single search, count-free themes/current Moon/next Full date. No new feature/service/data authority or live operation is authorized. Twelve deferred backend findings remain OPEN / USER-DEFERRED. Main merge/publish and hosted Full Health belong to the owner. [Single milestone report](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md) separates fresh local results, historical incidents and external acceptance.
 
 ## 038 — Calendar recovery and Pattern presentation decision
 
@@ -52,7 +58,7 @@ This decision supersedes the original five-node Lunar Timeline presentation: sho
 
 Ordinary Pattern refresh retains verified sections, with five-minute visible freshness and coalesced return/online events. Privacy/account/logout invalidates immediately. Calendar recovers a unique saved intent for add/edit/delete using its original action ID after reload; no bulk cancellation or health-data deletion to unlock the screen. Conflicts remain explicit. Owner/ACTIVE/consent/lifecycle, future/minimum-15-day/duplicate/OD-012 rules are unchanged. [038 implementation, evidence and remaining owner acceptance](reports/SHINKA_CALENDAR_PATTERN_038.md).
 
-## 037 — five additional corrections; light-only decision
+## Historical 037 — five corrections; theme portion superseded by 048
 
 Authority: user request `929ca633-808a-4368-8e13-3259d8212be9/Pasted text.txt`, SHA-256 `a7307d8bbde75c7df95414d1a516be789c08e62f19dfadaf271ae128c5e156f3`. This supersedes the 026 system-theme decision: Shinka always uses the approved light palette, even at dark OS startup or preference changes. No setting or second theme source. ON-02 nonblank trimmed names disable Skip and its handler; blank/whitespace may skip. ON-05 has no Account & Privacy header (already implemented in 035/036); You/direct routes and guards stay. Calendar future browsing/predictions remain, future actual add/edit/resume are rejected by server time + validated IANA zone; old future rows remain visible for explicit correction/delete. Home loses only the normal Refresh button, retaining pull/automatic load and error Retry. The 036 six fixes and historical failures remain. [Single 037 report](reports/SHINKA_ADDITIONAL_FIXES_037.md).
 

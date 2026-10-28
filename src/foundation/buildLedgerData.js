@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-043",
-    "package_name": "Calendar and Pattern header language removal",
-    "package_type": "UI",
-    "created_at": "2026-10-28T10:40:00.000000+00:00",
-    "health_catalog_version": "HC-042.0",
-    "short_summary": "Calendar/Pattern headers keep only Shinka and Profile/You; TR/EN buttons and unused ProductLanguageControls removed. Language changes only in Profile/You; saved preference renders everywhere; daily ID/snapshots unaffected.",
-    "full_health_status": "NOT_RUN",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "notes": "Health add 0/update 3/delete 0 (H13-015, H13-017, H05-009). Browser tests CU01/PU01/PU07/DU01 NOT_RUN (no Playwright browser). No live Full Health/Security scan/publish."
-  },
-  {
     "build_marker": "Buildmarker-044",
     "package_name": "Profile notification preference and phone permission guidance",
     "package_type": "FEATURE_VERIFICATION",
@@ -61,5 +47,15 @@ export default [
     "source_changed": true,
     "tests_changed": true,
     "health_changed": true
+  },
+  {
+    "build_marker": "Buildmarker-048",
+    "package_name": "Manual theme alignment and authorized 045 cleanup follow-up",
+    "package_type": "FIX",
+    "created_at": "2026-10-28T15:14:16Z",
+    "health_catalog_version": "HC-047.0",
+    "short_summary": "Align verified manual theme, rendered Health and canonical rules; retain 045 compatibility until complete hosted cleanup verification.",
+    "full_health_status": "NOT_RUN",
+    "notes": "Manual theme uses verified account preference, independent of OS; H13 compares independent expectation with DOM. Complete local browser/quality evidence: reports/theme-cleanup-048. 045 hosted cleanup: 0 inspected / 0 cleaned / remaining unknown, verify NOT_RUN; CLI_LOGIN_REQUIRED twice, then explicitly owner-deferred. Optional compatibility schema retained. No live Health/scan, main merge or publish; active packages 044–048."
   }
 ];

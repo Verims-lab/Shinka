@@ -8,6 +8,7 @@ import { checkStartupRoutes } from './checkStartupRoutes.mjs';
 import { checkProductNavigation } from './checkProductNavigation.mjs';
 import { checkHealthTiming } from './checkHealthTiming.mjs';
 import { checkPrivacyFlow } from './checkPrivacyFlow.mjs';
+import { checkAppTheme } from './checkAppTheme.mjs';
 import { checkYouFlow } from './checkYouFlow.mjs';
 import { checkPatternFlow } from './checkPatternFlow.mjs';
 import { checkInAppHealth } from './verifyHealthFlow.mjs';
@@ -70,7 +71,7 @@ try {
   // Preserve normal Chromium background/frame scheduling, which Playwright otherwise disables.
   browser=await engine.launch({headless:true,ignoreDefaultArgs:['--disable-background-timer-throttling','--disable-backgrounding-occluded-windows','--disable-renderer-backgrounding']});
   const page=await browser.newPage({viewport:{width:1280,height:900}});
-  await page.emulateMedia({colorScheme:"dark"}); // Verify light-only application rendering despite a dark OS preference.
+  await page.emulateMedia({colorScheme:"dark"}); // Verify unresolved light default despite a dark OS preference; explicit saved-theme matrix is separate.
   await page.route("**/*",route=>new URL(route.request().url()).origin===origin?route.continue():route.abort());
   const pageErrors=[];page.on("pageerror",error=>pageErrors.push(error.message));
   await page.goto(`${origin}/internal/health`);
@@ -110,8 +111,13 @@ try {
     const privacyFlow = await checkPrivacyFlow(page, origin, process.env.FOUNDATION_PRIVACY_DIR);
     console.log(JSON.stringify({diagnosticOnly:true,privacyFlow,pageErrors},null,2));
     if(pageErrors.length)process.exitCode=1;
+  } else if (process.env.FOUNDATION_THEME_ONLY === '1') {
+    const appTheme=await checkAppTheme(browser,origin);
+    console.log(JSON.stringify({appTheme,pageErrors},null,2));
+    if(appTheme.some(r=>!r.passed)||pageErrors.length)process.exitCode=1;
   } else if (process.env.FOUNDATION_YOU_ONLY === '1') {
-    const youFlow = await checkYouFlow(page, origin, process.env.FOUNDATION_YOU_DIR);
+    const appTheme = await checkAppTheme(browser,origin);
+  const youFlow = await checkYouFlow(page, origin, process.env.FOUNDATION_YOU_DIR);
     console.log(JSON.stringify({diagnosticOnly:true,youFlow,pageErrors},null,2));
     if(pageErrors.length)process.exitCode=1;
   } else if (process.env.FOUNDATION_PATTERN_ONLY === '1') {
@@ -164,6 +170,7 @@ try {
   const mobile = await checkMobile(browser, origin, process.env.FOUNDATION_MOBILE_DIR);
   const dailyFlow = await checkDailyFlow(page, origin, process.env.FOUNDATION_DAILY_DIR);
   const patternFlow = await checkPatternFlow(page, origin, process.env.FOUNDATION_PATTERN_DIR);
+  const appTheme = await checkAppTheme(browser,origin);
   const youFlow = await checkYouFlow(page, origin, process.env.FOUNDATION_YOU_DIR);
   const privacyFlow = await checkPrivacyFlow(page, origin, process.env.FOUNDATION_PRIVACY_DIR);
   const calendarFlow = await checkCalendarFlow(page, origin, process.env.FOUNDATION_CALENDAR_DIR);
@@ -174,8 +181,8 @@ try {
     const audit=await page.evaluate(()=>({registry:window.__healthAuditRegistry,report:window.__savedHealthReport}));
     await writeHealthAudit(root,process.env.FOUNDATION_AUDIT_DIR,audit.registry,audit.report,results);
   }
-  console.log(JSON.stringify({onboardingPresentation,onboardingClosure,startupRoutes,productNavigation,healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,security028,notifications030,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
-  if(mobileExperience.some(r=>!r.passed)||mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||calendarHealth.some(c=>c.status!=="PASS")||adminTestHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
+  console.log(JSON.stringify({appTheme,onboardingPresentation,onboardingClosure,startupRoutes,productNavigation,healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,security028,notifications030,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
+  if(appTheme.some(r=>!r.passed)||mobileExperience.some(r=>!r.passed)||mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||calendarHealth.some(c=>c.status!=="PASS")||adminTestHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
   }
   }
 } catch(error){console.error(error);process.exitCode=1;}

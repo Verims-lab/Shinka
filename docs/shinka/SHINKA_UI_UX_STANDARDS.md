@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-047
+**Current BuildMarker:** Buildmarker-048
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,6 +12,12 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 048 — Current manual application theme
+
+Authority: the owner's 048 request supersedes the **theme-only** light-only clauses in 037–039 and the older OS-driven 026 decision. Default, unverified identity/preference and onboarding use light. A verified active account may select light/dark in You. The existing `appTheme` resolver is the only DOM theme writer; OS preference never selects or changes it. Draft, rejected and unconfirmed saves retain the last verified theme. Check/retry accepts the same intent only after verified readback. Logout and account changes clear prior theme, including internal routes; old responses cannot apply to the new account.
+
+H13-010 compares the resolver's independently accepted input to DOM class, color-scheme and meta; H13-006 compares the corresponding palette. Neither derives expected theme from rendered `.dark`. Existing section assets, positions, fixed owner and dark overlay remain. Measured dark text/primary-button contrast requires dark primary RGB 200 145 176 and on-primary RGB 30 20 25; `html.dark` prevents base accessibility defaults from overriding these values. Light tokens and copy stay unchanged. Local testing covers OS × app themes, TR/EN 360/390px and 200% text, including a conservative white-image bound under the actual dark overlay. Physical/native rendering remains separate.
 
 ## 047 — Focused onboarding presentation
 
@@ -43,9 +49,9 @@ You disables Edit profile as well as changed preference fields while a save is u
 
 First Pattern load uses loading text; later reads retain confirmed names and Moon values. A refresh failure shows a section retry with old information, distinct from empty history/first-load failure. Access loss hides both immediately. Calendar unknown outcome has one short explanation and same-operation retry; verified readback is required for success. A saved/recovered past date selects its month so the actual result is visible. Saved controls never imply rollback or cancellation of a transmitted call. [Current evidence and mobile limits](reports/SHINKA_CALENDAR_PATTERN_038.md).
 
-## 037 — current light, name, Calendar and Home behavior
+## Historical 037 — theme superseded by 048; name, Calendar and Home retained
 
-One light palette applies to onboarding/product/internal/overlay surfaces and supported form controls at initial paint and OS changes; watercolor and 026 accessibility amendments remain. No media-query listener, theme binding or dark palette remains. OS-owned date/time/browser/native surfaces are separate device acceptance. Name Skip is disabled for trimmed nonempty input; handler checks the current draft even before a render. Blank Skip may clear only blank draft; Continue carries normalized valid name through auth/profile save.
+Historical 037 theme rule (superseded by 048): one light palette applied to onboarding/product/internal/overlay surfaces and supported form controls at initial paint and OS changes; watercolor and 026 accessibility amendments remain. No media-query listener, theme binding or dark palette remains. OS-owned date/time/browser/native surfaces are separate device acceptance. Name Skip is disabled for trimmed nonempty input; handler checks the current draft even before a render. Blank Skip may clear only blank draft; Continue carries normalized valid name through auth/profile save.
 
 Calendar future cells remain browseable and selected is not recorded. Selected future date shows existing centralized TR/EN explanation, disables the submit button and is rejected again in the controller/backend. A persisted future row is explicitly warned, predictions withheld, and normal correction/delete available. Home has no normal Refresh button or hidden click target: passive pull observation stays, and error Retry appears alongside retained confirmed cards. Calendar/other refresh controls remain. ON-05 header already excludes privacy; You retains account/privacy functions.
 
@@ -79,11 +85,11 @@ The platform's documented first-open prompt is a setup expectation, not an obser
 
 ## 027 — navigation quality boundary
 
-Home/Calendar/Pattern/You retain the existing guarded resolver across navigation. Product refresh remains available (Home uses pull/error Retry per 037) and each destination obtains current server results; no speculative mutation or optimistic Calendar success is introduced. Preserve 026 accessibility and 037 light-only theme, reduced motion, safe areas, layer history, text resizing and keyboard behavior. New-user auth/onboarding chunks remain accessible through the existing retry boundary. Health report opening handles blocked windows/failure explicitly and closes pending windows when the initiating screen/session ends.
+Home/Calendar/Pattern/You retain the existing guarded resolver across navigation. Product refresh remains available (Home uses pull/error Retry per 037) and each destination obtains current server results; no speculative mutation or optimistic Calendar success is introduced. Preserve 026 accessibility and the current 048 manual-theme contract, reduced motion, safe areas, layer history, text resizing and keyboard behavior. New-user auth/onboarding chunks remain accessible through the existing retry boundary. Health report opening handles blocked windows/failure explicitly and closes pending windows when the initiating screen/session ends.
 
 ## Current mobile experience — 026
 
-037 supersedes the original 026 system-theme implementation. Current startup/runtime use only light CSS tokens and color-scheme; no listener, stored override or toggle. Primary on-color remains independent of surface; approved secondary-text/control-border contrast corrections remain authoritative.
+Historical 037 superseded the original 026 system-theme implementation; 048 now supersedes its light-only restriction. Current startup defaults light; verified You preferences may select dark, independently of OS. Primary on-color remains independent of surface; approved secondary-text/control-border contrast corrections remain authoritative.
 
 The document scrolls; 100vh/100dvh, zoom and in-flow actions remain. Shared env-backed inset variables preserve top/side safety. ProductNavigation alone owns the product bottom inset; PageContainer owns its own bottom inset on non-product pages. Overscroll containment is vertical on the actual document and modal list, without touchmove cancellation. Text stays selectable; buttons/nav/decorative icons alone suppress selection.
 
@@ -237,10 +243,10 @@ Onboarding H06/H07, GeoNames H10 and onboarding-consent H11 are current with the
 ## Foundation auth shell alignment
 `PageContainer` now uses fixed 20px horizontal padding at mobile and desktop widths. `/login` uses ShinkaCard/ShinkaButton with Apple and Google only, primary controls at least 52px, localized safe error codes and no password fields/links. T74 measures actual 360px/1024px rendered layouts. The earlier Foundation shell has been replaced by ON-03 with a pre-auth age boundary. Live sign-in is still unverified.
 
-Current 037 decision: light-only supersedes 026 system theme; no user theme-toggle screen.
+Current 048 decision: default light, verified You light/dark preference; no OS-driven theme. Historical 037 light-only and 026 system-theme decisions are superseded.
 
 ## CSS migration preservation — Buildmarker-006
-Native Tailwind 4 theme mappings retain the original brand palette with the documented 026 secondary-text contrast amendment, RGB variable names, Cormorant Garamond/Inter families and weights, proportional typography line boxes, 20px page padding, spacing/radii, 200ms transitions, ≥44px touch targets and ≥52px primary controls. Existing neutral/status colors are also pinned. 037 supersedes 026 system-theme behavior: no OS-driven class, listener or dark palette.
+Native Tailwind 4 theme mappings retain the original brand palette with the documented 026 secondary-text contrast amendment, RGB variable names, Cormorant Garamond/Inter families and weights, proportional typography line boxes, 20px page padding, spacing/radii, 200ms transitions, ≥44px touch targets and ≥52px primary controls. Existing neutral/status colors are also pinned. 048 supersedes the 037 light-only rule: no OS-driven class/listener; verified manual dark uses the existing theme.css palette.
 
 T75–T80 measure real computed styles/primitives and existing H13 cases in the same canonical suite. Existing T24/T41/T49/T74 retain internal 360px overflow, missing-root and Apple/Google auth coverage. Before/after local captures at 360px/1280px for Health, Build and login showed identical sampled heading/control/card geometry and colors after fixing inherited label and desktop heading line heights. External font requests are blocked in the isolated harness; declared families are verified, live font/device rendering is still required.
 

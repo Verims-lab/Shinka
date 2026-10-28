@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-047
+**Current BuildMarker:** Buildmarker-048
 **Last Updated:** 2026-10-28
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -12,6 +12,12 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 048 — Verified manual theme boundary
+
+`appTheme.js` remains the single resolver/DOM writer. It exposes the last accepted input (or unresolved null) per Document for independent Health expectations; this is transient inspection state, not persisted preferences or another owner store. Only the existing current-owner ACTIVE snapshot/verified You callbacks choose light/dark. AuthProvider clears through that resolver on session/privacy invalidation or unverified auth, including routes without Onboarding mounted. Generation/disposal guards reject old account work. H13-010 observes DOM independently; H13-006 uses the expected palette, never `.dark` as its authority. No OS listener, browser storage theme override, new provider or backend preference-storage change. Embedded Health admin-navigation fixtures inject a detached theme Document and EventTarget into the same provider; production defaults remain the actual document/window. This avoids overwriting the current theme or blindly restoring an old preference after a real logout.
+
+The 045 logical ID model and compatible physical schema remain distinct. Final removal requires hosted all-page absence plus unchanged assignments/notification references, not a synthetic migration PASS; the current execution record is linked from [045](reports/SHINKA_ID_MODEL_045.md).
 
 ## 046 — Section backdrop ownership
 `sectionBackgrounds.js` maps five logical sections to two CDN assets; `SectionBackdrop` is the single fixed layer per section, styled in `sectionBackground.css`. `PageContainer` and section roots are transparent. Health H13-020 verifies mapping and single ownership.
@@ -57,7 +63,7 @@ Calendar controller owns explicit retry and task identity. Read coalescing uses 
 
 ## 037 — focused UI and date boundaries
 
-Remove systemTheme.js/SystemThemeBinding and semantic dark overrides after callsite audit; root CSS and pre-React color-scheme meta require light. Preserve central light accessibility tokens and watercolor styles. RefreshControl.showButton defaults true; Home sets false while keeping passive touch listeners/coalescing/cleanup. Home error Retry is independent of its normal controls.
+Historical 037 implementation (theme-only rule superseded by 048): removed systemTheme.js/SystemThemeBinding and the former OS dark overrides. Pre-React defaults light; the current verified appTheme boundary may apply the manual dark palette. Preserve central light accessibility tokens and watercolor styles. RefreshControl.showButton defaults true; Home sets false while keeping passive touch listeners/coalescing/cleanup. Home error Retry is independent of its normal controls.
 
 validatePeriodDate is the shared date-only validation. nativeCalendarPersistence resolves server day using independently owner-scoped preferences before PENDING grant recovery and APPLIED/same-result shortcuts; completeCalendarGrant repeats this guard at each health write boundary. Normal/atomic-model changes reuse it; no Base44 transaction promise. Only the named CALENDAR_FUTURE_RECORD calculation error returns recoverable raw observations with predictions withheld; malformed data and other conflicts still fail. calendarRequest/controller assert mutation confirmation and the requested observation within the returned month; no optimistic saved label. Schema/entity/contracts and the 12 deferred backend findings are unchanged.
 
