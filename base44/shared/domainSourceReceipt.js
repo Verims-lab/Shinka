@@ -167,4 +167,6 @@ export const DATA_SOURCE_RECEIPT = Object.freeze({date:"2026-10-19", workbookSha
 
 // User-authorized 029 extensions, NOT fields claimed to appear in SRC-05/07.
 export const NOTIFICATION_029_FIELDS = Object.freeze(['shinka_date','dispatch_state','next_attempt_at','claim_id','error_stage']);
-export const expectedDomainFields = (entity, original) => entity === 'notification_delivery' ? [...original, ...NOTIFICATION_029_FIELDS] : original;
+// User-approved 045 extension: account-bound app theme; absent means light.
+export const PREFERENCES_045_FIELDS = Object.freeze(['theme_code']);
+export const expectedDomainFields = (entity, original) => entity === 'notification_delivery' ? [...original, ...NOTIFICATION_029_FIELDS] : entity === 'user_preferences' ? [...original, ...PREFERENCES_045_FIELDS] : original;

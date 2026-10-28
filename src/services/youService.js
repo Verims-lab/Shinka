@@ -19,7 +19,7 @@ export function validateYouResponse(value, action) {
   }
   if (action === 'read' || action.endsWith('Preferences')) {
     const p = value.preferences;
-    if (!revisionValid(p) || !['tr','en'].includes(p.language_code) || typeof p.notifications_enabled !== 'boolean' || p.notification_time !== '06:00' || !validTimezone(p.timezone)) invalid();
+    if (!revisionValid(p) || !['tr','en'].includes(p.language_code) || typeof p.notifications_enabled !== 'boolean' || p.notification_time !== '06:00' || !validTimezone(p.timezone) || ![null, undefined, 'light', 'dark'].includes(p.theme_code)) invalid();
   }
   if (action === 'read' && (!isCalendarDate(value.today) || !['GRANTED','WITHDRAWN','NOT_GIVEN'].includes(value.consent?.status))) invalid();
   return value;

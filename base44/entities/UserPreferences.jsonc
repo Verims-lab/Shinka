@@ -1,7 +1,7 @@
 {
   "name": "UserPreferences",
   "type": "object",
-  "description": "Shinka user_preferences. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
+  "description": "Shinka user_preferences. SRC-05 v1.2 / SRC-07 v1.2 plus user-approved 045 theme_code extension (absent = light). Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
   "properties": {
     "user_id": {
       "type": "string",
@@ -29,6 +29,13 @@
     "timezone": {
       "type": "string",
       "minLength": 1
+    },
+    "theme_code": {
+      "type": "string",
+      "enum": [
+        "light",
+        "dark"
+      ]
     }
   },
   "required": [

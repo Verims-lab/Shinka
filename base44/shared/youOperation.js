@@ -9,7 +9,7 @@ import { prepareProfileInput } from './profileInput.js';
 import { youRepository, youRevision, profileFields, preferenceFields, pickFields, sameFields } from './youRepository.js';
 
 const profileInputFields = ['display_name', 'birth_date', 'birth_time', 'birthplace_geonames_id', 'revision'];
-const preferenceInputFields = ['language_code', 'notifications_enabled', 'timezone', 'revision'];
+const preferenceInputFields = ['language_code', 'notifications_enabled', 'timezone', 'theme_code', 'revision'];
 const actions = { read: [], readPreferences: [], saveProfile: profileInputFields, verifyProfile: profileInputFields, savePreferences: preferenceInputFields, verifyPreferences: preferenceInputFields };
 const fail = (code, status = 409) => { throw new InternalError(code, status); };
 export async function youOperation(client, body, { now = () => new Date(), geoNames: fixed = null, geoNamesFor = null } = {}) {
@@ -54,7 +54,9 @@ export async function youOperation(client, body, { now = () => new Date(), geoNa
     if (isProfile) desired = await prepareProfileInput(body, { today, geoNames, preservedPlace: profile });
     else {
       if (!['tr', 'en'].includes(body.language_code) || typeof body.notifications_enabled !== 'boolean') fail('INVALID_REQUEST', 400);
-      desired = { language_code: body.language_code, notifications_enabled: body.notifications_enabled, notification_time: '06:00', timezone: resolveTimezone(body.timezone, preferences.timezone) };
+      // Older clients omit theme_code: the stored value (or absent = light) is preserved, never reset.
+      if (body.theme_code !== undefined && !['light', 'dark'].includes(body.theme_code)) fail('INVALID_REQUEST', 400);
+      desired = { language_code: body.language_code, notifications_enabled: body.notifications_enabled, notification_time: '06:00', timezone: resolveTimezone(body.timezone, preferences.timezone), ...(body.theme_code === undefined ? {} : { theme_code: body.theme_code }) };
     }
     if (sameFields(before, desired)) result = { state: 'VERIFIED', [isProfile ? 'profile' : 'preferences']: await project(before, fields) };
     else {

@@ -12,11 +12,13 @@ const getHashId = (hash) => {
 };
 
 export default function ScrollToTop() {
-  const { pathname, hash } = useLocation();
+  const { pathname, hash, state } = useLocation();
   const navigationType = useNavigationType();
+  // Bottom-tab switches restore the tab's own scroll position (ProductTabs).
+  const productTab = state?.productTab === true;
 
   useEffect(() => {
-    if (navigationType === "POP") return;
+    if (navigationType === "POP" || productTab) return;
 
     if (hash) {
       const id = getHashId(hash);
@@ -27,7 +29,7 @@ export default function ScrollToTop() {
     }
 
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  }, [pathname, hash, navigationType]);
+  }, [pathname, hash, navigationType, productTab]);
 
   return null;
 }

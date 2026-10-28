@@ -7,10 +7,10 @@ import { resolveLanguage } from '@/foundation/i18n/strings';
 import { dailyCopy, greetingKey } from '@/foundation/i18n/dailyCopy';
 import { useDailyMessage } from '@/features/daily/useDailyMessage';
 import DailyStatus from '@/features/daily/DailyStatus';
-export default function Home({ profileAccess = undefined, renderProfileAccess = undefined, language: initialLanguage = undefined, initialDaily = null, profile = null, request = undefined }) {
+export default function Home({ profileAccess = undefined, renderProfileAccess = undefined, language: initialLanguage = undefined, initialDaily = null, profile = null, request = undefined, active = true }) {
   const [language, setLanguage] = useState(initialLanguage || resolveLanguage());
   useEffect(() => { if(initialLanguage) setLanguage(initialLanguage); }, [initialLanguage]);
-  const daily = useDailyMessage(request, initialDaily);
+  const daily = useDailyMessage(request, initialDaily, undefined, active);
   const name = daily.value ? daily.value.profile ? daily.value.profile.display_name : profile?.display_name : null;
   const row = daily.value?.daily;
   const copy = key => dailyCopy(key, language);

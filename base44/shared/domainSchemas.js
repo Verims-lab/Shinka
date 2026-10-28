@@ -17,7 +17,7 @@ const schema = (properties, optional = [], unique = []) => ({properties, require
 
 export const DOMAIN_SCHEMAS = Object.freeze({
   user_profile:schema(owned({display_name:str({maxLength:50}), birth_date:date(), birth_time:time(), birthplace_geonames_id:{type:'number'}, birthplace_name:text(), birthplace_country_code:str({minLength:2,maxLength:2}), birthplace_latitude:{type:'number',minimum:-90,maximum:90}, birthplace_longitude:{type:'number',minimum:-180,maximum:180}, sun_sign_code:en(SUN_SIGN_CODES), account_status:en(['ACTIVE','INACTIVE'],{default:'ACTIVE'})}), ['display_name','birth_time','birthplace_geonames_id','birthplace_name','birthplace_country_code','birthplace_latitude','birthplace_longitude','sun_sign_code'], [['user_id']]),
-  user_preferences:schema(owned({language_code:en(['tr','en']),notifications_enabled:{type:'boolean',default:false},notification_time:{...time(),enum:['06:00'],default:'06:00'},timezone:text()}), [], [['user_id']]),
+  user_preferences:schema(owned({language_code:en(['tr','en']),notifications_enabled:{type:'boolean',default:false},notification_time:{...time(),enum:['06:00'],default:'06:00'},timezone:text(),theme_code:en(['light','dark'])}), ['theme_code'], [['user_id']]),
   user_health_consent:schema(owned({consent_status:en(['GRANTED','WITHDRAWN']),consent_version:text(),granted_at:instant(),withdrawn_at:instant()}),['granted_at','withdrawn_at'],[['user_id']]),
   user_health_consent_event:schema(owned({event_type:en(['GRANTED','WITHDRAWN']),consent_version:text(),occurred_at:instant()})),
   user_cycle_settings:schema(owned({period_duration_days:integer(1,10),initial_cycle_length_days:integer(15,60)}),['period_duration_days','initial_cycle_length_days'],[['user_id']]),

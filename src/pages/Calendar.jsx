@@ -12,10 +12,10 @@ import { useCalendar } from '@/features/calendar/useCalendar';
 import CalendarMonth, { formatCalendarDate } from '@/features/calendar/CalendarMonth';
 import CalendarDeleteDialog from '@/features/calendar/CalendarDeleteDialog';
 
-export default function Calendar({ language: initialLanguage = 'en', renderProfileAccess = undefined, request = undefined }) {
+export default function Calendar({ language: initialLanguage = 'en', renderProfileAccess = undefined, request = undefined, active = true }) {
   const [language, setLanguage] = useState(initialLanguage);
   useEffect(() => { if(initialLanguage) setLanguage(initialLanguage); }, [initialLanguage]);
-  const state = useCalendar(request), { controller, value } = state;
+  const state = useCalendar(request, active), { controller, value } = state;
   const copy = key => calendarCopy(key, language);
   const unresolved = state.outcome === 'unknown';
   const needsConsent = value?.state === 'CONSENT_REQUIRED' && !value.recovery;

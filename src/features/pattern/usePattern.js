@@ -2,9 +2,11 @@ import { useEffect, useMemo, useSyncExternalStore } from 'react';
 import { patternRequest } from '@/services/patternService';
 import { createPatternController } from './patternController';
 import { bindPatternLifecycle, PATTERN_RUNTIME } from './patternLifecycle';
-export function usePattern(request = patternRequest, runtime = PATTERN_RUNTIME) {
+import { useTabVisibility } from '@/hooks/useTabVisibility';
+export function usePattern(request = patternRequest, runtime = PATTERN_RUNTIME, active = true) {
   const controller = useMemo(() => createPatternController(request, runtime.now), [request, runtime]);
   const state = useSyncExternalStore(controller.subscribe, controller.getSnapshot);
-  useEffect(() => bindPatternLifecycle(controller, runtime), [controller, runtime]);
+  const { doc } = useTabVisibility(active, () => { const s = controller.getSnapshot(); if (!s.themes.value && !s.themes.loading) void controller.refresh(); });
+  useEffect(() => bindPatternLifecycle(controller, runtime, window, doc), [controller, runtime, doc]);
   return { ...state, controller };
 }

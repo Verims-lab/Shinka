@@ -53,7 +53,7 @@ export function createYouController(request, onSaved = (_value) => {}, onLoaded 
     preference: (key, value) => { if (!state.busy && state.preferences && !state.error?.unknown) emit({ preferences: { ...state.preferences, [key]: value }, error: null, result: null, intent: null }); },
     cancel: () => { if (!state.busy && !state.error?.unknown) emit({ editing: false, draft: null, error: null, result: null, intent: null }); },
     saveProfile,
-    savePreferences: () => state.preferences && send({ section: 'preferences', payload: { language_code: state.preferences.language_code, notifications_enabled: state.preferences.notifications_enabled, timezone: deviceTimezone(), revision: state.preferences.revision } }),
+    savePreferences: () => state.preferences && send({ section: 'preferences', payload: { language_code: state.preferences.language_code, notifications_enabled: state.preferences.notifications_enabled, timezone: deviceTimezone(), theme_code: state.preferences.theme_code === 'dark' ? 'dark' : 'light', revision: state.preferences.revision } }),
     retry: () => state.intent && send(state.intent), check: () => state.intent && send(state.intent, true),
     invalidate: () => { generation++; emit({ value: null, draft: null, preferences: null, intent: null, busy: false, loading: false, editing: false, error: { code: 'AUTH_REQUIRED' }, result: null }); },
     dispose: () => { generation++; state = { ...state, value: null, draft: null, preferences: null, intent: null }; disposed = true; listeners.clear(); },

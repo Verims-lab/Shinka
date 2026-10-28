@@ -1,13 +1,16 @@
 import { useEffect, useMemo, useSyncExternalStore } from 'react';
 import { createCalendarController } from './calendarController';
 import { calendarRequest } from '@/services/calendarService';
-export function useCalendar(request = calendarRequest) {
+import { useTabVisibility } from '@/hooks/useTabVisibility';
+export function useCalendar(request = calendarRequest, active = true) {
   const controller = useMemo(() => createCalendarController(request), [request]);
   const state = useSyncExternalStore(controller.subscribe, controller.getSnapshot);
+  // Returning to the tab keeps month/selection/draft; it reloads only data a privacy boundary cleared.
+  const { visible } = useTabVisibility(active, () => { const s = controller.getSnapshot(); if (!s.value && !s.loading) controller.load(); });
   useEffect(() => {
     controller.load();
-    const refresh = () => { if (document.visibilityState === 'visible') controller.refresh(); };
-    const privacy = () => { controller.invalidate(); if (document.visibilityState === 'visible') controller.load(); };
+    const refresh = () => { if (visible()) controller.refresh(); };
+    const privacy = () => { controller.invalidate(); if (visible()) controller.load(); };
     const offline = () => { controller.connectionLost(); };
     const ended = () => controller.invalidate();
     const timer = setInterval(refresh, 60000);
@@ -23,6 +26,6 @@ export function useCalendar(request = calendarRequest) {
       window.removeEventListener('offline', offline); window.removeEventListener('shinka-session-ended', ended); window.removeEventListener('shinka-health-access-changed', privacy);
       document.removeEventListener('visibilitychange', refresh);
     };
-  }, [controller]);
+  }, [controller, visible]);
   return { ...state, controller };
 }

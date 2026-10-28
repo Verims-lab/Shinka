@@ -4,7 +4,7 @@ import { DOMAIN_SCHEMAS, physicalName } from './domainSchemas.js';
 import { normalizeDomainRead, validateDomainRecord } from './domainValidation.js';
 
 export const profileFields = Object.freeze(['display_name', 'birth_date', 'birth_time', 'birthplace_geonames_id', 'birthplace_name', 'birthplace_country_code', 'birthplace_latitude', 'birthplace_longitude', 'sun_sign_code']);
-export const preferenceFields = Object.freeze(['language_code', 'notifications_enabled', 'notification_time', 'timezone']);
+export const preferenceFields = Object.freeze(['language_code', 'notifications_enabled', 'notification_time', 'timezone', 'theme_code']);
 export const pickFields = (row, fields) => Object.fromEntries(fields.map(key => [key, row[key] ?? null]));
 export const sameFields = (row, expected) => Object.entries(expected).every(([key, value]) => (row[key] ?? null) === value);
 export async function youRevision(row, fields) {
