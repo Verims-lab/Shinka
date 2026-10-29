@@ -1,7 +1,7 @@
 {
   "name": "UserDailyMessage",
   "type": "object",
-  "description": "Shinka user_daily_message. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only. 045 compatibility: optional legacy text fields retained; physical cleanup NOT verified.",
+  "description": "Shinka user_daily_message. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.",
   "properties": {
     "user_id": {
       "type": "string",
@@ -26,22 +26,6 @@
     "generated_at": {
       "type": "string",
       "format": "date-time"
-    },
-    "message_tr_snapshot": {
-      "type": "string",
-      "description": "Legacy compatibility only; new writes omit this field and reads resolve MessagePair. Cleanup pending."
-    },
-    "suggestion_tr_snapshot": {
-      "type": "string",
-      "description": "Legacy compatibility only; new writes omit this field and reads resolve MessagePair. Cleanup pending."
-    },
-    "message_en_snapshot": {
-      "type": "string",
-      "description": "Legacy compatibility only; new writes omit this field and reads resolve MessagePair. Cleanup pending."
-    },
-    "suggestion_en_snapshot": {
-      "type": "string",
-      "description": "Legacy compatibility only; new writes omit this field and reads resolve MessagePair. Cleanup pending."
     }
   },
   "required": [

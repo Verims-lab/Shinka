@@ -2,6 +2,8 @@
 
 Buildmarker-051 / HC-050.0 · 29 Ekim 2026 · Test teslimi. Main/publish yapılmadı.
 
+**Güncel devam sonucu:** Günlük satır temizliği ve Health kayıt bakımı tamamlandı; final şema ve iki dar kod düzeltmesi Test’te hazır. Dosya silme, yayımlanmamış kodun hosted hız etkisi ve aralıklı hatanın kök nedeni açık. Kullanıcının 051/HC-050.0 **159 PASS** kabulü korunur. [Güncel sonuçlar](#051-continuation); aşağıdaki ilk teslim ölçümleri tarihsel kanıttır.
+
 **Yerel düzeltmeler doğrulandı; hosted bakım kısmi.** 048–050, açık tema varsayılanı, doğrulanmış Profil tercihi, arka planlar, kapalı bildirim/scheduler ve ertelenmiş 12 bulgu korundu. Eski FAIL/NOT_RUN sonuçları silinmedi. Kanıtlar [051 kayıt dizininde](core-reliability-051/); aşağıdaki hosted ve yerel sonuçlar birbirinin yerine geçmez.
 
 ## Başlangıç ve yetki
@@ -105,3 +107,66 @@ Yayın sonrasında aynı yetkiyle yapılacak bakım:
 Resmî dayanaklar: [Playwright isolation/assertions](https://playwright.dev/docs/best-practices), [Web Vitals lab/field ayrımı](https://web.dev/articles/vitals), [BFCache persisted kontrolü](https://web.dev/articles/bfcache), [Page Lifecycle](https://developer.chrome.com/docs/web-platform/page-lifecycle-api), [OWASP iş akışı yetkisi](https://cheatsheetseries.owasp.org/cheatsheets/Business_Logic_Security_Cheat_Sheet.html), [Base44 entity API](https://docs.base44.com/developers/references/sdk/docs/type-aliases/entities), [W3C görünür odak](https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum). Güncel doküman, kurulu SDK kabiliyeti veya fiziksel cihaz kanıtı yerine kullanılmadı.
 
 ![Yayımlanmış 050: 360 px Home, gerçek içerik; 051 yayın kanıtı değildir](core-reliability-051/hosted-home-mobile.jpg)
+
+
+## 051 continuation
+
+29 Ekim 2026 · aynı Buildmarker-051 / **HC-050.1** · yeni paket yok. Başlangıç Test `ed879f1`; main `07729b5` aynı ağaca sahip PR birleşimiydi. Test kayıpsız fast-forward edildi. Mevcut görseller/manuel tema, kapalı scheduler/bildirim ve ertelenmiş 12 bulgu korunur. Main merge/publish, canlı Full Health/Security scan çalıştırılmadı.
+
+### 1. Günlük bakım — uygulandı ve doğrulandı
+
+Mevcut gerçek uygulama/prod `6ad5190f4845d4e3af03b420`; yayımlanmış frontend 051/HC-050.0 ve mevcut backend bakım davranışı doğrulandı. Base44 Code’daki entry/shared bağlantıları ve nativeReadiness uyumlu; tüm yayımlanmış dosyaların byte/hash eşitliği bağımsız olarak kanıtlanmadı. Git Test/Preview ayrı DB kabul edilmedi. Açık web admin oturumu kullanıldı, CLI login istenmedi.
+
+Yeni envanter **18 satır / 12 temiz / 6 eski alanlı / 24 alan** gösterdi. Dört açık DELETE_USER operasyonu aynı operation ID ile mevcut uygulama akışından tamamlandı; toplam altı DELETE_USER terminal durumu, native User yokluğu ve silme kapsamının yokluğu doğrulandı. İlk hedef tamamlandıktan sonra kalanlar sıralı ilerledi. Operasyon/tombstone/audit/retained daily kayıtları silinmedi. Bir durum okuması `TEST_STORAGE_RATE_LIMITED` döndü; sonraki başarılı okuma ile birlikte [korundu](core-reliability-051/closure/deletions-after.json).
+
+Üç adet ikili grup, her biri güncel dryRun → incelenen reviewed_digest → applyBatch → readback. Tam son verify: **18/18 READY, clean=true, hasMore=false, 0 eski alan, 0 bozuk/bekleyen referans**. Bütün 18 native ID, atama digest’i ve NotificationDelivery bağlantı digest’i aynı; bağlantı sayısı önce/sonra 0. [Başlangıç](core-reliability-051/closure/daily-before.json), [tam verify ve karşılaştırma](core-reliability-051/closure/daily-after.json).
+
+Korunan sariverim native kimliği **6ad519134845d4e3af03b423**, rolü admin ve privacy revision önce/sonra aynı; son bakım çağrısı ACTIVE admission’dan geçti. Home/Pattern/Calendar normal görünümü açıldı; profil/onam/döngü resetlenmedi veya test amaçlı değiştirilmedi. [Son kimlik](core-reliability-051/closure/session-after.json).
+
+Bu gerçek verify sonrasında final **ID_ONLY_SCHEMA**, generator, inspector ve D23 birlikte hazırlandı. Dört alan fiziksel şemadan çıkarıldı; gerekli alanlar/RLS ve yeni ID-only yazım aynı. `current` ve `final` aynı 27 şemayı üretir; emekli `daily-compat` overlay reddedilir. Statik `cleanupVerified:false / REPOSITORY_ONLY` güncel DB’yi tekrar okumadığını belirtir; canlı temizliğin kanıtı ayrı dated receipt’tir. [Tam envanter manifesti](core-reliability-051/closure/schema-stage.json), [tek gerçek şema farkı](core-reliability-051/closure/schema-stage.patch). **Canlı final şema yayınlanmadı.**
+
+### 2. Health geçmişi — kayıtlar tamamlandı, dosyalar platform engelinde
+
+Güncel tam envanter **54 kayıt**, son beş korunacak, 49 uygun hedef. Kullanıcı başka açık Health koşusu/save/recovery ekranı olmadığını ve bakım bitene kadar yeni yazma başlatmayacağını doğruladı; bu nedenle `protected_run_ids:[]`, `writers_drained:true` kullanıldı. Bu bir dağıtık kilit garantisi değildir. Agent hiçbir Health koşusu/save başlatmadı.
+
+Dokuz beşli + bir dörtlü incelenmiş parti, her hedef öncesi mevcut yetki/fingerprint/koruma kontrolü ve bağımsız yokluk okuması: **49 VERIFIED_ABSENT**. Tam son verify **5 kayıt / 0 eligible / hasMore=false**, başlangıçtaki aynı son beş ID. Uygulamanın Run history ekranında beş kayıt listelendi; en yeni özel rapor açılıp native kayıtla ilişkili run `6549505b-54dd-4f38-ba6a-e8f9b2329de3`, 051/HC-050.0 ve **159 PASS / 0 FAIL/BLOCKED** doğrulandı. [Tam verify](core-reliability-051/closure/health-after.json), [UI okuma](core-reliability-051/closure/health-ui-after.json). Önceki başarısız sonuçlar sonuçlarına göre seçilmedi; en yeni beş politikası uygulandı.
+
+Güncel resmi Data export’u **54 dolu ve benzersiz dosya referansı** gösterdi; önceki 53 kayıt/50 referans sayımı güncel kabul edilmedi, eski üç inline varsayımı kullanılmadı. 49 hedef referansı tutulan beş kayıtla paylaşılmıyor. **0 dosya silindi; 49 eski dosya hedefi bekliyor, 5 korunacak referans mevcut.** Bu bir object-store fiziksel sayımı değildir. En yeni dosyanın okunabilirliği ayrıca doğrulandı.
+
+Web media-library’de `health-` araması sonuç vermedi. Resmi [Base44 medya belgesi](https://docs.base44.com/Building-your-app/Using-media), canlı upload’ların editor library’de olmadığını, veri satırını silmenin dosyayı silmediğini ve Customer Care’e dosya bağlantısıyla başvurulmasını belirtiyor. Belgelenmemiş endpoint denenmedi, destek mesajı gönderilmedi. Silme hedefleri satırlar kaldırılmadan önce alındı: özel, query/token içermeyen `shinka-051-health-files.local` (0600, Git dışı) 49 hedef + 5 koruma manifestidir. Git’te yalnız [referans hash’leri ve ID’ler](core-reliability-051/closure/health-files-before.json) var. Eski rapor CSV’si ve ham izler de Git dışındadır.
+
+### 3. Gerçek performans — önce/sonra ölçüldü, kod kazancı henüz hosted değil
+
+Gerçek yayın 051/HC-050.0, aynı admin/Chrome masaüstü/EN/Light, **544×902**, cache açık, CPU/ağ throttling yok. DevTools normal Record, gerçek reload ve tıklama olayları kullanıldı. Model/tool bekleme süreleri çıkarıldı; başlangıç/son olaylar iz saatinden alındı. Ham izler özel görüntüler nedeniyle Git’e alınmadı; hash, güvenli request ID, süre ve sayılar [performance.json](core-reliability-051/closure/performance.json) içinde. İlk after kaydında gezinme başlangıcı kaçan reload kullanılmadı; iki ek native reload ölçümü yapıldı. Reload ile iptal edilen üç eski istek başarılı süre hesabından çıkarıldı.
+
+| Görsel hazır içerik (ms, medyan / en kötü; n) | Bakım öncesi | Bakım sonrası |
+|---|---:|---:|
+| Home tam açılış | 6247.6 / 6247.6; 1 | 3920.2 / 3999.9; 2 |
+| İlk Pattern (iki bölüm hazır) | 2701.6 / 2701.6; 1 | 1790.4 / 1790.4; 1 |
+| İlk Calendar (grid/kontroller hazır) | 7706.0 / 7706.0; 1 | 5281.8 / 5281.8; 1 |
+| Home dönüşü, saklanan kartın görünmesi | 39.0 / 39.0; 1 | 38.7 / 38.7; 1 |
+| Aynı Home dönüşünde taze istek tamamlanması | 1474.0 / 1474.0; 1 | 1579.6 / 1579.6; 1 |
+
+İlk görsel geri bildirim: Home önce 465.6 ms; sonra medyan 460.0/en kötü 520.3 ms (n=2). Pattern 49.5→35.4 ms, Calendar 53.7→37.2 ms (her biri n=1). EventTiming click feedback ayrıca kaydedildi: ilk Pattern 35.546→34.097 ms, ilk Calendar 52.908→35.503 ms. Bunlar saha INP değildir. Kontroller etkin ve sonraki tıklamalar başarılıydı; tam JavaScript “etkileşime hazır” anı ayrıca instrument edilmedi (**NOT_CAPTURED**). Filmstrip sampled hazır görüntüdür.
+
+Home başlangıç RPC dizisi (ms): önce session **833.856/665.242**, hydrate **1089.037/1240.527**, daily **3858.463/1976.943** (iki reload). Eş ek after reload’ları session **1219.174/652.735**, hydrate **1028.919/810.240**, daily **1299.856/1990.349**. Navigation→fresh response medyan/en kötü önce **5297.164/6240.442** (n=2), sonra **3914.354/3994.073** (n=2). İlk Pattern iki paralel RPC önce **2667.0/2156.3**, sonra **1745.9/1665.2**. Calendar RPC **7645.8→5208.8**. Saklanan Calendar dönüşünde yeni Calendar RPC oluşmadı; ay ve etkin kontroller korundu. Pattern dönüşü retained paint ile taze RPC’lerden ayrıdır; iki RPC’nin bitişi önce yaklaşık4170.4 ms, sonra3683.7 ms.
+
+**En yavaş gözlenen aşama Calendar RPC.** Kodda bağımsız okumaların seri beklediği doğrulandı. Tek request içinde consent/job en çok iki, admission sonrası preferences/periods/settings en çok üç eşzamanlı okuma olacak şekilde dar düzeltme yapıldı. Yetki/ACTIVE/onam/lifecycle, owner projection, pagination, final access equality ve iki snapshot doğrulaması aynen korunur. Sorgu sayısı azalması veya snapshot transaction garantisi iddia edilmez. CA24 controlled gate + withdrawal testi geçer. **Yeni kod yayınlanmadığı için canlı önce/sonra kod hız kazancı henüz yok.** Yukarıdaki aynı-kod bakım karşılaştırması küçük örnek ve değişen server/ağ yükü içerir; görülen farkların bakım tarafından yaratıldığı kanıtlanmadı.
+
+### 4. Aralıklı yüklenme — kısmi kanıt, kapanmadı
+
+Sonraki Home dönüşünde **dailyMessage HTTP500**, **1503.119 ms**; platform request ID **e87ccf7f-d3b3-4995-bd51-471946431f39**, yanıt tarihi **2026-10-29 20:19:00 UTC**. Kartlar korunmuştu; izleyen daily isteği 200/~1796.5ms ile tamamlandı. İlk açılışta sonsuz yüklenme yeniden oluşmadı; kısa gerçek arka plan dönüşü ve sonraki açılışlar kullanılabilirdi.
+
+Response body ham izde yok (resource content kapalı); sonraki reload önceki Network listesini sıfırladığı için kod/backend alt aşaması geri alınamadı. Function Logs görünümünde bu request ID’ye bağlı tanı bulunamadı. Mevcut güvenli tanı yolları korunur; artık kaydedilmiş platform ID ile destek/server korelasyonu mümkündür. **FUNCTION_RPC aşaması biliniyor; backend/DB alt aşama, kesin kök neden ve orijinal 049 olayıyla eşitlik UNKNOWN.** Tarayıcı/background throttling veya bozuk DB kök neden ilan edilmedi. Sentetik late response/error/Retry regresyonları fiziksel cihaz veya canlı olay kapanışı sayılmadı.
+
+### 5. Yerel test ve Health
+
+Chromium **746/746**, WebKit **746/746**, sıfır page error. Son CA24 Promise callback tip düzenlemesinden sonra Chromium yalnız CA24 tekrar PASS; WebKit tam koşusu son callback biçimini içerir. Native TS entry substitution: 10 session, 5 route, 2 artifact, 7 internalHealth ve 7 deletion kontrolleri PASS; SC01–05/07–09 sunucu fixture kontrolleri PASS. Yerel in-app Health **146 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL**, save/retry/list/private open PASS. Bunlar kabul edilmiş canlı 159 PASS sonucunu yeniden açmaz.
+
+**0 Health eklendi / 5 güncellendi / 0 silindi**: H04-007, H08-002, H12-027, H15-005, H15-002. Aynı185 ID, HC-050.1; H14-901/H16-901 ve fiziksel/native/BFCache kabulü açık. HR07 ayrıca listede kaybolan kayıtlı katalog sürümünü doğrular; projection 11→12 alan, report_json taşınmaz. İlk CA24 fixture AUTH_REQUIRED, tip kontrolü hataları ve başarılı düzeltmeleri [execution](core-reliability-051/closure/execution.json) içinde korunur. Type/lint/build/repo/schema-stage/history, dependency tree/audit (0 açık) ve mevcut byte/cycle/route kapıları PASS. Paket bağımlılıkları değişmedi; mevcut lockfile ile npm ci ve dependency tree kapıları da yeniden tamamlandı.
+
+### 6. Owner yayın/platform adımı ve açık işler
+
+**Yayın adımı:** Test’teki bu 051 devamını mevcut main/GitHub sync akışınıza alın; tüm27 uzak şema envanterini karşılaştırarak yalnız UserDailyMessage’ın dört alan kaldırma farkını uygulayın → native entry/shared (özellikle calendarReader, internalHealthOperations, HC-050.1) → eşleşen frontend. Tam paket `node scripts/prepareSchemaStage.mjs /private/tmp/shinka-051-final-reviewed origin/main current` ile yeni/boş hedefe yeniden üretilebilir; manifest/hash ve diff incelenmeden eksik klasörden entities push kullanmayın. Hiçbir şema push/deploy/publish bu çalışmada yapılmadı. Yayın sonrası aynı koşullarda Calendar ölçümü, yayımlanmamış kodun gerçek hız etkisini kapatacak kalan teknik doğrulamadır; mevcut şema/generator/inspector/D23 birlikte teslim edilmiştir.
+
+Dosyalar için ayrı platform engeli vardır: doğrulanmış SDK/web object-delete yolu yok, resmi yol Customer Care. Özel yerel manifest hazır; satırların temizliği dosyaların fiziksel silindiği anlamına gelmez. Bu engeli veya tekrarlayan 500’ün kök nedenini yayın adımıyla kapanmış göstermiyoruz. Tek bir yayın işlemi bu bağımsız platform işini tamamlayamaz. Orijinal fiziksel Android/iOS, wrapper/BFCache ve 12 ertelenmiş backend bulgusu değişmedi.

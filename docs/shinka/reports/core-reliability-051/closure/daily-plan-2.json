@@ -1,0 +1,31 @@
+{
+  "status": 200,
+  "data": {
+    "ids": [
+      "6adb023baf237ce41dd45acf",
+      "6ae0888743768610b8c0cca6"
+    ],
+    "reviewed_digest": "29a93d862eede6be8ade80d7b31f82eb22cf1ec55eb6593c3e23e7dca2b45838",
+    "rows": [
+      {
+        "id": "6adb023baf237ce41dd45acf",
+        "status": "READY",
+        "legacyFields": 4,
+        "assignmentDigest": "ae229b54ed717677624356ba92b0316a4999c4d1112ebbbd36e962176cdd60d3",
+        "linkCount": 0,
+        "linksDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "id": "6ae0888743768610b8c0cca6",
+        "status": "READY",
+        "legacyFields": 4,
+        "assignmentDigest": "10432ef4021c7d6ee6c2e57fc04c4d1c1526e796f98e7a5b717e00b43d0ea898",
+        "linkCount": 0,
+        "linksDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    ],
+    "hasMore": false,
+    "nextCursor": "6ae0888743768610b8c0cca6",
+    "clean": false
+  }
+}

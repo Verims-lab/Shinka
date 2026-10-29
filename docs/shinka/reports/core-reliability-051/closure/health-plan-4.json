@@ -1,0 +1,72 @@
+{
+  "status": 200,
+  "data": {
+    "contract": "health-retention/1",
+    "total": 39,
+    "eligible": 34,
+    "retained": [
+      {
+        "id": "6ae220267be4e9bf77d3cf73",
+        "reason": "LATEST_FIVE"
+      },
+      {
+        "id": "6ae22ba8df5186de86b2bfa5",
+        "reason": "LATEST_FIVE"
+      },
+      {
+        "id": "6ae230486fdc2304defe4be4",
+        "reason": "LATEST_FIVE"
+      },
+      {
+        "id": "6ae239846364cc96c640e5b0",
+        "reason": "LATEST_FIVE"
+      },
+      {
+        "id": "6ae391bb7399e5488a3f3576",
+        "reason": "LATEST_FIVE"
+      }
+    ],
+    "ids": [
+      "6ad7aaeb060478e5d6e8b183",
+      "6ad7bb6b89a62f7b5b218ed4",
+      "6ad7bc593bdbd4802ccb7714",
+      "6ad7bd8f1740a5b7f89f1060",
+      "6ad7c6be83a3623605269ba2"
+    ],
+    "targets": [
+      {
+        "id": "6ad7aaeb060478e5d6e8b183",
+        "state": "ELIGIBLE",
+        "fingerprint": "210b77c3e078ee1a69a1794620bcafbba0e5ee5c0492c82bdc741c9591eb1ba1"
+      },
+      {
+        "id": "6ad7bb6b89a62f7b5b218ed4",
+        "state": "ELIGIBLE",
+        "fingerprint": "5a2f49a25b5cbb1758d88d197cac52568d070271049d95d494461641c205c2e9"
+      },
+      {
+        "id": "6ad7bc593bdbd4802ccb7714",
+        "state": "ELIGIBLE",
+        "fingerprint": "dd688ae604c4a1e049f68f0fe39bbfbb659b187c828998774697b2f75d22e6fb"
+      },
+      {
+        "id": "6ad7bd8f1740a5b7f89f1060",
+        "state": "ELIGIBLE",
+        "fingerprint": "2d17e84187e641bc79a633512a9f4ba0a71e3f42e14556af2180f19ba6318d3f"
+      },
+      {
+        "id": "6ad7c6be83a3623605269ba2",
+        "state": "ELIGIBLE",
+        "fingerprint": "92a578141f043d9f601d60b3416ff9795ee75c4f50b2d37411c295bd986ac94c"
+      }
+    ],
+    "reviewed_digest": "546256c55b4320b678c7a2b03637eb1f4b885c2a0bd9b5164fc8b31ea2f29963",
+    "files": {
+      "referenced": 39,
+      "referencedByRetained": 5,
+      "deletion": "NOT_SUPPORTED_BY_VERIFIED_SDK",
+      "deleted": 0
+    },
+    "hasMore": true
+  }
+}

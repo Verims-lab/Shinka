@@ -1,0 +1,879 @@
+{
+  "scope": "REAL_PUBLISHED_051_MAINTENANCE_ONLY_COMPARISON",
+  "conditions": {
+    "browser": "Chrome desktop existing authenticated admin session",
+    "viewport": {
+      "width": 544,
+      "height": 902
+    },
+    "language": "en",
+    "theme": "verified Light",
+    "cacheDisabled": false,
+    "cpuThrottling": "none",
+    "networkThrottling": "none",
+    "recording": "Chrome DevTools Performance normal Record; native reload for supplementary Home; resource content/source maps excluded",
+    "screenClock": "trace navigation/EventTiming/Screenshot timestamps; no model/tool waiting time",
+    "limits": [
+      "Small sample, changing network/server load and elapsed time; no causal speed-up claim",
+      "All hosted samples use original 051/HC-050.0, not unpublished Calendar optimization",
+      "Filmstrip readiness is sampled visual content readiness, not exact JavaScript interaction-ready instrumentation",
+      "Raw traces contain private frames and remain outside Git; safe numerical extraction only",
+      "Original after trace first reload missed navigation start; excluded from reload metric",
+      "Two before Pattern requests and one Home request aborted by reload; excluded from successful latency"
+    ]
+  },
+  "traces": {
+    "before": {
+      "sha256": "6138d019f8e616a2741da4394f70ce506c425ccf73e685a96f3686d54ffab7f8",
+      "requests": [
+        {
+          "function": "applicationSession",
+          "chromeRequestId": "44240.270",
+          "platformRequestId": "6d527a37-3c35-4575-b23e-06e50ed0160f",
+          "startedTraceUs": 91667582833,
+          "durationMs": 783.674,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:55:56 GMT"
+        },
+        {
+          "function": "applicationSession",
+          "chromeRequestId": "44240.377",
+          "platformRequestId": "d20621e0-8e67-4c08-a556-54179f583d38",
+          "startedTraceUs": 91681645520,
+          "durationMs": 833.856,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:56:10 GMT"
+        },
+        {
+          "function": "onboarding",
+          "chromeRequestId": "44240.392",
+          "platformRequestId": "bab12f53-4bb0-4762-b778-95e59e143a8c",
+          "startedTraceUs": 91682486330,
+          "durationMs": 1089.037,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:56:12 GMT"
+        },
+        {
+          "function": "dailyMessage",
+          "chromeRequestId": "44240.415",
+          "platformRequestId": "3bf45c4c-9741-475a-b8f4-86a7054348bc",
+          "startedTraceUs": 91683578571,
+          "durationMs": 3858.463,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:56:16 GMT"
+        },
+        {
+          "function": "applicationSession",
+          "chromeRequestId": "44240.417",
+          "platformRequestId": "e7e98f0e-ba07-4e46-9993-f096c21f341b",
+          "startedTraceUs": 91713378184,
+          "durationMs": 856.0,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:56:42 GMT"
+        },
+        {
+          "function": "pattern",
+          "chromeRequestId": "44240.423",
+          "platformRequestId": "3788003f-6b31-4fee-80e9-11e3bf3f26d8",
+          "startedTraceUs": 91713444264,
+          "durationMs": 2666.967,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:56:44 GMT"
+        },
+        {
+          "function": "pattern",
+          "chromeRequestId": "44240.424",
+          "platformRequestId": "179292be-f9ef-49d1-95ba-0439b2f0c430",
+          "startedTraceUs": 91713444877,
+          "durationMs": 2156.338,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:56:44 GMT"
+        },
+        {
+          "function": "applicationSession",
+          "chromeRequestId": "44240.426",
+          "platformRequestId": "3a091d5c-fbc7-43e4-88c2-4ca4782b0c1a",
+          "startedTraceUs": 91742486415,
+          "durationMs": 822.331,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:57:11 GMT"
+        },
+        {
+          "function": "calendar",
+          "chromeRequestId": "44240.434",
+          "platformRequestId": "55c6bc36-843f-4477-9ac4-11c329892750",
+          "startedTraceUs": 91748639994,
+          "durationMs": 7645.771,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:57:24 GMT"
+        },
+        {
+          "function": "dailyMessage",
+          "chromeRequestId": "44240.437",
+          "platformRequestId": "8e0e95d7-699a-4a80-8065-ac9353c45fa5",
+          "startedTraceUs": 91779530941,
+          "durationMs": 1455.167,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:57:49 GMT"
+        },
+        {
+          "function": "applicationSession",
+          "chromeRequestId": "44240.440",
+          "platformRequestId": "bbc0a46e-5d62-4092-9dc5-09508fbc9008",
+          "startedTraceUs": 91802486586,
+          "durationMs": 746.346,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:58:11 GMT"
+        },
+        {
+          "function": "pattern",
+          "chromeRequestId": "44240.442",
+          "platformRequestId": "8a9e7875-3088-4a92-a8d5-25a16706d8a0",
+          "startedTraceUs": 91812711678,
+          "durationMs": 1968.23,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:58:23 GMT"
+        },
+        {
+          "function": "pattern",
+          "chromeRequestId": "44240.443",
+          "platformRequestId": "8064e184-ea47-4d8c-b07c-7a47e90ec7df",
+          "startedTraceUs": 91812711961,
+          "durationMs": 4153.782,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:58:25 GMT"
+        },
+        {
+          "function": "dailyMessage",
+          "chromeRequestId": "44240.447",
+          "platformRequestId": "44c83f87-c80f-4a9a-b903-ceadf8a97ef0",
+          "startedTraceUs": 91832327934,
+          "durationMs": 1541.521,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:58:42 GMT"
+        },
+        {
+          "function": "applicationSession",
+          "chromeRequestId": "44240.450",
+          "platformRequestId": "050fe370-0f10-42d4-9773-191966d115da",
+          "startedTraceUs": 91862486715,
+          "durationMs": 715.386,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:59:11 GMT"
+        },
+        {
+          "function": "pattern",
+          "chromeRequestId": "44240.452",
+          "platformRequestId": null,
+          "startedTraceUs": 91864912074,
+          "durationMs": 1114.108,
+          "status": null,
+          "didFail": true,
+          "responseDate": null
+        },
+        {
+          "function": "pattern",
+          "chromeRequestId": "44240.453",
+          "platformRequestId": null,
+          "startedTraceUs": 91864912331,
+          "durationMs": 1113.767,
+          "status": null,
+          "didFail": true,
+          "responseDate": null
+        },
+        {
+          "function": "dailyMessage",
+          "chromeRequestId": "44240.457",
+          "platformRequestId": null,
+          "startedTraceUs": 91865728461,
+          "durationMs": 297.704,
+          "status": null,
+          "didFail": true,
+          "responseDate": null
+        },
+        {
+          "function": "applicationSession",
+          "chromeRequestId": "44240.566",
+          "platformRequestId": "d155db6c-9bee-4074-b6ad-371e1cb9d98b",
+          "startedTraceUs": 91866121709,
+          "durationMs": 665.242,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:59:15 GMT"
+        },
+        {
+          "function": "onboarding",
+          "chromeRequestId": "44240.587",
+          "platformRequestId": "458b8656-2e8b-405c-86d3-b050737e417e",
+          "startedTraceUs": 91866879785,
+          "durationMs": 1240.527,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:59:16 GMT"
+        },
+        {
+          "function": "dailyMessage",
+          "chromeRequestId": "44240.602",
+          "platformRequestId": "d4e2a461-a069-43d4-a073-ecb87d9f0788",
+          "startedTraceUs": 91868122863,
+          "durationMs": 1976.943,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 18:59:18 GMT"
+        }
+      ],
+      "actions": [
+        {
+          "action": "Pattern first",
+          "traceStartUs": 91713413568,
+          "eventTimingFeedbackMs": 35.546
+        },
+        {
+          "action": "Calendar first",
+          "traceStartUs": 91748595952,
+          "eventTimingFeedbackMs": 52.908
+        },
+        {
+          "action": "Home return",
+          "traceStartUs": 91779512150,
+          "eventTimingFeedbackMs": 36.491
+        },
+        {
+          "action": "Pattern return",
+          "traceStartUs": 91812695351,
+          "eventTimingFeedbackMs": 36.388
+        },
+        {
+          "action": "Calendar return",
+          "traceStartUs": 91831896163,
+          "eventTimingFeedbackMs": 52.11
+        },
+        {
+          "action": "Home return",
+          "traceStartUs": 91832311025,
+          "eventTimingFeedbackMs": 37.246
+        },
+        {
+          "action": "Pattern interrupted",
+          "traceStartUs": 91864896023,
+          "eventTimingFeedbackMs": 52.024
+        },
+        {
+          "action": "Calendar return",
+          "traceStartUs": 91865327542,
+          "eventTimingFeedbackMs": 53.836
+        },
+        {
+          "action": "Home interrupted",
+          "traceStartUs": 91865710963,
+          "eventTimingFeedbackMs": 37.079
+        }
+      ],
+      "reloads": [
+        {
+          "navigationTraceUs": 91681196592,
+          "freshResponseSettledMs": 6240.442,
+          "stages": [
+            {
+              "function": "applicationSession",
+              "durationMs": 833.856,
+              "chromeRequestId": "44240.377"
+            },
+            {
+              "function": "onboarding",
+              "durationMs": 1089.037,
+              "chromeRequestId": "44240.392"
+            },
+            {
+              "function": "dailyMessage",
+              "durationMs": 3858.463,
+              "chromeRequestId": "44240.415"
+            }
+          ]
+        },
+        {
+          "navigationTraceUs": 91865745921,
+          "freshResponseSettledMs": 4353.885,
+          "stages": [
+            {
+              "function": "applicationSession",
+              "durationMs": 665.242,
+              "chromeRequestId": "44240.566"
+            },
+            {
+              "function": "onboarding",
+              "durationMs": 1240.527,
+              "chromeRequestId": "44240.587"
+            },
+            {
+              "function": "dailyMessage",
+              "durationMs": 1976.943,
+              "chromeRequestId": "44240.602"
+            }
+          ]
+        }
+      ]
+    },
+    "after": {
+      "sha256": "31b0f26bd63639071343858459bfbed5bcf3d51f1c41463581d7c425a7186295",
+      "requests": [
+        {
+          "function": "onboarding",
+          "chromeRequestId": "44240.893",
+          "platformRequestId": "a06b29fa-f517-4804-8c91-ec701631b9ef",
+          "startedTraceUs": 96593530361,
+          "durationMs": 988.588,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:18:03 GMT"
+        },
+        {
+          "function": "dailyMessage",
+          "chromeRequestId": "44240.916",
+          "platformRequestId": "ba18104e-39e7-458d-a19b-33ba8aab8680",
+          "startedTraceUs": 96594521911,
+          "durationMs": 1566.418,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:18:04 GMT"
+        },
+        {
+          "function": "pattern",
+          "chromeRequestId": "44240.923",
+          "platformRequestId": "19905cda-3518-4608-9cbd-39fe52b73ae7",
+          "startedTraceUs": 96600135989,
+          "durationMs": 1745.926,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:18:10 GMT"
+        },
+        {
+          "function": "pattern",
+          "chromeRequestId": "44240.924",
+          "platformRequestId": "7f8ab846-1454-49a8-ad55-f8943a1688e4",
+          "startedTraceUs": 96600136226,
+          "durationMs": 1665.151,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:18:10 GMT"
+        },
+        {
+          "function": "calendar",
+          "chromeRequestId": "44240.931",
+          "platformRequestId": "da842cd0-4193-4e54-8958-96d1b3d8f6d7",
+          "startedTraceUs": 96612034770,
+          "durationMs": 5208.785,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:18:25 GMT"
+        },
+        {
+          "function": "dailyMessage",
+          "chromeRequestId": "44240.934",
+          "platformRequestId": "65898219-ba6b-4e8f-85c5-2f3270275e57",
+          "startedTraceUs": 96628011580,
+          "durationMs": 1560.517,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:18:38 GMT"
+        },
+        {
+          "function": "pattern",
+          "chromeRequestId": "44240.937",
+          "platformRequestId": "8b4c3dc4-8f59-47ed-974c-db89c46e2bed",
+          "startedTraceUs": 96635225987,
+          "durationMs": 3666.894,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:18:47 GMT"
+        },
+        {
+          "function": "pattern",
+          "chromeRequestId": "44240.938",
+          "platformRequestId": "a3ce94ca-d85d-4efe-96d6-2d5bb48dbfc0",
+          "startedTraceUs": 96635226257,
+          "durationMs": 1921.257,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:18:45 GMT"
+        },
+        {
+          "function": "dailyMessage",
+          "chromeRequestId": "44240.941",
+          "platformRequestId": "e87ccf7f-d3b3-4995-bd51-471946431f39",
+          "startedTraceUs": 96650809278,
+          "durationMs": 1503.119,
+          "status": 500,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:19:00 GMT"
+        },
+        {
+          "function": "applicationSession",
+          "chromeRequestId": "44240.943",
+          "platformRequestId": "78c96d29-2bfd-4eb9-8947-680976e40f7d",
+          "startedTraceUs": 96653530477,
+          "durationMs": 763.763,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:19:02 GMT"
+        },
+        {
+          "function": "dailyMessage",
+          "chromeRequestId": "44240.944",
+          "platformRequestId": "030b3d7e-27d9-4423-89e0-bed73b838f6b",
+          "startedTraceUs": 96654522074,
+          "durationMs": 1796.513,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:19:04 GMT"
+        },
+        {
+          "function": "applicationSession",
+          "chromeRequestId": "44240.1051",
+          "platformRequestId": "a78b1f9b-15fa-4859-80f7-fa00c8ef4ce0",
+          "startedTraceUs": 96661722915,
+          "durationMs": 658.52,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:19:10 GMT"
+        },
+        {
+          "function": "onboarding",
+          "chromeRequestId": "44240.1076",
+          "platformRequestId": "8e55340d-8e12-48a3-88e3-f2b86332a5af",
+          "startedTraceUs": 96662391657,
+          "durationMs": 860.246,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:19:11 GMT"
+        },
+        {
+          "function": "dailyMessage",
+          "chromeRequestId": "44240.1089",
+          "platformRequestId": "b21163fb-7e61-45d5-b3a3-4dd17998fd87",
+          "startedTraceUs": 96663256420,
+          "durationMs": 1312.268,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:19:13 GMT"
+        }
+      ],
+      "actions": [
+        {
+          "action": "Pattern first",
+          "traceStartUs": 96600095278,
+          "eventTimingFeedbackMs": 34.097
+        },
+        {
+          "action": "Calendar first",
+          "traceStartUs": 96611977120,
+          "eventTimingFeedbackMs": 35.503
+        },
+        {
+          "action": "Home return",
+          "traceStartUs": 96627992460,
+          "eventTimingFeedbackMs": 36.718
+        },
+        {
+          "action": "Pattern return",
+          "traceStartUs": 96635209202,
+          "eventTimingFeedbackMs": 36.594
+        },
+        {
+          "action": "Calendar return",
+          "traceStartUs": 96644625981,
+          "eventTimingFeedbackMs": 53.084
+        },
+        {
+          "action": "Home return",
+          "traceStartUs": 96650791972,
+          "eventTimingFeedbackMs": 37.051
+        }
+      ],
+      "reloads": [
+        {
+          "navigationTraceUs": 96661165064,
+          "freshResponseSettledMs": 3403.624,
+          "stages": [
+            {
+              "function": "applicationSession",
+              "durationMs": 658.52,
+              "chromeRequestId": "44240.1051"
+            },
+            {
+              "function": "onboarding",
+              "durationMs": 860.246,
+              "chromeRequestId": "44240.1076"
+            },
+            {
+              "function": "dailyMessage",
+              "durationMs": 1312.268,
+              "chromeRequestId": "44240.1089"
+            }
+          ]
+        }
+      ]
+    },
+    "home-after": {
+      "sha256": "90d7d1b4cc512b37a8a9bab30b70c55ad409828ae0772fdfa736e61d2dc7b1f7",
+      "requests": [
+        {
+          "function": "applicationSession",
+          "chromeRequestId": "44240.1226",
+          "platformRequestId": "d7fb73f3-082d-4bea-b53a-717fdfc7be90",
+          "startedTraceUs": 96943344257,
+          "durationMs": 1219.174,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:23:53 GMT"
+        },
+        {
+          "function": "onboarding",
+          "chromeRequestId": "44240.1263",
+          "platformRequestId": "a979c2fd-4028-47fe-a6fe-af50395a34cf",
+          "startedTraceUs": 96944565958,
+          "durationMs": 1028.919,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:23:54 GMT"
+        },
+        {
+          "function": "dailyMessage",
+          "chromeRequestId": "44240.1264",
+          "platformRequestId": "d87138e4-6f09-4b45-a631-a814fc133a09",
+          "startedTraceUs": 96945597647,
+          "durationMs": 1299.856,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:23:55 GMT"
+        },
+        {
+          "function": "applicationSession",
+          "chromeRequestId": "44240.1372",
+          "platformRequestId": "be5fb164-f570-4a1e-819d-beca967c54f0",
+          "startedTraceUs": 96957455723,
+          "durationMs": 652.735,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:24:06 GMT"
+        },
+        {
+          "function": "onboarding",
+          "chromeRequestId": "44240.1397",
+          "platformRequestId": "db427c6f-1da0-4bac-a86b-b0ba5297629c",
+          "startedTraceUs": 96958118785,
+          "durationMs": 810.24,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:24:07 GMT"
+        },
+        {
+          "function": "dailyMessage",
+          "chromeRequestId": "44240.1410",
+          "platformRequestId": "2284410f-fca3-4200-b9cd-e1c0f97ab43d",
+          "startedTraceUs": 96958930731,
+          "durationMs": 1990.349,
+          "status": 200,
+          "didFail": false,
+          "responseDate": "Thu, 29 Oct 2026 20:24:09 GMT"
+        }
+      ],
+      "actions": [],
+      "reloads": [
+        {
+          "navigationTraceUs": 96942903430,
+          "freshResponseSettledMs": 3994.073,
+          "stages": [
+            {
+              "function": "applicationSession",
+              "durationMs": 1219.174,
+              "chromeRequestId": "44240.1226"
+            },
+            {
+              "function": "onboarding",
+              "durationMs": 1028.919,
+              "chromeRequestId": "44240.1263"
+            },
+            {
+              "function": "dailyMessage",
+              "durationMs": 1299.856,
+              "chromeRequestId": "44240.1264"
+            }
+          ]
+        },
+        {
+          "navigationTraceUs": 96957086446,
+          "freshResponseSettledMs": 3834.634,
+          "stages": [
+            {
+              "function": "applicationSession",
+              "durationMs": 652.735,
+              "chromeRequestId": "44240.1372"
+            },
+            {
+              "function": "onboarding",
+              "durationMs": 810.24,
+              "chromeRequestId": "44240.1397"
+            },
+            {
+              "function": "dailyMessage",
+              "durationMs": 1990.349,
+              "chromeRequestId": "44240.1410"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "visualSamples": {
+    "before": {
+      "HomeFirst": {
+        "n": 1,
+        "feedbackMs": [
+          465.6
+        ],
+        "contentReadyMs": [
+          6247.6
+        ],
+        "statistics": {
+          "feedbackMs": {
+            "median": 465.6,
+            "worst": 465.6,
+            "n": 1
+          },
+          "contentReadyMs": {
+            "median": 6247.6,
+            "worst": 6247.6,
+            "n": 1
+          }
+        }
+      },
+      "PatternFirst": {
+        "n": 1,
+        "feedbackMs": [
+          49.5
+        ],
+        "contentReadyMs": [
+          2701.6
+        ],
+        "statistics": {
+          "feedbackMs": {
+            "median": 49.5,
+            "worst": 49.5,
+            "n": 1
+          },
+          "contentReadyMs": {
+            "median": 2701.6,
+            "worst": 2701.6,
+            "n": 1
+          }
+        }
+      },
+      "CalendarFirst": {
+        "n": 1,
+        "feedbackMs": [
+          53.7
+        ],
+        "contentReadyMs": [
+          7706.0
+        ],
+        "statistics": {
+          "feedbackMs": {
+            "median": 53.7,
+            "worst": 53.7,
+            "n": 1
+          },
+          "contentReadyMs": {
+            "median": 7706.0,
+            "worst": 7706.0,
+            "n": 1
+          }
+        }
+      },
+      "HomeReturn": {
+        "n": 1,
+        "retainedPaintMs": [
+          39.0
+        ],
+        "freshResponseSettledMs": [
+          1474.0
+        ],
+        "statistics": {
+          "retainedPaintMs": {
+            "median": 39.0,
+            "worst": 39.0,
+            "n": 1
+          },
+          "freshResponseSettledMs": {
+            "median": 1474.0,
+            "worst": 1474.0,
+            "n": 1
+          }
+        }
+      }
+    },
+    "after": {
+      "HomeReload": {
+        "n": 2,
+        "feedbackMs": [
+          520.3,
+          399.7
+        ],
+        "contentReadyMs": [
+          3999.9,
+          3840.5
+        ],
+        "statistics": {
+          "feedbackMs": {
+            "median": 460.0,
+            "worst": 520.3,
+            "n": 2
+          },
+          "contentReadyMs": {
+            "median": 3920.2,
+            "worst": 3999.9,
+            "n": 2
+          }
+        }
+      },
+      "PatternFirst": {
+        "n": 1,
+        "feedbackMs": [
+          35.4
+        ],
+        "contentReadyMs": [
+          1790.4
+        ],
+        "statistics": {
+          "feedbackMs": {
+            "median": 35.4,
+            "worst": 35.4,
+            "n": 1
+          },
+          "contentReadyMs": {
+            "median": 1790.4,
+            "worst": 1790.4,
+            "n": 1
+          }
+        }
+      },
+      "CalendarFirst": {
+        "n": 1,
+        "feedbackMs": [
+          37.2
+        ],
+        "contentReadyMs": [
+          5281.8
+        ],
+        "statistics": {
+          "feedbackMs": {
+            "median": 37.2,
+            "worst": 37.2,
+            "n": 1
+          },
+          "contentReadyMs": {
+            "median": 5281.8,
+            "worst": 5281.8,
+            "n": 1
+          }
+        }
+      },
+      "HomeReturn": {
+        "n": 1,
+        "retainedPaintMs": [
+          38.7
+        ],
+        "freshResponseSettledMs": [
+          1579.6
+        ],
+        "statistics": {
+          "retainedPaintMs": {
+            "median": 38.7,
+            "worst": 38.7,
+            "n": 1
+          },
+          "freshResponseSettledMs": {
+            "median": 1579.6,
+            "worst": 1579.6,
+            "n": 1
+          }
+        }
+      }
+    }
+  },
+  "incident": {
+    "function": "dailyMessage",
+    "httpStatus": 500,
+    "platformRequestId": "e87ccf7f-d3b3-4995-bd51-471946431f39",
+    "chromeRequestId": "44240.941",
+    "atUtc": "2026-10-29T20:19:00Z",
+    "durationMs": 1503.119,
+    "stage": "FUNCTION_RPC",
+    "backendSubstage": "NOT_CAPTURED",
+    "errorBody": "NOT_CAPTURED_TRACE_RESOURCE_CONTENT_DISABLED; network history reset on later reload",
+    "followingRequest": {
+      "chromeRequestId": "44240.944",
+      "status": 200,
+      "durationMs": 1796.513
+    },
+    "visibleInterruption": false,
+    "rootCause": "UNKNOWN",
+    "functionLogView": "No matching platform request ID exposed by inspected Logs view",
+    "notEquivalentToOriginalIncident": true
+  },
+  "interactionReadiness": {
+    "exactTimestamp": "NOT_CAPTURED",
+    "verification": "Rendered navigation and Calendar controls were enabled; subsequent user-style route clicks succeeded. EventTiming feedback recorded separately."
+  },
+  "startupRpcStatistics": {
+    "before": {
+      "applicationSession": {
+        "n": 2,
+        "medianMs": 749.549,
+        "worstMs": 833.856
+      },
+      "onboarding": {
+        "n": 2,
+        "medianMs": 1164.782,
+        "worstMs": 1240.527
+      },
+      "dailyMessage": {
+        "n": 2,
+        "medianMs": 2917.703,
+        "worstMs": 3858.463
+      }
+    },
+    "after": {
+      "applicationSession": {
+        "n": 2,
+        "medianMs": 935.955,
+        "worstMs": 1219.174
+      },
+      "onboarding": {
+        "n": 2,
+        "medianMs": 919.58,
+        "worstMs": 1028.919
+      },
+      "dailyMessage": {
+        "n": 2,
+        "medianMs": 1645.102,
+        "worstMs": 1990.349
+      }
+    }
+  }
+}

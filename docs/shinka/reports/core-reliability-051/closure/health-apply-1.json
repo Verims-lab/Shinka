@@ -1,0 +1,31 @@
+{
+  "status": 200,
+  "data": {
+    "outcomes": [
+      {
+        "id": "6ad52c408930f451b27a2b6c",
+        "status": "VERIFIED_ABSENT"
+      },
+      {
+        "id": "6ad53583fe9763cb51e9b196",
+        "status": "VERIFIED_ABSENT"
+      },
+      {
+        "id": "6ad5393cd7586bdb34e8d362",
+        "status": "VERIFIED_ABSENT"
+      },
+      {
+        "id": "6ad54176dc7ea59780838fb0",
+        "status": "VERIFIED_ABSENT"
+      },
+      {
+        "id": "6ad631337bcb6191a8ba267a",
+        "status": "VERIFIED_ABSENT"
+      }
+    ],
+    "complete": true,
+    "pendingIds": [],
+    "filesDeleted": 0,
+    "fileDeletion": "NOT_SUPPORTED_BY_VERIFIED_SDK"
+  }
+}

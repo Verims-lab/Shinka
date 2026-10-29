@@ -10,7 +10,13 @@
 
 
 
-## 051 — Core Reliability & Performance
+## 051 continuation — verified maintenance and measured performance
+
+The owner accepts published 051 / HC-050.0 functional and Full Health evidence (159 PASS, zero FAIL/BLOCKED). Preserve that acceptance and historical failures. This continuation retains Buildmarker-051 and active packages 047–051; HC-050.1 identifies changed assertions without creating a new product package. Live Full Health/Security scan and main/publish were not run. Detailed dated receipts and separate hosted/local limits: [051 continuation](reports/SHINKA_CORE_RELIABILITY_051.md#051-continuation).
+
+This supersedes the initial 051 partial-maintenance and compatibility-only state below. Use the existing milestone entry via recordBuild; do not add package 052. Semantic Health changes advance only to HC-050.1. Keep the accepted published HC-050.0 result as historical evidence, not as proof of unpublished source. Do not rerun live Health or scan. Scope local validation to changed contracts and mandatory gates; preserve failed fixture/typecheck attempts with their repair rationale.
+
+## 051 — initial delivery (historical evidence retained)
 
 051 is one Core Reliability & Performance milestone, preserving 048–050 and the lossless main→Test fast-forward. Generate Buildmarker-051 / HC-050.0 through recordBuild; active packages 047–051. Targeted existing web-session checks and reviewed historical cleanup are authorized, but no agent main merge/publish. Use the existing successful published 050/HC-049 report as baseline rather than rerunning hosted Full Health. Real hosted, local real-browser/synthetic IO, and physical-device evidence remain separate. Keep historical NOT_RUN/failures; unsupported private-file deletion and lifecycle-blocked cleanup remain explicit blockers.
 

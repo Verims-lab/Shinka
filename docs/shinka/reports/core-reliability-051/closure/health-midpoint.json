@@ -1,0 +1,186 @@
+{
+  "status": 200,
+  "data": {
+    "contract": "health-retention/1",
+    "total": 29,
+    "eligible": 24,
+    "retained": [
+      {
+        "id": "6ae220267be4e9bf77d3cf73",
+        "reason": "LATEST_FIVE"
+      },
+      {
+        "id": "6ae22ba8df5186de86b2bfa5",
+        "reason": "LATEST_FIVE"
+      },
+      {
+        "id": "6ae230486fdc2304defe4be4",
+        "reason": "LATEST_FIVE"
+      },
+      {
+        "id": "6ae239846364cc96c640e5b0",
+        "reason": "LATEST_FIVE"
+      },
+      {
+        "id": "6ae391bb7399e5488a3f3576",
+        "reason": "LATEST_FIVE"
+      }
+    ],
+    "ids": [
+      "6ad88089838ba641628135d0",
+      "6ad88e034750fc3dd01e1ac1",
+      "6ad8a6678e7bbd4909184dde",
+      "6ad9e780161da647d48fcd3a",
+      "6ad9ee14741d7866c7c90931",
+      "6ada04d5a3f6489afd4278b6",
+      "6ada2ed48efd459438e7284b",
+      "6ada5708c2b58d1f6538aa85",
+      "6ada784728854c7e5f1e4a84",
+      "6adb02078a3c5014cba2ff35",
+      "6adf17fec03320972fb72493",
+      "6adf7729bf9b47795fbdeb94",
+      "6adf7c37d3ffa2145dc5827c",
+      "6ae061b195a24694a923f683",
+      "6ae0f14122c2a21034382536",
+      "6ae10f228869fcbdfc3ef67e",
+      "6ae110fb1c6d016eb09f9061",
+      "6ae11abb0dbd891e9495251c",
+      "6ae1270fdad6e89000e7f2b3",
+      "6ae1d25b847201062998d4d2",
+      "6ae1de98e2765b9f17e0a611",
+      "6ae1e68c7a548b64b4cb05f1",
+      "6ae1fc2c5670910d52f3d9f0",
+      "6ae207387d4bc49b227488ca"
+    ],
+    "targets": [
+      {
+        "id": "6ad88089838ba641628135d0",
+        "state": "ELIGIBLE",
+        "fingerprint": "d65e8d913bee403185823fca66c40450cc85617aef4fab789724193c93c281c6"
+      },
+      {
+        "id": "6ad88e034750fc3dd01e1ac1",
+        "state": "ELIGIBLE",
+        "fingerprint": "f24a3f12b4a0ccb83b7ba4ff5f4f733a2487faced90e31a7b4405f6678899689"
+      },
+      {
+        "id": "6ad8a6678e7bbd4909184dde",
+        "state": "ELIGIBLE",
+        "fingerprint": "cac707935ada716f481a7f545945df613168b9f0a6dd312e2fe6949098c1a16a"
+      },
+      {
+        "id": "6ad9e780161da647d48fcd3a",
+        "state": "ELIGIBLE",
+        "fingerprint": "ca0fafaefe3213e2a91de0d8b345876a3653354b045f26df1ad402ce2e9489a5"
+      },
+      {
+        "id": "6ad9ee14741d7866c7c90931",
+        "state": "ELIGIBLE",
+        "fingerprint": "0995af063e3eebe9e0fbd1735760ff210c0ece79450f5089054942d6c8f19e73"
+      },
+      {
+        "id": "6ada04d5a3f6489afd4278b6",
+        "state": "ELIGIBLE",
+        "fingerprint": "4a7d0cafcd2ce8c50ed5379e21c4e14b59d9665caae12392ae8f19fc1af65483"
+      },
+      {
+        "id": "6ada2ed48efd459438e7284b",
+        "state": "ELIGIBLE",
+        "fingerprint": "c848490f1ae7e67956792a9d6a7c3ae9c368a2c442e2ba716e6497a1579c08ca"
+      },
+      {
+        "id": "6ada5708c2b58d1f6538aa85",
+        "state": "ELIGIBLE",
+        "fingerprint": "939a3700a04e4cbb50eeabc229f6bacfff5edeb53ff573f7dbd9b8481ee7cc87"
+      },
+      {
+        "id": "6ada784728854c7e5f1e4a84",
+        "state": "ELIGIBLE",
+        "fingerprint": "b7b7ddfa93b0e7a15232ef676ece79f11fd462d90a6e2a60148ff9d5544a9db2"
+      },
+      {
+        "id": "6adb02078a3c5014cba2ff35",
+        "state": "ELIGIBLE",
+        "fingerprint": "6aa43d1f216d4d7c65a25418c974745a7826513fa053ebf3579c748b1b6eead9"
+      },
+      {
+        "id": "6adf17fec03320972fb72493",
+        "state": "ELIGIBLE",
+        "fingerprint": "e557fefe526a9296dd70cb0e5dcd0bc56b1ceae52bd2cac7e916e6c46dbd272d"
+      },
+      {
+        "id": "6adf7729bf9b47795fbdeb94",
+        "state": "ELIGIBLE",
+        "fingerprint": "67f9a157c4a5b20e5df32ab23f1868c9b6415a9414dc27a05e059723ac9f5953"
+      },
+      {
+        "id": "6adf7c37d3ffa2145dc5827c",
+        "state": "ELIGIBLE",
+        "fingerprint": "0a51fed11e13dc57cfce9585a696a94713a75b2e549bbc97bf007d9a00aaedd5"
+      },
+      {
+        "id": "6ae061b195a24694a923f683",
+        "state": "ELIGIBLE",
+        "fingerprint": "7975c26cab880d0525ab1807e319766447e54d499248da4ef551f33fecb07fc2"
+      },
+      {
+        "id": "6ae0f14122c2a21034382536",
+        "state": "ELIGIBLE",
+        "fingerprint": "9f1235b519791558b66381c55e87d9b46bedca499827eeb760706e58b2665924"
+      },
+      {
+        "id": "6ae10f228869fcbdfc3ef67e",
+        "state": "ELIGIBLE",
+        "fingerprint": "ce134e0ac3476d230624eb4661717de13b1ffd850b2c156515aa2b7fe513b0d3"
+      },
+      {
+        "id": "6ae110fb1c6d016eb09f9061",
+        "state": "ELIGIBLE",
+        "fingerprint": "2023c84517d9837d6cdaf77ffffff3c72239347423ce7992708e612df080f792"
+      },
+      {
+        "id": "6ae11abb0dbd891e9495251c",
+        "state": "ELIGIBLE",
+        "fingerprint": "708229e3d92d2676dc202e01454e37987a9aa1ab8580051172a42d8fce29ff5b"
+      },
+      {
+        "id": "6ae1270fdad6e89000e7f2b3",
+        "state": "ELIGIBLE",
+        "fingerprint": "711fee9ff6aff6cb948a6f64d3b38ce6b070ac12e105d74db392d0baaecb66ec"
+      },
+      {
+        "id": "6ae1d25b847201062998d4d2",
+        "state": "ELIGIBLE",
+        "fingerprint": "7e5e59e7b8aa6fa42f6b5e3ae5558119c2e71d46c5cc361ac2994c6affa370ba"
+      },
+      {
+        "id": "6ae1de98e2765b9f17e0a611",
+        "state": "ELIGIBLE",
+        "fingerprint": "f41800afbb351398edaa098f0c8f8e464806d78f7f8aa608252bceb5ff9d2eb9"
+      },
+      {
+        "id": "6ae1e68c7a548b64b4cb05f1",
+        "state": "ELIGIBLE",
+        "fingerprint": "5a324b0591385e89e48b4fbabbcda198b56a6f7a78cee49991488a1b6bd1f664"
+      },
+      {
+        "id": "6ae1fc2c5670910d52f3d9f0",
+        "state": "ELIGIBLE",
+        "fingerprint": "d0a5a44d91a6fc7075934a5bba62897b83a5762154b7af748d1031ada53fd0ed"
+      },
+      {
+        "id": "6ae207387d4bc49b227488ca",
+        "state": "ELIGIBLE",
+        "fingerprint": "cb5258bb22e68df111157b401aafee4794c31d0d8372433ad2cc7d0926bb9a79"
+      }
+    ],
+    "reviewed_digest": "cfc8bd90e1b8b097382ca299e41916294815b44d9537e63a061fa9790233f0ff",
+    "files": {
+      "referenced": 29,
+      "referencedByRetained": 5,
+      "deletion": "NOT_SUPPORTED_BY_VERIFIED_SDK",
+      "deleted": 0
+    },
+    "hasMore": false
+  }
+}

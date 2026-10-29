@@ -1,0 +1,196 @@
+{
+  "operatorConfirmedNoWriters": true,
+  "protected_run_ids": [],
+  "inventory": {
+    "status": 200,
+    "data": {
+      "contract": "health-retention/1",
+      "total": 54,
+      "eligible": 49,
+      "retained": [
+        {
+          "id": "6ae220267be4e9bf77d3cf73",
+          "reason": "LATEST_FIVE"
+        },
+        {
+          "id": "6ae22ba8df5186de86b2bfa5",
+          "reason": "LATEST_FIVE"
+        },
+        {
+          "id": "6ae230486fdc2304defe4be4",
+          "reason": "LATEST_FIVE"
+        },
+        {
+          "id": "6ae239846364cc96c640e5b0",
+          "reason": "LATEST_FIVE"
+        },
+        {
+          "id": "6ae391bb7399e5488a3f3576",
+          "reason": "LATEST_FIVE"
+        }
+      ],
+      "ids": [
+        "6ad52c408930f451b27a2b6c",
+        "6ad53583fe9763cb51e9b196",
+        "6ad5393cd7586bdb34e8d362",
+        "6ad54176dc7ea59780838fb0",
+        "6ad631337bcb6191a8ba267a",
+        "6ad63701f05b211860fb286f",
+        "6ad63e216786b5ff64757286",
+        "6ad63ed71d67a540d62ffd28",
+        "6ad642c5032e7b9b6a24e3c8",
+        "6ad64fb7e7e4271f4e18c2f4",
+        "6ad659b9cf9a4b096ac6eeba",
+        "6ad6901a4305a99c39362b66",
+        "6ad69a534ac1ce320aecf3a9",
+        "6ad710f7c7274da1b69505b4",
+        "6ad765a66478e2aefb814004",
+        "6ad7aaeb060478e5d6e8b183",
+        "6ad7bb6b89a62f7b5b218ed4",
+        "6ad7bc593bdbd4802ccb7714",
+        "6ad7bd8f1740a5b7f89f1060",
+        "6ad7c6be83a3623605269ba2",
+        "6ad7d28ad89e8428f6379af9",
+        "6ad7d2c48a7e107631966db9",
+        "6ad7e382f886708f883a8b5a",
+        "6ad7e38fe15d7afae2dd69e7",
+        "6ad86658dc6431f71e1f96d9"
+      ],
+      "targets": [
+        {
+          "id": "6ad52c408930f451b27a2b6c",
+          "state": "ELIGIBLE",
+          "fingerprint": "e4ff2d21d908e46399e864cc0f38126bb89d07c406ee5f92250fd3e42af41b8e"
+        },
+        {
+          "id": "6ad53583fe9763cb51e9b196",
+          "state": "ELIGIBLE",
+          "fingerprint": "433bfbf81a19f6e17432d65a1a6dec09aba6a8433a601610e60abe4a8cbf63dc"
+        },
+        {
+          "id": "6ad5393cd7586bdb34e8d362",
+          "state": "ELIGIBLE",
+          "fingerprint": "da09f6c7f5e1551fff3702776ca036bd26a258a74dff48d4d5c1bf72e8e6e8f6"
+        },
+        {
+          "id": "6ad54176dc7ea59780838fb0",
+          "state": "ELIGIBLE",
+          "fingerprint": "6940ff0cb0ed671d873b5250bf252f6427c8a73a66e8e716f5488927e06f3c9d"
+        },
+        {
+          "id": "6ad631337bcb6191a8ba267a",
+          "state": "ELIGIBLE",
+          "fingerprint": "2913dc232e538bd22eeb86b8bfad756c0e1186656fb89bccb9f91de16a7a87b4"
+        },
+        {
+          "id": "6ad63701f05b211860fb286f",
+          "state": "ELIGIBLE",
+          "fingerprint": "08af5b8d6536ac5a520d17a19271379de3f78292ab7a35424cb13de7779c827b"
+        },
+        {
+          "id": "6ad63e216786b5ff64757286",
+          "state": "ELIGIBLE",
+          "fingerprint": "bb3b11fd1f2c5e6939e4a3628cd86cc2265518ebb2cee5147788cac461db0dc5"
+        },
+        {
+          "id": "6ad63ed71d67a540d62ffd28",
+          "state": "ELIGIBLE",
+          "fingerprint": "5811790e2ad45e3a89fee13e70c43f823af303efd91004fff5e3f3bc520ad0a6"
+        },
+        {
+          "id": "6ad642c5032e7b9b6a24e3c8",
+          "state": "ELIGIBLE",
+          "fingerprint": "705f286f0d11c03de84e48e1b5c7b19ac73e9a36b8d463b1762de0798825e6f0"
+        },
+        {
+          "id": "6ad64fb7e7e4271f4e18c2f4",
+          "state": "ELIGIBLE",
+          "fingerprint": "859906c999ee2a0c05039900c989711bdc86c6dc3531872c8c1df997823824b8"
+        },
+        {
+          "id": "6ad659b9cf9a4b096ac6eeba",
+          "state": "ELIGIBLE",
+          "fingerprint": "934bb28ebaa89a731d246753f32a66cb643b15d90b34c9945995336a1a3cc451"
+        },
+        {
+          "id": "6ad6901a4305a99c39362b66",
+          "state": "ELIGIBLE",
+          "fingerprint": "1a377ec0f5b75ef10d8432e11b4e1e1aba341dcd49a36c1496b840963defb705"
+        },
+        {
+          "id": "6ad69a534ac1ce320aecf3a9",
+          "state": "ELIGIBLE",
+          "fingerprint": "fc1eafb23ff8dee7d9ceeb45c48cb94b99ccffcfd3d84499a35c34e0baeb15d8"
+        },
+        {
+          "id": "6ad710f7c7274da1b69505b4",
+          "state": "ELIGIBLE",
+          "fingerprint": "701389d6f161ec8f40fd829c98f1a46a2d926a71e93794598aee596372f4a6ee"
+        },
+        {
+          "id": "6ad765a66478e2aefb814004",
+          "state": "ELIGIBLE",
+          "fingerprint": "95afe8fcee3c2f943a5ace936d58f3dfb5750dcae76f3087ce060b78fc213bf1"
+        },
+        {
+          "id": "6ad7aaeb060478e5d6e8b183",
+          "state": "ELIGIBLE",
+          "fingerprint": "210b77c3e078ee1a69a1794620bcafbba0e5ee5c0492c82bdc741c9591eb1ba1"
+        },
+        {
+          "id": "6ad7bb6b89a62f7b5b218ed4",
+          "state": "ELIGIBLE",
+          "fingerprint": "5a2f49a25b5cbb1758d88d197cac52568d070271049d95d494461641c205c2e9"
+        },
+        {
+          "id": "6ad7bc593bdbd4802ccb7714",
+          "state": "ELIGIBLE",
+          "fingerprint": "dd688ae604c4a1e049f68f0fe39bbfbb659b187c828998774697b2f75d22e6fb"
+        },
+        {
+          "id": "6ad7bd8f1740a5b7f89f1060",
+          "state": "ELIGIBLE",
+          "fingerprint": "2d17e84187e641bc79a633512a9f4ba0a71e3f42e14556af2180f19ba6318d3f"
+        },
+        {
+          "id": "6ad7c6be83a3623605269ba2",
+          "state": "ELIGIBLE",
+          "fingerprint": "92a578141f043d9f601d60b3416ff9795ee75c4f50b2d37411c295bd986ac94c"
+        },
+        {
+          "id": "6ad7d28ad89e8428f6379af9",
+          "state": "ELIGIBLE",
+          "fingerprint": "a4b42255acadb0fa38840da50ffcf13e5de3aa47cd6c20275714ff72587d5920"
+        },
+        {
+          "id": "6ad7d2c48a7e107631966db9",
+          "state": "ELIGIBLE",
+          "fingerprint": "ff807befff82c2ae4d138b58fe206464a67fb656cc724c40ab8ddedadb943b3c"
+        },
+        {
+          "id": "6ad7e382f886708f883a8b5a",
+          "state": "ELIGIBLE",
+          "fingerprint": "db1ac182de5db0e1cd5c64db04f7aa573340e6453754fe7d9d6f1f7c22959c0c"
+        },
+        {
+          "id": "6ad7e38fe15d7afae2dd69e7",
+          "state": "ELIGIBLE",
+          "fingerprint": "ff75e158242782e827343984b3d63e7836a008447c7e485d0e9c57101ff338a0"
+        },
+        {
+          "id": "6ad86658dc6431f71e1f96d9",
+          "state": "ELIGIBLE",
+          "fingerprint": "33eec6f501b7c58413c1d7a258a73fc71580b2d88e0902b6474616f602c020f3"
+        }
+      ],
+      "reviewed_digest": "cc8d7e3ada2408668328539ae8b6c1b18cad6f878d74edd4b235cc8d2a6f77c1",
+      "files": {
+        "referenced": 54,
+        "referencedByRetained": 5,
+        "deletion": "NOT_SUPPORTED_BY_VERIFIED_SDK",
+        "deleted": 0
+      },
+      "hasMore": true
+    }
+  }
+}

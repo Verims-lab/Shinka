@@ -38,6 +38,12 @@
 
 
 
+## 051 continuation — verified maintenance and measured performance
+
+The owner accepts published 051 / HC-050.0 functional and Full Health evidence (159 PASS, zero FAIL/BLOCKED). Preserve that acceptance and historical failures. This continuation retains Buildmarker-051 and active packages 047–051; HC-050.1 identifies changed assertions without creating a new product package. Live Full Health/Security scan and main/publish were not run. Detailed dated receipts and separate hosted/local limits: [051 continuation](reports/SHINKA_CORE_RELIABILITY_051.md#051-continuation).
+
+D23 now enforces absence of all four legacy physical fields after the separate full hosted cleanup receipt; do not restore the optional compatibility overlay. Keep original source provenance and migration absence checks. For overlapping reads, first mint the authenticated principal through auth.me and pass admission before scheduling health reads; wait for all fixture work in cleanup. Controlled IO ordering is a regression assertion, not a hosted duration claim.
+
 ## 051 — Core Reliability & Performance
 
 051 separates Health retention policy/inventory/guarded apply from dispatch. Maintenance output contains safe IDs/counts/reasons/digests, never full reports or private file URIs. Queries select required fields; keyset loops reject repeated or unordered IDs and explicit overflow. Timing evidence distinguishes retained paint, fresh IO settlement and actual content readiness; RPC roundtrip bounds are not browser render metrics. No assertion relaxation, fake PASS or silent timer fallback.
@@ -58,7 +64,7 @@ Use the existing appTheme resolver, not a second theme source or OS listener. It
 
 ## 045 — Assignment immutability and text projections
 
-Do not write daily text copies or introduce a replacement version/cache store. Validate native IDs/owner and all assignment fields, resolve current Pair text through bounded projected ID batches, fail closed on broken links, and preserve Pattern/history projections. Response `_snapshot` names are a transitional DTO contract only. Four physical-only optional legacy fields are retained in the publishable schema until hosted cleanup verification; no defaults, new text writes or blanket mismatch whitelist. D23 verifies this exact exception, while D01 still compares the full generated schema. Use request-local reuse only. Old source receipt remains an original artifact; explicit removed-field decisions are separate. Maintenance is an offline reviewed tool, no generic update endpoint. Test legacy rows, text edits, inactive eligibility, partial/lost-response unset, exact IDs and ownership with real domain functions; synthetic SDK fixtures are not hosted enforcement. Original immutable-text instructions are superseded only for the 045 approved behavior.
+Do not write daily text copies or introduce a replacement version/cache store. Validate native IDs/owner and all assignment fields, resolve current Pair text through bounded projected ID batches, fail closed on broken links, and preserve Pattern/history projections. Response `_snapshot` names are a transitional DTO contract only. The four physical-only optional legacy fields were the migration bridge; 051 full hosted verification now permits their removal from Test. D23 requires their absence and unchanged required fields/RLS, while D01 still compares the full generated schema. No new text writes or blanket mismatch whitelist. Use request-local reuse only. Old source receipt remains an original artifact; explicit removed-field decisions are separate. Maintenance is an offline reviewed tool, no generic update endpoint. Test legacy rows, text edits, inactive eligibility, partial/lost-response unset, exact IDs and ownership with real domain functions; synthetic SDK fixtures are not hosted enforcement. Original immutable-text instructions are superseded only for the 045 approved behavior.
 
 
 ## 044 — Functional notification settings evidence

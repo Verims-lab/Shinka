@@ -12,26 +12,26 @@ try {
   assert.equal(names.length,27);
   const original=new Map(await Promise.all(names.map(async name=>[name,await readFile(path.join(root,'base44/entities',name))])));
   const results=[];
-  for(const mode of ['current','daily-compat','final']){
+  for(const mode of ['current','final']){
     const dest=path.join(temp,mode),args=['scripts/prepareSchemaStage.mjs',dest,'HEAD'];
     if(mode!=='current')args.push(mode); // Exercise the safe no-mode default.
     execFileSync(process.execPath,args,{cwd:root});
     const manifest=JSON.parse(await readFile(path.join(dest,'manifest.json'),'utf8'));
     assert.equal(manifest.mode,mode);assert.equal(manifest.hostedCleanupVerified,false);assert.equal(manifest.files.length,27);
-    assert.equal(manifest.dailySchemaPhase,mode==='final'?'POST_CLEANUP_CANDIDATE_NOT_VERIFIED':'OPTIONAL_LEGACY_FIELDS_CLEANUP_PENDING');
+    assert.equal(manifest.dailySchemaPhase,'ID_ONLY_SCHEMA');
     for(const name of names){
       const bytes=await readFile(path.join(dest,'base44/entities',name));
       assert.equal(manifest.files.find(row=>row.name===name).sha256,createHash('sha256').update(bytes).digest('hex'));
-      if(name!=='UserDailyMessage.jsonc'||mode!=='final')assert.deepEqual(bytes,original.get(name));
-      else {
-        const row=JSON.parse(bytes),before=JSON.parse(original.get(name).toString());
-        assert.deepEqual(row.required,before.required);assert.deepEqual(row.rls,before.rls);
-        assert.deepEqual(Object.keys(row.properties).sort(),Object.keys(before.properties).filter(key=>!fields.includes(key)).sort());
-        for(const key of Object.keys(row.properties))assert.deepEqual(row.properties[key],before.properties[key]);
+      assert.deepEqual(bytes,original.get(name));
+      if(name==='UserDailyMessage.jsonc'){
+        const row=JSON.parse(bytes);
+        assert.ok(fields.every(key=>!Object.hasOwn(row.properties,key)&&!row.required.includes(key)));
+        assert.ok(['create','read','update','delete'].every(key=>row.rls[key]===false));
       }
     }
     results.push({mode,status:'PASS',schemas:27,hostedCleanupVerified:false});
   }
+  assert.throws(()=>execFileSync(process.execPath,['scripts/prepareSchemaStage.mjs',path.join(temp,'retired'),'HEAD','daily-compat'],{cwd:root,stdio:'pipe'}),/retired daily-compat/);
   for(const name of names)assert.deepEqual(await readFile(path.join(root,'base44/entities',name)),original.get(name));
   console.log(JSON.stringify({scope:'LOCAL_ARTIFACTS_ONLY',passed:true,results,repositoryUnchanged:true,hostedCalls:0},null,2));
 } finally {await rm(temp,{recursive:true,force:true});}

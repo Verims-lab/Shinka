@@ -1,0 +1,22 @@
+{
+  "retainedReportCount": 5,
+  "privateReportOpened": true,
+  "runId": "6549505b-54dd-4f38-ba6a-e8f9b2329de3",
+  "buildMarker": "Buildmarker-051",
+  "healthCatalogVersion": "HC-050.0",
+  "summary": {
+    "totalCatalog": 159,
+    "planned": 159,
+    "attempted": 159,
+    "executed": 159,
+    "passed": 159,
+    "failed": 0,
+    "warnings": 0,
+    "blocked": 0,
+    "notRun": 0,
+    "notApplicable": 0,
+    "applicableBlockers": 159,
+    "durationMs": 9449
+  },
+  "agentRanHealth": false
+}

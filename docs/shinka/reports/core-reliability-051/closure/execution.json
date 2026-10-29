@@ -1,0 +1,399 @@
+{
+  "milestone": "Buildmarker-051",
+  "catalog": "HC-050.1",
+  "generatedAtUtc": "2026-10-29T20:42:41.243840+00:00",
+  "baselineCommit": "07729b52d8edcc4f66f2ca09226893f8259e19b7",
+  "branch": "Test",
+  "userAcceptedPublishedHealth": {
+    "build": "Buildmarker-051",
+    "catalog": "HC-050.0",
+    "passed": 159,
+    "failed": 0,
+    "blocked": 0,
+    "retained": true,
+    "rerunByAgent": false
+  },
+  "commands": [
+    {
+      "command": "npm ci",
+      "exitCode": 0,
+      "scope": "LOCAL_ONLY",
+      "logSha256": "53837db3cbf718bd597f07ef7bd00a5a35c7ac99a7bd343a7ad65116432ef075",
+      "logMtimeUtc": "2026-10-29T20:39:15.182940+00:00"
+    },
+    {
+      "command": "npm ls --all",
+      "exitCode": 0,
+      "scope": "LOCAL_ONLY",
+      "logSha256": "9279881b5b54cf6e135c5cda518d34590ab883d4c6c4f01458d7a118bfd817a8",
+      "logMtimeUtc": "2026-10-29T20:39:15.653239+00:00"
+    },
+    {
+      "command": "npm audit --json",
+      "exitCode": 0,
+      "scope": "LOCAL_ONLY",
+      "logSha256": "d023db939da1b363569c7aabf402295e2daa53f1176fda1428ee679d16270dab",
+      "logMtimeUtc": "2026-10-29T20:30:00.405046+00:00"
+    },
+    {
+      "command": "npm run security:deps",
+      "exitCode": 0,
+      "scope": "LOCAL_ONLY",
+      "logSha256": "ba5a55cc48eca8e7c392d3754b663e0bd7b6233525429a1d8a5d44768df5b507",
+      "logMtimeUtc": "2026-10-29T20:30:01.352124+00:00"
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "scope": "LOCAL_ONLY",
+      "logSha256": "2e1c7db5ac28fb733e8c1d3d7c2c3bf8a4bb6628ed45eb56ce2e7328388598de",
+      "logMtimeUtc": "2026-10-29T20:40:51.946413+00:00"
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "scope": "LOCAL_ONLY",
+      "logSha256": "8423c1a66df3f2a021733ae12f217befbeb04b23971e056cb4e3739c7fb936cf",
+      "logMtimeUtc": "2026-10-29T20:40:55.157876+00:00"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "scope": "LOCAL_ONLY",
+      "logSha256": "2fa44adacb5520de2ccdcf2b81f159e5a69babf764287cf68a4178a7eedce137",
+      "logMtimeUtc": "2026-10-29T20:41:00.061739+00:00"
+    },
+    {
+      "command": "npm run health:repo",
+      "exitCode": 0,
+      "scope": "LOCAL_ONLY",
+      "logSha256": "796cd6cba6178e5c862850464f0625e9ca657d784a7aa17a2a3dfe312f22be09",
+      "logMtimeUtc": "2026-10-29T20:41:01.279032+00:00"
+    },
+    {
+      "command": "node scripts/recordBuild.mjs --check",
+      "exitCode": 0,
+      "scope": "LOCAL_ONLY",
+      "logSha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f",
+      "logMtimeUtc": "2026-10-29T20:41:01.361577+00:00"
+    },
+    {
+      "command": "node scripts/verifyDailyCompatibilityStage.mjs",
+      "exitCode": 0,
+      "scope": "LOCAL_ONLY",
+      "logSha256": "65486718376f6961b0a72b3d053081ff6cb64e1b3ba194d92aff037cb66c0892",
+      "logMtimeUtc": "2026-10-29T20:29:56.374472+00:00"
+    },
+    {
+      "command": "node scripts/prepareSchemaStage.mjs /private/tmp/shinka-051-final-schema-closure origin/main current",
+      "exitCode": 0,
+      "scope": "LOCAL_ONLY",
+      "logSha256": "eeca820c7cc06c6172c96df9b6d605b37a5807201b2d5f1057b06d59811cc289",
+      "logMtimeUtc": "2026-10-29T20:29:56.522815+00:00"
+    },
+    {
+      "command": "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-051-closure-audit npm run test:foundation",
+      "exitCode": 0,
+      "scope": "LOCAL_ONLY",
+      "logSha256": "f8b72989d8d56c758887fb0286bab8355f19d5528face2eea46326d9dea8a08b",
+      "logMtimeUtc": "2026-10-29T20:27:23.339272+00:00"
+    },
+    {
+      "command": "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-051-closure-webkit-audit FOUNDATION_BROWSER=webkit npm run test:foundation",
+      "exitCode": 0,
+      "scope": "LOCAL_ONLY",
+      "logSha256": "2fc6e8314dbe0744ad921dcc422aff0cb49ece3082946b6a463544d926a4983d",
+      "logMtimeUtc": "2026-10-29T20:30:00.363575+00:00"
+    },
+    {
+      "command": "FOUNDATION_TEST_IDS=CA24 FOUNDATION_BROWSER=chromium npm run test:foundation",
+      "exitCode": 0,
+      "scope": "LOCAL_ONLY",
+      "logSha256": "fd4afc0bbc6df96fa31bf2302e3e351f3660710223eb7b0c217896a170cb7bf6",
+      "logMtimeUtc": "2026-10-29T20:32:25.615583+00:00"
+    },
+    {
+      "command": "node scripts/measureMaintenance.mjs /private/tmp/shinka-051-closure-final-measure",
+      "exitCode": 0,
+      "scope": "LOCAL_ONLY",
+      "logSha256": "a89795c0023cebcd777ac1de1fc6f6a0a62c800301ad1b48f7e666afbfd5809a",
+      "logMtimeUtc": "2026-10-29T20:41:23.185684+00:00"
+    }
+  ],
+  "initialFailures": [
+    {
+      "logSha256": "b5bb08cecf1d2ab3f5bf6fe9a199142737581a836af81118516b324179e56f63",
+      "result": "FAILED_ATTEMPT_PRESERVED",
+      "reason": "Sandbox loopback listen EPERM; same runner succeeded with approved loopback access"
+    },
+    {
+      "logSha256": "c5d9531bb8172a1ac51214be787a244bd8f75bfa2f15aed433cfac4769b511bc",
+      "result": "FAILED_ATTEMPT_PRESERVED",
+      "reason": "CA24 fixture passed an unminted principal; production AUTH_REQUIRED correctly rejected it; fixed fixture uses requireAuthenticatedUser"
+    },
+    {
+      "logSha256": "b0b711ef380d5b6736fb8fb6edb64d1d62413d7a2ab8f89614fb7f3dec2134bb",
+      "result": "FAILED_ATTEMPT_PRESERVED",
+      "reason": "CA24 release callback possibly undefined; fixture typing corrected"
+    },
+    {
+      "logSha256": "2cac0131d17fadf6188821904bae2af71f311520237f216acf788d3d27b44ab9",
+      "result": "FAILED_ATTEMPT_PRESERVED",
+      "reason": "Callback inferred never; explicit void callback and resolve(undefined) fixed without changing assertion"
+    }
+  ],
+  "browser": {
+    "chromium": {
+      "engine": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "tests": 746,
+      "passed": 746,
+      "failed": 0,
+      "pageErrors": [],
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 10,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "internalHealthEntryChecks": 7,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true,
+        "deletion": {
+          "passed": true,
+          "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+          "hostedVerified": false,
+          "checks": 7
+        }
+      },
+      "serverSecurityFixturePass": true,
+      "localHealthCounts": {
+        "PASS": 146,
+        "BLOCKED": 13
+      },
+      "saved": "SAVED",
+      "retrySave": true,
+      "historyListed": true,
+      "privateReportOpened": true,
+      "mobileLayouts": 87,
+      "mobileExperience": 150
+    },
+    "webkit": {
+      "engine": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "tests": 746,
+      "passed": 746,
+      "failed": 0,
+      "pageErrors": [],
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 10,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "internalHealthEntryChecks": 7,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true,
+        "deletion": {
+          "passed": true,
+          "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+          "hostedVerified": false,
+          "checks": 7
+        }
+      },
+      "serverSecurityFixturePass": true,
+      "localHealthCounts": {
+        "PASS": 146,
+        "BLOCKED": 13
+      },
+      "saved": "SAVED",
+      "retrySave": true,
+      "historyListed": true,
+      "privateReportOpened": true,
+      "mobileLayouts": 87,
+      "mobileExperience": 150
+    }
+  },
+  "healthDelta": {
+    "added": 0,
+    "updated": 5,
+    "deleted": 0,
+    "updatedIds": [
+      "H04-007",
+      "H08-002",
+      "H12-027",
+      "H15-005",
+      "H15-002"
+    ],
+    "catalogCases": 185,
+    "inApp": 159,
+    "local": 12,
+    "external": 14
+  },
+  "quality": {
+    "dependencyVulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "initialJS": {
+      "raw": 474918,
+      "gzip": 157883
+    },
+    "css": {
+      "raw": 78659,
+      "gzip": 14465
+    },
+    "cycles": [],
+    "routeCount": 9,
+    "routeErrors": 0,
+    "budgets": {
+      "initialRaw": 500000,
+      "initialGzip": 165000,
+      "cssRaw": 90000,
+      "cssGzip": 16000
+    },
+    "schemaInventory": 27,
+    "schemaDelta": [
+      "UserDailyMessage.jsonc"
+    ],
+    "activePackages": [
+      "047",
+      "048",
+      "049",
+      "050",
+      "051"
+    ]
+  },
+  "dailyMaintenance": {
+    "inspected": 18,
+    "cleanInitially": 12,
+    "cleanedThisContinuation": 6,
+    "legacyFieldsRemoved": 24,
+    "cleanFinally": 18,
+    "pending": 0,
+    "invalidReferences": 0,
+    "fullVerify": true,
+    "nativeIdsAssignmentsLinksUnchanged": true,
+    "liveFinalSchemaPublished": false
+  },
+  "healthMaintenance": {
+    "initialRows": 54,
+    "deletedRows": 49,
+    "remainingRows": 5,
+    "pendingRows": 0,
+    "fullVerify": true,
+    "writerDrain": "OWNER_CONFIRMED",
+    "protectedRunIds": [],
+    "filesDeleted": 0,
+    "initialDistinctFileReferences": 54,
+    "pendingFileTargets": 49,
+    "retainedFileReferences": 5,
+    "physicalObjectInventory": "NOT_AVAILABLE",
+    "privateManifest": "shinka-051-health-files.local (Git ignored; no signed query/token)",
+    "officialDeletionRoute": "Base44 Customer Care; no SDK/undocumented endpoint used"
+  },
+  "stabilization": {
+    "calendarControlledOverlapTest": "PASS",
+    "healthCatalogProjection": "PASS",
+    "originalLoadingIncidentReproduced": false,
+    "retainedHomeRefreshHttp500Observed": true,
+    "rootCause": "UNKNOWN",
+    "codeHostedBeforeAfter": "BLOCKED_OWNER_PUBLISH",
+    "screenBeforeAfter": "REAL_HOSTED_MAINTENANCE_ONLY_SMALL_SAMPLE"
+  },
+  "sourceSha256": {
+    "base44/entities/UserDailyMessage.jsonc": "26cf46450d09877a0493d63d09ad9e14f04cdc3008f15b82e08a092e8dcfc2ed",
+    "base44/shared/base44CalendarReader.js": "0222a92276b9514beca68626ab27f08e4e5c16c63e63d58dd67073ca59766543",
+    "base44/shared/domainSchemas.js": "b484720b9afc2bb85a8f914cf011c91f5907931be573f66bde7752987abaf82a",
+    "base44/shared/healthConstants.js": "76bf25b196949a6c23241cca7ccad284ea740a1f863006303d0dca2dd9b056d7",
+    "base44/shared/internalHealthOperations.js": "83089f504bed9ad191f5d13463aa087565ea97f97937c013135fcfde3ebe908d",
+    "scripts/domainEvidence.mjs": "9a47c1477852e064b3e786fd20dfc48e55fd1837341f2ce867abb1d712ec39c8",
+    "scripts/prepareSchemaStage.mjs": "1d387f4706641646ac9aea1d8622096dbe76ad11432a17f3bfb6ab8cc29385de",
+    "scripts/verifyDailyCompatibilityStage.mjs": "14a7fd73c079a832aa7aad92ebe1ab70aeba66ea0e650a5e469dba521e4b10da",
+    "src/foundation/buildLedgerData.js": "56363f034ea8c6d9190f4e8fc1ac02a79a167b3d139c071f89e86498fd17ec98",
+    "src/foundation/health/cases/calendar.js": "59123c7592b9a81d398022c870c17f20e5470a3fd9cccc2f9f88d0a4cf65f672",
+    "src/foundation/health/cases/h04.js": "bd56fba8cddd91cf95c5376277b9253629cb8cf8b61822caf917f607c80112a0",
+    "src/foundation/health/cases/h15.js": "2cc536cb7771db6a55ac97c8e3a9e0119e901436c556461758f4255268630a47",
+    "src/foundation/tests/calendarTests.js": "132947425916c3a2d4935774d196dc47bbb0fdc47bd5dc47343076c62ba23f7b",
+    "src/foundation/tests/dataModelTests.js": "256d3a3d7bb1774c3a471cd60bf3a3e71c9ef5c38ada11bd589dc376ecd98865",
+    "src/foundation/tests/healthRetentionTests.js": "f5c0915012c779b08eeccf3a92c54b69ce5aff4b352e4d5bd7fceedaf9e00cd0"
+  },
+  "openAcceptance": [
+    "Owner final-schema + matching entry/shared/frontend publication",
+    "Hosted Calendar optimization before/after on published continuation",
+    "Physical deletion of 49 old private file targets through verified platform support",
+    "Correlate dailyMessage 500 platform request ID with backend substage; original intermittent incident remains unresolved",
+    "Physical Android/iOS/wrapper and actual BFCache restoration; deferred 12 findings unchanged"
+  ],
+  "gitDiffCheck": "PASS",
+  "protectedAdmin": {
+    "nativeId": "6ad519134845d4e3af03b423",
+    "nativeIdentityAndRoleUnchanged": true,
+    "privacyRevisionUnchanged": true,
+    "activeGuardPassed": true,
+    "normalHomePatternCalendarVerified": true,
+    "profileConsentCycleResetOrTestMutation": false
+  },
+  "evidenceSha256": {
+    "health-plan-3.json": "f4aa6f1ab7468f70098b0401cd2a32585c398d7420aa624bc34cb37e35d95338",
+    "daily-after.json": "8c4b7bf228eb48a66dfd421c7af49b8ba26c6eff051d64f0ea45cd5d8772f33e",
+    "health-reviewed-start.json": "2ae77e13e15ea99fcb8c29c7ce1553a04dd148cb94335174798d81d9e53af70a",
+    "health-apply-5.json": "9d3a89a2191e28e108afd52d3c6eb7ba8da112fc69c3f311bac6d30df4e6a999",
+    "health-ui-after.json": "ec92a1898d6a44d7836f16c9dcb229d05a5cf5507755445469d50c13e59cb470",
+    "health-apply-9.json": "e9fcea7cc9e269125d32d001b4a19b215eb5c4d344022e5fe77cc174b5050576",
+    "bundle-route-measurements.json": "8040c5fdd4e1dedb9eb3e04fcc353421cf6800d2eea0431eff9281defe7c0ca1",
+    "health-apply-8.json": "3597affb7a84ad74d750a9d1628e0f548c4ce63c0bd6b31a3754ddb8892fdadd",
+    "health-after.json": "734435a42e9b0d30ada0af0847a6817c45b3ef36d62fd096d4241b38b5e79ca6",
+    "health-apply-4.json": "801c2d7de6ab6791ba52330102a4ffa0a744c731f2efeb91cbb5939fe59c2fcc",
+    "health-midpoint.json": "9fd61b90fb95db93b57e2f873048106e9c24af6867d972b12d408603a37ded03",
+    "health-plan-2.json": "ea2eaa0089f4af01406e9426638b49e3b59f580754ee395cbd6b159023f45e6d",
+    "health-plan-9.json": "55201c793c148b40f024fa3532fd29b59428d2728165638bbe289092043e85c8",
+    "daily-plan-3.json": "9a8ee05de54cc88d9d0fbc9b0d9842d94b8c451717de55609bbb37e12384609c",
+    "health-plan-5.json": "ef3dc281ff4a8f229a478f76f5706bb2690a5560a765ca18fe298693cbbf1f17",
+    "case-audit.md": "12978c0b442831a88887f95b5e8f40b0597c9fa74e37807d1c740a72c5e1141a",
+    "daily-apply-1.json": "32d01f27cab5f178f49227a4fa5d5e2ccd1d84aef64a7a86230afaf7157299c3",
+    "health-apply-3.json": "3acc21db6767864713ff1574d7a4a07e4b2e6c06d0383b8d6466fa6ab342387a",
+    "schema-stage.patch": "c1b7420be58998f79e9f4b7ffa797e44c0dcdedc80120e786a484f5d45a4e9d5",
+    "health-verified.png": "b562ced89e751f482cf48e921dd974d55f14dac5d0a4589508a9bf63719d2595",
+    "health-apply-2.json": "be8fb1952153c316a513c4fa1a1cada7b64eafcbd2f806ce5d8fd4e4a8e42557",
+    "health-plan-4.json": "00f52ce9c82baa6afa3ee1d3ba129d10544649907a94ff12591296f304d4394b",
+    "daily-plan-2.json": "27ad5b432f373f0abe705ed891a858be03c80e7ce5bfff95006c38224773aea5",
+    "case-audit.json": "14a2b048dc7a43076d143eb5f8c011047925573b57894ec7d634be2310e9c1bb",
+    "health-plan-8.json": "6e5bd48f9e4322db4b8d3bb74c880314dbcb89edf6babb88de8e83f53386eec7",
+    "deletion-first-completed.png": "9863a30d4fe4f5412dd32bf43c83097dbcbaa41dd9babfc498d84d242cdabe10",
+    "health-apply-10.json": "247a92bbb616f6dcb2348fdaeb817da711d622c1159f57919ed50161b74c1679",
+    "performance.json": "d75cf0965639461ea1f70bdbd3932de2acf1482407c743fa0024170adb3cac39",
+    "baseline.json": "4b1b3a8e6696ea880f69b4c7dea68d1ed383d22939fc7f6ed70e013d5a8c74a1",
+    "health-apply-1.json": "994682c49945ede3684df929107effa8ba221ee3d7dcc2247c5c2247aad3ec2e",
+    "daily-apply-3.json": "23ca1dc0585d01fab3b40a8302889cc5144e638470812670255bba5ad481400b",
+    "health-library-search.png": "7c003f3f5161659596d52753aaac2a51a6608bc57613c8db36496342fb9eea96",
+    "health-plan-7.json": "483d9894e6a4d7b28609b49a3b4f57b98c1b1c2898fef52627858ac03b13fa5a",
+    "daily-plan-1.json": "35a4ddca2c1e497dfefa6729239e540ee6512f160bff200bc3d767d6ec27cc57",
+    "health-plan-6.json": "1bb62de5b14678b29ff7388e7ab38221c2b7eaa3665c8310538166e914c5467c",
+    "daily-apply-2.json": "b9eb01c78410c37afa558fb25c22aa6cf8f62c2158f8ecaefd26859b08d188fd",
+    "browser-webkit.json": "f0ee8843d1f29ff555105f3653cdd776e70258910483e717d0c3f172ff1092b5",
+    "daily-verified.png": "4ede724a2da051c82cf38eede4e0b0e88c0d3c3f03f9345487ceb50b2de96481",
+    "daily-before.json": "fe3312feb955b00f660c6b8236e0959914dcf5b016dd30d0f3b994f2de25cf07",
+    "health-apply-7.json": "2e4fb6c4a015d0dda3f26ac0e365b49ed6248f9f5303ee00b71a1a5981763785",
+    "schema-stage.json": "f7d9ceef3a8de119219d0cd7b6034a53bd72f358282e8a0b64353ab824e0c8ef",
+    "health-plan-1.json": "930b67a294eb2ec097c8327f5bbcc19e20dd1a43eb25a63efb7670951d18f197",
+    "health-files-before.json": "cc5a7bc1abfc71923a73e7e23bfa3aa7196e9416c068a96b0cb663cc85035fe1",
+    "operations-before.json": "82f8ab4378c59ab1529f4aa95332b5788d3740ac4f7ef693dcf0f9b44645ad5a",
+    "browser-chromium.json": "6162b0ef2d61c9f1c384af6ba17cffd1bd226f5b9d1e194b28cd62720cf5810d",
+    "health-plan-10.json": "01010e7463e42941f28a22e8d326e56d3c95726cd3b4f0699e7471f1bd175ef7",
+    "health-before.json": "2afefe54f78effe63ac071b680bfc1b1c7af57c96c25a3491b1c73cc92a31311",
+    "deletions-after.json": "27eb857295ff2dc357c3f4d2ea07c378ba5406f900fb4c39ca797ceb9c31f5e3",
+    "health-apply-6.json": "29eae5da9b4749e1dd50c59eeaef5358283ffe2617e4f783ff5e9d928e390ffa",
+    "session-after.json": "055095c380e1dc5e68331c06dcdd23def5f320313162f3d5d7b27df9afe5b036"
+  }
+}

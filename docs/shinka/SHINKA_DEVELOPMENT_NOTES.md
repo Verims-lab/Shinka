@@ -1,7 +1,7 @@
 # SHINKA — Development Notes
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
-**Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
+**Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
 **Current BuildMarker:** Buildmarker-051
 **Last Updated:** 2026-10-29
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
@@ -10,7 +10,15 @@
 
 
 
-## 051 — Core Reliability & Performance
+## 051 continuation — verified maintenance and measured performance
+
+The owner accepts published 051 / HC-050.0 functional and Full Health evidence (159 PASS, zero FAIL/BLOCKED). Preserve that acceptance and historical failures. This continuation retains Buildmarker-051 and active packages 047–051; HC-050.1 identifies changed assertions without creating a new product package. Live Full Health/Security scan and main/publish were not run. Detailed dated receipts and separate hosted/local limits: [051 continuation](reports/SHINKA_CORE_RELIABILITY_051.md#051-continuation).
+
+The four old active deletions resumed with their original operation IDs; six terminal deletions retain their evidence. Daily cleanup finished 18/18 clean with every assignment/link unchanged. A transient TEST_STORAGE_RATE_LIMITED status read was retained and later succeeded; it is not proof of the intermittent product-loading cause. Calendar serial independent IO and the missing Health catalog list field were corrected narrowly. The first CA24 attempt used an unminted principal and correctly failed AUTH_REQUIRED; the fixture now uses requireAuthenticatedUser without weakening production authorization. Original loading incident has not been reproduced and is not declared closed.
+
+Final continuation execution: Chromium/WebKit 746/746 each; final CA24-only Chromium rerun PASS, native TS entry and server fixtures PASS. Local in-app 146 PASS/13 hosted-prerequisite BLOCKED/0 FAIL, save/retry/list/open verified. CI/tree/audit (zero vulnerabilities), type/lint/build/repo/history/schema-stage and unchanged performance budgets pass. Health delta 0/5/0, HC-050.1; the accepted hosted HC-050.0 report remains 159 PASS. Real trace captures one retained-Home dailyMessage 500 followed by a 200; backend substage/root cause remain unknown.
+
+## 051 — initial delivery (historical evidence retained)
 
 051 audit reproduces stale Pattern data on kept-tab return (PU08 failed before fix), undefined historic build evidence aliases, and excessive full Health-index payload in recent history reads. Fixes preserve existing controllers, security boundaries and visuals. HR01–HR07 cover retention, pagination, interruptions/lost ACK, shared files, authority and payload. PF03 passes 100 fault/recovery cycles; initial failures are retained in reports/core-reliability-051/initial-failures.json. Hosted 050/HC-049 latest stored Health: 153 PASS, zero FAIL/BLOCKED; no new hosted Full Health. Hosted 045 cleanup is partial while lifecycle targets remain busy; final schema is not claimed. Detailed final execution/maintenance receipts live with the single milestone report.
 
