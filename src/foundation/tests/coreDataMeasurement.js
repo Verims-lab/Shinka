@@ -7,14 +7,21 @@ import { dailyMessageOperation } from '../../../base44/shared/dailyMessageOperat
 import { calendarOperation } from '../../../base44/shared/calendarOperation.js';
 import { patternOperation } from '../../../base44/shared/patternOperation.js';
 import { youOperation } from '../../../base44/shared/youOperation.js';
+import { internalHealthOperation } from '../../../base44/shared/internalHealthOperations.js';
 
 export async function measureCoreData() {
   const scenarios=[];
   const measured=f=>{
     const events=[],raw=f.raw(),base=raw.asServiceRole.entities;let auth=0;
-    raw.asServiceRole.entities=new Proxy(base,{get:(store,entity)=>new Proxy(store[entity],{get:(api,method)=>typeof api[method]!=='function'?api[method]:async(...args)=>{
-      const value=await api[method](...args);
-      events.push({entity,method,limit:args[2]??null,fields:args[4]??null,rows:Array.isArray(value)?value.length:null,bytes:JSON.stringify(value)?.length||0});return value;
+    raw.asServiceRole.entities=new Proxy(base,{get:(store,entity)=>new Proxy(store[entity],{get:(api,method)=>{
+      // The older native fixture models filter only. SDK list is an unfiltered
+      // read with sort/limit/offset, so model it identically for BOTH revisions.
+      const invoke=method==='list'&&!api.list?(sort,limit,offset)=>api.filter({},sort,limit,offset):api[method];
+      if(typeof invoke!=='function')return invoke;
+      return async(...args)=>{
+        const value=await invoke(...args);
+        events.push({entity,method,limit:args[method==='list'?1:2]??null,fields:args[4]??null,rows:Array.isArray(value)?value.length:null,bytes:JSON.stringify(value)?.length||0});return value;
+      };
     }})});
     const me=raw.auth.me;raw.auth.me=()=>{auth++;return me();};
     return {client:withNativeWriteChecks(withUserLifecycle(raw)),events,counts:()=>({auth,provider:0,entityReads:events.filter(e=>['filter','get','list'].includes(e.method)).length,entityWrites:events.filter(e=>!['filter','get','list'].includes(e.method)).length,sdkBytes:events.reduce((n,e)=>n+e.bytes,0)})};
@@ -43,6 +50,12 @@ export async function measureCoreData() {
   for(const [scenario,invoke] of productScenarios) {
     const m=measured(f),before={daily:f.tables.UserDailyMessage.length,periods:f.tables.UserPeriodRecord.length,profiles:f.tables.UserProfile.length},value=await invoke(m.client);
     scenarios.push({scenario,fixtureRows:before,...m.counts(),responseBytes:JSON.stringify(value).length,trace:m.events});
+  }
+  for(const count of [10,1000]) {
+    const f=nativeFixture();
+    f.tables.InternalHealthRun=Array.from({length:count},(_,i)=>({id:`health-${i}`,run_id:`run-${i}`,status:'READY',completed_at:'2026-10-01T12:00:00Z',report_json:'x'.repeat(15000),report_digest:'d'.repeat(64),report_file_uri:`private://fixture-${i}`}));
+    const m=measured(f),value=await internalHealthOperation(m.client,{action:'list'});
+    scenarios.push({scenario:`health-history-${count}`,fixtureRows:count,...m.counts(),responseBytes:JSON.stringify(value).length,trace:m.events});
   }
   return {scope:'LOCAL_SYNTHETIC_SDK_COUNTS_NO_LATENCY_OR_CREDITS',samples:1,clock:'nativeFixture fixed 2026-10-20',cache:'fresh client each scenario; shared product fixture after first daily; no auth cache',library:'six approved category labels, 240 synthetic mappings/260 synthetic pairs/eight Moon intervals via fixture; reference loader substituted, zero provider calls',scenarios};
 }

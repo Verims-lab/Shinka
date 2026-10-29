@@ -1,0 +1,291 @@
+{
+  "milestone": "Buildmarker-051",
+  "catalog": "HC-050.0",
+  "generatedAtUtc": "2026-10-29T17:44:45.244636+00:00",
+  "baselineCommit": "5ebc6ce",
+  "scope": "Final local sources; hosted 050 baseline and partial maintenance recorded separately. No hosted Full Health, Security scan, main merge or publish.",
+  "commands": [
+    {
+      "command": "npm ci",
+      "exitCode": 0,
+      "scope": "LOCAL",
+      "logSha256": "53837db3cbf718bd597f07ef7bd00a5a35c7ac99a7bd343a7ad65116432ef075",
+      "executedAtLogMtimeUtc": "2026-10-29T16:56:18.920652+00:00"
+    },
+    {
+      "command": "npm ls --all",
+      "exitCode": 0,
+      "scope": "LOCAL",
+      "logSha256": "9279881b5b54cf6e135c5cda518d34590ab883d4c6c4f01458d7a118bfd817a8",
+      "executedAtLogMtimeUtc": "2026-10-29T16:56:19.463485+00:00"
+    },
+    {
+      "command": "npm audit --json",
+      "exitCode": 0,
+      "scope": "LOCAL",
+      "logSha256": "d023db939da1b363569c7aabf402295e2daa53f1176fda1428ee679d16270dab",
+      "executedAtLogMtimeUtc": "2026-10-29T16:56:20.086682+00:00"
+    },
+    {
+      "command": "npm run security:deps",
+      "exitCode": 0,
+      "scope": "LOCAL",
+      "logSha256": "ba5a55cc48eca8e7c392d3754b663e0bd7b6233525429a1d8a5d44768df5b507",
+      "executedAtLogMtimeUtc": "2026-10-29T16:56:20.898690+00:00"
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "scope": "LOCAL",
+      "logSha256": "2e1c7db5ac28fb733e8c1d3d7c2c3bf8a4bb6628ed45eb56ce2e7328388598de",
+      "executedAtLogMtimeUtc": "2026-10-29T17:41:05.350548+00:00"
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "scope": "LOCAL",
+      "logSha256": "8423c1a66df3f2a021733ae12f217befbeb04b23971e056cb4e3739c7fb936cf",
+      "executedAtLogMtimeUtc": "2026-10-29T17:41:07.902872+00:00"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "scope": "LOCAL",
+      "logSha256": "3a20bcb4121bdc7db4d22600694faf1b754ca2471026005a9cff08dcce5db3f0",
+      "executedAtLogMtimeUtc": "2026-10-29T17:42:29.734842+00:00"
+    },
+    {
+      "command": "npm run health:repo",
+      "exitCode": 0,
+      "scope": "LOCAL",
+      "logSha256": "03b18a5525e19c6323df90d1aa89e794ecb477f1a2311be52134a1335dcb456d",
+      "executedAtLogMtimeUtc": "2026-10-29T17:41:11.182139+00:00"
+    },
+    {
+      "command": "node scripts/recordBuild.mjs --check",
+      "exitCode": 0,
+      "scope": "LOCAL",
+      "logSha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f",
+      "executedAtLogMtimeUtc": "2026-10-29T17:41:11.287673+00:00"
+    },
+    {
+      "command": "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-051-audit npm run test:foundation",
+      "exitCode": 0,
+      "scope": "LOCAL",
+      "logSha256": "b26f0e8ab069620f80ebcde4f7dcef9453c2d8532c15c322a9a368acd7afe6f0",
+      "executedAtLogMtimeUtc": "2026-10-29T17:43:15.612432+00:00"
+    },
+    {
+      "command": "FOUNDATION_BROWSER=webkit npm run test:foundation",
+      "exitCode": 0,
+      "scope": "LOCAL",
+      "logSha256": "14b9f53bd86c096364d2ecf5dfb08946aff4b1467db8f5eab02b2c15d3bddcaf",
+      "executedAtLogMtimeUtc": "2026-10-29T17:43:26.283013+00:00"
+    },
+    {
+      "command": "node scripts/measureMaintenance.mjs /private/tmp/shinka-051-maintenance-final",
+      "exitCode": 0,
+      "scope": "LOCAL",
+      "logSha256": "d41892bd798f37678a06cd6dc7daf44b447229a9fc87c2215134969b8a8bdad5",
+      "executedAtLogMtimeUtc": "2026-10-29T17:43:59.796905+00:00"
+    }
+  ],
+  "browser": {
+    "chromium": {
+      "command": "FOUNDATION_AUDIT_DIR=/private/tmp/shinka-051-audit npm run test:foundation",
+      "engine": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "tests": 745,
+      "passed": 745,
+      "failed": 0,
+      "pageErrors": [],
+      "mobileLayouts": 87,
+      "mobileExperience": 150,
+      "inAppHealth": {
+        "PASS": 146,
+        "BLOCKED": 13
+      },
+      "save": "SAVED",
+      "retrySave": true,
+      "list": true,
+      "openPrivateReport": true,
+      "h17BeforeMeta": true,
+      "realBFCache": {
+        "status": "NOT_RUN",
+        "persistedPageShowObserved": false,
+        "syntheticEvent": false,
+        "reason": "This browser/automation run reloaded the document; no cached restoration was observed"
+      }
+    },
+    "webkit": {
+      "command": "FOUNDATION_BROWSER=webkit npm run test:foundation",
+      "engine": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "tests": 745,
+      "passed": 745,
+      "failed": 0,
+      "pageErrors": [],
+      "mobileLayouts": 87,
+      "mobileExperience": 150,
+      "inAppHealth": {
+        "PASS": 146,
+        "BLOCKED": 13
+      },
+      "save": "SAVED",
+      "retrySave": true,
+      "list": true,
+      "openPrivateReport": true,
+      "h17BeforeMeta": true,
+      "realBFCache": {
+        "status": "NOT_RUN",
+        "persistedPageShowObserved": false,
+        "syntheticEvent": false,
+        "reason": "This browser/automation run reloaded the document; no cached restoration was observed"
+      }
+    }
+  },
+  "node": {
+    "admission": {
+      "file": "server-admission.json",
+      "passed": 8,
+      "failed": 0
+    },
+    "session": {
+      "file": "server-session.json",
+      "passed": 9,
+      "failed": 0
+    },
+    "nativeEntries": "actual TS entry with platform import substitution executed in both full runners",
+    "security028": "SC01-05/07-09 isolated server fixtures executed in both full runners"
+  },
+  "dependencyAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "health": {
+    "suites": 17,
+    "catalogCases": 185,
+    "inApp": 159,
+    "local": 12,
+    "external": 14,
+    "added": 6,
+    "updated": 5,
+    "deleted": 0,
+    "addedIds": [
+      "H15-005",
+      "H15-006",
+      "H17-001",
+      "H17-002",
+      "H17-003",
+      "H17-004"
+    ],
+    "updatedIds": [
+      "H01-006",
+      "H05-009",
+      "H09-007",
+      "H13-017",
+      "H15-002"
+    ],
+    "persistedFinalLocalReport": true,
+    "limits": {
+      "cases": 200,
+      "fullBytes": 900000,
+      "compactBytes": 15000
+    },
+    "mapping": "case-audit.json"
+  },
+  "performanceGates": {
+    "status": "PASS",
+    "initialJS": {
+      "raw": 474918,
+      "gzip": 157885
+    },
+    "css": {
+      "raw": 78659,
+      "gzip": 14465
+    },
+    "limits": {
+      "initialJS": {
+        "raw": 500000,
+        "gzip": 165000
+      },
+      "css": {
+        "raw": 90000,
+        "gzip": 16000
+      }
+    },
+    "cycles": [],
+    "routes": 9,
+    "samplesPerRoute": 3,
+    "routeErrors": 0,
+    "lazyRetry": {
+      "passed": true,
+      "scope": "Synthetic network asset failure and full-reload retry, real App route"
+    },
+    "record": "bundle-route-measurements.json"
+  },
+  "gitDiffCheck": "PASS",
+  "activeBuilds": [
+    "047",
+    "048",
+    "049",
+    "050",
+    "051"
+  ],
+  "sourceSha256": {
+    "base44/functions/internalHealth/entry.ts": "89c332d4a0735cede18aebe2fb2999520784333ddb32877eea63dad5db847b4b",
+    "base44/shared/contentStateContract.js": "3ace4b15d9259ab7d595e61ea0cf625232b3ed9a13f152d9b09297f3d4241d79",
+    "base44/shared/dailyReferenceMigration.js": "130cb704f119cc6c3c363df6d1e504b807ab42794cc386efa328145e96dd5e46",
+    "base44/shared/healthConstants.js": "abc7259a712096ace45c3a990ed635320f171c84be703b9d4ed5e85841077ea3",
+    "base44/shared/healthExecutionScope.js": "16f33b5abf46859d2983bbedadf1a19526b6f217fa1f7abc7e1119794529c9a7",
+    "base44/shared/healthPlan.js": "14c4642026b58862eaaca9c3f0d8c6b8cf09e50208e5a80df151864e0e841869",
+    "base44/shared/internalHealthOperations.js": "0c409a7e6096058537083c2781bfc3052f589cf1a8dee7daa314f220435af2e3",
+    "scripts/checkProductNavigation.mjs": "bb483ba4ed5af9cc74d72c56dc43d9af971983f94ee4eb2f9fdd1b4e857497a9",
+    "scripts/measureTransitions.mjs": "94d9efd34ca2460b0254e4d6c796fb9d065e6534d43e1ebd51ea281bb7f0fa58",
+    "scripts/runFoundationTests.mjs": "3988eb2bc8b69d904f4e837eede679730c075ead95a138f4acb47f8ca4c86e25",
+    "scripts/verifyGeoNamesEntry.mjs": "16c12e2bc6c933ea91465bfe9618c801b39ba87da2df58266576232146ecc5b3",
+    "scripts/verifyNativeEntries.mjs": "dbb64706bf1a174f06c5b94793afce76ba46670acfe3864657e3343cb84c1a02",
+    "src/components/internal/LedgerList.jsx": "c35443875f997939a03c7bac57f77d5d42e86883413c36915a7373322fc5453d",
+    "src/features/pattern/usePattern.js": "27c9c1b4ef5bf8ff5ecb848f8abe5dcccbbdb0960a0f35b39649f63cb9136100",
+    "src/foundation/buildLedgerData.js": "12d63d915c5cd8f6e5b21ae0230e0f064b35ac358c0e1f97771e3976e361713f",
+    "src/foundation/buildMarker.js": "2d102c06918469d2a08f8fd6d5f46cc702409cf8f41459be436f052a33dcdb5b",
+    "src/foundation/buildMarkerRules.js": "f568e3c91376fb038e365d32b23b0a88e571079eeb76121c6155c79fa96d305f",
+    "src/foundation/health/cases/daily.js": "ceec1e08949d93054db925c3a0bff18c04ec3d833932870986d7cce36f9cedb4",
+    "src/foundation/health/cases/h01.js": "1d520a94945133a33fbe8dbad7a88d22239b16320dfbc6d1066123da33008dae",
+    "src/foundation/health/cases/h05.js": "40a588a0a86527fe8d9748e039c9598733294aa842c61b2b7e7eca1903271588",
+    "src/foundation/health/cases/h15.js": "cb06a7c78d5c862d60dd0b88cd1f3f967cdb785f60851a31fa23607bab18233b",
+    "src/foundation/health/cases/pattern.js": "9efd26b778336a4043b91350aa5ae88d3c411e97b7e32202d7682aed30aedaa4",
+    "src/foundation/health/catalog.js": "b5f5c6a19abb38a64bce1c108d550414e493f6d4fb305ef4507ab8b6aeab68f4",
+    "src/foundation/health/suites.js": "4f27fc80bef8c863effdea709aab81ae8a26c6e83d568ba286830a2c5f44637e",
+    "src/foundation/tests/coreDataMeasurement.js": "dc8e76833f50b9263cbfcb23b8f564f3d530c425b6c6b969c613659cd451fa01",
+    "src/foundation/tests/dailyReferenceTests.js": "7e228c8572f2c48037a6f7205b20f588734461b418cf33009da1214b7e9cb81c",
+    "src/foundation/tests/foundationTests.js": "741e9fddf03d7247ba50ffede146b9a0986d709b86bcbc7a542ab01d89e491c1",
+    "src/foundation/tests/healthClosureTests.js": "61818da34c96848899c59aeb0893a136047ea4017b9ca354f81ad39113622125",
+    "src/foundation/tests/patternRefreshTests.js": "4efaecdd10e33a63cc58ab874ba2d369e5c7ec42729509fecf11588a027f3b5e",
+    "src/foundation/tests/patternUiTests.js": "69b316a772d8cc7e743d19cea2898c8c669c92374b3f482615868696484cf6fe",
+    "src/foundation/tests/securityScenarios.js": "b1b3888eda91d483180a3ae4a9a0265a13c179c1fbcaa5e326990f56298186b5",
+    "src/index.css": "3770ee544e4d2518d78ee11ebc751184b7057a6ece5a6f0f1fc83ad56ae57ee2",
+    "base44/shared/healthRetention.js": "cd51bdf4cc6145fd05022205659847e98b8f96a7fd1708eb7b44cc3aa6f53688",
+    "src/foundation/health/cases/h17.js": "e83d1c3786a4a2b20584e186911c5e4d73f2d5f4076444f4e0a871e289feb2b9",
+    "src/foundation/tests/healthRetentionTests.js": "38511c7770dc2f36f1e05c40b907fbaa129ad20f64a7fb1a29465f95cf35aae9"
+  },
+  "openAcceptance": [
+    "Publish complete 051 entry/shared/frontend before hosted verification and remaining maintenance",
+    "045 final cleanup: 6 lifecycle-blocked rows/24 fields remain; optional schema retained",
+    "Health retention: current hosted handler unavailable; 53 rows/50 file refs preserved; stop/drain writers and identify recovery IDs before apply",
+    "Private file deletion: no verified platform API",
+    "Hosted request-ID stage correlation, valid repeated vitals/content readiness and intermittent 049 diagnosis",
+    "Actual BFCache restoration and physical Android/iOS/background/wrapper acceptance",
+    "Deferred 12 backend findings and native notification/workflow acceptance remain open"
+  ]
+}

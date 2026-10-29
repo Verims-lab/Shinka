@@ -49,5 +49,18 @@ export async function checkProductNavigation(page, origin) {
   await page.locator('[data-onboarding-state="UNAUTHENTICATED_SIGN_IN"]').waitFor();
   await page.goBack();
   await page.waitForFunction(() => document.querySelector('[data-onboarding-state]') && !document.querySelector('[data-home-root],[data-you-root],[data-calendar-root],[data-pattern-root]'));
-  return { passed: true, scope: 'LOCAL_REAL_APP_SYNTHETIC_SDK', hydrationPerProductSession: 1, noBackendPrefetch: true, backForwardReload: true, rapidNavigationLateResponse: true, privacyAndAccountSwitchInvalidate: true, logoutBackConcealsData: true };
+  // Real cross-document navigation, not a dispatched PageTransitionEvent.
+  await page.addInitScript(()=>{window.__realRestores=[];window.addEventListener('pageshow',event=>window.__realRestores.push(event.persisted));});
+  await page.goto(`${origin}/?appFixture=1&sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=en`);
+  await page.locator('[data-daily-id]').waitFor();
+  await page.evaluate(()=>window.__authFixture.setSession('admin'));
+  await page.goto('about:blank');await page.goBack();await page.locator('[data-daily-id]').waitFor();
+  const restored=await page.evaluate(()=>window.__realRestores.includes(true));
+  if(restored) {
+    await page.waitForFunction(()=>window.__authFixture.calls.filter(c=>c.name==='applicationSession').length>=2);
+    await page.locator('a[data-profile-trigger]:visible').click();await page.locator('[data-you-consent]').waitFor();
+    assert.equal(await page.locator('a[href="/internal"]').count(),1,'BFCache returned stale role');
+  }
+  const realBfcache={status:restored?'PASS':'NOT_RUN',persistedPageShowObserved:restored,syntheticEvent:false,reason:restored?'Actual cached document reverified changed synthetic server role':'This browser/automation run reloaded the document; no cached restoration was observed'};
+  return { passed: true, scope: 'LOCAL_REAL_APP_SYNTHETIC_SDK', hydrationPerProductSession: 1, noBackendPrefetch: true, backForwardReload: true, rapidNavigationLateResponse: true, privacyAndAccountSwitchInvalidate: true, logoutBackConcealsData: true, realBfcache };
 }

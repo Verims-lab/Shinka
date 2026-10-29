@@ -1,0 +1,1787 @@
+{
+  "scope": "LOCAL_PRODUCTION_BUILD_REAL_SDK_SYNTHETIC_HTTP_NO_HOSTED_NO_FIELD_INP",
+  "nodeEnv": "production",
+  "commit": "5ebc6ce",
+  "browser": "Chromium",
+  "profile": {
+    "apiLatencyMs": 200,
+    "assetLatencyMs": 40,
+    "cpuSlowdown": 4,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "samples": 5,
+    "bandwidthLimit": null,
+    "externalFonts": "BLOCKED_IN_BOTH_RUNS",
+    "background": {
+      "bytes": 76644,
+      "sha256": "ed0b40613f01741d7920b38192fc410d8f185c20012f668cda16269d9ed44f1f",
+      "source": "PINNED_EXISTING_PUBLIC_CDN_ASSET"
+    }
+  },
+  "openings": [
+    {
+      "sample": 1,
+      "feedbackMs": 529.5999999940395,
+      "contentReadyMs": 1108.7999999970198,
+      "dailyId": "daily-fixture",
+      "lcpMs": 836,
+      "cls": 0,
+      "scope": "COLD_CONTEXT_LOCAL_SYNTHETIC_HTTP"
+    },
+    {
+      "sample": 2,
+      "feedbackMs": 343.79999999701977,
+      "contentReadyMs": 920.5,
+      "dailyId": "daily-fixture",
+      "lcpMs": 604,
+      "cls": 0,
+      "scope": "COLD_CONTEXT_LOCAL_SYNTHETIC_HTTP"
+    },
+    {
+      "sample": 3,
+      "feedbackMs": 357.90000000596046,
+      "contentReadyMs": 920.7999999970198,
+      "dailyId": "daily-fixture",
+      "lcpMs": 596,
+      "cls": 0,
+      "scope": "COLD_CONTEXT_LOCAL_SYNTHETIC_HTTP"
+    },
+    {
+      "sample": 4,
+      "feedbackMs": 341.79999999701977,
+      "contentReadyMs": 919.5999999940395,
+      "dailyId": "daily-fixture",
+      "lcpMs": 596,
+      "cls": 0,
+      "scope": "COLD_CONTEXT_LOCAL_SYNTHETIC_HTTP"
+    },
+    {
+      "sample": 5,
+      "feedbackMs": 341.8999999910593,
+      "contentReadyMs": 919.8999999910593,
+      "dailyId": "daily-fixture",
+      "lcpMs": 604,
+      "cls": 0,
+      "scope": "COLD_CONTEXT_LOCAL_SYNTHETIC_HTTP"
+    }
+  ],
+  "rows": [
+    {
+      "sample": 1,
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "start": 1163.0999999940395,
+      "feedback": 4.5,
+      "visible": 83.1000000089407,
+      "usable": 339.6000000089407,
+      "freshSettledMs": 374.70000000298023,
+      "labVitals": {
+        "lcp": 836,
+        "cls": 0,
+        "eventMax": 56,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 78642,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 1255.7999999970198,
+          "end": 1479.3999999910593,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "start": 1572.2999999970198,
+      "feedback": 13.700000002980232,
+      "visible": 79,
+      "usable": 314.20000000298023,
+      "freshSettledMs": 346.09999999403954,
+      "labVitals": {
+        "lcp": 836,
+        "cls": 0,
+        "eventMax": 56,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 18872,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 1649.3999999910593,
+          "end": 1861.0999999940395,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 1649.3999999910593,
+          "end": 1861.0999999940395,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "start": 1960.5,
+      "feedback": 9.200000002980232,
+      "visible": 75.3999999910593,
+      "usable": 307.5,
+      "freshSettledMs": 342.3999999910593,
+      "labVitals": {
+        "lcp": 836,
+        "cls": 0,
+        "eventMax": 56,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 30238,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 2033.3999999910593,
+          "end": 2240.3999999910593,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2339.5999999940395,
+      "feedback": 12.200000002980232,
+      "visible": 30,
+      "usable": 245,
+      "freshSettledMs": 278.70000000298023,
+      "labVitals": {
+        "lcp": 836,
+        "cls": 0,
+        "eventMax": 56,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 2360,
+          "end": 2563,
+          "bytes": 522
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 2656.0999999940395,
+      "feedback": 13.400000005960464,
+      "visible": 30.100000008940697,
+      "usable": 247.20000000298023,
+      "freshSettledMs": 281.20000000298023,
+      "labVitals": {
+        "lcp": 836,
+        "cls": 0,
+        "eventMax": 56,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 2676.2999999970198,
+          "end": 2881.5,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 2676.3999999910593,
+          "end": 2881.5,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 2971.5999999940395,
+      "feedback": 13.700000002980232,
+      "visible": 30.200000002980232,
+      "usable": 247.90000000596046,
+      "freshSettledMs": 281.70000000298023,
+      "labVitals": {
+        "lcp": 836,
+        "cls": 0,
+        "eventMax": 56,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 2992.2999999970198,
+          "end": 3199.3999999910593,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "start": 3287.0999999940395,
+      "feedback": 15.100000008940697,
+      "visible": 34,
+      "usable": 48.900000005960464,
+      "freshSettledMs": 264.1000000089407,
+      "labVitals": {
+        "lcp": 836,
+        "cls": 0,
+        "eventMax": 56,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 3312.5,
+          "end": 3514.8999999910593,
+          "bytes": 522
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3589.2999999970198,
+      "feedback": 13.400000005960464,
+      "visible": 29.400000005960464,
+      "usable": 247.29999999701977,
+      "freshSettledMs": 280.40000000596046,
+      "labVitals": {
+        "lcp": 836,
+        "cls": 0,
+        "eventMax": 56,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3609.2000000029802,
+          "end": 3813.2999999970198,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 3906.2999999970198,
+      "feedback": 13.299999997019768,
+      "visible": 29.099999994039536,
+      "usable": 246.70000000298023,
+      "freshSettledMs": 281.29999999701977,
+      "labVitals": {
+        "lcp": 836,
+        "cls": 0,
+        "eventMax": 56,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 3926.2000000029802,
+          "end": 4136.399999991059,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "start": 4221.5,
+      "feedback": 13.200000002980232,
+      "visible": 31.599999994039536,
+      "usable": 247.5,
+      "freshSettledMs": 281.8999999910593,
+      "labVitals": {
+        "lcp": 836,
+        "cls": 0,
+        "eventMax": 56,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 4240.899999991059,
+          "end": 4445.79999999702,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 4538.0999999940395,
+      "feedback": 15.400000005960464,
+      "visible": 31.400000005960464,
+      "usable": 248,
+      "freshSettledMs": 280.20000000298023,
+      "labVitals": {
+        "lcp": 836,
+        "cls": 0,
+        "eventMax": 56,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 4560.5,
+          "end": 4766.0999999940395,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 4560.5999999940395,
+          "end": 4766.0999999940395,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "start": 4855,
+      "feedback": 31,
+      "visible": 31,
+      "usable": 246.79999999701977,
+      "freshSettledMs": 280.70000000298023,
+      "labVitals": {
+        "lcp": 836,
+        "cls": 0,
+        "eventMax": 56,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 4872.899999991059,
+          "end": 5075.399999991059,
+          "bytes": 522
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "start": 946,
+      "feedback": 19.19999998807907,
+      "visible": 86.8999999910593,
+      "usable": 320.5,
+      "freshSettledMs": 345.79999999701977,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 78642,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 1036.0999999940395,
+          "end": 1255.5999999940395,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "start": 1326.0999999940395,
+      "feedback": 15.599999994039536,
+      "visible": 81.40000000596046,
+      "usable": 314.90000000596046,
+      "freshSettledMs": 349.5,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 18872,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 1406.0999999940395,
+          "end": 1614.5,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 1406.199999988079,
+          "end": 1615.5,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "start": 1711.0999999940395,
+      "feedback": 13.599999994039536,
+      "visible": 68.40000000596046,
+      "usable": 297.20000000298023,
+      "freshSettledMs": 331.40000000596046,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 30238,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 1780.8999999910593,
+          "end": 1986,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2078.5,
+      "feedback": 12.699999988079071,
+      "visible": 29.899999991059303,
+      "usable": 244.79999999701977,
+      "freshSettledMs": 281.29999999701977,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 2097.3999999910593,
+          "end": 2299,
+          "bytes": 522
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 2394,
+      "feedback": 14.599999994039536,
+      "visible": 30.399999991059303,
+      "usable": 246.59999999403954,
+      "freshSettledMs": 281.59999999403954,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 2414.699999988079,
+          "end": 2621.3999999910593,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 2414.699999988079,
+          "end": 2622,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 2710.699999988079,
+      "feedback": 12.600000008940697,
+      "visible": 30.900000005960464,
+      "usable": 248.5,
+      "freshSettledMs": 279.90000000596046,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 2729.3999999910593,
+          "end": 2936.8999999910593,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "start": 3028.0999999940395,
+      "feedback": 12,
+      "visible": 32.099999994039536,
+      "usable": 47.099999994039536,
+      "freshSettledMs": 264.40000000596046,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 3050.5999999940395,
+          "end": 3253.5,
+          "bytes": 522
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3326,
+      "feedback": 15.899999991059303,
+      "visible": 30.899999991059303,
+      "usable": 249.69999998807907,
+      "freshSettledMs": 283,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3348.3999999910593,
+          "end": 3554.3999999910593,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 3642.7999999970198,
+      "feedback": 13.799999997019768,
+      "visible": 31.200000002980232,
+      "usable": 248.70000000298023,
+      "freshSettledMs": 283.29999999701977,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 3663.0999999940395,
+          "end": 3871.5999999940395,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3961.0999999940395,
+      "feedback": 14.099999994039536,
+      "visible": 30.700000002980232,
+      "usable": 247.70000000298023,
+      "freshSettledMs": 279.40000000596046,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3981.2999999970198,
+          "end": 4185.699999988079,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 4277.399999991059,
+      "feedback": 13.299999997019768,
+      "visible": 29.100000008940697,
+      "usable": 247.70000000298023,
+      "freshSettledMs": 281.70000000298023,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 4297.0999999940395,
+          "end": 4502.79999999702,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 4297.199999988079,
+          "end": 4502.79999999702,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "start": 4593.5,
+      "feedback": 31.5,
+      "visible": 31.5,
+      "usable": 246.5,
+      "freshSettledMs": 280.69999998807907,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 4612.79999999702,
+          "end": 4815.899999991059,
+          "bytes": 522
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "start": 946.4000000059605,
+      "feedback": 18,
+      "visible": 84.8999999910593,
+      "usable": 316.09999999403954,
+      "freshSettledMs": 345.3999999910593,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 78642,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 1031.2000000029802,
+          "end": 1250,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "start": 1326.9000000059605,
+      "feedback": 14.399999991059303,
+      "visible": 82.59999999403954,
+      "usable": 312.59999999403954,
+      "freshSettledMs": 348.70000000298023,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 18872,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 1410.1000000089407,
+          "end": 1620.7000000029802,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 1410.9000000059605,
+          "end": 1620.7000000029802,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "start": 1712.2999999970198,
+      "feedback": 12.600000008940697,
+      "visible": 77.20000000298023,
+      "usable": 295,
+      "freshSettledMs": 327.40000000596046,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 30238,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 1782.7000000029802,
+          "end": 1989.7999999970198,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2076.2999999970198,
+      "feedback": 14.100000008940697,
+      "visible": 31.5,
+      "usable": 248.20000000298023,
+      "freshSettledMs": 282.1000000089407,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 2097.2999999970198,
+          "end": 2299.9000000059605,
+          "bytes": 522
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 2393.9000000059605,
+      "feedback": 13.099999994039536,
+      "visible": 29.099999994039536,
+      "usable": 247.09999999403954,
+      "freshSettledMs": 281.09999999403954,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 2413.5,
+          "end": 2619,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 2413.5,
+          "end": 2619.1000000089407,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 2709.7000000029802,
+      "feedback": 15.200000002980232,
+      "visible": 31.5,
+      "usable": 247.5,
+      "freshSettledMs": 280,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 2730.7999999970198,
+          "end": 2939.2999999970198,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "start": 3027.2999999970198,
+      "feedback": 13.900000005960464,
+      "visible": 31.900000005960464,
+      "usable": 47.400000005960464,
+      "freshSettledMs": 265.1000000089407,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 3052.1000000089407,
+          "end": 3254.6000000089407,
+          "bytes": 522
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3326.5,
+      "feedback": 12.799999997019768,
+      "visible": 31.299999997019768,
+      "usable": 249,
+      "freshSettledMs": 280,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3345.2999999970198,
+          "end": 3549.2999999970198,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 3643.4000000059605,
+      "feedback": 14.799999997019768,
+      "visible": 31.5,
+      "usable": 246.5,
+      "freshSettledMs": 279.70000000298023,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 3664.2000000029802,
+          "end": 3872.2999999970198,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3960.9000000059605,
+      "feedback": 12.200000002980232,
+      "visible": 30.799999997019768,
+      "usable": 247.59999999403954,
+      "freshSettledMs": 280.8999999910593,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3979.5,
+          "end": 4183.70000000298,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 4276.20000000298,
+      "feedback": 13.799999997019768,
+      "visible": 31,
+      "usable": 248.20000000298023,
+      "freshSettledMs": 281.79999999701977,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 4296.79999999702,
+          "end": 4501.29999999702,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 4296.79999999702,
+          "end": 4501.29999999702,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "start": 4593.29999999702,
+      "feedback": 29.5,
+      "visible": 29.5,
+      "usable": 246,
+      "freshSettledMs": 281.20000000298023,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 4611.9000000059605,
+          "end": 4813.79999999702,
+          "bytes": 522
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "start": 946.5999999940395,
+      "feedback": 17.700000002980232,
+      "visible": 85,
+      "usable": 316.20000000298023,
+      "freshSettledMs": 344.20000000298023,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 78642,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 1030.8999999910593,
+          "end": 1251.199999988079,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "start": 1329.0999999940395,
+      "feedback": 11.099999994039536,
+      "visible": 79.5,
+      "usable": 294.79999999701977,
+      "freshSettledMs": 328.79999999701977,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 18872,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 1402.7999999970198,
+          "end": 1611.2999999970198,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 1402.7999999970198,
+          "end": 1611.2999999970198,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "start": 1696.3999999910593,
+      "feedback": 12.200000002980232,
+      "visible": 67.90000000596046,
+      "usable": 295.1000000089407,
+      "freshSettledMs": 329.79999999701977,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 30238,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 1764.5999999940395,
+          "end": 1971.199999988079,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2062.199999988079,
+      "feedback": 12.200000002980232,
+      "visible": 29.30000001192093,
+      "usable": 245.90000000596046,
+      "freshSettledMs": 280.20000000298023,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 2081.3999999910593,
+          "end": 2283.199999988079,
+          "bytes": 522
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 2378,
+      "feedback": 12.399999991059303,
+      "visible": 29.399999991059303,
+      "usable": 247.29999999701977,
+      "freshSettledMs": 279.69999998807907,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 2396.5,
+          "end": 2603,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 2396.5999999940395,
+          "end": 2603,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 2695,
+      "feedback": 12.699999988079071,
+      "visible": 28.399999991059303,
+      "usable": 246.8999999910593,
+      "freshSettledMs": 279.69999998807907,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 2714.2999999970198,
+          "end": 2923.8999999910593,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "start": 3011.0999999940395,
+      "feedback": 13.700000002980232,
+      "visible": 31.700000002980232,
+      "usable": 47.599999994039536,
+      "freshSettledMs": 264.90000000596046,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 3034.8999999910593,
+          "end": 3237.7999999970198,
+          "bytes": 522
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3311.699999988079,
+      "feedback": 12.900000005960464,
+      "visible": 30.700000002980232,
+      "usable": 247.1000000089407,
+      "freshSettledMs": 280.5,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3331.0999999940395,
+          "end": 3536.8999999910593,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 3627.5999999940395,
+      "feedback": 14.200000002980232,
+      "visible": 29.700000002980232,
+      "usable": 246.90000000596046,
+      "freshSettledMs": 280.90000000596046,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 3648.5999999940395,
+          "end": 3857,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3943.5,
+      "feedback": 15.099999994039536,
+      "visible": 32,
+      "usable": 247.79999999701977,
+      "freshSettledMs": 282,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3964.2999999970198,
+          "end": 4170.0999999940395,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 4261.199999988079,
+      "feedback": 14.5,
+      "visible": 31.200000002980232,
+      "usable": 245.5,
+      "freshSettledMs": 281.30000001192093,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 4282.699999988079,
+          "end": 4486.899999991059,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 4282.699999988079,
+          "end": 4487.5999999940395,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "start": 4575.399999991059,
+      "feedback": 33.20000000298023,
+      "visible": 33.20000000298023,
+      "usable": 250,
+      "freshSettledMs": 283.1000000089407,
+      "labVitals": {
+        "lcp": 596,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 4595.5999999940395,
+          "end": 4797.899999991059,
+          "bytes": 522
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "home",
+      "to": "calendar",
+      "visit": "first",
+      "start": 945.2000000029802,
+      "feedback": 18.399999991059303,
+      "visible": 86.69999998807907,
+      "usable": 319,
+      "freshSettledMs": 346.69999998807907,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 78642,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 1034.7999999970198,
+          "end": 1252.7000000029802,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "calendar",
+      "to": "pattern",
+      "visit": "first",
+      "start": 1327.7999999970198,
+      "feedback": 13.5,
+      "visible": 78.79999999701977,
+      "usable": 296.79999999701977,
+      "freshSettledMs": 331.29999999701977,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 32,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 18872,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 1404.5999999940395,
+          "end": 1610.5999999940395,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 1404.5999999940395,
+          "end": 1610.5999999940395,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "pattern",
+      "to": "you",
+      "visit": "first",
+      "start": 1693.5,
+      "feedback": 13.399999991059303,
+      "visible": 70.09999999403954,
+      "usable": 297.3999999910593,
+      "freshSettledMs": 331.8999999910593,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 30238,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 1764.7000000029802,
+          "end": 1970.0999999940395,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "you",
+      "to": "home",
+      "visit": "revisit",
+      "start": 2060.5999999940395,
+      "feedback": 13.700000002980232,
+      "visible": 30.799999997019768,
+      "usable": 246.1000000089407,
+      "freshSettledMs": 281.70000000298023,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 2081.2999999970198,
+          "end": 2284.7999999970198,
+          "bytes": 522
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "home",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 2378,
+      "feedback": 11.799999997019768,
+      "visible": 30.399999991059303,
+      "usable": 247.20000000298023,
+      "freshSettledMs": 280.09999999403954,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 2396.3999999910593,
+          "end": 2601,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 2396.5,
+          "end": 2601,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "pattern",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 2692,
+      "feedback": 14.700000002980232,
+      "visible": 32.599999994039536,
+      "usable": 249.8999999910593,
+      "freshSettledMs": 283.20000000298023,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 2712,
+          "end": 2918.7000000029802,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "calendar",
+      "to": "home",
+      "visit": "revisit",
+      "start": 3010.7999999970198,
+      "feedback": 13.299999997019768,
+      "visible": 31.200000002980232,
+      "usable": 47.29999999701977,
+      "freshSettledMs": 262.59999999403954,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 3035.3999999910593,
+          "end": 3238.2999999970198,
+          "bytes": 522
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "home",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3309.3999999910593,
+      "feedback": 14,
+      "visible": 32.20000000298023,
+      "usable": 249.20000000298023,
+      "freshSettledMs": 281.1000000089407,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3329.7000000029802,
+          "end": 3534.5,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "you",
+      "to": "calendar",
+      "visit": "revisit",
+      "start": 3626.5999999940395,
+      "feedback": 14,
+      "visible": 31.799999997019768,
+      "usable": 248.70000000298023,
+      "freshSettledMs": 281.5,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "calendar.read",
+          "start": 3646.5,
+          "end": 3854.3999999910593,
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "calendar",
+      "to": "you",
+      "visit": "revisit",
+      "start": 3944.2000000029802,
+      "feedback": 13.699999988079071,
+      "visible": 30.099999994039536,
+      "usable": 248.09999999403954,
+      "freshSettledMs": 279.59999999403954,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "you.read",
+          "start": 3963.7999999970198,
+          "end": 4169.20000000298,
+          "bytes": 595
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "you",
+      "to": "pattern",
+      "visit": "revisit",
+      "start": 4259.70000000298,
+      "feedback": 13.199999988079071,
+      "visible": 31.899999991059303,
+      "usable": 247.5,
+      "freshSettledMs": 280,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "pattern.themes",
+          "start": 4278.899999991059,
+          "end": 4485.20000000298,
+          "bytes": 484
+        },
+        {
+          "key": "pattern.lunar",
+          "start": 4279.79999999702,
+          "end": 4485.20000000298,
+          "bytes": 365
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "from": "pattern",
+      "to": "home",
+      "visit": "revisit",
+      "start": 4576.5,
+      "feedback": 31.899999991059303,
+      "visible": 31.899999991059303,
+      "usable": 248,
+      "freshSettledMs": 282.29999999701977,
+      "labVitals": {
+        "lcp": 604,
+        "cls": 0,
+        "eventMax": 40,
+        "inpScope": "Observed EventTiming maximum in this small lab interaction set; not field INP"
+      },
+      "jsBytes": 0,
+      "longTasks": [],
+      "calls": [
+        {
+          "key": "dailyMessage.today",
+          "start": 4596,
+          "end": 4799.0999999940395,
+          "bytes": 522
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "blocked": [
+    "https://fonts.googleapis.com"
+  ],
+  "excludedAssets": []
+}

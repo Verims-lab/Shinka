@@ -1,0 +1,3611 @@
+{
+  "scope": "LOCAL_SYNTHETIC_SDK_COUNTS_NO_LATENCY_OR_CREDITS",
+  "samples": 1,
+  "clock": "nativeFixture fixed 2026-10-20",
+  "cache": "fresh client each scenario; shared product fixture after first daily; no auth cache",
+  "library": "six approved category labels, 240 synthetic mappings/260 synthetic pairs/eight Moon intervals via fixture; reference loader substituted, zero provider calls",
+  "scenarios": [
+    {
+      "scenario": "domain-user_period_record-100",
+      "fixtureRows": 100,
+      "auth": 1,
+      "provider": 0,
+      "entityReads": 21,
+      "entityWrites": 0,
+      "sdkBytes": 13211,
+      "returned": 100,
+      "truncated": false,
+      "responseBytes": 12431,
+      "trace": [
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id"
+          ],
+          "rows": 1,
+          "bytes": 17
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 248
+        },
+        {
+          "entity": "HealthDataDeletionJob",
+          "method": "filter",
+          "limit": 1,
+          "fields": null,
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserHealthConsentEvent",
+          "method": "filter",
+          "limit": 3,
+          "fields": null,
+          "rows": 1,
+          "bytes": 223
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 248
+        },
+        {
+          "entity": "HealthDataDeletionJob",
+          "method": "filter",
+          "limit": 1,
+          "fields": null,
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPeriodRecord",
+          "method": "filter",
+          "limit": 101,
+          "fields": [
+            "id",
+            "user_id",
+            "period_start_date",
+            "created_date",
+            "updated_date"
+          ],
+          "rows": 100,
+          "bytes": 10801
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id"
+          ],
+          "rows": 1,
+          "bytes": 17
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 248
+        },
+        {
+          "entity": "HealthDataDeletionJob",
+          "method": "filter",
+          "limit": 1,
+          "fields": null,
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserHealthConsentEvent",
+          "method": "filter",
+          "limit": 3,
+          "fields": null,
+          "rows": 1,
+          "bytes": 223
+        }
+      ]
+    },
+    {
+      "scenario": "domain-user_period_record-101",
+      "fixtureRows": 101,
+      "auth": 1,
+      "provider": 0,
+      "entityReads": 21,
+      "entityWrites": 0,
+      "sdkBytes": 13319,
+      "returned": 100,
+      "truncated": true,
+      "responseBytes": 12430,
+      "trace": [
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id"
+          ],
+          "rows": 1,
+          "bytes": 17
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 248
+        },
+        {
+          "entity": "HealthDataDeletionJob",
+          "method": "filter",
+          "limit": 1,
+          "fields": null,
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserHealthConsentEvent",
+          "method": "filter",
+          "limit": 3,
+          "fields": null,
+          "rows": 1,
+          "bytes": 223
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 248
+        },
+        {
+          "entity": "HealthDataDeletionJob",
+          "method": "filter",
+          "limit": 1,
+          "fields": null,
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPeriodRecord",
+          "method": "filter",
+          "limit": 101,
+          "fields": [
+            "id",
+            "user_id",
+            "period_start_date",
+            "created_date",
+            "updated_date"
+          ],
+          "rows": 101,
+          "bytes": 10909
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id"
+          ],
+          "rows": 1,
+          "bytes": 17
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 248
+        },
+        {
+          "entity": "HealthDataDeletionJob",
+          "method": "filter",
+          "limit": 1,
+          "fields": null,
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserHealthConsentEvent",
+          "method": "filter",
+          "limit": 3,
+          "fields": null,
+          "rows": 1,
+          "bytes": 223
+        }
+      ]
+    },
+    {
+      "scenario": "domain-message_category_mapping-240",
+      "fixtureRows": 240,
+      "auth": 1,
+      "provider": 0,
+      "entityReads": 13,
+      "entityWrites": 0,
+      "sdkBytes": 6871,
+      "returned": 100,
+      "truncated": true,
+      "responseBytes": 15930,
+      "trace": [
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id"
+          ],
+          "rows": 1,
+          "bytes": 17
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        },
+        {
+          "entity": "MessageCategoryMapping",
+          "method": "filter",
+          "limit": 101,
+          "fields": [
+            "id",
+            "sun_sign_code",
+            "moon_phase_code",
+            "cycle_phase_code",
+            "category_id",
+            "created_date",
+            "updated_date"
+          ],
+          "rows": 101,
+          "bytes": 5657
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id"
+          ],
+          "rows": 1,
+          "bytes": 17
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        }
+      ]
+    },
+    {
+      "scenario": "home-first",
+      "fixtureRows": {
+        "daily": 0,
+        "periods": 0,
+        "profiles": 1
+      },
+      "auth": 9,
+      "provider": 0,
+      "entityReads": 58,
+      "entityWrites": 1,
+      "sdkBytes": 3938,
+      "responseBytes": 530,
+      "trace": [
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "rows": 1,
+          "bytes": 295
+        },
+        {
+          "entity": "UserPreferences",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone",
+            "theme_code"
+          ],
+          "rows": 1,
+          "bytes": 149
+        },
+        {
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "user_id",
+            "shinka_date",
+            "timezone",
+            "category_id",
+            "message_pair_id",
+            "generated_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "MoonPhaseLookup",
+          "method": "filter",
+          "limit": 1201,
+          "fields": [
+            "phase_code",
+            "start_at_utc",
+            "end_at_utc"
+          ],
+          "rows": 8,
+          "bytes": 839
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "consent_status",
+            "consent_version",
+            "granted_at",
+            "withdrawn_at"
+          ],
+          "rows": 1,
+          "bytes": 164
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "HealthDataDeletionJob",
+          "method": "filter",
+          "limit": 1,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "protection_event_id",
+            "job_status",
+            "requested_at",
+            "started_at",
+            "completed_at",
+            "retry_count",
+            "last_retry_at",
+            "error_code"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserHealthConsentEvent",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "event_type",
+            "consent_version",
+            "occurred_at"
+          ],
+          "rows": 1,
+          "bytes": 139
+        },
+        {
+          "entity": "UserCycleSettings",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "period_duration_days",
+            "initial_cycle_length_days"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPeriodRecord",
+          "method": "filter",
+          "limit": 4,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "period_start_date"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "user_id",
+            "shinka_date",
+            "timezone",
+            "category_id",
+            "message_pair_id",
+            "generated_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "MessagePair",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "message_tr",
+            "suggestion_tr",
+            "message_en",
+            "suggestion_en"
+          ],
+          "rows": 1,
+          "bytes": 159
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "rows": 1,
+          "bytes": 295
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "consent_status",
+            "consent_version",
+            "granted_at",
+            "withdrawn_at"
+          ],
+          "rows": 1,
+          "bytes": 164
+        },
+        {
+          "entity": "HealthDataDeletionJob",
+          "method": "filter",
+          "limit": 1,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "protection_event_id",
+            "job_status",
+            "requested_at",
+            "started_at",
+            "completed_at",
+            "retry_count",
+            "last_retry_at",
+            "error_code"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "user_id",
+            "shinka_date",
+            "timezone",
+            "category_id",
+            "message_pair_id",
+            "generated_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserDailyMessage",
+          "method": "create",
+          "limit": null,
+          "fields": null,
+          "rows": null,
+          "bytes": 250
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "rows": 1,
+          "bytes": 295
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "consent_status",
+            "consent_version",
+            "granted_at",
+            "withdrawn_at"
+          ],
+          "rows": 1,
+          "bytes": 164
+        },
+        {
+          "entity": "HealthDataDeletionJob",
+          "method": "filter",
+          "limit": 1,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "protection_event_id",
+            "job_status",
+            "requested_at",
+            "started_at",
+            "completed_at",
+            "retry_count",
+            "last_retry_at",
+            "error_code"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "user_id",
+            "shinka_date",
+            "timezone",
+            "category_id",
+            "message_pair_id",
+            "generated_at"
+          ],
+          "rows": 1,
+          "bytes": 215
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "rows": 1,
+          "bytes": 295
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "consent_status",
+            "consent_version",
+            "granted_at",
+            "withdrawn_at"
+          ],
+          "rows": 1,
+          "bytes": 164
+        },
+        {
+          "entity": "HealthDataDeletionJob",
+          "method": "filter",
+          "limit": 1,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "protection_event_id",
+            "job_status",
+            "requested_at",
+            "started_at",
+            "completed_at",
+            "retry_count",
+            "last_retry_at",
+            "error_code"
+          ],
+          "rows": 0,
+          "bytes": 2
+        }
+      ]
+    },
+    {
+      "scenario": "home-reopen",
+      "fixtureRows": {
+        "daily": 1,
+        "periods": 0,
+        "profiles": 1
+      },
+      "auth": 2,
+      "provider": 0,
+      "entityReads": 13,
+      "entityWrites": 0,
+      "sdkBytes": 1187,
+      "responseBytes": 531,
+      "trace": [
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "rows": 1,
+          "bytes": 295
+        },
+        {
+          "entity": "UserPreferences",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone",
+            "theme_code"
+          ],
+          "rows": 1,
+          "bytes": 149
+        },
+        {
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "user_id",
+            "shinka_date",
+            "timezone",
+            "category_id",
+            "message_pair_id",
+            "generated_at"
+          ],
+          "rows": 1,
+          "bytes": 215
+        },
+        {
+          "entity": "MessagePair",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "message_tr",
+            "suggestion_tr",
+            "message_en",
+            "suggestion_en"
+          ],
+          "rows": 1,
+          "bytes": 159
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "rows": 1,
+          "bytes": 295
+        }
+      ]
+    },
+    {
+      "scenario": "calendar-read",
+      "fixtureRows": {
+        "daily": 1,
+        "periods": 0,
+        "profiles": 1
+      },
+      "auth": 2,
+      "provider": 0,
+      "entityReads": 39,
+      "entityWrites": 0,
+      "sdkBytes": 3390,
+      "responseBytes": 363,
+      "trace": [
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "rows": 1,
+          "bytes": 295
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "consent_status",
+            "consent_version",
+            "granted_at",
+            "withdrawn_at"
+          ],
+          "rows": 1,
+          "bytes": 164
+        },
+        {
+          "entity": "HealthDataDeletionJob",
+          "method": "filter",
+          "limit": 1,
+          "fields": [
+            "id",
+            "user_id",
+            "protection_event_id",
+            "job_status",
+            "requested_at",
+            "started_at",
+            "completed_at",
+            "retry_count",
+            "last_retry_at",
+            "error_code"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserHealthConsentEvent",
+          "method": "filter",
+          "limit": 3,
+          "fields": [
+            "id",
+            "user_id",
+            "event_type",
+            "consent_version",
+            "occurred_at"
+          ],
+          "rows": 1,
+          "bytes": 139
+        },
+        {
+          "entity": "UserPreferences",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone",
+            "theme_code"
+          ],
+          "rows": 1,
+          "bytes": 149
+        },
+        {
+          "entity": "UserPeriodRecord",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "user_id",
+            "period_start_date"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserCycleSettings",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "period_duration_days",
+            "initial_cycle_length_days"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "rows": 1,
+          "bytes": 295
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "consent_status",
+            "consent_version",
+            "granted_at",
+            "withdrawn_at"
+          ],
+          "rows": 1,
+          "bytes": 164
+        },
+        {
+          "entity": "HealthDataDeletionJob",
+          "method": "filter",
+          "limit": 1,
+          "fields": [
+            "id",
+            "user_id",
+            "protection_event_id",
+            "job_status",
+            "requested_at",
+            "started_at",
+            "completed_at",
+            "retry_count",
+            "last_retry_at",
+            "error_code"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserHealthConsentEvent",
+          "method": "filter",
+          "limit": 3,
+          "fields": [
+            "id",
+            "user_id",
+            "event_type",
+            "consent_version",
+            "occurred_at"
+          ],
+          "rows": 1,
+          "bytes": 139
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "rows": 1,
+          "bytes": 295
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "consent_status",
+            "consent_version",
+            "granted_at",
+            "withdrawn_at"
+          ],
+          "rows": 1,
+          "bytes": 164
+        },
+        {
+          "entity": "HealthDataDeletionJob",
+          "method": "filter",
+          "limit": 1,
+          "fields": [
+            "id",
+            "user_id",
+            "protection_event_id",
+            "job_status",
+            "requested_at",
+            "started_at",
+            "completed_at",
+            "retry_count",
+            "last_retry_at",
+            "error_code"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserHealthConsentEvent",
+          "method": "filter",
+          "limit": 3,
+          "fields": [
+            "id",
+            "user_id",
+            "event_type",
+            "consent_version",
+            "occurred_at"
+          ],
+          "rows": 1,
+          "bytes": 139
+        },
+        {
+          "entity": "UserPreferences",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "language_code",
+            "notifications_enabled",
+            "notification_time",
+            "timezone",
+            "theme_code"
+          ],
+          "rows": 1,
+          "bytes": 149
+        },
+        {
+          "entity": "UserPeriodRecord",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "user_id",
+            "period_start_date"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserCycleSettings",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "period_duration_days",
+            "initial_cycle_length_days"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "rows": 1,
+          "bytes": 295
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "consent_status",
+            "consent_version",
+            "granted_at",
+            "withdrawn_at"
+          ],
+          "rows": 1,
+          "bytes": 164
+        },
+        {
+          "entity": "HealthDataDeletionJob",
+          "method": "filter",
+          "limit": 1,
+          "fields": [
+            "id",
+            "user_id",
+            "protection_event_id",
+            "job_status",
+            "requested_at",
+            "started_at",
+            "completed_at",
+            "retry_count",
+            "last_retry_at",
+            "error_code"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserHealthConsentEvent",
+          "method": "filter",
+          "limit": 3,
+          "fields": [
+            "id",
+            "user_id",
+            "event_type",
+            "consent_version",
+            "occurred_at"
+          ],
+          "rows": 1,
+          "bytes": 139
+        },
+        {
+          "entity": "UserCalendarAction",
+          "method": "filter",
+          "limit": 3,
+          "fields": null,
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "display_name",
+            "birth_date",
+            "birth_time",
+            "birthplace_geonames_id",
+            "birthplace_name",
+            "birthplace_country_code",
+            "birthplace_latitude",
+            "birthplace_longitude",
+            "sun_sign_code",
+            "account_status"
+          ],
+          "rows": 1,
+          "bytes": 295
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "consent_status",
+            "consent_version",
+            "granted_at",
+            "withdrawn_at"
+          ],
+          "rows": 1,
+          "bytes": 164
+        },
+        {
+          "entity": "HealthDataDeletionJob",
+          "method": "filter",
+          "limit": 1,
+          "fields": [
+            "id",
+            "user_id",
+            "protection_event_id",
+            "job_status",
+            "requested_at",
+            "started_at",
+            "completed_at",
+            "retry_count",
+            "last_retry_at",
+            "error_code"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserHealthConsentEvent",
+          "method": "filter",
+          "limit": 3,
+          "fields": [
+            "id",
+            "user_id",
+            "event_type",
+            "consent_version",
+            "occurred_at"
+          ],
+          "rows": 1,
+          "bytes": 139
+        }
+      ]
+    },
+    {
+      "scenario": "pattern-themes",
+      "fixtureRows": {
+        "daily": 1,
+        "periods": 0,
+        "profiles": 1
+      },
+      "auth": 2,
+      "provider": 0,
+      "entityReads": 18,
+      "entityWrites": 0,
+      "sdkBytes": 2130,
+      "responseBytes": 534,
+      "trace": [
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id"
+          ],
+          "rows": 1,
+          "bytes": 17
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        },
+        {
+          "entity": "UserPreferences",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "timezone"
+          ],
+          "rows": 1,
+          "bytes": 70
+        },
+        {
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "limit": 4001,
+          "fields": [
+            "id",
+            "user_id",
+            "shinka_date",
+            "timezone",
+            "category_id",
+            "generated_at"
+          ],
+          "rows": 1,
+          "bytes": 178
+        },
+        {
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "limit": 1,
+          "fields": [
+            "id",
+            "user_id",
+            "shinka_date"
+          ],
+          "rows": 1,
+          "bytes": 65
+        },
+        {
+          "entity": "MessageCategoryLookup",
+          "method": "filter",
+          "limit": 7,
+          "fields": [
+            "id",
+            "category_code",
+            "display_name_tr",
+            "display_name_en"
+          ],
+          "rows": 6,
+          "bytes": 947
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id"
+          ],
+          "rows": 1,
+          "bytes": 17
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        }
+      ]
+    },
+    {
+      "scenario": "pattern-lunar",
+      "fixtureRows": {
+        "daily": 1,
+        "periods": 0,
+        "profiles": 1
+      },
+      "auth": 2,
+      "provider": 0,
+      "entityReads": 16,
+      "entityWrites": 0,
+      "sdkBytes": 1891,
+      "responseBytes": 365,
+      "trace": [
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id"
+          ],
+          "rows": 1,
+          "bytes": 17
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        },
+        {
+          "entity": "UserPreferences",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "user_id",
+            "timezone"
+          ],
+          "rows": 1,
+          "bytes": 70
+        },
+        {
+          "entity": "MoonPhaseLookup",
+          "method": "filter",
+          "limit": 33,
+          "fields": [
+            "id",
+            "phase_code",
+            "start_at_utc",
+            "end_at_utc"
+          ],
+          "rows": 8,
+          "bytes": 951
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id"
+          ],
+          "rows": 1,
+          "bytes": 17
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        }
+      ]
+    },
+    {
+      "scenario": "you-read",
+      "fixtureRows": {
+        "daily": 1,
+        "periods": 0,
+        "profiles": 1
+      },
+      "auth": 2,
+      "provider": 0,
+      "entityReads": 18,
+      "entityWrites": 0,
+      "sdkBytes": 1982,
+      "responseBytes": 595,
+      "trace": [
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id"
+          ],
+          "rows": 1,
+          "bytes": 17
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        },
+        {
+          "entity": "UserPreferences",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 233
+        },
+        {
+          "entity": "UserDailyMessage",
+          "method": "filter",
+          "limit": 1,
+          "fields": null,
+          "rows": 1,
+          "bytes": 252
+        },
+        {
+          "entity": "UserHealthConsent",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 248
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id",
+            "role"
+          ],
+          "rows": 1,
+          "bytes": 31
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "UserPrivacyRequest",
+          "method": "filter",
+          "limit": 51,
+          "fields": [
+            "id",
+            "user_id",
+            "request_key",
+            "kind",
+            "status",
+            "requested_at",
+            "grant_at",
+            "consent_version",
+            "completed_at"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "AdminTestOperation",
+          "method": "filter",
+          "limit": 100,
+          "fields": [
+            "id",
+            "operation_id",
+            "actor_id",
+            "target_id",
+            "operation",
+            "status",
+            "stage",
+            "request_id",
+            "preview_hash",
+            "started_at",
+            "progressed_at",
+            "completed_at",
+            "error_code",
+            "checkpoints"
+          ],
+          "rows": 0,
+          "bytes": 2
+        },
+        {
+          "entity": "User",
+          "method": "filter",
+          "limit": 2,
+          "fields": [
+            "id"
+          ],
+          "rows": 1,
+          "bytes": 17
+        },
+        {
+          "entity": "UserProfile",
+          "method": "filter",
+          "limit": 2,
+          "fields": null,
+          "rows": 1,
+          "bytes": 379
+        }
+      ]
+    },
+    {
+      "scenario": "health-history-10",
+      "fixtureRows": 10,
+      "auth": 0,
+      "provider": 0,
+      "entityReads": 1,
+      "entityWrites": 0,
+      "sdkBytes": 152301,
+      "responseBytes": 152310,
+      "trace": [
+        {
+          "entity": "InternalHealthRun",
+          "method": "list",
+          "limit": 20,
+          "fields": null,
+          "rows": 10,
+          "bytes": 152301
+        }
+      ]
+    },
+    {
+      "scenario": "health-history-1000",
+      "fixtureRows": 1000,
+      "auth": 0,
+      "provider": 0,
+      "entityReads": 1,
+      "entityWrites": 0,
+      "sdkBytes": 304631,
+      "responseBytes": 304640,
+      "trace": [
+        {
+          "entity": "InternalHealthRun",
+          "method": "list",
+          "limit": 20,
+          "fields": null,
+          "rows": 20,
+          "bytes": 304631
+        }
+      ]
+    }
+  ],
+  "instrumentSha256": "dc8e76833f50b9263cbfcb23b8f564f3d530c425b6c6b969c613659cd451fa01"
+}

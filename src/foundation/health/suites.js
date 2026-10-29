@@ -16,4 +16,5 @@ export const SUITES = Object.freeze([
   { id: "H14", name: "Notifications & Scheduler", active: true },
   { id: "H15", name: "Resilience & Performance", active: true },
   { id: "H16", name: "Release Gate", active: true },
+  { id: "H17", name: "Data Maintenance & Retention", active: true },
 ]);

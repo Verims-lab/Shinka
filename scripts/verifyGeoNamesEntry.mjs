@@ -15,7 +15,7 @@ export async function verifyGeoNamesRuntimeProbeEntry(root) {
   const client={auth:{me:async()=>role?{id:'fixture-admin',role}:null},get asServiceRole(){throw new Error('no entity access in probe');}};
   const imports={
     "../../shared/userLifecycle.js":{withUserLifecycle:client=>client},
-    '../../shared/nativeClient.ts':{createNativeClient:()=>client},
+    'npm:@base44/sdk@0.8.54':{createClientFromRequest:()=>client},
     '../../shared/healthPersistence.js':{healthUploadSigner:()=>{throw new Error('health signer accessed by transport probe');}},
     'base44:runtime':{secrets:{get:key=>{assert.equal(role,'admin');assert.equal(key,'GEONAMES_USERNAME');reads++;return currentValue;}}},
     '../../shared/internalAuthorization.js':{handleInternalRequest},

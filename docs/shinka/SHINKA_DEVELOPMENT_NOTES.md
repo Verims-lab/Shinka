@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — native hosted acceptance partial; Health/publish/device closure open
-**Current BuildMarker:** Buildmarker-050
-**Last Updated:** 2026-10-28
+**Current BuildMarker:** Buildmarker-051
+**Last Updated:** 2026-10-29
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 051 — Core Reliability & Performance
+
+051 audit reproduces stale Pattern data on kept-tab return (PU08 failed before fix), undefined historic build evidence aliases, and excessive full Health-index payload in recent history reads. Fixes preserve existing controllers, security boundaries and visuals. HR01–HR07 cover retention, pagination, interruptions/lost ACK, shared files, authority and payload. PF03 passes 100 fault/recovery cycles; initial failures are retained in reports/core-reliability-051/initial-failures.json. Hosted 050/HC-049 latest stored Health: 153 PASS, zero FAIL/BLOCKED; no new hosted Full Health. Hosted 045 cleanup is partial while lifecycle targets remain busy; final schema is not claimed. Detailed final execution/maintenance receipts live with the single milestone report.
+
+Final local evidence: Chromium/WebKit 745/745 each, zero page errors; final HR01–07/ID13 focused passes in both. Local in-app Health 146 PASS/0 FAIL/13 hosted-prerequisite BLOCKED, save/retry/list/private open verified synthetically. 6 cases added/5 updated/0 removed; 17 suites, 185 catalog cases, 159 in-app/12 local/14 external. Actual hosted maintenance: 12/18 daily rows cleaned, 6 blocked, unchanged IDs/assignment/link digests. Health inventory 53 rows/50 file references; new handler returns INVALID_INTERNAL_ACTION on current published 050, so retention remains publication-dependent. Actual BFCache restoration was not observed; no physical/field-performance or intermittent-incident closure claim. [Single milestone report](reports/SHINKA_CORE_RELIABILITY_051.md).
 
 ## 050 — Mobile follow-up
 

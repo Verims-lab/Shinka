@@ -1,0 +1,45 @@
+{
+  "baselineTransitionRunner": {
+    "exit": 1,
+    "transitions": 60,
+    "pageErrors": [],
+    "blocked": [
+      "https://fonts.googleapis.com",
+      "https://media.base44.com"
+    ],
+    "reason": "046 background CDN not in older lab allowed exclusions; timing collected but asset-complete acceptance not established"
+  },
+  "PU08": {
+    "before": "FAIL: kept tab did not refresh on return",
+    "cause": "usePattern onShown only read when themes.value was absent; retained confirmed value suppressed freshness after hidden polling"
+  },
+  "HR05": {
+    "duringDevelopment": "FAIL: duplicate ID inside one inventory page was not rejected",
+    "fix": "Check within-page uniqueness plus strict sorted cursor advancement"
+  },
+  "hostedLedger": {
+    "before": "source undefined · tests undefined · health undefined",
+    "cause": "049/050 writer used *_updated fields; LedgerList only read *_changed; older missing evidence also unlabelled"
+  },
+  "T68": {
+    "duringDevelopment": "FAIL 401/403/500: old fixture exposed list only after history projection switched to filter",
+    "fix": "Fixture asserts actual projected query; unchanged 401/403/200 and one authorized read assertions"
+  },
+  "BFCacheHarness": {
+    "duringDevelopment": "Both full browser runs: product assertions passed, pageErrors from init script sessionStorage on about:blank",
+    "fix": "Evidence init script scoped to the test origin; real navigation retained, no suppression of application errors"
+  },
+  "IncompleteRetentionReview": {
+    "duringReview": "INCOMPLETE with completed_at could be considered completed",
+    "fix": "Explicitly protected; HR01 regression includes this combination"
+  },
+  "DataMeasurementFixture": {
+    "initial": "Baseline fixture lacked list",
+    "fix": "Same instrument models SDK list as an unfiltered sort/limit/offset read in both versions; no application code shim"
+  },
+  "NativeTimestampEvidence": {
+    "observation": "Hosted list: 20 of 20 native created_date values omitted timezone; 20 canonical completed_at values had explicit timezone.",
+    "correction": "Do not use native age or append Z. Retention orders valid completed_at; incomplete/unknown report times and IDs are protected. Writer drain and explicit recovery IDs are required separately.",
+    "regression": "HR01: UTC/offset, zone-less/missing/invalid completion time, INCOMPLETE with completed_at, missing run ID; native metadata remains unchanged."
+  }
+}

@@ -6,9 +6,14 @@ import { DOMAIN_ENTITIES } from "./domainContract.js";
 import { CONTENT_ENTITY_NAMES } from "./contentStateContract.js";
 import { healthReadDiagnostic, healthReadError } from './healthReadDiagnostics.js';
 import { dailyReferenceMigration } from './dailyReferenceMigration.js';
+import { healthRetention } from './healthRetention.js';
 
 // Called only inside handleInternalRequest, after server auth.me() succeeds.
 export async function internalHealthOperation(client, body, {geoNamesTransportProbe=null, uploadSigner=null}={}) {
+  if (body.action === 'healthRetention') {
+    if (Object.keys(body).some(key=>!['action','request'].includes(key))) throw new InternalError('INVALID_REQUEST',400);
+    return healthRetention(client,body.request);
+  }
   if (body.action === 'dailyReferenceMigration') {
     if (Object.keys(body).some(key => !['action','request'].includes(key))) throw new InternalError('INVALID_REQUEST',400);
     if (client.getConfig?.().appId !== '6ad5190f4845d4e3af03b420') throw new InternalError('MIGRATION_APP_MISMATCH',409);
@@ -27,7 +32,11 @@ export async function internalHealthOperation(client, body, {geoNamesTransportPr
   }
   const service = client.asServiceRole;
   const store = service.entities.InternalHealthRun;
-  if (body.action === "list") return { runs: await store.list("-created_date", 20) };
+  // History cards never consume full case indexes/digests or native identity
+  // metadata. Keep the existing bounded recent list; maintenance inventories
+  // every page independently and never treats this preview as complete.
+  if (body.action === "list") return { runs: await store.filter({},"-created_date",20,0,
+    ['id','build_marker','scope','status','passed','failed','warnings','blocked','not_applicable','completed_at','report_file_uri']) };
   if (body.action === "report") {
     if (typeof body.runId !== "string" || !/^[a-zA-Z0-9_-]{1,100}$/.test(body.runId)) throw new InternalError("INVALID_REQUEST", 400);
     const run = await store.get(body.runId);

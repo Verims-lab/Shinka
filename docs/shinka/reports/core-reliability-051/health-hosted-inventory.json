@@ -1,0 +1,384 @@
+{
+  "appId": "6ad5190f4845d4e3af03b420",
+  "source": "BASE44_DASHBOARD_SCROLL_COMPLETE",
+  "declaredCount": 53,
+  "observedUniqueRuns": 53,
+  "allFilesNamed": false,
+  "uniqueFiles": 50,
+  "rows": [
+    {
+      "run_id": "e5c35e3e-9239-4241-9ed7-9a9442665942",
+      "build": "Buildmarker-050",
+      "catalog": "HC-049.0",
+      "completed": "Oct 28, 2026, 9:05 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "d81ae02f-c348-4089-b467-43794eefffb2",
+      "build": "Buildmarker-049",
+      "catalog": "HC-048.0",
+      "completed": "Oct 28, 2026, 8:26 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "7b316ca9-2636-4556-9909-aecf70c86418",
+      "build": "Buildmarker-049",
+      "catalog": "HC-048.0",
+      "completed": "Oct 28, 2026, 8:06 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "5e0b6013-e48b-4a97-aa4e-7e649689a3ed",
+      "build": "Buildmarker-048",
+      "catalog": "HC-047.0",
+      "completed": "Oct 28, 2026, 7:17 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "d9a1bee4-1844-4632-8109-5823b2a9bc27",
+      "build": "Buildmarker-047",
+      "catalog": "HC-046.0",
+      "completed": "Oct 28, 2026, 5:31 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "65fcdefe-c4c8-43a0-8bc5-a0d34ffd2821",
+      "build": "Buildmarker-046",
+      "catalog": "HC-045.0",
+      "completed": "Oct 28, 2026, 4:44 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "d3649232-2d83-4415-a741-5ce090c41424",
+      "build": "Buildmarker-044",
+      "catalog": "HC-043.0",
+      "completed": "Oct 28, 2026, 3:11 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "a2e403b9-fb64-4ef1-9752-2b923be26126",
+      "build": "Buildmarker-044",
+      "catalog": "HC-043.0",
+      "completed": "Oct 28, 2026, 2:37 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "7e856631-fd30-4419-82d7-5ffa43f32a3e",
+      "build": "Buildmarker-043",
+      "catalog": "HC-042.0",
+      "completed": "Oct 28, 2026, 1:45 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "205f4013-89eb-4e53-a5ea-3d3cecb609d5",
+      "build": "Buildmarker-042",
+      "catalog": "HC-041.0",
+      "completed": "Oct 28, 2026, 1:34 AM",
+      "status": "READY"
+    },
+    {
+      "run_id": "f3c7e64f-1b6d-4b9c-850a-72f8337eb6f2",
+      "build": "Buildmarker-041",
+      "catalog": "HC-040.0",
+      "completed": "Oct 28, 2026, 12:42 AM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "462e02ab-d7f6-4830-944c-632ac4843b84",
+      "build": "Buildmarker-040",
+      "catalog": "HC-040.0",
+      "completed": "Oct 28, 2026, 12:00 AM",
+      "status": "READY"
+    },
+    {
+      "run_id": "e12bb292-16d3-48fd-a730-d2f364b060b3",
+      "build": "Buildmarker-040",
+      "catalog": "HC-040.0",
+      "completed": "Oct 27, 2026, 11:52 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "b2e7df4c-b449-4977-8466-ab9b84dfa35d",
+      "build": "Buildmarker-038",
+      "catalog": "HC-038.0",
+      "completed": "Oct 27, 2026, 9:45 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "0de118e8-69ed-4a38-86cb-cd3a8d8376e2",
+      "build": "Buildmarker-035",
+      "catalog": "HC-035.0",
+      "completed": "Oct 27, 2026, 11:32 AM",
+      "status": "READY"
+    },
+    {
+      "run_id": "e6dfc9e8-77e7-4b8f-a7e1-c2a9ddaf6c8b",
+      "build": "Buildmarker-034",
+      "catalog": "HC-034.0",
+      "completed": "Oct 26, 2026, 7:13 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "4daf3a37-b7aa-45e7-a603-a0119079b0a0",
+      "build": "Buildmarker-034",
+      "catalog": "HC-034.0",
+      "completed": "Oct 26, 2026, 6:52 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "4528c6f4-f6d7-455d-b5fb-37e9a7b271d9",
+      "build": "Buildmarker-033",
+      "catalog": "HC-033.0",
+      "completed": "Oct 26, 2026, 12:06 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "ba042768-f6a6-46b1-8e66-03fe75262803",
+      "build": "Buildmarker-033",
+      "catalog": "HC-033.0",
+      "completed": "Oct 23, 2026, 9:43 AM",
+      "status": "READY"
+    },
+    {
+      "run_id": "e1276998-cabe-4764-8ed4-3cfccce50eb7",
+      "build": "Buildmarker-032",
+      "catalog": "HC-032.0",
+      "completed": "Oct 22, 2026, 11:55 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "b112a764-6b2c-44ae-ae29-becc3c83fa22",
+      "build": "Buildmarker-031",
+      "catalog": "HC-031.0",
+      "completed": "Oct 22, 2026, 9:33 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "02712637-a68a-4f1e-a995-acf42ba55089",
+      "build": "Buildmarker-030",
+      "catalog": "HC-030.0",
+      "completed": "Oct 22, 2026, 6:42 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "8f3c9cd6-87fc-4283-98e4-5e33c098b656",
+      "build": "Buildmarker-028",
+      "catalog": "HC-028.0",
+      "completed": "Oct 22, 2026, 3:42 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "f27e6d5f-3f8b-4c5f-93d4-f03000cd31db",
+      "build": "Buildmarker-027",
+      "catalog": "HC-027.0",
+      "completed": "Oct 22, 2026, 2:05 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "9149fe79-5b2d-4dab-9da3-c2318db56098",
+      "build": "Buildmarker-027",
+      "catalog": "HC-027.0",
+      "completed": "Oct 22, 2026, 1:37 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "5ef6fae5-157a-4989-9ddd-4b7e3eb1d51a",
+      "build": "Buildmarker-026",
+      "catalog": "HC-026.0",
+      "completed": "Oct 21, 2026, 2:47 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "ee2030f2-3481-44ec-bf9f-045c47204eea",
+      "build": "Buildmarker-025",
+      "catalog": "HC-025.0",
+      "completed": "Oct 21, 2026, 1:03 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "4b518113-02f1-4db1-9693-f0a02fbeecb8",
+      "build": "Buildmarker-024",
+      "catalog": "HC-024.0",
+      "completed": "Oct 21, 2026, 12:06 PM",
+      "status": "BLOCKED"
+    },
+    {
+      "run_id": "6eb7979f-e9de-4683-aca0-6dbc036f7a18",
+      "build": "Buildmarker-022",
+      "catalog": "HC-022.0",
+      "completed": "Oct 21, 2026, 10:14 AM",
+      "status": "READY"
+    },
+    {
+      "run_id": "d09503f9-4f78-4088-a4ea-65d592265dd7",
+      "build": "Buildmarker-019",
+      "catalog": "HC-019.0",
+      "completed": "Oct 21, 2026, 12:56 AM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "2b52f8a6-cf46-4a5e-9b7d-885e25e1528a",
+      "build": "Buildmarker-019",
+      "catalog": "HC-019.0",
+      "completed": "Oct 21, 2026, 12:56 AM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "780aebf1-ff0b-4a6d-8c20-12b746509d53",
+      "build": "Buildmarker-018",
+      "catalog": "HC-018.0",
+      "completed": "Oct 20, 2026, 11:44 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "59015b18-04e6-4b3b-8e44-1d5de19e142f",
+      "build": "Buildmarker-018",
+      "catalog": "HC-018.0",
+      "completed": "Oct 20, 2026, 11:43 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "6cf22904-4781-46ae-a54e-81fa68ebb93e",
+      "build": "Buildmarker-017",
+      "catalog": "HC-017.0",
+      "completed": "Oct 20, 2026, 10:53 PM",
+      "status": "BLOCKED"
+    },
+    {
+      "run_id": "afe63dea-b8ce-4ed8-935c-068f7a0db15a",
+      "build": "Buildmarker-016",
+      "catalog": "HC-016.1",
+      "completed": "Oct 20, 2026, 10:14 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "74407af8-3c6f-4ead-a844-2980376f767c",
+      "build": "Buildmarker-016",
+      "catalog": "HC-016.1",
+      "completed": "Oct 20, 2026, 10:09 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "62007d09-7694-423a-8708-2a44d9328270",
+      "build": "Buildmarker-016",
+      "catalog": "HC-016.1",
+      "completed": "Oct 20, 2026, 10:05 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "d1969659-8c04-451f-833b-91efb25c2e7b",
+      "build": "Buildmarker-016",
+      "catalog": "HC-016.0",
+      "completed": "Oct 20, 2026, 8:54 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "6dbd1636-9025-4ef0-a272-e0f2eeac1daa",
+      "build": "Buildmarker-013",
+      "catalog": "HC-013.0",
+      "completed": "Oct 20, 2026, 3:59 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "b66243b7-4b9e-4e78-bd40-22e2cc0faabb",
+      "build": "Buildmarker-011",
+      "catalog": "HC-011.0",
+      "completed": "Oct 20, 2026, 9:57 AM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "4ef698d6-3de7-4b4a-870e-862578fde0af",
+      "build": "Buildmarker-009",
+      "catalog": "HC-009.0",
+      "completed": "Oct 20, 2026, 1:31 AM",
+      "status": "READY"
+    },
+    {
+      "run_id": "77c87dfc-658c-4726-8397-b58c9e2dc5da",
+      "build": "Buildmarker-008",
+      "catalog": "HC-007.0",
+      "completed": "Oct 20, 2026, 12:48 AM",
+      "status": "READY"
+    },
+    {
+      "run_id": "594778f4-e2c3-4ae1-95a6-1f568283a7c4",
+      "build": "Buildmarker-008",
+      "catalog": "HC-007.0",
+      "completed": "Oct 19, 2026, 8:56 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "0b5fec78-a1e0-4c76-9b59-944eab03feed",
+      "build": "Buildmarker-008",
+      "catalog": "HC-007.0",
+      "completed": "Oct 19, 2026, 8:13 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "f8354578-991c-49a3-bf73-0f04194eadb2",
+      "build": "Buildmarker-008",
+      "catalog": "HC-007.0",
+      "completed": "Oct 19, 2026, 7:18 PM",
+      "status": "READY"
+    },
+    {
+      "run_id": "4957630e-2a54-445f-bd20-3639dfc1e5f3",
+      "build": "Buildmarker-008",
+      "catalog": "HC-007.0",
+      "completed": "Oct 19, 2026, 7:01 PM",
+      "status": "SCOPE_PASS"
+    },
+    {
+      "run_id": "e38c4038-e292-4cfd-9ead-1cf7ac26b7f0",
+      "build": "Buildmarker-008",
+      "catalog": "HC-007.0",
+      "completed": "Oct 19, 2026, 6:58 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "c70d4837-249b-4659-9a5f-5cf8599553d5",
+      "build": "Buildmarker-008",
+      "catalog": "HC-006.0",
+      "completed": "Oct 19, 2026, 6:27 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "4432c5c3-50a1-4cd5-b01d-bf57d2a5160e",
+      "build": "Buildmarker-008",
+      "catalog": "HC-006.0",
+      "completed": "Oct 19, 2026, 6:03 PM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "d6de41d5-6be4-4504-ae39-dfcd28bcbc7c",
+      "build": "Buildmarker-007",
+      "catalog": "HC-005.0",
+      "completed": "Oct 19, 2026, 1:00 AM",
+      "status": "NOT_READY"
+    },
+    {
+      "run_id": "93ea21f0-9235-4131-839f-e01ad9ededd6",
+      "build": "Buildmarker-006",
+      "catalog": "HC-004.0",
+      "completed": "Oct 19, 2026, 12:25 AM",
+      "status": "READY"
+    },
+    {
+      "run_id": "e9d2ba23-f23d-42d9-ab28-730b275e06fe",
+      "build": "Buildmarker-005",
+      "catalog": "HC-004.0",
+      "completed": "Oct 19, 2026, 12:09 AM",
+      "status": "READY"
+    },
+    {
+      "run_id": "595e23fd-d7bc-4b1b-a5fe-8d212454d5db",
+      "build": "Buildmarker-004",
+      "catalog": "HC-003.0",
+      "completed": "Oct 18, 2026, 11:29 PM",
+      "status": "NOT_READY"
+    }
+  ],
+  "deletedRows": 0,
+  "deletedFiles": 0,
+  "reason": "NEW_RETENTION_HANDLER_REQUIRES_OWNER_PUBLICATION_AND_DRAIN; no verified SDK private-file deletion"
+}

@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-046",
-    "package_name": "Unified section backgrounds",
-    "package_type": "UI_UPDATE",
-    "created_at": "2026-10-28T13:40:00Z",
-    "health_catalog_version": "HC-045.0",
-    "short_summary": "Single fixed SectionBackdrop per section; shared watercolor for Home/Calendar/Pattern/You, onboarding moon; native-size CDN derivatives; neutral unresolved state.",
-    "full_health_status": "NOT_RUN_HOSTED_ACCEPTANCE_PENDING",
-    "notes": "Health add 1/update 1/delete 0 (H13-020 added, H05-009 approves 046). Browser tests NOT_RUN (no Playwright browser). No live Full Health/Security scan/publish. 045 compatibility follow-up: four physical-only optional daily text fields now committed in Test; new writes remain ID-only. No new package, hosted cleanup/Health/main publish; see SHINKA_ID_MODEL_045.md. Follow-up affected controls: Chromium/WebKit 76/76 each; 27-schema stage/quality/performance PASS. H04-007 adds D23; HC12 046 policy alignment; initial failure retained."
-  },
-  {
     "build_marker": "Buildmarker-047",
     "package_name": "Onboarding heading and inner name label corrections",
     "package_type": "UI_CHANGE",
@@ -61,5 +51,19 @@ export default [
     "health_cases_updated": true,
     "docs_aligned": true,
     "notes": "Chromium/WebKit each 735/735 PASS, zero page errors; 25 sheet + 2 Calendar continuity checks per engine. Local Health 140 PASS/13 hosted-prerequisite BLOCKED/0 FAIL; save/list/open verified. All quality/budget gates pass. Original Base44 NOT_RUN and reproduced keyboard/WebKit focus/Calendar feedback failures retained. Health 0 added/4 updated/0 removed. 049 and verified manual theme preserved; no live DB cleanup/Full Health/scan/publish. Physical Android/iOS/wrapper open; active 046–050."
+  },
+  {
+    "build_marker": "Buildmarker-051",
+    "package_name": "Core Reliability & Performance Milestone",
+    "package_type": "AUDIT_FIX",
+    "created_at": "2026-10-29T16:55:15.162531Z",
+    "health_catalog_version": "HC-050.0",
+    "short_summary": "Pattern return freshness, projected Health history, guarded five-report retention, terminal-owner field maintenance and removed unused sidebar; hosted cleanup remains partial.",
+    "full_health_status": "LOCAL_CORE_VERIFIED / HOSTED_050_BASELINE_153_PASS / CLEANUP_PARTIAL",
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "docs_aligned": true,
+    "notes": "One milestone; 745/745 Chromium and WebKit core regression, current execution receipts in reports/core-reliability-051. Existing 050 hosted Health retained; no new live Full Health/scan. Actual 045 cleanup: 12 clean/6 lifecycle-blocked, all 18 assignments retained; optional schema remains. Health retention and narrow completed-owner exception require matching publication. No main merge/publish, notification enabling, new database or closure of deferred 12 findings. Physical/wrapper and actual BFCache acceptance stay open."
   }
 ];

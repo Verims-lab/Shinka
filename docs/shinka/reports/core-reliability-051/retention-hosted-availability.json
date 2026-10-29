@@ -1,0 +1,13 @@
+{
+  "status": 400,
+  "error_code": "INVALID_INTERNAL_ACTION",
+  "stage": "OPERATION",
+  "request_id": "9435ad66-171f-4c3b-ad7e-99dc97d29a0d",
+  "diagnostic": {
+    "code": "INVALID_QUERY",
+    "httpStatus": 400,
+    "stage": "OPERATION",
+    "durationMs": 262,
+    "requestId": "9435ad66-171f-4c3b-ad7e-99dc97d29a0d"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "scope": "HOSTED_EXISTING_ADMIN_FUNCTION_REAL_MUTATION_AND_FULL_PAGED_READBACK",
+  "date": "2026-10-29",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "publishedBuild": "Buildmarker-050",
+  "passes": 7,
+  "inspected": 18,
+  "hasMore": false,
+  "before": {
+    "dailyRows": 18,
+    "legacyFields": 72
+  },
+  "after": {
+    "dailyRows": 18,
+    "legacyFields": 24,
+    "verifiedCleanRows": 12,
+    "blockedRows": 6
+  },
+  "verifyClean": false,
+  "status": "PARTIAL_LIFECYCLE_BLOCKED",
+  "allNativeIdsPreserved": true,
+  "allAssignmentAndLinkDigestsPreserved": true,
+  "notificationLinksBeforeAndAfter": 0,
+  "initialReviewDigest": "7a4dddeeb2e87e9be4cab206d867e908a2a4befdf8fa99d03d1832c3614e35db",
+  "finalReviewDigest": "34de149d74556b8442c5f81fc581bc00f521c6fb9257543f614bfe6be7930494",
+  "blockedCode": "MIGRATION_TARGET_BUSY",
+  "blockedIds": [
+    "6ad8ae49811e2b9afbdc4544",
+    "6ada2241e9990ebcdc3b7cec",
+    "6adb023baf237ce41dd45acf",
+    "6ae0888743768610b8c0cca6",
+    "6ae112680ad0f469ce0782c2",
+    "6ae1ee8813eb98df6bf854d4"
+  ],
+  "protectedAccountDailyId": "6ae36b3847522a9b45cbdcff",
+  "protectedAccountHomeAfter": "REAL_TWO_CARDS_READY_SAME_NATIVE_DAILY_ID",
+  "finalSchemaApplied": false,
+  "lifecycleGuardsBypassed": false,
+  "rowDeletions": 0,
+  "remainingOwnerLifecycleEvidence": {
+    "source": "Dashboard owner/date rows joined to complete seven-operation inventory",
+    "activeDeletionDailyRows": 5,
+    "activeDeletionOwners": 3,
+    "completedDeletionDailyRows": 1,
+    "completedDeletionOwners": 1,
+    "earlierFourTwoEstimate": "Corrected after row-level owner join",
+    "localFix": "Terminal DELETE_USER+COMPLETED requires actual native User absence; active deletion remains denied; no tombstone modification"
+  }
+}

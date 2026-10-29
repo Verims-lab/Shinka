@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** ACTIVE — historical hosted readiness retained; current hosted acceptance pending
-**Current BuildMarker:** Buildmarker-050
-**Last Updated:** 2026-10-28
+**Current BuildMarker:** Buildmarker-051
+**Last Updated:** 2026-10-29
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
-**Scope:** Test branch only. No main merge/publish, new external service, real user reset/delete, data migration or paid resource.
+**Scope:** Test delivery; 051 authorizes targeted hosted observation and reviewed historical maintenance on the named existing app. No agent main merge/publish, new external service or paid resource.
 
 
+
+## 051 — Core Reliability & Performance
+
+051 maintenance uses the existing authenticated Base44 Test Function surface: internalHealth {action:dailyReferenceMigration,request:{action:dryRun|applyBatch|verify,...}}. Fresh reviewed digests and ≤25 literal IDs; verify all pages and preserve assignment/link fingerprints. MIGRATION_TARGET_BUSY is a real lifecycle blocker, not permission to cancel/reset/delete its owner. Keep optional compatibility schema until every row verifies. The new Test-only healthRetention dispatch follows dryRun → reviewed applyBatch → verify with protected_run_ids and explicit writers_drained:true. Pause/drain Health writers first, retain all pending recovery run IDs, and resume via re-dryRun of the same selected IDs. It deletes only eligible InternalHealthRun rows; private files remain inventoried but untouched pending a verified platform method. Publish shared/module/entry/frontend together through the owner workflow before invoking new actions.
+
+Current 051 hosted facts supersede historical 045/048/049 pending counts below: authorized web cleanup ran, 12 rows verified clean and six lifecycle-blocked; final verify is false. New healthRetention dryRun is unavailable on published 050 (400 INVALID_INTERNAL_ACTION, safe request receipt stored). 051 also fixes the terminal deleted-owner exception; publish complete shared/entry/frontend graph before retry. Active deletion jobs remain separate resume/investigation prerequisites, never silently cancelled by migration. No final schema push until all pages verify clean.
 
 ## 049 — Web maintenance handoff supersedes CLI-only cleanup
 
@@ -20,7 +26,7 @@ Owner merges Test and waits for full GitHub sync of applicationSession, onboardi
 
 Base44 remains the only product data authority. The current manual theme contract is documented in UI_UX and architecture. After two CLI `whoami` attempts required login, the owner explicitly requested local theme delivery while live cleanup waits. No app/admin/published-source/drain verification or row inventory was obtained; no hosted mutation occurred. Preserve the optional four-field compatibility schema and current generator/inspector/D23 contract. `prepareSchemaStage final` remains only a conditional candidate, not the checked-in final phase. Actual cleanup is **0 inspected / 0 cleaned / unknown remaining; full verify NOT_RUN**. Next authorized continuation starts with usable CLI access and full read-only prerequisites, then all-page dryRun, reviewed sequential ≤25-ID batches and complete assignment/link-preserving verify. Owner still owns main/sync/publish and any eventual final schema deployment. [045 actual continuation](reports/SHINKA_ID_MODEL_045.md) · [048 report](reports/SHINKA_THEME_CLEANUP_048.md).
 
-## 045 — ID-content rollout (current; prepared, not executed)
+## 045 — ID-content rollout (historical preparation)
 
 Test now contains the publishable 045 compatibility schema: four legacy daily text fields are optional, with no defaults, while all new writes remain assignment-only and reads use current MessagePair. No intermediate commit/schema creation is left to the owner. Main's later 046 section backgrounds and HC-045.0 remain intact; this continuation creates no new package or catalog version. Merge this Test tree through the existing owner flow; verify all 27 schemas, then the complete native entry/shared graph, then matching frontend publication. Keep scheduler disabled. No live cleanup/Health/publish occurred.
 

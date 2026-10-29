@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-050
+**Current BuildMarker:** Buildmarker-051
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
-**Last Updated:** 2026-10-28
+**Last Updated:** 2026-10-29
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
 **External Verification Required:** All rows marked UNVERIFIED.
+
+## 051 — Core Reliability & Performance
+
+Health retention requires fresh native admin, unique ACTIVE profile, lifecycle and fixed app ID. Reviewed digest/≤25 explicit IDs are mandatory. Before apply the operator must stop/drain Health save writers and enumerate every open recovery run in protected_run_ids (including old in-memory retries); writers_drained is an operator assertion, not a platform fence. If this cannot be established, use dryRun only. Incomplete/unknown-report-time or ID rows are protected. Native metadata is not an age or activity authority: the 20-row hosted sample has zone-less created_date and explicit-zone completed_at. Order reports by canonical completed_at; safety depends on explicit writer drain and recovery-ID inventory, never guessed native timezone or report age. Private URIs remain server-side in maintenance output; only counts/fingerprints leave it. The installed SDK has no verified private-file delete method, so filesDeleted=0 and deletion remains NOT_SUPPORTED_BY_VERIFIED_SDK. No filesystem/undocumented endpoint fallback. Shared retained references are never deleted. Existing deferred 12 backend findings remain open.
+
+051 internalHealth uses the server SDK plus fresh native actor lifecycle authorization rather than the generic product-write wrapper. Its closed maintenance modules enforce their own current admin/ACTIVE/app/target predicates; no arbitrary entity/patch is accepted. The sole daily exception permits the four-field unset for a COMPLETED DELETE_USER tombstone only when the native User is absent. Active operations, recreated native identity and privacy restrictions still deny it; ordinary product writes still use nativeClient/withNativeWriteChecks. Rechecks are not an atomic fence. ID13 and actual TS-entry tests cover this boundary.
 
 ## 049 — narrow web maintenance and opening diagnostics
 

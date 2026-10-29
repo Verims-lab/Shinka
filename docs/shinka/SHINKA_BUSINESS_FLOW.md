@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-050
-**Last Updated:** 2026-10-28
+**Current BuildMarker:** Buildmarker-051
+**Last Updated:** 2026-10-29
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
@@ -12,6 +12,12 @@
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 
+
+## 051 — Core Reliability & Performance
+
+Onboarding → persisted first Shinka → Home and the existing Calendar same-intent/unknown-result flow remain authoritative. Returning to Pattern refreshes both read-only sections without generating an assignment. Confirmed content may remain visible during refresh; retained visibility and freshly confirmed content are distinct measurement milestones. Health maintenance is not a product/user deletion flow.
+
+051 ordinary user flow and preferences remain unchanged. Retained Pattern becomes fresh on tab return without clearing confirmed cards. Historical daily-field maintenance is not account deletion and cannot unblock an active deletion/reset. Completed deletion permits maintenance only after native identity absence; retained assignments and tombstones survive. Health INCOMPLETE/recovery runs stay protected.
 
 ## 046 — Section backgrounds
 Visual-only change. No flow, data, consent or navigation behavior changes; the backdrop follows the rendered section and never blocks interaction.

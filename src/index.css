@@ -4,8 +4,6 @@
 @import "./styles/mobile.css";
 @import "./styles/accessibility.css";
 @source "./";
-/* Unused generated sidebar has no importer; exclude its template-only classes. */
-@source not "./components/ui/sidebar.jsx";
 @source "../index.html";
 @plugin "tailwindcss-animate";
 

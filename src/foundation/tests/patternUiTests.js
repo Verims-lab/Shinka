@@ -13,6 +13,20 @@ async function probe(run) {
 }
 /** @type {import('./testTypes').FoundationTest[]} */
 export const PATTERN_UI_TESTS=[
+ ['PU08','Returning to a kept Pattern tab refreshes stale sections while retaining confirmed cards',async()=>probe(async(root,host)=>{
+   const clock=createTestClock(),runtime={...clock.timers,now:clock.now},f=patternFixture();f.tables.UserDailyMessage.push(patternRow('2026-10-19'));
+   let hold=false,calls=0;const releases=[];
+   const request=async section=>{calls++;if(hold)await new Promise(resolve=>releases.push(resolve));return f.request(section);};
+   const render=active=>root.render(createElement(Pattern,{language:'en',request,runtime,active}));
+   try {
+     render(true);await until(()=>host.querySelector('[data-theme-id]')&&host.querySelector('[data-lunar-summary]'));
+     render(false);await pause();await clock.advance(300000);check(calls===2,'hidden tab polled');
+     hold=true;render(true);await pause();check(calls===4,'kept tab did not refresh on return');
+     check(host.querySelector('[data-theme-id]')&&host.querySelector('[data-lunar-summary]'),'return blanked cards');
+     hold=false;releases.splice(0).forEach(fn=>fn());await until(()=>[...host.querySelectorAll('[data-pattern-section]')].every(el=>el.getAttribute('aria-busy')==='false'));
+     check(calls===4&&f.state.calls.every(c=>c.method==='filter'));
+   }finally{releases.splice(0).forEach(fn=>fn());clock.dispose();}
+ })],
  ['PU01','Real Pattern TR/EN preserves selected IDs without refetch or writes; active nav and two lunar fields without visible counts',async()=>probe(async(root,host)=>{
    const f=patternFixture();f.tables.UserDailyMessage.push(patternRow('2026-10-19'),patternRow('2026-10-18'),patternRow('2026-10-17','category-1'));let calls=0;
    const counted=section=>{calls++;return f.request(section);};
