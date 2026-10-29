@@ -3,6 +3,7 @@ import { CALENDAR_FUTURE_TESTS } from './calendarFutureTests';
 import { CYCLE_RANGE_TESTS } from './cycleRangeTests';
 import { check } from './dataModelTests';
 import { calendarFixture, CALENDAR_NOW } from './calendarFixture';
+import { requireAuthenticatedUser } from '../../../base44/shared/internalAuthorization.js';
 import { calculateCalendar, validatePeriodChange, addCalendarDays, calendarMonthView } from '../../../base44/shared/calendarCalculation.js';
 import { calendarOperation, handleCalendarRequest } from '../../../base44/shared/calendarOperation.js';
 import { planCalendarChange, verifyCalendarCommit } from '../../../base44/shared/calendarState.js';
@@ -12,6 +13,7 @@ import { createCalendarController } from '@/features/calendar/calendarController
 import { calendarRequest } from '@/services/calendarService';
 import { dailyRecordFixture } from './dailyRecordFixture';
 import { dailyMessageOperation } from '../../../base44/shared/dailyMessageOperation.js';
+import { calendarReader } from '../../../base44/shared/base44CalendarReader.js';
 const reject = async (run, code) => { try { await run(); } catch (e) { check(!code || e.code === code, `${code} expected; ${e.code} received`); return; } throw new Error(`Expected ${code}`); };
 const period = (id, date) => ({ id, user_id: 'ownerA', period_start_date: date });
 const read = f => f.request('read');
@@ -20,6 +22,38 @@ export const CALENDAR_TESTS = [
  ...CALENDAR_RECOVERY_TESTS,
  ...CALENDAR_FUTURE_TESTS,
  ...CYCLE_RANGE_TESTS,
+ ['CA24', 'Delayed independent reads overlap only after admission; withdrawal during overlap rejects before publication', async () => {
+   for(const withdrawn of [false,true]) {
+     const f=calendarFixture(), started=new Set();
+     /** @type {() => void} */
+     let release=()=>{throw new Error('gate not initialized');};
+     /** @type {() => void} */
+     let signalStarted=()=>{throw new Error('signal not initialized');};
+     const gate=new Promise(resolve=>{release=()=>resolve(undefined);});
+     const firstStarted=new Promise(resolve=>{signalStarted=()=>resolve(undefined);});
+     for(const name of ['UserPreferences','UserPeriodRecord','UserCycleSettings']) {
+       const entity=f.client.asServiceRole.entities[name],original=entity.filter;
+       entity.filter=async(...args)=>{started.add(name);signalStarted();await gate;return original(...args);};
+     }
+     // Attach rejection handling immediately; all blocked reads are released in
+     // finally even if the scheduling assertion fails. No real timers/network.
+     const principal=await requireAuthenticatedUser(f.client);
+     const result=calendarReader(f.client,principal).snapshot().then(value=>({value,error:null}),error=>({value:null,error}));
+     let overlapped=false,admitted=false;
+     try {
+       await Promise.race([firstStarted,result]);
+       overlapped=started.size===3;
+       admitted=f.calls.some(c=>c.entity==='user_health_consent_event');
+       if(withdrawn)Object.assign(f.rows.user_health_consent[0],{consent_status:'WITHDRAWN',withdrawn_at:CALENDAR_NOW});
+     } finally {release();}
+     const outcome=await result;
+     check(overlapped,'independent bounded reads must not wait on each other');
+     check(admitted,'grant event admission precedes health reads');
+     if(withdrawn)check(outcome.error?.code==='CONSENT_STATE_CHANGED'&&outcome.value===null);
+     else check(!outcome.error&&outcome.value.consent.consent_status==='GRANTED');
+     check(f.calls.every(c=>c.method==='filter'),'read scheduling never writes');
+   }
+ }],
  ['CA01', 'Source 28/5 phases, three future cycles, real/predicted basis and NULL inputs', () => {
    const settings = { period_duration_days: null, initial_cycle_length_days: null };
    const result = calculateCalendar({ periods: [period('p1', '2026-10-01')], settings, today: '2026-10-20' });
@@ -109,7 +143,7 @@ export const CALENDAR_TESTS = [
      f=>{f.rows.user_profile[0].account_status='INACTIVE';},
      f=>{f.rows.health_data_deletion_job.push({id:'job',user_id:'ownerA',job_status:'RETRYING'});},
      f=>{f.rows.user_health_consent_event.length=0;},
-   ]) { const f=calendarFixture(); mutation(f); await reject(()=>f.change('add',{date:'2026-10-01'})); check(!f.rows.user_period_record.length); }
+   ]) { const f=calendarFixture(); mutation(f); await reject(()=>f.change('add',{date:'2026-10-01'})); check(!f.rows.user_period_record.length); check(!f.calls.some(c=>['user_period_record','user_cycle_settings'].includes(c.entity)),'no health reads before admission'); }
    const f=calendarFixture(); f.rows.user_period_record.push({id:'other',user_id:'ownerB',period_start_date:'2026-10-01'});
    check(!(await read(f)).starts.length); await reject(()=>f.change('delete',{period_id:'other'}),'PERIOD_NOT_FOUND'); check(f.rows.user_period_record.length===1);
    f.client.auth.me=async()=>null; await reject(()=>read(f),'AUTH_REQUIRED');

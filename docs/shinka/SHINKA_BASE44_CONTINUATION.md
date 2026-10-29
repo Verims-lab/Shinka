@@ -1,7 +1,7 @@
 # Shinka — Base44 continuation
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
-**Status:** ACTIVE — historical hosted readiness retained; current hosted acceptance pending
+**Status:** ACTIVE — hosted 051 accepted; final schema/files/performance continuation pending
 **Current BuildMarker:** Buildmarker-051
 **Last Updated:** 2026-10-29
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
@@ -10,7 +10,15 @@
 
 
 
-## 051 — Core Reliability & Performance
+## 051 continuation — verified maintenance and measured performance
+
+The owner accepts published 051 / HC-050.0 functional and Full Health evidence (159 PASS, zero FAIL/BLOCKED). Preserve that acceptance and historical failures. This continuation retains Buildmarker-051 and active packages 047–051; HC-050.1 identifies changed assertions without creating a new product package. Live Full Health/Security scan and main/publish were not run. Detailed dated receipts and separate hosted/local limits: [051 continuation](reports/SHINKA_CORE_RELIABILITY_051.md#051-continuation).
+
+The existing app/prod web session, native admin/ACTIVE, 051 frontend and current maintenance entry behavior were verified; full deployed source hash equality was not independently established. CLI login was not requested. Daily cleanup is fully verified (18 clean/0 pending); final 27-schema artifact is prepared locally only. Retention uses the owner-confirmed stopped writers and no open recovery IDs, not an inferred distributed lock. Private live-upload files are absent from editor media-library search; the official platform route is Customer Care, with a private local manifest preserving the five retained references. No guessed deletion endpoint or support message is used.
+
+Owner release remains schema inventory/diff review → matching native entry/shared functions → frontend sync/publish, including calendar and internalHealth/HC-050.1. Re-measure Calendar on that published build; the live before/after in this continuation is maintenance-only on 051/HC-050.0. Notifications/scheduler remain disabled; no SQL or new service.
+
+## 051 — initial delivery (historical evidence retained)
 
 051 maintenance uses the existing authenticated Base44 Test Function surface: internalHealth {action:dailyReferenceMigration,request:{action:dryRun|applyBatch|verify,...}}. Fresh reviewed digests and ≤25 literal IDs; verify all pages and preserve assignment/link fingerprints. MIGRATION_TARGET_BUSY is a real lifecycle blocker, not permission to cancel/reset/delete its owner. Keep optional compatibility schema until every row verifies. The new Test-only healthRetention dispatch follows dryRun → reviewed applyBatch → verify with protected_run_ids and explicit writers_drained:true. Pause/drain Health writers first, retain all pending recovery run IDs, and resume via re-dryRun of the same selected IDs. It deletes only eligible InternalHealthRun rows; private files remain inventoried but untouched pending a verified platform method. Publish shared/module/entry/frontend together through the owner workflow before invoking new actions.
 

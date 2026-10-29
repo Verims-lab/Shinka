@@ -1,0 +1,68 @@
+{
+  "count": 7,
+  "rows": [
+    {
+      "actor_id": "6ad519134845d4e3af03b423",
+      "operation": "DELETE_USER",
+      "operation_id": "c70c7cb3-501a-4b69-a047-ef9124db1714",
+      "request_id": "c70c7cb3-501a-4b69-a047-ef9124db1714",
+      "stage": "VERIFY",
+      "status": "RUNNING",
+      "target_id": "6ae1edebc691b533ca419a18"
+    },
+    {
+      "actor_id": "6ad519134845d4e3af03b423",
+      "operation": "DELETE_USER",
+      "operation_id": "02e12c92-c324-4884-8106-537b7a5269e3",
+      "request_id": "02e12c92-c324-4884-8106-537b7a5269e3",
+      "stage": "VERIFY",
+      "status": "RUNNING",
+      "target_id": "6ae111d7e8ac887d9a9f21c7"
+    },
+    {
+      "actor_id": "6ad519134845d4e3af03b423",
+      "operation": "DELETE_USER",
+      "operation_id": "dda3b0dc-2262-43c0-87b2-5279b887ed86",
+      "request_id": "dda3b0dc-2262-43c0-87b2-5279b887ed86",
+      "stage": "VERIFY",
+      "status": "COMPLETED",
+      "target_id": "6ae08837649a4b8b509c7f48"
+    },
+    {
+      "actor_id": "6ad519134845d4e3af03b423",
+      "operation": "DELETE_USER",
+      "operation_id": "3c11e4d3-5851-4695-ad90-d356bc125d33",
+      "request_id": "3c11e4d3-5851-4695-ad90-d356bc125d33",
+      "stage": "USER",
+      "status": "RUNNING",
+      "target_id": "6ad89de799737cce4b03212d"
+    },
+    {
+      "actor_id": "6ad519134845d4e3af03b423",
+      "operation": "DELETE_USER",
+      "operation_id": "9b17809f-6f45-4b29-b351-763041e90308",
+      "request_id": "9b17809f-6f45-4b29-b351-763041e90308",
+      "stage": "VERIFY",
+      "status": "RUNNING",
+      "target_id": "6ad7163a859d9c9bfc00b4d4"
+    },
+    {
+      "actor_id": "6ad519134845d4e3af03b423",
+      "operation": "DELETE_USER",
+      "operation_id": "3f0a8638-440e-4ea8-a958-285b5e7bfb1e",
+      "request_id": "3f0a8638-440e-4ea8-a958-285b5e7bfb1e",
+      "stage": "VERIFY",
+      "status": "COMPLETED",
+      "target_id": "6ad663a511e0ff23d3ad7a60"
+    },
+    {
+      "actor_id": "6ad519134845d4e3af03b423",
+      "operation": "RESET_ONBOARDING",
+      "operation_id": "closure016_reset_admin_20261020",
+      "request_id": "closure016_reset_admin_20261020",
+      "stage": "DONE",
+      "status": "COMPLETED",
+      "target_id": "6ad519134845d4e3af03b423"
+    }
+  ]
+}

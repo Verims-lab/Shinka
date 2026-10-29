@@ -1,0 +1,136 @@
+{
+  "operations": [
+    {
+      "status": 200,
+      "operation_id": "c70c7cb3-501a-4b69-a047-ef9124db1714",
+      "target_id": "6ae1edebc691b533ca419a18",
+      "state": "COMPLETED",
+      "job_status": "COMPLETED",
+      "stage": "VERIFY",
+      "checkpoints": [
+        "NOTIFICATIONS",
+        "user_cycle_phase_day",
+        "user_cycle_prediction",
+        "user_cycle_settings",
+        "user_period_record",
+        "user_pattern_summary",
+        "user_preferences",
+        "user_profile",
+        "USER",
+        "VERIFY"
+      ],
+      "target_absent": true
+    },
+    {
+      "status": 200,
+      "operation_id": "02e12c92-c324-4884-8106-537b7a5269e3",
+      "target_id": "6ae111d7e8ac887d9a9f21c7",
+      "state": "COMPLETED",
+      "job_status": "COMPLETED",
+      "stage": "VERIFY",
+      "checkpoints": [
+        "NOTIFICATIONS",
+        "user_cycle_phase_day",
+        "user_cycle_prediction",
+        "user_cycle_settings",
+        "user_period_record",
+        "user_pattern_summary",
+        "user_preferences",
+        "user_profile",
+        "USER",
+        "VERIFY"
+      ],
+      "target_absent": true
+    },
+    {
+      "status": 200,
+      "operation_id": "dda3b0dc-2262-43c0-87b2-5279b887ed86",
+      "target_id": "6ae08837649a4b8b509c7f48",
+      "state": "COMPLETED",
+      "job_status": "COMPLETED",
+      "stage": "VERIFY",
+      "checkpoints": [
+        "NOTIFICATIONS",
+        "user_cycle_phase_day",
+        "user_cycle_prediction",
+        "user_cycle_settings",
+        "user_period_record",
+        "user_pattern_summary",
+        "user_preferences",
+        "user_profile",
+        "USER",
+        "VERIFY"
+      ],
+      "target_absent": true
+    },
+    {
+      "status": 200,
+      "operation_id": "3c11e4d3-5851-4695-ad90-d356bc125d33",
+      "target_id": "6ad89de799737cce4b03212d",
+      "state": "COMPLETED",
+      "job_status": "COMPLETED",
+      "stage": "VERIFY",
+      "checkpoints": [
+        "NOTIFICATIONS",
+        "user_cycle_phase_day",
+        "user_cycle_prediction",
+        "user_cycle_settings",
+        "user_period_record",
+        "user_pattern_summary",
+        "user_preferences",
+        "user_profile",
+        "USER",
+        "VERIFY"
+      ],
+      "target_absent": true
+    },
+    {
+      "status": 200,
+      "operation_id": "9b17809f-6f45-4b29-b351-763041e90308",
+      "target_id": "6ad7163a859d9c9bfc00b4d4",
+      "state": "COMPLETED",
+      "job_status": "COMPLETED",
+      "stage": "VERIFY",
+      "checkpoints": [
+        "NOTIFICATIONS",
+        "user_cycle_phase_day",
+        "user_cycle_prediction",
+        "user_cycle_settings",
+        "user_period_record",
+        "user_pattern_summary",
+        "user_preferences",
+        "user_profile",
+        "USER",
+        "VERIFY"
+      ],
+      "target_absent": true
+    },
+    {
+      "status": 200,
+      "operation_id": "3f0a8638-440e-4ea8-a958-285b5e7bfb1e",
+      "target_id": "6ad663a511e0ff23d3ad7a60",
+      "state": "COMPLETED",
+      "job_status": "COMPLETED",
+      "stage": "VERIFY",
+      "checkpoints": [
+        "NOTIFICATIONS",
+        "user_cycle_phase_day",
+        "user_cycle_prediction",
+        "user_cycle_settings",
+        "user_period_record",
+        "user_pattern_summary",
+        "user_preferences",
+        "user_profile",
+        "USER",
+        "VERIFY"
+      ],
+      "target_absent": true
+    }
+  ],
+  "transientReadFailure": {
+    "code": "TEST_STORAGE_RATE_LIMITED",
+    "status": 503,
+    "requestId": "8226a574-b7bc-4155-8467-e59768c613e6",
+    "reconciled": true
+  }
+}

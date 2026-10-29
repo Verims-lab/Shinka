@@ -1,0 +1,63 @@
+{
+  "appId": "6ad5190f4845d4e3af03b420",
+  "publishedUrl": "https://shinka-rhythm-flow.base44.app/",
+  "build": "Buildmarker-051",
+  "catalog": "HC-050.0",
+  "nativeSession": {
+    "status": 200,
+    "data": {
+      "id": "6ad519134845d4e3af03b423",
+      "role": "admin",
+      "privacyRevision": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "authority": "BASE44_NATIVE_V1"
+    }
+  },
+  "nativeReadiness": {
+    "status": 200,
+    "data": {
+      "authority": "BASE44_NATIVE_V1",
+      "strategyVersion": "native-continuation/2",
+      "schemas": [
+        {
+          "name": "AdminTestOperation",
+          "readable": true,
+          "sampledRows": 1
+        },
+        {
+          "name": "UserCalendarAction",
+          "readable": true,
+          "sampledRows": 1
+        },
+        {
+          "name": "InternalHealthRun",
+          "readable": true,
+          "sampledRows": 1
+        },
+        {
+          "name": "UserPrivacyRequest",
+          "readable": true,
+          "sampledRows": 1
+        },
+        {
+          "name": "PrivacyRecoveryReceipt",
+          "readable": true,
+          "sampledRows": 1
+        }
+      ],
+      "daily": "IMMUTABLE_CANDIDATES",
+      "calendar": "OBSERVATIONS_AND_RECEIPTS",
+      "reset": "VERIFIED_STEPS",
+      "deletion": "TARGET_LIFECYCLE_RESUMABLE",
+      "distributedFence": false,
+      "hostedMutationVerified": false
+    }
+  },
+  "userAcceptance": "Functional tests and published Full Health accepted by user; not rerun",
+  "observedLatestHealth": {
+    "completedAt": "2026-10-29T18:34:33.278Z",
+    "passed": 159,
+    "failed": 0,
+    "blocked": 0
+  },
+  "sourceEvidence": "Editor internalHealth entry uses createClientFromRequest + withUserLifecycle; healthRetention module matches 051 visible contract; runtime health-retention/1 responds 200. Full deployed hash parity not exported."
+}

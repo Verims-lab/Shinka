@@ -8,7 +8,7 @@ import { execFileSync } from 'node:child_process';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const hash = value => createHash('sha256').update(value).digest('hex');
 const [destination, baseline = 'origin/main', mode = 'current'] = process.argv.slice(2);
-if (!['current','final','daily-compat'].includes(mode)) throw new Error('Unknown schema stage mode');
+if (!['current','final'].includes(mode)) throw new Error('Unknown schema stage mode; the retired daily-compat overlay must not restore removed fields');
 if (!destination || !path.isAbsolute(destination)) throw new Error('Provide a new absolute output directory and optional reviewed baseline Git ref');
 const output = path.resolve(destination);
 if (output === root || output.startsWith(`${root}${path.sep}`)) throw new Error('Output must be outside the checkout');
@@ -18,15 +18,10 @@ if (names.length !== 27 || !names.includes('AdminTestOperation.jsonc') || !names
 const tracked = new Set(execFileSync('git', ['ls-files', '--', 'base44/entities'], { cwd: root, encoding: 'utf8' }).trim().split('\n'));
 if (names.some(name => !tracked.has(`base44/entities/${name}`))) throw new Error('Stage reviewed new schemas in Git before generating a complete patch');
 const files = await Promise.all(names.map(async name => {
-  let bytes = await fs.readFile(path.join(root, 'base44/entities', name));
+  const bytes = await fs.readFile(path.join(root, 'base44/entities', name));
   if (name === 'UserDailyMessage.jsonc') {
     const schema = JSON.parse(bytes.toString());
-    if (!LEGACY_DAILY_TEXT_FIELDS.every(key=>schema.properties[key]?.type==='string' && !schema.required.includes(key) && !Object.hasOwn(schema.properties[key],'default'))) throw new Error('Expected reviewed optional compatibility schema');
-    if (mode === 'final') {
-      for (const key of LEGACY_DAILY_TEXT_FIELDS) delete schema.properties[key];
-      schema.description = schema.description.replace('045 compatibility: optional legacy text fields retained; physical cleanup NOT verified.', 'Post-cleanup schema candidate; publish only after hosted legacy field absence is verified.');
-      bytes = Buffer.from(JSON.stringify(schema,null,2)+'\n');
-    }
+    if (!LEGACY_DAILY_TEXT_FIELDS.every(key=>!Object.hasOwn(schema.properties,key) && !schema.required.includes(key))) throw new Error('Expected reviewed ID-only schema');
   }
   return { name, bytes, sha256: hash(bytes) };
 }));
@@ -41,9 +36,9 @@ await fs.writeFile(path.join(output, 'schema-stage.patch'), patch);
 await fs.copyFile(path.join(root, 'scripts/base44ReleaseReadiness.ts'), path.join(output, 'readiness.ts'));
 await fs.writeFile(path.join(output, 'manifest.json'), JSON.stringify({
   schema: 'shinka.schema-stage/1', baselineCommit, mode,
-  dailySchemaPhase: mode === 'final' ? 'POST_CLEANUP_CANDIDATE_NOT_VERIFIED' : DAILY_SCHEMA_PHASE,
+  dailySchemaPhase: DAILY_SCHEMA_PHASE,
   hostedCleanupVerified: false,
-  patchScope: 'repository compatibility-schema delta; final mode is a candidate overlay described by manifest hashes, not this patch',
+  patchScope: 'complete repository schema delta; no compatibility overlay; source generation does not reverify hosted data',
   schemaDelta: patch.length > 0, patchSha256: hash(patch),
   files: files.map(({ name, sha256 }) => ({ name, sha256 })),
   includesFunctions: false, includesCredentials: false, executesDeployment: false,

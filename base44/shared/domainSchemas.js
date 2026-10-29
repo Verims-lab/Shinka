@@ -45,18 +45,16 @@ export const IMMUTABLE_ENTITIES = Object.freeze(['user_daily_message','user_heal
 export const PROTECTED_ENTITIES = Object.freeze([...IMMUTABLE_ENTITIES,'data_protection_event','health_data_deletion_job']);
 export const TIMESTAMP_MAPPING = Object.freeze({created_at:'created_date',updated_at:'updated_date',status:'PARTIALLY_VERIFIED',evidence:'2026-10-19 read-only InternalHealthRun metadata: both fields present, UTC offset absent. Product update/immutability/UTC behavior remains LIVE_ENFORCEMENT_REQUIRED.'});
 
-// 045 release bridge: these fields exist ONLY in the physical schema while
-// legacy rows await reviewed cleanup. They never enter the domain/write model.
+// Legacy names remain only for reviewed maintenance/absence verification.
+// 051 hosted cleanup is recorded separately; schema publication is owner-controlled.
 export const DAILY_TEXT_FIELDS = Object.freeze(['message_tr','suggestion_tr','message_en','suggestion_en']);
 export const LEGACY_DAILY_TEXT_FIELDS = Object.freeze(DAILY_TEXT_FIELDS.map(key => `${key}_snapshot`));
-export const DAILY_SCHEMA_PHASE = 'OPTIONAL_LEGACY_FIELDS_CLEANUP_PENDING';
+export const DAILY_SCHEMA_PHASE = 'ID_ONLY_SCHEMA';
 
 export function base44Schema(logical) {
   const spec=DOMAIN_SCHEMAS[logical];
   if(!spec) throw new Error('UNKNOWN_DOMAIN_ENTITY');
-  const legacy = logical === 'user_daily_message';
-  const properties = legacy ? {...spec.properties, ...Object.fromEntries(LEGACY_DAILY_TEXT_FIELDS.map(key=>[key,str({description:'Legacy compatibility only; new writes omit this field and reads resolve MessagePair. Cleanup pending.'})]))} : spec.properties;
-  return {name:physicalName(logical),type:'object',description:`Shinka ${logical}. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.${legacy ? ' 045 compatibility: optional legacy text fields retained; physical cleanup NOT verified.' : ''}`,properties,required:spec.required,
+  return {name:physicalName(logical),type:'object',description:`Shinka ${logical}. SRC-05 v1.2 / SRC-07 v1.2. Optional absent fields mean logical NULL; native timestamps mapped under OD-004. Backend access only.`,properties:spec.properties,required:spec.required,
     // Server reads enforce ACTIVE, consent, owner and audited admin access together.
     // No direct SDK operation may bypass those predicates, including lookup reads.
     rls:{create:false,read:false,update:false,delete:false}};

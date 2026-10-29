@@ -44,8 +44,8 @@ Chromium/WebKit each 735/735 PASS, zero page errors; 25 sheet + 2 Calendar conti
 
 ## Buildmarker-051 — Core Reliability & Performance Milestone (2026-10-29T16:55:15.162531Z)
 
-Pattern return freshness, projected Health history, guarded five-report retention, terminal-owner field maintenance and removed unused sidebar; hosted cleanup remains partial.
+051 continuation: complete reviewed daily/Health row maintenance; prepare final ID-only schema; overlap admitted Calendar reads and preserve stored Health catalog metadata.
 
-Health: HC-050.0. Verification: LOCAL_CORE_VERIFIED / HOSTED_050_BASELINE_153_PASS / CLEANUP_PARTIAL.
+Health: HC-050.1. Verification: OWNER_ACCEPTED_HC050.0_159_PASS / LOCAL_HC050.1_146_PASS_13_BLOCKED_0_FAIL.
 
-One milestone; 745/745 Chromium and WebKit core regression, current execution receipts in reports/core-reliability-051. Existing 050 hosted Health retained; no new live Full Health/scan. Actual 045 cleanup: 12 clean/6 lifecycle-blocked, all 18 assignments retained; optional schema remains. Health retention and narrow completed-owner exception require matching publication. No main merge/publish, notification enabling, new database or closure of deferred 12 findings. Physical/wrapper and actual BFCache acceptance stay open.
+Owner accepted original 051 functional and Full Health result. Continuation: 18/18 daily rows clean with unchanged IDs/assignments/links; 49/54 Health rows removed, latest five retained; 0 files deleted, official platform support pending for 49 old files. Same-ID deletion continuation preserves six tombstones and protected admin. Health delta 0 added/5 updated/0 deleted, same 185 IDs; HC-050.1 only, no new package. Real hosted timing includes one dailyMessage 500 followed by 200; original intermittent cause unresolved. Calendar overlap and final schema not published. No live Full Health/scan or main/publish. Chromium/WebKit 746/746 each, server/schema/quality/budget gates PASS; focused final CA24 PASS. Final receipts in reports/core-reliability-051/closure.

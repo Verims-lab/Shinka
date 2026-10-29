@@ -14,8 +14,9 @@ export function inspectDomainSchemas(root) {
     if(found.length!==1 || found[0].file!==`${physicalName(logical)}.jsonc` || JSON.stringify(found[0].entity)!==JSON.stringify(base44Schema(logical))) mismatches.push(logical);
   }
   const daily = all.find(({entity})=>entity.name==='UserDailyMessage')?.entity;
-  const compatibilityFieldsValid = LEGACY_DAILY_TEXT_FIELDS.every(key=>daily?.properties?.[key]?.type==='string' && !Object.hasOwn(daily.properties[key],'default') && !daily.required.includes(key));
-  return {dailyCompatibility:{phase:DAILY_SCHEMA_PHASE,optionalLegacyFields:[...LEGACY_DAILY_TEXT_FIELDS],valid:compatibilityFieldsValid,cleanupVerified:false,scope:'REPOSITORY_ONLY'},expected:expected.length,present:all.filter(({entity})=>expected.includes(entity.name)).length,unexpected,mismatches,
+  const legacyFieldsAbsent = !!daily && LEGACY_DAILY_TEXT_FIELDS.every(key=>!Object.hasOwn(daily.properties,key) && !daily.required.includes(key));
+  // Source inspection proves the checked-in schema only, never current hosted data.
+  return {dailyCompatibility:{phase:DAILY_SCHEMA_PHASE,optionalLegacyFields:[],valid:legacyFieldsAbsent,cleanupVerified:false,scope:'REPOSITORY_ONLY'},expected:expected.length,present:all.filter(({entity})=>expected.includes(entity.name)).length,unexpected,mismatches,
     internal:all.filter(({entity})=>['InternalHealthRun','AdminTestOperation','UserCalendarAction','UserPrivacyRequest','PrivacyRecoveryReceipt','NotificationSchedule'].includes(entity.name)).length,builtinUserSeparate:all.filter(({entity})=>entity.name==='User').length===1,
     healthHistoryPolicy:all.filter(({entity})=>entity.name==='InternalHealthRun').every(({entity})=>['read','create','update','delete'].every(op=>entity.rls?.[op]===false)),
     testOperationPolicy:all.filter(({entity})=>entity.name==='AdminTestOperation').length===1&&all.filter(({entity})=>entity.name==='AdminTestOperation').every(({entity})=>['read','create','update','delete'].every(op=>entity.rls?.[op]===false)&&!Object.hasOwn(entity,'unique_fields')&&!Object.hasOwn(entity.properties,'birth_date')&&!Object.hasOwn(entity.properties,'payload')),

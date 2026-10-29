@@ -36,7 +36,7 @@ export async function internalHealthOperation(client, body, {geoNamesTransportPr
   // metadata. Keep the existing bounded recent list; maintenance inventories
   // every page independently and never treats this preview as complete.
   if (body.action === "list") return { runs: await store.filter({},"-created_date",20,0,
-    ['id','build_marker','scope','status','passed','failed','warnings','blocked','not_applicable','completed_at','report_file_uri']) };
+    ['id','build_marker','health_catalog_version','scope','status','passed','failed','warnings','blocked','not_applicable','completed_at','report_file_uri']) };
   if (body.action === "report") {
     if (typeof body.runId !== "string" || !/^[a-zA-Z0-9_-]{1,100}$/.test(body.runId)) throw new InternalError("INVALID_REQUEST", 400);
     const run = await store.get(body.runId);

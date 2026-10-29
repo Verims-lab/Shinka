@@ -15,7 +15,13 @@ Common: every user entity owns `user_id` → Base44 User.id (owner from auth con
 
 
 
-## 051 — Core Reliability & Performance
+## 051 continuation — verified maintenance and measured performance
+
+The owner accepts published 051 / HC-050.0 functional and Full Health evidence (159 PASS, zero FAIL/BLOCKED). Preserve that acceptance and historical failures. This continuation retains Buildmarker-051 and active packages 047–051; HC-050.1 identifies changed assertions without creating a new product package. Live Full Health/Security scan and main/publish were not run. Detailed dated receipts and separate hosted/local limits: [051 continuation](reports/SHINKA_CORE_RELIABILITY_051.md#051-continuation).
+
+All 18 hosted UserDailyMessage rows now verify READY with zero legacy fields and zero pending/broken references. Exactly 6 residual rows/24 fields were cleaned in this continuation; native IDs, assignment digests and NotificationDelivery link digests match before/after for all 18. Four old active DELETE_USER operations completed through the existing same-ID flow; six deletion tombstones/history remain, and the protected admin is unchanged. Final repository schema/generator/inspector/D23 now require ID_ONLY_SCHEMA. The four legacy constants remain only for reject/cleanup verification, not persisted properties. Static cleanupVerified:false means REPOSITORY_ONLY; it is not a contradiction of the separate dated hosted receipt. Live final schema publication remains owner-controlled.
+
+## 051 — initial delivery (historical evidence retained)
 
 InternalHealthRun remains operational tooling, outside the 20 product entities. New retention is per actual app/data store, never split by report environment labels (LOCAL/PREVIEW/PUBLISHED). Retain latest five completed reports regardless of PASS/FAIL/BLOCKED, plus incomplete, duplicate-run conflicts, explicitly active recovery IDs, and unknown/invalid report finish times or IDs. Ordering uses the canonical report completed_at with explicit UTC/offset; native created_date is fingerprinted without parsing or timezone repair. No new entity/field. Product cycle history, daily assignments, content, tombstones and notification links are not age-retention candidates. The four optional physical daily snapshot fields remain until every hosted page verifies clean; partial cleanup is not final schema completion.
 
@@ -31,9 +37,9 @@ The owner's 048 request authorizes only the four 045 legacy text-field removals 
 
 ## 045 — Native IDs and current text (current)
 
-27 repository schemas = 20 product + 6 operational + native User extension. All have Base44 native `id`; no manual replacement ID is added. UserDailyMessage's six domain fields plus native `id` define its immutable assignment. New writes exclude the four legacy text fields. The publishable Test schema now retains exactly those four fields as **optional physical compatibility fields**, without defaults; the logical/write schema still excludes them. DTO names are derived from current MessagePair. Source receipt keeps SRC-05/07's original fields and declares the explicit 045 removals. MessagePair.is_active permits Active/Inactive; historical references ignore eligibility. Category ID on the daily row records the actual assignment and must not follow a later Pair category edit. NotificationDelivery's daily_message_id is now checked in a bounded projected owner/date reference query before admission; no link rewrite.
+27 repository schemas = 20 product + 6 operational + native User extension. All have Base44 native `id`; no manual replacement ID is added. UserDailyMessage's six domain fields plus native `id` define its immutable assignment. New writes exclude the four legacy text fields. After the 051 full hosted verification, the Test physical schema excludes those four fields, matching the logical/write schema. DTO names are derived from current MessagePair. Source receipt keeps SRC-05/07's original fields and declares the explicit 045 removals. MessagePair.is_active permits Active/Inactive; historical references ignore eligibility. Category ID on the daily row records the actual assignment and must not follow a later Pair category edit. NotificationDelivery's daily_message_id is now checked in a bounded projected owner/date reference query before admission; no link rewrite.
 
-Schema removal does not delete old stored fields. The operator-only reviewed migration unsets precisely four keys, preserving all assignment fields/native IDs. The optional compatibility schema is committed in Test, not an operator-created intermediate. Repository conformity means compatibility readiness, never completed physical cleanup. Final field removal remains pending full hosted cleanup verification. No live migration ran. [All-entity inventory, measurements and release steps](reports/SHINKA_ID_MODEL_045.md). Retention, consent/privacy and historical evidence are unchanged.
+Schema removal does not delete old stored fields. The operator-only reviewed migration unsets precisely four keys, preserving all assignment fields/native IDs. The temporary compatibility schema is retired in Test after the dated 051 receipt. Repository conformity means final schema readiness, not its live publication; the receipt separately proves stored-field cleanup. [All-entity inventory, measurements and release steps](reports/SHINKA_ID_MODEL_045.md). Retention, consent/privacy and historical evidence are unchanged.
 
 
 ## 040 — removal receipt and progress semantics
@@ -359,7 +365,7 @@ Required fields are listed in each JSONC; optional fields are marked NULL below.
 | category_id | string | required |
 | message_pair_id | string | required |
 | generated_at | string; format=date-time | required |
-| message_tr_snapshot / suggestion_tr_snapshot / message_en_snapshot / suggestion_en_snapshot | string; physical schema only; no default | optional legacy compatibility; new writes forbidden; cleanup pending |
+| message_tr_snapshot / suggestion_tr_snapshot / message_en_snapshot / suggestion_en_snapshot | removed from domain and final physical schema | forbidden in new writes; hosted absence verified in 051; DTO text still resolves MessagePair |
 
 **notification_delivery**
 

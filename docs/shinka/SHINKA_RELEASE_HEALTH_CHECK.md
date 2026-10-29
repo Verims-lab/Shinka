@@ -7,11 +7,17 @@
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-049.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-050.1; repository, synthetic and external evidence separated.
 
 
 
-## 051 — Core Reliability & Performance
+## 051 continuation — verified maintenance and measured performance
+
+The owner accepts published 051 / HC-050.0 functional and Full Health evidence (159 PASS, zero FAIL/BLOCKED). Preserve that acceptance and historical failures. This continuation retains Buildmarker-051 and active packages 047–051; HC-050.1 identifies changed assertions without creating a new product package. Live Full Health/Security scan and main/publish were not run. Detailed dated receipts and separate hosted/local limits: [051 continuation](reports/SHINKA_CORE_RELIABILITY_051.md#051-continuation).
+
+Continuation delta: **0 added / 5 updated / 0 deleted**, same 185 catalog IDs (159 in-app, 12 local, 14 external). H04-007/D23 enforces final ID-only schema; H08-002 and H12-027 add CA24 controlled overlap/withdrawal and strengthened CA11 zero-health-read denial; H15-005/HR07 preserves each stored catalog version with bounded projection; H15-002 separates real DevTools event/filmstrip/network evidence from local lab and unpublished-code acceptance. H14-901/H16-901, physical Android/iOS/native wrapper and actual BFCache acceptance remain open. Current run results are in closure/execution.json; the earlier full 745-test evidence below is historical.
+
+## 051 — initial delivery (historical evidence retained)
 
 HC-050.0 adds H15-005 projected payload growth, H15-006 100-cycle resource recovery, and H17-001..004 actual isolated retention planner/module/dispatch. Normal Full Health never deletes hosted data. H13-017 includes PU08 retained-tab freshness; H15-002 now distinguishes matched cold content, retained paint, fresh settlement, local LCP/CLS/EventTiming and actual BFCache attempts from synthetic pageshow. H05-009 recognizes 051 without weakening exact source/content readiness. H16 meta execution remains after all ordinary cases including H17; closed backend plan and persistence limits remain 200 cases/900000 full bytes/15000 compact bytes. Physical native/workflow acceptance H14-901/H16-901 stays open. Execution evidence is recorded in reports/core-reliability-051; results are filled only after actual runs.
 

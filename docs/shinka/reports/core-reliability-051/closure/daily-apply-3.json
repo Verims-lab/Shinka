@@ -1,0 +1,23 @@
+{
+  "status": 200,
+  "data": {
+    "outcomes": [
+      {
+        "id": "6ae112680ad0f469ce0782c2",
+        "status": "VERIFIED_CLEAN",
+        "assignmentDigest": "10621455baa5f1c0b585f8985779fbcc854e1e7ffc16e894f85c343674165ea7",
+        "linksDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "linkCount": 0
+      },
+      {
+        "id": "6ae1ee8813eb98df6bf854d4",
+        "status": "VERIFIED_CLEAN",
+        "assignmentDigest": "be5908dfe576e8082ea47ff18da03231c448b9d2c84cb50070e076517e156916",
+        "linksDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "linkCount": 0
+      }
+    ],
+    "pendingIds": [],
+    "complete": true
+  }
+}

@@ -13,13 +13,14 @@ function fixture(count=10) {
 async function rejects(fn,code) {try{await fn();}catch(error){check(error.code===code,`${code}: ${error.code}`);return;}throw new Error(`Expected ${code}`);}
 /** @type {import('./testTypes').FoundationTest[]} */
 export const HEALTH_RETENTION_TESTS=[
- ['HR07','Health list excludes large case indexes at 10 and 1000 rows; one bounded projected read',async()=>{
+ ['HR07','Health list preserves each stored catalog version and excludes large case indexes at 10 and 1000 rows',async()=>{
    for(const size of [10,1000]) {
-     const f=fixture(size);f.tables.InternalHealthRun.forEach(r=>{r.report_json='x'.repeat(15000);});
+     const f=fixture(size);f.tables.InternalHealthRun.forEach((r,i)=>{r.report_json='x'.repeat(15000);r.health_catalog_version=`HC-${String(i%50+1).padStart(3,'0')}.0`;});
      const result=await internalHealthOperation(f.admin,{action:'list'});
      check('runs' in result&&result.runs.length===Math.min(size,20)&&JSON.stringify(result).length<6000);
      check(!JSON.stringify(result).includes('report_json'));
-     const calls=f.state.calls.filter(c=>c.name==='InternalHealthRun');check(calls.length===1&&calls[0].method==='filter'&&calls[0].args[2]===20&&calls[0].args[4].length===11);
+     check('runs' in result&&result.runs.every(r=>r.health_catalog_version===f.tables.InternalHealthRun.find(saved=>saved.id===r.id)?.health_catalog_version),'stored catalog must reach the latest/history cards');
+     const calls=f.state.calls.filter(c=>c.name==='InternalHealthRun');check(calls.length===1&&calls[0].method==='filter'&&calls[0].args[2]===20&&calls[0].args[4].length===12);
    }
  }],
  ['HR01','Latest five completed reports retain failures too; explicit recovery and incomplete/invalid report times stay protected',()=>{

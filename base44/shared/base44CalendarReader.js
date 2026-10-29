@@ -29,8 +29,10 @@ export function calendarReader(client, principal) {
     if (client.shinkaNative) await assertPrivacyAccess(client, owner, { health: true });
     const profile = await one('user_profile');
     assertActiveAccount(owner, profile);
-    const consent = await one('user_health_consent');
-    const jobs = await read('health_data_deletion_job', 1, 0, { job_status: { $ne: 'COMPLETED' } });
+    const [consent, jobs] = await Promise.all([
+      one('user_health_consent'),
+      read('health_data_deletion_job', 1, 0, { job_status: { $ne: 'COMPLETED' } }),
+    ]);
     // Read only history relevant to the current grant; past withdrawal history is
     // valid after reconsent and must not be mistaken for duplicate current grants.
     const events = consent?.consent_status === 'GRANTED' ? await read('user_health_consent_event', 3, 0, { occurred_at: { $gte: consent.granted_at } }) : [];
@@ -50,10 +52,13 @@ export function calendarReader(client, principal) {
   };
   const snapshot = async () => {
     const state = await access();
-    const preferences = await one('user_preferences');
-    if (!validateCalendarAccess(state, owner)) return { ...state, preferences, periods: [], settings: null, predictions: [], phases: [] };
-    const all = await periods();
-    const settings = await one('user_cycle_settings');
+    if (!validateCalendarAccess(state, owner)) return { ...state, preferences: await one('user_preferences'), periods: [], settings: null, predictions: [], phases: [] };
+    // Only after owner/ACTIVE/privacy/consent admission. Independent read-only
+    // collections overlap (max three); pagination and both confirmation passes
+    // remain sequential. No cache, weaker guard or snapshot-isolation claim.
+    const [preferences, all, settings] = await Promise.all([
+      one('user_preferences'), periods(), one('user_cycle_settings'),
+    ]);
     const finalAccess = await access();
     if (JSON.stringify(state) !== JSON.stringify(finalAccess)) fail('CONSENT_STATE_CHANGED');
     const result = { ...state, preferences, periods: all, settings, predictions: [], phases: [] };

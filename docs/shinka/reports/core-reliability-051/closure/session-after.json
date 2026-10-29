@@ -1,0 +1,9 @@
+{
+  "status": 200,
+  "data": {
+    "id": "6ad519134845d4e3af03b423",
+    "role": "admin",
+    "privacyRevision": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "authority": "BASE44_NATIVE_V1"
+  }
+}
