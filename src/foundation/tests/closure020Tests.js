@@ -1,3 +1,4 @@
+import { verifiedLibrary, verifiedMoon } from './healthReadFixture';
 import { nativeFixture } from './nativeFixture';
 import { nativeReadiness } from '../../../base44/shared/nativeReadiness.js';
 import { createTestRepository } from '../../../base44/shared/adminTestRepository.js';
@@ -8,7 +9,7 @@ async function readinessCases() {
   const { HEALTH_CASES } = await import('../health/catalog');
   return READINESS_IDS.map(id => { const c = HEALTH_CASES.find(c => c.id === id); check(typeof c?.run === 'function', id); return c; });
 }
-const context = value => ({ nativeReadiness: async () => structuredClone(value), contentLibrary: async () => ({ ready: true }), moonReadiness: async () => ({ ready: true }) });
+const context = value => ({ nativeReadiness: async () => structuredClone(value), contentLibrary: async () => verifiedLibrary(), moonReadiness: async () => verifiedMoon() });
 const pristine = async () => nativeReadiness(nativeFixture().client('adminA'));
 const rejected = async work => { try { await work(); } catch (error) { return error; } throw new Error('Unconfirmed read accepted'); };
 

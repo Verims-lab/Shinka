@@ -57,13 +57,13 @@ export default [
     "package_name": "Core Reliability & Performance Milestone",
     "package_type": "AUDIT_FIX",
     "created_at": "2026-10-29T16:55:15.162531Z",
-    "health_catalog_version": "HC-050.1",
-    "short_summary": "051 continuation: complete reviewed daily/Health row maintenance; prepare final ID-only schema; overlap admitted Calendar reads and preserve stored Health catalog metadata.",
-    "full_health_status": "OWNER_ACCEPTED_HC050.0_159_PASS / LOCAL_HC050.1_146_PASS_13_BLOCKED_0_FAIL",
+    "health_catalog_version": "HC-050.2",
+    "short_summary": "051 targeted Health closure: bounded shared 429 retry, separate content/Moon diagnostics, reduced readonly admission and entity-probe bursts; manual-theme evidence aligned.",
+    "full_health_status": "OWNER_HC050.1_157_PASS_2_BLOCKED / LOCAL_HC050.2_146_PASS_13_BLOCKED_0_FAIL",
     "source_changed": true,
     "tests_changed": true,
     "health_changed": true,
     "docs_aligned": true,
-    "notes": "Owner accepted original 051 functional and Full Health result. Continuation: 18/18 daily rows clean with unchanged IDs/assignments/links; 49/54 Health rows removed, latest five retained; 0 files deleted, official platform support pending for 49 old files. Same-ID deletion continuation preserves six tombstones and protected admin. Health delta 0 added/5 updated/0 deleted, same 185 IDs; HC-050.1 only, no new package. Real hosted timing includes one dailyMessage 500 followed by 200; original intermittent cause unresolved. Calendar overlap and final schema not published. No live Full Health/scan or main/publish. Chromium/WebKit 746/746 each, server/schema/quality/budget gates PASS; focused final CA24 PASS. Final receipts in reports/core-reliability-051/closure."
+    "notes": "Same 051 milestone, 047–051 active. Original 051 acceptance and maintenance/performance receipts preserved in the existing report. Owner HC-050.1 run 3df95c72-c24a-4d18-aa36-4067758e4a1a remains 157 PASS/2 BLOCKED. Targeted Health delta 0 added/4 updated/0 deleted, 185 IDs. Chromium/WebKit each 753/753 PASS plus final 24/24 focused deltas; local Health 146 PASS/13 hosted-prerequisite BLOCKED/0 FAIL and save/list/open passed. Server fixtures, type/lint/build/repo/dependency/budget/history gates PASS; audit zero. Shared readonly 429 retry keeps total deadline; exact content/schema failures remain FAIL, independent content/Moon diagnostics survive; request admission/probe read pressure reduced. No live Health/scan/import/cleanup/deletion/main/publish. Historical quota trigger and relation to Home 500 remain unknown. Evidence: reports/core-reliability-051/health-read-closure/execution.json."
   }
 ];

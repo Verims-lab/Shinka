@@ -1,0 +1,1408 @@
+{
+  "date": "2026-10-30",
+  "buildMarker": "Buildmarker-051",
+  "healthCatalog": "HC-050.2",
+  "scope": "LOCAL_BROWSER_SYNTHETIC_TRANSPORT_AND_SERVER_FIXTURES",
+  "historicalOwnerReport": {
+    "runId": "3df95c72-c24a-4d18-aa36-4067758e4a1a",
+    "catalog": "HC-050.1",
+    "published": true,
+    "passed": 157,
+    "failed": 0,
+    "blocked": 2,
+    "H05-009": {
+      "counts": [
+        6,
+        240,
+        260
+      ],
+      "code": "RATE_LIMITED",
+      "httpStatus": 429,
+      "stage": "LIFECYCLE_READ",
+      "requestId": "9b688272-cd41-4202-ade3-9b1ff83ae1f0",
+      "timeWindowUtc": [
+        "2026-10-29T20:54:19Z",
+        "2026-10-29T20:54:20Z"
+      ]
+    },
+    "H09-004": {
+      "actual": "EMPTY_AS_REPORTED"
+    },
+    "notRewritten": true
+  },
+  "browsers": {
+    "chromium": {
+      "full": {
+        "tests": 753,
+        "passed": 753,
+        "failed": 0,
+        "pageErrors": []
+      },
+      "finalFocused": [
+        {
+          "id": "HD11",
+          "name": "429 then verified response: H05 and H09 coalesce two attempts, honor Retry-After and keep exact checks",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD12",
+          "name": "Persistent 429 or exhausted budget remains shared BLOCKED; no shortened Retry-After or unbounded retries",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD13",
+          "name": "Authorization, client errors, malformed content/schema and mutation requests cannot acquire access through retry",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD14",
+          "name": "H09 preserves separate minimized content/Moon failures, including request IDs, even when native contract fails",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD15",
+          "name": "Abort during retry wait or pending read cannot start a later attempt or cache late success; a new run is independent",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD16",
+          "name": "Readonly content admission runs once per request, retains gates, forwards safe retry delay and identifies lifecycle substage",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD17",
+          "name": "Entity probe preserves full coverage and safe results with at most three simultaneous SDK reads",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD01",
+          "name": "Readiness distinguishes a successful empty table from a bounded positive sample",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD02",
+          "name": "Readiness preserves query/access/not-found/transient/unknown classes without inferring schema absence",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD03",
+          "name": "Aggregate zero is measured; absent, denied, transient and malformed aggregates stay null",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD04",
+          "name": "Lifecycle failures retain original safe status and prevent the internal operation",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD05",
+          "name": "SDK data, Axios response and nested original error carry only closed diagnostic fields to Health",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD06",
+          "name": "Run context shares one successful or rejected read across all callers; retry belongs inside the one shared loader",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD07",
+          "name": "Artifact download errors and real corrupt ZIP parse errors have different safe stages",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD08",
+          "name": "Valid synthetic workbook rows pass actual H05 runners; content inconsistency remains FAIL",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD09",
+          "name": "Internal handler and H05 retain download/parse/validation stages instead of generic backend failure",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD10",
+          "name": "H05-009 exposes count invocation diagnostics while preserving unavailable versus zero",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "RG01",
+          "name": "All four actual readiness cases pass a successful native backend shape with evaluated boolean assertions",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok",
+          "evidence": {
+            "actual": [
+              {
+                "id": "H04-019",
+                "status": "PASS",
+                "assertion": {
+                  "evaluated": true,
+                  "passed": true
+                }
+              },
+              {
+                "id": "H08-005",
+                "status": "PASS",
+                "assertion": {
+                  "evaluated": true,
+                  "passed": true
+                }
+              },
+              {
+                "id": "H09-004",
+                "status": "PASS",
+                "assertion": {
+                  "evaluated": true,
+                  "passed": true
+                }
+              },
+              {
+                "id": "H12-031",
+                "status": "PASS",
+                "assertion": {
+                  "evaluated": true,
+                  "passed": true
+                }
+              }
+            ],
+            "backendShape": {
+              "authority": "BASE44_NATIVE_V1",
+              "strategyVersion": "native-continuation/2",
+              "schemas": [
+                {
+                  "name": "AdminTestOperation",
+                  "readable": true,
+                  "sampledRows": 0
+                },
+                {
+                  "name": "UserCalendarAction",
+                  "readable": true,
+                  "sampledRows": 0
+                },
+                {
+                  "name": "InternalHealthRun",
+                  "readable": true,
+                  "sampledRows": 0
+                },
+                {
+                  "name": "UserPrivacyRequest",
+                  "readable": true,
+                  "sampledRows": 0
+                },
+                {
+                  "name": "PrivacyRecoveryReceipt",
+                  "readable": true,
+                  "sampledRows": 0
+                }
+              ],
+              "daily": "IMMUTABLE_CANDIDATES",
+              "calendar": "OBSERVATIONS_AND_RECEIPTS",
+              "reset": "VERIFIED_STEPS",
+              "deletion": "TARGET_LIFECYCLE_RESUMABLE",
+              "distributedFence": false,
+              "hostedMutationVerified": false
+            },
+            "scope": "SYNTHETIC_RESPONSE_THROUGH_REAL_CASE_RUNNERS_NOT_HOSTED_MUTATION"
+          }
+        },
+        {
+          "id": "RG02",
+          "name": "Wrong strategy/version/authority and missing, duplicate, foreign or unreadable schemas fail all four readiness cases",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok",
+          "evidence": {
+            "negativeResponses": 56,
+            "cases": [
+              "H04-019",
+              "H08-005",
+              "H09-004",
+              "H12-031"
+            ]
+          }
+        },
+        {
+          "id": "RG03",
+          "name": "Unavailable readiness is BLOCKED, never PASS; daily content and Moon prerequisites remain required",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "SS10",
+          "name": "Four actual readiness Health cases share one read per run and enforce transient versus mismatch verdicts",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HC08",
+          "name": "H05-009 accepts all three present empty schemas with live counts",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HC10",
+          "name": "Missing duplicate malformed unavailable counts cannot imply zero",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "DM23",
+          "name": "Staged content Health rejects positive partial counts and wrong source hash",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        }
+      ],
+      "finalFocusedCount": 24,
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 10,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "internalHealthEntryChecks": 7,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true,
+        "deletion": {
+          "passed": true,
+          "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+          "hostedVerified": false,
+          "checks": 7
+        }
+      },
+      "serverFixtures": {
+        "security": true,
+        "notifications": {
+          "scope": "LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION",
+          "passed": true,
+          "results": [
+            {
+              "id": "NS01",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS02",
+              "status": "PASS",
+              "httpStatus": 503,
+              "response": {
+                "error_code": "SESSION_UNAVAILABLE"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS03",
+              "status": "PASS",
+              "httpStatus": 403,
+              "response": {
+                "error_code": "ADMIN_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS04",
+              "status": "PASS",
+              "httpStatus": 403,
+              "response": {
+                "error_code": "ADMIN_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS05",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 2,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS06",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS07",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS08",
+              "status": "PASS",
+              "httpStatus": 200,
+              "response": {
+                "state": "DISABLED",
+                "processed": 0
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS09",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS10",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS11",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            }
+          ],
+          "sdk": {
+            "id": "SDK01",
+            "status": "PASS",
+            "scope": "INSTALLED_SDK_LOOPBACK_HTTP_ONLY",
+            "integrationEnvelope": "UNWRAPPED_JSON_BODY",
+            "optionalFieldsOmitted": true,
+            "providerCalls": 0
+          },
+          "hostedVerified": false
+        }
+      },
+      "localHealth": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "statuses": {
+          "PASS": 146,
+          "FAIL": 0,
+          "BLOCKED": 13
+        },
+        "saved": "SAVED",
+        "listed": true,
+        "opened": true,
+        "blocked": [
+          "H04-019",
+          "H05-001",
+          "H05-002",
+          "H05-003",
+          "H05-004",
+          "H05-005",
+          "H05-006",
+          "H05-007",
+          "H05-008",
+          "H05-009",
+          "H08-005",
+          "H09-004",
+          "H12-031"
+        ]
+      },
+      "logsSha256": {
+        "full": "c25c9882e4854cf8362ffd8f4fff4d258bfb2167b47bb82ebf894d51ace9e1f3",
+        "finalFocused": "9bd16fce4fc6f091be63e50f6fafc1284a4bb6092e3d2f8226baf41452086a77"
+      }
+    },
+    "webkit": {
+      "full": {
+        "tests": 753,
+        "passed": 753,
+        "failed": 0,
+        "pageErrors": []
+      },
+      "finalFocused": [
+        {
+          "id": "HD11",
+          "name": "429 then verified response: H05 and H09 coalesce two attempts, honor Retry-After and keep exact checks",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD12",
+          "name": "Persistent 429 or exhausted budget remains shared BLOCKED; no shortened Retry-After or unbounded retries",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD13",
+          "name": "Authorization, client errors, malformed content/schema and mutation requests cannot acquire access through retry",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD14",
+          "name": "H09 preserves separate minimized content/Moon failures, including request IDs, even when native contract fails",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD15",
+          "name": "Abort during retry wait or pending read cannot start a later attempt or cache late success; a new run is independent",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD16",
+          "name": "Readonly content admission runs once per request, retains gates, forwards safe retry delay and identifies lifecycle substage",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD17",
+          "name": "Entity probe preserves full coverage and safe results with at most three simultaneous SDK reads",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD01",
+          "name": "Readiness distinguishes a successful empty table from a bounded positive sample",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD02",
+          "name": "Readiness preserves query/access/not-found/transient/unknown classes without inferring schema absence",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD03",
+          "name": "Aggregate zero is measured; absent, denied, transient and malformed aggregates stay null",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD04",
+          "name": "Lifecycle failures retain original safe status and prevent the internal operation",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD05",
+          "name": "SDK data, Axios response and nested original error carry only closed diagnostic fields to Health",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD06",
+          "name": "Run context shares one successful or rejected read across all callers; retry belongs inside the one shared loader",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD07",
+          "name": "Artifact download errors and real corrupt ZIP parse errors have different safe stages",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD08",
+          "name": "Valid synthetic workbook rows pass actual H05 runners; content inconsistency remains FAIL",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD09",
+          "name": "Internal handler and H05 retain download/parse/validation stages instead of generic backend failure",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HD10",
+          "name": "H05-009 exposes count invocation diagnostics while preserving unavailable versus zero",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "RG01",
+          "name": "All four actual readiness cases pass a successful native backend shape with evaluated boolean assertions",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok",
+          "evidence": {
+            "actual": [
+              {
+                "id": "H04-019",
+                "status": "PASS",
+                "assertion": {
+                  "evaluated": true,
+                  "passed": true
+                }
+              },
+              {
+                "id": "H08-005",
+                "status": "PASS",
+                "assertion": {
+                  "evaluated": true,
+                  "passed": true
+                }
+              },
+              {
+                "id": "H09-004",
+                "status": "PASS",
+                "assertion": {
+                  "evaluated": true,
+                  "passed": true
+                }
+              },
+              {
+                "id": "H12-031",
+                "status": "PASS",
+                "assertion": {
+                  "evaluated": true,
+                  "passed": true
+                }
+              }
+            ],
+            "backendShape": {
+              "authority": "BASE44_NATIVE_V1",
+              "strategyVersion": "native-continuation/2",
+              "schemas": [
+                {
+                  "name": "AdminTestOperation",
+                  "readable": true,
+                  "sampledRows": 0
+                },
+                {
+                  "name": "UserCalendarAction",
+                  "readable": true,
+                  "sampledRows": 0
+                },
+                {
+                  "name": "InternalHealthRun",
+                  "readable": true,
+                  "sampledRows": 0
+                },
+                {
+                  "name": "UserPrivacyRequest",
+                  "readable": true,
+                  "sampledRows": 0
+                },
+                {
+                  "name": "PrivacyRecoveryReceipt",
+                  "readable": true,
+                  "sampledRows": 0
+                }
+              ],
+              "daily": "IMMUTABLE_CANDIDATES",
+              "calendar": "OBSERVATIONS_AND_RECEIPTS",
+              "reset": "VERIFIED_STEPS",
+              "deletion": "TARGET_LIFECYCLE_RESUMABLE",
+              "distributedFence": false,
+              "hostedMutationVerified": false
+            },
+            "scope": "SYNTHETIC_RESPONSE_THROUGH_REAL_CASE_RUNNERS_NOT_HOSTED_MUTATION"
+          }
+        },
+        {
+          "id": "RG02",
+          "name": "Wrong strategy/version/authority and missing, duplicate, foreign or unreadable schemas fail all four readiness cases",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok",
+          "evidence": {
+            "negativeResponses": 56,
+            "cases": [
+              "H04-019",
+              "H08-005",
+              "H09-004",
+              "H12-031"
+            ]
+          }
+        },
+        {
+          "id": "RG03",
+          "name": "Unavailable readiness is BLOCKED, never PASS; daily content and Moon prerequisites remain required",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "SS10",
+          "name": "Four actual readiness Health cases share one read per run and enforce transient versus mismatch verdicts",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HC08",
+          "name": "H05-009 accepts all three present empty schemas with live counts",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "HC10",
+          "name": "Missing duplicate malformed unavailable counts cannot imply zero",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        },
+        {
+          "id": "DM23",
+          "name": "Staged content Health rejects positive partial counts and wrong source hash",
+          "passed": true,
+          "blocked": false,
+          "detail": "ok"
+        }
+      ],
+      "finalFocusedCount": 24,
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 10,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "internalHealthEntryChecks": 7,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true,
+        "deletion": {
+          "passed": true,
+          "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+          "hostedVerified": false,
+          "checks": 7
+        }
+      },
+      "serverFixtures": {
+        "security": true,
+        "notifications": {
+          "scope": "LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION",
+          "passed": true,
+          "results": [
+            {
+              "id": "NS01",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS02",
+              "status": "PASS",
+              "httpStatus": 503,
+              "response": {
+                "error_code": "SESSION_UNAVAILABLE"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS03",
+              "status": "PASS",
+              "httpStatus": 403,
+              "response": {
+                "error_code": "ADMIN_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS04",
+              "status": "PASS",
+              "httpStatus": 403,
+              "response": {
+                "error_code": "ADMIN_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS05",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 2,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS06",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS07",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS08",
+              "status": "PASS",
+              "httpStatus": 200,
+              "response": {
+                "state": "DISABLED",
+                "processed": 0
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS09",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS10",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS11",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            }
+          ],
+          "sdk": {
+            "id": "SDK01",
+            "status": "PASS",
+            "scope": "INSTALLED_SDK_LOOPBACK_HTTP_ONLY",
+            "integrationEnvelope": "UNWRAPPED_JSON_BODY",
+            "optionalFieldsOmitted": true,
+            "providerCalls": 0
+          },
+          "hostedVerified": false
+        }
+      },
+      "localHealth": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "statuses": {
+          "PASS": 146,
+          "FAIL": 0,
+          "BLOCKED": 13
+        },
+        "saved": "SAVED",
+        "listed": true,
+        "opened": true,
+        "blocked": [
+          "H04-019",
+          "H05-001",
+          "H05-002",
+          "H05-003",
+          "H05-004",
+          "H05-005",
+          "H05-006",
+          "H05-007",
+          "H05-008",
+          "H05-009",
+          "H08-005",
+          "H09-004",
+          "H12-031"
+        ]
+      },
+      "logsSha256": {
+        "full": "6213d1cbe9fc7ae1818fb10f59d321094a7018cdd64b292f1dd4fa39aaa9dfaf",
+        "finalFocused": "9bd16fce4fc6f091be63e50f6fafc1284a4bb6092e3d2f8226baf41452086a77"
+      }
+    }
+  },
+  "healthDelta": {
+    "added": 0,
+    "updated": [
+      "H05-009",
+      "H09-004",
+      "H13-012",
+      "H16-007"
+    ],
+    "removed": 0,
+    "total": 185,
+    "inApp": 159,
+    "local": 12,
+    "external": 14
+  },
+  "readPressure": {
+    "requestLocalContentAdmission": {
+      "before": {
+        "auth": 2,
+        "User": 2,
+        "UserPrivacyRequest": 2,
+        "AdminTestOperation": 2
+      },
+      "after": {
+        "auth": 1,
+        "User": 1,
+        "UserPrivacyRequest": 1,
+        "AdminTestOperation": 1
+      },
+      "scope": "HD16 synthetic empty lifecycle; every new request re-admits"
+    },
+    "entityProbe": {
+      "totalReads": 20,
+      "maxConcurrentBefore": 20,
+      "maxConcurrentAfter": 3,
+      "scope": "HD17 full coverage synthetic SDK"
+    }
+  },
+  "quality": {
+    "npmCi": "PASS unchanged lockfile",
+    "dependencyTree": "PASS",
+    "npmAudit": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "securityDeps": "PASS",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS",
+    "repoHealth": "PASS",
+    "recordBuildCheck": "PASS last five 047-051",
+    "diffCheck": "PASS",
+    "maintenanceBudgets": {
+      "passed": true,
+      "budget": {
+        "initialRaw": 500000,
+        "initialGzip": 165000,
+        "cssRaw": 90000,
+        "cssGzip": 16000
+      },
+      "initialJS": {
+        "raw": 476757,
+        "gzip": 158501
+      },
+      "css": {
+        "raw": 78659,
+        "gzip": 14465
+      },
+      "labOnly": true
+    }
+  },
+  "retainedIntermediateResults": [
+    {
+      "step": "skill update",
+      "status": "BLOCKED_ENVIRONMENT",
+      "reason": "sandbox registry DNS; completed with network permission"
+    },
+    {
+      "step": "first focused launch",
+      "status": "NOT_RUN_ENVIRONMENT",
+      "reason": "localhost EPERM; subsequent permitted isolated launch passed"
+    },
+    {
+      "step": "initial typechecks",
+      "status": "FAIL",
+      "reason": "negative response fixture return type and optional deferred resolver annotations; corrected fixture types only"
+    },
+    {
+      "step": "initial lint",
+      "status": "FAIL",
+      "reason": "ev/verdict imports obsolete after responsibility extraction; removed"
+    }
+  ],
+  "limitations": [
+    "No live read/probe/Full Health/Security scan/import/cleanup or user mutation performed",
+    "Historical lifecycle subquery/quota cause unknown; no proven relation to Home HTTP500",
+    "No hosted success claimed; backend/shared and frontend publication belongs to owner",
+    "No physical/native/workflow acceptance; existing gates remain open"
+  ],
+  "testChronology": "Full 753-test runs in both engines followed by 24 focused tests per engine for final strict HTTP-status and mismatch-precedence deltas. No assertion reduced; malformed negative fixture shapes strengthened."
+}

@@ -4,7 +4,7 @@ import { BUILD_MARKER } from '@/foundation/buildMarker';
 import { evaluateContentState, contentStatePolicy } from '../../../../base44/shared/contentStateContract.js';
 import { ev, verdict, blockedResult } from "../evidence";
 import { makeCase } from "../caseFactory";
-import { healthReadDiagnostic } from '../../../../base44/shared/healthReadDiagnostics.js';
+import { healthReadDiagnostic, healthReadFailureStatus, healthReadAttempt } from '../../../../base44/shared/healthReadDiagnostics.js';
 
 const c = makeCase("H05", { runnerType: RUNNER.BACKEND, classification: CLASS.LIVE_RUNTIME });
 const SRC = "validateContentArtifacts (live, read-only)";
@@ -44,16 +44,17 @@ export const H05_CASES = [
   })),
   c("H05-008", "No missing mandatory language cells", "All TR and EN Your Shinka / Suggestion cells are filled.", withArtifacts((a) =>
     check(a.content260.missingCellCount === 0, { missingCellCount: a.content260.missingCellCount }, { missingCellCount: 0 }, "Cell completeness"))),
-  c("H05-009", "Content import stage and exact verified readiness", "Approved 041/042/043/044/045/046/047/048/049/050/051 retain staged source/hash/count verification; pre-import differs from complete import and partial/conflicting rows fail.", async (ctx) => {
+  c("H05-009", "Content import stage and exact verified readiness", "Approved 041/042/043/044/045/046/047/048/049/050/051 retain staged source/hash/count verification; pre-import differs from complete import and partial/conflicting rows fail. HD11–HD17 verify shared bounded 429 retry and preserved failure diagnostics.", async (ctx) => {
     let counts=null;
-    const diagnostics = {};
-    try { counts=await ctx.contentCounts(); } catch (error) { diagnostics.counts = healthReadDiagnostic(error); }
+    const diagnostics = {}, readAttempts = {};
+    try { counts=await ctx.contentCounts(); } catch (error) { diagnostics.counts = healthReadDiagnostic(error); readAttempts.counts=healthReadAttempt(error); }
     let importPerformed = null;
     try { importPerformed = (await ctx.artifacts()).importPerformed; } catch (error) { diagnostics.artifacts = healthReadDiagnostic(error); }
     let verification=null;
-    if(contentStatePolicy(BUILD_MARKER)==='VERIFIED_CONTENT_IMPORT_STAGES')try{verification=await ctx.contentLibrary();}catch(error){diagnostics.verification=healthReadDiagnostic(error);}
+    if(contentStatePolicy(BUILD_MARKER)==='VERIFIED_CONTENT_IMPORT_STAGES')try{verification=await ctx.contentLibrary();}catch(error){diagnostics.verification=healthReadDiagnostic(error);readAttempts.verification=healthReadAttempt(error);}
     const result=evaluateContentState(BUILD_MARKER,counts,importPerformed,verification);
+    if (Object.values(diagnostics).some(d=>healthReadFailureStatus(d)==='FAIL')) result.status='FAIL';
     return verdict(result.status === 'PASS',ev(CLASS.LIVE_RUNTIME,'internalHealth contentCounts + validateContentArtifacts (live, read-only)',
-      {buildMarker:BUILD_MARKER,counts,importPerformed,phase:verification?.phase,ready:verification?.ready,sourceHash:verification?.sourceHash,unexpected:result.unexpected||[],diagnostics},result.expected,result.code), result.status);
+      {buildMarker:BUILD_MARKER,counts,importPerformed,phase:verification?.phase,ready:verification?.ready,sourceHash:verification?.sourceHash,unexpected:result.unexpected||[],diagnostics,readAttempts},result.expected,result.code), result.status);
   }),
 ];

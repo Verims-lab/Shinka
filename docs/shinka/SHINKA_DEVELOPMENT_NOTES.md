@@ -3,11 +3,18 @@
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
 **Current BuildMarker:** Buildmarker-051
-**Last Updated:** 2026-10-29
+**Last Updated:** 2026-10-30
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
+
+
+## 051 targeted Health read closure — HC-050.2 (2026-10-30)
+
+The supplied published HC-050.1 run `3df95c72-c24a-4d18-aa36-4067758e4a1a` remains **157 PASS / 0 FAIL / 2 BLOCKED**. H05-009 encountered HTTP429/RATE_LIMITED during LIFECYCLE_READ, request `9b688272-cd41-4202-ade3-9b1ff83ae1f0`, 2026-10-29 20:54:19–20Z; H09-004 discarded the associated read errors. The specific historical lifecycle subquery/quota cause is unproven, as is any relationship to the earlier Home HTTP500. [Targeted evidence and execution](reports/SHINKA_CORE_RELIABILITY_051.md#051-targeted-health-read-closure).
+
+Source-proven defects: one rejected run-level read was permanently shared without a controlled retry; H09 discarded both dependency exceptions; content verify/Moon repeated request-local admission; entity probe launched all entity reads together. These are measured local defects/contributors, not proof of the platform's historical quota trigger. The fix preserves authorization/lifecycle/consent, uses safe diagnostics and never substitutes correct counts for source/hash/relationship verification. Chromium/WebKit each passed 753/753 plus final focused 24/24; mandatory quality/budget gates passed with zero dependency advisories. Local Health 146 PASS/13 hosted-prerequisite BLOCKED/0 FAIL and save/list/open passed. Execution is recorded in the linked report; hosted reproduction is NOT_RUN and previous failures remain historical evidence.
 
 
 ## 051 continuation — verified maintenance and measured performance

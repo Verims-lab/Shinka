@@ -4,12 +4,12 @@ import { invokeHealthRead } from './healthReadService';
 export async function probeDomainEntities() {
   return (await base44.functions.invoke("internalHealth", { action:"probe" })).data.results;
 }
-export async function countLiveContentRows() {
-  return invokeHealthRead('internalHealth', { action: 'contentCounts' });
+export async function countLiveContentRows(options) {
+  return invokeHealthRead('internalHealth', { action: 'contentCounts' }, undefined, options);
 }
-export async function verifyLiveContentLibrary() {
-  return invokeHealthRead('contentLibrary', { action: 'verify' });
+export async function verifyLiveContentLibrary(options) {
+  return invokeHealthRead('contentLibrary', { action: 'verify' }, undefined, options);
 }
 
-export async function probeNativeReadiness() { return invokeHealthRead('internalHealth', { action: 'nativeReadiness' }); }
-export async function verifyLiveMoon() { return (await base44.functions.invoke('contentLibrary', { action: 'moonDryRun' })).data; }
+export async function probeNativeReadiness(options) { return invokeHealthRead('internalHealth', { action: 'nativeReadiness' }, undefined, options); }
+export async function verifyLiveMoon(options) { return invokeHealthRead('contentLibrary', { action: 'moonDryRun' }, undefined, options); }

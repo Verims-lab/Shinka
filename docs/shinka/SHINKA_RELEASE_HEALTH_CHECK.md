@@ -3,12 +3,19 @@
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
 **Current BuildMarker:** Buildmarker-051
-**Last Updated:** 2026-10-29
+**Last Updated:** 2026-10-30
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-050.1; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-050.2; repository, synthetic and external evidence separated.
 
+
+
+## 051 targeted Health read closure — HC-050.2 (2026-10-30)
+
+The supplied published HC-050.1 run `3df95c72-c24a-4d18-aa36-4067758e4a1a` remains **157 PASS / 0 FAIL / 2 BLOCKED**. H05-009 encountered HTTP429/RATE_LIMITED during LIFECYCLE_READ, request `9b688272-cd41-4202-ade3-9b1ff83ae1f0`, 2026-10-29 20:54:19–20Z; H09-004 discarded the associated read errors. The specific historical lifecycle subquery/quota cause is unproven, as is any relationship to the earlier Home HTTP500. [Targeted evidence and execution](reports/SHINKA_CORE_RELIABILITY_051.md#051-targeted-health-read-closure).
+
+Health delta: **0 added / 4 updated / 0 removed**, unchanged 185 IDs (159 in-app / 12 local / 14 external). H05-009 keeps exact source/hash/count/relation checks and shared bounded retry evidence; H09-004 retains independent contentLibrary and moonReadiness diagnostics even with a native contract failure. H16-007 executes HD11–HD17; H13-012's persisted localRegressionRequirements now describes default/onboarding light and verified Profile-only manual dark, including checkAppTheme/checkPreferenceSheets. No theme behavior changes. Chromium/WebKit each 753/753 PASS plus final focused 24/24; local in-app Health 146 PASS/13 hosted-prerequisite BLOCKED/0 FAIL, save/list/open verified. Mandatory dependency/type/lint/build/repo/budget/history gates PASS; zero dependency advisories. Historical reports are not rewritten. H14-901/H16-901 and physical/native acceptance stay open.
 
 
 ## 051 continuation — verified maintenance and measured performance

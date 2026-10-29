@@ -3,6 +3,7 @@ import { testToolError } from './adminTestPolicy.js';
 import { InternalError } from './internalAuthorization.js';
 import { nativeResetStep } from './nativeResetStep.js';
 import { assertPrivacyAccess } from './privacyPolicy.js';
+import { retryAfterMs } from './healthReadRetry.js';
 import { healthReadDiagnostic } from './healthReadDiagnostics.js';
 
 // Fresh actor admission; completed DELETE remains a permanent target tombstone.
@@ -16,17 +17,21 @@ export function withUserLifecycle(client) {
       const me = await client.auth.me();
       if (!me?.id) testToolError('AUTH_REQUIRED', 401);
       const started = Date.now();
+      let stage = 'LIFECYCLE_USER_READ';
       try {
         const user = await repository.user(me.id);
         if (!user) testToolError('AUTH_REQUIRED', 401);
+        stage = 'LIFECYCLE_PRIVACY_READ';
         await assertPrivacyAccess(client, me.id);
+        stage = 'LIFECYCLE_OPERATION_READ';
         const current = await repository.lifecycle(me.id);
         if (current?.operation === 'DELETE_USER') testToolError('ACCOUNT_DELETION_IN_PROGRESS', 403);
         return { id: user.id, role: user.role };
       } catch (error) {
         if (error instanceof InternalError) throw error;
         const failure = new InternalError('TEST_LIFECYCLE_UNAVAILABLE', 503);
-        failure.diagnostic = healthReadDiagnostic(error, { stage: 'LIFECYCLE_READ', durationMs: Date.now() - started });
+        failure.diagnostic = healthReadDiagnostic(error, { stage, durationMs: Date.now() - started });
+        failure.retryAfterMs = retryAfterMs(error);
         throw failure;
       }
     },

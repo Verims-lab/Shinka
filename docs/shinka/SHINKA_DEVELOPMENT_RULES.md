@@ -3,11 +3,18 @@
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
 **Current BuildMarker:** Buildmarker-051
-**Last Updated:** 2026-10-29
+**Last Updated:** 2026-10-30
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
+
+
+## 051 targeted Health read closure — HC-050.2 (2026-10-30)
+
+The supplied published HC-050.1 run `3df95c72-c24a-4d18-aa36-4067758e4a1a` remains **157 PASS / 0 FAIL / 2 BLOCKED**. H05-009 encountered HTTP429/RATE_LIMITED during LIFECYCLE_READ, request `9b688272-cd41-4202-ade3-9b1ff83ae1f0`, 2026-10-29 20:54:19–20Z; H09-004 discarded the associated read errors. The specific historical lifecycle subquery/quota cause is unproven, as is any relationship to the earlier Home HTTP500. [Targeted evidence and execution](reports/SHINKA_CORE_RELIABILITY_051.md#051-targeted-health-read-closure).
+
+Keep Buildmarker-051; advance only the Health catalog to HC-050.2 through recordBuild and retain 047–051. This request supersedes the earlier HC-050.1-only continuation instruction for changed Health semantics. Work is limited to the two reported blockers, read pressure and their regression/evidence contracts. No new audit, DB maintenance/import/historical deletion, live Full Health/Security scan, main merge or publish. Deliver Test; the owner runs post-publication Health.
 
 
 ## 051 continuation — verified maintenance and measured performance

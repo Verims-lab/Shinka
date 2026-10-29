@@ -170,3 +170,31 @@ Chromium **746/746**, WebKit **746/746**, sıfır page error. Son CA24 Promise c
 **Yayın adımı:** Test’teki bu 051 devamını mevcut main/GitHub sync akışınıza alın; tüm27 uzak şema envanterini karşılaştırarak yalnız UserDailyMessage’ın dört alan kaldırma farkını uygulayın → native entry/shared (özellikle calendarReader, internalHealthOperations, HC-050.1) → eşleşen frontend. Tam paket `node scripts/prepareSchemaStage.mjs /private/tmp/shinka-051-final-reviewed origin/main current` ile yeni/boş hedefe yeniden üretilebilir; manifest/hash ve diff incelenmeden eksik klasörden entities push kullanmayın. Hiçbir şema push/deploy/publish bu çalışmada yapılmadı. Yayın sonrası aynı koşullarda Calendar ölçümü, yayımlanmamış kodun gerçek hız etkisini kapatacak kalan teknik doğrulamadır; mevcut şema/generator/inspector/D23 birlikte teslim edilmiştir.
 
 Dosyalar için ayrı platform engeli vardır: doğrulanmış SDK/web object-delete yolu yok, resmi yol Customer Care. Özel yerel manifest hazır; satırların temizliği dosyaların fiziksel silindiği anlamına gelmez. Bu engeli veya tekrarlayan 500’ün kök nedenini yayın adımıyla kapanmış göstermiyoruz. Tek bir yayın işlemi bu bağımsız platform işini tamamlayamaz. Orijinal fiziksel Android/iOS, wrapper/BFCache ve 12 ertelenmiş backend bulgusu değişmedi.
+
+## 051 targeted Health read closure
+
+30 Ekim 2026 · aynı Buildmarker-051 / **HC-050.2** · yalnız bildirilen iki BLOCKED ve ilişkili okuma/tanı kapsamı. Temiz Test `cc63eec`, main `d949b5b` birleşimine fast-forward edildi; mevcut 051 ve Base44 çalışmaları korundu. Yeni ürün paketi/audit veya DB bakımı yapılmadı.
+
+### Korunan canlı kanıt ve neden sınırı
+
+Kullanıcının yayımlanmış HC-050.1 raporu: run `3df95c72-c24a-4d18-aa36-4067758e4a1a`, **157 PASS / 0 FAIL / 2 BLOCKED**. H05-009: 6/240/260 sayımlarına rağmen exact verification HTTP429/RATE_LIMITED, LIFECYCLE_READ; request `9b688272-cd41-4202-ade3-9b1ff83ae1f0`, 2026-10-29T20:54:19–20Z. H09-004 actual boş. Eski sonuç değiştirilmedi; yeni yayın başarısı sayılmadı.
+
+Kanıtlanan aşama: `contentLibrary` admin kabulünün `withUserLifecycle` SDK okuması içerik doğrulamasından önce başarısız. Eski LIFECYCLE_READ tek etiketi User, UserPrivacyRequest ve AdminTestOperation okumalarını ayırmıyor; hangisinin kota aldığı ve kotanın diğer oturumlardan etkilenmesi **belirsiz**. Önceki Home HTTP500 ile ortak neden kanıtı yok. Yeni canlı tanı/Full Health çalıştırılmadı.
+
+Kaynak ve izole regresyonda doğrulanan gereksiz yoğunluk: content verify/moonDryRun aynı istek içinde iki auth + iki User/privacy/operation kabul serisi çalıştırıyordu. Şimdi her yeni istek bir tam kabulden geçer (boş operasyon fixture'ında 2→1 auth, 6→3 lifecycle okuması); salt okunur işlem yalnız o isteğin server-minted principal'ını kullanır. Doğrudan çağrı yeniden kabul edilir, sahte principal ve normal kullanıcı reddedilir; mutation kontrolleri değişmedi. Inventory probe'un 20 eşzamanlı SDK okuması, aynı 20 tablo korunarak **en çok 3** oldu. Bunlar canlı 429'un tek nedeni olarak sunulmaz.
+
+### Düzeltme ve kapsam
+
+- Koşu başına memoization ve başarısız Promise paylaşımı korunur. Tek paylaşılan readonly çağrı yalnız tamamlanmış 429 sonrası en çok bir retry yapar; iki attempt + bekleme mevcut 18s toplam ve case'in kalan 20s bütçesi içindedir. Kanıt üretmek için 250ms ayrılır; Retry-After saniye/GMT tarihi kısaltılmaz, en az 500ms bekleme ve ikinci okuma için en az 1s aranır. Bütçe yetmezse özgün tanı ile BLOCKED. Her case kendi retry zincirini açmaz.
+- Gerçek 401/403, client hatası, bozuk yanıt, hash/ilişki/strateji uyuşmazlığı, timeout veya mutation retry edilmez. Geç sonuç başarı cache'ine dönüşmez; iptal sonrasında yeni çağrı çıkmaz. Aktarılmış SDK isteğinin uzakta iptal edildiği iddia edilmez.
+- H09-004, contentLibrary ve moonReadiness için bağımsız code/HTTP/stage/duration/request ID ile sınırlı attempt/bütçe durumunu tutar; native uyuşmazlığı diğer tanıları gizlemez. Hash/ilişki veya bozuk yanıt FAIL; eksik Ay kapsaması BLOCKED. Sayımlar tek başına PASS vermez.
+- Yeni lifecycle tanıları `LIFECYCLE_USER_READ`, `LIFECYCLE_PRIVACY_READ`, `LIFECYCLE_OPERATION_READ`; eski LIFECYCLE_READ hâlâ tanınır. Retry-After yalnız ayrıştırılmış transport header'ı olarak iletilir; ham exception/body/header veya kullanıcı kaydı rapora girmez.
+- H13-012 localRegressionRequirements eski “invariant light” açıklaması kaldırıldı: varsayılan/onboarding açık, yalnız doğrulanmış Profil tercihi koyu, OS takibi yok; çalışan checkAppTheme/checkPreferenceSheets ve U19 eşlemeleri doğru. Tema/görsel/dil davranışı değişmedi.
+
+Health **0 ekleme / 4 güncelleme / 0 silme**: H05-009, H09-004, H13-012 descriptor, H16-007. 185 katalog ID'si ve son beş paket 047–051 korunur. H14-901/H16-901, fiziksel/native kabul açık. Canonical Release Health/Architecture/Code Standards/Development Rules/Notes ve script üretimli ledger/history güncellendi.
+
+### Gerçek doğrulama
+
+İlk odaklı Chromium: **21/21 PASS** (HD01–16, RG01–03, SS10, DM23); HD17 daha sonra tam runner'a eklendi. İlk sandbox localhost engeli, test fixture tip hataları ve kullanılmayan import lint hatası gerçek ara sonuçlar olarak execution kaydında korunur. **Chromium ve WebKit: 753/753 PASS**, ardından son HTTP-status/uyuşmazlık önceliği değişikliği için her motorda **24/24 odaklı PASS**, sıfır sayfa hatası. Yerel Health her motorda **146 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED**; kaydetme/listeleme/açma geçti. Mevcut sunucu/native-entry fixture runner’ları PASS. npm ci/dependency tree/audit (0 açık)/security:deps/typecheck/lint/build/repoHealth/history/diff ve değişmeyen JS/CSS/route bütçesi kapıları PASS. Build’ın app-ID eksikliği uyarısı yerel dağıtılmayan derlemede korunur; hosted kanıt değildir. [Gerçek execution, güvenli tanılar ve ara başarısızlıklar](core-reliability-051/health-read-closure/execution.json).
+
+Yayın: sahibi Test'i mevcut main/sync akışına alır; `contentLibrary`/`internalHealth` ve ortak native/shared dosyalar ile HC-050.2 frontend birlikte güncellenir. Şema/veri/import adımı yok. Yayın sonrası Health'i kullanıcı çalıştırır; kalıcı 429 varsa yeni alt aşama/request ID ve bütçe tanısı incelenir. Main/publish, canlı Full Health/Security scan, içerik importu, günlük/tarihsel temizlik çalıştırılmadı.
