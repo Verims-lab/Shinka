@@ -1,0 +1,189 @@
+{
+  "source": "Baseline tracked src/base44/shared line inventory before removals; final production import graph verified separately by measureMaintenance",
+  "largestByGroup": {
+    "application": [
+      {
+        "file": "src/components/ui/sidebar.jsx",
+        "lines": 626,
+        "group": "application"
+      },
+      {
+        "file": "src/pages/OAuthConsent.jsx",
+        "lines": 339,
+        "group": "application"
+      },
+      {
+        "file": "src/components/ui/chart.jsx",
+        "lines": 309,
+        "group": "application"
+      },
+      {
+        "file": "src/features/onboarding/OnboardingScreen.jsx",
+        "lines": 301,
+        "group": "application"
+      },
+      {
+        "file": "src/components/ui/menubar.jsx",
+        "lines": 200,
+        "group": "application"
+      },
+      {
+        "file": "src/components/ui/carousel.jsx",
+        "lines": 193,
+        "group": "application"
+      },
+      {
+        "file": "src/features/onboarding/OnboardingForms.jsx",
+        "lines": 185,
+        "group": "application"
+      },
+      {
+        "file": "src/lib/AuthContext.jsx",
+        "lines": 180,
+        "group": "application"
+      },
+      {
+        "file": "base44/shared/domainSourceReceipt.js",
+        "lines": 174,
+        "group": "application"
+      },
+      {
+        "file": "src/components/ui/use-toast.jsx",
+        "lines": 164,
+        "group": "application"
+      },
+      {
+        "file": "base44/shared/dailyMessageOperation.js",
+        "lines": 163,
+        "group": "application"
+      },
+      {
+        "file": "base44/shared/adminTestRepository.js",
+        "lines": 162,
+        "group": "application"
+      },
+      {
+        "file": "src/components/ui/context-menu.jsx",
+        "lines": 156,
+        "group": "application"
+      },
+      {
+        "file": "src/components/ui/dropdown-menu.jsx",
+        "lines": 156,
+        "group": "application"
+      },
+      {
+        "file": "base44/shared/onboardingOperations.js",
+        "lines": 148,
+        "group": "application"
+      }
+    ],
+    "test/fixture": [
+      {
+        "file": "src/foundation/tests/onboardingUiTests.js",
+        "lines": 293,
+        "group": "test/fixture"
+      },
+      {
+        "file": "src/foundation/tests/geonamesDiagnosticTests.js",
+        "lines": 286,
+        "group": "test/fixture"
+      },
+      {
+        "file": "src/foundation/tests/dailyTests.js",
+        "lines": 284,
+        "group": "test/fixture"
+      },
+      {
+        "file": "src/foundation/tests/calendarTests.js",
+        "lines": 248,
+        "group": "test/fixture"
+      },
+      {
+        "file": "src/foundation/tests/adminTestToolsTests.js",
+        "lines": 232,
+        "group": "test/fixture"
+      },
+      {
+        "file": "src/foundation/tests/maintenanceTests.jsx",
+        "lines": 223,
+        "group": "test/fixture"
+      },
+      {
+        "file": "src/foundation/tests/notificationTests.js",
+        "lines": 207,
+        "group": "test/fixture"
+      },
+      {
+        "file": "src/foundation/tests/privacyTests.js",
+        "lines": 193,
+        "group": "test/fixture"
+      },
+      {
+        "file": "src/foundation/tests/patternTests.js",
+        "lines": 190,
+        "group": "test/fixture"
+      },
+      {
+        "file": "src/foundation/tests/foundationTests.js",
+        "lines": 174,
+        "group": "test/fixture"
+      },
+      {
+        "file": "src/foundation/tests/adminTestToolsUiTests.js",
+        "lines": 172,
+        "group": "test/fixture"
+      },
+      {
+        "file": "src/foundation/tests/sessionIntegrationTests.js",
+        "lines": 167,
+        "group": "test/fixture"
+      },
+      {
+        "file": "src/foundation/tests/hardeningTests.js",
+        "lines": 161,
+        "group": "test/fixture"
+      },
+      {
+        "file": "src/foundation/tests/healthReadTests.js",
+        "lines": 155,
+        "group": "test/fixture"
+      },
+      {
+        "file": "src/foundation/tests/cssContractTests.js",
+        "lines": 149,
+        "group": "test/fixture"
+      }
+    ],
+    "generated/reference": [
+      {
+        "file": "base44/shared/firstContentSource.js",
+        "lines": 3549,
+        "group": "generated/reference"
+      }
+    ]
+  },
+  "cycles": [],
+  "responsibilityDecision": "Keep UI/controller/domain/repository boundaries. Dedicated bounded retention module, closed dispatch, no generic manager. Existing controller reuse removes the stale no-value-only refresh branch. Health recent list now projected. No dependency change or line-count-only split.",
+  "removedUnreachable": [
+    {
+      "file": "src/components/ui/sidebar.jsx",
+      "lines": 626
+    },
+    {
+      "file": "src/hooks/use-mobile.jsx",
+      "lines": 19
+    }
+  ],
+  "removalEvidence": "No importers/route registrations; baseline production graph excluded both; use-mobile had sidebar as its sole importer. Removed obsolete Tailwind exclusion too. Auth template slots retained: Register/ForgotPassword/ResetPassword deliberately redirect to approved onboarding and should not invite password regeneration; OAuthConsent/AuthLayout are unbundled platform scaffolding, not a claimed active product chain.",
+  "retentionModule": {
+    "file": "base44/shared/healthRetention.js",
+    "lines": 93,
+    "responsibilities": [
+      "closed admin/app/lifecycle admission",
+      "projected keyset inventory",
+      "pure retention planning",
+      "reviewed sequential deletion with independent readback"
+    ]
+  }
+}

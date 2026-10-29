@@ -12,6 +12,7 @@ import * as privacyPolicy from '../base44/shared/privacyPolicy.js';
 import * as healthReadDiagnostics from '../base44/shared/healthReadDiagnostics.js';
 import * as boundedJson from '../base44/shared/boundedJson.js';
 import * as geonamesGuard from '../base44/shared/geonamesGuard.js';
+import { internalHealthOperation } from '../base44/shared/internalHealthOperations.js';
 export async function verifyNativeEntries(root) {
   let role = 'admin', exists = true, token = true, secretReads = 0;
   const client = { auth: { me: async () => token ? { id: 'synthetic-admin', role: 'cached-admin' } : null }, asServiceRole: { entities: {
@@ -95,5 +96,26 @@ export async function verifyNativeEntries(root) {
     '../../shared/privacyOperation.js': { handlePrivacyRequest: (_req, createClient) => { assert.equal(createClient, rawClient); return 'owner-privacy-route'; } },
   });
   assert.equal(await privacy.default({}), 'owner-privacy-route');
-  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 10, nativeRoutes: 5, artifactEntryChecks: 2, loginSecretReads: secretReads, hostedVerified: false, passed: true };
+  const health = await load('base44/functions/internalHealth/entry.ts', {
+    'npm:@base44/sdk@0.8.54': {createClientFromRequest:rawClient},
+    'base44:runtime': {secrets:{get:()=>{throw new Error('UNEXPECTED_SECRET_READ');}}},
+    '../../shared/userLifecycle.js':{withUserLifecycle},
+    '../../shared/internalAuthorization.js':authorization,
+    '../../shared/internalHealthOperations.js':{internalHealthOperation},
+    '../../shared/healthPersistence.js':{healthUploadSigner:()=>{throw new Error('UNEXPECTED_SIGNER');}},
+    '../../shared/geonamesRuntimeProbe.js':{createGeoNamesRuntimeProbe:()=>()=>{throw new Error('UNEXPECTED_PROVIDER_CALL');}},
+  });
+  let historyReads=0;
+  client.asServiceRole.entities.InternalHealthRun={filter:async(_query,_sort,limit,_offset,fields)=>{
+    historyReads++;assert.equal(limit,20);assert.ok(!fields.includes('report_json'));return [];
+  }};
+  const healthCall=body=>health.default(new Request('https://fixture.invalid/health',{method:'POST',body:JSON.stringify(body)}));
+  role='admin';assert.equal((await healthCall({action:'list'})).status,200);
+  role='user';assert.equal((await healthCall({action:'list'})).status,403);
+  token=false;assert.equal((await healthCall({action:'list'})).status,401);token=true;role='admin';
+  assert.equal((await healthCall({action:'dailyReferenceMigration',request:{action:'dryRun'}})).status,409);
+  assert.equal((await healthCall({action:'healthRetention',request:{action:'dryRun'}})).status,409);
+  assert.equal((await healthCall({action:'delete',entity:'User'})).status,400);
+  assert.equal(historyReads,1);
+  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 10, nativeRoutes: 5, artifactEntryChecks: 2, internalHealthEntryChecks:7, loginSecretReads: secretReads, hostedVerified: false, passed: true };
 }

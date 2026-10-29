@@ -1,0 +1,14 @@
+{
+  "build_marker": "Buildmarker-051",
+  "package_name": "Core Reliability & Performance Milestone",
+  "package_type": "AUDIT_FIX",
+  "created_at": "2026-10-29T16:55:15.162531Z",
+  "health_catalog_version": "HC-050.0",
+  "short_summary": "Pattern return freshness, projected Health history, guarded five-report retention, terminal-owner field maintenance and removed unused sidebar; hosted cleanup remains partial.",
+  "full_health_status": "LOCAL_CORE_VERIFIED / HOSTED_050_BASELINE_153_PASS / CLEANUP_PARTIAL",
+  "source_changed": true,
+  "tests_changed": true,
+  "health_changed": true,
+  "docs_aligned": true,
+  "notes": "One milestone; 745/745 Chromium and WebKit core regression, current execution receipts in reports/core-reliability-051. Existing 050 hosted Health retained; no new live Full Health/scan. Actual 045 cleanup: 12 clean/6 lifecycle-blocked, all 18 assignments retained; optional schema remains. Health retention and narrow completed-owner exception require matching publication. No main merge/publish, notification enabling, new database or closure of deferred 12 findings. Physical/wrapper and actual BFCache acceptance stay open."
+}

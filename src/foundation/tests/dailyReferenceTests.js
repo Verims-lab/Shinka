@@ -18,6 +18,24 @@ const legacy = async f=>{await f.today();const row=f.tables.UserDailyMessage[0];
 const admin = f=>{f.tables.UserProfile.push({...f.tables.UserProfile[0],id:'admin-profile',user_id:'adminA'});return f.raw('adminA');};
 /** @type {import('./testTypes').FoundationTest[]} */
 export const DAILY_REFERENCE_TESTS=[
+ ['ID13','Terminal deleted-owner retained daily fields can be cleaned; active deletion/recreated identity and normal product writes remain blocked',async()=>{
+   const f=nativeFixture(),row=await legacy(f),client=admin(f);
+   const before=JSON.stringify(assignment(row));
+   const view=await f.preview('DELETE_USER'),partial=await f.start(view);
+   let plan=await dailyReferenceMigration(withUserLifecycle(client),{action:'dryRun'});
+   const body=()=>({action:'applyBatch',ids:plan.ids,reviewed_digest:plan.reviewed_digest});
+   check((await dailyReferenceMigration(withUserLifecycle(client),body())).outcomes[0].status==='MIGRATION_TARGET_BUSY');
+   await f.complete(partial);const tombstone=JSON.stringify(f.tables.AdminTestOperation);
+   f.tables.User.push({id:'ownerA',role:'user'});
+   plan=await dailyReferenceMigration(withUserLifecycle(client),{action:'dryRun'});
+   check((await dailyReferenceMigration(withUserLifecycle(client),body())).outcomes[0].status==='MIGRATION_TARGET_BUSY');
+   f.tables.User=f.tables.User.filter(u=>u.id!=='ownerA');
+   plan=await dailyReferenceMigration(withUserLifecycle(client),{action:'dryRun'});
+   check((await dailyReferenceMigration(withUserLifecycle(client),body())).complete);
+   check(JSON.stringify(assignment(f.tables.UserDailyMessage[0]))===before&&JSON.stringify(f.tables.AdminTestOperation)===tombstone);
+   check((await dailyReferenceMigration(withUserLifecycle(client),{action:'verify'})).clean);
+   await rejects(()=>f.client('adminA').asServiceRole.entities.UserDailyMessage.updateMany({user_id:'ownerA'},{$set:{message_pair_id:'forged'}}),'ACCOUNT_DELETION_IN_PROGRESS');
+ }],
  ['ID10','Web maintenance dispatch remains current-admin/ACTIVE/app bound and rejects arbitrary operations',async()=>{
   const f=nativeFixture();await legacy(f);const client=admin(f);client.getConfig=()=>({appId:'6ad5190f4845d4e3af03b420'});
   const invoke=(body,c=client)=>handleInternalRequest(new Request('https://fixture.invalid',{method:'POST',body:JSON.stringify(body)}),()=>withUserLifecycle(c),internalHealthOperation);

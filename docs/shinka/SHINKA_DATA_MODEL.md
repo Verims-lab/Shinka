@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-050
-**Last Updated:** 2026-10-28
+**Current BuildMarker:** Buildmarker-051
+**Last Updated:** 2026-10-29
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
 **Scope:** Product domain entities + separately listed internal tooling storage.
@@ -14,6 +14,12 @@
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
 
 
+
+## 051 — Core Reliability & Performance
+
+InternalHealthRun remains operational tooling, outside the 20 product entities. New retention is per actual app/data store, never split by report environment labels (LOCAL/PREVIEW/PUBLISHED). Retain latest five completed reports regardless of PASS/FAIL/BLOCKED, plus incomplete, duplicate-run conflicts, explicitly active recovery IDs, and unknown/invalid report finish times or IDs. Ordering uses the canonical report completed_at with explicit UTC/offset; native created_date is fingerprinted without parsing or timezone repair. No new entity/field. Product cycle history, daily assignments, content, tombstones and notification links are not age-retention candidates. The four optional physical daily snapshot fields remain until every hosted page verifies clean; partial cleanup is not final schema completion.
+
+051 actual hosted receipt: 18 daily rows/72 legacy fields before; 18 rows/24 fields after; 12 clean, 6 blocked, verify.clean=false. All assignment/link digests and IDs preserved; no final schema/generator/inspector/D23 transition. Five remaining rows join three active deletion owners, one joins a completed deletion owner. Completed deletion retains daily assignments by policy; the narrow maintenance exception checks native User absence and preserves the tombstone. INCOMPLETE reports remain protected even when completed_at exists.
 
 ## 049 — Cleanup remains pending; verification receipts strengthened
 

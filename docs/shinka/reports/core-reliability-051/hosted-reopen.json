@@ -1,0 +1,24 @@
+{
+  "build": "Buildmarker-050",
+  "scope": "ACTUAL_AUTHENTICATED_UI_ROUNDTRIP_UPPER_BOUND_INCLUDES_MODEL_TOOL_GAPS_NOT_PAGE_LOAD_METRIC",
+  "sameAccount": true,
+  "cache": "Normal repeat reload; existing user Chrome extensions; not cold cache",
+  "initialAttempt": "Locator deadline at approximately 3 seconds; subsequent observation found actual daily content. Not classified as an app timeout.",
+  "rows": [
+    {
+      "sample": 1,
+      "roundtripContentVisibleUpperBoundMs": 6802,
+      "dailyIdStable": true
+    },
+    {
+      "sample": 2,
+      "roundtripContentVisibleUpperBoundMs": 5171,
+      "dailyIdStable": true
+    },
+    {
+      "sample": 3,
+      "roundtripContentVisibleUpperBoundMs": 6852,
+      "dailyIdStable": true
+    }
+  ]
+}

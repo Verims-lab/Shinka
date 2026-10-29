@@ -1,0 +1,40 @@
+{
+  "scope": "HOSTED_CHROME_NETWORK_UI_SINGLE_SAMPLE",
+  "publishedBuild": "Buildmarker-050",
+  "condition": "Cache disabled, ordinary signed-in owner Home reload, unthrottled network; desktop extensions active",
+  "samples": 1,
+  "timingsMs": {
+    "applicationSession": 880,
+    "onboarding": 1110,
+    "dailyMessage": 1550,
+    "nativeUserMe": 271,
+    "publicSettings": 231,
+    "DOMContentLoaded": 2180,
+    "load": 2900,
+    "networkFinish": 5820
+  },
+  "transferredBytes": {
+    "applicationSession": 800,
+    "onboarding": 1100,
+    "dailyMessage": 1300,
+    "allRequestsIncludingExtensions": 11402479
+  },
+  "resourceBytesIncludingExtensions": 12300090,
+  "requestsIncludingExtensions": 41,
+  "filterRequestsIncludingExtensions": 12,
+  "extensionCssBytesApprox": 1700000,
+  "lcp": "NOT_RUN_VALID_RECORDING_UNAVAILABLE",
+  "inp": "NOT_RUN_VALID_RECORDING_UNAVAILABLE",
+  "cls": "NOT_RUN_VALID_RECORDING_UNAVAILABLE",
+  "contentReadyMs": "NOT_MEASURED",
+  "feedbackMs": "NOT_MEASURED",
+  "interactionReadyMs": "NOT_MEASURED",
+  "limitations": [
+    "Network rounded UI values; no request ID captured",
+    "DevTools Record-and-reload changed the controlled tab to about:blank; discarded trace",
+    "Manual recording also lost browser automation attachment; discarded trace",
+    "Total bytes include browser extensions; not attributed to Shinka",
+    "No median/p95 or hosted speed-up claim from this sample",
+    "Cache override restored after measurement"
+  ]
+}

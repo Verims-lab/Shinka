@@ -2,14 +2,20 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-050
-**Last Updated:** 2026-10-28
+**Current BuildMarker:** Buildmarker-051
+**Last Updated:** 2026-10-29
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
 **Scope:** Health catalog HC-049.0; repository, synthetic and external evidence separated.
 
 
+
+## 051 — Core Reliability & Performance
+
+HC-050.0 adds H15-005 projected payload growth, H15-006 100-cycle resource recovery, and H17-001..004 actual isolated retention planner/module/dispatch. Normal Full Health never deletes hosted data. H13-017 includes PU08 retained-tab freshness; H15-002 now distinguishes matched cold content, retained paint, fresh settlement, local LCP/CLS/EventTiming and actual BFCache attempts from synthetic pageshow. H05-009 recognizes 051 without weakening exact source/content readiness. H16 meta execution remains after all ordinary cases including H17; closed backend plan and persistence limits remain 200 cases/900000 full bytes/15000 compact bytes. Physical native/workflow acceptance H14-901/H16-901 stays open. Execution evidence is recorded in reports/core-reliability-051; results are filled only after actual runs.
+
+051 final catalog delta: +6 / update 5 / delete 0; H17 is one new suite. Updated IDs H01-006, H05-009, H09-007 (ID13 terminal-owner maintenance), H13-017, H15-002. Catalog 185 = 159 in-app + 12 local + 14 external. Local Chromium/WebKit each 745 PASS; in-app 146 PASS/13 prerequisite BLOCKED/0 FAIL with H17 before H16 meta. Final HR01 explicitly protects INCOMPLETE+completed_at. Existing hosted 050 remains 153 PASS; no new live Full Health/scan. Retention tests mutate isolated fixtures only. [Execution and limits](reports/SHINKA_CORE_RELIABILITY_051.md).
 
 ## 050 — Mobile closure (HC-049.0)
 

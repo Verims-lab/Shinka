@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-050
-**Last Updated:** 2026-10-28
+**Current BuildMarker:** Buildmarker-051
+**Last Updated:** 2026-10-29
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
 **Scope:** All source (client, backend, internal tooling).
@@ -37,6 +37,12 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 051 — Core Reliability & Performance
+
+051 separates Health retention policy/inventory/guarded apply from dispatch. Maintenance output contains safe IDs/counts/reasons/digests, never full reports or private file URIs. Queries select required fields; keyset loops reject repeated or unordered IDs and explicit overflow. Timing evidence distinguishes retained paint, fresh IO settlement and actual content readiness; RPC roundtrip bounds are not browser render metrics. No assertion relaxation, fake PASS or silent timer fallback.
+
+051 supersedes the old sidebar CSS exclusion rule: the unused sidebar and its sole hook are removed, so the exclusion is removed too. New usage would require an explicit component implementation/review. Retention treats INCOMPLETE+completed_at as protected; report time/ID ambiguity is protected and native timezone ambiguity is never repaired with Z. Do not replace the matched lab result with a speed-up claim: no meaningful core-screen latency improvement was measured.
 
 ## 050 — Sheet and feedback regression scope
 

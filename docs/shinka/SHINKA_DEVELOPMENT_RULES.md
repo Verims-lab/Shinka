@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-050
-**Last Updated:** 2026-10-28
+**Current BuildMarker:** Buildmarker-051
+**Last Updated:** 2026-10-29
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 051 — Core Reliability & Performance
+
+051 is one Core Reliability & Performance milestone, preserving 048–050 and the lossless main→Test fast-forward. Generate Buildmarker-051 / HC-050.0 through recordBuild; active packages 047–051. Targeted existing web-session checks and reviewed historical cleanup are authorized, but no agent main merge/publish. Use the existing successful published 050/HC-049 report as baseline rather than rerunning hosted Full Health. Real hosted, local real-browser/synthetic IO, and physical-device evidence remain separate. Keep historical NOT_RUN/failures; unsupported private-file deletion and lifecycle-blocked cleanup remain explicit blockers.
 
 ## 050 — Focused Base44 mobile closure
 

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — approved references imported; native daily snapshot observed; hosted acceptance remains partial
-**Current BuildMarker:** Buildmarker-050
+**Current BuildMarker:** Buildmarker-051
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
@@ -11,6 +11,12 @@
 **Not Implemented:** Distributed physical uniqueness guarantee; scheduled lookup renewal. Remaining hosted/device evidence is tracked separately.
 **Open Decisions:** OD-005, OD-008 (noted); OD-002 RESOLVED_BY_PRODUCT_DECISION
 
+
+## 051 — Core Reliability & Performance
+
+051 preserves approved 6 categories, 240 mappings, 260 content pairs and Moon rules; no import or copy rewrite. New daily writes remain ID-only and reads resolve current MessagePair. Reviewed hosted snapshot cleanup may remove only the four legacy fields, preserving assignment/native IDs and NotificationDelivery links. A lifecycle-blocked target remains unchanged; do not advance final schema/generator/inspector/D23 before complete verify.
+
+051 hosted four-field cleanup removed 48 redundant fields from 12 rows; 24 remain on six lifecycle-blocked rows. All 18 assignments and source-content references remain; current MessagePair text lookup and approved 6/240/260 content are unchanged. Final physical field removal is still gated on complete hosted verify.
 
 ## 045 — MessagePair authority (current)
 

@@ -1,0 +1,322 @@
+{
+  "before": {
+    "profile": {
+      "apiLatencyMs": 200,
+      "assetLatencyMs": 40,
+      "cpuSlowdown": 4,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "samples": 5,
+      "bandwidthLimit": null,
+      "externalFonts": "BLOCKED_IN_BOTH_RUNS",
+      "background": {
+        "bytes": 76644,
+        "sha256": "ed0b40613f01741d7920b38192fc410d8f185c20012f668cda16269d9ed44f1f",
+        "source": "PINNED_EXISTING_PUBLIC_CDN_ASSET"
+      }
+    },
+    "openings": [
+      {
+        "sample": 1,
+        "feedbackMs": 529.5999999940395,
+        "contentReadyMs": 1108.7999999970198,
+        "dailyId": "daily-fixture",
+        "lcpMs": 836,
+        "cls": 0,
+        "scope": "COLD_CONTEXT_LOCAL_SYNTHETIC_HTTP"
+      },
+      {
+        "sample": 2,
+        "feedbackMs": 343.79999999701977,
+        "contentReadyMs": 920.5,
+        "dailyId": "daily-fixture",
+        "lcpMs": 604,
+        "cls": 0,
+        "scope": "COLD_CONTEXT_LOCAL_SYNTHETIC_HTTP"
+      },
+      {
+        "sample": 3,
+        "feedbackMs": 357.90000000596046,
+        "contentReadyMs": 920.7999999970198,
+        "dailyId": "daily-fixture",
+        "lcpMs": 596,
+        "cls": 0,
+        "scope": "COLD_CONTEXT_LOCAL_SYNTHETIC_HTTP"
+      },
+      {
+        "sample": 4,
+        "feedbackMs": 341.79999999701977,
+        "contentReadyMs": 919.5999999940395,
+        "dailyId": "daily-fixture",
+        "lcpMs": 596,
+        "cls": 0,
+        "scope": "COLD_CONTEXT_LOCAL_SYNTHETIC_HTTP"
+      },
+      {
+        "sample": 5,
+        "feedbackMs": 341.8999999910593,
+        "contentReadyMs": 919.8999999910593,
+        "dailyId": "daily-fixture",
+        "lcpMs": 604,
+        "cls": 0,
+        "scope": "COLD_CONTEXT_LOCAL_SYNTHETIC_HTTP"
+      }
+    ],
+    "screens": {
+      "home": {
+        "feedback": {
+          "median": 13.9,
+          "worst": 33.2
+        },
+        "visible": {
+          "median": 31.5,
+          "worst": 34
+        },
+        "usable": {
+          "median": 245.9,
+          "worst": 250
+        },
+        "freshSettledMs": {
+          "median": 280.7,
+          "worst": 283.1
+        },
+        "n": 15,
+        "requests": 15,
+        "bytes": 7830,
+        "jsBytes": 0
+      },
+      "pattern": {
+        "feedback": {
+          "median": 13.5,
+          "worst": 15.6
+        },
+        "visible": {
+          "median": 31.2,
+          "worst": 82.6
+        },
+        "usable": {
+          "median": 247.7,
+          "worst": 314.9
+        },
+        "freshSettledMs": {
+          "median": 281.6,
+          "worst": 349.5
+        },
+        "n": 15,
+        "requests": 30,
+        "bytes": 12735,
+        "jsBytes": 94360
+      },
+      "calendar": {
+        "feedback": {
+          "median": 14.2,
+          "worst": 19.2
+        },
+        "visible": {
+          "median": 31.5,
+          "worst": 86.9
+        },
+        "usable": {
+          "median": 248.7,
+          "worst": 339.6
+        },
+        "freshSettledMs": {
+          "median": 281.7,
+          "worst": 374.7
+        },
+        "n": 15,
+        "requests": 15,
+        "bytes": 7635,
+        "jsBytes": 393210
+      },
+      "you": {
+        "feedback": {
+          "median": 13.4,
+          "worst": 15.9
+        },
+        "visible": {
+          "median": 31.6,
+          "worst": 77.2
+        },
+        "usable": {
+          "median": 249,
+          "worst": 307.5
+        },
+        "freshSettledMs": {
+          "median": 281.9,
+          "worst": 342.4
+        },
+        "n": 15,
+        "requests": 15,
+        "bytes": 8925,
+        "jsBytes": 151190
+      }
+    },
+    "longTaskCount": 0,
+    "maxCls": 0,
+    "eventTimingMax": 56,
+    "errors": []
+  },
+  "after": {
+    "profile": {
+      "apiLatencyMs": 200,
+      "assetLatencyMs": 40,
+      "cpuSlowdown": 4,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "samples": 5,
+      "bandwidthLimit": null,
+      "externalFonts": "BLOCKED_IN_BOTH_RUNS",
+      "background": {
+        "bytes": 76644,
+        "sha256": "ed0b40613f01741d7920b38192fc410d8f185c20012f668cda16269d9ed44f1f",
+        "source": "PINNED_EXISTING_PUBLIC_CDN_ASSET"
+      }
+    },
+    "openings": [
+      {
+        "sample": 1,
+        "feedbackMs": 508.40000000596046,
+        "contentReadyMs": 1080.6000000089407,
+        "dailyId": "daily-fixture",
+        "lcpMs": 760,
+        "cls": 0,
+        "scope": "COLD_CONTEXT_LOCAL_SYNTHETIC_HTTP"
+      },
+      {
+        "sample": 2,
+        "feedbackMs": 342.70000000298023,
+        "contentReadyMs": 921.3999999910593,
+        "dailyId": "daily-fixture",
+        "lcpMs": 604,
+        "cls": 0,
+        "scope": "COLD_CONTEXT_LOCAL_SYNTHETIC_HTTP"
+      },
+      {
+        "sample": 3,
+        "feedbackMs": 346.40000000596046,
+        "contentReadyMs": 921.1000000089407,
+        "dailyId": "daily-fixture",
+        "lcpMs": 612,
+        "cls": 0,
+        "scope": "COLD_CONTEXT_LOCAL_SYNTHETIC_HTTP"
+      },
+      {
+        "sample": 4,
+        "feedbackMs": 343.29999999701977,
+        "contentReadyMs": 919.8999999910593,
+        "dailyId": "daily-fixture",
+        "lcpMs": 604,
+        "cls": 0,
+        "scope": "COLD_CONTEXT_LOCAL_SYNTHETIC_HTTP"
+      },
+      {
+        "sample": 5,
+        "feedbackMs": 357.90000000596046,
+        "contentReadyMs": 927.2000000029802,
+        "dailyId": "daily-fixture",
+        "lcpMs": 592,
+        "cls": 0,
+        "scope": "COLD_CONTEXT_LOCAL_SYNTHETIC_HTTP"
+      }
+    ],
+    "screens": {
+      "home": {
+        "feedback": {
+          "median": 13.5,
+          "worst": 31.3
+        },
+        "visible": {
+          "median": 30.5,
+          "worst": 33.2
+        },
+        "usable": {
+          "median": 245.8,
+          "worst": 248.3
+        },
+        "freshSettledMs": {
+          "median": 280.4,
+          "worst": 281.9
+        },
+        "n": 15,
+        "requests": 15,
+        "bytes": 7830,
+        "jsBytes": 0
+      },
+      "pattern": {
+        "feedback": {
+          "median": 13.4,
+          "worst": 14.1
+        },
+        "visible": {
+          "median": 30.3,
+          "worst": 81.2
+        },
+        "usable": {
+          "median": 246.9,
+          "worst": 314.4
+        },
+        "freshSettledMs": {
+          "median": 280.8,
+          "worst": 347.7
+        },
+        "n": 15,
+        "requests": 30,
+        "bytes": 12735,
+        "jsBytes": 94145
+      },
+      "calendar": {
+        "feedback": {
+          "median": 13.9,
+          "worst": 19.4
+        },
+        "visible": {
+          "median": 30.8,
+          "worst": 110.4
+        },
+        "usable": {
+          "median": 247.5,
+          "worst": 342
+        },
+        "freshSettledMs": {
+          "median": 281.4,
+          "worst": 370.5
+        },
+        "n": 15,
+        "requests": 15,
+        "bytes": 7635,
+        "jsBytes": 393210
+      },
+      "you": {
+        "feedback": {
+          "median": 12.8,
+          "worst": 14.9
+        },
+        "visible": {
+          "median": 30.5,
+          "worst": 79.5
+        },
+        "usable": {
+          "median": 247.2,
+          "worst": 296.8
+        },
+        "freshSettledMs": {
+          "median": 281,
+          "worst": 331
+        },
+        "n": 15,
+        "requests": 15,
+        "bytes": 8925,
+        "jsBytes": 151190
+      }
+    },
+    "longTaskCount": 0,
+    "maxCls": 0,
+    "eventTimingMax": 48,
+    "errors": []
+  }
+}

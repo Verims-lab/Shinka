@@ -70,7 +70,7 @@ try {
   await new Promise((resolve,reject)=>{server.once("error",reject);server.listen(0,"127.0.0.1",resolve);});
   const origin=`http://127.0.0.1:${server.address().port}`;
   // Preserve normal Chromium background/frame scheduling, which Playwright otherwise disables.
-  browser=await engine.launch({headless:true,ignoreDefaultArgs:['--disable-background-timer-throttling','--disable-backgrounding-occluded-windows','--disable-renderer-backgrounding']});
+  browser=await engine.launch({headless:true,ignoreDefaultArgs:['--disable-back-forward-cache','--disable-background-timer-throttling','--disable-backgrounding-occluded-windows','--disable-renderer-backgrounding']});
   const page=await browser.newPage({viewport:{width:1280,height:900}});
   await page.emulateMedia({colorScheme:"dark"}); // Verify unresolved light default despite a dark OS preference; explicit saved-theme matrix is separate.
   await page.route("**/*",route=>new URL(route.request().url()).origin===origin?route.continue():route.abort());
@@ -79,7 +79,9 @@ try {
   await page.waitForFunction(()=>!!window.__probeIdentity);
   const identity = await page.evaluate(()=>window.__probeIdentity());
   const probeBundle = await collectBrowserMeasurements(browser, origin, identity, browserName);
-  await page.addInitScript(bundle=>sessionStorage.setItem('shinka.browser-evidence.v1',JSON.stringify(bundle)),probeBundle);
+  await page.addInitScript(({bundle,origin})=>{
+    if(location.origin===origin)sessionStorage.setItem('shinka.browser-evidence.v1',JSON.stringify(bundle));
+  },{bundle:probeBundle,origin});
   await page.evaluate(bundle=>window.__acceptBrowserEvidence(bundle),probeBundle);
   if (process.env.FOUNDATION_CALENDAR_CONTINUITY_ONLY === '1') {
     const calendarContinuity=await checkCalendarContinuity(page,origin);

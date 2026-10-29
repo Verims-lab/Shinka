@@ -33,6 +33,16 @@ async function admit(client) {
   const rows = await client.asServiceRole.entities.UserProfile.filter({ user_id: actor.id }, 'id', 2, 0, ['id','user_id','account_status']);
   if (!Array.isArray(rows) || rows.length !== 1 || rows[0].user_id !== actor.id || rows[0].account_status !== 'ACTIVE') fail('ACTIVE_ACCOUNT_REQUIRED');
 }
+async function admitTarget(client, repository, owner) {
+  await assertPrivacyAccess(client,owner);
+  const lifecycle=await repository.lifecycle(owner);
+  if(!lifecycle)return;
+  // Daily assignments are explicitly retained after Test Tools deletion. A
+  // terminal tombstone is not an active writer; removing redundant fields may
+  // proceed only after native identity absence. Never clear/change tombstones.
+  if(lifecycle.operation==='DELETE_USER'&&lifecycle.status==='COMPLETED'&&!await repository.user(owner))return;
+  fail('MIGRATION_TARGET_BUSY');
+}
 async function inspect(client, { cursor = null, ids = null }) {
   if (cursor !== null && (typeof cursor !== 'string' || !cursor.trim())) fail('MIGRATION_INPUT_INVALID');
   if (ids && (!Array.isArray(ids) || !ids.length || ids.length > DAILY_MIGRATION_LIMIT || new Set(ids).size !== ids.length || ids.some(id => typeof id !== 'string' || !id.trim()))) fail('MIGRATION_INPUT_INVALID');
@@ -71,8 +81,7 @@ export async function dailyReferenceMigration(client, body) {
     if (report.status !== 'READY') { outcomes.push({id:row.id,status:report.status}); continue; }
     try {
       await admit(client);
-      await assertPrivacyAccess(client,row.user_id);
-      if (await repository.lifecycle(row.user_id)) fail('MIGRATION_TARGET_BUSY');
+      await admitTarget(client,repository,row.user_id);
       const current = await store.filter({id:row.id},'id',2,0,select);
       if (!Array.isArray(current) || current.length !== 1 || !same(row,current[0])) fail('MIGRATION_REVIEW_EXPIRED');
       const fresh = current[0];
@@ -83,6 +92,7 @@ export async function dailyReferenceMigration(client, body) {
         // Recheck is a documented platform contract, not a transaction claim.
         if (JSON.stringify(fresh) !== JSON.stringify(row)) fail('MIGRATION_REVIEW_EXPIRED');
         const predicate = {...identity(row), ...(row.updated_date ? {updated_date:row.updated_date} : {})};
+        await admitTarget(client,repository,row.user_id);
         try { await store.updateMany(predicate, {$unset:Object.fromEntries(LEGACY_DAILY_TEXT_FIELDS.map(k=>[k,'']))}); }
         catch { /* Lost acknowledgement: success only if independent readback proves absence. */ }
       }
@@ -90,6 +100,7 @@ export async function dailyReferenceMigration(client, body) {
       if (!Array.isArray(result) || result.length!==1 || !same(row,result[0]) || present(result[0]).length) fail('MIGRATION_READBACK_UNCONFIRMED');
       const linksAfter = await readLinks(client, [row]);
       if (JSON.stringify(linksAfter) !== JSON.stringify(linksBefore)) fail('MIGRATION_LINK_READBACK_UNCONFIRMED');
+      await admitTarget(client,repository,row.user_id);
       outcomes.push({id:row.id,status:'VERIFIED_CLEAN',assignmentDigest:report.assignmentDigest,linksDigest:report.linksDigest,linkCount:report.linkCount});
     } catch (error) {
       outcomes.push({id:row.id,status:error instanceof InternalError ? error.code : 'MIGRATION_IO_UNCONFIRMED'});

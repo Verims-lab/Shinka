@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-050
-**Last Updated:** 2026-10-28
+**Current BuildMarker:** Buildmarker-051
+**Last Updated:** 2026-10-29
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
@@ -12,6 +12,12 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 051 — Core Reliability & Performance
+
+healthRetention is a separate bounded operator module behind internalHealth, current native admin/ACTIVE/lifecycle/app admission. Its full projected keyset inventory is separate from the recent Health card list, which now selects only 11 used fields. Apply rechecks admission, target fingerprint and latest-five eligibility before each native-ID delete, then verifies absence independently. Lost acknowledgements reconcile; no transaction, distributed lock or rollback claim. Pattern reuses its existing controller/lifecycle; no new cache/database/service layer.
+
+051 removes the unreferenced generated sidebar (626 lines), its sole use-mobile hook (19 lines), and obsolete Tailwind exclusion after importer/production-graph review. No initial-bundle speed gain is attributed to files already absent from that graph. Platform auth template slots remain. internalHealth metadata maintenance has a separate closed authorization boundary; normal product handlers retain native write checks. The completed-deletion four-field maintenance exception never changes a tombstone or daily assignment.
 
 ## 050 — Mobile interaction closure
 

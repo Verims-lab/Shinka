@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-050
-**Last Updated:** 2026-10-28
+**Current BuildMarker:** Buildmarker-051
+**Last Updated:** 2026-10-29
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
@@ -12,6 +12,12 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 051 — Core Reliability & Performance
+
+Pattern keeps confirmed cards visible while its retained tab is hidden. On return it starts the existing coalesced background refresh (one-second burst guard); it must not require an empty card before checking freshness. Independent section errors and retries remain. Build history renders known evidence aliases and explicitly shows NOT_RECORDED for missing historic fields. No visual palette, artwork, manual-theme, notification or onboarding-flow change.
+
+051 observed published 050 English Home/Pattern/Calendar at 360 px; Pattern and Calendar had no horizontal document overflow. Real account calendar/theme-history screenshots are excluded from Git to avoid retaining personal data; generic Home and metadata-only cleanup evidence are retained. Full local TR/EN/mobile/200% matrices remain synthetic IO acceptance. Real BFCache restore was attempted but not observed; physical safe-area/native back still require device evidence.
 
 ## 050 — Verified mobile preference sheets and Calendar feedback
 

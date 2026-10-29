@@ -1,0 +1,37 @@
+{
+  "scope": "HOSTED_050_CUA_ACTION_TO_RETAINED_VISIBLE_CONTENT_ROUNDTRIP_UPPER_BOUNDS",
+  "units": "ms",
+  "samplesPerScreen": 3,
+  "rows": {
+    "Home": {
+      "samples": [
+        135,
+        108,
+        65
+      ],
+      "median": 108,
+      "worst": 135
+    },
+    "Pattern": {
+      "samples": [
+        71,
+        93,
+        101
+      ],
+      "median": 93,
+      "worst": 101
+    },
+    "Calendar": {
+      "samples": [
+        170,
+        68,
+        67
+      ],
+      "median": 68,
+      "worst": 170
+    }
+  },
+  "freshBackendReadinessMeasured": false,
+  "renderTimingOrFieldVitals": false,
+  "limitations": "Retained cards visible across mounted-tab revisits. Includes automation roundtrip; not a fresh response, main-thread interaction metric, LCP/INP or proof of latency improvement."
+}

@@ -1,5 +1,5 @@
 import { BUILD_MARKER } from "@/foundation/buildMarker";
-import { isValidMarker, validateLedger } from "@/foundation/buildMarkerRules";
+import { isValidMarker, validateLedger, buildEvidence } from "@/foundation/buildMarkerRules";
 import { BUILD_LEDGER } from "@/foundation/buildLedger";
 import { resolveEnvironment } from "@/foundation/environment";
 import { HEALTH_CATALOG_VERSION, CLASS, SEVERITY, RUNNER } from "../constants";
@@ -28,9 +28,10 @@ export const H01_CASES = [
   }, { runnerType: RUNNER.RUNTIME, classification: CLASS.LIVE_RUNTIME }),
   c("H01-005", "Health catalog version present", "Health catalog version constant exists and is well-formed.", async () =>
     verdict(/^HC-\d{3}\.\d+$/.test(HEALTH_CATALOG_VERSION), ev(CLASS.STATIC, "src/foundation/health/constants.js", HEALTH_CATALOG_VERSION, "/^HC-\\d{3}\\.\\d+$/", "Constant inspection"))),
-  c("H01-006", "Build Ledger consistent with canonical marker", "Active source holds at most five unique +1 sequential packages including current; generated history matches.", async (ctx) => {
+  c("H01-006", "Build Ledger consistent with canonical marker", "Active source holds at most five unique +1 sequential packages including current; generated history matches; historic evidence aliases are explicit and missing evidence is NOT_RECORDED.", async (ctx) => {
     const history = (await ctx.inspection()).activeBuildHistory;
     const r = validateLedger(BUILD_LEDGER, BUILD_MARKER);
-    return verdict(r.ok && history.generatedMatches, ev(CLASS.STATIC, "src/foundation/buildLedgerData.js + generated history", { entries: BUILD_LEDGER.length, generatedMatches: history.generatedMatches, errors: r.errors }, { errors: [] }, "Ledger validation"));
+    const evidenceLabelsValid=BUILD_LEDGER.every(entry=>[["source_changed","source_of_truth_updated"],["tests_changed","tests_updated"],["health_changed","health_cases_updated"],["docs_aligned","docs_aligned"]].every(([current,legacy])=>["true","false","NOT_RECORDED"].includes(buildEvidence(entry,current,legacy))));
+    return verdict(r.ok && history.generatedMatches && evidenceLabelsValid, ev(CLASS.STATIC, "src/foundation/buildLedgerData.js + generated history", { entries: BUILD_LEDGER.length, evidenceLabelsValid, generatedMatches: history.generatedMatches, errors: r.errors }, { errors: [] }, "Ledger validation"));
   }),
 ];

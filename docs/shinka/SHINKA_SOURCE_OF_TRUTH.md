@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-050
-**Last Updated:** 2026-10-28
+**Current BuildMarker:** Buildmarker-051
+**Last Updated:** 2026-10-29
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
@@ -11,6 +11,12 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 051 — Core Reliability & Performance
+
+User-authorized 051 Core Reliability & Performance Milestone supersedes the earlier package-only no-maintenance restriction for targeted web diagnostics and reviewed historical cleanup in the existing app/prod data area. Main merge/publish remains owner-controlled; Test/Preview is not an isolated database. The new five-completed-Health-report policy is separate from five active build packages and excludes active recovery/incomplete records and all product/tombstone/shared data. Earlier failure and NOT_RUN evidence is retained. No OS theme tracking, notification enablement, new DB or blanket security closure.
+
+051 evidence authority: hosted 050 and local 051 are separate. Actual backend receipts establish 12 clean/6 blocked daily rows, not 045 completion. Dashboard aggregate counts and complete 53-run Health inventory do not prove row-level validity of every product table. No private-file deletion method is assumed from newer docs. The current maintenance and publication sequence is in reports/SHINKA_CORE_RELIABILITY_051.md.
 
 ## 050 — Owner mobile follow-up decision
 

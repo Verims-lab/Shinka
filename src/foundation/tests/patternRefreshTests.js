@@ -5,6 +5,28 @@ import { bindPatternLifecycle } from '@/features/pattern/patternLifecycle';
 import { patternFixture, patternRow } from './patternFixture';
 /** @type {import('./testTypes').FoundationTest[]} */
 export const PATTERN_REFRESH_TESTS = [
+ ['PF03','100 repeated fault/recovery cycles release listeners and timers and keep request counts bounded',withTestClock(async clock=>{
+   class TrackedTarget extends EventTarget {
+     listeners=new Map();
+     addEventListener(type,fn){super.addEventListener(type,fn);this.listeners.set(type,(this.listeners.get(type)||new Set()).add(fn));}
+     removeEventListener(type,fn){super.removeEventListener(type,fn);this.listeners.get(type)?.delete(fn);}
+     count(){return [...this.listeners.values()].reduce((n,set)=>n+set.size,0);}
+   }
+   const target=new TrackedTarget(),doc=Object.assign(new TrackedTarget(),{visibilityState:'visible'});
+   const values={themes:{id:'confirmed-theme'},lunar:{id:'confirmed-moon'}};let calls=0;
+   for(let mount=0;mount<10;mount++) {
+     let failed=false;const c=createPatternController(async section=>{calls++;if(failed)throw {code:'PATTERN_READ_FAILED'};return values[section];},clock.now);
+     const start=calls,stop=bindPatternLifecycle(c,{...clock.timers,now:clock.now},target,doc);
+     await testEventTurn();check(calls===start+2&&target.count()===5&&doc.count()===1&&clock.pending()===1);
+     for(let i=0;i<10;i++) {
+       failed=true;await c.refresh();check(c.getSnapshot().themes.error&&c.getSnapshot().themes.value===values.themes);
+       failed=false;await Promise.all([c.refresh(),c.refresh()]);check(!c.getSnapshot().themes.error&&c.getSnapshot().lunar.value===values.lunar);
+     }
+     check(calls===start+42,'unbounded/coalescing request count');stop();
+     check(target.count()===0&&doc.count()===0&&clock.pending()===0,'lifecycle resources leaked');
+     target.dispatchEvent(new Event('online'));target.dispatchEvent(new Event('focus'));await clock.advance(300000);check(calls===start+42);
+   }
+ })],
  ['PF01','Controlled 120s idle, 300s refresh and return-event burst retain confirmed sections with bounded calls',withTestClock(async clock=>{
    const f=patternFixture();f.tables.UserDailyMessage.push(patternRow('2026-10-19'));
    const values={themes:await f.request('themes'),lunar:await f.request('lunar')};

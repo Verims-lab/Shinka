@@ -2,6 +2,12 @@
 export const ACTIVE_PACKAGE_LIMIT = 5;
 export const MARKER_PATTERN = /^Buildmarker-(\d{3})$/;
 
+// Historic writers used two names; missing evidence stays explicit, never true.
+export function buildEvidence(entry, current, legacy = current) {
+  const value = entry[current] ?? entry[legacy];
+  return typeof value === 'boolean' ? String(value) : 'NOT_RECORDED';
+}
+
 export const isValidMarker = (m) => typeof m === "string" && MARKER_PATTERN.test(m);
 
 export function markerNumber(m) {

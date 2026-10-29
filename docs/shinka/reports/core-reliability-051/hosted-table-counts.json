@@ -1,0 +1,113 @@
+{
+  "source": "BASE44_DASHBOARD_AGGREGATE_HEADINGS",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "dataSpace": "Existing shared prod; not isolated Git Test",
+  "counts": [
+    {
+      "entity": "AdminAuditLog",
+      "count": 37
+    },
+    {
+      "entity": "AdminTestOperation",
+      "count": 7
+    },
+    {
+      "entity": "CyclePhaseLookup",
+      "count": 0
+    },
+    {
+      "entity": "DataProtectionEvent",
+      "count": 0
+    },
+    {
+      "entity": "HealthDataDeletionJob",
+      "count": 0
+    },
+    {
+      "entity": "InternalHealthRun",
+      "count": 53
+    },
+    {
+      "entity": "MessageCategoryLookup",
+      "count": 6
+    },
+    {
+      "entity": "MessageCategoryMapping",
+      "count": 240
+    },
+    {
+      "entity": "MessagePair",
+      "count": 260
+    },
+    {
+      "entity": "MoonPhaseLookup",
+      "count": 103
+    },
+    {
+      "entity": "NotificationDelivery",
+      "count": 0
+    },
+    {
+      "entity": "NotificationSchedule",
+      "count": 0
+    },
+    {
+      "entity": "PrivacyRecoveryReceipt",
+      "count": 1
+    },
+    {
+      "entity": "SystemErrorLog",
+      "count": 0
+    },
+    {
+      "entity": "UserCalendarAction",
+      "count": 3
+    },
+    {
+      "entity": "UserCyclePhaseDay",
+      "count": 0
+    },
+    {
+      "entity": "UserCyclePrediction",
+      "count": 0
+    },
+    {
+      "entity": "UserCycleSettings",
+      "count": 0
+    },
+    {
+      "entity": "UserDailyMessage",
+      "count": 18
+    },
+    {
+      "entity": "UserHealthConsent",
+      "count": 4
+    },
+    {
+      "entity": "UserHealthConsentEvent",
+      "count": 4
+    },
+    {
+      "entity": "UserPatternSummary",
+      "count": 0
+    },
+    {
+      "entity": "UserPeriodRecord",
+      "count": 1
+    },
+    {
+      "entity": "UserPreferences",
+      "count": 3
+    },
+    {
+      "entity": "UserPrivacyRequest",
+      "count": 1
+    },
+    {
+      "entity": "UserProfile",
+      "count": 3
+    }
+  ],
+  "mutation": "Only four legacy daily fields removed on 12 records; table counts not intentionally changed",
+  "notClaimed": "Row-wise referential inventory of every product table; growth or cache data is not assumed disposable"
+}

@@ -1,5 +1,6 @@
 import ShinkaCard from "@/components/shinka/ShinkaCard";
 import { BUILD_LEDGER } from "@/foundation/buildLedger";
+import { buildEvidence } from '@/foundation/buildMarkerRules';
 
 export default function LedgerList() {
   return (
@@ -14,7 +15,7 @@ export default function LedgerList() {
             </div>
             <p className="text-shinka-muted break-words">{e.short_summary}</p>
             <p className="text-xs text-shinka-muted break-words">
-              source {String(e.source_changed)} · tests {String(e.tests_changed)} · health {String(e.health_changed)} · docs aligned {String(e.docs_aligned)} — {e.notes}
+              source {buildEvidence(e,'source_changed','source_of_truth_updated')} · tests {buildEvidence(e,'tests_changed','tests_updated')} · health {buildEvidence(e,'health_changed','health_cases_updated')} · docs aligned {buildEvidence(e,'docs_aligned')} — {e.notes}
             </p>
           </li>
         ))}
