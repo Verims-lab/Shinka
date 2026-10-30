@@ -1,0 +1,128 @@
+{
+  "date": "2026-10-30",
+  "buildMarker": "Buildmarker-051",
+  "healthCatalog": "HC-050.2",
+  "baseCommit": "d93e2989fa5ee3f1bb4cf706ea7e9b068a72a3bd",
+  "scope": "INDEPENDENT_TARGETED_NODE_SOURCE_REVIEW_WITH_SYNTHETIC_IO",
+  "method": "Node 24 SourceTextModule loads actual Health modules. Only unused SDK/default scanner entrypoints are replaced with throwing stubs; read responses are injected synthetic fixtures. No network or hosted reads.",
+  "sourceIntegrity": "Git blob SHA-1 checked for all 21 loaded source snapshots; only healthExecutionScope metadata differs from base commit in the final run.",
+  "baseline": {
+    "sourceRef": "d93e2989fa5ee3f1bb4cf706ea7e9b068a72a3bd",
+    "scope": "TARGETED_NODE_REAL_SOURCE_WITH_SYNTHETIC_SDK_IO",
+    "sourceFilesVerified": 21,
+    "passed": 8,
+    "failed": 1,
+    "results": [
+      {
+        "name": "429 then success: two cases share exactly two sequential calls and honor Retry-After",
+        "status": "PASS"
+      },
+      {
+        "name": "Persistent 429: both cases remain BLOCKED and share the exhausted rejection",
+        "status": "PASS"
+      },
+      {
+        "name": "Insufficient budget: Retry-After is not shortened and no second request starts",
+        "status": "PASS"
+      },
+      {
+        "name": "401/403 and mutation calls: no retry, no access grant, authorization remains FAIL",
+        "status": "PASS"
+      },
+      {
+        "name": "Wrong source, relations, schema, and malformed responses stay FAIL even with other unavailable reads",
+        "status": "PASS"
+      },
+      {
+        "name": "H09 preserves separate safe content and Moon diagnostics instead of an empty actual",
+        "status": "PASS"
+      },
+      {
+        "name": "Cancellation, timeout and late success never trigger another read or overwrite shared failure",
+        "status": "PASS"
+      },
+      {
+        "name": "Retry-After accepts GMT dates and numeric delay only; arbitrary values are not report data",
+        "status": "PASS"
+      },
+      {
+        "name": "Current local requirement metadata includes SS13 and manual theme coverage without OS following",
+        "status": "FAIL",
+        "error": "The input did not match the regular expression /SS06–SS13/. Input:\n\n'AN02–AN07, SS01–SS02, SS06–SS12; scripts/verifySessionStability.mjs SS03a–c/SS02b; scripts/verifyAdmissionReuse.mjs AR01–AR08; scripts/checkStartupRoutes.mjs'\n"
+      }
+    ]
+  },
+  "final": {
+    "sourceRef": "d93e2989fa5ee3f1bb4cf706ea7e9b068a72a3bd",
+    "scope": "TARGETED_NODE_REAL_SOURCE_WITH_SYNTHETIC_SDK_IO",
+    "sourceFilesVerified": 21,
+    "passed": 9,
+    "failed": 0,
+    "results": [
+      {
+        "name": "429 then success: two cases share exactly two sequential calls and honor Retry-After",
+        "status": "PASS"
+      },
+      {
+        "name": "Persistent 429: both cases remain BLOCKED and share the exhausted rejection",
+        "status": "PASS"
+      },
+      {
+        "name": "Insufficient budget: Retry-After is not shortened and no second request starts",
+        "status": "PASS"
+      },
+      {
+        "name": "401/403 and mutation calls: no retry, no access grant, authorization remains FAIL",
+        "status": "PASS"
+      },
+      {
+        "name": "Wrong source, relations, schema, and malformed responses stay FAIL even with other unavailable reads",
+        "status": "PASS"
+      },
+      {
+        "name": "H09 preserves separate safe content and Moon diagnostics instead of an empty actual",
+        "status": "PASS"
+      },
+      {
+        "name": "Cancellation, timeout and late success never trigger another read or overwrite shared failure",
+        "status": "PASS"
+      },
+      {
+        "name": "Retry-After accepts GMT dates and numeric delay only; arbitrary values are not report data",
+        "status": "PASS"
+      },
+      {
+        "name": "Current local requirement metadata includes SS13 and manual theme coverage without OS following",
+        "status": "PASS"
+      }
+    ]
+  },
+  "changedBehavior": false,
+  "changedMetadata": [
+    "H12-025 localRegressionRequirements includes SS13 and existing 15s startup/fresh-retry/account-isolation coverage"
+  ],
+  "priorCanonicalEvidence": {
+    "sourceCommit": "d93e2989fa5ee3f1bb4cf706ea7e9b068a72a3bd",
+    "browserRuns": "753/753 Chromium and 753/753 WebKit plus 24/24 final focused per engine, recorded in execution.json; not rerun for this metadata-only follow-up",
+    "qualityGates": "Existing execution.json evidence retained; no new npm/browser/audit PASS is claimed here"
+  },
+  "liveActions": "NOT_RUN: no Full Health, scan, import, cleanup, user mutation, publish or main update",
+  "limitations": [
+    "The historical lifecycle subquery and platform quota trigger are unknown.",
+    "No proven causal link to the older Home HTTP500.",
+    "The original published HC-050.1 report remains 157 PASS / 2 BLOCKED until owner-run acceptance."
+  ],
+  "followupChecks": {
+    "targetedNode": "9 PASS / 0 FAIL",
+    "metadataSyntax": "PASS",
+    "canonicalDocs": "13/13 headers and markers aligned",
+    "recordBuildCheck": "PASS, latest five packages 047–051"
+  },
+  "retainedIntermediateResults": [
+    {
+      "step": "recordBuild in isolated verification snapshot",
+      "status": "FAILED_SETUP_THEN_REPAIRED",
+      "reason": "Snapshot omitted required SHINKA_BASE44_CONTINUATION.md. Restored exact pinned source, regenerated with canonical script, and final --check passed. Not an application failure."
+    }
+  ]
+}
