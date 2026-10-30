@@ -82,6 +82,8 @@ export async function verifyNativeEntries(root) {
     '../../shared/nativeClient.ts': native,
     'base44:runtime': { secrets: { get: name => { assert.equal(name, 'GEONAMES_USERNAME'); youSecretReads++; return 'synthetic-public-provider-name'; } } },
     '../../shared/geonamesGuard.js': geonamesGuard,
+    '../../shared/geonamesDailyQuota.js': { createDailyQuota: () => async () => null },
+    'npm:@base44/sdk@0.8.54': { createClientFromRequest: () => ({ asServiceRole: { entities: { GeoNamesDailyQuota: {} } } }) },
     '../../shared/geonamesAdapter.js': { createGeoNamesAdapter: config => ({ resolve: async id => { assert.equal(id, 123); return { fixture: config.username }; } }) },
     '../../shared/youOperation.js': { handleYouRequest: (_req, createClient, deps) => { assert.equal(createClient, native.createNativeClient); assert.equal(typeof deps.geoNamesFor, 'function'); assert.equal(deps.geoNames, undefined); youDeps = deps; return 'you-route'; } },
   });

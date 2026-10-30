@@ -52,6 +52,8 @@ export async function verifyGeoNamesEntry(root) {
       assert.equal(key,'GEONAMES_USERNAME');reads.push(key);return currentValue;
     }}},
     '../../shared/geonamesGuard.js':{createGeoNamesGuard},
+    '../../shared/geonamesDailyQuota.js':{createDailyQuota:()=>async()=>null},
+    'npm:@base44/sdk@0.8.54':{createClientFromRequest:()=>({asServiceRole:{entities:{GeoNamesDailyQuota:{}}}})},
     '../../shared/geonamesAdapter.js':{createGeoNamesAdapter:({username})=>{bindings.push(username);return {search:async()=>({binding:bindings.length})};}},
     '../../shared/onboardingOperations.js':{handleOnboardingRequest:async(req,client,{geoNamesFor})=>{
       assert.equal(client(req),createClient(req));

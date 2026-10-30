@@ -22,8 +22,8 @@ export const isGuardRateLimit = error => guardErrors.has(error);
 export function createGeoNamesGuard({ limits = GEONAMES_LIMITS, now = () => Date.now(), fetcher = (input, init) => fetch(input, init) } = {}) {
   const users = new Map(), cache = new Map(), inflight = new Map();
   let worker = { start: 0, count: 0 };
-  const limited = start => {
-    const retryAfterSeconds = Math.max(1, Math.ceil((start + limits.windowMs - now()) / 1000));
+  const limited = (start, seconds) => {
+    const retryAfterSeconds = seconds ?? Math.max(1, Math.ceil((start + limits.windowMs - now()) / 1000));
     const error = Object.assign(new OnboardingError('GEONAMES_RATE_LIMITED', 'birthplace', 429), { retryAfterSeconds });
     guardErrors.add(error);
     throw error;
@@ -37,14 +37,16 @@ export function createGeoNamesGuard({ limits = GEONAMES_LIMITS, now = () => Date
     return w;
   };
   // owner must come from the server-authenticated principal, never the request body.
-  function forOwner(owner, createAdapter) {
+  // dailyQuota (optional): async () => null | secondsUntilReset, app-wide across workers.
+  function forOwner(owner, createAdapter, { dailyQuota = null } = {}) {
     if (typeof owner !== 'string' || !owner) throw new OnboardingError('AUTH_REQUIRED', null, 401);
     let adapter = null; // created (and the secret read) only when a provider call is needed
-    const counted = (url, init) => {
+    const counted = async (url, init) => {
       const w = windowFor(owner), t = now();
       if (t - worker.start >= limits.windowMs) worker = { start: t, count: 0 };
       if (w.upstream >= limits.upstreamCalls) limited(w.start);
       if (worker.count >= limits.workerUpstreamCalls) limited(worker.start);
+      if (dailyQuota) { const wait = await dailyQuota(); if (wait !== null) limited(t, wait); }
       w.upstream++; worker.count++;
       return fetcher(url, init);
     };

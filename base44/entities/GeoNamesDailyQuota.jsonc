@@ -1,0 +1,27 @@
+{
+  "name": "GeoNamesDailyQuota",
+  "type": "object",
+  "description": "INTERNAL TOOLING \u2014 app-wide daily GeoNames provider-call counter shared by all workers. No user, place or secret data. Direct access denied; backend only.",
+  "properties": {
+    "quota_date": {
+      "type": "string",
+      "format": "date",
+      "description": "UTC day"
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
+    }
+  },
+  "required": [
+    "quota_date",
+    "count"
+  ],
+  "rls": {
+    "create": false,
+    "read": false,
+    "update": false,
+    "delete": false
+  }
+}
