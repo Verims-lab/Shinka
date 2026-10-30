@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft } from "lucide-react";
-import OnboardingIntro, { IntroArt } from "@/features/onboarding/OnboardingIntro";
+import OnboardingIntro from "@/features/onboarding/OnboardingIntro";
 import PageContainer from "@/components/shinka/PageContainer";
 import ShinkaCard from "@/components/shinka/ShinkaCard";
 import ShinkaButton from "@/components/shinka/ShinkaButton";
@@ -267,7 +267,7 @@ export default function OnboardingScreen({
               {t("stepOf").replace("{n}", String(step))}
             </p>
           )}
-          {airy && <IntroArt />}
+          {airy && <div className="shinka-onboarding-art-space" aria-hidden="true" />}
           <div className={airy ? "space-y-2 text-center" : ""}>
             <h1
               ref={title}

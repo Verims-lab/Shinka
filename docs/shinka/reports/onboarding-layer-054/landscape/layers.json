@@ -1,0 +1,1450 @@
+{
+  "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+  "publicAssets": "LOADED",
+  "physicalDevice": false,
+  "results": [
+    {
+      "language": "tr",
+      "width": 844,
+      "height": 390,
+      "textScale": 1,
+      "step": 1,
+      "passed": true,
+      "views": [
+        {
+          "label": "top",
+          "bitmaps": [
+            {
+              "kind": "::before",
+              "source": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")"
+            }
+          ],
+          "images": 0,
+          "layers": 1,
+          "background": {
+            "section": "onboarding",
+            "position": "fixed",
+            "y": 0,
+            "height": 390,
+            "image": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")",
+            "repeat": "no-repeat",
+            "size": "auto 100%",
+            "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 109.98px), rgb(0, 0, 0) calc(50% - 85.8px), rgb(0, 0, 0) calc(50% + 85.8px), rgba(0, 0, 0, 0) calc(50% + 109.98px))"
+          },
+          "light": true,
+          "width": 844,
+          "scrollWidth": 844,
+          "scrollY": 0,
+          "maxScroll": 570,
+          "title": {
+            "x": 198,
+            "y": 420,
+            "width": 448,
+            "height": 40
+          },
+          "card": {
+            "x": 198,
+            "y": 484,
+            "width": 448,
+            "height": 428
+          },
+          "space": {
+            "x": 302,
+            "y": 156,
+            "width": 240,
+            "height": 240
+          },
+          "rowIcons": 3,
+          "controls": [
+            {
+              "key": "Başla",
+              "x": 198,
+              "y": 860,
+              "width": 448,
+              "height": 52
+            }
+          ]
+        },
+        {
+          "label": "middle",
+          "bitmaps": [
+            {
+              "kind": "::before",
+              "source": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")"
+            }
+          ],
+          "images": 0,
+          "layers": 1,
+          "background": {
+            "section": "onboarding",
+            "position": "fixed",
+            "y": 0,
+            "height": 390,
+            "image": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")",
+            "repeat": "no-repeat",
+            "size": "auto 100%",
+            "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 109.98px), rgb(0, 0, 0) calc(50% - 85.8px), rgb(0, 0, 0) calc(50% + 85.8px), rgba(0, 0, 0, 0) calc(50% + 109.98px))"
+          },
+          "light": true,
+          "width": 844,
+          "scrollWidth": 844,
+          "scrollY": 285,
+          "maxScroll": 570,
+          "title": {
+            "x": 198,
+            "y": 420,
+            "width": 448,
+            "height": 40
+          },
+          "card": {
+            "x": 198,
+            "y": 484,
+            "width": 448,
+            "height": 428
+          },
+          "space": {
+            "x": 302,
+            "y": 156,
+            "width": 240,
+            "height": 240
+          },
+          "rowIcons": 3,
+          "controls": [
+            {
+              "key": "Başla",
+              "x": 198,
+              "y": 860,
+              "width": 448,
+              "height": 52
+            }
+          ]
+        },
+        {
+          "label": "bottom",
+          "bitmaps": [
+            {
+              "kind": "::before",
+              "source": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")"
+            }
+          ],
+          "images": 0,
+          "layers": 1,
+          "background": {
+            "section": "onboarding",
+            "position": "fixed",
+            "y": 0,
+            "height": 390,
+            "image": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")",
+            "repeat": "no-repeat",
+            "size": "auto 100%",
+            "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 109.98px), rgb(0, 0, 0) calc(50% - 85.8px), rgb(0, 0, 0) calc(50% + 85.8px), rgba(0, 0, 0, 0) calc(50% + 109.98px))"
+          },
+          "light": true,
+          "width": 844,
+          "scrollWidth": 844,
+          "scrollY": 570,
+          "maxScroll": 570,
+          "title": {
+            "x": 198,
+            "y": 420,
+            "width": 448,
+            "height": 40
+          },
+          "card": {
+            "x": 198,
+            "y": 484,
+            "width": 448,
+            "height": 428
+          },
+          "space": {
+            "x": 302,
+            "y": 156,
+            "width": 240,
+            "height": 240
+          },
+          "rowIcons": 3,
+          "controls": [
+            {
+              "key": "Başla",
+              "x": 198,
+              "y": 860,
+              "width": 448,
+              "height": 52
+            }
+          ]
+        }
+      ],
+      "keyboard": "FOCUS_AND_REDUCED_VIEWPORT_ONLY"
+    },
+    {
+      "language": "tr",
+      "width": 844,
+      "height": 390,
+      "textScale": 1,
+      "step": 2,
+      "passed": true,
+      "views": [
+        {
+          "label": "top",
+          "bitmaps": [
+            {
+              "kind": "::before",
+              "source": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")"
+            }
+          ],
+          "images": 0,
+          "layers": 1,
+          "background": {
+            "section": "onboarding",
+            "position": "fixed",
+            "y": 0,
+            "height": 390,
+            "image": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")",
+            "repeat": "no-repeat",
+            "size": "auto 100%",
+            "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 109.98px), rgb(0, 0, 0) calc(50% - 85.8px), rgb(0, 0, 0) calc(50% + 85.8px), rgba(0, 0, 0, 0) calc(50% + 109.98px))"
+          },
+          "light": true,
+          "width": 844,
+          "scrollWidth": 844,
+          "scrollY": 0,
+          "maxScroll": 432,
+          "title": {
+            "x": 198,
+            "y": 428,
+            "width": 448,
+            "height": 40
+          },
+          "card": {
+            "x": 198,
+            "y": 548,
+            "width": 448,
+            "height": 226
+          },
+          "space": {
+            "x": 302,
+            "y": 164,
+            "width": 240,
+            "height": 240
+          },
+          "rowIcons": 0,
+          "controls": [
+            {
+              "key": "Geri",
+              "x": 198,
+              "y": 48,
+              "width": 52,
+              "height": 44
+            },
+            {
+              "key": "Adın",
+              "x": 215,
+              "y": 559,
+              "width": 414,
+              "height": 24
+            },
+            {
+              "key": "display_name",
+              "x": 215,
+              "y": 583,
+              "width": 414,
+              "height": 44
+            },
+            {
+              "key": "Devam et",
+              "x": 198,
+              "y": 658,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Belirtmek istemiyorum",
+              "x": 198,
+              "y": 730,
+              "width": 448,
+              "height": 44
+            }
+          ]
+        },
+        {
+          "label": "middle",
+          "bitmaps": [
+            {
+              "kind": "::before",
+              "source": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")"
+            }
+          ],
+          "images": 0,
+          "layers": 1,
+          "background": {
+            "section": "onboarding",
+            "position": "fixed",
+            "y": 0,
+            "height": 390,
+            "image": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")",
+            "repeat": "no-repeat",
+            "size": "auto 100%",
+            "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 109.98px), rgb(0, 0, 0) calc(50% - 85.8px), rgb(0, 0, 0) calc(50% + 85.8px), rgba(0, 0, 0, 0) calc(50% + 109.98px))"
+          },
+          "light": true,
+          "width": 844,
+          "scrollWidth": 844,
+          "scrollY": 216,
+          "maxScroll": 432,
+          "title": {
+            "x": 198,
+            "y": 428,
+            "width": 448,
+            "height": 40
+          },
+          "card": {
+            "x": 198,
+            "y": 548,
+            "width": 448,
+            "height": 226
+          },
+          "space": {
+            "x": 302,
+            "y": 164,
+            "width": 240,
+            "height": 240
+          },
+          "rowIcons": 0,
+          "controls": [
+            {
+              "key": "Geri",
+              "x": 198,
+              "y": 48,
+              "width": 52,
+              "height": 44
+            },
+            {
+              "key": "Adın",
+              "x": 215,
+              "y": 559,
+              "width": 414,
+              "height": 24
+            },
+            {
+              "key": "display_name",
+              "x": 215,
+              "y": 583,
+              "width": 414,
+              "height": 44
+            },
+            {
+              "key": "Devam et",
+              "x": 198,
+              "y": 658,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Belirtmek istemiyorum",
+              "x": 198,
+              "y": 730,
+              "width": 448,
+              "height": 44
+            }
+          ]
+        },
+        {
+          "label": "bottom",
+          "bitmaps": [
+            {
+              "kind": "::before",
+              "source": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")"
+            }
+          ],
+          "images": 0,
+          "layers": 1,
+          "background": {
+            "section": "onboarding",
+            "position": "fixed",
+            "y": 0,
+            "height": 390,
+            "image": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")",
+            "repeat": "no-repeat",
+            "size": "auto 100%",
+            "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 109.98px), rgb(0, 0, 0) calc(50% - 85.8px), rgb(0, 0, 0) calc(50% + 85.8px), rgba(0, 0, 0, 0) calc(50% + 109.98px))"
+          },
+          "light": true,
+          "width": 844,
+          "scrollWidth": 844,
+          "scrollY": 432,
+          "maxScroll": 432,
+          "title": {
+            "x": 198,
+            "y": 428,
+            "width": 448,
+            "height": 40
+          },
+          "card": {
+            "x": 198,
+            "y": 548,
+            "width": 448,
+            "height": 226
+          },
+          "space": {
+            "x": 302,
+            "y": 164,
+            "width": 240,
+            "height": 240
+          },
+          "rowIcons": 0,
+          "controls": [
+            {
+              "key": "Geri",
+              "x": 198,
+              "y": 48,
+              "width": 52,
+              "height": 44
+            },
+            {
+              "key": "Adın",
+              "x": 215,
+              "y": 559,
+              "width": 414,
+              "height": 24
+            },
+            {
+              "key": "display_name",
+              "x": 215,
+              "y": 583,
+              "width": 414,
+              "height": 44
+            },
+            {
+              "key": "Devam et",
+              "x": 198,
+              "y": 658,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Belirtmek istemiyorum",
+              "x": 198,
+              "y": 730,
+              "width": 448,
+              "height": 44
+            }
+          ]
+        }
+      ],
+      "keyboard": "FOCUS_AND_REDUCED_VIEWPORT_ONLY"
+    },
+    {
+      "language": "tr",
+      "width": 844,
+      "height": 390,
+      "textScale": 1,
+      "step": 3,
+      "passed": true,
+      "views": [
+        {
+          "label": "top",
+          "bitmaps": [
+            {
+              "kind": "::before",
+              "source": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")"
+            }
+          ],
+          "images": 0,
+          "layers": 1,
+          "background": {
+            "section": "onboarding",
+            "position": "fixed",
+            "y": 0,
+            "height": 390,
+            "image": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")",
+            "repeat": "no-repeat",
+            "size": "auto 100%",
+            "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 109.98px), rgb(0, 0, 0) calc(50% - 85.8px), rgb(0, 0, 0) calc(50% + 85.8px), rgba(0, 0, 0, 0) calc(50% + 109.98px))"
+          },
+          "light": true,
+          "width": 844,
+          "scrollWidth": 844,
+          "scrollY": 0,
+          "maxScroll": 362,
+          "title": {
+            "x": 198,
+            "y": 428,
+            "width": 448,
+            "height": 40
+          },
+          "card": {
+            "x": 198,
+            "y": 524,
+            "width": 448,
+            "height": 180
+          },
+          "space": {
+            "x": 302,
+            "y": 164,
+            "width": 240,
+            "height": 240
+          },
+          "rowIcons": 0,
+          "controls": [
+            {
+              "key": "Geri",
+              "x": 198,
+              "y": 48,
+              "width": 52,
+              "height": 44
+            },
+            {
+              "key": "18 yaşında veya daha büyük olduğumu onaylıyorum",
+              "x": 198,
+              "y": 524,
+              "width": 448,
+              "height": 44
+            },
+            {
+              "key": "age-declaration",
+              "x": 198,
+              "y": 534,
+              "width": 24,
+              "height": 24
+            },
+            {
+              "key": "Apple ile devam et",
+              "x": 198,
+              "y": 584,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Google ile devam et",
+              "x": 198,
+              "y": 652,
+              "width": 448,
+              "height": 52
+            }
+          ]
+        },
+        {
+          "label": "middle",
+          "bitmaps": [
+            {
+              "kind": "::before",
+              "source": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")"
+            }
+          ],
+          "images": 0,
+          "layers": 1,
+          "background": {
+            "section": "onboarding",
+            "position": "fixed",
+            "y": 0,
+            "height": 390,
+            "image": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")",
+            "repeat": "no-repeat",
+            "size": "auto 100%",
+            "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 109.98px), rgb(0, 0, 0) calc(50% - 85.8px), rgb(0, 0, 0) calc(50% + 85.8px), rgba(0, 0, 0, 0) calc(50% + 109.98px))"
+          },
+          "light": true,
+          "width": 844,
+          "scrollWidth": 844,
+          "scrollY": 181,
+          "maxScroll": 362,
+          "title": {
+            "x": 198,
+            "y": 428,
+            "width": 448,
+            "height": 40
+          },
+          "card": {
+            "x": 198,
+            "y": 524,
+            "width": 448,
+            "height": 180
+          },
+          "space": {
+            "x": 302,
+            "y": 164,
+            "width": 240,
+            "height": 240
+          },
+          "rowIcons": 0,
+          "controls": [
+            {
+              "key": "Geri",
+              "x": 198,
+              "y": 48,
+              "width": 52,
+              "height": 44
+            },
+            {
+              "key": "18 yaşında veya daha büyük olduğumu onaylıyorum",
+              "x": 198,
+              "y": 524,
+              "width": 448,
+              "height": 44
+            },
+            {
+              "key": "age-declaration",
+              "x": 198,
+              "y": 534,
+              "width": 24,
+              "height": 24
+            },
+            {
+              "key": "Apple ile devam et",
+              "x": 198,
+              "y": 584,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Google ile devam et",
+              "x": 198,
+              "y": 652,
+              "width": 448,
+              "height": 52
+            }
+          ]
+        },
+        {
+          "label": "bottom",
+          "bitmaps": [
+            {
+              "kind": "::before",
+              "source": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")"
+            }
+          ],
+          "images": 0,
+          "layers": 1,
+          "background": {
+            "section": "onboarding",
+            "position": "fixed",
+            "y": 0,
+            "height": 390,
+            "image": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")",
+            "repeat": "no-repeat",
+            "size": "auto 100%",
+            "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 109.98px), rgb(0, 0, 0) calc(50% - 85.8px), rgb(0, 0, 0) calc(50% + 85.8px), rgba(0, 0, 0, 0) calc(50% + 109.98px))"
+          },
+          "light": true,
+          "width": 844,
+          "scrollWidth": 844,
+          "scrollY": 362,
+          "maxScroll": 362,
+          "title": {
+            "x": 198,
+            "y": 428,
+            "width": 448,
+            "height": 40
+          },
+          "card": {
+            "x": 198,
+            "y": 524,
+            "width": 448,
+            "height": 180
+          },
+          "space": {
+            "x": 302,
+            "y": 164,
+            "width": 240,
+            "height": 240
+          },
+          "rowIcons": 0,
+          "controls": [
+            {
+              "key": "Geri",
+              "x": 198,
+              "y": 48,
+              "width": 52,
+              "height": 44
+            },
+            {
+              "key": "18 yaşında veya daha büyük olduğumu onaylıyorum",
+              "x": 198,
+              "y": 524,
+              "width": 448,
+              "height": 44
+            },
+            {
+              "key": "age-declaration",
+              "x": 198,
+              "y": 534,
+              "width": 24,
+              "height": 24
+            },
+            {
+              "key": "Apple ile devam et",
+              "x": 198,
+              "y": 584,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Google ile devam et",
+              "x": 198,
+              "y": 652,
+              "width": 448,
+              "height": 52
+            }
+          ]
+        }
+      ],
+      "keyboard": "FOCUS_AND_REDUCED_VIEWPORT_ONLY"
+    },
+    {
+      "language": "tr",
+      "width": 844,
+      "height": 390,
+      "textScale": 1,
+      "step": 4,
+      "passed": true,
+      "views": [
+        {
+          "label": "top",
+          "bitmaps": [
+            {
+              "kind": "::before",
+              "source": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")"
+            }
+          ],
+          "images": 0,
+          "layers": 1,
+          "background": {
+            "section": "onboarding",
+            "position": "fixed",
+            "y": 0,
+            "height": 390,
+            "image": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")",
+            "repeat": "no-repeat",
+            "size": "auto 100%",
+            "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 109.98px), rgb(0, 0, 0) calc(50% - 85.8px), rgb(0, 0, 0) calc(50% + 85.8px), rgba(0, 0, 0, 0) calc(50% + 109.98px))"
+          },
+          "light": true,
+          "width": 844,
+          "scrollWidth": 844,
+          "scrollY": 0,
+          "maxScroll": 564,
+          "title": {
+            "x": 198,
+            "y": 428,
+            "width": 448,
+            "height": 40
+          },
+          "card": {
+            "x": 198,
+            "y": 524,
+            "width": 448,
+            "height": 382
+          },
+          "space": {
+            "x": 302,
+            "y": 164,
+            "width": 240,
+            "height": 240
+          },
+          "rowIcons": 0,
+          "controls": [
+            {
+              "key": "Geri",
+              "x": 198,
+              "y": 48,
+              "width": 52,
+              "height": 44
+            },
+            {
+              "key": "Doğum tarihi *",
+              "x": 215,
+              "y": 535,
+              "width": 414,
+              "height": 24
+            },
+            {
+              "key": "birth_date",
+              "x": 215,
+              "y": 559,
+              "width": 414,
+              "height": 44
+            },
+            {
+              "key": "Doğum saati (isteğe bağlı)",
+              "x": 215,
+              "y": 645,
+              "width": 414,
+              "height": 24
+            },
+            {
+              "key": "birth_time",
+              "x": 215,
+              "y": 669,
+              "width": 362,
+              "height": 44
+            },
+            {
+              "key": "Doğum saatini seç",
+              "x": 585,
+              "y": 669,
+              "width": 44,
+              "height": 44
+            },
+            {
+              "key": "Doğum yeri (isteğe bağlı)",
+              "x": 215,
+              "y": 755,
+              "width": 382,
+              "height": 24
+            },
+            {
+              "key": "birthplace",
+              "x": 215,
+              "y": 779,
+              "width": 382,
+              "height": 44
+            },
+            {
+              "key": "Devam et",
+              "x": 198,
+              "y": 854,
+              "width": 448,
+              "height": 52
+            }
+          ]
+        },
+        {
+          "label": "middle",
+          "bitmaps": [
+            {
+              "kind": "::before",
+              "source": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")"
+            }
+          ],
+          "images": 0,
+          "layers": 1,
+          "background": {
+            "section": "onboarding",
+            "position": "fixed",
+            "y": 0,
+            "height": 390,
+            "image": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")",
+            "repeat": "no-repeat",
+            "size": "auto 100%",
+            "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 109.98px), rgb(0, 0, 0) calc(50% - 85.8px), rgb(0, 0, 0) calc(50% + 85.8px), rgba(0, 0, 0, 0) calc(50% + 109.98px))"
+          },
+          "light": true,
+          "width": 844,
+          "scrollWidth": 844,
+          "scrollY": 282,
+          "maxScroll": 564,
+          "title": {
+            "x": 198,
+            "y": 428,
+            "width": 448,
+            "height": 40
+          },
+          "card": {
+            "x": 198,
+            "y": 524,
+            "width": 448,
+            "height": 382
+          },
+          "space": {
+            "x": 302,
+            "y": 164,
+            "width": 240,
+            "height": 240
+          },
+          "rowIcons": 0,
+          "controls": [
+            {
+              "key": "Geri",
+              "x": 198,
+              "y": 48,
+              "width": 52,
+              "height": 44
+            },
+            {
+              "key": "Doğum tarihi *",
+              "x": 215,
+              "y": 535,
+              "width": 414,
+              "height": 24
+            },
+            {
+              "key": "birth_date",
+              "x": 215,
+              "y": 559,
+              "width": 414,
+              "height": 44
+            },
+            {
+              "key": "Doğum saati (isteğe bağlı)",
+              "x": 215,
+              "y": 645,
+              "width": 414,
+              "height": 24
+            },
+            {
+              "key": "birth_time",
+              "x": 215,
+              "y": 669,
+              "width": 362,
+              "height": 44
+            },
+            {
+              "key": "Doğum saatini seç",
+              "x": 585,
+              "y": 669,
+              "width": 44,
+              "height": 44
+            },
+            {
+              "key": "Doğum yeri (isteğe bağlı)",
+              "x": 215,
+              "y": 755,
+              "width": 382,
+              "height": 24
+            },
+            {
+              "key": "birthplace",
+              "x": 215,
+              "y": 779,
+              "width": 382,
+              "height": 44
+            },
+            {
+              "key": "Devam et",
+              "x": 198,
+              "y": 854,
+              "width": 448,
+              "height": 52
+            }
+          ]
+        },
+        {
+          "label": "bottom",
+          "bitmaps": [
+            {
+              "kind": "::before",
+              "source": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")"
+            }
+          ],
+          "images": 0,
+          "layers": 1,
+          "background": {
+            "section": "onboarding",
+            "position": "fixed",
+            "y": 0,
+            "height": 390,
+            "image": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")",
+            "repeat": "no-repeat",
+            "size": "auto 100%",
+            "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 109.98px), rgb(0, 0, 0) calc(50% - 85.8px), rgb(0, 0, 0) calc(50% + 85.8px), rgba(0, 0, 0, 0) calc(50% + 109.98px))"
+          },
+          "light": true,
+          "width": 844,
+          "scrollWidth": 844,
+          "scrollY": 564,
+          "maxScroll": 564,
+          "title": {
+            "x": 198,
+            "y": 428,
+            "width": 448,
+            "height": 40
+          },
+          "card": {
+            "x": 198,
+            "y": 524,
+            "width": 448,
+            "height": 382
+          },
+          "space": {
+            "x": 302,
+            "y": 164,
+            "width": 240,
+            "height": 240
+          },
+          "rowIcons": 0,
+          "controls": [
+            {
+              "key": "Geri",
+              "x": 198,
+              "y": 48,
+              "width": 52,
+              "height": 44
+            },
+            {
+              "key": "Doğum tarihi *",
+              "x": 215,
+              "y": 535,
+              "width": 414,
+              "height": 24
+            },
+            {
+              "key": "birth_date",
+              "x": 215,
+              "y": 559,
+              "width": 414,
+              "height": 44
+            },
+            {
+              "key": "Doğum saati (isteğe bağlı)",
+              "x": 215,
+              "y": 645,
+              "width": 414,
+              "height": 24
+            },
+            {
+              "key": "birth_time",
+              "x": 215,
+              "y": 669,
+              "width": 362,
+              "height": 44
+            },
+            {
+              "key": "Doğum saatini seç",
+              "x": 585,
+              "y": 669,
+              "width": 44,
+              "height": 44
+            },
+            {
+              "key": "Doğum yeri (isteğe bağlı)",
+              "x": 215,
+              "y": 755,
+              "width": 382,
+              "height": 24
+            },
+            {
+              "key": "birthplace",
+              "x": 215,
+              "y": 779,
+              "width": 382,
+              "height": 44
+            },
+            {
+              "key": "Devam et",
+              "x": 198,
+              "y": 854,
+              "width": 448,
+              "height": 52
+            }
+          ]
+        }
+      ],
+      "keyboard": "FOCUS_AND_REDUCED_VIEWPORT_ONLY"
+    },
+    {
+      "language": "tr",
+      "width": 844,
+      "height": 390,
+      "textScale": 1,
+      "step": 5,
+      "passed": true,
+      "views": [
+        {
+          "label": "top",
+          "bitmaps": [
+            {
+              "kind": "::before",
+              "source": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")"
+            }
+          ],
+          "images": 0,
+          "layers": 1,
+          "background": {
+            "section": "onboarding",
+            "position": "fixed",
+            "y": 0,
+            "height": 390,
+            "image": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")",
+            "repeat": "no-repeat",
+            "size": "auto 100%",
+            "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 109.98px), rgb(0, 0, 0) calc(50% - 85.8px), rgb(0, 0, 0) calc(50% + 85.8px), rgba(0, 0, 0, 0) calc(50% + 109.98px))"
+          },
+          "light": true,
+          "width": 844,
+          "scrollWidth": 844,
+          "scrollY": 0,
+          "maxScroll": 702,
+          "title": {
+            "x": 198,
+            "y": 428,
+            "width": 448,
+            "height": 40
+          },
+          "card": {
+            "x": 198,
+            "y": 548,
+            "width": 448,
+            "height": 496
+          },
+          "space": {
+            "x": 302,
+            "y": 164,
+            "width": 240,
+            "height": 240
+          },
+          "rowIcons": 0,
+          "controls": [
+            {
+              "key": "Geri",
+              "x": 198,
+              "y": 48,
+              "width": 52,
+              "height": 44
+            },
+            {
+              "key": "Son regl başlangıç tarihi",
+              "x": 198,
+              "y": 550,
+              "width": 181.796875,
+              "height": 20
+            },
+            {
+              "key": "period_start_date",
+              "x": 198,
+              "y": 572,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Regl süresi",
+              "x": 198,
+              "y": 646,
+              "width": 82.890625,
+              "height": 20
+            },
+            {
+              "key": "period_duration_days",
+              "x": 198,
+              "y": 668,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Döngü uzunluğu",
+              "x": 198,
+              "y": 742,
+              "width": 124.1875,
+              "height": 20
+            },
+            {
+              "key": "initial_cycle_length_days",
+              "x": 198,
+              "y": 764,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Shinka’nın döngü verilerimi döngüye dayalı özellikler ve kişiselleştirme sunmak amacıyla işlemesine açık rıza veriyorum",
+              "x": 198,
+              "y": 836,
+              "width": 448,
+              "height": 72
+            },
+            {
+              "key": "health_consent",
+              "x": 198,
+              "y": 860,
+              "width": 24,
+              "height": 24
+            },
+            {
+              "key": "Bitir",
+              "x": 198,
+              "y": 928,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Şimdilik geç",
+              "x": 198,
+              "y": 1000,
+              "width": 448,
+              "height": 44
+            }
+          ]
+        },
+        {
+          "label": "middle",
+          "bitmaps": [
+            {
+              "kind": "::before",
+              "source": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")"
+            }
+          ],
+          "images": 0,
+          "layers": 1,
+          "background": {
+            "section": "onboarding",
+            "position": "fixed",
+            "y": 0,
+            "height": 390,
+            "image": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")",
+            "repeat": "no-repeat",
+            "size": "auto 100%",
+            "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 109.98px), rgb(0, 0, 0) calc(50% - 85.8px), rgb(0, 0, 0) calc(50% + 85.8px), rgba(0, 0, 0, 0) calc(50% + 109.98px))"
+          },
+          "light": true,
+          "width": 844,
+          "scrollWidth": 844,
+          "scrollY": 351,
+          "maxScroll": 702,
+          "title": {
+            "x": 198,
+            "y": 428,
+            "width": 448,
+            "height": 40
+          },
+          "card": {
+            "x": 198,
+            "y": 548,
+            "width": 448,
+            "height": 496
+          },
+          "space": {
+            "x": 302,
+            "y": 164,
+            "width": 240,
+            "height": 240
+          },
+          "rowIcons": 0,
+          "controls": [
+            {
+              "key": "Geri",
+              "x": 198,
+              "y": 48,
+              "width": 52,
+              "height": 44
+            },
+            {
+              "key": "Son regl başlangıç tarihi",
+              "x": 198,
+              "y": 550,
+              "width": 181.796875,
+              "height": 20
+            },
+            {
+              "key": "period_start_date",
+              "x": 198,
+              "y": 572,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Regl süresi",
+              "x": 198,
+              "y": 646,
+              "width": 82.890625,
+              "height": 20
+            },
+            {
+              "key": "period_duration_days",
+              "x": 198,
+              "y": 668,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Döngü uzunluğu",
+              "x": 198,
+              "y": 742,
+              "width": 124.1875,
+              "height": 20
+            },
+            {
+              "key": "initial_cycle_length_days",
+              "x": 198,
+              "y": 764,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Shinka’nın döngü verilerimi döngüye dayalı özellikler ve kişiselleştirme sunmak amacıyla işlemesine açık rıza veriyorum",
+              "x": 198,
+              "y": 836,
+              "width": 448,
+              "height": 72
+            },
+            {
+              "key": "health_consent",
+              "x": 198,
+              "y": 860,
+              "width": 24,
+              "height": 24
+            },
+            {
+              "key": "Bitir",
+              "x": 198,
+              "y": 928,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Şimdilik geç",
+              "x": 198,
+              "y": 1000,
+              "width": 448,
+              "height": 44
+            }
+          ]
+        },
+        {
+          "label": "bottom",
+          "bitmaps": [
+            {
+              "kind": "::before",
+              "source": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")"
+            }
+          ],
+          "images": 0,
+          "layers": 1,
+          "background": {
+            "section": "onboarding",
+            "position": "fixed",
+            "y": 0,
+            "height": 390,
+            "image": "url(\"https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg\")",
+            "repeat": "no-repeat",
+            "size": "auto 100%",
+            "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 109.98px), rgb(0, 0, 0) calc(50% - 85.8px), rgb(0, 0, 0) calc(50% + 85.8px), rgba(0, 0, 0, 0) calc(50% + 109.98px))"
+          },
+          "light": true,
+          "width": 844,
+          "scrollWidth": 844,
+          "scrollY": 702,
+          "maxScroll": 702,
+          "title": {
+            "x": 198,
+            "y": 428,
+            "width": 448,
+            "height": 40
+          },
+          "card": {
+            "x": 198,
+            "y": 548,
+            "width": 448,
+            "height": 496
+          },
+          "space": {
+            "x": 302,
+            "y": 164,
+            "width": 240,
+            "height": 240
+          },
+          "rowIcons": 0,
+          "controls": [
+            {
+              "key": "Geri",
+              "x": 198,
+              "y": 48,
+              "width": 52,
+              "height": 44
+            },
+            {
+              "key": "Son regl başlangıç tarihi",
+              "x": 198,
+              "y": 550,
+              "width": 181.796875,
+              "height": 20
+            },
+            {
+              "key": "period_start_date",
+              "x": 198,
+              "y": 572,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Regl süresi",
+              "x": 198,
+              "y": 646,
+              "width": 82.890625,
+              "height": 20
+            },
+            {
+              "key": "period_duration_days",
+              "x": 198,
+              "y": 668,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Döngü uzunluğu",
+              "x": 198,
+              "y": 742,
+              "width": 124.1875,
+              "height": 20
+            },
+            {
+              "key": "initial_cycle_length_days",
+              "x": 198,
+              "y": 764,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Shinka’nın döngü verilerimi döngüye dayalı özellikler ve kişiselleştirme sunmak amacıyla işlemesine açık rıza veriyorum",
+              "x": 198,
+              "y": 836,
+              "width": 448,
+              "height": 72
+            },
+            {
+              "key": "health_consent",
+              "x": 198,
+              "y": 860,
+              "width": 24,
+              "height": 24
+            },
+            {
+              "key": "Bitir",
+              "x": 198,
+              "y": 928,
+              "width": 448,
+              "height": 52
+            },
+            {
+              "key": "Şimdilik geç",
+              "x": 198,
+              "y": 1000,
+              "width": 448,
+              "height": 44
+            }
+          ]
+        }
+      ],
+      "keyboard": "FOCUS_AND_REDUCED_VIEWPORT_ONLY"
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/220a7ce68_Onbaording.png/v1/fill/w_941,h_1672,al_c,q_85/shinka-onboarding.jpg",
+      "bytes": 105097,
+      "sha256": "688d6ccce218450002a884a5ddda2b8785cdc5b0fb1d021c6bce1f62d9749a2c"
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap",
+      "bytes": 13647,
+      "sha256": "73aba7f8d09b872401eff8a251710bd75cc737e31bfba95cd0388df9c201c6b5"
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYp3tKky2F7i6C.woff2",
+      "bytes": 33740,
+      "sha256": "9dc38267bdee93a653200ef3c1e8060e3f1399073432c415c683b419d3b50464"
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtKky2F7g.woff2",
+      "bytes": 37776,
+      "sha256": "5d618c462b7a5b74f442e1548880086af71764d9cc7d35c16ab45353da934621"
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2",
+      "bytes": 48432,
+      "sha256": "c940764593d0fe5d596be327ca7558855e018039fb78509aa21921fd3644c3e4"
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2",
+      "bytes": 85272,
+      "sha256": "a28eb6d3ccb534ae0c94ca999371df024aab60b08c3c8a5720ee9e32fa0faaa2"
+    }
+  ]
+}

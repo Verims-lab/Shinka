@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-053
+**Current BuildMarker:** Buildmarker-054
 **Last Updated:** 2026-10-30
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -11,6 +11,13 @@
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
+
+
+## 054 — Onboarding illustration ownership
+
+SectionBackdrop and its existing ::before image remain the only bitmap composition on every numbered onboarding screen. OnboardingScreen reserves the old 240px-square flow area with an empty CSS layout box; OnboardingIntro now owns only paragraph, three icon rows and Begin. Removed IntroArt/INTRO_ART and the unused blend rule. No new overlay, background asset, global border/focus override, theme resolver or data path. PageContainer, sectionBackgrounds and sectionBackground.css are unchanged.
+
+checkOnboardingPresentation includes checkOnboardingLayers against the complete real App with synthetic SDK transport. Public artwork/fonts are loaded only for explicit visual captures, with hashes recorded; normal offline regression blocks all external requests. The isolated test transport reuses onboardingFixture/onboardingOperation for profile-to-cycle progression. Local image/scroll evidence cannot certify a physical WebView.
 
 
 ## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)

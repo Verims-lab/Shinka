@@ -5,6 +5,7 @@ import { createRoot } from "react-dom/client";
 import { flushSync } from "react-dom";
 import PageContainer from "@/components/shinka/PageContainer";
 import SectionBackdrop from "@/components/shinka/SectionBackdrop";
+import OnboardingScreen from "@/features/onboarding/OnboardingScreen";
 import { SECTION_BACKGROUNDS, sectionBackground } from "@/foundation/sectionBackgrounds";
 import PageHeader from "@/components/shinka/PageHeader";
 import ShinkaCard from "@/components/shinka/ShinkaCard";
@@ -141,6 +142,15 @@ export const CSS_CONTRACT_TESTS = [
       const before=appThemeExpectation();applyAppTheme('dark');
       try{assert(getComputedStyle(layer,"::after").content!=="none",'dark overlay present');}finally{applyAppTheme(before.source==='UNVERIFIED_DEFAULT'?null:before.theme);}
     });
+    for(const state of ['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_NAME','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP']) {
+      await rendered(h('div',null,h(SectionBackdrop,{section:'onboarding'}),h(OnboardingScreen,{state,initialLanguage:'en',request:async()=>{throw new Error('UNEXPECTED_FIXTURE_IO');}})),host=>{
+        assert(host.querySelectorAll('[data-section-backdrop]').length===1&&!host.querySelector('img'),'one backdrop, no second content bitmap');
+        const space=host.querySelector('.shinka-onboarding-art-space'),css=measure(space);
+        assert(space.getAttribute('aria-hidden')==='true'&&space.childElementCount===0&&css.backgroundImage==='none'&&css.backgroundColor==='rgba(0, 0, 0, 0)','empty transparent layout space');
+        assert(getComputedStyle(space,'::before').content==='none'&&getComputedStyle(space,'::after').content==='none','no replacement pseudo-decoration');
+        assert(getComputedStyle(host.querySelector('[data-section-backdrop]'),'::before').backgroundImage.includes(urls.onboarding),'approved composition remains');
+      });
+    }
   }],
   ["T80","Existing rendered Health typography/color/touch/account-theme-policy checks remain passing",async()=>{
     const context=createHealthContext();

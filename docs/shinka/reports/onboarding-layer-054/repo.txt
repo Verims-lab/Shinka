@@ -1,0 +1,65 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 health:repo
+> node scripts/repoHealth.mjs
+
+{
+  "scope": "REPOSITORY_ONLY",
+  "buildMarker": "Buildmarker-054",
+  "healthCatalog": "HC-053.0",
+  "checks": {
+    "dependencyBoundaries": true,
+    "boundedGeneratedHistory": true,
+    "twentyPhysicalProductSchemas": true,
+    "noUnexpectedProductSchemas": true,
+    "guardedNotificationSchedule": true,
+    "guardedGeoNamesQuota": true,
+    "guardedHealthHistory": true,
+    "separateBuiltinUserAndTooling": true,
+    "exactAuthoritativeFields": true,
+    "completeAccessMatrix": true,
+    "directSdkOperationsDenied": true,
+    "onboardingCopyAndProxy": true,
+    "onboardingGeoNamesEntry": true,
+    "noProductSeedCalls": true,
+    "canonicalMarker": true,
+    "docsAligned": true,
+    "noLegacyImport": true,
+    "noCredentialFindings": true,
+    "noPersonalEmails": true
+  },
+  "failed": [],
+  "domain": {
+    "dailyCompatibility": {
+      "phase": "ID_ONLY_SCHEMA",
+      "optionalLegacyFields": [],
+      "valid": true,
+      "cleanupVerified": false,
+      "scope": "REPOSITORY_ONLY"
+    },
+    "expected": 20,
+    "present": 20,
+    "unexpected": [],
+    "mismatches": [],
+    "internal": 7,
+    "builtinUserSeparate": true,
+    "geoNamesQuotaPolicy": true,
+    "healthHistoryPolicy": true,
+    "testOperationPolicy": true,
+    "calendarActionPolicy": true,
+    "notificationSchedulePolicy": true,
+    "privacyPolicies": true,
+    "accessMatrixRows": 20,
+    "accessMatrixComplete": true,
+    "directOperationsDenied": true,
+    "source": "PHYSICAL_REPOSITORY_SCHEMAS_NOT_DEPLOYMENT_PROOF",
+    "writeSurface": {
+      "ok": true,
+      "unexpected": [],
+      "changedAllowlistedCounts": [],
+      "metadataWriteCalls": 19,
+      "onboardingWriteCalls": 2,
+      "scope": "STATIC_IMPORT_SEED_CALL_INSPECTION"
+    }
+  }
+}

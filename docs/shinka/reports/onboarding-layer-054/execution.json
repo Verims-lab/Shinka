@@ -1,0 +1,146 @@
+{
+  "buildMarker": "Buildmarker-054",
+  "healthCatalog": "HC-053.0",
+  "scope": "LOCAL_REPOSITORY_SYNTHETIC_SDK_AND_LOADED_PUBLIC_ASSETS",
+  "runs": [
+    {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "tests": 771,
+      "passed": 771,
+      "failed": 0,
+      "pageErrors": [],
+      "catalog": {
+        "version": "HC-053.0",
+        "suites": 17,
+        "cases": 186,
+        "localRegression": 12,
+        "current": 160,
+        "future": 0,
+        "external": 14
+      },
+      "fullAppLayers": {
+        "configurations": 20,
+        "stepChecks": 100,
+        "scrollViews": 300,
+        "allPassed": true,
+        "publicAssets": "LOADED",
+        "receipt": "after-chromium/layers/layers.json"
+      },
+      "health": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "counts": {
+          "PASS": 147,
+          "BLOCKED": 13
+        },
+        "saveState": "SAVED",
+        "retrySave": true,
+        "listed": true,
+        "opened": true
+      },
+      "log": "chromium.txt"
+    },
+    {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "tests": 771,
+      "passed": 771,
+      "failed": 0,
+      "pageErrors": [],
+      "catalog": {
+        "version": "HC-053.0",
+        "suites": 17,
+        "cases": 186,
+        "localRegression": 12,
+        "current": 160,
+        "future": 0,
+        "external": 14
+      },
+      "fullAppLayers": {
+        "configurations": 20,
+        "stepChecks": 100,
+        "scrollViews": 300,
+        "allPassed": true,
+        "publicAssets": "LOADED",
+        "receipt": "after-webkit/layers/layers.json"
+      },
+      "health": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "counts": {
+          "PASS": 147,
+          "BLOCKED": 13
+        },
+        "saveState": "SAVED",
+        "retrySave": true,
+        "listed": true,
+        "opened": true
+      },
+      "log": "webkit.txt"
+    }
+  ],
+  "layoutComparison": {
+    "receipt": "comparison.json",
+    "finalMatchedMaxDeltaCssPx": 0,
+    "retainedAssetHashesEqual": true
+  },
+  "quality": {
+    "cleanInstall": "PASS",
+    "dependencyTree": "PASS",
+    "dependencyAudit": "ZERO_ALL_SEVERITIES",
+    "securityDeps": "PASS",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS",
+    "repoHealth": "PASS",
+    "generatedHistory": "PASS_050_TO_054"
+  },
+  "performance": {
+    "passed": true,
+    "scope": "LOCAL_CHROMIUM_LOOPBACK_SYNTHETIC_SDK",
+    "budget": {
+      "initialRaw": 500000,
+      "initialGzip": 165000,
+      "cssRaw": 90000,
+      "cssGzip": 16000
+    },
+    "initialJS": {
+      "raw": 476923,
+      "gzip": 158575
+    },
+    "css": {
+      "raw": 78674,
+      "gzip": 14456
+    },
+    "cycles": [],
+    "routes": 9,
+    "samples": 27,
+    "errors": 0
+  },
+  "healthDelta": {
+    "added": 0,
+    "updated": 3,
+    "removed": 0
+  },
+  "sync": {
+    "initialTest": "db04a10",
+    "initialMain": "508e622",
+    "finalMain": "e86bd19",
+    "action": "TREE_IDENTICAL_FAST_FORWARD_TO_MAIN_MERGE",
+    "workingDiffSha256BeforeAndAfter": "a99510b0009ce9a602871ccc06a3978a0fd05fb2a6fe3ea99ea02a3ad1f9a1a8"
+  },
+  "notRun": [
+    "PHYSICAL_ANDROID_APK",
+    "PHYSICAL_IOS_WRAPPER",
+    "REAL_KEYBOARD_SAFE_AREA_ORIENTATION",
+    "LIVE_FULL_HEALTH",
+    "BASE44_SECURITY_SCAN",
+    "LIVE_USER_DB_PROVIDER_MUTATION",
+    "MAIN_MERGE_PUBLISH"
+  ]
+}

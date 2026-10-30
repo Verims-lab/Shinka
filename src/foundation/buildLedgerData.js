@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-049",
-    "package_name": "Bounded opening and reviewed daily cleanup web preparation",
-    "package_type": "FIX",
-    "created_at": "2026-10-28T16:45:10.085232Z",
-    "health_catalog_version": "HC-048.0",
-    "short_summary": "Bound session/settings waits, recover failed foreground Home, retain safe stage diagnostics; prepare narrow web dispatch and assignment/link receipts for authorized 045 cleanup.",
-    "full_health_status": "LOCAL_140_PASS_13_BLOCKED_0_FAIL_HOSTED_NOT_RUN",
-    "source_of_truth_updated": true,
-    "tests_updated": true,
-    "health_cases_updated": true,
-    "docs_aligned": true,
-    "notes": "Chromium/WebKit each 734/734 PASS, 0 page errors; local Health 140 PASS/13 hosted-prerequisite BLOCKED/0 FAIL. Preserves 048 theme/art and ID-only writes. Health add 0/update 6/delete 0. Original SS13/DU06 failures retained. Hosted 048 reopening succeeded; intermittent failure not reproduced. Web dryRun rejected INVALID_INTERNAL_ACTION: 0 inspected/0 cleaned/remaining unknown, verify NOT_RUN. Compatibility schema retained. No main/publish, live Full Health/scan or maintenance write. Active 045–049; evidence in SHINKA_LOADING_CLEANUP_049.md."
-  },
-  {
     "build_marker": "Buildmarker-050",
     "package_name": "Mobile preference sheets and Calendar feedback verification",
     "package_type": "FIX",
@@ -65,5 +51,15 @@ export default [
     "short_summary": "Conditional shared daily/hourly credits; fail-closed counter provisioning, safe retries and accurate 13-function security classification.",
     "full_health_status": "NOT_RUN",
     "notes": "Chromium/WebKit each 771/771 PASS plus final strengthened quota 9/9 each; entry negatives 8/8 and installed/pinned SDK transport 8/8 PASS. Local Health 147 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL, save/list/open PASS. Quality/performance gates PASS; Health +1/~5/-0. One conservative prepared singleton is required; hosted atomicity, Deno and physical acceptance NOT_RUN. No live writes/scan/Full Health/publish. Group A and twelve deferred findings preserved. Report: reports/SHINKA_GEONAMES_QUOTA_053.md."
+  },
+  {
+    "build_marker": "Buildmarker-054",
+    "package_name": "Single onboarding moon illustration",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-10-30T13:17:14.000Z",
+    "health_catalog_version": "HC-053.0",
+    "short_summary": "Remove duplicate scrolling onboarding art; retain approved backdrop, 240px square flow space, row icons and five-step behavior.",
+    "full_health_status": "NOT_RUN",
+    "notes": "Chromium/WebKit each 771/771 PASS; loaded full-App matrix 100 step checks / 300 scroll views per engine. Matched layout delta 0 CSS px. Quality/performance PASS, zero dependency advisories. Local Health 147 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL; save/list/open PASS. Health +0/~3/-0. Physical keyboard/rotation/wrapper NOT_RUN; no live operations or publish. 051–053 preserved. Report: reports/SHINKA_ONBOARDING_LAYER_054.md."
   }
 ];

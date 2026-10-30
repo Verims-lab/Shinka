@@ -1,4 +1,5 @@
 let privacyLab;
+let onboardingVisualLab;
 const loadPrivacyLab = () => privacyLab ||= import('@/foundation/tests/privacyFixture').then(({privacyFixture})=>{const f=privacyFixture();globalThis.__privacyLab=f;return f;});
 let youLab;
 const themeLabs = new Map();
@@ -104,6 +105,12 @@ export const base44 = {
       profile: (youLab || params.has('themeFixture')) ? (await (await loadYouLab(actor)).request('read')).profile : undefined,
       preferences: (youLab || params.has('themeFixture')) ? (await (await loadYouLab(actor)).request('read')).preferences : params.has('uninitialized') ? null : { language_code: params.get('language') === 'tr' ? 'tr' : 'en', timezone: 'UTC' }, today: '2026-10-20',
     } };
+    }
+    if (name === 'onboarding' && params.has('onboardingVisual') && body.action === 'saveProfile') {
+      onboardingVisualLab ||= import('@/foundation/tests/onboardingFixture').then(({onboardingFixture})=>onboardingFixture());
+      const fixture=await onboardingVisualLab;
+      const {onboardingOperation}=await import('../../base44/shared/onboardingOperations.js');
+      return {data:await onboardingOperation(fixture.client,body,fixture.dependencies)};
     }
     if (name === 'dailyMessage') {
       if(youLab)return {data:await(await loadYouLab()).today()};

@@ -1,0 +1,12 @@
+{
+  "scope": "MATCHED_LOCAL_CHROMIUM_REAL_APP_LOADED_ASSETS",
+  "configurations": 20,
+  "stepChecks": 100,
+  "scrollViews": 300,
+  "maxLayoutDeltaCssPx": 0,
+  "unexpectedLayoutChanges": [],
+  "sameRetainedAssetHashes": true,
+  "beforeCompositionCount": 2,
+  "afterCompositionCount": 1,
+  "physicalKeyboardRotationAcceptance": "NOT_RUN"
+}

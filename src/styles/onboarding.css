@@ -3,7 +3,9 @@
 .shinka-onboarding { min-height: 100vh; min-height: 100dvh; }
 /* ON-01: three-row intro sits directly on the watercolor shell (no single white card). */
 .shinka-onboarding .shinka-intro-shell { background: transparent; border: 0; box-shadow: none; padding: 0; }
-.shinka-intro-art { mix-blend-mode: multiply; }
+/* SectionBackdrop owns the moon/botanical art. Keep the former square image's
+   flow space so headings/forms do not move; this box paints no decoration. */
+.shinka-onboarding-art-space { width: 100%; max-width: 240px; aspect-ratio: 1; margin-inline: auto; }
 /* ON-01/04 headings receive programmatic focus for screen announcements, but
    are not interactive controls. Override the global :focus-visible ring only here. */
 .shinka-onboarding h1.shinka-unframed-title:focus { outline: none; }

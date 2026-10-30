@@ -2,13 +2,20 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-053
+**Current BuildMarker:** Buildmarker-054
 **Last Updated:** 2026-10-30
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-051.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-053.0; repository, synthetic and external evidence separated.
 
+
+
+## 054 — Onboarding single-composition regression
+
+Health delta **0 added / 3 updated / 0 removed**: H13-012 and its serialized localRegressionRequirements map the full-App checkOnboardingPresentation/checkOnboardingLayers matrix; H13-020 checks the current document for extra onboarding bitmaps while retaining mapping/single backdrop assertions; H05-009 recognizes 054 under the unchanged strict approved-content policy. U16/U18 replace the old required content img with no duplicate bitmap, preserved empty spacing and three row icons; T82 covers backdrop and each complete OnboardingScreen together. No test or external acceptance case removed. Catalog remains 186 IDs / 160 in-app / 12 local / 14 external, version HC-053.0.
+
+Chromium/WebKit each passed 771/771 plus the 100-step/300-scroll loaded-asset matrix; quality/performance gates passed. Local synthetic Health was 147 PASS / 13 expected hosted-prerequisite BLOCKED / 0 FAIL, with save/list/open verified. Matched loaded-asset visual evidence and actual execution are in [054 delivery](reports/SHINKA_ONBOARDING_LAYER_054.md). Physical Android/iOS keyboard, viewport and wrapper acceptance remains external (H13-013); no hosted Full Health or scan in this package.
 
 
 ## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)

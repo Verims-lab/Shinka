@@ -2,27 +2,11 @@ import { Flower2, Moon, Sun } from "lucide-react";
 import ShinkaButton from "@/components/shinka/ShinkaButton";
 
 // ON-01 body: three introduction rows shown together on first render (no carousel).
-export const INTRO_ART =
-  "https://media.base44.com/images/public/6ad5190f4845d4e3af03b420/4a0b6c46b_generated_image.png";
 const ROWS = [
   { icon: Flower2, title: "introCycle", text: "introCycleText" },
   { icon: Moon, title: "introMoon", text: "introMoonText" },
   { icon: Sun, title: "birthChart", text: "introChartText" },
 ];
-
-export function IntroArt() {
-  return (
-    <img
-      src={INTRO_ART}
-      alt=""
-      aria-hidden="true"
-      width="512"
-      height="512"
-      decoding="async"
-      className="shinka-intro-art mx-auto h-auto w-full max-w-[240px]"
-    />
-  );
-}
 
 export default function OnboardingIntro({ t, onBegin }) {
   return (

@@ -2,12 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-053
+**Current BuildMarker:** Buildmarker-054
 **Last Updated:** 2026-10-30
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
+
+
+## 054 — Focused onboarding illustration fix
+
+The supplied Android recording at 22–24s shows the scrolling generated_image.png composition over the fixed Onbaording.png-based backdrop. Source review confirms two distinct URLs, not duplicate mounting of SectionBackdrop. Removed only the second content bitmap and its unused component/constant/import/CSS; retained its 240px-square flow space and all three intro row icons. Matched Chromium real-App captures cover 100 step/configuration checks and 300 scroll views with identical retained asset hashes and zero title/card/control/spacing displacement. Chromium/WebKit each passed 771/771; loaded-asset matrices each passed 100 step checks / 300 scroll views. Required quality/performance gates passed with zero dependency advisories. Local synthetic Health 147 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL, save/list/open passed. Runtime, visual, gate and remaining physical evidence are recorded in the [054 report](reports/SHINKA_ONBOARDING_LAYER_054.md). No live user/provider/DB/Health/publish action.
 
 
 ## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)

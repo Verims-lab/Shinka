@@ -2,12 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-053
+**Current BuildMarker:** Buildmarker-054
 **Last Updated:** 2026-10-30
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
+
+
+## 054 — Scoped onboarding visual layering
+
+Preserve 051–053 reliability/GeoNames/Health changes. This request removes only the duplicate onboarding illustration while keeping its layout space; no new general audit, provider changes, live mutation/cleanup/Full Health/scan, main merge or publish. Generate Buildmarker-054 / HC-053.0 with recordBuild and active 050–054. Execute mandatory local gates, both browsers, loaded-asset before/after comparisons and manual image review; synthetic focus/rotation does not close physical APK acceptance.
 
 
 ## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)
