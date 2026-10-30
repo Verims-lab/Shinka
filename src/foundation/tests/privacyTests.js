@@ -131,7 +131,9 @@ export const PRIVACY_TESTS = [
     const before = writes(f).length;
     const result = await f.request('status', privacyIntent('DELETE_ACCOUNT'), null);
     check(result.state === 'PLATFORM_PENDING' && writes(f).length === before && !JSON.stringify(result).includes('ownerA'));
-    check((await f.http({ action: 'resume', ...privacyIntent('DELETE_ACCOUNT') }, null)).status === 401);
+    check((await f.request('status', privacyIntent('DELETE_ACCOUNT'), null)).state === result.state, 'receipt is reusable until expiry');
+    for (const action of ['begin','resume']) check((await f.http({ action, ...privacyIntent('DELETE_ACCOUNT') }, null)).status === 401);
+    check(writes(f).length === before, 'receipt cannot authorize mutation');
     check((await f.http({ action: 'status', kind: 'DELETE_ACCOUNT', recovery_key: 'b'.repeat(64) }, null)).status === 403);
   }],
   ['PR08', 'Forged owner/role, anonymous/stale identities and admin self-delete remain refused', async () => {

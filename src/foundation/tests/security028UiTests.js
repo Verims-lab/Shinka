@@ -8,18 +8,19 @@ import { createYouController } from '@/features/you/youController';
 
 const limited = () => Object.assign(new Error('GEONAMES_RATE_LIMITED'), { code: 'GEONAMES_RATE_LIMITED', field: 'birthplace', unknown: false });
 const settle = () => new Promise(resolve => setTimeout(resolve, 30));
-const limitedClient = { functions: { invoke: async () => ({ data: { error_code: 'GEONAMES_RATE_LIMITED', field: 'birthplace', retry_after_seconds: 30, detail: 'upstream secret detail' } }) } };
+const limitedClient = { functions: { invoke: async () => ({ data: { error_code: 'GEONAMES_RATE_LIMITED', field: 'birthplace', retry_after_seconds: 90000, detail: 'upstream secret detail' } }) } };
 
 /** @type {import('./testTypes').FoundationTest[]} */
 export const SECURITY_028_UI_TESTS = [
   ['SC06', 'Rate-limit code maps to approved TR/EN copy in onboarding and You services; raw backend detail never surfaces', async () => {
     check(ONBOARDING_ERROR_KEYS.includes('GEONAMES_RATE_LIMITED'));
     const tr = onboardingCopy('GEONAMES_RATE_LIMITED', 'tr'), en = onboardingCopy('GEONAMES_RATE_LIMITED', 'en');
+    check(!/minute|dakika/.test(tr+en));
     check(tr !== 'COPY_KEY_MISSING' && en !== 'COPY_KEY_MISSING' && tr !== en && !/429|GEONAMES/.test(tr + en));
     let error; try { await onboardingRequest('searchPlaces', { query: 'Kan', language_code: 'tr' }, limitedClient); } catch (e) { error = e; }
-    check(error?.code === 'GEONAMES_RATE_LIMITED' && error.field === 'birthplace' && !String(error.message).includes('upstream'));
+    check(error?.retryAfterSeconds === 90000 && error?.code === 'GEONAMES_RATE_LIMITED' && error.field === 'birthplace' && !String(error.message).includes('upstream'));
     let you; try { await youRequest('saveProfile', {}, limitedClient); } catch (e) { you = e; }
-    check(you?.code === 'GEONAMES_RATE_LIMITED' && you.field === 'birthplace' && you.unknown === false && !String(you.message).includes('upstream'));
+    check(you?.retryAfterSeconds === 90000 && you?.code === 'GEONAMES_RATE_LIMITED' && you.field === 'birthplace' && you.unknown === false && !String(you.message).includes('upstream'));
   }],
   ['SC10', 'Birthplace search keeps the typed query on a rate limit, makes no automatic retry, and retries once only on request', async () => {
     let calls = 0;
@@ -32,13 +33,13 @@ export const SECURITY_028_UI_TESTS = [
     search.dispose();
   }],
   ['SC11', 'You profile draft survives a rate-limited save; no automatic resend; save is definite (not unconfirmed)', async () => {
-    const profile = { display_name: 'Ada', birth_date: '1990-01-01', birth_time: '10:00', birthplace_geonames_id: null, revision: 'r' };
+    const profile = { display_name: 'Ada', birth_date: '1990-01-01', birth_time: '10:00', birthplace_geonames_id: 123, birthplace_name: 'Fixture', revision: 'r' };
     let saves = 0;
     const request = async action => { if (action === 'read') return { profile, preferences: { language_code: 'tr', revision: 'p' }, today: '2026-10-22' }; saves++; throw limited(); };
     const you = createYouController(request);
     await you.load(); you.edit(); you.change('display_name', 'Deniz'); await you.saveProfile();
     const s = you.getSnapshot();
-    check(s.error?.code === 'GEONAMES_RATE_LIMITED' && !s.error.unknown && s.editing && s.draft?.display_name === 'Deniz' && saves === 1);
+    check(s.error?.code === 'GEONAMES_RATE_LIMITED' && !s.error.unknown && s.editing && s.draft?.display_name === 'Deniz' && s.draft.birthplace.selection.birthplace_geonames_id === 123 && saves === 1);
     await settle(); check(saves === 1);
     you.dispose();
   }],

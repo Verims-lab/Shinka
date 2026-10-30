@@ -1,0 +1,114 @@
+{
+  "scope": "TARGETED_CALENDAR_PATTERN_LOCAL_DELIVERY",
+  "build": "Buildmarker-052",
+  "health_catalog": "HC-051.0",
+  "recorded_at": "2026-10-30T12:16:10.667056+00:00",
+  "branch_base": "508e622",
+  "preserved": [
+    "051 bounded shared Health verification and diagnostics",
+    "Base44 GeoNamesDailyQuota main changes",
+    "manual Profile-only theme decision",
+    "closed notifications/scheduler",
+    "deferred backend findings",
+    "Calendar same-action unknown mutation recovery"
+  ],
+  "focused": {
+    "chromium": {
+      "passed": 39,
+      "failed": 0,
+      "receipt": "acceptance-chromium.json",
+      "final_boundary_passed": 7,
+      "final_boundary_failed": 0,
+      "final_boundary_receipt": "boundary-chromium.json"
+    },
+    "webkit": {
+      "passed": 39,
+      "failed": 0,
+      "receipt": "acceptance-webkit.json",
+      "final_boundary_passed": 7,
+      "final_boundary_failed": 0,
+      "final_boundary_receipt": "boundary-webkit.json"
+    }
+  },
+  "full_regression": {
+    "chromium": {
+      "total": 761,
+      "passed": 759,
+      "failed": [
+        "D01",
+        "D22"
+      ],
+      "receipt": "final-chromium.json",
+      "initial_failures_retained_in": "full-chromium.json"
+    },
+    "webkit": {
+      "total": 761,
+      "passed": 759,
+      "failed": [
+        "D01",
+        "D22"
+      ],
+      "receipt": "final-webkit.json",
+      "initial_failures_retained_in": "full-webkit.json"
+    }
+  },
+  "failure_classification": {
+    "D01": "Pre-existing main GeoNamesDailyQuota physical inventory omission",
+    "D22": "Pre-existing main geonamesDailyQuota.js creation-call tripwire omission",
+    "H04-007": "FAIL: existing D01/D22, not downgraded or suppressed"
+  },
+  "local_in_app_health": {
+    "status": "FAIL_H04_007",
+    "history_save_list_open": "NOT_RUN_AFTER_GATE_ASSERTION",
+    "later_health_timing": "NOT_RUN_AFTER_GATE_ASSERTION"
+  },
+  "server_runners": {
+    "verifyNativeEntries": "PASS including real Calendar/Pattern error envelope and unchanged native entry routing",
+    "security028": "PASS local synthetic authorization runner",
+    "notifications030": "PASS local synthetic runner; real sending disabled"
+  },
+  "quality": {
+    "npm_ci": "PASS",
+    "npm_ls_all": "PASS",
+    "dependency_audit": "PASS_ZERO_ADVISORIES",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS",
+    "performance_budgets": "PASS",
+    "recordBuild_check": "PASS_048_TO_052",
+    "repo_health": "FAIL_EXISTING_UNEXPECTED_SCHEMA_AND_WRITE_SURFACE"
+  },
+  "health_delta": {
+    "added": 0,
+    "updated": 5,
+    "removed": 0,
+    "updated_ids": [
+      "H08-007",
+      "H12-037",
+      "H13-015",
+      "H13-017",
+      "H05-009"
+    ],
+    "total": 185,
+    "in_app": 159,
+    "local": 12,
+    "external": 14
+  },
+  "new_tests": [
+    "CP01",
+    "CP02",
+    "CP03",
+    "CP04",
+    "CP05",
+    "CP06",
+    "CP07",
+    "CU09"
+  ],
+  "physical_android_apk": "NOT_RUN",
+  "physical_ios_wrapper": "NOT_RUN",
+  "original_apk_transport_cause": "UNPROVEN",
+  "exact_deployed_backend_sha": "NOT_VERIFIED",
+  "live_full_health_security_scan_mutation_import_cleanup": "NOT_RUN",
+  "main_merge_publish": "NOT_RUN",
+  "delivery_status": "TARGETED_LOCAL_VERIFIED_WITH_SEPARATE_EXISTING_REPOSITORY_GATE_FAILURE"
+}

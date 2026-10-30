@@ -1,0 +1,29 @@
+npm warn Unknown project config "min-release-age-exclude". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> base44-app@0.0.0 typecheck
+> tsc -p ./jsconfig.json
+
+src/foundation/tests/geonamesQuotaTests.js(44,27): error TS2345: Argument of type '{ id: string; scope: string; revision: number; window_hour: number; buckets: { hour: number; credits: number; }[]; }[] | { id: string; quota_date: string; count: number; }[]' is not assignable to parameter of type '{ id: string; scope: string; revision: number; window_hour: number; buckets: { hour: number; credits: number; }[]; }[]'.
+  Type '{ id: string; quota_date: string; count: number; }[]' is not assignable to type '{ id: string; scope: string; revision: number; window_hour: number; buckets: { hour: number; credits: number; }[]; }[]'.
+    Type '{ id: string; quota_date: string; count: number; }' is missing the following properties from type '{ id: string; scope: string; revision: number; window_hour: number; buckets: { hour: number; credits: number; }[]; }': scope, revision, window_hour, buckets
+src/foundation/tests/geonamesQuotaTests.js(49,28): error TS2322: Type '{ buckets: { hour: number; }[]; id: string; scope: string; revision: number; window_hour: number; } | { buckets: { hour: number; credits: number; }[]; id: string; scope: string; revision: number; window_hour: number; }' is not assignable to type '{ id: string; scope: string; revision: number; window_hour: number; buckets: { hour: number; credits: number; }[]; }'.
+  Type '{ buckets: { hour: number; }[]; id: string; scope: string; revision: number; window_hour: number; }' is not assignable to type '{ id: string; scope: string; revision: number; window_hour: number; buckets: { hour: number; credits: number; }[]; }'.
+    Types of property 'buckets' are incompatible.
+      Type '{ hour: number; }[]' is not assignable to type '{ hour: number; credits: number; }[]'.
+        Property 'credits' is missing in type '{ hour: number; }' but required in type '{ hour: number; credits: number; }'.
+src/foundation/tests/geonamesQuotaTests.js(51,51): error TS2322: Type 'Promise<{ items: { id: string; scope: string; revision: number; window_hour: number; buckets: { hour: number; credits: number; }[]; }[]; }>' is not assignable to type 'Promise<{ id: string; scope: string; revision: number; window_hour: number; buckets: { hour: number; credits: number; }[]; }[]>'.
+  Type '{ items: { id: string; scope: string; revision: number; window_hour: number; buckets: { hour: number; credits: number; }[]; }[]; }' is missing the following properties from type '{ id: string; scope: string; revision: number; window_hour: number; buckets: { hour: number; credits: number; }[]; }[]': length, pop, push, concat, and 35 more.
+src/foundation/tests/geonamesQuotaTests.js(69,33): error TS2322: Type '() => Promise<{ ok: true; }>' is not assignable to type '(input: any, init: any) => Promise<Response>'.
+  Type 'Promise<{ ok: true; }>' is not assignable to type 'Promise<Response>'.
+    Type '{ ok: true; }' is missing the following properties from type 'Response': headers, redirected, status, statusText, and 11 more.
+src/foundation/tests/geonamesQuotaTests.js(79,33): error TS2322: Type '() => Promise<{}>' is not assignable to type '(input: any, init: any) => Promise<Response>'.
+  Type 'Promise<{}>' is not assignable to type 'Promise<Response>'.
+    Type '{}' is missing the following properties from type 'Response': headers, ok, redirected, status, and 12 more.
+src/foundation/tests/geonamesQuotaTests.js(82,64): error TS2322: Type '1' is not assignable to type '300'.
+src/foundation/tests/geonamesQuotaTests.js(82,87): error TS2322: Type '() => Promise<{}>' is not assignable to type '(input: any, init: any) => Promise<Response>'.
+  Type 'Promise<{}>' is not assignable to type 'Promise<Response>'.
+    Type '{}' is missing the following properties from type 'Response': headers, ok, redirected, status, and 12 more.
+src/foundation/tests/geonamesQuotaTests.js(84,148): error TS2722: Cannot invoke an object which is possibly 'undefined'.
+src/foundation/tests/geonamesQuotaTests.js(85,70): error TS2322: Type '() => Promise<{}>' is not assignable to type '(input: any, init: any) => Promise<Response>'.
+  Type 'Promise<{}>' is not assignable to type 'Promise<Response>'.
+    Type '{}' is missing the following properties from type 'Response': headers, ok, redirected, status, and 12 more.

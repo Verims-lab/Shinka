@@ -1,3 +1,4 @@
+import { verifyGeoNamesQuotaEntries } from './verifyGeoNamesQuotaEntries.mjs';
 import { checkPreferenceSheets } from './checkPreferenceSheets.mjs';
 import { verifyDailyEntitySdk } from './verifyDailyEntitySdk.mjs';
 import { verifyTestDeletionEntry } from './verifyTestDeletionEntry.mjs';
@@ -46,6 +47,7 @@ if (!engine) throw new Error('FOUNDATION_BROWSER must be chromium or webkit');
 let server,browser;
 try {
   verifyDependencyRules();
+  console.log(JSON.stringify(await verifyGeoNamesQuotaEntries(root)));
   console.log(JSON.stringify(await verifyDailyEntitySdk()));
   const notifications030 = await verifyNotifications(root);
   const nativeEntries = await verifyNativeEntries(root);

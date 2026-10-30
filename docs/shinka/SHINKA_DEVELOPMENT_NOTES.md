@@ -2,12 +2,24 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-051
+**Current BuildMarker:** Buildmarker-053
 **Last Updated:** 2026-10-30
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
+
+
+## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)
+
+Reproduced all four 508e622 quota defects in an isolated real-function test. Replaced read/unconditional-increment with acknowledged conditional shared credit reservation, conservative hourly/daily windows, missing/duplicate denial, no request-time create and abort/burst protection. Fixed long-wait copy/Retry-After preservation, closed tooling inventory and documented all 13 endpoint distinctions without clearing deferred findings. Chromium and WebKit each passed 771/771; actual-entry negatives 8/8 and exact SDK transport checks 8/8 passed. Local Health: 147 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED, with save/list/open verified; required quality and performance gates passed. Full 28-schema staging passed both modes. [Single delivery report and execution evidence](reports/SHINKA_GEONAMES_QUOTA_053.md). No live calls or mutations; hosted atomicity, Deno execution and physical acceptance remain NOT_RUN. Publisher must prepare one conservative counter after draining old writers; missing state intentionally blocks provider access.
+
+
+## 052 — Calendar and Pattern read recovery (2026-10-30)
+
+Targeted correction of false Calendar retained-view messaging, lost read diagnostics, settled lifecycle bursts, delayed pending slots and logout reactivation. Keeps independent Pattern values, Calendar draft/unknown same-intent semantics and the 20s budget. Controlled fault injection and actual web read observations are recorded separately; original APK HTTP cause is not established. No live mutations or maintenance. Existing main GeoNames quota inventory/write tripwire is preserved and reported separately.
+
+39/39 focused and 7/7 final boundary tests pass per Chromium/WebKit. Full: 759/761 pass per engine; existing D01/D22 keep H04-007 failing. Type/lint/build/dependency/performance/history pass. Local Health save/list/open and later timing are NOT_RUN after that gate; physical APK and exact deployed backend acceptance remain open. [Findings, execution and APK acceptance](reports/SHINKA_CALENDAR_PATTERN_052.md).
 
 
 ## 051 targeted Health read closure — HC-050.2 (2026-10-30)

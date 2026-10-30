@@ -2,13 +2,20 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-051
+**Current BuildMarker:** Buildmarker-053
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
-**Last Updated:** 2026-10-29
+**Last Updated:** 2026-10-30
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
 **External Verification Required:** All rows marked UNVERIFIED.
+
+## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)
+
+The exact 13-function classification and local negative evidence are in the [053 report](reports/SHINKA_GEONAMES_QUOTA_053.md#thirteen-functions-code-backed-classification). domainAccess permits guarded owner/shared reads and audited adminRead, but no generic product mutation. accountPrivacy has a limited post-session DELETE_ACCOUNT status capability, reusable within its original 24h TTL; wrong/expired keys fail and keys cannot authorize begin/resume. validateContentArtifacts is dynamically used by Health; notificationSchedule remains a planned native-admin entry with enabled:false. Body fields are rejected, ignored or validated per endpoint, not uniformly ignored. Group A is preserved; current 13 functions do not mean 13 proven vulnerabilities, nor clear the historical 12 OPEN/USER-DEFERRED findings.
+
+Authenticated/onboarding/You admission remains before any quota IO or provider/secret use. The single prepared counter uses conditional ID/revision reservation and exact acknowledgement; no uncertain write retry/refund. Workers retain local burst protection. Direct quota RLS denies all operations, with no public provisioning endpoint. Installed SDK transport is locally verified; deployed atomicity is not. External GeoNames-account consumers and manual counter edits are outside the app accounting.
+
 
 ## 051 — Core Reliability & Performance
 
@@ -72,7 +79,7 @@ Read failure (including 404/429/5xx from a query) is not absence. A stale COMPLE
 
 New confirmed exposure was stale local Home content/name after an explicit lifecycle/profile/owner denial; CQ06/CQ07/CQ10 now cover clearing, stopped-session requests and late replies. No server owner bypass was observed in the scoped negative matrices. General domain lists now disclose truncation, request declared fields only and reject malformed/duplicate results; CQ01/CQ02 include sentinel owner and withdrawn consent. CQ03/CQ04/CQ08 preserve unconfirmed write intent; CQ05 proves actor A keeps its current native session/role while operating on synthetic B. No runtime RLS/FLS relaxation or service-role identity shortcut.
 
-Official Base44 entity-security and current OWASP authorization/BOLA/mass-assignment/XSS/redirect/resource-limit sources were reviewed on **2026-10-27**, with direct links and control mapping in the [039 milestone security matrix](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md). Repository policy/entry, synthetic negative, dependency-audit and live enforcement evidence remain distinct. GeoNames limits remain worker-local, never distributed quota. Production notification entry/scheduler remain disabled. **12 backend findings OPEN / USER-DEFERRED** are not acknowledged or rescanned; original ON-05/First Shinka and hosted/device acceptance remain open.
+Official Base44 entity-security and current OWASP authorization/BOLA/mass-assignment/XSS/redirect/resource-limit sources were reviewed on **2026-10-27**, with direct links and control mapping in the [039 milestone security matrix](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md). Repository policy/entry, synthetic negative, dependency-audit and live enforcement evidence remain distinct. At 039, GeoNames had only worker-local limits; 053 adds the shared credit reservation contract above while burst limits remain local and hosted atomicity remains unverified. Production notification entry/scheduler remain disabled. **12 backend findings OPEN / USER-DEFERRED** are not acknowledged or rescanned; original ON-05/First Shinka and hosted/device acceptance remain open.
 
 ## 035 — scoped onboarding verification
 
@@ -410,4 +417,4 @@ Clean npm lockfile install after removing Postgres.js: zero Critical/High, two e
 Fresh unchanged-lock audit: **0 Critical / 0 High / 3 Moderate / 0 Low** affected packages. High-threshold security check passes; full audit exits 1 for the retained Moderate findings. The existing react-router/react-router-dom paths remain. The additional Vite finding is [GHSA-698v-4r3x-3vcv](https://github.com/vitejs/launch-editor/security/advisories/GHSA-698v-4r3x-3vcv), involving Windows editor launching with attacker-controlled filenames/environment or alternate data streams. No dependency change or blanket safety claim; macOS local testing does not validate Windows exposure. Exact audit is retained in reports/health-018/dependency-audit.json.
 
 ## Birthplace search boundary (2026-10-26)
-GeoNames access is now two owner-bound guarded paths: `search` and `resolve` (hierarchy list paths retired). Same fixed HTTPS host, redirect:manual rejection, bounded response, worker-local quota/burst guard, credential never returned. Free text is never persisted; only an explicitly selected, server-resolved GeoNames ID is saved.
+GeoNames access is now two owner-bound guarded paths: `search` and `resolve` (hierarchy list paths retired). Same fixed HTTPS host, redirect:manual rejection, bounded response, worker-local burst guard and 053 shared credit reservation, credential never returned. Free text is never persisted; only an explicitly selected, server-resolved GeoNames ID is saved.

@@ -1,3 +1,4 @@
+import { PRODUCT_READ_STABILITY_TESTS } from './productReadStabilityTests';
 import { PATTERN_REFRESH_TESTS } from './patternRefreshTests';
 import { withTestClock } from './testClock';
 import { check } from './dataModelTests';
@@ -11,7 +12,7 @@ const reject = async (run, code = null) => { try { await run(); } catch (error) 
 const summary = (rows, firstDay = null) => calculatePatternSummary({ rows, firstDay, owner: 'ownerA', timezone: 'Europe/Istanbul', instant: new Date(PATTERN_NOW) });
 /** @type {import('./testTypes').FoundationTest[]} */
 export const PATTERN_TESTS = [
- ...PATTERN_REFRESH_TESTS,
+ ...PATTERN_REFRESH_TESTS, ...PRODUCT_READ_STABILITY_TESTS,
  ['PT01', 'Empty and single assigned category, no current mapping or writes', async () => {
    const f = patternFixture(), empty = await f.request('themes');
    check(empty.state === 'EMPTY' && !empty.themes.length && empty.summary.primary_count === null);
@@ -103,7 +104,10 @@ export const PATTERN_TESTS = [
    }
    f.state.before = c => { if(c.name==='UserDailyMessage')throw new Error('private diagnostic must not leak'); };
    const res = await handlePatternRequest(new Request('https://fixture.invalid',{method:'POST',body:'{"action":"themes"}'}),()=>f.client(),{now:f.now});
-   check(res.status===503 && JSON.stringify(await res.json())==='{"error_code":"PATTERN_READ_FAILED"}');
+   const error=await res.json();
+   check(res.status===503 && error.error_code==='PATTERN_READ_FAILED');
+   check(JSON.stringify(Object.keys(error).sort())===JSON.stringify(['diagnostic','error_code']) && error.diagnostic.stage==='PATTERN_READ' && /^[a-f0-9-]{36}$/.test(error.diagnostic.requestId));
+   check(Object.keys(error.diagnostic).length===5&&!JSON.stringify(error).includes('private diagnostic'),'unsafe error envelope');
    check(JSON.stringify(f.tables)===before && f.state.calls.every(c=>c.method==='filter'));
  }],
  ['PT11', 'Anonymous, other user, forged authority, inactive, reset and deletion are denied', async () => {

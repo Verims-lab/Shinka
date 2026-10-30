@@ -1,0 +1,16 @@
+{
+  "source": "508e622",
+  "scope": "actual createDailyQuota with isolated store; no hosted calls",
+  "serial": [
+    null,
+    null,
+    null,
+    50400
+  ],
+  "race": {
+    "admitted": 20,
+    "count": 22
+  },
+  "firstRows": 5,
+  "zeroUpdatedAdmitted": true
+}

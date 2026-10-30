@@ -1,3 +1,4 @@
+import { onboardingCopy } from '../i18n/onboardingCopy';
 // 035 real component audit. Only SDK/provider IO is synthetic; form validation,
 // requests, backend persistence/readback, router and auth decisions remain real.
 import { createElement as h, useState } from 'react';
@@ -106,7 +107,7 @@ export const ONBOARDING_AUDIT_UI_TESTS=[
   let calls=0;
   await auditScreen('AUTHENTICATED_PROFILE_REQUIRED',async(f,host,wait,turn)=>{
    type(host,'birthplace','Kan');await wait(()=>host.querySelector('[data-place-more]'));host.querySelector('[data-place-more]').click();await wait(()=>host.querySelector('[data-place-retry]'));
-   check(host.textContent.includes('Too many place requests'),'empty page hides rate-limit error');
+   check(host.textContent.includes(onboardingCopy('GEONAMES_RATE_LIMITED','en')),'empty page hides rate-limit error');
    host.querySelector('[data-place-retry]').click();await wait(()=>host.querySelectorAll('[data-place-option]').length===1);
    check(f.calls.map(c=>c.payload.page).join()==='0,1,1','UI retry page');
    f.locale('tr');await turn();check(host.querySelector('#birthplace').value==='Kan','locale lost query');await wait(()=>host.querySelector('[data-place-more]'));

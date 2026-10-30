@@ -1,0 +1,24 @@
+{
+  "scope": "LOCAL_ACTUAL_TS_ENTRY_HANDLERS_SYNTHETIC_SDK",
+  "results": [
+    {
+      "function": "onboarding",
+      "negativeRequests": 4,
+      "quotaReads": 0,
+      "quotaWrites": 0,
+      "provider": 0,
+      "secrets": 0,
+      "passed": true
+    },
+    {
+      "function": "you",
+      "negativeRequests": 4,
+      "quotaReads": 0,
+      "quotaWrites": 0,
+      "provider": 0,
+      "secrets": 0,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,650 @@
+{
+  "focused": true,
+  "security028": {
+    "scope": "LOCAL_SERVER_FIXTURE",
+    "hostedVerified": false,
+    "results": [
+      {
+        "id": "SC01",
+        "name": "Bounded JSON: streaming byte limit, Content-Length, malformed and non-object",
+        "status": "PASS"
+      },
+      {
+        "id": "SC02",
+        "name": "GeoNames guard: no owner 401, lazy adapter/secret, per-user app limit with retry seconds, window reset",
+        "status": "PASS"
+      },
+      {
+        "id": "SC03",
+        "name": "GeoNames guard counts real upstream fetches and the worker-local total across owners; cache avoids refetch",
+        "status": "PASS"
+      },
+      {
+        "id": "SC04",
+        "name": "Unauthenticated You/onboarding calls: 401, zero product writes, no GeoNames setup",
+        "status": "PASS"
+      },
+      {
+        "id": "SC05",
+        "name": "Oversize bodies: 413 from real You/onboarding handlers with no entity call",
+        "status": "PASS"
+      },
+      {
+        "id": "SC07",
+        "name": "Real guard + real adapter: app, user-upstream and worker-upstream limits keep 429/retry and stop provider fetches",
+        "status": "PASS"
+      },
+      {
+        "id": "SC08",
+        "name": "Onboarding and You handlers return 429, GEONAMES_RATE_LIMITED, Retry-After and retry_after_seconds for the real chain error",
+        "status": "PASS"
+      },
+      {
+        "id": "SC09",
+        "name": "Negative: network failure and a forged 429-shaped error from fetch stay GEONAMES_UNAVAILABLE, never rate-limited",
+        "status": "PASS"
+      }
+    ],
+    "passed": true
+  },
+  "notifications030": {
+    "scope": "LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION",
+    "passed": true,
+    "results": [
+      {
+        "id": "NS01",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS02",
+        "status": "PASS",
+        "httpStatus": 503,
+        "response": {
+          "error_code": "SESSION_UNAVAILABLE"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS03",
+        "status": "PASS",
+        "httpStatus": 403,
+        "response": {
+          "error_code": "ADMIN_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS04",
+        "status": "PASS",
+        "httpStatus": 403,
+        "response": {
+          "error_code": "ADMIN_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS05",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 2,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS06",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS07",
+        "status": "PASS",
+        "httpStatus": 400,
+        "response": {
+          "error_code": "INVALID_REQUEST"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS08",
+        "status": "PASS",
+        "httpStatus": 200,
+        "response": {
+          "state": "DISABLED",
+          "processed": 0
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS09",
+        "status": "PASS",
+        "httpStatus": 400,
+        "response": {
+          "error_code": "INVALID_REQUEST"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS10",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS11",
+        "status": "PASS",
+        "httpStatus": 400,
+        "response": {
+          "error_code": "INVALID_REQUEST"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      }
+    ],
+    "sdk": {
+      "id": "SDK01",
+      "status": "PASS",
+      "scope": "INSTALLED_SDK_LOOPBACK_HTTP_ONLY",
+      "integrationEnvelope": "UNWRAPPED_JSON_BODY",
+      "optionalFieldsOmitted": true,
+      "providerCalls": 0
+    },
+    "hostedVerified": false
+  },
+  "results": [
+    {
+      "id": "MI01",
+      "name": "Calendar read refresh coalesces and retains dirty draft / confirmed data on error",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "MI02",
+      "name": "Calendar pending/rejected/unknown preserve confirmed view and replay one intent",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "MI03",
+      "name": "Calendar privacy, disposal and late refresh cannot revive a previous view",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PF03",
+      "name": "100 repeated fault/recovery cycles release listeners and timers and keep request counts bounded",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PF01",
+      "name": "Controlled 120s idle, 300s refresh and return-event burst retain confirmed sections with bounded calls",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PF02",
+      "name": "Refresh failure and section retry retain values/order; privacy/account generation drops both old requests",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CP01",
+      "name": "Read 429/503 retries once within original budget with safe metadata and no parallel SDK attempts",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CP02",
+      "name": "Persistent/budget-limited rate limit, authorization, data conflict and writes cannot become retry storms",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CP03",
+      "name": "Suspended deadline, timeout, cancellation and late SDK results release local work without claiming remote abort",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CP04",
+      "name": "Calendar empty/retained read errors recover with month and draft; transient lifecycle is not consent refusal",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CP05",
+      "name": "Expired pending slots release on return; obsolete responses and ended sessions cannot revive either screen",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CP06",
+      "name": "Completed focus/visibility/online bursts, offline return and independent section retries have bounded call counts",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CP07",
+      "name": "Backend error envelopes retain safe admission HTTP/stage/request ID without leaking raw exception",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PT10",
+      "name": "Actual HTTP handler returns both valid sections, safe non-2xx error paths and no writes",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PT11",
+      "name": "Anonymous, other user, forged authority, inactive, reset and deletion are denied",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PT12",
+      "name": "Fresh post-read identity/account guard prevents returning old owner results",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PT14",
+      "name": "Transport success, malformed response, server denial and deadline are separately executed",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PU08",
+      "name": "Returning to a kept Pattern tab refreshes stale sections while retaining confirmed cards",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PU01",
+      "name": "Real Pattern TR/EN preserves selected IDs without refetch or writes; active nav and two lunar fields without visible counts",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PU02",
+      "name": "Real component failure is not empty; section retry leaves successful lunar data visible",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PU03",
+      "name": "320px and 200% text keep two fields separate, within card and all controls at least 44px",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PU05",
+      "name": "Lunar error preserves themes; offline retains confirmed sections, access change clears both immediately",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PU06",
+      "name": "Real hook/component keeps both cards through 120s idle, 300s refresh and failed section retry",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PU07",
+      "name": "Partial Moon coverage keeps known phase and no invented date/time/graph in either language",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "PU04",
+      "name": "Unmount discards pending response in real component",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "RC01",
+      "name": "Past/today native save readback/reopen and duplicate/near-date rejection preserve exact counts",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "RC02",
+      "name": "No-write and lost entire response retry same ID; partial add/edit/delete resumes saved receipt after reload",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "RC03",
+      "name": "Explicit retry supersedes hung passive read; old read and old mutation finally cannot change new account",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "RC04",
+      "name": "Actual service 20s controlled deadline clears timer; late SDK response cannot confirm or reuse aborted view",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "RC05",
+      "name": "Pending intent exposes no health after withdrawal; current owner/active/lifecycle gates still prevent resume",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CU09",
+      "name": "Empty Calendar failure has one Retry and no retained-view claim; successful retry restores the actual grid in TR/EN",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CU08",
+      "name": "Selection/pending/unknown/confirmed feedback remains distinct and lost response retries the same native action",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CU06",
+      "name": "Partial native grant reopens in TR/EN and Retry uses saved consent intent",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CU07",
+      "name": "Reload resumes saved native add intent and confirms visible date without a new ID",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CU05",
+      "name": "Unsupported estimate is central TR/EN information with real dates and no stale predicted days",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CU01",
+      "name": "Monthly TR/EN, labeled real/predicted/selected days, \u226544px keyboard controls and no selection writes",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CU02",
+      "name": "Actual start delete confirmation, cancel and last-delete empty state",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CU03",
+      "name": "No consent hides health; exact approved checkbox starts unchecked; production block is visible",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "CU04",
+      "name": "Known withdrawal invalidates in-flight health, and unmount cannot revive data",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    }
+  ],
+  "pageErrors": []
+}

@@ -1,0 +1,68 @@
+{
+  "scope": "REPOSITORY_ONLY",
+  "buildMarker": "Buildmarker-052",
+  "healthCatalog": "HC-051.0",
+  "checks": {
+    "dependencyBoundaries": true,
+    "boundedGeneratedHistory": true,
+    "twentyPhysicalProductSchemas": true,
+    "noUnexpectedProductSchemas": false,
+    "guardedNotificationSchedule": true,
+    "guardedHealthHistory": true,
+    "separateBuiltinUserAndTooling": true,
+    "exactAuthoritativeFields": true,
+    "completeAccessMatrix": true,
+    "directSdkOperationsDenied": true,
+    "onboardingCopyAndProxy": true,
+    "onboardingGeoNamesEntry": true,
+    "noProductSeedCalls": false,
+    "canonicalMarker": true,
+    "docsAligned": true,
+    "noLegacyImport": true,
+    "noCredentialFindings": true,
+    "noPersonalEmails": true
+  },
+  "failed": [
+    "noUnexpectedProductSchemas",
+    "noProductSeedCalls"
+  ],
+  "domain": {
+    "dailyCompatibility": {
+      "phase": "ID_ONLY_SCHEMA",
+      "optionalLegacyFields": [],
+      "valid": true,
+      "cleanupVerified": false,
+      "scope": "REPOSITORY_ONLY"
+    },
+    "expected": 20,
+    "present": 20,
+    "unexpected": [
+      "GeoNamesDailyQuota"
+    ],
+    "mismatches": [],
+    "internal": 6,
+    "builtinUserSeparate": true,
+    "healthHistoryPolicy": true,
+    "testOperationPolicy": true,
+    "calendarActionPolicy": true,
+    "notificationSchedulePolicy": true,
+    "privacyPolicies": true,
+    "accessMatrixRows": 20,
+    "accessMatrixComplete": true,
+    "directOperationsDenied": true,
+    "source": "PHYSICAL_REPOSITORY_SCHEMAS_NOT_DEPLOYMENT_PROOF",
+    "writeSurface": {
+      "ok": false,
+      "unexpected": [
+        {
+          "file": "/base44/shared/geonamesDailyQuota.js",
+          "operation": "create"
+        }
+      ],
+      "changedAllowlistedCounts": [],
+      "metadataWriteCalls": 20,
+      "onboardingWriteCalls": 2,
+      "scope": "STATIC_IMPORT_SEED_CALL_INSPECTION"
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import { productFailureResponse } from './productReadDiagnostics.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
 import { readBoundedJson } from './boundedJson.js';
 import { resolveAuthenticatedOwner } from './domainSecurity.js';
@@ -36,11 +37,12 @@ export async function patternOperation(client, body, { now = () => new Date() } 
   return result;
 }
 export async function handlePatternRequest(req, createClient, dependencies = {}) {
+  const started = Date.now();
   try {
     if (req.method !== 'POST') throw new InternalError('METHOD_NOT_ALLOWED', 405);
     const body = await readBoundedJson(req, 1000, (code, status) => { throw new InternalError(code, status); });
     return Response.json(await patternOperation(createClient(req), body, dependencies));
   } catch (error) {
-    return Response.json({ error_code: error instanceof InternalError ? error.code : 'PATTERN_READ_FAILED' }, { status: error instanceof InternalError ? error.status : 503 });
+    return productFailureResponse(error, 'PATTERN_READ_FAILED', 503, 'PATTERN_READ', started);
   }
 }

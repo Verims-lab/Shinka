@@ -17,6 +17,7 @@ export async function requireAuthenticatedUser(client) {
     const invalid = diagnostic.httpStatus === 401 || diagnostic.httpStatus === 403 || diagnostic.code === 'AUTH_REQUIRED';
     const failure = invalid ? new InternalError("AUTH_REQUIRED", 401) : new InternalError("SESSION_UNAVAILABLE", 503);
     failure.diagnostic = diagnostic;
+    failure.retryAfterMs = retryAfterMs(error);
     throw failure;
   }
   if (!me?.id || typeof me.id !== "string") throw new InternalError("AUTH_REQUIRED", 401);

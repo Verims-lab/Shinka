@@ -1,0 +1,14 @@
+{
+  "build_marker": "Buildmarker-052",
+  "package_name": "Calendar and Pattern read recovery",
+  "package_type": "TARGETED_FIX",
+  "created_at": "2026-10-30T11:58:29Z",
+  "health_catalog_version": "HC-051.0",
+  "short_summary": "Consistent Calendar empty/retained errors, safe read diagnostics, bounded transient retry, coalesced lifecycle and expired-read recovery; no mutation retry.",
+  "full_health_status": "TARGETED_LOCAL_PASS / EXISTING_REPO_GATE_FAIL / APK_PENDING",
+  "source_changed": true,
+  "tests_changed": true,
+  "health_changed": true,
+  "docs_aligned": true,
+  "notes": "39/39 focused + 7/7 final boundary regressions in Chromium/WebKit. Full: 759/761 each; pre-existing main GeoNames inventory D01/D22 keep H04-007 failing. Type/lint/build/dependency/performance/history gates pass. No live Full Health/scan, mutation, import, cleanup, main merge or publish. Original APK transport cause and exact deployed backend/APK version remain unproven. Details: reports/calendar-pattern-052."
+}

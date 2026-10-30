@@ -24,6 +24,8 @@ export async function onboardingRequest(action,payload={},client=base44) {
     const data=error?.response?.data;
     const code=SAFE_CODES.has(data?.error_code)?data.error_code:'ONBOARDING_OPERATION_FAILED';
     const field=['display_name','birth_date','birth_time','birthplace','period_start_date','period_duration_days','initial_cycle_length_days','health_consent'].includes(data?.field)?data.field:null;
-    throw Object.assign(new Error(code),{code,field,diagnostic:healthReadDiagnostic(error)});
+    const retry = error?.response?.data?.retry_after_seconds;
+    const retryAfterSeconds = Number.isInteger(retry) && retry > 0 && retry <= 172800 ? retry : null;
+    throw Object.assign(new Error(code),{code,field,retryAfterSeconds,diagnostic:healthReadDiagnostic(error)});
   }finally{clearTimeout(timer);}
 }

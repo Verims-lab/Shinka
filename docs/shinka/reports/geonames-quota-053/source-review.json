@@ -1,0 +1,69 @@
+{
+  "scope": "READ_ONLY_EDITOR_AND_LOCAL_SOURCE",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "editorBranch": "Main",
+  "githubConnected": "Verims-lab/Shinka",
+  "visibleQuotaAlgorithm": "filter by quota_date; create count=1 if absent; updateMany id only; ignore acknowledgement; return null",
+  "matchesReviewedMain": "508e62293a240a4cdcb499d15bf0240f238e8fe7",
+  "publishedRuntimeHash": "NOT_VERIFIED",
+  "securityScanRun": false,
+  "groupA": [
+    "domainAccess",
+    "validateContentArtifacts",
+    "notificationSchedule"
+  ],
+  "entries": {
+    "accountPrivacy": {
+      "entry": "base44/functions/accountPrivacy/entry.ts",
+      "sha256": "76401ae9c965fb8330434e7c3c25a379b5f46d5b504f48bc8d417505867f3470"
+    },
+    "adminTestTools": {
+      "entry": "base44/functions/adminTestTools/entry.ts",
+      "sha256": "20132440e1f40fa925691f4356693b68fa3491910967dd6fafa804897dbd7113"
+    },
+    "applicationSession": {
+      "entry": "base44/functions/applicationSession/entry.ts",
+      "sha256": "0fef78ecdd0e7675c16b883cf90246614a2180756c8d910bf72cb42a33a33b73"
+    },
+    "calendar": {
+      "entry": "base44/functions/calendar/entry.ts",
+      "sha256": "2f1986a4c2b30d9c19bea056ec5e8cb2ee5122edea2e63f6f569affb7efb4be0"
+    },
+    "contentLibrary": {
+      "entry": "base44/functions/contentLibrary/entry.ts",
+      "sha256": "69ed4a18b2e3d8095087ed34175fccedc90482864e1db84e2c6acdd3953ced66"
+    },
+    "dailyMessage": {
+      "entry": "base44/functions/dailyMessage/entry.ts",
+      "sha256": "9bee3d8d6cc2511550ace31bdbade1ad60dad9b45f8bca6e048030dc2d01ce79"
+    },
+    "domainAccess": {
+      "entry": "base44/functions/domainAccess/entry.ts",
+      "sha256": "828e7f433c9a4ea21a34417a46fc5916602318aea70cec9925ab3bbb36efdb33"
+    },
+    "internalHealth": {
+      "entry": "base44/functions/internalHealth/entry.ts",
+      "sha256": "89c332d4a0735cede18aebe2fb2999520784333ddb32877eea63dad5db847b4b"
+    },
+    "notificationSchedule": {
+      "entry": "base44/functions/notificationSchedule/entry.ts",
+      "sha256": "7c3ed1a7b424b0551d0e3ee1bbe41fd7474bc1665aec38410b025816f169a2ed"
+    },
+    "onboarding": {
+      "entry": "base44/functions/onboarding/entry.ts",
+      "sha256": "2ac4b6b7d7341e5d31b1d0938e39100203d3a14ac6ab440f5eebc2e178179245"
+    },
+    "pattern": {
+      "entry": "base44/functions/pattern/entry.ts",
+      "sha256": "57b901c7941bf2bf28e1dcc891171a8cebaec954ab78119a90f2bbf15001b5a2"
+    },
+    "validateContentArtifacts": {
+      "entry": "base44/functions/validateContentArtifacts/entry.ts",
+      "sha256": "4999ac63f3e393aac2bc74fbb0896308b016f9cf03ed1a625b068a1eae15ba5d"
+    },
+    "you": {
+      "entry": "base44/functions/you/entry.ts",
+      "sha256": "5ae816aac93911f5d5071cfa80e5a8820ddd7b231723dc2157669a1315b1d178"
+    }
+  }
+}

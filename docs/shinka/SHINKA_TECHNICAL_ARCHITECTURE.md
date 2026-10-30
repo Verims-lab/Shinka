@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-051
+**Current BuildMarker:** Buildmarker-053
 **Last Updated:** 2026-10-30
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -11,6 +11,20 @@
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
+
+
+## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)
+
+The existing GeoNames guard delegates uncached search/page/get requests to the existing shared quota module. One projected two-row lookup and one conditional single-ID update replace check-then-unconditional-increment; only success:true/updated:1/has_more:false permits fetch. Zero matches waits for explicit retry; unknown acknowledgement fails closed and is not automatically retried. Worker burst slots are reserved before async IO; abort is checked again before provider dispatch. Cache/coalescing stays worker-local and spends no credits.
+
+App thresholds are 8,000 credits/trailing 24h and 800/trailing hour, using 25/2 UTC-hour buckets conservatively (up to 25h/2h retention). UTC is not claimed to match the provider's reset. Only reviewed searchJSON/getJSON cost one credit; new endpoint costs need review. Request-time create/upsert is removed because uniqueness is unproven. A single operator-prepared counter is required; none/duplicates/corruption deny. SDK 0.8.54/0.8.57 transport tests are local, without SDK upgrade; Deno and hosted conditional-write enforcement remain NOT_RUN. No worker mutex or transaction guarantee is introduced.
+
+
+## 052 — Calendar and Pattern read recovery (2026-10-30)
+
+Calendar and Pattern now share a narrow product read transport boundary: original 20s total deadline, at most one retry of a completed 429/503, minimum 500ms and parsed Retry-After within the budget (250ms reserve). Auth/domain/shape errors, timeout/network and all Calendar mutations are never automatically retried. Safe backend diagnostics retain the original admission/read stage/status and generated or validated request ID; no raw error, header or personal data. Expired read slots can release local waiters on return; late SDK responses are ignored, not claimed cancelled remotely. One-second background coalescing, offline pause and session-end sealing preserve draft/owner isolation and existing polling intervals. No guard, authority, native persistence or notification change.
+
+[Findings, execution and APK acceptance](reports/SHINKA_CALENDAR_PATTERN_052.md).
 
 
 ## 051 targeted Health read closure — HC-050.2 (2026-10-30)

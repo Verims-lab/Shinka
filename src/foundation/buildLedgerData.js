@@ -1,30 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-047",
-    "package_name": "Onboarding heading and inner name label corrections",
-    "package_type": "UI_CHANGE",
-    "created_at": "2026-10-28T14:14:09.851945Z",
-    "health_catalog_version": "HC-046.0",
-    "short_summary": "ON-01/04 headings remain unframed while retaining semantic focus; ON-02 persistent associated label moves inside the existing field frame. Name/skip/storage/navigation unchanged; 045 optional schema and 046 visuals preserved.",
-    "full_health_status": "LOCAL_140_PASS_13_BLOCKED / HOSTED_NOT_RUN",
-    "notes": "Health add 0/update 2/delete 0: H13-012 U16/U17/U19 plus actual-App TR/EN 360/390px 100/200% text matrix; H05-009 retains exact source policy for 047. No live user operation, Full Health, Security scan, main merge or publish. Initial outline failures retained. Chromium/WebKit each 728/728 PASS; 8/8 mobile/text combinations per engine, screenshots inspected. Local Health 140 PASS/13 hosted-prerequisite BLOCKED/0 FAIL; save/list/open verified. Quality/performance PASS. Physical devices NOT_RUN. See SHINKA_ONBOARDING_PRESENTATION_047.md.",
-    "docs_aligned": true,
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true
-  },
-  {
-    "build_marker": "Buildmarker-048",
-    "package_name": "Manual theme alignment and authorized 045 cleanup follow-up",
-    "package_type": "FIX",
-    "created_at": "2026-10-28T15:14:16Z",
-    "health_catalog_version": "HC-047.0",
-    "short_summary": "Align verified manual theme, rendered Health and canonical rules; retain 045 compatibility until complete hosted cleanup verification.",
-    "full_health_status": "NOT_RUN",
-    "notes": "Manual theme uses verified account preference, independent of OS; H13 compares independent expectation with DOM. Complete local browser/quality evidence: reports/theme-cleanup-048. 045 hosted cleanup: 0 inspected / 0 cleaned / remaining unknown, verify NOT_RUN; CLI_LOGIN_REQUIRED twice, then explicitly owner-deferred. Optional compatibility schema retained. No live Health/scan, main merge or publish; active packages 044–048."
-  },
-  {
     "build_marker": "Buildmarker-049",
     "package_name": "Bounded opening and reviewed daily cleanup web preparation",
     "package_type": "FIX",
@@ -65,5 +41,29 @@ export default [
     "health_changed": true,
     "docs_aligned": true,
     "notes": "Same 051 milestone, 047–051 active. Original 051 acceptance and maintenance/performance receipts preserved in the existing report. Owner HC-050.1 run 3df95c72-c24a-4d18-aa36-4067758e4a1a remains 157 PASS/2 BLOCKED. Targeted Health delta 0 added/5 updated/0 deleted, 185 IDs. Chromium/WebKit each 753/753 PASS plus final 24/24 focused deltas; local Health 146 PASS/13 hosted-prerequisite BLOCKED/0 FAIL and save/list/open passed. Server fixtures, type/lint/build/repo/dependency/budget/history gates PASS; audit zero. Shared readonly 429 retry keeps total deadline; exact content/schema failures remain FAIL, independent content/Moon diagnostics survive; request admission/probe read pressure reduced. No live Health/scan/import/cleanup/deletion/main/publish. Historical quota trigger and relation to Home 500 remain unknown. Evidence: reports/core-reliability-051/health-read-closure/execution.json. Follow-up review: H12-025 SS13 descriptor aligned; 9/9 targeted Node checks PASS, runtime unchanged."
+  },
+  {
+    "build_marker": "Buildmarker-052",
+    "package_name": "Calendar and Pattern read recovery",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-10-30T11:58:29Z",
+    "health_catalog_version": "HC-051.0",
+    "short_summary": "Consistent Calendar empty/retained errors, safe read diagnostics, bounded transient retry, coalesced lifecycle and expired-read recovery; no mutation retry.",
+    "full_health_status": "TARGETED_LOCAL_PASS / EXISTING_REPO_GATE_FAIL / APK_PENDING",
+    "source_changed": true,
+    "tests_changed": true,
+    "health_changed": true,
+    "docs_aligned": true,
+    "notes": "39/39 focused + 7/7 final boundary regressions in Chromium/WebKit. Full: 759/761 each; pre-existing main GeoNames inventory D01/D22 keep H04-007 failing. Type/lint/build/dependency/performance/history gates pass. No live Full Health/scan, mutation, import, cleanup, main merge or publish. Original APK transport cause and exact deployed backend/APK version remain unproven. Details: reports/calendar-pattern-052."
+  },
+  {
+    "build_marker": "Buildmarker-053",
+    "package_name": "GeoNames shared credit quota and endpoint classification",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-10-30T12:56:30.000Z",
+    "health_catalog_version": "HC-052.0",
+    "short_summary": "Conditional shared daily/hourly credits; fail-closed counter provisioning, safe retries and accurate 13-function security classification.",
+    "full_health_status": "NOT_RUN",
+    "notes": "Chromium/WebKit each 771/771 PASS plus final strengthened quota 9/9 each; entry negatives 8/8 and installed/pinned SDK transport 8/8 PASS. Local Health 147 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL, save/list/open PASS. Quality/performance gates PASS; Health +1/~5/-0. One conservative prepared singleton is required; hosted atomicity, Deno and physical acceptance NOT_RUN. No live writes/scan/Full Health/publish. Group A and twelve deferred findings preserved. Report: reports/SHINKA_GEONAMES_QUOTA_053.md."
   }
 ];

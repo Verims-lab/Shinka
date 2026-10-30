@@ -2,13 +2,27 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-051
+**Current BuildMarker:** Buildmarker-053
 **Last Updated:** 2026-10-30
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-050.2; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-051.0; repository, synthetic and external evidence separated.
 
+
+
+## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)
+
+Add 1 / update 5 / delete 0: H12-044 executes actual shared quota/guard GQ01–GQ09 with isolated store and fetch; H04-015 requires the seventh closed internal schema; H12-039 adds PR07 reusable status/key-only mutation denial; H12-040 keeps draft/copy and long Retry-After assertions; H12-041 maps actual TS-entry zero quota/provider access and exact SDK transport; H05-009 extends the unchanged strict content policy to 053. D24 checks separate quota inventory; D01/D22's 052 failures remain historical, corrected by real inventory and removal of request-time create (no new seed allowance). H10-004/H12-901 and physical/native acceptance stay external. Normal Full Health cannot access the live quota. Current totals: 186 catalog, 160 in-app, 12 local, 14 external.
+
+Execution and retained initial failures: [053 report](reports/SHINKA_GEONAMES_QUOTA_053.md#health-and-execution). Chromium/WebKit each 771 PASS / 0 FAIL; local synthetic Health 147 PASS / 13 expected hosted-prerequisite BLOCKED / 0 FAIL, save/list/open passed. Actual-entry negatives 8/8 and installed/pinned SDK transport 8/8 passed. Required quality/performance gates passed. Browser fixtures and SDK transport are not hosted atomics, Deno runtime or device evidence; those remain NOT_RUN.
+
+
+## 052 — Calendar and Pattern read recovery (2026-10-30)
+
+Health delta is 0 added / 5 updated / 0 removed: H08-007 (CP03–06), H12-037 (CP01–03/05–07), H13-015 (CU09 plus CU01–08/checkCalendarContinuity), H13-017 (PU01–08 and CP05/06), and H05-009’s unchanged approved-source policy extended to 052. Serialized local requirements match the executable IDs. 185 IDs / 159 in-app / 12 local / 14 external remain. No old failure, external device case or 051 diagnostic assertion is removed. Existing Base44 GeoNames quota inventory mismatch remains an explicit failing baseline, separate from this fix.
+
+39/39 focused and 7/7 final boundary tests pass per Chromium/WebKit. Full: 759/761 pass per engine; existing D01/D22 keep H04-007 failing. Type/lint/build/dependency/performance/history pass. Local Health save/list/open and later timing are NOT_RUN after that gate; physical APK and exact deployed backend acceptance remain open. [Findings, execution and APK acceptance](reports/SHINKA_CALENDAR_PATTERN_052.md).
 
 
 ## 051 targeted Health read closure — HC-050.2 (2026-10-30)

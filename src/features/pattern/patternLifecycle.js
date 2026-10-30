@@ -10,15 +10,16 @@ export function bindPatternLifecycle(controller, runtime = PATTERN_RUNTIME, targ
   const refresh = () => { if (!sessionEnded && doc.visibilityState === 'visible') return controller.refresh({ background: true }); };
   const tick = () => { if (stopped) return; void refresh(); timer = runtime.set(tick, PATTERN_REFRESH_MS); };
   const privacy = () => { controller.invalidate(); void refresh(); };
-  const ended = () => { sessionEnded = true; controller.invalidate(); };
+  const ended = () => { sessionEnded = true; controller.endSession(); };
+  const online = () => { controller.connectionRestored(); return refresh(); };
   const offline = () => controller.connectionLost();
   void controller.refresh(); timer = runtime.set(tick, PATTERN_REFRESH_MS);
-  target.addEventListener('focus', refresh); target.addEventListener('online', refresh); target.addEventListener('offline', offline);
+  target.addEventListener('focus', refresh); target.addEventListener('online', online); target.addEventListener('offline', offline);
   target.addEventListener('shinka-health-access-changed', privacy); target.addEventListener('shinka-session-ended', ended);
   doc.addEventListener('visibilitychange', refresh);
   return () => {
     stopped = true; runtime.clear(timer); controller.dispose();
-    target.removeEventListener('focus', refresh); target.removeEventListener('online', refresh); target.removeEventListener('offline', offline);
+    target.removeEventListener('focus', refresh); target.removeEventListener('online', online); target.removeEventListener('offline', offline);
     target.removeEventListener('shinka-health-access-changed', privacy); target.removeEventListener('shinka-session-ended', ended);
     doc.removeEventListener('visibilitychange', refresh);
   };

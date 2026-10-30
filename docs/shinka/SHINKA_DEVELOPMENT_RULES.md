@@ -2,12 +2,24 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-051
+**Current BuildMarker:** Buildmarker-053
 **Last Updated:** 2026-10-30
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
+
+
+## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)
+
+This scoped follow-up retains all 052/Base44 work, Group A and the deferred twelve-finding decision. Use recordBuild for Buildmarker-053 / HC-052.0 and active 049–053. Run mandatory local gates and both browser engines; no provider calls, hosted counter mutation/cleanup, user mutation, Full Health, scan, scheduler, main merge or publish. One prepared counter and deployed conditional-write acceptance remain publisher steps; do not claim the earlier serial test proved a strict shared cap.
+
+
+## 052 — Calendar and Pattern read recovery (2026-10-30)
+
+This new targeted package advances once to Buildmarker-052 / HC-051.0 through recordBuild; active history is 048–052. The older keep-051 instructions remain historical to their continuations. Preserve main 508e622 Base44 work and 051 Health changes. Run required local gates, report existing GeoNames inventory/write-tripwire failures separately, and do not suppress them. No general audit, quota redesign, DB cleanup/import, live user mutation, live Full Health/Security scan, main merge or publish.
+
+[Findings, execution and APK acceptance](reports/SHINKA_CALENDAR_PATTERN_052.md).
 
 
 ## 051 targeted Health read closure — HC-050.2 (2026-10-30)

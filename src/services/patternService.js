@@ -1,8 +1,18 @@
+import { productTransport, productReadError, productPrivacyError } from './productReadTransport';
 import { base44 } from '@/api/base44Client';
 import { validateDomainRecord } from '../../base44/shared/domainValidation.js';
 import { validTimezone, serverLocalDate } from '../../base44/shared/onboardingValidation.js';
 import { CONTENT_CATEGORY_DECISION } from '../../base44/shared/contentCategoryDecision.js';
-export const isPatternPrivacyError = code => /^(AUTH_|ACTIVE_|HEALTH_|CONSENT_|OWNER_|FORGED_|ACCOUNT_|ONBOARDING_|TEST_LIFECYCLE|TEST_OPERATION_|TEST_TARGET_)/.test(code || '');
+export const isPatternPrivacyError = productPrivacyError;
+const SAFE_CODES = new Set([
+  'PATTERN_CATEGORY_CONFLICT','PATTERN_DATA_CHANGED','PATTERN_DATA_INVALID','PATTERN_READ_FAILED','PATTERN_RESPONSE_INVALID',
+  'MOON_LOOKUP_CONFLICT','MOON_LOOKUP_COVERAGE_REQUIRED','MOON_LOOKUP_NOT_READY','MOON_LOOKUP_SIZE_CONFLICT',
+  'AUTH_REQUIRED','ACTIVE_ACCOUNT_REQUIRED','OWNER_REQUIRED','FORGED_OWNER','ACCOUNT_DELETION_IN_PROGRESS','ONBOARDING_RESTART_REQUIRED',
+  'TEST_LIFECYCLE_UNAVAILABLE','TEST_LIFECYCLE_CONFLICT','TEST_OPERATION_BUSY','TEST_TARGET_REQUIRED','DUPLICATE_OWNER_STATE',
+  'HEALTH_CONSENT_REQUIRED','HEALTH_DELETION_PENDING','HEALTH_DELETION_UNCONFIRMED','CONSENT_STATE_CHANGED',
+  'CONSENT_TIMESTAMP_INVALID','CONSENT_EVENT_UNCONFIRMED','CONSENT_VERSION_CONFLICT','SESSION_UNAVAILABLE','PRIVACY_STATE_UNCONFIRMED',
+]);
+const accepts = code => SAFE_CODES.has(code);
 export function validatePatternResponse(value, section) {
   const invalid = () => { throw Object.assign(new Error('PATTERN_RESPONSE_INVALID'), { code: 'PATTERN_RESPONSE_INVALID' }); };
   if (value?.section !== section) invalid();
@@ -31,17 +41,13 @@ export function validatePatternResponse(value, section) {
   }
   return value;
 }
-/** @param {string} section @param {any} client @param {number} timeoutMs */
-export async function patternRequest(section, client = base44, timeoutMs = 20000, timers = { set: (fn, ms) => setTimeout(fn, ms), clear: id => clearTimeout(id) }) {
-  let timer, timezone = null;
-  try {
-    try { timezone = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch { /* saved backend timezone */ }
-    const response = await Promise.race([client.functions.invoke('pattern', { action: section, timezone }), new Promise((_, reject) => { timer = timers.set(() => reject({ code: 'TIMEOUT' }), timeoutMs); })]);
-    if (response?.data?.error_code) throw { response: { data: response.data } };
-    return validatePatternResponse(response?.data, section);
-  } catch (error) {
-    const raw = error?.response?.data?.error_code || error?.code;
-    const code = /^(PATTERN_|MOON_LOOKUP_|AUTH_|ACTIVE_|HEALTH_|CONSENT_|ACCOUNT_|OWNER_|ONBOARDING_|TEST_LIFECYCLE|TEST_OPERATION_|TEST_TARGET_)/.test(raw || '') ? raw : raw === 'TIMEOUT' ? raw : 'PATTERN_READ_FAILED';
-    throw Object.assign(new Error(code), { code });
-  } finally { timers.clear(timer); }
+/** @param {string} section @param {any} client @param {number} timeoutMs @param {any} timers @param {any} options */
+export async function patternRequest(section, client = base44, timeoutMs = 20000, timers = undefined, options = {}) {
+  let timezone = null;
+  try { timezone = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch { /* saved backend timezone */ }
+  const response = await productTransport(() => client.functions.invoke('pattern', { action: section, timezone }),
+    { ...options, readOnly: true, accepts, fallback: 'PATTERN_READ_FAILED', stage: 'PATTERN_READ', timeoutMs, timers });
+  try { return validatePatternResponse(response?.data, section); }
+  catch (error) { throw productReadError(error, accepts, 'PATTERN_RESPONSE_INVALID', 'PATTERN_READ', null); }
 }
+export const patternRead = (section, options) => patternRequest(section, base44, 20000, undefined, options);

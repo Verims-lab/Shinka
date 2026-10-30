@@ -14,7 +14,7 @@ const output = path.resolve(destination);
 if (output === root || output.startsWith(`${root}${path.sep}`)) throw new Error('Output must be outside the checkout');
 const baselineCommit = execFileSync('git', ['rev-parse', '--verify', `${baseline}^{commit}`], { cwd: root, encoding: 'utf8' }).trim();
 const names = (await fs.readdir(path.join(root, 'base44/entities'))).filter(name => /\.jsonc?$/.test(name)).sort();
-if (names.length !== 27 || !names.includes('AdminTestOperation.jsonc') || !names.includes('UserCalendarAction.jsonc') || !names.includes('UserPrivacyRequest.jsonc') || !names.includes('PrivacyRecoveryReceipt.jsonc')) throw new Error('Unexpected schema inventory; review before release');
+if (names.length !== 28 || !names.includes('GeoNamesDailyQuota.jsonc') || !names.includes('AdminTestOperation.jsonc') || !names.includes('UserCalendarAction.jsonc') || !names.includes('UserPrivacyRequest.jsonc') || !names.includes('PrivacyRecoveryReceipt.jsonc')) throw new Error('Unexpected schema inventory; review before release');
 const tracked = new Set(execFileSync('git', ['ls-files', '--', 'base44/entities'], { cwd: root, encoding: 'utf8' }).trim().split('\n'));
 if (names.some(name => !tracked.has(`base44/entities/${name}`))) throw new Error('Stage reviewed new schemas in Git before generating a complete patch');
 const files = await Promise.all(names.map(async name => {
@@ -27,6 +27,8 @@ const files = await Promise.all(names.map(async name => {
 }));
 const lifecycle = JSON.parse(files.find(file => file.name === 'AdminTestOperation.jsonc').bytes.toString());
 if (['read', 'create', 'update', 'delete'].some(key => lifecycle.rls[key] !== false)) throw new Error('Lifecycle direct access must stay denied');
+const quota = JSON.parse(files.find(file => file.name === 'GeoNamesDailyQuota.jsonc').bytes.toString());
+if (['read', 'create', 'update', 'delete'].some(key => quota.rls[key] !== false) || quota.properties.buckets.maxItems !== 25 || quota.properties.scope.enum[0] !== 'APP_CREDITS_V1') throw new Error('Quota policy must stay closed and bounded');
 const patch = execFileSync('git', ['diff', '--binary', baselineCommit, '--', 'base44/entities'], { cwd: root });
 await fs.mkdir(output); // Refuse overwrite; never replace a reviewed artifact.
 await fs.mkdir(path.join(output, 'base44/entities'), { recursive: true });
