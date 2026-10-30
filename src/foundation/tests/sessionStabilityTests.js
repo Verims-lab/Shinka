@@ -1,3 +1,4 @@
+import { verifiedLibrary, verifiedMoon } from './healthReadFixture';
 import { classifySessionFailure } from "@/foundation/authErrors";
 import { createSessionCoalescer } from "@/lib/sessionCheck";
 import { nativePrerequisite } from "@/foundation/health/nativeReadinessContract";
@@ -52,7 +53,7 @@ export const SESSION_STABILITY_TESTS = [
     for(const expected of ['PASS','BLOCKED','FAIL']){
       const value={...STRATEGY,schemas:NAMES.map(n=>expected!=='PASS'&&n===NAMES[4]?unreadable(n,'RATE_LIMITED',429):readable(n))};
       if(expected==='FAIL')value.daily='WRONG';
-      const loaders={nativeReadiness:async()=>{reads++;return value;},contentLibrary:async()=>({ready:true}),moonReadiness:async()=>({ready:true})};
+      const loaders={nativeReadiness:async()=>{reads++;return value;},contentLibrary:async()=>verifiedLibrary(),moonReadiness:async()=>verifiedMoon()};
       const first=createHealthContext(loaders),before=reads;
       for(const c of cases)check((await c.run(first)).status===expected,`${c.id} ${expected}`);
       check(reads===before+1,'per-run source repeated');

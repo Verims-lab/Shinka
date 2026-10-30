@@ -1,3 +1,4 @@
+import { HEALTH_READ_RETRY_TESTS } from './healthReadRetryTests';
 import { nativeReadiness } from '../../../base44/shared/nativeReadiness.js';
 import { internalHealthOperation } from '../../../base44/shared/internalHealthOperations.js';
 import { handleInternalRequest, InternalError } from '../../../base44/shared/internalAuthorization.js';
@@ -32,6 +33,7 @@ const artifactResult = async (rows = contentRows()) => {
 
 /** @type {import('./testTypes').FoundationTest[]} */
 export const HEALTH_READ_TESTS = [
+  ...HEALTH_READ_RETRY_TESTS,
   ['HD01','Readiness distinguishes a successful empty table from a bounded positive sample',async()=>{
     for(const rows of [[],[{id:'synthetic',body:'PRIVATE'}]]){
       const value=await nativeReadiness(readyClient(rows));
@@ -78,7 +80,7 @@ export const HEALTH_READ_TESTS = [
       const response=await handleInternalRequest(request(),()=>c,async()=>{calls++;});
       const body=await response.json();safe(body);
       check(calls===0&&response.status===503&&body.error_code==='TEST_LIFECYCLE_UNAVAILABLE');
-      check(body.diagnostic.code===code&&body.diagnostic.stage==='LIFECYCLE_READ'&&body.diagnostic.httpStatus===status);
+      check(body.diagnostic.code===code&&body.diagnostic.stage==='LIFECYCLE_USER_READ'&&body.diagnostic.httpStatus===status);
     }
     for(const role of ['user',null]){
       let calls=0;const c=client({});c.auth.me=async()=>role?{id:'synthetic',role}:null;
@@ -106,7 +108,7 @@ export const HEALTH_READ_TESTS = [
     for(const error of [{code:'ETIMEDOUT'},{name:'TimeoutError'},{code:'TIMEOUT'}])check(healthReadDiagnostic(error).code==='TIMEOUT');
     check(healthReadDiagnostic({code:'ERR_NETWORK'}).code==='NETWORK_UNAVAILABLE');
   }],
-  ['HD06','Run context shares one successful or rejected read across all callers without retry',async()=>{
+  ['HD06','Run context shares one successful or rejected read across all callers; retry belongs inside the one shared loader',async()=>{
     for(const fails of [false,true]){
       const calls={};const loaders={};
       for(const key of ['nativeReadiness','artifacts','contentCounts','contentLibrary'])loaders[key]=async()=>{calls[key]=(calls[key]||0)+1;if(fails)throw failure(429);return {};};
@@ -150,6 +152,6 @@ export const HEALTH_READ_TESTS = [
   ['HD10','H05-009 exposes count invocation diagnostics while preserving unavailable versus zero',async()=>{
     const c=H05_CASES.find(c=>c.id==='H05-009');
     const value=await c.run({contentCounts:async()=>{throw failure(429);},artifacts:async()=>{throw failure(503);},contentLibrary:async()=>{throw failure(404);}});
-    check(value.status==='BLOCKED'&&value.evidence.actual.counts===null&&value.evidence.actual.diagnostics.counts.code==='RATE_LIMITED');safe(value);
+    check(value.status==='FAIL'&&value.evidence.actual.counts===null&&value.evidence.actual.diagnostics.counts.code==='RATE_LIMITED');safe(value);
   }],
 ];

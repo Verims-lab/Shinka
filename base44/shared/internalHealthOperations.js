@@ -45,10 +45,14 @@ export async function internalHealthOperation(client, body, {geoNamesTransportPr
     return { signed_url }; // URI is selected from the server record, never accepted from the caller.
   }
   if (body.action === "probe") {
-    const results = await Promise.all(DOMAIN_ENTITIES.map(async (d) => {
+    const results = [];
+    // Inventory all schemas without a simultaneous request per entity.
+    for (let offset = 0; offset < DOMAIN_ENTITIES.length; offset += 3) {
+      results.push(...await Promise.all(DOMAIN_ENTITIES.slice(offset, offset + 3).map(async (d) => {
       try { await service.entities[d.plannedName].list("-created_date",1); return {name:d.name,plannedName:d.plannedName,state:"PRESENT"}; }
       catch (error) { return {name:d.name,plannedName:d.plannedName,state:(error?.status??error?.response?.status)===404?"ABSENT":"INCONCLUSIVE"}; }
-    }));
+      })));
+    }
     return { results }; // No product rows leave the server.
   }
   if (body.action === "contentCounts") {

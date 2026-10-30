@@ -3,7 +3,7 @@
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
 **Current BuildMarker:** Buildmarker-051
-**Last Updated:** 2026-10-29
+**Last Updated:** 2026-10-30
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
@@ -11,6 +11,15 @@
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
+
+
+## 051 targeted Health read closure — HC-050.2 (2026-10-30)
+
+The supplied published HC-050.1 run `3df95c72-c24a-4d18-aa36-4067758e4a1a` remains **157 PASS / 0 FAIL / 2 BLOCKED**. H05-009 encountered HTTP429/RATE_LIMITED during LIFECYCLE_READ, request `9b688272-cd41-4202-ade3-9b1ff83ae1f0`, 2026-10-29 20:54:19–20Z; H09-004 discarded the associated read errors. The specific historical lifecycle subquery/quota cause is unproven, as is any relationship to the earlier Home HTTP500. [Targeted evidence and execution](reports/SHINKA_CORE_RELIABILITY_051.md#051-targeted-health-read-closure).
+
+Health's run memo retains both successful and rejected promises. The first consumer supplies its remaining case time and AbortSignal. Allowlisted readonly reads may retry once only after a completed HTTP429 rejection; waiting and both attempts fit the original 18s total and the current 20s case budget (250ms reserved to render evidence). Retry-After seconds/explicit GMT date is respected with minimum 500ms wait and at least 1s remaining for the second attempt. No timeout/network/auth/malformed-response retry; no mutation retry. A cancelled/pending SDK call may settle remotely, but cannot trigger another call or replace the rejected shared result. New runs have new memo state.
+
+contentLibrary verify/moonDryRun reuse only the current request's server-minted, admin-checked principal after complete lifecycle admission. Direct callers authenticate; mutations retain existing checks; each retry is a new admitted request. No cross-request authority cache. Lifecycle stages now separate User, privacy, and operation reads, forwarding only a parsed Retry-After header for 429. The inventory probe keeps every entity with at most three concurrent reads instead of one burst across all entities. Native readiness's existing sequential per-schema contract is preserved; successful responses are not blindly retried.
 
 
 ## 051 continuation — verified maintenance and measured performance
@@ -177,9 +186,9 @@ No schema, identity, data contract, content or authorization change belongs to t
 
 ## Health read failure boundaries — 024
 
-`healthReadDiagnostics.js` is the dependency-free closed diagnostic contract. Readiness returns a verified 0/1 sample size or `readable:false` plus a safe diagnostic; count failures retain `count:null`. SDK method absence and malformed successful responses are distinct from HTTP 400/422, 401/403, 404, 429, timeout, 5xx and unknown failures. A 404 alone is NOT_FOUND, not proof of a missing schema. No fallback query or retry is added.
+`healthReadDiagnostics.js` is the dependency-free closed diagnostic contract. Readiness returns a verified 0/1 sample size or `readable:false` plus a safe diagnostic; count failures retain `count:null`. SDK method absence and malformed successful responses are distinct from HTTP 400/422, 401/403, 404, 429, timeout, 5xx and unknown failures. A 404 alone is NOT_FOUND, not proof of a missing schema. No fallback query is added. The original 024 path had no retry; the HC-050.2 readonly 429 exception and total deadline are defined above.
 
-`contentArtifactOperation.ts` separates download (including response body), XLSX parsing and validator execution. Validly parsed inconsistent content still reaches the unchanged H05 FAIL predicates. Invocation/session/lifecycle failures stay BLOCKED with diagnostics. `invokeHealthRead` supports Base44Error data and Axios response/originalError envelopes without retaining their bodies; its 18s local deadline precedes the 20s case deadline so timeout evidence survives. This bounds waiting, not remote cancellation. Run-context memoization caches successful and rejected promises once per source. All three artifact fetches remain fixed and bounded at 15s each.
+`contentArtifactOperation.ts` separates download (including response body), XLSX parsing and validator execution. Validly parsed inconsistent content still reaches the unchanged H05 FAIL predicates. Unavailable invocation/session/lifecycle evidence stays BLOCKED with diagnostics; explicit authorization, malformed response and proven content/schema failures remain FAIL. `invokeHealthRead` supports Base44Error data and Axios response/originalError envelopes without retaining their bodies; its 18s local deadline precedes the 20s case deadline so timeout evidence survives. This bounds waiting, not remote cancellation. Run-context memoization caches successful and rejected promises once per source. All three artifact fetches remain fixed and bounded at 15s each.
 
 ## Privacy responsibilities — 023
 

@@ -201,7 +201,7 @@ export const DAILY_TESTS = [
   // FIXTURE role: explicit package transition, not marker authority.
   const evaluate = (data, verification) => evaluateContentState(BUILD_MARKER, data, false, verification);
   check(evaluate(counts, summary).status === 'PASS');
-  check(evaluate(counts, { ...summary, sourceHash: 'wrong' }).status === 'BLOCKED');
+  check(evaluate(counts, { ...summary, sourceHash: 'wrong' }).status === 'FAIL');
   check(evaluate(counts, { ...summary, phase: 'PARTIAL_IMPORT', ready: false }).status === 'FAIL');
   const empty = { ...counts, results: counts.results.map(row => ({ ...row, count: 0 })) };
   check(evaluate(empty, { phase: 'PRE_IMPORT', ready: false, sourceHash: CONTENT_SOURCE_SHA256 }).status === 'PASS');

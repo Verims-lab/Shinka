@@ -1,11 +1,15 @@
-import { requireAdmin, InternalError, handleInternalRequest } from './internalAuthorization.js';
+import { requireAdmin, assertAdmin, InternalError, handleInternalRequest } from './internalAuthorization.js';
 import { withAdminAudit } from './domainAudit.js';
 import { inspectContentLibrary, librarySummary, applyContentBatch } from './base44ContentLibrary.js';
 import { inspectMoonImport, applyMoonBatch } from './moonImport.js';
 const DAILY_PERSISTENCE = { strategy: 'IMMUTABLE_CANDIDATES', transaction: false, duplicates: 'RECONCILE_AND_RETAIN', hostedMutationVerified: false };
 
-export async function contentLibraryOperation(client, body, { astronomy = null, source = null, decision = null } = {}) {
-  const principal = await requireAdmin(client);
+export async function contentLibraryOperation(client, body, { astronomy = null, source = null, decision = null } = {}, admittedPrincipal = null) {
+  // Only these readonly actions reuse this request's trusted admission. Mutations
+  // retain their existing fresh checks; direct callers still authenticate.
+  const reuse = admittedPrincipal && ['verify', 'moonDryRun'].includes(body.action);
+  const principal = reuse ? admittedPrincipal : await requireAdmin(client);
+  if (reuse) assertAdmin(principal);
   const fields = ['applyBatch', 'moonApplyBatch'].includes(body.action) ? ['action', 'reviewed_digest'] : ['action'];
   if (!['dryRun', 'verify', 'applyBatch', 'moonDryRun', 'moonApplyBatch'].includes(body.action) || Object.keys(body).some(key => !fields.includes(key))) throw new InternalError('INVALID_REQUEST', 400);
   if (body.action.startsWith('moon')) {
@@ -26,4 +30,4 @@ export async function contentLibraryOperation(client, body, { astronomy = null, 
     return { ...librarySummary(await inspectContentLibrary(client, source, decision)), batch };
   });
 }
-export const handleContentLibraryRequest = (req, createClient, dependencies = {}) => handleInternalRequest(req, createClient, (client, body) => contentLibraryOperation(client, body, dependencies));
+export const handleContentLibraryRequest = (req, createClient, dependencies = {}) => handleInternalRequest(req, createClient, (client, body, principal) => contentLibraryOperation(client, body, dependencies, principal));

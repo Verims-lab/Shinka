@@ -143,7 +143,7 @@ A helper's 5s bound is capped by the remaining 20s case budget; both check monot
 
 ## Targeted Health evidence rule — 024
 
-Never collapse SDK/query/service/read errors into a claim that a schema or content is absent. Use `healthReadDiagnostics` at the server and invocation boundaries; never pass raw exceptions into Health evidence. Require array/ID shape before a readiness success and an exact nonnegative safe integer before measured count. Preserve current PASS predicates and per-run memoization. Download/parse unavailability is different from successfully evaluated content inconsistency. An 18s invocation deadline preserves evidence before the 20s Health case deadline; no automatic retry or cancellation guarantee.
+Never collapse SDK/query/service/read errors into a claim that a schema or content is absent. Use `healthReadDiagnostics` at the server and invocation boundaries; never pass raw exceptions into Health evidence. Require array/ID shape before a readiness success and an exact nonnegative safe integer before measured count. Preserve current PASS predicates and per-run memoization. Download/parse unavailability is different from successfully evaluated content inconsistency. An 18s total invocation deadline, further bounded by remaining case time with a 250ms evidence reserve, preserves diagnostics before the 20s case deadline. HC-050.2 permits one shared readonly HTTP429 retry after a completed rejection, respecting Retry-After and reserving at least 1s for the retry. No mutation/auth/shape/timeout retry or remote cancellation guarantee.
 
 ## Privacy implementation standards — 023
 
