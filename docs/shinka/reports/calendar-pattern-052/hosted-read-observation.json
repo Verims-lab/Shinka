@@ -1,0 +1,51 @@
+{
+  "observed_at": "2026-10-30",
+  "scope": "TARGETED_READ_ONLY_EXISTING_WEB_SESSION",
+  "app_id": "6ad5190f4845d4e3af03b420",
+  "data_area": "EXISTING_PROD_SHARED_NOT_ISOLATED_GIT_TEST",
+  "frontend": {
+    "build": "Buildmarker-051",
+    "health_catalog": "HC-050.2",
+    "source": "existing published Health screen; no new run"
+  },
+  "backend_shared_exact_sha": "NOT_VERIFIED",
+  "apk_version": "NOT_VERIFIED",
+  "base44_editor": {
+    "branch": "Main",
+    "observed_entry_path": "base44/functions/calendar/entry.ts",
+    "body_comparison": "NOT_AVAILABLE_FROM_CODE_EDITOR_READ_INTERFACE"
+  },
+  "read_results": {
+    "calendar_initial_grid": "VISIBLE",
+    "pattern_both_sections": "VISIBLE_WITHOUT_REFRESH_ERROR",
+    "calendar_offline": "RETAINED_GRID_WITH_WARNING",
+    "calendar_online_recovery": "GRID_VISIBLE_WARNING_CLEARED",
+    "background_return_event_attribution": "NOT_MEASURED_RELIABLY",
+    "spontaneous_original_incident": "NOT_OBSERVED"
+  },
+  "network_samples": [
+    {
+      "action": "calendar manual read refresh",
+      "n": 1,
+      "http_status": 200,
+      "duration_ms": 2590
+    },
+    {
+      "action": "pattern tab return: two section reads",
+      "n": 2,
+      "http_status": [
+        200,
+        200
+      ],
+      "duration_ms": [
+        1260,
+        1480
+      ]
+    }
+  ],
+  "timing_limit": "Network panel durations only; not screen-ready or APK latency; no hosted after-fix measurement because no publish.",
+  "browser_cleanup": "DevTools network restored to No throttling; app grid visible without warning at final read.",
+  "live_full_health": "NOT_RUN",
+  "security_scan": "NOT_RUN",
+  "mutations_import_cleanup": "NOT_RUN"
+}

@@ -1,3 +1,4 @@
+import { productFailureResponse } from './productReadDiagnostics.js';
 import { readUserLifecycle } from './userLifecycle.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
 import { readBoundedJson } from './boundedJson.js';
@@ -92,11 +93,13 @@ export async function calendarOperation(client, body, { now = () => new Date(), 
   };
 }
 export async function handleCalendarRequest(req, createClient, dependencies = {}) {
+  const started = Date.now(); let stage = 'CALENDAR_READ';
   try {
     if (req.method !== 'POST') fail('METHOD_NOT_ALLOWED', 405);
     const body = await readBoundedJson(req, 2000, fail);
+    if (body.action !== 'read') stage = 'CALENDAR_WRITE';
     return Response.json(await calendarOperation(createClient(req), body, dependencies));
   } catch (error) {
-    return Response.json({ error_code: error instanceof InternalError ? error.code : 'CALENDAR_OPERATION_FAILED' }, { status: error instanceof InternalError ? error.status : 500 });
+    return productFailureResponse(error, 'CALENDAR_OPERATION_FAILED', 500, stage, started);
   }
 }

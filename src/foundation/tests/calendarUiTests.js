@@ -14,6 +14,20 @@ async function probe(run) {
 const button=(host,text)=>[...host.querySelectorAll('button')].find(row=>row.textContent===text);
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CALENDAR_UI_TESTS = [
+ ['CU09','Empty Calendar failure has one Retry and no retained-view claim; successful retry restores the actual grid in TR/EN',async()=>probe(async(root,host)=>{
+   for(const language of ['tr','en']) {
+     let fail=true,calls=0;const f=nativeFixture();
+     const request=async(action,body)=>{calls++;check(action==='read');if(fail)throw {code:'SERVICE_UNAVAILABLE'};return f.cal({action,...body});};
+     root.render(createElement(Calendar,{key:language,language,request}));
+     await until(()=>host.querySelector('[data-calendar-error]'));
+     check(!host.querySelector('[role="grid"]')&&!host.querySelector('[data-refresh-control]'));
+     check(host.querySelectorAll('main button').length===1,'duplicate initial refresh/retry');
+     check(!/last view|son görünüm/i.test(host.textContent),'nonexistent retained calendar');
+     fail=false;host.querySelector('main button').click();
+     await until(()=>host.querySelector('[role="grid"]'));
+     check(calls===2&&!host.querySelector('[data-calendar-error]')&&!/last view|son görünüm/i.test(host.textContent));
+   }
+ })],
  ['CU08','Selection/pending/unknown/confirmed feedback remains distinct and lost response retries the same native action',async()=>probe(async(root,host)=>{
    for(const language of ['tr','en']) {
      const f=nativeFixture(),calls=[];let release=()=>{},first=true;

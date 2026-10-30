@@ -51,7 +51,7 @@ export const PATTERN_UI_TESTS=[
    check(host.querySelector('[data-lunar-summary]')&&!host.querySelector('[role="alert"]'));
  })],
  ['PU03','320px and 200% text keep two fields separate, within card and all controls at least 44px',async()=>probe(async(root,host)=>{
-   const f=patternFixture();root.render(createElement(Pattern,{language:'tr',request:f.request}));
+   const f=patternFixture(),request=section=>f.request(section);root.render(createElement(Pattern,{language:'tr',request}));
    await until(()=>host.querySelector('[data-lunar-summary]'));
    for(const scale of [1,2]) {
      const labels=[...host.querySelectorAll('[data-lunar-summary] > div')];
@@ -92,11 +92,11 @@ export const PATTERN_UI_TESTS=[
    }finally{clock.dispose();}
  })],
  ['PU07','Partial Moon coverage keeps known phase and no invented date/time/graph in either language',async()=>probe(async(root,host)=>{
-   const f=patternFixture();f.tables.MoonPhaseLookup=f.tables.MoonPhaseLookup.slice(0,3);
-   root.render(createElement(Pattern,{language:'en',request:f.request}));await until(()=>host.querySelector('[data-lunar-summary]'));
+   const f=patternFixture(),request=section=>f.request(section);f.tables.MoonPhaseLookup=f.tables.MoonPhaseLookup.slice(0,3);
+   root.render(createElement(Pattern,{language:'en',request}));await until(()=>host.querySelector('[data-lunar-summary]'));
    check(host.querySelector('[data-lunar-current]').textContent==='Full Moon'&&!host.querySelector('[data-next-full] time'));
    check(host.querySelector('[data-next-full]').textContent.includes('temporarily unavailable'));
-   root.render(createElement(Pattern,{language:'tr',request:f.request}));await until(()=>host.querySelector('[data-lunar-current]').textContent==='Dolunay');
+   root.render(createElement(Pattern,{language:'tr',request}));await until(()=>host.querySelector('[data-lunar-current]').textContent==='Dolunay');
    check(host.querySelector('[data-next-full]').textContent.includes('kullanılamıyor')&&!host.querySelector('[data-lunar-summary] svg, [data-lunar-summary] ol'));
  })],
  ['PU04','Unmount discards pending response in real component',async()=>probe(async(root,host)=>{

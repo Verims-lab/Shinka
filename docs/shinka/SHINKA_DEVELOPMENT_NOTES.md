@@ -2,12 +2,19 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-051
+**Current BuildMarker:** Buildmarker-052
 **Last Updated:** 2026-10-30
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
+
+
+## 052 — Calendar and Pattern read recovery (2026-10-30)
+
+Targeted correction of false Calendar retained-view messaging, lost read diagnostics, settled lifecycle bursts, delayed pending slots and logout reactivation. Keeps independent Pattern values, Calendar draft/unknown same-intent semantics and the 20s budget. Controlled fault injection and actual web read observations are recorded separately; original APK HTTP cause is not established. No live mutations or maintenance. Existing main GeoNames quota inventory/write tripwire is preserved and reported separately.
+
+39/39 focused and 7/7 final boundary tests pass per Chromium/WebKit. Full: 759/761 pass per engine; existing D01/D22 keep H04-007 failing. Type/lint/build/dependency/performance/history pass. Local Health save/list/open and later timing are NOT_RUN after that gate; physical APK and exact deployed backend acceptance remain open. [Findings, execution and APK acceptance](reports/SHINKA_CALENDAR_PATTERN_052.md).
 
 
 ## 051 targeted Health read closure — HC-050.2 (2026-10-30)

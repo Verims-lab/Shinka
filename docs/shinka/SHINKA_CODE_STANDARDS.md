@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-051
+**Current BuildMarker:** Buildmarker-052
 **Last Updated:** 2026-10-29
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -36,6 +36,13 @@
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
+
+
+## 052 — Calendar and Pattern read recovery (2026-10-30)
+
+Use productReadTransport for the two affected read boundaries; preserve service response validation and controller ownership. Only allowlisted safe diagnostic metadata reaches state. Controlled clock tests must cover suspended deadline/late response, listener/timer cleanup, read pressure and mutation non-retry. Browser/server fixture success is not physical APK or deployed-source acceptance.
+
+[Findings, execution and APK acceptance](reports/SHINKA_CALENDAR_PATTERN_052.md).
 
 
 ## 051 continuation — verified maintenance and measured performance

@@ -2,13 +2,20 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-051
+**Current BuildMarker:** Buildmarker-052
 **Last Updated:** 2026-10-30
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-050.2; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-051.0; repository, synthetic and external evidence separated.
 
+
+
+## 052 — Calendar and Pattern read recovery (2026-10-30)
+
+Health delta is 0 added / 5 updated / 0 removed: H08-007 (CP03–06), H12-037 (CP01–03/05–07), H13-015 (CU09 plus CU01–08/checkCalendarContinuity), H13-017 (PU01–08 and CP05/06), and H05-009’s unchanged approved-source policy extended to 052. Serialized local requirements match the executable IDs. 185 IDs / 159 in-app / 12 local / 14 external remain. No old failure, external device case or 051 diagnostic assertion is removed. Existing Base44 GeoNames quota inventory mismatch remains an explicit failing baseline, separate from this fix.
+
+39/39 focused and 7/7 final boundary tests pass per Chromium/WebKit. Full: 759/761 pass per engine; existing D01/D22 keep H04-007 failing. Type/lint/build/dependency/performance/history pass. Local Health save/list/open and later timing are NOT_RUN after that gate; physical APK and exact deployed backend acceptance remain open. [Findings, execution and APK acceptance](reports/SHINKA_CALENDAR_PATTERN_052.md).
 
 
 ## 051 targeted Health read closure — HC-050.2 (2026-10-30)

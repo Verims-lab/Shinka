@@ -1,0 +1,15 @@
+{
+  "scope": "LOCAL_SYNTHETIC_SDK_BOUNDARY_NOT_HOSTED_LATENCY",
+  "baseline": "508e622",
+  "scenario": "immediate completed reads; three same-time lifecycle events; separate Pattern section retry followed by focus at t=2000ms",
+  "before": {
+    "calendar_initial_plus_three_settled_return_events": 4,
+    "pattern_section_retry_plus_settled_focus_event": 3,
+    "peak_synthetic_sdk": 2
+  },
+  "after": {
+    "calendar_initial_plus_three_settled_return_events": 1,
+    "pattern_section_retry_plus_settled_focus_event": 1,
+    "peak_synthetic_sdk": 2
+  }
+}

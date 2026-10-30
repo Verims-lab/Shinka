@@ -1,3 +1,5 @@
+import { handleCalendarRequest } from '../base44/shared/calendarOperation.js';
+import { handlePatternRequest } from '../base44/shared/patternOperation.js';
 import { artifactOperation } from '../base44/shared/contentArtifactOperation.ts';
 // Execute current TS routing/session entry points with platform imports replaced.
 // Native auth/lifecycle/write guards are real; no network, SQL or user mutations.
@@ -14,6 +16,12 @@ import * as boundedJson from '../base44/shared/boundedJson.js';
 import * as geonamesGuard from '../base44/shared/geonamesGuard.js';
 import { internalHealthOperation } from '../base44/shared/internalHealthOperations.js';
 export async function verifyNativeEntries(root) {
+  for (const [handler,action] of [[handleCalendarRequest,'read'],[handlePatternRequest,'themes']]) {
+    const response=await handler(new Request('https://fixture.invalid/read',{method:'POST',body:JSON.stringify({action})}),()=>({auth:{me:async()=>{throw {response:{status:429,headers:{'retry-after':'2'},data:{private:'NEVER_SERIALIZE'}}};}}}));
+    const data=await response.json();assert.equal(response.status,503);assert.equal(data.diagnostic.httpStatus,429);
+    assert.equal(data.diagnostic.stage,'SESSION_AUTH');assert.equal(data.retry_after_ms,2000);
+    assert.match(data.diagnostic.requestId,/^[a-f0-9-]{36}$/);assert.ok(!JSON.stringify(data).includes('NEVER_SERIALIZE'));
+  }
   let role = 'admin', exists = true, token = true, secretReads = 0;
   const client = { auth: { me: async () => token ? { id: 'synthetic-admin', role: 'cached-admin' } : null }, asServiceRole: { entities: {
     User: { filter: async () => exists ? [{ id: 'synthetic-admin', role }] : [] },

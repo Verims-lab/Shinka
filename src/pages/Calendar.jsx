@@ -32,8 +32,8 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
     </header>
     <main className="flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6">
       <h1 className="font-heading text-shinka-h1">{copy('title')}</h1>
-      <RefreshControl language={language} refresh={controller.refresh} loading={state.loading} error={state.refreshError} disabled={state.busy || state.confirmDelete}/>
-      {state.loading && <p role="status">{copy('loading')}</p>}
+      {value && <RefreshControl language={language} refresh={controller.refresh} loading={state.loading} error={state.refreshError} disabled={state.busy || state.confirmDelete}/>}
+      {state.loading && !value && <p role="status">{copy('loading')}</p>}
       {value && <>
         <CalendarMonth value={value} selected={state.selected} disabled={state.busy || unresolved} language={language} onSelect={controller.select} onMonth={controller.load}/>
         {!value.writable && !value.pendingReview && <p role="status" data-calendar-blocked>{copy('unavailable')}</p>}

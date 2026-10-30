@@ -2,12 +2,19 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-051
+**Current BuildMarker:** Buildmarker-052
 **Last Updated:** 2026-10-30
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
+
+
+## 052 — Calendar and Pattern read recovery (2026-10-30)
+
+This new targeted package advances once to Buildmarker-052 / HC-051.0 through recordBuild; active history is 048–052. The older keep-051 instructions remain historical to their continuations. Preserve main 508e622 Base44 work and 051 Health changes. Run required local gates, report existing GeoNames inventory/write-tripwire failures separately, and do not suppress them. No general audit, quota redesign, DB cleanup/import, live user mutation, live Full Health/Security scan, main merge or publish.
+
+[Findings, execution and APK acceptance](reports/SHINKA_CALENDAR_PATTERN_052.md).
 
 
 ## 051 targeted Health read closure — HC-050.2 (2026-10-30)
