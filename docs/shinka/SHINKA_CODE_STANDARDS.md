@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-052
-**Last Updated:** 2026-10-29
+**Current BuildMarker:** Buildmarker-053
+**Last Updated:** 2026-10-30
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
 **Scope:** All source (client, backend, internal tooling).
@@ -36,6 +36,11 @@
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
+
+
+## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)
+
+For this quota only, the current official Base44 single-ID conditional-update contract and installed SDK transport support ID/revision reservation with exact updated acknowledgement. This is not blanket transaction/CAS certification for existing product workflows; historical "never describe updateMany as CAS" advice must not obscure the scoped documented primitive or turn local fixtures into hosted proof. Do not create/upsert a singleton on the request path, infer missing counters as zero, retry unknown writes, weaken policies or bypass failure via cache authority. Test two independent workers against shared conditional state and actual TS entry negatives; normal Health uses isolated counters only.
 
 
 ## 052 — Calendar and Pattern read recovery (2026-10-30)

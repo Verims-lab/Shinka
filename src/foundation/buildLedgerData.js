@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-048",
-    "package_name": "Manual theme alignment and authorized 045 cleanup follow-up",
-    "package_type": "FIX",
-    "created_at": "2026-10-28T15:14:16Z",
-    "health_catalog_version": "HC-047.0",
-    "short_summary": "Align verified manual theme, rendered Health and canonical rules; retain 045 compatibility until complete hosted cleanup verification.",
-    "full_health_status": "NOT_RUN",
-    "notes": "Manual theme uses verified account preference, independent of OS; H13 compares independent expectation with DOM. Complete local browser/quality evidence: reports/theme-cleanup-048. 045 hosted cleanup: 0 inspected / 0 cleaned / remaining unknown, verify NOT_RUN; CLI_LOGIN_REQUIRED twice, then explicitly owner-deferred. Optional compatibility schema retained. No live Health/scan, main merge or publish; active packages 044–048."
-  },
-  {
     "build_marker": "Buildmarker-049",
     "package_name": "Bounded opening and reviewed daily cleanup web preparation",
     "package_type": "FIX",
@@ -65,5 +55,15 @@ export default [
     "health_changed": true,
     "docs_aligned": true,
     "notes": "39/39 focused + 7/7 final boundary regressions in Chromium/WebKit. Full: 759/761 each; pre-existing main GeoNames inventory D01/D22 keep H04-007 failing. Type/lint/build/dependency/performance/history gates pass. No live Full Health/scan, mutation, import, cleanup, main merge or publish. Original APK transport cause and exact deployed backend/APK version remain unproven. Details: reports/calendar-pattern-052."
+  },
+  {
+    "build_marker": "Buildmarker-053",
+    "package_name": "GeoNames shared credit quota and endpoint classification",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-10-30T12:56:30.000Z",
+    "health_catalog_version": "HC-052.0",
+    "short_summary": "Conditional shared daily/hourly credits; fail-closed counter provisioning, safe retries and accurate 13-function security classification.",
+    "full_health_status": "NOT_RUN",
+    "notes": "Chromium/WebKit each 771/771 PASS plus final strengthened quota 9/9 each; entry negatives 8/8 and installed/pinned SDK transport 8/8 PASS. Local Health 147 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL, save/list/open PASS. Quality/performance gates PASS; Health +1/~5/-0. One conservative prepared singleton is required; hosted atomicity, Deno and physical acceptance NOT_RUN. No live writes/scan/Full Health/publish. Group A and twelve deferred findings preserved. Report: reports/SHINKA_GEONAMES_QUOTA_053.md."
   }
 ];

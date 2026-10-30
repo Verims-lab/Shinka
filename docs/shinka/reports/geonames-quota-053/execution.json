@@ -1,0 +1,140 @@
+{
+  "buildMarker": "Buildmarker-053",
+  "healthCatalog": "HC-052.0",
+  "browsers": [
+    {
+      "engine": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "tests": 771,
+      "passed": 771,
+      "failed": 0,
+      "pageErrors": [],
+      "catalog": {
+        "version": "HC-052.0",
+        "suites": 17,
+        "cases": 186,
+        "localRegression": 12,
+        "current": 160,
+        "future": 0,
+        "external": 14
+      },
+      "health": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "counts": {
+          "PASS": 147,
+          "BLOCKED": 13
+        },
+        "saveState": "SAVED",
+        "retrySave": true,
+        "historyListed": true,
+        "privateReportOpened": true
+      },
+      "log": "chromium.txt"
+    },
+    {
+      "engine": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "tests": 771,
+      "passed": 771,
+      "failed": 0,
+      "pageErrors": [],
+      "catalog": {
+        "version": "HC-052.0",
+        "suites": 17,
+        "cases": 186,
+        "localRegression": 12,
+        "current": 160,
+        "future": 0,
+        "external": 14
+      },
+      "health": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "counts": {
+          "PASS": 147,
+          "BLOCKED": 13
+        },
+        "saveState": "SAVED",
+        "retrySave": true,
+        "historyListed": true,
+        "privateReportOpened": true
+      },
+      "log": "webkit.txt"
+    }
+  ],
+  "entryNegatives": "entry-boundaries.json",
+  "sdkTransport": "sdk-transport.json",
+  "schemaStage": "schema-stage.json",
+  "quotaCost": "quota-cost.json",
+  "before": "before.json",
+  "quality": {
+    "cleanInstall": "PASS",
+    "dependencyTree": "PASS",
+    "dependencyAudit": "PASS_ZERO_ALL_SEVERITIES",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS",
+    "repoHealth": "PASS"
+  },
+  "performance": {
+    "passed": true,
+    "scope": "LOCAL_HEADLESS_CHROMIUM_LOOPBACK_SYNTHETIC_SDK_NO_PROVIDER",
+    "budget": {
+      "initialRaw": 500000,
+      "initialGzip": 165000,
+      "cssRaw": 90000,
+      "cssGzip": 16000
+    },
+    "initialJS": {
+      "raw": 476923,
+      "gzip": 158573
+    },
+    "css": {
+      "raw": 78659,
+      "gzip": 14465
+    },
+    "cycles": [],
+    "routes": 9,
+    "samples": 27,
+    "sampleErrors": 0,
+    "hostedLatencyVerified": false
+  },
+  "healthDelta": {
+    "added": 1,
+    "updated": 5,
+    "removed": 0
+  },
+  "notRun": [
+    "DENO_RUNTIME",
+    "HOSTED_CONDITIONAL_UPDATE_ATOMICITY",
+    "PUBLISHED_RUNTIME_HASH",
+    "PHYSICAL_DEVICE",
+    "LIVE_FULL_HEALTH",
+    "SECURITY_SCAN",
+    "REAL_GEONAMES",
+    "LIVE_COUNTER_SETUP_OR_CLEANUP"
+  ],
+  "retainedInitialFailures": [
+    "initial-focused-failure.txt",
+    "initial-typecheck.txt",
+    "initial-full-chromium.txt"
+  ],
+  "finalFocused": {
+    "chromium": {
+      "passed": 9,
+      "failed": 0,
+      "log": "final-quota-chromium.txt"
+    },
+    "webkit": {
+      "passed": 9,
+      "failed": 0,
+      "log": "final-quota-webkit.txt"
+    },
+    "reason": "Strengthened GQ02 for both daily/hourly contention and GQ03 explicit create-attempt tripwire after full suites; no production-code change."
+  }
+}

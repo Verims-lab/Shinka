@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-052
-**Last Updated:** 2026-10-29
+**Current BuildMarker:** Buildmarker-053
+**Last Updated:** 2026-10-30
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
 **Scope:** Product domain entities + separately listed internal tooling storage.
@@ -13,6 +13,11 @@
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
 
+
+
+## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)
+
+GeoNamesDailyQuota is the seventh **internal tooling** schema, separate from the unchanged 20 product entities and native User (28 physical files). Current scope APP_CREDITS_V1 has one operator-prepared native ID, integer revision/window_hour and at most 25 {hour,credits} buckets. Direct read/create/update/delete deny applies to all callers; only the admitted backend reserves. No user/place/credential fields or asserted unique index. Legacy quota_date/count remain optional for staged schema compatibility; old rows are retained, never interpreted as zero or silently migrated. Runtime does not create/upsert rows: missing, duplicate or malformed state blocks provider access. Initial preparation and hosted conditional-write verification are still required, not completed cleanup.
 
 
 ## 051 continuation — verified maintenance and measured performance

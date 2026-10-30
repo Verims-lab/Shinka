@@ -1,27 +1,14 @@
 {
   "name": "GeoNamesDailyQuota",
   "type": "object",
-  "description": "INTERNAL TOOLING \u2014 app-wide daily GeoNames provider-call counter shared by all workers. No user, place or secret data. Direct access denied; backend only.",
+  "description": "INTERNAL TOOLING. One operator-prepared APP_CREDITS_V1 row; conditional credit reservations only. Missing/duplicate/legacy state denies provider access. No user, place or credential data. Legacy fields retained for staged schema compatibility, not read as zero usage.",
   "properties": {
-    "quota_date": {
-      "type": "string",
-      "format": "date",
-      "description": "UTC day"
-    },
-    "count": {
-      "type": "integer",
-      "minimum": 0,
-      "default": 0
-    }
+    "scope": {"type": "string", "enum": ["APP_CREDITS_V1"]},
+    "revision": {"type": "integer", "minimum": 0},
+    "window_hour": {"type": "integer", "minimum": 0},
+    "buckets": {"type": "array", "maxItems": 25, "items": {"type": "object", "properties": {"hour": {"type": "integer", "minimum": 0}, "credits": {"type": "integer", "minimum": 0, "maximum": 8000}}, "required": ["hour", "credits"]}},
+    "quota_date": {"type": "string", "format": "date"},
+    "count": {"type": "integer", "minimum": 0}
   },
-  "required": [
-    "quota_date",
-    "count"
-  ],
-  "rls": {
-    "create": false,
-    "read": false,
-    "update": false,
-    "delete": false
-  }
+  "rls": {"create": false, "read": false, "update": false, "delete": false}
 }

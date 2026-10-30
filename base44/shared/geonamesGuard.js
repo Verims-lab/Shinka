@@ -1,3 +1,4 @@
+import { geoNamesCreditCost } from './geonamesDailyQuota.js';
 import { OnboardingError } from './onboardingValidation.js';
 
 // Worker-local GeoNames burst control and short public-place cache.
@@ -19,6 +20,7 @@ const copy = value => (value === undefined ? value : structuredClone(value));
 const guardErrors = new WeakSet();
 export const isGuardRateLimit = error => guardErrors.has(error);
 
+/** @param {{limits?:Record<keyof typeof GEONAMES_LIMITS,number>,now?:()=>number,fetcher?:(input:any,init?:RequestInit)=>Promise<Response>}} options */
 export function createGeoNamesGuard({ limits = GEONAMES_LIMITS, now = () => Date.now(), fetcher = (input, init) => fetch(input, init) } = {}) {
   const users = new Map(), cache = new Map(), inflight = new Map();
   let worker = { start: 0, count: 0 };
@@ -37,7 +39,7 @@ export function createGeoNamesGuard({ limits = GEONAMES_LIMITS, now = () => Date
     return w;
   };
   // owner must come from the server-authenticated principal, never the request body.
-  // dailyQuota (optional): async () => null | secondsUntilReset, app-wide across workers.
+  // dailyQuota (optional in fixtures): async (credits) => null | retry seconds.
   function forOwner(owner, createAdapter, { dailyQuota = null } = {}) {
     if (typeof owner !== 'string' || !owner) throw new OnboardingError('AUTH_REQUIRED', null, 401);
     let adapter = null; // created (and the secret read) only when a provider call is needed
@@ -46,8 +48,12 @@ export function createGeoNamesGuard({ limits = GEONAMES_LIMITS, now = () => Date
       if (t - worker.start >= limits.windowMs) worker = { start: t, count: 0 };
       if (w.upstream >= limits.upstreamCalls) limited(w.start);
       if (worker.count >= limits.workerUpstreamCalls) limited(worker.start);
-      if (dailyQuota) { const wait = await dailyQuota(); if (wait !== null) limited(t, wait); }
+      // Reserve local burst slots before the asynchronous durable reservation.
+      // Denied/aborted calls may consume a local slot; they never consume provider credits.
       w.upstream++; worker.count++;
+      if (init?.signal?.aborted) throw new OnboardingError('GEONAMES_UNAVAILABLE', 'birthplace', 503);
+      if (dailyQuota) { const wait = await dailyQuota(geoNamesCreditCost(url)); if (wait !== null) limited(t, wait); }
+      if (init?.signal?.aborted) throw new OnboardingError('GEONAMES_UNAVAILABLE', 'birthplace', 503);
       return fetcher(url, init);
     };
     const run = async (method, args) => {

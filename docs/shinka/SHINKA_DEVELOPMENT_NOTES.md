@@ -2,12 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-052
+**Current BuildMarker:** Buildmarker-053
 **Last Updated:** 2026-10-30
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
+
+
+## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)
+
+Reproduced all four 508e622 quota defects in an isolated real-function test. Replaced read/unconditional-increment with acknowledged conditional shared credit reservation, conservative hourly/daily windows, missing/duplicate denial, no request-time create and abort/burst protection. Fixed long-wait copy/Retry-After preservation, closed tooling inventory and documented all 13 endpoint distinctions without clearing deferred findings. Chromium and WebKit each passed 771/771; actual-entry negatives 8/8 and exact SDK transport checks 8/8 passed. Local Health: 147 PASS / 0 FAIL / 13 hosted-prerequisite BLOCKED, with save/list/open verified; required quality and performance gates passed. Full 28-schema staging passed both modes. [Single delivery report and execution evidence](reports/SHINKA_GEONAMES_QUOTA_053.md). No live calls or mutations; hosted atomicity, Deno execution and physical acceptance remain NOT_RUN. Publisher must prepare one conservative counter after draining old writers; missing state intentionally blocks provider access.
 
 
 ## 052 — Calendar and Pattern read recovery (2026-10-30)

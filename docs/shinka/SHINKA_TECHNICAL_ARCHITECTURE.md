@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-052
+**Current BuildMarker:** Buildmarker-053
 **Last Updated:** 2026-10-30
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -11,6 +11,13 @@
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
+
+
+## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)
+
+The existing GeoNames guard delegates uncached search/page/get requests to the existing shared quota module. One projected two-row lookup and one conditional single-ID update replace check-then-unconditional-increment; only success:true/updated:1/has_more:false permits fetch. Zero matches waits for explicit retry; unknown acknowledgement fails closed and is not automatically retried. Worker burst slots are reserved before async IO; abort is checked again before provider dispatch. Cache/coalescing stays worker-local and spends no credits.
+
+App thresholds are 8,000 credits/trailing 24h and 800/trailing hour, using 25/2 UTC-hour buckets conservatively (up to 25h/2h retention). UTC is not claimed to match the provider's reset. Only reviewed searchJSON/getJSON cost one credit; new endpoint costs need review. Request-time create/upsert is removed because uniqueness is unproven. A single operator-prepared counter is required; none/duplicates/corruption deny. SDK 0.8.54/0.8.57 transport tests are local, without SDK upgrade; Deno and hosted conditional-write enforcement remain NOT_RUN. No worker mutex or transaction guarantee is introduced.
 
 
 ## 052 — Calendar and Pattern read recovery (2026-10-30)

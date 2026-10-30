@@ -156,3 +156,7 @@ First Shinka source preparation (read-only workbooks): `node scripts/prepareFirs
 Package 018: no routine agent-run hosted Health. Normal Health requires no terminal or JSON import. Local browser regressions and external/device acceptance are separate from in-app results. See [018 handoff](docs/shinka/reports/SHINKA_HEALTH_USABILITY_018.md) for save and deletion outcome recovery.
 
 Package 024 targeted Health read closure: [evidence and owner handoff](docs/shinka/reports/SHINKA_HEALTH_READ_024.md). No schema/content delta. Sync the complete backend/shared dependency graph before publishing the matching frontend; the owner runs post-publish Full Health. Narrow successful prod reads do not erase the historical HC-023 failure or prove its cause.
+
+### 053 GeoNames counter activation
+
+The shared quota now requires one prepared APP_CREDITS_V1 internal counter; request traffic never creates it. Publish the full schema inventory and matching functions/shared graph first. Follow the controlled bootstrap and conservative carryover steps in [the 053 delivery report](docs/shinka/reports/SHINKA_GEONAMES_QUOTA_053.md#owner-publication--counter-activation). `node scripts/prepareGeoNamesQuota.mjs` only prints a local payload; it does not connect or mutate. Missing/duplicate state intentionally leaves provider lookups unavailable.

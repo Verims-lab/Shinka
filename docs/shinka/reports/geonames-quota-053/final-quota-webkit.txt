@@ -1,0 +1,474 @@
+{"scope":"LOCAL_ACTUAL_TS_ENTRY_HANDLERS_SYNTHETIC_SDK","results":[{"function":"onboarding","negativeRequests":4,"quotaReads":0,"quotaWrites":0,"provider":0,"secrets":0,"passed":true},{"function":"you","negativeRequests":4,"quotaReads":0,"quotaWrites":0,"provider":0,"secrets":0,"passed":true}],"passed":true}
+{"id":"SDK02","status":"PASS","scope":"INSTALLED_SDK_LOOPBACK_ONLY","projection":true,"idBatch":true,"unsetEnvelope":true,"hostedCleanupVerified":false}
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/HealthCenter.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/BuildEnvironment.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/TestTools.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/adminTestToolsUiTests.js, src/foundation/tests/deletionUiTests.js, src/foundation/tests/testToolsPacingTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/You.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/coreQualityUiTests.jsx, src/foundation/tests/notificationUiTests.js, src/foundation/tests/youUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/Calendar.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/additionalFixUiTests.jsx, src/foundation/tests/calendarUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/Pattern.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/patternUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/probes/AuthShellProbe.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/authProbeTests.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/tests/foundationTests.js is dynamically imported by src/foundation/tests/localRunnerTests.js but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/health/catalog.js is dynamically imported by src/foundation/health/cases/h16.js, src/foundation/tests/closure018Tests.js, src/foundation/tests/closure020Tests.js, src/foundation/tests/foundationTests.js, src/foundation/tests/sessionStabilityTests.js but also statically imported by scripts/testHarness/healthTiming.js, scripts/testHarness/main.jsx, src/foundation/health/report.js, src/foundation/health/runner.js, src/pages/internal/HealthCenter.jsx, dynamic import will not move module into another chunk.
+
+PASS GQ01 Actual shared quota: serial 3 accepts, fourth blocks, two DB calls per admitted miss
+PASS GQ02 Two independent workers: 20 concurrent reservations at 2/3 admit exactly one at daily or hourly cap
+PASS GQ03 Concurrent first use and duplicate singleton fail closed, never create a row
+PASS GQ04 Missing/invalid counters, duplicate buckets, future clock and malformed read are not zero
+PASS GQ05 updated zero, malformed response, DB failure and lost acknowledgement never authorize or retry
+PASS GQ06 Hourly and daily windows survive UTC midnight; no provider-reset assumption
+PASS GQ07 Cache/in-flight coalescing is free; search, page and ID resolution each reserve their actual endpoint credit
+PASS GQ09 Unverified reservation never reaches fetch through the actual guard
+PASS GQ08 Shared denial stops fetch; async reservation cannot bypass local burst or fetch after abort
+{
+  "focused": true,
+  "security028": {
+    "scope": "LOCAL_SERVER_FIXTURE",
+    "hostedVerified": false,
+    "results": [
+      {
+        "id": "SC01",
+        "name": "Bounded JSON: streaming byte limit, Content-Length, malformed and non-object",
+        "status": "PASS"
+      },
+      {
+        "id": "SC02",
+        "name": "GeoNames guard: no owner 401, lazy adapter/secret, per-user app limit with retry seconds, window reset",
+        "status": "PASS"
+      },
+      {
+        "id": "SC03",
+        "name": "GeoNames guard counts real upstream fetches and the worker-local total across owners; cache avoids refetch",
+        "status": "PASS"
+      },
+      {
+        "id": "SC04",
+        "name": "Unauthenticated You/onboarding calls: 401, zero product writes, no GeoNames setup",
+        "status": "PASS"
+      },
+      {
+        "id": "SC05",
+        "name": "Oversize bodies: 413 from real You/onboarding handlers with no entity call",
+        "status": "PASS"
+      },
+      {
+        "id": "SC07",
+        "name": "Real guard + real adapter: app, user-upstream and worker-upstream limits keep 429/retry and stop provider fetches",
+        "status": "PASS"
+      },
+      {
+        "id": "SC08",
+        "name": "Onboarding and You handlers return 429, GEONAMES_RATE_LIMITED, Retry-After and retry_after_seconds for the real chain error",
+        "status": "PASS"
+      },
+      {
+        "id": "SC09",
+        "name": "Negative: network failure and a forged 429-shaped error from fetch stay GEONAMES_UNAVAILABLE, never rate-limited",
+        "status": "PASS"
+      }
+    ],
+    "passed": true
+  },
+  "notifications030": {
+    "scope": "LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION",
+    "passed": true,
+    "results": [
+      {
+        "id": "NS01",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS02",
+        "status": "PASS",
+        "httpStatus": 503,
+        "response": {
+          "error_code": "SESSION_UNAVAILABLE"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS03",
+        "status": "PASS",
+        "httpStatus": 403,
+        "response": {
+          "error_code": "ADMIN_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS04",
+        "status": "PASS",
+        "httpStatus": 403,
+        "response": {
+          "error_code": "ADMIN_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS05",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 2,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS06",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS07",
+        "status": "PASS",
+        "httpStatus": 400,
+        "response": {
+          "error_code": "INVALID_REQUEST"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS08",
+        "status": "PASS",
+        "httpStatus": 200,
+        "response": {
+          "state": "DISABLED",
+          "processed": 0
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS09",
+        "status": "PASS",
+        "httpStatus": 400,
+        "response": {
+          "error_code": "INVALID_REQUEST"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS10",
+        "status": "PASS",
+        "httpStatus": 401,
+        "response": {
+          "error_code": "AUTH_REQUIRED"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 1,
+          "serviceAccess": 0,
+          "reads": [],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      },
+      {
+        "id": "NS11",
+        "status": "PASS",
+        "httpStatus": 400,
+        "response": {
+          "error_code": "INVALID_REQUEST"
+        },
+        "counts": {
+          "clients": 1,
+          "auth": 2,
+          "serviceAccess": 3,
+          "reads": [
+            {
+              "entity": "User",
+              "query": {
+                "id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "UserPrivacyRequest",
+              "query": {
+                "user_id": "synthetic-actor"
+              }
+            },
+            {
+              "entity": "AdminTestOperation",
+              "query": {
+                "target_id": "synthetic-actor"
+              }
+            }
+          ],
+          "jobIO": 0,
+          "provider": 0
+        },
+        "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+      }
+    ],
+    "sdk": {
+      "id": "SDK01",
+      "status": "PASS",
+      "scope": "INSTALLED_SDK_LOOPBACK_HTTP_ONLY",
+      "integrationEnvelope": "UNWRAPPED_JSON_BODY",
+      "optionalFieldsOmitted": true,
+      "providerCalls": 0
+    },
+    "hostedVerified": false
+  },
+  "results": [
+    {
+      "id": "GQ01",
+      "name": "Actual shared quota: serial 3 accepts, fourth blocks, two DB calls per admitted miss",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "GQ02",
+      "name": "Two independent workers: 20 concurrent reservations at 2/3 admit exactly one at daily or hourly cap",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "GQ03",
+      "name": "Concurrent first use and duplicate singleton fail closed, never create a row",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "GQ04",
+      "name": "Missing/invalid counters, duplicate buckets, future clock and malformed read are not zero",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "GQ05",
+      "name": "updated zero, malformed response, DB failure and lost acknowledgement never authorize or retry",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "GQ06",
+      "name": "Hourly and daily windows survive UTC midnight; no provider-reset assumption",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "GQ07",
+      "name": "Cache/in-flight coalescing is free; search, page and ID resolution each reserve their actual endpoint credit",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "GQ09",
+      "name": "Unverified reservation never reaches fetch through the actual guard",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    },
+    {
+      "id": "GQ08",
+      "name": "Shared denial stops fetch; async reservation cannot bypass local burst or fetch after abort",
+      "passed": true,
+      "blocked": false,
+      "detail": "ok"
+    }
+  ],
+  "pageErrors": []
+}

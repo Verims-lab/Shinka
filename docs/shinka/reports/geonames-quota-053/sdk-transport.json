@@ -1,0 +1,55 @@
+{
+  "scope": "LOCAL_NODE_ACTUAL_SDK_ENTITY_TRANSPORT_NO_NETWORK",
+  "denoRuntime": "NOT_RUN: Deno executable unavailable",
+  "hostedAtomicity": "NOT_RUN",
+  "results": [
+    {
+      "version": "0.8.57",
+      "outcome": "accepted",
+      "requests": 2,
+      "passed": true
+    },
+    {
+      "version": "0.8.57",
+      "outcome": "zero",
+      "requests": 2,
+      "passed": true
+    },
+    {
+      "version": "0.8.57",
+      "outcome": "malformed",
+      "requests": 2,
+      "passed": true
+    },
+    {
+      "version": "0.8.57",
+      "outcome": "lost",
+      "requests": 2,
+      "passed": true
+    },
+    {
+      "version": "0.8.54",
+      "outcome": "accepted",
+      "requests": 2,
+      "passed": true
+    },
+    {
+      "version": "0.8.54",
+      "outcome": "zero",
+      "requests": 2,
+      "passed": true
+    },
+    {
+      "version": "0.8.54",
+      "outcome": "malformed",
+      "requests": 2,
+      "passed": true
+    },
+    {
+      "version": "0.8.54",
+      "outcome": "lost",
+      "requests": 2,
+      "passed": true
+    }
+  ]
+}

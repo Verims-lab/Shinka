@@ -1,0 +1,25 @@
+{
+  "scope": "ISOLATED_STORE_COUNTS_JSON_BYTES_NOT_HOSTED_LATENCY",
+  "normal": {
+    "reads": 1,
+    "conditionalWrites": 1,
+    "requestBytes": 189
+  },
+  "full25Buckets": {
+    "reads": 1,
+    "conditionalWrites": 1,
+    "requestBytes": 861
+  },
+  "twoWorkers20Concurrent": {
+    "reads": 20,
+    "conditionalWrites": 20,
+    "requestBytes": 3780,
+    "admitted": 1
+  },
+  "cacheHits": {
+    "reads": 0,
+    "writes": 0,
+    "provider": 0,
+    "evidence": "GQ07"
+  }
+}

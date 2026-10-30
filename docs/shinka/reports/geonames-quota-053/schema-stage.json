@@ -1,0 +1,20 @@
+{
+  "scope": "LOCAL_ARTIFACTS_ONLY",
+  "passed": true,
+  "results": [
+    {
+      "mode": "current",
+      "status": "PASS",
+      "schemas": 28,
+      "hostedCleanupVerified": false
+    },
+    {
+      "mode": "final",
+      "status": "PASS",
+      "schemas": 28,
+      "hostedCleanupVerified": false
+    }
+  ],
+  "repositoryUnchanged": true,
+  "hostedCalls": 0
+}

@@ -41,7 +41,9 @@ export async function youRequest(action, payload = {}, client = base44, timeoutM
     // An invocation/timeout/readback error cannot prove that a transmitted write
     // did not happen. Only explicit pre-write validation/conflict is definitive.
     const definite = field !== null || ['INVALID_REQUEST','YOU_EDIT_CONFLICT','DUPLICATE_OWNER_STATE','HEALTH_DELETION_PENDING','GEONAMES_UNAVAILABLE','GEONAMES_RATE_LIMITED','MAINTENANCE_WRITE_PAUSED'].includes(code) || isYouPrivacyError(code);
-    throw Object.assign(new Error(code), { code, field, unknown: action.startsWith('save') && (!definite || error?.response?.data?.write_outcome === 'UNCONFIRMED') });
+    const retry = error?.response?.data?.retry_after_seconds;
+    const retryAfterSeconds = Number.isInteger(retry) && retry > 0 && retry <= 172800 ? retry : null;
+    throw Object.assign(new Error(code), { code, field, retryAfterSeconds, unknown: action.startsWith('save') && (!definite || error?.response?.data?.write_outcome === 'UNCONFIRMED') });
   } finally { clearTimeout(timer); }
 }
 

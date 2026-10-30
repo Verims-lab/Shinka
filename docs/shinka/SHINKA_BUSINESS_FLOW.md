@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-052
-**Last Updated:** 2026-10-29
+**Current BuildMarker:** Buildmarker-053
+**Last Updated:** 2026-10-30
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
@@ -11,6 +11,11 @@
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
+
+
+## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)
+
+Birthplace remains optional. Onboarding and You use the same shared credit scope across search, pagination and selected-ID resolution. Cache hits are free. Daily/hourly/collision waits retain selections, query and profile draft; TR/EN says temporarily limited and try later, without a misleading one-minute or midnight promise. Backend Retry-After seconds survive service normalization; only explicit user retry runs again. Account/lifecycle/consent rules are unchanged. Missing quota provisioning blocks provider-dependent work rather than granting uncounted traffic; it does not invent a birthplace or rewrite an existing selection.
 
 
 ## 052 — Calendar and Pattern read recovery (2026-10-30)
