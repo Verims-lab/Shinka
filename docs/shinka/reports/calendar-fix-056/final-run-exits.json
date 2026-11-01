@@ -1,0 +1,17 @@
+[
+  {
+    "step": "webkit",
+    "exitCode": 0,
+    "log": "/private/tmp/shinka-056/full-webkit-verified.txt"
+  },
+  {
+    "step": "chromium-final-matrix",
+    "exitCode": 0,
+    "log": "/private/tmp/shinka-056/chromium-final-matrix.txt"
+  },
+  {
+    "step": "performance",
+    "exitCode": 0,
+    "log": "/private/tmp/shinka-056/performance.txt"
+  }
+]

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-055
+**Current BuildMarker:** Buildmarker-056
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -11,6 +11,13 @@
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
+
+
+## 056 — Focused Calendar corrections (2026-11-01)
+
+Calendar read accepts an optional paired action_id/revision. calendarActionStatus returns a closed ABSENT/PENDING/APPLIED/CONFLICT projection from the authenticated owner's receipt plus the freshly confirmed snapshot; it never writes. The existing native persistence path handles explicit same-ID continuation. The controller retains transient intent in memory only; full reload uses durable PENDING recovery. No additional storage, polling loop, automatic write retry or transaction guarantee is introduced.
+
+Safe diagnostics distinguish admission, snapshot, receipt read/create/finish, grant, preflight, period write and readback. Failure logs contain only operation ID, closed error/diagnostic code, HTTP status, phase, duration and request UUID; no dates, user identifiers, SDK exception, headers or body. Official entity docs and loopback tests of backend-pinned SDK 0.8.54 and installed SDK agree on updateMany {success,updated,has_more} and deleteMany {success,deleted}; this proves transport shape, not hosted mutation success. Publish entry/shared/frontend together.
 
 
 ## 055 — Narrow onboarding correction boundaries

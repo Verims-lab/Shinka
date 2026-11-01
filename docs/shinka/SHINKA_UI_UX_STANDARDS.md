@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-055
+**Current BuildMarker:** Buildmarker-056
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -11,6 +11,13 @@
 **Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+
+## 056 — Focused Calendar corrections (2026-11-01)
+
+This package hides only Calendar’s visible Refresh/Yenile action; its mounted RefreshControl keeps approved pull-to-refresh and coalesced foreground reads. Initial and retained failures retain explicit Retry. Scoped #calendar-start-date native appearance/box sizing contains the field in the card without clipping its date, picker or focus ring; shared onboarding/You inputs are unchanged. A scoped date :focus ring covers WebKit native editors that hold focus without matching :focus-visible; Tab/Shift+Tab is exercised.
+
+An unknown delete stays in one dialog with central TR/EN Check status copy, not another Delete action or a contradictory background error. It closes only after verified absence. A passive read may confirm an APPLIED receipt; only explicit Check/retry can continue PENDING/ABSENT with the same immutable action ID/revision/payload. Pending/checking, rejected field/conflict, unknown and confirmed states remain distinct. Draft/month are retained; invalid dates do not write. No color/art/theme change. Desktop WebKit did not reproduce the supplied iOS overflow at normal text; scoped sizing and local 200% matrix are not physical iOS closure.
 
 
 ## 055 — Focus, birth-date feedback and transparent daily presentation
@@ -96,7 +103,7 @@ First Pattern load uses loading text; later reads retain confirmed names and Moo
 
 Historical 037 theme rule (superseded by 048): one light palette applied to onboarding/product/internal/overlay surfaces and supported form controls at initial paint and OS changes; watercolor and 026 accessibility amendments remain. No media-query listener, theme binding or dark palette remains. OS-owned date/time/browser/native surfaces are separate device acceptance. Name Skip is disabled for trimmed nonempty input; handler checks the current draft even before a render. Blank Skip may clear only blank draft; Continue carries normalized valid name through auth/profile save.
 
-Calendar future cells remain browseable and selected is not recorded. Selected future date shows existing centralized TR/EN explanation, disables the submit button and is rejected again in the controller/backend. A persisted future row is explicitly warned, predictions withheld, and normal correction/delete available. Home has no normal Refresh button or hidden click target: passive pull observation stays, and error Retry appears alongside retained confirmed cards. Calendar/other refresh controls remain. ON-05 header already excludes privacy; You retains account/privacy functions.
+Calendar future cells remain browseable and selected is not recorded. Selected future date shows existing centralized TR/EN explanation, disables the submit button and is rejected again in the controller/backend. A persisted future row is explicitly warned, predictions withheld, and normal correction/delete available. Home has no normal Refresh button or hidden click target: passive pull observation stays, and error Retry appears alongside retained confirmed cards. Calendar retains its mounted gesture/error recovery control; 056 removes its visible Refresh action. Other screens are unchanged. ON-05 header already excludes privacy; You retains account/privacy functions.
 
 ## 036 — optional time and safe layers
 
@@ -140,7 +147,7 @@ The document scrolls; 100vh/100dvh, zoom and in-flow actions remain. Shared env-
 
 Open layers have one same-URL history entry; Back dismisses before route traversal. Dismissing a pending confirmation hides presentation only: busy/intents/recovery remain owned by controllers. There is no root sentinel or Backspace handler. Route animation uses lazily imported Framer Motion on the existing node: tab fade, hierarchical ±12px entrance, 200ms, no retained exit subtree or keyed remount; reduced motion disables it. Native system back/status bars remain external acceptance.
 
-Home/Calendar offer thresholded pull refresh and a labeled Refresh button. Gesture observation is passive, single-touch, at document top, outside controls/layers/nested scrolls; unsupported overscroll containment keeps the button alternative. Requests coalesce. Last confirmed content survives refresh failure, while known privacy/session changes immediately conceal it. Calendar preserves draft and same-request unknown outcome; no optimistic confirmed save/rollback. Selection is immediate and saving/unknown/rejected/verified states stay distinct. Actual period days have a solid edge, predictions a dashed edge and selection a ring plus labels. Health case rows/control groups reflow with enlarged text.
+Home and Calendar offer thresholded pull refresh without a normal visible Refresh action (037/056). Gesture observation is passive, single-touch, at document top, outside controls/layers/nested scrolls. On platforms without overscroll containment the custom gesture stays inactive; foreground/section return reads and explicit error Retry remain available. Requests coalesce. Last confirmed content survives refresh failure, while known privacy/session changes immediately conceal it. Calendar preserves draft and same-request unknown outcome; no optimistic confirmed save/rollback. Selection is immediate and saving/unknown/rejected/verified states stay distinct. Actual period days have a solid edge, predictions a dashed edge and selection a ring plus labels. Health case rows/control groups reflow with enlarged text.
 
 
 ## Implemented privacy experience — 023

@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-051",
-    "package_name": "Core Reliability & Performance Milestone",
-    "package_type": "AUDIT_FIX",
-    "created_at": "2026-10-29T16:55:15.162531Z",
-    "health_catalog_version": "HC-050.2",
-    "short_summary": "051 targeted Health closure: bounded shared 429 retry, separate content/Moon diagnostics, reduced readonly admission and entity-probe bursts; manual-theme evidence aligned.",
-    "full_health_status": "OWNER_HC050.1_157_PASS_2_BLOCKED / LOCAL_HC050.2_146_PASS_13_BLOCKED_0_FAIL",
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "docs_aligned": true,
-    "notes": "Same 051 milestone, 047–051 active. Original 051 acceptance and maintenance/performance receipts preserved in the existing report. Owner HC-050.1 run 3df95c72-c24a-4d18-aa36-4067758e4a1a remains 157 PASS/2 BLOCKED. Targeted Health delta 0 added/5 updated/0 deleted, 185 IDs. Chromium/WebKit each 753/753 PASS plus final 24/24 focused deltas; local Health 146 PASS/13 hosted-prerequisite BLOCKED/0 FAIL and save/list/open passed. Server fixtures, type/lint/build/repo/dependency/budget/history gates PASS; audit zero. Shared readonly 429 retry keeps total deadline; exact content/schema failures remain FAIL, independent content/Moon diagnostics survive; request admission/probe read pressure reduced. No live Health/scan/import/cleanup/deletion/main/publish. Historical quota trigger and relation to Home 500 remain unknown. Evidence: reports/core-reliability-051/health-read-closure/execution.json. Follow-up review: H12-025 SS13 descriptor aligned; 9/9 targeted Node checks PASS, runtime unchanged."
-  },
-  {
     "build_marker": "Buildmarker-052",
     "package_name": "Calendar and Pattern read recovery",
     "package_type": "TARGETED_FIX",
@@ -57,5 +43,15 @@ export default [
     "short_summary": "Single outer composite-field focus, completed-DOB feedback without picker refocus, truthful quota setup diagnostics and transparent daily presentation.",
     "full_health_status": "NOT_RUN",
     "notes": "Chromium/WebKit 775/775 each; 8 real-App matrix cells per engine; local Health 147 PASS/13 expected hosted BLOCKED/0 FAIL with save/list/open. Type/lint/build/repo/history/performance pass. Security gate OPEN: 1 High/8 Moderate; vendor patch awaits seven-day cooldown. Web found quota schema but zero rows; one search failed 503/FETCH/UNKNOWN. Typed diagnostics prevent quota-as-network misclassification; operator setup, live search and physical acceptance remain open. No live mutation/cleanup/Health/scan/publish. Report: reports/SHINKA_ONBOARDING_FIX_055.md."
+  },
+  {
+    "build_marker": "Buildmarker-056",
+    "package_name": "Calendar date containment and same-intent recovery",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-11-01T15:15:00.000Z",
+    "health_catalog_version": "HC-055.0",
+    "short_summary": "Scoped native date sizing; hidden Calendar Refresh with pull/Retry intact; read-only receipt check before explicit same-intent recovery and truthful unknown-delete dialog.",
+    "full_health_status": "NOT_RUN",
+    "notes": "Focused Calendar corrections with scoped native date sizing/focus, mounted pull/Retry and read-only status before explicit same-ID continuation. Local browser/server/quality/performance receipts: reports/SHINKA_CALENDAR_FIX_056.md. Hosted frontend observed as 055; two PENDING intents and historical 503/500 have no proven failing substage. Physical/hosted mutation acceptance open. No live mutation, cleanup, Full Health, scan or publish. Inherited dependency High remains OPEN under unchanged age policy."
   }
 ];

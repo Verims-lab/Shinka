@@ -1,0 +1,25 @@
+{
+  "scope": "READ_ONLY_BASE44_WEB_SESSION",
+  "observedOn": "2026-11-01",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "publishedFrontend": "Buildmarker-055",
+  "editorCalendarEntry": "MATCHES_LOCAL_055",
+  "editorNativeShared": "VISIBLE_IMPORTS_AND_RECEIPT_PATH_MATCH_055",
+  "deployedSharedBundleHash": "NOT_VERIFIED",
+  "functionLogs": "NO_LOGS_FOUND",
+  "platformLogSummaries": [
+    {"localTime": "2026-10-31T20:03:34+03:00", "function": "calendar", "httpStatus": 503, "invocationId": "f2ff453d8bef4af3b60f17d2b6f68ef6"},
+    {"localTime": "2026-10-31T20:24:57+03:00", "function": "calendar", "httpStatus": 500, "invocationId": "270cdf2a1dac4304bf0c92e4f0a111cc"}
+  ],
+  "calendarActionInventory": {"displayedTotal": 5, "visibleRows": 5, "applied": 3, "pending": 2},
+  "periodInventory": {"displayedTotal": 1, "visibleRows": 1},
+  "pending": [
+    {"operationId": "c17cdf21-29fa-4818-afed-02de98bc841a", "operation": "delete", "status": "PENDING", "currentPeriodRowsForOwner": 0, "currentProfile": "ONE_ACTIVE", "currentConsent": "ONE_GRANTED"},
+    {"operationId": "7e336f90-a65a-4fa7-b5e1-49728bddf9bb", "operation": "add", "status": "PENDING", "currentPeriodRowsForOwner": 0, "currentProfile": "ONE_ACTIVE", "currentConsent": "ONE_GRANTED"}
+  ],
+  "privateValuesSaved": false,
+  "mutations": 0,
+  "historicalFailingSubstage": "UNKNOWN",
+  "videoRequestCorrelation": "NOT_PROVEN",
+  "caution": "Current metadata is not historical admission or grant-event proof. No hosted SDK count/response or deployed shared hash was established."
+}

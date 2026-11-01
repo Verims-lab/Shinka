@@ -48,7 +48,7 @@ export function calendarFixture({ granted = true } = {}) {
         const replacements = { user_health_consent: [next.consent], user_health_consent_event: next.events, user_period_record: next.periods, user_cycle_prediction: next.predictions, user_cycle_phase_day: next.phases };
         for (const [entity, rows] of Object.entries(replacements)) f.rows[entity] = [...f.rows[entity].filter(row => row.user_id !== request.owner), ...structuredClone(rows)];
         calculationDay = plan.calculationDay;
-        receipts.set(`${request.owner}/${request.actionId}`, { fingerprint: request.fingerprint, revision });
+        receipts.set(`${request.owner}/${request.actionId}`, { fingerprint: request.fingerprint, revision, baseRevision: request.revision, date: JSON.parse(request.fingerprint)[2] || before.periods.find(r=>r.id===JSON.parse(request.fingerprint)[1])?.period_start_date });
         if (fault === 'lostResponse') throw new InternalError('CALENDAR_OPERATION_FAILED', 503);
         return { status: 'COMMITTED', snapshot: next, revision, committedRevision: revision, calculationDay };
       });
@@ -57,7 +57,14 @@ export function calendarFixture({ granted = true } = {}) {
     },
   });
   const atomic = worker();
-  const request = (action, body = {}) => calendarOperation(f.client, { action, timezone: 'Europe/Istanbul', ...body }, { atomic, now: () => new Date(CALENDAR_NOW) });
+  const request = async (action, body = {}) => {
+    const value = await calendarOperation(f.client, { action, timezone: 'Europe/Istanbul', ...body }, { atomic, now: () => new Date(CALENDAR_NOW) });
+    if (action === 'read' && body.action_id) {
+      const prior = receipts.get(`ownerA/${body.action_id}`);
+      value.checkedAction = { action_id: body.action_id, status: !prior ? 'ABSENT' : prior.revision === value.revision && prior.baseRevision === body.revision ? 'APPLIED' : 'CONFLICT', ...(prior ? { operation: JSON.parse(prior.fingerprint)[0], period_id: JSON.parse(prior.fingerprint)[1], date: prior.date, revision: prior.baseRevision } : {}) };
+    }
+    return value;
+  };
   const change = async (action, body = {}) => {
     const current = await request('read');
     return request(action, { month: current.month, revision: current.revision, action_id: crypto.randomUUID(), ...body });

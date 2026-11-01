@@ -32,7 +32,8 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
     </header>
     <main className="flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6">
       <h1 className="font-heading text-shinka-h1">{copy('title')}</h1>
-      {value && <RefreshControl language={language} refresh={controller.refresh} loading={state.loading} error={state.refreshError} disabled={state.busy || state.confirmDelete}/>}
+      {value && <RefreshControl showButton={false} language={language} refresh={controller.refresh} loading={state.loading} error={state.refreshError} disabled={state.busy || state.confirmDelete}/>}
+      {state.refreshError && !state.error && <ShinkaButton variant="secondary" disabled={state.loading || state.busy} onClick={controller.retry}>{copy('retry')}</ShinkaButton>}
       {state.loading && !value && <p role="status">{copy('loading')}</p>}
       {value && <>
         <CalendarMonth value={value} selected={state.selected} disabled={state.busy || unresolved} language={language} onSelect={controller.select} onMonth={controller.load}/>
@@ -42,7 +43,7 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
         {value.calculationNotice && <p role="status" data-calendar-estimate-unavailable>{copy('estimateUnavailable')}</p>}
         {!value.recovery && !needsConsent && !value.hasPeriods && <p role="status">{copy('empty')}</p>}
         <ShinkaCard>
-          {state.busy ? <p role="status" className="mb-4" data-calendar-feedback="pending">{copy('saving')}</p> : draftSelected && !state.error && <p role="status" className="mb-4" data-calendar-feedback="draft">{copy('draft')}</p>}
+          {state.busy ? <p role="status" className="mb-4" data-calendar-feedback="pending">{copy(state.checking ? 'checking' : 'saving')}</p> : draftSelected && !state.error && <p role="status" className="mb-4" data-calendar-feedback="draft">{copy('draft')}</p>}
           <form noValidate aria-busy={state.busy} className="space-y-4" onSubmit={event => { event.preventDefault(); controller.submit(state.editing ? 'edit' : 'add'); }}>
             {state.editing && <div><p>{copy('editing')}: {formatCalendarDate(state.editing.date, language)}</p><ShinkaButton variant="ghost" disabled={state.busy || unresolved} onClick={controller.cancelEdit}>{copy('stopEditing')}</ShinkaButton></div>}
             <div><label htmlFor="calendar-start-date" className="block mb-2">{copy('date')}</label><ShinkaInput id="calendar-start-date" type="date" max={value.today} value={state.selected} disabled={state.busy || unresolved} aria-invalid={validationError} aria-describedby={validationError ? 'calendar-date-error' : undefined} onChange={event => controller.select(event.target.value)}/>
@@ -57,7 +58,7 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
           </form>
         </ShinkaCard>
       </>}
-      {state.error && !validationError && <div role="alert" data-calendar-error={state.error} className="space-y-3">
+      {state.error && !validationError && !state.confirmDelete && <div role="alert" data-calendar-error={state.error} className="space-y-3">
         <p>{unresolved ? mobileCopy('unknown', language) : copy(calendarErrorKey(state.error, state.action))}</p>
         <ShinkaButton variant="secondary" disabled={state.busy || (state.loading && !unresolved)} onClick={controller.retry}>{unresolved ? mobileCopy('check', language) : copy('retry')}</ShinkaButton>
       </div>}
@@ -65,7 +66,7 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
       {state.success && <p role="status">{copy(state.success)}</p>}
 
     </main>
-    {state.confirmDelete && realSelected && <CalendarDeleteDialog date={realSelected.date} busy={state.busy} language={language} error={state.error} onCancel={() => controller.deletePrompt(false)} onConfirm={() => state.error ? controller.retry() : controller.submit('delete')}/>}
+    {state.confirmDelete && state.editing && <CalendarDeleteDialog date={state.editing.date} busy={state.busy} checking={state.checking} unresolved={unresolved} language={language} error={state.error} onCancel={() => controller.deletePrompt(false)} onConfirm={() => state.error ? controller.retry() : controller.submit('delete')}/>}
     <ProductNavigation current="calendar" language={language}/>
   </div>;
 }

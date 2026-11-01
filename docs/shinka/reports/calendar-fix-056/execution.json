@@ -1,0 +1,79 @@
+{
+  "scope": "LOCAL_SYNTHETIC_AND_READ_ONLY_HOSTED_METADATA",
+  "build": "Buildmarker-056",
+  "catalog": "HC-055.0",
+  "browsers": [
+    {
+      "engine": "chromium",
+      "version": "156.0.8078.4",
+      "tests": 781,
+      "passed": 781,
+      "failed": 0,
+      "calendarMatrix": 20,
+      "pageErrors": [],
+      "inAppHealth": {
+        "PASS": 147,
+        "BLOCKED": 13
+      },
+      "saveListOpen": true
+    },
+    {
+      "engine": "webkit",
+      "version": "27.2",
+      "tests": 781,
+      "passed": 781,
+      "failed": 0,
+      "calendarMatrix": 20,
+      "pageErrors": [],
+      "inAppHealth": {
+        "PASS": 147,
+        "BLOCKED": 13
+      },
+      "saveListOpen": true
+    }
+  ],
+  "healthDelta": {
+    "added": 0,
+    "updated": 5,
+    "removed": 0
+  },
+  "physicalDevices": "NOT_RUN",
+  "hostedMutations": "NOT_RUN",
+  "hostedFullHealth": "NOT_RUN",
+  "hostedSecurityScan": "NOT_RUN",
+  "quality": {
+    "cleanInstall": "PASS",
+    "dependencyTree": "PASS",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "productionBuild": "PASS",
+    "repositoryHealth": "PASS",
+    "lastFive": "PASS",
+    "performance": "PASS",
+    "dependencySecurity": {
+      "status": "FAIL_OPEN_INHERITED",
+      "critical": 0,
+      "high": 1,
+      "moderate": 8
+    }
+  },
+  "chromiumFinalFocusMatrix": {
+    "passed": 20,
+    "failed": 0,
+    "command": "FOUNDATION_BROWSER=chromium FOUNDATION_CALENDAR_CORRECTIONS_ONLY=1 node scripts/runFoundationTests.mjs"
+  },
+  "commands": [
+    "npm ci",
+    "npm ls --all",
+    "npm audit --json",
+    "npm run security:deps",
+    "npm run typecheck",
+    "npm run lint",
+    "npm run build",
+    "npm run health:repo",
+    "node scripts/recordBuild.mjs --check",
+    "FOUNDATION_BROWSER=chromium npm run test:foundation",
+    "FOUNDATION_BROWSER=webkit npm run test:foundation",
+    "node scripts/measureMaintenance.mjs /private/tmp/shinka-056/performance"
+  ]
+}

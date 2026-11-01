@@ -1,0 +1,2010 @@
+{
+  "browser": {
+    "engine": "chromium",
+    "version": "156.0.8078.4",
+    "physicalDevice": false
+  },
+  "tests": 781,
+  "passed": 781,
+  "failed": 0,
+  "pageErrors": [],
+  "calendarCorrections": [
+    {
+      "language": "tr",
+      "width": 320,
+      "height": 568,
+      "scale": 1,
+      "geometry": {
+        "left": 41,
+        "right": 279,
+        "parentLeft": 41,
+        "parentRight": 279,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 17,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 320,
+        "viewport": 320
+      },
+      "dialog": {
+        "width": 280,
+        "scroll": 278,
+        "client": 278,
+        "height": 322
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "tr",
+      "width": 320,
+      "height": 568,
+      "scale": 2,
+      "geometry": {
+        "left": 41,
+        "right": 279,
+        "parentLeft": 41,
+        "parentRight": 279,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 34,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 320,
+        "viewport": 320
+      },
+      "dialog": {
+        "width": 250,
+        "scroll": 248,
+        "client": 248,
+        "height": 482.796875
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "tr",
+      "width": 360,
+      "height": 740,
+      "scale": 1,
+      "geometry": {
+        "left": 41,
+        "right": 319,
+        "parentLeft": 41,
+        "parentRight": 319,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 17,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 360,
+        "viewport": 360
+      },
+      "dialog": {
+        "width": 320,
+        "scroll": 318,
+        "client": 318,
+        "height": 300
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "tr",
+      "width": 360,
+      "height": 740,
+      "scale": 2,
+      "geometry": {
+        "left": 41,
+        "right": 319,
+        "parentLeft": 41,
+        "parentRight": 319,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 34,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 360,
+        "viewport": 360
+      },
+      "dialog": {
+        "width": 290,
+        "scroll": 288,
+        "client": 288,
+        "height": 629
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "tr",
+      "width": 390,
+      "height": 844,
+      "scale": 1,
+      "geometry": {
+        "left": 41,
+        "right": 349,
+        "parentLeft": 41,
+        "parentRight": 349,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 17,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 390,
+        "viewport": 390
+      },
+      "dialog": {
+        "width": 350,
+        "scroll": 348,
+        "client": 348,
+        "height": 300
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "tr",
+      "width": 390,
+      "height": 844,
+      "scale": 2,
+      "geometry": {
+        "left": 41,
+        "right": 349,
+        "parentLeft": 41,
+        "parentRight": 349,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 34,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 390,
+        "viewport": 390
+      },
+      "dialog": {
+        "width": 320,
+        "scroll": 318,
+        "client": 318,
+        "height": 592
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "tr",
+      "width": 430,
+      "height": 740,
+      "scale": 1,
+      "geometry": {
+        "left": 41,
+        "right": 389,
+        "parentLeft": 41,
+        "parentRight": 389,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 17,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 430,
+        "viewport": 430
+      },
+      "dialog": {
+        "width": 390,
+        "scroll": 388,
+        "client": 388,
+        "height": 300
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "tr",
+      "width": 430,
+      "height": 740,
+      "scale": 2,
+      "geometry": {
+        "left": 41,
+        "right": 389,
+        "parentLeft": 41,
+        "parentRight": 389,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 34,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 430,
+        "viewport": 430
+      },
+      "dialog": {
+        "width": 360,
+        "scroll": 358,
+        "client": 358,
+        "height": 488
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "tr",
+      "width": 740,
+      "height": 320,
+      "scale": 1,
+      "geometry": {
+        "left": 123,
+        "right": 617,
+        "parentLeft": 123,
+        "parentRight": 617,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 17,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 740,
+        "viewport": 740
+      },
+      "dialog": {
+        "width": 440,
+        "scroll": 438,
+        "client": 438,
+        "height": 272
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "tr",
+      "width": 740,
+      "height": 320,
+      "scale": 2,
+      "geometry": {
+        "left": 123,
+        "right": 617,
+        "parentLeft": 123,
+        "parentRight": 617,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 34,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 740,
+        "viewport": 740
+      },
+      "dialog": {
+        "width": 440,
+        "scroll": 438,
+        "client": 438,
+        "height": 272
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "en",
+      "width": 320,
+      "height": 568,
+      "scale": 1,
+      "geometry": {
+        "left": 41,
+        "right": 279,
+        "parentLeft": 41,
+        "parentRight": 279,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 17,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 320,
+        "viewport": 320
+      },
+      "dialog": {
+        "width": 280,
+        "scroll": 278,
+        "client": 278,
+        "height": 322
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "en",
+      "width": 320,
+      "height": 568,
+      "scale": 2,
+      "geometry": {
+        "left": 41,
+        "right": 279,
+        "parentLeft": 41,
+        "parentRight": 279,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 34,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 320,
+        "viewport": 320
+      },
+      "dialog": {
+        "width": 250,
+        "scroll": 248,
+        "client": 248,
+        "height": 482.796875
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "en",
+      "width": 360,
+      "height": 740,
+      "scale": 1,
+      "geometry": {
+        "left": 41,
+        "right": 319,
+        "parentLeft": 41,
+        "parentRight": 319,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 17,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 360,
+        "viewport": 360
+      },
+      "dialog": {
+        "width": 320,
+        "scroll": 318,
+        "client": 318,
+        "height": 300
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "en",
+      "width": 360,
+      "height": 740,
+      "scale": 2,
+      "geometry": {
+        "left": 41,
+        "right": 319,
+        "parentLeft": 41,
+        "parentRight": 319,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 34,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 360,
+        "viewport": 360
+      },
+      "dialog": {
+        "width": 290,
+        "scroll": 288,
+        "client": 288,
+        "height": 592
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "height": 844,
+      "scale": 1,
+      "geometry": {
+        "left": 41,
+        "right": 349,
+        "parentLeft": 41,
+        "parentRight": 349,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 17,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 390,
+        "viewport": 390
+      },
+      "dialog": {
+        "width": 350,
+        "scroll": 348,
+        "client": 348,
+        "height": 300
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "height": 844,
+      "scale": 2,
+      "geometry": {
+        "left": 41,
+        "right": 349,
+        "parentLeft": 41,
+        "parentRight": 349,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 34,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 390,
+        "viewport": 390
+      },
+      "dialog": {
+        "width": 320,
+        "scroll": 318,
+        "client": 318,
+        "height": 548
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "en",
+      "width": 430,
+      "height": 740,
+      "scale": 1,
+      "geometry": {
+        "left": 41,
+        "right": 389,
+        "parentLeft": 41,
+        "parentRight": 389,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 17,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 430,
+        "viewport": 430
+      },
+      "dialog": {
+        "width": 390,
+        "scroll": 388,
+        "client": 388,
+        "height": 300
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "en",
+      "width": 430,
+      "height": 740,
+      "scale": 2,
+      "geometry": {
+        "left": 41,
+        "right": 389,
+        "parentLeft": 41,
+        "parentRight": 389,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 34,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 430,
+        "viewport": 430
+      },
+      "dialog": {
+        "width": 360,
+        "scroll": 358,
+        "client": 358,
+        "height": 548
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "en",
+      "width": 740,
+      "height": 320,
+      "scale": 1,
+      "geometry": {
+        "left": 123,
+        "right": 617,
+        "parentLeft": 123,
+        "parentRight": 617,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 17,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 740,
+        "viewport": 740
+      },
+      "dialog": {
+        "width": 440,
+        "scroll": 438,
+        "client": 438,
+        "height": 272
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    },
+    {
+      "language": "en",
+      "width": 740,
+      "height": 320,
+      "scale": 2,
+      "geometry": {
+        "left": 123,
+        "right": 617,
+        "parentLeft": 123,
+        "parentRight": 617,
+        "box": "border-box",
+        "appearance": "none",
+        "labels": 1,
+        "font": 34,
+        "max": "2026-10-20",
+        "overflow": "visible",
+        "doc": 740,
+        "viewport": 740
+      },
+      "dialog": {
+        "width": 440,
+        "scroll": 438,
+        "client": 438,
+        "height": 272
+      },
+      "passed": true,
+      "scope": "LOCAL_REAL_APP_NATIVE_SYNTHETIC",
+      "physicalDevice": false
+    }
+  ],
+  "calendarContinuity": [
+    {
+      "scenario": "calendar-scroll-month-draft-pending-unknown-retry-layer-back-tr",
+      "passed": true,
+      "scroll": 179,
+      "scope": "LOCAL_REAL_APP_SYNTHETIC_PROTOCOL_TRANSPORT"
+    },
+    {
+      "scenario": "calendar-scroll-month-draft-pending-unknown-retry-layer-back-en",
+      "passed": true,
+      "scroll": 179,
+      "scope": "LOCAL_REAL_APP_SYNTHETIC_PROTOCOL_TRANSPORT"
+    }
+  ],
+  "calendarFlow": [
+    {
+      "scenario": "calendar-edit-cancel-last-delete-home-360-en",
+      "passed": true,
+      "geometry": {
+        "width": 360,
+        "scrollWidth": 360,
+        "days": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "dateFont": "17px"
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "calendar-edit-cancel-last-delete-home-360-tr",
+      "passed": true,
+      "geometry": {
+        "width": 360,
+        "scrollWidth": 360,
+        "days": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "dateFont": "17px"
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "calendar-edit-cancel-last-delete-home-1280-en",
+      "passed": true,
+      "geometry": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "days": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "dateFont": "17px"
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "calendar-edit-cancel-last-delete-home-1280-tr",
+      "passed": true,
+      "geometry": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "days": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "dateFont": "17px"
+      },
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "calendar-blocked",
+      "passed": true,
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "calendar-consent",
+      "passed": true,
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "calendar-unsupported-tr",
+      "passed": true,
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    },
+    {
+      "scenario": "calendar-unsupported-en",
+      "passed": true,
+      "scope": "LOCAL_BROWSER_SYNTHETIC"
+    }
+  ],
+  "inAppHealth": {
+    "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+    "passed": true,
+    "durationMs": 2665,
+    "requiresJson": false,
+    "saveState": "SAVED",
+    "retrySave": true,
+    "historyListed": true,
+    "privateReportOpened": true,
+    "frames": 0,
+    "cases": [
+      {
+        "id": "H01-001",
+        "status": "PASS",
+        "reason": "Format check of canonical constant"
+      },
+      {
+        "id": "H01-002",
+        "status": "PASS",
+        "reason": "Static source scan"
+      },
+      {
+        "id": "H01-003",
+        "status": "PASS",
+        "reason": "1 element(s) inspected"
+      },
+      {
+        "id": "H01-004",
+        "status": "PASS",
+        "reason": "Resolved from real runtime location"
+      },
+      {
+        "id": "H01-005",
+        "status": "PASS",
+        "reason": "Constant inspection"
+      },
+      {
+        "id": "H01-006",
+        "status": "PASS",
+        "reason": "Ledger validation"
+      },
+      {
+        "id": "H02-001",
+        "status": "PASS",
+        "reason": "Doc file inspection"
+      },
+      {
+        "id": "H02-002",
+        "status": "PASS",
+        "reason": "Header inspection"
+      },
+      {
+        "id": "H02-003",
+        "status": "PASS",
+        "reason": "Logical inventory inspection"
+      },
+      {
+        "id": "H02-004",
+        "status": "PASS",
+        "reason": "SOURCE_RECEIVED_AND_RECORDED; original artifacts are external, not hash-verified in Git"
+      },
+      {
+        "id": "H02-005",
+        "status": "PASS",
+        "reason": "Authority inspection"
+      },
+      {
+        "id": "H02-006",
+        "status": "PASS",
+        "reason": "12 decisions inspected"
+      },
+      {
+        "id": "H02-007",
+        "status": "PASS",
+        "reason": "Logical/physical source integrity by role"
+      },
+      {
+        "id": "H02-008",
+        "status": "PASS",
+        "reason": "Companion table completeness"
+      },
+      {
+        "id": "H03-010",
+        "status": "PASS",
+        "reason": "Dependency graph; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-001",
+        "status": "PASS",
+        "reason": "Legacy firewall; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-002",
+        "status": "PASS",
+        "reason": "Marker authority; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-003",
+        "status": "PASS",
+        "reason": "Secret scan; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-004",
+        "status": "PASS",
+        "reason": "Email scan; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-005",
+        "status": "PASS",
+        "reason": "Module inventory; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-006",
+        "status": "PASS",
+        "reason": "UI boundary; repository hash metadata, not live enforcement"
+      },
+      {
+        "id": "H03-008",
+        "status": "PASS",
+        "reason": "Repository policy only; Base44 Authentication panel and sign-in still require external verification"
+      },
+      {
+        "id": "H03-009",
+        "status": "PASS",
+        "reason": "Injected server principals; not LIVE_ENFORCEMENT"
+      },
+      {
+        "id": "H04-018",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-019",
+        "status": "BLOCKED",
+        "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+      },
+      {
+        "id": "H04-001",
+        "status": "PASS",
+        "reason": "Canonical inventory"
+      },
+      {
+        "id": "H04-002",
+        "status": "PASS",
+        "reason": "Source/doc consistency"
+      },
+      {
+        "id": "H04-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-005",
+        "status": "PASS",
+        "reason": "Official schema docs + registered evidence"
+      },
+      {
+        "id": "H04-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-008",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-009",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-010",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-011",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-012",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-013",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H04-014",
+        "status": "PASS",
+        "reason": "Availability observed on tooling; no immutable/UTC proof"
+      },
+      {
+        "id": "H04-015",
+        "status": "PASS",
+        "reason": "Deployed enforcement checked separately"
+      },
+      {
+        "id": "H05-001",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-002",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-003",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-004",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-005",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-006",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-007",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-008",
+        "status": "BLOCKED",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-009",
+        "status": "BLOCKED",
+        "reason": "LIVE_CONTENT_COUNT_UNAVAILABLE"
+      },
+      {
+        "id": "H05-010",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-005",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H06-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-015",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-005",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-008",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-009",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-010",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-011",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H07-012",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-008",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H08-005",
+        "status": "BLOCKED",
+        "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+      },
+      {
+        "id": "H08-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H09-004",
+        "status": "BLOCKED",
+        "reason": "Read-only prerequisites; missing coverage remains BLOCKED, malformed/conflicting evidence FAIL. H09-901 still requires hosted mutations."
+      },
+      {
+        "id": "H10-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H10-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H10-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H11-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H11-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H11-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H11-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H11-005",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H11-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-039",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-044",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-042",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-040",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-038",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-037",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-036",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-035",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-034",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-033",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-026",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-027",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-028",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-029",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-043",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-030",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-031",
+        "status": "BLOCKED",
+        "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+      },
+      {
+        "id": "H12-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-005",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-008",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-009",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-010",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-011",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-012",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-013",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-014",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-015",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-016",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-017",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-018",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-019",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H12-020",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H13-001",
+        "status": "PASS",
+        "reason": "Token inspection"
+      },
+      {
+        "id": "H13-002",
+        "status": "PASS",
+        "reason": "Rendered size check"
+      },
+      {
+        "id": "H13-003",
+        "status": "PASS",
+        "reason": "Computed font check"
+      },
+      {
+        "id": "H13-004",
+        "status": "PASS",
+        "reason": "Current viewport only; no inferred 320/360px or physical-device evidence",
+        "actual": {
+          "width": 1280,
+          "height": 900,
+          "scrollWidth": 1280,
+          "path": "/internal/health"
+        }
+      },
+      {
+        "id": "H13-005",
+        "status": "PASS",
+        "reason": "Accessible name scan"
+      },
+      {
+        "id": "H13-006",
+        "status": "PASS",
+        "reason": "Rendered token comparison"
+      },
+      {
+        "id": "H13-007",
+        "status": "PASS",
+        "reason": "Typography check"
+      },
+      {
+        "id": "H13-008",
+        "status": "PASS",
+        "reason": "Contract inspection"
+      },
+      {
+        "id": "H13-009",
+        "status": "PASS",
+        "reason": "Rendered height check"
+      },
+      {
+        "id": "H13-010",
+        "status": "PASS",
+        "reason": "Verified view preference or unresolved light default; no OS/native permission claim"
+      },
+      {
+        "id": "H13-011",
+        "status": "PASS",
+        "reason": "Localization inspection"
+      },
+      {
+        "id": "H13-014",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H13-020",
+        "status": "PASS",
+        "reason": "Mapping/current document only; full-page scroll/visual matrix runs locally, physical WebView separate"
+      },
+      {
+        "id": "H14-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H14-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H14-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H15-005",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H15-006",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H15-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H15-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H15-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H17-001",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H17-002",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H17-003",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H17-004",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H16-001",
+        "status": "PASS",
+        "reason": "Catalog self-test"
+      },
+      {
+        "id": "H16-002",
+        "status": "PASS",
+        "reason": "154 results reconciled"
+      },
+      {
+        "id": "H16-003",
+        "status": "PASS",
+        "reason": "Predicate, result and build binding self-test"
+      },
+      {
+        "id": "H16-004",
+        "status": "PASS",
+        "reason": "Coverage self-test"
+      },
+      {
+        "id": "H16-005",
+        "status": "PASS",
+        "reason": "No N/A placeholders dispatched"
+      },
+      {
+        "id": "H16-007",
+        "status": "PASS",
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance"
+      },
+      {
+        "id": "H16-006",
+        "status": "PASS",
+        "reason": "Gate isolation check"
+      }
+    ],
+    "physicalDevice": false
+  },
+  "nativeEntries": {
+    "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+    "sessionChecks": 10,
+    "nativeRoutes": 5,
+    "artifactEntryChecks": 2,
+    "internalHealthEntryChecks": 7,
+    "loginSecretReads": 0,
+    "hostedVerified": false,
+    "passed": true,
+    "deletion": {
+      "passed": true,
+      "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+      "hostedVerified": false,
+      "checks": 7
+    }
+  },
+  "fullEvidence": "full-chromium.log.gz"
+}

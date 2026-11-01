@@ -27,6 +27,10 @@ let patternLab;
 let testToolsLab;
 const healthRuns=[];
 async function loadCalendarLab() {
+  if (!calendarLab && params.has('nativeCalendar')) calendarLab = import('@/foundation/tests/nativeFixture').then(async({nativeFixture})=>{
+    const f=nativeFixture();await f.change('add',{date:'2026-10-01'});globalThis.__nativeCalendarLab=f;
+    return {request:(action,body)=>f.cal({...body,action})};
+  });
   if (!calendarLab) calendarLab = import('@/foundation/tests/calendarFixture').then(async ({ calendarFixture }) => {
     const f = calendarFixture({ granted: params.get('calendarScenario') !== 'consent' });
     if (params.get('calendarScenario') === 'unsupported') {

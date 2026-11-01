@@ -14,6 +14,22 @@ async function probe(run) {
 const button=(host,text)=>[...host.querySelectorAll('button')].find(row=>row.textContent===text);
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CALENDAR_UI_TESTS = [
+ ['CU10','Unknown delete has one status action, retains dialog after record disappears and confirms without another delete in TR/EN',async()=>probe(async(root,host)=>{
+   for(const language of ['tr','en']) {
+     const f=nativeFixture();await f.change('add',{date:'2026-10-01'});let first=true,writes=0;
+     const request=async(action,body)=>{if(action!=='read'){writes++;if(first){first=false;await f.cal({action,...body});throw {code:'NETWORK'};}}return f.cal({action,...body});};
+     root.render(createElement(Calendar,{key:language,language,request}));await until(()=>host.querySelector('[data-calendar-root]')?.getAttribute('lang')===language&&host.querySelector('[data-calendar-date="2026-10-01"]'));
+     host.querySelector('[data-calendar-date="2026-10-01"]').click();await pause();
+     const label=language==='tr'?'Regl başlangıcını sil':'Delete period start';button(host,label).click();await until(()=>host.querySelector('dialog[open]'));
+     button(host.querySelector('dialog'),label).click();button(host.querySelector('dialog'),label)?.click();
+     await until(()=>host.querySelector('dialog [data-calendar-error]'));
+     check(writes===1&&!f.tables.UserPeriodRecord.length&&host.querySelectorAll('[data-calendar-error]').length===1);
+     check(!button(host.querySelector('dialog'),label),'unknown result presented as a new delete');
+     button(host.querySelector('dialog'),language==='tr'?'Durumu kontrol et':'Check status').click();
+     await until(()=>!host.querySelector('dialog'));check(writes===1&&host.textContent.includes(language==='tr'?'Regl başlangıcı silindi':'Period start deleted'));
+   }
+ })],
+
  ['CU09','Empty Calendar failure has one Retry and no retained-view claim; successful retry restores the actual grid in TR/EN',async()=>probe(async(root,host)=>{
    for(const language of ['tr','en']) {
      let fail=true,calls=0;const f=nativeFixture();
@@ -54,7 +70,7 @@ export const CALENDAR_UI_TESTS = [
        check(!host.querySelector('[data-calendar-feedback]')&&host.querySelector('#calendar-start-date').value==='2026-10-01'&&f.tables.UserPeriodRecord.length===1);
        button(host,language==='tr'?'Kontrol et / aynı işlemi tekrar dene':'Check / retry the same change').click();
        await until(()=>host.textContent.includes(language==='tr'?'Regl başlangıcı kaydedildi':'Period start saved'));
-       check(calls.length===2&&JSON.stringify(calls[0])===JSON.stringify(calls[1])&&f.tables.UserPeriodRecord.length===1,'retry replaced action or duplicated record');
+       check(calls.length===1&&f.tables.UserPeriodRecord.length===1&&f.tables.UserCalendarAction[0].action_id===calls[0].action_id,'confirmed receipt repeated a write or replaced action');
        check(!host.querySelector('[data-calendar-feedback]')&&host.querySelector('form').getAttribute('aria-busy')==='false');
      } finally {release();}
    }
