@@ -1,0 +1,38 @@
+{
+  "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+  "rows": [
+    {
+      "scenario": "settings-first",
+      "passed": true
+    },
+    {
+      "scenario": "session-first",
+      "passed": true
+    },
+    {
+      "scenario": "cold-readmission-no-early-product",
+      "passed": true
+    },
+    {
+      "scenario": "tab-return-Calendar",
+      "passed": true
+    },
+    {
+      "scenario": "tab-return-Pattern",
+      "passed": true
+    },
+    {
+      "scenario": "tab-return-Home",
+      "passed": true
+    },
+    {
+      "scenario": "you-and-back",
+      "passed": true
+    },
+    {
+      "scenario": "real-bfcache",
+      "status": "NOT_OBSERVED",
+      "passed": null
+    }
+  ]
+}

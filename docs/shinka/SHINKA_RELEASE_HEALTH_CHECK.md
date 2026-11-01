@@ -2,14 +2,22 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-056
+**Current BuildMarker:** Buildmarker-057
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-055.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-056.0; repository, synthetic and external evidence separated.
 
 
+
+## 057 — Shared navigation and reopen recovery (2026-11-01)
+
+HC-056.0: **0 added / 5 updated / 0 removed**: H05-009 extends the unchanged strict source/hash policy to 057; H07-013 maps DU07–DU09 and actual App reopen; H09-003 executes ID14 nested lifecycle stage/429/no-write checks; H12-025 maps SS14–SS15 and both startup response orders; H13-012 maps shared-nav geometry. 186 cases, 160 in-app / 12 local / 14 external remain. Calendar 056 mappings and external physical cases remain intact. No case was removed to hide a failure.
+
+[057 execution](reports/SHINKA_REOPEN_NAVIGATION_057.md) separates local controllers, actual-App synthetic IO, read-only hosted observation and physical NOT_RUN. Local regression requirements use the actual executable tests. Historical live Health acceptance and 055 dependency failure remain unchanged.
+
+057 final local receipt: Chromium/WebKit 787/787 each, final boundary 7/7 each, loaded navigation 108 cells per engine; 147 PASS/13 hosted-prerequisite BLOCKED/0 FAIL local Health with save/list/open. Quality/performance/history passed. Dependency security remains OPEN (1 High/8 Moderate). Hosted original error not observed; physical process/lock/wrapper and real BFCache unverified. See the single 057 report; no live Full Health or mutation.
 
 ## 056 — Focused Calendar corrections (2026-11-01)
 

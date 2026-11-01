@@ -41,6 +41,40 @@ async function fixture(path, run, context = {}, initial = identity(), settings =
 
 /** @type {import('./testTypes').FoundationTest[]} */
 export const SESSION_INTEGRATION_TESTS = [
+  ['SS14','Session Retry-After stays within the shared budget; 403 refuses without retry and safe stages survive',async context=>{
+    await fixture('/private',async(f,q,wait)=>{
+      await wait(()=>q('[data-private]'));
+      let attempts=0;f.me=async()=>{if(++attempts===1)throw {response:{status:429,headers:{'retry-after':'2'}}};return identity();};
+      await f.auth.checkUserAuth();check(attempts===2&&f.waits.at(-1)===2000,'Retry-After ignored');
+      const before=f.calls;f.me=async()=>{throw {response:{status:503,data:{retry_after_ms:15000,diagnostic:{code:'SERVICE_UNAVAILABLE',httpStatus:503,stage:'LIFECYCLE_OPERATION_READ',durationMs:12,requestId:'12345678-1234-1234-1234-123456789012'}}}};};
+      await f.auth.checkUserAuth();await wait(()=>f.auth.authError);
+      check(f.calls===before+1&&f.auth.isAuthenticated&&f.auth.authError.diagnostic.stage==='LIFECYCLE_OPERATION_READ','budget/diagnostic/retention');
+      const delayedCalls=f.calls;await f.auth.checkUserAuth();check(f.calls===delayedCalls,'early explicit retry ignored Retry-After');f.now=15000;
+      const denied=f.calls;f.me=async()=>{throw {status:403};};await f.auth.checkUserAuth();await wait(()=>!f.auth.isAuthenticated);
+      check(f.calls===denied+1&&!f.auth.user&&!q('[data-private]'),'403 retried or retained authority');
+    },context);
+  }],
+  ['SS15','Explicit cold admission seals old product scope before either new response; same-session passive check does not',async context=>{
+    await fixture('/private',async(f,q,wait)=>{
+      await wait(()=>q('[data-private]'));let sealed=0,privacy=0;
+      const ended=()=>{sealed++;},changed=()=>{privacy++;};
+      window.addEventListener('shinka-session-ended',ended);window.addEventListener('shinka-health-access-changed',changed);
+      const gate=deferred();
+      try {
+        await f.auth.checkUserAuth();check(sealed===0,'passive verification sealed confirmed scope');
+        f.me=()=>gate.promise;const pending=f.auth.checkAppState();
+        check(sealed===1&&privacy===0,'cold admission reloaded old scope');
+        await wait(()=>!q('[data-private]'));check(!q('[data-private]'),'old product remained visible');
+        gate.resolve(identity('synthetic-B','user'));await pending;await wait(()=>f.auth.user?.id==='synthetic-B');
+        check(!f.auth.isAdmin,'old authority restored');
+        f.me=async()=>{throw {response:{status:503,data:{retry_after_ms:15000}}};};await f.auth.checkUserAuth();await wait(()=>f.auth.authError);
+        f.me=async()=>identity('synthetic-B','user');const beforeRestore=f.calls;
+        window.dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true}));
+        await wait(()=>!f.auth.isLoadingAuth&&!f.auth.authError&&f.auth.user?.id==='synthetic-B');
+        check(f.calls===beforeRestore+1,'fresh restore inherited old retry lock');
+      }finally{gate.resolve(identity());window.removeEventListener('shinka-session-ended',ended);window.removeEventListener('shinka-health-access-changed',changed);}
+    },context);
+  }],
   ['SS13','Hanging session/settings settle within the startup budget; fresh retry and late-response isolation',async(context={})=>{
     const clock=createTestClock(context);
     try {await fixture('/private',async(f,q,wait)=>{
@@ -103,9 +137,9 @@ export const SESSION_INTEGRATION_TESTS = [
   ['SS08','Focus/visibility/timer share one request; account refresh discards pending old identity and throttle success',async(context={})=>{
     await fixture('/private',async(f,q,wait)=>{
       await wait(()=>q('[data-private]')&&f.timer);const before=f.calls;
-      window.dispatchEvent(new Event('focus'));document.dispatchEvent(new Event('visibilitychange'));f.timer();await testEventTurn(context.signal);check(f.calls===before,'recent success not throttled');
+      window.dispatchEvent(new Event('focus'));window.dispatchEvent(new Event('online'));document.dispatchEvent(new Event('visibilitychange'));f.timer();await testEventTurn(context.signal);check(f.calls===before,'recent success not throttled');
       f.now=20000;const gate=deferred();f.me=()=>gate.promise;
-      window.dispatchEvent(new Event('focus'));document.dispatchEvent(new Event('visibilitychange'));f.timer();await testEventTurn(context.signal);
+      window.dispatchEvent(new Event('focus'));window.dispatchEvent(new Event('online'));document.dispatchEvent(new Event('visibilitychange'));f.timer();await testEventTurn(context.signal);
       check(f.calls===before+1,'passive requests not coalesced');
       // Explicit app/session boundary must not reuse that older pending check.
       f.me=async()=>identity('synthetic-B','user');const current=f.auth.checkAppState();await testEventTurn(context.signal);

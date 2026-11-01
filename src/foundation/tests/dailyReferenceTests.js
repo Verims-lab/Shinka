@@ -18,6 +18,16 @@ const legacy = async f=>{await f.today();const row=f.tables.UserDailyMessage[0];
 const admin = f=>{f.tables.UserProfile.push({...f.tables.UserProfile[0],id:'admin-profile',user_id:'adminA'});return f.raw('adminA');};
 /** @type {import('./testTypes').FoundationTest[]} */
 export const DAILY_REFERENCE_TESTS=[
+ ['ID14','Daily entry preserves the failing lifecycle substage, Retry-After and request ID without product writes',async()=>{
+   for(const [table,stage] of [['User','LIFECYCLE_USER_READ'],['UserPrivacyRequest','LIFECYCLE_PRIVACY_READ'],['AdminTestOperation','LIFECYCLE_OPERATION_READ']]){
+     const f=nativeFixture();f.state.before=c=>{if(c.name===table)throw {status:429,response:{status:429,headers:{'retry-after':'2'}},message:'PRIVATE_RAW'};};
+     const response=await handleDailyMessageRequest(new Request('https://fixture.invalid',{method:'POST',body:JSON.stringify({action:'today',timezone:'Europe/Istanbul'})}),()=>f.client(),{native:true,now:f.now,library:f.library});
+     const body=await response.json();check(response.status===503&&body.error_code==='TEST_LIFECYCLE_UNAVAILABLE',JSON.stringify({status:response.status,code:body.error_code}));
+     check(body.diagnostic.stage===stage&&body.diagnostic.httpStatus===429&&body.retry_after_ms===2000,'nested lifecycle evidence lost');
+     check(!JSON.stringify(body).includes('PRIVATE')&&/^[a-f0-9-]{36}$/.test(body.diagnostic.requestId));
+     check(!f.state.calls.some(c=>['create','update','updateMany','delete'].includes(c.method)),'failed lifecycle wrote product data');
+   }
+ }],
  ['ID13','Terminal deleted-owner retained daily fields can be cleaned; active deletion/recreated identity and normal product writes remain blocked',async()=>{
    const f=nativeFixture(),row=await legacy(f),client=admin(f);
    const before=JSON.stringify(assignment(row));

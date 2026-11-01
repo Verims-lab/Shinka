@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-056
+**Current BuildMarker:** Buildmarker-057
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 057 — Shared navigation and reopen recovery (2026-11-01)
+
+Reuse productTransport for local deadlines/cancellation, explicitly set readOnly:false for daily today, and never turn a timeout into success or remote cancellation. Retain safe nested diagnostics; typed status must override a misleading transient body on authorization failure. Explicit new admission seals old consumers rather than emitting a signal that reloads the previous owner. Inject clocks for timeout/Retry-After regressions and use condition-based React waits. Navigation dimensions are measured on the shared component; env inset and synthetic 0/34px are separate from physical evidence.
 
 ## 056 — Focused Calendar corrections (2026-11-01)
 

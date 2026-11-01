@@ -1,0 +1,28 @@
+{
+  "scope": "EXISTING_AUTHENTICATED_WEB_SESSION_READ_ONLY",
+  "observedOn": "2026-11-01",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "frontendBuildLabel": "Buildmarker-056",
+  "deployedBackendSharedHash": "NOT_VERIFIED",
+  "phoneAttachmentBuild": "UNCONFIRMED_PRESENTATION_DIFFERS_FROM_055_056",
+  "viewport": {
+    "width": 360,
+    "height": 740,
+    "navHeight": 57,
+    "linkHeight": 56,
+    "paddingBottom": 0
+  },
+  "observations": {
+    "homeOpen": "READY",
+    "homeReload": "READY",
+    "calendarOpen": "READY",
+    "patternTabReturn": "READY",
+    "youAdminNavigation": "READY",
+    "reportedLifecycleFailure": "NOT_OBSERVED"
+  },
+  "screenTiming": "NOT_MEASURED_TOOL_WAIT_EXCLUDED",
+  "physicalProcessKillLockAndWrapper": "NOT_RUN",
+  "productMutations": "NOT_RUN",
+  "privateRecordValuesLogged": false,
+  "viewportOverrideReset": true
+}

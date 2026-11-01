@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-052",
-    "package_name": "Calendar and Pattern read recovery",
-    "package_type": "TARGETED_FIX",
-    "created_at": "2026-10-30T11:58:29Z",
-    "health_catalog_version": "HC-051.0",
-    "short_summary": "Consistent Calendar empty/retained errors, safe read diagnostics, bounded transient retry, coalesced lifecycle and expired-read recovery; no mutation retry.",
-    "full_health_status": "TARGETED_LOCAL_PASS / EXISTING_REPO_GATE_FAIL / APK_PENDING",
-    "source_changed": true,
-    "tests_changed": true,
-    "health_changed": true,
-    "docs_aligned": true,
-    "notes": "39/39 focused + 7/7 final boundary regressions in Chromium/WebKit. Full: 759/761 each; pre-existing main GeoNames inventory D01/D22 keep H04-007 failing. Type/lint/build/dependency/performance/history gates pass. No live Full Health/scan, mutation, import, cleanup, main merge or publish. Original APK transport cause and exact deployed backend/APK version remain unproven. Details: reports/calendar-pattern-052."
-  },
-  {
     "build_marker": "Buildmarker-053",
     "package_name": "GeoNames shared credit quota and endpoint classification",
     "package_type": "TARGETED_FIX",
@@ -53,5 +39,15 @@ export default [
     "short_summary": "Scoped native date sizing; hidden Calendar Refresh with pull/Retry intact; read-only receipt check before explicit same-intent recovery and truthful unknown-delete dialog.",
     "full_health_status": "NOT_RUN",
     "notes": "Focused Calendar corrections with scoped native date sizing/focus, mounted pull/Retry and read-only status before explicit same-ID continuation. Local browser/server/quality/performance receipts: reports/SHINKA_CALENDAR_FIX_056.md. Hosted frontend observed as 055; two PENDING intents and historical 503/500 have no proven failing substage. Physical/hosted mutation acceptance open. No live mutation, cleanup, Full Health, scan or publish. Inherited dependency High remains OPEN under unchanged age policy."
+  },
+  {
+    "build_marker": "Buildmarker-057",
+    "package_name": "Shared navigation and reopen recovery",
+    "package_type": "FOCUSED_FIX",
+    "created_at": "2026-11-01T17:27:00Z",
+    "health_catalog_version": "HC-056.0",
+    "short_summary": "Compact equal-third navigation with one safe inset; truthful Home lifecycle recovery, bounded session retries and cold-scope isolation. Preserve 055/056.",
+    "full_health_status": "NOT_RUN",
+    "notes": "Chromium/WebKit 787/787 each; final boundary rerun 7/7 each. Loaded nav matrix 108 cells/engine: 56→44px minimum row, single inset, 200% wraps. Local Health 147 PASS/13 hosted BLOCKED/0 FAIL; save/list/open PASS. Quality/performance PASS. Health +0/~5/-0. Dependency security remains OPEN: 1 High/8 Moderate under unchanged age policy. Published 056 web opens recovered; original lifecycle failure not reproduced or correlated. Physical process/lock/wrapper and real BFCache remain unverified. No live writes/cleanup/Health/scan/publish. Report: reports/SHINKA_REOPEN_NAVIGATION_057.md."
   }
 ];

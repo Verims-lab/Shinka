@@ -12,7 +12,7 @@ export async function checkStartupRoutes(page,origin) {
     assert.equal(await page.locator('[data-home-root],[data-you-root],[data-calendar-root],[data-pattern-root],[data-test-tools-root]').count(),0);
     assert.deepEqual(await page.evaluate(()=>window.__authFixture.calls.filter(c=>c.name!=='applicationSession')),[],'product/backend work before admission');
   };
-  for(const path of ['/','/you','/internal/test-tools']) for(const sessionFirst of [false,true]){
+  for(const path of ['/','/calendar','/pattern','/you','/internal/test-tools']) for(const sessionFirst of [false,true]){
     await start(path);await noProduct();
     if(sessionFirst){await settle('session',0,id());await page.waitForFunction(()=>window.__appAuth?.user?.id==='synthetic-A');await noProduct();}
     await settle('settings',0,null,true);

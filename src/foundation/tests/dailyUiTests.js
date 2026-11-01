@@ -1,3 +1,4 @@
+import { REOPEN_DAILY_TESTS } from './reopenDailyTests';
 import { createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import FirstShinka from '@/features/daily/FirstShinka';
@@ -14,6 +15,7 @@ async function renderProbe(run) {
 }
 /** @type {import('./testTypes').FoundationTest[]} */
 export const DAILY_UI_TESTS = [
+ ...REOPEN_DAILY_TESTS,
  ['DU06','Same-day foreground return retries failed Home without a stale loading lock or duplicate request',async()=>renderProbe(async(root,host)=>{
   let calls=0;const f=dailyFixture();
   const request=async()=>{calls++;if(calls===1)throw Object.assign(new Error(),{code:'NETWORK'});return dailyMessageOperation(f.client,{action:'today',timezone:'Europe/Istanbul'},f.dependencies);};

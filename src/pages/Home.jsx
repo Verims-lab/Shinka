@@ -21,7 +21,7 @@ export default function Home({ profileAccess = undefined, renderProfileAccess = 
     </header>
     <main className="flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6">
       <h1 className="font-heading font-medium text-shinka-h1 break-words">{copy('greeting')}{name?.trim() ? `, ${name.trim()}` : ''}</h1>
-      <RefreshControl showButton={false} language={language} refresh={daily.reload} loading={daily.loading} error={daily.error}/>
+      <RefreshControl showButton={false} language={language} refresh={daily.reload} loading={daily.loading} error={null}/>
       {row ? <div className="space-y-5" data-daily-id={row.id}>
         <ShinkaCard surface="plain" title={copy('shinka')}><p className="text-shinka-body-lg whitespace-pre-wrap break-words" data-daily-message>{row[`message_${language}_snapshot`]}</p></ShinkaCard>
         <ShinkaCard surface="plain" title={copy('suggestion')}><p className="text-shinka-body-lg whitespace-pre-wrap break-words" data-daily-suggestion>{row[`suggestion_${language}_snapshot`]}</p></ShinkaCard>
