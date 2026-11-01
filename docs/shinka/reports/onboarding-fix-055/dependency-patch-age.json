@@ -1,0 +1,10 @@
+{
+  "source": "npm view follow-redirects versions time --json",
+  "current": "1.16.1",
+  "fixed": "1.16.2",
+  "published": "2026-10-25T21:32:25.963Z",
+  "eligibleAfter": "2026-11-01T21:32:25.963Z",
+  "requiredAgeDays": 7,
+  "cooldownOverridden": false,
+  "lockfileChanged": false
+}

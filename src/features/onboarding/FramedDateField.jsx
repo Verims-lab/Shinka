@@ -27,7 +27,7 @@ export default function FramedDateField({ name, type, form, update, error, busy,
         />
         <CalendarDays aria-hidden="true" className="pointer-events-none absolute bottom-3 right-4 h-5 w-5 text-shinka-taupe" />
       </div>
-      <FieldError name={name} error={error} t={t} />
+      <FieldError name={name} error={error} t={t} focusTarget />
     </div>
   );
 }

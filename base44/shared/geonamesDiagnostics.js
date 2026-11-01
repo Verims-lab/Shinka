@@ -1,6 +1,10 @@
 import { OnboardingError } from './onboardingValidation.js';
 
 const FAILURE_STATUS = {
+  GEONAMES_QUOTA_MISSING: 503,
+  GEONAMES_QUOTA_INVALID: 503,
+  GEONAMES_QUOTA_READ_FAILED: 503,
+  GEONAMES_QUOTA_WRITE_UNCONFIRMED: 503,
   GEONAMES_SECRET_MISSING: 503,
   GEONAMES_REQUEST_TIMEOUT: 504,
   GEONAMES_NETWORK_ERROR: 503,
@@ -14,7 +18,7 @@ const PROVIDER_CLASSES = {
   18: 'QUOTA', 19: 'QUOTA', 20: 'QUOTA', 21: 'REQUEST', 22: 'SERVICE',
   23: 'SERVICE', 24: 'REQUEST', 27: 'REQUEST',
 };
-const FAILURE_STAGES=['CONFIGURATION','FETCH','RESPONSE_BODY','RESPONSE_VALIDATION','UNKNOWN'];
+const FAILURE_STAGES=['QUOTA_READ','QUOTA_VALIDATION','QUOTA_RESERVATION','CONFIGURATION','FETCH','RESPONSE_BODY','RESPONSE_VALIDATION','UNKNOWN'];
 const TRANSPORT_CLASSES=['DNS','TLS_CERTIFICATE','CONNECTION','REDIRECT_REJECTION','INVOCATION_INPUT','TIMEOUT','UNKNOWN'];
 const TRANSPORT_CODES={
   ENOTFOUND:'DNS', EAI_AGAIN:'DNS',
@@ -55,6 +59,7 @@ export function classifyGeoNamesTransport(error) {
 export class GeoNamesError extends OnboardingError {
   constructor(diagnosticCode, httpStatus=null, providerStatus=null, failureStage='UNKNOWN', transportClass=null) {
     super('GEONAMES_UNAVAILABLE',null,Object.hasOwn(FAILURE_STATUS,diagnosticCode)?FAILURE_STATUS[diagnosticCode]:502);
+    if (['GEONAMES_QUOTA_MISSING','GEONAMES_QUOTA_INVALID'].includes(diagnosticCode)) { this.code='GEONAMES_QUOTA_NOT_READY'; this.field='birthplace'; }
     this.diagnosticCode=diagnosticCode;
     this.httpStatus=httpStatus;
     this.providerStatus=providerStatus;
@@ -64,15 +69,28 @@ export class GeoNamesError extends OnboardingError {
 }
 
 // Construct an allowlisted response; never serialize an Error or its properties wholesale.
-export function geoNamesDiagnostic(error) {
+export function geoNamesDiagnostic(error, metadata = {}) {
   if(!(error instanceof GeoNamesError))return null;
   const providerStatus=Number.isInteger(error.providerStatus)&&Object.hasOwn(PROVIDER_CLASSES,error.providerStatus)?error.providerStatus:null;
   return {
+    ...geoNamesRequestMetadata(metadata),
     code:Object.hasOwn(FAILURE_STATUS,error.diagnosticCode)?error.diagnosticCode:'GEONAMES_INVALID_RESPONSE',
     http_status:Number.isInteger(error.httpStatus)&&error.httpStatus>=100&&error.httpStatus<=599?error.httpStatus:null,
+    response_status:error.status,
     provider_status:providerStatus,
     provider_class:providerStatus===null?null:PROVIDER_CLASSES[providerStatus],
     failure_stage:FAILURE_STAGES.includes(error.failureStage)?error.failureStage:'UNKNOWN',
     transport_class:TRANSPORT_CLASSES.includes(error.transportClass)?error.transportClass:null,
   };
+}
+
+// This closed envelope is also used at the client boundary. Never carry an Error,
+// headers, query, place or credential through UI state or support diagnostics.
+function geoNamesRequestMetadata(value) {
+  return { requestId: /^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/i.test(value?.requestId || '') ? value.requestId : null,
+    durationMs: Number.isFinite(value?.durationMs) && value.durationMs >= 0 && value.durationMs <= 300000 ? Math.round(value.durationMs) : null };
+}
+export function sanitizeGeoNamesDiagnostic(value) {
+  if (!value || !Object.hasOwn(FAILURE_STATUS, value.code)) return null;
+  return geoNamesDiagnostic(new GeoNamesError(value.code, value.http_status, value.provider_status, value.failure_stage, value.transport_class), value);
 }

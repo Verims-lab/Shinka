@@ -5,6 +5,7 @@ import { STRINGS } from './strings.js';
 const errors=['NAME_TOO_LONG','AGE_DECLARATION_REQUIRED','AUTH_PROVIDER_FAILED','DOB_REQUIRED','DATE_INVALID','DOB_FUTURE','AGE_UNDER_18','TIME_INVALID','PLACE_SELECTION_REQUIRED','GEONAMES_EMPTY','GEONAMES_UNAVAILABLE','PERIOD_START_REQUIRED','PERIOD_START_FUTURE','DAYS_INTEGER','DURATION_INVALID','DURATION_RANGE','CYCLE_LENGTH_INVALID','CYCLE_LENGTH_RANGE','CONSENT_REQUIRED'];
 const en={
  timeChoose:"Choose birth time", timeSet:"Set", timeCancel:"Cancel", timeClear:"Clear", timeHour:"Hour", timeMinute:"Minute",
+ GEONAMES_QUOTA_NOT_READY:'Place search is not set up yet. Your typing is kept. You can clear this optional field and continue.',
  GEONAMES_RATE_LIMITED:'Place search is temporarily limited. Your selections are kept; please try again later.',
  TEST_RESET_CYCLE_USE_CALENDAR:'Your saved cycle history is preserved. Choose Skip for now; after onboarding, use Calendar to change dates.', TEST_RESET_STEP_CONFLICT:'A previous step is incomplete. Retry with the same information or refresh to review it.',
  placeOptional:'(optional)',placeSearchPlaceholder:'Search a city, region or country',placeMinChars:'Type at least 3 characters to search.',placeSearching:'Searching…',placeEmpty:'No matching places found. Try a different spelling.',placeNoMatchYet:'No matches in this set yet. More candidates can be checked.',placeMore:'Show more results',placeLoadingMore:'Loading more…',placeNarrow:'Shinka checks up to 200 candidates per search. Type a more specific name to check other candidates.',placeError:'Places couldn’t be loaded. Your typing is kept.',placeRetry:'Try again',placeClear:'Clear birthplace',placeKindCOUNTRY:'Country',placeKindREGION:'Region',placeKindPLACE:'Place',PLACE_SELECTION_INCOMPLETE:'Select a place from the list, or clear the field.',
@@ -14,6 +15,7 @@ const en={
 };
 const tr={
  timeChoose:"Doğum saatini seç", timeSet:"Ayarla", timeCancel:"İptal", timeClear:"Temizle", timeHour:"Saat", timeMinute:"Dakika",
+ GEONAMES_QUOTA_NOT_READY:'Yer araması henüz kullanıma hazır değil. Yazdıkların korunuyor. Bu isteğe bağlı alanı temizleyip devam edebilirsin.',
  GEONAMES_RATE_LIMITED:'Yer araması geçici olarak sınırlandı. Seçimlerin korunuyor; lütfen daha sonra tekrar dene.',
  TEST_RESET_CYCLE_USE_CALENDAR:'Kayıtlı döngü geçmişin korunuyor. Şimdilik geç seçeneğini kullan; onboarding sonrasında tarihleri Takvim’den düzenleyebilirsin.', TEST_RESET_STEP_CONFLICT:'Önceki adım yarım kaldı. Aynı bilgilerle tekrar dene veya kontrol etmek için yenile.',
  placeOptional:'(isteğe bağlı)',placeSearchPlaceholder:'Şehir, bölge veya ülke ara',placeMinChars:'Aramak için en az 3 karakter yaz.',placeSearching:'Aranıyor…',placeEmpty:'Eşleşen yer bulunamadı. Farklı bir yazım dene.',placeNoMatchYet:'Bu grupta henüz eşleşme yok. Daha fazla aday kontrol edilebilir.',placeMore:'Daha fazla sonuç göster',placeLoadingMore:'Daha fazlası yükleniyor…',placeNarrow:'Shinka her aramada en fazla 200 adayı kontrol eder. Başka adayları kontrol etmek için daha belirgin bir ad yaz.',placeError:'Yerler yüklenemedi. Yazdıkların korunuyor.',placeRetry:'Tekrar dene',placeClear:'Doğum yerini temizle',placeKindCOUNTRY:'Ülke',placeKindREGION:'Bölge',placeKindPLACE:'Yer',PLACE_SELECTION_INCOMPLETE:'Listeden bir yer seç veya alanı temizle.',
@@ -44,4 +46,4 @@ const tr={
 export const ONBOARDING_COPY=Object.freeze({en:Object.freeze(en),tr:Object.freeze(tr)});
 export const ONBOARDING_COPY_STATUS=Object.freeze({en:'APPROVED_SOURCE',tr:'APPROVED_PRODUCT_COPY'});
 export const onboardingCopy=(key,language)=>ONBOARDING_COPY[language]?.[key]??'COPY_KEY_MISSING';
-export const ONBOARDING_ERROR_KEYS=Object.freeze([...errors,'GEONAMES_RATE_LIMITED','TEST_RESET_CYCLE_USE_CALENDAR','TEST_RESET_STEP_CONFLICT','PLACE_SELECTION_INCOMPLETE']);
+export const ONBOARDING_ERROR_KEYS=Object.freeze([...errors,'GEONAMES_QUOTA_NOT_READY','GEONAMES_RATE_LIMITED','TEST_RESET_CYCLE_USE_CALENDAR','TEST_RESET_STEP_CONFLICT','PLACE_SELECTION_INCOMPLETE']);

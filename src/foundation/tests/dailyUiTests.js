@@ -89,6 +89,7 @@ export const DAILY_UI_TESTS = [
     root.render(createElement(Home, { language, initialDaily: result, request })); await eventually(() => host.querySelector('[data-daily-message]')?.textContent === (language === 'tr' ? 'TR mesaj' : 'EN message'));
     check(host.querySelector('[data-daily-id]').getAttribute('data-daily-id') === 'earlier');
     check(host.querySelector('[data-daily-message]').textContent === (language === 'tr' ? 'TR mesaj' : 'EN message'));
+    for(const el of host.querySelectorAll('[data-daily-id] section')){const css=getComputedStyle(el);check(css.backgroundColor==='rgba(0, 0, 0, 0)'&&parseFloat(css.borderTopWidth)===0&&css.boxShadow==='none','daily text has no card surface');}
     check(!technical.some(text => host.textContent.includes(text)) && ![...host.querySelectorAll('[data-home-root] [role="status"]:empty')].some(node=>node.getClientRects().length));
   }
   check(requests === 0 && result.notice === 'DAILY_DUPLICATE_RECONCILED');

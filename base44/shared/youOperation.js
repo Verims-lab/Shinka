@@ -1,3 +1,4 @@
+import { geoNamesDiagnostic } from './geonamesDiagnostics.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
 import { readBoundedJson } from './boundedJson.js';
 import { resolveAuthenticatedOwner } from './domainSecurity.js';
@@ -72,12 +73,14 @@ export async function youOperation(client, body, { now = () => new Date(), geoNa
   return result;
 }
 export async function handleYouRequest(req, createClient, dependencies = {}) {
+  const requestId=crypto.randomUUID(), started=Date.now();
   try {
     if (req.method !== 'POST') fail('METHOD_NOT_ALLOWED', 405);
     const body = await readBoundedJson(req, 4000, fail);
     return Response.json(await youOperation(createClient(req), body, dependencies));
   } catch (error) {
+    const diagnostic=geoNamesDiagnostic(error,{requestId,durationMs:Date.now()-started});
     const retry = Number.isInteger(error?.retryAfterSeconds) ? error.retryAfterSeconds : undefined;
-    return Response.json({ error_code: error instanceof InternalError ? error.code : 'YOU_READ_FAILED', field: error instanceof OnboardingError ? error.field : null, write_outcome: error.writeUnconfirmed ? 'UNCONFIRMED' : undefined, retry_after_seconds: retry }, { status: error instanceof InternalError ? error.status : 503, ...(retry ? { headers: { 'Retry-After': String(retry) } } : {}) });
+    return Response.json({ ...(diagnostic ? {diagnostic} : {}), error_code: error instanceof InternalError ? error.code : 'YOU_READ_FAILED', field: error instanceof OnboardingError ? error.field : null, write_outcome: error.writeUnconfirmed ? 'UNCONFIRMED' : undefined, retry_after_seconds: retry }, { status: error instanceof InternalError ? error.status : 503, ...(retry ? { headers: { 'Retry-After': String(retry) } } : {}) });
   }
 }

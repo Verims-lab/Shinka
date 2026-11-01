@@ -21,7 +21,7 @@ const calls = [];
 const operationGates = new Map(), operationFailures = new Set();
 globalThis.__sdkLabCalls = calls; // CLI-only action-name counters; never request payloads.
 let releaseHydration;
-let dailyAttempts = 0;
+let dailyAttempts = 0, placeAttempts = 0;
 let calendarLab;
 let patternLab;
 let testToolsLab;
@@ -56,6 +56,7 @@ export const authFixture = {
   hold() { delayed = {}; delayed.promise = new Promise(resolve => { delayed.resolve = resolve; }); },
   release() { const pending = delayed; delayed = null; pending?.resolve(); },
 };
+if(params.has('holdDaily'))authFixture.holdOperation('dailyMessage');
 export const base44 = {
   app: { getPublicSettings: async () => { const i=authFixture.startupStarted.settings++; return startupGates.settings[i]?.promise || {}; } },
   auth: {
@@ -105,6 +106,12 @@ export const base44 = {
       profile: (youLab || params.has('themeFixture')) ? (await (await loadYouLab(actor)).request('read')).profile : undefined,
       preferences: (youLab || params.has('themeFixture')) ? (await (await loadYouLab(actor)).request('read')).preferences : params.has('uninitialized') ? null : { language_code: params.get('language') === 'tr' ? 'tr' : 'en', timezone: 'UTC' }, today: '2026-10-20',
     } };
+    }
+    if (name === 'onboarding' && params.has('onboardingVisual') && body.action === 'searchPlaces') {
+      placeAttempts++;
+      if(params.get('placeScenario')==='retry' && placeAttempts===1)return {data:{error_code:'GEONAMES_QUOTA_NOT_READY',field:'birthplace'}};
+      const {onboardingFixture}=await import('@/foundation/tests/onboardingFixture');
+      return {data:await onboardingFixture().dependencies.geoNames.search()};
     }
     if (name === 'onboarding' && params.has('onboardingVisual') && body.action === 'saveProfile') {
       onboardingVisualLab ||= import('@/foundation/tests/onboardingFixture').then(({onboardingFixture})=>onboardingFixture());

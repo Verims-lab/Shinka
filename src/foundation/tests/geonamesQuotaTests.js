@@ -1,8 +1,16 @@
+import { youFixture, profileIntent } from './youFixture';
+import { createGeoNamesAdapter } from '../../../base44/shared/geonamesAdapter.js';
+import { handleOnboardingRequest } from '../../../base44/shared/onboardingOperations.js';
+import { handleYouRequest } from '../../../base44/shared/youOperation.js';
+import { nativeFixture } from './nativeFixture';
+import { onboardingRequest } from '@/services/onboardingService';
+import { youRequest } from '@/services/youService';
+import { placeFetch } from './geonamesSearchFixture';
 import { createDailyQuota, GEONAMES_QUOTA_SCOPE, geoNamesCreditCost } from '../../../base44/shared/geonamesDailyQuota.js';
 import { createGeoNamesGuard, GEONAMES_LIMITS } from '../../../base44/shared/geonamesGuard.js';
 
 const check = (value, message = 'quota assertion') => { if (!value) throw new Error(message); };
-const fail = async fn => { try { await fn(); } catch (e) { check(e.code === 'GEONAMES_UNAVAILABLE'); return; } throw new Error('expected closed quota'); };
+const fail = async (fn, code = 'GEONAMES_UNAVAILABLE') => { try { await fn(); } catch (e) { check(e.code === code, `expected ${code}, got ${e.code}`); return; } throw new Error('expected closed quota'); };
 const HOUR = 3600000, TIME = Date.parse('2026-10-30T23:30:00Z'), H = Math.floor(TIME / HOUR);
 export const quotaRow = (credits = 0) => ({ id: 'quota-one', scope: GEONAMES_QUOTA_SCOPE, revision: 0, window_hour: H, buckets: [{ hour: H, credits }] });
 // Deliberately no worker lock. Each read snapshots before yielding; conditional
@@ -31,6 +39,44 @@ export function quotaFixture(rows = [quotaRow()]) {
 const quota = (f, extra = {}) => createDailyQuota(f.store, { now: () => TIME, cap: 3, ...extra });
 /** @type {import('./testTypes').FoundationTest[]} */
 export const GEONAMES_QUOTA_TESTS = [
+ ['GQ10', 'Actual quota → guard → adapter → onboarding/You HTTP → service preserves setup versus provider diagnosis', async () => {
+   for (const endpoint of ['onboarding','you']) for (const mode of ['missing','invalid','read-error','lost','provider']) {
+     const f=endpoint==='you'?youFixture():nativeFixture(), q=quotaFixture(mode==='missing'?[]:mode==='invalid'?[{...quotaRow(),revision:null}]:[quotaRow()]);
+     q.state.mode=mode; let fetches=0;
+     const guard=createGeoNamesGuard({fetcher:async()=>{fetches++;return Response.json({status:{value:18,message:'private provider text'} });}});
+     const dependencies={now:f.now,geoNamesFor:owner=>guard.forOwner(owner,fetcher=>createGeoNamesAdapter({username:'synthetic-secret',fetcher}),{dailyQuota:quota(q)})};
+     const handler=endpoint==='onboarding'?handleOnboardingRequest:handleYouRequest;
+     /** @type {{status:number,data:unknown}|undefined} */
+     let response;
+     const client={functions:{invoke:async(_name,body)=>{
+       const res=await handler(new Request('https://fixture.invalid',{method:'POST',body:JSON.stringify(body)}),()=>f.client('ownerA'),dependencies);
+       response={status:res.status,data:await res.json()};if(!res.ok)throw {response};return response;
+     }}};
+     const action=endpoint==='you'?'saveProfile':'searchPlaces', payload=endpoint==='you'?profileIntent(await f.request('read'),{birthplace_geonames_id:9001}):{query:'Kan',language_code:'en',page:0};
+     let failure;try{await (endpoint==='onboarding'?onboardingRequest:youRequest)(action,payload,client);}catch(error){failure=error;}
+     const expected={missing:'GEONAMES_QUOTA_MISSING',invalid:'GEONAMES_QUOTA_INVALID','read-error':'GEONAMES_QUOTA_READ_FAILED',lost:'GEONAMES_QUOTA_WRITE_UNCONFIRMED',provider:'GEONAMES_PROVIDER_REJECTED'}[mode];
+     check(failure?.diagnostic?.code===expected,`${endpoint}/${mode}: ${failure?.diagnostic?.code}`);
+     check(response?.status===(mode==='provider'?502:503));
+     check(failure.code===(['missing','invalid'].includes(mode)?'GEONAMES_QUOTA_NOT_READY':'GEONAMES_UNAVAILABLE'));
+     check(failure.diagnostic.requestId?.length===36&&failure.diagnostic.durationMs>=0);
+     check(fetches===(mode==='provider'?1:0)&&q.state.creates===0&&q.state.writes<2);
+     const text=JSON.stringify(failure);check(!['synthetic-secret','private provider text','Kan','headers','stack'].some(value=>text.includes(value)));
+   }
+ }],
+ ['GQ11', 'Full guard/adapter retains quota denial and permits an explicitly retried successful selection', async () => {
+   for(const limit of [{cap:3,hourlyCap:800},{cap:8000,hourlyCap:3}]){
+     const q=quotaFixture([quotaRow(3)]);let fetches=0;
+     const guard=createGeoNamesGuard({fetcher:async(url)=>{fetches++;return placeFetch(url);}});
+     const owner=guard.forOwner('ownerA',fetcher=>createGeoNamesAdapter({username:'synthetic',fetcher}),{dailyQuota:quota(q,limit)});
+     let error;try{await owner.search('Kan','en',0);}catch(e){error=e;}
+     check(error?.code==='GEONAMES_RATE_LIMITED'&&error.retryAfterSeconds>0&&fetches===0&&q.state.writes===0);
+   }
+   const q=quotaFixture();q.state.mode='zero';let fetches=0;
+   const owner=createGeoNamesGuard({fetcher:async url=>{fetches++;return placeFetch(url);}}).forOwner('owner',fetcher=>createGeoNamesAdapter({username:'synthetic',fetcher}),{dailyQuota:quota(q,{cap:10})});
+   let error;try{await owner.search('Kan','en',0);}catch(e){error=e;}
+   check(error?.code==='GEONAMES_RATE_LIMITED'&&error.retryAfterSeconds===1&&fetches===0);
+   q.state.mode='';const result=await owner.search('Kan','en',0);check(result.places.length>0&&fetches===1&&q.state.writes===2);
+ }],
  ['GQ01', 'Actual shared quota: serial 3 accepts, fourth blocks, two DB calls per admitted miss', async () => {
    const f=quotaFixture(), reserve=quota(f);
    for(let i=0;i<3;i++) check(await reserve()===null);
@@ -46,14 +92,14 @@ export const GEONAMES_QUOTA_TESTS = [
  }],
  ['GQ03', 'Concurrent first use and duplicate singleton fail closed, never create a row', async () => {
    for(const rows of [[],[quotaRow(),{...quotaRow(),id:'duplicate'}],[{id:'legacy',quota_date:'2026-10-30',count:0}]]){
-     const f=quotaFixture(rows);await Promise.all(Array.from({length:5},()=>fail(quota(f))));check(f.state.writes===0&&f.state.creates===0&&f.state.rows.length===rows.length);
+     const f=quotaFixture(rows);await Promise.all(Array.from({length:5},()=>fail(quota(f), 'GEONAMES_QUOTA_NOT_READY')));check(f.state.writes===0&&f.state.creates===0&&f.state.rows.length===rows.length);
    }
  }],
  ['GQ04', 'Missing/invalid counters, duplicate buckets, future clock and malformed read are not zero', async () => {
    for(const row of [{...quotaRow(),buckets:null},{...quotaRow(),revision:null},{...quotaRow(),buckets:[{hour:H}]},{...quotaRow(),buckets:[{hour:H,credits:-1}]},{...quotaRow(),buckets:[{hour:H,credits:1.5}]},{...quotaRow(),buckets:[{hour:H,credits:1},{hour:H,credits:1}]},{...quotaRow(),window_hour:H+1}]){
-     const f=quotaFixture([row]);await fail(quota(f));check(f.state.writes===0);
+     const f=quotaFixture([row]);await fail(quota(f), 'GEONAMES_QUOTA_NOT_READY');check(f.state.writes===0);
    }
-   const f=quotaFixture();f.store.filter=async()=>({items:[quotaRow()]});await fail(quota(f));check(f.state.writes===0);
+   const f=quotaFixture();f.store.filter=async()=>({items:[quotaRow()]});await fail(quota(f), 'GEONAMES_QUOTA_NOT_READY');check(f.state.writes===0);
  }],
  ['GQ05', 'updated zero, malformed response, DB failure and lost acknowledgement never authorize or retry', async () => {
    for(const mode of ['zero','malformed','read-error','write-error','lost']){
@@ -76,7 +122,7 @@ export const GEONAMES_QUOTA_TESTS = [
    const owner=g.forOwner('ownerA',adapter,{dailyQuota:quota(f,{cap:10})});
    await Promise.all([owner.search('ABC','en',0),owner.search('ABC','en',0)]);await owner.search('ABC','en',0);await owner.search('ABC','en',1);await owner.resolve(1);await owner.resolve(1);
    check(fetches===3&&f.state.reads===3&&f.state.writes===3);check(geoNamesCreditCost('https://secure.geonames.org/searchJSON')===1&&geoNamesCreditCost('https://secure.geonames.org/getJSON')===1);
-   await fail(async()=>geoNamesCreditCost('https://secure.geonames.org/findNearby'));
+   await fail(async()=>geoNamesCreditCost('https://secure.geonames.org/findNearby'), 'GEONAMES_QUOTA_NOT_READY');
  }],
  ['GQ09', 'Unverified reservation never reaches fetch through the actual guard', async () => {
    for(const mode of ['zero','malformed','read-error','write-error','lost']) {

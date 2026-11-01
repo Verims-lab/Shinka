@@ -1,0 +1,525 @@
+{
+  "buildMarker": "Buildmarker-055",
+  "healthCatalog": "HC-054.0",
+  "recordedAt": "2026-11-01T12:02:49Z",
+  "baselineCommit": "aca99eb204d498560a9e5806f88a33029f04f9f0",
+  "branchPreflight": {
+    "mainEqualsTest": true,
+    "localEqualsRemote": true,
+    "initiallyClean": true,
+    "prePushRefetchUnchanged": true
+  },
+  "deliveryStatus": "LOCAL_FUNCTIONAL_PASS_SECURITY_GATE_OPEN_HOSTED_SEARCH_BLOCKED",
+  "items": [
+    {
+      "item": 1,
+      "status": "LOCAL_VERIFIED",
+      "finding": "Unlayered focus-visible wins over utility while outer frame also indicates focus",
+      "fix": "Scoped inner composite input decoration only",
+      "evidence": [
+        "U21",
+        "checkYouFlow",
+        "checkOnboardingCorrections",
+        "focus-comparison.png"
+      ]
+    },
+    {
+      "item": 2,
+      "status": "CODE_VERIFIED_OPERATOR_PRECONDITION_OPEN",
+      "finding": "Schema exists but shared quota inventory empty; generic quota error misclassified as network",
+      "fix": "Typed quota diagnostics, safe metadata and separate setup copy; admission unchanged",
+      "evidence": [
+        "GQ10",
+        "GQ11",
+        "U21",
+        "web-observation.json"
+      ],
+      "liveSearch": "FAILED_503_NOT_CLOSED"
+    },
+    {
+      "item": 3,
+      "status": "LOCAL_VERIFIED_PHYSICAL_PICKER_PENDING",
+      "finding": "Rejected submit focuses native date input",
+      "fix": "Complete-date shared validation and adjacent alert focus",
+      "evidence": [
+        "O03",
+        "O04",
+        "O05",
+        "U20",
+        "checkOnboardingCorrections",
+        "age-comparison.png"
+      ]
+    },
+    {
+      "item": 4,
+      "status": "LOCAL_VERIFIED",
+      "finding": "Default card surface in preparation and Home",
+      "fix": "Opt-in plain surface; content/ID/onReady unchanged",
+      "evidence": [
+        "DU04",
+        "checkOnboardingCorrections",
+        "surfaces-comparison.png"
+      ]
+    }
+  ],
+  "browsers": {
+    "chromium": {
+      "command": "npm run test:foundation",
+      "exitCode": 0,
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "tests": 775,
+      "passed": 775,
+      "failed": 0,
+      "pageErrors": [],
+      "catalog": {
+        "version": "HC-054.0",
+        "suites": 17,
+        "cases": 186,
+        "localRegression": 12,
+        "current": 160,
+        "future": 0,
+        "external": 14
+      },
+      "health": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "counts": {
+          "PASS": 147,
+          "BLOCKED": 13
+        },
+        "blockedIds": [
+          "H04-019",
+          "H05-001",
+          "H05-002",
+          "H05-003",
+          "H05-004",
+          "H05-005",
+          "H05-006",
+          "H05-007",
+          "H05-008",
+          "H05-009",
+          "H08-005",
+          "H09-004",
+          "H12-031"
+        ],
+        "saveState": "SAVED",
+        "retrySave": true,
+        "historyListed": true,
+        "privateReportOpened": true
+      },
+      "onboardingMatrix": [
+        {
+          "language": "tr",
+          "width": 320,
+          "height": 568,
+          "scale": 1,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        },
+        {
+          "language": "tr",
+          "width": 320,
+          "height": 568,
+          "scale": 2,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        },
+        {
+          "language": "tr",
+          "width": 390,
+          "height": 844,
+          "scale": 1,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        },
+        {
+          "language": "tr",
+          "width": 390,
+          "height": 844,
+          "scale": 2,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        },
+        {
+          "language": "en",
+          "width": 320,
+          "height": 568,
+          "scale": 1,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        },
+        {
+          "language": "en",
+          "width": 320,
+          "height": 568,
+          "scale": 2,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        },
+        {
+          "language": "en",
+          "width": 390,
+          "height": 844,
+          "scale": 1,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        },
+        {
+          "language": "en",
+          "width": 390,
+          "height": 844,
+          "scale": 2,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        }
+      ],
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 10,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "internalHealthEntryChecks": 7,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true,
+        "deletion": {
+          "passed": true,
+          "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+          "hostedVerified": false,
+          "checks": 7
+        }
+      },
+      "geoNamesEntry": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "requests": 3,
+        "secretReadsAtModuleLoad": 0,
+        "passed": true
+      },
+      "geoNamesRuntimeProbeEntry": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "deniedRequests": 3,
+        "authorizedRequests": 2,
+        "secretReadsBeforeAuthorization": 0,
+        "workerFactories": 1,
+        "passed": true
+      },
+      "notificationRunnerPassed": true
+    },
+    "webkit": {
+      "command": "FOUNDATION_BROWSER=webkit npm run test:foundation",
+      "exitCode": 0,
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "tests": 775,
+      "passed": 775,
+      "failed": 0,
+      "pageErrors": [],
+      "catalog": {
+        "version": "HC-054.0",
+        "suites": 17,
+        "cases": 186,
+        "localRegression": 12,
+        "current": 160,
+        "future": 0,
+        "external": 14
+      },
+      "health": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "counts": {
+          "PASS": 147,
+          "BLOCKED": 13
+        },
+        "blockedIds": [
+          "H04-019",
+          "H05-001",
+          "H05-002",
+          "H05-003",
+          "H05-004",
+          "H05-005",
+          "H05-006",
+          "H05-007",
+          "H05-008",
+          "H05-009",
+          "H08-005",
+          "H09-004",
+          "H12-031"
+        ],
+        "saveState": "SAVED",
+        "retrySave": true,
+        "historyListed": true,
+        "privateReportOpened": true
+      },
+      "onboardingMatrix": [
+        {
+          "language": "tr",
+          "width": 320,
+          "height": 568,
+          "scale": 1,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        },
+        {
+          "language": "tr",
+          "width": 320,
+          "height": 568,
+          "scale": 2,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        },
+        {
+          "language": "tr",
+          "width": 390,
+          "height": 844,
+          "scale": 1,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        },
+        {
+          "language": "tr",
+          "width": 390,
+          "height": 844,
+          "scale": 2,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        },
+        {
+          "language": "en",
+          "width": 320,
+          "height": 568,
+          "scale": 1,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        },
+        {
+          "language": "en",
+          "width": 320,
+          "height": 568,
+          "scale": 2,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        },
+        {
+          "language": "en",
+          "width": 390,
+          "height": 844,
+          "scale": 1,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        },
+        {
+          "language": "en",
+          "width": 390,
+          "height": 844,
+          "scale": 2,
+          "passed": true,
+          "physicalDevice": false,
+          "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+          "pageErrors": []
+        }
+      ],
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 10,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "internalHealthEntryChecks": 7,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true,
+        "deletion": {
+          "passed": true,
+          "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+          "hostedVerified": false,
+          "checks": 7
+        }
+      },
+      "geoNamesEntry": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "requests": 3,
+        "secretReadsAtModuleLoad": 0,
+        "passed": true
+      },
+      "geoNamesRuntimeProbeEntry": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "deniedRequests": 3,
+        "authorizedRequests": 2,
+        "secretReadsBeforeAuthorization": 0,
+        "workerFactories": 1,
+        "passed": true
+      },
+      "notificationRunnerPassed": true
+    }
+  },
+  "quality": {
+    "npmCi": "PASS",
+    "npmLsAll": "PASS",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS",
+    "repoHealth": "PASS",
+    "historyCheck": "PASS_051_TO_055",
+    "gitDiffCheck": "PASS",
+    "npmAudit": {
+      "exitCode": 1,
+      "counts": {
+        "info": 0,
+        "low": 0,
+        "moderate": 8,
+        "high": 1,
+        "critical": 0,
+        "total": 9
+      }
+    },
+    "securityDeps": {
+      "exitCode": 1,
+      "status": "FAIL_HIGH_ADVISORY_PATCH_NOT_YET_COOLDOWN_ELIGIBLE"
+    },
+    "performance": {
+      "exitCode": 0,
+      "passed": true,
+      "budget": {
+        "initialRaw": 500000,
+        "initialGzip": 165000,
+        "cssRaw": 90000,
+        "cssGzip": 16000
+      },
+      "initialJS": {
+        "raw": 480996,
+        "gzip": 160140
+      },
+      "css": {
+        "raw": 78802,
+        "gzip": 14470
+      },
+      "cycles": [],
+      "routeCount": 9,
+      "samplesPerRoute": 3,
+      "scope": "LOCAL_PRODUCTION_GRAPH_SYNTHETIC_IO_NOT_FIELD_SPEED"
+    }
+  },
+  "healthDelta": {
+    "added": 0,
+    "updated": 6,
+    "removed": 0,
+    "ids": [
+      "H05-009",
+      "H07-001",
+      "H07-013",
+      "H10-003",
+      "H12-044",
+      "H13-012"
+    ]
+  },
+  "retainedInitialFailures": {
+    "fullChromiumDiagnosticAssertions": 14,
+    "reason": "Exact envelopes needed the new closed metadata contract; sensitive-data assertions retained and expanded.",
+    "focusedFixtureCorrections": [
+      "You selected-ID resolution uses saveProfile, not nonexistent search action",
+      "Optional physical absence is checked through normalizeDomainRead as logical NULL"
+    ],
+    "initialTypecheck": "TS18048 closure-assigned response needed explicit test type; corrected, final typecheck passes"
+  },
+  "notRun": [
+    "hosted Full Health",
+    "hosted Security scan",
+    "live quota preparation/reset",
+    "user mutation/deletion/reset",
+    "DB cleanup",
+    "main merge/publish",
+    "physical iOS/Android/native wrapper",
+    "successful live place search"
+  ],
+  "images": {
+    "baseline": "054 source via temporary Vite source substitution",
+    "sameViewport": "390x844",
+    "languages": [
+      "tr",
+      "en"
+    ],
+    "background": "unchanged approved assets, loaded in both captures",
+    "userVideoFramesCommitted": false,
+    "reviewed": true
+  },
+  "comparisonFocus": {
+    "matched-before": [
+      {
+        "id": "birth_time",
+        "outline": "solid",
+        "frameOutline": "solid"
+      },
+      {
+        "id": "birthplace",
+        "outline": "solid",
+        "frameOutline": "solid"
+      },
+      {
+        "id": "birth_time",
+        "outline": "solid",
+        "frameOutline": "solid"
+      },
+      {
+        "id": "birthplace",
+        "outline": "solid",
+        "frameOutline": "solid"
+      }
+    ],
+    "matched-after": [
+      {
+        "id": "birth_time",
+        "outline": "none",
+        "frameOutline": "solid"
+      },
+      {
+        "id": "birthplace",
+        "outline": "none",
+        "frameOutline": "solid"
+      },
+      {
+        "id": "birth_time",
+        "outline": "none",
+        "frameOutline": "solid"
+      },
+      {
+        "id": "birthplace",
+        "outline": "none",
+        "frameOutline": "solid"
+      }
+    ]
+  }
+}

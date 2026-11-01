@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-054
-**Last Updated:** 2026-10-30
+**Current BuildMarker:** Buildmarker-055
+**Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
@@ -11,6 +11,15 @@
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
+
+
+## 055 — Narrow onboarding correction boundaries
+
+`birthDateFeedback` reuses shared validation and trusted hydrate.today; ProfileForm owns inline feedback, while OnboardingScreen focuses the DOB alert on rejected submit. Shared BirthTime/Place opt into the scoped framed-input style. ShinkaCard's default is unchanged; only preparation/Home request a transparent surface. No new persistence/cache layer or dependency on device time.
+
+The existing shared quota algorithm, CAS acknowledgement and admission ordering are unchanged. `createDailyQuota` now preserves typed GeoNamesError for missing/invalid state and read/reservation failure, preventing the adapter's transport catch from recategorizing quota setup as FETCH/UNKNOWN. Backend onboarding/You emit closed diagnostic envelopes with request UUID and elapsed milliseconds; services sanitize them again and transient birthplace search state retains them. Response HTTP status and upstream HTTP status are separate. No raw Error, query, place, user, credential or headers are serialized. Normal Health GQ10/GQ11 use fixtures through the real quota→guard→adapter→handler→service chain, never the live quota.
+
+Editor source parity is not deployed-runtime equality. 2026-11-01 web evidence shows the 053 quota schema and zero rows, visible 054 frontend, and one failed search; exact published backend hash and successful provider search remain unverified. [Evidence and rollout](reports/SHINKA_ONBOARDING_FIX_055.md).
 
 
 ## 054 — Onboarding illustration ownership

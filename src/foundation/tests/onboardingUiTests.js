@@ -1,3 +1,4 @@
+import { normalizeDomainRead } from '../../../base44/shared/domainValidation.js';
 import { waitForFixture } from "./domWait";
 import { placeFetch, placeFetchFor, KAN_CANDIDATES } from './geonamesSearchFixture';
 import { createElement } from 'react';
@@ -6,7 +7,7 @@ import OnboardingFixture from './OnboardingTestScreen';
 import { check, NOW } from './dataModelTests';
 import { ONBOARDING_COPY } from '../i18n/onboardingCopy';
 import { normalizeGeoNamesPlace, BIRTHPLACE_FIELDS } from '../../../base44/shared/onboardingValidation.js';
-import { fixturePlace } from './onboardingFixture';
+import { fixturePlace, onboardingFixture } from './onboardingFixture';
 import { sdkOnboardingFixture } from './base44OnboardingFixture';
 import { onboardingOperation, handleOnboardingRequest } from '../../../base44/shared/onboardingOperations.js';
 import { findUnlabeledControls } from '../probes/domProbes';
@@ -75,6 +76,41 @@ async function pickPlace(doc,id,context={}){
 const clearButton=doc=>doc.querySelector('[data-place-clear]');
 /** @type {import('./testTypes').FoundationTest[]} */
 export const ONBOARDING_UI_TESTS=[
+ ['U20','Complete underage DOB announces inline before submit, never auto-focuses picker; valid correction saves once',async(context={})=>{
+  for(const language of ['tr','en']){
+   const c=ONBOARDING_COPY[language],f=onboardingFixture();let writes=0;
+   const requestOverride=(action,payload={})=>{if(action==='saveProfile')writes++;return onboardingOperation(f.client,{action,...payload},f.dependencies);};
+   await onboardingProbe('AUTHENTICATED_PROFILE_REQUIRED',360,async(doc)=>{
+    const date=doc.querySelector('#birth_date');let focuses=0;date.addEventListener('focus',()=>focuses++);
+    input(doc,'birth_date','2011-10-31');await waitForFixture(()=>doc.querySelector('#birth_date-error'),doc.body,context);
+    const message=doc.querySelector('#birth_date-error');check(message.textContent===c.AGE_UNDER_18&&message.getAttribute('role')==='alert');
+    check(date.getAttribute('aria-invalid')==='true'&&date.getAttribute('aria-describedby')===message.id&&focuses===0);
+    button(doc,c.continue).click();await waitForFixture(()=>doc.activeElement===message,doc.body,context);
+    check(writes===0&&focuses===0&&!doc.querySelector('dialog'),'no write or synthetic picker opening');
+    date.focus();check(focuses===1,'explicit date editing remains possible');
+    input(doc,'birth_date','');await waitForFixture(()=>!doc.querySelector('#birth_date-error'),doc.body,context);
+    input(doc,'birth_date','2008-10-19');await testDelay(50,context.signal);check(!doc.querySelector('#birth_date-error'));
+    button(doc,c.continue).click();await waitForFixture(()=>doc.querySelector('[data-onboarding-state=AUTHENTICATED_CYCLE_STEP]'),doc.body,context);
+    const saved=normalizeDomainRead('user_profile',f.data.user_profile[0]);check(writes===1&&saved.birth_time===null&&saved.birthplace_geonames_id===null,'one valid write with logical NULL optional values');
+   },{language,requestOverride},context);
+  }
+ }],
+ ['U21','Time/place framed keyboard focus and setup/limit/provider copy retain query, retry and optional clear',async(context={})=>{
+  for(const language of ['tr','en'])for(const code of ['GEONAMES_QUOTA_NOT_READY','GEONAMES_RATE_LIMITED','GEONAMES_UNAVAILABLE']){
+   const c=ONBOARDING_COPY[language],f=onboardingFixture();let searches=0;
+   const requestOverride=async(action,payload={})=>{if(action==='searchPlaces'){searches++;throw Object.assign(new Error(),{code});}return onboardingOperation(f.client,{action,...payload},f.dependencies);};
+   await onboardingProbe('AUTHENTICATED_PROFILE_REQUIRED',390,async(doc,win)=>{
+    for(const id of ['birth_time','birthplace']){const el=doc.getElementById(id);el.focus();const css=win.getComputedStyle(el),frame=win.getComputedStyle(el.closest('.shinka-framed-field'));check(css.outlineStyle==='none'&&css.boxShadow==='none'&&parseFloat(css.borderTopWidth)===0&&parseFloat(frame.outlineWidth)>=2,'one outer keyboard focus');}
+    input(doc,'birth_time','23:59');input(doc,'birth_date','1990-01-01');typePlace(doc,'Kan');
+    await waitForFixture(()=>doc.querySelector('[data-place-retry]'),doc.body,context);
+    check(doc.querySelector('[data-place-status]').textContent.includes(code==='GEONAMES_UNAVAILABLE'?c.placeError:c[code]));
+    doc.querySelector('[data-place-retry]').click();await waitForFixture(()=>searches===2,doc.body,context);check(doc.querySelector('#birthplace').value==='Kan');
+    clearButton(doc).click();await testDelay(50,context.signal);button(doc,c.continue).click();
+    await waitForFixture(()=>doc.querySelector('[data-onboarding-state=AUTHENTICATED_CYCLE_STEP]'),doc.body,context);
+    const saved=normalizeDomainRead('user_profile',f.data.user_profile[0]);check(saved.birth_time==='23:59'&&saved.birthplace_geonames_id===null,'time retained, logical NULL place');
+   },{language,requestOverride},context);
+  }
+ }],
  ['U19','ON-02 persistent inner label, framed focus, saved name and Back retain TR/EN name and skip rules',async(context={})=>{
   for(const language of ['tr','en']){
    const c=ONBOARDING_COPY[language];let name=null;
@@ -111,8 +147,8 @@ export const ONBOARDING_UI_TESTS=[
  ['U03','18+ error is associated; only Apple/Google exposed and failure safe',async(context={})=>{const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);await probe('UNAUTHENTICATED_SIGN_IN',360,async doc=>{
   check([...doc.querySelectorAll('[data-provider]')].map(e=>e.getAttribute('data-provider')).join()==='apple,google');doc.querySelector('[data-provider=apple]').click();await pause();check(doc.querySelector('#age-error')?.textContent==='Please confirm that you are 18 or older');doc.querySelector('#age-declaration').click();await pause();doc.querySelector('[data-provider=google]').click();await pause();check(doc.querySelector('[data-error-code]')?.textContent==='We couldn’t sign you in. Please try again');check(!doc.querySelector('input[type=password]'));
  });}],
- ['U04','DOB errors focus field; typed-but-unselected birthplace blocked; clearing allows NULL save',async(context={})=>{const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
-  check(doc.querySelector('#birth_time').value==='');button(doc,'Continue').click();await pause();check(doc.activeElement.id==='birth_date'&&doc.querySelector('#birth_date-error'),`DOB focus ${doc.activeElement.id} error ${doc.querySelector('[role=alert]')?.textContent}`);input(doc,'birth_date','1990-01-01');typePlace(doc,'Kansas');await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('#birthplace-error'),`place error ${doc.querySelector('[role=alert]')?.textContent}`);clearButton(doc).click();await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP',`profile save ${doc.querySelector('[role=alert]')?.textContent}`);
+ ['U04','DOB errors focus explanation without reopening picker; typed-but-unselected birthplace blocked; clearing allows NULL save',async(context={})=>{const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
+  check(doc.querySelector('#birth_time').value==='');button(doc,'Continue').click();await pause();check(doc.activeElement.id==='birth_date-error'&&doc.querySelector('#birth_date-error'),`DOB focus ${doc.activeElement.id} error ${doc.querySelector('[role=alert]')?.textContent}`);input(doc,'birth_date','1990-01-01');typePlace(doc,'Kansas');await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('#birthplace-error'),`place error ${doc.querySelector('[role=alert]')?.textContent}`);clearButton(doc).click();await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP',`profile save ${doc.querySelector('[role=alert]')?.textContent}`);
  });}],
  ['U05','Cycle placeholders stay blank; consent unchecked; skip reaches finite dependency',async(context={})=>{const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);await probe('AUTHENTICATED_CYCLE_STEP',430,async doc=>{
   check(doc.querySelector('#period_duration_days').value===''&&doc.querySelector('#period_duration_days').placeholder==='5');check(doc.querySelector('#initial_cycle_length_days').value===''&&doc.querySelector('#initial_cycle_length_days').placeholder==='28');check(!doc.querySelector('#health_consent').checked);button(doc,'Skip for now').click();await pause();check(doc.querySelector('[data-dependency="FIRST_SHINKA_ENGINE_REQUIRED"]')&&doc.querySelector('[data-daily-state="notReady"]')&&!doc.querySelector('.animate-spin'));

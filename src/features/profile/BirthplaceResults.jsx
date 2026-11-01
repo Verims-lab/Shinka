@@ -13,7 +13,7 @@ export default function BirthplaceResults({ t, search, active, onPick, onMore, o
   );
   const message = status === "SHORT" ? t("placeMinChars")
     : status === "LOADING" ? t("placeSearching")
-    : error ? t(error === "GEONAMES_RATE_LIMITED" ? "GEONAMES_RATE_LIMITED" : "placeError")
+    : error ? t(["GEONAMES_RATE_LIMITED", "GEONAMES_QUOTA_NOT_READY"].includes(error) ? error : "placeError")
     : status === "READY" && !results.length && !limited ? t(next_page != null ? "placeNoMatchYet" : "placeEmpty")
     : null;
   return (

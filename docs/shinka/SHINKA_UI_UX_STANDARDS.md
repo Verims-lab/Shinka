@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-054
-**Last Updated:** 2026-10-30
+**Current BuildMarker:** Buildmarker-055
+**Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
@@ -11,6 +11,17 @@
 **Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+
+## 055 — Focus, birth-date feedback and transparent daily presentation
+
+The 2026-11-01 four-item onboarding request supersedes white-card presentation for `FIRST_SHINKA_DEPENDENCY` and Home's Your Shinka / Today's Suggestion blocks only. These blocks retain spacing, text order, headings and Retry/actions on the existing background; `ShinkaCard surface="plain"` is opt-in. Other forms/cards retain their surfaces. Preparation is an unnumbered interstitial, not ON-05's cycle form. Current MessagePair text and immutable assignment IDs remain authoritative; historical snapshot/card wording below is not the current contract.
+
+ON-04 BirthTime/Birthplace have one focus indication on the existing rounded outer frame. A scoped inner-input rule removes duplicate border/outline/shadow; global focus, date fields and other inputs remain intact. HH:mm editing, picker Set/Cancel/Clear, combobox keyboard/touch selection, Retry and labels are unchanged. Shared You birthplace uses the same rule.
+
+A complete DOB uses the shared date-only validation with server-provided today immediately on change; partial edits are silent. The adjacent, readable TR/EN alert retains aria-invalid/aria-describedby. Underage submit cannot call saveProfile and focuses the error text, not the native date input; explicit date editing remains available. Correction clears stale feedback. No checkbox, device clock or year-only age shortcut replaces backend validation.
+
+Missing/invalid shared quota is distinct from temporary rate limiting and provider failure. Central onboardingCopy explains that place search is not set up yet, keeps typing, and offers the existing optional-clear path; quota exhaustion retains the existing try-later copy and Retry-After. No invented result, forced birthplace, automatic retry or settings button. Default/onboarding light, verified Profile-only dark, watercolor and 054's single composition remain unchanged. [Execution and matched images](reports/SHINKA_ONBOARDING_FIX_055.md).
 
 
 ## 054 — One onboarding moon/botanical composition

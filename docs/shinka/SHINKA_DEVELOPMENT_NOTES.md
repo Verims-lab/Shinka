@@ -2,13 +2,24 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-054
-**Last Updated:** 2026-10-30
+**Current BuildMarker:** Buildmarker-055
+**Last Updated:** 2026-11-01
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 055 — Four focused onboarding corrections (2026-11-01)
+
+The inner dark rectangle came from unlayered :focus-visible overriding the input utility while the outer frame already indicated focus. Only the two composite-field inner inputs now suppress that duplicate decoration. DOB submit previously focused the native date input; complete-date feedback now precedes submit and rejected submit focuses the readable adjacent alert. Shared date/server-today validation remains authoritative. Preparation's FIRST_SHINKA_DEPENDENCY wrapper and Home's two content blocks opt into plain presentation, without changing daily state/ID/timing.
+
+Read-only Base44 web evidence: quota schema present, zero rows, 054 visible frontend and 053 editor source; one search failed HTTP503/FETCH/UNKNOWN. Local regression confirms the empty-quota exception was translated into a misleading network error. Typed quota diagnostics and setup-specific centralized copy preserve optional-clear/Retry and admission. Live search is still blocked by operator preparation; no counter/user mutation occurred. Historical video does not establish a particular deployed backend hash or provider failure.
+
+[055 execution, initial failures, before/after screenshots and quality results](reports/SHINKA_ONBOARDING_FIX_055.md). New dependency High is kept visible with the seven-day patch eligibility time; no release-age bypass or blanket repository closure. No DB cleanup, live Health/scan, main merge or publish. 052/053/054, disabled notifications/scheduler and 12 deferred findings are preserved.
+
+
+055 final local execution: Chromium/WebKit **775/775 PASS each**, eight new real-App matrix cells per engine, zero page errors; local synthetic Health **147 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL**, save/list/open verified. Type/lint/build/repo/history and performance budgets pass. Fresh security:deps **FAILS** on one High plus eight Moderate advisories; the compatible patch has not yet met the seven-day release-age floor. No repository security closure or live birthplace closure is claimed.
 
 ## 054 — Focused onboarding illustration fix
 
