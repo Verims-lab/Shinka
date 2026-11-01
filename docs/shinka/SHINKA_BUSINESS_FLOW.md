@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-057
+**Current BuildMarker:** Buildmarker-058
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -11,6 +11,11 @@
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
+
+
+## 058 — Narrow core closure (2026-11-01)
+
+A missing forward Moon maintenance tail can block H09-004 while today's phase and next Full Moon remain available. Health must expose that distinction without changing Home/Pattern selection or shortening coverage. 058 repaired only the approved reference tail. Calendar's two foreign-owner PENDING intents stay behind the owner check: their owners use the existing “Check / try the same action” control, preserving action IDs; an admin must not impersonate them or erase receipts. Profile search diagnosis was cancelled without saving profile, preferences or health data. [Acceptance ledger](reports/SHINKA_CORE_CLOSURE_058.md).
 
 
 ## 057 — Shared navigation and reopen recovery (2026-11-01)

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — approved references imported; native daily snapshot observed; hosted acceptance remains partial
-**Current BuildMarker:** Buildmarker-057
+**Current BuildMarker:** Buildmarker-058
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
@@ -10,6 +10,11 @@
 **Implemented:** Workbook validator, exact backend manifest, dry-run/apply/verify importer, Moon preparation, daily selection and snapshot protocol, ON-06/Home integration.
 **Not Implemented:** Distributed physical uniqueness guarantee; scheduled lookup renewal. Remaining hosted/device evidence is tracked separately.
 **Open Decisions:** OD-005, OD-008 (noted); OD-002 RESOLVED_BY_PRODUCT_DECISION
+
+
+## 058 — Narrow core closure (2026-11-01)
+
+Monthly Moon maintenance is a deliberate operator task at each UTC month boundary and before a release crossing that boundary. The fixed astronomy-engine 2.1.19 generator uses the first day of the next UTC month and requires two forward years from that horizon. Compare current-phase coverage separately from the expected future tail; neither an old row count nor current-day availability proves full readiness. Use admin moonDryRun → inspect fresh digest/missing/same/conflicts → sequential moonApplyBatch (maximum 25) → independent moonDryRun and full inventory verification. Stop on conflict/gap/overlap; preserve existing IDs/boundaries. Immediate post-write reads may lag: an attempted count is not completion, and an uncertain write requires a fresh read before any retry. Never auto-import from Health/Home or enable a scheduler. November 058 added four tail rows, preserving 103 existing rows; complete current set 107 / expected matches 103 / missing 0. Approved six categories/240 mappings/260 pairs and all copy remain unchanged. [Actual receipts](reports/core-closure-058/moon-hosted.json).
 
 
 ## 051 — Core Reliability & Performance

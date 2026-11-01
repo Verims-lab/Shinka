@@ -2,11 +2,11 @@
 
 Use this repository to run and edit the app locally, then publish changes back through Base44.
 
-[045 ID content delivery and migration runbook](docs/shinka/reports/SHINKA_ID_MODEL_045.md): MessagePair current text with unchanged daily assignment IDs; the publishable optional compatibility schema is already committed in Test → complete backend/shared → frontend → reviewed cleanup → final schema only after hosted verification. No separate intermediate commit is required. Current 049 authorizes reviewed web maintenance after publication/target/drain checks; no maintenance has executed yet.
+[058 narrow core closure](docs/shinka/reports/SHINKA_CORE_CLOSURE_058.md): four missing Moon tail intervals imported and fully verified; GeoNames singleton prepared once with startup expiry **2 November 2026 22:00 Türkiye / 19:00 UTC**. Do not repeat bootstrap or accepted 045/051 daily/Health-row cleanup. Final daily ID-only schema is observed live. Current remaining owner, provider, dependency and private-file platform steps are in the single closure ledger.
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
-## Current Test mobile closure (Buildmarker-050 / HC-049.0)
+## Historical Test mobile closure (Buildmarker-050 / HC-049.0)
 
 [050 focused mobile verification](docs/shinka/reports/SHINKA_MOBILE_CLOSURE_050.md) preserves Base44 preference sheets and 049. Radio keyboard/cancel/focus and Calendar draft/pending feedback are verified on the real App with local synthetic transport; physical Android/iOS and wrapper acceptance remain external. No schema, import or live cleanup step belongs to this package. Owner handles main/sync/publish; 045 cleanup remains a separate open task.
 

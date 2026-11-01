@@ -1,0 +1,325 @@
+{
+  "buildMarker": "Buildmarker-058",
+  "healthCatalog": "HC-057.0",
+  "date": "2026-11-01",
+  "scope": "LOCAL_SYNTHETIC_UNLESS_SEPARATELY_LABELLED_IN_HOSTED_RECEIPTS",
+  "focused": {
+    "passed": 9,
+    "failed": 0,
+    "browser": "chromium",
+    "initial": "NOT_RUN_LOOPBACK_SANDBOX_DENIED",
+    "corrected": "Authorized loopback rerun passed"
+  },
+  "initialTypecheck": "Failed dynamic property inference; annotation corrected before final full gates; initial log retained",
+  "browser": {
+    "chromium": {
+      "exitCode": 0,
+      "scope": "LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",
+      "tests": 789,
+      "passed": 789,
+      "failed": 0,
+      "pageErrors": [],
+      "catalog": {
+        "version": "HC-057.0",
+        "suites": 17,
+        "cases": 186,
+        "localRegression": 12,
+        "current": 160,
+        "future": 0,
+        "external": 14
+      },
+      "inAppHealth": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "counts": {
+          "PASS": 147,
+          "BLOCKED": 13
+        },
+        "saveState": "SAVED",
+        "retrySave": true,
+        "historyListed": true,
+        "privateReportOpened": true
+      },
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 10,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "internalHealthEntryChecks": 7,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true,
+        "deletion": {
+          "passed": true,
+          "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+          "hostedVerified": false,
+          "checks": 7
+        }
+      },
+      "reopenApp": {
+        "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+        "rows": [
+          {
+            "scenario": "settings-first",
+            "passed": true
+          },
+          {
+            "scenario": "session-first",
+            "passed": true
+          },
+          {
+            "scenario": "cold-readmission-no-early-product",
+            "passed": true
+          },
+          {
+            "scenario": "tab-return-Calendar",
+            "passed": true
+          },
+          {
+            "scenario": "tab-return-Pattern",
+            "passed": true
+          },
+          {
+            "scenario": "tab-return-Home",
+            "passed": true
+          },
+          {
+            "scenario": "you-and-back",
+            "passed": true
+          },
+          {
+            "scenario": "real-bfcache",
+            "status": "NOT_OBSERVED",
+            "passed": null
+          }
+        ]
+      },
+      "navigationCells": 108
+    },
+    "webkit": {
+      "exitCode": 0,
+      "scope": "LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",
+      "tests": 789,
+      "passed": 789,
+      "failed": 0,
+      "pageErrors": [],
+      "catalog": {
+        "version": "HC-057.0",
+        "suites": 17,
+        "cases": 186,
+        "localRegression": 12,
+        "current": 160,
+        "future": 0,
+        "external": 14
+      },
+      "inAppHealth": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "counts": {
+          "PASS": 147,
+          "BLOCKED": 13
+        },
+        "saveState": "SAVED",
+        "retrySave": true,
+        "historyListed": true,
+        "privateReportOpened": true
+      },
+      "nativeEntries": {
+        "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+        "sessionChecks": 10,
+        "nativeRoutes": 5,
+        "artifactEntryChecks": 2,
+        "internalHealthEntryChecks": 7,
+        "loginSecretReads": 0,
+        "hostedVerified": false,
+        "passed": true,
+        "deletion": {
+          "passed": true,
+          "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+          "hostedVerified": false,
+          "checks": 7
+        }
+      },
+      "reopenApp": {
+        "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+        "rows": [
+          {
+            "scenario": "settings-first",
+            "passed": true
+          },
+          {
+            "scenario": "session-first",
+            "passed": true
+          },
+          {
+            "scenario": "cold-readmission-no-early-product",
+            "passed": true
+          },
+          {
+            "scenario": "tab-return-Calendar",
+            "passed": true
+          },
+          {
+            "scenario": "tab-return-Pattern",
+            "passed": true
+          },
+          {
+            "scenario": "tab-return-Home",
+            "passed": true
+          },
+          {
+            "scenario": "you-and-back",
+            "passed": true
+          },
+          {
+            "scenario": "real-bfcache",
+            "status": "NOT_OBSERVED",
+            "passed": null
+          }
+        ]
+      },
+      "navigationCells": 108
+    }
+  },
+  "quality": [
+    {
+      "name": "npm-ls-all",
+      "command": [
+        "npm",
+        "ls",
+        "--all"
+      ],
+      "exitCode": 0,
+      "durationMs": 717
+    },
+    {
+      "name": "npm-ls-depth0",
+      "command": [
+        "npm",
+        "ls",
+        "--depth=0"
+      ],
+      "exitCode": 0,
+      "durationMs": 385
+    },
+    {
+      "name": "security-deps",
+      "command": [
+        "npm",
+        "run",
+        "security:deps"
+      ],
+      "exitCode": 1,
+      "durationMs": 1014
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "durationMs": 4998
+    },
+    {
+      "name": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "durationMs": 4819
+    },
+    {
+      "name": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "durationMs": 3251
+    },
+    {
+      "name": "repo-health",
+      "command": [
+        "npm",
+        "run",
+        "health:repo"
+      ],
+      "exitCode": 0,
+      "durationMs": 2054
+    },
+    {
+      "name": "history",
+      "command": [
+        "node",
+        "scripts/recordBuild.mjs",
+        "--check"
+      ],
+      "exitCode": 0,
+      "durationMs": 101
+    }
+  ],
+  "dependencyAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 8,
+    "high": 1,
+    "critical": 0,
+    "total": 9
+  },
+  "dependencyPatch": {
+    "package": "follow-redirects",
+    "locked": "1.16.1",
+    "compatibleFix": "1.16.2",
+    "publishedAt": "2026-10-25T21:32:25.963Z",
+    "eligibleAt": "2026-11-01T21:32:25.963Z",
+    "status": "NOT_YET_ELIGIBLE_AT_VALIDATION",
+    "lockChanged": false
+  },
+  "performance": {
+    "passed": true,
+    "environment": {
+      "node": "v26.0.0",
+      "platform": "darwin",
+      "arch": "arm64",
+      "browser": "Playwright Chromium, headless, cold context, 360x740, loopback, no throttling; SDK transport stubbed, external fonts blocked; not user metrics"
+    },
+    "initialJS": {
+      "raw": 486546,
+      "gzip": 162575
+    },
+    "css": {
+      "raw": 79094,
+      "gzip": 14519
+    },
+    "staticCycles": 0,
+    "vitalsAcceptance": {
+      "status": "NOT_MEASURED",
+      "reason": "No field p75 or INP; local LCP/CLS only, not a production acceptance gate"
+    },
+    "lazyRetry": {
+      "passed": true,
+      "scope": "Synthetic network asset failure and full-reload retry, real App route"
+    }
+  },
+  "healthChanges": {
+    "added": 0,
+    "updated": 6,
+    "deleted": 0,
+    "ids": [
+      "H05-009",
+      "H07-013",
+      "H09-004",
+      "H10-002",
+      "H12-025",
+      "H16-007"
+    ]
+  },
+  "liveFullHealth": "NOT_RUN_OWNER_MANAGED",
+  "liveSecurityScan": "NOT_RUN_USER_ACCEPTANCE_RETAINED",
+  "physicalDevice": "NOT_RUN",
+  "repositoryClosed": false,
+  "openSecurityGate": true
+}

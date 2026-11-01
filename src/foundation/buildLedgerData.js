@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-053",
-    "package_name": "GeoNames shared credit quota and endpoint classification",
-    "package_type": "TARGETED_FIX",
-    "created_at": "2026-10-30T12:56:30.000Z",
-    "health_catalog_version": "HC-052.0",
-    "short_summary": "Conditional shared daily/hourly credits; fail-closed counter provisioning, safe retries and accurate 13-function security classification.",
-    "full_health_status": "NOT_RUN",
-    "notes": "Chromium/WebKit each 771/771 PASS plus final strengthened quota 9/9 each; entry negatives 8/8 and installed/pinned SDK transport 8/8 PASS. Local Health 147 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL, save/list/open PASS. Quality/performance gates PASS; Health +1/~5/-0. One conservative prepared singleton is required; hosted atomicity, Deno and physical acceptance NOT_RUN. No live writes/scan/Full Health/publish. Group A and twelve deferred findings preserved. Report: reports/SHINKA_GEONAMES_QUOTA_053.md."
-  },
-  {
     "build_marker": "Buildmarker-054",
     "package_name": "Single onboarding moon illustration",
     "package_type": "TARGETED_FIX",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Compact equal-third navigation with one safe inset; truthful Home lifecycle recovery, bounded session retries and cold-scope isolation. Preserve 055/056.",
     "full_health_status": "NOT_RUN",
     "notes": "Chromium/WebKit 787/787 each; final boundary rerun 7/7 each. Loaded nav matrix 108 cells/engine: 56→44px minimum row, single inset, 200% wraps. Local Health 147 PASS/13 hosted BLOCKED/0 FAIL; save/list/open PASS. Quality/performance PASS. Health +0/~5/-0. Dependency security remains OPEN: 1 High/8 Moderate under unchanged age policy. Published 056 web opens recovered; original lifecycle failure not reproduced or correlated. Physical process/lock/wrapper and real BFCache remain unverified. No live writes/cleanup/Health/scan/publish. Report: reports/SHINKA_REOPEN_NAVIGATION_057.md."
+  },
+  {
+    "build_marker": "Buildmarker-058",
+    "package_name": "Core closure: Moon reference maintenance and open evidence",
+    "package_type": "MAINTENANCE",
+    "created_at": "2026-11-01",
+    "health_catalog_version": "HC-057.0",
+    "short_summary": "Preserve 052–057; complete approved missing Moon tail, distinguish present/future coverage in H09 evidence, reconcile scoped quota/Calendar/platform acceptances and current regression metadata.",
+    "full_health_status": "NOT_RUN_OWNER_MANAGED",
+    "notes": "Scoped closure only. Published 057/HC-056.0 user report remains 159 PASS/0 FAIL/1 BLOCKED. Reference operations and external limits are dated in SHINKA_CORE_CLOSURE_058.md. No general audit, cleanup, user deletion/reset, scheduler/send, main merge or publish. Dependency security remains a separate gate from user Security OK. Active packages 054–058."
   }
 ];

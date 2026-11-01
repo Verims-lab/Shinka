@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-057
+**Current BuildMarker:** Buildmarker-058
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -13,6 +13,11 @@
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
 
+
+
+## 058 — Narrow core closure (2026-11-01)
+
+No entity/schema or ID contract change. The existing Moon schema now holds 107 verified intervals after four approved missing tail creates: all 103 prior IDs/phase/boundaries remain exact. The monthly expected set currently has 103 matches; that is not the physical total. Official export validates unique IDs/starts and continuous UTC coverage through 2028-12-02. The live UserDailyMessage schema was read and is already ID-only (six required application fields); 045/051 row cleanup is accepted and was not rerun. The previously absent GeoNames singleton is now operator-prepared and read back as one native ID with revision0/hour498210/credits8000; the schema is unchanged. Its startup wait and hosted conditional-write acceptance remain separate. Calendar receipt states and private Health file references remain separate operational evidence in [058](reports/SHINKA_CORE_CLOSURE_058.md).
 
 
 ## 056 — Focused Calendar corrections (2026-11-01)

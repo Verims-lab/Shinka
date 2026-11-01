@@ -56,3 +56,8 @@ Phone acceptance after publication (at most five checks):
 5. Reopen an existing Calendar PENDING view without submitting a new date: it must not start a new write. Use the existing same-intent status/resume path only if needed; do not clear the record as a workaround.
 
 Health delta: 0 added / 5 updated / 0 removed (H05-009, H07-013, H09-003, H12-025, H13-012), unchanged 186 cases. External device cases remain open. Active packages are 053–057.
+
+
+## 058 scoped reconciliation (2026-11-01)
+
+The user-supplied published 057/HC-056.0 report is matched to its native row (159 PASS/0 FAIL/1 BLOCKED). H09 missing future Moon tail is independently diagnosed/completed. DU07–09/SS14–15 test behavior remains; 058 corrects the second, serialized scope-transfer metadata source. [Current narrow closure ledger](SHINKA_CORE_CLOSURE_058.md) supersedes stale pending counts without changing historical receipts.

@@ -1,14 +1,21 @@
 # Shinka — Base44 continuation
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
-**Status:** ACTIVE — hosted 051 accepted; final schema/files/performance continuation pending
-**Current BuildMarker:** Buildmarker-057
+**Status:** ACTIVE — 051 cleanup accepted; final daily schema observed; scoped 058 acceptance ledger
+**Current BuildMarker:** Buildmarker-058
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test delivery; 051 authorizes targeted hosted observation and reviewed historical maintenance on the named existing app. No agent main merge/publish, new external service or paid resource.
 
 
+
+## 058 — Narrow core closure (2026-11-01)
+
+The supplied 057/HC-056.0 FULL run is also present in the official current Health export (159 PASS / 0 FAIL / 1 BLOCKED). No agent Full Health/scan ran. The monthly Moon tail was completed through the existing admin function surface and independent dry-run/full export; 045 final daily schema was observed live, with no repeat cleanup. Current Health history has 15 rows: 051's original five plus ten later reports, not a failed retention operation. The 49 historical file candidates remain unreferenced by these 15; zero files were erased. Original private manifest is preserved and a 0600 updated support attachment protects all current references. Owner sessions, native platform proof and dependency security remain separate. [One closure ledger and actionable handoff](reports/SHINKA_CORE_CLOSURE_058.md).
+
+
+058 also prepared the absent GeoNames singleton once after explicit owner-confirmed old-writer drain. One native ID/revision0/saturated current-hour bucket is verified in full exports before/after the backend startup refusal. Earliest bootstrap expiry: **2026-11-02 19:00 UTC / 22:00 Türkiye**; provider and hosted conditional-update acceptance remain open. Never repeat bootstrap or reset this counter. [Exact current receipt](reports/core-closure-058/quota-hosted.json).
 
 ## 055 — Read-only GeoNames observation and owner handoff
 

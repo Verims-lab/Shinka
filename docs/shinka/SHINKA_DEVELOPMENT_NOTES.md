@@ -2,13 +2,20 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-057
+**Current BuildMarker:** Buildmarker-058
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 058 — Narrow core closure (2026-11-01)
+
+Started clean Test 6f7f69d; main bf55819 was ahead by one merge, so Test was losslessly fast-forwarded and pushed before changes. Current web admin/protected native identity and published frontend 057 verified. Real Moon month rollover reproduced against the official 103-row export; four reviewed missing tail rows added, independent ready=true readback and 107-row full export preserve all old IDs/values. Immediate apply readback lag is retained as evidence. Added DM29/HD18; repaired actual serialized H07/H12 scope metadata, not theme/session behavior. Existing cleanup/deletion acceptance preserved; private file manifest and owner-specific Calendar limits reconciled. Security scan acceptance and npm gate are separate. [Dated receipts, quality results and remaining steps](reports/SHINKA_CORE_CLOSURE_058.md).
+
+
+058 final result: Chromium/WebKit **789/789 PASS each**, local Health **147 PASS / 13 expected hosted-prerequisite BLOCKED / 0 FAIL** and save/list/open verified. Typecheck, lint, build, repo/history and performance pass. Dependency security remains **1 High / 8 Moderate** under the unchanged release-age policy. GeoNames singleton was prepared once after owner-confirmed old-writer drain; readback and startup guard verified. Its bootstrap expires **2026-11-02 19:00 UTC / 22:00 Türkiye**; provider search/select/resolve and hosted contention acceptance are still open. Health delta **0 added / 6 updated / 0 removed**. [Execution receipt](reports/core-closure-058/execution.json).
 
 ## 057 — Shared navigation and reopen recovery (2026-11-01)
 

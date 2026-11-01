@@ -2,13 +2,18 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-057
+**Current BuildMarker:** Buildmarker-058
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
 **External Verification Required:** All rows marked UNVERIFIED.
+
+## 058 — Narrow core closure (2026-11-01)
+
+User Security OK is preserved separately from dependency audit. Existing Base44 scan UI shows one Low applicationSession and twelve already acknowledged; this task did not scan, fix or acknowledge them. Current npm result remains 0 Critical / 1 High / 8 Moderate, with the compatible follow-redirects patch still subject to the unchanged seven-day floor. No protected account/profile/consent/health writes or owner impersonation; the two Calendar owners must resume their own IDs. Private report-file URLs remain only in 0600 Git-ignored manifests. See [058 evidence](reports/SHINKA_CORE_CLOSURE_058.md).
+
 
 ## 055 — Diagnostic isolation and dependency gate
 

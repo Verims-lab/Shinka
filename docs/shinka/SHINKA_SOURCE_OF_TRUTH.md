@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-057
+**Current BuildMarker:** Buildmarker-058
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -10,6 +10,11 @@
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
+
+
+## 058 — Narrow core closure (2026-11-01)
+
+Authority: user request `d5197f00-a659-4c09-9460-023ffb478956/Pasted text.txt`. This is one narrow closure, not a new feature/general audit. Authorized: genuinely missing approved Moon references through reviewed batches, absent-only conservative GeoNames bootstrap after writer verification, and existing Calendar intent reconciliation only in its owner's session. Preserve sariverim native identity/role/business data, prior deletion/045/051 acceptance, manual theme and all 052–057 corrections. Security OK is user acceptance, not npm audit evidence. No automatic Full Health/scan, cleanup/reset, notification, main merge or publish. [Dated results and open ledger](reports/SHINKA_CORE_CLOSURE_058.md).
 
 
 ## 055 — Scoped user design and diagnostic decision (2026-11-01)

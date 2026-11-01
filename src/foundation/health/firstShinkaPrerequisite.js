@@ -2,6 +2,7 @@ import { exactImportedLibrary } from '../../../base44/shared/contentStateContrac
 import { CONTENT_SOURCE_SHA256 } from '../../../base44/shared/contentSourceReceipt.js';
 import { healthReadDiagnostic, healthReadFailureStatus, healthReadAttempt } from '../../../base44/shared/healthReadDiagnostics.js';
 import { nativePrerequisite } from './nativeReadinessContract';
+import { moonReadinessEvidence } from './moonReadinessEvidence';
 import { CLASS } from './constants';
 import { ev, verdict } from './evidence';
 
@@ -18,7 +19,8 @@ export async function firstShinkaPrerequisite(ctx) {
   const contentStatus = diagnostics.contentLibrary ? healthReadFailureStatus(diagnostics.contentLibrary)
     : exactImportedLibrary(library) ? 'PASS'
     : library?.ready === false && library.sourceHash === CONTENT_SOURCE_SHA256 && ['SOURCE_DECISION_REQUIRED','PRE_IMPORT'].includes(library.phase) ? 'BLOCKED' : 'FAIL';
-  const moonShape = moon && typeof moon.ready === 'boolean' && Number.isSafeInteger(moon.create) && moon.create >= 0 && Array.isArray(moon.conflicts);
+  const moonEvidence = moonReadinessEvidence(moon);
+  const moonShape = moonEvidence.valid;
   const moonStatus = diagnostics.moonReadiness ? healthReadFailureStatus(diagnostics.moonReadiness)
     : !moonShape || moon.conflicts.length || (moon.ready && moon.create !== 0) ? 'FAIL'
     : moon.ready ? 'PASS' : moon.create > 0 ? 'BLOCKED' : 'FAIL';
@@ -27,7 +29,7 @@ export async function firstShinkaPrerequisite(ctx) {
   return verdict(status === 'PASS', ev(CLASS.LIVE_RUNTIME, 'Base44 exact content + native contract + Moon verification', {
     state: prerequisite.evidence.actual?.state ?? status,
     contentReady: library?.ready === true, moonReady: moon?.ready === true,
-    contentStatus, moonStatus, native: prerequisite.evidence.actual,
+    contentStatus, moonStatus, moon: moonEvidence.summary, native: prerequisite.evidence.actual,
     diagnostics, readAttempts,
   }, 'verified source/hash/relations, native strategy and current Moon coverage',
   'Read-only prerequisites; missing coverage remains BLOCKED, malformed/conflicting evidence FAIL. H09-901 still requires hosted mutations.'), status);

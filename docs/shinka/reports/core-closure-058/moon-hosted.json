@@ -1,0 +1,63 @@
+{
+  "appId": "6ad5190f4845d4e3af03b420",
+  "dataEnvironment": "existing shared app/prod; Preview is not isolation",
+  "operatorSurface": "Base44 Code Test Function (preview function version), Data official CSV export",
+  "before": {
+    "actualCount": 103,
+    "create": 4,
+    "same": 99,
+    "conflicts": 0,
+    "generatedAt": "2026-11-01T18:34:11.161Z",
+    "reviewedDigest": "1c2b43432d119138f96466e39af6e632a7d722b077b47283dc944d102af37e74"
+  },
+  "apply": {
+    "attempted": 4,
+    "status": 200,
+    "generatedAt": "2026-11-01T18:34:31.505Z",
+    "immediateReadbackReady": false,
+    "note": "Immediate inspection still saw old state; not counted as completion. No second mutation."
+  },
+  "independentDryRun": {
+    "status": 200,
+    "ready": true,
+    "create": 0,
+    "same": 103,
+    "conflicts": 0,
+    "generatedAt": "2026-11-01T18:34:40.030Z",
+    "coverageEnd": "2028-12-02T01:40:45.472Z"
+  },
+  "fullExportVerify": {
+    "before": 103,
+    "after": 107,
+    "preservedIdsAndValues": 103,
+    "uniqueIds": 107,
+    "uniqueStarts": 107,
+    "canonicalValidation": {
+      "scope": "CANONICAL_VALIDATION_OF_OFFICIAL_LIVE_DATA_EXPORT",
+      "ready": true,
+      "create": 0,
+      "same": 103,
+      "conflicts": [],
+      "astronomyVersion": "2.1.19",
+      "generatedAt": "2026-11-01T18:43:14.031Z",
+      "coveragePolicy": "MONTHLY_FORWARD_2Y_V1",
+      "horizon": "2026-12-01T00:00:00.000Z",
+      "requiredCoverageEnd": "2028-12-01T00:00:00.000Z",
+      "actualCount": 107,
+      "actualCoverageStart": "2026-10-03T13:25:33.710Z",
+      "actualCoverageEnd": "2028-12-02T01:40:45.472Z",
+      "currentPhase": "FULL",
+      "currentCovered": true,
+      "nextFullMoonAt": "2026-11-24T14:54:04.191Z",
+      "coverageStart": "2026-11-01T20:28:58.794Z",
+      "coverageEnd": "2028-12-02T01:40:45.472Z"
+    }
+  },
+  "reproduction": {
+    "october31Ready": true,
+    "november1Missing": 4,
+    "currentCoveredBeforeImport": true,
+    "cause": "UTC monthly forward horizon advances from 2028-11-01 to 2028-12-01; not historical 429/500"
+  },
+  "publishedFullHealthRerun": "NOT_RUN_OWNER_MANAGED"
+}
