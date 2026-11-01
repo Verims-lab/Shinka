@@ -13,8 +13,8 @@ export default function ProductNavigation({ current, language }) {
   return <nav aria-label={dailyCopy('navigation', language)} className="shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white">
     {BOTTOM_NAV.map(item => {
       const Icon = ICONS[item.component], active = item.key === current;
-      const content = <><Icon className="h-5 w-5" aria-hidden="true"/>{t(item.labelKey, language)}</>;
-      const classes = 'min-h-14 flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum';
+      const content = <><Icon className="h-5 w-5" aria-hidden="true"/><span className="min-w-0 max-w-full break-words text-center">{t(item.labelKey, language)}</span></>;
+      const classes = 'min-h-11 min-w-0 px-1 py-px flex flex-col items-center justify-center gap-1 text-shinka-caption text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum';
       const destination = `${item.key === 'home' ? '/' : `/${item.key}`}?lang=${language}`;
       const onClick = active ? reselectTab : undefined;
       return inRouter ? <Link key={item.key} to={destination} state={{ productTab: true }} onClick={onClick} aria-current={active ? 'page' : undefined} className={classes}>{content}</Link> :

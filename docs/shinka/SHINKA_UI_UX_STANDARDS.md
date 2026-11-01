@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-056
+**Current BuildMarker:** Buildmarker-057
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,6 +12,12 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 057 — Shared navigation and reopen recovery (2026-11-01)
+
+The shared Home/Calendar/Pattern navigation has three equal columns. Its icon and persistent label form one centered group, with a 44px minimum auto-growing link row (replacing 56px), horizontal containment and exactly one bottom safe inset on the nav. There is no fixed total height, negative margin, clipping, fourth tab or system-bar compensation. Preserve ≥44px targets and TR/EN 200% wrapping; wrapper/system-bar area requires physical evidence.
+
+Home initial failure has one localized error/Retry and never claims a retained view. A transient failure in an already verified same session retains confirmed content/name and uses the central refresh-failure copy. Safe code/stage/status/duration/request ID remain diagnostic attributes, not product text. Proven session/owner/privacy/lifecycle denial still conceals personal data. Calendar keeps 056 status/read/same-intent continuation and never auto-writes on reopen.
 
 ## 056 — Focused Calendar corrections (2026-11-01)
 

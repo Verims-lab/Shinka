@@ -39,7 +39,7 @@ export const CORE_QUALITY_UI_TESTS=[
  })],
 
  ['CQ06','Home discards retained daily after lifecycle/owner/profile denial through actual service and hook',async context=>{
-   for(const code of ['PROFILE_COMPLETION_REQUIRED','TEST_TARGET_BUSY','ACCOUNT_DELETION_IN_PROGRESS','ONBOARDING_RESTART_REQUIRED','OWNER_REQUIRED','TEST_LIFECYCLE_UNAVAILABLE','PRIVACY_STATE_UNCONFIRMED','CONSENT_VERSION_CONFLICT'])await renderProbe(context,async(root,host)=>{
+   for(const code of ['PROFILE_COMPLETION_REQUIRED','TEST_TARGET_BUSY','ACCOUNT_DELETION_IN_PROGRESS','ONBOARDING_RESTART_REQUIRED','OWNER_REQUIRED','ACCESS_DENIED','PRIVACY_STATE_UNCONFIRMED','CONSENT_VERSION_CONFLICT'])await renderProbe(context,async(root,host)=>{
      let failed=false;
      /** @type {ReturnType<typeof useDailyMessage>} */
      let current;const request=()=>dailyMessageRequest({functions:{invoke:async()=>({data:failed?{error_code:code}:daily})}});

@@ -62,9 +62,9 @@ export async function verifyNativeEntries(root) {
   assert.equal((await call(' '.repeat(1001))).status,413);
   const originalPrivacyRead=client.asServiceRole.entities.UserPrivacyRequest.filter;
   for(const status of [429,503,504]) {
-    client.asServiceRole.entities.UserPrivacyRequest.filter=async()=>{throw {status,message:'PRIVATE_RAW_ERROR',response:{status,data:{private:'PRIVATE_RESPONSE'}}};};
+    client.asServiceRole.entities.UserPrivacyRequest.filter=async()=>{throw {status,message:'PRIVATE_RAW_ERROR',response:{status,headers:{'retry-after':'2'},data:{private:'PRIVATE_RESPONSE'}}};};
     const response=await call('{}'),data=await response.json();
-    assert.equal(response.status,503);assert.equal(data.diagnostic.stage,'LIFECYCLE_PRIVACY_READ');
+    assert.equal(response.status,503);assert.equal(data.diagnostic.stage,'LIFECYCLE_PRIVACY_READ');assert.equal(data.retry_after_ms,2000);
     assert.equal(data.diagnostic.code,status===429?'RATE_LIMITED':status===504?'TIMEOUT':'SERVICE_UNAVAILABLE');
     assert.ok(!JSON.stringify(data).includes('PRIVATE'));
   }

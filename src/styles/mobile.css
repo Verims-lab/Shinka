@@ -4,7 +4,7 @@
 html { overscroll-behavior-y: contain; background: rgb(var(--shinka-ivory)); color-scheme: light; }
 button, [role="tab"], nav a, svg[aria-hidden="true"] { -webkit-user-select: none; user-select: none; }
 :focus-visible { outline: 2px solid rgb(var(--shinka-plum)); outline-offset: 2px; }
-.shinka-product-nav { padding-bottom: var(--safe-bottom); }
+.shinka-product-nav { flex-shrink: 0; padding-bottom: var(--safe-bottom); }
 .shinka-safe-shell { padding-bottom: 0; }
 .shinka-calendar-dialog, .shinka-place-sheet, .shinka-place-options { overscroll-behavior-y: contain; }
 .shinka-place-sheet { position: fixed; inset: auto 0 0; z-index: 60; max-height: 85vh; max-height: 85dvh; margin: 0; width: 100%; max-width: none; overflow-y: auto; display: flex; flex-direction: column; border-radius: 20px 20px 0 0; background: rgb(var(--shinka-white)); color: rgb(var(--shinka-ink)); padding: 20px max(20px, var(--safe-right)) max(20px, var(--safe-bottom)) max(20px, var(--safe-left)); }

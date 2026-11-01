@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-056
+**Current BuildMarker:** Buildmarker-057
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -12,6 +12,12 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 057 — Shared navigation and reopen recovery (2026-11-01)
+
+Daily uses the existing productTransport cancellation/deadline primitive with readOnly:false: today can assign content, so it has no automatic transport retry. Its hook coalesces visible focus/online/tab-return work, respects numeric Retry-After, retires an expired 20s local wait by aborting its timer/listener and discards old-generation results. SDK remote work is not claimed cancelled. Existing 30s day check is unchanged; hidden tabs skip calls. New daily attempts are admitted by the unchanged backend owner/ACTIVE/onam/lifecycle guards.
+
+Cold checkAppState and persisted pageshow seal old product consumers via the existing session-ended signal before new admission, without SDK logout. Different-user passive response also seals the previous scope. Settings/session remain parallel with independent 15s bounds and existing settings-transient fallback. Session keeps at most two 700/1400ms retries, paced by Retry-After and remaining budget; 401/403/invalid authority do not retry. Safe diagnostics distinguish PUBLIC_SETTINGS, SESSION_AUTH_LIFECYCLE, nested LIFECYCLE_USER/PRIVACY/OPERATION_READ, ONBOARDING_HYDRATE, DAILY_REQUEST/domain stages, CALENDAR and PATTERN. Daily no longer overwrites nested lifecycle stage; applicationSession returns a validated numeric retry hint. No raw payload/header/exception telemetry is added. Publish matching entries/shared/frontend together; no schema change.
 
 ## 056 — Focused Calendar corrections (2026-11-01)
 

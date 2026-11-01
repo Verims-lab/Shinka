@@ -59,7 +59,8 @@ export async function checkMobileInteractions(page,origin,directory){
   assert.equal(await page.locator('[data-daily-id]').getAttribute('data-daily-id'),daily);
   await page.evaluate(()=>window.__authFixture.releaseOperation('dailyMessage'));await page.locator('[data-refresh-control][aria-busy=false]').waitFor({state:'attached'});
   await page.evaluate(()=>window.__authFixture.failOperation('dailyMessage'));await pull(page);
-  await page.locator('[data-refresh-control] [role=status]').filter({hasText:'Couldn’t refresh'}).waitFor();
+  await page.locator('[data-daily-state] [role=alert]').filter({hasText:'Couldn’t refresh'}).waitFor();
+  assert.equal(await page.locator('[data-home-root] [role=alert]').count(),1,'duplicate refresh failure');
   assert.equal(await page.locator('[data-daily-id]').getAttribute('data-daily-id'),daily);
   await page.getByRole('button',{name:'Retry',exact:true}).click();
   await page.locator('[data-daily-state]').waitFor({state:'detached'});

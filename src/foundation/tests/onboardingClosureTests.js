@@ -31,7 +31,7 @@ export const ONBOARDING_CLOSURE_TESTS = [
   const f=await closureFixture();await f.request('saveProfile',auditProfile);await f.request('skipCycle');
   const daily=await f.daily();let expire=()=>{},release=(_value)=>{},cleared=0;
   const pending=new Promise(resolve=>{release=resolve;});
-  const attempt=dailyMessageRequest({functions:{invoke:()=>pending}},{set:fn=>{expire=fn;return 1;},clear:()=>{cleared++;}});
+  const attempt=dailyMessageRequest({functions:{invoke:()=>pending}},{set:fn=>{expire=fn;return 1;},clear:id=>{if(id!==undefined)cleared++;}});
   const rejected=rejects(()=>attempt,'TIMEOUT');expire();await rejected;release({data:daily});await Promise.resolve();
   check(cleared===1&&(await f.daily()).daily.id===daily.daily.id&&f.rows.user_daily_message.length===1);
   await rejects(()=>dailyMessageRequest({functions:{invoke:async()=>({data:{persisted:true,state:'ACTIVE_EXISTING_USER',daily:{id:'fake'}}})}}),'DAILY_READBACK_CONFLICT');

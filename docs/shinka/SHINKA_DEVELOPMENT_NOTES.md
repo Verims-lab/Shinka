@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-056
+**Current BuildMarker:** Buildmarker-057
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 057 — Shared navigation and reopen recovery (2026-11-01)
+
+Focused shared-nav/reopen correction; main/Test f2632f7 integrated without reset. Proven local defects: 56px nav row surplus, Home transient lifecycle classified as privacy denial, duplicate/false retained-view copy, overwritten lifecycle substage, and cold-recheck event reloading the old rendered scope. Existing authority checks remain. SS14–15, DU07–09 and ID14 plus actual App geometry/reopen coverage are added to existing suites. [Single execution report](reports/SHINKA_REOPEN_NAVIGATION_057.md) records actual final gates and uncertainties; physical APK and original incident closure are not claimed.
+
+057 final local receipt: Chromium/WebKit 787/787 each, final boundary 7/7 each, loaded navigation 108 cells per engine; 147 PASS/13 hosted-prerequisite BLOCKED/0 FAIL local Health with save/list/open. Quality/performance/history passed. Dependency security remains OPEN (1 High/8 Moderate). Hosted original error not observed; physical process/lock/wrapper and real BFCache unverified. See the single 057 report; no live Full Health or mutation.
 
 ## 056 — Focused Calendar corrections (2026-11-01)
 

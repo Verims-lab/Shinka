@@ -158,6 +158,7 @@ export async function handleDailyMessageRequest(req, createClient, dependencies 
     const result = await dailyMessageOperation(createClient(req), body, { ...dependencies, trace });
     return Response.json({ ...result, diagnostic: { requestId, stage: 'DAILY_READBACK', durationMs: Date.now() - started } });
   } catch (error) {
-    return Response.json({ error_code: error instanceof InternalError ? error.code : 'DAILY_OPERATION_FAILED', diagnostic: { ...healthReadDiagnostic(error, { stage, durationMs: Date.now() - started }), stage, requestId } }, { status: error instanceof InternalError ? error.status : 500 });
+    return Response.json({ error_code: error instanceof InternalError ? error.code : 'DAILY_OPERATION_FAILED', diagnostic: { ...healthReadDiagnostic(error, { stage, durationMs: Date.now() - started }), requestId },
+      ...(Number.isFinite(error?.retryAfterMs) && error.retryAfterMs >= 0 ? { retry_after_ms: error.retryAfterMs } : {}) }, { status: error instanceof InternalError ? error.status : 500 });
   }
 }

@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-056
+**Current BuildMarker:** Buildmarker-057
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 057 — Shared navigation and reopen recovery (2026-11-01)
+
+Preserve the lossless main/Test f2632f7 integration and 055/056 corrections. Generate Buildmarker-057 / HC-056.0 with recordBuild, retaining 053–057. Five existing Health mappings strengthen actual coverage; no new case IDs. Run required local quality/performance and Chromium/WebKit gates; preserve failed attempts and the inherited dependency High without waiver. Scope excludes live Full Health/scan, quota setup/reset, user/health mutation, DB cleanup, notification, main merge and publish. Existing-session targeted web reads do not prove APK process/lock/BFCache behavior.
 
 ## 056 — Focused Calendar corrections (2026-11-01)
 

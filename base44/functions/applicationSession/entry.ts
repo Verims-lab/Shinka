@@ -21,7 +21,8 @@ export default async function (req) {
     console.error('SESSION_FAILURE', JSON.stringify(diagnostic));
     // Unclassified read failures (e.g. 429 on the privacy read) are retryable
     // unavailability, never session invalidity.
-    return Response.json({ error_code: error instanceof InternalError ? error.code : 'SESSION_UNAVAILABLE', diagnostic },
+    return Response.json({ error_code: error instanceof InternalError ? error.code : 'SESSION_UNAVAILABLE', diagnostic,
+      ...(Number.isFinite(error?.retryAfterMs) && error.retryAfterMs >= 0 ? { retry_after_ms: error.retryAfterMs } : {}) },
       { status: error instanceof InternalError ? error.status : 503 });
   }
 }

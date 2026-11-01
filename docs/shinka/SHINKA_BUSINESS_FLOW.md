@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-056
+**Current BuildMarker:** Buildmarker-057
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -12,6 +12,12 @@
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 
+
+## 057 — Shared navigation and reopen recovery (2026-11-01)
+
+Cold/re-admission waits for current settings and session boundaries before mounting product flows; seal the old rendered scope immediately without sending logout. Passive same-session transient verification retains the ordinary view while disabling unverified admin privileges. Real 401/403 ends access. Retry-After applies to automatic and explicit session retries within the unchanged 15s total deadline; no unbounded retry.
+
+TEST_LIFECYCLE_UNAVAILABLE means admission could not be read, not proven logout/withdrawal. Home shows an initial or retained-view failure accordingly; explicit/paced foreground recovery reuses the normal immutable daily flow. A stale local pending wait may be retired after 20s; an obsolete response cannot restore a different session. Calendar PENDING is a separate saved intent: passive read only; no new ID, period write/delete or receipt cleanup. Tab scroll/month/drafts and theme remain unchanged.
 
 ## 056 — Focused Calendar corrections (2026-11-01)
 

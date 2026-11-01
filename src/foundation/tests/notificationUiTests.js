@@ -30,7 +30,7 @@ export const NOTIFICATION_UI_TESTS=[
   const old=location.href,f=notificationFixture();let requests=0;
   try{
    history.replaceState(history.state,'','/?date=2020-01-01&daily_message_id=old');
-   const request=async(...args)=>{check(args.length===0);requests++;return f.today();};
+   const request=async(...args)=>{check(args.length===1&&JSON.stringify(Object.keys(args[0]).sort())===JSON.stringify(['signal','timeoutMs'])&&args[0].signal instanceof AbortSignal&&args[0].timeoutMs>0&&args[0].timeoutMs<=20000,'only cancellation/deadline options; no URL-selected date or content');requests++;return f.today();};
    root.render(createElement(Home,{language:'en',request}));await until(()=>host.querySelector('[data-daily-id]'));
    check(requests===1&&f.tables.UserDailyMessage.length===1&&f.tables.UserDailyMessage[0].shinka_date==='2026-10-20');
    window.dispatchEvent(new Event('shinka-session-ended'));await until(()=>!host.querySelector('[data-daily-id]'));

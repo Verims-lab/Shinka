@@ -1,0 +1,169 @@
+{
+  "scope": "LOCAL_SYNTHETIC_AND_TARGETED_READ_ONLY_HOSTED_OBSERVATION",
+  "build": "Buildmarker-057",
+  "catalog": "HC-056.0",
+  "browsers": [
+    {
+      "engine": "chromium",
+      "version": "156.0.8078.4",
+      "tests": 787,
+      "passed": 787,
+      "failed": 0,
+      "pageErrors": [],
+      "inAppHealth": {
+        "PASS": 147,
+        "BLOCKED": 13
+      },
+      "saveListOpen": true,
+      "navigationCells": 108,
+      "loadedAssetNavigationCells": 108,
+      "actualAppReopen": {
+        "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+        "rows": [
+          {
+            "scenario": "settings-first",
+            "passed": true
+          },
+          {
+            "scenario": "session-first",
+            "passed": true
+          },
+          {
+            "scenario": "cold-readmission-no-early-product",
+            "passed": true
+          },
+          {
+            "scenario": "tab-return-Calendar",
+            "passed": true
+          },
+          {
+            "scenario": "tab-return-Pattern",
+            "passed": true
+          },
+          {
+            "scenario": "tab-return-Home",
+            "passed": true
+          },
+          {
+            "scenario": "you-and-back",
+            "passed": true
+          },
+          {
+            "scenario": "real-bfcache",
+            "status": "NOT_OBSERVED",
+            "passed": null
+          }
+        ]
+      },
+      "finalBoundaryRerun": {
+        "tests": 7,
+        "passed": 7,
+        "failed": 0,
+        "reason": "Final BFCache retry-cooldown reset and augmented synthetic restored-event assertion after full suite build; final server/type/lint/build/performance also rerun."
+      }
+    },
+    {
+      "engine": "webkit",
+      "version": "27.2",
+      "tests": 787,
+      "passed": 787,
+      "failed": 0,
+      "pageErrors": [],
+      "inAppHealth": {
+        "PASS": 147,
+        "BLOCKED": 13
+      },
+      "saveListOpen": true,
+      "navigationCells": 108,
+      "loadedAssetNavigationCells": 108,
+      "actualAppReopen": {
+        "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+        "rows": [
+          {
+            "scenario": "settings-first",
+            "passed": true
+          },
+          {
+            "scenario": "session-first",
+            "passed": true
+          },
+          {
+            "scenario": "cold-readmission-no-early-product",
+            "passed": true
+          },
+          {
+            "scenario": "tab-return-Calendar",
+            "passed": true
+          },
+          {
+            "scenario": "tab-return-Pattern",
+            "passed": true
+          },
+          {
+            "scenario": "tab-return-Home",
+            "passed": true
+          },
+          {
+            "scenario": "you-and-back",
+            "passed": true
+          },
+          {
+            "scenario": "real-bfcache",
+            "status": "NOT_OBSERVED",
+            "passed": null
+          }
+        ]
+      },
+      "finalBoundaryRerun": {
+        "tests": 7,
+        "passed": 7,
+        "failed": 0,
+        "reason": "Final BFCache retry-cooldown reset and augmented synthetic restored-event assertion after full suite build; final server/type/lint/build/performance also rerun."
+      }
+    }
+  ],
+  "healthDelta": {
+    "added": 0,
+    "updated": 5,
+    "removed": 0
+  },
+  "physicalDevice": "NOT_RUN",
+  "realBFCache": "NOT_OBSERVED",
+  "hostedMutations": "NOT_RUN",
+  "hostedFullHealth": "NOT_RUN",
+  "hostedSecurityScan": "NOT_RUN",
+  "quality": {
+    "cleanInstall": "PASS",
+    "dependencyTree": "PASS",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS",
+    "repoHealth": "PASS",
+    "lastFive": "PASS",
+    "performance": "PASS",
+    "dependencySecurity": {
+      "status": "FAIL_OPEN_INHERITED",
+      "critical": 0,
+      "high": 1,
+      "moderate": 8
+    }
+  },
+  "commands": [
+    "npm ci",
+    "npm ls --all",
+    "npm audit --json",
+    "npm run security:deps",
+    "npm run typecheck",
+    "npm run lint",
+    "npm run build",
+    "npm run health:repo",
+    "node scripts/recordBuild.mjs --check",
+    "FOUNDATION_BROWSER=chromium npm run test:foundation",
+    "FOUNDATION_BROWSER=webkit npm run test:foundation",
+    "FOUNDATION_BROWSER=<engine> FOUNDATION_TEST_IDS=SS14,SS15,DU07,DU08,DU09,NU03,OF03 npm run test:foundation",
+    "node scripts/verifySessionStability.mjs",
+    "verifyNativeEntries(process.cwd())",
+    "node scripts/measureMaintenance.mjs /private/tmp/shinka-057/performance-final",
+    "checkReopenNavigation(browser,origin,directory,{baseline,visualAssets:true}) via isolated canonical harness; baseline component from f2632f7"
+  ]
+}

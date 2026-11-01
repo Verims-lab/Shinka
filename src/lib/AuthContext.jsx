@@ -1,12 +1,19 @@
 import { createContext, useState, useContext, useEffect, useCallback, useRef, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
 import { safeAuthError, classifySessionFailure, AUTH_ERROR_CODES } from "@/foundation/authErrors";
-import { createSessionCoalescer, waitForSessionRetry, boundedSessionRead, SESSION_READ_TIMERS } from "@/lib/sessionCheck";
+import { createSessionCoalescer, waitForSessionRetry, boundedSessionRead, SESSION_READ_TIMERS, SESSION_READ_BUDGET_MS } from "@/lib/sessionCheck";
 import { PRIVACY_SIGNAL, privacyRecoveryStore } from '@/services/privacyService';
 import { queryClientInstance } from '@/lib/query-client';
 import { applyAppTheme } from '@/lib/appTheme';
 
+import { healthReadDiagnostic } from '../../base44/shared/healthReadDiagnostics.js';
+import { retryAfterMs } from '../../base44/shared/healthReadRetry.js';
+
 const AuthContext = createContext(null);
+const retryHint = (error, now) => {
+  const hint = error?.response?.data?.retry_after_ms ?? error?.data?.retry_after_ms ?? retryAfterMs(error, now);
+  return Number.isFinite(hint) && hint >= 0 ? hint : 0;
+};
 const SESSION_TIMING = { now: () => Date.now(), every: (fn, ms) => window.setInterval(fn, ms), cancel: id => window.clearInterval(id) };
 // Production uses the existing SDK and browser document/events. Embedded Health
 // fixtures inject their own event scope and detached theme document to avoid
@@ -21,8 +28,9 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
   const [authError, setAuthError] = useState(null);
   const [authChecked, setAuthChecked] = useState(false);
   const [appPublicSettings, setAppPublicSettings] = useState(null);
+  const [publicSettingsDiagnostic, setPublicSettingsDiagnostic] = useState(null);
   const generation = useRef(0), appGeneration = useRef(0), signedOut = useRef(false), refused = useRef(false);
-  const privacyVersion = useRef(null);
+  const privacyVersion = useRef(null), retryNotBefore = useRef(0);
   const retryController = useRef(null), settingsController = useRef(null);
   useEffect(() => {
     if (!isAuthenticated || isLoadingAuth || isLoadingPublicSettings || authError) applyAppTheme(null, themeDocument);
@@ -30,8 +38,8 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
 
   const verifySession = useCallback(async () => {
     // A platform membership refusal stays authoritative until the next checkAppState.
-    if (signedOut.current || refused.current) return false;
-    const ticket = ++generation.current;
+    if (signedOut.current || refused.current || sessionTiming.now() < retryNotBefore.current) return false;
+    const ticket = ++generation.current, started = sessionTiming.now();
     retryController.current?.abort();
     const controller = new AbortController(); retryController.current = controller;
     setIsRefreshingAuth(true);
@@ -42,17 +50,21 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
           if (controller.signal.aborted || ticket !== generation.current) return false;
           try { return await client.functions.invoke('applicationSession', {}); }
           catch (error) {
-            if (attempt >= 2 || classifySessionFailure(error) === "INVALID" || ticket !== generation.current) throw error;
-            if (!await sessionWait(700 * (attempt + 1),controller.signal)) return false;
+            const status=error?.status ?? error?.response?.status;
+            const delay = Math.max(700 * (attempt + 1), retryHint(error, sessionTiming.now()));
+            if (attempt >= 2 || classifySessionFailure(error) === "INVALID" || (status>=400&&status<500&&status!==429) || ticket !== generation.current || delay+250>=SESSION_READ_BUDGET_MS-(sessionTiming.now()-started)) throw error;
+            if (!await sessionWait(delay,controller.signal)) return false;
           }
         }
       }, controller.signal, sessionTimers);
+      if(sessionTiming.now()-started>=SESSION_READ_BUDGET_MS)throw Object.assign(new Error(),{code:'TIMEOUT'});
       const currentUser = response?.data;
       if (currentUser?.authority !== 'BASE44_NATIVE_V1' || !['admin','user'].includes(currentUser?.role)) throw new Error('APPLICATION_SESSION_UNVERIFIED');
       if (ticket !== generation.current) return false;
       if (!currentUser?.id) throw new Error("AUTH_SESSION_REQUIRED");
-      if (privacyVersion.current && privacyVersion.current !== `${currentUser.id}:${currentUser.privacyRevision || ''}`) events.dispatchEvent(new Event('shinka-health-access-changed'));
+      if (privacyVersion.current && privacyVersion.current !== `${currentUser.id}:${currentUser.privacyRevision || ''}`) events.dispatchEvent(new Event(privacyVersion.current.startsWith(`${currentUser.id}:`) ? 'shinka-health-access-changed' : 'shinka-session-ended'));
       privacyVersion.current = `${currentUser.id}:${currentUser.privacyRevision || ''}`;
+      retryNotBefore.current = 0;
       setUser(currentUser); setIsAuthenticated(true); setAuthError(null);
       return true;
     } catch (error) {
@@ -60,11 +72,12 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
       if (classifySessionFailure(error) === "INVALID") {
         events.dispatchEvent(new Event('shinka-session-ended'));
         setUser(null); setIsAuthenticated(false);
-        setAuthError({ type: "auth_required", code: safeAuthError(error, "session") });
+        setAuthError({ type: "auth_required", code: safeAuthError(error, "session"), diagnostic:healthReadDiagnostic(error,{stage:"SESSION_AUTH_LIFECYCLE",durationMs:sessionTiming.now()-started}) });
       } else {
+        retryNotBefore.current = sessionTiming.now() + retryHint(error, sessionTiming.now());
         // Transient: no logout or login redirect. authError blocks isAdmin, so a
         // previously seen role grants no new admin operation until re-verified.
-        setAuthError({ type: "session_unverified", code: AUTH_ERROR_CODES.SESSION_FAILED });
+        setAuthError({ type: "session_unverified", code: AUTH_ERROR_CODES.SESSION_FAILED, diagnostic:healthReadDiagnostic(error,{stage:"SESSION_AUTH_LIFECYCLE",durationMs:sessionTiming.now()-started}) });
       }
       return false;
     } finally {
@@ -74,18 +87,21 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
         setIsLoadingAuth(false); setIsRefreshingAuth(false); setAuthChecked(true);
       }
     }
-  }, [client, sessionWait, sessionTimers, events]);
+  }, [client, sessionWait, sessionTimers, sessionTiming, events]);
   const coalescer = useMemo(() => createSessionCoalescer(verifySession, { now: sessionTiming.now }), [verifySession, sessionTiming]);
   const checkUserAuth = coalescer.check;
 
   const checkAppState = useCallback(async () => {
     const ticket = ++generation.current;
     retryController.current?.abort();
-    coalescer.reset(); signedOut.current = false; refused.current = false;
+    coalescer.reset(); retryNotBefore.current = 0; signedOut.current = false; refused.current = false;
     setUser(null); setIsAuthenticated(false); setAuthChecked(false); setAuthError(null);
     setIsLoadingAuth(true); setIsRefreshingAuth(false);
-    events.dispatchEvent(new Event('shinka-health-access-changed'));
-    setIsLoadingPublicSettings(true);
+    // Seal the old rendered scope before React commits the cold verification.
+    // No logout request: passive same-session verification still retains data.
+    queryClientInstance.clear();events.dispatchEvent(new Event('shinka-session-ended'));
+    setIsLoadingPublicSettings(true);setPublicSettingsDiagnostic(null);
+    const settingsStarted=sessionTiming.now();
     // Settings and session verification are independent reads: run them in
     // parallel. App renders nothing until both settle; a membership refusal
     // cancels (generation bump) any session result that arrived first.
@@ -96,9 +112,11 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
     try {
       const settings = await boundedSessionRead(() => client.app.getPublicSettings(), settingsAbort.signal, sessionTimers);
       if (appTicket !== appGeneration.current) return;
+      if (sessionTiming.now()-settingsStarted >= SESSION_READ_BUDGET_MS) throw Object.assign(new Error(), {code:'TIMEOUT'});
       setAppPublicSettings(settings);
     } catch (error) {
       if (appTicket !== appGeneration.current) return;
+      setPublicSettingsDiagnostic(healthReadDiagnostic(error,{stage:"PUBLIC_SETTINGS",durationMs:sessionTiming.now()-settingsStarted}));
       // Preserve the platform membership boundary without surfacing its payload.
       if (error?.status === 403 && error?.data?.extra_data?.reason === "user_not_registered") {
         refused.current = true; generation.current++; coalescer.reset();
@@ -113,14 +131,14 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
       if (appTicket === appGeneration.current) setIsLoadingPublicSettings(false);
     }
     await session;
-  }, [client, checkUserAuth, coalescer, sessionTimers, events]);
+  }, [client, checkUserAuth, coalescer, sessionTimers, sessionTiming, events]);
   useEffect(() => {
     void checkAppState();
     return () => { generation.current++; appGeneration.current++; settingsController.current?.abort(); retryController.current?.abort(); coalescer.reset(); };
   }, [checkAppState, coalescer]);
   useEffect(() => {
     const changed = () => { queryClientInstance.clear(); applyAppTheme(null, themeDocument); };
-    const ended = () => applyAppTheme(null, themeDocument);
+    const ended = () => { queryClientInstance.clear(); applyAppTheme(null, themeDocument); };
     events.addEventListener('shinka-session-ended', ended);
     const external = event => {
       if (event.key !== PRIVACY_SIGNAL) return;
@@ -139,18 +157,20 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
     const restore = event => {
       if (!event.persisted) return;
       // Loading (not logged-out) while re-verifying, so routes never flash login.
-      generation.current++; queryClientInstance.clear(); setUser(null); setIsAuthenticated(false); setIsLoadingAuth(true); coalescer.reset();
+      generation.current++; queryClientInstance.clear(); setUser(null); setIsAuthenticated(false); setIsLoadingAuth(true); coalescer.reset(); retryNotBefore.current = 0;
       retryController.current?.abort();
-      events.dispatchEvent(new Event('shinka-health-access-changed'));
+      events.dispatchEvent(new Event('shinka-session-ended'));
       void checkUserAuth();
     };
     events.addEventListener('pageshow', restore);
     events.addEventListener("focus", refresh);
+    events.addEventListener("online", refresh);
     document.addEventListener("visibilitychange", refresh);
     const timer = sessionTiming.every(refresh, 60000);
     return () => {
       events.removeEventListener('pageshow', restore);
       events.removeEventListener("focus", refresh);
+      events.removeEventListener("online", refresh);
       document.removeEventListener("visibilitychange", refresh);
       sessionTiming.cancel(timer);
     };
@@ -171,7 +191,7 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
   // One frontend authority for both the profile entry and AdminGate.
   const isAdmin = authChecked && isAuthenticated && !isLoadingPublicSettings && !isLoadingAuth && !isRefreshingAuth && !authError && user?.role === "admin";
   return <AuthContext.Provider value={{ user, isAuthenticated, isAdmin, isLoadingAuth, isRefreshingAuth, isLoadingPublicSettings, authError,
-    appPublicSettings, authChecked, logout, navigateToLogin, checkUserAuth, checkAppState }}>{children}</AuthContext.Provider>;
+    appPublicSettings, publicSettingsDiagnostic, authChecked, logout, navigateToLogin, checkUserAuth, checkAppState }}>{children}</AuthContext.Provider>;
 };
 export const useAuth = () => {
   const context = useContext(AuthContext);

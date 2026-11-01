@@ -1,3 +1,5 @@
+import { checkReopenApp } from './checkReopenApp.mjs';
+import { checkReopenNavigation } from './checkReopenNavigation.mjs';
 import { checkCalendarCorrections } from './checkCalendarCorrections.mjs';
 import { verifyCalendarEntitySdk } from './verifyCalendarEntitySdk.mjs';
 import { checkOnboardingCorrections } from './checkOnboardingCorrections.mjs';
@@ -66,6 +68,7 @@ try {
   server=createServer(async(req,res)=>{
     try {
       const pathname=new URL(req.url,"http://localhost").pathname;
+      if(pathname==='/fixture-away'){res.setHeader('Content-Type','text/html');res.end('<!doctype html><title>Local history fixture</title><p>Local history fixture</p>');return;}
       if(!pathname.startsWith("/assets/")){res.setHeader("Content-Type","text/html");res.setHeader("X-Frame-Options","DENY");res.end(html);return;}
       const file=path.resolve(output,`.${pathname}`);
       if(!file.startsWith(`${output}${path.sep}`)){res.writeHead(403).end();return;}
@@ -181,6 +184,8 @@ try {
     productionRouting.push({session:`${session}-top-level-probe`,passed:await page.locator('[data-onboarding-state]').getAttribute('data-onboarding-state')==='UNAUTHENTICATED_SIGN_IN'});
   }
   const previewProbes = probeBundle.measurements.map(probe=>({probe,passed:['READY','MEASURED'].includes(probe.state)}));
+  const reopenApp = await checkReopenApp(browser,origin);
+  const reopenNavigation = await checkReopenNavigation(browser,origin,process.env.FOUNDATION_REOPEN_DIR);
   const startupRoutes = await checkStartupRoutes(page, origin);
   const productNavigation = await checkProductNavigation(page, origin);
   const adminNavigation = await checkAdminNavigation(page, origin, process.env.FOUNDATION_ADMIN_DIR);
@@ -202,7 +207,7 @@ try {
     const audit=await page.evaluate(()=>({registry:window.__healthAuditRegistry,report:window.__savedHealthReport}));
     await writeHealthAudit(root,process.env.FOUNDATION_AUDIT_DIR,audit.registry,audit.report,results);
   }
-  console.log(JSON.stringify({calendarCorrections,calendarContinuity,preferenceSheets,appTheme,onboardingPresentation,onboardingClosure,startupRoutes,productNavigation,healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,security028,notifications030,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
+  console.log(JSON.stringify({reopenApp,reopenNavigation,calendarCorrections,calendarContinuity,preferenceSheets,appTheme,onboardingPresentation,onboardingClosure,startupRoutes,productNavigation,healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,security028,notifications030,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
   if(appTheme.some(r=>!r.passed)||mobileExperience.some(r=>!r.passed)||mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||calendarHealth.some(c=>c.status!=="PASS")||adminTestHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
   }
   }

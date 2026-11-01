@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-056
+**Current BuildMarker:** Buildmarker-057
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
