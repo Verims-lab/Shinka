@@ -10,6 +10,7 @@ const SAFE_CODES = new Set([
   'CALENDAR_HISTORY_LIMIT', 'CALENDAR_READBACK_CONFLICT', 'CALENDAR_OPERATION_FAILED', 'CALENDAR_MONTH_INVALID',
   'PERIOD_DATE_REQUIRED', 'PERIOD_DATE_INVALID', 'PERIOD_START_FUTURE', 'PERIOD_DUPLICATE', 'PERIOD_CONFLICT',
   'PERIOD_NOT_FOUND', 'CYCLE_RANGE_DECISION_REQUIRED', 'WRITE_CONFLICT', 'ACTION_CONFLICT', 'DUPLICATE_OWNER_STATE',
+  'CALENDAR_ACTION_INVALID', 'INVALID_REQUEST',
 ]);
 export const isCalendarPrivacyError = productPrivacyError;
 // A successful transport alone never confirms the requested visible observation.
@@ -39,6 +40,11 @@ export async function calendarRequest(action, payload = {}, client = base44, tim
       (value.recovery != null && (typeof value.recovery.action_id !== 'string' || !/^[a-zA-Z0-9_-]{16,80}$/.test(value.recovery.action_id) || !/^[a-f0-9]{64}$/.test(value.recovery.revision) || !isCalendarDate(value.recovery.date) || !['add','edit','delete'].includes(value.recovery.operation) || (value.recovery.operation !== 'add' && (typeof value.recovery.period_id !== 'string' || !value.recovery.period_id)))) ||
       (value.state === 'RECOVERY_REQUIRED' && (!value.recovery || value.writable || value.starts.length || value.recordedDays.length || value.predictedDays.length)) ||
       (value.pendingReview === true && value.predictedDays.length > 0) ||
+      (value.checkedAction != null && (value.checkedAction.action_id !== payload.action_id || !['ABSENT','PENDING','APPLIED','CONFLICT'].includes(value.checkedAction.status) ||
+        (['PENDING','APPLIED'].includes(value.checkedAction.status) && (!['add','edit','delete'].includes(value.checkedAction.operation) ||
+          value.checkedAction.revision !== payload.revision || !isCalendarDate(value.checkedAction.date) ||
+          (value.checkedAction.operation !== 'add' && !value.checkedAction.period_id))))) ||
+      (action === 'read' && payload.action_id && value.state !== 'CONSENT_REQUIRED' && !value.checkedAction) ||
       (payload.month && value.month !== payload.month) ||
       (value.state === 'CONSENT_REQUIRED' && (value.starts.length || value.recordedDays.length || value.predictedDays.length)) ||
       (action !== 'read' && value.mutationConfirmed !== true)) throw Object.assign(new Error(), { code: 'CALENDAR_READBACK_CONFLICT' });

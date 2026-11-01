@@ -2,12 +2,20 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-055
+**Current BuildMarker:** Buildmarker-056
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
+
+
+## 056 — Focused Calendar corrections (2026-11-01)
+
+Main b8ed88c was fast-forwarded into clean Test before work, preserving 055 and Base44 changes. The focused Calendar package hides only its Refresh action, scopes native date sizing, makes unknown deletion truthful and adds owner-scoped read-only status reconciliation before explicit same-intent continuation. Published frontend was observed as 055. Web tables showed two PENDING receipts and no current period rows for their owners; logs exposed calendar 503/500 summaries but no historical failing substage. No live mutation or historical-root-cause claim. [Single report and evidence](reports/SHINKA_CALENDAR_FIX_056.md).
+
+
+Final local execution: Chromium/WebKit 781/781 each, Calendar matrix 20/20 each (plus final Chromium focus rerun), zero page errors. Local synthetic Health 147 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL with save/list/open verified. SDK 0.8.54/0.8.57 loopback and quality/performance/history gates passed. Dependency security remains 1 High / 8 Moderate under the unchanged patch-age floor. Live mutation/Full Health/scan and physical acceptance remain NOT_RUN. Detailed receipts and initial failures are retained in the 056 report.
 
 
 ## 055 — Four focused onboarding corrections (2026-11-01)

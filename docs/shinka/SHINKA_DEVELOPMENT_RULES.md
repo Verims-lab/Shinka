@@ -2,12 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-055
-**Last Updated:** 2026-10-30
+**Current BuildMarker:** Buildmarker-056
+**Last Updated:** 2026-11-01
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
+
+
+## 056 — Focused Calendar corrections (2026-11-01)
+
+Advance once to Buildmarker-056 / HC-055.0 via recordBuild; active history is 052–056. Four existing Calendar/privacy/local UI Health cases are strengthened and H05-009 retains the same strict content policy for 056, no new/deleted case IDs. Preserve 052–055, manual theme, deferred backend findings and the open 055 dependency gate. Only targeted read-only hosted diagnosis is authorized; period writes/tests use isolated fixtures. No live Full Health/Security scan/cleanup/reset/notification/main merge/publish. Required full local browser, server, quality and performance gates remain unchanged; Test-only delivery.
 
 
 ## 054 — Scoped onboarding visual layering

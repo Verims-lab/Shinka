@@ -1,3 +1,4 @@
+import { handleCalendarRequest } from '../../../base44/shared/calendarOperation.js';
 import { check, rejects } from './dataModelTests';
 import { nativeFixture } from './nativeFixture';
 import { createCalendarController } from '@/features/calendar/calendarController';
@@ -6,6 +7,81 @@ import { withTestClock, testEventTurn } from './testClock';
 const controller=f=>createCalendarController((action,body)=>f.cal({action,...body}));
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CALENDAR_RECOVERY_TESTS = [
+ ['RC10','Native failures preserve safe period/receipt/readback stage and request ID without raw provider details',async()=>{
+   for(const [name,method,stage] of [['UserCalendarAction','create','CALENDAR_RECEIPT_CREATE'],['UserPeriodRecord','create','CALENDAR_PERIOD_WRITE'],['UserCalendarAction','update','CALENDAR_RECEIPT_FINISH']]) {
+     const f=nativeFixture(),view=await f.cal();f.state.before=async c=>{if(c.name===name&&c.method===method)throw {response:{status:503,data:{private_detail:'PRIVATE_SENTINEL'}},message:'PRIVATE_SENTINEL'};};
+     const response=await handleCalendarRequest(new Request('https://fixture.invalid',{method:'POST',body:JSON.stringify({action:'add',date:'2026-10-01',action_id:crypto.randomUUID(),revision:view.revision})}),()=>f.client(),{native:true,now:f.now});
+     const data=await response.json();check(data.diagnostic.stage===stage&&data.diagnostic.httpStatus===503&&data.diagnostic.durationMs>=0&&/^[a-f0-9-]{36}$/.test(data.diagnostic.requestId));
+     check(!JSON.stringify(data).includes('PRIVATE_SENTINEL')&&!JSON.stringify(data).includes('2026-10-01'));
+   }
+ }],
+ ['RC06','Read-only receipt checks distinguish ABSENT/PENDING/APPLIED/CONFLICT for add/edit/delete without mutating',async()=>{
+   for(const operation of ['add','edit','delete'])for(const fault of ['before','after','applied']) {
+     const f=nativeFixture();if(operation!=='add')await f.change('add',{date:'2026-10-01'});
+     const body={action:operation,action_id:crypto.randomUUID(),revision:(await f.cal()).revision,...(operation!=='add'?{period_id:f.tables.UserPeriodRecord[0].id}:{}),...(operation!=='delete'?{date:operation==='edit'?'2026-10-02':'2026-10-01'}:{})};
+     const read=()=>f.cal({action:'read',action_id:body.action_id,revision:body.revision});
+     check((await read()).checkedAction.status==='ABSENT');
+     if(fault!=='applied')f.once(fault,c=>c.name==='UserPeriodRecord'&&c.method===({add:'create',edit:'updateMany',delete:'deleteMany'}[operation]));
+     if(fault==='applied')await f.cal(body);else await rejects(()=>f.cal(body));
+     const before=JSON.stringify(f.tables),calls=f.state.calls.length,view=await read();
+     check(view.checkedAction.status===(fault==='applied'?'APPLIED':'PENDING')&&view.checkedAction.action_id===body.action_id);
+     check(JSON.stringify(f.tables)===before&&f.state.calls.slice(calls).every(c=>c.method==='filter'),'status check wrote');
+     const writes=()=>f.state.calls.filter(c=>c.name==='UserPeriodRecord'&&c.method!== 'filter').length;
+     const count=writes();await f.cal({action:'resume',action_id:body.action_id,revision:body.revision});
+     check(writes()===count+(fault==='before'?1:0),'repeated completed period mutation');
+     check((await read()).checkedAction.status==='APPLIED');
+     check((await f.cal({action:'read',action_id:body.action_id,revision:'f'.repeat(64)})).checkedAction.status==='CONFLICT');
+   }
+ }],
+ ['RC07','Passive read confirms lost APPLIED response without a write; pending check resumes once despite double tap and foreground events',async()=>{
+   for(const fault of ['applied','pending']) {
+     const f=nativeFixture();await f.change('add',{date:'2026-10-01'});let first=true;const calls=[];
+     const c=createCalendarController(async(action,body)=>{calls.push({action,...body});if(action!=='read'&&first){first=false;if(fault==='pending')f.once('after',x=>x.name==='UserPeriodRecord'&&x.method==='deleteMany');await f.cal({action,...body});throw {code:'NETWORK'};}return f.cal({action,...body});});
+     try {
+       await c.load();c.select('2026-10-01');c.deletePrompt(true);await c.submit('delete');check(c.getSnapshot().outcome==='unknown'&&c.getSnapshot().confirmDelete);
+       const id=calls.find(x=>x.action==='delete').action_id;
+       if(fault==='applied')await c.refresh();else await Promise.all([c.retry(),c.retry(),c.refresh({background:true})]);
+       check(c.getSnapshot().success==='deleted'&&!c.getSnapshot().confirmDelete&&!c.getSnapshot().busy&&c.getSnapshot().outcome==='confirmed');
+       check(calls.filter(x=>x.action!=='read').length===(fault==='applied'?1:2));check(calls.filter(x=>x.action!=='read').every(x=>x.action_id===id));
+       check(f.state.calls.filter(x=>x.name==='UserPeriodRecord'&&x.method==='deleteMany').length===1);
+       c.select('2026-10-05');check(c.getSnapshot().selected==='2026-10-05'&&c.getSnapshot().outcome===null);
+     }finally{c.dispose();}
+   }
+ }],
+ ['RC08','Status read gates and conflicts never grant write authority; validation rejection remains editable',async()=>{
+   const f=nativeFixture(),c=controller(f);
+   try {await c.load();c.select('2026-10-01');await c.submit('add');c.select('2026-10-08');await c.submit('add');check(c.getSnapshot().error==='PERIOD_CONFLICT'&&c.getSnapshot().outcome==='rejected');c.select('2026-09-01');await c.submit('add');check(c.getSnapshot().success==='saved'&&!c.getSnapshot().error);}finally{c.dispose();}
+   const receipt=f.tables.UserCalendarAction[0],body={action:'read',action_id:receipt.action_id,revision:receipt.base_revision};
+   check((await f.cal(body)).checkedAction.status==='CONFLICT','later revision silently accepted');
+   const before=JSON.stringify(f.tables);await rejects(()=>f.cal({...body,user_id:'ownerB'}),'FORGED_OWNER');
+   f.tables.UserProfile[0].account_status='INACTIVE';await rejects(()=>f.cal(body),'ACTIVE_ACCOUNT_REQUIRED');f.tables.UserProfile[0].account_status='ACTIVE';
+   f.tables.UserHealthConsent[0].consent_status='WITHDRAWN';f.tables.UserHealthConsent[0].withdrawn_at='2026-10-20T13:00:00Z';
+   const hidden=await f.cal(body);check(hidden.state==='CONSENT_REQUIRED'&&!hidden.checkedAction&&!hidden.starts.length);
+   check(before.includes(receipt.action_id)&&f.tables.UserCalendarAction.length===2);
+   const other=nativeFixture();let writeCalls=0;
+   const d=createCalendarController(async(action,body)=>{if(action!=='read'){writeCalls++;throw {code:'NETWORK'};}return other.cal({action,...body});});
+   try {
+     await d.load();d.select('2026-09-01');await d.submit('add');
+     other.once('before',x=>x.name==='UserPeriodRecord'&&x.method==='create');await rejects(()=>other.change('add',{date:'2026-10-01'}));
+     await d.retry();check(writeCalls===1&&other.tables.UserCalendarAction.length===1&&d.getSnapshot().error==='CALENDAR_ACTION_CONFLICT','competing pending intent caused another write');
+   }finally{d.dispose();}
+ }],
+ ['RC09','Explicit reconciliation shares the 20s budget, ignores old account check and never writes after failed/budget-exhausted status',async()=>{
+   for(const mode of ['timeout','exhausted','account']) {
+     const f=nativeFixture(),view=await f.cal();let now=0,writes=0;
+     /** @type {(value:any)=>void} */
+     let release=()=>{};
+     const c=createCalendarController(async(action,body)=>{
+       if(action!=='read'){writes++;throw {code:'NETWORK'};}
+       if(!body.action_id)return view;
+       if(mode==='timeout')throw {code:'TIMEOUT'};
+       if(mode==='account')return new Promise(resolve=>{release=resolve;});
+       now=20001;return {...view,checkedAction:{action_id:body.action_id,status:'ABSENT'}};
+     },()=>now);
+     try{await c.load();c.select('2026-10-01');await c.submit('add');const checkWork=c.retry();if(mode==='account'){c.invalidate();release(view);}await checkWork;check(writes===1&&!c.getSnapshot().busy&&!c.getSnapshot().checking);check(mode==='account'?c.getSnapshot().value===null:c.getSnapshot().outcome==='unknown');}finally{c.dispose();}
+   }
+ }],
+
  ['RC01','Past/today native save readback/reopen and duplicate/near-date rejection preserve exact counts',async()=>{
    const f=nativeFixture(),c=controller(f);
    try {
@@ -23,7 +99,7 @@ export const CALENDAR_RECOVERY_TESTS = [
    for(const fault of ['no-write','lost-response']) {
      const f=nativeFixture();let first=true;const ids=[];
      const c=createCalendarController(async(action,body)=>{if(action==='read')return f.cal({action,...body});ids.push(body.action_id);if(first){first=false;if(fault==='lost-response')await f.cal({action,...body});throw {code:'NETWORK'};}return f.cal({action,...body});});
-     try{await c.load();c.select('2026-10-01');await c.submit('add');check(c.getSnapshot().outcome==='unknown'&&!c.getSnapshot().busy&&!c.getSnapshot().success);check(f.tables.UserPeriodRecord.length===(fault==='no-write'?0:1));await c.retry();check(ids.length===2&&ids[0]===ids[1]&&c.getSnapshot().success==='saved'&&f.tables.UserPeriodRecord.length===1&&f.tables.UserCalendarAction.length===1);}finally{c.dispose();}
+     try{await c.load();c.select('2026-10-01');await c.submit('add');check(c.getSnapshot().outcome==='unknown'&&!c.getSnapshot().busy&&!c.getSnapshot().success);check(f.tables.UserPeriodRecord.length===(fault==='no-write'?0:1));await c.retry();check(ids.length===(fault==='no-write'?2:1)&&(ids.length===1||ids[0]===ids[1])&&c.getSnapshot().success==='saved'&&f.tables.UserPeriodRecord.length===1&&f.tables.UserCalendarAction.length===1);}finally{c.dispose();}
    }
    for(const operation of ['add','edit','delete']) {
      const f=nativeFixture();if(operation!=='add')await f.change('add',{date:'2026-10-01'});
@@ -37,7 +113,7 @@ export const CALENDAR_RECOVERY_TESTS = [
    const f=nativeFixture();let hold=false,first=true;
    /** @type {(value:any)=>void} */
    let releaseRead;const oldView=await f.cal();
-   const c=createCalendarController(async(action,body)=>{if(action==='read'&&hold)return new Promise(resolve=>{releaseRead=resolve;});if(action!=='read'&&first){first=false;throw {code:'TIMEOUT'};}return f.cal({action,...body});});
+   const c=createCalendarController(async(action,body)=>{if(action==='read'&&hold){hold=false;return new Promise(resolve=>{releaseRead=resolve;});}if(action!=='read'&&first){first=false;throw {code:'TIMEOUT'};}return f.cal({action,...body});});
    try{await c.load();c.select('2026-10-01');await c.submit('add');hold=true;const read=c.refresh();check(c.getSnapshot().loading);await c.retry();check(!c.getSnapshot().busy&&!c.getSnapshot().loading&&c.getSnapshot().success==='saved');releaseRead(oldView);await read;check(c.getSnapshot().value.starts.length===1);}finally{c.dispose();}
    let n=0;
    /** @type {(value:any)=>void} */

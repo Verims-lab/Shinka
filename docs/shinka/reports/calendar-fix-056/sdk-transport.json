@@ -1,0 +1,19 @@
+[
+  {
+    "id": "SDK03",
+    "status": "PASS",
+    "version": "0.8.54",
+    "requests": 6,
+    "scope": "ACTUAL_SDK_LOOPBACK_TRANSPORT_ONLY",
+    "hostedMutationVerified": false
+  },
+  {
+    "id": "SDK03",
+    "status": "PASS",
+    "version": "installed",
+    "requests": 6,
+    "scope": "ACTUAL_SDK_LOOPBACK_TRANSPORT_ONLY",
+    "hostedMutationVerified": false,
+    "resolvedVersion": "0.8.57"
+  }
+]

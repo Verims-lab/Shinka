@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-055
+**Current BuildMarker:** Buildmarker-056
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -11,6 +11,13 @@
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
+
+
+## 056 — Focused Calendar corrections (2026-11-01)
+
+Calendar recovery first reads the owner-scoped action receipt and current admitted snapshot. APPLIED requires exact result revision and matching period outcome; it confirms without another mutation. PENDING/ABSENT may continue only from the user's explicit action, keeping the original intent. Passive/foreground reads never write. Status check and at most one continuation share the existing 20-second total budget; exhausted/unavailable checks remain unresolved. Changed revisions/competing intent/validation are explicit conflict/field outcomes, not automatic rollback, a new ID or silent receipt cancellation.
+
+Reload finds durable PENDING through the existing recovery projection. Completed receipts reopen as ordinary confirmed Calendar data; no old success is inferred from an absent receipt. Initial consent time/event recovery and withdrawn/ACTIVE/owner/deletion guards remain. Future dates, >=15-day spacing and OD-012 are unchanged.
 
 
 ## 055 — Focused onboarding continuation

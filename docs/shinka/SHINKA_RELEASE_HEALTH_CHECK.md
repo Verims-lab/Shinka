@@ -2,13 +2,23 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-055
+**Current BuildMarker:** Buildmarker-056
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-054.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-055.0; repository, synthetic and external evidence separated.
 
+
+
+## 056 — Focused Calendar corrections (2026-11-01)
+
+HC-055.0 changes **0 added / 5 updated / 0 removed** Health cases: H05-009 extends unchanged source/hash validation to 056; H08-004 adds RC06/RC10 receipt status and safe-stage regression; H08-007 adds RC07/RC09 passive confirmation, explicit continuation budget and account isolation; H12-027 adds RC08 validation/owner/withdrawal boundaries; H13-015 and serialized localRegressionRequirements map CU10 and checkCalendarCorrections. Catalog remains 186 / in-app 160 / local 12 / external 14. These tests use isolated stores; normal Full Health cannot create/delete live periods. H08-901 and H13-013 remain external.
+
+Actual commands/results, retained initial failed test expectations, SDK transport evidence and matched images are recorded in [056 execution](reports/SHINKA_CALENDAR_FIX_056.md). Historical 055 High is not waived; fresh dependency results remain a separate release gate.
+
+
+Final local execution: Chromium/WebKit 781/781 each, Calendar matrix 20/20 each (plus final Chromium focus rerun), zero page errors. Local synthetic Health 147 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL with save/list/open verified. SDK 0.8.54/0.8.57 loopback and quality/performance/history gates passed. Dependency security remains 1 High / 8 Moderate under the unchanged patch-age floor. Live mutation/Full Health/scan and physical acceptance remain NOT_RUN. Detailed receipts and initial failures are retained in the 056 report.
 
 
 ## 055 — Four onboarding corrections

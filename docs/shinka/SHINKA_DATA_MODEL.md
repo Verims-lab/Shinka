@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-055
+**Current BuildMarker:** Buildmarker-056
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
@@ -13,6 +13,11 @@
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
 
+
+
+## 056 — Focused Calendar corrections (2026-11-01)
+
+No entity or receipt field is added/removed. UserCalendarAction keeps native IDs, fingerprint, base/result revision, PENDING/APPLIED/CANCELLED and original grant time. The read-only checkedAction transport projection is not a stored entity: ABSENT carries action_id/status; known valid intent also carries operation/date/period_id (where required)/revision. APPLIED is returned only for exact current result revision and matching actual period outcome; malformed/competing/changed evidence stays conflict. Withdrawn consent exposes no receipt/date projection. Partial grants use the existing validated recovery intent. No tombstone/receipt cleanup or health migration is performed.
 
 
 ## 055 — No data/schema migration

@@ -1,3 +1,4 @@
+import { testEventTurn } from './testClock';
 import { createElement as h } from 'react';
 import { createRoot } from 'react-dom/client';
 import { flushSync } from 'react-dom';
@@ -29,7 +30,7 @@ export const MOBILE_INTERACTION_TESTS = [
   ['MI02', 'Calendar pending/rejected/unknown preserve confirmed view and replay one intent', async () => {
     let response = 'reject', mutations = [], pending;
     const c = createCalendarController(async (action, payload) => {
-      if (action === 'read') return view();
+      if (action === 'read') return { ...view(), ...(payload.action_id ? { checkedAction: { action_id: payload.action_id, status: 'ABSENT' } } : {}) };
       mutations.push(payload);
       if (response === 'reject') throw fail('PERIOD_CONFLICT');
       if (response === 'unknown') throw fail('TIMEOUT');
@@ -42,6 +43,8 @@ export const MOBILE_INTERACTION_TESTS = [
       const intent = mutations[1]; await c.refresh(); c.select('2026-10-04'); await c.submit('edit');
       check(mutations.length === 2 && c.getSnapshot().selected === '2026-10-03' && c.getSnapshot().outcome === 'unknown', 'unknown overwritten');
       response = 'confirmed'; pending = deferred(); const replay = c.retry();
+      check(c.getSnapshot().busy && c.getSnapshot().checking && c.getSnapshot().outcome === 'unknown', 'missing read-only check');
+      await testEventTurn();
       check(c.getSnapshot().busy && c.getSnapshot().outcome === 'pending' && !c.getSnapshot().success && c.getSnapshot().value.starts[0].date === '2026-10-01', 'optimistic save');
       check(JSON.stringify(mutations[2]) === JSON.stringify(intent), 'new intent on retry');
       pending.resolve({ ...view(), starts: [{id:'original',date:'2026-10-03'}], mutationConfirmed:true }); await replay;

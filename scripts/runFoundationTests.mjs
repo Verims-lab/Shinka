@@ -1,3 +1,5 @@
+import { checkCalendarCorrections } from './checkCalendarCorrections.mjs';
+import { verifyCalendarEntitySdk } from './verifyCalendarEntitySdk.mjs';
 import { checkOnboardingCorrections } from './checkOnboardingCorrections.mjs';
 import { verifyGeoNamesQuotaEntries } from './verifyGeoNamesQuotaEntries.mjs';
 import { checkPreferenceSheets } from './checkPreferenceSheets.mjs';
@@ -50,6 +52,7 @@ try {
   verifyDependencyRules();
   console.log(JSON.stringify(await verifyGeoNamesQuotaEntries(root)));
   console.log(JSON.stringify(await verifyDailyEntitySdk()));
+  console.log(JSON.stringify(await verifyCalendarEntitySdk()));
   const notifications030 = await verifyNotifications(root);
   const nativeEntries = await verifyNativeEntries(root);
   nativeEntries.deletion=await verifyTestDeletionEntry(root);
@@ -86,7 +89,9 @@ try {
     if(location.origin===origin)sessionStorage.setItem('shinka.browser-evidence.v1',JSON.stringify(bundle));
   },{bundle:probeBundle,origin});
   await page.evaluate(bundle=>window.__acceptBrowserEvidence(bundle),probeBundle);
-  if (process.env.FOUNDATION_CALENDAR_CONTINUITY_ONLY === '1') {
+  if (process.env.FOUNDATION_CALENDAR_CORRECTIONS_ONLY === '1') {
+    console.log(JSON.stringify({calendarCorrections:await checkCalendarCorrections(browser,origin,process.env.FOUNDATION_CALENDAR_DIR)}));
+  } else if (process.env.FOUNDATION_CALENDAR_CONTINUITY_ONLY === '1') {
     const calendarContinuity=await checkCalendarContinuity(page,origin);
     console.log(JSON.stringify({calendarContinuity,pageErrors},null,2));
   } else if (process.env.FOUNDATION_PREFERENCES_ONLY === '1') {
@@ -189,6 +194,7 @@ try {
   const privacyFlow = await checkPrivacyFlow(page, origin, process.env.FOUNDATION_PRIVACY_DIR);
   const calendarFlow = await checkCalendarFlow(page, origin, process.env.FOUNDATION_CALENDAR_DIR);
   const calendarContinuity = await checkCalendarContinuity(page,origin);
+  const calendarCorrections = await checkCalendarCorrections(browser,origin,process.env.FOUNDATION_CALENDAR_CORRECTIONS_DIR);
   const adminTestFlow = await checkAdminTestTools(page, origin, process.env.FOUNDATION_TEST_TOOLS_DIR);
   const inAppHealth=await checkInAppHealth(page,origin);
   const healthTiming=await checkHealthTiming(browser,origin);
@@ -196,7 +202,7 @@ try {
     const audit=await page.evaluate(()=>({registry:window.__healthAuditRegistry,report:window.__savedHealthReport}));
     await writeHealthAudit(root,process.env.FOUNDATION_AUDIT_DIR,audit.registry,audit.report,results);
   }
-  console.log(JSON.stringify({calendarContinuity,preferenceSheets,appTheme,onboardingPresentation,onboardingClosure,startupRoutes,productNavigation,healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,security028,notifications030,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
+  console.log(JSON.stringify({calendarCorrections,calendarContinuity,preferenceSheets,appTheme,onboardingPresentation,onboardingClosure,startupRoutes,productNavigation,healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,security028,notifications030,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
   if(appTheme.some(r=>!r.passed)||mobileExperience.some(r=>!r.passed)||mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||calendarHealth.some(c=>c.status!=="PASS")||adminTestHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
   }
   }

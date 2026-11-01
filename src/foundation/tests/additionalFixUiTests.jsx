@@ -55,7 +55,7 @@ export const ADDITIONAL_FIX_UI_TESTS=[
     control(`button[aria-label="${language==='tr'?'Sonraki ay':'Next month'}"]`).click();await wait(()=>control('button[data-calendar-date="2026-11-01"]'));
     check(!writes,'future month wrote');
     f.tables.UserPeriodRecord.push({id:'legacy-future',user_id:'ownerA',period_start_date:'2026-11-01'});
-    button(host,language==='tr'?'Yenile':'Refresh').click();await wait(()=>host.textContent.includes(language==='tr'?'Kayıtlı bir regl':'A recorded period'));
+    check(!button(host,language==='tr'?'Yenile':'Refresh'),'visible Calendar refresh');window.dispatchEvent(new Event('offline'));window.dispatchEvent(new Event('online'));await wait(()=>host.textContent.includes(language==='tr'?'Kayıtlı bir regl':'A recorded period'));
     control('button[data-calendar-date="2026-11-01"]').click();await testEventTurn(context.signal);
     check(button(host,language==='tr'?'Regl başlangıcını sil':'Delete period start')&&!dateInput().disabled,'future actual row cannot be repaired');
     type(host,'calendar-start-date','2026-10-20');await testEventTurn(context.signal);check(!control('button[type=submit]').disabled,'valid correction blocked');

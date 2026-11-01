@@ -5,12 +5,14 @@ import { validatePeriodChange, validatePeriodDate } from './calendarCalculation.
 import { resolveTimezone, serverLocalDate } from './onboardingValidation.js';
 import { completeCalendarGrant } from './nativeCalendarGrant.js';
 import { hashToolValue } from './adminTestPolicy.js';
+import { calendarResultMatches } from './calendarActionStatus.js';
 
 const fail = code => { throw new InternalError(code, 409); };
 const fingerprint = body => hashToolValue([body.action, body.period_id ?? null, body.date ?? null, body.health_consent === true]);
 // This receipt records intent/result, not a lock or an atomic commit. Dates are
 // health data: backend-only, owner/consent scoped, included in health cleanup.
-export async function nativeCalendarChange(client, principal, body, now) {
+export async function nativeCalendarChange(client, principal, body, now, stage = (_name) => {}) {
+  stage('CALENDAR_RECEIPT_READ');
   const owner = principal.id, entities = client.asServiceRole.entities;
   const journal = entities.UserCalendarAction;
   let receiptActionId = body.action_id;
@@ -43,20 +45,22 @@ export async function nativeCalendarChange(client, principal, body, now) {
   await assertDate();
   // Recover the same explicit initial grant after consent/event/period failure.
   if (receipt?.status === 'PENDING' && receipt.initial_grant && body.health_consent === true) {
+    stage('CALENDAR_GRANT');
     await completeCalendarGrant(client, owner, receipt, assertDate);
   }
+  stage('CALENDAR_SNAPSHOT');
   let state = await reader.confirmedSnapshot();
   const revision = await calendarRevision(state);
-  const sameResult = state => body.action === 'delete'
-    ? !state.periods.some(row => row.id === body.period_id)
-    : state.periods.filter(row => body.action === 'add' ? row.period_start_date === body.date : row.id === body.period_id && row.period_start_date === body.date).length === 1;
+  const sameResult = state => calendarResultMatches(state, { operation: body.action, period_id: body.period_id, desired_date: body.date });
   const finish = async state => {
+    stage('CALENDAR_READBACK');
     await assertDate();
     validateCalendarHealth(state, owner);
     if (!validateCalendarAccess(state, owner) || !sameResult(state)) fail('CALENDAR_READBACK_CONFLICT');
     await client.auth.me();
     const resultRevision = await calendarRevision(state);
     if ((await lookup())?.status !== 'PENDING') fail('CALENDAR_STATE_CHANGED');
+    stage('CALENDAR_RECEIPT_FINISH');
     await journal.update(receipt.id, { status: 'APPLIED', result_revision: resultRevision });
     const saved = await lookup();
     if (saved?.status !== 'APPLIED' || saved.result_revision !== resultRevision) fail('CALENDAR_READBACK_CONFLICT');
@@ -76,6 +80,7 @@ export async function nativeCalendarChange(client, principal, body, now) {
   validateCalendarHealth(state, owner);
   validatePeriodChange(state.periods, body.action, body.period_id, body.date, today);
   if (!receipt) {
+    stage('CALENDAR_RECEIPT_CREATE');
     await client.shinkaAssertWritable?.();
     await journal.create({ user_id: owner, action_id: body.action_id, fingerprint: digest, base_revision: revision,
       operation: body.action, ...(body.period_id ? { period_id: body.period_id } : {}), ...(body.date ? { desired_date: body.date } : {}),
@@ -89,14 +94,17 @@ export async function nativeCalendarChange(client, principal, body, now) {
   const rivals = await journal.filter({ user_id: owner, base_revision: revision, status: { $ne: 'CANCELLED' } }, 'id', 101);
   if (!Array.isArray(rivals) || rivals.length > 100 || rivals.some(row => row.user_id !== owner || row.fingerprint !== digest)) fail('CALENDAR_ACTION_CONFLICT');
   if (!consent) {
+    stage('CALENDAR_GRANT');
     await completeCalendarGrant(client, owner, receipt, assertDate);
     return finish(await reader.confirmedSnapshot());
   }
+  stage('CALENDAR_PREFLIGHT');
   state = await reader.confirmedSnapshot();
   if (await calendarRevision(state) !== revision) fail('CALENDAR_STATE_CHANGED');
   await client.shinkaAssertWritable?.();
   if ((await lookup())?.status !== 'PENDING') fail('CALENDAR_STATE_CHANGED');
   await assertDate();
+  stage('CALENDAR_PERIOD_WRITE');
   if (body.action === 'add') await entities.UserPeriodRecord.create({ user_id: owner, period_start_date: body.date });
   else {
     const before = state.periods.find(row => row.id === body.period_id);
@@ -109,6 +117,7 @@ export async function nativeCalendarChange(client, principal, body, now) {
       if (result?.success !== true || result.deleted !== 1) fail('CALENDAR_WRITE_UNCONFIRMED');
     }
   }
+  stage('CALENDAR_READBACK');
   const after = await reader.confirmedSnapshot();
   const competing = await journal.filter({ user_id: owner, base_revision: revision, status: { $ne: 'CANCELLED' } }, 'id', 101);
   if (!Array.isArray(competing) || competing.length > 100 || competing.some(row => row.user_id !== owner || row.fingerprint !== digest)) fail('CALENDAR_ACTION_CONFLICT');

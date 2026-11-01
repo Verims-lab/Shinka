@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-055
-**Last Updated:** 2026-10-30
+**Current BuildMarker:** Buildmarker-056
+**Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
 **Scope:** All source (client, backend, internal tooling).
@@ -36,6 +36,11 @@
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
+
+
+## 056 — Focused Calendar corrections (2026-11-01)
+
+Keep recovery inspection separate from native writes. A read status must not mutate a receipt, accept counts alone, or infer an operation's success from another intent. Preserve original payload and caller generation; stale account/read results cannot settle a new session. Read reconciliation and explicit continuation share one bounded budget. Synthetic tests must exercise real native handler/guards, failures before/after period writes, PENDING/APPLIED, and actual SDK HTTP envelopes. Native date fixes are selector-scoped, never global outline/border removal or overflow hiding.
 
 
 ## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)

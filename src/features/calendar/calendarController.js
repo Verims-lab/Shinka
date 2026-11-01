@@ -1,14 +1,35 @@
 import { PRODUCT_READ_MS, productFailureEvidence } from '@/services/productReadTransport';
 import { isCalendarDate } from '../../../base44/shared/onboardingValidation.js';
 import { isCalendarPrivacyError, assertCalendarMutation } from '@/services/calendarService';
+const isRejection = code => /^(PERIOD_|CALENDAR_(STATE_CHANGED|ACTION_CONFLICT|ACTION_INVALID|DATA_CONFLICT|ATOMIC_CAPABILITY_REQUIRED)|CYCLE_RANGE_DECISION_REQUIRED|INVALID_REQUEST|WRITE_CONFLICT|ACTION_CONFLICT|MAINTENANCE_)/.test(code || '');
 
 // Transient UI state only: no health values, receipts or dates in browser storage.
 export function createCalendarController(request, now = () => Date.now()) {
-  let state = { value: null, month: null, selected: '', editing: null, confirmDelete: false, consent: false, loading: false, busy: false, error: null, action: 'read', success: null, refreshError: null, readDiagnostic: null, outcome: null };
+  let state = { value: null, month: null, selected: '', editing: null, confirmDelete: false, consent: false, loading: false, busy: false, checking: false, error: null, action: 'read', success: null, refreshError: null, readDiagnostic: null, outcome: null };
   let generation = 0, disposed = false, mutationPending = null, retry = null, readPending = null;
   let ended = false, offline = false, startedAt = -Infinity, retryAt = -Infinity;
   const listeners = new Set();
   const set = patch => { if (!disposed) { state = { ...state, ...patch }; listeners.forEach(fn => fn()); } };
+  const confirm = (value, operation) => {
+    retry = null;
+    set({ value, month: value.month, refreshError: null, readDiagnostic: null, error: null, outcome: 'confirmed', editing: null, confirmDelete: false, consent: false, success: operation === 'delete' ? 'deleted' : 'saved' });
+  };
+  const checked = value => {
+    if (!retry || value.checkedAction?.action_id !== retry.payload.action_id) return false;
+    if (['APPLIED','PENDING'].includes(value.checkedAction.status) && retry.action !== 'resume' &&
+      (value.checkedAction.operation !== retry.action || value.checkedAction.revision !== retry.payload.revision ||
+        (retry.payload.date && value.checkedAction.date !== retry.payload.date) ||
+        (retry.payload.period_id && value.checkedAction.period_id !== retry.payload.period_id))) throw { code: 'CALENDAR_ACTION_CONFLICT' };
+    if (value.checkedAction.status === 'APPLIED') {
+      // Server checked receipt + full readback; still verify the original UI intent.
+      assertCalendarMutation(retry.action, retry.payload, { ...value, mutationConfirmed: true });
+      confirm(value, value.checkedAction.operation); return true;
+    }
+    if (value.checkedAction.status === 'CONFLICT') {
+      retry = null; set({ value, month: value.month, error: 'CALENDAR_STATE_CHANGED', outcome: 'rejected', success: null }); return true;
+    }
+    return false;
+  };
   const load = (month = state.month, { background = false } = {}) => {
     if (disposed || ended || offline || mutationPending || now() < retryAt) return Promise.resolve();
     if (readPending && month === readPending.month && now() - startedAt < PRODUCT_READ_MS) return readPending.promise;
@@ -22,10 +43,11 @@ export function createCalendarController(request, now = () => Date.now()) {
       ...(!unresolved ? { error: null, success: null } : {}) });
     task.promise = (async () => {
       try {
-        const value = await request('read', month ? { month } : {}, { signal: task.abort.signal });
+        const value = await request('read', { ...(month ? { month } : {}), ...(retry ? { action_id: retry.payload.action_id, revision: retry.payload.revision } : {}) }, { signal: task.abort.signal });
         if (ticket !== generation || disposed) return;
-        const denied = value.state === 'CONSENT_REQUIRED' && !value.recovery;
+        const denied = value.state === 'CONSENT_REQUIRED' && !value.recovery && !(retry?.payload.health_consent === true && value.checkedAction?.status === 'ABSENT');
         if (denied) retry = null;
+        if (!denied && checked(value)) return;
         if (!retry && value.recovery) retry = { action: 'resume', payload: { action_id: value.recovery.action_id, revision: value.recovery.revision, month: value.recovery.date.slice(0, 7) } };
         set({ value, month: value.month, ...(value.recovery ? { action: 'resume', outcome: 'unknown', error: 'CALENDAR_PENDING_REVIEW', selected: value.recovery.date } : {}), ...(denied ? { selected: '', editing: null, consent: false, outcome: null, error: null, confirmDelete: false } : {}) });
       } catch (e) {
@@ -38,7 +60,7 @@ export function createCalendarController(request, now = () => Date.now()) {
     })();
     return task.promise;
   };
-  const submit = async (action, replay = false) => {
+  const submit = async (action, replay = false, timeoutMs = PRODUCT_READ_MS) => {
     if (disposed || ended || mutationPending || state.loading || !state.value || (state.outcome === 'unknown' && !replay)) return;
     let payload = replay ? retry?.payload : null;
     if (!payload) {
@@ -61,17 +83,50 @@ export function createCalendarController(request, now = () => Date.now()) {
     const ticket = ++generation;
     set({ busy: true, error: null, success: null, action, outcome: 'pending' });
     try {
-      const value = await request(action, payload);
+      const value = await request(action, payload, { timeoutMs });
       if (ticket !== generation || disposed) return;
       assertCalendarMutation(action, payload, value);
-      retry = null;
-      set({ value, month: value.month, refreshError: null, readDiagnostic: null, outcome: 'confirmed', editing: null, confirmDelete: false, consent: false, success: (action === 'resume' ? state.value.recovery?.operation : action) === 'delete' ? 'deleted' : 'saved' });
+      confirm(value, action === 'resume' ? state.value.recovery?.operation : action);
     } catch (e) {
       if (ticket !== generation || disposed) return;
       if (isCalendarPrivacyError(e.code)) retry = null;
-      const rejected = /^(PERIOD_|CALENDAR_(STATE_CHANGED|ACTION_CONFLICT|ATOMIC_CAPABILITY_REQUIRED)|WRITE_CONFLICT|ACTION_CONFLICT|MAINTENANCE_)/.test(e.code || '');
-      set({ error: e.code, outcome: rejected ? 'rejected' : 'unknown', ...(isCalendarPrivacyError(e.code) ? { value: null, editing: null, selected: '', consent: false, confirmDelete: false, outcome: null } : {}) });
+      const rejected = isRejection(e.code);
+      set({ error: e.code || 'CALENDAR_OPERATION_FAILED', readDiagnostic: productFailureEvidence(e), outcome: rejected ? 'rejected' : 'unknown', ...(isCalendarPrivacyError(e.code) ? { value: null, editing: null, selected: '', consent: false, confirmDelete: false, outcome: null } : {}) });
     } finally { if (mutationPending === task) { mutationPending = null; set({ busy: false }); } }
+  };
+  const reconcile = async () => {
+    if (disposed || ended || mutationPending) return;
+    if (!retry || !state.value) return load();
+    generation++; readPending?.abort.abort(); readPending = null;
+    const intent = retry, ticket = generation, task = { abort: new AbortController() }, started = now();
+    mutationPending = task;
+    set({ loading: false, busy: true, checking: true, success: null });
+    let continueIntent = false;
+    try {
+      const value = await request('read', { month: intent.payload.month, action_id: intent.payload.action_id, revision: intent.payload.revision }, { timeoutMs: PRODUCT_READ_MS, signal: task.abort.signal });
+      if (ticket !== generation || disposed) return;
+      if (value.state === 'CONSENT_REQUIRED' && !value.recovery && intent.payload.health_consent !== true) {
+        retry = null; set({ value, error: null, selected: '', editing: null, consent: false, confirmDelete: false, outcome: null }); return;
+      }
+      if (checked(value)) return;
+      if (value.pendingReview && value.recovery?.action_id !== intent.payload.action_id) throw { code: 'CALENDAR_ACTION_CONFLICT' };
+      if (!['PENDING','ABSENT'].includes(value.checkedAction?.status)) throw { code: 'CALENDAR_READBACK_CONFLICT' };
+      // Only this explicit user action may continue a durable or not-yet-written
+      // intent. Passive reads never write. Keep the original ID/revision/payload.
+      continueIntent = true;
+      set({ value, month: value.month });
+    } catch (e) {
+      if (ticket !== generation || disposed) return;
+      if (isCalendarPrivacyError(e.code)) { retry = null; set({ value: null, selected: '', editing: null, consent: false, confirmDelete: false, outcome: null }); }
+      set({ error: e.code || 'CALENDAR_READ_FAILED', readDiagnostic: productFailureEvidence(e), ...(isRejection(e.code) ? { outcome: 'rejected' } : {}) });
+    } finally {
+      if (mutationPending === task) { mutationPending = null; set({ busy: false, checking: false }); }
+    }
+    if (continueIntent && ticket === generation && !disposed) {
+      const remaining = PRODUCT_READ_MS - (now() - started);
+      if (remaining <= 0) { set({ error: 'TIMEOUT', outcome: 'unknown' }); return; }
+      await submit(intent.action, true, remaining);
+    }
   };
   return {
     getSnapshot: () => state, subscribe: fn => { listeners.add(fn); return () => listeners.delete(fn); },
@@ -89,16 +144,10 @@ export function createCalendarController(request, now = () => Date.now()) {
     cancelEdit() { if (!state.busy && state.outcome !== 'unknown') { retry = null; set({ editing: null, selected: '', confirmDelete: false, error: null }); } },
     consent(value) { if (!state.busy && state.outcome !== 'unknown') { retry = null; set({ consent: value }); } },
     deletePrompt(open) { if (!open || !state.busy) set({ confirmDelete: open }); },
-    retry() {
-      if (disposed || ended || mutationPending) return Promise.resolve();
-      // Explicit recovery takes priority over a passive read. Its late response
-      // is ignored; this does not claim cancellation of a transmitted SDK call.
-      if (retry && state.value) { generation++; readPending?.abort.abort(); readPending = null; set({ loading: false }); return submit(retry.action, true); }
-      return load();
-    },
+    retry: reconcile,
     // Known session/consent signals hide synchronously; obsolete reads and
     // mutations are dropped. Ordinary refresh/offline retains the last view.
-    invalidate() { generation++; startedAt = retryAt = -Infinity; retry = null; readPending?.abort.abort(); readPending = null; mutationPending = null; set({ busy: false, value: null, selected: '', editing: null, consent: false, confirmDelete: false, loading: false, error: null, refreshError: null, readDiagnostic: null, success: null, outcome: null }); },
-    dispose() { disposed = true; generation++; readPending?.abort.abort(); readPending = null; listeners.clear(); retry = null; },
+    invalidate() { generation++; startedAt = retryAt = -Infinity; retry = null; readPending?.abort.abort(); readPending = null; mutationPending?.abort?.abort(); mutationPending = null; set({ busy: false, checking: false, value: null, selected: '', editing: null, consent: false, confirmDelete: false, loading: false, error: null, refreshError: null, readDiagnostic: null, success: null, outcome: null }); },
+    dispose() { disposed = true; generation++; mutationPending?.abort?.abort(); readPending?.abort.abort(); readPending = null; listeners.clear(); retry = null; },
   };
 }

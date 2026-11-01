@@ -1,6 +1,8 @@
 import { APPROVED_COPY } from '../uiuxTables';
 
 const en = {
+  checkStatus: 'Check status', checking: 'Checking the change', deleteStatusTitle: 'Deletion status',
+  deleteUnknown: 'The deletion is not yet confirmed. Check its status to continue the same change',
   unconfirmed: 'We couldn’t confirm the change. It may have been saved. Refresh and review your dates before retrying',
   pendingReview: 'A previous change is not yet confirmed. Check and try again',
   title: 'Calendar', previous: 'Previous month', next: 'Next month', period: 'Period', predicted: 'Predicted', selected: 'Selected',
@@ -22,6 +24,8 @@ const en = {
   deleteError: APPROVED_COPY.calendar[12], deleted: APPROVED_COPY.calendar[13], empty: APPROVED_COPY.calendar[14],
 };
 const tr = {
+  checkStatus: 'Durumu kontrol et', checking: 'Değişiklik kontrol ediliyor', deleteStatusTitle: 'Silme durumu',
+  deleteUnknown: 'Silme henüz doğrulanamadı. Aynı işleme devam etmek için durumunu kontrol et',
   unconfirmed: 'Değişiklik doğrulanamadı; kaydedilmiş olabilir. Tekrar denemeden önce yenile ve tarihlerini kontrol et',
   pendingReview: 'Önceki değişiklik henüz doğrulanamadı. Kontrol edip tekrar dene',
   title: 'Takvim', previous: 'Önceki ay', next: 'Sonraki ay', period: 'Regl', predicted: 'Tahmini', selected: 'Seçili',
@@ -52,5 +56,6 @@ export const calendarErrorKey = (code, action = 'read') => ({
   CALENDAR_READBACK_CONFLICT: 'unconfirmed', CONSENT_WRITE_UNCONFIRMED: 'unconfirmed', CALENDAR_OPERATION_FAILED: action === 'read' ? 'loadError' : 'unconfirmed',
   CALENDAR_ACTION_CONFLICT: 'changed', CALENDAR_WRITE_UNCONFIRMED: 'changed', MAINTENANCE_WRITE_PAUSED: 'unavailable',
   CALENDAR_STATE_CHANGED: 'changed', WRITE_CONFLICT: 'changed', ACTION_CONFLICT: 'changed', PERIOD_NOT_FOUND: 'changed',
+  CALENDAR_DATA_CONFLICT: 'changed', CALENDAR_ACTION_INVALID: 'changed', INVALID_REQUEST: 'changed',
   HEALTH_CONSENT_REQUIRED: 'consent', HEALTH_DELETION_PENDING: 'deletionPending', HEALTH_DELETION_UNCONFIRMED: 'deletionPending',
 }[code] || (code === 'NETWORK' && globalThis.navigator?.onLine === false ? 'offline' : action === 'read' ? 'loadError' : action === 'delete' ? 'deleteError' : 'saveError'));

@@ -4,7 +4,7 @@ import { inspectMobileSurface, doubleText } from './mobileSurfaceMeasurements.mj
 const count = (page, name) => page.evaluate(name=>window.__authFixture.calls.filter(c=>c.name===name).length,name);
 async function pull(page, {distance=90,multi=false}={}) {
   await page.evaluate(({distance,multi})=>{
-    const target=document.querySelector('main h1');
+    const target=[...document.querySelectorAll('main h1')].find(e=>e.getClientRects().length);
     for(const [type,y] of [['touchstart',80],['touchmove',80+distance],['touchend',80+distance]]){
       const event=new Event(type,{bubbles:true,cancelable:true});
       Object.defineProperty(event,'touches',{value:type==='touchend'?[]:[{clientX:100,clientY:y},...(multi?[{clientX:140,clientY:y}]:[])]});
@@ -70,7 +70,11 @@ export async function checkMobileInteractions(page,origin,directory){
   await page.locator('nav a:visible').nth(1).click();await page.locator('[data-calendar-date]').first().waitFor();
   await page.locator('[data-calendar-date="2026-10-01"]').click();await page.locator('#calendar-start-date').fill('2026-10-02');
   const writes=await page.evaluate(()=>window.__authFixture.calls.filter(c=>c.name==='calendar'&&c.action!=='read').length);
-  await page.getByRole('button',{name:'Refresh',exact:true}).click();await page.getByRole('button',{name:'Refresh',exact:true}).waitFor();
+  assert.equal(await page.getByRole('button',{name:'Refresh',exact:true}).count(),0);
+  await page.locator('[data-calendar-root] [data-refresh-control][aria-busy=false]').waitFor({state:'attached'});
+  const calendarReads=await count(page,'calendar');await page.evaluate(()=>scrollTo(0,0));await pull(page);
+  await page.waitForFunction(n=>window.__authFixture.calls.filter(c=>c.name==='calendar').length===n+1,calendarReads);
+  await page.locator('[data-calendar-root] [data-refresh-control][aria-busy=false]').waitFor({state:'attached'});
   assert.equal(await page.locator('#calendar-start-date').inputValue(),'2026-10-02');
   assert.equal(await page.evaluate(()=>window.__authFixture.calls.filter(c=>c.name==='calendar'&&c.action!=='read').length),writes);
   await page.locator('#calendar-start-date').fill('2026-10-01');await page.getByRole('button',{name:'Delete period start',exact:true}).click();await page.locator('dialog[open]').waitFor();
