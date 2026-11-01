@@ -2,12 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-057
+**Current BuildMarker:** Buildmarker-058
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
+
+
+## 058 — Narrow core closure (2026-11-01)
+
+Use one MAINTENANCE Buildmarker-058 / HC-057.0 record generated with recordBuild, retaining 054–058. This does not start a feature/general-audit package. Preserve the user's published Security OK and historical evidence, separately reporting npm security. Run affected regressions and mandatory local gates on the combined final source; do not repeat full runs per live operation. Only the latest request's bounded Moon/bootstrap/owner reconciliation is authorized. No DB cleanup, user deletion/reset, Full Health/scan, notification, main merge or publish. Open external requirements are acceptance items, not new in-app failures. [Actual execution](reports/SHINKA_CORE_CLOSURE_058.md).
 
 
 ## 057 — Shared navigation and reopen recovery (2026-11-01)

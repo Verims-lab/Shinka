@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-057
+**Current BuildMarker:** Buildmarker-058
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -36,6 +36,11 @@
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
+
+
+## 058 — Narrow core closure (2026-11-01)
+
+Read-only Moon evidence uses a closed projection of non-sensitive counts, canonical UTC instants and known versions/phases. Distinguish actual coverage/current phase from the monthly expected tail. Do not copy conflicts/records/digests into Health, claim attempted import as durable success, or infer complete deployed graph parity from editor/marker labels. Preserve strict conflict validation, bounded reviewed import and independent full verification. Serialized scope-transfer descriptions must be updated alongside case descriptions (058 fixes H07/H12 drift). See [058](reports/SHINKA_CORE_CLOSURE_058.md).
 
 
 ## 057 — Shared navigation and reopen recovery (2026-11-01)

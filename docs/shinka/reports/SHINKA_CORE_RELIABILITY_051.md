@@ -202,3 +202,8 @@ Yayın: sahibi Test'i mevcut main/sync akışına alır; `contentLibrary`/`inter
 ### SS13 metadata follow-up — 2026-10-30
 
 H12-025 localRegressionRequirements still ended at SS12 although the existing SS13 tests hanging startup, the 15s deadline, fresh retry and account isolation. The descriptor now includes SS13; no session, theme, authorization or retry behavior changed. Total targeted Health delta is 0 added / 5 updated / 0 removed. An independent source-pinned Node check exercised the actual shared retry/context/H05/H09 modules with synthetic SDK responses: initially 8 PASS / 1 metadata FAIL; after alignment 9 PASS / 0 FAIL. The earlier canonical Chromium/WebKit 753/753 plus 24/24 and quality results are retained as prior execution, not rerun claims. [Scoped review receipt](core-reliability-051/health-read-closure/metadata-review.json).
+
+
+## 058 scoped reconciliation (2026-11-01)
+
+Prior full daily/Health-row cleanup and user deletion acceptance is preserved, not rerun. Current live daily schema is ID-only. Fresh Health inventory has 15 later-retained rows; 49 historical private-file candidates are unreferenced by all current rows, with zero file erasures. Original private manifest remains intact; current 15-reference protection and support draft are prepared. [Current narrow closure ledger](SHINKA_CORE_CLOSURE_058.md) supersedes stale pending counts without changing historical receipts.

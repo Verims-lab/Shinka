@@ -1,0 +1,27 @@
+{
+  "scope": "READ_ONLY_OFFICIAL_DATA_EXPORT",
+  "currentRows": 15,
+  "currentUniqueFileReferences": 15,
+  "historicalDeletedRows": 49,
+  "originalPreservedRows": 5,
+  "newRowsSince051": 10,
+  "unreferencedHistoricalFileCandidates": 49,
+  "candidateReferencesInCurrentRows": 0,
+  "filesDeletedThisTask": 0,
+  "historicalFilesDeleted": 0,
+  "originalManifestExists": true,
+  "originalManifestMode": "0600",
+  "updatedPrivateManifest": "shinka-058-health-files.local",
+  "privateURLsInGit": false,
+  "currentHealthRun": {
+    "run_id": "31d0f20e-4ab6-4ef3-89dc-b513c3f52aaa",
+    "build_marker": "Buildmarker-057",
+    "health_catalog_version": "HC-056.0",
+    "environment": "PUBLISHED",
+    "scope": "FULL",
+    "passed": "159",
+    "failed": "0",
+    "blocked": "1",
+    "completed_at": "2026-11-01T18:18:15.325Z"
+  }
+}

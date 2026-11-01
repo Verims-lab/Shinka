@@ -1,0 +1,44 @@
+{
+  "scope": "HOSTED_BASE44_DATA_UI_AND_OFFICIAL_COMPLETE_EXPORT",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "environment": "existing shared prod",
+  "writerDrain": "USER_CONFIRMED_BOTH_ENTRIES_SHARED_PUBLISHED_NO_OLD_DEPLOYMENT_OR_AUTOMATION",
+  "beforeCount": 0,
+  "createAttempts": 1,
+  "afterCount": 1,
+  "row": {
+    "id": "6ae78bc5e2667310cd844028",
+    "scope": "APP_CREDITS_V1",
+    "revision": 0,
+    "window_hour": 498210,
+    "buckets": [
+      {
+        "hour": 498210,
+        "credits": 8000
+      }
+    ]
+  },
+  "createdMetadata": {
+    "rawCreatedDate": "2026-11-01T18:58:13.415000",
+    "timezonePresent": false,
+    "treatment": "Preserved verbatim; no Z or device timezone appended. UI create was observed during 2026-11-01 18:58 UTC. Eligibility derives from the explicit UTC epoch-hour stored in the row."
+  },
+  "eligibleAtUTC": "2026-11-02T19:00:00.000Z",
+  "eligibleAtEuropeIstanbul": "2026-11-02T22:00:00.000+03:00",
+  "eligibilityMeaning": "Expiry of the conservative startup bucket only; later usage, credentials/provider and hosted conditional-write acceptance remain independent.",
+  "guardCheck": {
+    "surface": "Base44 Test Function, preview version against real data",
+    "action": "searchPlaces",
+    "httpStatus": 429,
+    "errorCode": "GEONAMES_RATE_LIMITED",
+    "code": "RATE_LIMITED",
+    "durationMs": 481,
+    "requestId": "0fd0bff4-e3fa-4448-8126-1f5df2a4a536",
+    "retryAfterSeconds": 86385,
+    "providerReached": false,
+    "providerReachedEvidence": "Current guard returns before the fetch; row remains exact in independent official export."
+  },
+  "postGuardRowExact": true,
+  "hostedConditionalContentionVerified": false,
+  "realSearchSelectResolveVerified": false
+}

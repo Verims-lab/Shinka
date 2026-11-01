@@ -130,3 +130,8 @@ The owner explicitly selected the existing authenticated web session. Shinka app
 The narrow existing-function dispatcher is now prepared in Test: fixed app ID, current native admin/ACTIVE and lifecycle guards, closed dryRun/applyBatch/verify operations and existing reviewed digest. Per-row assignment and fully paginated NotificationDelivery link fingerprints support initial/final comparison. No remote source edit or maintenance write occurred. Actual counts remain **0 inspected / 0 cleaned / remaining UNKNOWN / full verify NOT_RUN**; the four optional fields, physical generator/inspector and D23 stay in compatibility phase.
 
 The only owner-only intervention is the normal **Test → main → complete Base44 backend/shared sync → matching frontend publish**, then informing the agent with the web session open. The agent retains authorization for the original narrow cleanup and must first verify compatible deployed dependencies/schema and old-writer drain. Exact payloads, pagination/recovery/verify and final-schema prerequisites are in [049 delivery](SHINKA_LOADING_CLEANUP_049.md). Do not remove schema fields before that proof.
+
+
+## 058 scoped reconciliation (2026-11-01)
+
+Prior full daily/Health-row cleanup and user deletion acceptance is preserved, not rerun. Current live daily schema is ID-only. Fresh Health inventory has 15 later-retained rows; 49 historical private-file candidates are unreferenced by all current rows, with zero file erasures. Original private manifest remains intact; current 15-reference protection and support draft are prepared. [Current narrow closure ledger](SHINKA_CORE_CLOSURE_058.md) supersedes stale pending counts without changing historical receipts.

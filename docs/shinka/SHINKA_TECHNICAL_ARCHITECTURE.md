@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-057
+**Current BuildMarker:** Buildmarker-058
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -11,6 +11,11 @@
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
+
+
+## 058 — Narrow core closure (2026-11-01)
+
+`inspectMoonImport` keeps the existing generator/digest/batch authority and adds bounded reference metadata: expected and actual coverage, monthly horizon/required end, count, current phase/coverage and strictly next FULL. `moonReadinessEvidence` projects only safe counts, canonical UTC instants and known versions/phases into H09; raw rows, conflict values and digest are excluded. Older deployed summaries remain readable with absent details explicitly null; present incompatible metadata fails. No new cache, writer, scheduler or product layer. Test Function is preview-version execution against the shared real data store; it does not prove byte equality with every published backend bundle. Frontend 057, editor targeted source, live behavior and full-export proofs are recorded separately. [058 evidence](reports/SHINKA_CORE_CLOSURE_058.md).
 
 
 ## 057 — Shared navigation and reopen recovery (2026-11-01)

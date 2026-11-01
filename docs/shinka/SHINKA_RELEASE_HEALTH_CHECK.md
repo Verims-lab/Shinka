@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-057
+**Current BuildMarker:** Buildmarker-058
 **Last Updated:** 2026-11-01
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
@@ -10,6 +10,13 @@
 **Scope:** Health catalog HC-056.0; repository, synthetic and external evidence separated.
 
 
+
+## 058 — Narrow core closure (2026-11-01)
+
+Health delta: **0 added / 6 updated / 0 removed**. H05-009 extends the unchanged approved content policy to 058; H09-004 reports safe Moon missing/same/conflict/current-versus-forward coverage and known versions; H10-002 executes DM29 UTC month rollover/idempotent native-ID preservation; H16-007 executes HD18 safe Moon evidence and malformed/contradictory negatives. H07-013 and H12-025's serialized `healthExecutionScope` metadata now actually includes DU07–09 and SS14/SS15/checkReopenApp; 057 had updated the case descriptions but left that separate report metadata stale. Inventory remains 186 (160 in-app / 12 local / 14 external). No existing failed report is rewritten; supplied 057 run stays 159/0/1. Normal Health remains read-only for live references and never provisions quota. Full local and external outcomes: [058](reports/SHINKA_CORE_CLOSURE_058.md).
+
+
+058 final result: Chromium/WebKit **789/789 PASS each**, local Health **147 PASS / 13 expected hosted-prerequisite BLOCKED / 0 FAIL** and save/list/open verified. Typecheck, lint, build, repo/history and performance pass. Dependency security remains **1 High / 8 Moderate** under the unchanged release-age policy. GeoNames singleton was prepared once after owner-confirmed old-writer drain; readback and startup guard verified. Its bootstrap expires **2026-11-02 19:00 UTC / 22:00 Türkiye**; provider search/select/resolve and hosted contention acceptance are still open. Health delta **0 added / 6 updated / 0 removed**. [Execution receipt](reports/core-closure-058/execution.json).
 
 ## 057 — Shared navigation and reopen recovery (2026-11-01)
 

@@ -221,6 +221,28 @@ export const DAILY_TESTS = [
   f.rows.moon_phase_lookup[0].phase_code = 'INVALID';
   await rejects(() => inspectMoonImport(f.client, astronomy, new Date(DAILY_NOW)));
  }],
+ ['DM29', 'UTC month rollover exposes missing future tail while current phase stays valid; reviewed resume preserves IDs and repeat writes nothing', async () => {
+  const astronomy = await import('astronomy-engine'), f = sdkOnboardingFixture({ role: 'admin' });
+  const october = new Date('2026-10-31T23:59:59.999Z'), november = new Date('2026-11-01T00:00:00Z');
+  let plan = await inspectMoonImport(f.client, astronomy, october);
+  while (!plan.summary.ready) { await applyMoonBatch(f.client, plan, plan.summary.digest); plan = await inspectMoonImport(f.client, astronomy, october); }
+  const before = structuredClone(f.rows.moon_phase_lookup), oldDigest = plan.summary.digest;
+  plan = await inspectMoonImport(f.client, astronomy, november);
+  check(!plan.summary.ready && plan.summary.create === 4 && plan.summary.same === 99 && !plan.summary.conflicts.length);
+  check(plan.summary.currentCovered && plan.summary.currentPhase === 'FULL' && plan.summary.nextFullMoonAt === '2026-11-24T14:54:04.191Z');
+  check(plan.summary.requiredCoverageEnd === '2028-12-01T00:00:00.000Z' && plan.summary.actualCoverageEnd === '2028-11-02T09:17:57.674Z');
+  await rejects(() => applyMoonBatch(f.client, plan, oldDigest), 'CONTENT_REVIEW_EXPIRED');
+  const writes = f.calls.filter(c => c.method === 'upsert').length;
+  check(await applyMoonBatch(f.client, plan, plan.summary.digest) === 4);
+  plan = await inspectMoonImport(f.client, astronomy, november);
+  check(plan.summary.ready && plan.summary.create === 0 && plan.summary.actualCount === 107 && plan.summary.coveragePolicy === 'MONTHLY_FORWARD_2Y_V1');
+  check(before.every(row => JSON.stringify(f.rows.moon_phase_lookup.find(other => other.id === row.id)) === JSON.stringify(row)), 'existing native IDs/boundaries changed');
+  for (const time of [november, new Date('2026-11-30T23:59:59.999Z')]) {
+    plan = await inspectMoonImport(f.client, astronomy, time);
+    check(plan.summary.ready && await applyMoonBatch(f.client, plan, plan.summary.digest) === 0);
+  }
+  check(f.calls.filter(c => c.method === 'upsert').length === writes + 1 && new Set(f.rows.moon_phase_lookup.map(r => r.start_at_utc)).size === 107);
+ }],
  ['DM25', 'Malformed durable assignment cannot mark onboarding complete', async () => {
   const f = dailyFixture(); f.rows.user_daily_message.push({ id: 'incomplete', user_id: 'ownerA' });
   await rejects(() => onboardingOperation(f.client, { action: 'hydrate' }, { now: f.dependencies.now }), 'INVALID_DOMAIN_RECORD');

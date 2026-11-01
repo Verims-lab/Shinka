@@ -23,6 +23,21 @@ const h05 = () => H05_CASES.find(c=>c.id==='H05-009');
 
 /** @type {import('./testTypes').FoundationTest[]} */
 export const HEALTH_READ_RETRY_TESTS = [
+ ['HD18','H09 reports missing Moon tail separately from current coverage; closed metadata never exposes conflicts or arbitrary values',async()=>{
+  const ctx=await ready();
+  const moon={ready:false,create:4,same:99,conflicts:[],astronomyVersion:'2.1.19',coveragePolicy:'MONTHLY_FORWARD_2Y_V1',actualCount:103,
+   generatedAt:'2026-11-01T00:00:00.000Z',horizon:'2026-12-01T00:00:00.000Z',requiredCoverageEnd:'2028-12-01T00:00:00.000Z',
+   coverageStart:'2026-11-01T20:28:58.794Z',coverageEnd:'2028-12-02T01:40:45.472Z',actualCoverageStart:'2026-10-03T13:25:33.710Z',actualCoverageEnd:'2028-11-02T09:17:57.674Z',
+   currentCovered:true,currentPhase:'FULL',nextFullMoonAt:'2026-11-24T14:54:04.191Z',digest:'PRIVATE',records:[{private:'PRIVATE'}]};
+  ctx.moonReadiness=async()=>moon;
+  let r=await firstShinkaPrerequisite(ctx),summary=r.evidence.actual.moon;
+  check(r.status==='BLOCKED'&&summary.missing===4&&summary.same===99&&summary.conflicts===0&&summary.currentCovered&&summary.astronomyVersion==='2.1.19');safe(r);
+  for(const patch of [{ready:true,create:0},{conflicts:['PRIVATE']},{astronomyVersion:'PRIVATE'},{coveragePolicy:'PRIVATE'},{actualCoverageEnd:'PRIVATE'},{same:-1},{actualCount:1},{nextFullMoonAt:'2026-10-01T00:00:00.000Z'},{actualCoverageStart:'2027-01-01T00:00:00.000Z'},{currentCovered:false,currentPhase:null,ready:true,create:0}]){
+   ctx.moonReadiness=async()=>({...moon,...patch});r=await firstShinkaPrerequisite(ctx);check(r.status==='FAIL');safe(r);
+  }
+  ctx.moonReadiness=async()=>({...moon,ready:true,create:0,same:103,actualCount:107,actualCoverageEnd:moon.coverageEnd});
+  r=await firstShinkaPrerequisite(ctx);check(r.status==='PASS'&&r.evidence.actual.moon.missing===0);safe(r);
+ }],
  ['HD11','429 then verified response: H05 and H09 coalesce two attempts, honor Retry-After and keep exact checks',async()=>{
   const time=clock();let calls=0,active=0,maxActive=0;
   const loaders=await ready();loaders.contentLibrary=options=>invokeHealthRead('contentLibrary',{action:'verify'},async()=>{

@@ -1,0 +1,82 @@
+[
+  {
+    "name": "npm-ls-all",
+    "command": [
+      "npm",
+      "ls",
+      "--all"
+    ],
+    "exitCode": 0,
+    "durationMs": 717
+  },
+  {
+    "name": "npm-ls-depth0",
+    "command": [
+      "npm",
+      "ls",
+      "--depth=0"
+    ],
+    "exitCode": 0,
+    "durationMs": 385
+  },
+  {
+    "name": "security-deps",
+    "command": [
+      "npm",
+      "run",
+      "security:deps"
+    ],
+    "exitCode": 1,
+    "durationMs": 1014
+  },
+  {
+    "name": "typecheck",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "exitCode": 0,
+    "durationMs": 4998
+  },
+  {
+    "name": "lint",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "exitCode": 0,
+    "durationMs": 4819
+  },
+  {
+    "name": "build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exitCode": 0,
+    "durationMs": 3251
+  },
+  {
+    "name": "repo-health",
+    "command": [
+      "npm",
+      "run",
+      "health:repo"
+    ],
+    "exitCode": 0,
+    "durationMs": 2054
+  },
+  {
+    "name": "history",
+    "command": [
+      "node",
+      "scripts/recordBuild.mjs",
+      "--check"
+    ],
+    "exitCode": 0,
+    "durationMs": 101
+  }
+]
