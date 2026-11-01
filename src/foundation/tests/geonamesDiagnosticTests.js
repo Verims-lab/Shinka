@@ -4,10 +4,17 @@ import { check, NOW } from './dataModelTests';
 import { fixturePlace } from './onboardingFixture';
 import { sdkOnboardingFixture } from './base44OnboardingFixture';
 import { createGeoNamesAdapter } from '../../../base44/shared/geonamesAdapter.js';
-import { GeoNamesError, geoNamesDiagnostic } from '../../../base44/shared/geonamesDiagnostics.js';
+import { GeoNamesError, geoNamesDiagnostic, sanitizeGeoNamesDiagnostic } from '../../../base44/shared/geonamesDiagnostics.js';
 import { handleOnboardingRequest, onboardingOperation } from '../../../base44/shared/onboardingOperations.js';
 import { normalizeGeoNamesPlace } from '../../../base44/shared/onboardingValidation.js';
 
+const diagnosticKeys='code,durationMs,failure_stage,http_status,provider_class,provider_status,requestId,response_status,transport_class';
+function requestMetadata(diagnostic, status) {
+  check(Object.keys(diagnostic).sort().join()===diagnosticKeys);
+  check(/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/i.test(diagnostic.requestId));
+  check(Number.isInteger(diagnostic.durationMs)&&diagnostic.durationMs>=0&&diagnostic.durationMs<=300000);
+  check(diagnostic.response_status===status);
+}
 const lookup={action:'searchPlaces',query:'  İstanbul   City ',language_code:'tr'};
 const post=(f,geoNames,body=lookup)=>handleOnboardingRequest(new Request('https://fixture.invalid/onboarding',{method:'POST',body:JSON.stringify(body)}),()=>f.client,{geoNames,now:()=>new Date(NOW)});
 async function failure(run,code,httpStatus=null,providerStatus=null,providerClass=null,
@@ -16,7 +23,7 @@ async function failure(run,code,httpStatus=null,providerStatus=null,providerClas
   let caught;try{await run();}catch(error){caught=error;}
   check(caught instanceof GeoNamesError,`expected ${code}`);
   check(caught.code==='GEONAMES_UNAVAILABLE');
-  check(JSON.stringify(geoNamesDiagnostic(caught))===JSON.stringify({code,http_status:httpStatus,provider_status:providerStatus,provider_class:providerClass,failure_stage:stage,transport_class:transportClass}),`diagnostic ${code}`);
+  check(JSON.stringify(geoNamesDiagnostic(caught))===JSON.stringify({requestId:null,durationMs:null,code,http_status:httpStatus,response_status:code==='GEONAMES_REQUEST_TIMEOUT'?504:['GEONAMES_SECRET_MISSING','GEONAMES_NETWORK_ERROR'].includes(code)?503:502,provider_status:providerStatus,provider_class:providerClass,failure_stage:stage,transport_class:transportClass}),`diagnostic ${code}`);
 }
 /** @type {import('./testTypes').FoundationTest[]} */
 export const GEONAMES_DIAGNOSTIC_TESTS=[
@@ -104,7 +111,11 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
   const adapter=createGeoNamesAdapter({username:marker,fetcher:async()=>{calls++;return Response.json({status:{value:10,message:marker},username:marker,stack:marker});}});
   const response=await post(f,adapter),body=await response.json();
   check(response.status===502&&body.error_code==='GEONAMES_UNAVAILABLE'&&body.field===null);
-  check(JSON.stringify(body.diagnostic)==='{"code":"GEONAMES_PROVIDER_REJECTED","http_status":200,"provider_status":10,"provider_class":"AUTHORIZATION","failure_stage":"RESPONSE_VALIDATION","transport_class":null}');
+  requestMetadata(body.diagnostic,502);
+  check(JSON.stringify({...body.diagnostic,requestId:null,durationMs:null})===JSON.stringify({requestId:null,durationMs:null,code:'GEONAMES_PROVIDER_REJECTED',http_status:200,response_status:502,provider_status:10,provider_class:'AUTHORIZATION',failure_stage:'RESPONSE_VALIDATION',transport_class:null}));
+  const safe=sanitizeGeoNamesDiagnostic({...body.diagnostic,requestId:marker,durationMs:-1,query:marker,headers:marker});
+  check(safe.requestId===null&&safe.durationMs===null&&Object.keys(safe).sort().join()===diagnosticKeys&&!JSON.stringify(safe).includes(marker));
+  check(sanitizeGeoNamesDiagnostic({code:marker})===null);
   check(!JSON.stringify(body).includes(marker)&&Object.keys(body).sort().join()==='diagnostic,error_code,field');
   const before=calls;
   for(const extra of [{url:'https://fixture.invalid/override'},{username:marker},{user_id:'other-owner'}])check(!(await post(f,adapter,{...lookup,...extra})).ok);
@@ -200,7 +211,7 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
       check(response.status===503&&body.diagnostic.failure_stage==='FETCH'&&body.diagnostic.transport_class===(signature==='unknown'?'UNKNOWN':'DNS'));
       const serialized=JSON.stringify(body);
       for(const value of [fixtureUsername,fixtureQuery,fixtureUrl,'stack','cause','message'])check(!serialized.includes(value),'sensitive error projection');
-      check(Object.keys(body.diagnostic).sort().join()==='code,failure_stage,http_status,provider_class,provider_status,transport_class');
+      requestMetadata(body.diagnostic,503);
       check(JSON.stringify(f.rows)===before&&f.calls.every(call=>call.method==='filter'));
     }
     const unsafe=new GeoNamesError('GEONAMES_NETWORK_ERROR',null,null,fixtureUsername,fixtureQuery);
@@ -276,7 +287,7 @@ export const GEONAMES_DIAGNOSTIC_TESTS=[
       const response=await post(f,adapter),result=await response.json(),serialized=JSON.stringify(result);
       check(response.status===502&&result.error_code==='GEONAMES_UNAVAILABLE'&&result.field===null&&calls===1);
       check(result.diagnostic.code==='GEONAMES_HTTP_ERROR'&&result.diagnostic.http_status===(status||null)&&result.diagnostic.transport_class==='REDIRECT_REJECTION');
-      check(Object.keys(result.diagnostic).sort().join()==='code,failure_stage,http_status,provider_class,provider_status,transport_class');
+      requestMetadata(result.diagnostic,502);
       for(const value of [marker,'https://','Location','username','stack','cause','message','İstanbul'])check(!serialized.includes(value),'redirect disclosure');
       check(JSON.stringify(f.rows)===before&&f.calls.every(c=>c.method==='filter'));
     }

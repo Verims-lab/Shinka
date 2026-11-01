@@ -1,0 +1,22 @@
+[
+  {
+    "id": "birth_time",
+    "outline": "solid",
+    "frameOutline": "solid"
+  },
+  {
+    "id": "birthplace",
+    "outline": "solid",
+    "frameOutline": "solid"
+  },
+  {
+    "id": "birth_time",
+    "outline": "solid",
+    "frameOutline": "solid"
+  },
+  {
+    "id": "birthplace",
+    "outline": "solid",
+    "frameOutline": "solid"
+  }
+]

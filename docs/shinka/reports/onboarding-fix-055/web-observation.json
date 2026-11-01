@@ -1,0 +1,32 @@
+{
+  "scope": "EXISTING_WEB_SESSION_TARGETED_READ_ONLY",
+  "date": "2026-11-01",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "schemaPresent": true,
+  "unfilteredQuotaRows": 0,
+  "editorEntryAndShared": "053 quota contract visibly present in onboarding/you/shared",
+  "publishedFrontendMarker": "Buildmarker-054",
+  "publishedBackendHashVerified": false,
+  "publishUiText": "Last published 2 days ago",
+  "searchCalls": 1,
+  "surface": "Base44 editor Test Function / onboarding",
+  "response": {
+    "http_status": 503,
+    "error_code": "GEONAMES_UNAVAILABLE",
+    "diagnostic": {
+      "code": "GEONAMES_NETWORK_ERROR",
+      "failure_stage": "FETCH",
+      "transport_class": "UNKNOWN",
+      "http_status": null,
+      "provider_status": null,
+      "provider_class": null
+    }
+  },
+  "requestId": null,
+  "durationMs": null,
+  "metadataLimitation": "Old response does not expose request ID or duration; tool/model waits are not request timing.",
+  "counterWrites": 0,
+  "userMutations": 0,
+  "successfulLiveSearch": false,
+  "providerAvailabilityVerified": false
+}

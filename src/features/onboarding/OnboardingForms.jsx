@@ -4,6 +4,7 @@ import BirthplaceCombobox from "@/features/profile/BirthplaceCombobox";
 import BirthTimeField from "@/features/profile/BirthTimeField";
 import FramedDateField from "./FramedDateField";
 import FieldError from "./FieldError";
+import { birthDateFeedback } from './birthDateFeedback';
 import {
   optionalName,
   optionalBirthTime,
@@ -62,6 +63,7 @@ export function ProfileForm({
     });
   };
   const fields = { form, update, error, busy, t };
+  const dateError = birthDateFeedback(form.birth_date, today) || error;
   return (
     <form
       className="space-y-5"
@@ -73,6 +75,7 @@ export function ProfileForm({
     >
       <FramedDateField
         {...fields}
+        error={dateError}
         name="birth_date"
         type="date"
         required

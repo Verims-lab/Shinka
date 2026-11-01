@@ -1,3 +1,4 @@
+import { sanitizeGeoNamesDiagnostic } from '../../base44/shared/geonamesDiagnostics.js';
 import { healthReadDiagnostic } from '../../base44/shared/healthReadDiagnostics.js';
 import { base44 } from '@/api/base44Client';
 import { ONBOARDING_ERROR_KEYS } from '@/foundation/i18n/onboardingCopy';
@@ -26,6 +27,6 @@ export async function onboardingRequest(action,payload={},client=base44) {
     const field=['display_name','birth_date','birth_time','birthplace','period_start_date','period_duration_days','initial_cycle_length_days','health_consent'].includes(data?.field)?data.field:null;
     const retry = error?.response?.data?.retry_after_seconds;
     const retryAfterSeconds = Number.isInteger(retry) && retry > 0 && retry <= 172800 ? retry : null;
-    throw Object.assign(new Error(code),{code,field,retryAfterSeconds,diagnostic:healthReadDiagnostic(error)});
+    throw Object.assign(new Error(code),{code,field,retryAfterSeconds,diagnostic:sanitizeGeoNamesDiagnostic(data?.diagnostic) || healthReadDiagnostic(error)});
   }finally{clearTimeout(timer);}
 }

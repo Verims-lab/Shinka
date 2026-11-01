@@ -2,14 +2,25 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-054
-**Last Updated:** 2026-10-30
+**Current BuildMarker:** Buildmarker-055
+**Last Updated:** 2026-11-01
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-053.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-054.0; repository, synthetic and external evidence separated.
 
 
+
+## 055 — Four onboarding corrections
+
+HC-054.0: **0 added / 6 updated / 0 removed** Health IDs, unchanged 186 catalog / 160 in-app / 12 local / 14 external. H05-009 extends the same strict source contract to 055. H07-001 maps strengthened O03–O05 DOB boundaries; H07-013 maps transparent preparation/Home while retaining verified ID/readback/onReady; H10-003 links quota-chain and local input regressions; H12-044 executes GQ10/GQ11 in addition to GQ01–GQ09; H13-012 includes U20/U21, shared You focus and checkOnboardingCorrections. Serialized localRegressionRequirements match executable scope. No static PASS or reduced assertion.
+
+GQ10 distinguishes missing/invalid/read/write/provider failures through actual modules, GQ11 verifies hourly/daily/collision refusal and explicit successful recovery. U20 asserts early complete-date feedback, zero underage save, error focus and valid correction. U21 verifies single focus, editing, typed-error/Retry/clear behavior in TR/EN. The real-App matrix covers TR/EN × 320/390 px × 100/200% text and reduced 360px viewport, plus matched source-054/current images. Existing Back/account/optional/daily tests remain. Normal Full Health performs no live GeoNames search/reservation.
+
+Actual results, initial failed harness assertions and gate outcomes: [055 report](reports/SHINKA_ONBOARDING_FIX_055.md). H10-004 provider acceptance and H13-013 physical picker/keyboard/wrapper acceptance remain open. Local synthetic results cannot close them. No agent-run hosted Full Health/Security scan.
+
+
+055 final local execution: Chromium/WebKit **775/775 PASS each**, eight new real-App matrix cells per engine, zero page errors; local synthetic Health **147 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL**, save/list/open verified. Type/lint/build/repo/history and performance budgets pass. Fresh security:deps **FAILS** on one High plus eight Moderate advisories; the compatible patch has not yet met the seven-day release-age floor. No repository security closure or live birthplace closure is claimed.
 
 ## 054 — Onboarding single-composition regression
 

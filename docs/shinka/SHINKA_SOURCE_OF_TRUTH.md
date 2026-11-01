@@ -2,14 +2,19 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-054
-**Last Updated:** 2026-10-29
+**Current BuildMarker:** Buildmarker-055
+**Last Updated:** 2026-11-01
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
+
+
+## 055 — Scoped user design and diagnostic decision (2026-11-01)
+
+The four-item onboarding request authorizes the single outer focus treatment, complete-DOB inline feedback with alert focus, and transparent preparation/Home text blocks. Its scope also authorizes a narrow existing-web-session GeoNames diagnosis and truthful localized setup-vs-rate feedback; it does not authorize runtime provisioning, counter reset, live cleanup or publication. The new setup explanation is request-scoped product copy, not text attributed to original SRC documents. Age/date, optional fields, content IDs, lifecycle, manual theme and 052–054 behavior retain their canonical authority. [Evidence](reports/SHINKA_ONBOARDING_FIX_055.md).
 
 
 ## 051 — Core Reliability & Performance

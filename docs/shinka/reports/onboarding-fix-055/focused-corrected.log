@@ -1,0 +1,158 @@
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/HealthCenter.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/BuildEnvironment.jsx is dynamically imported by src/App.jsx but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/internal/TestTools.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/adminTestToolsUiTests.js, src/foundation/tests/deletionUiTests.js, src/foundation/tests/testToolsPacingTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/You.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/coreQualityUiTests.jsx, src/foundation/tests/notificationUiTests.js, src/foundation/tests/youUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/Calendar.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/additionalFixUiTests.jsx, src/foundation/tests/calendarUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/pages/Pattern.jsx is dynamically imported by src/pages/Onboarding.jsx but also statically imported by src/foundation/tests/patternUiTests.js, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/probes/AuthShellProbe.jsx is dynamically imported by src/App.jsx but also statically imported by src/foundation/tests/authProbeTests.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/tests/foundationTests.js is dynamically imported by src/foundation/tests/localRunnerTests.js but also statically imported by scripts/testHarness/main.jsx, dynamic import will not move module into another chunk.
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/foundation/health/catalog.js is dynamically imported by src/foundation/health/cases/h16.js, src/foundation/tests/closure018Tests.js, src/foundation/tests/closure020Tests.js, src/foundation/tests/foundationTests.js, src/foundation/tests/sessionStabilityTests.js but also statically imported by scripts/testHarness/healthTiming.js, scripts/testHarness/main.jsx, src/foundation/health/report.js, src/foundation/health/runner.js, src/pages/internal/HealthCenter.jsx, dynamic import will not move module into another chunk.
+
+[
+  {
+    "id": "GQ10",
+    "name": "Actual quota → guard → adapter → onboarding/You HTTP → service preserves setup versus provider diagnosis",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "GQ11",
+    "name": "Full guard/adapter retains quota denial and permits an explicitly retried successful selection",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "GQ01",
+    "name": "Actual shared quota: serial 3 accepts, fourth blocks, two DB calls per admitted miss",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "GQ02",
+    "name": "Two independent workers: 20 concurrent reservations at 2/3 admit exactly one at daily or hourly cap",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "GQ03",
+    "name": "Concurrent first use and duplicate singleton fail closed, never create a row",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "GQ04",
+    "name": "Missing/invalid counters, duplicate buckets, future clock and malformed read are not zero",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "GQ05",
+    "name": "updated zero, malformed response, DB failure and lost acknowledgement never authorize or retry",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "GQ06",
+    "name": "Hourly and daily windows survive UTC midnight; no provider-reset assumption",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "GQ07",
+    "name": "Cache/in-flight coalescing is free; search, page and ID resolution each reserve their actual endpoint credit",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "GQ09",
+    "name": "Unverified reservation never reaches fetch through the actual guard",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "GQ08",
+    "name": "Shared denial stops fetch; async reservation cannot bypass local burst or fetch after abort",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "O03",
+    "name": "DOB required, valid calendar, adult and exact-18 boundary",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "O04",
+    "name": "Leap-day age and date-only semantics avoid UTC shifting",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "O05",
+    "name": "Backend rejects bypassed underage/future input before persistence",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "U20",
+    "name": "Complete underage DOB announces inline before submit, never auto-focuses picker; valid correction saves once",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "U21",
+    "name": "Time/place framed keyboard focus and setup/limit/provider copy retain query, retry and optional clear",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "U04",
+    "name": "DOB errors focus explanation without reopening picker; typed-but-unselected birthplace blocked; clearing allows NULL save",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "DU01",
+    "name": "ON-06 failed write, retry readback, Home and locale retain same pair",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  },
+  {
+    "id": "DU04",
+    "name": "Reconciled daily success shows no technical notice; same ID, TR/EN content, no extra request",
+    "passed": true,
+    "blocked": false,
+    "detail": "ok"
+  }
+]

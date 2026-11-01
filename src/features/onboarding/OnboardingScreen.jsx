@@ -92,7 +92,9 @@ export default function OnboardingScreen({
   }, [state]);
   useEffect(() => {
     if (error?.field && !busy)
-      title.current?.ownerDocument.getElementById(error.field)?.focus();
+      // Date input focus can reopen the native picker on iOS. Announce/focus its
+      // adjacent error instead; editing remains an explicit user action.
+      title.current?.ownerDocument.getElementById(error.field === 'birth_date' ? 'birth_date-error' : error.field)?.focus();
   }, [error, busy]);
   const showError = (e) => {
     setError({
@@ -278,7 +280,7 @@ export default function OnboardingScreen({
             </h1>
             {screen.subtitle && <p className="text-shinka-taupe">{t(screen.subtitle)}</p>}
           </div>
-          <ShinkaCard className={airy ? "shinka-intro-shell" : ""}>
+          <ShinkaCard surface={state === 'FIRST_SHINKA_DEPENDENCY' ? 'plain' : 'card'} className={airy ? "shinka-intro-shell" : ""}>
             <div className="space-y-5" aria-busy={busy}>
               {body()}
               {error && !error.field && (

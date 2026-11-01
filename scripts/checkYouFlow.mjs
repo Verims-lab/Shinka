@@ -18,6 +18,8 @@ export async function checkYouFlow(page, origin, directory) {
     await page.waitForSelector('[data-you-profile-form]');
     await page.waitForFunction(()=>document.activeElement?.id==='display_name');
     await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement?.id),'birth_date');
+    await page.locator('#birthplace').focus();
+    assert(await page.locator('#birthplace').evaluate(el=>getComputedStyle(el).outlineStyle==='none'&&getComputedStyle(el).boxShadow==='none'&&parseFloat(getComputedStyle(el).borderTopWidth)===0&&getComputedStyle(el.closest('.shinka-framed-field')).outlineStyle==='solid'));
     const notifications=page.getByRole('checkbox',{name:language==='tr'?'Günlük Bildirimler':'Daily Notifications',exact:true});
     await notifications.focus();await page.keyboard.press('Space');assert(await notifications.isChecked());
     await page.locator('[data-notification-save-state="unsaved"]').waitFor();

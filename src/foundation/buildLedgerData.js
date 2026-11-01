@@ -1,20 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-050",
-    "package_name": "Mobile preference sheets and Calendar feedback verification",
-    "package_type": "FIX",
-    "created_at": "2026-10-28T17:38:48.940547Z",
-    "health_catalog_version": "HC-049.0",
-    "short_summary": "Preserve Base44 sheets and 049; complete choice keyboard/cancel semantics, Calendar draft/pending feedback and real-App mobile regressions.",
-    "full_health_status": "LOCAL_140_PASS_13_BLOCKED_0_FAIL_HOSTED_NOT_RUN",
-    "source_of_truth_updated": true,
-    "tests_updated": true,
-    "health_cases_updated": true,
-    "docs_aligned": true,
-    "notes": "Chromium/WebKit each 735/735 PASS, zero page errors; 25 sheet + 2 Calendar continuity checks per engine. Local Health 140 PASS/13 hosted-prerequisite BLOCKED/0 FAIL; save/list/open verified. All quality/budget gates pass. Original Base44 NOT_RUN and reproduced keyboard/WebKit focus/Calendar feedback failures retained. Health 0 added/4 updated/0 removed. 049 and verified manual theme preserved; no live DB cleanup/Full Health/scan/publish. Physical Android/iOS/wrapper open; active 046–050."
-  },
-  {
     "build_marker": "Buildmarker-051",
     "package_name": "Core Reliability & Performance Milestone",
     "package_type": "AUDIT_FIX",
@@ -61,5 +47,15 @@ export default [
     "short_summary": "Remove duplicate scrolling onboarding art; retain approved backdrop, 240px square flow space, row icons and five-step behavior.",
     "full_health_status": "NOT_RUN",
     "notes": "Chromium/WebKit each 771/771 PASS; loaded full-App matrix 100 step checks / 300 scroll views per engine. Matched layout delta 0 CSS px. Quality/performance PASS, zero dependency advisories. Local Health 147 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL; save/list/open PASS. Health +0/~3/-0. Physical keyboard/rotation/wrapper NOT_RUN; no live operations or publish. 051–053 preserved. Report: reports/SHINKA_ONBOARDING_LAYER_054.md."
+  },
+  {
+    "build_marker": "Buildmarker-055",
+    "package_name": "Onboarding focus, birthplace diagnosis, age feedback and daily surfaces",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-11-01T12:02:49.000Z",
+    "health_catalog_version": "HC-054.0",
+    "short_summary": "Single outer composite-field focus, completed-DOB feedback without picker refocus, truthful quota setup diagnostics and transparent daily presentation.",
+    "full_health_status": "NOT_RUN",
+    "notes": "Chromium/WebKit 775/775 each; 8 real-App matrix cells per engine; local Health 147 PASS/13 expected hosted BLOCKED/0 FAIL with save/list/open. Type/lint/build/repo/history/performance pass. Security gate OPEN: 1 High/8 Moderate; vendor patch awaits seven-day cooldown. Web found quota schema but zero rows; one search failed 503/FETCH/UNKNOWN. Typed diagnostics prevent quota-as-network misclassification; operator setup, live search and physical acceptance remain open. No live mutation/cleanup/Health/scan/publish. Report: reports/SHINKA_ONBOARDING_FIX_055.md."
   }
 ];

@@ -70,7 +70,7 @@ export default function BirthplaceCombobox({ language, request, selection = null
             aria-invalid={error} aria-describedby={error ? "birthplace-error" : undefined} disabled={disabled}
             placeholder={t("placeSearchPlaceholder")} value={text} maxLength={80}
             onChange={(e) => type(e.target.value)} onKeyDown={keyDown} onFocus={() => text && !selection && setOpen(true)}
-            className="block min-h-11 w-full min-w-0 bg-transparent text-shinka-ink outline-none placeholder:text-shinka-taupe" />
+            className="shinka-framed-input block min-h-11 w-full min-w-0 bg-transparent text-shinka-ink placeholder:text-shinka-taupe" />
         </span>
         {text ? (
           <button type="button" onClick={clear} disabled={disabled} aria-label={t("placeClear")} className="-mr-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-shinka-taupe" data-place-clear>

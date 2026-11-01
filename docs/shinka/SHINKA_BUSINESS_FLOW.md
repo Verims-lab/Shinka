@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-054
-**Last Updated:** 2026-10-30
+**Current BuildMarker:** Buildmarker-055
+**Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
@@ -11,6 +11,13 @@
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
+
+
+## 055 — Focused onboarding continuation
+
+Complete-date client feedback uses trusted server today and the same ageOnDate/validateBirthDate rule as submit/backend. Underage, future or invalid complete dates cannot save; partial editing is silent. Correcting the date restores the unchanged verified save/readback progression. Error focus goes to the adjacent DOB explanation, never programmatically reopens the picker. Consent, optional NULL fields, Back/drafts and account isolation are unchanged.
+
+Missing/invalid APP_CREDITS_V1 produces GEONAMES_QUOTA_NOT_READY, distinct from quota/collision waits and provider failure. Queries are retained only in transient UI state; optional-clear can continue. No request-time provisioning, quota reset or retry of unknown reservation. Preparation/Home transparency is presentation-only; daily generation, ID selection, persistence and onReady timing are unchanged. [055 findings](reports/SHINKA_ONBOARDING_FIX_055.md).
 
 
 ## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)

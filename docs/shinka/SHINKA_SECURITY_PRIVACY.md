@@ -2,13 +2,22 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-054
+**Current BuildMarker:** Buildmarker-055
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
-**Last Updated:** 2026-10-30
+**Last Updated:** 2026-11-01
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
 **External Verification Required:** All rows marked UNVERIFIED.
+
+## 055 — Diagnostic isolation and dependency gate
+
+Quota failure classification adds no authorization: authenticated/ACTIVE/lifecycle checks remain ahead of quota/provider IO; no automatic singleton creation, counter zeroing, uncertain-write retry or provider bypass. Safe diagnostic fields are allowlisted code, response/upstream HTTP status, provider class/status, stage, transport class, request UUID and bounded nonnegative duration. No queries, birth details, user records, credentials, raw exceptions or headers are retained in delivery evidence. User videos remain outside the repository; committed screenshots use synthetic profiles.
+
+Fresh 2026-11-01 audit of the unchanged lockfile reports 0 Critical / 1 High / 8 Moderate affected packages. High GHSA-mrwp-f3q8-3g9p is `@base44/sdk@0.8.57 → axios@1.20.0 → follow-redirects@1.16.1`; the vendor fixes it in 1.16.2. Registry publication is 2026-10-25T21:32:25.963Z, so the seven-day release-age floor is reached at 2026-11-01T21:32:25.963Z. At this delivery's check time it is not yet eligible. No cooldown override, unsafe downgrade (Axios requires ^1.16.0), audit suppression or High waiver. Required security:deps remains FAILED and repository security closure remains OPEN; onboarding results are separate.
+
+Moderate GHSA-g3hv-75wg-m249 affects minimatch and seven ESLint dependents. The path is local development lint/file glob processing, not user-supplied runtime patterns. The vendor fix is minimatch >=11.0.1; npm's proposed plugin downgrade/major substitution is not a supported narrow fix, and forced transitive major overrides are not applied. Developer use of untrusted file globs remains an exposure; retain the finding pending a compatible upstream update. [Current audit receipt and vendor links](reports/SHINKA_ONBOARDING_FIX_055.md#dependency-gate).
+
 
 ## 053 — Shared GeoNames credits and endpoint classification (2026-10-30)
 

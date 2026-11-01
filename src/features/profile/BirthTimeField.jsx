@@ -46,7 +46,7 @@ export default function BirthTimeField({ value, onChange, disabled, error, t }) 
     <div className="shinka-framed-field">
       <label htmlFor="birth_time" className="block text-shinka-small text-shinka-plum">{t('birth_time')} <span className="text-shinka-taupe">{t('placeOptional')}</span></label>
       <div className="flex min-w-0 items-center gap-2">
-        <input id="birth_time" type="text" inputMode="text" autoComplete="off" placeholder="HH:mm" value={value} onChange={event => onChange(event.target.value)} disabled={disabled} aria-invalid={error?.field === 'birth_time'} aria-describedby={error?.field === 'birth_time' ? 'birth_time-error' : undefined} className="min-h-11 w-full min-w-0 bg-transparent text-[17px] text-shinka-ink outline-none" />
+        <input id="birth_time" type="text" inputMode="text" autoComplete="off" placeholder="HH:mm" value={value} onChange={event => onChange(event.target.value)} disabled={disabled} aria-invalid={error?.field === 'birth_time'} aria-describedby={error?.field === 'birth_time' ? 'birth_time-error' : undefined} className="shinka-framed-input min-h-11 w-full min-w-0 bg-transparent text-[17px] text-shinka-ink" />
         <button type="button" disabled={disabled} aria-label={t('timeChoose')} aria-haspopup="dialog" onClick={event => { event.currentTarget.focus(); setOpen(true); }} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-shinka-taupe" data-time-open><Clock aria-hidden="true" className="h-5 w-5" /></button>
       </div>
     </div>

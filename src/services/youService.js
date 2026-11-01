@@ -1,3 +1,5 @@
+import { healthReadDiagnostic } from '../../base44/shared/healthReadDiagnostics.js';
+import { sanitizeGeoNamesDiagnostic } from '../../base44/shared/geonamesDiagnostics.js';
 import { base44 } from '@/api/base44Client';
 import { optionalName, optionalBirthTime, isCalendarDate, validTimezone } from '../../base44/shared/onboardingValidation.js';
 import { SUN_SIGN_CODES } from '../../base44/shared/domainSchemas.js';
@@ -43,7 +45,7 @@ export async function youRequest(action, payload = {}, client = base44, timeoutM
     const definite = field !== null || ['INVALID_REQUEST','YOU_EDIT_CONFLICT','DUPLICATE_OWNER_STATE','HEALTH_DELETION_PENDING','GEONAMES_UNAVAILABLE','GEONAMES_RATE_LIMITED','MAINTENANCE_WRITE_PAUSED'].includes(code) || isYouPrivacyError(code);
     const retry = error?.response?.data?.retry_after_seconds;
     const retryAfterSeconds = Number.isInteger(retry) && retry > 0 && retry <= 172800 ? retry : null;
-    throw Object.assign(new Error(code), { code, field, retryAfterSeconds, unknown: action.startsWith('save') && (!definite || error?.response?.data?.write_outcome === 'UNCONFIRMED') });
+    throw Object.assign(new Error(code), { code, field, retryAfterSeconds, diagnostic:sanitizeGeoNamesDiagnostic(error?.response?.data?.diagnostic) || healthReadDiagnostic(error), unknown: action.startsWith('save') && (!definite || error?.response?.data?.write_outcome === 'UNCONFIRMED') });
   } finally { clearTimeout(timer); }
 }
 

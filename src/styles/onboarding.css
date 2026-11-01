@@ -11,6 +11,10 @@
 .shinka-onboarding h1.shinka-unframed-title:focus { outline: none; }
 /* The existing framed-field focus-within ring owns ON-02's visible focus. */
 .shinka-name-field input:focus { outline: none; }
+/* Composite time/place controls use the soft frame as their sole focus boundary.
+   The unlayered mobile :focus-visible rule otherwise wins over Tailwind utilities. */
+.shinka-framed-field .shinka-framed-input,
+.shinka-framed-field .shinka-framed-input:focus { border: 0; outline: none; box-shadow: none; }
 /* ON-04 soft framed fields. Root cause of the old overflow: iOS Safari renders
    date/time inputs with native appearance and an intrinsic min-width that ignores
    width:100%; appearance:none + min-width:0 + border-box keeps them in the parent. */

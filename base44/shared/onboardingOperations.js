@@ -135,14 +135,14 @@ export async function onboardingOperation(client, body, dependencies = {}) {
 }
 export async function handleOnboardingRequest(req,createClient,dependencies={}) {
   const requestId=crypto.randomUUID(),started=Date.now();
-  let hydrate=false;
+  let hydrate=false, search=false;
   try {
     if(req.method!=='POST')fail('METHOD_NOT_ALLOWED',405);
     const body=await readBoundedJson(req,8000,fail);
-    hydrate=body.action==='hydrate';
+    hydrate=body.action==='hydrate'; search=body.action==='searchPlaces';
     return Response.json(await onboardingOperation(createClient(req),body,dependencies));
   }catch(error){
-    const diagnostic=hydrate?{...healthReadDiagnostic(error,{stage:'ONBOARDING_HYDRATE',durationMs:Date.now()-started}),requestId}:geoNamesDiagnostic(error),retry=Number.isInteger(error?.retryAfterSeconds)?error.retryAfterSeconds:undefined;
+    const diagnostic=hydrate?{...healthReadDiagnostic(error,{stage:'ONBOARDING_HYDRATE',durationMs:Date.now()-started}),requestId}:geoNamesDiagnostic(error,{requestId,durationMs:Date.now()-started}) || (search ? {...healthReadDiagnostic(error,{durationMs:Date.now()-started}),requestId} : null),retry=Number.isInteger(error?.retryAfterSeconds)?error.retryAfterSeconds:undefined;
     return Response.json({error_code:error instanceof InternalError?error.code:'ONBOARDING_OPERATION_FAILED',field:error instanceof OnboardingError?error.field:null,...(retry?{retry_after_seconds:retry}:{}),...(diagnostic?{diagnostic}:{})},{status:error instanceof InternalError?error.status:500,...(retry?{headers:{'Retry-After':String(retry)}}:{})});
   }
 }

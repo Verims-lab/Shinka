@@ -1,3 +1,4 @@
+import { checkOnboardingCorrections } from './checkOnboardingCorrections.mjs';
 import { verifyGeoNamesQuotaEntries } from './verifyGeoNamesQuotaEntries.mjs';
 import { checkPreferenceSheets } from './checkPreferenceSheets.mjs';
 import { verifyDailyEntitySdk } from './verifyDailyEntitySdk.mjs';
@@ -149,6 +150,7 @@ try {
     console.log(JSON.stringify({focused:true,security028,notifications030,results,pageErrors},null,2));
     if(results.some(r=>!r.passed)||!results.length||pageErrors.length)process.exitCode=1;
   } else {
+  console.log(JSON.stringify({onboardingCorrections:await checkOnboardingCorrections(browser,origin,process.env.FOUNDATION_ONBOARDING_CORRECTIONS_DIR)}));
   const onboardingClosure=await checkOnboardingClosure(browser,origin,process.env.FOUNDATION_ONBOARDING_DIR);
   const onboardingPresentation=await checkOnboardingPresentation(browser,origin,process.env.FOUNDATION_ONBOARDING_PRESENTATION_DIR);
   const health=await page.evaluate(()=>window.__staticHealthEvidence());

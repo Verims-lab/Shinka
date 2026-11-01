@@ -1,9 +1,11 @@
+import { sanitizeGeoNamesDiagnostic } from '../../../base44/shared/geonamesDiagnostics.js';
+import { sanitizeHealthDiagnostic } from '../../../base44/shared/healthReadDiagnostics.js';
 // Birthplace search controller (v1.0 rules). Transient UI state only: it never
 // saves. Every response is bound to a generation, so typing, a new query, a
 // language change, cancel or dispose make older responses inert.
 export const PLACE_MIN_CHARS = 3;
 export const PLACE_DEBOUNCE_MS = 350;
-const idle = { status: "IDLE", query: "", results: [], next_page: null, limited: false, loadingMore: false, error: null };
+const idle = { status: "IDLE", query: "", results: [], next_page: null, limited: false, loadingMore: false, error: null, diagnostic: null };
 const defaultTimers = { set: (fn, ms) => setTimeout(fn, ms), clear: (id) => clearTimeout(id) };
 
 /** @param {{request:Function, language?:string, debounceMs?:number, timers?:{set:Function,clear:Function}}} options */
@@ -22,7 +24,7 @@ export function createBirthplaceSearch({ request, language = "en", debounceMs = 
   };
   async function fetchPage(page) {
     const ticket = generation, query = state.query;
-    emit(page ? { loadingMore: true, error: null } : { status: "LOADING", error: null });
+    emit(page ? { loadingMore: true, error: null, diagnostic: null } : { status: "LOADING", error: null, diagnostic: null });
     try {
       const data = await request("searchPlaces", { query, language_code: lang, page });
       if (ticket !== generation || disposed) return;
@@ -31,7 +33,7 @@ export function createBirthplaceSearch({ request, language = "en", debounceMs = 
       emit({ status: "READY", results: page ? [...state.results, ...added] : added, next_page: data?.next_page ?? null, limited: !!data?.limited, loadingMore: false });
     } catch (error) {
       if (ticket !== generation || disposed) return;
-      emit({ status: page ? state.status : "ERROR", loadingMore: false, error: error?.code === "GEONAMES_RATE_LIMITED" ? "GEONAMES_RATE_LIMITED" : "GEONAMES_UNAVAILABLE" });
+      emit({ status: page ? state.status : "ERROR", loadingMore: false, error: ["GEONAMES_RATE_LIMITED", "GEONAMES_QUOTA_NOT_READY"].includes(error?.code) ? error.code : "GEONAMES_UNAVAILABLE", diagnostic: sanitizeGeoNamesDiagnostic(error?.diagnostic) || sanitizeHealthDiagnostic(error?.diagnostic) });
     }
   }
   const run = () => {
@@ -40,7 +42,7 @@ export function createBirthplaceSearch({ request, language = "en", debounceMs = 
       emit({ ...idle, query: state.query, status: state.query ? "SHORT" : "IDLE" });
       return;
     }
-    emit({ status: "LOADING", results: [], next_page: null, limited: false, loadingMore: false, error: null });
+    emit({ status: "LOADING", results: [], next_page: null, limited: false, loadingMore: false, error: null, diagnostic: null });
     timer = timers.set(() => { timer = null; void fetchPage(0); }, debounceMs);
   };
   return {

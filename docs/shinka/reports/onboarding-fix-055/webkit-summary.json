@@ -1,0 +1,161 @@
+{
+  "command": "FOUNDATION_BROWSER=webkit npm run test:foundation",
+  "exitCode": 0,
+  "browser": {
+    "engine": "webkit",
+    "version": "27.2",
+    "physicalDevice": false
+  },
+  "tests": 775,
+  "passed": 775,
+  "failed": 0,
+  "pageErrors": [],
+  "catalog": {
+    "version": "HC-054.0",
+    "suites": 17,
+    "cases": 186,
+    "localRegression": 12,
+    "current": 160,
+    "future": 0,
+    "external": 14
+  },
+  "health": {
+    "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+    "counts": {
+      "PASS": 147,
+      "BLOCKED": 13
+    },
+    "blockedIds": [
+      "H04-019",
+      "H05-001",
+      "H05-002",
+      "H05-003",
+      "H05-004",
+      "H05-005",
+      "H05-006",
+      "H05-007",
+      "H05-008",
+      "H05-009",
+      "H08-005",
+      "H09-004",
+      "H12-031"
+    ],
+    "saveState": "SAVED",
+    "retrySave": true,
+    "historyListed": true,
+    "privateReportOpened": true
+  },
+  "onboardingMatrix": [
+    {
+      "language": "tr",
+      "width": 320,
+      "height": 568,
+      "scale": 1,
+      "passed": true,
+      "physicalDevice": false,
+      "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+      "pageErrors": []
+    },
+    {
+      "language": "tr",
+      "width": 320,
+      "height": 568,
+      "scale": 2,
+      "passed": true,
+      "physicalDevice": false,
+      "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+      "pageErrors": []
+    },
+    {
+      "language": "tr",
+      "width": 390,
+      "height": 844,
+      "scale": 1,
+      "passed": true,
+      "physicalDevice": false,
+      "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+      "pageErrors": []
+    },
+    {
+      "language": "tr",
+      "width": 390,
+      "height": 844,
+      "scale": 2,
+      "passed": true,
+      "physicalDevice": false,
+      "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+      "pageErrors": []
+    },
+    {
+      "language": "en",
+      "width": 320,
+      "height": 568,
+      "scale": 1,
+      "passed": true,
+      "physicalDevice": false,
+      "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+      "pageErrors": []
+    },
+    {
+      "language": "en",
+      "width": 320,
+      "height": 568,
+      "scale": 2,
+      "passed": true,
+      "physicalDevice": false,
+      "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+      "pageErrors": []
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "height": 844,
+      "scale": 1,
+      "passed": true,
+      "physicalDevice": false,
+      "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+      "pageErrors": []
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "height": 844,
+      "scale": 2,
+      "passed": true,
+      "physicalDevice": false,
+      "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK",
+      "pageErrors": []
+    }
+  ],
+  "nativeEntries": {
+    "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+    "sessionChecks": 10,
+    "nativeRoutes": 5,
+    "artifactEntryChecks": 2,
+    "internalHealthEntryChecks": 7,
+    "loginSecretReads": 0,
+    "hostedVerified": false,
+    "passed": true,
+    "deletion": {
+      "passed": true,
+      "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+      "hostedVerified": false,
+      "checks": 7
+    }
+  },
+  "geoNamesEntry": {
+    "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+    "requests": 3,
+    "secretReadsAtModuleLoad": 0,
+    "passed": true
+  },
+  "geoNamesRuntimeProbeEntry": {
+    "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+    "deniedRequests": 3,
+    "authorizedRequests": 2,
+    "secretReadsBeforeAuthorization": 0,
+    "workerFactories": 1,
+    "passed": true
+  },
+  "notificationRunnerPassed": true
+}
