@@ -4,7 +4,7 @@ import { createElement as h } from 'react';
 export { useAuth };
 function Observer() {
   const value=useAuth();
-  if(['startupFixture','themeFixture'].some(key=>new URLSearchParams(location.search).has(key))) globalThis.__appAuth=value;
+  if(['startupFixture','themeFixture','appFixture'].some(key=>new URLSearchParams(location.search).has(key))) globalThis.__appAuth=value;
   return null;
 }
 export function AuthProvider({children,...props}) {

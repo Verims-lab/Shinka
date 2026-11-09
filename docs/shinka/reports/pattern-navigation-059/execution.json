@@ -1,0 +1,4485 @@
+{
+  "date": "2026-11-09",
+  "build": "Buildmarker-059",
+  "catalog": "HC-058.0",
+  "baseCommit": "9b5da80",
+  "healthChanges": {
+    "added": 0,
+    "updated": 4,
+    "removed": 0,
+    "ids": [
+      "H05-009",
+      "H10-001",
+      "H13-012",
+      "H13-017"
+    ]
+  },
+  "engines": {
+    "chromium": {
+      "exitCode": 0,
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "foundation": {
+        "tests": 791,
+        "passed": 791,
+        "failed": 0,
+        "pageErrors": []
+      },
+      "pattern": {
+        "matrixCells": 40,
+        "routeDenialChecks": 2,
+        "publicAssets": "LOADED",
+        "results": [
+          {
+            "scenario": "pattern-320-tr-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 481.625,
+                  "bottom": 521.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 533.625,
+                  "bottom": 573.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 585.625,
+                  "bottom": 643.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 655.625,
+                  "bottom": 695.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 707.625,
+                  "bottom": 747.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-320-tr-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 861.625,
+                  "bottom": 941.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 953.625,
+                  "bottom": 1033.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1045.625,
+                  "bottom": 1161.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1173.625,
+                  "bottom": 1253.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1265.625,
+                  "bottom": 1389.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-320-tr-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 481.625,
+                  "bottom": 521.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 533.625,
+                  "bottom": 573.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 585.625,
+                  "bottom": 643.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 655.625,
+                  "bottom": 695.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 707.625,
+                  "bottom": 747.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-320-tr-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 861.625,
+                  "bottom": 941.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 953.625,
+                  "bottom": 1033.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1045.625,
+                  "bottom": 1161.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1173.625,
+                  "bottom": 1253.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1265.625,
+                  "bottom": 1389.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-320-en-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 481.625,
+                  "bottom": 521.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 533.625,
+                  "bottom": 573.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 585.625,
+                  "bottom": 643.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 655.625,
+                  "bottom": 695.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 707.625,
+                  "bottom": 747.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-320-en-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 921.625,
+                  "bottom": 1001.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1013.625,
+                  "bottom": 1093.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1105.625,
+                  "bottom": 1221.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1233.625,
+                  "bottom": 1313.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1325.625,
+                  "bottom": 1449.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-320-en-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 481.625,
+                  "bottom": 521.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 533.625,
+                  "bottom": 573.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 585.625,
+                  "bottom": 643.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 655.625,
+                  "bottom": 695.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 707.625,
+                  "bottom": 747.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-320-en-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 921.625,
+                  "bottom": 1001.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1013.625,
+                  "bottom": 1093.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1105.625,
+                  "bottom": 1221.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1233.625,
+                  "bottom": 1313.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1325.625,
+                  "bottom": 1449.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-tr-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 492.828125,
+                  "bottom": 532.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 544.828125,
+                  "bottom": 584.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 596.828125,
+                  "bottom": 654.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 666.828125,
+                  "bottom": 706.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 718.828125,
+                  "bottom": 758.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-tr-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 872.828125,
+                  "bottom": 952.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 964.828125,
+                  "bottom": 1044.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1056.828125,
+                  "bottom": 1172.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1184.828125,
+                  "bottom": 1264.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1276.828125,
+                  "bottom": 1356.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-tr-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 492.828125,
+                  "bottom": 532.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 544.828125,
+                  "bottom": 584.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 596.828125,
+                  "bottom": 654.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 666.828125,
+                  "bottom": 706.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 718.828125,
+                  "bottom": 758.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-tr-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 872.828125,
+                  "bottom": 952.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 964.828125,
+                  "bottom": 1044.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1056.828125,
+                  "bottom": 1172.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1184.828125,
+                  "bottom": 1264.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1276.828125,
+                  "bottom": 1356.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-en-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 492.828125,
+                  "bottom": 532.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 544.828125,
+                  "bottom": 584.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 596.828125,
+                  "bottom": 654.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 666.828125,
+                  "bottom": 706.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 718.828125,
+                  "bottom": 758.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-en-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 752.828125,
+                  "bottom": 832.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 844.828125,
+                  "bottom": 924.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 936.828125,
+                  "bottom": 1052.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1064.828125,
+                  "bottom": 1144.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1156.828125,
+                  "bottom": 1236.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-en-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 492.828125,
+                  "bottom": 532.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 544.828125,
+                  "bottom": 584.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 596.828125,
+                  "bottom": 654.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 666.828125,
+                  "bottom": 706.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 718.828125,
+                  "bottom": 758.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-en-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 752.828125,
+                  "bottom": 832.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 844.828125,
+                  "bottom": 924.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 936.828125,
+                  "bottom": 1052.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1064.828125,
+                  "bottom": 1144.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1156.828125,
+                  "bottom": 1236.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-tr-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 501.234375,
+                  "bottom": 541.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 553.234375,
+                  "bottom": 593.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 605.234375,
+                  "bottom": 663.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 675.234375,
+                  "bottom": 715.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 727.234375,
+                  "bottom": 767.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-tr-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 881.234375,
+                  "bottom": 961.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 973.234375,
+                  "bottom": 1053.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1065.234375,
+                  "bottom": 1181.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1193.234375,
+                  "bottom": 1273.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1285.234375,
+                  "bottom": 1365.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-tr-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 501.234375,
+                  "bottom": 541.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 553.234375,
+                  "bottom": 593.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 605.234375,
+                  "bottom": 663.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 675.234375,
+                  "bottom": 715.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 727.234375,
+                  "bottom": 767.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-tr-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 881.234375,
+                  "bottom": 961.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 973.234375,
+                  "bottom": 1053.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1065.234375,
+                  "bottom": 1181.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1193.234375,
+                  "bottom": 1273.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1285.234375,
+                  "bottom": 1365.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-en-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 501.234375,
+                  "bottom": 541.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 553.234375,
+                  "bottom": 593.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 605.234375,
+                  "bottom": 663.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 675.234375,
+                  "bottom": 715.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 727.234375,
+                  "bottom": 767.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-en-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 761.234375,
+                  "bottom": 841.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 853.234375,
+                  "bottom": 933.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 945.234375,
+                  "bottom": 1061.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1073.234375,
+                  "bottom": 1153.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1165.234375,
+                  "bottom": 1245.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-en-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 501.234375,
+                  "bottom": 541.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 553.234375,
+                  "bottom": 593.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 605.234375,
+                  "bottom": 663.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 675.234375,
+                  "bottom": 715.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 727.234375,
+                  "bottom": 767.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-en-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 761.234375,
+                  "bottom": 841.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 853.234375,
+                  "bottom": 933.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 945.234375,
+                  "bottom": 1061.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1073.234375,
+                  "bottom": 1153.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1165.234375,
+                  "bottom": 1245.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-tr-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 512.4375,
+                  "bottom": 552.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 564.4375,
+                  "bottom": 604.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 616.4375,
+                  "bottom": 674.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 686.4375,
+                  "bottom": 726.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 738.4375,
+                  "bottom": 778.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-tr-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 772.4375,
+                  "bottom": 852.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 864.4375,
+                  "bottom": 944.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 956.4375,
+                  "bottom": 1072.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1084.4375,
+                  "bottom": 1164.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1176.4375,
+                  "bottom": 1256.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-tr-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 512.4375,
+                  "bottom": 552.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 564.4375,
+                  "bottom": 604.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 616.4375,
+                  "bottom": 674.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 686.4375,
+                  "bottom": 726.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 738.4375,
+                  "bottom": 778.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-tr-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 772.4375,
+                  "bottom": 852.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 864.4375,
+                  "bottom": 944.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 956.4375,
+                  "bottom": 1072.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1084.4375,
+                  "bottom": 1164.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1176.4375,
+                  "bottom": 1256.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-en-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 512.4375,
+                  "bottom": 552.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 564.4375,
+                  "bottom": 604.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 616.4375,
+                  "bottom": 674.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 686.4375,
+                  "bottom": 726.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 738.4375,
+                  "bottom": 778.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-en-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 772.4375,
+                  "bottom": 852.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 864.4375,
+                  "bottom": 944.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 956.4375,
+                  "bottom": 1072.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1084.4375,
+                  "bottom": 1164.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1176.4375,
+                  "bottom": 1256.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-en-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 512.4375,
+                  "bottom": 552.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 564.4375,
+                  "bottom": 604.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 616.4375,
+                  "bottom": 674.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 686.4375,
+                  "bottom": 726.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 738.4375,
+                  "bottom": 778.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-en-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 772.4375,
+                  "bottom": 852.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 864.4375,
+                  "bottom": 944.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 956.4375,
+                  "bottom": 1072.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1084.4375,
+                  "bottom": 1164.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1176.4375,
+                  "bottom": 1256.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-tr-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 675.3125,
+                  "bottom": 715.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-tr-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 937.3125,
+                  "bottom": 1061.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-tr-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 675.3125,
+                  "bottom": 715.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-tr-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 937.3125,
+                  "bottom": 1061.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-en-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 675.3125,
+                  "bottom": 715.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-en-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 937.3125,
+                  "bottom": 1061.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-en-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 675.3125,
+                  "bottom": 715.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-en-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 937.3125,
+                  "bottom": 1061.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-route-anonymous-incomplete-denied",
+            "passed": true,
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-route-user-incomplete-denied",
+            "passed": true,
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          }
+        ]
+      },
+      "navigation": {
+        "geometryCells": 192,
+        "keyboardResizeChecks": 12,
+        "negativeSpacerScenario": 1,
+        "publicAssets": "LOADED",
+        "physicalDevice": false
+      },
+      "localHealth": {
+        "counts": {
+          "PASS": 147,
+          "BLOCKED": 13
+        },
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "saveState": "SAVED",
+        "historyListed": true,
+        "privateReportOpened": true
+      },
+      "serverRunners": {
+        "nativeEntries": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "sessionChecks": 10,
+          "nativeRoutes": 5,
+          "artifactEntryChecks": 2,
+          "internalHealthEntryChecks": 7,
+          "loginSecretReads": 0,
+          "hostedVerified": false,
+          "passed": true,
+          "deletion": {
+            "passed": true,
+            "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+            "hostedVerified": false,
+            "checks": 7
+          }
+        },
+        "geoNamesEntry": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "requests": 3,
+          "secretReadsAtModuleLoad": 0,
+          "passed": true
+        },
+        "geoNamesRuntimeProbeEntry": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "deniedRequests": 3,
+          "authorizedRequests": 2,
+          "secretReadsBeforeAuthorization": 0,
+          "workerFactories": 1,
+          "passed": true
+        },
+        "security028": {
+          "scope": "LOCAL_SERVER_FIXTURE",
+          "hostedVerified": false,
+          "results": [
+            {
+              "id": "SC01",
+              "name": "Bounded JSON: streaming byte limit, Content-Length, malformed and non-object",
+              "status": "PASS"
+            },
+            {
+              "id": "SC02",
+              "name": "GeoNames guard: no owner 401, lazy adapter/secret, per-user app limit with retry seconds, window reset",
+              "status": "PASS"
+            },
+            {
+              "id": "SC03",
+              "name": "GeoNames guard counts real upstream fetches and the worker-local total across owners; cache avoids refetch",
+              "status": "PASS"
+            },
+            {
+              "id": "SC04",
+              "name": "Unauthenticated You/onboarding calls: 401, zero product writes, no GeoNames setup",
+              "status": "PASS"
+            },
+            {
+              "id": "SC05",
+              "name": "Oversize bodies: 413 from real You/onboarding handlers with no entity call",
+              "status": "PASS"
+            },
+            {
+              "id": "SC07",
+              "name": "Real guard + real adapter: app, user-upstream and worker-upstream limits keep 429/retry and stop provider fetches",
+              "status": "PASS"
+            },
+            {
+              "id": "SC08",
+              "name": "Onboarding and You handlers return 429, GEONAMES_RATE_LIMITED, Retry-After and retry_after_seconds for the real chain error",
+              "status": "PASS"
+            },
+            {
+              "id": "SC09",
+              "name": "Negative: network failure and a forged 429-shaped error from fetch stay GEONAMES_UNAVAILABLE, never rate-limited",
+              "status": "PASS"
+            }
+          ],
+          "passed": true
+        },
+        "notifications030": {
+          "scope": "LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION",
+          "passed": true,
+          "results": [
+            {
+              "id": "NS01",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS02",
+              "status": "PASS",
+              "httpStatus": 503,
+              "response": {
+                "error_code": "SESSION_UNAVAILABLE"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS03",
+              "status": "PASS",
+              "httpStatus": 403,
+              "response": {
+                "error_code": "ADMIN_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS04",
+              "status": "PASS",
+              "httpStatus": 403,
+              "response": {
+                "error_code": "ADMIN_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS05",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 2,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS06",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS07",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS08",
+              "status": "PASS",
+              "httpStatus": 200,
+              "response": {
+                "state": "DISABLED",
+                "processed": 0
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS09",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS10",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS11",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            }
+          ],
+          "sdk": {
+            "id": "SDK01",
+            "status": "PASS",
+            "scope": "INSTALLED_SDK_LOOPBACK_HTTP_ONLY",
+            "integrationEnvelope": "UNWRAPPED_JSON_BODY",
+            "optionalFieldsOmitted": true,
+            "providerCalls": 0
+          },
+          "hostedVerified": false
+        }
+      }
+    },
+    "webkit": {
+      "exitCode": 0,
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "foundation": {
+        "tests": 791,
+        "passed": 791,
+        "failed": 0,
+        "pageErrors": []
+      },
+      "pattern": {
+        "matrixCells": 40,
+        "routeDenialChecks": 2,
+        "publicAssets": "LOADED",
+        "results": [
+          {
+            "scenario": "pattern-320-tr-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 481.625,
+                  "bottom": 521.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 533.625,
+                  "bottom": 573.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 585.625,
+                  "bottom": 643.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 655.625,
+                  "bottom": 695.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 707.625,
+                  "bottom": 747.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-320-tr-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 861.625,
+                  "bottom": 941.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 953.625,
+                  "bottom": 1033.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1045.625,
+                  "bottom": 1161.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1173.625,
+                  "bottom": 1253.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1265.625,
+                  "bottom": 1389.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-320-tr-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 481.625,
+                  "bottom": 521.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 533.625,
+                  "bottom": 573.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 585.625,
+                  "bottom": 643.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 655.625,
+                  "bottom": 695.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 707.625,
+                  "bottom": 747.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-320-tr-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 861.625,
+                  "bottom": 941.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 953.625,
+                  "bottom": 1033.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1045.625,
+                  "bottom": 1161.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1173.625,
+                  "bottom": 1253.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1265.625,
+                  "bottom": 1389.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-320-en-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 481.625,
+                  "bottom": 521.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 533.625,
+                  "bottom": 573.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 585.625,
+                  "bottom": 643.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 655.625,
+                  "bottom": 695.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 707.625,
+                  "bottom": 747.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-320-en-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 921.625,
+                  "bottom": 1001.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1013.625,
+                  "bottom": 1093.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1105.625,
+                  "bottom": 1221.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1233.625,
+                  "bottom": 1313.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1325.625,
+                  "bottom": 1449.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-320-en-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 481.625,
+                  "bottom": 521.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 533.625,
+                  "bottom": 573.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 585.625,
+                  "bottom": 643.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 655.625,
+                  "bottom": 695.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 707.625,
+                  "bottom": 747.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-320-en-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "scroll": 320,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 921.625,
+                  "bottom": 1001.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1013.625,
+                  "bottom": 1093.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1105.625,
+                  "bottom": 1221.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1233.625,
+                  "bottom": 1313.625
+                },
+                {
+                  "left": 41,
+                  "right": 279,
+                  "top": 1325.625,
+                  "bottom": 1449.625
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-tr-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 492.828125,
+                  "bottom": 532.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 544.828125,
+                  "bottom": 584.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 596.828125,
+                  "bottom": 654.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 666.828125,
+                  "bottom": 706.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 718.828125,
+                  "bottom": 758.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-tr-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 872.828125,
+                  "bottom": 952.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 964.828125,
+                  "bottom": 1044.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1056.828125,
+                  "bottom": 1172.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1184.828125,
+                  "bottom": 1264.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1276.828125,
+                  "bottom": 1356.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-tr-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 492.828125,
+                  "bottom": 532.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 544.828125,
+                  "bottom": 584.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 596.828125,
+                  "bottom": 654.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 666.828125,
+                  "bottom": 706.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 718.828125,
+                  "bottom": 758.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-tr-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 872.828125,
+                  "bottom": 952.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 964.828125,
+                  "bottom": 1044.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1056.828125,
+                  "bottom": 1172.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1184.828125,
+                  "bottom": 1264.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1276.828125,
+                  "bottom": 1356.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-en-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 492.828125,
+                  "bottom": 532.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 544.828125,
+                  "bottom": 584.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 596.828125,
+                  "bottom": 654.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 666.828125,
+                  "bottom": 706.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 718.828125,
+                  "bottom": 758.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-en-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 752.828125,
+                  "bottom": 832.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 844.828125,
+                  "bottom": 924.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 936.828125,
+                  "bottom": 1052.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1064.828125,
+                  "bottom": 1144.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1156.828125,
+                  "bottom": 1236.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-en-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 492.828125,
+                  "bottom": 532.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 544.828125,
+                  "bottom": 584.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 596.828125,
+                  "bottom": 654.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 666.828125,
+                  "bottom": 706.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 718.828125,
+                  "bottom": 758.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-360-en-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "scroll": 360,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 752.828125,
+                  "bottom": 832.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 844.828125,
+                  "bottom": 924.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 936.828125,
+                  "bottom": 1052.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1064.828125,
+                  "bottom": 1144.828125
+                },
+                {
+                  "left": 41,
+                  "right": 319,
+                  "top": 1156.828125,
+                  "bottom": 1236.828125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-tr-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 501.234375,
+                  "bottom": 541.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 553.234375,
+                  "bottom": 593.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 605.234375,
+                  "bottom": 663.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 675.234375,
+                  "bottom": 715.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 727.234375,
+                  "bottom": 767.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-tr-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 881.234375,
+                  "bottom": 961.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 973.234375,
+                  "bottom": 1053.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1065.234375,
+                  "bottom": 1181.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1193.234375,
+                  "bottom": 1273.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1285.234375,
+                  "bottom": 1365.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-tr-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 501.234375,
+                  "bottom": 541.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 553.234375,
+                  "bottom": 593.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 605.234375,
+                  "bottom": 663.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 675.234375,
+                  "bottom": 715.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 727.234375,
+                  "bottom": 767.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-tr-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 881.234375,
+                  "bottom": 961.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 973.234375,
+                  "bottom": 1053.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1065.234375,
+                  "bottom": 1181.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1193.234375,
+                  "bottom": 1273.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1285.234375,
+                  "bottom": 1365.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-en-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 501.234375,
+                  "bottom": 541.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 553.234375,
+                  "bottom": 593.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 605.234375,
+                  "bottom": 663.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 675.234375,
+                  "bottom": 715.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 727.234375,
+                  "bottom": 767.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-en-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 761.234375,
+                  "bottom": 841.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 853.234375,
+                  "bottom": 933.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 945.234375,
+                  "bottom": 1061.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1073.234375,
+                  "bottom": 1153.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1165.234375,
+                  "bottom": 1245.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-en-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 501.234375,
+                  "bottom": 541.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 553.234375,
+                  "bottom": 593.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 605.234375,
+                  "bottom": 663.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 675.234375,
+                  "bottom": 715.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 727.234375,
+                  "bottom": 767.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-390-en-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "scroll": 390,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 761.234375,
+                  "bottom": 841.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 853.234375,
+                  "bottom": 933.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 945.234375,
+                  "bottom": 1061.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1073.234375,
+                  "bottom": 1153.234375
+                },
+                {
+                  "left": 41,
+                  "right": 349,
+                  "top": 1165.234375,
+                  "bottom": 1245.234375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-tr-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 512.4375,
+                  "bottom": 552.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 564.4375,
+                  "bottom": 604.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 616.4375,
+                  "bottom": 674.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 686.4375,
+                  "bottom": 726.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 738.4375,
+                  "bottom": 778.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-tr-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 772.4375,
+                  "bottom": 852.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 864.4375,
+                  "bottom": 944.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 956.4375,
+                  "bottom": 1072.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1084.4375,
+                  "bottom": 1164.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1176.4375,
+                  "bottom": 1256.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-tr-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 512.4375,
+                  "bottom": 552.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 564.4375,
+                  "bottom": 604.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 616.4375,
+                  "bottom": 674.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 686.4375,
+                  "bottom": 726.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 738.4375,
+                  "bottom": 778.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-tr-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 772.4375,
+                  "bottom": 852.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 864.4375,
+                  "bottom": 944.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 956.4375,
+                  "bottom": 1072.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1084.4375,
+                  "bottom": 1164.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1176.4375,
+                  "bottom": 1256.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-en-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 512.4375,
+                  "bottom": 552.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 564.4375,
+                  "bottom": 604.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 616.4375,
+                  "bottom": 674.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 686.4375,
+                  "bottom": 726.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 738.4375,
+                  "bottom": 778.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-en-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 772.4375,
+                  "bottom": 852.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 864.4375,
+                  "bottom": 944.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 956.4375,
+                  "bottom": 1072.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1084.4375,
+                  "bottom": 1164.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1176.4375,
+                  "bottom": 1256.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-en-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 512.4375,
+                  "bottom": 552.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 564.4375,
+                  "bottom": 604.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 616.4375,
+                  "bottom": 674.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 686.4375,
+                  "bottom": 726.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 738.4375,
+                  "bottom": 778.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-430-en-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "scroll": 430,
+              "labels": [
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 772.4375,
+                  "bottom": 852.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 864.4375,
+                  "bottom": 944.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 956.4375,
+                  "bottom": 1072.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1084.4375,
+                  "bottom": 1164.4375
+                },
+                {
+                  "left": 41,
+                  "right": 389,
+                  "top": 1176.4375,
+                  "bottom": 1256.4375
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-tr-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 675.3125,
+                  "bottom": 715.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-tr-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 937.3125,
+                  "bottom": 1061.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-tr-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 675.3125,
+                  "bottom": 715.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-tr-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 937.3125,
+                  "bottom": 1061.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-en-light-1x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 675.3125,
+                  "bottom": 715.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-en-light-2x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 937.3125,
+                  "bottom": 1061.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-en-dark-1x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 553.3125,
+                  "bottom": 593.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 605.3125,
+                  "bottom": 663.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 675.3125,
+                  "bottom": 715.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-844-en-dark-2x",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "scroll": 844,
+              "labels": [
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 717.3125,
+                  "bottom": 797.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 428,
+                  "right": 669,
+                  "top": 809.3125,
+                  "bottom": 925.3125
+                },
+                {
+                  "left": 175,
+                  "right": 416,
+                  "top": 937.3125,
+                  "bottom": 1061.3125
+                }
+              ]
+            },
+            "publicAssets": "LOADED",
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-route-anonymous-incomplete-denied",
+            "passed": true,
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "pattern-route-user-incomplete-denied",
+            "passed": true,
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          }
+        ]
+      },
+      "navigation": {
+        "geometryCells": 192,
+        "keyboardResizeChecks": 12,
+        "negativeSpacerScenario": 1,
+        "publicAssets": "LOADED",
+        "physicalDevice": false
+      },
+      "localHealth": {
+        "counts": {
+          "PASS": 147,
+          "BLOCKED": 13
+        },
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "saveState": "SAVED",
+        "historyListed": true,
+        "privateReportOpened": true
+      },
+      "serverRunners": {
+        "nativeEntries": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "sessionChecks": 10,
+          "nativeRoutes": 5,
+          "artifactEntryChecks": 2,
+          "internalHealthEntryChecks": 7,
+          "loginSecretReads": 0,
+          "hostedVerified": false,
+          "passed": true,
+          "deletion": {
+            "passed": true,
+            "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+            "hostedVerified": false,
+            "checks": 7
+          }
+        },
+        "geoNamesEntry": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "requests": 3,
+          "secretReadsAtModuleLoad": 0,
+          "passed": true
+        },
+        "geoNamesRuntimeProbeEntry": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "deniedRequests": 3,
+          "authorizedRequests": 2,
+          "secretReadsBeforeAuthorization": 0,
+          "workerFactories": 1,
+          "passed": true
+        },
+        "security028": {
+          "scope": "LOCAL_SERVER_FIXTURE",
+          "hostedVerified": false,
+          "results": [
+            {
+              "id": "SC01",
+              "name": "Bounded JSON: streaming byte limit, Content-Length, malformed and non-object",
+              "status": "PASS"
+            },
+            {
+              "id": "SC02",
+              "name": "GeoNames guard: no owner 401, lazy adapter/secret, per-user app limit with retry seconds, window reset",
+              "status": "PASS"
+            },
+            {
+              "id": "SC03",
+              "name": "GeoNames guard counts real upstream fetches and the worker-local total across owners; cache avoids refetch",
+              "status": "PASS"
+            },
+            {
+              "id": "SC04",
+              "name": "Unauthenticated You/onboarding calls: 401, zero product writes, no GeoNames setup",
+              "status": "PASS"
+            },
+            {
+              "id": "SC05",
+              "name": "Oversize bodies: 413 from real You/onboarding handlers with no entity call",
+              "status": "PASS"
+            },
+            {
+              "id": "SC07",
+              "name": "Real guard + real adapter: app, user-upstream and worker-upstream limits keep 429/retry and stop provider fetches",
+              "status": "PASS"
+            },
+            {
+              "id": "SC08",
+              "name": "Onboarding and You handlers return 429, GEONAMES_RATE_LIMITED, Retry-After and retry_after_seconds for the real chain error",
+              "status": "PASS"
+            },
+            {
+              "id": "SC09",
+              "name": "Negative: network failure and a forged 429-shaped error from fetch stay GEONAMES_UNAVAILABLE, never rate-limited",
+              "status": "PASS"
+            }
+          ],
+          "passed": true
+        },
+        "notifications030": {
+          "scope": "LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION",
+          "passed": true,
+          "results": [
+            {
+              "id": "NS01",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS02",
+              "status": "PASS",
+              "httpStatus": 503,
+              "response": {
+                "error_code": "SESSION_UNAVAILABLE"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS03",
+              "status": "PASS",
+              "httpStatus": 403,
+              "response": {
+                "error_code": "ADMIN_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS04",
+              "status": "PASS",
+              "httpStatus": 403,
+              "response": {
+                "error_code": "ADMIN_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS05",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 2,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS06",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS07",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS08",
+              "status": "PASS",
+              "httpStatus": 200,
+              "response": {
+                "state": "DISABLED",
+                "processed": 0
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS09",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS10",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS11",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            }
+          ],
+          "sdk": {
+            "id": "SDK01",
+            "status": "PASS",
+            "scope": "INSTALLED_SDK_LOOPBACK_HTTP_ONLY",
+            "integrationEnvelope": "UNWRAPPED_JSON_BODY",
+            "optionalFieldsOmitted": true,
+            "providerCalls": 0
+          },
+          "hostedVerified": false
+        }
+      }
+    }
+  },
+  "navigationBeforeAfter": [
+    {
+      "surface": "home",
+      "viewport": [
+        390,
+        844
+      ],
+      "language": "en",
+      "scale": 1,
+      "scope": "LOCAL_REAL_APP_SYNTHETIC_IO_LOADED_ASSETS",
+      "before": {
+        "row": 44,
+        "safeInset": 0,
+        "whiteNav": 45,
+        "mainBottomPadding": 32,
+        "shellPadding": 0,
+        "mainNavGap": 0,
+        "lastContentOverlap": 0
+      },
+      "after": {
+        "row": 44,
+        "safeInset": 0,
+        "whiteNav": 45,
+        "mainBottomPadding": 32,
+        "shellPadding": 0,
+        "mainNavGap": 0,
+        "lastContentOverlap": 0
+      }
+    },
+    {
+      "surface": "calendar",
+      "viewport": [
+        390,
+        844
+      ],
+      "language": "en",
+      "scale": 1,
+      "scope": "LOCAL_REAL_APP_SYNTHETIC_IO_LOADED_ASSETS",
+      "before": {
+        "row": 44,
+        "safeInset": 0,
+        "whiteNav": 45,
+        "mainBottomPadding": 32,
+        "shellPadding": 0,
+        "mainNavGap": 0,
+        "lastContentOverlap": 0
+      },
+      "after": {
+        "row": 44,
+        "safeInset": 0,
+        "whiteNav": 45,
+        "mainBottomPadding": 32,
+        "shellPadding": 0,
+        "mainNavGap": 0,
+        "lastContentOverlap": 0
+      }
+    },
+    {
+      "surface": "pattern",
+      "viewport": [
+        390,
+        844
+      ],
+      "language": "en",
+      "scale": 1,
+      "scope": "LOCAL_REAL_APP_SYNTHETIC_IO_LOADED_ASSETS",
+      "before": {
+        "row": 44,
+        "safeInset": 0,
+        "whiteNav": 45,
+        "mainBottomPadding": 32,
+        "shellPadding": 0,
+        "mainNavGap": 0,
+        "lastContentOverlap": 0
+      },
+      "after": {
+        "row": 44,
+        "safeInset": 0,
+        "whiteNav": 45,
+        "mainBottomPadding": 32,
+        "shellPadding": 0,
+        "mainNavGap": 0,
+        "lastContentOverlap": 0
+      }
+    }
+  ],
+  "sourceSha256": {
+    "base44/shared/patternCalculation.js": "044c326d760677186a89e98636a808b16f8e475ea035d3fb9f67991cd6fa627f",
+    "base44/shared/patternOperation.js": "d3209d92635d417daec2bfc2e3064b2123ef35382c1f93bc11ac7e1892184131",
+    "src/services/patternService.js": "754838fa15890d344269802d387cbf860233ecb156ef7a81f981204249b6beab",
+    "src/pages/Pattern.jsx": "b5313b9896e44fc710869a1c95c56e35c15f8a35e55f00d82d9dc7f07b211b92",
+    "src/features/pattern/LunarTimeline.jsx": "38c5e7e5a83f7027a9c8dfca3c5ac8a1f2fc95332d39cc41075a989f5401fec2",
+    "src/foundation/i18n/patternCopy.js": "3aa53ecb3bbdc2092cb1cac33f3b9bb5383c129214da9ee2ee74e328f1be5732",
+    "src/foundation/tests/patternTests.js": "58a38f493b1a41715cb4fff18fc3f0fd894361a1053ccf0ab66c78d8b9ce8211",
+    "src/foundation/tests/patternUiTests.js": "8c2b1cd1e79060f5d00c3bd27744250e47a30b019320da7f211d696d1dd5d56d",
+    "src/components/shinka/ProductNavigation.jsx": "1e046c3a04cf2835b534e73de71320067f2fd2493a954d648f0f216d35899c1d",
+    "src/styles/mobile.css": "7f14376876dc10bb7ccac677e56c5347923a8844022d6042876ded9882aff9f0",
+    "src/components/shinka/ProductTabs.jsx": "e20cabbf4a558beb1df9000c2c4cf518ba2b639b738f3752ee1c59820d57cea3",
+    "package-lock.json": "e9619d7c54d4ebbb25165ea192950dfe40664f3baf409acfe750578ce0ea14f4"
+  },
+  "performance": {
+    "passed": true,
+    "initialJS": {
+      "raw": 489223,
+      "gzip": 163444
+    },
+    "css": {
+      "raw": 79191,
+      "gzip": 14545
+    },
+    "budgets": {
+      "initialRaw": 500000,
+      "initialGzip": 165000,
+      "cssRaw": 90000,
+      "cssGzip": 16000
+    },
+    "lazyRetry": {
+      "passed": true,
+      "scope": "Synthetic network asset failure and full-reload retry, real App route"
+    },
+    "conditions": {
+      "node": "v26.0.0",
+      "platform": "darwin",
+      "arch": "arm64",
+      "browser": "Playwright Chromium, headless, cold context, 360x740, loopback, no throttling; SDK transport stubbed, external fonts blocked; not user metrics"
+    },
+    "notFieldPerformance": true
+  },
+  "quality": {
+    "npm ci": {
+      "status": "PASS",
+      "exitCode": 0
+    },
+    "npm ls --all": {
+      "status": "PASS",
+      "exitCode": 0
+    },
+    "npm ls --depth=0": {
+      "status": "PASS",
+      "exitCode": 0
+    },
+    "typecheck": {
+      "status": "PASS",
+      "exitCode": 0
+    },
+    "lint": {
+      "status": "PASS",
+      "exitCode": 0
+    },
+    "build": {
+      "status": "PASS",
+      "exitCode": 0
+    },
+    "health:repo": {
+      "status": "PASS",
+      "exitCode": 0
+    },
+    "recordBuild --check": {
+      "status": "PASS",
+      "exitCode": 0
+    },
+    "security:deps": {
+      "status": "PASS",
+      "exitCode": 0
+    }
+  },
+  "dependencyResult": {
+    "critical": 0,
+    "high": 0,
+    "moderate": 0,
+    "low": 0,
+    "compatiblePatch": "follow-redirects 1.16.1 -> 1.16.2",
+    "ageFloorPreserved": true
+  },
+  "retainedInitialFailures": [
+    {
+      "check": "PU03",
+      "detail": "START:labels overlap",
+      "resolution": "Pairwise intersection test replaces false vertical-only assumption for valid two-column grid; containment/touch checks preserved"
+    },
+    {
+      "check": "typecheck",
+      "detail": "new mixed tuple test string|number argument",
+      "resolution": "explicit String conversion in test Date.parse"
+    }
+  ],
+  "postFullBundleChange": {
+    "file": "base44/shared/healthExecutionScope.js",
+    "scope": "H13-017 serialized coverage wording only; no product/test behavior change",
+    "validation": [
+      "final scope metadata assertion",
+      "final production build/performance",
+      "final repo check",
+      "focused navigation harness rebuild"
+    ]
+  },
+  "notRun": {
+    "liveFullHealth": "USER_SCOPE_EXCLUDED",
+    "liveSecurityScan": "USER_SCOPE_EXCLUDED",
+    "liveUserMutation": "USER_SCOPE_EXCLUDED",
+    "physicalAndroidIOS": "NO_DEVICE_ACCESS",
+    "apkWrapperIdentity": "NOT_AVAILABLE",
+    "sixCategoryDescriptionAndIllustrationAssociation": "SOURCE_REQUIRED"
+  }
+}

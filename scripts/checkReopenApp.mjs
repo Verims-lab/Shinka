@@ -29,7 +29,7 @@ export async function checkReopenApp(browser,origin){
     assert.equal(await page.evaluate(()=>window.__sdkLabCalls.filter(c=>c.name!=='applicationSession').length-window.__beforeCold),0);
     await settle('session',1,identity);await settle('settings',1,{});await page.locator('[data-daily-id]').waitFor();
     rows.push({scenario:'cold-readmission-no-early-product',passed:true});
-    for(const [name,ready] of [['Calendar','[data-calendar-date]'],['Pattern','[data-lunar-summary]'],['Home','[data-daily-id]']]){
+    for(const [name,ready] of [['Calendar','[data-calendar-date]'],['Pattern','[data-lunar-timeline]'],['Home','[data-daily-id]']]){
       await page.getByRole('link',{name,exact:true}).filter({visible:true}).click();await page.locator(ready).filter({visible:true}).first().waitFor();
       rows.push({scenario:`tab-return-${name}`,passed:true});
     }

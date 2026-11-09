@@ -2,12 +2,29 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-058
-**Last Updated:** 2026-11-01
+**Current BuildMarker:** Buildmarker-060
+**Last Updated:** 2026-11-09
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
+
+
+## 060 — Account privacy correction (2026-11-09)
+
+Started clean Test 20978bd, identical to origin/Test and one commit ahead of main 9b5da80. Preserved 059 Pattern/navigation and all Base44 visuals. Gizem16's 18-second recording shows unknown result followed by Checking status near the end; it does not prove a hung backend. Existing hosted admin privacy read succeeded, with admin self-deletion correctly disabled; no incident receipt/native response was available.
+
+Code confirmed loss of error distinctions and misleading local-intent status copy, no local abort cleanup, and status loading awaiting potentially unsettled provider logout. Product session fencing also differs from the raw owner privacy authority: expired receipt reauthentication must use the latter, preserve binding and never renew the capability. Added controlled-clock, real Request/Response handler and mounted component regressions. Approved alternative copy preserves erasure, not indefinite retention. Initial local server EPERM required the permitted loopback/browser runner; first PR24 failed because its fixture spread an entity Proxy, corrected by intercepting only the selected entity. Typecheck annotations were corrected without exclusions. Final: Chromium/WebKit 800/800 each, final boundary 34/34 each, 35 privacy browser scenarios each; zero page errors. Quality/performance/history PASS, dependency vulnerabilities 0. Health +0/~4/-0; local synthetic 147 PASS/13 expected hosted BLOCKED/0 FAIL. Initial T44 shared HC mismatch and cross-cell fixture recovery failure were corrected and preserved in execution. [Execution and remaining acceptance](reports/SHINKA_PRIVACY_STATUS_060.md).
+
+
+## 059 — Single Pattern theme, Lunar Timeline and navigation evidence (2026-11-09)
+
+Started clean Test 95bd20d; losslessly fast-forwarded main's five commits to 9b5da80 and synchronized Test. Base44 package/auth template work retained. Published frontend identified 058 / HC-057.0; Pattern nav measured 44px row + 1px border, 0px inset, 32px main bottom padding at 360/390px. The screenshot's excess whitespace was not reproduced, and APK version is unavailable. Therefore no second shrink, negative margin, clipping or safe-area zeroing was applied. Source/ancestor measurements and negative fixtures strengthen 057 evidence.
+
+Owner then added Pattern product decisions, retaining the same in-progress navigation work. Primary-only DTO and restored five-node projection replace 038 presentation, with old summary component removed and every readiness selector updated. Source inspection found no approved six-category explanation/art set; these remain open. Initial PU03 falsely expected vertical-only rows in a 320px host on a wide viewport; it now measures actual pairwise intersections, without removing containment/touch assertions. Mandatory dependency gate found inherited follow-redirects High; npm-selected 1.16.2 now satisfies the unchanged 7-day age floor (published 25 October). 1.16.3 from 8 November was not selected. npm also normalized optional bundled WASM lock metadata; no direct dependency or Base44 version was changed. [059 implementation, measurements and acceptance](reports/SHINKA_PATTERN_NAVIGATION_059.md)
+
+
+059 final local result: **791/791 PASS in Chromium and WebKit**, 40 Pattern visual cells + 2 route denials and 205 navigation checks per engine, zero page errors; local synthetic Health 147 PASS / 13 expected hosted prerequisites BLOCKED / 0 FAIL. Required quality, last-five, dependency security (0 vulnerabilities) and production performance budgets pass. Six-category explanation/illustration source and physical APK/wrapper acceptance remain open. [Execution](reports/pattern-navigation-059/execution.json).
 
 
 ## 058 — Narrow core closure (2026-11-01)

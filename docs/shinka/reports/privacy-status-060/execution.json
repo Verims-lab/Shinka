@@ -1,0 +1,2148 @@
+{
+  "date": "2026-11-09",
+  "build": "Buildmarker-060",
+  "catalog": "HC-059.0",
+  "baseCommit": "20978bd",
+  "mainAtDelivery": "9b5da80",
+  "scope": "LOCAL_SYNTHETIC_PLUS_TARGETED_HOSTED_ADMIN_READ_ONLY",
+  "healthChanges": {
+    "added": 0,
+    "updated": 4,
+    "removed": 0,
+    "ids": [
+      "H11-003",
+      "H12-039",
+      "H13-019",
+      "H05-009"
+    ]
+  },
+  "engines": {
+    "chromium": {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "fullFoundation": {
+        "tests": 800,
+        "passed": 800,
+        "failed": 0,
+        "pageErrors": []
+      },
+      "finalTargeted": {
+        "tests": 34,
+        "passed": 34,
+        "failed": 0,
+        "ids": [
+          "PR21",
+          "PR22",
+          "PR23",
+          "PR24",
+          "PR25",
+          "PR26",
+          "PR27",
+          "PR20",
+          "PR19",
+          "PR18",
+          "PR15",
+          "PR16",
+          "PR17",
+          "PR01",
+          "PR02",
+          "PR03",
+          "PR04",
+          "PR05",
+          "PR06",
+          "PR07",
+          "PR08",
+          "PR09",
+          "PR10",
+          "PR11",
+          "PR12",
+          "PR13",
+          "PR14",
+          "PV01",
+          "PV02",
+          "PV03",
+          "PV04",
+          "PV05",
+          "PV06",
+          "T44"
+        ],
+        "reason": "Final malformed-key status classification and anonymous partial-result sign-in link checked after full-run build snapshot"
+      },
+      "privacyBrowser": {
+        "passed": true,
+        "scenarios": 35,
+        "results": [
+          {
+            "scenario": "privacy-320-tr-1",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "documentWidth": 320,
+              "modalWidth": 280,
+              "modalScroll": 278,
+              "modalClient": 278,
+              "controls": [
+                {
+                  "width": 238,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 238,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-320-tr-2",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "documentWidth": 320,
+              "modalWidth": 280,
+              "modalScroll": 278,
+              "modalClient": 278,
+              "controls": [
+                {
+                  "width": 238,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 238,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-320-en-1",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "documentWidth": 320,
+              "modalWidth": 280,
+              "modalScroll": 278,
+              "modalClient": 278,
+              "controls": [
+                {
+                  "width": 238,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 238,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-320-en-2",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "documentWidth": 320,
+              "modalWidth": 280,
+              "modalScroll": 278,
+              "modalClient": 278,
+              "controls": [
+                {
+                  "width": 238,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 238,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-360-tr-1",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "documentWidth": 360,
+              "modalWidth": 320,
+              "modalScroll": 318,
+              "modalClient": 318,
+              "controls": [
+                {
+                  "width": 278,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 278,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-360-tr-2",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "documentWidth": 360,
+              "modalWidth": 320,
+              "modalScroll": 318,
+              "modalClient": 318,
+              "controls": [
+                {
+                  "width": 278,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 278,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-360-en-1",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "documentWidth": 360,
+              "modalWidth": 320,
+              "modalScroll": 318,
+              "modalClient": 318,
+              "controls": [
+                {
+                  "width": 278,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 278,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-360-en-2",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "documentWidth": 360,
+              "modalWidth": 320,
+              "modalScroll": 318,
+              "modalClient": 318,
+              "controls": [
+                {
+                  "width": 278,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 278,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-390-tr-1",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "documentWidth": 390,
+              "modalWidth": 350,
+              "modalScroll": 348,
+              "modalClient": 348,
+              "controls": [
+                {
+                  "width": 308,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 308,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-390-tr-2",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "documentWidth": 390,
+              "modalWidth": 350,
+              "modalScroll": 348,
+              "modalClient": 348,
+              "controls": [
+                {
+                  "width": 308,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 308,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-390-en-1",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "documentWidth": 390,
+              "modalWidth": 350,
+              "modalScroll": 348,
+              "modalClient": 348,
+              "controls": [
+                {
+                  "width": 308,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 308,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-390-en-2",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "documentWidth": 390,
+              "modalWidth": 350,
+              "modalScroll": 348,
+              "modalClient": 348,
+              "controls": [
+                {
+                  "width": 308,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 308,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-430-tr-1",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "documentWidth": 430,
+              "modalWidth": 390,
+              "modalScroll": 388,
+              "modalClient": 388,
+              "controls": [
+                {
+                  "width": 348,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 348,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-430-tr-2",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "documentWidth": 430,
+              "modalWidth": 390,
+              "modalScroll": 388,
+              "modalClient": 388,
+              "controls": [
+                {
+                  "width": 348,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 348,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-430-en-1",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "documentWidth": 430,
+              "modalWidth": 390,
+              "modalScroll": 388,
+              "modalClient": 388,
+              "controls": [
+                {
+                  "width": 348,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 348,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-430-en-2",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "documentWidth": 430,
+              "modalWidth": 390,
+              "modalScroll": 388,
+              "modalClient": 388,
+              "controls": [
+                {
+                  "width": 348,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 348,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-844-tr-1",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "documentWidth": 844,
+              "modalWidth": 440,
+              "modalScroll": 438,
+              "modalClient": 438,
+              "controls": [
+                {
+                  "width": 398,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 398,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-844-tr-2",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "documentWidth": 844,
+              "modalWidth": 440,
+              "modalScroll": 438,
+              "modalClient": 438,
+              "controls": [
+                {
+                  "width": 398,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 398,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-844-en-1",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "documentWidth": 844,
+              "modalWidth": 440,
+              "modalScroll": 438,
+              "modalClient": 438,
+              "controls": [
+                {
+                  "width": 398,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 398,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-844-en-2",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "documentWidth": 844,
+              "modalWidth": 440,
+              "modalScroll": 438,
+              "modalClient": 438,
+              "controls": [
+                {
+                  "width": 398,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 398,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "incomplete-native-removal-lost-response-readonly-recovery-logout",
+            "passed": true
+          },
+          {
+            "scenario": "external-deletion-path-public-auth-required-no-password",
+            "passed": true
+          },
+          {
+            "scenario": "protected-current-native-admin",
+            "passed": true
+          },
+          {
+            "scenario": "status-transient-retry-320-tr-1",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "status-transient-retry-320-tr-2",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "expired-anonymous-no-writes-320-tr-2",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "status-transient-retry-320-en-1",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "status-transient-retry-320-en-2",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "expired-anonymous-no-writes-320-en-2",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "status-transient-retry-390-tr-1",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "status-transient-retry-390-tr-2",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "expired-anonymous-no-writes-390-tr-2",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "status-transient-retry-390-en-1",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "status-transient-retry-390-en-2",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "expired-anonymous-no-writes-390-en-2",
+            "passed": true,
+            "physicalDevice": false
+          }
+        ],
+        "pageErrors": []
+      },
+      "localSyntheticHealth": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "counts": {
+          "PASS": 147,
+          "BLOCKED": 13
+        },
+        "saved": "SAVED",
+        "historyListed": true,
+        "privateReportOpened": true
+      },
+      "serverRunners": {
+        "nativeEntries": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "sessionChecks": 10,
+          "nativeRoutes": 5,
+          "artifactEntryChecks": 2,
+          "internalHealthEntryChecks": 7,
+          "loginSecretReads": 0,
+          "hostedVerified": false,
+          "passed": true,
+          "deletion": {
+            "passed": true,
+            "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+            "hostedVerified": false,
+            "checks": 7
+          }
+        },
+        "security028": {
+          "scope": "LOCAL_SERVER_FIXTURE",
+          "hostedVerified": false,
+          "results": [
+            {
+              "id": "SC01",
+              "name": "Bounded JSON: streaming byte limit, Content-Length, malformed and non-object",
+              "status": "PASS"
+            },
+            {
+              "id": "SC02",
+              "name": "GeoNames guard: no owner 401, lazy adapter/secret, per-user app limit with retry seconds, window reset",
+              "status": "PASS"
+            },
+            {
+              "id": "SC03",
+              "name": "GeoNames guard counts real upstream fetches and the worker-local total across owners; cache avoids refetch",
+              "status": "PASS"
+            },
+            {
+              "id": "SC04",
+              "name": "Unauthenticated You/onboarding calls: 401, zero product writes, no GeoNames setup",
+              "status": "PASS"
+            },
+            {
+              "id": "SC05",
+              "name": "Oversize bodies: 413 from real You/onboarding handlers with no entity call",
+              "status": "PASS"
+            },
+            {
+              "id": "SC07",
+              "name": "Real guard + real adapter: app, user-upstream and worker-upstream limits keep 429/retry and stop provider fetches",
+              "status": "PASS"
+            },
+            {
+              "id": "SC08",
+              "name": "Onboarding and You handlers return 429, GEONAMES_RATE_LIMITED, Retry-After and retry_after_seconds for the real chain error",
+              "status": "PASS"
+            },
+            {
+              "id": "SC09",
+              "name": "Negative: network failure and a forged 429-shaped error from fetch stay GEONAMES_UNAVAILABLE, never rate-limited",
+              "status": "PASS"
+            }
+          ],
+          "passed": true
+        },
+        "notifications030": {
+          "scope": "LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION",
+          "passed": true,
+          "results": [
+            {
+              "id": "NS01",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS02",
+              "status": "PASS",
+              "httpStatus": 503,
+              "response": {
+                "error_code": "SESSION_UNAVAILABLE"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS03",
+              "status": "PASS",
+              "httpStatus": 403,
+              "response": {
+                "error_code": "ADMIN_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS04",
+              "status": "PASS",
+              "httpStatus": 403,
+              "response": {
+                "error_code": "ADMIN_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS05",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 2,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS06",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS07",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS08",
+              "status": "PASS",
+              "httpStatus": 200,
+              "response": {
+                "state": "DISABLED",
+                "processed": 0
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS09",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS10",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS11",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            }
+          ],
+          "sdk": {
+            "id": "SDK01",
+            "status": "PASS",
+            "scope": "INSTALLED_SDK_LOOPBACK_HTTP_ONLY",
+            "integrationEnvelope": "UNWRAPPED_JSON_BODY",
+            "optionalFieldsOmitted": true,
+            "providerCalls": 0
+          },
+          "hostedVerified": false
+        },
+        "geoNamesEntry": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "requests": 3,
+          "secretReadsAtModuleLoad": 0,
+          "passed": true
+        },
+        "geoNamesRuntimeProbeEntry": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "deniedRequests": 3,
+          "authorizedRequests": 2,
+          "secretReadsBeforeAuthorization": 0,
+          "workerFactories": 1,
+          "passed": true
+        }
+      }
+    },
+    "webkit": {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "fullFoundation": {
+        "tests": 800,
+        "passed": 800,
+        "failed": 0,
+        "pageErrors": []
+      },
+      "finalTargeted": {
+        "tests": 34,
+        "passed": 34,
+        "failed": 0,
+        "ids": [
+          "PR21",
+          "PR22",
+          "PR23",
+          "PR24",
+          "PR25",
+          "PR26",
+          "PR27",
+          "PR20",
+          "PR19",
+          "PR18",
+          "PR15",
+          "PR16",
+          "PR17",
+          "PR01",
+          "PR02",
+          "PR03",
+          "PR04",
+          "PR05",
+          "PR06",
+          "PR07",
+          "PR08",
+          "PR09",
+          "PR10",
+          "PR11",
+          "PR12",
+          "PR13",
+          "PR14",
+          "PV01",
+          "PV02",
+          "PV03",
+          "PV04",
+          "PV05",
+          "PV06",
+          "T44"
+        ],
+        "reason": "Final malformed-key status classification and anonymous partial-result sign-in link checked after full-run build snapshot"
+      },
+      "privacyBrowser": {
+        "passed": true,
+        "scenarios": 35,
+        "results": [
+          {
+            "scenario": "privacy-320-tr-1",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "documentWidth": 320,
+              "modalWidth": 280,
+              "modalScroll": 278,
+              "modalClient": 278,
+              "controls": [
+                {
+                  "width": 238,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 238,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-320-tr-2",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "documentWidth": 320,
+              "modalWidth": 280,
+              "modalScroll": 278,
+              "modalClient": 278,
+              "controls": [
+                {
+                  "width": 238,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 238,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-320-en-1",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "documentWidth": 320,
+              "modalWidth": 280,
+              "modalScroll": 278,
+              "modalClient": 278,
+              "controls": [
+                {
+                  "width": 238,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 238,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-320-en-2",
+            "passed": true,
+            "geometry": {
+              "width": 320,
+              "documentWidth": 320,
+              "modalWidth": 280,
+              "modalScroll": 278,
+              "modalClient": 278,
+              "controls": [
+                {
+                  "width": 238,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 238,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-360-tr-1",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "documentWidth": 360,
+              "modalWidth": 320,
+              "modalScroll": 318,
+              "modalClient": 318,
+              "controls": [
+                {
+                  "width": 278,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 278,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-360-tr-2",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "documentWidth": 360,
+              "modalWidth": 320,
+              "modalScroll": 318,
+              "modalClient": 318,
+              "controls": [
+                {
+                  "width": 278,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 278,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-360-en-1",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "documentWidth": 360,
+              "modalWidth": 320,
+              "modalScroll": 318,
+              "modalClient": 318,
+              "controls": [
+                {
+                  "width": 278,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 278,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-360-en-2",
+            "passed": true,
+            "geometry": {
+              "width": 360,
+              "documentWidth": 360,
+              "modalWidth": 320,
+              "modalScroll": 318,
+              "modalClient": 318,
+              "controls": [
+                {
+                  "width": 278,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 278,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-390-tr-1",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "documentWidth": 390,
+              "modalWidth": 350,
+              "modalScroll": 348,
+              "modalClient": 348,
+              "controls": [
+                {
+                  "width": 308,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 308,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-390-tr-2",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "documentWidth": 390,
+              "modalWidth": 350,
+              "modalScroll": 348,
+              "modalClient": 348,
+              "controls": [
+                {
+                  "width": 308,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 308,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-390-en-1",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "documentWidth": 390,
+              "modalWidth": 350,
+              "modalScroll": 348,
+              "modalClient": 348,
+              "controls": [
+                {
+                  "width": 308,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 308,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-390-en-2",
+            "passed": true,
+            "geometry": {
+              "width": 390,
+              "documentWidth": 390,
+              "modalWidth": 350,
+              "modalScroll": 348,
+              "modalClient": 348,
+              "controls": [
+                {
+                  "width": 308,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 308,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-430-tr-1",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "documentWidth": 430,
+              "modalWidth": 390,
+              "modalScroll": 388,
+              "modalClient": 388,
+              "controls": [
+                {
+                  "width": 348,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 348,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-430-tr-2",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "documentWidth": 430,
+              "modalWidth": 390,
+              "modalScroll": 388,
+              "modalClient": 388,
+              "controls": [
+                {
+                  "width": 348,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 348,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-430-en-1",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "documentWidth": 430,
+              "modalWidth": 390,
+              "modalScroll": 388,
+              "modalClient": 388,
+              "controls": [
+                {
+                  "width": 348,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 348,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-430-en-2",
+            "passed": true,
+            "geometry": {
+              "width": 430,
+              "documentWidth": 430,
+              "modalWidth": 390,
+              "modalScroll": 388,
+              "modalClient": 388,
+              "controls": [
+                {
+                  "width": 348,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 348,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-844-tr-1",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "documentWidth": 844,
+              "modalWidth": 440,
+              "modalScroll": 438,
+              "modalClient": 438,
+              "controls": [
+                {
+                  "width": 398,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 398,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-844-tr-2",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "documentWidth": 844,
+              "modalWidth": 440,
+              "modalScroll": 438,
+              "modalClient": 438,
+              "controls": [
+                {
+                  "width": 398,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 398,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-844-en-1",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "documentWidth": 844,
+              "modalWidth": 440,
+              "modalScroll": 438,
+              "modalClient": 438,
+              "controls": [
+                {
+                  "width": 398,
+                  "height": 44,
+                  "label": true
+                },
+                {
+                  "width": 398,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "privacy-844-en-2",
+            "passed": true,
+            "geometry": {
+              "width": 844,
+              "documentWidth": 844,
+              "modalWidth": 440,
+              "modalScroll": 438,
+              "modalClient": 438,
+              "controls": [
+                {
+                  "width": 398,
+                  "height": 46,
+                  "label": true
+                },
+                {
+                  "width": 398,
+                  "height": 52,
+                  "label": true
+                }
+              ]
+            },
+            "scope": "LOCAL_BROWSER_SYNTHETIC"
+          },
+          {
+            "scenario": "incomplete-native-removal-lost-response-readonly-recovery-logout",
+            "passed": true
+          },
+          {
+            "scenario": "external-deletion-path-public-auth-required-no-password",
+            "passed": true
+          },
+          {
+            "scenario": "protected-current-native-admin",
+            "passed": true
+          },
+          {
+            "scenario": "status-transient-retry-320-tr-1",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "status-transient-retry-320-tr-2",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "expired-anonymous-no-writes-320-tr-2",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "status-transient-retry-320-en-1",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "status-transient-retry-320-en-2",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "expired-anonymous-no-writes-320-en-2",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "status-transient-retry-390-tr-1",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "status-transient-retry-390-tr-2",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "expired-anonymous-no-writes-390-tr-2",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "status-transient-retry-390-en-1",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "status-transient-retry-390-en-2",
+            "passed": true,
+            "physicalDevice": false
+          },
+          {
+            "scenario": "expired-anonymous-no-writes-390-en-2",
+            "passed": true,
+            "physicalDevice": false
+          }
+        ],
+        "pageErrors": []
+      },
+      "localSyntheticHealth": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "counts": {
+          "PASS": 147,
+          "BLOCKED": 13
+        },
+        "saved": "SAVED",
+        "historyListed": true,
+        "privateReportOpened": true
+      },
+      "serverRunners": {
+        "nativeEntries": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "sessionChecks": 10,
+          "nativeRoutes": 5,
+          "artifactEntryChecks": 2,
+          "internalHealthEntryChecks": 7,
+          "loginSecretReads": 0,
+          "hostedVerified": false,
+          "passed": true,
+          "deletion": {
+            "passed": true,
+            "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+            "hostedVerified": false,
+            "checks": 7
+          }
+        },
+        "security028": {
+          "scope": "LOCAL_SERVER_FIXTURE",
+          "hostedVerified": false,
+          "results": [
+            {
+              "id": "SC01",
+              "name": "Bounded JSON: streaming byte limit, Content-Length, malformed and non-object",
+              "status": "PASS"
+            },
+            {
+              "id": "SC02",
+              "name": "GeoNames guard: no owner 401, lazy adapter/secret, per-user app limit with retry seconds, window reset",
+              "status": "PASS"
+            },
+            {
+              "id": "SC03",
+              "name": "GeoNames guard counts real upstream fetches and the worker-local total across owners; cache avoids refetch",
+              "status": "PASS"
+            },
+            {
+              "id": "SC04",
+              "name": "Unauthenticated You/onboarding calls: 401, zero product writes, no GeoNames setup",
+              "status": "PASS"
+            },
+            {
+              "id": "SC05",
+              "name": "Oversize bodies: 413 from real You/onboarding handlers with no entity call",
+              "status": "PASS"
+            },
+            {
+              "id": "SC07",
+              "name": "Real guard + real adapter: app, user-upstream and worker-upstream limits keep 429/retry and stop provider fetches",
+              "status": "PASS"
+            },
+            {
+              "id": "SC08",
+              "name": "Onboarding and You handlers return 429, GEONAMES_RATE_LIMITED, Retry-After and retry_after_seconds for the real chain error",
+              "status": "PASS"
+            },
+            {
+              "id": "SC09",
+              "name": "Negative: network failure and a forged 429-shaped error from fetch stay GEONAMES_UNAVAILABLE, never rate-limited",
+              "status": "PASS"
+            }
+          ],
+          "passed": true
+        },
+        "notifications030": {
+          "scope": "LOCAL_ENTRY_WITH_PLATFORM_IMPORT_SUBSTITUTION",
+          "passed": true,
+          "results": [
+            {
+              "id": "NS01",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS02",
+              "status": "PASS",
+              "httpStatus": 503,
+              "response": {
+                "error_code": "SESSION_UNAVAILABLE"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS03",
+              "status": "PASS",
+              "httpStatus": 403,
+              "response": {
+                "error_code": "ADMIN_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS04",
+              "status": "PASS",
+              "httpStatus": 403,
+              "response": {
+                "error_code": "ADMIN_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS05",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 2,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS06",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS07",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS08",
+              "status": "PASS",
+              "httpStatus": 200,
+              "response": {
+                "state": "DISABLED",
+                "processed": 0
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS09",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS10",
+              "status": "PASS",
+              "httpStatus": 401,
+              "response": {
+                "error_code": "AUTH_REQUIRED"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 1,
+                "serviceAccess": 0,
+                "reads": [],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            },
+            {
+              "id": "NS11",
+              "status": "PASS",
+              "httpStatus": 400,
+              "response": {
+                "error_code": "INVALID_REQUEST"
+              },
+              "counts": {
+                "clients": 1,
+                "auth": 2,
+                "serviceAccess": 3,
+                "reads": [
+                  {
+                    "entity": "User",
+                    "query": {
+                      "id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "UserPrivacyRequest",
+                    "query": {
+                      "user_id": "synthetic-actor"
+                    }
+                  },
+                  {
+                    "entity": "AdminTestOperation",
+                    "query": {
+                      "target_id": "synthetic-actor"
+                    }
+                  }
+                ],
+                "jobIO": 0,
+                "provider": 0
+              },
+              "assertion": "Actual disabled entry with fresh native admin guard; synthetic SDK, no workflow/real delivery proof."
+            }
+          ],
+          "sdk": {
+            "id": "SDK01",
+            "status": "PASS",
+            "scope": "INSTALLED_SDK_LOOPBACK_HTTP_ONLY",
+            "integrationEnvelope": "UNWRAPPED_JSON_BODY",
+            "optionalFieldsOmitted": true,
+            "providerCalls": 0
+          },
+          "hostedVerified": false
+        },
+        "geoNamesEntry": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "requests": 3,
+          "secretReadsAtModuleLoad": 0,
+          "passed": true
+        },
+        "geoNamesRuntimeProbeEntry": {
+          "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+          "deniedRequests": 3,
+          "authorizedRequests": 2,
+          "secretReadsBeforeAuthorization": 0,
+          "workerFactories": 1,
+          "passed": true
+        }
+      }
+    }
+  },
+  "quality": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS",
+    "repoHealth": "PASS",
+    "recordBuildCheck": "PASS: five packages 056\u2013060",
+    "dependencyAudit": "PASS: 0 vulnerabilities",
+    "performance": {
+      "status": "PASS",
+      "initialJS": {
+        "raw": 490521,
+        "gzip": 163798
+      },
+      "css": {
+        "raw": 79213,
+        "gzip": 14548
+      },
+      "cycles": 0,
+      "budgets": {
+        "initialRaw": 500000,
+        "initialGzip": 165000,
+        "cssRaw": 90000,
+        "cssGzip": 16000
+      }
+    }
+  },
+  "initialAttempts": [
+    {
+      "check": "loopback server",
+      "result": "EPERM in sandbox; authorized local browser runner used"
+    },
+    {
+      "check": "focused Chromium",
+      "result": "23/24 PASS; PR24 fixture spread Proxy entity table, corrected to narrow Proxy get interception"
+    },
+    {
+      "check": "typecheck",
+      "result": "test client and deferred promise annotations corrected; no exclusions"
+    },
+    {
+      "check": "initial full Chromium/WebKit",
+      "result": "799/800 each; T44 caught shared catalog constant mismatch. Updated HC-059.0; final full runs 800/800"
+    },
+    {
+      "check": "first extended browser matrix",
+      "result": "second independent cell retained the prior synthetic recovery while its DB fixture reset. Only between-cell storage reset added; within-cell recovery/no-write assertions preserved"
+    }
+  ],
+  "hosted": {
+    "video": "Gizem16, ~18s; saved/unknown state at ~12s, Checking status at ~16s. No backend hang established.",
+    "adminPrivacyRead": "PASS; current admin protected, no live operation initiated",
+    "incidentRequest": "NOT_RUN: incident receipt/response not available in existing admin session",
+    "mutationResumeCleanup": "NOT_RUN: outside authorized scope",
+    "fullHealthSecurityScan": "NOT_RUN: owner managed"
+  },
+  "external": {
+    "physicalAndroidIOS": "NOT_RUN",
+    "realProviderReturn": "NOT_RUN",
+    "historicalIncidentCompletion": "UNVERIFIED",
+    "permanentPlatformErasure": "UNVERIFIED"
+  },
+  "commands": [
+    "node scripts/runFoundationTests.mjs (Chromium and FOUNDATION_BROWSER=webkit)",
+    "FOUNDATION_PRIVACY_ONLY=1 node scripts/runFoundationTests.mjs (both engines)",
+    "FOUNDATION_TEST_IDS=T44,PR01,PR02,PR03,PR04,PR05,PR06,PR07,PR08,PR09,PR10,PR11,PR12,PR13,PR14,PR15,PR16,PR17,PR18,PR19,PR20,PR21,PR22,PR23,PR24,PR25,PR26,PR27,PV01,PV02,PV03,PV04,PV05,PV06 node scripts/runFoundationTests.mjs (both engines)",
+    "npm run typecheck",
+    "npm run lint",
+    "npm run build",
+    "npm run health:repo",
+    "npm run security:deps",
+    "node scripts/recordBuild.mjs --check",
+    "node scripts/measureMaintenance.mjs /private/tmp/shinka-060/performance-final"
+  ]
+}

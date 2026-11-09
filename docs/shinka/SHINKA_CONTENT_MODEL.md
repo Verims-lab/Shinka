@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — approved references imported; native daily snapshot observed; hosted acceptance remains partial
-**Current BuildMarker:** Buildmarker-058
+**Current BuildMarker:** Buildmarker-060
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.
@@ -10,6 +10,11 @@
 **Implemented:** Workbook validator, exact backend manifest, dry-run/apply/verify importer, Moon preparation, daily selection and snapshot protocol, ON-06/Home integration.
 **Not Implemented:** Distributed physical uniqueness guarantee; scheduled lookup renewal. Remaining hosted/device evidence is tracked separately.
 **Open Decisions:** OD-005, OD-008 (noted); OD-002 RESOLVED_BY_PRODUCT_DECISION
+
+
+## 059 — Pattern presentation source boundary
+
+Exactly one primary assigned category is presented; the six approved codes/names, 240 mappings, 260 Pair texts and daily ID references are unchanged. No daily message is repurposed as category explanation. The six TR/EN explanation pairs and category-specific illustration associations were not found in accessible authoritative sources; they remain SOURCE_REQUIRED and are not imported/generated/inferred from the sample mockup. See [059](reports/SHINKA_PATTERN_NAVIGATION_059.md).
 
 
 ## 058 — Narrow core closure (2026-11-01)

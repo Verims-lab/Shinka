@@ -1,26 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-054",
-    "package_name": "Single onboarding moon illustration",
-    "package_type": "TARGETED_FIX",
-    "created_at": "2026-10-30T13:17:14.000Z",
-    "health_catalog_version": "HC-053.0",
-    "short_summary": "Remove duplicate scrolling onboarding art; retain approved backdrop, 240px square flow space, row icons and five-step behavior.",
-    "full_health_status": "NOT_RUN",
-    "notes": "Chromium/WebKit each 771/771 PASS; loaded full-App matrix 100 step checks / 300 scroll views per engine. Matched layout delta 0 CSS px. Quality/performance PASS, zero dependency advisories. Local Health 147 PASS / 13 hosted-prerequisite BLOCKED / 0 FAIL; save/list/open PASS. Health +0/~3/-0. Physical keyboard/rotation/wrapper NOT_RUN; no live operations or publish. 051–053 preserved. Report: reports/SHINKA_ONBOARDING_LAYER_054.md."
-  },
-  {
-    "build_marker": "Buildmarker-055",
-    "package_name": "Onboarding focus, birthplace diagnosis, age feedback and daily surfaces",
-    "package_type": "TARGETED_FIX",
-    "created_at": "2026-11-01T12:02:49.000Z",
-    "health_catalog_version": "HC-054.0",
-    "short_summary": "Single outer composite-field focus, completed-DOB feedback without picker refocus, truthful quota setup diagnostics and transparent daily presentation.",
-    "full_health_status": "NOT_RUN",
-    "notes": "Chromium/WebKit 775/775 each; 8 real-App matrix cells per engine; local Health 147 PASS/13 expected hosted BLOCKED/0 FAIL with save/list/open. Type/lint/build/repo/history/performance pass. Security gate OPEN: 1 High/8 Moderate; vendor patch awaits seven-day cooldown. Web found quota schema but zero rows; one search failed 503/FETCH/UNKNOWN. Typed diagnostics prevent quota-as-network misclassification; operator setup, live search and physical acceptance remain open. No live mutation/cleanup/Health/scan/publish. Report: reports/SHINKA_ONBOARDING_FIX_055.md."
-  },
-  {
     "build_marker": "Buildmarker-056",
     "package_name": "Calendar date containment and same-intent recovery",
     "package_type": "TARGETED_FIX",
@@ -49,5 +29,25 @@ export default [
     "short_summary": "Preserve 052–057; complete approved missing Moon tail, distinguish present/future coverage in H09 evidence, reconcile scoped quota/Calendar/platform acceptances and current regression metadata.",
     "full_health_status": "NOT_RUN_OWNER_MANAGED",
     "notes": "Scoped closure only. Published 057/HC-056.0 user report remains 159 PASS/0 FAIL/1 BLOCKED. Reference operations and external limits are dated in SHINKA_CORE_CLOSURE_058.md. No general audit, cleanup, user deletion/reset, scheduler/send, main merge or publish. Dependency security remains a separate gate from user Security OK. Active packages 054–058."
+  },
+  {
+    "build_marker": "Buildmarker-059",
+    "package_name": "Pattern single theme and lunar timeline; shared navigation verification",
+    "package_type": "FOCUSED_FIX",
+    "created_at": "2026-11-09T17:00:00Z",
+    "health_catalog_version": "HC-058.0",
+    "short_summary": "Single dominant Pattern theme and proportional five-node Lunar Timeline; shared nav remains measured 44px + border/safe inset. Chromium/WebKit 791/791 and quality/performance/security pass. Approved category descriptions/art and physical APK acceptance remain open.",
+    "full_health_status": "NOT_RUN",
+    "notes": "Test only, no schema/import/user write/live Health/scan/main publish. HC-058.0: 0 added/4 updated/0 removed; active history 055–059. Local Pattern 40 matrix cells + 2 route checks, nav 205 per engine; no extra runtime nav shrink justified by source/published 058 measurements. Source-required descriptions/illustrations for all six categories remain incomplete. Dependency High fixed with eligible compatible follow-redirects 1.16.2. Results/screenshots: reports/SHINKA_PATTERN_NAVIGATION_059.md. Physical wrapper/inset/keyboard proof remains NOT_RUN."
+  },
+  {
+    "build_marker": "Buildmarker-060",
+    "package_name": "Account privacy confirmation and bounded read-only status recovery",
+    "package_type": "FOCUSED_FIX",
+    "created_at": "2026-11-09",
+    "health_catalog_version": "HC-059.0",
+    "short_summary": "Approved concise erasure copy; distinct status/auth/transient outcomes, bounded/coalesced queries, request-bound native-owner recovery and cancellation isolation. Active removal never implies permanent platform erasure.",
+    "full_health_status": "NOT_RUN",
+    "notes": "Chromium/WebKit 800/800 each; final boundary 34/34 each, 35 privacy scenarios/engine, zero page errors. Quality/performance/last-five PASS; dependency vulnerabilities 0. Health +0/~4/-0; local synthetic 147 PASS/13 expected hosted BLOCKED/0 FAIL, save/list/open PASS. No schema change, live deletion/resume/cleanup/Health/scan/main publish. Original video cause and physical/provider/incident recovery remain unverified. Report: reports/SHINKA_PRIVACY_STATUS_060.md. Active 056–060."
   }
 ];

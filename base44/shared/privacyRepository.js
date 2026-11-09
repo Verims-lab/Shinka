@@ -43,11 +43,15 @@ export function privacyRepository(client, now = () => new Date(), { clock = () =
     const saved = await one('PrivacyRecoveryReceipt', { token_hash });
     if (!saved || saved.request_id !== row.id) privacyFail('PRIVACY_WRITE_UNCONFIRMED', 503);
   }
-  async function recover(secret) {
-    const saved = await one('PrivacyRecoveryReceipt', { token_hash: await privacyHash(secret) });
-    if (!saved || !Number.isFinite(Date.parse(saved.expires_at)) || Date.parse(saved.expires_at) <= now().getTime()) privacyFail('PRIVACY_RECOVERY_INVALID', 403);
+  async function recover(secret, authenticatedOwner = null) {
+    const tokenHash = await privacyHash(secret);
+    const saved = await one('PrivacyRecoveryReceipt', { token_hash: tokenHash });
+    if (!saved || saved.token_hash !== tokenHash || !Number.isFinite(Date.parse(saved.expires_at))) privacyFail('PRIVACY_RECOVERY_INVALID', 403);
     const row = await one('UserPrivacyRequest', { id: saved.request_id });
-    if (!row || row.kind !== 'DELETE_ACCOUNT') privacyFail('PRIVACY_RECOVERY_INVALID', 403);
+    if (!row || row.id !== saved.request_id || row.kind !== 'DELETE_ACCOUNT') privacyFail('PRIVACY_RECOVERY_INVALID', 403);
+    // Expiry never grants authority. Only a freshly admitted native owner can
+    // read this exact old request; the receipt is neither renewed nor changed.
+    if (authenticatedOwner ? row.user_id !== authenticatedOwner : Date.parse(saved.expires_at) <= now().getTime()) privacyFail('PRIVACY_RECOVERY_INVALID', 403);
     return row;
   }
   async function page(name, owner, limit = 20) {

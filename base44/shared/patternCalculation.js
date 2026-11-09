@@ -43,16 +43,26 @@ export function calculatePatternSummary({ rows, owner, timezone, instant, firstD
   validateDomainRecord('user_pattern_summary', summary);
   return summary;
 }
-// Half-open lookup intervals remain authoritative. "Next" is strictly after
-// server now, including at the exact FULL start (then the next lunation wins).
-export function calculateLunarSummary(rows, instant, timezone) {
+// Restores the 021 interval projection. The WANING interval's validated end
+// is the next NEW transition; no interpolated astronomical phase is invented.
+export function calculateLunarTimeline(rows, instant, timezone) {
   if (!validTimezone(timezone) || !Number.isFinite(instant.getTime())) fail('PATTERN_DATA_INVALID');
   const sorted = Array.isArray(rows) && !rows.length ? [] : validateMoonIntervals(rows);
   const time = instant.getTime();
   const current = sorted.find(row => Date.parse(row.start_at_utc) <= time && time < Date.parse(row.end_at_utc));
-  // Without coverage at now, we cannot prove that a later FULL is the first one.
-  const next = current && sorted.find(row => row.phase_code === 'FULL' && Date.parse(row.start_at_utc) > time);
   const interval = row => row ? { phase_code: row.phase_code, start_at_utc: row.start_at_utc, end_at_utc: row.end_at_utc } : null;
-  return { timezone, observed_at: instant.toISOString(), current: interval(current),
-    next_full: next ? { ...interval(next), date: serverLocalDate(new Date(next.start_at_utc), timezone) } : null };
+  const startIndex = sorted.findLastIndex(row => row.phase_code === 'NEW' && Date.parse(row.start_at_utc) <= time);
+  const cycle = startIndex < 0 ? [] : sorted.slice(startIndex, startIndex + 4);
+  let timeline = null;
+  if (current && cycle.length === 4 && time < Date.parse(cycle[3].end_at_utc)) {
+    const start = Date.parse(cycle[0].start_at_utc), end = Date.parse(cycle[3].end_at_utc);
+    timeline = {
+      today_position: (time - start) / (end - start),
+      active_index: cycle.findIndex(row => Date.parse(row.start_at_utc) <= time && time < Date.parse(row.end_at_utc)),
+      nodes: [...cycle, { phase_code: 'NEW', start_at_utc: cycle[3].end_at_utc }].map(row => ({
+        phase_code: row.phase_code, instant: row.start_at_utc, position: (Date.parse(row.start_at_utc) - start) / (end - start),
+      })),
+    };
+  }
+  return { timezone, observed_at: instant.toISOString(), current: interval(current), timeline };
 }

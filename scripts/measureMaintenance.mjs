@@ -211,7 +211,7 @@ try {
         } catch {}
       });
       await page.goto(origin + route);
-      await page.waitForSelector(route.startsWith('/account-privacy') ? '[data-privacy-actions]' : route.startsWith('/you') ? '[data-you-consent]' : route.startsWith('/pattern') ? '[data-lunar-summary]' : route.startsWith('/calendar') ? '[data-calendar-blocked]' : route.includes('ACTIVE_EXISTING_USER') ? '[data-daily-id="local-measurement-only"]' : '[data-probe-root]');
+      await page.waitForSelector(route.startsWith('/account-privacy') ? '[data-privacy-actions]' : route.startsWith('/you') ? '[data-you-consent]' : route.startsWith('/pattern') ? '[data-lunar-timeline]' : route.startsWith('/calendar') ? '[data-calendar-blocked]' : route.includes('ACTIVE_EXISTING_USER') ? '[data-daily-id="local-measurement-only"]' : '[data-probe-root]');
       await page.waitForLoadState("networkidle");
       const metrics = await page.evaluate(() => ({
         domNodes: document.querySelectorAll("*").length,

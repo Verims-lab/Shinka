@@ -83,7 +83,7 @@ export async function checkCalendarContinuity(page, origin) {
     const target=await page.evaluate(()=>{const y=Math.min(300,document.documentElement.scrollHeight-innerHeight);window.scrollTo({top:y,behavior:'instant'});return y;});
     assert(target>0,'Calendar fixture is not scrollable');await page.waitForFunction(y=>Math.abs(scrollY-y)<=1,target);
     const scroll=await page.evaluate(()=>scrollY);
-    await page.locator('nav a:visible').nth(2).click();await page.locator('[data-lunar-summary]').waitFor();
+    await page.locator('nav a:visible').nth(2).click();await page.locator('[data-lunar-timeline]').waitFor();
     await page.locator('nav a:visible').nth(1).click();await page.locator('[data-calendar-feedback="draft"]:visible').waitFor();
     await page.waitForFunction(y=>Math.abs(scrollY-y)<=1,scroll);
     assert.equal(await page.locator('#calendar-start-date').inputValue(),'2026-09-01');

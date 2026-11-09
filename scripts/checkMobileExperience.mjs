@@ -19,7 +19,7 @@ export async function checkMobileExperience(browser, origin, directory) {
     ['onboarding','/onboarding-fixture?step=AUTHENTICATED_PROFILE_REQUIRED','#birthplace'],
     ['cycle','/onboarding-fixture?step=AUTHENTICATED_CYCLE_STEP','input[type=date]'],
     ['home',`/?${query}`,'[data-daily-id]'], ['calendar',`/calendar?${query}`,'[data-calendar-date]'],
-    ['pattern',`/pattern?${query}`,'[data-lunar-summary]'], ['you',`/you?${query}`,'#you-language'],
+    ['pattern',`/pattern?${query}`,'[data-lunar-timeline]'], ['you',`/you?${query}`,'#you-language'],
     ['privacy',`/account-privacy?${query}`,'[data-privacy-actions] button'],
     ['admin',`/internal?${query}`,'[data-admin-panel]'], ['health',`/internal/health?${query}`,'[data-health-root]'],
   ];

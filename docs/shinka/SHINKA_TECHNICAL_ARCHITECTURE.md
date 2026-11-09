@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-058
-**Last Updated:** 2026-11-01
+**Current BuildMarker:** Buildmarker-060
+**Last Updated:** 2026-11-09
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
@@ -11,6 +11,17 @@
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
+
+
+## 060 — Bounded privacy status transport
+
+AccountPrivacy remains a public shell over the existing closed accountPrivacy backend. PrivacyActions/controller coalesces one request, uses a 20-second service deadline and an AbortSignal for local timer/listener cleanup, and seals old generations on disposal/session end. It never cancels already transmitted SDK work or automatically resumes cleanup. Status result publication is independent of provider logout completion. Central TR/EN copy reflects verified state and classified failures.
+
+For an expired receipt, the backend can use the existing raw native owner session only after fresh owner/User/lifecycle/admin admission, and only if the hashed receipt resolves to that same owner's original request. Product applicationSession fencing remains intact; no second identity or general auth fallback is introduced. Anonymous expiry still fails; no receipt renewal, request replacement or schema change. [060 execution](reports/SHINKA_PRIVACY_STATUS_060.md).
+
+## 059 — Single Pattern theme, Lunar Timeline and navigation evidence (2026-11-09)
+
+Reuses the 021 `calculateLunarTimeline` projection and LunarTimeline component in place of the superseded 038 LunarSummary. Backend selects one category for presentation while preserving summary validation; client validates exact primary association, five ordered boundaries, numeric ratios, active interval and state. JSX formats validated UTC instants in the provided IANA zone; it never estimates phases or uses the device clock to place Today. Pattern controller/transport/session boundaries are unchanged. Navigation stays in document flow; additional ancestor/footer checks do not modify layout ownership. [059 implementation, measurements and acceptance](reports/SHINKA_PATTERN_NAVIGATION_059.md)
 
 
 ## 058 — Narrow core closure (2026-11-01)
@@ -259,7 +270,7 @@ SDK invocation already sent cannot be canceled. In-memory generations prevent ob
 
 Native generic domainAccess also returns this same calculated summary; recordId-based owner/admin reads refuse with DERIVED_PATTERN_READ_REQUIRED rather than exposing an obsolete physical cache. Generic mutations remain denied.
 
-`pattern/entry.ts` uses createNativeClient and the common lifecycle wrapper. `patternOperation` admits the current owner and dispatches only themes/lunar, performs fresh post-read admission and returns safe error codes. `patternReader` owns bounded projected SDK reads; `patternCalculation` is the single theme/lunar selection and IANA-date authority; `dailyCandidateSelection` is shared with Home. `patternService` owns deadline/strict response validation, controller owns independent section generations and privacy invalidation, hook owns lifecycle events, and lazy Pattern/LunarSummary own presentation only.
+`pattern/entry.ts` uses createNativeClient and the common lifecycle wrapper. `patternOperation` admits the current owner and dispatches only themes/lunar, performs fresh post-read admission and returns safe error codes. `patternReader` owns bounded projected SDK reads; `patternCalculation` is the single theme/lunar selection and validated timezone authority; `dailyCandidateSelection` is shared with Home. `patternService` owns deadline/strict response validation, controller owns independent section generations and privacy invalidation, hook owns lifecycle events, and lazy Pattern/LunarTimeline own presentation only.
 
 No server cache, parallel summary model, direct browser CRUD, new transaction coordinator or external database is introduced. API calls already sent cannot be canceled by the SDK; timeout/unmount/refresh generations discard obsolete completions. Memory is component-scoped; no personal storage/URL/report/log data. 038 separates refresh from invalidation: independent in-flight sections coalesce, retain values/errors and refresh every five visible minutes; focus/online/visibility bursts share requests and a one-second burst window. Privacy/access clears before a fresh read; session end clears and stops future refreshes. The lifecycle binding injects a fixture-local scheduler for tests, never patches globals. A language switch needs no request. Local process restart simply rereads authority, with no persistent summary cache to recover.
 

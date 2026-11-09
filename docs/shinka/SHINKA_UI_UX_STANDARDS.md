@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-058
-**Last Updated:** 2026-11-01
+**Current BuildMarker:** Buildmarker-060
+**Last Updated:** 2026-11-09
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
@@ -11,6 +11,25 @@
 **Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+
+## 060 — Approved concise deletion copy and status presentation
+
+User approval on 2026-11-09 replaces the conflicting retention sentence and the old technical confirmation with these exact strings in `privacyCopy`:
+
+- EN title: **Delete your account?** Body: **Your account and personal information will be removed from the app, and you will no longer be able to access Shinka. Permanent deletion will remain pending until it is verified.** Buttons: **Cancel / Delete Account**.
+- TR title: **Hesabını silmek istiyor musun?** Body: **Hesabın ve kişisel bilgilerin uygulamadan kaldırılacak ve artık Shinka'ya erişemeyeceksin. Kalıcı silme, doğrulanana kadar beklemede kalacak.** Buttons: **Vazgeç / Hesabımı Sil**.
+
+No provider/internal-scope detail belongs in this confirmation. Retain cancel-first focus, Escape/back, focus return, labelled dialog, >=44px controls, content growth and existing visuals/theme. Central TR/EN status copy distinguishes Checking status from mutation progress, in-progress from merely local pending intent, temporary failure/timeout from sign-in required. Never equate HTTP200 with completion or claim provider sign-out succeeded merely because active removal was verified. Saved recovery and sign-in-to-create-new-request messages are not shown together; expired authority offers existing-provider sign-in preserving locale and the privacy return route. [060 evidence](reports/SHINKA_PRIVACY_STATUS_060.md).
+
+
+## 059 — Single Pattern theme, Lunar Timeline and navigation evidence (2026-11-09)
+
+The current owner request replaces 038's two-theme/two-Moon-field presentation. Your Recurring Themes renders exactly the dominant assigned category, count descending then last assigned day descending, without day counters. The selected category alone may supply its approved bilingual explanation and decorative illustration; no random daily text, generic icon or wrong-category art is a substitute. The available authority contains six approved names, but no six-category explanation/asset catalog. Until supplied, only the selected heading is shown; the requested illustrated explanation card remains explicitly incomplete. The existing watercolor backdrop remains its sole composition owner; no repeated moon/plant hero and no header language selector.
+
+Lunar Timeline / Ay Zaman Çizelgesi restores the five-node NEW→WAXING→FULL→WANING→next NEW projection from actual lookup interval boundaries. Horizontal positions and Today use true UTC time ratios and backend observed_at. Numbered nodes correspond to wrapping textual phase/date/time rows, dd.MM HH:mm in validated IANA time zone; no horizontal scrolling. Current phase is distinct from Today. Missing cycle coverage shows unavailable and any provable current phase, never a complete invented graphic. Independent section retry, retained data and privacy clearing remain.
+
+The 057 shared nav remains a 44px minimum auto-growing row plus 1px border and exactly one nav safe inset. No additional runtime height change was justified: published 058 measured 45px total/0 inset at 360 and 390px. 059 adds ancestor/footer-space and last-content assertions, injected duplicate-padding/margin negatives, 24px simulated Android inset and keyboard viewport restore. Physical APK/system-bar ownership remains unverified. [059 implementation, measurements and acceptance](reports/SHINKA_PATTERN_NAVIGATION_059.md)
 
 
 ## 057 — Shared navigation and reopen recovery (2026-11-01)
@@ -175,9 +194,9 @@ Unknown write has Check saved result and explicit same-save Retry; edits are loc
 
 ## Implemented Pattern UX — 021
 
-Pattern is enabled at `/pattern` behind the same session/onboarding route as Calendar. Existing Shinka header, top-right Profile/You, language buttons, safe-area shell and three-item bottom navigation remain. Read-only Your Recurring Themes / Moon cards load independently with section-specific status, error and ≥44px Retry; error never becomes the approved empty-history message. A privacy denial clears both sections. Locale switch reuses the same verified results.
+Pattern is enabled at `/pattern` behind the same session/onboarding route as Calendar. Existing Shinka header, top-right Profile/You, safe-area shell and three-item bottom navigation remain. Read-only Your Recurring Themes / Lunar Timeline cards load independently with section-specific status, error and ≥44px Retry; error never becomes the approved empty-history message. A privacy denial clears both sections. Locale switch reuses the same verified results.
 
-038 supersedes the five-node presentation: Moon / Ay contains exactly two labeled values, Current Moon phase and Next Full Moon date. No diagram, phase list, clock time, timezone or repeated current-phase description. `<dl>` labels and localized date-only `<time>` wrap at 320px/200% text. A missing field shows unavailable while the known field remains. Themes retain exact names/order, without count labels or their spacing. Original source tables remain intact; current scoped TR/EN copy is in patternCopy. No new recommendation or inferred personal text.
+Historical 038 summary-only presentation is superseded by 059 above. Current Pattern uses one selected theme and a real five-node timeline; original source tables and old execution receipts remain provenance.
 
 Current Pattern source and local browser tests supersede earlier inactive/future descriptions below. Physical screen-reader output, safe-area/browser bars, OS text scaling, hosted font loading and real-device navigation remain manual acceptance.
 
@@ -285,7 +304,7 @@ Greeting is followed directly by the cards; the technical `DAILY_DUPLICATE_RECON
 Monthly view; actual period pastel pink, predicted light lavender, selected day ring; legend Period / Predicted / Selected; phases not color-split. Mark period start (select date → validate → save). Correction: select existing start → new date → same action updates. Delete period start only on actual starts, with confirmation (date + prediction update explained; Cancel changes nothing); busy state blocks re-taps; success only after actual-date readback and recalculation; error keeps prior state + Retry; last start deleted → empty state, mark action available. Health display hidden without consent.
 
 ## Pattern UX
-Read-only: **Your Recurring Themes** (assigned categories, ≤2 names, no day counts) and **Moon / Ay** (current phase and strictly next Full Moon date only). 038 user decision supersedes the original timeline mockup; no horizontal scroll.
+Read-only: **Your Recurring Themes** (one dominant assigned category; approved copy/art only) and **Lunar Timeline / Ay Zaman Çizelgesi** (proportional five transitions and Today, with accessible local date/time rows). See 059 above for incomplete-source behavior.
 
 ## You UX
 Opened from top-right icon only. **My Profile** (inline edit: optional name, required DOB, optional birth time, optional GeoNames birthplace, read-only Sun sign). **App Preferences** (Language TR/EN; Daily Notifications on/off, local 06:00 shown, no time picker, no timezone picker). **Account & Privacy** (Privacy Policy, Terms of Service, Health Data Consent, Sign Out, Delete Account). Delete Account → one owner-erasure scope confirmation; active account/data removal must be verified and platform erasure stays explicitly pending (023). No menstrual data editing in You.

@@ -27,7 +27,7 @@ export default function AccountPrivacy() {
   return <div lang={language} className="shinka-viewport shinka-safe-shell text-shinka-ink font-body"><SectionBackdrop section="you"/><main className="max-w-xl mx-auto px-5 py-8 space-y-6">
     <Link className="inline-flex min-h-11 items-center text-shinka-plum" to={`/?lang=${language}`}>← {copy('back')}</Link>
     <h1 ref={heading} tabIndex={-1} className="font-heading text-shinka-h1 focus:outline-none">{copy('title')}</h1>
-    {!isAuthenticated && <ShinkaCard title={copy('external')}><p>{copy('loginBody')}</p><Link className="flex min-h-11 items-center text-shinka-plum" to={`/login?returnTo=${encodeURIComponent('/account-privacy')}`}>{copy('login')}</Link></ShinkaCard>}
+    {!isAuthenticated && !recovery.read() && <ShinkaCard title={copy('external')}><p>{copy('loginBody')}</p><Link className="flex min-h-11 items-center text-shinka-plum" to={`/login?returnTo=${encodeURIComponent(`/account-privacy?lang=${language}`)}`}>{copy('login')}</Link></ShinkaCard>}
     <ShinkaCard><PrivacyActions language={language} recovery={recovery} authenticated={isAuthenticated} intent={intent} onRemoved={() => isAuthenticated ? logout(false, { preservePrivacyRecovery: true }) : Promise.resolve()}/></ShinkaCard>
   </main></div>;
 }

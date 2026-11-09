@@ -33,7 +33,7 @@ export const PRIVACY_UI_TESTS = [
     f.once('after', c => c.name === 'User' && c.method === 'delete');
     root.render(createElement(PrivacyActions, { request: f.request, recovery, onRemoved: async () => { removed++; } }));
     await until(() => button(host, 'Delete my account') && !button(host, 'Delete my account').disabled);
-    button(host, 'Delete my account').click(); await until(() => host.querySelector('dialog')); button(host, 'Request account deletion').click();
+    button(host, 'Delete my account').click(); await until(() => host.querySelector('dialog')); button(host, 'Delete Account').click();
     await until(() => host.querySelector('[role=alert]')); check(removed === 0 && !host.querySelector('[data-privacy-platform-pending]'));
     button(host, 'Check status').click(); await until(() => host.querySelector('[data-privacy-platform-pending]'));
     check(removed === 1 && host.textContent.includes('remain pending'));
@@ -44,6 +44,7 @@ export const PRIVACY_UI_TESTS = [
       await until(() => button(host, privacyCopy('delete', language)) && !button(host, privacyCopy('delete', language)).disabled);
       button(host, privacyCopy('delete', language)).click(); await until(() => host.querySelector('dialog'));
       const dialog = host.querySelector('dialog'); dialog.style.fontSize = '200%';
+      check(dialog.textContent.includes(privacyCopy('deleteBody', language)) && !dialog.textContent.includes('Base44'));
       check(!!document.getElementById(dialog.getAttribute('aria-describedby')) && dialog.querySelector('h2').textContent === privacyCopy('deleteTitle', language));
       dialog.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true }));
       check(dialog.contains(document.activeElement));
@@ -51,4 +52,35 @@ export const PRIVACY_UI_TESTS = [
       button(host, privacyCopy('cancel', language)).click(); await until(() => !host.querySelector('dialog'));
     }
   })],
+  ['PV05', 'TR/EN status read distinguishes expired authority, timeout and transient failures, then recovers without mutation', async () => probe(async (root, host) => {
+    for (const language of ['tr', 'en']) for (const [error, key] of [['PRIVACY_RECOVERY_INVALID', 'signInRequired'], ['AUTH_REQUIRED', 'signInRequired'], ['PRIVACY_STATUS_TIMEOUT', 'timeout'], ['PRIVACY_STATUS_UNAVAILABLE', 'unavailable']]) {
+      const recovery = memoryRecovery(); recovery.save({ kind: 'DELETE_ACCOUNT', recovery_key: 'a'.repeat(64) }); let reads = 0;
+      const request = async (action, body) => {
+        check(action === 'status' && body.recovery_key === recovery.read().recovery_key); reads++;
+        if (reads === 1) throw { code: error };
+        return { kind: 'DELETE_ACCOUNT', state: 'IN_PROGRESS', permanentDeletionVerified: false };
+      };
+      root.render(createElement(PrivacyActions, { key: language + error, language, request, recovery, authenticated: false }));
+      await until(() => host.querySelector('[role=alert]')?.textContent === privacyCopy(key, language));
+      check(!button(host, privacyCopy('resume', language)) && !button(host, privacyCopy('delete', language)));
+      if (key === 'signInRequired') check(host.querySelector('a').getAttribute('href') === `/login?returnTo=${encodeURIComponent(`/account-privacy?lang=${language}`)}`);
+      button(host, privacyCopy('check', language)).click(); button(host, privacyCopy('check', language)).click();
+      await until(() => host.textContent.includes(privacyCopy('inProgress', language)));
+      check(!!host.querySelector('a'), 'confirmed partial anonymous request retains provider sign-in path');
+      check(reads === 2 && !host.querySelector('[role=alert]') && !host.textContent.includes(privacyCopy('platform', language)));
+    }
+  })],
+  ['PV06', 'Checking state is labelled, coalesced and cleared; account replacement and unmount discard old response', async () => probe(async (root, host) => {
+    const recovery = memoryRecovery(); recovery.save({ kind: 'DELETE_ACCOUNT', recovery_key: 'a'.repeat(64) }); let release = () => {}, reads = 0, removed = 0;
+    const request = () => { reads++; return new Promise(resolve => { release = () => resolve({ state: 'PLATFORM_PENDING', kind: 'DELETE_ACCOUNT', activeDataRemoved: true, permanentDeletionVerified: false }); }); };
+    root.render(createElement(PrivacyActions, { request, recovery, authenticated: false, onRemoved: async () => { removed++; } }));
+    await until(() => host.textContent.includes('Checking status'));
+    check(button(host, 'Check status').disabled && !host.textContent.includes('Processing your request') && reads === 1);
+    window.dispatchEvent(new Event('shinka-session-ended'));
+    const otherRequest = async () => ({ state: 'IDLE', permanentDeletionVerified: false, canWithdraw: false, accountProtected: true });
+    root.render(createElement(PrivacyActions, { request: otherRequest, recovery: memoryRecovery(), authenticated: true }));
+    await until(() => host.textContent.includes('last-admin protection')); release(); await pause();
+    check(!host.querySelector('[data-privacy-platform-pending]') && removed === 0 && !host.textContent.includes('Checking status'));
+  })],
+
 ];

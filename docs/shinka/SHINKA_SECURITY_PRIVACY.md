@@ -2,13 +2,27 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-058
+**Current BuildMarker:** Buildmarker-060
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
-**Last Updated:** 2026-11-01
+**Last Updated:** 2026-11-09
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
 **External Verification Required:** All rows marked UNVERIFIED.
+
+## 060 — Owner status recovery without erasure changes
+
+The owner rejected indefinite retention and approved concise copy describing removal of active account/personal app data with permanent deletion still pending verification. ACCOUNT_CLEANUP, native User-last ordering, fresh absence verification, protected admins, lifecycle/ownership/consent and shared-data rules are unchanged.
+
+`status` remains read-only: no begin/resume/receipt renewal or cleanup. A valid 24-hour hashed receipt reads only its exact request after native logout. An expired receipt alone is refused. After existing-provider sign-in, accountPrivacy may independently admit the fresh native identity/User/lifecycle/admin boundary (product applicationSession intentionally fences pending deletion); that owner must match the original receipt-bound request. Missing, mismatched or ambiguous receipts cannot select another request. TTL, hash and request ID are unchanged. This is existing owner read authority, not extended anonymous recovery. New provider identity does not regain old history.
+
+The frontend preserves one recovery intent, coalesces in-flight calls, bounds local waiting to 20 seconds, clears timers/listeners on disposal and ignores obsolete generations. SDK work already sent is not physically recalled. Successful HTTP is insufficient: only validated backend absence proof renders active removal; permanent deletion remains pending. Transient/timeout and sign-in states are distinct; no raw exceptions, tokens or records are logged. [060 evidence](reports/SHINKA_PRIVACY_STATUS_060.md).
+
+
+## 059 — Existing dependency High resolved (2026-11-09)
+
+Fresh mandatory `security:deps` and clean `npm ci` report **0 vulnerabilities**. Compatible transitive follow-redirects 1.16.1→1.16.2 is now beyond the unchanged seven-day cooldown; no direct dependency, Base44 version, registry/TLS policy or override changes. npm normalized bundled optional WASM lock entries. Initial current audit (1 High) and previous 057/058 failures remain in evidence. Application owner/ACTIVE/lifecycle, privacy invalidation and closed notification/scheduler contracts are unchanged. No live Security scan or user writes. [059 evidence](reports/SHINKA_PATTERN_NAVIGATION_059.md).
+
 
 ## 058 — Narrow core closure (2026-11-01)
 

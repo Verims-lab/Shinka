@@ -2,13 +2,30 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-058
-**Last Updated:** 2026-11-01
+**Current BuildMarker:** Buildmarker-060
+**Last Updated:** 2026-11-09
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-056.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-058.0; repository, synthetic and external evidence separated.
 
+
+
+## 060 — Focused privacy status acceptance (HC-059.0)
+
+Health changes: **0 added / 4 updated / 0 removed**. H11-003 adds PR22/PR27 (account double confirmation, no-write coalesced status, read failures cannot establish removal). H12-039 adds PR21/PR23–PR26 (closed service outcomes, expired native-owner recovery binding, controlled timeout/cancel, late response and delayed logout). H13-019 maps PV01–PV06 plus actual-App checkPrivacyFlow for concise copy, TR/EN narrow/200% modal and distinct status states/account isolation. H05-009 extends the unchanged strict content verification policy to 060. No assertion or hosted requirement is removed.
+
+H11-008 remains external: physical/provider/recovery acceptance and permanent platform erasure are unverified. The original video and 023 evidence remain historical, not a passing hosted result. Local execution and initial failed attempts are in [060 report](reports/SHINKA_PRIVACY_STATUS_060.md) and [execution](reports/privacy-status-060/execution.json). No live Full Health or Security scan.
+
+
+## 059 — Single Pattern theme, Lunar Timeline and navigation evidence (2026-11-09)
+
+HC-058.0 changes **0 added / 4 updated / 0 removed**: H05-009 adds 059 to the unchanged strict content policy; H10-001 strengthens PT07–09 and adds PT20 for primary-only selection/response rejection; H13-017 maps PU01–PU09 and the 40-cell TR/EN × light/dark × viewport × text matrix; H13-012 adds real ancestor/footer geometry, 192 inset cells, 12 keyboard-resize checks and one negative-spacer scenario per engine. Serialized H13-012 scope now names checkReopenNavigation. Existing catalog remains 186 (160 in-app / 12 local / 14 external). No failed case deleted or blocked result relabeled.
+
+Approved category explanations/illustrations are missing, so matching final title+description+asset acceptance is NOT_RUN / SOURCE_REQUIRED, not covered by synthetic empty placeholders. Physical Android/iOS, native inset/keyboard/back and APK bundle identity remain external. Historical 057, original Base44 NOT_RUN and hosted reports are retained; no live Full Health/scan. Final command receipts are in [059 implementation, measurements and acceptance](reports/SHINKA_PATTERN_NAVIGATION_059.md).
+
+
+059 final local result: **791/791 PASS in Chromium and WebKit**, 40 Pattern visual cells + 2 route denials and 205 navigation checks per engine, zero page errors; local synthetic Health 147 PASS / 13 expected hosted prerequisites BLOCKED / 0 FAIL. Required quality, last-five, dependency security (0 vulnerabilities) and production performance budgets pass. Six-category explanation/illustration source and physical APK/wrapper acceptance remain open. [Execution](reports/pattern-navigation-059/execution.json).
 
 
 ## 058 — Narrow core closure (2026-11-01)
