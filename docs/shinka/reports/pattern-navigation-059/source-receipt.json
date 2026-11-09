@@ -1,0 +1,21 @@
+{
+  "request": {
+    "name": "Pasted text.txt",
+    "sha256": "140c84f57ff491c65fc5f6d24e5bdacd346d747187e76c86358481bfda71c876"
+  },
+  "ux_reference": {
+    "name": "codex-clipboard-b53c9065-fe7c-43fd-a352-41db8a2e202f.png",
+    "sha256": "8e7eccb40f2824cc90b6d4e9f9d7e290b4859e531877b931b23fc8ddf2806e23"
+  },
+  "SRC03_part3": {
+    "name": "uiux-part3.docx",
+    "sha256": "2ac288f4b60df5cd7ca8521b3a47f5a744f8ccb9fd0d295325a44465a08c6ddd"
+  },
+  "sourceInspection": {
+    "approved_category_names": 6,
+    "approved_category_explanation_pairs_found": 0,
+    "standalone_category_illustration_mappings_found": 0,
+    "mockupRole": "whole-screen visual reference; no inferred six-category mapping",
+    "timelineRule": "SRC-03 part 3 sections 6.2/6.3; prior 021 code reviewed; current explicit request supersedes 038"
+  }
+}

@@ -100,6 +100,10 @@ try {
   } else if (process.env.FOUNDATION_PREFERENCES_ONLY === '1') {
     const preferenceSheets=await checkPreferenceSheets(browser,origin,process.env.FOUNDATION_PREFERENCES_DIR);
     console.log(JSON.stringify({preferenceSheets,pageErrors},null,2));
+  } else if (process.env.FOUNDATION_REOPEN_NAVIGATION_ONLY === '1') {
+    const reopenNavigation=await checkReopenNavigation(browser,origin,process.env.FOUNDATION_REOPEN_DIR,{visualAssets:process.env.FOUNDATION_NAVIGATION_ASSETS==='1'});
+    console.log(JSON.stringify({reopenNavigation,pageErrors},null,2));
+    if(pageErrors.length)process.exitCode=1;
   } else if (process.env.FOUNDATION_NAVIGATION_ONLY === '1') {
     const productNavigation=await checkProductNavigation(page,origin);
     console.log(JSON.stringify({productNavigation,pageErrors},null,2));

@@ -2,14 +2,21 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-058
-**Last Updated:** 2026-11-01
+**Current BuildMarker:** Buildmarker-059
+**Last Updated:** 2026-11-09
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
+
+
+## 059 — Single Pattern theme, Lunar Timeline and navigation evidence (2026-11-09)
+
+Explicit owner request `489e4d36-bf08-407b-a8b2-199e33542580/Pasted text.txt` and its attached UX reference authorize **one dominant theme** and **graphical Lunar Timeline**, superseding the two-theme limit and 038 summary-only Moon presentation. The reference's two example theme cards and dates are illustrative, not data. The 30-calendar-day window, actual category IDs, approved six names and original tie rule remain unchanged.
+
+SRC-03 part 3 was reread directly from the recorded public source: §6.1 provides names only; §6.2/6.3 explicitly define real five-node phase transitions and local dd.MM HH:mm. No standalone category illustrations, mapping or approved TR/EN explanation sentences were found in code/canonical/source text. The mockup is a whole screen, not a six-category asset library. All six explanation pairs and illustration mappings remain SOURCE_REQUIRED; no invented copy, cropped sample art or inferred mapping is promoted to authority. The new screenshot does not replace the approved watercolor background. [059 implementation, measurements and acceptance](reports/SHINKA_PATTERN_NAVIGATION_059.md)
 
 
 ## 058 — Narrow core closure (2026-11-01)
@@ -74,7 +81,7 @@ Authority: explicit user request `a2e85156-40d3-4d49-b203-2ee57cc0cc2c/Pasted te
 
 Authority: explicit user request `a52b553b-3741-4bc1-93d0-7e6b0300526c/Pasted text.txt` (2026-10-27). One 039 package audits and fixes existing behavior; Historical 039 decision (theme-only portion superseded by 048): 036–038 decisions included light-only UI, automatic onboarding locale, You preference authority, A/P single search, count-free themes/current Moon/next Full date. No new feature/service/data authority or live operation is authorized. Twelve deferred backend findings remain OPEN / USER-DEFERRED. Main merge/publish and hosted Full Health belong to the owner. [Single milestone report](reports/SHINKA_CORE_QUALITY_MILESTONE_039.md) separates fresh local results, historical incidents and external acceptance.
 
-## 038 — Calendar recovery and Pattern presentation decision
+## Historical 038 — Calendar recovery and Pattern presentation decision (Pattern superseded by 059)
 
 Authority: explicit user request `95da1b20-7fd7-4762-9684-53257241899e/Pasted text.txt`, SHA-256 `5c78316a4200f752235cfc8156d60342d493da77a5a1823abd8e89a46d453f43` (2026-10-27). The completed 036/037 packages remain intact. The supplied dark screenshots differ from current 037 light-only source; their deployed version and Calendar write outcome are unverified.
 

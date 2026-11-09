@@ -1,0 +1,47 @@
+{
+  "scope": "READ_ONLY_PUBLISHED_DOM",
+  "marker": "Buildmarker-058",
+  "catalog": "HC-057.0",
+  "date": "2026-11-09",
+  "surface": "Pattern",
+  "observations": [
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "row": 44,
+      "safeInset": 0,
+      "border": 1,
+      "totalNav": 45,
+      "mainBottomPadding": 32,
+      "linkWidths": [
+        130,
+        130,
+        130
+      ]
+    },
+    {
+      "viewport": [
+        360,
+        740
+      ],
+      "row": 44,
+      "safeInset": 0,
+      "border": 1,
+      "totalNav": 45,
+      "mainBottomPadding": 32,
+      "linkWidths": [
+        120,
+        120,
+        120
+      ]
+    }
+  ],
+  "cssUnit": "px",
+  "appWrites": false,
+  "apkVersion": "NOT_AVAILABLE",
+  "physicalDevice": false,
+  "wrapperCause": "NOT_PROVEN",
+  "runtimeHeightChange": false
+}

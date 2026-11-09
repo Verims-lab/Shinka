@@ -5,7 +5,7 @@ import { resolveAuthenticatedOwner } from './domainSecurity.js';
 import { guardDomainOwner } from './nativeDomainGuard.js';
 import { resolveTimezone, serverLocalDate } from './onboardingValidation.js';
 import { patternReader } from './patternReader.js';
-import { patternWindowStart, calculatePatternSummary, calculateLunarSummary } from './patternCalculation.js';
+import { patternWindowStart, calculatePatternSummary, calculateLunarTimeline } from './patternCalculation.js';
 
 export async function patternOperation(client, body, { now = () => new Date() } = {}) {
   const principal = await requireAuthenticatedUser(client), owner = resolveAuthenticatedOwner(principal, body);
@@ -21,14 +21,16 @@ export async function patternOperation(client, body, { now = () => new Date() } 
     const summary = calculatePatternSummary({ rows, owner, timezone, instant, firstDay });
     const categories = rows.length ? await reader.categories() : [];
     if (rows.some(row => !categories.some(category => category.id === row.category_id))) throw new InternalError('PATTERN_CATEGORY_CONFLICT', 409);
-    const themes = ['primary', 'secondary'].flatMap(prefix => {
+    // The source summary remains unchanged; the presentation contract selects
+    // exactly its dominant category, never a CSS-hidden runner-up.
+    const themes = ['primary'].flatMap(prefix => {
       const id = summary[`${prefix}_category_id`];
       return id ? [{ ...categories.find(c => c.id === id), count: summary[`${prefix}_count`] }] : [];
     });
     result = { section: 'themes', state: themes.length ? 'READY' : 'EMPTY', summary, themes };
   } else {
-    const lunar = calculateLunarSummary(await reader.moon(instant), instant, timezone);
-    result = { section: 'lunar', state: lunar.current && lunar.next_full ? 'READY' : 'PARTIAL', lunar };
+    const lunar = calculateLunarTimeline(await reader.moon(instant), instant, timezone);
+    result = { section: 'lunar', state: lunar.timeline ? 'READY' : 'PARTIAL', lunar };
   }
   // Fresh admission before returning personal data; not snapshot isolation.
   const latest = await requireAuthenticatedUser(client);

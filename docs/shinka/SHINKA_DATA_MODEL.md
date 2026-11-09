@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-058
-**Last Updated:** 2026-11-01
+**Current BuildMarker:** Buildmarker-059
+**Last Updated:** 2026-11-09
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
 **Scope:** Product domain entities + separately listed internal tooling storage.
@@ -13,6 +13,11 @@
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
 
+
+
+## 059 — Single Pattern theme, Lunar Timeline and navigation evidence (2026-11-09)
+
+No entity, native ID, category assignment or persisted summary changes. The domain UserPatternSummary contract retains primary/secondary fields; `themes` DTO contains zero or one primary category and rejects two rows. `lunar` DTO is `{observed_at,timezone,current,timeline}`; timeline is null or `{nodes:[{phase_code,instant,position}] × 5,today_position,active_index}`. Node instants are validated stored starts plus WANING.end (the next NEW transition), all ratios use UTC instants. READY iff timeline is complete; invalid order/ratios/current interval or naive timestamps fail strict response validation. No additional astronomical engine, cache, metadata authority or schema migration. [059 implementation, measurements and acceptance](reports/SHINKA_PATTERN_NAVIGATION_059.md)
 
 
 ## 058 — Narrow core closure (2026-11-01)
@@ -74,7 +79,7 @@ No schema/field/policy/content migration. `domainAccess` ordinary reads return a
 
 ## 038 — read-only response evolution; no entity migration
 
-Pattern `lunar` response is `{section:'lunar',state:'READY'|'PARTIAL',lunar:{observed_at,timezone,current,next_full}}`. Selected interval fields are phase_code/start_at_utc/end_at_utc; next_full additionally has IANA-local `date` (YYYY-MM-DD). Either field is null when unprovable; READY requires both. No timeline nodes/coordinates/labels or persistent summary cache. Theme/count domain fields and all ranking inputs are unchanged.
+Historical 038 (superseded by 059 above): Pattern `lunar` response was `{section:'lunar',state:'READY'|'PARTIAL',lunar:{observed_at,timezone,current,next_full}}`. Selected interval fields are phase_code/start_at_utc/end_at_utc; next_full additionally has IANA-local `date` (YYYY-MM-DD). Either field is null when unprovable; READY requires both. No timeline nodes/coordinates/labels or persistent summary cache. Theme/count domain fields and all ranking inputs are unchanged.
 
 Calendar `recovery` for a unique eligible PENDING receipt now includes original action_id/base revision, operation, date and optional period_id. It is owner/consent-scoped health data, never Health/log metadata. The same stored ID is resumed after reload. PENDING/APPLIED/CANCELLED schema enum remains for historical compatibility, but 038 has no bulk acknowledge/CANCELLED writer. No schema/retention change; withdrawal suppresses recovery date projection and existing cleanup scope still includes receipts.
 
@@ -137,7 +142,7 @@ Native generic domainAccess also returns this same calculated summary; recordId-
 
 No entity/field/policy changes. `UserPatternSummary` retains its original field contract; the current Pattern API computes and validates that shape from daily rows at read time, returns null category/count pairs for empty/absent secondary, and does not persist/cache a summary. Any old physical summaries are ignored by this reader (and still covered by existing deletion scope). `calculated_at` is the backend read instant, not consent/native metadata.
 
-Daily history uses only id,user_id,shinka_date,timezone,category_id,generated_at with owner and [today−29,today] predicates, limit 4001. More than 4000 rows, duplicate IDs or malformed/foreign/out-of-range rows fail rather than truncate. One request below the pinned SDK's 5000 limit avoids offset-page shifting; a second limit-1 earliest-date query determines early-history window metadata and checks visible inconsistency. Category lookup requests 7 sentinel rows and requires the six exact approved unique codes/names/native IDs. Moon requests at most 33 sentinel rows overlapping ±35 UTC days, rejects >32 and validates continuity/order/UTC fields before selecting the current interval and strictly next FULL start (038). No product text or health table is needed.
+Daily history uses only id,user_id,shinka_date,timezone,category_id,generated_at with owner and [today−29,today] predicates, limit 4001. More than 4000 rows, duplicate IDs or malformed/foreign/out-of-range rows fail rather than truncate. One request below the pinned SDK's 5000 limit avoids offset-page shifting; a second limit-1 earliest-date query determines early-history window metadata and checks visible inconsistency. Category lookup requests 7 sentinel rows and requires the six exact approved unique codes/names/native IDs. Moon requests at most 33 sentinel rows overlapping ±35 UTC days, rejects >32 and validates continuity/order/UTC fields before projecting the current lunation’s five real transitions (059). No product text or health table is needed.
 
 These bounded ordinary reads are not a transaction/snapshot/CAS guarantee. A newly visible daily candidate can change Home and Pattern consistently on next refresh using the same shared comparator. No silent overwrite or uniqueness claim. [SDK filter signature/field selection and limits](https://docs.base44.com/developers/references/sdk/docs/type-aliases/entities), checked 2026-10-21; implementation retains pinned 0.8.54's positional filter API, not newer cursor overloads.
 

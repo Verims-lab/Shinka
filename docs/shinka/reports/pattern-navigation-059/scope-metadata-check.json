@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "scope": "FINAL_LOCAL_REGRESSION_METADATA_CHECK",
+  "cases": [
+    {
+      "id": "H13-012",
+      "localOnly": true,
+      "tests": "scripts/checkReopenNavigation.mjs, FX01/FX02, OV01–OV06, scripts/checkOnboardingClosure.mjs, U01–U21, scripts/checkOnboardingCorrections.mjs, scripts/checkAppTheme.mjs, scripts/checkPreferenceSheets.mjs, OU01–OU08, T76/T79/T81/T82, scripts/checkOnboardingPresentation.mjs, scripts/checkOnboardingLayers.mjs, MI04–MI05, scripts/checkMobile.mjs, scripts/checkMobileExperience.mjs",
+      "coverage": "059 shared three-tab geometry, env/0/24/34 safe inset once, no ancestor/footer spacer or content overlap, negative duplicate-padding/margin checks and simulated keyboard resize; single outer time/place focus, completed-DOB inline age feedback/error-target focus, quota setup versus limit/provider copy and Retry/clear; five-step/back/draft/readback/session/router and A/P combobox keyboard/paging; complete App ON-01–05 single composition, unchanged layout, loaded-asset matched screenshots and top/middle/bottom scroll; 320/360/390/430px and landscape/reduced viewport; TR/EN default/onboarding light and verified Profile-only manual dark, no OS-following/System option, account isolation and 200% text, contrast, shared sheet/focus/history, refresh/unknown intent and reduced motion; not physical devices"
+    },
+    {
+      "id": "H13-017",
+      "localOnly": true,
+      "tests": "PU01–PU09, CP05/CP06, scripts/checkPatternFlow.mjs",
+      "coverage": "Pattern kept-tab freshness, TR/EN, isolated section retry, stale response, single primary category, five proportional timeline nodes and Today, IANA month/DST labels, manual light/dark, partial coverage and 120s/300s controlled refresh and product routes"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ import ShinkaCard from '@/components/shinka/ShinkaCard';
 import ProductNavigation from '@/components/shinka/ProductNavigation';
 import { patternCopy } from '@/foundation/i18n/patternCopy';
 import { usePattern } from '@/features/pattern/usePattern';
-import LunarSummary from '@/features/pattern/LunarSummary';
+import LunarTimeline from '@/features/pattern/LunarTimeline';
 export default function Pattern({ language: initialLanguage = 'en', renderProfileAccess = undefined, request = undefined, runtime = undefined, active = true }) {
   const [language, setLanguage] = useState(initialLanguage);
   useEffect(() => { if(initialLanguage) setLanguage(initialLanguage); }, [initialLanguage]);
@@ -20,10 +20,11 @@ export default function Pattern({ language: initialLanguage = 'en', renderProfil
       {['themes', 'lunar'].map(section => {
         const part = state[section];
         return <section key={section} aria-labelledby={`pattern-${section}`} aria-busy={part.loading} data-pattern-section={section}>
-          <ShinkaCard><h2 id={`pattern-${section}`} className="font-heading text-shinka-h3 mb-4">{copy(section)}</h2>
+          <h2 id={`pattern-${section}`} className="font-heading text-shinka-h3 mb-3">{copy(section)}</h2>
+          <ShinkaCard>
             {part.loading && !part.value && <p role="status">{copy('loading')}</p>}
             {part.error && <div role="alert" className="space-y-3"><p>{copy(part.value ? 'refreshError' : section === 'lunar' && part.error.startsWith('MOON_LOOKUP_') ? 'unavailable' : `${section}Error`)}</p><ShinkaButton variant="secondary" onClick={() => state.controller.load(section)}>{copy('retry')}</ShinkaButton></div>}
-            {part.value && (section === 'themes' ? part.value.state === 'EMPTY' ? <p role="status">{copy('empty')}</p> : <ul className="space-y-4">{part.value.themes.map(theme => <li key={theme.id} data-theme-id={theme.id} className="break-words text-shinka-body-lg">{theme[`display_name_${language}`]}</li>)}</ul> : <LunarSummary lunar={part.value.lunar} language={language}/>)}
+            {part.value && (section === 'themes' ? part.value.state === 'EMPTY' ? <p role="status">{copy('empty')}</p> : <ul className="space-y-4">{part.value.themes.map(theme => <li key={theme.id} data-theme-id={theme.id} className="min-w-0 break-words"><h3 className="font-heading text-shinka-h3">{theme[`display_name_${language}`]}</h3></li>)}</ul> : <LunarTimeline lunar={part.value.lunar} language={language}/>)}
           </ShinkaCard>
         </section>;
       })}

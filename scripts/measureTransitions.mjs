@@ -36,7 +36,7 @@ const origin = `http://127.0.0.1:${server.address().port}`;
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const watercolor=process.env.SHINKA_LAB_WATERCOLOR?await readFile(process.env.SHINKA_LAB_WATERCOLOR):null;
 const profile = { apiLatencyMs: 200, assetLatencyMs: 40, cpuSlowdown: 4, viewport: { width: 390, height: 844 }, samples: 5, bandwidthLimit: null, externalFonts: 'BLOCKED_IN_BOTH_RUNS', background:watercolor?{bytes:watercolor.length,sha256:createHash('sha256').update(watercolor).digest('hex'),source:'PINNED_EXISTING_PUBLIC_CDN_ASSET'}:'EXCLUDED_NOT_ASSET_COMPLETE' };
-const ready = { home: '[data-daily-id]', calendar: '#calendar-start-date', pattern: '[data-lunar-summary]', you: '[data-you-consent]' };
+const ready = { home: '[data-daily-id]', calendar: '#calendar-start-date', pattern: '[data-lunar-timeline]', you: '[data-you-consent]' };
 const routeOf = screen => screen === 'home' ? '/' : `/${screen}`;
 const rows = [], openings=[], errors = [], blocked = new Set(), excludedAssets=new Set();
 const browser = await chromium.launch({ headless: true });

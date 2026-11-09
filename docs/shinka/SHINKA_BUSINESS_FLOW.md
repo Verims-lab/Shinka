@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-058
-**Last Updated:** 2026-11-01
+**Current BuildMarker:** Buildmarker-059
+**Last Updated:** 2026-11-09
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
@@ -11,6 +11,13 @@
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
+
+
+## 059 — Single Pattern theme, Lunar Timeline and navigation evidence (2026-11-09)
+
+Current themes response exposes only the summary's primary category. Secondary ranking fields remain internal read-only projection metadata, not a second displayed theme; no schema/history rewrite. Count and latest-day ties, daily-candidate reconciliation and max(first day,today−29)…today window are unchanged.
+
+The lunar read returns the cycle containing server now, bounded by previous and next NEW. Validated WAXING/FULL/WANING starts are the existing lookup quarter transitions, not fabricated intermediate dates. READY requires all four contiguous phase intervals; PARTIAL preserves only provable current phase and no completed timeline. The old strictly-next-Full-only UI is superseded. Entry, refresh, retries and locale formatting remain read-only, with fresh owner/lifecycle admission and immediate privacy/account invalidation. [059 implementation, measurements and acceptance](reports/SHINKA_PATTERN_NAVIGATION_059.md)
 
 
 ## 058 — Narrow core closure (2026-11-01)
@@ -176,9 +183,9 @@ Account & Privacy displays current GRANTED/WITHDRAWN/NOT_GIVEN consent without m
 
 Home · Calendar · Pattern share navigation and the existing authenticated/onboarding resolver. Pattern never calls daily generation. Backend derives owner from the current session, requires ACTIVE and checks reset/deletion lifecycle before and after reads.
 
-Themes use saved `UserDailyMessage.category_id` and saved local `shinka_date`. The effective start is max(first recorded day, today−29), end today inclusive. Thus first 1–29 calendar days use existing history, then a rolling 30-day window; gaps do not pull older messages forward. Query only that window plus one earliest-date metadata row. Each day uses Home's generated_at ascending / codepoint ID ascending winner; losing physical candidates remain untouched. Count assigned categories, sort count descending then latest assigned day descending, return at most two approved lookup names. No history is EMPTY; malformed rows, missing lookup and service failures are errors.
+Themes use saved `UserDailyMessage.category_id` and saved local `shinka_date`. The effective start is max(first recorded day, today−29), end today inclusive. Thus first 1–29 calendar days use existing history, then a rolling 30-day window; gaps do not pull older messages forward. Query only that window plus one earliest-date metadata row. Each day uses Home's generated_at ascending / codepoint ID ascending winner; losing physical candidates remain untouched. Count assigned categories, sort count descending then latest assigned day descending, return exactly one primary approved lookup name when history is nonempty. No history is EMPTY; malformed rows, missing lookup and service failures are errors.
 
-038 Moon summary uses continuous validated NEW→WAXING→FULL→WANING intervals and backend now. Current uses start ≤ now < end; next is the earliest FULL start > now, including when current is FULL. Return only the selected intervals and next IANA-local date, never a guessed cycle. Insufficient future coverage keeps current phase and a null next field; without current coverage neither field is inferred. Device IANA timezone falls back to saved preference, without rewriting history. Theme counts remain calculation inputs only. Ordinary refresh/section errors preserve verified content; five-minute visible refresh and focus/online/visible return coalesce. Access/session/account change clears immediately; entry and retries are read-only.
+Historical 038 Moon summary (superseded by 059 above) uses continuous validated NEW→WAXING→FULL→WANING intervals and backend now. Current uses start ≤ now < end; next is the earliest FULL start > now, including when current is FULL. Return only the selected intervals and next IANA-local date, never a guessed cycle. Insufficient future coverage keeps current phase and a null next field; without current coverage neither field is inferred. Device IANA timezone falls back to saved preference, without rewriting history. Theme counts remain calculation inputs only. Ordinary refresh/section errors preserve verified content; five-minute visible refresh and focus/online/visible return coalesce. Access/session/account change clears immediately; entry and retries are read-only.
 
 ## Current implemented flow — 019
 
@@ -215,7 +222,7 @@ Shows the pair for the device's current local calendar day. Reopen/Retry/profile
 Only distinguishes recorded vs predicted period days. Selecting a date never saves. "Mark period start" creates; selecting an existing start + new date updates the same ID. Delete requires confirmation. ≥15 days between distinct starts. Recalculation derives from confirmed actual dates on read; failed writes may have persisted and require retry/review. Last start deleted ⇒ predictions/phases removed, settings kept, messages use UNKNOWN.
 
 ## Pattern (UC-16/17, KK-21/22/34)
-Recurring Themes: 1–29 days use all history, ≥30 rolling last 30; based on user_daily_message.category_id actually assigned; max two categories; ties → most recently seen; no inference. 038 Moon card: current phase and strictly next FULL start as a local date only; no graph/count/time/zone text.
+Recurring Themes: 1–29 days use all history, ≥30 rolling last 30; based on user_daily_message.category_id actually assigned; one dominant category; ties → most recently seen; no inference. Historical 038 Moon card (superseded by 059): current phase and strictly next FULL start as a local date only; no graph/count/time/zone text.
 
 ## You (UC-18…24)
 Edit name, birth date, time, birthplace in one screen; Sun sign read-only. Language TR/EN. Notifications on/off; time fixed 06:00 (notification_time stored, not editable). Privacy Policy, Terms of Service, Health Data Consent, Sign Out, Delete Account (confirmed owner erasure; active removal and pending platform erasure are distinct; 023 supersedes original deactivation). Presentation per SRC-03 §7 (see SHINKA_UI_UX_STANDARDS.md).

@@ -1,7 +1,8 @@
 import { productTransport, productReadError, productPrivacyError } from './productReadTransport';
 import { base44 } from '@/api/base44Client';
 import { validateDomainRecord } from '../../base44/shared/domainValidation.js';
-import { validTimezone, serverLocalDate } from '../../base44/shared/onboardingValidation.js';
+import { validTimezone } from '../../base44/shared/onboardingValidation.js';
+import { validateMoonIntervals } from '../../base44/shared/moonIntervals.js';
 import { CONTENT_CATEGORY_DECISION } from '../../base44/shared/contentCategoryDecision.js';
 export const isPatternPrivacyError = productPrivacyError;
 const SAFE_CODES = new Set([
@@ -17,9 +18,9 @@ export function validatePatternResponse(value, section) {
   const invalid = () => { throw Object.assign(new Error('PATTERN_RESPONSE_INVALID'), { code: 'PATTERN_RESPONSE_INVALID' }); };
   if (value?.section !== section) invalid();
   if (section === 'themes') {
-    if (!['READY', 'EMPTY'].includes(value.state) || !Array.isArray(value.themes) || value.themes.length > 2) invalid();
+    if (!['READY', 'EMPTY'].includes(value.state) || !Array.isArray(value.themes) || value.themes.length > 1) invalid();
     try { validateDomainRecord('user_pattern_summary', value.summary); } catch { invalid(); }
-    const expected = ['primary', 'secondary'].filter(p => value.summary[`${p}_category_id`]);
+    const expected = ['primary'].filter(p => value.summary[`${p}_category_id`]);
     if (expected.length !== value.themes.length || (value.state === 'EMPTY') !== (expected.length === 0)) invalid();
     value.themes.forEach((row, index) => {
       const approved = CONTENT_CATEGORY_DECISION.rows.find(c => c.category_code === row.category_code);
@@ -30,14 +31,27 @@ export function validatePatternResponse(value, section) {
     const stamp = value => typeof value === 'string' && /(?:Z|[+-]\d{2}:\d{2})$/.test(value) && Number.isFinite(Date.parse(value));
     if (!['READY','PARTIAL'].includes(value.state) || !lunar || !validTimezone(lunar.timezone) || !stamp(lunar.observed_at)) invalid();
     const now = Date.parse(lunar.observed_at);
-    for (const row of [lunar.current, lunar.next_full]) {
+    for (const row of [lunar.current]) {
       if (row === null) continue;
       try { validateDomainRecord('moon_phase_lookup', { phase_code: row.phase_code, start_at_utc: row.start_at_utc, end_at_utc: row.end_at_utc }); } catch { invalid(); }
     }
     if (lunar.current && !(Date.parse(lunar.current.start_at_utc) <= now && now < Date.parse(lunar.current.end_at_utc))) invalid();
-    if (lunar.next_full && (!lunar.current || lunar.next_full.phase_code !== 'FULL' || Date.parse(lunar.next_full.start_at_utc) <= now ||
-      lunar.next_full.date !== serverLocalDate(new Date(lunar.next_full.start_at_utc), lunar.timezone))) invalid();
-    if ((value.state === 'READY') !== Boolean(lunar.current && lunar.next_full)) invalid();
+    const timeline = lunar.timeline;
+    if (timeline !== null) {
+      if (!timeline || !lunar.current || !Array.isArray(timeline.nodes) || timeline.nodes.length !== 5) invalid();
+      const nodes = timeline.nodes;
+      if (nodes.map(n => n?.phase_code).join(',') !== 'NEW,WAXING,FULL,WANING,NEW' || nodes.some(n => !stamp(n.instant))) invalid();
+      const start = Date.parse(nodes[0].instant), end = Date.parse(nodes[4].instant);
+      if (!(start <= now && now < end)) invalid();
+      try { validateMoonIntervals(nodes.slice(0, 4).map((n, i) => ({ phase_code: n.phase_code, start_at_utc: n.instant, end_at_utc: nodes[i+1].instant }))); } catch { invalid(); }
+      const active = nodes.findIndex((n, i) => i < 4 && Date.parse(n.instant) <= now && now < Date.parse(nodes[i+1].instant));
+      const near = (a, b) => Number.isFinite(a) && Math.abs(a-b) < 1e-9;
+      if (timeline.active_index !== active || !near(timeline.today_position, (now-start)/(end-start)) ||
+        nodes.some(n => !near(n.position, (Date.parse(n.instant)-start)/(end-start))) ||
+        lunar.current.phase_code !== nodes[active].phase_code || Date.parse(lunar.current.start_at_utc) !== Date.parse(nodes[active].instant) ||
+        Date.parse(lunar.current.end_at_utc) !== Date.parse(nodes[active+1].instant)) invalid();
+    }
+    if ((value.state === 'READY') !== Boolean(timeline)) invalid();
   }
   return value;
 }
