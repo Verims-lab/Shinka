@@ -42,7 +42,7 @@ export const MOBILE_INTERACTION_TESTS = [
       c.select('2026-10-03'); response = 'unknown'; await c.submit('edit');
       const intent = mutations[1]; await c.refresh(); c.select('2026-10-04'); await c.submit('edit');
       check(mutations.length === 2 && c.getSnapshot().selected === '2026-10-03' && c.getSnapshot().outcome === 'unknown', 'unknown overwritten');
-      response = 'confirmed'; pending = deferred(); const replay = c.retry();
+      response = 'confirmed'; pending = deferred(); const replay = c.continueIntent();
       check(c.getSnapshot().busy && c.getSnapshot().checking && c.getSnapshot().outcome === 'unknown', 'missing read-only check');
       await testEventTurn();
       check(c.getSnapshot().busy && c.getSnapshot().outcome === 'pending' && !c.getSnapshot().success && c.getSnapshot().value.starts[0].date === '2026-10-01', 'optimistic save');

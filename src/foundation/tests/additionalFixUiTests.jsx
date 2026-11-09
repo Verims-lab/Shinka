@@ -39,27 +39,26 @@ export const ADDITIONAL_FIX_UI_TESTS=[
    const root=createRoot(host);
    /** @param {string} selector @returns {HTMLButtonElement} */
    const control=selector=>host.querySelector(selector);
-   /** @returns {HTMLInputElement} */
-   const dateInput=()=>host.querySelector('input[type=date]');
    let disposed=false;const dispose=()=>{if(disposed)return;disposed=true;root.unmount();host.remove();};context.cleanup?.(dispose);
    const wait=fn=>waitForFixture(fn,document.body,context);let writes=0;
    const request=(action,body)=>{if(action!=='read')writes++;return f.cal({action,...body});};
    try {
     await f.change('add',{date:'2026-10-01'});
     root.render(h(Calendar,{language,request}));await wait(()=>control('button[data-calendar-date="2026-10-29"]'));
+    control('[data-calendar-edit]').click();await testEventTurn(context.signal);
     control('button[data-calendar-date="2026-10-29"]').click();await testEventTurn(context.signal);
     check(control('button[data-calendar-date="2026-10-29"]').dataset.predicted==='true','prediction browsing lost');
-    check(control('button[type=submit]').disabled&&host.textContent.includes(language==='tr'?'gelecekte olamaz':'future'),'future UI explanation');
-    host.querySelector('form').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));await testEventTurn(context.signal);check(!writes,'form bypass wrote');
+    check(control('[data-calendar-save]').disabled&&control('button[data-calendar-date="2026-10-29"]').disabled,'future selection prevented');
+    control('[data-calendar-save]').click();await testEventTurn(context.signal);check(!writes,'form bypass wrote');
     // Month arrows have accessible labels rather than visible text.
     control(`button[aria-label="${language==='tr'?'Sonraki ay':'Next month'}"]`).click();await wait(()=>control('button[data-calendar-date="2026-11-01"]'));
     check(!writes,'future month wrote');
     f.tables.UserPeriodRecord.push({id:'legacy-future',user_id:'ownerA',period_start_date:'2026-11-01'});
     check(!button(host,language==='tr'?'Yenile':'Refresh'),'visible Calendar refresh');window.dispatchEvent(new Event('offline'));window.dispatchEvent(new Event('online'));await wait(()=>host.textContent.includes(language==='tr'?'Kayıtlı bir regl':'A recorded period'));
     control('button[data-calendar-date="2026-11-01"]').click();await testEventTurn(context.signal);
-    check(button(host,language==='tr'?'Regl başlangıcını sil':'Delete period start')&&!dateInput().disabled,'future actual row cannot be repaired');
-    type(host,'calendar-start-date','2026-10-20');await testEventTurn(context.signal);check(!control('button[type=submit]').disabled,'valid correction blocked');
-    host.querySelector('form').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));await wait(()=>host.textContent.includes(language==='tr'?'Regl başlangıcı kaydedildi':'Period start saved'));
+    check(!control('[data-calendar-save]').disabled&&control('button[data-calendar-date="2026-11-01"]').dataset.draft==='delete','future actual row cannot be repaired');
+    control(`button[aria-label="${language==='tr'?'Önceki ay':'Previous month'}"]`).click();await wait(()=>control('button[data-calendar-date="2026-10-20"]'));control('button[data-calendar-date="2026-10-20"]').click();await testEventTurn(context.signal);check(!control('[data-calendar-save]').disabled,'valid correction blocked');
+    control('[data-calendar-save]').click();await wait(()=>host.textContent.includes(language==='tr'?'Regl başlangıcı kaydedildi':'Period start saved'));
     check(writes===1&&f.tables.UserPeriodRecord.find(r=>r.id==='legacy-future').period_start_date==='2026-10-20','wrong correction');
    } finally {dispose();}
   }

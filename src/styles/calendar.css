@@ -2,10 +2,10 @@
 .shinka-calendar-day:focus-visible { outline: 2px dashed rgb(var(--shinka-plum)); outline-offset: 1px; }
 .shinka-calendar-dialog { margin: auto; width: min(440px, calc(100% - 40px)); max-height: 85vh; max-height: 85dvh; overflow: auto; }
 .shinka-calendar-dialog::backdrop { background: rgb(76 38 63 / .35); }
-/* WebKit's native date minimum can exceed the narrow card's content box.
-   Keep its picker and focus ring; size the control itself, never clip the card. */
-#calendar-start-date { appearance: none; -webkit-appearance: none; box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%; }
-/* WebKit's native date editor can hold focus without matching :focus-visible. */
-#calendar-start-date:focus { outline: 2px solid rgb(var(--shinka-plum)); outline-offset: 2px; }
-#calendar-start-date::-webkit-date-and-time-value { min-width: 0; text-align: start; }
 @media (max-width: 359px) { .shinka-calendar-grid { margin-inline: -14px; } }
+
+.shinka-calendar-day { position: relative; }
+.shinka-calendar-marker { display: block; font-size: .75em; line-height: 1; }
+.shinka-calendar-day[data-draft="delete"], .shinka-calendar-day[data-draft="from"] { outline: 2px dashed rgb(var(--shinka-plum)); outline-offset: -3px; }
+.shinka-calendar-day[data-draft="add"], .shinka-calendar-day[data-draft="edit"] { background: rgb(var(--shinka-lavender)); }
+.shinka-calendar-day[aria-current="date"] { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }

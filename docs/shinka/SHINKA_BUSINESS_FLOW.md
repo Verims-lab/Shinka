@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-061
+**Current BuildMarker:** Buildmarker-062
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -12,6 +12,12 @@
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 
+
+## 062 — Direct start-date management
+
+Calendar edits existing period **start dates only**. One Save is exactly one add, edit or delete; edit preserves the native period ID and never becomes delete+add. A saved start initially selects deletion, then a different day selects movement; both are unsaved intentions until explicit Save/confirmation. Predictions and derived period days are not editable records. No end date, duration or multi-day/batch model is introduced.
+
+Status checking is now strictly read-only, including repeated checks and PENDING/ABSENT. A separate explicit continuation preserves the original action ID/revision/payload, rereads current receipt/guards and uses the remaining 20-second total budget. APPLIED never rewrites. Failed/expired/conflicting checks cannot create success or a new operation. Passive reopening remains read-only; a saved pending intent is recovered through the existing server projection. Consent, owner/ACTIVE, lifecycle, minimum15, owner today and OD-012 remain backend authorities. Tab/month navigation retains unsent drafts in memory; cancel clears them without writes; session end/reload does not persist them. Historical 056 combined-check wording is superseded only for this UI action separation.
 
 ## 061 — Authentication before personal onboarding (2026-11-09)
 

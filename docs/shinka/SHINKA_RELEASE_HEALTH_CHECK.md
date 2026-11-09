@@ -2,14 +2,20 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-061
+**Current BuildMarker:** Buildmarker-062
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-058.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-061.0; repository, synthetic and external evidence separated.
 
 
+
+## 062 — Calendar grid regression scope
+
+Buildmarker-062 / HC-061.0 strengthens four existing cases: H08-007 (read-only status vs explicit continuation, shared budget/late guards), H13-015 (CU01–CU11, FX02 and real-App grid/continuity/correction browser matrices), H13-012 (new mobile editor mapping), and H05-009 (062 allowlist metadata; exact content verification unchanged). Added 0, removed 0. CU11 is a real new local regression; no fixed PASS case. H08-004 retains native receipt/operation tests; H08-901 and H14-901/H16-901 remain external acceptance. The old native-date geometry expectation is retired because that input is removed; dialog/focus/geometry, no visible Refresh, gesture Retry and recovery assertions are preserved on the replacement controls. Serialized localRegressionRequirements matches the new interaction.
+
+Chromium/WebKit 805/805 each; 8 Calendar flows + 2 continuity + 40 visual cases/engine and final 6/6 targeted tests each. Local synthetic Health 147 PASS / 13 prerequisite BLOCKED / 0 FAIL; save/list/open passed. Required gates passed. Execution is recorded in [062](reports/SHINKA_CALENDAR_GRID_062.md). Historical 056/057 and earlier NOT_RUN/failures remain; local synthetic SDK/browser success is not live mutation, physical Android/iOS or Full Health evidence. No live Health/Security scan, user mutation or maintenance is authorized in this package.
 
 ## HC-060.0 — Auth-first onboarding
 

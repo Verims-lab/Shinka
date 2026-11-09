@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-061
+**Current BuildMarker:** Buildmarker-062
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,6 +12,14 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 062 — Calendar grid editing (2026-11-09)
+
+Normal Calendar has one “Tarihleri düzenle / Edit dates” action and no below-calendar date input/form card. Editing is a single start-date draft: empty eligible cell → add; tapping that unsaved date again → clear; recorded start → explicit delete draft; another eligible date → move that same ID with edit. Save/Cancel are a compact action row. Delete Save opens the existing short confirmation; Cancel never writes. A recorded start dot, prediction dashed edge, today underline/bullet, selection ring and draft +/−/→ marks have localized accessible names, not color alone. Cells remain ≥44px; labels/actions wrap at 200% text. No global Refresh; pull and error Retry remain.
+
+Save is disabled without a change, without required separate health consent, or for future/near-date drafts. Server-returned owner today is authoritative; future legacy starts can still be selected for repair/delete. The unchanged backend enforces ≥15 days and OD-012. Month/year navigation and retained product tabs preserve the in-memory intent/scroll; the helper explains that close/reload discards unsent drafts. Existing route Back behavior remains; a dialog consumes Back/Escape before route navigation and restores Save focus. Session end clears drafts and late results.
+
+Check status only reads the original receipt. APPLIED confirms only after matching backend readback. PENDING/ABSENT stays unconfirmed and exposes a separate “Aynı işleme devam et / Continue the same change”; it rereads before explicitly continuing the same ID/revision/payload. No automatic rewrite, new intent or rollback. This supersedes 056's combined check-and-continue UI and native-date form rules, while preserving historical evidence. Manual verified light/dark, section artwork, bottom navigation and single safe-area ownership are unchanged. [062 evidence](reports/SHINKA_CALENDAR_GRID_062.md).
 
 ## 061 — Authentication before personal onboarding (2026-11-09)
 
@@ -46,7 +54,7 @@ The shared Home/Calendar/Pattern navigation has three equal columns. Its icon an
 
 Home initial failure has one localized error/Retry and never claims a retained view. A transient failure in an already verified same session retains confirmed content/name and uses the central refresh-failure copy. Safe code/stage/status/duration/request ID remain diagnostic attributes, not product text. Proven session/owner/privacy/lifecycle denial still conceals personal data. Calendar keeps 056 status/read/same-intent continuation and never auto-writes on reopen.
 
-## 056 — Focused Calendar corrections (2026-11-01)
+## Historical 056 — form/status interaction superseded by 062 (2026-11-01)
 
 This package hides only Calendar’s visible Refresh/Yenile action; its mounted RefreshControl keeps approved pull-to-refresh and coalesced foreground reads. Initial and retained failures retain explicit Retry. Scoped #calendar-start-date native appearance/box sizing contains the field in the card without clipping its date, picker or focus ring; shared onboarding/You inputs are unchanged. A scoped date :focus ring covers WebKit native editors that hold focus without matching :focus-visible; Tab/Shift+Tab is exercised.
 

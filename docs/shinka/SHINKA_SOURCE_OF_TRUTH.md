@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-061
+**Current BuildMarker:** Buildmarker-062
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 062 — Calendar interaction decision
+
+Authority: owner's request `910759d8-ea01-47b8-b282-eafb2cba2c1a/Pasted text.txt` and Gizem 17 interaction reference, inspected at 0/8/16/24/32 seconds. The reference's multi-day period model and visual design are not Shinka requirements. The approved implementation is one start-date intent per save on existing Calendar cells, without a separate date form. Native server snapshot/owner today, original action ID/revision, readback, existing consent/lifecycle and OD-012 are unchanged authorities. New scoped TR/EN editing/status helpers are centralized in calendarCopy; they are implementation copy for this user decision, not attributed to older source documents. Read-only Check status and separate explicit same-intent continuation supersede the older combined action. No schema, identity, duration, batch or cache authority is introduced.
 
 ## 061 — Authentication before personal onboarding (2026-11-09)
 

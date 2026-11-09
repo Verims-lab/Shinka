@@ -33,14 +33,14 @@ export const CALENDAR_RECOVERY_TESTS = [
      check((await f.cal({action:'read',action_id:body.action_id,revision:'f'.repeat(64)})).checkedAction.status==='CONFLICT');
    }
  }],
- ['RC07','Passive read confirms lost APPLIED response without a write; pending check resumes once despite double tap and foreground events',async()=>{
+ ['RC07','Passive read confirms lost APPLIED response without a write; pending checks never write; separate continuation coalesces despite double tap and foreground events',async()=>{
    for(const fault of ['applied','pending']) {
      const f=nativeFixture();await f.change('add',{date:'2026-10-01'});let first=true;const calls=[];
      const c=createCalendarController(async(action,body)=>{calls.push({action,...body});if(action!=='read'&&first){first=false;if(fault==='pending')f.once('after',x=>x.name==='UserPeriodRecord'&&x.method==='deleteMany');await f.cal({action,...body});throw {code:'NETWORK'};}return f.cal({action,...body});});
      try {
        await c.load();c.select('2026-10-01');c.deletePrompt(true);await c.submit('delete');check(c.getSnapshot().outcome==='unknown'&&c.getSnapshot().confirmDelete);
        const id=calls.find(x=>x.action==='delete').action_id;
-       if(fault==='applied')await c.refresh();else await Promise.all([c.retry(),c.retry(),c.refresh({background:true})]);
+       if(fault==='applied')await c.refresh();else { const before=JSON.stringify(f.tables); await Promise.all([c.retry(),c.retry(),c.refresh({background:true})]); check(JSON.stringify(f.tables)===before&&calls.filter(x=>x.action!=='read').length===1&&c.getSnapshot().canContinue,'status check wrote'); await Promise.all([c.continueIntent(),c.continueIntent()]); }
        check(c.getSnapshot().success==='deleted'&&!c.getSnapshot().confirmDelete&&!c.getSnapshot().busy&&c.getSnapshot().outcome==='confirmed');
        check(calls.filter(x=>x.action!=='read').length===(fault==='applied'?1:2));check(calls.filter(x=>x.action!=='read').every(x=>x.action_id===id));
        check(f.state.calls.filter(x=>x.name==='UserPeriodRecord'&&x.method==='deleteMany').length===1);
@@ -78,7 +78,7 @@ export const CALENDAR_RECOVERY_TESTS = [
        if(mode==='account')return new Promise(resolve=>{release=resolve;});
        now=20001;return {...view,checkedAction:{action_id:body.action_id,status:'ABSENT'}};
      },()=>now);
-     try{await c.load();c.select('2026-10-01');await c.submit('add');const checkWork=c.retry();if(mode==='account'){c.invalidate();release(view);}await checkWork;check(writes===1&&!c.getSnapshot().busy&&!c.getSnapshot().checking);check(mode==='account'?c.getSnapshot().value===null:c.getSnapshot().outcome==='unknown');}finally{c.dispose();}
+     try{await c.load();c.select('2026-10-01');await c.submit('add');const checkWork=c.continueIntent();if(mode==='account'){c.invalidate();release(view);}await checkWork;check(writes===1&&!c.getSnapshot().busy&&!c.getSnapshot().checking);check(mode==='account'?c.getSnapshot().value===null:c.getSnapshot().outcome==='unknown');}finally{c.dispose();}
    }
  }],
 
@@ -99,14 +99,14 @@ export const CALENDAR_RECOVERY_TESTS = [
    for(const fault of ['no-write','lost-response']) {
      const f=nativeFixture();let first=true;const ids=[];
      const c=createCalendarController(async(action,body)=>{if(action==='read')return f.cal({action,...body});ids.push(body.action_id);if(first){first=false;if(fault==='lost-response')await f.cal({action,...body});throw {code:'NETWORK'};}return f.cal({action,...body});});
-     try{await c.load();c.select('2026-10-01');await c.submit('add');check(c.getSnapshot().outcome==='unknown'&&!c.getSnapshot().busy&&!c.getSnapshot().success);check(f.tables.UserPeriodRecord.length===(fault==='no-write'?0:1));await c.retry();check(ids.length===(fault==='no-write'?2:1)&&(ids.length===1||ids[0]===ids[1])&&c.getSnapshot().success==='saved'&&f.tables.UserPeriodRecord.length===1&&f.tables.UserCalendarAction.length===1);}finally{c.dispose();}
+     try{await c.load();c.select('2026-10-01');await c.submit('add');check(c.getSnapshot().outcome==='unknown'&&!c.getSnapshot().busy&&!c.getSnapshot().success);check(f.tables.UserPeriodRecord.length===(fault==='no-write'?0:1));await c.retry();check(ids.length===1,'status retry wrote');if(fault==='no-write')await c.continueIntent();check(ids.length===(fault==='no-write'?2:1)&&(ids.length===1||ids[0]===ids[1])&&c.getSnapshot().success==='saved'&&f.tables.UserPeriodRecord.length===1&&f.tables.UserCalendarAction.length===1);}finally{c.dispose();}
    }
    for(const operation of ['add','edit','delete']) {
      const f=nativeFixture();if(operation!=='add')await f.change('add',{date:'2026-10-01'});
      const body={action:operation,action_id:crypto.randomUUID(),revision:(await f.cal()).revision,...(operation!=='add'?{period_id:f.tables.UserPeriodRecord[0].id}:{}),...(operation!=='delete'?{date:operation==='edit'?'2026-10-02':'2026-10-01'}:{})};
      f.once('after',c=>c.name==='UserPeriodRecord'&&c.method===({add:'create',edit:'updateMany',delete:'deleteMany'}[operation]));await rejects(()=>f.cal(body));
      const count=f.tables.UserCalendarAction.length,c=controller(f);
-     try{await c.load();check(c.getSnapshot().value.recovery.action_id===body.action_id&&c.getSnapshot().outcome==='unknown');await c.retry();check(c.getSnapshot().outcome==='confirmed'&&!c.getSnapshot().busy&&f.tables.UserCalendarAction.length===count&&f.tables.UserPeriodRecord.length===(operation==='delete'?0:1));if(operation!=='delete')check(c.getSnapshot().value.starts[0].date===body.date);}finally{c.dispose();}
+     try{await c.load();check(c.getSnapshot().value.recovery.action_id===body.action_id&&c.getSnapshot().outcome==='unknown');const before=JSON.stringify(f.tables);await c.retry();check(JSON.stringify(f.tables)===before,'reopen status wrote');await c.continueIntent();check(c.getSnapshot().outcome==='confirmed'&&!c.getSnapshot().busy&&f.tables.UserCalendarAction.length===count&&f.tables.UserPeriodRecord.length===(operation==='delete'?0:1));if(operation!=='delete')check(c.getSnapshot().value.starts[0].date===body.date);}finally{c.dispose();}
    }
  }],
  ['RC03','Explicit retry supersedes hung passive read; old read and old mutation finally cannot change new account',async()=>{
@@ -114,7 +114,7 @@ export const CALENDAR_RECOVERY_TESTS = [
    /** @type {(value:any)=>void} */
    let releaseRead;const oldView=await f.cal();
    const c=createCalendarController(async(action,body)=>{if(action==='read'&&hold){hold=false;return new Promise(resolve=>{releaseRead=resolve;});}if(action!=='read'&&first){first=false;throw {code:'TIMEOUT'};}return f.cal({action,...body});});
-   try{await c.load();c.select('2026-10-01');await c.submit('add');hold=true;const read=c.refresh();check(c.getSnapshot().loading);await c.retry();check(!c.getSnapshot().busy&&!c.getSnapshot().loading&&c.getSnapshot().success==='saved');releaseRead(oldView);await read;check(c.getSnapshot().value.starts.length===1);}finally{c.dispose();}
+   try{await c.load();c.select('2026-10-01');await c.submit('add');hold=true;const read=c.refresh();check(c.getSnapshot().loading);await c.retry();check(!c.getSnapshot().success&&c.getSnapshot().canContinue);await c.continueIntent();check(!c.getSnapshot().busy&&!c.getSnapshot().loading&&c.getSnapshot().success==='saved');releaseRead(oldView);await read;check(c.getSnapshot().value.starts.length===1);}finally{c.dispose();}
    let n=0;
    /** @type {(value:any)=>void} */
    let releaseOld;

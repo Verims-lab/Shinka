@@ -129,15 +129,16 @@ async function auditMobileSurfaces(page, origin, directory) {
     rows.push({scenario:`${surface}-${language}-${width}x${height}-200percent`,...geometry,passed:geometry.scrollWidth<=width+1&&!geometry.small.length&&!geometry.tightText.length});
     if(directory && width===320 && language==='tr')await page.screenshot({path:path.join(directory,`${surface}-tr-320-200percent.png`),fullPage:true});
     if(surface==='calendar'){
+      await page.locator('[data-calendar-edit]').click();
       await page.locator('[data-calendar-date="2026-10-01"]').click();
-      await page.getByRole('button',{name:language==='tr'?'Regl başlangıcını sil':'Delete period start',exact:true}).click();
+      await page.locator('[data-calendar-save]').click();
       await page.locator('dialog[open]').waitFor();
       await resizeText(page);
       if(directory && width===320 && language==='tr')await page.screenshot({path:path.join(directory,'calendar-modal-tr-320-200percent.png'),fullPage:true});
       await page.keyboard.press('Tab');
       const modal=await page.evaluate(()=>({focusInside:!!document.activeElement?.closest('dialog'),width:document.querySelector('dialog').getBoundingClientRect().width,scrollWidth:document.querySelector('dialog').scrollWidth}));
       await page.keyboard.press('Escape');
-      const restored=await page.getByRole('button',{name:language==='tr'?'Regl başlangıcını sil':'Delete period start',exact:true}).evaluate(el=>!document.querySelector('dialog[open]')&&document.activeElement===el);
+      const restored=await page.locator('[data-calendar-save]').evaluate(el=>!document.querySelector('dialog[open]')&&document.activeElement===el);
       rows.push({scenario:`modal-focus-${language}-${width}`, ...modal,restored,passed:modal.focusInside&&restored&&modal.scrollWidth<=modal.width+1});
     }
     if(surface==='home'){

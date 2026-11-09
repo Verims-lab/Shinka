@@ -95,6 +95,9 @@ try {
   await page.evaluate(bundle=>window.__acceptBrowserEvidence(bundle),probeBundle);
   if (process.env.FOUNDATION_AUTH_FIRST_ONLY === '1') {
     console.log(JSON.stringify({authFirstOnboarding:await checkAuthFirstOnboarding(browser,origin),pageErrors}));
+  } else if (process.env.FOUNDATION_CALENDAR_ONLY === '1') {
+    console.log(JSON.stringify({calendarFlow:await checkCalendarFlow(page,origin),calendarContinuity:await checkCalendarContinuity(page,origin),calendarCorrections:await checkCalendarCorrections(browser,origin,process.env.FOUNDATION_CALENDAR_DIR),pageErrors}));
+    if(pageErrors.length)process.exitCode=1;
   } else if (process.env.FOUNDATION_CALENDAR_CORRECTIONS_ONLY === '1') {
     console.log(JSON.stringify({calendarCorrections:await checkCalendarCorrections(browser,origin,process.env.FOUNDATION_CALENDAR_DIR)}));
   } else if (process.env.FOUNDATION_CALENDAR_CONTINUITY_ONLY === '1') {

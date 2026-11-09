@@ -76,9 +76,9 @@ export async function checkReopenNavigation(browser,origin,directory,{baseline=f
           rows.push({scenario:'duplicate-shell-inset-and-footer-spacer-rejected',passed:true,physicalDevice:false});
         }
         if(surface==='calendar'&&height>width){
-          const input=page.locator('#calendar-start-date'),value=await input.inputValue(),before=await navGeometry(page);
+          const input=page.locator('[data-calendar-date]').first(),value=await input.getAttribute('data-calendar-date'),before=await navGeometry(page);
           await input.focus();await page.setViewportSize({width,height:320});await input.scrollIntoViewIfNeeded();
-          assertBottomOwnership(await navGeometry(page));assert.equal(await input.inputValue(),value);
+          assertBottomOwnership(await navGeometry(page));assert.equal(await input.getAttribute('data-calendar-date'),value);
           await page.setViewportSize({width,height});await input.blur();
           const restored=await navGeometry(page);assertBottomOwnership(restored);assert.equal(restored.nav.height,before.nav.height);
           rows.push({language,width,height,scale,surface,scenario:'keyboard-viewport-shrink-restore',passed:true,physicalDevice:false,scope:'SIMULATED_RESIZE_AND_FOCUS_NOT_OS_KEYBOARD'});

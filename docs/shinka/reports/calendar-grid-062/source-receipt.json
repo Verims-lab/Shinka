@@ -1,0 +1,122 @@
+{
+  "baseCommit": "1731a906135f001c020cfbe32a452c50888fc01c",
+  "scope": "LOCAL_SOURCE_NOT_HOSTED_DEPLOYMENT",
+  "files": [
+    {
+      "path": "base44/shared/contentStateContract.js",
+      "sha256": "de0a480dd0aa535668322d487f1455ab96648b2d223deb428174ebfc8b0ca3e7"
+    },
+    {
+      "path": "base44/shared/healthConstants.js",
+      "sha256": "d404a54401e45e1b5cd140ce240f80381253fb353df34e50bf4a5d0eacd72d76"
+    },
+    {
+      "path": "base44/shared/healthExecutionScope.js",
+      "sha256": "dd714cfc5d4dfd78f62096c0f347872fa038f1aeec6694ee753ce43c6231f610"
+    },
+    {
+      "path": "scripts/checkCalendarCorrections.mjs",
+      "sha256": "9c5cc394d700486d2d86b67f77fca75455e1d3ccbfb5db5f2f695acf13baa956"
+    },
+    {
+      "path": "scripts/checkCalendarFlow.mjs",
+      "sha256": "b89058df3d1e83ebd699e1f2da8bf63382ea448e720e86b487a821b66d9b4b83"
+    },
+    {
+      "path": "scripts/checkMobile.mjs",
+      "sha256": "adcceb6f591929e84704f03b6ec09df192347c62a7f16efd899108c547a49141"
+    },
+    {
+      "path": "scripts/checkMobileInteractions.mjs",
+      "sha256": "dba01d79c5c96f6086bd6200825acf031d76584b058d9a74c2d37a1906124908"
+    },
+    {
+      "path": "scripts/checkProductNavigation.mjs",
+      "sha256": "626755eb377429715a48fa591813de8d774212fdb1e1c4f512db226bf02244d4"
+    },
+    {
+      "path": "scripts/checkReopenNavigation.mjs",
+      "sha256": "d1c0ed6ea2472c2e7cc60469b2db7445e34a0e0a8a403c4d468b477028d1ef2a"
+    },
+    {
+      "path": "scripts/measureTransitions.mjs",
+      "sha256": "1f9314dabff3512a41f98589e0baa5d9b5685472da10f697b226f2a2fdffbada"
+    },
+    {
+      "path": "scripts/runFoundationTests.mjs",
+      "sha256": "608b1318087e8d19ea9660a5b00bbad6fad01994d535ec03b2df0e6f8c703136"
+    },
+    {
+      "path": "src/features/calendar/CalendarDeleteDialog.jsx",
+      "sha256": "2ed4a8dda609844889167589fe26c18240a316a937f46af31d6d1daa6e9433e6"
+    },
+    {
+      "path": "src/features/calendar/CalendarEditor.jsx",
+      "sha256": "bd134ee9ba2ae914b734d77e5243d7d0dc56270b36bfc346b296cbc34b41ad28"
+    },
+    {
+      "path": "src/features/calendar/CalendarMonth.jsx",
+      "sha256": "a61ff9b3d926b22325cd94b8d558c7cfadcfe26bb7cdacdead5f3d331554a440"
+    },
+    {
+      "path": "src/features/calendar/calendarController.js",
+      "sha256": "6748ffcceb337061a8934c1c9ef1e2e187498a89e72b4eda32cf42b320198de8"
+    },
+    {
+      "path": "src/features/calendar/calendarDraft.js",
+      "sha256": "ccea935e715f9d881834854d6d49c671608f9d1b589d03b7cf8b0bdee4c81472"
+    },
+    {
+      "path": "src/foundation/buildLedgerData.js",
+      "sha256": "1f9025f8b77f64035beee986c2d23efeca614d7b5099f9eae0b8ce396afd9562"
+    },
+    {
+      "path": "src/foundation/buildMarker.js",
+      "sha256": "b812eb5d0324db1ad48ffa39b07daf7ad7254be5b3fef62894bc6cefdc800031"
+    },
+    {
+      "path": "src/foundation/health/cases/calendar.js",
+      "sha256": "0fd7549f84eb1d9b19d9ac21a17677b497a8feb0f66f7a569c642ba5fb3d81b9"
+    },
+    {
+      "path": "src/foundation/health/cases/h05.js",
+      "sha256": "f34c390ab431138fa6ea9fd322439c38fbc79ad1455fabd9eef27d30ce01de20"
+    },
+    {
+      "path": "src/foundation/health/cases/h13static.js",
+      "sha256": "f09c9ddaaa39188ce49bf2e0f19ce78577d7d0f89ef5f954620bac4eae374c96"
+    },
+    {
+      "path": "src/foundation/i18n/calendarCopy.js",
+      "sha256": "4876bb0c0916553583f905d5e088a644be259e64bc22483e406d56f893a4f7fc"
+    },
+    {
+      "path": "src/foundation/tests/additionalFixUiTests.jsx",
+      "sha256": "e4b37255cfe72e37182741fbe1b8ec040ff558be6dbf7a06f29b04134bb8cc43"
+    },
+    {
+      "path": "src/foundation/tests/calendarRecoveryTests.js",
+      "sha256": "1c6557f9d28c2d61eda3656cf1a6986cb02444efdd2ad5ba0c60713b6c02189f"
+    },
+    {
+      "path": "src/foundation/tests/calendarTests.js",
+      "sha256": "59ab74afbed2636e3ad41d405ed40f91092891ee92d2d1290711c769324f9d6e"
+    },
+    {
+      "path": "src/foundation/tests/calendarUiTests.js",
+      "sha256": "9f12a6c919af2beb9603220a2681c93058093d60ee22ec53056d2473bc501f8b"
+    },
+    {
+      "path": "src/foundation/tests/mobileInteractionTests.js",
+      "sha256": "46c2ef29beee507b67956cdad5ba352415337b335c844f9fd573ffea7d882358"
+    },
+    {
+      "path": "src/pages/Calendar.jsx",
+      "sha256": "0b96339705a5cbbf517911087ad59aa7963c8b4d859644e6c3dffbf0b636f110"
+    },
+    {
+      "path": "src/styles/calendar.css",
+      "sha256": "a81cdc237dcf98fbee3fafd46b2282c7ab476229657c1cc98ee5c6d161263aa1"
+    }
+  ]
+}
