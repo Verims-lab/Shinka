@@ -111,39 +111,36 @@ export const ONBOARDING_UI_TESTS=[
    },{language,requestOverride},context);
   }
  }],
- ['U19','ON-02 persistent inner label, framed focus, saved name and Back retain TR/EN name and skip rules',async(context={})=>{
+ ['U19','Authenticated ON-03 inner name label, focus, Back and verified native save retain TR/EN choice',async(context={})=>{
   for(const language of ['tr','en']){
-   const c=ONBOARDING_COPY[language];let name=null;
-   const pendingOverride={read:()=>name,save:value=>{name=value;return true;},clear:()=>{name=null;}};
-   await onboardingProbe('UNAUTHENTICATED_NAME',360,async(doc,win)=>{
-    const field=doc.querySelector('#display_name'),label=doc.querySelector('label[for=display_name]'),frame=field.closest('.shinka-framed-field');
-    check(frame?.contains(label)&&doc.querySelectorAll('label[for=display_name]').length===1&&label.control===field&&label.textContent===c.display_name,'one persistent associated inner label');
-    check(!field.hasAttribute('placeholder')&&field.autocomplete==='given-name'&&field.value==='','empty named field');
-    field.focus();check(doc.activeElement===field&&parseFloat(win.getComputedStyle(frame).outlineWidth)>=2&&parseFloat(win.getComputedStyle(frame).borderTopWidth)>0,'frame owns visible focus and border');
-    input(doc,'display_name','Ada');await waitForFixture(()=>button(doc,c.preferNot).disabled,doc.body,context);
-    check(label.getBoundingClientRect().bottom<=field.getBoundingClientRect().top&&label.textContent===c.display_name,'filled label stays above input');
-    button(doc,c.continue).click();await waitForFixture(()=>doc.querySelector('[data-provider]')&&!doc.querySelector('[data-onboarding-back]').disabled,doc.body,context);check(name==='Ada','name saved before next screen');
-    doc.querySelector('[data-onboarding-back]').click();await waitForFixture(()=>doc.querySelector('#display_name'),doc.body,context);check(doc.querySelector('#display_name').value==='Ada'&&button(doc,c.preferNot).disabled,'Back keeps saved draft and nonempty skip guard');
-   },{language,pendingOverride},context);
-   const f=sdkOnboardingFixture();await onboardingOperation(f.client,{action:'initialize',language_code:language,timezone:'Europe/Istanbul'});
+   const c=ONBOARDING_COPY[language],f=sdkOnboardingFixture();await onboardingOperation(f.client,{action:'initialize',language_code:language,timezone:'Europe/Istanbul'});
    const requestOverride=(action,payload={})=>onboardingOperation(f.client,{...payload,action},{now:()=>new Date(NOW)});
-   await onboardingProbe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
-    input(doc,'birth_date','1990-01-01');await testDelay(50,context.signal);button(doc,c.continue).click();
-    await waitForFixture(()=>doc.querySelector('[data-onboarding-state=AUTHENTICATED_CYCLE_STEP]'),doc.body,context);
-    check(f.rows.user_profile.length===1&&f.rows.user_profile[0].display_name==='Ada'&&name===null,'profile readback persists name and clears transient storage');
-   },{language,pendingOverride,requestOverride},context);
+   await onboardingProbe('AUTHENTICATED_NAME_REQUIRED',360,async(doc,win)=>{
+    const field=doc.querySelector('#display_name'),label=doc.querySelector('label[for=display_name]'),frame=field.closest('.shinka-framed-field');
+    check(frame?.contains(label)&&doc.querySelectorAll('label[for=display_name]').length===1&&label.control===field&&label.textContent===c.display_name);
+    check(!field.hasAttribute('placeholder')&&field.autocomplete==='given-name'&&field.value==='');field.focus();
+    check(doc.activeElement===field&&parseFloat(win.getComputedStyle(frame).outlineWidth)>=2&&parseFloat(win.getComputedStyle(frame).borderTopWidth)>0);
+    input(doc,'display_name','Ada');await waitForFixture(()=>button(doc,c.preferNot).disabled,doc.body,context);check(label.getBoundingClientRect().bottom<=field.getBoundingClientRect().top);
+    button(doc,c.continue).click();await waitForFixture(()=>doc.querySelector('#birth_date')&&!doc.querySelector('[data-onboarding-back]').disabled,doc.body,context);check(!f.rows.user_profile.length);
+    doc.querySelector('[data-onboarding-back]').click();await waitForFixture(()=>doc.querySelector('#display_name'),doc.body,context);check(doc.querySelector('#display_name').value==='Ada'&&button(doc,c.preferNot).disabled);
+    await waitForFixture(()=>!doc.querySelector('[aria-busy=true]'),doc.body,context);button(doc,c.continue).click();await waitForFixture(()=>doc.querySelector('#birth_date'),doc.body,context);
+    input(doc,'birth_date','1990-01-01');await testDelay(50,context.signal);button(doc,c.continue).click();await waitForFixture(()=>doc.querySelector('#period_start_date'),doc.body,context);
+    check(f.rows.user_profile.length===1&&f.rows.user_profile[0].display_name==='Ada');
+   },{language,requestOverride},context);
   }
  }],
  ['U01','EN/TR six screens fit 360/430px with named controls and 17px inputs',async(context={})=>{
   const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);
-  for(const language of ['en','tr'])for(const width of [360,430])for(const step of ['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_NAME','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP','FIRST_SHINKA_DEPENDENCY'])await probe(step,width,async(doc,win)=>{
+  for(const language of ['en','tr'])for(const width of [360,430])for(const step of ['UNAUTHENTICATED_INTRO','AUTHENTICATED_NAME_REQUIRED','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP','FIRST_SHINKA_DEPENDENCY'])await probe(step,width,async(doc,win)=>{
     check(doc.documentElement.scrollWidth<=width+1,`${step} overflow ${width}`);check(findUnlabeledControls(doc.querySelector('main')).length===0,`${step} labels`);
     for(const el of doc.querySelectorAll('button'))check(el.getBoundingClientRect().height>=44,'touch target');
     for(const el of doc.querySelectorAll('input:not([type=checkbox])')){check(parseFloat(win.getComputedStyle(el).fontSize)>=16,`${step} ${el.id} input font ${win.getComputedStyle(el).fontSize}`);el.focus();el.scrollIntoView({block:'center'});check(doc.activeElement===el,'focus');}
   },{language});}],
- ['U02','Introduction → name → sign-in; invalid name stays inline and blocks skip until explicitly cleared',async(context={})=>{const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);await probe('UNAUTHENTICATED_INTRO',360,async doc=>{
-  button(doc,'Begin').click();await pause();input(doc,'display_name','x'.repeat(51));await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('#display_name-error')?.textContent==='Please enter a shorter name');check(button(doc,'Prefer not to say').disabled);button(doc,'Prefer not to say').click();await pause();check(doc.querySelector('#display_name').value.length===51&&!doc.querySelector('[data-provider]'));input(doc,'display_name','');await pause();check(!button(doc,'Prefer not to say').disabled);button(doc,'Prefer not to say').click();await pause();check(doc.querySelectorAll('[data-provider]').length===2&&!doc.querySelector('#age-declaration').checked);
- });}],
+ ['U02','Authenticated name rejects long input; explicit empty skip opens profile without OAuth',async(context={})=>{await onboardingProbe('AUTHENTICATED_NAME_REQUIRED',360,async doc=>{
+  input(doc,'display_name','x'.repeat(51));await testDelay(50,context.signal);button(doc,'Continue').click();await waitForFixture(()=>doc.querySelector('#display_name-error'),doc.body,context);
+  check(doc.querySelector('#display_name-error').textContent==='Please enter a shorter name'&&button(doc,'Prefer not to say').disabled);
+  input(doc,'display_name','');await testDelay(50,context.signal);button(doc,'Prefer not to say').click();await waitForFixture(()=>doc.querySelector('#birth_date'),doc.body,context);check(!doc.querySelector('[data-provider]'));
+ },{},context);}],
  ['U03','18+ error is associated; only Apple/Google exposed and failure safe',async(context={})=>{const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);await probe('UNAUTHENTICATED_SIGN_IN',360,async doc=>{
   check([...doc.querySelectorAll('[data-provider]')].map(e=>e.getAttribute('data-provider')).join()==='apple,google');doc.querySelector('[data-provider=apple]').click();await pause();check(doc.querySelector('#age-error')?.textContent==='Please confirm that you are 18 or older');doc.querySelector('#age-declaration').click();await pause();doc.querySelector('[data-provider=google]').click();await pause();check(doc.querySelector('[data-error-code]')?.textContent==='We couldn’t sign you in. Please try again');check(!doc.querySelector('input[type=password]'));
  });}],
@@ -156,13 +153,13 @@ export const ONBOARDING_UI_TESTS=[
  ['U06','Real adapter storage failure keeps UI/form pending; verified retry advances once',async(context={})=>{
   const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);
   const f=sdkOnboardingFixture();await onboardingOperation(f.client,{action:'initialize',action_id:'ui-production-fixture',language_code:'en',timezone:'Europe/Istanbul'});f.fail('user_profile',true);
-  let pendingName='Ada';const pendingOverride={read:()=>pendingName,save:value=>{pendingName=value;return true;},clear:()=>{pendingName=null;}};
+  const profileOverride={display_name:'Ada'};
   const requestOverride=(action,payload={})=>onboardingOperation(f.client,{...payload,action},{now:()=>new Date(NOW)});
   await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
     input(doc,'birth_date','1990-01-01');await pause();button(doc,'Continue').click();await pause();
-    check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_PROFILE_REQUIRED');check(doc.querySelector('[data-onboarding-error]').textContent==='ONBOARDING_WRITE_UNCONFIRMED'&&pendingName==='Ada');
-    f.fail(null);button(doc,'Continue').click();await pause();check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP');check(pendingName===null&&f.rows.user_profile.length===1&&!doc.body.textContent.includes('SUN_SIGN_RULE_REQUIRED'));
-  },{requestOverride,pendingOverride});
+    check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_PROFILE_REQUIRED');check(doc.querySelector('[data-onboarding-error]').textContent==='ONBOARDING_WRITE_UNCONFIRMED'&&doc.querySelector('#birth_date').value==='1990-01-01');
+    f.fail(null);button(doc,'Continue').click();await pause();check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP');check(f.rows.user_profile[0].display_name==='Ada'&&f.rows.user_profile.length===1&&!doc.body.textContent.includes('SUN_SIGN_RULE_REQUIRED'));
+  },{requestOverride,profileOverride});
  }],
  ['U07','Approved TR consent is explicit, unchecked and separate from age',async(context={})=>{
   const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);
@@ -299,11 +296,11 @@ export const ONBOARDING_UI_TESTS=[
    check(rows.every(row=>row.querySelectorAll('svg').length===1),'three introduction row icons retained');
    check(doc.documentElement.scrollWidth<=width+1,`${language} ${width} overflow`);
    const begin=[...doc.querySelectorAll('button')].find(b=>b.textContent.trim()===(language==='en'?'Begin':'Başla'));check(begin,'begin');
-   begin.click();await new Promise(r=>win.setTimeout(r,50));check(doc.querySelector('#display_name'),`${language} ON-02 reached`);check(!doc.querySelector('[data-onboarding-intro]'),'intro left');
+   begin.click();await new Promise(r=>win.setTimeout(r,50));check(doc.querySelector('#age-declaration')&&!doc.querySelector('#display_name'),`${language} ON-02 sign-in reached`);check(!doc.querySelector('[data-onboarding-intro]'),'intro left');
   },{language},context);
  }],
  ['U18','ON-01–ON-05 keep header/empty art space/subtitle, no repeated bitmap; steps/back/Finish unchanged',async(context={})=>{
-  const states=['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_NAME','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP'];
+  const states=['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_NAME_REQUIRED','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP'];
   for(const language of ['en','tr'])for(const [i,state] of states.entries())await onboardingProbe(state,360,async doc=>{
    const c=ONBOARDING_COPY[language];
    check(doc.querySelector('[data-onboarding-step]')?.textContent===c.stepOf.replace('{n}',String(i+1)),`${language} ${state} step`);

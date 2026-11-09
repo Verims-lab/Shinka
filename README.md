@@ -6,6 +6,10 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
+## Test auth-first onboarding (Buildmarker-061 / HC-060.0)
+
+[061 focused delivery and rollout](docs/shinka/reports/SHINKA_AUTH_FIRST_ONBOARDING_061.md): intro → Apple/Google → fresh server progress → optional name/profile/cycle. Completed users bypass onboarding; saved NULL names, reset and privacy rules remain authoritative. No schema/import/new auth system. Owner syncs matching backend/shared/frontend and publishes; real OAuth/native acceptance remains separate from local fixtures.
+
 ## Historical Test mobile closure (Buildmarker-050 / HC-049.0)
 
 [050 focused mobile verification](docs/shinka/reports/SHINKA_MOBILE_CLOSURE_050.md) preserves Base44 preference sheets and 049. Radio keyboard/cancel/focus and Calendar draft/pending feedback are verified on the real App with local synthetic transport; physical Android/iOS and wrapper acceptance remain external. No schema, import or live cleanup step belongs to this package. Owner handles main/sync/publish; 045 cleanup remains a separate open task.

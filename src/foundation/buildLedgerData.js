@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-056",
-    "package_name": "Calendar date containment and same-intent recovery",
-    "package_type": "TARGETED_FIX",
-    "created_at": "2026-11-01T15:15:00.000Z",
-    "health_catalog_version": "HC-055.0",
-    "short_summary": "Scoped native date sizing; hidden Calendar Refresh with pull/Retry intact; read-only receipt check before explicit same-intent recovery and truthful unknown-delete dialog.",
-    "full_health_status": "NOT_RUN",
-    "notes": "Focused Calendar corrections with scoped native date sizing/focus, mounted pull/Retry and read-only status before explicit same-ID continuation. Local browser/server/quality/performance receipts: reports/SHINKA_CALENDAR_FIX_056.md. Hosted frontend observed as 055; two PENDING intents and historical 503/500 have no proven failing substage. Physical/hosted mutation acceptance open. No live mutation, cleanup, Full Health, scan or publish. Inherited dependency High remains OPEN under unchanged age policy."
-  },
-  {
     "build_marker": "Buildmarker-057",
     "package_name": "Shared navigation and reopen recovery",
     "package_type": "FOCUSED_FIX",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Approved concise erasure copy; distinct status/auth/transient outcomes, bounded/coalesced queries, request-bound native-owner recovery and cancellation isolation. Active removal never implies permanent platform erasure.",
     "full_health_status": "NOT_RUN",
     "notes": "Chromium/WebKit 800/800 each; final boundary 34/34 each, 35 privacy scenarios/engine, zero page errors. Quality/performance/last-five PASS; dependency vulnerabilities 0. Health +0/~4/-0; local synthetic 147 PASS/13 expected hosted BLOCKED/0 FAIL, save/list/open PASS. No schema change, live deletion/resume/cleanup/Health/scan/main publish. Original video cause and physical/provider/incident recovery remain unverified. Report: reports/SHINKA_PRIVACY_STATUS_060.md. Active 056–060."
+  },
+  {
+    "build_marker": "Buildmarker-061",
+    "package_name": "Authenticate before personal onboarding",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-11-09T18:26:04.840939+00:00",
+    "health_catalog_version": "HC-060.0",
+    "short_summary": "Intro → Apple/Google → fresh server progress → optional name/profile/cycle; completed users go Home without name flash. Retire unowned pre-auth name storage; preserve NULL choice, reset, privacy and account isolation.",
+    "full_health_status": "NOT_RUN",
+    "notes": "Chromium/WebKit 804/804 each; focused 19/19 each and 16 auth-first App scenarios/engine. Quality/performance/last-five PASS; npm advisories 0. Health +0/~5/-0; local synthetic 147 PASS/13 prerequisite BLOCKED/0 FAIL, save/list/open PASS. No schema/new auth/dependency/live mutation/Health/scan/main publish. Real OAuth/native/device acceptance external. Report: reports/SHINKA_AUTH_FIRST_ONBOARDING_061.md. Active 057–061."
   }
 ];

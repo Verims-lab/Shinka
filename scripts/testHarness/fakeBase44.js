@@ -1,3 +1,19 @@
+let authFirstLab;
+async function loadAuthFirstLab() {
+ if(!authFirstLab) authFirstLab=import('@/foundation/tests/dailyFixture').then(async({dailyFixture})=>{
+  const f=dailyFixture();f.rows.user_preferences[0].language_code=params.get('language')==='tr'?'tr':'en';
+  const scenario=params.get('authFirst');
+  if(scenario==='new')f.rows.user_profile=[];
+  if(scenario==='partial')f.rows.user_profile[0].sun_sign_code=null;
+  if(scenario==='null-name')f.rows.user_profile[0].display_name=null;
+  if(['complete','null-name'].includes(scenario)){
+   const {dailyMessageOperation}=await import('../../base44/shared/dailyMessageOperation.js');
+   await dailyMessageOperation(f.client,{action:'today',timezone:'Europe/Istanbul'},f.dependencies);
+  }
+  globalThis.__authFirstLab=f;return f;
+ });
+ return authFirstLab;
+}
 let privacyLab;
 let onboardingVisualLab;
 const loadPrivacyLab = () => privacyLab ||= import('@/foundation/tests/privacyFixture').then(({privacyFixture})=>{const f=privacyFixture();globalThis.__privacyLab=f;return f;});
@@ -78,6 +94,16 @@ export const base44 = {
     if(operationGates.has(name))await operationGates.get(name).promise;
     if(operationFailures.delete(`${name}.${body.action}`)||operationFailures.delete(name))throw new Error('SYNTHETIC_NETWORK_FAILURE');
     if (name === 'applicationSession') { const i=authFixture.startupStarted.session++; return {data: startupGates.session[i] ? await startupGates.session[i].promise : {...await base44.auth.me(),authority:'BASE44_NATIVE_V1'}}; }
+    if(params.has('authFirst') && ['onboarding','dailyMessage'].includes(name)) {
+      await hydration;authFixture.hydrationReturned=true;
+      const f=await loadAuthFirstLab();
+      if(name==='onboarding'){
+        const {onboardingOperation}=await import('../../base44/shared/onboardingOperations.js');
+        return {data:await onboardingOperation(f.client,body,{now:f.dependencies.now})};
+      }
+      const {dailyMessageOperation}=await import('../../base44/shared/dailyMessageOperation.js');
+      return {data:await dailyMessageOperation(f.client,body,f.dependencies)};
+    }
     if (name === 'adminTestTools') {
       if (!testToolsLab) testToolsLab = import('@/foundation/tests/nativeFixture').then(({nativeFixture})=>{const fixture=nativeFixture();fixture.state.time=new Date().toISOString();Object.assign(fixture.tables.User.find(row=>row.id==='ownerA'),{full_name:'Synthetic Target',email:'target@example.invalid'});return fixture;});
       const f = await testToolsLab;
@@ -106,8 +132,8 @@ export const base44 = {
     if (name === 'onboarding' && body.action === 'hydrate' && session !== 'anonymous') {
       await hydration; authFixture.hydrationReturned = true;
       return { data: {
-      state: ['AUTHENTICATED_CYCLE_STEP', 'FIRST_SHINKA_DEPENDENCY', 'ACTIVE_EXISTING_USER'].includes(params.get('onboardingState')) ? params.get('onboardingState') : 'AUTHENTICATED_PROFILE_REQUIRED',
-      profile: (youLab || params.has('themeFixture')) ? (await (await loadYouLab(actor)).request('read')).profile : undefined,
+      state: ['AUTHENTICATED_NAME_REQUIRED','AUTHENTICATED_CYCLE_STEP', 'FIRST_SHINKA_DEPENDENCY', 'ACTIVE_EXISTING_USER'].includes(params.get('onboardingState')) ? params.get('onboardingState') : 'AUTHENTICATED_PROFILE_REQUIRED',
+      profile: (youLab || params.has('themeFixture')) ? (await (await loadYouLab(actor)).request('read')).profile : params.get('onboardingState')==='AUTHENTICATED_NAME_REQUIRED' ? null : {id:'partial',user_id:'synthetic-'+actor,display_name:null},
       preferences: (youLab || params.has('themeFixture')) ? (await (await loadYouLab(actor)).request('read')).preferences : params.has('uninitialized') ? null : { language_code: params.get('language') === 'tr' ? 'tr' : 'en', timezone: 'UTC' }, today: '2026-10-20',
     } };
     }

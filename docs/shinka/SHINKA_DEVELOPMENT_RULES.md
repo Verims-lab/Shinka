@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-060
+**Current BuildMarker:** Buildmarker-061
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 061 — Focused auth-first onboarding
+
+Generate Buildmarker-061 / HC-060.0 with recordBuild; active history 057–061. Preserve main Base44 SDK/MFA template additions and 059/060 work. Test-only delivery, no new schema/auth/dependency or live user/Health/security/publish operation. New and changed regressions run in Chromium/WebKit with required local gates. Original template type errors and intermediate failed test attempts are retained in execution evidence.
+
+[061 evidence](reports/SHINKA_AUTH_FIRST_ONBOARDING_061.md).
 
 ## 060 — Focused privacy confirmation and status closure
 

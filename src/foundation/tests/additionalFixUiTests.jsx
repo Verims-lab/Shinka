@@ -10,25 +10,25 @@ const button=(host,text)=>[...host.querySelectorAll('button')].find(el=>el.textC
 const type=(host,id,value)=>{const el=host.querySelector(`#${id}`);Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(el,value);el.dispatchEvent(new Event('input',{bubbles:true}));};
 /** @type {import('./testTypes').FoundationTest[]} */
 export const ADDITIONAL_FIX_UI_TESTS=[
- ['FX01','ON-02 stale enabled handler cannot skip a just-entered name; blank skip and auth-return save remain safe',async(context={})=>{
+ ['FX01','ON-03 stale enabled handler cannot skip a just-entered name; blank skip and authenticated profile save remain safe',async(context={})=>{
   for(const language of ['en','tr']) {
-   await auditScreen('UNAUTHENTICATED_NAME',async(f,host,wait,turn)=>{
+   await auditScreen('AUTHENTICATED_NAME_REQUIRED',async(f,host,wait,turn)=>{
     f.locale(language);await wait(()=>host.querySelector('main')?.lang===language);const skip=button(host,language==='tr'?'Belirtmek istemiyorum':'Prefer not to say');
     check(skip&&!skip.disabled,'empty skip');
     // Same event turn: the old enabled DOM/button handler must consult current input.
     type(host,'display_name','  Ada  ');skip.click();await turn();
-    check(!f.transitions.length&&!f.clears&&host.querySelector('#display_name').value==='  Ada  '&&skip.disabled,'stale skip cleared draft');
+    check(!f.transitions.length&&f.calls.length===0&&host.querySelector('#display_name').value==='  Ada  '&&skip.disabled,'stale skip cleared draft');
     skip.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true}));skip.click();await turn();check(!f.transitions.length);
-    button(host,language==='tr'?'Devam et':'Continue').click();await wait(()=>host.querySelector('#age-declaration'));check(f.name==='Ada');
+    button(host,language==='tr'?'Devam et':'Continue').click();await wait(()=>host.querySelector('#birth_date'));type(host,'birth_date','1990-01-01');await turn();button(host,language==='tr'?'Devam et':'Continue').click();await wait(()=>host.querySelector('#period_start_date'));check(f.backend.rows.user_profile[0].display_name==='Ada');
    },context);
   }
-  await auditScreen('UNAUTHENTICATED_NAME',async(f,host,wait,turn)=>{
-   check(host.querySelector('#display_name').value==='Ada'&&button(host,'Prefer not to say').disabled,'reopen pending draft');
-   type(host,'display_name','');await turn();check(!button(host,'Prefer not to say').disabled);button(host,'Prefer not to say').click();await wait(()=>host.querySelector('#age-declaration'));check(f.name===null&&f.clears===1);
+  await auditScreen('AUTHENTICATED_NAME_REQUIRED',async(f,host,wait,turn)=>{
+   check(host.querySelector('#display_name').value==='Ada'&&button(host,'Prefer not to say').disabled,'saved name initializes authenticated field');
+   type(host,'display_name','');await turn();check(!button(host,'Prefer not to say').disabled);button(host,'Prefer not to say').click();await wait(()=>host.querySelector('#birth_date'));check(!host.querySelector('[data-provider]'));
   },context,{name:'Ada'});
   await auditScreen('AUTHENTICATED_PROFILE_REQUIRED',async(f,host,wait,turn)=>{
    type(host,'birth_date','1990-01-01');await turn();button(host,'Continue').click();await wait(()=>host.querySelector('#period_start_date'));
-   check(f.backend.rows.user_profile[0].display_name==='Ada'&&f.clears===1,'auth return lost pending name');
+   check(f.backend.rows.user_profile[0].display_name==='Ada','saved profile name lost');
    check(!host.querySelector('[data-profile-trigger],a[href="/account-privacy"]')&&!host.textContent.includes('Account & Privacy'),'ON-05 privacy header returned');
    check(host.querySelector('#health_consent')&&!host.querySelector('#health_consent').checked,'separate consent');
   },context,{name:'Ada'});

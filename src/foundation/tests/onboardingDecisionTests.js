@@ -86,7 +86,7 @@ export const ONBOARDING_DECISION_TESTS=[
    check(Object.keys(ONBOARDING_DECISION_STATUS).length===4&&Object.values(ONBOARDING_DECISION_STATUS).every(v=>v==='RESOLVED_BY_PRODUCT_DECISION'));
    check(Object.keys(DOMAIN_SCHEMAS).length===20&&!Object.keys(DOMAIN_SCHEMAS).some(k=>k.includes('onboarding')));
    check(!Object.values(DOMAIN_SCHEMAS).some(s=>Object.keys(s.properties).some(k=>/onboarding|completion|progress/.test(k))));
-   check(resolveOnboardingState({authenticated:true,cycleStepConfirmed:true})==='AUTHENTICATED_PROFILE_REQUIRED');
+   check(resolveOnboardingState({authenticated:true,cycleStepConfirmed:true})==='AUTHENTICATED_NAME_REQUIRED');
  }],
  ['C21','Approved default consent is still explicit and never accepts client version/owner',async()=>{
    const f=await ready();for(const health_consent of [false,null,'true'])await rejects(()=>call(f,{...cycle,health_consent}),'CONSENT_REQUIRED');

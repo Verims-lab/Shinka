@@ -1,3 +1,4 @@
+import { APPROVED_AUTH_METHODS } from "@/foundation/authPolicy";
 import { base44 } from '@/api/base44Client';
 import { appParams } from '@/lib/app-params';
 
@@ -25,6 +26,7 @@ function authPath(suffix) {
   return `/api/apps/${appParams.appId}/auth/${suffix}`;
 }
 
+/** @param {string} suffix @param {{method?:string,body?:object,token?:string,headers?:Record<string,string>}} options */
 async function request(suffix, { method = 'POST', body, token, headers } = {}) {
   const response = await fetch(authPath(suffix), {
     method,
@@ -67,14 +69,9 @@ export function mfaSession(challenge) {
   };
 }
 
-// Password sign-in that opens factor management instead of signing in.
-export function signInToManageMfa(email, password) {
-  return request('login', { body: { email, password }, headers: { 'X-App-Mfa-Action': 'manage' } });
-}
-
 let resumed;
 
-// Picks up the challenge a social or SSO sign-in sends back to /mfa?mfa_code=…
+// Picks up the challenge a approved social sign-in sends back to /mfa?mfa_code=…
 export function resumeMfa() {
   // The code works once, so a second call (e.g. React StrictMode) reuses the first exchange.
   resumed ||= (async () => {
@@ -102,36 +99,33 @@ export async function loadSignInOptions() {
   return response.json();
 }
 
-// provider: 'google' | 'microsoft' | 'facebook' | 'apple' | 'sso'. With manage, the sign-in opens
+// provider: 'google' | 'apple'. With manage, the sign-in opens
 // factor management. Returns to this app's /mfa page when MFA is needed.
 export async function signInWithProvider(provider, returnTo, { manage = false } = {}) {
+  if (!APPROVED_AUTH_METHODS.includes(provider)) throw Object.assign(new Error('AUTH_UNSUPPORTED_METHOD'), {code:'AUTH_UNSUPPORTED_METHOD'});
   const info = await loadSignInOptions();
-  // Enterprise SSO sign-in is exempt from Base44 MFA; only managing factors asks for it.
-  if (!manage && (info.auth_config?.mfa_policy !== 'required' || provider === 'sso')) {
+  if (!manage && info.auth_config?.mfa_policy !== 'required') {
     return base44.auth.loginWithProvider(provider, returnTo);
   }
   if (isInAppBrowser()) {
     // In-app browsers hand sign-in to the system browser through the platform's MFA page.
     const url = new URL('/auth/mfa', window.location.origin);
-    url.search = new URLSearchParams({ app_id: appParams.appId, oauth_start: provider, from_url: returnTo, ...(manage ? { security: '1' } : {}) });
+    url.search = new URLSearchParams({ app_id: appParams.appId, oauth_start: provider, from_url: returnTo, ...(manage ? { security: '1' } : {}) }).toString();
     window.location.assign(url.href);
     return;
   }
   const verifier = encode(crypto.getRandomValues(new Uint8Array(32)));
   const challenge = encode(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier))));
   sessionStorage.setItem(PKCE_KEY(), verifier);
-  const workspaceSso = provider === 'sso' && info.auth_config?.use_workspace_sso && info.organization_id;
-  const path = provider === 'sso'
-    ? (workspaceSso ? `/api/apps/${info.organization_id}/${appParams.appId}/auth/sso/login` : `/api/apps/${appParams.appId}/auth/sso/login`)
-    : `/api/apps/auth${provider === 'google' ? '' : `/${provider}`}/login`;
+  const path = `/api/apps/auth${provider === 'google' ? '' : `/${provider}`}/login`;
   const url = new URL(path, window.location.origin);
   url.search = new URLSearchParams({
     from_url: new URL(returnTo, window.location.origin).href,
-    ...(workspaceSso ? {} : { app_id: appParams.appId }),
+    app_id: appParams.appId,
     ...(manage ? { app_mfa_action: 'manage' } : {}),
     app_mfa_code_challenge: challenge,
     app_mfa_return: '/mfa',
-  });
+  }).toString();
   window.location.assign(url.href);
 }
 

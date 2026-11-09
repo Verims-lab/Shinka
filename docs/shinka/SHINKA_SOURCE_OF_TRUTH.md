@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-060
+**Current BuildMarker:** Buildmarker-061
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,14 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 061 — Authentication before personal onboarding (2026-11-09)
+
+Authority: the owner’s current 2026-11-09 request authenticates Apple/Google before any name/personal screen, superseding the 035–060 name-before-sign-in order. Current mapping is ON-01 intro, ON-02 sign-in, ON-03 optional name, ON-04 profile, ON-05 cycle and unnumbered preparation.
+
+Native identity plus fresh server profile/preferences, verified daily/cycle records and lifecycle/reset state remain the only routing authorities. No email, provider name, localStorage or account-exists inference. A saved NULL name is valid. The existing combined name+birth-details save is unchanged; unsaved mounted name drafts are not durable progress. Historical source documents/receipts are not relabeled as containing this later decision.
+
+[061 implementation and execution](reports/SHINKA_AUTH_FIRST_ONBOARDING_061.md).
 
 ## 060 — Explicit confirmation-copy decision
 
@@ -108,7 +116,7 @@ The screenshots show the historical six-step/header/hierarchy variant, unlike cu
 
 The owner’s audit/fix request (attachment 53e55c57-8889-48fd-aec8-94d443b8e4f8) adopts **Shinka_GeoNames_Birthplace_Arama_Kurallari_v1.0.docx**, SHA-256 `b2bcd76b7524831c42f7918518ab2d36777b8f69de427863337f229832beaa63`, as the current birthplace behavior. The attached document is requirements evidence; execution authorization comes from the request. This replaces the 008 country cascade / P-only selection and 026 birthplace sheet; their decisions and observations below are historical. It does not alter the original ten-source inventory, the five stored fields or existing consent/content decisions.
 
-Current sequence: ON-01 Introduction → ON-02 optional name → ON-03 Apple/Google + separate unchecked 18+ → ON-04 profile → ON-05 optional cycle + explicit health consent → unnumbered ON-06 verified preparation → Home. Only ON-01–05 count. Back is local ON-02→01, ON-03→02, ON-05→04; ON-04 now returns to authenticated welcome/Continue under 036; the original no-Back decision is superseded. No logout/OAuth restart or automatic write is attached to Back. Same mounted screen keeps cycle drafts; durable records govern reopen. There is no new draft persistence/rollback guarantee.
+Historical 035–060 sequence (superseded by 061 above): ON-01 Introduction → ON-02 optional name → ON-03 Apple/Google + separate unchecked 18+ → ON-04 profile → ON-05 optional cycle + explicit health consent → unnumbered ON-06 verified preparation → Home. Only ON-01–05 count. Back is local ON-02→01, ON-03→02, ON-05→04; ON-04 now returns to authenticated welcome/Continue under 036; the original no-Back decision is superseded. No logout/OAuth restart or automatic write is attached to Back. Same mounted screen keeps cycle drafts; durable records govern reopen. There is no new draft persistence/rollback guarantee.
 
 One combobox searches after three characters and 350 ms debounce. Own displayed name must contain the case-insensitive literal query; no accent folding/fuzzy/parent-name-only match. A and P may be selected; typing invalidates the old ID. Server resolves that ID and saves all five canonical fields or all NULL. Four pages × 50 candidates is Shinka’s bound, not GeoNames’s provider maximum or global completeness. Errors, filtered empty pages and local limits remain distinct. [035 audit, execution and evidence](reports/SHINKA_ONBOARDING_AUDIT_035.md).
 

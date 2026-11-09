@@ -50,16 +50,15 @@ export async function checkOnboardingPresentation(browser, origin, directory) {
   try {
    await page.goto(`${origin}/?appFixture=1&sdkSession=anonymous`);await page.locator('[data-onboarding-step="1"]').waitFor();await prepare();
    const intro=await title();await noOverflow();await capture('on-01');
-   await page.getByRole('button',{name:language==='tr'?'Başla':'Begin',exact:true}).click();await page.locator('#display_name').waitFor();
-   // Newly mounted name body has its own computed sizes; avoid doubling retained
-   // headings a second time by reopening with the real route's name entry.
-   if(textScale===2){await page.goto(`${origin}/?appFixture=1&sdkSession=anonymous`);await page.getByRole('button',{name:language==='tr'?'Başla':'Begin',exact:true}).click();await page.locator('#display_name').waitFor();await prepare();}
-   const empty=await nameState();assert(empty.empty);assert.equal(await page.getByRole('textbox',{name:language==='tr'?'Adın':'Name',exact:true}).count(),1);await capture('on-02');
+   await page.getByRole('button',{name:language==='tr'?'Başla':'Begin',exact:true}).click();await page.locator('[data-provider]').first().waitFor();
+   assert.equal(await page.locator('#display_name').count(),0);
+   await page.goto(`${origin}/?appFixture=1&sdkSession=user&language=${language}&onboardingState=AUTHENTICATED_NAME_REQUIRED`);await page.locator('#display_name').waitFor();await prepare();
+   const empty=await nameState();assert(empty.empty);assert.equal(await page.getByRole('textbox',{name:language==='tr'?'Adın':'Name',exact:true}).count(),1);await capture('on-03');
    await page.locator('h1').focus();await page.keyboard.press('Tab');assert.equal(await page.locator('#display_name').evaluate(el=>document.activeElement===el),true);
    const focused=await nameState();assert.equal(focused.focus,'solid');assert(focused.inputFont>=17*textScale);
-   await page.locator('#display_name').fill('Ada');const filled=await nameState();assert(!filled.empty&&filled.focused);await capture('on-02-filled-focus');
+   await page.locator('#display_name').fill('Ada');const filled=await nameState();assert(!filled.empty&&filled.focused);await capture('on-03-filled-focus');
    await page.locator('#display_name').fill('Ada '.repeat(12).trim());const longFilled=await nameState();assert(!longFilled.empty);await page.locator('#display_name').fill('Ada');
-   await page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true}).click();await page.locator('[data-onboarding-step="3"]').waitFor();
+   await page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true}).click();await page.locator('[data-onboarding-step="4"]').waitFor();
    await page.locator('[data-onboarding-back]').click();await page.locator('#display_name').waitFor();assert.equal(await page.locator('#display_name').inputValue(),'Ada');
    await page.goto(`${origin}/?appFixture=1&sdkSession=user&language=${language}`);await page.locator('#birth_date').waitFor();await prepare();
    const profile=await title();await noOverflow();await capture('on-04');

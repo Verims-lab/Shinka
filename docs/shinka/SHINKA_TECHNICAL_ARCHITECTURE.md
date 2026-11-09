@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-060
+**Current BuildMarker:** Buildmarker-061
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -12,6 +12,14 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 061 — Authentication before personal onboarding (2026-11-09)
+
+Keep the existing App → AuthProvider/applicationSession → ProtectedRoute → Onboarding/hydrate chain. Neutral wait precedes personal forms; the resolver returns AUTHENTICATED_NAME_REQUIRED only for authenticated absent profiles. Validate the read envelope before showing any onboarding state; failed/unknown responses retain Retry. No new identity system, schema, dependency or client progress cache.
+
+Remove the unowned pre-auth pendingName helper. The authenticated component holds the draft, then the existing saveProfile adapter validates and reads it back with birth details. Existing generation/owner checks reject old responses. Explicit session-ended admission also invalidates the page snapshot through an epoch, including same-owner synchronous React-batched refresh, so sealed product controllers are remounted only after fresh hydration. Privacy restrictions use the established route without writes/resume. Main’s Base44 MFA templates remain disconnected from Shinka routing; unsupported generic password/SSO/provider controls are removed to satisfy the unchanged Apple/Google policy.
+
+[061 implementation and execution](reports/SHINKA_AUTH_FIRST_ONBOARDING_061.md).
 
 ## 060 — Bounded privacy status transport
 

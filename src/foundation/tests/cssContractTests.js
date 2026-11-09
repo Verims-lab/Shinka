@@ -142,8 +142,8 @@ export const CSS_CONTRACT_TESTS = [
       const before=appThemeExpectation();applyAppTheme('dark');
       try{assert(getComputedStyle(layer,"::after").content!=="none",'dark overlay present');}finally{applyAppTheme(before.source==='UNVERIFIED_DEFAULT'?null:before.theme);}
     });
-    for(const state of ['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_NAME','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP']) {
-      await rendered(h('div',null,h(SectionBackdrop,{section:'onboarding'}),h(OnboardingScreen,{state,initialLanguage:'en',request:async()=>{throw new Error('UNEXPECTED_FIXTURE_IO');}})),host=>{
+    for(const state of ['UNAUTHENTICATED_INTRO','AUTHENTICATED_NAME_REQUIRED','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP']) {
+      await rendered(h('div',null,h(SectionBackdrop,{section:'onboarding'}),h(OnboardingScreen,{state,authenticated:state.startsWith('AUTHENTICATED'),initialLanguage:'en',request:async()=>{throw new Error('UNEXPECTED_FIXTURE_IO');}})),host=>{
         assert(host.querySelectorAll('[data-section-backdrop]').length===1&&!host.querySelector('img'),'one backdrop, no second content bitmap');
         const space=host.querySelector('.shinka-onboarding-art-space'),css=measure(space);
         assert(space.getAttribute('aria-hidden')==='true'&&space.childElementCount===0&&css.backgroundImage==='none'&&css.backgroundColor==='rgba(0, 0, 0, 0)','empty transparent layout space');

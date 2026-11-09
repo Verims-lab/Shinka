@@ -2,13 +2,21 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-060
+**Current BuildMarker:** Buildmarker-061
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
 **External Verification Required:** All rows marked UNVERIFIED.
+
+## 061 — Authentication before personal onboarding (2026-11-09)
+
+Authentication and server progress verification precede name/personal forms. No anonymous personal write, provider-name overwrite or email/local-flag completion inference. Existing stored NULL name is a valid choice. The removed pendingName sessionStorage helper no longer restores unowned data; old same-tab values are ignored. Drafts live only in the current owner component until existing saveProfile readback and are discarded on account change/unmount.
+
+ACCOUNT_DELETION_IN_PROGRESS admission denial and HEALTH_DELETION_PENDING / CONSENT_REGRANT_WORKFLOW_REQUIRED onboarding refusal route to existing Account & Privacy. The route transition grants no extra status/recovery authority and performs no cleanup/resume. INACTIVE, owner, admin, consent and reset guards remain unchanged. Generic MFA boilerplate is constrained to approved providers, remains unrouted, and does not introduce password sign-in. No real OAuth or physical-device acceptance is inferred from fixtures.
+
+[061 implementation and execution](reports/SHINKA_AUTH_FIRST_ONBOARDING_061.md).
 
 ## 060 — Owner status recovery without erasure changes
 
@@ -341,7 +349,7 @@ Official platform evidence (read 2026-10-19): [entity schemas](https://docs.base
 
 Existing 20-schema direct SDK deny rules, common principal branding, owner/admin guards, protected-record policy and immutable consent event restrictions are preserved. The generic domainAccess endpoint still offers no product CRUD. The specific onboarding endpoint derives identity from auth.me(), rejects forged role/owner and unknown fields, denies INACTIVE recreation, validates adult DOB on server clock, resolves GeoNames independently and never accepts client consent_status/account_status/Sun sign.
 
-Pending name is a minimal versioned same-tab session item with 30-minute expiry; it is cleared on confirmed profile persistence. No health form values enter storage, URLs, analytics or error logs. Unexpected backend/provider exceptions become allowlisted codes; query/results are bounded and credentials stay in server environment. No client geolocation is used. UI/provider callbacks do not create Base44 identities manually.
+061 supersedes the historical pre-auth pending-name storage: no personal form renders before verified admission, and the name draft stays only in the current owner component until profile readback. No health form values enter storage, URLs, analytics or error logs. Unexpected backend/provider exceptions become allowlisted codes; query/results are bounded and credentials stay in server environment. No client geolocation is used. UI/provider callbacks do not create Base44 identities manually.
 
 Consent is independent of age/auth. Health writes require explicit true consent, approved text/version, active owner and no open deletion job; withdrawn consent requires a future regrant workflow. The production adapter rechecks these predicates around sequential writes and confirms readback, without claiming an owner transaction or rollback. Profile/preferences persistence is enabled in repository code. The approved version health-consent-v1.0 and exact EN/TR checkbox text are integrated; valid explicit consent enables production cycle persistence. Default-version adapter tests use an isolated SDK transport. Retained fixture-version tests deliberately prove that partial durable consent/settings survive a later failure without UI advancement. No-cycle Skip writes neither current consent nor an event. No client-supplied version, owner, status or admin flag is trusted. Event domain fields form its complete immutable upsert key; generic event update/delete remains denied. Native metadata immutability, cross-instance uniqueness, conditional predicates and concurrent status transitions still require deployed enforcement evidence.
 
