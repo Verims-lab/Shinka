@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-060
+**Current BuildMarker:** Buildmarker-061
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -12,6 +12,14 @@
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 
+
+## 061 — Authentication before personal onboarding (2026-11-09)
+
+Fresh applicationSession followed by onboarding hydrate decides the branch: absent profile → authenticated name; existing incomplete profile → profile completion; ready profile without completed cycle/daily → cycle; verified cycle → preparation; ready profile/preferences plus actual owner daily record → Home. Existing NULL display_name is a completed choice. A native User account alone is not onboarding completion. Errors/unknown envelopes do not open blank onboarding.
+
+Reset stage remains authoritative and keeps preserved name/profile values; a reset PROFILE confirmation is not a new name request. INACTIVE remains denied. Open deletion/health cleanup uses the existing privacy flow. Name is a mounted draft until the existing combined saveProfile readback; reopen before that save can return to name because no choice has yet been persisted. No new durable name/Skip/completion flag or schema. Back never writes or logs out.
+
+[061 implementation and execution](reports/SHINKA_AUTH_FIRST_ONBOARDING_061.md).
 
 ## 060 — Account & Privacy status and confirmation
 
@@ -252,9 +260,9 @@ Delete Account ⇒ owner-confirmed erasure request + blocked target activity + v
 
 ## Authentication/onboarding implementation boundary — package 008 checkpoint
 
-ON-01 Introduction → ON-02 optional trimmed name → ON-03 Apple/Google with a separate unchecked 18+ declaration → ON-04 required adult DOB / optional time / optional structured birthplace → ON-05 optional cycle and independent explicit health consent → ON-06 finite dependency shell. Main steps are counted 1–5; ON-06 is unnumbered. Back (2026-10-26) is a local view change on ON-02→ON-01 and ON-03→ON-02 only; it never logs out, restarts OAuth or writes. ON-05→ON-04 back is also local; a changed ON-04 re-save updates the profile only while onboarding is unfinished (no daily message). At the 035 checkpoint ON-04 had no back; 036 supersedes that decision with authenticated welcome/Continue (see current contract above). The shared server resolver denies INACTIVE, returns incomplete profiles to ON-04 and only returns Home when ready profile/preferences and actual owner daily data exist.
+Historical 008–060 order (superseded by 061 above): ON-01 Introduction → ON-02 optional trimmed name → ON-03 Apple/Google with a separate unchecked 18+ declaration → ON-04 required adult DOB / optional time / optional structured birthplace → ON-05 optional cycle and independent explicit health consent → ON-06 finite dependency shell. Main steps are counted 1–5; ON-06 is unnumbered. Back (2026-10-26) is a local view change on ON-02→ON-01 and ON-03→ON-02 only; it never logs out, restarts OAuth or writes. ON-05→ON-04 back is also local; a changed ON-04 re-save updates the profile only while onboarding is unfinished (no daily message). At the 035 checkpoint ON-04 had no back; 036 supersedes that decision with authenticated welcome/Continue (see current contract above). The shared server resolver denies INACTIVE, returns incomplete profiles to ON-04 and only returns Home when ready profile/preferences and actual owner daily data exist.
 
-Pre-auth name is transient only (same-tab session storage, versioned, 30-minute expiry, max 50 Unicode characters). No pre-auth profile/identity is created. Identity comes from auth.me(). Approved fixed-date Sun and EN/TR copy are integrated. Profile/preferences persist through the production SDK adapter; readback must succeed before progression. Restarted partial profiles retain existing optional birthplace/name/time while finishing their derived Sun.
+Historical 008–060: pre-auth name used same-tab session storage. 061 removes this helper and authenticates first; name stays in owner-scoped memory until existing profile readback. No pre-auth profile/identity is created. Identity comes from auth.me(). Approved fixed-date Sun and EN/TR copy are integrated. Profile/preferences persist through the production SDK adapter; readback must succeed before progression. Restarted partial profiles retain existing optional birthplace/name/time while finishing their derived Sun.
 
 Valid cycle data and explicit consent persist health-consent-v1.0 to current consent and immutable event, optional settings and the actual period start. Missing settings remain NULL; no fabricated 5/28. Skip/empty input creates no health records. Approved restart behavior may return skipped users to ON-05 until their first real user_daily_message exists; no Skip flag is added. The daily record is the final durable completion marker.
 

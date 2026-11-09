@@ -36,7 +36,7 @@ export async function checkStartupRoutes(page,origin) {
   await start();await page.evaluate(()=>window.__appAuth.logout(false));
   await settle('settings',0,{});await settle('session',0,id());
   await page.locator('[data-onboarding-state^="UNAUTHENTICATED_"]').waitFor();
-  assert.ok(['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_NAME','UNAUTHENTICATED_SIGN_IN'].includes(await page.locator('[data-onboarding-state]').getAttribute('data-onboarding-state')));
+  assert.ok(['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_SIGN_IN'].includes(await page.locator('[data-onboarding-state]').getAttribute('data-onboarding-state')));
   assert.equal(await page.evaluate(()=>window.__appAuth.isAuthenticated),false);
   await noProduct();assert.equal(await page.evaluate(()=>window.__appAuth.user),null);
   results.push({scenario:'logout-during-both-startup-reads',passed:true});

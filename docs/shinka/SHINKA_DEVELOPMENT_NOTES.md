@@ -2,13 +2,21 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-060
+**Current BuildMarker:** Buildmarker-061
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 061 — Auth-first onboarding
+
+Preflight clean Test c8576ab matched origin/Test; main 1196194 had two distinct Base44 commits and Test two delivered fixes. Lossless merge retained both. Confirmed source cause: intro selected anonymous name before sign-in; name persisted in unowned same-tab storage. Removed that route/storage authority, using fresh server progress after login with neutral wait/Retry and privacy routing. New UI order is intro/login/name/profile/cycle; save boundary unchanged. No hosted OAuth result is claimed. Tests and final gates are recorded below in the delivery report.
+
+Local final: Chromium/WebKit **804/804** each, focused **19/19** each, 16 auth-first App scenarios/engine, zero page errors. Required local gates pass; dependency advisories 0. Local synthetic Health 147 PASS/13 prerequisite BLOCKED/0 FAIL (save/retry/list/open PASS); hosted/provider/physical acceptance is not claimed.
+
+[061 evidence](reports/SHINKA_AUTH_FIRST_ONBOARDING_061.md).
 
 ## 060 — Account privacy correction (2026-11-09)
 

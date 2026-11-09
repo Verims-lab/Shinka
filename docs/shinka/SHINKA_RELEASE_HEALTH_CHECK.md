@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-060
+**Current BuildMarker:** Buildmarker-061
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
@@ -10,6 +10,14 @@
 **Scope:** Health catalog HC-058.0; repository, synthetic and external evidence separated.
 
 
+
+## HC-060.0 — Auth-first onboarding
+
+Five existing cases updated: H06-006, H07-002, H07-004, H13-012 and H05-009 (strict current-build content policy only). Added 0 / updated 5 / removed 0. O02 replaces obsolete anonymous draft-storage assertions with server absent-profile/NULL-name and unauthenticated-write denials; O34 and OU09–OU11 add reset, lifecycle, malformed/failed read and Retry coverage. Existing OAuth, owner, DOB, consent, readback and UI assertions remain. Local scope metadata and current screen IDs match; H06-007 real Apple/Google and all physical/native external acceptance stay open. Historical failures are retained. Execution results are recorded in the linked report; no live Full Health or scan.
+
+Local final: Chromium/WebKit **804/804** each, focused **19/19** each, 16 auth-first App scenarios/engine, zero page errors. Required local gates pass; dependency advisories 0. Local synthetic Health 147 PASS/13 prerequisite BLOCKED/0 FAIL (save/retry/list/open PASS); hosted/provider/physical acceptance is not claimed.
+
+[061 evidence](reports/SHINKA_AUTH_FIRST_ONBOARDING_061.md).
 
 ## 060 — Focused privacy status acceptance (HC-059.0)
 

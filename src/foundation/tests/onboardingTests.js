@@ -1,3 +1,5 @@
+import { nativeFixture } from './nativeFixture';
+import { assertOnboardingSnapshot } from '@/services/onboardingService';
 import { birthDateFeedback } from '@/features/onboarding/birthDateFeedback';
 import { ONBOARDING_CLOSURE_TESTS } from './onboardingClosureTests';
 import { ONBOARDING_AUDIT_TESTS } from './onboardingAuditTests';
@@ -19,13 +21,11 @@ import { SUN_SIGN_RESOLVER } from '../../../base44/shared/onboardingDependencies
 import { ONBOARDING_COPY, ONBOARDING_COPY_STATUS } from '../i18n/onboardingCopy';
 import { APPROVED_COPY } from '../uiuxTables';
 import { beginProviderAuth } from '@/services/authService';
-import { savePendingName, readPendingName, clearPendingName } from '@/features/onboarding/pendingName';
 import { normalizeDomainRead } from '../../../base44/shared/domainValidation.js';
 const TODAY='2026-10-19',ID='synthetic-action-0001';
 const profileBody={action:'saveProfile',action_id:ID,birth_date:'1990-01-01',birth_time:null,display_name:' Fixture ',birthplace_geonames_id:null};
 const cycleBody={action:'saveCycle',action_id:ID,period_start_date:'2026-10-01',period_duration_days:null,initial_cycle_length_days:null,health_consent:true};
 const run=(fixture,body)=>onboardingOperation(fixture.client,body,fixture.dependencies);
-const fakeStorage=()=>{const map=new Map();return {map,getItem:k=>map.get(k),setItem:(k,v)=>map.set(k,v),removeItem:k=>map.delete(k)};};
 /** @type {import('./testTypes').FoundationTest[]} */
 export const AUTH_TESTS=[
  ['A01','Unchecked/missing declaration never reaches either provider',async()=>{let calls=0;const auth={loginWithProvider:async()=>{calls++;}};for(const provider of ['apple','google'])for(const checked of [false,undefined,null])check((await beginProviderAuth(provider,'/',checked,auth)).code==='AGE_DECLARATION_REQUIRED');check(calls===0);}],
@@ -40,8 +40,25 @@ export const AUTH_TESTS=[
 ];
 /** @type {import('./testTypes').FoundationTest[]} */
 export const ONBOARDING_TESTS=[
+ ['O34','Server reset/consent/lifecycle routing and malformed hydration never become a fresh account',async()=>{
+  for(const bad of [null,{}, {state:'UNAUTHENTICATED_INTRO'},{state:'AUTHENTICATED_NAME_REQUIRED',profile:{id:'existing'}}])await rejects(()=>assertOnboardingSnapshot(bad),'ONBOARDING_READBACK_CONFLICT');
+  const f=nativeFixture({granted:false});const request=()=>onboardingOperation(f.client(),{action:'hydrate'},{now:f.now});
+  const original=f.tables.UserProfile[0];original.display_name=null;
+  check((await request()).state==='AUTHENTICATED_CYCLE_STEP');await f.today();check((await request()).state==='ACTIVE_EXISTING_USER');
+  const reset=await f.execute(await f.preview());check(reset.job.operation==='RESET_ONBOARDING');
+  check((await request()).state==='AUTHENTICATED_PROFILE_REQUIRED'&&f.tables.UserProfile[0].id===original.id&&f.tables.UserProfile[0].display_name===null);
+  f.tables.UserPrivacyRequest.push({id:'privacy',user_id:'ownerA',request_key:'synthetic-key',kind:'WITHDRAW_HEALTH',status:'IN_PROGRESS',requested_at:'2026-10-20T12:00:00Z'});
+  await rejects(request,'HEALTH_DELETION_PENDING');f.tables.UserPrivacyRequest[0].kind='DELETE_ACCOUNT';await rejects(request,'ACCOUNT_DELETION_IN_PROGRESS');
+ }],
  ['O01','Name optional, trimmed and Unicode-aware 50-character bound',async()=>{for(const value of [null,'','  '])check(optionalName(value)===null);check(optionalName(' x ')==='x'&&optionalName('a'.repeat(50)).length===50&&[...optionalName('🌙'.repeat(50))].length===50);await rejects(()=>optionalName('x'.repeat(51)),'NAME_TOO_LONG');}],
- ['O02','Pending name is bounded, expires, restores and clears',()=>{const storage=fakeStorage();savePendingName(' Ada ',storage,100);check(readPendingName(storage,101)==='Ada');clearPendingName(storage);check(readPendingName(storage,102)===null);savePendingName('Ada',storage,100);check(readPendingName(storage,100+30*60*1000+1)===null&&storage.map.size===0);savePendingName(null,storage,100);check(readPendingName(storage,101)===null);}],
+ ['O02','Server distinguishes absent profile from saved NULL name; unauthenticated personal writes rejected',async()=>{
+  const f=onboardingFixture();check((await run(f,{action:'hydrate'})).state==='AUTHENTICATED_NAME_REQUIRED');
+  await run(f,{...profileBody,display_name:null});check((await run(f,{action:'hydrate'})).state==='AUTHENTICATED_CYCLE_STEP');
+  check(normalizeDomainRead('user_profile',f.data.user_profile[0]).display_name===null);
+  f.data.user_daily_message.push(dailyRecordFixture('null-name-daily'));check((await run(f,{action:'hydrate'})).state==='ACTIVE_EXISTING_USER');
+  const anonymous=onboardingFixture({owner:null}),before=JSON.stringify(anonymous.data);
+  await rejects(()=>run(anonymous,profileBody),'AUTH_REQUIRED');check(JSON.stringify(anonymous.data)===before);
+ }],
  ['O03','DOB required, valid calendar, adult and exact-18 boundary',async()=>{check(validateBirthDate('2008-10-19',TODAY)==='2008-10-19');for(const value of ['', '2011-', '2011-10-', '2011-10-3'])check(birthDateFeedback(value,TODAY)===null);check(birthDateFeedback('2011-10-31',TODAY).code==='AGE_UNDER_18');check(birthDateFeedback('2000-02-30',TODAY).code==='DATE_INVALID');check(birthDateFeedback('2027-01-01',TODAY).code==='DOB_FUTURE');check(birthDateFeedback('2011-10-31',null)===null);for(const [value,code] of [['','DOB_REQUIRED'],['2008-10-20','AGE_UNDER_18'],['2027-01-01','DOB_FUTURE'],['2000-02-30','DATE_INVALID'],['not-date','DATE_INVALID']])await rejects(()=>validateBirthDate(value,TODAY),code);}],
  ['O04','Leap-day age and date-only semantics avoid UTC shifting',()=>{check(ageOnDate('2008-02-29','2026-02-28')===17&&ageOnDate('2008-02-29','2026-03-01')===18);check(serverLocalDate(new Date('2026-10-18T22:00:00Z'),'Europe/Istanbul')===TODAY);check(validateBirthDate('1990-01-01',TODAY)==='1990-01-01');}],
  ['O05','Backend rejects bypassed underage/future input before persistence',async()=>{for(const [birth_date,code] of [['2008-10-20','AGE_UNDER_18'],['2027-01-01','DOB_FUTURE']]){const f=onboardingFixture();await rejects(()=>run(f,{...profileBody,birth_date}),code);check(!f.data.user_profile.length);}}],
@@ -63,7 +80,7 @@ export const ONBOARDING_TESTS=[
  ['O21','Unavailable SDK storage and missing consent source cannot return save success',async()=>{const f=onboardingFixture();f.dependencies.atomic=null;await rejects(()=>run(f,profileBody),'ONBOARDING_WRITE_UNCONFIRMED');const g=onboardingFixture({complete:true});g.dependencies.consentVersion=null;await rejects(()=>run(g,cycleBody),'HEALTH_CONSENT_SOURCE_REQUIRED');check(!g.data.user_period_record.length);}],
  ['O22','Open deletion and withdrawn consent block onboarding grants',async()=>{const f=onboardingFixture({complete:true});f.data.health_data_deletion_job.push({id:'job',user_id:'ownerA',job_status:'FAILED'});await rejects(()=>run(f,cycleBody),'HEALTH_DELETION_PENDING');f.data.health_data_deletion_job=[];f.data.user_health_consent.push({id:'consent',user_id:'ownerA',consent_status:'WITHDRAWN'});await rejects(()=>run(f,cycleBody),'CONSENT_REGRANT_WORKFLOW_REQUIRED');}],
  ['O23','Timezone fallback uses only persisted valid zone; new missing zone retries',async()=>{check(resolveTimezone('bad/zone','Europe/Istanbul')==='Europe/Istanbul');await rejects(()=>resolveTimezone(null,null),'TIMEZONE_INITIALIZATION_REQUIRED');const f=onboardingFixture({preferences:false});await rejects(()=>run(f,{action:'initialize',action_id:ID,language_code:'en',timezone:null}),'TIMEZONE_INITIALIZATION_REQUIRED');check(!f.data.user_preferences.length);}],
- ['O24','Central resolver covers all eight states and safe skipped-cycle resume',()=>{const profile={user_id:'ownerA',account_status:'ACTIVE',birth_date:'1990-01-01',sun_sign_code:'CAPRICORN'},base={authenticated:true,profile,preferences:{language_code:'en',timezone:'Europe/Istanbul'},today:TODAY};const states=[resolveOnboardingState({}),resolveOnboardingState({entry:'name'}),resolveOnboardingState({entry:'signIn'}),resolveOnboardingState({authenticated:true}),resolveOnboardingState(base),resolveOnboardingState({...base,cycleStepConfirmed:true}),resolveOnboardingState({...base,hasDailyMessage:true}),resolveOnboardingState({...base,profile:{...profile,account_status:'INACTIVE'}})];check(ONBOARDING_STATES.every(s=>states.includes(s)));check(resolveOnboardingState(base)==='AUTHENTICATED_CYCLE_STEP');}],
+ ['O24','Central resolver covers all eight states and safe skipped-cycle resume',()=>{const profile={user_id:'ownerA',account_status:'ACTIVE',birth_date:'1990-01-01',sun_sign_code:'CAPRICORN'},base={authenticated:true,profile,preferences:{language_code:'en',timezone:'Europe/Istanbul'},today:TODAY};const states=[resolveOnboardingState({}),resolveOnboardingState({...base,profile:{...profile,sun_sign_code:null}}),resolveOnboardingState({entry:'signIn'}),resolveOnboardingState({authenticated:true}),resolveOnboardingState(base),resolveOnboardingState({...base,cycleStepConfirmed:true}),resolveOnboardingState({...base,hasDailyMessage:true}),resolveOnboardingState({...base,profile:{...profile,account_status:'INACTIVE'}})];check(ONBOARDING_STATES.every(s=>states.includes(s)));check(resolveOnboardingState(base)==='AUTHENTICATED_CYCLE_STEP');}],
  ['O25','Copy keys have parity, exact EN errors and approved nonempty TR',()=>{check(JSON.stringify(Object.keys(ONBOARDING_COPY.en))===JSON.stringify(Object.keys(ONBOARDING_COPY.tr)));check(Object.values(ONBOARDING_COPY.en).every(Boolean));check(APPROVED_COPY.onboarding.every(value=>Object.values(ONBOARDING_COPY.en).includes(value)));check(ONBOARDING_COPY.en.terms==='Terms of Service'&&ONBOARDING_COPY_STATUS.tr==='APPROVED_PRODUCT_COPY'&&Object.values(ONBOARDING_COPY.tr).every(Boolean));}],
  ['O26','Hydration only returns canonical fields; owner leakage detected',async()=>{const f=onboardingFixture({complete:true});Object.assign(f.data.user_profile[0],{created_by:'private@example.test',token:'private'});const result=await run(f,{action:'hydrate'});check(!JSON.stringify(result).includes('private'));f.client.asServiceRole.entities.UserProfile.filter=async()=>[{id:'wrong',user_id:'ownerB'}];await rejects(()=>run(f,{action:'hydrate'}),'OWNER_REQUIRED');}],
  ['O27','Onboarding copy/proxy scanner rejects duplicate text and client credentials',async()=>{check((await loadStaticEvidence()).onboarding.ok);const injected={'/src/features/onboarding/injected.jsx':`const a=<p>${APPROVED_COPY.onboarding[0]}</p>; const x='GEONAMES_USERNAME';`};check(!inspectOnboardingSurface(injected,APPROVED_COPY.onboarding).ok);}],

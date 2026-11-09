@@ -1,3 +1,4 @@
+import { checkAuthFirstOnboarding } from './checkAuthFirstOnboarding.mjs';
 import { checkReopenApp } from './checkReopenApp.mjs';
 import { checkReopenNavigation } from './checkReopenNavigation.mjs';
 import { checkCalendarCorrections } from './checkCalendarCorrections.mjs';
@@ -92,7 +93,9 @@ try {
     if(location.origin===origin)sessionStorage.setItem('shinka.browser-evidence.v1',JSON.stringify(bundle));
   },{bundle:probeBundle,origin});
   await page.evaluate(bundle=>window.__acceptBrowserEvidence(bundle),probeBundle);
-  if (process.env.FOUNDATION_CALENDAR_CORRECTIONS_ONLY === '1') {
+  if (process.env.FOUNDATION_AUTH_FIRST_ONLY === '1') {
+    console.log(JSON.stringify({authFirstOnboarding:await checkAuthFirstOnboarding(browser,origin),pageErrors}));
+  } else if (process.env.FOUNDATION_CALENDAR_CORRECTIONS_ONLY === '1') {
     console.log(JSON.stringify({calendarCorrections:await checkCalendarCorrections(browser,origin,process.env.FOUNDATION_CALENDAR_DIR)}));
   } else if (process.env.FOUNDATION_CALENDAR_CONTINUITY_ONLY === '1') {
     const calendarContinuity=await checkCalendarContinuity(page,origin);
@@ -162,6 +165,7 @@ try {
     console.log(JSON.stringify({focused:true,security028,notifications030,results,pageErrors},null,2));
     if(results.some(r=>!r.passed)||!results.length||pageErrors.length)process.exitCode=1;
   } else {
+  console.log(JSON.stringify({authFirstOnboarding:await checkAuthFirstOnboarding(browser,origin)}));
   console.log(JSON.stringify({onboardingCorrections:await checkOnboardingCorrections(browser,origin,process.env.FOUNDATION_ONBOARDING_CORRECTIONS_DIR)}));
   const onboardingClosure=await checkOnboardingClosure(browser,origin,process.env.FOUNDATION_ONBOARDING_DIR);
   const onboardingPresentation=await checkOnboardingPresentation(browser,origin,process.env.FOUNDATION_ONBOARDING_PRESENTATION_DIR);

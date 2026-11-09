@@ -8,38 +8,27 @@ import SignIn from "./SignIn";
 import { ProfileForm, CycleForm } from "./OnboardingForms";
 import FieldError from "./FieldError";
 import { beginProviderAuth } from "@/services/authService";
-import {
-  readPendingName,
-  savePendingName,
-  clearPendingName,
-} from "./pendingName";
 import { resolveLanguage } from "@/foundation/i18n/strings";
 import { onboardingCopy } from "@/foundation/i18n/onboardingCopy";
 import {
   optionalName,
-  OnboardingError,
 } from "../../../base44/shared/onboardingValidation.js";
-import { onboardingRequest, assertOnboardingProgress } from "@/services/onboardingService";
+import { onboardingRequest, assertOnboardingProgress, isOnboardingPrivacyRestriction } from "@/services/onboardingService";
 import FirstShinka from '@/features/daily/FirstShinka';
-const DEFAULT_PENDING = {
-  read: readPendingName,
-  save: savePendingName,
-  clear: clearPendingName,
-};
-// Single screen metadata map (SRC-03 + 2026-10-27 user decision). Five numbered main steps;
+// Single screen metadata map (SRC-03 presentation + 2026-11-09 auth-first user decision). Five numbered main steps;
 // preparation/inactive are unnumbered interstitials. `back` is a pure local view change:
 // no logout, no OAuth restart, no write. ON-05 → ON-04 keeps the form values; re-saving
 // ON-04 is allowed server-side only while onboarding is unfinished.
 const SCREENS = {
   UNAUTHENTICATED_INTRO: { step: 1, title: "intro" },
-  UNAUTHENTICATED_NAME: { step: 2, title: "nameTitle", subtitle: "nameSubtitle", back: "UNAUTHENTICATED_INTRO" },
-  UNAUTHENTICATED_SIGN_IN: { step: 3, title: "signIn", subtitle: "signInSubtitle", back: "UNAUTHENTICATED_NAME" },
+  AUTHENTICATED_NAME_REQUIRED: { step: 3, title: "nameTitle", subtitle: "nameSubtitle", back: "UNAUTHENTICATED_SIGN_IN" },
+  UNAUTHENTICATED_SIGN_IN: { step: 2, title: "signIn", subtitle: "signInSubtitle", back: "UNAUTHENTICATED_INTRO" },
   AUTHENTICATED_PROFILE_REQUIRED: { step: 4, title: "aboutTitle", subtitle: "aboutSubtitle", back: "UNAUTHENTICATED_SIGN_IN" },
   AUTHENTICATED_CYCLE_STEP: { step: 5, title: "cycle", subtitle: "cycleSubtitle", back: "AUTHENTICATED_PROFILE_REQUIRED" },
   FIRST_SHINKA_DEPENDENCY: { title: "preparation", back: "UNAUTHENTICATED_SIGN_IN" },
   INACTIVE_ACCOUNT: { title: "inactive" },
 };
-/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,authenticated?:boolean,pending?:typeof DEFAULT_PENDING,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
+/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,authenticated?:boolean,onRestricted?:Function,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
 export default function OnboardingScreen({
   state,
   initialLanguage = undefined,
@@ -49,14 +38,14 @@ export default function OnboardingScreen({
   request = onboardingRequest,
   dailyRequest = undefined,
   onState = () => {},
-  pending = DEFAULT_PENDING,
+  onRestricted = () => {},
   authenticate = beginProviderAuth,
   dependencies = [],
 }) {
   const language = resolveLanguage(initialLanguage);
   const resume = useRef("AUTHENTICATED_PROFILE_REQUIRED");
   const [name, setName] = useState(
-      () => profile ? profile.display_name ?? "" : pending.read() ?? "",
+      () => profile?.display_name ?? "",
     ),
     [form, setForm] = useState({
       birth_date: profile?.birth_date || "",
@@ -97,6 +86,7 @@ export default function OnboardingScreen({
       title.current?.ownerDocument.getElementById(error.field === 'birth_date' ? 'birth_date-error' : error.field)?.focus();
   }, [error, busy]);
   const showError = (e) => {
+    if (isOnboardingPrivacyRestriction(e.code)) { onRestricted(e.code); return; }
     setError({
       code: e.code || "ONBOARDING_OPERATION_FAILED",
       field: e.field || null,
@@ -127,7 +117,6 @@ export default function OnboardingScreen({
     });
     if (!mounted.current || ticket !== generation.current) return;
     assertOnboardingProgress(actionName, payload, result);
-    if (result.persisted && actionName === "saveProfile") pending.clear();
     if (result.profile) {
       setName(result.profile.display_name || "");
       setForm(value => ({ ...value, birth_date: result.profile.birth_date || "", birth_time: result.profile.birth_time || "" }));
@@ -140,6 +129,7 @@ export default function OnboardingScreen({
   };
   const fieldError = (key) => <FieldError name={key} error={error} t={t} />;
   const formProps = { form, update, error, busy, t, today, run, submit };
+  if (!authenticated && !["UNAUTHENTICATED_INTRO", "UNAUTHENTICATED_SIGN_IN"].includes(state)) return null;
   const screen = SCREENS[state] || {};
   const step = screen.step;
   const airy = Boolean(step);
@@ -148,10 +138,10 @@ export default function OnboardingScreen({
       return (
         <OnboardingIntro
           t={t}
-          onBegin={() => run(async () => onState("UNAUTHENTICATED_NAME"))}
+          onBegin={() => run(async () => onState("UNAUTHENTICATED_SIGN_IN"))}
         />
       );
-    if (state === "UNAUTHENTICATED_NAME")
+    if (state === "AUTHENTICATED_NAME_REQUIRED")
       return (
         <>
           <div className="shinka-framed-field shinka-name-field">
@@ -178,9 +168,8 @@ export default function OnboardingScreen({
             onClick={() =>
               run(async () => {
                 const value = optionalName(nameDraft.current);
-                if (!pending.save(value) && value)
-                  throw new OnboardingError("TRANSIENT_STORAGE_UNAVAILABLE");
-                onState("UNAUTHENTICATED_SIGN_IN");
+                setName(value ?? "");
+                onState("AUTHENTICATED_PROFILE_REQUIRED");
               })
             }
           >
@@ -192,9 +181,8 @@ export default function OnboardingScreen({
             disabled={busy || Boolean(name.trim())}
             onClick={() => run(async () => {
               if (nameDraft.current.trim()) return;
-              pending.clear();
               setName("");
-              onState("UNAUTHENTICATED_SIGN_IN");
+              onState("AUTHENTICATED_PROFILE_REQUIRED");
             })}
           >
             {t("preferNot")}
@@ -248,8 +236,8 @@ export default function OnboardingScreen({
           <div>
             {screen.back && (
               <ShinkaButton variant="ghost" aria-label={t("back")} data-onboarding-back disabled={busy} onClick={() => {
-                if (state === "FIRST_SHINKA_DEPENDENCY" || state === "AUTHENTICATED_PROFILE_REQUIRED") resume.current = state;
-                onState(screen.back);
+                if (state === "FIRST_SHINKA_DEPENDENCY" || state === "AUTHENTICATED_PROFILE_REQUIRED" || state === "AUTHENTICATED_NAME_REQUIRED") resume.current = state;
+                onState(state === "AUTHENTICATED_PROFILE_REQUIRED" && !profile ? "AUTHENTICATED_NAME_REQUIRED" : screen.back);
               }}>
                 <ChevronLeft aria-hidden="true" className="h-5 w-5" />
               </ShinkaButton>

@@ -10,8 +10,8 @@ export const PROFILE_ENTRY = Object.freeze({ key: "you", labelKey: "nav.you", lu
 
 export const ONBOARDING_SEQUENCE = Object.freeze([
   { id: "ON-01", name: "Introduction" },
-  { id: "ON-02", name: "Optional name" },
-  { id: "ON-03", name: "Welcome / Sign In" },
+  { id: "ON-02", name: "Welcome / Sign In" },
+  { id: "ON-03", name: "Optional name" },
   { id: "ON-04", name: "Personal Details" },
   { id: "ON-05", name: "Your cycle, your choice" },
   { id: "ON-06", name: "First Shinka preparation", interstitial: true },

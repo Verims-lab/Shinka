@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import SessionRetry from '@/components/SessionRetry';
@@ -24,6 +24,7 @@ export default function ProtectedRoute({ fallback = <DefaultFallback />, unauthe
   }
 
   if (authError) {
+    if (authError.type === 'lifecycle_restricted') return <Navigate to="/account-privacy" replace/>;
     if (authError.type === 'user_not_registered') {
       return <UserNotRegisteredError />;
     }

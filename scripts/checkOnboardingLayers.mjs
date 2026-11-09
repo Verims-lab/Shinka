@@ -69,7 +69,7 @@ export async function checkOnboardingLayers(browser, origin, directory) {
     const visit = async step => {
       if(step===1)await page.goto(`${origin}/?appFixture=1&sdkSession=anonymous`);
       if(step===2)await page.getByRole('button',{name:language==='tr'?'Başla':'Begin',exact:true}).click();
-      if(step===3){await page.locator('#display_name').fill('Ada');await page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true}).click();}
+      if(step===3)await page.goto(`${origin}/?appFixture=1&sdkSession=user&language=${language}&onboardingState=AUTHENTICATED_NAME_REQUIRED`);
       if(step===4)await page.goto(`${origin}/?appFixture=1&sdkSession=user&language=${language}&onboardingVisual=1`);
       if(step===5)await page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true}).click();
       await page.locator(`[data-onboarding-step="${step}"]`).waitFor();await prepare();
@@ -90,17 +90,17 @@ export async function checkOnboardingLayers(browser, origin, directory) {
           assert.equal(value.background.height,views[0].background.height);
           assert(Math.abs(value.title.y-views[0].title.y)<1,'scroll does not move document layout');
         }
-        if(step===2 || step===4) {
-          const field=page.locator(step===2?'#display_name':'#birth_date');await field.focus();
-          if(step===2)await field.fill('Ada');else await field.fill('1990-01-01');
+        if(step===3 || step===4) {
+          const field=page.locator(step===3?'#display_name':'#birth_date');await field.focus();
+          if(step===3)await field.fill('Ada');else await field.fill('1990-01-01');
           await page.setViewportSize({width,height:Math.min(height,400)});verify(await inspect());
           await field.blur();await page.setViewportSize({width,height});verify(await inspect());
           if(step===4){await page.locator('#birth_time').focus();await page.locator('#birth_time').fill('10:30');verify(await inspect());await page.locator('#birth_time').blur();}
         }
         if(step>1) {
-          await resetText();await page.locator('[data-onboarding-back]').click();await page.locator(`[data-onboarding-step="${step-1}"]`).waitFor();await prepare();verify(await inspect());
-          if(step===2) {await page.getByRole('button',{name:language==='tr'?'Başla':'Begin',exact:true}).click();await page.locator('#display_name').waitFor();assert.equal(await page.locator('#display_name').inputValue(),'Ada');}
-          if(step===3) {assert.equal(await page.locator('#display_name').inputValue(),'Ada');await page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true}).click();await page.locator('[data-onboarding-step="3"]').waitFor();}
+          await resetText();await page.locator('[data-onboarding-back]').click();await page.locator(`[data-onboarding-step="${step===4?2:step-1}"]`).waitFor();await prepare();verify(await inspect());
+          if(step===2) {await page.getByRole('button',{name:language==='tr'?'Başla':'Begin',exact:true}).click();await page.locator('#age-declaration').waitFor();assert.equal(await page.locator('#display_name').count(),0);}
+          if(step===3) {assert.equal(await page.locator('[data-provider]').count(),0);await page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true}).click();await page.locator('#display_name').waitFor();assert.equal(await page.locator('#display_name').inputValue(),'Ada');}
           if(step===4) {await page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true}).click();await page.locator('#birth_date').waitFor();assert.equal(await page.locator('#birth_date').inputValue(),'1990-01-01');assert.equal(await page.locator('#birth_time').inputValue(),'10:30');}
         }
         results.push({language,width,height,textScale:scale,step,passed:true,views,keyboard:'FOCUS_AND_REDUCED_VIEWPORT_ONLY'});

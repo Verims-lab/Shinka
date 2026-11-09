@@ -50,7 +50,7 @@ export const ONBOARDING_CLOSURE_UI_TESTS=[
    resolve();await turn();await turn();check(state(host)==='UNAUTHENTICATED_SIGN_IN','late response navigated back screen');
    button(host,'Continue').click();await wait(()=>state(host)==='ACTIVE_EXISTING_USER');
    check(auth===0&&dailyCalls===2&&backend.rows.user_daily_message.length===1,'resume did not reconcile same day');
-  },context,{request:backend.request,props:{authenticate:async()=>{auth++;},dailyRequest}});
+  },context,{profile:{display_name:null},request:backend.request,props:{authenticate:async()=>{auth++;},dailyRequest}});
  }],
  ['OV04','Time keyboard and icon share HH:mm; invalid/incomplete values rejected, cancel preserves, Set and Clear are explicit',async(context={})=>{
   await auditScreen('AUTHENTICATED_PROFILE_REQUIRED',async(f,host,wait,turn)=>{
