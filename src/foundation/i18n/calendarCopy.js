@@ -1,12 +1,17 @@
 import { APPROVED_COPY } from '../uiuxTables';
 
 const en = {
+  editDates: 'Edit dates', save: 'Save', cancelDraft: 'Cancel', today: 'Today',
+  editHint: 'Choose a start date. Tap a recorded start to remove it, then another day to move it.',
+  draftPolicy: 'Unsaved selection stays across tabs; closing or reloading the app clears it.',
+  addDraft: 'To add', editDraft: 'To move', deleteDraft: 'To delete', spacing: 'Period starts must be at least 15 days apart',
+  continueChange: 'Continue the same change', pendingStatus: 'This change is still unconfirmed. Check status or explicitly continue the same change.',
+
   checkStatus: 'Check status', checking: 'Checking the change', deleteStatusTitle: 'Deletion status',
   deleteUnknown: 'The deletion is not yet confirmed. Check its status to continue the same change',
   unconfirmed: 'We couldn’t confirm the change. It may have been saved. Refresh and review your dates before retrying',
   pendingReview: 'A previous change is not yet confirmed. Check and try again',
   title: 'Calendar', previous: 'Previous month', next: 'Next month', period: 'Period', predicted: 'Predicted', selected: 'Selected',
-  mark: 'Mark period start', date: 'Period start date', editing: 'Editing period start', stopEditing: 'Cancel editing',
   loading: 'Loading your calendar', saving: 'Saving your changes', retry: 'Retry', reload: 'Refresh calendar',
   draft: 'Selected date; not saved yet',
   loadError: 'We couldn’t load your calendar. Please try again',
@@ -24,12 +29,17 @@ const en = {
   deleteError: APPROVED_COPY.calendar[12], deleted: APPROVED_COPY.calendar[13], empty: APPROVED_COPY.calendar[14],
 };
 const tr = {
+  editDates: 'Tarihleri düzenle', save: 'Kaydet', cancelDraft: 'Vazgeç', today: 'Bugün',
+  editHint: 'Bir başlangıç seç. Kayıtlı tarihe dokunarak silmeyi, ardından başka güne dokunarak taşımayı seç.',
+  draftPolicy: 'Kaydedilmemiş seçim sekmelerde korunur; uygulamayı kapatmak veya yenilemek seçimi temizler.',
+  addDraft: 'Eklenecek', editDraft: 'Taşınacak', deleteDraft: 'Silinecek', spacing: 'Regl başlangıçları arasında en az 15 gün olmalı',
+  continueChange: 'Aynı işleme devam et', pendingStatus: 'Bu değişiklik henüz doğrulanmadı. Durumunu kontrol edebilir veya aynı işleme devam etmeyi seçebilirsin.',
+
   checkStatus: 'Durumu kontrol et', checking: 'Değişiklik kontrol ediliyor', deleteStatusTitle: 'Silme durumu',
   deleteUnknown: 'Silme henüz doğrulanamadı. Aynı işleme devam etmek için durumunu kontrol et',
   unconfirmed: 'Değişiklik doğrulanamadı; kaydedilmiş olabilir. Tekrar denemeden önce yenile ve tarihlerini kontrol et',
   pendingReview: 'Önceki değişiklik henüz doğrulanamadı. Kontrol edip tekrar dene',
   title: 'Takvim', previous: 'Önceki ay', next: 'Sonraki ay', period: 'Regl', predicted: 'Tahmini', selected: 'Seçili',
-  mark: 'Regl başlangıcını işaretle', date: 'Regl başlangıç tarihi', editing: 'Düzenlenen regl başlangıcı', stopEditing: 'Düzenlemeyi iptal et',
   loading: 'Takvimin yükleniyor', saving: 'Değişikliklerin kaydediliyor', retry: 'Tekrar dene', reload: 'Takvimi yenile',
   draft: 'Seçili tarih henüz kaydedilmedi',
   loadError: 'Takvimin yüklenemedi. Lütfen tekrar dene',

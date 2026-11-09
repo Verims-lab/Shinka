@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import ShinkaButton from '@/components/shinka/ShinkaButton';
 import { calendarCopy, calendarErrorKey } from '@/foundation/i18n/calendarCopy';
 import { formatCalendarDate } from './CalendarMonth';
-export default function CalendarDeleteDialog({ date, busy, checking = false, unresolved = false, language, onCancel, onConfirm, error }) {
+export default function CalendarDeleteDialog({ date, busy, checking = false, unresolved = false, language, canContinue = false, onContinue = undefined, onCancel, onConfirm, error }) {
   const dialog = useRef(null), copy = key => calendarCopy(key, language);
   const { dismiss, ...modal } = useModalSurface(dialog, onCancel);
   return <dialog ref={dialog} tabIndex={-1} {...modal} aria-labelledby="calendar-delete-title" aria-describedby="calendar-delete-description"
@@ -15,6 +15,7 @@ export default function CalendarDeleteDialog({ date, busy, checking = false, unr
     <div className="mt-6 flex flex-col gap-2">
       <ShinkaButton autoFocus variant="secondary" disabled={busy} onClick={dismiss}>{copy('cancel')}</ShinkaButton>
       <ShinkaButton disabled={busy} onClick={onConfirm}>{copy(busy ? checking ? 'checking' : 'saving' : unresolved ? 'checkStatus' : error ? 'retry' : 'delete')}</ShinkaButton>
+      {unresolved && canContinue && <ShinkaButton variant="secondary" disabled={busy} onClick={onContinue}>{copy('continueChange')}</ShinkaButton>}
     </div>
   </dialog>;
 }

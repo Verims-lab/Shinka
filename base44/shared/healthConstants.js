@@ -1,5 +1,5 @@
 // Health catalog constants — the single source of the Health catalog version.
-export const HEALTH_CATALOG_VERSION = "HC-060.0";
+export const HEALTH_CATALOG_VERSION = "HC-061.0";
 export const REPORT_SCHEMA_VERSION = "shinka.health.report/1";
 export const CASE_TIMEOUT_MS = 20000;
 

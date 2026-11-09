@@ -13,7 +13,7 @@ export function moveMonth(month, delta) {
 export function formatCalendarDate(date, language, options = { day: 'numeric', month: 'long', year: 'numeric' }) {
   return new Intl.DateTimeFormat(language === 'tr' ? 'tr-TR' : 'en-GB', { ...options, timeZone: 'UTC' }).format(new Date(`${date}T12:00:00Z`));
 }
-export default function CalendarMonth({ value, selected, onSelect, onMonth, disabled, language }) {
+export default function CalendarMonth({ value, selected, onSelect, onMonth, disabled, language, editMode = false, editing = null }) {
   const root = useRef(null), copy = key => calendarCopy(key, language);
   const first = new Date(`${value.month}-01T12:00:00Z`);
   const offset = (first.getUTCDay() + 6) % 7;
@@ -44,18 +44,19 @@ export default function CalendarMonth({ value, selected, onSelect, onMonth, disa
       </div>
       {Array.from({ length: cells.length / 7 }, (_, week) => <div role="row" key={week} className="grid grid-cols-7">
         {cells.slice(week * 7, week * 7 + 7).map((day, index) => <div role="gridcell" key={day || `empty-${index}`} aria-selected={!!day && selected === day} className="flex justify-center">
-          {day && <button type="button" data-calendar-date={day} data-period={recorded.has(day)} data-predicted={predicted.has(day)} disabled={disabled}
-            aria-label={[formatCalendarDate(day, language), starts.has(day) ? copy('start') : recorded.has(day) ? copy('period') : predicted.has(day) ? copy('predicted') : '', selected === day ? copy('selected') : ''].filter(Boolean).join(', ')}
+          {day && <button type="button" data-calendar-date={day} data-start={starts.has(day)} data-draft={editMode && day === selected ? editing ? editing.date === day ? 'delete' : 'edit' : 'add' : editMode && editing?.date === day ? 'from' : undefined} data-period={recorded.has(day)} data-predicted={predicted.has(day)} disabled={disabled || editMode && day > value.today && !starts.has(day)}
+            aria-describedby={editMode ? 'calendar-edit-hint' : undefined}
+            aria-label={[formatCalendarDate(day, language), starts.has(day) ? copy('start') : recorded.has(day) ? copy('period') : predicted.has(day) ? copy('predicted') : '', day === value.today ? copy('today') : '', selected === day ? copy('selected') : '', editMode && day === selected ? copy(editing ? editing.date === day ? 'deleteDraft' : 'editDraft' : 'addDraft') : '', editMode && editing?.date === day && day !== selected ? copy('editDraft') : ''].filter(Boolean).join(', ')}
             aria-current={day === value.today ? 'date' : undefined}
             onClick={() => onSelect(day)}
             className={`shinka-calendar-day text-shinka-body rounded-full text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum ${recorded.has(day) ? 'bg-shinka-blush' : predicted.has(day) ? 'bg-shinka-lavender' : ''} ${selected === day ? 'ring-2 ring-inset ring-shinka-plum' : ''}`}>
-            {Number(day.slice(-2))}{starts.has(day) && <span aria-hidden="true" className="block h-1 w-1 rounded-full bg-shinka-plum mx-auto"/>}
+            {Number(day.slice(-2))}<span aria-hidden="true" className="shinka-calendar-marker">{editMode && day === selected ? editing?.date === day ? '−' : '+' : editMode && editing?.date === day ? '→' : day === value.today ? '•' : ''}</span>{starts.has(day) && <span aria-hidden="true" className="block h-1 w-1 rounded-full bg-shinka-plum mx-auto"/>}
           </button>}
         </div>)}
       </div>)}
     </div>
     <ul className="flex flex-wrap gap-x-5 gap-y-2 text-shinka-caption" aria-label={copy('title')}>
-      {['period', 'predicted', 'selected'].map(key => <li key={key} className="flex items-center gap-2"><span aria-hidden="true" className={`h-4 w-4 rounded-full ${key === 'period' ? 'bg-shinka-blush' : key === 'predicted' ? 'bg-shinka-lavender' : 'ring-2 ring-inset ring-shinka-plum'}`}/>{copy(key)}</li>)}
+      {['start', 'predicted', 'today', 'selected'].map(key => <li key={key} className="flex items-center gap-2"><span aria-hidden="true" className={`h-4 w-4 rounded-full ${key === 'start' ? 'bg-shinka-blush' : key === 'predicted' ? 'bg-shinka-lavender border border-dashed border-shinka-plum' : key === 'today' ? 'border-b-2 border-shinka-plum' : 'ring-2 ring-inset ring-shinka-plum'}`}/>{copy(key)}</li>)}
     </ul>
   </section>;
 }

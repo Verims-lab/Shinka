@@ -191,7 +191,7 @@ export const CALENDAR_TESTS = [
    control.select('2026-10-02'); check(control.getSnapshot().editing.id===id);
    f.fault('beforeCommit'); await control.submit('edit');
    check(control.getSnapshot().selected==='2026-10-02' && control.getSnapshot().value.starts[0].date==='2026-10-01');
-   f.fault(null); await control.retry(); check(f.rows.user_period_record[0].id===id && f.rows.user_period_record[0].period_start_date==='2026-10-02');
+   f.fault(null); await control.retry(); await control.continueIntent(); check(f.rows.user_period_record[0].id===id && f.rows.user_period_record[0].period_start_date==='2026-10-02');
    control.dispose();
  }],
  ['CA16', 'Old responses cannot restore health after invalidation/session disposal; double submits coalesce', async () => {
