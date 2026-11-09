@@ -9,7 +9,15 @@ export function privacyFixture() {
   f.tables.UserCalendarAction.push({ id: 'privacy-receipt', user_id: 'ownerA', desired_date: '2026-10-01' });
   const gate = createOnboardingCycleGate();
   const http = (body, owner = 'ownerA', options = {}) => handlePrivacyRequest(new Request('https://fixture.invalid/privacy', { method: 'POST', body: JSON.stringify(body) }), () => f.raw(owner), { now: f.now, gate, ...options });
-  const request = (action, payload = {}, owner = 'ownerA') => privacyRequest(action, payload, { functions: { invoke: async (_name, body) => ({ data: await (await http(body, owner)).json() }) } });
+  const request = (action, payload = {}, ownerOrOptions = 'ownerA') => {
+    const options = ownerOrOptions && typeof ownerOrOptions === 'object' ? ownerOrOptions : {};
+    const owner = ownerOrOptions && typeof ownerOrOptions === 'object' ? 'ownerA' : ownerOrOptions;
+    return privacyRequest(action, payload, { functions: { invoke: async (_name, body) => {
+      const response = await http(body, owner), data = await response.json();
+      if (!response.ok) throw { response: { status: response.status, data } };
+      return { data };
+    } } }, options.timeoutMs ?? 20000, options);
+  };
   return { ...f, http, request };
 }
 export const privacyIntent = kind => ({ kind, confirmed: true, recovery_key: 'a'.repeat(64) });

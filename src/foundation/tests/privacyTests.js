@@ -1,3 +1,4 @@
+import { PRIVACY_STATUS_TESTS } from './privacyStatusTests';
 import { check, rejects } from './dataModelTests';
 import { privacyFixture, privacyIntent, memoryRecovery } from './privacyFixture';
 import { HEALTH_CLEANUP, ACCOUNT_CLEANUP } from '../../../base44/shared/privacyPolicy.js';
@@ -9,6 +10,7 @@ const writes = f => f.state.calls.filter(c => c.method !== 'filter');
 const unchanged = (f, names) => JSON.stringify(names.map(name => f.tables[name]));
 /** @type {import('./testTypes').FoundationTest[]} */
 export const PRIVACY_TESTS = [
+  ...PRIVACY_STATUS_TESTS,
   ['PR20', 'Cleanup cannot report complete before the durable request fence is released', async () => {
     const f = privacyFixture();
     f.once('before', c => c.name === 'UserPrivacyRequest' && c.method === 'update' && c.args[1].status === 'COMPLETED');
@@ -158,7 +160,7 @@ export const PRIVACY_TESTS = [
     check(f.tables.UserPeriodRecord.length === 1 && f.tables.UserCyclePrediction.some(row => row.id === 'foreign'));
     const g = privacyFixture(); await g.request('begin', privacyIntent('DELETE_ACCOUNT'));
     g.once('before', c => c.name === 'UserProfile' && c.method === 'filter');
-    await rejects(() => g.request('status', privacyIntent('DELETE_ACCOUNT'), null), 'PRIVACY_OUTCOME_UNCONFIRMED');
+    await rejects(() => g.request('status', privacyIntent('DELETE_ACCOUNT'), null), 'PRIVACY_STATUS_UNAVAILABLE');
   }],
   ['PR11', 'Withdrawal/account deletion collisions and admin reset respect persisted target admission', async () => {
     const f = privacyFixture(); f.once('before', c => c.method === 'delete');
@@ -190,6 +192,6 @@ export const PRIVACY_TESTS = [
     const f = privacyFixture(); await f.request('begin', privacyIntent('DELETE_ACCOUNT'));
     f.state.time = '2026-10-23T12:00:00.000Z';
     check((await f.http({ action: 'status', ...privacyIntent('DELETE_ACCOUNT') }, null)).status === 403);
-    await rejects(() => privacyRequest('status', {}, { functions: { invoke: async () => ({ data: { state: 'PLATFORM_PENDING', activeDataRemoved: true, permanentDeletionVerified: true } }) } }), 'PRIVACY_OUTCOME_UNCONFIRMED');
+    await rejects(() => privacyRequest('status', {}, { functions: { invoke: async () => ({ data: { state: 'PLATFORM_PENDING', activeDataRemoved: true, permanentDeletionVerified: true } }) } }), 'PRIVACY_RESPONSE_INVALID');
   }],
 ];

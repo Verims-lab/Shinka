@@ -2,12 +2,19 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-059
+**Current BuildMarker:** Buildmarker-060
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
+
+
+## 060 — Account privacy correction (2026-11-09)
+
+Started clean Test 20978bd, identical to origin/Test and one commit ahead of main 9b5da80. Preserved 059 Pattern/navigation and all Base44 visuals. Gizem16's 18-second recording shows unknown result followed by Checking status near the end; it does not prove a hung backend. Existing hosted admin privacy read succeeded, with admin self-deletion correctly disabled; no incident receipt/native response was available.
+
+Code confirmed loss of error distinctions and misleading local-intent status copy, no local abort cleanup, and status loading awaiting potentially unsettled provider logout. Product session fencing also differs from the raw owner privacy authority: expired receipt reauthentication must use the latter, preserve binding and never renew the capability. Added controlled-clock, real Request/Response handler and mounted component regressions. Approved alternative copy preserves erasure, not indefinite retention. Initial local server EPERM required the permitted loopback/browser runner; first PR24 failed because its fixture spread an entity Proxy, corrected by intercepting only the selected entity. Typecheck annotations were corrected without exclusions. Final: Chromium/WebKit 800/800 each, final boundary 34/34 each, 35 privacy browser scenarios each; zero page errors. Quality/performance/history PASS, dependency vulnerabilities 0. Health +0/~4/-0; local synthetic 147 PASS/13 expected hosted BLOCKED/0 FAIL. Initial T44 shared HC mismatch and cross-cell fixture recovery failure were corrected and preserved in execution. [Execution and remaining acceptance](reports/SHINKA_PRIVACY_STATUS_060.md).
 
 
 ## 059 — Single Pattern theme, Lunar Timeline and navigation evidence (2026-11-09)

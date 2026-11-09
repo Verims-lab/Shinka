@@ -85,7 +85,7 @@ export const base44 = {
       try { return { data: await f.tools(body, actor) }; }
       catch (error) { return { data: { error_code: error.code || 'TEST_TOOLS_FAILED' } }; }
     }
-    if (name === 'accountPrivacy') { const f = await loadPrivacyLab(); return {data:await(await f.http(body, session === 'admin' ? 'adminA' : session === 'user' ? 'ownerA' : null)).json()}; }
+    if (name === 'accountPrivacy') { const f = await loadPrivacyLab(); const response = await f.http(body, session === 'admin' ? 'adminA' : session === 'user' ? 'ownerA' : null); const data = await response.json(); if (!response.ok) throw { response: { status: response.status, data } }; return { data }; }
     if (name === 'you') { const f=await loadYouLab(actor);return {data:await(await f.http(body)).json()}; }
     if (name === 'pattern') {
       if (!patternLab) patternLab = import('@/foundation/tests/patternFixture').then(({patternFixture,patternRow})=>{const f=patternFixture();f.tables.UserDailyMessage.push(patternRow('2026-10-19'));globalThis.__patternLab=f;return f;});

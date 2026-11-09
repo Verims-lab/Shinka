@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-059
+**Current BuildMarker:** Buildmarker-060
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -10,6 +10,11 @@
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
+
+
+## 060 — Explicit confirmation-copy decision
+
+On 2026-11-09 the user approved the proposed TR/EN alternative describing active account/personal-data removal and pending verified permanent erasure, with Cancel / Delete Account and Vazgeç / Hesabımı Sil. The initially proposed “information will be retained” sentence conflicts with implemented 023 erasure and is not adopted. The exact approved text is in UI_UX_STANDARDS and privacyCopy; no retention/deletion authorization or provider rule changed. [060 evidence](reports/SHINKA_PRIVACY_STATUS_060.md).
 
 
 ## 059 — Single Pattern theme, Lunar Timeline and navigation evidence (2026-11-09)

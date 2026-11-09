@@ -2,13 +2,20 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-059
+**Current BuildMarker:** Buildmarker-060
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
 **Scope:** Health catalog HC-058.0; repository, synthetic and external evidence separated.
 
+
+
+## 060 — Focused privacy status acceptance (HC-059.0)
+
+Health changes: **0 added / 4 updated / 0 removed**. H11-003 adds PR22/PR27 (account double confirmation, no-write coalesced status, read failures cannot establish removal). H12-039 adds PR21/PR23–PR26 (closed service outcomes, expired native-owner recovery binding, controlled timeout/cancel, late response and delayed logout). H13-019 maps PV01–PV06 plus actual-App checkPrivacyFlow for concise copy, TR/EN narrow/200% modal and distinct status states/account isolation. H05-009 extends the unchanged strict content verification policy to 060. No assertion or hosted requirement is removed.
+
+H11-008 remains external: physical/provider/recovery acceptance and permanent platform erasure are unverified. The original video and 023 evidence remain historical, not a passing hosted result. Local execution and initial failed attempts are in [060 report](reports/SHINKA_PRIVACY_STATUS_060.md) and [execution](reports/privacy-status-060/execution.json). No live Full Health or Security scan.
 
 
 ## 059 — Single Pattern theme, Lunar Timeline and navigation evidence (2026-11-09)

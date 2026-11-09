@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-059
+**Current BuildMarker:** Buildmarker-060
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -12,6 +12,12 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 060 — Bounded privacy status transport
+
+AccountPrivacy remains a public shell over the existing closed accountPrivacy backend. PrivacyActions/controller coalesces one request, uses a 20-second service deadline and an AbortSignal for local timer/listener cleanup, and seals old generations on disposal/session end. It never cancels already transmitted SDK work or automatically resumes cleanup. Status result publication is independent of provider logout completion. Central TR/EN copy reflects verified state and classified failures.
+
+For an expired receipt, the backend can use the existing raw native owner session only after fresh owner/User/lifecycle/admin admission, and only if the hashed receipt resolves to that same owner's original request. Product applicationSession fencing remains intact; no second identity or general auth fallback is introduced. Anonymous expiry still fails; no receipt renewal, request replacement or schema change. [060 execution](reports/SHINKA_PRIVACY_STATUS_060.md).
 
 ## 059 — Single Pattern theme, Lunar Timeline and navigation evidence (2026-11-09)
 

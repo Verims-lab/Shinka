@@ -1,0 +1,85 @@
+{
+  "scope": "FINAL_RUNTIME_AND_TEST_FILES",
+  "files": [
+    {
+      "path": "base44/shared/contentStateContract.js",
+      "sha256": "413fe8e405e389d5f929b62015dd26cc5bbd120be52eecb58ba25aa60bd2f238"
+    },
+    {
+      "path": "base44/shared/healthConstants.js",
+      "sha256": "b275e8becfb1067e9e123205a7f70a354c542a46c3fd080a52ec1268faca06b9"
+    },
+    {
+      "path": "base44/shared/healthExecutionScope.js",
+      "sha256": "bb3b5bb617fa7a337acc548f9fd65b151fec59e2edef7e60c0bb84c871f5ec24"
+    },
+    {
+      "path": "base44/shared/privacyOperation.js",
+      "sha256": "be34b72b5b47d8e474ac44709cb2a2055cd68d226a455cc6816137bbc2036880"
+    },
+    {
+      "path": "base44/shared/privacyRepository.js",
+      "sha256": "3a34fc0adcedda61c63f180ea32ceb349654979a111569e7dd8ae97a24b8c4c6"
+    },
+    {
+      "path": "scripts/checkPrivacyFlow.mjs",
+      "sha256": "8266420880d68eff22d6b53e19843e2316e6efec7a2ae353344a535bf6588dde"
+    },
+    {
+      "path": "scripts/testHarness/ObservedAuth.jsx",
+      "sha256": "15d0569bc29b077cfca83193a3dd060a7019f5a785dc6a462dbbd22e88622a3c"
+    },
+    {
+      "path": "scripts/testHarness/fakeBase44.js",
+      "sha256": "77c88e7fb7263d4b5bc4d12103e83a5323bb7b27f1eb4c7e8be309ea7399ad1d"
+    },
+    {
+      "path": "src/features/privacy/PrivacyActions.jsx",
+      "sha256": "a7b715dd1284d2f97ab20ca7875dc63137bad8164055dc85d0ae0423c5ae5043"
+    },
+    {
+      "path": "src/features/privacy/privacyController.js",
+      "sha256": "92200855175529b813373d70aa78be75606b60d004d213deea8881bcbc4ce02c"
+    },
+    {
+      "path": "src/foundation/buildMarker.js",
+      "sha256": "df7840ac7fdbdd79b8addb0df6996d845640ca911653393c3b8ca2d6bf9866c8"
+    },
+    {
+      "path": "src/foundation/health/cases/h05.js",
+      "sha256": "b986b8888859ba82e2a2a96f765ed3d0d408009994d1b9d05d172ecccffbd005"
+    },
+    {
+      "path": "src/foundation/health/cases/privacy.js",
+      "sha256": "7873ac3b1b97cdec733c6e3fa4eb330a0606f87df08d925ad10ba9b02c8de430"
+    },
+    {
+      "path": "src/foundation/i18n/privacyCopy.js",
+      "sha256": "723fa55adfb304b26967b8ecbf8823e62f617cdbb74bce6c6e219d0ac09661ef"
+    },
+    {
+      "path": "src/foundation/tests/privacyFixture.js",
+      "sha256": "5c31e66007ae7d8cfdffcca29452e1aa55764731d404a699cc9e69ed64399c75"
+    },
+    {
+      "path": "src/foundation/tests/privacyTests.js",
+      "sha256": "33475321a0c4b75e70e311a2f6261463b825c9cb3c9c16d0985e3237da6bf0f8"
+    },
+    {
+      "path": "src/foundation/tests/privacyUiTests.jsx",
+      "sha256": "05b2717ecd508832a47d641d879268ae3e5502bfae9ef4142c9dab3a131938aa"
+    },
+    {
+      "path": "src/pages/AccountPrivacy.jsx",
+      "sha256": "4c8bfb2f650848c7a3c2c9358d0cf344e5383dd2f69a0a1edacc85a9d36dc439"
+    },
+    {
+      "path": "src/services/privacyService.js",
+      "sha256": "0e3b8d7fce61074d469a48589a631913a5f63980829e0bf14ae28f9dbea2005e"
+    },
+    {
+      "path": "src/foundation/tests/privacyStatusTests.js",
+      "sha256": "c4bd9c9c1bdd6e0cda4e379fdde78f9735bef870972eba4a4f5f38f04e674d89"
+    }
+  ]
+}

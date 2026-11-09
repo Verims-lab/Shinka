@@ -2,12 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-059
+**Current BuildMarker:** Buildmarker-060
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
+
+
+## 060 — Focused privacy confirmation and status closure
+
+Generate Buildmarker-060 / HC-059.0 once through recordBuild; retain 056–060. Preserve earlier 059 scope/open items and all existing changes. This task authorizes local synthetic privacy regressions and targeted read-only web observation only. No live deletion/resume/withdrawal/cleanup, Full Health/Security scan, main merge or publish. Run affected Chromium/WebKit and mandatory local quality/performance gates. [060 evidence](reports/SHINKA_PRIVACY_STATUS_060.md).
 
 
 ## 059 — Single Pattern theme, Lunar Timeline and navigation evidence (2026-11-09)

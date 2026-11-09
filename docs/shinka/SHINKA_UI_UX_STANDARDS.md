@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-059
+**Current BuildMarker:** Buildmarker-060
 **Last Updated:** 2026-11-09
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -11,6 +11,16 @@
 **Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+
+## 060 — Approved concise deletion copy and status presentation
+
+User approval on 2026-11-09 replaces the conflicting retention sentence and the old technical confirmation with these exact strings in `privacyCopy`:
+
+- EN title: **Delete your account?** Body: **Your account and personal information will be removed from the app, and you will no longer be able to access Shinka. Permanent deletion will remain pending until it is verified.** Buttons: **Cancel / Delete Account**.
+- TR title: **Hesabını silmek istiyor musun?** Body: **Hesabın ve kişisel bilgilerin uygulamadan kaldırılacak ve artık Shinka'ya erişemeyeceksin. Kalıcı silme, doğrulanana kadar beklemede kalacak.** Buttons: **Vazgeç / Hesabımı Sil**.
+
+No provider/internal-scope detail belongs in this confirmation. Retain cancel-first focus, Escape/back, focus return, labelled dialog, >=44px controls, content growth and existing visuals/theme. Central TR/EN status copy distinguishes Checking status from mutation progress, in-progress from merely local pending intent, temporary failure/timeout from sign-in required. Never equate HTTP200 with completion or claim provider sign-out succeeded merely because active removal was verified. Saved recovery and sign-in-to-create-new-request messages are not shown together; expired authority offers existing-provider sign-in preserving locale and the privacy return route. [060 evidence](reports/SHINKA_PRIVACY_STATUS_060.md).
 
 
 ## 059 — Single Pattern theme, Lunar Timeline and navigation evidence (2026-11-09)

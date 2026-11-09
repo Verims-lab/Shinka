@@ -1,3 +1,4 @@
+import { healthReadDiagnostic } from './healthReadDiagnostics.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
 import { readBoundedJson } from './boundedJson.js';
 import { createTestRepository } from './adminTestRepository.js';
@@ -14,7 +15,10 @@ const secretValid = value => typeof value === 'string' && /^[a-f0-9]{64}$/.test(
 export async function privacyOperation(client, body, { now = () => new Date(), gate = warmGate } = {}) {
   if (!body || typeof body !== 'object' || Array.isArray(body) || !['read', 'begin', 'resume', 'status'].includes(body.action) || Object.keys(body).some(key => !['action', 'kind', 'confirmed', 'recovery_key'].includes(key))) privacyFail('INVALID_REQUEST', 400);
   if (body.action !== 'read' && !PRIVACY_KINDS.includes(body.kind)) privacyFail('INVALID_REQUEST', 400);
-  if (body.recovery_key !== undefined && !secretValid(body.recovery_key)) privacyFail('INVALID_REQUEST', 400);
+  if (body.recovery_key !== undefined && !secretValid(body.recovery_key)) {
+    if (body.action === 'status' && body.kind === 'DELETE_ACCOUNT') privacyFail('PRIVACY_RECOVERY_INVALID', 403);
+    privacyFail('INVALID_REQUEST', 400);
+  }
   const repo = privacyRepository(client, now), adminRepository = createTestRepository(client);
   const project = async request => {
     if (!request) return { state: 'IDLE', kind: body.kind || null, permanentDeletionVerified: false };
@@ -27,8 +31,15 @@ export async function privacyOperation(client, body, { now = () => new Date(), g
   };
   // Only read-only, non-identifying outcome is available through a separate
   // 256-bit receipt after auth removal. Operation IDs never authorize anything.
-  if (body.action === 'status' && body.kind === 'DELETE_ACCOUNT' && body.recovery_key) return project(await repo.recover(body.recovery_key));
-  const principal = await requireAuthenticatedUser(client), owner = principal.id;
+  let recoveryDenied = null;
+  if (body.action === 'status' && body.kind === 'DELETE_ACCOUNT' && body.recovery_key) {
+    try { return await project(await repo.recover(body.recovery_key)); }
+    catch (error) { if (error.code !== 'PRIVACY_RECOVERY_INVALID') throw error; recoveryDenied = error; }
+  }
+  let principal;
+  try { principal = await requireAuthenticatedUser(client); }
+  catch (error) { if (recoveryDenied && error.code === 'AUTH_REQUIRED') throw recoveryDenied; throw error; }
+  const owner = principal.id;
   const admit = async (kind = body.kind) => {
     const fresh = await requireAuthenticatedUser(client);
     const user = await repo.user(owner);
@@ -45,6 +56,9 @@ export async function privacyOperation(client, body, { now = () => new Date(), g
     }
   };
   await admit(body.action === 'read' ? null : body.kind);
+  // Product applicationSession may deny a pending-deletion account. The raw
+  // native session is admitted above solely for this request-bound status read.
+  if (recoveryDenied) return project(await repo.recover(body.recovery_key, owner));
   if (body.action === 'read') {
     const rows = await readPrivacyRequests(client, owner);
     const request = rows.find(row => row.kind === 'DELETE_ACCOUNT') || rows.find(row => row.status !== 'COMPLETED') || rows[0];
@@ -87,11 +101,20 @@ export async function privacyOperation(client, body, { now = () => new Date(), g
   });
 }
 export async function handlePrivacyRequest(req, createClient, options = {}) {
+  let readOnly = false;
   try {
     if (req.method !== 'POST') privacyFail('METHOD_NOT_ALLOWED', 405);
     const body = await readBoundedJson(req, 1200, privacyFail);
+    readOnly = ['read', 'status'].includes(body?.action);
     return Response.json(await privacyOperation(createClient(req), body, options));
   } catch (error) {
+    if (readOnly && !(error instanceof InternalError)) {
+      const d = healthReadDiagnostic(error);
+      const code = [401, 403].includes(d.httpStatus) ? 'AUTH_REQUIRED'
+        : d.code === 'TIMEOUT' ? 'PRIVACY_STATUS_TIMEOUT'
+        : ['RATE_LIMITED', 'SERVICE_UNAVAILABLE', 'NETWORK_UNAVAILABLE'].includes(d.code) ? 'PRIVACY_STATUS_UNAVAILABLE' : 'PRIVACY_OUTCOME_UNCONFIRMED';
+      return Response.json({ error_code: code }, { status: [401, 403, 429].includes(d.httpStatus) ? d.httpStatus : 503 });
+    }
     return Response.json({ error_code: error instanceof InternalError ? error.code : 'PRIVACY_OUTCOME_UNCONFIRMED' }, { status: error instanceof InternalError ? error.status : 503 });
   }
 }
