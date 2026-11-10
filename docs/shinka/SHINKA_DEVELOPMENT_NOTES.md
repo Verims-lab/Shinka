@@ -2,13 +2,24 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-062
-**Last Updated:** 2026-11-09
+**Current BuildMarker:** Buildmarker-063
+**Last Updated:** 2026-11-10
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 063 — Compact Lunar Timeline presentation
+
+Preflight Test df88400 matched origin/Test; main e425c7c was one merge commit ahead with the same tree. Fast-forwarded Test without losing source or the existing untracked App Store screenshot outputs. Base44 skills updated in a temporary directory; no application dependency changed. Approved assets inspected: only whole section/onboarding compositions exist, so isolated static SVG washes/craters and botanical paths implement the reference without duplicating background artwork.
+
+Only Lunar Timeline and its card styling change. No changes to Pattern selection, calculations, DTO validation, services/controllers, lookup source, schema or business rules. The actual instants, localized formatting, timezone and ratio-based marker/active phase remain authoritative. Source hashes and same-fixture before/after receipts prove the boundary. Existing PU03/PU09 and checkPatternFlow strengthen layout, accessible scrolling, fallback-font and all-phase/year-boundary DOM evidence. Health +0/~2/-0; generated Buildmarker-063 / HC-062.0 retains 059–063.
+
+Initial type annotation, test-diagnostic syntax, floating-point containment and fallback-font overflow failures are preserved in execution evidence, with fixes rather than suppressed assertions. WebKit needed explicit focused-region Arrow/Home/End support. The general mobile probe now checks each timeline glyph against its own node and validates the scroll region remains inside the page; only genuinely clipped screen-reader-only text is excluded from visual overflow. Negative nowrap-label and off-page-region fixtures verify both failure paths. Final gates and limitations: [063 delivery](reports/SHINKA_LUNAR_PRESENTATION_063.md). No live data change/import/Full Health/Security scan/main merge/publish; Test-only delivery.
+
+
+Final local result: Chromium/WebKit 805/805 each, 150/150 mobile and 42/42 Pattern scenarios per engine; real Arrow/End/Home plus negative geometry controls pass. Quality/performance/history PASS, npm advisories 0. Local synthetic Health 147 PASS / 13 expected prerequisite BLOCKED / 0 FAIL, save/list/open verified. See the 063 execution receipt for prior failures and the unchanged source hashes.
 
 ## 062 — Calendar grid implementation
 

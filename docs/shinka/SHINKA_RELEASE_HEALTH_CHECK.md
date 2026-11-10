@@ -2,14 +2,23 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-062
-**Last Updated:** 2026-11-09
+**Current BuildMarker:** Buildmarker-063
+**Last Updated:** 2026-11-10
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-061.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-062.0; repository, synthetic and external evidence separated.
 
 
+
+## 063 — Lunar presentation regression scope
+
+Buildmarker-063 / HC-062.0 changes **0 added / 2 updated / 0 removed**: H13-017 maps the compact composition, readable keyboard-scrolled timeline at narrow/200% text, unchanged UTC instants, actual DOM time ratios, all active halos and year rollover; H05-009 extends only current-package metadata for the same strict content/hash/count policy. Serialized H13-017 execution scope matches the strengthened existing PU03/PU09 and checkPatternFlow. H10-001 calculations/partial/IANA/DST/year coverage and all error/Retry/privacy/refresh tests are retained unchanged. No case IDs, severity, applicability or acceptance gates are relaxed.
+
+The obsolete requirement that all enlarged labels remain simultaneously inside the card is replaced with explicit timeline-only scrolling, page containment, nonoverlapping/unclipped labels and keyboard reachability. All five must still fit normal 360px+ mobile widths in the measured data set. General mobile glyph checks use node bounds inside the contained region; negative clipped-label and off-page-region fixtures must fail. Screen-reader text is excluded from visual geometry only when its real CSS clips it. Final local Chromium/WebKit, quality/performance, same-data loaded-asset images and failed attempts are recorded in [063 delivery](reports/SHINKA_LUNAR_PRESENTATION_063.md). No live Full Health, Security scan or data operation; synthetic browser evidence does not establish native-device or published-source acceptance.
+
+
+Final local result: Chromium/WebKit 805/805 each, 150/150 mobile and 42/42 Pattern scenarios per engine; real Arrow/End/Home plus negative geometry controls pass. Quality/performance/history PASS, npm advisories 0. Local synthetic Health 147 PASS / 13 expected prerequisite BLOCKED / 0 FAIL, save/list/open verified. See the 063 execution receipt for prior failures and the unchanged source hashes.
 
 ## 062 — Calendar grid regression scope
 

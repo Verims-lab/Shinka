@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-062
-**Last Updated:** 2026-11-09
+**Current BuildMarker:** Buildmarker-063
+**Last Updated:** 2026-11-10
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
@@ -11,6 +11,15 @@
 **Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+
+## 063 — Compact botanical Lunar Timeline (2026-11-10)
+
+Presentation-only replacement of 059 numbered nodes/straight track/visible vertical list. Keep the localized Lunar Timeline heading, Pattern background, dominant-theme card and shared navigation unchanged. A soft cream/blush rounded card holds five static watercolor-style SVG moons joined by fine botanical curves/stars; no new image, animation, filter or dependency. Approved section images are complete compositions, not reusable isolated phase artwork; do not duplicate or crop the onboarding composition into nodes. Explicit `.dark` tokens follow the saved manual preference, never OS theme.
+
+Each node has the same local dd.MM / HH:mm above and phase plus dd.MM HH:mm below. The fifth is explicitly Next New Moon / Sonraki Yeni Ay. Validated server UTC instants, `position`, `today_position`, `active_index`, current phase, timezone and all calculations/contracts remain unchanged. Actual DOM centers use the true ratios; the decorative curves follow those centers. Today is a small proportional marker, independently positioned from the single halo on the actual active node. IANA timezone remains a compact footer.
+
+Five nodes fit 360/390/430px normal mobile in both locales. At 320px or 200% text, only the named, keyboard-focusable timeline region scrolls horizontally (Arrow Left/Right and Home/End, including WebKit); the document remains contained. Label sizes stay readable (14px phase, 12px date at default), grow with text enlargement and never shrink to force fit. The ordered DOM list is the accessible phase/time equivalent, with `aria-current`; duplicate top dates and all artwork are aria-hidden and pointer-inert. Loading, partial/missing coverage, error/Retry, retained-card recovery and privacy clearing are unchanged. [063 source, images and checks](reports/SHINKA_LUNAR_PRESENTATION_063.md).
 
 
 ## 062 — Calendar grid editing (2026-11-09)
@@ -43,7 +52,7 @@ No provider/internal-scope detail belongs in this confirmation. Retain cancel-fi
 
 The current owner request replaces 038's two-theme/two-Moon-field presentation. Your Recurring Themes renders exactly the dominant assigned category, count descending then last assigned day descending, without day counters. The selected category alone may supply its approved bilingual explanation and decorative illustration; no random daily text, generic icon or wrong-category art is a substitute. The available authority contains six approved names, but no six-category explanation/asset catalog. Until supplied, only the selected heading is shown; the requested illustrated explanation card remains explicitly incomplete. The existing watercolor backdrop remains its sole composition owner; no repeated moon/plant hero and no header language selector.
 
-Lunar Timeline / Ay Zaman Çizelgesi restores the five-node NEW→WAXING→FULL→WANING→next NEW projection from actual lookup interval boundaries. Horizontal positions and Today use true UTC time ratios and backend observed_at. Numbered nodes correspond to wrapping textual phase/date/time rows, dd.MM HH:mm in validated IANA time zone; no horizontal scrolling. Current phase is distinct from Today. Missing cycle coverage shows unavailable and any provable current phase, never a complete invented graphic. Independent section retry, retained data and privacy clearing remain.
+Lunar Timeline / Ay Zaman Çizelgesi restores the five-node NEW→WAXING→FULL→WANING→next NEW projection from actual lookup interval boundaries. Horizontal positions and Today use true UTC time ratios and backend observed_at. At the historical 059 checkpoint numbered nodes mapped to wrapping textual rows. The 063 presentation above supersedes those rows and the no-horizontal-scroll rule; dd.MM HH:mm and validated IANA time zone remain unchanged. Current phase is distinct from Today. Missing cycle coverage shows unavailable and any provable current phase, never a complete invented graphic. Independent section retry, retained data and privacy clearing remain.
 
 The 057 shared nav remains a 44px minimum auto-growing row plus 1px border and exactly one nav safe inset. No additional runtime height change was justified: published 058 measured 45px total/0 inset at 360 and 390px. 059 adds ancestor/footer-space and last-content assertions, injected duplicate-padding/margin negatives, 24px simulated Android inset and keyboard viewport restore. Physical APK/system-bar ownership remains unverified. [059 implementation, measurements and acceptance](reports/SHINKA_PATTERN_NAVIGATION_059.md)
 
@@ -282,7 +291,7 @@ Primary CTA: #6F415A, white text, radius 16, min height 52, disabled opacity .45
 White, radius 16, min height 52, horizontal padding 16; label required; field errors shown below the field.
 
 ## Icons
-Thin-line Lucide for function: Home `house`, Calendar `calendar-days`, Pattern `moon`, You `user-round`. Decorative Moon/flower/star pencil line-art never acts as the only control; Lunar Timeline phase icons follow the line-art style.
+Thin-line Lucide for function: Home `house`, Calendar `calendar-days`, Pattern `moon`, You `user-round`. Decorative Moon/flower/star pencil line-art never acts as the only control; 063 Lunar Timeline uses static watercolor-style SVG phase artwork with decorative botanical line art.
 
 ## Touch targets
 Minimum 44×44 for every functional control.
@@ -294,7 +303,7 @@ Functional transitions ≈200 ms. No continuous decorative animation.
 44×44 targets; readable type; AA contrast; accessible names for icon controls and screen-reader text for icon-only controls; state never by color alone (icon + text); visible focus; text scaling supported; no horizontal overflow at supported mobile width (360). Foundation checks are not an accessibility certification.
 
 ## Responsive rules
-Mobile-first; content within 20 px page padding; Lunar Timeline fits screen width without horizontal scroll (labels alternate top/bottom when needed).
+Mobile-first; content within 20 px page padding; 063 Lunar Timeline shows five nodes at normal mobile widths; narrow screens or enlarged text may scroll only inside its keyboard-accessible region.
 
 ## Localization
 EN/TR. Centralized stable keys; no duplicated visible strings in components; business enums locale-independent; "Terms of Service" consistent everywhere. Approved English strings in v1.1 are source copy; TR via localization. Short mobile messages have no terminal period. Device language applies to opening texts. Approved EN copy dictionary: `APPROVED_COPY` in `src/foundation/uiuxTables.js` (verbatim, e.g. "We couldn’t sign you in. Please try again", "Deactivate your account?", "Your account is now inactive"); customer screens import it via central localization.
@@ -320,7 +329,7 @@ Greeting is followed directly by the cards; the technical `DAILY_DUPLICATE_RECON
 Monthly view; actual period pastel pink, predicted light lavender, selected day ring; legend Period / Predicted / Selected; phases not color-split. Mark period start (select date → validate → save). Correction: select existing start → new date → same action updates. Delete period start only on actual starts, with confirmation (date + prediction update explained; Cancel changes nothing); busy state blocks re-taps; success only after actual-date readback and recalculation; error keeps prior state + Retry; last start deleted → empty state, mark action available. Health display hidden without consent.
 
 ## Pattern UX
-Read-only: **Your Recurring Themes** (one dominant assigned category; approved copy/art only) and **Lunar Timeline / Ay Zaman Çizelgesi** (proportional five transitions and Today, with accessible local date/time rows). See 059 above for incomplete-source behavior.
+Read-only: **Your Recurring Themes** (one dominant assigned category; approved copy/art only) and **Lunar Timeline / Ay Zaman Çizelgesi** (proportional five transitions and Today, with accessible ordered local date/time labels). See 063 above for presentation and preserved incomplete-source behavior.
 
 ## You UX
 Opened from top-right icon only. **My Profile** (inline edit: optional name, required DOB, optional birth time, optional GeoNames birthplace, read-only Sun sign). **App Preferences** (Language TR/EN; Daily Notifications on/off, local 06:00 shown, no time picker, no timezone picker). **Account & Privacy** (Privacy Policy, Terms of Service, Health Data Consent, Sign Out, Delete Account). Delete Account → one owner-erasure scope confirmation; active account/data removal must be verified and platform erasure stays explicitly pending (023). No menstrual data editing in You.

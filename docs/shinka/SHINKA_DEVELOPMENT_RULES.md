@@ -2,12 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-062
-**Last Updated:** 2026-11-09
+**Current BuildMarker:** Buildmarker-063
+**Last Updated:** 2026-11-10
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
+
+
+## 063 — Presentation-only Lunar Timeline
+
+Generate Buildmarker-063 / HC-062.0 once through recordBuild; retain 059–063. Preserve 062 and existing App Store artifacts. Scope is compact lunar presentation plus necessary UI regressions, existing Health mappings and documentation. Product data, calculations, transport and backend contracts remain unchanged. Run affected Chromium/WebKit and mandatory local quality/performance gates; retain same-data images and failed attempts. No dependency addition, live mutation/import/Full Health/Security scan, main merge or publish. Deliver only Test. [063 evidence](reports/SHINKA_LUNAR_PRESENTATION_063.md).
 
 
 ## 061 — Focused auth-first onboarding

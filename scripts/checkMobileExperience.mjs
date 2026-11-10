@@ -35,7 +35,7 @@ export async function checkMobileExperience(browser, origin, directory) {
       for(const scale of [1,2]){
         if(scale===2)await doubleText(page);
         const measured=await inspectMobileSurface(page);
-        const passed=measured.scrollWidth<=width+1&&!measured.small.length&&!measured.textOverflow.length&&!measured.contrastFailures.length&&measured.boundaries.every(r=>r.focus>=3&&r.input>=3)&&measured.documentScroll&&measured.overscrollY==='contain';
+        const passed=measured.scrollWidth<=width+1&&!measured.small.length&&!measured.textOverflow.length&&!measured.uncontainedScrollRegions.length&&!measured.contrastFailures.length&&measured.boundaries.every(r=>r.focus>=3&&r.input>=3)&&measured.documentScroll&&measured.overscrollY==='contain';
         rows.push({scenario:`${surface}-${scheme}-${language}-${width}-${scale}x`,...measured,passed});
         if(directory&&width===320&&language==='tr'&&scale===2)await page.screenshot({path:path.join(directory,`${surface}-${scheme}-320-200percent.png`),fullPage:surface!=='health'});
       }

@@ -21,7 +21,7 @@ export default function Pattern({ language: initialLanguage = 'en', renderProfil
         const part = state[section];
         return <section key={section} aria-labelledby={`pattern-${section}`} aria-busy={part.loading} data-pattern-section={section}>
           <h2 id={`pattern-${section}`} className="font-heading text-shinka-h3 mb-3">{copy(section)}</h2>
-          <ShinkaCard>
+          <ShinkaCard className={section === 'lunar' ? 'lunar-card' : ''}>
             {part.loading && !part.value && <p role="status">{copy('loading')}</p>}
             {part.error && <div role="alert" className="space-y-3"><p>{copy(part.value ? 'refreshError' : section === 'lunar' && part.error.startsWith('MOON_LOOKUP_') ? 'unavailable' : `${section}Error`)}</p><ShinkaButton variant="secondary" onClick={() => state.controller.load(section)}>{copy('retry')}</ShinkaButton></div>}
             {part.value && (section === 'themes' ? part.value.state === 'EMPTY' ? <p role="status">{copy('empty')}</p> : <ul className="space-y-4">{part.value.themes.map(theme => <li key={theme.id} data-theme-id={theme.id} className="min-w-0 break-words"><h3 className="font-heading text-shinka-h3">{theme[`display_name_${language}`]}</h3></li>)}</ul> : <LunarTimeline lunar={part.value.lunar} language={language}/>)}

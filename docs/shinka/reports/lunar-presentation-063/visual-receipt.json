@@ -1,0 +1,83 @@
+{
+  "scope": "LOCAL_REAL_APP_SYNTHETIC_FIXTURE_WITH_LOADED_APPROVED_BACKGROUND_AND_FONTS",
+  "cssViewport": "390x900 (except file-named 320x900 / 360x900 / 844x390); full-page comparison captures",
+  "DPR": 1,
+  "fixture": "src/foundation/tests/patternFixture.js",
+  "observedAt": "2026-10-20T12:00:00.000Z",
+  "media": [
+    {
+      "file": "before-390-en-light.png",
+      "pixels": [
+        390,
+        900
+      ],
+      "sha256": "4e1948a58e8a2bb3689eaebef3ace84c073e58300154adfd75045fbe499104e9"
+    },
+    {
+      "file": "before-390-tr-light.png",
+      "pixels": [
+        390,
+        900
+      ],
+      "sha256": "d70c74cfbdccd4890127c1562b650da72cff5c2e655e684914b8655bdd6bd4f5"
+    },
+    {
+      "file": "after-chromium-390-en-light.png",
+      "pixels": [
+        390,
+        900
+      ],
+      "sha256": "86461661a77ac32fcf0c6d18a5b7b24ddecda6b77b140c3d64beb11658298e38"
+    },
+    {
+      "file": "after-chromium-390-tr-light.png",
+      "pixels": [
+        390,
+        900
+      ],
+      "sha256": "c4584c568c25a6bf3f1ba8c21002380fc24a700af2d6ab06887056ce0ad6d82b"
+    },
+    {
+      "file": "after-webkit-390-tr-dark.png",
+      "pixels": [
+        390,
+        900
+      ],
+      "sha256": "c7d23d02d28e6c09dc343350b179a82b7686fcdac21ef8138526b7097720bec3"
+    },
+    {
+      "file": "after-chromium-320-tr-200percent.png",
+      "pixels": [
+        320,
+        1359
+      ],
+      "sha256": "fe4f78ec1ce1c232b047870330e425319b6a3f211b2fe5955a4c06ee5586ded7"
+    },
+    {
+      "file": "after-webkit-360-en-light.png",
+      "pixels": [
+        360,
+        900
+      ],
+      "sha256": "484aaea4d2b7672d41cb62bc4e617d6be71aad51fd875d39a469423d49456218"
+    },
+    {
+      "file": "after-chromium-844-en-light.png",
+      "pixels": [
+        844,
+        689
+      ],
+      "sha256": "83183ce9108a9818e9fb9abcf74da5f13ed7c90a025dac13a07a7145eac0c025"
+    }
+  ],
+  "pixelComparison": {
+    "en": {
+      "headerThemeAndHeadingPixelsIdenticalThroughRow338": true,
+      "navigationSourceUnchanged": true
+    },
+    "tr": {
+      "headerThemeAndHeadingPixelsIdenticalThroughRow338": true,
+      "navigationSourceUnchanged": true
+    }
+  }
+}

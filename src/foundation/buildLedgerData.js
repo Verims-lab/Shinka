@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-058",
-    "package_name": "Core closure: Moon reference maintenance and open evidence",
-    "package_type": "MAINTENANCE",
-    "created_at": "2026-11-01",
-    "health_catalog_version": "HC-057.0",
-    "short_summary": "Preserve 052–057; complete approved missing Moon tail, distinguish present/future coverage in H09 evidence, reconcile scoped quota/Calendar/platform acceptances and current regression metadata.",
-    "full_health_status": "NOT_RUN_OWNER_MANAGED",
-    "notes": "Scoped closure only. Published 057/HC-056.0 user report remains 159 PASS/0 FAIL/1 BLOCKED. Reference operations and external limits are dated in SHINKA_CORE_CLOSURE_058.md. No general audit, cleanup, user deletion/reset, scheduler/send, main merge or publish. Dependency security remains a separate gate from user Security OK. Active packages 054–058."
-  },
-  {
     "build_marker": "Buildmarker-059",
     "package_name": "Pattern single theme and lunar timeline; shared navigation verification",
     "package_type": "FOCUSED_FIX",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Direct calendar-cell add/move/delete drafts; one existing start-date operation per save. Read-only status and separate same-intent continuation.",
     "full_health_status": "NOT_RUN",
     "notes": "Chromium/WebKit 805/805 each, 8 Calendar flows + 2 continuity + 40 mobile/theme/text cases each; final focused 6/6 each. Quality/performance/last-five PASS; npm advisories 0. Health +0/~4/-0; local synthetic 147 PASS/13 prerequisite BLOCKED/0 FAIL with save/list/open. No live mutation/Health/scan/schema/main publish; physical acceptance external. Report: reports/SHINKA_CALENDAR_GRID_062.md. Active 058–062."
+  },
+  {
+    "build_marker": "Buildmarker-063",
+    "package_name": "Compact botanical Lunar Timeline presentation",
+    "package_type": "TARGETED_UI",
+    "created_at": "2026-11-10",
+    "health_catalog_version": "HC-062.0",
+    "short_summary": "Compact five-moon watercolor SVG timeline with botanical curves, true proportional Today and active-phase halo; same dates, timezone, calculations and transport. TR/EN and manual themes retained.",
+    "full_health_status": "NOT_RUN",
+    "notes": "Chromium/WebKit 805/805 each; 150 mobile scenarios and 42 Pattern cases/engine, final Arrow/End/Home + negative geometry 42/42 each. Quality/performance/history PASS; npm advisories 0. Initial JS unchanged; CSS within budgets. Health +0/~2/-0, synthetic 147 PASS/13 prerequisite BLOCKED/0 FAIL, save/list/open verified. Unchanged data/transport/source hashes and loaded-asset before/after evidence: reports/SHINKA_LUNAR_PRESENTATION_063.md. No live mutation/import/Health/scan/dependency/main publish; physical acceptance external. Active 059–063."
   }
 ];
