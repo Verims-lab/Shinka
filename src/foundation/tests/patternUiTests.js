@@ -3,6 +3,8 @@ import { createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import Pattern from '@/pages/Pattern';
 import { check } from './dataModelTests';
+import { calculateLunarTimeline } from '../../../base44/shared/patternCalculation.js';
+import LunarTimeline from '@/features/pattern/LunarTimeline';
 import { patternFixture, patternRow } from './patternFixture';
 const pause=()=>new Promise(resolve=>setTimeout(resolve,20));
 async function until(predicate) { for(let i=0;i<100;i++){if(predicate())return;await pause();}throw new Error('PATTERN_UI_TIMEOUT'); }
@@ -50,15 +52,21 @@ export const PATTERN_UI_TESTS=[
    fail=false;button(host,'Try again').click();await until(()=>host.textContent.includes('Your themes will appear after your first Shinka'));
    check(host.querySelector('[data-lunar-timeline]')&&!host.querySelector('[role="alert"]'));
  })],
- ['PU03','320px and 200% text keep timeline labels separate, within card and all controls at least 44px',async()=>probe(async(root,host)=>{
+ ['PU03','320px and 200% text keep labels readable within a keyboard-scrollable timeline, page contained and controls at least 44px',async()=>probe(async(root,host)=>{
    const f=patternFixture(),request=section=>f.request(section);root.render(createElement(Pattern,{language:'tr',request}));
    await until(()=>host.querySelector('[data-lunar-timeline]'));
    for(const scale of [1,2]) {
      const labels=[...host.querySelectorAll('[data-lunar-label]')];
-     if(scale===2){const sizes=[...host.querySelectorAll('h1,h2,h3,p,li,time,button,a,span,dt,dd')].map(el=>({el,size:parseFloat(getComputedStyle(el).fontSize)}));for(const {el,size} of sizes)el.style.fontSize=`${size*2}px`;}
-     const boxes=labels.map(el=>el.getBoundingClientRect()), box=host.getBoundingClientRect();
-     check(boxes.every((r,i)=>r.left>=box.left&&r.right<=box.right+1&&boxes.every((other,j)=>j===i||r.right<=other.left+1||r.left>=other.right-1||r.bottom<=other.top+1||r.top>=other.bottom-1)),'labels overlap');
-     check(host.scrollWidth<=320,'horizontal overflow');
+     if(scale===2){const sizes=[...host.querySelectorAll('[data-lunar-layout],h1,h2,h3,p,li,time,button,a,span,dt,dd')].map(el=>({el,size:parseFloat(getComputedStyle(el).fontSize)}));for(const {el,size} of sizes)el.style.fontSize=`${size*2}px`;}
+     const boxes=labels.map(el=>el.getBoundingClientRect()), box=host.querySelector('[data-lunar-layout]').getBoundingClientRect();
+     check(boxes.every((r,i)=>r.left>=box.left-1&&r.right<=box.right+1&&boxes.every((other,j)=>j===i||r.right<=other.left+1||r.left>=other.right-1||r.bottom<=other.top+1||r.top>=other.bottom-1)),'labels overlap');
+     check(host.scrollWidth<=320,'page horizontal overflow');
+     const scroller=host.querySelector('.lunar-scroll');
+     check(scroller.tabIndex===0&&getComputedStyle(scroller).overflowX==='auto','keyboard scroll access');
+     check([...host.querySelectorAll('.lunar-phase,time')].every(el=>el.scrollWidth<=el.clientWidth+1),'text clipped: '+JSON.stringify([...host.querySelectorAll('.lunar-phase,time')].filter(el=>el.scrollWidth>el.clientWidth+1).map(el=>({text:el.textContent,width:el.clientWidth,scroll:el.scrollWidth,font:getComputedStyle(el).fontFamily,size:getComputedStyle(el).fontSize}))));
+     scroller.scrollLeft=scroller.scrollWidth;
+     check(scroller.scrollLeft>0&&boxes[4].width>=52,'readable scrollable final node');
+     scroller.scrollLeft=0;
      check([...host.querySelectorAll('button,a')].every(el=>{const r=el.getBoundingClientRect();return r.width>=44&&r.height>=44;}),'touch target');
    }
  })],
@@ -109,6 +117,24 @@ export const PATTERN_UI_TESTS=[
      check(host.querySelector('[data-lunar-track]').getAttribute('aria-hidden')==='true'&&host.querySelector('ol[aria-label="Lunar Timeline"]'));
      const result=await f.request('lunar',{timezone:zone});
      check(Number(host.querySelector('[data-today-marker]').dataset.position)===result.lunar.timeline.today_position);
+   }
+   const rows=f.tables.MoonPhaseLookup.map(r=>({...r,start_at_utc:r.start_at_utc.replace('2026-10','2025-12').replace('2026-11','2026-01').replace('2026-12','2026-02'),end_at_utc:r.end_at_utc.replace('2026-10','2025-12').replace('2026-11','2026-01').replace('2026-12','2026-02')}));
+   for(const language of ['tr','en'])for(const instant of ['2025-12-01T00:00:00Z','2025-12-10T12:00:00Z','2025-12-20T06:00:00Z','2025-12-31T23:59:59Z','2026-01-01T00:00:00Z']) {
+     const lunar=calculateLunarTimeline(rows,new Date(instant),'Europe/Istanbul'),snapshot=JSON.stringify(lunar);
+     root.render(createElement('div',{className:'lunar-card'},createElement(LunarTimeline,{lunar,language})));
+     await until(()=>host.querySelector('[data-lunar-label] time')?.getAttribute('datetime')===lunar.timeline.nodes[0].instant&&Number(host.querySelector('[data-today-marker]')?.dataset.position)===lunar.timeline.today_position);
+     const nodes=[...host.querySelectorAll('[data-lunar-node]')],labels=[...host.querySelectorAll('[data-lunar-label]')];
+     const center=el=>{const r=el.getBoundingClientRect();return r.left+r.width/2;},start=center(nodes[0]),length=center(nodes[4])-start;
+     nodes.forEach((node,i)=>{
+       check(Math.abs((center(node)-start)/length-lunar.timeline.nodes[i].position)<.001,'decorative layout changed time ratio');
+       check(labels[i].querySelector('time').getAttribute('datetime')===lunar.timeline.nodes[i].instant,'instant changed');
+       check(Boolean(node.querySelector('[data-lunar-halo]'))===(i===lunar.timeline.active_index),'halo on wrong phase');
+       check((labels[i].getAttribute('aria-current')==='step')===(i===lunar.timeline.active_index));
+     });
+     check(Math.abs((center(host.querySelector('[data-today-marker]'))-start)/length-lunar.timeline.today_position)<.001,'Today is not time proportional');
+     check(labels[4].textContent.includes(language==='tr'?'Sonraki Yeni Ay':'Next New Moon'),'next new confused with first');
+     check(host.textContent.includes('Europe/Istanbul')&&JSON.stringify(lunar)===snapshot,'timezone or source mutated');
+     check([...host.querySelectorAll('svg')].every(el=>el.getAttribute('aria-hidden')==='true'),'decoration exposed');
    }
  })],
  ['PU04' ,'Unmount discards pending response in real component',async()=>probe(async(root,host)=>{

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { inspectMobileSurface } from './mobileSurfaceMeasurements.mjs';
 import { mkdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { BACKGROUND_ASSETS } from '../src/foundation/sectionBackgrounds.js';
@@ -26,13 +27,38 @@ export async function checkPatternFlow(page, origin, directory) {
       await page.evaluate(src=>new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(true);img.onerror=()=>reject(new Error('ASSET_UNAVAILABLE'));img.src=src;}),BACKGROUND_ASSETS.watercolor);
     }
     for (const scale of [1,2]) {
-      if(scale===2)await page.evaluate(()=>{const sizes=[...document.querySelectorAll('[data-pattern-root] h1,[data-pattern-root] h2,[data-pattern-root] h3,[data-pattern-root] p,[data-pattern-root] li,[data-pattern-root] time,[data-pattern-root] button,[data-pattern-root] a,[data-pattern-root] span,[data-pattern-root] dt,[data-pattern-root] dd')].map(el=>({el,size:parseFloat(getComputedStyle(el).fontSize)}));for(const {el,size} of sizes)el.style.fontSize=`${size*2}px`;});
-      const geometry=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,labels:[...document.querySelectorAll('[data-lunar-label]')].map(el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom};})}));
-      assert(geometry.scroll<=width+1 && geometry.labels.length===5 && geometry.labels.every((r,i)=>r.left>=0&&r.right<=width&&geometry.labels.every((other,j)=>j===i||r.right<=other.left+1||r.left>=other.right-1||r.bottom<=other.top+1||r.top>=other.bottom-1)));
+      if(scale===2)await page.evaluate(()=>{const sizes=[...document.querySelectorAll('[data-lunar-layout],[data-pattern-root] h1,[data-pattern-root] h2,[data-pattern-root] h3,[data-pattern-root] p,[data-pattern-root] li,[data-pattern-root] time,[data-pattern-root] button,[data-pattern-root] a,[data-pattern-root] span,[data-pattern-root] dt,[data-pattern-root] dd')].map(el=>({el,size:parseFloat(getComputedStyle(el).fontSize)}));for(const {el,size} of sizes)el.style.fontSize=`${size*2}px`;});
+      const geometry=await page.evaluate(()=>{
+        const rect=el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width};};
+        const layout=document.querySelector('[data-lunar-layout]'),scroller=layout.parentElement;
+        return {width:innerWidth,scroll:document.documentElement.scrollWidth,layout:rect(layout),scroller:rect(scroller),scrollWidth:scroller.scrollWidth,labels:[...document.querySelectorAll('[data-lunar-label]')].map(rect),badText:[...layout.querySelectorAll('time,.lunar-phase')].filter(el=>el.scrollWidth>el.clientWidth+1).map(el=>({text:el.textContent,scroll:el.scrollWidth,width:el.clientWidth,font:getComputedStyle(el).fontSize})),textFits:[...layout.querySelectorAll('time,.lunar-phase')].every(el=>el.scrollWidth<=el.clientWidth+1)};
+      });
+      if(directory)await page.screenshot({path:path.join(directory,`pattern-${width}-${language}-${theme}-${scale}x.png`),fullPage:true});
+      assert(geometry.scroll<=width+1 && geometry.scroller.left>=0 && geometry.scroller.right<=width && geometry.textFits && geometry.labels.length===5 && geometry.labels.every((r,i)=>r.left>=geometry.layout.left-1&&r.right<=geometry.layout.right+1&&geometry.labels.every((other,j)=>j===i||r.right<=other.left+1||r.left>=other.right-1||r.bottom<=other.top+1||r.top>=other.bottom-1)),JSON.stringify({width,language,theme,scale,geometry}));
+      if(width>=360 && scale===1)assert(geometry.scrollWidth<=geometry.scroller.width+1,'normal mobile must show all five nodes');
+      assert.equal(await page.locator('[data-lunar-halo]').count(),1);
       assert.equal(await page.locator('[data-theme-id]').count(),1);
       assert.equal(await page.locator('[data-lunar-node]').count(),5);
       assert.equal(await page.locator('[data-section-backdrop]').count(),1);
-      if(directory)await page.screenshot({path:path.join(directory,`pattern-${width}-${language}-${theme}-${scale}x.png`),fullPage:true});
+      if(geometry.scrollWidth>geometry.scroller.width+1) {
+        const scroller=page.locator('.lunar-scroll');
+        await scroller.focus();await page.keyboard.press('ArrowRight');
+        await page.waitForFunction(()=>document.querySelector('.lunar-scroll').scrollLeft>0);
+        await page.keyboard.press('End');
+        assert(await page.locator('[data-lunar-node]').last().evaluate(el=>{const r=el.getBoundingClientRect(),s=el.closest('.lunar-scroll').getBoundingClientRect();return r.left>=s.left-1&&r.right<=s.right+1;}),'last phase must be reachable');
+        await page.keyboard.press('Home');
+        assert.equal(await scroller.evaluate(el=>el.scrollLeft),0,'Home must restore the start');
+        await scroller.evaluate(el=>el.blur());
+      }
+      if(width===320 && language==='tr' && theme==='light' && scale===1) {
+        const label=page.locator('.lunar-phase').nth(1),scroller=page.locator('.lunar-scroll');
+        await label.evaluate(el=>{el.style.whiteSpace='nowrap';});
+        assert((await inspectMobileSurface(page)).textOverflow.length>0,'negative clipped-label fixture escaped');
+        await label.evaluate(el=>{el.style.whiteSpace='';});
+        await scroller.evaluate(el=>{el.style.width='800px';el.style.maxWidth='none';});
+        assert((await inspectMobileSurface(page)).uncontainedScrollRegions.length>0,'negative page overflow fixture escaped');
+        await scroller.evaluate(el=>{el.style.width='';el.style.maxWidth='';});
+      }
       results.push({scenario:`pattern-${width}-${language}-${theme}-${scale}x`,passed:true,geometry,publicAssets:visualAssets?'LOADED':'BLOCKED_BY_FIXTURE',scope:'LOCAL_BROWSER_SYNTHETIC'});
     }
     assert.equal(await page.evaluate(()=>window.__sdkLabCalls.filter(c=>c.name==='dailyMessage').length),0);

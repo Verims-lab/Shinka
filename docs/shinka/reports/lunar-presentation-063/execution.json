@@ -1,0 +1,589 @@
+{
+  "buildMarker": "Buildmarker-063",
+  "healthCatalog": "HC-062.0",
+  "recordedAt": "2026-11-10T19:21:59.926260+00:00",
+  "baseline": "e425c7c",
+  "scope": "LOCAL_REAL_APP_WITH_ISOLATED_SDK_AND_NATIVE_HANDLER_FIXTURES",
+  "liveUserMutation": false,
+  "liveFullHealth": "NOT_RUN",
+  "liveSecurityScan": "NOT_RUN",
+  "publish": "NOT_RUN",
+  "physicalAndroidIOS": "NOT_RUN",
+  "engines": {
+    "chromium": {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "tests": 805,
+      "passed": 805,
+      "failed": 0,
+      "pageErrors": [],
+      "flows": {
+        "reopenNavigation": {
+          "total": 205,
+          "passed": 205
+        },
+        "calendarCorrections": {
+          "total": 40,
+          "passed": 40
+        },
+        "calendarContinuity": {
+          "total": 2,
+          "passed": 2
+        },
+        "appTheme": {
+          "total": 89,
+          "passed": 89
+        },
+        "onboardingClosure": {
+          "total": 6,
+          "passed": 6
+        },
+        "privacyFlow": {
+          "total": 35,
+          "passed": 35
+        },
+        "youFlow": {
+          "total": 24,
+          "passed": 24
+        },
+        "adminNavigation": {
+          "total": 19,
+          "passed": 19
+        },
+        "mobileExperience": {
+          "total": 150,
+          "passed": 150
+        },
+        "mobile": {
+          "total": 87,
+          "passed": 87
+        },
+        "dailyFlow": {
+          "total": 5,
+          "passed": 5
+        },
+        "patternFlow": {
+          "total": 42,
+          "passed": 42
+        },
+        "calendarFlow": {
+          "total": 8,
+          "passed": 8
+        },
+        "adminTestFlow": {
+          "total": 4,
+          "passed": 4
+        },
+        "productionRouting": {
+          "total": 5,
+          "passed": 5
+        },
+        "previewProbes": {
+          "total": 4,
+          "passed": 4
+        }
+      },
+      "loadedAssetPatternCases": 42,
+      "keyboardAndNegativeGeometryCases": 42,
+      "inAppHealth": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "passed": true,
+        "saveState": "SAVED",
+        "retrySave": true,
+        "historyListed": true,
+        "privateReportOpened": true
+      },
+      "syntheticHealthCounts": {
+        "PASS": 147,
+        "BLOCKED": 13
+      }
+    },
+    "webkit": {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "tests": 805,
+      "passed": 805,
+      "failed": 0,
+      "pageErrors": [],
+      "flows": {
+        "reopenNavigation": {
+          "total": 205,
+          "passed": 205
+        },
+        "calendarCorrections": {
+          "total": 40,
+          "passed": 40
+        },
+        "calendarContinuity": {
+          "total": 2,
+          "passed": 2
+        },
+        "appTheme": {
+          "total": 89,
+          "passed": 89
+        },
+        "onboardingClosure": {
+          "total": 6,
+          "passed": 6
+        },
+        "privacyFlow": {
+          "total": 35,
+          "passed": 35
+        },
+        "youFlow": {
+          "total": 24,
+          "passed": 24
+        },
+        "adminNavigation": {
+          "total": 19,
+          "passed": 19
+        },
+        "mobileExperience": {
+          "total": 150,
+          "passed": 150
+        },
+        "mobile": {
+          "total": 87,
+          "passed": 87
+        },
+        "dailyFlow": {
+          "total": 5,
+          "passed": 5
+        },
+        "patternFlow": {
+          "total": 42,
+          "passed": 42
+        },
+        "calendarFlow": {
+          "total": 8,
+          "passed": 8
+        },
+        "adminTestFlow": {
+          "total": 4,
+          "passed": 4
+        },
+        "productionRouting": {
+          "total": 5,
+          "passed": 5
+        },
+        "previewProbes": {
+          "total": 4,
+          "passed": 4
+        }
+      },
+      "loadedAssetPatternCases": 42,
+      "keyboardAndNegativeGeometryCases": 42,
+      "inAppHealth": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "passed": true,
+        "saveState": "SAVED",
+        "retrySave": true,
+        "historyListed": true,
+        "privateReportOpened": true
+      },
+      "syntheticHealthCounts": {
+        "PASS": 147,
+        "BLOCKED": 13
+      }
+    }
+  },
+  "performance": {
+    "scope": "LOCAL_PRODUCTION_BUNDLE_AND_SYNTHETIC_ROUTE_LAB",
+    "before": {
+      "initialJS": {
+        "raw": 491758,
+        "gzip": 163964
+      },
+      "css": {
+        "raw": 80138,
+        "gzip": 14726
+      }
+    },
+    "after": {
+      "initialJS": {
+        "raw": 491758,
+        "gzip": 163964
+      },
+      "css": {
+        "raw": 83003,
+        "gzip": 15879
+      }
+    },
+    "budget": {
+      "initialRaw": 500000,
+      "initialGzip": 165000,
+      "cssRaw": 90000,
+      "cssGzip": 16000
+    },
+    "passed": true,
+    "transitions": {
+      "output": "/private/tmp/shinka-lunar-063/transitions/transitions.json",
+      "transitions": 60,
+      "errors": [],
+      "blocked": [
+        "https://fonts.googleapis.com"
+      ]
+    }
+  },
+  "unchangedSources": [
+    {
+      "path": "base44/shared/patternCalculation.js",
+      "beforeSha256": "044c326d760677186a89e98636a808b16f8e475ea035d3fb9f67991cd6fa627f",
+      "afterSha256": "044c326d760677186a89e98636a808b16f8e475ea035d3fb9f67991cd6fa627f",
+      "identical": true
+    },
+    {
+      "path": "base44/shared/patternOperation.js",
+      "beforeSha256": "d3209d92635d417daec2bfc2e3064b2123ef35382c1f93bc11ac7e1892184131",
+      "afterSha256": "d3209d92635d417daec2bfc2e3064b2123ef35382c1f93bc11ac7e1892184131",
+      "identical": true
+    },
+    {
+      "path": "base44/shared/moonIntervals.js",
+      "beforeSha256": "aac580a73112c1637c8f2ab51e39cbd3810394571a40fc4ff763bfb0449306d7",
+      "afterSha256": "aac580a73112c1637c8f2ab51e39cbd3810394571a40fc4ff763bfb0449306d7",
+      "identical": true
+    },
+    {
+      "path": "src/services/patternService.js",
+      "beforeSha256": "754838fa15890d344269802d387cbf860233ecb156ef7a81f981204249b6beab",
+      "afterSha256": "754838fa15890d344269802d387cbf860233ecb156ef7a81f981204249b6beab",
+      "identical": true
+    },
+    {
+      "path": "src/features/pattern/patternController.js",
+      "beforeSha256": "6f7aa0f129e031669f63c33ce7d863bf137b937a2af24170841d1d2b8053134d",
+      "afterSha256": "6f7aa0f129e031669f63c33ce7d863bf137b937a2af24170841d1d2b8053134d",
+      "identical": true
+    },
+    {
+      "path": "src/features/pattern/patternLifecycle.js",
+      "beforeSha256": "a8bbef6291229c5ad45c0fbb4229820baa6fe592475958bbdd28ab9bf16a88b5",
+      "afterSha256": "a8bbef6291229c5ad45c0fbb4229820baa6fe592475958bbdd28ab9bf16a88b5",
+      "identical": true
+    },
+    {
+      "path": "src/features/pattern/usePattern.js",
+      "beforeSha256": "988a51d05a7bd595e73b5d770b6f673671c847778641def6580b66295b4f01cb",
+      "afterSha256": "988a51d05a7bd595e73b5d770b6f673671c847778641def6580b66295b4f01cb",
+      "identical": true
+    },
+    {
+      "path": "src/foundation/i18n/patternCopy.js",
+      "beforeSha256": "3aa53ecb3bbdc2092cb1cac33f3b9bb5383c129214da9ee2ee74e328f1be5732",
+      "afterSha256": "3aa53ecb3bbdc2092cb1cac33f3b9bb5383c129214da9ee2ee74e328f1be5732",
+      "identical": true
+    },
+    {
+      "path": "src/foundation/sectionBackgrounds.js",
+      "beforeSha256": "23a81dc0a642f62e2f625cf9f0bd48b2f3fdc4faf25e4887dc596f80f4774a79",
+      "afterSha256": "23a81dc0a642f62e2f625cf9f0bd48b2f3fdc4faf25e4887dc596f80f4774a79",
+      "identical": true
+    },
+    {
+      "path": "src/components/shinka/ProductNavigation.jsx",
+      "beforeSha256": "1e046c3a04cf2835b534e73de71320067f2fd2493a954d648f0f216d35899c1d",
+      "afterSha256": "1e046c3a04cf2835b534e73de71320067f2fd2493a954d648f0f216d35899c1d",
+      "identical": true
+    },
+    {
+      "path": "src/foundation/tests/patternFixture.js",
+      "beforeSha256": "60436eb6ef3295cdccd46cead1f3cdb671e51317f5394fd0a7ff046e91fa289a",
+      "afterSha256": "60436eb6ef3295cdccd46cead1f3cdb671e51317f5394fd0a7ff046e91fa289a",
+      "identical": true
+    },
+    {
+      "path": "package.json",
+      "beforeSha256": "e7daa3cdd2b6da8dfbbb3a5a7e6a0f928701cef61c0f433c58c26c2f9507e035",
+      "afterSha256": "e7daa3cdd2b6da8dfbbb3a5a7e6a0f928701cef61c0f433c58c26c2f9507e035",
+      "identical": true
+    },
+    {
+      "path": "package-lock.json",
+      "beforeSha256": "7583dc326415071b29263bbb79f326838b05c7598b14a8a2ec247bb482d19c31",
+      "afterSha256": "7583dc326415071b29263bbb79f326838b05c7598b14a8a2ec247bb482d19c31",
+      "identical": true
+    }
+  ],
+  "visualReceipt": "visual-receipt.json",
+  "healthChanges": {
+    "added": 0,
+    "updated": [
+      "H13-017",
+      "H05-009"
+    ],
+    "removed": 0
+  },
+  "gates": {
+    "npm-ci": "PASS",
+    "npm-ls-all": "PASS",
+    "npm-audit": "PASS",
+    "security-deps": "PASS",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS",
+    "health-repo": "PASS",
+    "recordBuild-check": "PASS",
+    "performance": "PASS",
+    "transitions": "PASS",
+    "git-diff-check": "PASS"
+  },
+  "dependencyAdvisories": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "history": [
+    {
+      "attempt": "skill update in sandbox",
+      "result": "ENOTFOUND",
+      "resolution": "updated only temporary skill directory with authorized network access; project dependencies unchanged"
+    },
+    {
+      "attempt": "initial typecheck / diagnostic",
+      "result": "custom CSS property type + diagnostic syntax",
+      "resolution": "explicit React.CSSProperties annotation and corrected assertion parentheses"
+    },
+    {
+      "attempt": "initial PU03 / visual matrix",
+      "result": "subpixel containment / fallback-serif glyph overflow",
+      "resolution": "1px geometry tolerance consistent with existing probes; larger track minimum and readable 14px phase labels; no data assertions changed"
+    },
+    {
+      "attempt": "initial complete Chromium/WebKit",
+      "result": "805/805 core; overall FAIL due old viewport-only mobile text geometry",
+      "resolution": "node-contained glyph geometry for authorized scroll region; unchanged page/contrast/control gates; negative clipping and off-page-region fixtures added"
+    },
+    {
+      "attempt": "WebKit keyboard",
+      "result": "native ArrowRight did not scroll focusable non-control",
+      "resolution": "explicit focus-bound ArrowLeft/Right/Home/End support; real keyboard tests pass in both engines"
+    },
+    {
+      "attempt": "intermediate generic mobile / negative fixture",
+      "result": "Tailwind clip-path SR text treated as visual; page CSS prevented document overflow despite off-page region",
+      "resolution": "inspect actual CSS clipping only for timeline sr-only; explicitly reject any scroll-region bounds outside the page"
+    }
+  ],
+  "logs": [
+    {
+      "file": "logs/npm-ci.log.gz",
+      "uncompressedSha256": "b3c990273f1a3dc2fdb738887a9ec56e7e6ecbbd372d7b5351cd16c32d255f73",
+      "uncompressedBytes": 311,
+      "gzipBytes": 224
+    },
+    {
+      "file": "logs/npm-ls.log.gz",
+      "uncompressedSha256": "23d518789b9dca00bd38bb491f8af46f20374255c51ca88cf72642a5b7dd2f93",
+      "uncompressedBytes": 72322,
+      "gzipBytes": 8692
+    },
+    {
+      "file": "logs/audit.json.gz",
+      "uncompressedSha256": "c8d43880e763023d3204dbb07eee77e7d6934a7b6b0a64539f5c410615fe0594",
+      "uncompressedBytes": 365,
+      "gzipBytes": 190
+    },
+    {
+      "file": "logs/security-deps.log.gz",
+      "uncompressedSha256": "ba5a55cc48eca8e7c392d3754b663e0bd7b6233525429a1d8a5d44768df5b507",
+      "uncompressedBytes": 601,
+      "gzipBytes": 231
+    },
+    {
+      "file": "logs/typecheck-initial.log.gz",
+      "uncompressedSha256": "fab9b6eb29891f4a49bd51704df65334969d35b1261f87651fbcca14b5996d03",
+      "uncompressedBytes": 427,
+      "gzipBytes": 320
+    },
+    {
+      "file": "logs/typecheck-final.log.gz",
+      "uncompressedSha256": "2e1c7db5ac28fb733e8c1d3d7c2c3bf8a4bb6628ed45eb56ce2e7328388598de",
+      "uncompressedBytes": 223,
+      "gzipBytes": 182
+    },
+    {
+      "file": "logs/lint-final.log.gz",
+      "uncompressedSha256": "8423c1a66df3f2a021733ae12f217befbeb04b23971e056cb4e3739c7fb936cf",
+      "uncompressedBytes": 212,
+      "gzipBytes": 176
+    },
+    {
+      "file": "logs/build-final.log.gz",
+      "uncompressedSha256": "64dee23dd8086009a8b5fbac9ec68c67ddbb481bd5547edd1864259545be6e69",
+      "uncompressedBytes": 5635,
+      "gzipBytes": 2119
+    },
+    {
+      "file": "logs/repo-health.log.gz",
+      "uncompressedSha256": "9979bae1946a828a420eed3be42142c569e111b9cacb2a68ee19ce88b44a71b5",
+      "uncompressedBytes": 1964,
+      "gzipBytes": 880
+    },
+    {
+      "file": "logs/recordBuild-check.log.gz",
+      "uncompressedSha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f",
+      "uncompressedBytes": 36,
+      "gzipBytes": 56
+    },
+    {
+      "file": "logs/before.log.gz",
+      "uncompressedSha256": "545e3d132bd87cce924016a6e8a4eb8f90de37e237f8c56eb4305a83293dc388",
+      "uncompressedBytes": 42108,
+      "gzipBytes": 2514
+    },
+    {
+      "file": "logs/after-initial.log.gz",
+      "uncompressedSha256": "648d7e13fc0a09f2e434ccaecbeaf1181887899501ee71f6ce82dc9f1926da70",
+      "uncompressedBytes": 4934,
+      "gzipBytes": 1607
+    },
+    {
+      "file": "logs/after-diagnostic.log.gz",
+      "uncompressedSha256": "53d9083ce58ba5e7844e1e882887f6075f8dcb6e58a3ed76a5ee2c872dbd9523",
+      "uncompressedBytes": 1965,
+      "gzipBytes": 702
+    },
+    {
+      "file": "logs/after-diagnostic2.log.gz",
+      "uncompressedSha256": "73d98df8655b49750bd0513d2311b9fbdac3887ba26316cf80ae32026dcbadd6",
+      "uncompressedBytes": 5268,
+      "gzipBytes": 1666
+    },
+    {
+      "file": "logs/focused-initial.log.gz",
+      "uncompressedSha256": "00be13cb40cdba09c31c157ce4c73483e1167840ef76bfd1d04a526fa4dfa3a2",
+      "uncompressedBytes": 18213,
+      "gzipBytes": 3223
+    },
+    {
+      "file": "logs/focused-v2.log.gz",
+      "uncompressedSha256": "e669fc6c2e98174d8130711091f44365787f13eb90be3818941a3ba3b83ab5e7",
+      "uncompressedBytes": 15327,
+      "gzipBytes": 2777
+    },
+    {
+      "file": "logs/chromium.log.gz",
+      "uncompressedSha256": "6dac5a6b2daf696a9b4d5c237a782cbdba7c840807580446045c59eee4d313e6",
+      "uncompressedBytes": 2110641,
+      "gzipBytes": 83029
+    },
+    {
+      "file": "logs/webkit.log.gz",
+      "uncompressedSha256": "c80b946e18a1824874ced71f31deecc71f58000e043581f317a27678a01fa636",
+      "uncompressedBytes": 2133295,
+      "gzipBytes": 84121
+    },
+    {
+      "file": "logs/pattern-final-webkit.log.gz",
+      "uncompressedSha256": "74b2cea1c19447666d172ea886e9e99d6fcb12156d594da3601ed7b51950649f",
+      "uncompressedBytes": 4432,
+      "gzipBytes": 1395
+    },
+    {
+      "file": "logs/pattern-final2-chromium.log.gz",
+      "uncompressedSha256": "a9b125f880b7727010d1ab0626ecb101953efb18e67eda00a28cecd9f1b9e2e0",
+      "uncompressedBytes": 4549,
+      "gzipBytes": 1447
+    },
+    {
+      "file": "logs/mobile-pattern-chromium.log.gz",
+      "uncompressedSha256": "17555bc7e6a834cc8eb2885de78ccfefa5f6c120c56762733b94e1a9582acacd",
+      "uncompressedBytes": 39984,
+      "gzipBytes": 2532
+    },
+    {
+      "file": "logs/chromium-delivery.log.gz",
+      "uncompressedSha256": "9b0cc13809770b7efd1ccb304c72c0c30da044aea912b145d4df54f269e0b0a8",
+      "uncompressedBytes": 2103541,
+      "gzipBytes": 82403
+    },
+    {
+      "file": "logs/webkit-delivery.log.gz",
+      "uncompressedSha256": "0e3370220f890dae309a14d9f90cda2010dec74314a98a7970384151ffd2546e",
+      "uncompressedBytes": 2136511,
+      "gzipBytes": 83985
+    },
+    {
+      "file": "logs/keyboard-final-chromium.log.gz",
+      "uncompressedSha256": "df15ffac0b7a8d583865770fdd92bd5ae5579a96b8f47d1d37c774abe2dffb9b",
+      "uncompressedBytes": 67028,
+      "gzipBytes": 3114
+    },
+    {
+      "file": "logs/keyboard-final-webkit.log.gz",
+      "uncompressedSha256": "5cf27bd4098232b2732f47d53886c9902696440d4b6aded59cbb1f1274296274",
+      "uncompressedBytes": 66648,
+      "gzipBytes": 3087
+    },
+    {
+      "file": "logs/pattern-delivery-chromium.log.gz",
+      "uncompressedSha256": "8b8d1de0b31e7df94a7c3b37d773a2a458ef9c55ead5d8e5e357d03a9813566a",
+      "uncompressedBytes": 66538,
+      "gzipBytes": 3091
+    },
+    {
+      "file": "logs/pattern-delivery-webkit.log.gz",
+      "uncompressedSha256": "944e023478900281b00ff72340d229e73c2fab0705b58585fd016b3d6d893a4c",
+      "uncompressedBytes": 66104,
+      "gzipBytes": 3048
+    },
+    {
+      "file": "logs/mobile-pattern-delivery.log.gz",
+      "uncompressedSha256": "d31d5af4d426eea796ce6cb79f6dea6272e41848a04787be99a29f8122494051",
+      "uncompressedBytes": 38912,
+      "gzipBytes": 2504
+    },
+    {
+      "file": "logs/performance-before.log.gz",
+      "uncompressedSha256": "cf591381f06451413b1cfd401dc5f166a1ef9d48e6fb76920eab7e3244501199",
+      "uncompressedBytes": 13869,
+      "gzipBytes": 3422
+    },
+    {
+      "file": "logs/performance-delivery.log.gz",
+      "uncompressedSha256": "0d2a84099221f0deee1eef414db65fa635889fde84e6b4f7280eb98ed1a14d0b",
+      "uncompressedBytes": 13849,
+      "gzipBytes": 3406
+    },
+    {
+      "file": "logs/transitions.log.gz",
+      "uncompressedSha256": "0be1b55d1dae3624ef66b07b82664f2550d7fd91ce70f3ae2e685be13007c1d9",
+      "uncompressedBytes": 1353,
+      "gzipBytes": 668
+    },
+    {
+      "file": "logs/repo-final.log.gz",
+      "uncompressedSha256": "9979bae1946a828a420eed3be42142c569e111b9cacb2a68ee19ce88b44a71b5",
+      "uncompressedBytes": 1964,
+      "gzipBytes": 880
+    },
+    {
+      "file": "logs/recordBuild-final.log.gz",
+      "uncompressedSha256": "f2ea450448da2e67820c3e5835d1eb909e5c21eb1f9557ed9d7a7c168c58f79f",
+      "uncompressedBytes": 36,
+      "gzipBytes": 56
+    }
+  ],
+  "deliveredSourceHashes": {
+    "src/features/pattern/LunarTimeline.jsx": "6d5a826bcc121f489485535e44af7d48b2b82b1e24685f6db992b53592cf5776",
+    "src/features/pattern/LunarBotanical.jsx": "4415791f9f460930ab10aabfe2a7e0b5567029bd0a94616e423417e90dba1a34",
+    "src/features/pattern/LunarScroll.jsx": "26368e2c04eb078cc53fd0e0188f7eeaaf1bff8b65643edf5b26b36cda69d6ac",
+    "src/features/pattern/LunarMoon.jsx": "f169a35a72246926e8ecbf5efdc70de80a05fd3f98fc86a4fde28b71c97420d1",
+    "src/features/pattern/lunarTimeline.css": "19f62426dfcc5f1e617d7b67ea2351c9a3db492daab0bdff240a23ea86bf6fd5",
+    "src/pages/Pattern.jsx": "e3543f020a8ffc3686476df9c053ed4a955b41fbee77e745dfb46941a6969d62",
+    "src/foundation/tests/patternUiTests.js": "f2e0c2448e54d339278c9163799e8cf50b876cf9c9b55a0c3036783e57311db2",
+    "scripts/checkPatternFlow.mjs": "59afbc5e06941ba708e02ca2512734c0327d5b7ccf373c330ff43051a03ec7d5",
+    "scripts/mobileSurfaceMeasurements.mjs": "2085a83bfc3287025b37a9d4421ab5f864ed6f0e89cb2bec7a2a912d7edfa1ce",
+    "scripts/checkMobileExperience.mjs": "ff2f6a11fbbeaaf2c54221cb30fd0af9dd5533d66b65d40c513b973ee2e760e7"
+  }
+}
