@@ -299,11 +299,12 @@ export const ONBOARDING_UI_TESTS=[
    begin.click();await new Promise(r=>win.setTimeout(r,50));check(doc.querySelector('#age-declaration')&&!doc.querySelector('#display_name'),`${language} ON-02 sign-in reached`);check(!doc.querySelector('[data-onboarding-intro]'),'intro left');
   },{language},context);
  }],
- ['U18','ON-01 has one brand composition; ON-02–ON-05 keep the empty art space; steps, Back and Finish remain available',async(context={})=>{
+ ['U18','ON-01 omits its page number; ON-02–ON-05 keep their counters, art space, Back and Finish',async(context={})=>{
   const states=['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_NAME_REQUIRED','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP'];
   for(const language of ['en','tr'])for(const [i,state] of states.entries())await onboardingProbe(state,360,async doc=>{
    const c=ONBOARDING_COPY[language];
-   check(doc.querySelector('[data-onboarding-step]')?.textContent===c.stepOf.replace('{n}',String(i+1)),`${language} ${state} step`);
+   const counter=doc.querySelector('p[data-onboarding-step]');
+   check(i===0 ? !counter : counter?.textContent===c.stepOf.replace('{n}',String(i+1)),`${language} ${state} counter`);
    check(Boolean(doc.querySelector('[data-onboarding-back]'))===(i>0),`${state} back presence`);
    const space=doc.querySelector('.shinka-onboarding-art-space');
    check(!doc.querySelector('.shinka-onboarding img'),'no duplicate content bitmap');

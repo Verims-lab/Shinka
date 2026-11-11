@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-066
+**Current BuildMarker:** Buildmarker-067
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -12,9 +12,13 @@
 
 
 
+## 067 — First onboarding spacing
+
+The owner's current ON-01 request removes the intro counter. Scale the heading offset and copy gap to the safe viewport above Begin. Increase the two gaps between rows and the gap before Begin from 8px to 12px. Give the full intro and Begin priority on the shortest portrait viewports by limiting the heading offset to the space available. [067 delivery](reports/SHINKA_ONBOARDING_SPACING_067.md)
+
 ## 066 — Compact first onboarding screen
 
-The owner's current ON-01 request preserves the embedded PNG logo in its original colors at the top-left safe area. ON-01 drops the separate Shinka wordmark and the 240px square slot. Show the heading, intro, three descriptions and Begin together on the initial common portrait viewport. Keep the step counter, three icons, approved TR/EN copy and auth-first transition. ON-02 through ON-05 retain their existing artwork position, wordmarks and square slots. [066 delivery](reports/SHINKA_ONBOARDING_INTRO_066.md)
+The 066 ON-01 package preserves the embedded PNG logo in its original colors at the top-left safe area. ON-01 drops the separate Shinka wordmark and the 240px square slot. Show the heading, intro, three descriptions and Begin together on the initial common portrait viewport. Use the three icons, approved TR/EN copy and auth-first transition. ON-02 through ON-05 retain their existing artwork position, wordmarks and square slots. [066 delivery](reports/SHINKA_ONBOARDING_INTRO_066.md)
 
 ## 065 — Shared branded screen background (2026-11-11)
 

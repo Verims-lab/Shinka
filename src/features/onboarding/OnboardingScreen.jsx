@@ -28,6 +28,16 @@ const SCREENS = {
   FIRST_SHINKA_DEPENDENCY: { title: "preparation", back: "UNAUTHENTICATED_SIGN_IN" },
   INACTIVE_ACCOUNT: { title: "inactive" },
 };
+
+// Scale ON-01 spacing inside the safe content area, above the 52px CTA.
+const INTRO_VIEWPORT_HEIGHT = "calc(100dvh - max(24px, var(--safe-top)) - max(24px, var(--safe-bottom)))";
+const INTRO_USABLE_HEIGHT = `max(0px, calc(${INTRO_VIEWPORT_HEIGHT} - 52px))`;
+const INTRO_LAYOUT = {
+  height: INTRO_VIEWPORT_HEIGHT,
+  minHeight: "min-content",
+  paddingTop: "calc(8px + min(37.5vw, 21.2vh) + var(--safe-top) - max(24px, var(--safe-top)))",
+};
+
 /** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,authenticated?:boolean,onRestricted?:Function,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
 export default function OnboardingScreen({
   state,
@@ -229,8 +239,9 @@ export default function OnboardingScreen({
   return (
     <PageContainer className="shinka-onboarding" surface="section">
       <main
-        className={`mx-auto max-w-md ${intro ? "relative space-y-2" : "space-y-6 py-6"}`}
-        style={intro ? { paddingTop: "calc(8px + min(37.5vw, 21.2vh) + var(--safe-top) - max(24px, var(--safe-top)))" } : undefined}
+        className={`mx-auto max-w-md ${intro ? "flex flex-col" : "space-y-6 py-6"}`}
+        style={intro ? INTRO_LAYOUT : undefined}
+        data-onboarding-step={intro ? step : undefined}
         data-onboarding-state={state}
         lang={language}
       >
@@ -256,13 +267,19 @@ export default function OnboardingScreen({
               {dependencies.join(" · ")}
             </div>
           )}
-          {step && (
-            <p aria-hidden="true" className={`${intro ? "absolute right-0 top-0 " : ""}text-shinka-small text-shinka-taupe`} data-onboarding-step={step}>
+          {step && !intro && (
+            <p aria-hidden="true" className="text-shinka-small text-shinka-taupe" data-onboarding-step={step}>
               {t("stepOf").replace("{n}", String(step))}
             </p>
           )}
           {airy && !intro && <div className="shinka-onboarding-art-space" aria-hidden="true" />}
-          <div className={airy ? "space-y-2 text-center" : ""}>
+          {intro && (
+            <div aria-hidden="true" style={{ flexGrow: 1, maxHeight: `calc(${INTRO_USABLE_HEIGHT} / 10)` }} />
+          )}
+          <div
+            className={airy ? "space-y-2 text-center" : ""}
+            style={intro ? { marginBlockEnd: `calc(${INTRO_USABLE_HEIGHT} / 40)` } : undefined}
+          >
             <h1
               ref={title}
               tabIndex={-1}

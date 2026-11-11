@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-066
+**Current BuildMarker:** Buildmarker-067
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 067 — ON-01 spacing and counter
+
+Start 067 on `AydanTest` from the clean fast-forward to `e35d112`. Record Buildmarker-067 / HC-066.0 with `recordBuild` and retain 063–067 in active history. Update the first screen's presentation and its existing regression and Health mapping. Run the local synthetic browser fixtures. [067 evidence](reports/SHINKA_ONBOARDING_SPACING_067.md)
 
 ## 066 — Compact ON-01 layout
 
