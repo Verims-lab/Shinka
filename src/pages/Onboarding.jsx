@@ -10,13 +10,14 @@ import PageContainer from '@/components/shinka/PageContainer';
 import ShinkaButton from '@/components/shinka/ShinkaButton';
 import Home from './Home';
 import ProfileAccess from '@/components/profile/ProfileAccess';
-import { validTimezone } from '../../base44/shared/onboardingValidation.js';
+import { OnboardingError, validTimezone } from '../../base44/shared/onboardingValidation.js';
 import { applyAppTheme } from '@/lib/appTheme';
 import ProductTabs from '@/components/shinka/ProductTabs';
 const You = lazy(() => import('./You'));
 const Pattern = lazy(() => import('./Pattern'));
 const Calendar = lazy(() => import('./Calendar'));
 const OnboardingScreen = lazy(() => import('@/features/onboarding/OnboardingScreen'));
+const needsInitialization = value => value.state !== 'INACTIVE_ACCOUNT' && !validTimezone(value.preferences?.timezone);
 export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destination='home',request=onboardingRequest}){
   const {user,isAuthenticated,isAdmin,logout,authError,isLoadingAuth,isLoadingPublicSettings}=useAuth();
   const [snapshot,setSnapshot]=useState(null),[entry,setEntry]=useState(initialEntry),[error,setError]=useState(''),[language]=useState(resolveLanguage);
@@ -28,11 +29,12 @@ export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destina
     try {
       let value=assertOnboardingSnapshot(await request('hydrate'));
       if(ticket!==generation.current)return;
-      if(value.state!=='INACTIVE_ACCOUNT'&&(!value.preferences||!validTimezone(value.preferences.timezone))){
+      if(needsInitialization(value)){
         let timezone=null;try{timezone=Intl.DateTimeFormat().resolvedOptions().timeZone;}catch{/* Backend requires retry; no fake timezone. */}
         await request('initialize',{language_code:resolveLanguage(value.preferences?.language_code),timezone,action_id:initialization.current});
         if(ticket!==generation.current)return;
         value=assertOnboardingSnapshot(await request('hydrate'));
+        if(needsInitialization(value))throw new OnboardingError('ONBOARDING_READBACK_CONFLICT');
       }
       if(ticket===generation.current)setSnapshot({...value,ownerSession:user.id});
     }catch(e){if(ticket===generation.current)setError(e.code || 'ONBOARDING_OPERATION_FAILED');}

@@ -11,15 +11,40 @@ export async function checkAuthFirstOnboarding(browser, origin) {
   const context=await browser.newContext({locale:language==='tr'?'tr-TR':'en-US',viewport:{width,height:844}}),page=await context.newPage();
   await page.route('**/*',r=>new URL(r.request().url()).origin===origin?r.continue():r.abort());
   await page.addInitScript(() => {
-   const seen = { name: false, signIn: false };
+   const attr = 'data-onboarding-state', selector = `[${attr}]`;
+   const seen = [];
    window.__seenOnboarding = seen;
-   new MutationObserver(() => {
-    seen.name ||= !!document.querySelector('#display_name');
-    seen.signIn ||= !!document.querySelector('#age-declaration,[data-provider]');
-   }).observe(document, { childList: true, subtree: true });
+   const record = state => { if (state && !seen.includes(state)) seen.push(state); };
+   new MutationObserver(changes => {
+    for (const change of changes) {
+     if (change.type === 'attributes') {
+      record(change.oldValue);
+      record(change.target.getAttribute(attr));
+     } else {
+      for (const node of change.addedNodes) {
+       if (!(node instanceof Element)) continue;
+       record(node.getAttribute(attr));
+       for (const screen of node.querySelectorAll(selector)) record(screen.getAttribute(attr));
+      }
+     }
+    }
+   }).observe(document, { childList: true, subtree: true, attributes: true, attributeFilter: [attr], attributeOldValue: true });
   });
   const next=()=>page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true});
+  const back=page.locator('[data-onboarding-back]');
+  const nameStep='AUTHENTICATED_NAME_REQUIRED', profileStep='AUTHENTICATED_PROFILE_REQUIRED';
+  const cycleStep='AUTHENTICATED_CYCLE_STEP', preparation='FIRST_SHINKA_DEPENDENCY';
   const state=s=>page.locator(`[data-onboarding-state="${s}"]`).waitFor();
+  const home=page.locator('[data-home-root] [data-daily-id]');
+  const observed=()=>page.evaluate(()=>window.__seenOnboarding);
+  const pending=async()=>{
+   await page.waitForFunction(()=>window.__sdkLabCalls.some(c=>c.name==='onboarding'&&c.action==='hydrate'));
+   assert.equal(await page.locator('[data-onboarding-state],[data-home-root]').count(),0,'progress must be verified before opening a screen');
+  };
+  const assertReadOnly=async()=>{
+   assert.equal(await page.evaluate(()=>window.__sdkLabCalls.filter(c=>c.name==='onboarding'&&c.action!=='hydrate').length),0);
+   assert.deepEqual(await page.evaluate(()=>window.__authFixture.providerCalls),[]);
+  };
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   try {
    await page.goto(`${origin}/?appFixture=1&sdkSession=anonymous&authFirst=new&language=${language}`);
@@ -44,38 +69,93 @@ export async function checkAuthFirstOnboarding(browser, origin) {
     expectedCalls.push({ provider, returnTo: '/login' });
     assert.deepEqual(await providerCalls(), expectedCalls);
    }
-   // Synthetic provider callback: use the unchanged real admission path once.
-   await page.evaluate(async()=>{window.__authFixture.setSession('user');await window.__appAuth.checkAppState();});
-   await state('AUTHENTICATED_NAME_REQUIRED');
-   await page.locator('[data-onboarding-back]').click();await state('UNAUTHENTICATED_SIGN_IN');
-   assert.equal(await page.locator('#age-declaration,[data-provider]').count(),0);
-   assert(await next().isVisible());
-   await next().click();await state('AUTHENTICATED_NAME_REQUIRED');
+   // Model the provider's /login return entry with the real App admission path.
+   await page.evaluate(async()=>{
+    const callback=new URL(location.href);
+    callback.pathname='/login';
+    history.pushState(history.state,'',callback);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+    window.__authFixture.setSession('user');
+    await window.__appAuth.checkAppState();
+   });
+   await state(nameStep);
+   await page.evaluate(()=>{window.__seenOnboarding.length=0;});
+   await page.goBack();
+   await page.waitForURL(url=>url.pathname==='/');
+   await state(nameStep);
+   assert.equal(await back.count(),0,'no earlier authenticated step before name');
+   assert(await page.getByRole('button',{name:language==='tr'?'Çıkış yap':'Sign out',exact:true}).isVisible());
    await doubleText(page);
-   const name=page.getByRole('textbox',{name:language==='tr'?'Adın':'Name',exact:true});await name.fill('Shinka Ada');await next().click();await state('AUTHENTICATED_PROFILE_REQUIRED');
-   await page.locator('[data-onboarding-back]').click();await state('AUTHENTICATED_NAME_REQUIRED');assert.equal(await name.inputValue(),'Shinka Ada');await next().click();await state('AUTHENTICATED_PROFILE_REQUIRED');
-   await page.locator('#birth_date').fill('1990-01-01');await next().click();await state('AUTHENTICATED_CYCLE_STEP');
+   const name=page.getByRole('textbox',{name:language==='tr'?'Adın':'Name',exact:true});
+   await name.fill('Shinka Ada');await next().click();await state(profileStep);
+   await back.click();await state(nameStep);assert.equal(await name.inputValue(),'Shinka Ada');
+   await name.fill('');
+   await page.getByRole('button',{name:language==='tr'?'Belirtmek istemiyorum':'Prefer not to say',exact:true}).click();
+   await state(profileStep);
+   await page.locator('#birth_date').fill('1990-01-01');await next().click();await state(cycleStep);
+   await back.click();await state(profileStep);
+   assert.equal(await back.count(),0,'saved NULL name must not reopen the name step');
+   assert.equal(await page.locator('#birth_date').inputValue(),'1990-01-01');
+   await next().click();await state(cycleStep);
+   await page.evaluate(()=>window.__authFixture.holdOperation('dailyMessage'));
    await page.getByRole('button',{name:language==='tr'?'Şimdilik geç':'Skip for now',exact:true}).click();
-   await page.locator('[data-home-root] [data-daily-id]').waitFor();
-   assert.equal(await page.evaluate(()=>window.__authFirstLab.rows.user_profile[0].display_name),'Shinka Ada');
-   assert.equal(await page.evaluate(()=>window.__authFirstLab.rows.user_daily_message.length),1);
-   await page.evaluate(async()=>{await window.__appAuth.checkAppState();});await page.locator('[data-home-root] [data-daily-id]').waitFor();
-   assert.equal(await page.locator('#display_name').count(),0);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
-   results.push({language,width,textScale:2,scenario:'intro-login-name-profile-cycle-home-reopen',
-    providerDispatch:expectedCalls,authenticatedWelcome:'CONTINUE',passed:true});
-   for(const scenario of ['complete','null-name','partial']) {
-    await page.goto(`${origin}/login?appFixture=1&sdkSession=user&authFirst=${scenario}&language=${language}&holdHydration=1`);
-    await page.waitForFunction(()=>window.__sdkLabCalls.some(c=>c.name==='onboarding'));
-    assert.equal(await page.locator('#display_name,#age-declaration,[data-provider]').count(),0);
-    await page.evaluate(()=>window.__authFixture.releaseHydration());
-    if(scenario==='partial')await state('AUTHENTICATED_PROFILE_REQUIRED');else await page.locator('[data-home-root] [data-daily-id]').waitFor();
-    assert.deepEqual(await page.evaluate(()=>window.__seenOnboarding),{name:false,signIn:false});
-    assert.equal(await page.locator('[data-provider],#age-declaration,#display_name').count(),0);
-    assert.equal(await page.evaluate(()=>window.__sdkLabCalls.filter(c=>c.name==='onboarding'&&c.action!=='hydrate').length),0);
-    await page.reload();if(scenario==='partial'){await page.waitForFunction(()=>window.__sdkLabCalls.some(c=>c.name==='onboarding'));await page.evaluate(()=>window.__authFixture.releaseHydration());await state('AUTHENTICATED_PROFILE_REQUIRED');}else {await page.waitForFunction(()=>window.__sdkLabCalls.some(c=>c.name==='onboarding'));await page.evaluate(()=>window.__authFixture.releaseHydration());await page.locator('[data-home-root] [data-daily-id]').waitFor();}
-    assert.deepEqual(await page.evaluate(()=>window.__seenOnboarding),{name:false,signIn:false});
-    results.push({language,width,scenario:`${scenario}-held-callback-no-name-reload`,passed:true});
+   await state(preparation);
+   assert.equal(await back.count(),0,'preparation must not send a signed-in user back to Welcome or cycle');
+   await page.evaluate(()=>window.__authFixture.releaseOperation('dailyMessage'));
+   await home.waitFor();
+   assert.deepEqual(await page.evaluate(()=>{
+    const rows=window.__authFirstLab.rows;
+    return [rows.user_profile[0].display_name,rows.user_period_record.length,rows.user_health_consent.length,rows.user_daily_message.length];
+   }),[null,0,0,1]);
+   await page.evaluate(async()=>{await window.__appAuth.checkAppState();});await home.waitFor();
+   assert.deepEqual(await observed(),[nameStep,profileStep,cycleStep,preparation]);
+   assert.deepEqual(await providerCalls(),expectedCalls);
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
+   results.push({language,width,textScale:2,scenario:'intro-oauth-history-back-optional-name-cycle-home-reopen',
+    providerDispatch:expectedCalls,passed:true});
+
+   const openVerified=(route,scenario)=>page.goto(`${origin}${route}?appFixture=1&sdkSession=user&authFirst=${scenario}&language=${language}&holdHydration=1${scenario==='preparation'?'&holdDaily=1':''}`);
+   for(const [scenario,route,target] of [
+    ['new','/onboarding',nameStep],
+    ['partial','/login',profileStep],
+    ['cycle','/',cycleStep],
+    ['preparation','/login',preparation],
+    ['complete','/onboarding',null],
+    ['null-name','/login',null],
+   ]) {
+    await openVerified(route,scenario);
+    for (const reopen of [false,true]) {
+     if(reopen) await page.reload();
+     await pending();
+     await page.evaluate(()=>window.__authFixture.releaseHydration());
+     if(target) await state(target); else await home.waitFor();
+     assert.deepEqual(await observed(),target?[target]:[],'fresh admission must open only the verified step');
+     assert.equal(await back.count(),target===cycleStep?1:0);
+     await assertReadOnly();
+    }
+    results.push({language,width,scenario:`${scenario}-held-hydrate-and-reload`,passed:true});
    }
+
+   await openVerified('/login','cycle');
+   await pending();
+   await page.evaluate(()=>{
+    window.__authFixture.overrideNextHydration({state:'ACTIVE_EXISTING_USER',completionReady:true,
+     profile:null,preferences:{timezone:'UTC',language_code:'en'},today:'2026-10-20'});
+    window.__authFixture.releaseHydration();
+   });
+   await page.getByText('ONBOARDING_READBACK_CONFLICT',{exact:true}).waitFor();
+   assert.deepEqual(await observed(),[]);
+   assert.equal(await page.locator('[data-home-root]').count(),0);
+   const retry=page.getByRole('button',{name:/Retry|Tekrar dene/i});
+   await page.evaluate(()=>window.__authFixture.failOperation('onboarding.hydrate'));
+   await retry.click();
+   await page.getByText('ONBOARDING_OPERATION_FAILED',{exact:true}).waitFor();
+   assert.deepEqual(await observed(),[]);
+   assert.equal(await page.locator('[data-home-root]').count(),0);
+   await retry.click();await state(cycleStep);
+   assert.deepEqual(await observed(),[cycleStep]);
+   await assertReadOnly();
+   results.push({language,width,scenario:'invalid-then-unavailable-progress-retry',passed:true});
    assert.deepEqual(errors,[]);
   }catch(error){
    console.error(JSON.stringify({authFirstFailure:{language,width,state:await page.evaluate(()=>document.querySelector('[data-onboarding-state]')?.getAttribute('data-onboarding-state')),alerts:await page.locator('[role=alert]').allTextContents(),calls:await page.evaluate(()=>window.__sdkLabCalls)}}));throw error;

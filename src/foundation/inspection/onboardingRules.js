@@ -37,7 +37,9 @@ export function inspectSignInControls(sources) {
   const signIn=sources['/src/features/onboarding/SignIn.jsx']||'';
   const artCap=Number(/SIGN_IN_ART_SPACE\s*=\s*\{[^}]*maxHeight:\s*(\d+)/.exec(screen)?.[1] ?? NaN);
   const controls={
-    anonymousBranch: /state === "UNAUTHENTICATED_SIGN_IN"\)\s*return authenticated\s*\?[^\n]*\n\s*:\s*<SignIn/.test(screen),
+    anonymousBranch: /anonymousSignIn = state === "UNAUTHENTICATED_SIGN_IN"/.test(screen)
+      && /if \(!screen \|\| anonymous === authenticated\) return null/.test(screen)
+      && /if \(anonymousSignIn\)\s*return <SignIn\b/.test(screen),
     ageDeclaration: /id="age-declaration"/.test(signIn) && /type="checkbox"/.test(signIn),
     appleProvider: /data-provider="apple"/.test(signIn),
     googleProvider: /data-provider="google"/.test(signIn),

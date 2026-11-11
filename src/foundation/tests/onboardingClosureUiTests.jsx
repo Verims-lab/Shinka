@@ -31,25 +31,23 @@ export const ONBOARDING_CLOSURE_UI_TESTS=[
    const profile=backend.rows.user_profile[0];check(profile.birth_time===null&&BIRTHPLACE_FIELDS.every(k=>profile[k]===null));
    button(host,'Skip for now').click();await wait(()=>host.querySelector('[data-daily-state=failure]'));
    check(backend.rows.user_daily_message.length===0&&!f.transitions.some(t=>t.next==='ACTIVE_EXISTING_USER'));
-   backend.state.mode='normal';const retry=button(host,'Retry');retry.click();retry.click();await wait(()=>state(host)==='ACTIVE_EXISTING_USER');
+   backend.state.mode='normal';const retry=button(host,'Retry');retry.click();retry.click();
+   await wait(()=>f.transitions.some(t=>t.next==='ACTIVE_EXISTING_USER'));
    check(backend.state.dailyCalls===2&&backend.rows.user_daily_message.length===1&&backend.rows.user_health_consent.length===0&&backend.providerConstructions()===0);
    const id=backend.rows.user_daily_message[0].id;check((await backend.daily()).daily.id===id&&backend.rows.user_daily_message.length===1);
   },context,{request:backend.request,props:{dailyRequest:backend.daily}});
  }],
- ['OV03','Authenticated ON-04 Back/Continue preserves draft and session; preparation Back ignores late daily and resumes readback',async(context={})=>{
+ ['OV03','Saved NULL name goes straight to ON-04 and preparation waits for daily readback within the same session',async(context={})=>{
   const backend=await closureFixture();let resolve;const gate=new Promise(r=>{resolve=r;});let dailyCalls=0,auth=0,started=false;
   context.cleanup?.(()=>resolve());
   const dailyRequest=async()=>{dailyCalls++;const result=await backend.daily();if(dailyCalls===1){started=true;await gate;}return result;};
   await auditScreen('AUTHENTICATED_PROFILE_REQUIRED',async(f,host,wait,turn)=>{
    input(host,'birth_date','1990-01-01');input(host,'birth_time','23:59');await turn();
-   host.querySelector('[data-onboarding-back]').click();await wait(()=>state(host)==='UNAUTHENTICATED_SIGN_IN');
-   check(!host.querySelector('[data-provider]')&&f.calls.length===0,'back restarted OAuth or wrote');
-   button(host,'Continue').click();await wait(()=>host.querySelector('#birth_date'));check(host.querySelector('#birth_time').value==='23:59');
+   check(!host.querySelector('[data-onboarding-back],#display_name,[data-provider]')&&f.calls.length===0,'saved profile must start at ON-04');
    button(host,'Continue').click();await wait(()=>host.querySelector('#period_start_date'));button(host,'Skip for now').click();while(!started)await turn();
-   host.querySelector('[data-onboarding-back]').click();await wait(()=>state(host)==='UNAUTHENTICATED_SIGN_IN');
-   resolve();await turn();await turn();check(state(host)==='UNAUTHENTICATED_SIGN_IN','late response navigated back screen');
-   button(host,'Continue').click();await wait(()=>state(host)==='ACTIVE_EXISTING_USER');
-   check(auth===0&&dailyCalls===2&&backend.rows.user_daily_message.length===1,'resume did not reconcile same day');
+   check(state(host)==='FIRST_SHINKA_DEPENDENCY'&&!host.querySelector('[data-onboarding-back],[data-provider]'),'preparation must stay pending');
+   resolve();await wait(()=>f.transitions.some(t=>t.next==='ACTIVE_EXISTING_USER'));
+   check(auth===0&&dailyCalls===1&&backend.rows.user_daily_message.length===1,'verified daily must advance once');
   },context,{profile:{display_name:null},request:backend.request,props:{authenticate:async()=>{auth++;},dailyRequest}});
  }],
  ['OV04','Time keyboard and icon share HH:mm; invalid/incomplete values rejected, cancel preserves, Set and Clear are explicit',async(context={})=>{

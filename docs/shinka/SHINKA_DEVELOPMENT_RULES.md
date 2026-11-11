@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-070
+**Current BuildMarker:** Buildmarker-071
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 071 — Verified onboarding navigation
+
+Record Buildmarker-071 / HC-070.0 with `recordBuild` and retain 067–071. Require the auth-first Foundation browser gate in Chromium and WebKit. It covers anonymous controls and provider dispatch, direct verified progress and Home, pending/invalid/unavailable reads, retry, reload, optional fields and Back. Real provider and installed-device acceptance remain external. [071 delivery](reports/SHINKA_AUTHENTICATED_ONBOARDING_071.md)
 
 ## 069 — Welcome authentication regression and published check
 

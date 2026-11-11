@@ -15,7 +15,7 @@ export async function transitionFixtures() {
   }), () => f.client(), { now: f.now })).json();
   return {
     applicationSession: { id: 'ownerA', role: 'user', authority: 'BASE44_NATIVE_V1' },
-    'onboarding.hydrate': { state: 'ACTIVE_EXISTING_USER', profile: f.tables.UserProfile[0], preferences: f.tables.UserPreferences[0], today: '2026-10-20' },
+    'onboarding.hydrate': { state: 'ACTIVE_EXISTING_USER', completionReady: true, profile: f.tables.UserProfile[0], preferences: f.tables.UserPreferences[0], today: '2026-10-20' },
     'dailyMessage.today': await f.today(),
     'calendar.read': await f.cal(),
     'pattern.themes': await p.request('themes'),

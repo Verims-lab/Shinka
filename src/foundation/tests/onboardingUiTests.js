@@ -299,13 +299,13 @@ export const ONBOARDING_UI_TESTS=[
    begin.click();await new Promise(r=>win.setTimeout(r,50));check(doc.querySelector('#age-declaration')&&!doc.querySelector('#display_name'),`${language} ON-02 sign-in reached`);check(!doc.querySelector('[data-onboarding-intro]'),'intro left');
   },{language},context);
  }],
- ['U18','ON-01 omits its page number; ON-02–ON-05 keep their counters, art space, Back and Finish',async(context={})=>{
+ ['U18','ON-01 omits its page number; ON-02–ON-05 retain counters, art space and session-scoped Back',async(context={})=>{
   const states=['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_NAME_REQUIRED','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP'];
   for(const language of ['en','tr'])for(const [i,state] of states.entries())await onboardingProbe(state,360,async doc=>{
    const c=ONBOARDING_COPY[language];
    const counter=doc.querySelector('p[data-onboarding-step]');
    check(i===0 ? !counter : counter?.textContent===c.stepOf.replace('{n}',String(i+1)),`${language} ${state} counter`);
-   check(Boolean(doc.querySelector('[data-onboarding-back]'))===(i>0),`${state} back presence`);
+   check(Boolean(doc.querySelector('[data-onboarding-back]'))===(i===1||i===4),`${state} back presence`);
    const space=doc.querySelector('.shinka-onboarding-art-space');
    check(!doc.querySelector('.shinka-onboarding img'),'no duplicate content bitmap');
    if(i===0) {
@@ -313,14 +313,14 @@ export const ONBOARDING_UI_TESTS=[
    } else {
     check(space&&space.childElementCount===0&&!space.textContent,'empty art slot');
     const rect=space.getBoundingClientRect(),css=doc.defaultView.getComputedStyle(space);
-    check(rect.width===240&&(i===1?rect.height<=240:rect.height===240),'only the anonymous sign-in slot can shrink');
+    check(rect.width===240&&(i===1?rect.height<=48:rect.height===240),'only the anonymous sign-in slot can shrink');
     check(css.backgroundImage==='none'&&css.backgroundColor==='rgba(0, 0, 0, 0)','empty slot does not paint another layer');
    }
    check(!doc.body.textContent.includes('Account & Privacy')&&!doc.body.textContent.includes('Hesap ve Gizlilik'),`${state} no privacy link`);
    check(doc.documentElement.scrollWidth<=361,`${state} overflow`);
    if(i===4)check(button(doc,c.finish),'Finish label');
   },{language},context);
-  await onboardingProbe('FIRST_SHINKA_DEPENDENCY',360,async doc=>check(!doc.querySelector('[data-onboarding-step]'),'preparation unnumbered'),{language:'en'},context);
+  await onboardingProbe('FIRST_SHINKA_DEPENDENCY',360,async doc=>check(!doc.querySelector('[data-onboarding-step],[data-onboarding-back]'),'preparation unnumbered with no earlier step'),{language:'en'},context);
  }],
  ['U17','ON-04 shows new title/subtitle, 4 of 5, compact birthplace, no Account & Privacy; focus alone does not search; date/time fit 320/360',async(context={})=>{
   const pause=()=>testDelay(50,context.signal);

@@ -3,7 +3,7 @@ import { healthReadDiagnostic } from '../../base44/shared/healthReadDiagnostics.
 import { base44 } from '@/api/base44Client';
 import { ONBOARDING_ERROR_KEYS } from '@/foundation/i18n/onboardingCopy';
 import { ONBOARDING_DEPENDENCIES } from '../../base44/shared/onboardingDependencies.js';
-import { OnboardingError } from '../../base44/shared/onboardingValidation.js';
+import { isCalendarDate, OnboardingError, validTimezone } from '../../base44/shared/onboardingValidation.js';
 // UI advancement requires the operation's explicit readback envelope. A fulfilled
 // invocation or arbitrary state string is not a successful save.
 export function assertOnboardingProgress(action, payload, result) {
@@ -14,9 +14,20 @@ export function assertOnboardingProgress(action, payload, result) {
   if (!valid) throw new OnboardingError('ONBOARDING_READBACK_CONFLICT');
 }
 // Read failures and unknown envelopes are never a "new user" decision.
+const progressStates = ['AUTHENTICATED_NAME_REQUIRED','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP','FIRST_SHINKA_DEPENDENCY','ACTIVE_EXISTING_USER'];
 export function assertOnboardingSnapshot(value) {
-  const states = ['AUTHENTICATED_NAME_REQUIRED','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP','FIRST_SHINKA_DEPENDENCY','ACTIVE_EXISTING_USER','INACTIVE_ACCOUNT'];
-  if (!states.includes(value?.state) || (value.state === 'AUTHENTICATED_NAME_REQUIRED' && value.profile != null)) throw new OnboardingError('ONBOARDING_READBACK_CONFLICT');
+  const {state, profile, preferences, completionReady, today, dependencies} = value ?? {};
+  if (state === 'INACTIVE_ACCOUNT') return value;
+  const hasProfile = typeof profile?.id === 'string' && profile.id.length > 0;
+  const validProfile = state === 'AUTHENTICATED_NAME_REQUIRED' ? profile === null
+    : hasProfile || (state === 'AUTHENTICATED_PROFILE_REQUIRED' && profile === null);
+  const validPreferences = preferences === null || (preferences && typeof preferences === 'object' && !Array.isArray(preferences));
+  const validDependencies = dependencies == null || (Array.isArray(dependencies) && dependencies.every(code => typeof code === 'string'));
+  if (!progressStates.includes(state) || !validProfile || !validPreferences || !validDependencies
+      || completionReady !== (state === 'ACTIVE_EXISTING_USER')
+      || (validTimezone(preferences?.timezone) && !isCalendarDate(today))) {
+    throw new OnboardingError('ONBOARDING_READBACK_CONFLICT');
+  }
   return value;
 }
 export const isOnboardingPrivacyRestriction = code => ['ACCOUNT_DELETION_IN_PROGRESS','HEALTH_DELETION_PENDING','CONSENT_REGRANT_WORKFLOW_REQUIRED'].includes(code);

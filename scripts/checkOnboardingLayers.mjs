@@ -270,11 +270,13 @@ export async function checkOnboardingLayers(browser, origin, directory) {
           await field.blur();await page.setViewportSize({width,height});verify(await inspect());
           if(step===4){await page.locator('#birth_time').focus();await page.locator('#birth_time').fill('10:30');verify(await inspect());await page.locator('#birth_time').blur();}
         }
-        if(step>1) {
-          await resetText();await page.locator('[data-onboarding-back]').click();await page.locator(`[data-onboarding-step="${step===4?2:step-1}"]`).waitFor();await prepare();verify(await inspect());
+        const back = page.locator('[data-onboarding-back]');
+        if(step===2 || step===5) {
+          await resetText();await back.click();await page.locator(`[data-onboarding-step="${step-1}"]`).waitFor();await prepare();verify(await inspect());
           if(step===2) {await page.getByRole('button',{name:language==='tr'?'Başla':'Begin',exact:true}).click();await page.locator('#age-declaration').waitFor();assert.equal(await page.locator('#display_name').count(),0);}
-          if(step===3) {assert.equal(await page.locator('[data-provider],#age-declaration').count(),0);await page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true}).click();await page.locator('#display_name').waitFor();assert.equal(await page.locator('#display_name').inputValue(),'Ada');}
-          if(step===4) {await page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true}).click();await page.locator('#birth_date').waitFor();assert.equal(await page.locator('#birth_date').inputValue(),'1990-01-01');assert.equal(await page.locator('#birth_time').inputValue(),'10:30');}
+          if(step===5) {assert.equal(await back.count(),0);assert.equal(await page.locator('#birth_date').inputValue(),'1990-01-01');assert.equal(await page.locator('#birth_time').inputValue(),'10:30');}
+        } else {
+          assert.equal(await back.count(),0);
         }
         results.push({language,width,height,textScale:scale,step,passed:true,views,
           ...(step===1?{intro:layout,safeAreaIntro:safeArea}:step===2?{signIn:layout,safeAreaSignIn:safeArea}:{}),

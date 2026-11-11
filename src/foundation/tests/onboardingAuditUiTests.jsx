@@ -57,7 +57,7 @@ export const ONBOARDING_AUDIT_UI_TESTS=[
    host.querySelector('#health_consent').click();await turn();
    const before=JSON.stringify(backend.rows);host.querySelector('button[data-onboarding-back]').click();await wait(()=>host.querySelector('input#birth_date'));
    check(JSON.stringify(backend.rows)===before&&f.calls.length===0,'back wrote data');
-   check(host.querySelector('input#birth_date').value==='1990-01-01'&&host.querySelector('button[data-onboarding-back]'),'profile restore / unsafe auth back');
+   check(host.querySelector('input#birth_date').value==='1990-01-01'&&!host.querySelector('button[data-onboarding-back]'),'profile restore / unsafe auth back');
    type(host,'birth_date','1991-04-20');await turn();f.locale('tr');await turn();
    check(host.querySelector('input#birth_date').value==='1991-04-20','locale lost profile draft');
    host.querySelector('button[type=submit]').click();await wait(()=>host.querySelector('#period_start_date'));
