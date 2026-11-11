@@ -1,3 +1,4 @@
+import { seedLegacyReset } from './historicalResetFixture';
 import { nativeFixture } from './nativeFixture';
 import { createElement as h } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -75,15 +76,30 @@ export const ADMIN_TEST_UI_TESTS = [
     });
     assert(!f.tables.AdminTestOperation.length && f.state.calls.every(c => c.method === 'filter'), 'cancel mutation');
   }],
-  ['AU04', 'Double click submits one reset; resulting operation remains visible for status', async () => {
-    const f = adminTestFixture(); f.state.time = new Date().toISOString(); let executions = 0;
-    await fixture('en', (action, body) => { if (action === 'execute') executions++; return f.request({ action, ...body }); }, async (q, host) => {
-      await lookup(q); q('[data-destructive="false"]').click(); await until(() => q('[data-test-preview]'));
-      const button = q('[data-test-preview] [data-variant="primary"]'); button.click(); button.click();
-      await until(() => host.textContent.includes(TEST_TOOLS_COPY.en.resetResult));
-      assert(executions === 1 && f.tables.AdminTestOperation.length === 1, 'double submit');
-      assert(!q('[data-test-preview]'), 'approval reusable');
-    });
+  ['AU04', 'Retired reset has no controls; active legacy receipt permits status reads only in TR/EN', async () => {
+    for(const language of ['tr','en']) for(const status of ['RESET_ACTIVE','RUNNING','RETRY_REQUIRED']) {
+      const f=nativeFixture(), job=seedLegacyReset(f,{status});const before=JSON.stringify(f.tables),commands=[];
+      await fixture(language,(action,body)=>{commands.push(action);return f.tools({action,...body});},async(q,host)=>{
+        assert(!q('[data-destructive="false"]'),'reset button remains');
+        await lookup(q);await until(()=>host.textContent.includes(TEST_TOOLS_COPY[language].legacyResetPending));
+        assert(q('[data-destructive="true"]').disabled&&!q('[data-test-resume]'),'legacy reset offered mutation');
+        const check=[...host.querySelectorAll('button')].find(b=>b.textContent===TEST_TOOLS_COPY[language].check);
+        assert(check&&!check.disabled,'legacy status unavailable');check.click();await until(()=>!q('#test-user-id').disabled);
+        assert(host.textContent.includes(job.operation_id),'lost legacy operation ID');
+      });
+      assert(commands.every(action=>['lookup','status'].includes(action))&&JSON.stringify(f.tables)===before&&f.state.calls.every(c=>c.method==='filter'),'legacy UI wrote');
+    }
+    const f=nativeFixture();f.state.time=new Date().toISOString();
+    const old=seedLegacyReset(f,{status:'COMPLETED',stage:'DONE',completed_at:f.now().toISOString()}),saved=JSON.stringify(old);
+    sessionStorage.setItem('shinka.pending-test-operation',JSON.stringify({target:'ownerA',id:old.operation_id}));
+    await fixture('en',(action,body)=>f.tools({action,...body}),async(q,host)=>{
+      await until(()=>q('[data-test-target]'));
+      assert(!host.textContent.includes(TEST_TOOLS_COPY.en.deletePending),'completed reset became pending deletion');
+      q('[data-destructive="true"]').click();await until(()=>q('[data-test-preview]'));q('[data-test-preview] [data-variant="primary"]').click();
+      await until(()=>host.textContent.includes(TEST_TOOLS_COPY.en.deletedResult));
+      const current=f.tables.AdminTestOperation.find(row=>row.operation==='DELETE_USER');
+      assert(current.operation_id!==old.operation_id&&f.tables.AdminTestOperation.length===2&&JSON.stringify(old)===saved,'new removal reused or changed old reset receipt');
+    },true);
   }],
   ['AU05','Native delete shows current identity and needs one confirmation in TR/EN',async()=>{
     for(const language of ['tr','en']) {

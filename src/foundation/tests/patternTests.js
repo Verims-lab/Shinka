@@ -1,3 +1,4 @@
+import { seedLegacyReset } from './historicalResetFixture';
 import { PRODUCT_READ_STABILITY_TESTS } from './productReadStabilityTests';
 import { PATTERN_REFRESH_TESTS } from './patternRefreshTests';
 import { withTestClock } from './testClock';
@@ -128,7 +129,7 @@ export const PATTERN_TESTS = [
    await reject(()=>f.request('themes',{},'ownerB'),'ACTIVE_ACCOUNT_REQUIRED');
    f.tables.UserProfile[0].account_status='INACTIVE'; await reject(()=>f.request('themes'),'ACTIVE_ACCOUNT_REQUIRED');
    f.tables.UserProfile[0].account_status='ACTIVE';
-   const reset = await f.preview(); await f.execute(reset);
+   seedLegacyReset(f);
    await reject(()=>f.request('themes'),'ONBOARDING_RESTART_REQUIRED');
    f.tables.AdminTestOperation[0].operation='DELETE_USER';f.tables.AdminTestOperation[0].status='RUNNING';f.tables.AdminTestOperation[0].stage='VERIFY';
    await reject(()=>f.request('lunar'),'ACCOUNT_DELETION_IN_PROGRESS');

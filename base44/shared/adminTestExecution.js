@@ -1,5 +1,5 @@
 import { verifyTestDeletion, testDeletionResiduals } from './testDeletionResult.js';
-import { DELETE_STEPS, DELETED_ENTITIES, testToolError, projectOperation } from './adminTestPolicy.js';
+import { DELETE_STEPS, DELETED_ENTITIES, requireTestOperationWrite, testToolError, projectOperation } from './adminTestPolicy.js';
 import { testAuditRecord } from './adminTestAudit.js';
 import { safeTestOperationError } from './adminTestDiagnostics.js';
 import { testDeletionPass } from './testDeletionPass.js';
@@ -7,20 +7,19 @@ import { testDeletionPass } from './testDeletionPass.js';
 // Durable admission precedes destruction. Forward checkpoints reduce repeated
 // work; fresh full-scope verification, never checkpoints alone, proves absence.
 export async function executeTestJob({ journal, repository, actor, target, operation, requestId, previewHash, now, clock = () => performance.now(), diagnostics = undefined, pass = testDeletionPass(clock), acknowledgeStart = false, separatePasses = false }) {
+  requireTestOperationWrite(operation);
   let job = projectOperation(await journal.begin({ actor_id: actor.id, target_id: target.id, operation, request_id: requestId, preview_hash: previewHash, started_at: now().toISOString() }));
   if (job.operation_id !== requestId || job.actor_id !== actor.id || job.target_id !== target.id || job.operation !== operation || job.request_id !== requestId || job.preview_hash !== previewHash) testToolError('TEST_OPERATION_CONFLICT');
   const started = await repository.operation(target.id, job.operation_id);
   if (!started || JSON.stringify(started) !== JSON.stringify(job)) testToolError('TEST_JOB_START_UNCONFIRMED', 503);
   pass.start(job,acknowledgeStart);
   const verified = () => verifyTestDeletion(repository, target.id);
-  if (job.status === 'RESET_ACTIVE') return job;
   const reconcile = async residual => {
     if(!journal.reopen)testToolError('TEST_JOB_STATUS_UNCONFIRMED',503);
     pass.stage(residual[0]);pass.more();pass.stop('RESIDUAL_RECHECK_REQUIRED');
     return journal.reopen(job,residual[0]);
   };
   if (job.status === 'COMPLETED') {
-    if(operation!=='DELETE_USER')return job;
     pass.stage('VERIFY');
     const residual=await testDeletionResiduals(repository,target.id);
     if(!residual.length)return job;
@@ -40,7 +39,6 @@ export async function executeTestJob({ journal, repository, actor, target, opera
     return job;
   };
   try {
-    if (operation === 'RESET_ONBOARDING') return await finish({ status: 'RESET_ACTIVE', stage: 'PROFILE', error_code: null });
     // Acknowledging the durable start has its own response. This prevents
     // admission/start-audit work plus cleanup from overrunning one service call.
     if(acknowledgeStart){pass.stop('START_SAVED');return job;}
@@ -83,7 +81,7 @@ export async function executeTestJob({ journal, repository, actor, target, opera
     }
     try {
       const current=await repository.operation(target.id,job.operation_id);
-      if(current?.status==='RESET_ACTIVE'||current?.status==='COMPLETED'&&await verified())return current;
+      if(current?.status==='COMPLETED'&&await verified())return current;
       await checkpoint();
       await journal.failed(job,error.code,testAuditRecord(job,'FAILED',now().toISOString(),error.code),activeStage);
     } catch {

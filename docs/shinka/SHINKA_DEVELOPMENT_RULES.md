@@ -2,12 +2,19 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-063
-**Last Updated:** 2026-11-10
+**Current BuildMarker:** Buildmarker-064
+**Last Updated:** 2026-11-11
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
+
+
+## 064 — Admin reset retirement and selected-user removal (2026-11-11)
+
+Generate Buildmarker-064 / HC-063.0 through recordBuild, retaining 060–064. Preserve 063 presentation, 062 Calendar, 061 auth-first and 060 privacy changes plus user-owned App Store artifacts. Scope: the two explicitly authorized test-user removal attempts first, then admin reset retirement. Both live preflights were blocked, so preserve the blocker and finish independent code work. No general audit, unrelated user changes, direct DB bypass, live Full Health/Security scan, main merge or publish. Existing mandatory local browser/server, dependency, quality and performance gates apply.
+
+[064 delivery and execution](reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md).
 
 
 ## 063 — Presentation-only Lunar Timeline

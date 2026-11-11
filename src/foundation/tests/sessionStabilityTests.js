@@ -6,7 +6,7 @@ import { createHealthContext } from '@/foundation/health/context';
 const check = (ok, msg = "assertion failed") => { if (!ok) throw new Error(msg); };
 const http = status => Object.assign(new Error("x"), { status });
 const NAMES = ["AdminTestOperation", "UserCalendarAction", "InternalHealthRun", "UserPrivacyRequest", "PrivacyRecoveryReceipt"];
-const STRATEGY = { authority: "BASE44_NATIVE_V1", strategyVersion: "native-continuation/2", daily: "IMMUTABLE_CANDIDATES", calendar: "OBSERVATIONS_AND_RECEIPTS", reset: "VERIFIED_STEPS", deletion: "TARGET_LIFECYCLE_RESUMABLE" };
+const STRATEGY = { authority: "BASE44_NATIVE_V1", strategyVersion: "native-continuation/3", daily: "IMMUTABLE_CANDIDATES", calendar: "OBSERVATIONS_AND_RECEIPTS", reset: "LEGACY_PROGRESS_ONLY", deletion: "TARGET_LIFECYCLE_RESUMABLE" };
 const readable = name => ({ name, readable: true, sampledRows: 1 });
 const unreadable = (name, code, httpStatus) => ({ name, readable: false, diagnostic: { code, httpStatus } });
 const ctx = value => ({ nativeReadiness: async () => value });

@@ -59,7 +59,7 @@ await test('SS05b budget only gates retries (not a hard timeout)', async () => {
 });
 await test('SS04n actual Health predicate in Node (not browser SS04/SS10)', async () => {
   const names=['AdminTestOperation','UserCalendarAction','InternalHealthRun','UserPrivacyRequest','PrivacyRecoveryReceipt'];
-  const good=()=>({authority:'BASE44_NATIVE_V1',strategyVersion:'native-continuation/2',daily:'IMMUTABLE_CANDIDATES',calendar:'OBSERVATIONS_AND_RECEIPTS',reset:'VERIFIED_STEPS',deletion:'TARGET_LIFECYCLE_RESUMABLE',schemas:names.map(name=>({name,readable:true,sampledRows:0}))});
+  const good=()=>({authority:'BASE44_NATIVE_V1',strategyVersion:'native-continuation/3',daily:'IMMUTABLE_CANDIDATES',calendar:'OBSERVATIONS_AND_RECEIPTS',reset:'LEGACY_PROGRESS_ONLY',deletion:'TARGET_LIFECYCLE_RESUMABLE',schemas:names.map(name=>({name,readable:true,sampledRows:0}))});
   const status=async(value,feature='daily')=>(await nativePrerequisite({nativeReadiness:async()=>value},feature)).status;
   check(await status(good())==='PASS','valid contract');
   check((await nativePrerequisite({nativeReadiness:async()=>{throw http(429);}},'wrong-feature')).status==='FAIL','unknown feature hidden by thrown 429');

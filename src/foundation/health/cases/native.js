@@ -17,6 +17,6 @@ export const NATIVE_HEALTH_CASES = [
   local('H07','H07-015','Native grant continuation preserves consent instant and optional durations',['NA14','NA15','NA24','NA30']),
   local('H09','H09-006','Native immutable candidate reconciliation and response loss',['NA02','NA03','NA04','NA05','NA06']),
   local('H08','H08-008','Native observation writes, conflict review and resumable receipts',['NA08','NA09','NA10','NA11','NA12','NA13','NA16','NA28','NA29']),
-  local('H12','H12-033','Native reset progress and resumable target deletion',['NA17','NA18','NA19','NA20','NA21','NA22','NA23','NA25','NA26','NA27','NA34A','NA34B','NA34C']),
-  makeCase('H04',{runnerType:RUNNER.BACKEND,classification:CLASS.LIVE_RUNTIME})('H04-019','Connected Base44 continuation prerequisites','Read-only exact feature/authority/strategies and five distinct well-formed schema rows. Valid transient rows BLOCKED; malformed/mismatched rows FAIL, including mismatch plus 429. Shared per-run source; SS04/SS10 local matrix, not hosted mutation proof.',ctx=>nativePrerequisite(ctx,'daily')),
+  local('H12','H12-033','Existing legacy progress compatibility and resumable target deletion',['NA18','NA19','NA20','NA21','NA22','NA23','NA25','NA26','NA27','NA34A','NA34B','NA34C']),
+  makeCase('H04',{runnerType:RUNNER.BACKEND,classification:CLASS.LIVE_RUNTIME})('H04-019','Connected Base44 continuation prerequisites','Read-only native-continuation/3 with retired reset; exact feature/authority/strategies and five distinct well-formed schema rows. Valid transient rows BLOCKED; malformed/mismatched rows FAIL, including mismatch plus 429. Shared per-run source; SS04/SS10 local matrix, not hosted mutation proof.',ctx=>nativePrerequisite(ctx,'daily')),
 ];

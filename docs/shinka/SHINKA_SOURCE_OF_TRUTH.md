@@ -2,14 +2,21 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-063
-**Last Updated:** 2026-11-09
+**Current BuildMarker:** Buildmarker-064
+**Last Updated:** 2026-11-11
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
+
+
+## 064 — Admin reset retirement and selected-user removal (2026-11-11)
+
+Authority: the user's 2026-11-11 request `5d8b90ac-b7fc-4c24-bbe5-76024cb6048f/Pasted text.txt`. It retires the admin reset feature and supersedes the 013/016 permission to start new resets. Historical receipts and prior evidence remain authoritative history, not current feature instructions. Only the two explicitly supplied native IDs were authorized for removal; an email is not a replacement identity. Current read-only evidence found both still ACTIVE and blocked by existing reset receipts. No deletion success or platform erasure is inferred. Native identity, server onboarding progress, lifecycle/privacy and saved NULL-name decisions remain the routing authority.
+
+[064 delivery and execution](reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md).
 
 
 ## 062 — Calendar interaction decision
@@ -391,7 +398,7 @@ The explicit user request in attachment `ae73619e-0ead-49d8-882a-9f14abe859ca/Pa
 
 The source's future-three-cycle window is calculated from the current cycle anchored in the last genuine start; three subsequent cycles and intervening predicted history are represented. Completed actual intervals use their actual length for historical phase days; current/future cycles use the shared last-three/outlier estimate. Predicted cycle interval end is start + estimated length − 1; only MENSTRUAL days within it are colored as predicted period days. No scheduler is activated. The original minimum-spacing, NULL/default, grant-time, immutable daily snapshot and ten-source contracts remain unchanged.
 
-## Explicit user decision — Admin Test Tools, 2026-10-20 (013)
+## Historical user decision — Admin Test Tools, 2026-10-20 (013; reset creation superseded by 064)
 
 **016 hosted acceptance target decision, 2026-10-20:** The user explicitly approved existing Base44 app `6ad5190f4845d4e3af03b420` / `prod` for approved content/Moon import and synthetic acceptance after being told isolation was unverified. A separately confirmed ACTIVE native admin and user-selected ACTIVE normal user are distinct test identities; an ID alone does not supply a browser session. The user separately approved `ADMIN_TEST_TOOLS_APP_ID`, `ADMIN_TEST_TOOLS_ENVIRONMENT=TEST` and a new server-only `ADMIN_TEST_TOOLS_PREVIEW_KEY`. The user later clarified that the open Chrome session is the selected admin and explicitly authorized edits/reset of both synthetic accounts. Normal-user backend enforcement still requires that separate authenticated session. TEST is an operator authorization label, not a separate data store. No deletion maintenance/drain authorization is supplied by these decisions. See [current evidence/runbook](reports/SHINKA_HOSTED_CLOSURE_016.md). No content text, mapping, category decision or product rule changes.
 

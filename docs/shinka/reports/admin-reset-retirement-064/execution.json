@@ -1,0 +1,146 @@
+{
+  "buildMarker": "Buildmarker-064",
+  "healthCatalog": "HC-063.0",
+  "status": "LOCAL_COMPLETE_LIVE_DELETION_BLOCKED",
+  "historicalAttempts": [
+    {
+      "check": "typecheck",
+      "result": "FAIL",
+      "reason": "intermediate ImpactPreview JSX brace; fixed"
+    },
+    {
+      "check": "focused Chromium attempt 1",
+      "result": "NOT_RUN",
+      "reason": "sandbox loopback listen EPERM; rerun with local execution permission"
+    },
+    {
+      "check": "initial repo Health and full Chromium",
+      "result": "FAIL",
+      "fundamentalPassed": 802,
+      "fundamentalFailed": 1,
+      "failedTest": "T21",
+      "reason": "new synthetic fixture filename matched legacy-source firewall; renamed to historicalResetFixture without relaxing the firewall; final full runs passed"
+    }
+  ],
+  "focusedChromium": {
+    "passed": 37,
+    "failed": 0
+  },
+  "hostedFullHealth": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "liveWrites": 0,
+  "date": "2026-11-11",
+  "browserRuns": {
+    "chromium": {
+      "command": "npm run test:foundation",
+      "exitCode": 0,
+      "passed": 803,
+      "failed": 0,
+      "pageErrors": [],
+      "adminActualAppScenarios": 4,
+      "localHealth": {
+        "PASS": 146,
+        "BLOCKED": 13
+      },
+      "saveRetryListOpen": true,
+      "receipt": "chromium.json"
+    },
+    "webkit": {
+      "command": "FOUNDATION_BROWSER=webkit npm run test:foundation",
+      "exitCode": 0,
+      "passed": 803,
+      "failed": 0,
+      "pageErrors": [],
+      "adminActualAppScenarios": 4,
+      "localHealth": {
+        "PASS": 146,
+        "BLOCKED": 13
+      },
+      "saveRetryListOpen": true,
+      "receipt": "webkit.json"
+    }
+  },
+  "gates": {
+    "npm ci": "PASS",
+    "npm ls --all": "PASS",
+    "npm run typecheck": "PASS",
+    "npm run lint": "PASS",
+    "npm run build": "PASS",
+    "npm run health:repo": {
+      "status": "PASS",
+      "checks": 19,
+      "receipt": "repo-health.json"
+    },
+    "npm run security:deps": {
+      "status": "PASS",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "scope": "NPM_DEPENDENCIES_ONLY_NOT_HOSTED_SECURITY_SCAN"
+    },
+    "node scripts/recordBuild.mjs --check": {
+      "status": "PASS",
+      "activePackages": [
+        "060",
+        "061",
+        "062",
+        "063",
+        "064"
+      ]
+    },
+    "node scripts/measureMaintenance.mjs /private/tmp/shinka-064/performance": {
+      "status": "PASS",
+      "receipt": "performance.json",
+      "productionInitialJS": {
+        "raw": 491758,
+        "gzip": 163966
+      },
+      "productionCSS": {
+        "raw": 82981,
+        "gzip": 15873
+      },
+      "routes": 9,
+      "samplesPerRoute": 3,
+      "scope": {
+        "node": "v26.0.0",
+        "platform": "darwin",
+        "arch": "arm64",
+        "browser": "Playwright Chromium, headless, cold context, 360x740, loopback, no throttling; SDK transport stubbed, external fonts blocked; not user metrics"
+      },
+      "productionVitalsAcceptance": {
+        "status": "NOT_MEASURED",
+        "reason": "No field p75 or INP; local LCP/CLS only, not a production acceptance gate"
+      }
+    },
+    "git diff --check": "PASS"
+  },
+  "nonFailingWarnings": [
+    "npm min-release-age-exclude config deprecation warning",
+    "Vite ineffective dynamic-import warnings for existing synthetic Health modules; performance gate passed"
+  ],
+  "healthDelta": {
+    "added": 0,
+    "updated": 8,
+    "retired": 1,
+    "retiredIds": [
+      "H12-030"
+    ],
+    "updatedIds": [
+      "H12-028",
+      "H12-033",
+      "H13-016",
+      "H04-019",
+      "H08-005",
+      "H09-004",
+      "H12-031",
+      "H05-009"
+    ]
+  },
+  "hostedResetRetirementAcceptance": "NOT_RUN_REQUIRES_MATCHING_PUBLICATION",
+  "liveRemovalOutcome": "BLOCKED_TEST_TARGET_BUSY_BOTH_SELECTED_IDS"
+}

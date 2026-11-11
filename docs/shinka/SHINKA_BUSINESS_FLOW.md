@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-063
-**Last Updated:** 2026-11-09
+**Current BuildMarker:** Buildmarker-064
+**Last Updated:** 2026-11-11
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
@@ -11,6 +11,15 @@
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
+
+
+## 064 — Admin reset retirement and selected-user removal (2026-11-11)
+
+Admin onboarding restart is retired. New RESET_ONBOARDING preview/execute and admin resume of an old reset are rejected without writes. User removal keeps the existing guarded preview → same-operation cleanup → fresh residual verification contract and retention scope.
+
+Read-only inventory on 2026-11-11 found two RESET_ACTIVE/PROFILE receipts, not failed deletion jobs. Existing owners may complete their ordinary onboarding steps under the saved operation ID and existing write/readback checks; this is limited compatibility, not a new reset command. Until verified DONE/COMPLETED, deletion remains TEST_TARGET_BUSY. Other unfinished legacy states remain fenced for explicit review; no silent completion, abandoned receipt, direct DB edit or new operation replaces them. New/partial/completed ordinary users continue through the existing fresh server routing.
+
+[064 delivery and execution](reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md).
 
 
 ## 062 — Direct start-date management
@@ -315,7 +324,7 @@ Pure replacement computes affected history and a rolling three-future-cycle wind
 > Historical contract (superseded by the current 016 native contract above):
 > For onboarding skippers, the approved separate checkbox starts unchecked. Entry/selection grant nothing. New explicit add+consent is one proposed atomic operation; existing valid time is preserved. Regrant requires a valid WITHDRAWN record/event, a completed deletion job requested no earlier than that withdrawal, and zero remaining health rows inside the same transaction. No reactivation during deletion or restoration of prior data is allowed. Production regrant remains blocked with the other mutations.
 
-## Admin Test Tools — explicit user scope (013)
+## Historical checkpoint — Admin Test Tools (013; reset creation retired in 064)
 
 Profile/You → Admin Panel → Test Tools adds two closed operations. Admin lookup returns only target ID, role/account state and operational state. Preview names the SDK destination app/server and a server-configured environment label; a branch or Preview is not a separate database. Typed exact ID + fresh actor/target/action/app/scope-bound confirmation precedes execution. A role or target change is rechecked under the required coordinator. Self-delete and last-admin removal are denied. A different target invalidates all UI approval state.
 

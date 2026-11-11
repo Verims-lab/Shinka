@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-063
-**Last Updated:** 2026-11-09
+**Current BuildMarker:** Buildmarker-064
+**Last Updated:** 2026-11-11
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
 **Scope:** Product domain entities + separately listed internal tooling storage.
@@ -13,6 +13,15 @@
 
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
 
+
+
+## 064 — Admin reset retirement and selected-user removal (2026-11-11)
+
+No schema change or data migration. AdminTestOperation.operation still accepts RESET_ONBOARDING for historical rows; RESET_ACTIVE, PROFILE/CYCLE/FIRST_SHINKA/DONE, step_fingerprints and actor/target/request IDs remain readable. Only DELETE_USER is an allowed new Test Tools command. Completed deletion tombstones, reset-history references and shared records are retained.
+
+The complete visible live journal inventory was 9 rows: two active reset receipts, one completed reset and six completed deletions. Both active receipts belong to the two selected removal targets; there is no existing deletion receipt for either. Do not delete/reset their journal or discard lifecycle checks to enable removal. The compatibility writer can only advance an already admitted owner's existing reset after normal persistence/readback, never create a new reset.
+
+[064 delivery and execution](reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md).
 
 
 ## 059 — Single Pattern theme, Lunar Timeline and navigation evidence (2026-11-09)

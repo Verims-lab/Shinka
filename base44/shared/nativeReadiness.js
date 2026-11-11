@@ -29,5 +29,5 @@ export async function nativeReadiness(client, { wait = pause, retryDelayMs = 800
       schemas.push({ name, readable: false, diagnostic });
     }
   }
-  return { authority: 'BASE44_NATIVE_V1', strategyVersion: 'native-continuation/2', schemas, daily: 'IMMUTABLE_CANDIDATES', calendar: 'OBSERVATIONS_AND_RECEIPTS', reset: 'VERIFIED_STEPS', deletion: 'TARGET_LIFECYCLE_RESUMABLE', distributedFence: false, hostedMutationVerified: false };
+  return { authority: 'BASE44_NATIVE_V1', strategyVersion: 'native-continuation/3', schemas, daily: 'IMMUTABLE_CANDIDATES', calendar: 'OBSERVATIONS_AND_RECEIPTS', reset: 'LEGACY_PROGRESS_ONLY', deletion: 'TARGET_LIFECYCLE_RESUMABLE', distributedFence: false, hostedMutationVerified: false };
 }

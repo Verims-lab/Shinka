@@ -1,3 +1,4 @@
+import { seedLegacyReset } from './historicalResetFixture';
 import { check, rejects } from './dataModelTests';
 import { youFixture, profileIntent, preferencesIntent } from './youFixture';
 import { createYouController } from '@/features/you/youController';
@@ -38,7 +39,7 @@ export const YOU_TESTS = [
    f.tables.UserProfile[0].account_status='INACTIVE';check((await f.http({action:'read'})).status>=400);
    f.tables.UserProfile[0].account_status='ACTIVE';f.tables.UserDailyMessage=[];check((await f.http({action:'read'})).status===409);
    check(writes(f).length===0);
-   const r=youFixture();await r.execute(await r.preview());check((await r.http({action:'read'})).status===409);
+   const r=youFixture();seedLegacyReset(r);check((await r.http({action:'read'})).status===409);
  }],
  ['YT03','Shared required DOB, leap/18+ dates, 50 Unicode name, genuine optional time',async()=>{
    const f=youFixture(),v=await f.request('read');

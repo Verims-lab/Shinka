@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-063
-**Last Updated:** 2026-11-09
+**Current BuildMarker:** Buildmarker-064
+**Last Updated:** 2026-11-11
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
@@ -11,6 +11,15 @@
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
+
+
+## 064 — Admin reset retirement and selected-user removal (2026-11-11)
+
+adminTestPolicy separates writable commands from readable historical operation types. Both admin adapters and executeTestJob reject retired reset writes; native responses explicitly disable reset resume. TestTools/catalog/useTestTools/ImpactPreview contain only deletion controls. Existing lifecycle/resetRoute/nativeResetStep remains narrowly necessary for two observed active receipts and ordinary owner continuation; removing it now would strand or misroute those accounts. No schema, dependency or second architecture layer is added.
+
+nativeReadiness now declares native-continuation/3 and reset:LEGACY_PROGRESS_ONLY; strict frontend Health expectations match. hostedMutationVerified remains false. Publish matching shared modules and native entries (including adminTestTools, onboarding/dailyMessage and internalHealth) before the frontend, through the owner's existing workflow. Historical reset enums are not a command capability.
+
+[064 delivery and execution](reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md).
 
 
 ## 061 — Authentication before personal onboarding (2026-11-09)

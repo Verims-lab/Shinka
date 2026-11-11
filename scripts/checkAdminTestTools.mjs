@@ -17,6 +17,7 @@ export async function checkAdminTestTools(page, origin, directory) {
     await page.locator('[data-admin-panel] a[href="/internal/test-tools"]').click();
     await page.waitForSelector('[data-test-tools]');
     assert(await page.locator('[data-destructive="true"]').isDisabled());
+    assert.equal(await page.locator('[data-destructive="false"]').count(),0);
     await page.locator('#test-user-id').fill('ownerA');
     await page.locator('#test-user-id').press('Enter');
     await page.waitForSelector('[data-test-target]');

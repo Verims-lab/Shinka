@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-063
-**Last Updated:** 2026-11-01
+**Current BuildMarker:** Buildmarker-064
+**Last Updated:** 2026-11-11
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
 **Scope:** All source (client, backend, internal tooling).
@@ -36,6 +36,13 @@
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
+
+
+## 064 — Admin reset retirement and selected-user removal (2026-11-11)
+
+Keep historical receipt parsing distinct from write admission. A retired command must fail before journal.begin and before any product/audit mutation; test the real TS entry as well as shared handlers. Seed old receipts only in isolated fixtures, never via a now-retired production action. Preserve valid history/owner progress and lifecycle fences; removing a product UI is not authority to migrate or erase old operations. Synthetic zero-write and deletion regressions do not establish hosted removal or permanent erasure.
+
+[064 delivery and execution](reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md).
 
 
 ## 058 — Narrow core closure (2026-11-01)

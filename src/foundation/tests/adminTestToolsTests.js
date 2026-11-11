@@ -1,3 +1,5 @@
+import { seedLegacyReset } from './historicalResetFixture';
+import { nativeFixture } from './nativeFixture';
 import { adminTestFixture } from './adminTestFixture';
 import { DELETED_ENTITIES, RETAINED_ENTITIES, SHARED_ENTITIES } from '../../../base44/shared/adminTestPolicy.js';
 import { createTestRepository } from '../../../base44/shared/adminTestRepository.js';
@@ -16,13 +18,32 @@ const bytes = f => JSON.stringify(Object.fromEntries(Object.entries(f.tables).so
 const noMutations = f => assert(f.state.calls.every(row => row.method === 'filter'), 'unexpected mutation');
 const deleted = f => !f.tables.User.some(row => row.id === 'ownerA');
 const retained = f => JSON.stringify(Object.fromEntries([...RETAINED_ENTITIES, ...SHARED_ENTITIES].filter(e => e !== 'notification_delivery').map(e => [e, f.tables[physicalName(e)].filter(row => e !== 'admin_audit_log' || row.target_entity !== 'AdminTestOperation')])));
-const reset = async f => (await f.execute(await f.preview('RESET_ONBOARDING'))).job;
+const reset = async f => seedLegacyReset(f);
 function daily(f) {
   const pair = f.tables.MessagePair[0];
   f.tables.UserDailyMessage.push({ id: 'old-daily', ...dailyAssignment({ owner: 'ownerA', day: '2026-10-20', timezone: 'Europe/Istanbul', pair, now: f.now() }) });
 }
 /** @type {import('./testTypes').FoundationTest[]} */
 export const ADMIN_TEST_TOOLS_TESTS = [
+  ['AT18', 'Retired admin reset rejects preview/execute/resume with zero writes; legacy receipts remain readable', async () => {
+    for (const native of [false,true]) for (const status of ['RUNNING','RETRY_REQUIRED','AUDIT_PENDING','RESET_ACTIVE','COMPLETED']) {
+      const f=native?nativeFixture():adminTestFixture();
+      const request=body=>native?f.tools(body):f.request(body);
+      const job=seedLegacyReset(f,{status,stage:status==='COMPLETED'?'DONE':'PROFILE',completed_at:status==='COMPLETED'?f.now().toISOString():null});
+      const before=bytes(f);
+      for(const body of [
+        {action:'preview',operation:'RESET_ONBOARDING'},
+        {action:'execute',operation:'RESET_ONBOARDING',confirmation:true,preview_token:'old-preview',request_id:crypto.randomUUID()},
+        {action:'resume',operation_id:job.operation_id},
+      ]) await rejects(()=>request({target_id:'ownerA',...body}),'TEST_RESET_RETIRED');
+      const read=await request({action:'status',target_id:'ownerA',operation_id:job.operation_id});
+      assert(read.job.operation_id===job.operation_id&&read.job.status===status&&!read.resume_enabled&&read.mutation_blocker==='TEST_RESET_RETIRED','legacy receipt unavailable or writable');
+      const view=await request({action:'preview',target_id:'ownerA',operation:'DELETE_USER'});
+      assert(status==='COMPLETED'?view.enabled:view.blockers.includes('TEST_TARGET_BUSY'),'legacy lifecycle fence lost');
+      assert(bytes(f)===before,'retired reset changed persisted state');noMutations(f);
+    }
+  }],
+
   ['AT17', 'Missing lifecycle schema fails closed before product work; additive schema restores reads', async () => {
     const f = adminTestFixture(), owner = f.ownerClient(), saved = bytes(f);
     const schemaRows = f.tables.AdminTestOperation;
@@ -143,15 +164,15 @@ export const ADMIN_TEST_TOOLS_TESTS = [
     f.state.fail = 'afterFinish';
     assert((await f.execute(view)).job.status === 'COMPLETED' && f.tables.AdminAuditLog.length === 1, 'lost final acknowledgement regressed state');
   }],
-  ['AT10', 'Duplicate requests and reset/delete race serialize in two fixture workers', async () => {
+  ['AT10', 'Duplicate deletion serializes in fixture workers; retired reset cannot compete', async () => {
     const f = adminTestFixture(), view = await f.preview(), id = crypto.randomUUID();
     const other = { ...f.dependencies, coordinator: f.worker() };
     const body = { action: 'execute', target_id: 'ownerA', operation: 'DELETE_USER', confirmation: true, preview_token: view.preview_token, request_id: id };
     const results = await Promise.all([f.request(body), f.request(body, other)]);
     assert(results.every(r => r.job.status === 'COMPLETED') && f.tables.AdminTestOperation.length === 1, 'duplicate job');
-    const g = adminTestFixture(), del = await g.preview(), restart = await g.preview('RESET_ONBOARDING');
-    const racing = await Promise.allSettled([g.execute(restart), g.execute(del)]);
-    assert(racing.filter(r => r.status === 'fulfilled').length === 1 && !deleted(g), 'race admitted both');
+    const g = adminTestFixture(), del = await g.preview();
+    const racing = await Promise.allSettled([g.request({action:'execute',target_id:'ownerA',operation:'RESET_ONBOARDING',confirmation:true,preview_token:'retired',request_id:crypto.randomUUID()}), g.execute(del)]);
+    assert(racing[0].status==='rejected'&&racing[0].reason.code==='TEST_RESET_RETIRED'&&racing[1].status==='fulfilled'&&deleted(g)&&g.tables.AdminTestOperation.length===1, 'retired reset interfered with deletion');
   }],
   ['AT11', 'Deleted user with old auth token is denied; deletion tombstone also denies recreated ID', async () => {
     const f = adminTestFixture(), stale = f.ownerClient();
@@ -162,20 +183,7 @@ export const ADMIN_TEST_TOOLS_TESTS = [
     await rejects(() => stale.auth.me(), 'ACCOUNT_DELETION_IN_PROGRESS');
     assert(f.tables.UserProfile.length === 0, 'stale token recreated profile');
   }],
-  ['AT12', 'Reset preserves every product row, identity/provider/role and old daily; survives new client', async () => {
-    const f = adminTestFixture(); daily(f); f.tables.User[2].provider_id = 'isolated-provider';
-    const before = JSON.stringify(Object.fromEntries(Object.entries(f.tables).filter(([key]) => !['AdminTestOperation', 'AdminAuditLog'].includes(key))));
-    const job = await reset(f);
-    assert(job.status === 'RESET_ACTIVE' && job.stage === 'PROFILE', 'reset start');
-    assert(JSON.stringify(Object.fromEntries(Object.entries(f.tables).filter(([key]) => !['AdminTestOperation', 'AdminAuditLog'].includes(key)))) === before, 'reset changed product');
-    assert(f.tables.AdminAuditLog.length === 1 && f.tables.AdminAuditLog[0].target_record_id === job.operation_id, 'reset audit link');
-    for (let i = 0; i < 2; i++) {
-      const result = await onboardingOperation(f.ownerClient(), { action: 'hydrate' }, { now: f.now });
-      assert(result.state === 'AUTHENTICATED_PROFILE_REQUIRED' && !result.completionReady, 'old daily bypass');
-    }
-    await rejects(() => dailyMessageOperation(f.ownerClient(), { action: 'today' }, { lifecycleCoordinator: f.worker() }), 'TEST_RESET_STEP_CONFLICT');
-  }],
-  ['AT13', 'Reset normal profile validation, Skip and final readback reuse the same daily without new consent', async () => {
+  ['AT13', 'Legacy receipt: normal profile validation, Skip and final readback reuse the same daily without new consent', async () => {
     const f = adminTestFixture(); daily(f); await reset(f);
     const protectedBefore = retained(f);
     const deps = { now: f.now, lifecycleCoordinator: f.worker() };
@@ -192,25 +200,7 @@ export const ADMIN_TEST_TOOLS_TESTS = [
     assert(f.tables.AdminTestOperation[0].status === 'COMPLETED' && retained(f) === protectedBefore, 'completion/history');
     assert((await onboardingOperation(f.ownerClient(), { action: 'hydrate' }, deps)).state === 'ACTIVE_EXISTING_USER', 'completion persisted');
   }],
-  ['AT14', 'Reset inactive/open deletion gates, unchanged withdrawn consent and admin self reset', async () => {
-    for (const condition of ['inactive', 'openJob']) {
-      const f = adminTestFixture();
-      if (condition === 'inactive') f.tables.UserProfile[0].account_status = 'INACTIVE';
-      else {
-        f.tables.DataProtectionEvent.push({ id: 'protection', user_id: 'ownerA' });
-        f.tables.HealthDataDeletionJob.push({ id: 'job', user_id: 'ownerA', protection_event_id: 'protection', job_status: 'PROCESSING' });
-      }
-      const view = await f.preview('RESET_ONBOARDING');
-      assert(!view.enabled && view.blockers.includes(condition === 'inactive' ? 'TEST_INACTIVE_ACCOUNT' : 'HEALTH_DELETION_PENDING'), 'reset state gate');
-    }
-    const f = adminTestFixture();
-    f.tables.UserHealthConsent.push({ id: 'consent', user_id: 'ownerA', consent_status: 'WITHDRAWN', granted_at: '2026-01-01T12:00:00Z', withdrawn_at: '2026-01-02T12:00:00Z' });
-    const before = retained(f); await reset(f); assert(retained(f) === before, 'fake consent event');
-    const g = adminTestFixture();
-    const result = await g.execute(await g.preview('RESET_ONBOARDING', 'adminA'));
-    assert(result.job.status === 'RESET_ACTIVE' && (await withUserLifecycle(g.client).auth.me()).role === 'admin', 'self reset loses admin');
-  }],
-  ['AT15', 'Lifecycle guard reads current role; reset commit failure retains previous stage/product state', async () => {
+  ['AT15', 'Legacy receipt: lifecycle guard reads current role; progress commit failure retains previous stage/product state', async () => {
     const f = adminTestFixture(); await reset(f);
     f.tables.User.find(u => u.id === 'adminA').role = 'user';
     const forgedSession = { ...f.client, auth: { me: async () => ({ id: 'adminA', role: 'admin' }) } };

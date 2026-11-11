@@ -14,10 +14,10 @@ import * as diagnostics from '../base44/shared/adminTestDiagnostics.js';
 export async function verifyTestDeletionEntry(root) {
  const temp=await mkdtemp(tmpdir()+'/shinka-delete-entry-');
  try {
-  await writeFile(temp+'/fixture.js',`export {deletionFixture,finishDeletion} from ${JSON.stringify(root+'/src/foundation/tests/deletionFixture.js')};`);
+  await writeFile(temp+'/fixture.js',`export {deletionFixture,finishDeletion} from ${JSON.stringify(root+'/src/foundation/tests/deletionFixture.js')};export {seedLegacyReset} from ${JSON.stringify(root+'/src/foundation/tests/historicalResetFixture.js')};`);
   await writeFile(temp+'/platform.js',"export const base44={functions:{invoke(){throw new Error('UNEXPECTED_PLATFORM_IO');}}};");
  await build({configFile:false,plugins:[staticEvidencePlugin(root)],logLevel:'silent',resolve:{alias:[{find:'@/api/base44Client',replacement:temp+'/platform.js'},{find:'@',replacement:root+'/src'}]},ssr:{noExternal:true},build:{ssr:temp+'/fixture.js',outDir:temp+'/out',rollupOptions:{output:{entryFileNames:'fixture.mjs'}}}});
-  const {deletionFixture,finishDeletion}=await import(pathToFileURL(temp+'/out/fixture.mjs'));
+  const {deletionFixture,finishDeletion,seedLegacyReset}=await import(pathToFileURL(temp+'/out/fixture.mjs'));
   let raw;const logs=[];
   const imports={
    'npm:@base44/sdk@0.8.54':{createClientFromRequest:()=>raw},
@@ -33,6 +33,17 @@ export async function verifyTestDeletionEntry(root) {
   assert.equal(f.tables.User.find(r=>r.id==='adminA').role,'admin');assert.ok(logs.some(r=>r.event==='PASS_END'));
   assert.ok(!JSON.stringify(logs).match(/email|birth_date|token|preview_key/i));
   f.measure.actor='ownerB';await assert.rejects(f.status(result.job.operation_id),{code:'FORBIDDEN_INTERNAL_TOOLING'});
-  return {passed:true,scope:'LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE',hostedVerified:false,checks:7};
+  const legacy=deletionFixture({handle:(req,client)=>{raw=client;return exports.default(req);}}),job=seedLegacyReset(legacy);
+  const before=JSON.stringify(legacy.tables);
+  for(const [action,body] of [
+    ['preview',{operation:'RESET_ONBOARDING'}],
+    ['execute',{operation:'RESET_ONBOARDING',confirmation:true,preview_token:'retired',request_id:crypto.randomUUID()}],
+    ['resume',{operation_id:job.operation_id}],
+  ])await assert.rejects(legacy.request(action,{target_id:'ownerA',...body}),{code:'TEST_RESET_RETIRED'});
+  const receipt=await legacy.status(job.operation_id);
+  assert.equal(receipt.job.operation_id,job.operation_id);assert.equal(receipt.resume_enabled,false);
+  assert.equal(JSON.stringify(legacy.tables),before);assert.ok(legacy.state.calls.every(c=>c.method==='filter'));
+  assert.ok(legacy.measure.calls.filter(c=>c.action!=='status').every(c=>c.httpStatus===410&&c.writes===0));
+  return {passed:true,retiredReset:{actions:['preview','execute','resume'],httpStatus:410,writes:0,legacyReadOnly:true},scope:'LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE',hostedVerified:false,checks:14};
  } finally {await rm(temp,{recursive:true,force:true});}
 }

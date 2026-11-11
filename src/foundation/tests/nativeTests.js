@@ -1,3 +1,4 @@
+import { seedLegacyReset } from './historicalResetFixture';
 import { nativeFixture, barrier } from './nativeFixture';
 import { check } from './dataModelTests';
 import { reconcileDailyRows } from '../../../base44/shared/nativeDailyPersistence.js';
@@ -64,15 +65,12 @@ export const NATIVE_TESTS = [
  ['NA16','Minimum interval and approved >60 actual dates remain unchanged',async()=>{
   const f=nativeFixture();await f.change('add',{date:'2026-07-01'});await rejects(()=>f.change('add',{date:'2026-07-14'}));await f.change('add',{date:'2026-10-01'});const view=await f.cal();check(f.tables.UserPeriodRecord[0].period_start_date==='2026-07-01'&&view.calculationNotice==='CYCLE_ESTIMATE_UNAVAILABLE');
  }],
- ['NA17','Reset preparation changes only durable onboarding progress, preserves identity/role/history',async()=>{
-  const f=nativeFixture();await add(f);await f.today();const before=JSON.stringify({p:f.tables.UserProfile,c:f.tables.UserHealthConsent,e:f.tables.UserHealthConsentEvent,h:f.tables.UserPeriodRecord,d:f.tables.UserDailyMessage,u:f.tables.User});const result=await f.execute(await f.preview());check(result.job.status==='RESET_ACTIVE');check(before===JSON.stringify({p:f.tables.UserProfile,c:f.tables.UserHealthConsent,e:f.tables.UserHealthConsentEvent,h:f.tables.UserPeriodRecord,d:f.tables.UserDailyMessage,u:f.tables.User}));
- }],
- ['NA18','Reset normal profile write then progress failure can retry without changing intended input',async()=>{
-  const f=nativeFixture();await f.execute(await f.preview());const body={action:'saveProfile',display_name:'Ada Updated',birth_date:'1990-01-01',birth_time:null,birthplace_geonames_id:null};
+ ['NA18','Existing legacy receipt: normal profile write then progress failure can retry without changing intended input',async()=>{
+  const f=nativeFixture();seedLegacyReset(f);const body={action:'saveProfile',display_name:'Ada Updated',birth_date:'1990-01-01',birth_time:null,birthplace_geonames_id:null};
   f.once('before',c=>c.name==='AdminTestOperation'&&c.method==='update'&&c.args[1].stage==='CYCLE');await rejects(()=>onboardingOperation(f.client(),body));check(f.tables.UserProfile[0].display_name==='Ada Updated'&&f.tables.AdminTestOperation[0].stage==='PROFILE');await onboardingOperation(f.client(),body);check(f.tables.AdminTestOperation[0].stage==='CYCLE');
  }],
- ['NA19','Reset Skip creates no health data and final step reuses same-day assignment',async()=>{
-  const f=nativeFixture();const first=await f.today();await f.execute(await f.preview());f.tables.AdminTestOperation[0].stage='CYCLE';const count=f.tables.UserHealthConsentEvent.length;await onboardingOperation(f.client(),{action:'skipCycle'});const last=await f.today();check(last.daily.id===first.daily.id&&f.tables.AdminTestOperation[0].status==='COMPLETED'&&f.tables.UserHealthConsentEvent.length===count);
+ ['NA19','Existing legacy receipt: Skip creates no health data and final step reuses same-day assignment',async()=>{
+  const f=nativeFixture();const first=await f.today();seedLegacyReset(f);f.tables.AdminTestOperation[0].stage='CYCLE';const count=f.tables.UserHealthConsentEvent.length;await onboardingOperation(f.client(),{action:'skipCycle'});const last=await f.today();check(last.daily.id===first.daily.id&&f.tables.AdminTestOperation[0].status==='COMPLETED'&&f.tables.UserHealthConsentEvent.length===count);
  }],
  ['NA20','Native target deletion needs no operator maintenance and leaves other users writable',async()=>{
   const f=nativeFixture();check((await f.preview('DELETE_USER')).enabled);check((await f.preview()).enabled);
@@ -103,7 +101,7 @@ export const NATIVE_TESTS = [
   f.tables.UserPeriodRecord.push({id:'residual',user_id:'ownerA',period_start_date:'2026-10-01'});check((await f.complete(await f.tools({action:'resume',target_id:'ownerA',operation_id:f.tables.AdminTestOperation[0].operation_id}))).job.status==='COMPLETED');check(f.tables.AdminTestOperation[0].status==='COMPLETED'&&!f.tables.UserPeriodRecord.length);
  }],
  ['NA27','Reset pending step rejects changed input without replacing first saved input',async()=>{
-  const f=nativeFixture();await f.execute(await f.preview());const body={action:'saveProfile',birth_date:'1990-01-01',display_name:'First',birth_time:null,birthplace_geonames_id:null};f.once('before',c=>c.name==='AdminTestOperation'&&c.method==='update'&&c.args[1].stage==='CYCLE');await rejects(()=>onboardingOperation(f.client(),body));await rejects(()=>onboardingOperation(f.client(),{...body,display_name:'Second'}),'TEST_RESET_STEP_CONFLICT');check(f.tables.UserProfile[0].display_name==='First');
+  const f=nativeFixture();seedLegacyReset(f);const body={action:'saveProfile',birth_date:'1990-01-01',display_name:'First',birth_time:null,birthplace_geonames_id:null};f.once('before',c=>c.name==='AdminTestOperation'&&c.method==='update'&&c.args[1].stage==='CYCLE');await rejects(()=>onboardingOperation(f.client(),body));await rejects(()=>onboardingOperation(f.client(),{...body,display_name:'Second'}),'TEST_RESET_STEP_CONFLICT');check(f.tables.UserProfile[0].display_name==='First');
  }],
  ['NA28','New competing intent during resume is retained and blocks success without bulk clear',async()=>{
   const f=nativeFixture(),body=await request(f,'add',{date:'2026-10-01'});f.once('before',c=>c.name==='UserPeriodRecord'&&c.method==='create');await rejects(()=>f.cal(body));

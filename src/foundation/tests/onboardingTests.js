@@ -1,3 +1,4 @@
+import { seedLegacyReset } from './historicalResetFixture';
 import { nativeFixture } from './nativeFixture';
 import { assertOnboardingSnapshot } from '@/services/onboardingService';
 import { birthDateFeedback } from '@/features/onboarding/birthDateFeedback';
@@ -45,7 +46,7 @@ export const ONBOARDING_TESTS=[
   const f=nativeFixture({granted:false});const request=()=>onboardingOperation(f.client(),{action:'hydrate'},{now:f.now});
   const original=f.tables.UserProfile[0];original.display_name=null;
   check((await request()).state==='AUTHENTICATED_CYCLE_STEP');await f.today();check((await request()).state==='ACTIVE_EXISTING_USER');
-  const reset=await f.execute(await f.preview());check(reset.job.operation==='RESET_ONBOARDING');
+  seedLegacyReset(f);
   check((await request()).state==='AUTHENTICATED_PROFILE_REQUIRED'&&f.tables.UserProfile[0].id===original.id&&f.tables.UserProfile[0].display_name===null);
   f.tables.UserPrivacyRequest.push({id:'privacy',user_id:'ownerA',request_key:'synthetic-key',kind:'WITHDRAW_HEALTH',status:'IN_PROGRESS',requested_at:'2026-10-20T12:00:00Z'});
   await rejects(request,'HEALTH_DELETION_PENDING');f.tables.UserPrivacyRequest[0].kind='DELETE_ACCOUNT';await rejects(request,'ACCOUNT_DELETION_IN_PROGRESS');

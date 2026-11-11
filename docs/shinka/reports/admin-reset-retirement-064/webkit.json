@@ -1,0 +1,526 @@
+{
+  "browser": {
+    "engine": "webkit",
+    "version": "27.2",
+    "physicalDevice": false
+  },
+  "catalog": {
+    "version": "HC-063.0",
+    "suites": 17,
+    "cases": 185,
+    "localRegression": 12,
+    "current": 159,
+    "future": 0,
+    "external": 14
+  },
+  "tests": 803,
+  "passed": 803,
+  "failed": 0,
+  "pageErrors": [],
+  "nativeEntries": {
+    "scope": "LOCAL_PLATFORM_IMPORT_SUBSTITUTION",
+    "sessionChecks": 10,
+    "nativeRoutes": 5,
+    "artifactEntryChecks": 2,
+    "internalHealthEntryChecks": 7,
+    "loginSecretReads": 0,
+    "hostedVerified": false,
+    "passed": true,
+    "deletion": {
+      "passed": true,
+      "retiredReset": {
+        "actions": [
+          "preview",
+          "execute",
+          "resume"
+        ],
+        "httpStatus": 410,
+        "writes": 0,
+        "legacyReadOnly": true
+      },
+      "scope": "LOCAL_REAL_TS_ENTRY_SERVICE_NATIVE_FIXTURE",
+      "hostedVerified": false,
+      "checks": 14
+    }
+  },
+  "adminTestFlow": [
+    {
+      "scenario": "readonly-preview-cancel-360-tr",
+      "passed": true,
+      "metrics": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 114.21875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 141.1875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 278,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 138.453125,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 244.34375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 242.34375,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 85.203125,
+            "height": 44,
+            "named": true
+          }
+        ]
+      },
+      "productWrites": 0
+    },
+    {
+      "scenario": "readonly-preview-cancel-360-en",
+      "passed": true,
+      "metrics": {
+        "width": 360,
+        "scrollWidth": 360,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 99.203125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 129.296875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 278,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 96.71875,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 191.609375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 189.609375,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 82.15625,
+            "height": 52,
+            "named": true
+          }
+        ]
+      },
+      "productWrites": 0
+    },
+    {
+      "scenario": "readonly-preview-cancel-1280-tr",
+      "passed": true,
+      "metrics": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 114.21875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 141.1875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 942,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 138.453125,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 244.34375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 242.34375,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 85.203125,
+            "height": 52,
+            "named": true
+          }
+        ]
+      },
+      "productWrites": 0
+    },
+    {
+      "scenario": "readonly-preview-cancel-1280-en",
+      "passed": true,
+      "metrics": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "controls": [
+          {
+            "width": 113.78125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 99.203125,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 123.46875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 164.234375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 129.296875,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 942,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 96.71875,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 191.609375,
+            "height": 44,
+            "named": true
+          },
+          {
+            "width": 189.609375,
+            "height": 52,
+            "named": true
+          },
+          {
+            "width": 82.15625,
+            "height": 52,
+            "named": true
+          }
+        ]
+      },
+      "productWrites": 0
+    }
+  ],
+  "adminTestHealth": [
+    {
+      "id": "H12-028",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "AT18",
+            "AT17",
+            "AT01",
+            "AT02",
+            "AT03",
+            "AT04",
+            "AT05",
+            "AT07",
+            "AT16"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-11-11T10:22:36.261Z"
+      },
+      "assertion": {
+        "evaluated": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "H12-029",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "NA20",
+            "NA21",
+            "NA22",
+            "NA23",
+            "CQ05",
+            "DX02",
+            "DX03",
+            "DX05",
+            "DX06",
+            "DX07",
+            "DX08",
+            "DX09",
+            "DX10"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-11-11T10:22:36.414Z"
+      },
+      "assertion": {
+        "evaluated": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "H12-043",
+      "status": "PASS",
+      "evidence": {
+        "classification": "SYNTHETIC_RUNTIME",
+        "source": "canonical domain/security helpers",
+        "actual": {
+          "executed": [
+            "DX01",
+            "DX04"
+          ],
+          "failed": [],
+          "diagnostics": [],
+          "reused": []
+        },
+        "expected": {
+          "failed": []
+        },
+        "reason": "Isolated helper fixtures; not live enforcement or browser acceptance",
+        "timestamp": "2026-11-11T10:22:36.437Z"
+      },
+      "assertion": {
+        "evaluated": true,
+        "passed": true
+      }
+    }
+  ],
+  "startupRoutes": {
+    "scope": "LOCAL_REAL_APP_SYNTHETIC_SDK_NO_EXTERNAL_IO",
+    "results": [
+      {
+        "path": "/",
+        "order": "settings-first",
+        "passed": true
+      },
+      {
+        "path": "/",
+        "order": "session-first",
+        "passed": true
+      },
+      {
+        "path": "/calendar",
+        "order": "settings-first",
+        "passed": true
+      },
+      {
+        "path": "/calendar",
+        "order": "session-first",
+        "passed": true
+      },
+      {
+        "path": "/pattern",
+        "order": "settings-first",
+        "passed": true
+      },
+      {
+        "path": "/pattern",
+        "order": "session-first",
+        "passed": true
+      },
+      {
+        "path": "/you",
+        "order": "settings-first",
+        "passed": true
+      },
+      {
+        "path": "/you",
+        "order": "session-first",
+        "passed": true
+      },
+      {
+        "path": "/internal/test-tools",
+        "order": "settings-first",
+        "passed": true
+      },
+      {
+        "path": "/internal/test-tools",
+        "order": "session-first",
+        "passed": true
+      },
+      {
+        "scenario": "old-refusal-and-admin-result-after-new-normal-account",
+        "passed": true
+      },
+      {
+        "scenario": "logout-during-both-startup-reads",
+        "passed": true
+      }
+    ]
+  },
+  "evidenceScope": "LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",
+  "inAppHealth": {
+    "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+    "passed": true,
+    "durationMs": 4570,
+    "requiresJson": false,
+    "saveState": "SAVED",
+    "retrySave": true,
+    "historyListed": true,
+    "privateReportOpened": true,
+    "frames": 0,
+    "physicalDevice": false,
+    "counts": {
+      "PASS": 146,
+      "BLOCKED": 13
+    },
+    "blocked": [
+      {
+        "id": "H04-019",
+        "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+      },
+      {
+        "id": "H05-001",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-002",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-003",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-004",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-005",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-006",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-007",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-008",
+        "reason": "Backend artifact validation unavailable; no content inconsistency inferred"
+      },
+      {
+        "id": "H05-009",
+        "reason": "LIVE_CONTENT_COUNT_UNAVAILABLE"
+      },
+      {
+        "id": "H08-005",
+        "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+      },
+      {
+        "id": "H09-004",
+        "reason": "Read-only prerequisites; missing coverage remains BLOCKED, malformed/conflicting evidence FAIL. H09-901 still requires hosted mutations."
+      },
+      {
+        "id": "H12-031",
+        "reason": "Read-only prerequisite; hosted mutation acceptance remains separate."
+      }
+    ]
+  },
+  "fullRunnerLogSha256": "295ab4200093572ca7cacb7bfe275a99c89ab2c6a476e2544d304eed04a885ac",
+  "command": "FOUNDATION_BROWSER=webkit npm run test:foundation"
+}
