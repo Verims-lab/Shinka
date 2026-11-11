@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-064
+**Current BuildMarker:** Buildmarker-065
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -11,6 +11,11 @@
 **Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+
+## 065 — Shared branded screen background (2026-11-11)
+
+Every user-facing App route shares the bundled 942 × 1670 owner PNG, including onboarding and first-content preparation, Apple/Google sign-in, Home, Calendar, Pattern, You, Account & Privacy, account deletion, and loading, retry and not-found states. The decorative layer sits outside route motion and behind the translucent bottom navigation. Fit the full image proportionally to the large viewport and anchor it at the bottom so the artwork reaches the navigation on tall screens. Fill any remaining space with matching cream and feather the narrow edge that meets it. A localized cream wash behind the PNG's wordmark keeps overlapping light-mode headings readable. Dark mode uses the existing theme-controlled veil. Keep the existing safe insets, page flow, 240px onboarding spacing and logo text. Internal administration keeps its flat surface. [065 scope and verification](reports/SHINKA_APP_BACKGROUND_065.md)
 
 
 ## 064 — Admin reset retirement and selected-user removal (2026-11-11)
@@ -130,7 +135,7 @@ H13-010 compares the resolver's independently accepted input to DOM class, color
 
 ON-01 and ON-04 titles retain their typography, color, alignment, line layout and programmatic focus for screen announcements. The global mobile :focus-visible rule previously drew their apparent frames after screen navigation. Only these non-interactive h1 targets suppress that outline; input/button/birth-date focus indicators and field borders remain. ON-02 reuses the framed-field presentation with a persistent associated inner label above its editable value. No copy, name/skip validation, storage, navigation, progress, theme, art or section-background change. U16/U17/U19 and the real-App TR/EN 360/390px, 100/200% text matrix verify this scope; physical device acceptance remains separate.
 
-## 046 — Section backgrounds (current)
+## Historical 046 — Section backgrounds (superseded by 065)
 Home, Calendar, Pattern, You and Account Privacy share one watercolor backdrop; Onboarding uses the moon backdrop. One fixed, decorative, non-interactive SectionBackdrop per section, chosen by the rendered section (not the URL); unresolved state shows neutral ivory. Native-size 941×1672 JPEG derivatives via CDN, no stretching on scroll/keyboard; desktop onboarding is contained at full height with ivory side fade. Dark theme darkens the same image with a token overlay, never inverts or recolors it.
 
 ## 044 — Profile notification choice and phone permission

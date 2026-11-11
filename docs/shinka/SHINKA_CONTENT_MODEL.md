@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CONTENT_MODEL.md
 **Status:** ACTIVE — approved references imported; native daily snapshot observed; hosted acceptance remains partial
-**Current BuildMarker:** Buildmarker-064
+**Current BuildMarker:** Buildmarker-065
 **Last Updated:** 2026-10-26
 **Authoritative Source References:** SRC-08 (copy), SRC-09 + SRC-10 (mapping), SRC-01 §6
 **Purpose:** Pair/category/mapping contract for the deterministic daily content engine.

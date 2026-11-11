@@ -2,12 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-064
+**Current BuildMarker:** Buildmarker-065
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
+
+
+## 065 — Shared branded screen background
+
+Work on `AydanTest` for the owner's background request. Compare its ancestry with `main` before editing and fast-forward only if the requested branch is strictly behind without unique commits. Record Buildmarker-065 / HC-064.0 with `recordBuild` and keep 061–065 in active history. Scope is the owner PNG, backdrop paint, affected tests and Health/docs. Keep existing logo elements and report conflicts. Use local Chromium/WebKit and synthetic SDK fixtures. Publication and production data are outside this task. [065 evidence](reports/SHINKA_APP_BACKGROUND_065.md)
 
 
 ## 064 — Admin reset retirement and selected-user removal (2026-11-11)

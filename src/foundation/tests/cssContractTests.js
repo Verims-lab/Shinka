@@ -4,9 +4,8 @@ import { createElement as h } from "react";
 import { createRoot } from "react-dom/client";
 import { flushSync } from "react-dom";
 import PageContainer from "@/components/shinka/PageContainer";
-import SectionBackdrop from "@/components/shinka/SectionBackdrop";
+import AppBackdrop from "@/components/shinka/AppBackdrop";
 import OnboardingScreen from "@/features/onboarding/OnboardingScreen";
-import { SECTION_BACKGROUNDS, sectionBackground } from "@/foundation/sectionBackgrounds";
 import PageHeader from "@/components/shinka/PageHeader";
 import ShinkaCard from "@/components/shinka/ShinkaCard";
 import ShinkaButton from "@/components/shinka/ShinkaButton";
@@ -117,7 +116,7 @@ export const CSS_CONTRACT_TESTS = [
       assert((await health.run({})).status==='PASS','Health fixture must preserve theme authority');
     }finally{applyAppTheme(before.source==='UNVERIFIED_DEFAULT'?null:before.theme);}
   }],
-  ["T81","046 section shells are transparent over the backdrop; plain internal containers stay flat ivory",async()=>{
+  ["T81","User-facing shells reveal the app backdrop; standalone and internal containers retain their surfaces",async()=>{
     await rendered(h("div",null,h(PageContainer,{className:"shinka-onboarding",surface:"section","data-onb":1,children:"a"}),h(PageContainer,{"data-plain":1,children:"b"})),host=>{
       const onb=host.querySelector("[data-onb]"),plain=host.querySelector("[data-plain]");
       for(const c of ["shinka-viewport","text-shinka-ink","font-body","shinka-onboarding"]) assert(onb.classList.contains(c),`class ${c}`);
@@ -126,31 +125,31 @@ export const CSS_CONTRACT_TESTS = [
       assert(measure(plain).backgroundImage==="none"&&measure(onb).backgroundImage==="none",'no gradient/image on shells');
       assert(measure(onb).backgroundColor==="rgba(0, 0, 0, 0)",'onboarding shell transparent');
     });
+    await rendered(h("div",null,h(AppBackdrop),h("div",{className:"shinka-route-clip"},h(PageContainer,{children:"Loading"}))),host=>{
+      assert(measure(host.querySelector("[data-probe-root]")).backgroundColor==="rgba(0, 0, 0, 0)",'default loading shell reveals the backdrop');
+    });
   }],
-  ["T82","046 section backdrop: mapping, shared asset, decorative fixed single layer, neutral and dark adaptation",async()=>{
-    const urls=Object.fromEntries(Object.keys(SECTION_BACKGROUNDS).map(s=>[s,sectionBackground(s).url]));
-    assert(Object.keys(urls).join()==="onboarding,home,calendar,pattern,you",'five logical sections');
-    assert(new Set([urls.home,urls.calendar,urls.pattern,urls.you]).size===1&&urls.onboarding!==urls.home,'one shared product asset, separate onboarding asset');
-    assert(Object.values(urls).every(u=>/^https:\/\/media\.base44\.com\/.+\/v1\/fill\/w_941,h_1672,al_c,q_85\/.+\.jpg$/.test(u)&&!u.startsWith("data:")),'native-size CDN derivative, no base64');
-    assert(sectionBackground("neutral")===null,'unresolved is neutral');
-    await rendered(h("div",null,h(SectionBackdrop,{section:"calendar"}),h(SectionBackdrop,{section:"neutral"})),host=>{
-      const [layer,neutral]=Array.from(host.querySelectorAll(".shinka-section-backdrop")),s=measure(layer);
+  ["T82","One fixed decorative PNG with intact proportions and the manual dark contrast layer",async()=>{
+    const png = /\/shinka-background(?:-[\w-]+)?\.png/;
+    await rendered(h(AppBackdrop),host=>{
+      const layer=host.querySelector("[data-app-backdrop]"),s=measure(layer);
       assert(layer.getAttribute("aria-hidden")==="true"&&!layer.textContent&&s.pointerEvents==="none"&&s.position==="fixed"&&s.zIndex==="-1",'decorative fixed layer');
       const art=getComputedStyle(layer,"::before");
-      assert(art.backgroundImage.includes(urls.calendar)&&art.backgroundRepeat==="no-repeat"&&art.backgroundSize==="cover",'cover, no tiling or stretch');
-      assert(neutral.getAttribute("data-section-backdrop")==="neutral"&&getComputedStyle(neutral,"::before").backgroundImage==="none",'neutral base without image');
+      assert(png.test(art.backgroundImage)&&art.backgroundRepeat==="no-repeat"&&art.backgroundSize==="contain",'bundled original, no tiling or stretch');
       const before=appThemeExpectation();applyAppTheme('dark');
       try{assert(getComputedStyle(layer,"::after").content!=="none",'dark overlay present');}finally{applyAppTheme(before.source==='UNVERIFIED_DEFAULT'?null:before.theme);}
     });
     for(const state of ['UNAUTHENTICATED_INTRO','AUTHENTICATED_NAME_REQUIRED','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP']) {
-      await rendered(h('div',null,h(SectionBackdrop,{section:'onboarding'}),h(OnboardingScreen,{state,authenticated:state.startsWith('AUTHENTICATED'),initialLanguage:'en',request:async()=>{throw new Error('UNEXPECTED_FIXTURE_IO');}})),host=>{
-        assert(host.querySelectorAll('[data-section-backdrop]').length===1&&!host.querySelector('img'),'one backdrop, no second content bitmap');
+      await rendered(h('div',null,h(AppBackdrop),h(OnboardingScreen,{state,authenticated:state.startsWith('AUTHENTICATED'),initialLanguage:'en',request:async()=>{throw new Error('UNEXPECTED_FIXTURE_IO');}})),host=>{
+        assert(host.querySelectorAll('[data-app-backdrop]').length===1&&!host.querySelector('img'),'one backdrop, no second content bitmap');
         const space=host.querySelector('.shinka-onboarding-art-space'),css=measure(space);
         assert(space.getAttribute('aria-hidden')==='true'&&space.childElementCount===0&&css.backgroundImage==='none'&&css.backgroundColor==='rgba(0, 0, 0, 0)','empty transparent layout space');
         assert(getComputedStyle(space,'::before').content==='none'&&getComputedStyle(space,'::after').content==='none','no replacement pseudo-decoration');
-        assert(getComputedStyle(host.querySelector('[data-section-backdrop]'),'::before').backgroundImage.includes(urls.onboarding),'approved composition remains');
+        assert(png.test(getComputedStyle(host.querySelector('[data-app-backdrop]'),'::before').backgroundImage),'approved composition remains');
       });
     }
+    const backgroundHealth = H13_CASES.find(c => c.id === 'H13-020');
+    assert((await backgroundHealth.run({})).status === 'PASS', 'shared backdrop Health probe');
   }],
   ["T80","Existing rendered Health typography/color/touch/account-theme-policy checks remain passing",async()=>{
     const context=createHealthContext();

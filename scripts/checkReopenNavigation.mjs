@@ -1,4 +1,4 @@
-import { BACKGROUND_ASSETS } from '../src/foundation/sectionBackgrounds.js';
+import { loadAppBackdrop } from './checkAppBackdrop.mjs';
 import assert from 'node:assert/strict';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { doubleText } from './mobileSurfaceMeasurements.mjs';
@@ -36,7 +36,7 @@ export async function checkReopenNavigation(browser,origin,directory,{baseline=f
   for(const language of ['tr','en'])for(const [width,height] of [[320,568],[360,740],[390,844],[740,320]])for(const scale of [1,2]){
     const context=await browser.newContext({viewport:{width,height},locale:language,hasTouch:true}),page=await context.newPage();
     const errors=[];page.on('pageerror',e=>errors.push(e.message));
-    await page.route('**/*',r=>{const url=new URL(r.request().url());const asset=visualAssets&&r.request().method()==='GET'&&([fontCss,BACKGROUND_ASSETS.watercolor].includes(url.href)||url.origin==='https://fonts.gstatic.com'&&url.pathname.startsWith('/s/'));return url.origin===origin||asset?r.continue():r.abort();});
+    await page.route('**/*',r=>{const url=new URL(r.request().url());const asset=visualAssets&&r.request().method()==='GET'&&(url.href===fontCss||url.origin==='https://fonts.gstatic.com'&&url.pathname.startsWith('/s/'));return url.origin===origin||asset?r.continue():r.abort();});
     await page.addInitScript(pair=>{window.__dailyFixture={state:'ACTIVE_EXISTING_USER',persisted:true,profile:{display_name:'Ada'},daily:{id:'navigation-existing',shinka_date:'2026-10-20',message_tr_snapshot:pair[2],suggestion_tr_snapshot:pair[3],message_en_snapshot:pair[4],suggestion_en_snapshot:pair[5]}};},FIRST_CONTENT_SOURCE.pairs[0]);
     try {
       for(const [surface,url,ready] of [['home','/','[data-daily-id]'],['calendar','/calendar','[data-calendar-date]'],['pattern','/pattern','[data-lunar-timeline]']]){
@@ -44,7 +44,7 @@ export async function checkReopenNavigation(browser,origin,directory,{baseline=f
         await page.locator(ready).first().waitFor();
         // A baseline component supplied by the temporary Vite transform is outside Tailwind source scanning. Reproduce its original min-h-14 utility exactly.
         if(baseline)await page.addStyleTag({content:'.shinka-product-nav > a { min-height: 3.5rem; }'});
-        if(visualAssets){await page.evaluate(href=>{const link=document.createElement('link');link.rel='stylesheet';link.href=href;link.dataset.captureFont='true';document.head.append(link);},fontCss);await page.waitForFunction(()=>document.querySelector('link[data-capture-font]')?.sheet);await page.evaluate(()=>document.fonts.ready);await page.evaluate(src=>new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(true);img.onerror=()=>reject(new Error('ASSET_UNAVAILABLE'));img.src=src;}),BACKGROUND_ASSETS.watercolor);}
+        if(visualAssets){await page.evaluate(href=>{const link=document.createElement('link');link.rel='stylesheet';link.href=href;link.dataset.captureFont='true';document.head.append(link);},fontCss);await page.waitForFunction(()=>document.querySelector('link[data-capture-font]')?.sheet);await page.evaluate(()=>document.fonts.ready);await loadAppBackdrop(page);}
         if(scale===2)await doubleText(page);
         // 0: inset already consumed outside the WebView; 24: synthetic Android
         // edge-to-edge gesture inset; 34: synthetic iOS home indicator. Neither

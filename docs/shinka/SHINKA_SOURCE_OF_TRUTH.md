@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-064
+**Current BuildMarker:** Buildmarker-065
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -10,6 +10,11 @@
 **Open Decisions:** OD-001 … OD-012 (see register below)
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
+
+
+## 065 — Shared branded screen background (2026-11-11)
+
+The owner's “Replace All Shinka Screen Backgrounds” request and the attached “Şinka Logolu Zarif Pembe Botanik Zemin.png” supersede 046's per-section assets and the image choice in 054. The supplied PNG is the sole decorative bitmap for all user-facing routes. Its original bytes, proportions and artwork are the source. Retain the existing UI wordmarks and report their coexistence with the embedded logo. The 054 onboarding spacing and 048 saved-theme authority still apply. [065 delivery](reports/SHINKA_APP_BACKGROUND_065.md)
 
 
 ## 064 — Admin reset retirement and selected-user removal (2026-11-11)
@@ -73,7 +78,7 @@ Authority: explicit owner request `582ce6cd-b188-4c15-b51d-a745ecbea5d0/Pasted t
 
 The request authorizes removing exactly four legacy daily text fields in app `6ad5190f4845d4e3af03b420`, existing `prod` environment, after read-only app/admin/published compatibility/drain checks. No deletion/recreation/text edit or new data authority. Native daily/owner/day/timezone/category/pair/generated_at and NotificationDelivery links must match before/after. Full paginated verify is mandatory before final schema preparation; updated_date may change separately. CLI access and hosted proof are not inferred from Git, fixtures or user-reported login. Current execution is recorded in the existing [045 report](reports/SHINKA_ID_MODEL_045.md) and [048 report](reports/SHINKA_THEME_CLEANUP_048.md).
 
-## 046 — Section background decision (current)
+## Historical 046 — Section background decision (superseded by 065)
 Owner-provided reference PNGs are the authority: one watercolor image for Home/Calendar/Pattern/You, one moon image for Onboarding. Originals stay unchanged; only optimized native-size derivatives ship.
 
 ## 045 — Approved ID-based daily content decision

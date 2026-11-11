@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-064
+**Current BuildMarker:** Buildmarker-065
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -36,6 +36,11 @@
 - **W. Capability honesty:** schema text is not live enforcement. Do not add ignored unique_fields/index/FK declarations, simulate transactions with check-then-insert, or label a local mutex as distributed atomicity. Unsupported guarantees must not be claimed; use the explicitly approved native reconciliation/retry contract. Add exact source-field and negative-access regressions to the existing test runner and H04/H12.
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
+
+
+## 065 — Shared backdrop
+
+Mount one decorative `AppBackdrop` outside the animated route tree. Keep its asset in the application bundle and use CSS to fit it proportionally within the fixed large viewport. Page shells and navigation reveal the same layer. Preserve the existing theme authority and scope paint overrides to user-facing routes. The real-App regression verifies decoded dimensions, local asset origin, stable layer identity, safe-area paint and no document overflow. The isolated onboarding tests retain their no-extra-bitmap and layout assertions.
 
 
 ## 064 — Admin reset retirement and selected-user removal (2026-11-11)

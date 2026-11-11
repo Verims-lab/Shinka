@@ -2,14 +2,13 @@ import assert from 'node:assert/strict';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
-import { BACKGROUND_ASSETS } from '../src/foundation/sectionBackgrounds.js';
+import { loadAppBackdrop } from './checkAppBackdrop.mjs';
 import { doubleText } from './mobileSurfaceMeasurements.mjs';
 
-// Real App + Onboarding + backdrop together. SDK transport is synthetic. Public
-// artwork/fonts load only for an explicit visual capture; no hosted app API.
+// Real App + Onboarding + bundled backdrop together. SDK transport is synthetic.
+// Public fonts load only for an explicit visual capture.
 export async function checkOnboardingLayers(browser, origin, directory) {
   const fontCss = (await readFile('index.html','utf8')).match(/href="(https:\/\/fonts.googleapis.com\/css2[^\"]+)"/)[1];
-  const allowed = new Set([BACKGROUND_ASSETS.onboardingMoon, fontCss]);
   const assets = new Map(), results = [];
   if (directory) await mkdir(directory,{recursive:true});
   const sizes = [[320,568],[360,640],[390,844],[430,932],[844,390]];
@@ -20,7 +19,7 @@ export async function checkOnboardingLayers(browser, origin, directory) {
     await page.route('**/*',async route=>{
       const url = new URL(route.request().url());
       if (url.origin === origin) return route.continue();
-      if (!directory || route.request().method()!=='GET' || !(allowed.has(url.href) || url.origin==='https://fonts.gstatic.com' && url.pathname.startsWith('/s/'))) return route.abort();
+      if (!directory || route.request().method()!=='GET' || !(url.href===fontCss || url.origin==='https://fonts.gstatic.com' && url.pathname.startsWith('/s/'))) return route.abort();
       if (!assets.has(url.href)) {
         const response = await route.fetch(); assert(response.ok(),`PUBLIC_ASSET_${response.status()}`);
         const body = await response.body();
@@ -34,7 +33,7 @@ export async function checkOnboardingLayers(browser, origin, directory) {
         await page.evaluate(href=>{if(!document.querySelector('[data-layer-font]')){const link=document.createElement('link');link.rel='stylesheet';link.href=href;link.dataset.layerFont='true';document.head.append(link);}},fontCss);
         await page.waitForFunction(()=>document.querySelector('[data-layer-font]')?.sheet);
         await page.evaluate(()=>document.fonts.ready);
-        await page.evaluate(url=>new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(true);image.onerror=()=>reject(new Error('ONBOARDING_BACKGROUND_NOT_LOADED'));image.src=url;}),BACKGROUND_ASSETS.onboardingMoon);
+        await loadAppBackdrop(page);
       }
       await resetText(); if(scale===2)await doubleText(page);
     };
@@ -50,10 +49,10 @@ export async function checkOnboardingLayers(browser, origin, directory) {
           if(css.backgroundImage.includes('url('))bitmaps.push({kind:pseudo||'background',source:css.backgroundImage});
         }
       }
-      const layer=document.querySelector('[data-section-backdrop]'),css=getComputedStyle(layer),art=getComputedStyle(layer,'::before');
+      const layer=document.querySelector('[data-app-backdrop]'),css=getComputedStyle(layer),art=getComputedStyle(layer,'::before');
       const space=document.querySelector('.shinka-onboarding-art-space');
-      return {bitmaps,images:document.querySelectorAll('.shinka-onboarding img').length,layers:document.querySelectorAll('[data-section-backdrop]').length,
-        background:{section:layer.dataset.sectionBackdrop,position:css.position,y:layer.getBoundingClientRect().y,height:layer.getBoundingClientRect().height,image:art.backgroundImage,repeat:art.backgroundRepeat,size:art.backgroundSize,mask:art.maskImage},
+      return {bitmaps,images:document.querySelectorAll('.shinka-onboarding img').length,layers:document.querySelectorAll('[data-app-backdrop]').length,
+        background:{position:css.position,y:layer.getBoundingClientRect().y,height:layer.getBoundingClientRect().height,image:art.backgroundImage,repeat:art.backgroundRepeat,size:art.backgroundSize,mask:art.maskImage},
         light:!document.documentElement.classList.contains('dark'),width:innerWidth,scrollWidth:document.documentElement.scrollWidth,scrollY,maxScroll:document.documentElement.scrollHeight-innerHeight,
         title:box(document.querySelector('h1')),card:box(document.querySelector('.shinka-intro-shell')),space:space?box(space):null,
         rowIcons:document.querySelectorAll('[data-intro-row] svg').length,
@@ -61,9 +60,10 @@ export async function checkOnboardingLayers(browser, origin, directory) {
     });
     const verify = value => {
       assert.equal(value.layers,1);assert.equal(value.images,0);assert.equal(value.bitmaps.length,1,'one bitmap composition across the complete page');
-      assert(value.bitmaps[0].source.includes(BACKGROUND_ASSETS.onboardingMoon));assert(value.light,'onboarding remains light under dark OS');
-      assert.equal(value.background.section,'onboarding');assert.equal(value.background.position,'fixed');assert.equal(value.background.y,0);
-      assert.equal(value.background.repeat,'no-repeat');assert(value.scrollWidth<=value.width+1,'no horizontal overflow');
+      assert(value.bitmaps[0].source.includes(`${origin}/assets/shinka-background-`));assert(value.light,'onboarding remains light under dark OS');
+      assert.equal(value.background.position,'fixed');assert.equal(value.background.y,0);
+      assert.equal(value.background.size,'contain');assert.equal(value.background.repeat,'no-repeat');
+      assert(value.scrollWidth<=value.width+1,'no horizontal overflow');
       assert(value.space && Math.abs(value.space.width-240)<1 && Math.abs(value.space.height-240)<1,'former 240px square layout slot preserved');
     };
     const visit = async step => {

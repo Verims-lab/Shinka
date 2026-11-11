@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-064
+**Current BuildMarker:** Buildmarker-065
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-063.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-064.0; repository, synthetic and external evidence separated.
 
 
+
+## 065 — Shared backdrop regression scope
+
+Buildmarker-065 / HC-064.0 changes **0 added / 3 updated / 0 removed**. H13-020 checks the shared, decorative fixed PNG paint and the flat internal document. H13-012 maps the real-App route matrix and existing onboarding/theme/navigation checks. H05-009 recognizes 065 under the same content verification policy. T81/T82 still verify shell and onboarding composition boundaries. The local matrix checks image loading, responsive fit, overflow, fixed paint on scroll, safe-area padding and manual themes. Existing onboarding regressions exercise focus and a reduced viewport. The catalog remains at 185 cases (159 in-app, 12 local-only, 14 external). [065 verification](reports/SHINKA_APP_BACKGROUND_065.md)
 
 ## 064 — Admin reset retirement and selected-user removal (2026-11-11)
 

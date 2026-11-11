@@ -2,14 +2,14 @@ import assert from 'node:assert/strict';
 import { inspectMobileSurface } from './mobileSurfaceMeasurements.mjs';
 import { mkdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { BACKGROUND_ASSETS } from '../src/foundation/sectionBackgrounds.js';
+import { backdropSelector, loadAppBackdrop } from './checkAppBackdrop.mjs';
 export async function checkPatternFlow(page, origin, directory) {
   if (directory) await mkdir(directory, { recursive: true });
   const visualAssets = Boolean(directory && process.env.FOUNDATION_PATTERN_ASSETS === '1');
   const fontCss = (await readFile('index.html','utf8')).match(/href="(https:\/\/fonts.googleapis.com\/css2[^"]+)"/)[1];
   const publicAssets = route => {
     const url = new URL(route.request().url());
-    const allowed = route.request().method() === 'GET' && ([fontCss, BACKGROUND_ASSETS.watercolor].includes(url.href) || url.origin === 'https://fonts.gstatic.com' && url.pathname.startsWith('/s/'));
+    const allowed = route.request().method() === 'GET' && (url.href===fontCss || url.origin === 'https://fonts.gstatic.com' && url.pathname.startsWith('/s/'));
     return allowed ? route.continue() : route.fallback();
   };
   if (visualAssets) await page.route('**/*', publicAssets);
@@ -24,7 +24,7 @@ export async function checkPatternFlow(page, origin, directory) {
       await page.evaluate(href=>{const link=document.createElement('link');link.rel='stylesheet';link.href=href;link.dataset.patternFont='true';document.head.append(link);},fontCss);
       await page.waitForFunction(()=>document.querySelector('link[data-pattern-font]')?.sheet);
       await page.evaluate(()=>document.fonts.ready);
-      await page.evaluate(src=>new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(true);img.onerror=()=>reject(new Error('ASSET_UNAVAILABLE'));img.src=src;}),BACKGROUND_ASSETS.watercolor);
+      await loadAppBackdrop(page);
     }
     for (const scale of [1,2]) {
       if(scale===2)await page.evaluate(()=>{const sizes=[...document.querySelectorAll('[data-lunar-layout],[data-pattern-root] h1,[data-pattern-root] h2,[data-pattern-root] h3,[data-pattern-root] p,[data-pattern-root] li,[data-pattern-root] time,[data-pattern-root] button,[data-pattern-root] a,[data-pattern-root] span,[data-pattern-root] dt,[data-pattern-root] dd')].map(el=>({el,size:parseFloat(getComputedStyle(el).fontSize)}));for(const {el,size} of sizes)el.style.fontSize=`${size*2}px`;});
@@ -39,7 +39,7 @@ export async function checkPatternFlow(page, origin, directory) {
       assert.equal(await page.locator('[data-lunar-halo]').count(),1);
       assert.equal(await page.locator('[data-theme-id]').count(),1);
       assert.equal(await page.locator('[data-lunar-node]').count(),5);
-      assert.equal(await page.locator('[data-section-backdrop]').count(),1);
+      assert.equal(await page.locator(backdropSelector).count(),1);
       if(geometry.scrollWidth>geometry.scroller.width+1) {
         const scroller=page.locator('.lunar-scroll');
         await scroller.focus();await page.keyboard.press('ArrowRight');

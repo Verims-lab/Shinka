@@ -17,6 +17,7 @@ import { checkProductNavigation } from './checkProductNavigation.mjs';
 import { checkHealthTiming } from './checkHealthTiming.mjs';
 import { checkPrivacyFlow } from './checkPrivacyFlow.mjs';
 import { checkAppTheme } from './checkAppTheme.mjs';
+import { checkAppBackdrop } from './checkAppBackdrop.mjs';
 import { checkYouFlow } from './checkYouFlow.mjs';
 import { checkPatternFlow } from './checkPatternFlow.mjs';
 import { checkInAppHealth } from './verifyHealthFlow.mjs';
@@ -73,7 +74,7 @@ try {
       if(!pathname.startsWith("/assets/")){res.setHeader("Content-Type","text/html");res.setHeader("X-Frame-Options","DENY");res.end(html);return;}
       const file=path.resolve(output,`.${pathname}`);
       if(!file.startsWith(`${output}${path.sep}`)){res.writeHead(403).end();return;}
-      res.setHeader("Content-Type",file.endsWith(".js")?"application/javascript":file.endsWith(".css")?"text/css":"application/octet-stream");
+      res.setHeader("Content-Type",file.endsWith(".js")?"application/javascript":file.endsWith(".css")?"text/css":file.endsWith(".png")?"image/png":"application/octet-stream");
       res.end(await readFile(file));
     } catch {res.writeHead(404).end();}
   });
@@ -81,7 +82,9 @@ try {
   const origin=`http://127.0.0.1:${server.address().port}`;
   // Preserve normal Chromium background/frame scheduling, which Playwright otherwise disables.
   browser=await engine.launch({headless:true,ignoreDefaultArgs:['--disable-back-forward-cache','--disable-background-timer-throttling','--disable-backgrounding-occluded-windows','--disable-renderer-backgrounding']});
-  const page=await browser.newPage({viewport:{width:1280,height:900}});
+  // Canonical English-copy assertions use a fixed fixture locale. The TR/EN
+  // matrices create their own localized contexts.
+  const page=await browser.newPage({viewport:{width:1280,height:900},locale:'en-US'});
   await page.emulateMedia({colorScheme:"dark"}); // Verify unresolved light default despite a dark OS preference; explicit saved-theme matrix is separate.
   await page.route("**/*",route=>new URL(route.request().url()).origin===origin?route.continue():route.abort());
   const pageErrors=[];page.on("pageerror",error=>pageErrors.push(error.message));
@@ -93,7 +96,10 @@ try {
     if(location.origin===origin)sessionStorage.setItem('shinka.browser-evidence.v1',JSON.stringify(bundle));
   },{bundle:probeBundle,origin});
   await page.evaluate(bundle=>window.__acceptBrowserEvidence(bundle),probeBundle);
-  if (process.env.FOUNDATION_AUTH_FIRST_ONLY === '1') {
+  if (process.env.FOUNDATION_BACKDROP_ONLY === '1') {
+    console.log(JSON.stringify({ appBackdrop: await checkAppBackdrop(browser, origin, process.env.FOUNDATION_BACKDROP_DIR), pageErrors }));
+    if (pageErrors.length) process.exitCode = 1;
+  } else if (process.env.FOUNDATION_AUTH_FIRST_ONLY === '1') {
     console.log(JSON.stringify({authFirstOnboarding:await checkAuthFirstOnboarding(browser,origin),pageErrors}));
   } else if (process.env.FOUNDATION_CALENDAR_ONLY === '1') {
     console.log(JSON.stringify({calendarFlow:await checkCalendarFlow(page,origin),calendarContinuity:await checkCalendarContinuity(page,origin),calendarCorrections:await checkCalendarCorrections(browser,origin,process.env.FOUNDATION_CALENDAR_DIR),pageErrors}));
@@ -205,6 +211,7 @@ try {
   const dailyFlow = await checkDailyFlow(page, origin, process.env.FOUNDATION_DAILY_DIR);
   const patternFlow = await checkPatternFlow(page, origin, process.env.FOUNDATION_PATTERN_DIR);
   const appTheme = await checkAppTheme(browser,origin);
+  const appBackdrop = await checkAppBackdrop(browser, origin, process.env.FOUNDATION_BACKDROP_DIR);
   const youFlow = await checkYouFlow(page, origin, process.env.FOUNDATION_YOU_DIR);
   const preferenceSheets = await checkPreferenceSheets(browser,origin,process.env.FOUNDATION_PREFERENCES_DIR);
   const privacyFlow = await checkPrivacyFlow(page, origin, process.env.FOUNDATION_PRIVACY_DIR);
@@ -218,7 +225,7 @@ try {
     const audit=await page.evaluate(()=>({registry:window.__healthAuditRegistry,report:window.__savedHealthReport}));
     await writeHealthAudit(root,process.env.FOUNDATION_AUDIT_DIR,audit.registry,audit.report,results);
   }
-  console.log(JSON.stringify({reopenApp,reopenNavigation,calendarCorrections,calendarContinuity,preferenceSheets,appTheme,onboardingPresentation,onboardingClosure,startupRoutes,productNavigation,healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,security028,notifications030,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
+  console.log(JSON.stringify({reopenApp,reopenNavigation,calendarCorrections,calendarContinuity,preferenceSheets,appTheme,appBackdrop,onboardingPresentation,onboardingClosure,startupRoutes,productNavigation,healthTiming,privacyFlow,youFlow,inAppHealth,adminNavigation,mobileExperience,mobile,dailyFlow,patternFlow,calendarFlow,adminTestFlow,evidenceScope:"LOCAL_BROWSER_SYNTHETIC_AND_BUILD_TIME_STATIC",browser:{engine:browserName,version:browser.version(),physicalDevice:false},catalog,nativeEntries,security028,notifications030,tests:results.length,passed:results.filter(r=>r.passed).length,failed:results.filter(r=>!r.passed).length,geoNamesEntry,geoNamesRuntimeProbeEntry,authProbe:results.find(r=>r.id==='T74')?.evidence,productionRouting,previewProbes,health,onboardingHealth,dailyHealth,calendarHealth,adminTestHealth,pageErrors},null,2));
   if(appTheme.some(r=>!r.passed)||mobileExperience.some(r=>!r.passed)||mobile.some(r=>!r.passed)||results.length===0||results.some(r=>!r.passed)||productionRouting.some(r=>!r.passed)||previewProbes.some(r=>!r.passed)||health.some(c=>c.status!=="PASS")||onboardingHealth.some(c=>c.status!=="PASS")||dailyHealth.some(c=>c.status!=="PASS")||calendarHealth.some(c=>c.status!=="PASS")||adminTestHealth.some(c=>c.status!=="PASS")||pageErrors.length) process.exitCode=1;
   }
   }

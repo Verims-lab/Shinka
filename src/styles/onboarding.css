@@ -1,9 +1,8 @@
-/* Onboarding shell (ON-01–ON-06). The former gradient background is superseded
-   by the 046 section background (SectionBackdrop "onboarding"); shell is transparent. */
+/* The transparent onboarding shell shows the shared app backdrop. */
 .shinka-onboarding { min-height: 100vh; min-height: 100dvh; }
 /* ON-01: three-row intro sits directly on the watercolor shell (no single white card). */
 .shinka-onboarding .shinka-intro-shell { background: transparent; border: 0; box-shadow: none; padding: 0; }
-/* SectionBackdrop owns the moon/botanical art. Keep the former square image's
+/* AppBackdrop owns the botanical art. Keep the former square image's
    flow space so headings/forms do not move; this box paints no decoration. */
 .shinka-onboarding-art-space { width: 100%; max-width: 240px; aspect-ratio: 1; margin-inline: auto; }
 /* ON-01/04 headings receive programmatic focus for screen announcements, but
