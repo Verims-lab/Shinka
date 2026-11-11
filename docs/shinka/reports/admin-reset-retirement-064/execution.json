@@ -142,5 +142,24 @@
     ]
   },
   "hostedResetRetirementAcceptance": "NOT_RUN_REQUIRES_MATCHING_PUBLICATION",
-  "liveRemovalOutcome": "BLOCKED_TEST_TARGET_BUSY_BOTH_SELECTED_IDS"
+  "liveRemovalOutcome": "BLOCKED_TEST_TARGET_BUSY_BOTH_SELECTED_IDS",
+  "maintenanceFollowUp": {
+    "date": "2026-11-11",
+    "status": "TWO_EXACT_TEST_ACCOUNTS_ACTIVE_AND_SUPPORTED_TRASH_CLEANUP_VERIFIED",
+    "receipt": "live-maintenance.json",
+    "priorFieldsAreHistorical": true,
+    "applicationCodeChanged": false,
+    "newBrowserRuns": false,
+    "newHealthDelta": {
+      "added": 0,
+      "updated": 0,
+      "retired": 0
+    },
+    "note": "Original status/liveWrites/liveRemovalOutcome fields describe the earlier pre-clarification run and are intentionally retained.",
+    "documentationChecks": {
+      "git diff --check": "PASS",
+      "node scripts/recordBuild.mjs --check": "PASS: 5 active packages",
+      "maintenance JSON/count consistency": "PASS"
+    }
+  }
 }

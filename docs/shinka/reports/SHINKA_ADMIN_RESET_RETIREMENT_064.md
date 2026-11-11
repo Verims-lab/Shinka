@@ -2,7 +2,30 @@
 
 Date: 2026-11-11. Buildmarker-064 / HC-063.0. Test-only delivery; no main merge or publication.
 
-## Live outcome — removal remains BLOCKED
+## One-off maintenance closure — 2026-11-11 (supersedes the blocker below)
+
+The owner explicitly identified both exact IDs as disposable test accounts and authorized removal of pending reset/related test data without completing onboarding. This changes only these two maintenance targets, not general retention, lifecycle rules or 064 implementation. The historical zero-write/blocked evidence below remains intact.
+
+| Exact native User ID | Native User | Active personal/test records removed → remaining | Existing reset | Target Recently deleted rows |
+|---|---|---|---|---|
+| `6ae21e3dc1f2cace93d02f81` | Removed; supported permanent deletion verified | 19 → **0** | `41b04918-268c-49a2-bd03-9e1d0503d7b1` removed, not marked DONE | **0** |
+| `6aeae548a7d69cf5b3b032d1` | Removed; supported permanent deletion verified | 10 → **0** | `8375d249-3d66-4879-915a-927605b88b9e` removed, not marked DONE | **0** |
+
+Used the authenticated Base44 Dashboard for the existing shared app `6ad5190f4845d4e3af03b420`, not an assumed isolated Test database. Native identity/admin checks preceded mutation. The first native membership was removed before personal cleanup; the second profile was set INACTIVE and verified before cleanup, then its native membership was removed. No reset creation/resume or onboarding completion was invoked. Existing request-driven owner/native checks remain unchanged. A platform-wide in-flight-worker drain is not independently observable; subsequent fresh full-scope reads showed no resurrection of either old ID.
+
+Removed and then permanently deleted through supported Data controls: profiles 2, preferences 2, daily assignments 13, Calendar action 1, period 1, current consents 2, consent events 2, target-owned audit rows 4 and reset receipts 2 = **29**. Both audit rows per target had matching actor and target and referenced that target's old reset; no other user's audit evidence was selected. Remaining cycle/projection/Pattern/notification/deletion-job/protection scopes were empty. Two privacy requests and their two recovery receipts belong to other owners and were preserved. Full per-entity counts, pagination and limitations are in [live-maintenance.json](admin-reset-retirement-064/live-maintenance.json).
+
+Fresh active reads reached explicit zero-result states for each old ID; all table inventories were below one loaded page (maximum 42 records). Recently deleted views were inspected through their terminal page (Next disabled). Native inventory was verified by opening **all eight** current user details and reading native IDs. Both old IDs are absent. The initial count was 8; after removal it is again 8 because two **different new accounts** were created during maintenance: `6af4466b4088fb5f714d8aac` (13:41:47 Europe/Istanbul) and `6af44a7f183bf1befbdd51e6` (13:59:11). These new IDs and all other users were preserved; matching names/emails did not expand the target scope.
+
+Protected sariverim's exact native ID `6ad519134845d4e3af03b423`, email mapping, admin role and ACTIVE profile were rechecked. No action targeted it. Shared reference entities and other owners' records were not modified. Reopening checks after deletion and new-account creation still found no profile/preferences/daily records for either old target.
+
+App Users permanent-delete confirmation explicitly concerns the app profile and warns that uploaded files/other app data remain. The 29 owned entity records were therefore cleaned separately. The two current native trash rows were tied to freshly verified identities and this session's deletion timestamps (13:40:25 and 13:58:46 Europe/Istanbul); eight older same-email/different-ID trash rows were preserved. Supported app-level permanent deletion is verified; provider backups/global account erasure are not claimed.
+
+This follow-up changes **documentation/evidence only**. 064 reset removal, Buildmarker-064 / HC-063.0 and active packages 060–064 remain. Existing Chromium/WebKit 803/803 and mandatory local gate results below are preserved; no unnecessary browser/full test rerun. Additional Health delta: **0 added / 0 updated / 0 retired**. No live Full Health, Security scan, main merge or publication.
+
+Git preflight found origin/main `fcaed31` one merge commit ahead of Test `f097dc8`, with identical file trees. Automatic approval review rejected the main-to-Test fast-forward as conflicting with the no-main-merge restriction, including after the Test-only destination was clarified. No rejected action was executed. The owner then explicitly approved only Test synchronization and document delivery; `git merge --ff-only origin/main` on Test succeeded at `fcaed31`. Main was not changed. This maintenance evidence is delivered as a documentation-only follow-up.
+
+## Historical pre-clarification outcome — removal was BLOCKED
 
 Existing open Base44/Shinka admin sessions were used. Published frontend displayed Buildmarker-063; Base44 Main showed its last publication 14 hours earlier. A fresh native backend `adminTestTools` preview verified the actual configured app `6ad5190f4845d4e3af03b420` / TEST label. This label does **not** establish an isolated database. The editor/marker observations are not a complete deployed graph/hash attestation.
 

@@ -1,0 +1,328 @@
+{
+  "date": "2026-11-11",
+  "recorded_at": "2026-11-11T11:20:14Z",
+  "buildMarker": "Buildmarker-064",
+  "healthCatalog": "HC-063.0",
+  "scope": "OWNER_AUTHORIZED_ONE_OFF_DISPOSABLE_TEST_ACCOUNT_MAINTENANCE",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "environment": "existing shared app/prod; not an isolated Test database",
+  "authority": "Latest explicit owner instruction permits termination/removal of these two pending resets and all related test data. No general force-delete behavior or lifecycle change.",
+  "method": "Supported Base44 Dashboard Data and App Users controls; exact owner/actor/target filtering; Move to Trash then Delete Permanently. No undocumented endpoint.",
+  "protected": {
+    "id": "6ad519134845d4e3af03b423",
+    "email_match": true,
+    "native_role_before": "admin",
+    "native_role_after": "admin",
+    "profile_status_after": "ACTIVE",
+    "targeted_for_mutation": false
+  },
+  "initialNativeCount": 8,
+  "finalNativeCount": 8,
+  "nativeInventory": {
+    "method": "All eight App Users rows inspected via Edit user native User ID; CSV confirms total eight, but CSV itself omits native IDs. Both targets absent.",
+    "ids": [
+      "6ad519134845d4e3af03b423",
+      "6af44a7f183bf1befbdd51e6",
+      "6af4466b4088fb5f714d8aac",
+      "6af41aa5dd0675284d80c455",
+      "6af41aa2947e6d3823180450",
+      "6af3646bdc9d10207b72a866",
+      "6ad89347a02d20d3e372e8c2",
+      "6ad7c7a36b0f23a2eece409a"
+    ]
+  },
+  "newAccountsPreserved": [
+    {
+      "id": "6af4466b4088fb5f714d8aac",
+      "joined_local": "2026-11-11 13:41:47 Europe/Istanbul"
+    },
+    {
+      "id": "6af44a7f183bf1befbdd51e6",
+      "joined_local": "2026-11-11 13:59:11 Europe/Istanbul"
+    }
+  ],
+  "users": {
+    "6ae21e3dc1f2cace93d02f81": {
+      "nativeActiveRemaining": 0,
+      "nativeRemoval": "PERMANENTLY_DELETED_THROUGH_SUPPORTED_APP_USERS_UI",
+      "personalRecordsRemoved": 19,
+      "activeRemaining": 0,
+      "pendingResetRemaining": 0,
+      "formerResetOperationId": "41b04918-268c-49a2-bd03-9e1d0503d7b1",
+      "resetOutcome": "REMOVED_UNDER_EXPLICIT_ONE_OFF_AUTHORITY_NOT_COMPLETED_OR_RESUMED",
+      "targetSoftDeletedRemaining": 0
+    },
+    "6aeae548a7d69cf5b3b032d1": {
+      "nativeActiveRemaining": 0,
+      "nativeRemoval": "PERMANENTLY_DELETED_THROUGH_SUPPORTED_APP_USERS_UI",
+      "personalRecordsRemoved": 10,
+      "activeRemaining": 0,
+      "pendingResetRemaining": 0,
+      "formerResetOperationId": "8375d249-3d66-4879-915a-927605b88b9e",
+      "resetOutcome": "REMOVED_UNDER_EXPLICIT_ONE_OFF_AUTHORITY_NOT_COMPLETED_OR_RESUMED",
+      "targetSoftDeletedRemaining": 0
+    }
+  },
+  "entities": {
+    "UserProfile": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 1,
+        "6aeae548a7d69cf5b3b032d1": 1
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 5
+    },
+    "UserPreferences": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 1,
+        "6aeae548a7d69cf5b3b032d1": 1
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 6
+    },
+    "UserDailyMessage": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 11,
+        "6aeae548a7d69cf5b3b032d1": 2
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 27
+    },
+    "UserCalendarAction": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 1,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 3
+    },
+    "UserPeriodRecord": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 1
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 3
+    },
+    "UserHealthConsent": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 1,
+        "6aeae548a7d69cf5b3b032d1": 1
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 6
+    },
+    "UserHealthConsentEvent": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 1,
+        "6aeae548a7d69cf5b3b032d1": 1
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 6
+    },
+    "AdminAuditLog": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 2,
+        "6aeae548a7d69cf5b3b032d1": 2
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 42
+    },
+    "AdminTestOperation": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 1,
+        "6aeae548a7d69cf5b3b032d1": 1
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 7
+    },
+    "NotificationDelivery": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 0
+    },
+    "UserCyclePhaseDay": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 0
+    },
+    "UserCyclePrediction": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 0
+    },
+    "UserCycleSettings": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 0
+    },
+    "UserPatternSummary": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 0
+    },
+    "HealthDataDeletionJob": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 0
+    },
+    "DataProtectionEvent": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 0
+    },
+    "UserPrivacyRequest": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 2
+    },
+    "PrivacyRecoveryReceipt": {
+      "removed": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "activeRemaining": {
+        "6ae21e3dc1f2cace93d02f81": 0,
+        "6aeae548a7d69cf5b3b032d1": 0
+      },
+      "targetTrashRemaining": 0,
+      "freshFullTableTotal": 2
+    }
+  },
+  "quiescence": {
+    "actions": "First target native membership removed before personal cleanup. Second target profile set INACTIVE and read back before cleanup; native membership then removed. Both reset receipts removed, never marked DONE.",
+    "source_contract": "nativeResetStep is request-driven; native write boundaries recheck auth/owner. No autonomous reset scheduler was found in the reviewed source.",
+    "observation": "Fresh reads after cleanup, permanent deletion and later new-account creation showed zero rows for either old ID.",
+    "limit": "No global distributed drain/transaction/rollback guarantee or platform worker inventory is claimed."
+  },
+  "privacyRecovery": "Two current requests map to other owners; two recovery receipts map exactly to those requests. Zero target request/recovery rows; recovery trash empty. Other requests/receipts preserved.",
+  "pagination": "Each fresh active personal table total was <=42; exact full-ID search reached the explicit No records match state (empty entities showed total 0). No additional active page was exposed. All inspected Recently deleted views ended Page 1 with Next disabled. Native all eight rows individually ID-verified.",
+  "platform": {
+    "nativePermanentlyDeleted": 2,
+    "personalRecordsPermanentlyDeleted": 29,
+    "targetTrashRowsRemaining": 0,
+    "nativeTrashRowsBeforePurge": 10,
+    "nativeTrashRowsAfterPurge": 8,
+    "remainingNativeTrashRows": "Older different-ID accounts; unchanged. Current target rows were distinguished by verified identity, admin role and deletion timestamps matching this session, not email alone.",
+    "limit": "Supported app-level permanent deletion and absence from Recently deleted verified. Base44 warns native deletion keeps unrelated uploaded files/app data; owned entity data was handled separately. Provider backups/global identity or physical-storage erasure are not attested."
+  },
+  "codeChanged": false,
+  "healthDelta": {
+    "added": 0,
+    "updated": 0,
+    "retired": 0
+  },
+  "tests": "No browser/full regression rerun for data-only maintenance. Existing 064 Chromium/WebKit 803/803 and quality evidence retained, not represented as new runs.",
+  "prohibitedActionsRun": {
+    "hostedFullHealth": false,
+    "securityScan": false,
+    "mainMerge": false,
+    "publish": false,
+    "otherUserDeletion": false
+  },
+  "git": {
+    "localTest": "f097dc81294e52a7d1f49d6e6cc67e35c9a3055a",
+    "originMain": "fcaed31",
+    "sameApplicationTree": true,
+    "initialSyncOutcome": "BLOCKED_AUTOMATIC_APPROVAL_REVIEW: main-to-Test fast-forward interpreted as conflicting with no-main-merge. No Git merge or push performed in this follow-up.",
+    "sync": "PASS_AFTER_EXPLICIT_USER_APPROVAL: Test fast-forwarded to fcaed31; main unchanged.",
+    "delivery": "Documentation-only follow-up on Test; user-owned App Store artifacts excluded."
+  },
+  "localEvidenceChecks": {
+    "jsonAndCounts": "PASS: 18 scopes, 29 removed records, 2 absent native target IDs, 8 current native users",
+    "gitDiffCheck": "PASS",
+    "recordBuildCheck": "PASS: unchanged 060–064"
+  }
+}
