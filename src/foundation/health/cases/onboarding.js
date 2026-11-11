@@ -16,13 +16,13 @@ const probe=ids=>syntheticProbe(ids.map(id=>{
 }));
 const c=suite=>makeCase(suite,{runnerType:RUNNER.RUNTIME,classification:CLASS.SYNTHETIC_RUNTIME});
 export const ONBOARDING_HEALTH_CASES=[
- c('H06')('H06-001','Apple/Google-only auth boundary','Only the two approved providers can be invoked.',probe(['A02'])),
- c('H06')('H06-002','18+ declaration before provider call','Unchecked and missing values cannot initiate OAuth.',probe(['A01'])),
+ c('H06')('H06-001','Apple/Google-only auth boundary','A02 verifies the service allowlist. The mandatory local auth-first browser check clicks both controls and verifies the SDK provider and login return path.',probe(['A02'])),
+ c('H06')('H06-002','18+ declaration before provider call','A01 verifies the service rejects unconfirmed input. The local browser check exercises both buttons with the declaration unchecked and confirmed.',probe(['A01'])),
  c('H06')('H06-003','OAuth cancellation and safe failure','Cancellation is distinct; raw provider errors never returned.',probe(['A03'])),
  c('H06')('H06-004','Authenticated owner and sanitized response','Forged owner/role rejected; unexpected payloads removed; OAuth return targets reject external normalization and bootstrap injection.',probe(['QM05','YT02','A06','A09','O26','P01','P02','P06','P12'])),
  c('H06')('H06-005','Repeated hydration does not duplicate identity rows','One fresh server principal per request; no cross-request identity cache or mutation during hydration.',probe(['QM01','A04','A05','P03','P04'])),
- c('H06')('H06-006','Existing, reset and restricted user routing','O34 verifies reset stage/preserved NULL name, health-cleanup and deletion denial; inactive cannot be recreated and daily data remains authoritative.',probe(['A07','A08','O34'])),
- futureCase('H06','H06-007','Live Apple/Google sign-in and callback','Real provider/device verification required after deployment.',APPLICABILITY.EXTERNAL,CLASS.LIVE_RUNTIME),
+ c('H06')('H06-006','Existing, reset and restricted user routing','O34 verifies reset stage/preserved NULL name, health-cleanup and deletion denial; inactive cannot be recreated and daily data remains authoritative. The local auth-first check verifies authenticated Welcome, held hydration and reload without a provider prompt.',probe(['A07','A08','O34'])),
+ futureCase('H06','H06-007','Live Apple/Google sign-in and callback','Verify the expected published build and anonymous controls with the read-only Welcome smoke. Real provider and device callbacks require external acceptance.',APPLICABILITY.EXTERNAL,CLASS.LIVE_RUNTIME),
  c('H07')('H07-001','Backend DOB and 18+ date-only validation','O03–O05: completed versus partial client feedback, required/future/invalid/underage, exact birthday and leap boundaries; trusted server today and backend rejection stay authoritative.',probe(['O03','O04','O05'])),
  c('H07')('H07-002','Authenticated optional name and persisted NULL choice','Trim, NULL and 50 characters; absent server profile opens name only after auth; saved NULL name resumes without asking again; anonymous personal writes are rejected.',probe(['O01','O02'])),
  c('H07')('H07-003','Birth time NULL semantics','DOB alone saves through service/native adapter with NULL time and all five blank place fields, zero provider construction; invalid time remains rejected.',probe(['O06','C14','OF02'])),

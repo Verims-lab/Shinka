@@ -10,6 +10,7 @@ import FieldError from "./FieldError";
 import { beginProviderAuth } from "@/services/authService";
 import { resolveLanguage } from "@/foundation/i18n/strings";
 import { onboardingCopy } from "@/foundation/i18n/onboardingCopy";
+import { BUILD_MARKER } from "@/foundation/buildMarker";
 import {
   optionalName,
 } from "../../../base44/shared/onboardingValidation.js";
@@ -247,6 +248,7 @@ export default function OnboardingScreen({
         style={intro ? INTRO_LAYOUT : anonymousSignIn ? SIGN_IN_LAYOUT : undefined}
         data-onboarding-step={intro ? step : undefined}
         data-onboarding-state={state}
+        data-shinka-build={BUILD_MARKER}
         lang={language}
       >
         {!intro && (

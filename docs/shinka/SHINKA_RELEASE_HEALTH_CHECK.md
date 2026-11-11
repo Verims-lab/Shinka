@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-068
+**Current BuildMarker:** Buildmarker-069
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-067.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-068.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 069 — Mandatory Welcome authentication gate
+
+Buildmarker-069 / HC-068.0 updates H06-001, H06-002, H06-006, H06-007, H13-012 and H05-009. The required local Foundation run executes `checkAuthFirstOnboarding` against the App. It verifies Begin to anonymous 2/5, both provider calls and the 18+ gate, authenticated Continue and the absence of anonymous prompts during held hydration and reload. `checkOnboardingLayers` checks first-viewport geometry and hit targets. The published release check runs `node scripts/checkPublishedOnboarding.mjs` from the expected checkout. H06-007 retains real provider and physical-device acceptance. The catalog has 185 cases. [069 evidence](reports/SHINKA_ONBOARDING_AUTH_069.md)
 
 ## 068 — ON-02 mobile sign-in visibility
 
