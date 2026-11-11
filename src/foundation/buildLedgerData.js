@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-062",
-    "package_name": "Calendar direct start-date editing",
-    "package_type": "TARGETED_FIX",
-    "created_at": "2026-11-09T18:42:59Z",
-    "health_catalog_version": "HC-061.0",
-    "short_summary": "Direct calendar-cell add/move/delete drafts; one existing start-date operation per save. Read-only status and separate same-intent continuation.",
-    "full_health_status": "NOT_RUN",
-    "notes": "Chromium/WebKit 805/805 each, 8 Calendar flows + 2 continuity + 40 mobile/theme/text cases each; final focused 6/6 each. Quality/performance/last-five PASS; npm advisories 0. Health +0/~4/-0; local synthetic 147 PASS/13 prerequisite BLOCKED/0 FAIL with save/list/open. No live mutation/Health/scan/schema/main publish; physical acceptance external. Report: reports/SHINKA_CALENDAR_GRID_062.md. Active 058–062."
-  },
-  {
     "build_marker": "Buildmarker-063",
     "package_name": "Compact botanical Lunar Timeline presentation",
     "package_type": "TARGETED_UI",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Original-color top-left logo and compact introductory copy, rows and CTA on ON-01.",
     "full_health_status": "NOT_RUN",
     "notes": "HC-065.0 updates H13-012, H13-020 and H05-009. Local onboarding matrices passed in Chromium and WebKit. Synthetic Chromium Health returned 146 PASS and 13 prerequisite BLOCKED. Full Chromium stopped in Pattern and the full WebKit browser closed. Details: reports/SHINKA_ONBOARDING_INTRO_066.md."
+  },
+  {
+    "build_marker": "Buildmarker-067",
+    "package_name": "First onboarding spacing and counter",
+    "package_type": "TARGETED_UI",
+    "created_at": "2026-11-11T16:07:11Z",
+    "health_catalog_version": "HC-066.0",
+    "short_summary": "ON-01 has no page counter and uses proportional heading spacing and larger gaps between boxes and Begin.",
+    "full_health_status": "NOT_RUN",
+    "notes": "HC-066.0 updates H13-012 and H05-009. Chromium full 803/803. Both onboarding matrices passed. WebKit full stopped on two baseline fixture failures and the focused candidate rerun passed. See reports/SHINKA_ONBOARDING_SPACING_067.md."
   }
 ];

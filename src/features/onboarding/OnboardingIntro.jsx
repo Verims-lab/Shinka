@@ -12,7 +12,7 @@ export default function OnboardingIntro({ t, onBegin }) {
   return (
     <div className="space-y-2" data-onboarding-intro>
       <p className="text-center text-shinka-body text-shinka-taupe">{t("introBody")}</p>
-      <ul className="space-y-2">
+      <ul className="space-y-3" style={{ marginBlockEnd: 12 }}>
         {ROWS.map(({ icon: Icon, title, text }) => (
           <li
             key={title}

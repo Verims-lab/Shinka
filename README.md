@@ -6,6 +6,8 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
+[067 first onboarding spacing](docs/shinka/reports/SHINKA_ONBOARDING_SPACING_067.md) removes the first screen's counter and adjusts its vertical spacing within the safe viewport.
+
 [066 first onboarding screen](docs/shinka/reports/SHINKA_ONBOARDING_INTRO_066.md) keeps the original top-left logo and brings the intro, three compact rows and Begin into the first portrait viewport.
 
 [065 shared screen background](docs/shinka/reports/SHINKA_APP_BACKGROUND_065.md) uses the original bundled Shinka PNG across user-facing routes, including onboarding, sign-in and account privacy. The application owns one fixed decorative layer and the navigation background lets it show through. The focused local check is `FOUNDATION_BACKDROP_ONLY=1 npm run test:foundation`. Set `FOUNDATION_BACKDROP_DIR` to an absolute output directory for screenshots.

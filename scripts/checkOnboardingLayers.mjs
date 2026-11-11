@@ -13,34 +13,44 @@ async function checkIntroLayout(page, scale) {
     const backdrop = document.querySelector('[data-app-backdrop]');
     const art = getComputedStyle(backdrop, '::before');
     const root = getComputedStyle(document.documentElement);
+    const shell = getComputedStyle(screen.closest('.shinka-safe-content'));
     const title = screen.querySelector('h1').getBoundingClientRect();
     const copy = intro.querySelector('p').getBoundingClientRect();
     const cta = intro.querySelector('button');
     const button = cta.getBoundingClientRect();
     const rows = [...intro.querySelectorAll('[data-intro-row]')].map(row => {
       const text = row.querySelector('[data-intro-description]');
+      const bounds = row.getBoundingClientRect();
       const range = document.createRange();
       range.selectNodeContents(text);
       const lines = new Set([...range.getClientRects()].map(rect => Math.round(rect.top))).size;
       return {
-        id: row.dataset.introRow, lines, height: row.getBoundingClientRect().height,
+        id: row.dataset.introRow, lines, height: bounds.height, top: bounds.top, bottom: bounds.bottom,
         titleFont: parseFloat(getComputedStyle(text.previousElementSibling).fontSize),
         descriptionFont: parseFloat(getComputedStyle(text).fontSize),
       };
     });
+    const topPadding = parseFloat(shell.paddingTop);
+    const bottomPadding = parseFloat(shell.paddingBottom);
+    const safeTop = parseFloat(root.getPropertyValue('--safe-top')) || 0;
+    const originalTitleTop = 8 + Math.min(innerWidth * .375, innerHeight * .212) + safeTop;
     return {
       width: innerWidth, height: innerHeight, scrollY, scrollHeight: document.documentElement.scrollHeight,
-      safeTop: parseFloat(root.getPropertyValue('--safe-top')) || 0,
+      safeTop, bottomPadding, originalTitleTop,
+      usableHeight: Math.max(0, innerHeight - topPadding - bottomPadding - button.height),
       safeLeft: parseFloat(root.getPropertyValue('--safe-left')) || 0,
       artTop: parseFloat(art.top), artLeft: parseFloat(art.left), artHeight: parseFloat(art.height),
       opacity: getComputedStyle(backdrop).opacity, filter: art.filter,
       wash: getComputedStyle(backdrop, '::after').content,
       duplicateWordmark: [...screen.querySelectorAll('span')].some(span => span.textContent.trim() === 'Shinka'),
-      titleTop: title.top, copyBottom: copy.bottom, ctaTop: button.top, ctaBottom: button.bottom,
+      counterPresent: !!screen.querySelector('p[data-onboarding-step]'),
+      titleTop: title.top, headingGap: copy.top - title.bottom, copyBottom: copy.bottom,
+      ctaTop: button.top, ctaBottom: button.bottom,
       ctaHeight: button.height, ctaDisabled: cta.disabled, rows,
     };
   });
   assert.equal(result.duplicateWordmark, false);
+  assert.equal(result.counterPresent, false);
   assert.equal(result.artTop, result.safeTop);
   assert.equal(result.artLeft, result.safeLeft);
   assert.equal(result.opacity, '1');
@@ -50,14 +60,27 @@ async function checkIntroLayout(page, scale) {
   assert.equal(result.rows.length, 3);
   assert(result.ctaHeight >= 52 && !result.ctaDisabled, 'Begin keeps its primary touch target');
   if (scale === 1 && result.width < result.height) {
+    const closeTo = (value, expected, label) => assert(Math.abs(value - expected) < .5, `${label}: ${value} vs ${expected}`);
     assert(result.scrollY === 0 && result.scrollHeight <= result.height + 1, 'intro fits at first paint');
-    assert(result.copyBottom <= result.ctaTop && result.ctaBottom <= result.height + 1, 'copy and Begin are visible together');
+    const safeBottom = result.height - result.bottomPadding;
+    assert(result.copyBottom <= result.ctaTop && result.ctaBottom <= safeBottom + 1, 'copy and Begin are inside the safe content area');
+    closeTo(result.headingGap, result.usableHeight * .025, 'heading to intro copy is 2.5 units');
+    const room = safeBottom - result.originalTitleTop - (result.ctaBottom - result.titleTop);
+    const target = result.usableHeight * .10;
+    closeTo(result.titleTop - result.originalTitleTop, Math.max(0, Math.min(target, room)), 'heading moves down 10 units or available room');
+    const [first, second, third] = result.rows;
+    for (const gap of [second.top - first.bottom, third.top - second.bottom, result.ctaTop - third.bottom]) {
+      closeTo(gap, 12, 'gap is 1.5 times the previous 8px');
+    }
     assert(result.rows.every(row => row.height <= 60 && row.titleFont === 20 && Math.abs(row.descriptionFont - 13.6) < .1), 'compact row dimensions');
     for (const id of ['introMoon', 'birthChart']) {
       assert.equal(result.rows.find(row => row.id === id).lines, 1, id + ' description');
     }
   }
-  if (scale === 2) assert(result.rows.every(row => row.descriptionFont >= 27.1), 'descriptions scale with text enlargement');
+  if (scale === 2) {
+    assert(result.rows.every(row => row.descriptionFont >= 27.1), 'descriptions scale with text enlargement');
+    assert(result.ctaBottom + result.scrollY <= result.scrollHeight + 1, 'Begin remains reachable with enlarged text');
+  }
   return result;
 }
 
@@ -67,7 +90,7 @@ export async function checkOnboardingLayers(browser, origin, directory) {
   const fontCss = (await readFile('index.html','utf8')).match(/href="(https:\/\/fonts.googleapis.com\/css2[^\"]+)"/)[1];
   const assets = new Map(), results = [];
   if (directory) await mkdir(directory,{recursive:true});
-  const sizes = [[320,568],[360,640],[390,844],[430,932],[844,390]];
+  const sizes = [[320,568],[320,640],[360,640],[390,844],[430,932],[844,390]];
   for (const language of ['tr','en']) for (const [width,height] of sizes) for (const scale of [1,2]) {
     const context = await browser.newContext({locale:language==='tr'?'tr-TR':'en-US',viewport:{width,height},colorScheme:'dark'});
     const page = await context.newPage(), errors = [];
