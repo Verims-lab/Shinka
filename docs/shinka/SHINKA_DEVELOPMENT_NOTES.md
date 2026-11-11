@@ -10,6 +10,12 @@
 
 
 
+## 064 — Two exact test accounts: one-off maintenance closure (2026-11-11)
+
+The owner's later explicit disposal authorization supersedes only the two removal blockers documented below. Supported Base44 Data/App Users maintenance removed and permanently deleted 29 related records plus both old native accounts. Fresh full-scope reads confirm zero active records, pending resets and target trash rows for `6ae21e3dc1f2cace93d02f81` and `6aeae548a7d69cf5b3b032d1`. Reset receipts were removed under that narrow authority, not falsely completed. Protected sariverim remains the same ACTIVE/admin identity. Two different new accounts created during maintenance were excluded. No general lifecycle/retention change, code change, new package or additional Health case. Existing 064 tests are retained without unnecessary reruns; hosted Full Health/Security scan and publish were not run.
+
+[Current outcome, exact counts and platform limits](reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md#one-off-maintenance-closure--2026-11-11-supersedes-the-blocker-below). The following initial blocked/zero-write section remains historical evidence.
+
 ## 064 — Admin reset retirement and selected-user removal (2026-11-11)
 
 Read-only admin inspection preceded implementation: both selected native Users are ACTIVE; both DELETE_USER previews return enabled:false / TEST_TARGET_BUSY due to RESET_ACTIVE/PROFILE. No execute/resume or DB write was sent. Preserved sariverim ACTIVE/admin and all nine journal records. Base44 Recently deleted is a separate recovery/permanent-delete surface; same-email historical records cannot identify these native IDs.
