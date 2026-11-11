@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-067
+**Current BuildMarker:** Buildmarker-068
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,6 +12,10 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 068 — ON-02 mobile sign-in
+
+On anonymous Welcome, the empty artwork slot can grow to 240px when the safe viewport has room. Its height yields to the 18+ declaration and Apple and Google buttons on shorter screens. Keep the shared PNG, the 2/5 counter and the existing touch targets. At enlarged text or reduced height the document can scroll to all actions. [068 measurements](reports/SHINKA_ONBOARDING_SIGN_IN_068.md)
 
 ## 067 — ON-01 spacing and counter
 

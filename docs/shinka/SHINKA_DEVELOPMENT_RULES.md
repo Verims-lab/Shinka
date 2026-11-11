@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-067
+**Current BuildMarker:** Buildmarker-068
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 068 — ON-02 mobile sign-in visibility
+
+Start 068 on `AydanTest` from the clean fast-forward to `ebfe5b5`. Record Buildmarker-068 / HC-067.0 through `recordBuild` and retain 064–068. Scope the layout fix to anonymous Welcome and validate auth-first routing with synthetic browser sessions. [068 evidence](reports/SHINKA_ONBOARDING_SIGN_IN_068.md)
 
 ## 067 — ON-01 spacing and counter
 

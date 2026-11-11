@@ -6,6 +6,8 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
+[068 mobile sign-in visibility](docs/shinka/reports/SHINKA_ONBOARDING_SIGN_IN_068.md) fits the 18+ declaration and both provider buttons into the first mobile portrait viewport on ON-02.
+
 [067 first onboarding spacing](docs/shinka/reports/SHINKA_ONBOARDING_SPACING_067.md) removes the first screen's counter and adjusts its vertical spacing within the safe viewport.
 
 [066 first onboarding screen](docs/shinka/reports/SHINKA_ONBOARDING_INTRO_066.md) keeps the original top-left logo and brings the intro, three compact rows and Begin into the first portrait viewport.

@@ -84,6 +84,39 @@ async function checkIntroLayout(page, scale) {
   return result;
 }
 
+async function checkSignInLayout(page, scale) {
+  const result = await page.evaluate(() => {
+    const panel = document.querySelector('[data-auth-shell]');
+    const age = panel?.querySelector('#age-declaration');
+    if (!age?.labels.length) return null;
+    const providers = [...panel.querySelectorAll('[data-provider]')];
+    const shell = getComputedStyle(panel.closest('.shinka-safe-content'));
+    const controls = [age.labels[0], ...providers].map(element => {
+      const rect = element.getBoundingClientRect();
+      const css = getComputedStyle(element);
+      return { top: rect.top, bottom: rect.bottom, height: rect.height, visible: css.display !== 'none' && css.visibility === 'visible' };
+    });
+    return {
+      providers: providers.map(element => element.dataset.provider),
+      enabled: !age.disabled && providers.every(element => !element.disabled),
+      checked: age.checked, controls, width: innerWidth, height: innerHeight, scrollY,
+      scrollHeight: document.documentElement.scrollHeight,
+      paddingTop: parseFloat(shell.paddingTop), paddingBottom: parseFloat(shell.paddingBottom),
+    };
+  });
+  assert(result, 'sign-in renders a labelled 18+ checkbox');
+  assert.deepEqual(result.providers, ['apple', 'google']);
+  assert(result.enabled && !result.checked, 'age confirmation starts unchecked with accessible provider actions');
+  assert(result.controls.every(control => control.visible && control.height >= 44), 'visible controls retain their touch targets');
+  const last = result.controls.at(-1);
+  assert(last.bottom + result.scrollY + result.paddingBottom <= result.scrollHeight + 1, 'Google remains reachable above the bottom safe padding');
+  if (scale === 1 && result.width < result.height) {
+    assert(result.scrollY === 0 && result.controls[0].top >= result.paddingTop &&
+      last.bottom <= result.height - result.paddingBottom + 1, '18+ confirmation and both provider actions fit the initial safe viewport');
+  }
+  return result;
+}
+
 // Real App + Onboarding + bundled backdrop together. SDK transport is synthetic.
 // Public fonts load only for an explicit visual capture.
 export async function checkOnboardingLayers(browser, origin, directory) {
@@ -147,7 +180,8 @@ export async function checkOnboardingLayers(browser, origin, directory) {
         background:{position:css.position,y:layer.getBoundingClientRect().y,height:layer.getBoundingClientRect().height,image:art.backgroundImage,repeat:art.backgroundRepeat,size:art.backgroundSize,mask:art.maskImage},
         light:!document.documentElement.classList.contains('dark'),width:innerWidth,scrollWidth:document.documentElement.scrollWidth,scrollY,maxScroll:document.documentElement.scrollHeight-innerHeight,
         title:box(document.querySelector('h1')),card:box(document.querySelector('.shinka-intro-shell')),space:space?box(space):null,
-        intro:!!document.querySelector('[data-onboarding-intro]'),rowIcons:document.querySelectorAll('[data-intro-row] svg').length,
+        intro:!!document.querySelector('[data-onboarding-intro]'),signIn:!!document.querySelector('[data-auth-shell]'),
+        rowIcons:document.querySelectorAll('[data-intro-row] svg').length,
         controls:[...document.querySelectorAll('main input,main button,main label')].map(el=>({key:el.id||el.getAttribute('aria-label')||el.textContent.trim(),...box(el)}))};
     });
     const verify = value => {
@@ -157,7 +191,10 @@ export async function checkOnboardingLayers(browser, origin, directory) {
       assert.equal(value.background.size,'contain');assert.equal(value.background.repeat,'no-repeat');
       assert(value.scrollWidth<=value.width+1,'no horizontal overflow');
       if(value.intro)assert.equal(value.space,null,'intro reserves only the logo height');
-      else assert(value.space && Math.abs(value.space.width-240)<1 && Math.abs(value.space.height-240)<1,'ON-02 through ON-05 retain the 240px slot');
+      else {
+        assert(value.space && Math.abs(value.space.width-240)<1,'empty artwork slot retains its width');
+        assert(value.signIn ? value.space.height<=240.5 : Math.abs(value.space.height-240)<1,'only anonymous sign-in can shrink the artwork slot');
+      }
     };
     const visit = async step => {
       if(step===1)await page.goto(`${origin}/?appFixture=1&sdkSession=anonymous`);
@@ -170,15 +207,16 @@ export async function checkOnboardingLayers(browser, origin, directory) {
     try {
       for(const step of [1,2,3,4,5]) {
         await resetText();await visit(step);
-        const intro = step === 1 ? await checkIntroLayout(page, scale) : null;
-        let safeAreaIntro;
-        if (intro && language === 'tr' && width === 390 && scale === 1) {
+        const checkLayout = step === 1 ? checkIntroLayout : step === 2 ? checkSignInLayout : null;
+        const layout = checkLayout ? await checkLayout(page, scale) : null;
+        let safeArea;
+        if (checkLayout && language === 'tr' && width === 390 && scale === 1) {
           await page.evaluate(() => {
             document.documentElement.style.setProperty('--safe-top', '47px');
             document.documentElement.style.setProperty('--safe-bottom', '34px');
           });
           try {
-            safeAreaIntro = await checkIntroLayout(page, scale);
+            safeArea = await checkLayout(page, scale);
           } finally {
             await page.evaluate(() => {
               document.documentElement.style.removeProperty('--safe-top');
@@ -209,10 +247,12 @@ export async function checkOnboardingLayers(browser, origin, directory) {
         if(step>1) {
           await resetText();await page.locator('[data-onboarding-back]').click();await page.locator(`[data-onboarding-step="${step===4?2:step-1}"]`).waitFor();await prepare();verify(await inspect());
           if(step===2) {await page.getByRole('button',{name:language==='tr'?'Başla':'Begin',exact:true}).click();await page.locator('#age-declaration').waitFor();assert.equal(await page.locator('#display_name').count(),0);}
-          if(step===3) {assert.equal(await page.locator('[data-provider]').count(),0);await page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true}).click();await page.locator('#display_name').waitFor();assert.equal(await page.locator('#display_name').inputValue(),'Ada');}
+          if(step===3) {assert.equal(await page.locator('[data-provider],#age-declaration').count(),0);await page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true}).click();await page.locator('#display_name').waitFor();assert.equal(await page.locator('#display_name').inputValue(),'Ada');}
           if(step===4) {await page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true}).click();await page.locator('#birth_date').waitFor();assert.equal(await page.locator('#birth_date').inputValue(),'1990-01-01');assert.equal(await page.locator('#birth_time').inputValue(),'10:30');}
         }
-        results.push({language,width,height,textScale:scale,step,passed:true,views,...(intro?{intro,safeAreaIntro}:{}),keyboard:'FOCUS_AND_REDUCED_VIEWPORT_ONLY'});
+        results.push({language,width,height,textScale:scale,step,passed:true,views,
+          ...(step===1?{intro:layout,safeAreaIntro:safeArea}:step===2?{signIn:layout,safeAreaSignIn:safeArea}:{}),
+          keyboard:'FOCUS_AND_REDUCED_VIEWPORT_ONLY'});
       }
       await page.setViewportSize({width:height,height:width});verify(await inspect());
       await page.setViewportSize({width,height});verify(await inspect());

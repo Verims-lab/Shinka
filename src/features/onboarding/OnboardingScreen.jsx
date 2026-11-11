@@ -29,14 +29,17 @@ const SCREENS = {
   INACTIVE_ACCOUNT: { title: "inactive" },
 };
 
+const ONBOARDING_VIEWPORT_HEIGHT = "calc(100dvh - max(24px, var(--safe-top)) - max(24px, var(--safe-bottom)))";
 // Scale ON-01 spacing inside the safe content area, above the 52px CTA.
-const INTRO_VIEWPORT_HEIGHT = "calc(100dvh - max(24px, var(--safe-top)) - max(24px, var(--safe-bottom)))";
-const INTRO_USABLE_HEIGHT = `max(0px, calc(${INTRO_VIEWPORT_HEIGHT} - 52px))`;
+const INTRO_USABLE_HEIGHT = `max(0px, calc(${ONBOARDING_VIEWPORT_HEIGHT} - 52px))`;
 const INTRO_LAYOUT = {
-  height: INTRO_VIEWPORT_HEIGHT,
+  height: ONBOARDING_VIEWPORT_HEIGHT,
   minHeight: "min-content",
   paddingTop: "calc(8px + min(37.5vw, 21.2vh) + var(--safe-top) - max(24px, var(--safe-top)))",
 };
+// Keep the safe padding below the form when larger text needs document scrolling.
+const SIGN_IN_LAYOUT = { height: ONBOARDING_VIEWPORT_HEIGHT, minHeight: "fit-content" };
+const SIGN_IN_ART_SPACE = { flex: "1 1 0px", maxHeight: 240, aspectRatio: "auto" };
 
 /** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,authenticated?:boolean,onRestricted?:Function,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
 export default function OnboardingScreen({
@@ -143,6 +146,7 @@ export default function OnboardingScreen({
   const screen = SCREENS[state] || {};
   const step = screen.step;
   const intro = step === 1;
+  const anonymousSignIn = step === 2 && !authenticated;
   const airy = Boolean(step);
   const body = () => {
     if (state === "UNAUTHENTICATED_INTRO")
@@ -239,8 +243,8 @@ export default function OnboardingScreen({
   return (
     <PageContainer className="shinka-onboarding" surface="section">
       <main
-        className={`mx-auto max-w-md ${intro ? "flex flex-col" : "space-y-6 py-6"}`}
-        style={intro ? INTRO_LAYOUT : undefined}
+        className={`mx-auto max-w-md${intro || anonymousSignIn ? " flex flex-col" : ""}${intro ? "" : " space-y-6 py-6"}`}
+        style={intro ? INTRO_LAYOUT : anonymousSignIn ? SIGN_IN_LAYOUT : undefined}
         data-onboarding-step={intro ? step : undefined}
         data-onboarding-state={state}
         lang={language}
@@ -272,7 +276,13 @@ export default function OnboardingScreen({
               {t("stepOf").replace("{n}", String(step))}
             </p>
           )}
-          {airy && !intro && <div className="shinka-onboarding-art-space" aria-hidden="true" />}
+          {airy && !intro && (
+            <div
+              className="shinka-onboarding-art-space"
+              style={anonymousSignIn ? SIGN_IN_ART_SPACE : undefined}
+              aria-hidden="true"
+            />
+          )}
           {intro && (
             <div aria-hidden="true" style={{ flexGrow: 1, maxHeight: `calc(${INTRO_USABLE_HEIGHT} / 10)` }} />
           )}

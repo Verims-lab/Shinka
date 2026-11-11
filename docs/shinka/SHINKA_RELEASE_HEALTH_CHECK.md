@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-067
+**Current BuildMarker:** Buildmarker-068
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-066.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-067.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 068 — ON-02 mobile sign-in visibility
+
+Buildmarker-068 / HC-067.0 updates H13-012 and H05-009. `checkOnboardingLayers` verifies the 18+ declaration and both provider actions inside the initial safe portrait viewport and checks scroll reachability at enlarged text. `checkAuthFirstOnboarding` verifies the anonymous controls and their absence for admitted sessions. H05-009 recognizes 068 under the existing content policy. The catalog has 185 cases. [068 execution](reports/SHINKA_ONBOARDING_SIGN_IN_068.md)
 
 ## 067 — ON-01 spacing and counter
 
