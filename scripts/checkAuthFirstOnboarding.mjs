@@ -14,6 +14,10 @@ export async function checkAuthFirstOnboarding(browser, origin) {
   try {
    await page.goto(`${origin}/?appFixture=1&sdkSession=anonymous&authFirst=new&language=${language}`);
    await state('UNAUTHENTICATED_INTRO');await page.getByRole('button',{name:language==='tr'?'Başla':'Begin',exact:true}).click();await state('UNAUTHENTICATED_SIGN_IN');
+   const age=page.locator('#age-declaration');
+   assert(await age.isVisible());
+   assert.equal(await age.isChecked(),false);
+   assert.deepEqual(await page.locator('[data-provider]').evaluateAll(buttons=>buttons.map(button=>button.dataset.provider)),['apple','google']);
    assert.equal(await page.locator('#display_name,#birth_date').count(),0);
    assert.equal(await page.evaluate(()=>window.__sdkLabCalls.filter(c=>c.name==='onboarding').length),0);
    // Synthetic provider callback: use the unchanged real admission path once.
@@ -32,10 +36,10 @@ export async function checkAuthFirstOnboarding(browser, origin) {
    for(const scenario of ['complete','null-name','partial']) {
     await page.goto(`${origin}/login?appFixture=1&sdkSession=user&authFirst=${scenario}&language=${language}&holdHydration=1`);
     await page.waitForFunction(()=>window.__sdkLabCalls.some(c=>c.name==='onboarding'));
-    assert.equal(await page.locator('#display_name,[data-provider]').count(),0);
+    assert.equal(await page.locator('#display_name,#age-declaration,[data-provider]').count(),0);
     await page.evaluate(()=>{window.__seenNames=[];window.__nameObserver=new MutationObserver(()=>{if(document.querySelector('#display_name'))window.__seenNames.push(true);});window.__nameObserver.observe(document.body,{childList:true,subtree:true});window.__authFixture.releaseHydration();});
     if(scenario==='partial')await state('AUTHENTICATED_PROFILE_REQUIRED');else await page.locator('[data-home-root] [data-daily-id]').waitFor();
-    assert.equal(await page.evaluate(()=>window.__seenNames.length),0);assert.equal(await page.locator('[data-provider],#display_name').count(),0);
+    assert.equal(await page.evaluate(()=>window.__seenNames.length),0);assert.equal(await page.locator('[data-provider],#age-declaration,#display_name').count(),0);
     assert.equal(await page.evaluate(()=>window.__sdkLabCalls.filter(c=>c.name==='onboarding'&&c.action!=='hydrate').length),0);
     await page.reload();if(scenario==='partial'){await page.waitForFunction(()=>window.__sdkLabCalls.some(c=>c.name==='onboarding'));await page.evaluate(()=>window.__authFixture.releaseHydration());await state('AUTHENTICATED_PROFILE_REQUIRED');}else {await page.waitForFunction(()=>window.__sdkLabCalls.some(c=>c.name==='onboarding'));await page.evaluate(()=>window.__authFixture.releaseHydration());await page.locator('[data-home-root] [data-daily-id]').waitFor();}
     results.push({language,width,scenario:`${scenario}-held-callback-no-name-reload`,passed:true});

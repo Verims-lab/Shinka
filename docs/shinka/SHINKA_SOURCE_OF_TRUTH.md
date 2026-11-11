@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-067
+**Current BuildMarker:** Buildmarker-068
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 068 — Mobile sign-in visibility
+
+ON-02 after Begin displays the initially unchecked 18+ declaration and Apple and Google sign-in actions to anonymous users. The empty artwork slot gives the form priority on short portrait screens. A verified session follows the 061 routing decision. The authenticated Welcome screen uses Continue to restore the current onboarding state. [068 delivery](reports/SHINKA_ONBOARDING_SIGN_IN_068.md)
 
 ## 067 — First onboarding spacing
 

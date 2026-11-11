@@ -1,4 +1,4 @@
-/* The remaining numbered steps keep their empty square layout slot. */
+/* Numbered steps use an empty artwork slot. Anonymous sign-in can shrink it. */
 .shinka-onboarding-art-space { width: 100%; max-width: 240px; aspect-ratio: 1; margin-inline: auto; }
 /* Announced headings and the name field use their existing focus treatments.
    The name input's visible ring is on its surrounding frame. */

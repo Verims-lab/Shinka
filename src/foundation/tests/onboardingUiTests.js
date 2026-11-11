@@ -313,7 +313,8 @@ export const ONBOARDING_UI_TESTS=[
    } else {
     check(space&&space.childElementCount===0&&!space.textContent,'empty art slot');
     const rect=space.getBoundingClientRect(),css=doc.defaultView.getComputedStyle(space);
-    check(rect.width===240&&rect.height===240&&css.backgroundImage==='none'&&css.backgroundColor==='rgba(0, 0, 0, 0)','original square geometry without a painted layer');
+    check(rect.width===240&&(i===1?rect.height<=240:rect.height===240),'only the anonymous sign-in slot can shrink');
+    check(css.backgroundImage==='none'&&css.backgroundColor==='rgba(0, 0, 0, 0)','empty slot does not paint another layer');
    }
    check(!doc.body.textContent.includes('Account & Privacy')&&!doc.body.textContent.includes('Hesap ve Gizlilik'),`${state} no privacy link`);
    check(doc.documentElement.scrollWidth<=361,`${state} overflow`);
