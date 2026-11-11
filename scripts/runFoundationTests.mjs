@@ -166,6 +166,7 @@ try {
     if (pageErrors.length) process.exitCode = 1;
   } else {
   if(process.env.FOUNDATION_VISUAL_DIR){await captureFoundationVisuals(page,origin,path.resolve(process.env.FOUNDATION_VISUAL_DIR));await page.setViewportSize({width:1280,height:900});}
+  if(!process.env.FOUNDATION_TEST_IDS)console.log(JSON.stringify({authFirstOnboarding:await checkAuthFirstOnboarding(browser,origin)}));
   await page.goto(`${origin}/internal/health`);
   await page.waitForSelector("[data-health-root]");
   const results=await page.evaluate(ids=>window.__runFoundationTests({ids}),process.env.FOUNDATION_TEST_IDS?.split(','));
@@ -174,7 +175,6 @@ try {
     console.log(JSON.stringify({focused:true,security028,notifications030,results,pageErrors},null,2));
     if(results.some(r=>!r.passed)||!results.length||pageErrors.length)process.exitCode=1;
   } else {
-  console.log(JSON.stringify({authFirstOnboarding:await checkAuthFirstOnboarding(browser,origin)}));
   console.log(JSON.stringify({onboardingCorrections:await checkOnboardingCorrections(browser,origin,process.env.FOUNDATION_ONBOARDING_CORRECTIONS_DIR)}));
   const onboardingClosure=await checkOnboardingClosure(browser,origin,process.env.FOUNDATION_ONBOARDING_DIR);
   const onboardingPresentation=await checkOnboardingPresentation(browser,origin,process.env.FOUNDATION_ONBOARDING_PRESENTATION_DIR);

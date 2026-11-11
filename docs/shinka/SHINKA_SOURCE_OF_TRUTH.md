@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-068
+**Current BuildMarker:** Buildmarker-069
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 069 — Welcome authentication states and release evidence
+
+On anonymous ON-02, Begin opens the 18+ declaration with Apple and Google. On authenticated Welcome, Continue resumes the admitted user's onboarding. The supplied Base44 Preview image shows the authenticated Continue screen. Record published visibility with the expected Buildmarker and a fresh anonymous session. The physical-device and real provider callback checks remain external. [069 investigation](reports/SHINKA_ONBOARDING_AUTH_069.md)
 
 ## 068 — Mobile sign-in visibility
 

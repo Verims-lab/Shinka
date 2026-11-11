@@ -34,6 +34,7 @@ const params = new URLSearchParams(location.search);
 let session = params.get('sdkSession') || 'anonymous';
 let delayed = null;
 const calls = [];
+const providerCalls = [];
 const operationGates = new Map(), operationFailures = new Set();
 globalThis.__sdkLabCalls = calls; // CLI-only action-name counters; never request payloads.
 let releaseHydration;
@@ -64,6 +65,7 @@ const holdStartup = name => { let resolve,reject; const promise=new Promise((ok,
 if(params.has('startupFixture')) { holdStartup('settings');holdStartup('session'); }
 export const authFixture = {
   calls,
+  providerCalls,
   startupStarted:{settings:0,session:0},
   holdStartup,
   settleStartup(name,index,value,refused=false) { const gate=startupGates[name][index]; if(refused)gate.reject({status:403,data:{extra_data:{reason:'user_not_registered'}}}); else gate.resolve(value); },
@@ -86,7 +88,10 @@ export const base44 = {
       throw Object.assign(new Error('SYNTHETIC_ANONYMOUS'), {status:401});
     },
     logout: () => { session = 'anonymous'; },
-    loginWithProvider: async () => { throw new Error('SYNTHETIC_AUTH_NO_REDIRECT'); },
+    loginWithProvider: async (provider, returnTo) => {
+      providerCalls.push({ provider, returnTo });
+      throw new Error('SYNTHETIC_AUTH_NO_REDIRECT');
+    },
   },
   functions: { invoke: async (name, body) => {
     const actor = session;

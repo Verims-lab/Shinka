@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-064",
-    "package_name": "Admin reset retirement and selected test-user removal review",
-    "package_type": "MAINTENANCE",
-    "created_at": "2026-11-11T10:14:38Z",
-    "health_catalog_version": "HC-063.0",
-    "short_summary": "Admin reset creation/resume retired; historical lifecycle and owner continuation preserved. Two authorized live removals blocked by existing RESET_ACTIVE receipts.",
-    "full_health_status": "NOT_RUN",
-    "notes": "Local Chromium/WebKit 803/803 each; quality, dependency security (0 advisories), performance and last-five PASS. Local synthetic Health 146 PASS/13 expected hosted-prerequisite BLOCKED/0 FAIL. Health +0/~8/-1. No live writes; both selected removals remain blocked by TEST_TARGET_BUSY. Historical reset IDs/fences preserved. See reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md. Main merge/publish remains owner-controlled."
-  },
-  {
     "build_marker": "Buildmarker-065",
     "package_name": "Shared branded screen background",
     "package_type": "TARGETED_UI",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Anonymous ON-02 yields unused artwork space to the 18+ declaration and Apple and Google sign-in buttons.",
     "full_health_status": "NOT_RUN",
     "notes": "HC-067.0 updates H13-012 and H05-009. ON-02 viewport and auth-first checks passed in both engines. Chromium base 803/803. Full browser interruptions and focused results are in reports/SHINKA_ONBOARDING_SIGN_IN_068.md."
+  },
+  {
+    "build_marker": "Buildmarker-069",
+    "package_name": "Welcome authentication and published verification",
+    "package_type": "TARGETED_REGRESSION",
+    "created_at": "2026-11-11T17:41:26Z",
+    "health_catalog_version": "HC-068.0",
+    "short_summary": "Trace anonymous and authenticated Welcome, verify both provider dispatches and check the expected published build.",
+    "full_health_status": "NOT_RUN",
+    "notes": "Preview shows authenticated Continue. Published 068 passed all eight anonymous visibility cases per engine. The 069 auth-first gate passed 16/16 in both engines. See reports/SHINKA_ONBOARDING_AUTH_069.md for full-suite results and the publication gate."
   }
 ];

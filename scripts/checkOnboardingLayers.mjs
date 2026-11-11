@@ -84,35 +84,57 @@ async function checkIntroLayout(page, scale) {
   return result;
 }
 
-async function checkSignInLayout(page, scale) {
+export async function checkSignInLayout(page, scale = 1) {
   const result = await page.evaluate(() => {
     const panel = document.querySelector('[data-auth-shell]');
     const age = panel?.querySelector('#age-declaration');
-    if (!age?.labels.length) return null;
+    if (!(age instanceof HTMLInputElement) || age.type !== 'checkbox' || !age.labels.length) return null;
+    const main = panel.closest('main');
+    const viewport = window.visualViewport;
     const providers = [...panel.querySelectorAll('[data-provider]')];
     const shell = getComputedStyle(panel.closest('.shinka-safe-content'));
     const controls = [age.labels[0], ...providers].map(element => {
       const rect = element.getBoundingClientRect();
       const css = getComputedStyle(element);
-      return { top: rect.top, bottom: rect.bottom, height: rect.height, visible: css.display !== 'none' && css.visibility === 'visible' };
+      const hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      return {
+        top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right, height: rect.height,
+        visible: css.display !== 'none' && css.visibility === 'visible' &&
+          (element.checkVisibility?.({ checkOpacity: true, checkVisibilityCSS: true }) ?? true),
+        receivesInput: element.contains(hit),
+      };
     });
     return {
+      state: main?.dataset.onboardingState,
+      step: main?.querySelector('p[data-onboarding-step]')?.dataset.onboardingStep,
+      buildMarker: main?.dataset.shinkaBuild ?? null,
       providers: providers.map(element => element.dataset.provider),
-      enabled: !age.disabled && providers.every(element => !element.disabled),
-      checked: age.checked, controls, width: innerWidth, height: innerHeight, scrollY,
+      enabled: !age.disabled && providers.every(element => element instanceof HTMLButtonElement && !element.disabled),
+      checked: age.checked, controls, scrollY,
+      width: viewport?.width ?? innerWidth, height: viewport?.height ?? innerHeight,
+      viewportLeft: viewport?.offsetLeft ?? 0, viewportTop: viewport?.offsetTop ?? 0,
       scrollHeight: document.documentElement.scrollHeight,
       paddingTop: parseFloat(shell.paddingTop), paddingBottom: parseFloat(shell.paddingBottom),
     };
   });
   assert(result, 'sign-in renders a labelled 18+ checkbox');
+  assert.equal(result.state, 'UNAUTHENTICATED_SIGN_IN');
+  assert.equal(result.step, '2');
   assert.deepEqual(result.providers, ['apple', 'google']);
   assert(result.enabled && !result.checked, 'age confirmation starts unchecked with accessible provider actions');
   assert(result.controls.every(control => control.visible && control.height >= 44), 'visible controls retain their touch targets');
   const last = result.controls.at(-1);
   assert(last.bottom + result.scrollY + result.paddingBottom <= result.scrollHeight + 1, 'Google remains reachable above the bottom safe padding');
   if (scale === 1 && result.width < result.height) {
-    assert(result.scrollY === 0 && result.controls[0].top >= result.paddingTop &&
-      last.bottom <= result.height - result.paddingBottom + 1, '18+ confirmation and both provider actions fit the initial safe viewport');
+    const { viewportTop, viewportLeft, width, height } = result;
+    assert.equal(result.scrollY, 0, 'Welcome opens at the top of the document');
+    for (const control of result.controls) {
+      assert(control.top >= viewportTop + result.paddingTop - 1 &&
+        control.bottom <= viewportTop + height - result.paddingBottom + 1 &&
+        control.left >= viewportLeft - 1 && control.right <= viewportLeft + width + 1,
+      '18+ confirmation and both provider actions fit the initial safe viewport');
+      assert(control.receivesInput, 'no overlapping or clipped layer covers the sign-in controls');
+    }
   }
   return result;
 }
