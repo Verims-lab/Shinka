@@ -2,13 +2,22 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-063
+**Current BuildMarker:** Buildmarker-064
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
-**Last Updated:** 2026-11-09
+**Last Updated:** 2026-11-11
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
 **External Verification Required:** All rows marked UNVERIFIED.
+
+## 064 — Admin reset retirement and selected-user removal (2026-11-11)
+
+Authenticated current-admin admission still precedes Test Tools request processing. RESET_ONBOARDING preview/execute and reset-receipt resume return TEST_RESET_RETIRED (410) before any job, audit or product write; foreign/unauthenticated callers retain existing denial. The shared executor independently refuses reset before journal.begin. Historical lookup/status are read-only and return resume_enabled:false. Self/last-admin, owner/reference, ACTIVE/privacy/open-job guards, deletion checkpoints and retained consent/daily/audit scope are unchanged.
+
+The live removal preflights for the two authorized test IDs both returned TEST_TARGET_BUSY. Neither was bypassed. Existing RESET_ACTIVE owner continuation retains its normal identity/lifecycle/consent checks and saved fingerprint; no admin impersonation or broader recovery authority is added. Native User absence, active operational cleanup and Base44 Recently deleted/permanent erasure remain separate evidence requirements. No live mutation or purge ran.
+
+[064 delivery and execution](reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md).
+
 
 ## 061 — Authentication before personal onboarding (2026-11-09)
 

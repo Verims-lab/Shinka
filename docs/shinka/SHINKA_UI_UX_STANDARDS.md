@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-063
-**Last Updated:** 2026-11-10
+**Current BuildMarker:** Buildmarker-064
+**Last Updated:** 2026-11-11
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
@@ -11,6 +11,13 @@
 **Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+
+## 064 — Admin reset retirement and selected-user removal (2026-11-11)
+
+Test Tools exposes only target lookup, user-removal preview/confirmation and existing-operation status/recovery. The reset card, explanation, confirmation branch, submit state and action copy are removed. Cancel and single-flight deletion retain the existing focus/identity rules. A legacy reset receipt has a localized read-only explanation and Check operation status only, never a Resume or restart control. An active legacy operation still disables a new removal; it is not hidden or treated as completed. The published reset button remains until the matching frontend is published. Normal auth-first onboarding, optional/NULL name, saved locale, manual theme and Account & Privacy are unchanged.
+
+[064 delivery and execution](reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md).
 
 
 ## 063 — Compact botanical Lunar Timeline (2026-11-10)

@@ -1,3 +1,4 @@
+import { seedLegacyReset } from './historicalResetFixture';
 import { youFixture, preferencesIntent } from './youFixture';
 import { onboardingOperation } from '../../../base44/shared/onboardingOperations.js';
 import { resolveLanguage } from '@/foundation/i18n/strings';
@@ -15,7 +16,7 @@ export const ONBOARDING_CLOSURE_TESTS = [
   await f.request('initialize',{language_code:'en',timezone:'Europe/Istanbul'});
   check((await f.request('hydrate')).preferences.language_code==='tr','saved preference overwritten');
   const reset=youFixture();await reset.request('savePreferences',preferencesIntent(await reset.request('read'),{language_code:'en'}));
-  await reset.execute(await reset.preview());
+  seedLegacyReset(reset);
   const hydrated=await onboardingOperation(reset.client(),{action:'hydrate'},{now:reset.now});
   check(hydrated.state==='AUTHENTICATED_PROFILE_REQUIRED'&&hydrated.preferences.language_code==='en'&&resolveLanguage(hydrated.preferences.language_code,'tr-TR')==='en','reset lost saved You language');
  }],

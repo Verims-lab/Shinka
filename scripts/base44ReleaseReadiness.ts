@@ -9,7 +9,7 @@ const report: Record<string, unknown> = {
   schema: 'shinka.release-readiness/1', measuredAt: new Date().toISOString(),
   evidence: 'LIVE_SCHEMA_AND_IMPORT_READS_ONLY', appId: base44.getConfig().appId,
   // Readiness is deliberately separate from permission to enable writers.
-  repositoryExpectation: { home: 'NATIVE_CANDIDATES_REQUIRES_REFERENCES', calendar: 'NATIVE_OBSERVATIONS_RECEIPTS', reset: 'VERIFIED_STEPS', deletion: 'TEST_OPERATOR_MAINTENANCE' },
+  repositoryExpectation: { home: 'NATIVE_CANDIDATES_REQUIRES_REFERENCES', calendar: 'NATIVE_OBSERVATIONS_RECEIPTS', reset: 'LEGACY_PROGRESS_ONLY', deletion: 'TEST_OPERATOR_MAINTENANCE' },
 };
 try {
   const rows = await base44.entities.AdminTestOperation.filter({}, 'id', 1, 0, ['id']);

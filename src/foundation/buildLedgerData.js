@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-059",
-    "package_name": "Pattern single theme and lunar timeline; shared navigation verification",
-    "package_type": "FOCUSED_FIX",
-    "created_at": "2026-11-09T17:00:00Z",
-    "health_catalog_version": "HC-058.0",
-    "short_summary": "Single dominant Pattern theme and proportional five-node Lunar Timeline; shared nav remains measured 44px + border/safe inset. Chromium/WebKit 791/791 and quality/performance/security pass. Approved category descriptions/art and physical APK acceptance remain open.",
-    "full_health_status": "NOT_RUN",
-    "notes": "Test only, no schema/import/user write/live Health/scan/main publish. HC-058.0: 0 added/4 updated/0 removed; active history 055–059. Local Pattern 40 matrix cells + 2 route checks, nav 205 per engine; no extra runtime nav shrink justified by source/published 058 measurements. Source-required descriptions/illustrations for all six categories remain incomplete. Dependency High fixed with eligible compatible follow-redirects 1.16.2. Results/screenshots: reports/SHINKA_PATTERN_NAVIGATION_059.md. Physical wrapper/inset/keyboard proof remains NOT_RUN."
-  },
-  {
     "build_marker": "Buildmarker-060",
     "package_name": "Account privacy confirmation and bounded read-only status recovery",
     "package_type": "FOCUSED_FIX",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Compact five-moon watercolor SVG timeline with botanical curves, true proportional Today and active-phase halo; same dates, timezone, calculations and transport. TR/EN and manual themes retained.",
     "full_health_status": "NOT_RUN",
     "notes": "Chromium/WebKit 805/805 each; 150 mobile scenarios and 42 Pattern cases/engine, final Arrow/End/Home + negative geometry 42/42 each. Quality/performance/history PASS; npm advisories 0. Initial JS unchanged; CSS within budgets. Health +0/~2/-0, synthetic 147 PASS/13 prerequisite BLOCKED/0 FAIL, save/list/open verified. Unchanged data/transport/source hashes and loaded-asset before/after evidence: reports/SHINKA_LUNAR_PRESENTATION_063.md. No live mutation/import/Health/scan/dependency/main publish; physical acceptance external. Active 059–063."
+  },
+  {
+    "build_marker": "Buildmarker-064",
+    "package_name": "Admin reset retirement and selected test-user removal review",
+    "package_type": "MAINTENANCE",
+    "created_at": "2026-11-11T10:14:38Z",
+    "health_catalog_version": "HC-063.0",
+    "short_summary": "Admin reset creation/resume retired; historical lifecycle and owner continuation preserved. Two authorized live removals blocked by existing RESET_ACTIVE receipts.",
+    "full_health_status": "NOT_RUN",
+    "notes": "Local Chromium/WebKit 803/803 each; quality, dependency security (0 advisories), performance and last-five PASS. Local synthetic Health 146 PASS/13 expected hosted-prerequisite BLOCKED/0 FAIL. Health +0/~8/-1. No live writes; both selected removals remain blocked by TEST_TARGET_BUSY. Historical reset IDs/fences preserved. See reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md. Main merge/publish remains owner-controlled."
   }
 ];

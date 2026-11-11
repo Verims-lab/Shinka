@@ -6,9 +6,11 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
+[064 Test Tools retirement](docs/shinka/reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md): admin reset is removed from UI and backend commands. Existing receipts remain readable/fenced; the two authorized live removals are still blocked by active legacy receipts. No schema push is required.
+
 ## Test auth-first onboarding (Buildmarker-061 / HC-060.0)
 
-[061 focused delivery and rollout](docs/shinka/reports/SHINKA_AUTH_FIRST_ONBOARDING_061.md): intro → Apple/Google → fresh server progress → optional name/profile/cycle. Completed users bypass onboarding; saved NULL names, reset and privacy rules remain authoritative. No schema/import/new auth system. Owner syncs matching backend/shared/frontend and publishes; real OAuth/native acceptance remains separate from local fixtures.
+[061 focused delivery and rollout](docs/shinka/reports/SHINKA_AUTH_FIRST_ONBOARDING_061.md): intro → Apple/Google → fresh server progress → optional name/profile/cycle. Completed users bypass onboarding; saved NULL names, legacy reset receipts and privacy rules remain authoritative. No schema/import/new auth system. Owner syncs matching backend/shared/frontend and publishes; real OAuth/native acceptance remains separate from local fixtures.
 
 ## Historical Test mobile closure (Buildmarker-050 / HC-049.0)
 
@@ -52,7 +54,7 @@ The following 029–034 contract notes are historical; 042 above replaces the se
 
 ## Existing data authority (Buildmarker-023 onward)
 
-Base44 is the single product-data, identity and admin-role authority. Browser calls Base44 backend functions; no SQL secret, service, database setup or second login is required. Home reconciles immutable daily candidates; Calendar calculates from actual dates; reset verifies each step; deletion uses a durable target lifecycle with bounded resumable cleanup.
+Base44 is the single product-data, identity and admin-role authority. Browser calls Base44 backend functions; no SQL secret, service, database setup or second login is required. Home reconciles immutable daily candidates; Calendar calculates from actual dates; existing legacy reset receipts retain verified owner continuation; new admin reset is retired; deletion uses a durable target lifecycle with bounded resumable cleanup.
 
 Owner privacy is implemented at `/account-privacy` and external `/delete-account`: separate consent withdrawal and self account erasure, bounded same-request recovery, verified active-store absence and visible pending platform erasure. Add the two closed operational schemas before `accountPrivacy`, `applicationSession` and all native/shared code, then the matching frontend. [023 delivery, scope matrix and acceptance](docs/shinka/reports/SHINKA_PRIVACY_023.md). No live mutation or Full Health was run.
 

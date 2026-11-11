@@ -6,6 +6,8 @@ import { calendarReader } from './base44CalendarReader.js';
 import { requireAuthenticatedUser } from './internalAuthorization.js';
 import { assertActiveAccount } from './domainSecurity.js';
 
+// Compatibility only for already persisted RESET_ACTIVE receipts. Admin reset
+// creation/resume is retired; owner writes must still settle these old stages.
 export async function nativeResetStep({ client, reset, owner, body, perform, expected, nextStage }) {
   const repository = createTestRepository(client), store = client.asServiceRole.entities;
   const principal = await requireAuthenticatedUser(client);

@@ -2,12 +2,23 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-063
-**Last Updated:** 2026-11-10
+**Current BuildMarker:** Buildmarker-064
+**Last Updated:** 2026-11-11
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
+
+
+## 064 — Admin reset retirement and selected-user removal (2026-11-11)
+
+Read-only admin inspection preceded implementation: both selected native Users are ACTIVE; both DELETE_USER previews return enabled:false / TEST_TARGET_BUSY due to RESET_ACTIVE/PROFILE. No execute/resume or DB write was sent. Preserved sariverim ACTIVE/admin and all nine journal records. Base44 Recently deleted is a separate recovery/permanent-delete surface; same-email historical records cannot identify these native IDs.
+
+Removed reset UI/writer paths while retaining closed legacy status and owner continuation needed by observed receipts. A fresh lookup without an active operation also clears an obsolete browser pending ID, preventing a new deletion from reusing a completed reset ID. Published removal remains blocked; local tests cannot turn that into success. Initial local typecheck caught an intermediate JSX closing-brace error (fixed); the first focused browser attempt was NOT_RUN because sandbox loopback bind returned EPERM, then rerun with the appropriate local execution permission. Initial full Chromium/repo Health found a fixture filename violating the legacy-source firewall; the filename was corrected without weakening the rule.
+
+Final Chromium/WebKit **803/803** each, zero page errors; real TS deletion entry 14 checks including retired reset 410/zero-write; Test Tools App TR/EN × 360/1280px 4/4 each. Quality, all 19 repo Health checks, last-five and performance gates pass; dependency advisories 0. Local synthetic Health 146 PASS/13 hosted-prerequisite BLOCKED/0 FAIL with save/retry/list/open. Health +0/~8/-1. Physical/hosted publication acceptance remains separate. Final results and exact target outcomes live in the linked delivery/execution record.
+
+[064 delivery and execution](reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md).
 
 
 ## 063 — Compact Lunar Timeline presentation

@@ -1,11 +1,10 @@
 import { InternalError, requireInternalAdmin, handleInternalRequest } from './internalAuthorization.js';
 import { createTestRepository } from './adminTestRepository.js';
-import { validateTestRequest, requireTestCoordinator, testToolError, DELETED_ENTITIES, RETAINED_ENTITIES, SHARED_ENTITIES } from './adminTestPolicy.js';
+import { validateTestRequest, requireTestOperationWrite, requireTestCoordinator, testToolError, DELETED_ENTITIES, RETAINED_ENTITIES, SHARED_ENTITIES } from './adminTestPolicy.js';
 import { executeTestJob } from './adminTestExecution.js';
 
 export function targetGuard(actor, target, operation) {
   if (target.open_deletion) testToolError('HEALTH_DELETION_PENDING');
-  if (operation === 'RESET_ONBOARDING' && target.account_status === 'INACTIVE') testToolError('TEST_INACTIVE_ACCOUNT');
   if (operation === 'DELETE_USER' && actor.id === target.id) testToolError('TEST_SELF_DELETE_DENIED', 403);
   if (operation === 'DELETE_USER' && target.last_admin) testToolError('TEST_LAST_ADMIN_DENIED', 403);
 }
@@ -30,13 +29,13 @@ export async function adminTestOperation(client, body, { coordinator = null, sig
   if (body.action === 'status') {
     const job = await repository.operation(body.target_id, body.operation_id);
     if (!job) testToolError('TEST_OPERATION_NOT_FOUND', 404);
-    return { job, environment, ...recovery };
+    return { job, environment, ...recovery, ...(job.operation==='RESET_ONBOARDING'?{resume_enabled:false,mutation_blocker:'TEST_RESET_RETIRED'}:{}) };
   }
   if (body.action === 'lookup') {
     const job = await repository.lifecycle(body.target_id);
     const identity = await repository.user(body.target_id);
     if (!identity && job?.operation !== 'DELETE_USER') testToolError('TEST_USER_NOT_FOUND', 404);
-    return { target: identity ? await repository.target(body.target_id) : null, job, environment, ...recovery };
+    return { target: identity ? await repository.target(body.target_id) : null, job, environment, ...recovery, ...(job?.operation==='RESET_ONBOARDING'?{resume_enabled:false,mutation_blocker:'TEST_RESET_RETIRED'}:{}) };
   }
   const binding = { actor: actor.id, target: body.target_id, operation: body.operation, app: environment.app_id };
   if (body.action === 'preview') {
@@ -51,7 +50,7 @@ export async function adminTestOperation(client, body, { coordinator = null, sig
     if (!signer) blockers.push('TEST_PREVIEW_SIGNER_REQUIRED');
     return {
       target, environment, operation: body.operation, counts: impact.counts, pending_notifications: impact.pending_notifications,
-      scope: { deleted: body.operation === 'DELETE_USER' ? [...DELETED_ENTITIES, 'User'] : [], retained: RETAINED_ENTITIES, shared: SHARED_ENTITIES },
+      scope: { deleted: [...DELETED_ENTITIES, 'User'], retained: RETAINED_ENTITIES, shared: SHARED_ENTITIES },
       blockers, enabled: blockers.length === 0,
       preview_token: blockers.length ? null : await signer.sign({ ...binding, scope_hash: impact.hash }),
       expires_at: new Date(now().getTime() + 300000).toISOString(),
@@ -71,6 +70,7 @@ export async function adminTestOperation(client, body, { coordinator = null, sig
     if (!receipt || receipt.actor_id !== actor.id) testToolError('TEST_OPERATION_NOT_FOUND', 404);
   }
   const operation = receipt?.operation || body.operation;
+  requireTestOperationWrite(operation);
   const requestId = receipt?.request_id || body.request_id;
   return coordinator.run({ actorId: actor.id, targetId: body.target_id, operation, requestId }, async journal => {
     // Coordinator must hold target AND admin-roster exclusion, rechecking after

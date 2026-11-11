@@ -2,12 +2,21 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** ACTIVE — 051 cleanup accepted; final daily schema observed; scoped 058 acceptance ledger
-**Current BuildMarker:** Buildmarker-063
-**Last Updated:** 2026-11-01
+**Current BuildMarker:** Buildmarker-064
+**Last Updated:** 2026-11-11
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test delivery; 051 authorizes targeted hosted observation and reviewed historical maintenance on the named existing app. No agent main merge/publish, new external service or paid resource.
 
+
+
+## 064 — Admin reset retirement and selected-user removal (2026-11-11)
+
+Admin reset is no longer a supported operation. Do not follow historical preparation instructions below to create RESET_ACTIVE rows. Existing receipt lookup/status and owner-only normal-step completion remain for the two observed active resets; admin resume is closed. Do not clear/reset/reclassify the rows or bypass TEST_TARGET_BUSY to delete a target. Other unfinished legacy states need explicit integrity review, not an automatic transition.
+
+Publication needs no schema push/import. Owner merges Test, syncs matching shared code and native entries, then publishes the frontend. internalHealth nativeReadiness expects native-continuation/3 / LEGACY_PROGRESS_ONLY after this release. Existing deployed button can remain visible until publication. The two requested removals remain blocked until their existing receipts are legitimately completed; no live Full Health/scan or new maintenance operation is part of this delivery.
+
+[064 delivery and execution](reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md).
 
 
 ## 059 — Matching Pattern publication
@@ -241,13 +250,13 @@ Initial explicit add+consent persists a grant intent time before current consent
 
 038: a unique pending add/edit/delete intent offers one explicit same-ID resume after reload; confirmed data and original grant time are preserved. Visible competing intents suppress predictions and require review. Bulk acknowledge/“clear pending attempts” is removed from both UI and backend; no automatic deletion or cancellation unlocks the screen. A transmitted SDK call cannot be recalled. A subsequent read detects pending/invalid actual state; revision detection cannot prove that no undetectable race occurred. Conflicting intents retain previous/desired dates for authorized recovery. Duplicate actual-date rows or invalid spacing remain a hard conflict: an operator reviews owner-scoped receipts and actual IDs with the user under a maintenance window, preserves evidence, and makes only an explicitly approved correction. There is no arbitrary deletion or automatic date clamping.
 
-### Reset continuation
+### Legacy receipt continuation only (064; no admin preparation)
 
-AdminTestOperation gains optional `step_fingerprints` (hashes only). Preparation writes RESET_ACTIVE/PROFILE without changing product rows. Normal onboarding input uses its usual validation and persistence; then verified progress goes PROFILE → CYCLE → FIRST_SHINKA → DONE. If progress fails after a normal write, the input fingerprint and saved record remain; retry with identical input validates it and advances. Different input is rejected while that step is pending. Reset Cycle may confirm matching existing period/settings; it cannot edit historic dates or create a fresh grant over existing history. Use Skip to preserve history, or finish and use Calendar for a date change. Same-day ON-06 reuses the saved daily snapshot. Final audit is verified before terminal progress. No profile/health request bodies are placed in AdminTestOperation.
+AdminTestOperation gains optional `step_fingerprints` (hashes only). Historical preparation wrote RESET_ACTIVE/PROFILE without changing product rows; that writer is retired in 064. Normal onboarding input uses its usual validation and persistence; then verified progress goes PROFILE → CYCLE → FIRST_SHINKA → DONE. If progress fails after a normal write, the input fingerprint and saved record remain; retry with identical input validates it and advances. Different input is rejected while that step is pending. Reset Cycle may confirm matching existing period/settings; it cannot edit historic dates or create a fresh grant over existing history. Use Skip to preserve history, or finish and use Calendar for a date change. Same-day ON-06 reuses the saved daily snapshot. Final audit is verified before terminal progress. No profile/health request bodies are placed in AdminTestOperation.
 
 ### Controlled deletion runbook
 
-1. Explicitly select the **isolated Test app and synthetic target**; branch/Preview labels are not database isolation. Set backend ADMIN_TEST_TOOLS_APP_ID to the actual app ID, ADMIN_TEST_TOOLS_ENVIRONMENT to TEST/PREVIEW and a private ADMIN_TEST_TOOLS_PREVIEW_KEY. Reset needs these controls but not the deletion maintenance window. Never put values in frontend/report.
+1. Explicitly select the **isolated Test app and synthetic target**; branch/Preview labels are not database isolation. Set backend ADMIN_TEST_TOOLS_APP_ID to the actual app ID, ADMIN_TEST_TOOLS_ENVIRONMENT to TEST/PREVIEW and a private ADMIN_TEST_TOOLS_PREVIEW_KEY. These settings do not re-enable retired admin reset. Never put values in frontend/report.
 2. Operator stops incoming mutation traffic, schedulers, queued integrations and other privileged editors, including native User role changes. Set SHINKA_WRITE_MODE=PAUSED. Wait for and verify completion/termination of all already-started writers using actual execution status; **no fixed sleep is treated as a drain guarantee**. If the operator cannot establish this, do not delete.
 3. Set ADMIN_TEST_TOOLS_OPERATOR_ID to the initiating native admin ID, a unique 16–100-character ADMIN_TEST_TOOLS_WINDOW_ID, and ADMIN_TEST_TOOLS_DRAIN_ACK to `window-id:operator-id` only after step 2. These are an explicit operational attestation, not measured backend fencing. Keep the roster stable; recheck fresh role/target/last-admin before each stage. Self-delete and last-admin deletion remain denied.
 4. Refresh lookup/preview, review counts and retention, type exact target ID, execute once. Job and start audit are read back before destructive stages. Stop pending/failed notifications, remove only scoped operational product rows and UserCalendarAction, delete native User, verify all deleted collections empty, verify native absence and final audit/status. Consent/event, protection/deletion evidence, daily snapshots and approved histories remain under existing retention scope.

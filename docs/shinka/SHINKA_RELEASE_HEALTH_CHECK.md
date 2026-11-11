@@ -2,13 +2,24 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-063
-**Last Updated:** 2026-11-10
+**Current BuildMarker:** Buildmarker-064
+**Last Updated:** 2026-11-11
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-062.0; repository, synthetic and external evidence separated.
+**Scope:** Health catalog HC-063.0; repository, synthetic and external evidence separated.
 
+
+
+## 064 — Admin reset retirement and selected-user removal (2026-11-11)
+
+HC-063.0: **0 added / 8 updated / 1 retired**. Retire H12-030 (removed admin reset feature; duplicate legacy continuation coverage remains in H12-033 via NA18/NA19). Updated: H12-028 adds AT18 zero-write retirement/read-only receipt/fence checks; H12-033 is explicitly existing-receipt compatibility; H13-016/AU04 verifies no reset controls and status-only legacy UI. H04-019, H08-005, H09-004 and H12-031 require native-continuation/3 with reset LEGACY_PROGRESS_ONLY. H05-009 only extends the unchanged source/hash/count policy to 064. Backend plan and serialized localRegressionRequirements match. Catalog is 185: 159 in-app, 12 local-only, 14 external.
+
+Retire reset-creation regressions AT12/AT14/NA17; add meaningful AT18. Shared onboarding/session/privacy/deletion assertions remain, with old receipts explicitly seeded rather than invoking a removed command. The actual adminTestTools TS entry tests preview/execute/resume → 410 and zero writes, then read-only legacy status. No fixed PASS replaces a retired case. H12-902 and physical/provider acceptance remain external. Historical failures and hosted reports are unchanged; local execution is recorded separately.
+
+Final Chromium/WebKit 803/803 each, zero page errors; local synthetic Health 146 PASS/13 hosted-prerequisite BLOCKED/0 FAIL with save/retry/list/open verified. Mandatory quality/dependency/performance gates pass. Initial JSX, loopback NOT_RUN and T21 fixture-filename failures remain in execution history; final assertions/firewall were not weakened. AU04 also verifies that completed legacy browser recovery cannot supply the request ID for a new deletion. The two selected live removals remain BLOCKED by their existing reset receipts; these test results are not deletion evidence.
+
+[064 delivery and execution](reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md).
 
 
 ## 063 — Lunar presentation regression scope

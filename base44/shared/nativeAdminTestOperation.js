@@ -1,7 +1,7 @@
 import { testOperationOutcome } from './testDeletionResult.js';
 import { requireInternalAdmin, InternalError } from './internalAuthorization.js';
 import { createTestRepository } from './adminTestRepository.js';
-import { validateTestRequest, testToolError, DELETED_ENTITIES, RETAINED_ENTITIES, SHARED_ENTITIES } from './adminTestPolicy.js';
+import { validateTestRequest, requireTestOperationWrite, testToolError, DELETED_ENTITIES, RETAINED_ENTITIES, SHARED_ENTITIES } from './adminTestPolicy.js';
 import { targetGuard, testEnvironment } from './adminTestOperation.js';
 import { executeTestJob } from './adminTestExecution.js';
 import { nativeTestJournal } from './nativeTestJournal.js';
@@ -23,11 +23,11 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
   const response = async (job, target = null) => {
     if(job?.operation==='DELETE_USER'&&(await repository.lifecycle(job.target_id))?.operation_id!==job.operation_id)testToolError('TEST_OPERATION_STATE_INVALID');
     const result_state = await testOperationOutcome(repository, job);
-    const foreignActor=job&&job.actor_id!==actor.id;
+    const foreignActor=job&&job.actor_id!==actor.id, retired=job?.operation==='RESET_ONBOARDING';
     const progress=job?.operation==='DELETE_USER'&&['execute','resume'].includes(body.action)?pass.summary(job,result_state):undefined;
     if(progress)diagnostics?.progress(progress);
     return { job, target: result_state === 'COMPLETED' && job?.operation === 'DELETE_USER' ? null : target,
-      result_state, environment, ...recovery, ...(foreignActor?{resume_enabled:false,mutation_blocker:'TEST_OPERATION_CONFLICT'}:{}), progress, retained: RETAINED_ENTITIES };
+      result_state, environment, ...recovery, ...(retired?{resume_enabled:false,mutation_blocker:'TEST_RESET_RETIRED'}:foreignActor?{resume_enabled:false,mutation_blocker:'TEST_OPERATION_CONFLICT'}:{}), progress, retained: RETAINED_ENTITIES };
   };
   if (body.action === 'status') {
     const job = await repository.operation(body.target_id, body.operation_id);
@@ -44,12 +44,11 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
     const target = await repository.target(body.target_id), impact = await repository.impact(target.id), active = await repository.lifecycle(target.id);
     const blockers = [];
     try { targetGuard(actor, target, body.operation); } catch (error) { if (error instanceof InternalError) blockers.push(error.code); else throw error; }
-    if (body.operation === 'RESET_ONBOARDING' && target.account_status !== 'ACTIVE') blockers.push('TEST_INACTIVE_ACCOUNT');
     if (active) blockers.push('TEST_TARGET_BUSY');
     if (!environment.authorized) blockers.push('TEST_ENVIRONMENT_UNVERIFIED');
     if (!signer) blockers.push('TEST_PREVIEW_SIGNER_REQUIRED');
     return { target, environment, operation: body.operation, counts: impact.counts, pending_notifications: impact.pending_notifications,
-      scope: { deleted: body.operation === 'DELETE_USER' ? [...DELETED_ENTITIES, 'calendar_actions', 'User'] : [], retained: RETAINED_ENTITIES, shared: SHARED_ENTITIES },
+      scope: { deleted: [...DELETED_ENTITIES, 'calendar_actions', 'User'], retained: RETAINED_ENTITIES, shared: SHARED_ENTITIES },
       job:undefined, result_state:undefined, blockers, enabled: !blockers.length, preview_token: blockers.length ? null : await signer.sign({ ...binding, scope_hash: impact.hash }),
       expires_at: new Date(now().getTime() + 300000).toISOString(), active_operation: active };
   }
@@ -58,6 +57,7 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
   if (previous && previous.actor_id !== actor.id) testToolError('TEST_OPERATION_CONFLICT');
   if (body.action === 'resume' && !previous) testToolError('TEST_OPERATION_NOT_FOUND', 404);
   const operation = previous?.operation || body.operation;
+  requireTestOperationWrite(operation);
   if (previous && body.operation && previous.operation !== body.operation) testToolError('TEST_OPERATION_CONFLICT');
   const guard = async () => {
     const [, active, identity] = await Promise.all([freshAdmin(), repository.lifecycle(body.target_id), repository.user(body.target_id)]);
@@ -75,7 +75,6 @@ export async function nativeAdminTestOperation(client, body, { policy = {}, sign
   }
   const identity = await repository.user(body.target_id);
   if (!identity && !previous) testToolError('TEST_USER_NOT_FOUND', 404);
-  if (operation === 'RESET_ONBOARDING' && (await repository.target(body.target_id)).account_status !== 'ACTIVE') testToolError('TEST_INACTIVE_ACCOUNT');
   // Every destructive call repeats actor/target checks. The durable target journal
   // blocks app writers; native Entity calls do not provide distributed exclusion.
   const mutationMethods = new Set(['create', 'update', 'delete']);

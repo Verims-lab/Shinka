@@ -48,7 +48,7 @@ export default function TestTools({ request = undefined, wait = undefined, clock
       </div>}
       {(tools.job || tools.pendingId) && <ShinkaCard title={text('result')}>
         <div role="status">
-          <p>{text(tools.phase==='DELETING'?'deleting':tools.phase==='RESETTING'?'resetting':tools.phase==='UNKNOWN'?'unknownResult':tools.phase==='COMPLETED'?(tools.job?.operation==='DELETE_USER'?'deletedResult':'resetCompleted'):tools.phase==='RESET_ACTIVE'?'resetResult':tools.job?.operation==='DELETE_USER'?'deletePending':'pendingResult')}</p>
+          <p>{text(tools.phase==='DELETING'?'deleting':tools.phase==='UNKNOWN'?'unknownResult':tools.job?.operation==='RESET_ONBOARDING'?(tools.job.status==='COMPLETED'?'legacyResetCompleted':'legacyResetPending'):tools.phase==='COMPLETED'?'deletedResult':tools.job?'deletePending':'unknownResult')}</p>
           {tools.job && ['PARTIAL','DELETING'].includes(tools.phase) && <p>{text('stage')}: {text(tools.job.stage)}</p>}
           {tools.phase==='COMPLETED'&&tools.job?.operation==='DELETE_USER'&&<p>{text('removalScope')}</p>}
           {tools.phase==='PARTIAL'&&tools.value?.progress?.madeProgress===false&&<p>{text('noProgress')}</p>}
@@ -57,7 +57,7 @@ export default function TestTools({ request = undefined, wait = undefined, clock
           </details>
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
-          {tools.job&&tools.phase==='PARTIAL'&&tools.value?.resume_enabled
+          {tools.job?.operation==='DELETE_USER'&&tools.phase==='PARTIAL'&&tools.value?.resume_enabled
             ? <ShinkaButton variant="secondary" data-test-resume onClick={tools.resume} disabled={tools.busy}>{text('retry')}</ShinkaButton>
             : <ShinkaButton variant="secondary" onClick={tools.status} disabled={tools.busy}>{text('check')}</ShinkaButton>}
         </div>

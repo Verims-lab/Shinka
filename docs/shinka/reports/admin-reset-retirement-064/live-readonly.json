@@ -1,0 +1,95 @@
+{
+  "scope": "HOSTED_READ_ONLY_EXISTING_ADMIN_WEB",
+  "date": "2026-11-11",
+  "appId": "6ad5190f4845d4e3af03b420",
+  "frontendMarker": "Buildmarker-063",
+  "deployedGraphHashVerified": false,
+  "journalInventory": {
+    "totalVisible": 9,
+    "displayedRows": 9,
+    "activeReset": 2,
+    "completedReset": 1,
+    "completedDeletion": 6
+  },
+  "liveWrites": 0,
+  "targets": [
+    {
+      "userId": "6ae21e3dc1f2cace93d02f81",
+      "nativeUser": "PRESENT",
+      "accountStatus": "ACTIVE",
+      "role": "admin",
+      "operationId": "41b04918-268c-49a2-bd03-9e1d0503d7b1",
+      "operation": "RESET_ONBOARDING",
+      "status": "RESET_ACTIVE",
+      "stage": "PROFILE",
+      "deletionOperationExists": false,
+      "preview": {
+        "httpStatus": 200,
+        "enabled": false,
+        "tokenIssued": false,
+        "blockers": [
+          "TEST_TARGET_BUSY"
+        ]
+      },
+      "selectedCounts": {
+        "user_profile": 1,
+        "user_preferences": 1,
+        "calendar_actions": 1,
+        "user_period_record": 0,
+        "user_health_consent": 1,
+        "user_health_consent_event": 1,
+        "user_daily_message": 11,
+        "admin_audit_log": 2
+      },
+      "otherRemovalScopes": 0,
+      "pendingNotifications": 0,
+      "permanentErasureVerified": false
+    },
+    {
+      "userId": "6aeae548a7d69cf5b3b032d1",
+      "nativeUser": "PRESENT",
+      "accountStatus": "ACTIVE",
+      "role": "admin",
+      "operationId": "8375d249-3d66-4879-915a-927605b88b9e",
+      "operation": "RESET_ONBOARDING",
+      "status": "RESET_ACTIVE",
+      "stage": "PROFILE",
+      "deletionOperationExists": false,
+      "preview": {
+        "httpStatus": 200,
+        "enabled": false,
+        "tokenIssued": false,
+        "blockers": [
+          "TEST_TARGET_BUSY"
+        ]
+      },
+      "selectedCounts": {
+        "user_profile": 1,
+        "user_preferences": 1,
+        "calendar_actions": 0,
+        "user_period_record": 1,
+        "user_health_consent": 1,
+        "user_health_consent_event": 1,
+        "user_daily_message": 2,
+        "admin_audit_log": 2
+      },
+      "otherRemovalScopes": 0,
+      "pendingNotifications": 0,
+      "permanentErasureVerified": false
+    }
+  ],
+  "protected": {
+    "id": "6ad519134845d4e3af03b423",
+    "identityMatched": true,
+    "role": "admin",
+    "status": "ACTIVE",
+    "writes": 0
+  },
+  "platformRecentlyDeleted": {
+    "surfaceObserved": true,
+    "nativeIdMappingForSelectedTargets": "NOT_VERIFIED",
+    "purgeExecuted": false
+  },
+  "removalOutcome": "BLOCKED_EXISTING_RESET",
+  "oldOperationsUntouched": true
+}

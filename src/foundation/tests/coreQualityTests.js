@@ -56,8 +56,8 @@ export const CORE_QUALITY_TESTS = [
    failCheck=false;await controller.check();check(controller.getSnapshot().result==='preferences'&&!controller.getSnapshot().error);
    check(f.state.calls.filter(c=>c.name==='UserPreferences'&&c.method==='updateMany').length===1,'verification wrote');controller.dispose();
  }],
- ['CQ05','Admin acts on synthetic B with reset/deletion, interruption and resume; fresh A session and role remain intact',async()=>{
-   for(const operation of ['RESET_ONBOARDING','DELETE_USER']) {
+ ['CQ05','Admin acts on synthetic B with deletion, interruption and resume; fresh A session and role remain intact',async()=>{
+   for(const operation of ['DELETE_USER']) {
      const f=nativeFixture();const before=structuredClone(f.tables.User.find(u=>u.id==='adminA'));
      const view=await f.preview(operation);
      if(operation==='DELETE_USER')f.once('after',c=>c.name==='UserProfile'&&c.method==='delete');

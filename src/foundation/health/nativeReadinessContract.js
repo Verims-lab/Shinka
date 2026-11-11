@@ -2,7 +2,7 @@ import { CLASS } from './constants.js';
 import { ev, verdict } from './evidence.js';
 import { healthReadDiagnostic } from '../../../base44/shared/healthReadDiagnostics.js';
 
-const STRATEGIES = Object.freeze({ daily: 'IMMUTABLE_CANDIDATES', calendar: 'OBSERVATIONS_AND_RECEIPTS', reset: 'VERIFIED_STEPS', deletion: 'TARGET_LIFECYCLE_RESUMABLE' });
+const STRATEGIES = Object.freeze({ daily: 'IMMUTABLE_CANDIDATES', calendar: 'OBSERVATIONS_AND_RECEIPTS', reset: 'LEGACY_PROGRESS_ONLY', deletion: 'TARGET_LIFECYCLE_RESUMABLE' });
 const TRANSIENT = new Set(['RATE_LIMITED', 'TIMEOUT', 'SERVICE_UNAVAILABLE', 'NETWORK_UNAVAILABLE']);
 const SCHEMAS = Object.freeze(['AdminTestOperation', 'UserCalendarAction', 'InternalHealthRun', 'UserPrivacyRequest', 'PrivacyRecoveryReceipt']);
 // Explicit contract comparisons: truthy strategy text is neither a predicate nor
@@ -22,7 +22,7 @@ export async function nativePrerequisite(ctx, feature) {
     ((row.readable === true && Number.isInteger(row.sampledRows) && row.sampledRows >= 0 && row.sampledRows <= 1) ||
       (row.readable === false && TRANSIENT.has(row.diagnostic?.code) &&
         (row.diagnostic.httpStatus == null || (Number.isInteger(row.diagnostic.httpStatus) && row.diagnostic.httpStatus >= 100 && row.diagnostic.httpStatus <= 599))));
-  const contractOk = Object.hasOwn(STRATEGIES, feature) && value?.authority === 'BASE44_NATIVE_V1' && value.strategyVersion === 'native-continuation/2' &&
+  const contractOk = Object.hasOwn(STRATEGIES, feature) && value?.authority === 'BASE44_NATIVE_V1' && value.strategyVersion === 'native-continuation/3' &&
     Object.entries(STRATEGIES).every(([key, expected]) => value[key] === expected) && Array.isArray(value.schemas) &&
     rows.length === SCHEMAS.length && rows.every(wellFormed) &&
     SCHEMAS.every(name => rows.filter(row => row.name === name).length === 1);
@@ -31,6 +31,6 @@ export async function nativePrerequisite(ctx, feature) {
     'every native schema readable', 'Temporary unavailability (rate limit/timeout/outage) is missing evidence, not a contract mismatch.') };
   const valid = contractOk && rows.every(row => row.readable === true);
   return verdict(valid, ev(CLASS.LIVE_RUNTIME, 'internalHealth nativeReadiness', value ?? null,
-    { authority: 'BASE44_NATIVE_V1', strategyVersion: 'native-continuation/2', strategies: STRATEGIES, readableSchemas: SCHEMAS },
+    { authority: 'BASE44_NATIVE_V1', strategyVersion: 'native-continuation/3', strategies: STRATEGIES, readableSchemas: SCHEMAS },
     'Read-only prerequisites; does not prove permissions, concurrent mutation, removal or permanent erasure.'));
 }

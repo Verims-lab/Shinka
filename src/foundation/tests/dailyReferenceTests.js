@@ -1,3 +1,4 @@
+import { seedLegacyReset } from './historicalResetFixture';
 import { handleDailyMessageRequest } from '../../../base44/shared/dailyMessageOperation.js';
 import { dailyMessageRequest } from '@/services/dailyMessageService';
 import { internalHealthOperation } from '../../../base44/shared/internalHealthOperations.js';
@@ -130,7 +131,7 @@ export const DAILY_REFERENCE_TESTS=[
   const f=nativeFixture(),row=await legacy(f),client=admin(f),plan=await dailyReferenceMigration(client,{action:'dryRun'});row.message_pair_id='missing';await rejects(()=>dailyReferenceMigration(client,{action:'applyBatch',ids:plan.ids,reviewed_digest:plan.reviewed_digest}),'MIGRATION_REVIEW_EXPIRED');
   const bad=await dailyReferenceMigration(client,{action:'dryRun'});check(bad.rows[0].status==='REFERENCE_MISSING');check(!(await dailyReferenceMigration(client,{action:'applyBatch',ids:bad.ids,reviewed_digest:bad.reviewed_digest})).complete&&Object.hasOwn(row,'message_tr_snapshot'));
   await rejects(()=>dailyReferenceMigration(f.raw(),{action:'dryRun'}),'FORBIDDEN_INTERNAL_TOOLING');
-  row.message_pair_id=f.tables.MessagePair[0].id;await f.execute(await f.preview());const busy=await dailyReferenceMigration(client,{action:'dryRun'});const result=await dailyReferenceMigration(client,{action:'applyBatch',ids:busy.ids,reviewed_digest:busy.reviewed_digest});check(result.outcomes[0].status==='MIGRATION_TARGET_BUSY');
+  row.message_pair_id=f.tables.MessagePair[0].id;seedLegacyReset(f);const busy=await dailyReferenceMigration(client,{action:'dryRun'});const result=await dailyReferenceMigration(client,{action:'applyBatch',ids:busy.ids,reviewed_digest:busy.reviewed_digest});check(result.outcomes[0].status==='MIGRATION_TARGET_BUSY');
  }],
  ['ID08','Migration keyset page bound, no hidden invalid-reference success',async()=>{
   const f=nativeFixture(),row=await legacy(f),client=admin(f);f.tables.UserDailyMessage=Array.from({length:26},(_,i)=>({...row,id:`daily-${String(i).padStart(3,'0')}`}));

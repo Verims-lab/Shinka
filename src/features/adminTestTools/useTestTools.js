@@ -25,7 +25,7 @@ export function useTestTools(request = adminTestRequest, wait = ms => new Promis
     if(inFlight.current)return;
     const version=generation.current;
     inFlight.current=true;setBusy(true);setError(null);
-    if(action==='execute'||action==='resume')setPhase(preview?.operation==='RESET_ONBOARDING'||job?.operation==='RESET_ONBOARDING'?'RESETTING':'DELETING');
+    if(action==='execute'||action==='resume')setPhase('DELETING');
     const started=clock();
     try {
       let result=await request(action,payload);
@@ -74,7 +74,12 @@ export function useTestTools(request = adminTestRequest, wait = ms => new Promis
     generation.current++;inFlight.current=false;remember(null);
     setInput(next);setValue(null);setPreview(null);setJob(null);setPendingId(null);setError(null);setBusy(false);setPhase('IDLE');
   }
-  function lookup() { if(inFlight.current)return;setValue(null);setPreview(null);setJob(null);return run('lookup',{target_id:input.trim()}); }
+  function lookup() { if(inFlight.current)return;setValue(null);setPreview(null);setJob(null);return run('lookup',{target_id:input.trim()},result=>{
+    // A completed historical reset is no longer the target's active operation.
+    // Do not reuse its saved request ID for a later deletion.
+    if(!result.job){setPendingId(null);remember(null);}
+    accept(result);
+  }); }
   useEffect(()=>{
     const invalidate=()=>{
       generation.current++;inFlight.current=false;remember(null);
@@ -85,14 +90,14 @@ export function useTestTools(request = adminTestRequest, wait = ms => new Promis
     if(initial.current)void lookup();
     return()=>{generation.current++;window.removeEventListener('shinka-session-ended',invalidate);window.removeEventListener('shinka-health-access-changed',invalidate);};
   },[]);
-  const inspect=operation=>{if(!value?.target||busy)return;setPreview(null);return run('preview',{target_id:value.target.id,operation},result=>{setPreview(result);setJob(result.active_operation||null);});};
+  const inspect=operation=>{if(operation!=='DELETE_USER'||!value?.target||busy)return;setPreview(null);return run('preview',{target_id:value.target.id,operation},result=>{setPreview(result);setJob(result.active_operation||null);});};
   function cancel(){if(inFlight.current)return;setPreview(null);setError(null);}
   function execute(){
-    if(inFlight.current||!preview?.enabled||Date.parse(preview.expires_at)<=Date.now())return;
+    if(inFlight.current||preview?.operation!=='DELETE_USER'||!preview?.enabled||Date.parse(preview.expires_at)<=Date.now())return;
     const id=pendingId||crypto.randomUUID();setPendingId(id);remember({target:preview.target.id,id});
     return run('execute',{target_id:preview.target.id,operation:preview.operation,confirmation:true,preview_token:preview.preview_token,request_id:id});
   }
   const status=()=>run('status',{target_id:input.trim(),operation_id:job?.operation_id||pendingId});
-  const resume=()=>run('resume',{target_id:input.trim(),operation_id:job?.operation_id||pendingId});
+  const resume=()=>job?.operation==='DELETE_USER'&&run('resume',{target_id:input.trim(),operation_id:job.operation_id});
   return {input,value,preview,job,pendingId,error,busy,phase,changeInput,lookup,inspect,cancel,execute,status,resume};
 }

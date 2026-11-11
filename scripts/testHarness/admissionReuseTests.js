@@ -1,3 +1,4 @@
+import { seedLegacyReset } from '../../src/foundation/tests/historicalResetFixture';
 // Node-only real operations with synthetic native SDK. No hosted requests.
 import { nativeFixture } from '../../src/foundation/tests/nativeFixture';
 import { withUserLifecycle } from '../../base44/shared/userLifecycle.js';
@@ -67,7 +68,7 @@ export const ADMISSION_REUSE_TESTS = [
     f.state.after=null;changed=true;
     if(mode==='inactive')f.tables.UserProfile[0].account_status='INACTIVE';
     if(mode==='withdrawn')Object.assign(f.tables.UserHealthConsent[0],{consent_status:'WITHDRAWN',withdrawn_at:f.now().toISOString()});
-    if(mode==='reset')await f.execute(await f.preview());
+    if(mode==='reset')seedLegacyReset(f);
    }};
    let error;try{await home(f,f.client());}catch(e){error=e;}
    check(changed&&error instanceof InternalError,`${mode}: missing domain rejection`);
@@ -77,7 +78,7 @@ export const ADMISSION_REUSE_TESTS = [
  }],
  ['AR06','Reset first-daily path does not reuse the pre-reset principal across admission',async()=>{
   for(const lost of ['ownerB',null]){
-   const f=nativeFixture();await f.execute(await f.preview());
+   const f=nativeFixture();seedLegacyReset(f);
    const row=f.tables.AdminTestOperation[0];row.stage='FIRST_SHINKA';
    const before=snapshot(f),n=writes(f).length,a=counted(f,['ownerA',lost]);
    await rejected(()=>home(f,a.client),lost?'FORGED_OWNER':'AUTH_REQUIRED',lost?403:401);
@@ -107,7 +108,7 @@ export const ADMISSION_REUSE_TESTS = [
     f.state.after=null;changed=true;
     if(revoked==='inactive')f.tables.UserProfile[0].account_status='INACTIVE';
     if(revoked==='health-job')f.tables.HealthDataDeletionJob.push({id:'synthetic-job',user_id:'ownerA',job_status:'PENDING'});
-    if(revoked==='reset')await f.execute(await f.preview());
+    if(revoked==='reset')seedLegacyReset(f);
    }};
    const code={'inactive':'ACTIVE_ACCOUNT_REQUIRED','health-job':'HEALTH_DELETION_PENDING','reset':'ONBOARDING_RESTART_REQUIRED'}[revoked];
    await rejected(()=>you(f,f.client(),body),code,revoked==='inactive'?403:409);
