@@ -36,3 +36,11 @@ So the anonymous ON-02 markup and its committed geometry are present in the publ
 ## 5. What the owner sees after publication
 
 The next publication carries Buildmarker-070. The published origin then answers `/auth-shell-probe` with `data-probe-status="READY"` **and** `data-probe-viewport="IN_VIEW"`; that pair is the machine-checkable statement that the 18+ declaration and both provider buttons are inside the visible viewport of the running app. A signed-out browser or private window is required to see the anonymous Welcome; a signed-in session intentionally shows Continue only.
+
+## 6. Follow-up: why the preview shows no provider buttons
+
+The reported screenshot is `state="UNAUTHENTICATED_SIGN_IN"` rendered with `authenticated === true`: title `signIn` ("Hoş geldin"), subtitle `signInSubtitle`, step 2/5, and the single `continue` action from `OnboardingScreen`'s authenticated branch. The provider actions only exist in the anonymous branch (`SignIn.jsx`), so with a verified session they are absent by design, not covered by the backdrop: the same card renders Continue, so no layer sits above the card.
+
+Change (2026-11-11 owner request): the authenticated Welcome now renders a secondary `signOut` action under Continue, wired in `src/pages/Onboarding.jsx` to the existing `AuthContext.logout()` boundary, which returns to `/login` and therefore loads the anonymous ON-02 with the declaration and both providers. The anonymous branch, the age gate, `resume`, copy of the other steps and the layout caps are unchanged.
+
+Local gates on this follow-up: `npm run typecheck` (clean), `npm run lint` (clean), `npm run build` (exit 0, `dist/index.html` written), `node scripts/checkOnboardingLayers.mjs` (exit 0), `npm run health:repo` (exit 0), `node scripts/recordBuild.mjs --check` (5 packages verified), EN/TR copy parity 91/91 keys. Signed-out rendering of the providers in a running app remains the `/auth-shell-probe` `IN_VIEW` check after publication, and physical-device acceptance remains H13-013.

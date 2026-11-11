@@ -45,7 +45,7 @@ const SIGN_IN_LAYOUT = { height: ONBOARDING_VIEWPORT_HEIGHT, minHeight: "fit-con
 // viewports, so the slot is capped low and may collapse to zero.
 const SIGN_IN_ART_SPACE = { flex: "1 1 0px", minHeight: 0, maxHeight: 48, aspectRatio: "auto" };
 
-/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,authenticated?:boolean,onRestricted?:Function,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
+/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,authenticated?:boolean,onRestricted?:Function,onSignOut?:Function|null,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
 export default function OnboardingScreen({
   state,
   initialLanguage = undefined,
@@ -58,6 +58,7 @@ export default function OnboardingScreen({
   onRestricted = () => {},
   authenticate = beginProviderAuth,
   dependencies = [],
+  onSignOut = null,
 }) {
   const language = resolveLanguage(initialLanguage);
   const resume = useRef("AUTHENTICATED_PROFILE_REQUIRED");
@@ -210,7 +211,7 @@ export default function OnboardingScreen({
       );
     if (state === "UNAUTHENTICATED_SIGN_IN")
       return authenticated
-        ? <ShinkaButton className="w-full" onClick={() => onState(resume.current)}>{t("continue")}</ShinkaButton>
+        ? <><ShinkaButton className="w-full" onClick={() => onState(resume.current)}>{t("continue")}</ShinkaButton>{onSignOut && <ShinkaButton variant="secondary" className="w-full" disabled={busy} onClick={() => onSignOut()}>{t("signOut")}</ShinkaButton>}</>
         : <SignIn language={language} authenticate={authenticate} onBusy={setBusy} />;
     if (state === "AUTHENTICATED_PROFILE_REQUIRED")
       return (

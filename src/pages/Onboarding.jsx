@@ -71,5 +71,5 @@ export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destina
     if(destination==='you')return <>{youPage}{tabs}</>;
     return tabs;
   }
-  return <RouteBoundary><OnboardingScreen authenticated onRestricted={code=>{generation.current++;setSnapshot(null);setError(code);}} request={request} key={user.id} state={snapshot.state} initialLanguage={snapshot.preferences?.language_code||language} today={snapshot.today} profile={snapshot.profile} dependencies={snapshot.dependencies||[]} onState={(state,result)=>setSnapshot(s=>s?.ownerSession===user.id?{...s,...result,state}:s)}/></RouteBoundary>;
+  return <RouteBoundary><OnboardingScreen authenticated onSignOut={()=>logout()} onRestricted={code=>{generation.current++;setSnapshot(null);setError(code);}} request={request} key={user.id} state={snapshot.state} initialLanguage={snapshot.preferences?.language_code||language} today={snapshot.today} profile={snapshot.profile} dependencies={snapshot.dependencies||[]} onState={(state,result)=>setSnapshot(s=>s?.ownerSession===user.id?{...s,...result,state}:s)}/></RouteBoundary>;
 }
