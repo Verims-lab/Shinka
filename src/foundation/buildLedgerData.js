@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-061",
-    "package_name": "Authenticate before personal onboarding",
-    "package_type": "TARGETED_FIX",
-    "created_at": "2026-11-09T18:26:04.840939+00:00",
-    "health_catalog_version": "HC-060.0",
-    "short_summary": "Intro → Apple/Google → fresh server progress → optional name/profile/cycle; completed users go Home without name flash. Retire unowned pre-auth name storage; preserve NULL choice, reset, privacy and account isolation.",
-    "full_health_status": "NOT_RUN",
-    "notes": "Chromium/WebKit 804/804 each; focused 19/19 each and 16 auth-first App scenarios/engine. Quality/performance/last-five PASS; npm advisories 0. Health +0/~5/-0; local synthetic 147 PASS/13 prerequisite BLOCKED/0 FAIL, save/list/open PASS. No schema/new auth/dependency/live mutation/Health/scan/main publish. Real OAuth/native/device acceptance external. Report: reports/SHINKA_AUTH_FIRST_ONBOARDING_061.md. Active 057–061."
-  },
-  {
     "build_marker": "Buildmarker-062",
     "package_name": "Calendar direct start-date editing",
     "package_type": "TARGETED_FIX",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "One original bundled PNG across user-facing Shinka routes. The integrated AydanTest checkout retains the 064 admin reset retirement and historical receipts.",
     "full_health_status": "NOT_RUN",
     "notes": "HC-064.0 updates H13-012, H13-020 and H05-009. Standalone and integrated local evidence is recorded in reports/SHINKA_APP_BACKGROUND_065.md. Hosted Full Health and physical-device acceptance remain separate."
+  },
+  {
+    "build_marker": "Buildmarker-066",
+    "package_name": "Compact first onboarding screen",
+    "package_type": "TARGETED_UI",
+    "created_at": "2026-11-11T13:40:50Z",
+    "health_catalog_version": "HC-065.0",
+    "short_summary": "Original-color top-left logo and compact introductory copy, rows and CTA on ON-01.",
+    "full_health_status": "NOT_RUN",
+    "notes": "HC-065.0 updates H13-012, H13-020 and H05-009. Local onboarding matrices passed in Chromium and WebKit. Synthetic Chromium Health returned 146 PASS and 13 prerequisite BLOCKED. Full Chromium stopped in Pattern and the full WebKit browser closed. Details: reports/SHINKA_ONBOARDING_INTRO_066.md."
   }
 ];

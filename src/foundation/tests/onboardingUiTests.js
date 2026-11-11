@@ -292,21 +292,28 @@ export const ONBOARDING_UI_TESTS=[
    const rows=[...doc.querySelectorAll('[data-intro-row]')];check(rows.length===3,`${language} rows ${rows.length}`);
    rows.forEach((row,i)=>{const spans=row.querySelectorAll('span.block');check(spans[0]?.textContent===expect[language][i]&&spans[1]?.textContent.trim().length>0,`${language} row ${i}`);});
    check(!doc.querySelector('.shinka-onboarding img'),'no content bitmap duplicates the page backdrop');
-   check(doc.querySelector('.shinka-onboarding-art-space')?.getAttribute('aria-hidden')==='true','empty layout space is decorative');
+   check(!doc.querySelector('.shinka-onboarding-art-space'),'intro omits the empty square');
    check(rows.every(row=>row.querySelectorAll('svg').length===1),'three introduction row icons retained');
    check(doc.documentElement.scrollWidth<=width+1,`${language} ${width} overflow`);
    const begin=[...doc.querySelectorAll('button')].find(b=>b.textContent.trim()===(language==='en'?'Begin':'Başla'));check(begin,'begin');
    begin.click();await new Promise(r=>win.setTimeout(r,50));check(doc.querySelector('#age-declaration')&&!doc.querySelector('#display_name'),`${language} ON-02 sign-in reached`);check(!doc.querySelector('[data-onboarding-intro]'),'intro left');
   },{language},context);
  }],
- ['U18','ON-01–ON-05 keep header/empty art space/subtitle, no repeated bitmap; steps/back/Finish unchanged',async(context={})=>{
+ ['U18','ON-01 has one brand composition; ON-02–ON-05 keep the empty art space; steps, Back and Finish remain available',async(context={})=>{
   const states=['UNAUTHENTICATED_INTRO','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_NAME_REQUIRED','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP'];
   for(const language of ['en','tr'])for(const [i,state] of states.entries())await onboardingProbe(state,360,async doc=>{
    const c=ONBOARDING_COPY[language];
    check(doc.querySelector('[data-onboarding-step]')?.textContent===c.stepOf.replace('{n}',String(i+1)),`${language} ${state} step`);
    check(Boolean(doc.querySelector('[data-onboarding-back]'))===(i>0),`${state} back presence`);
-   const space=doc.querySelector('.shinka-onboarding-art-space');check(space&&space.childElementCount===0&&!space.textContent&&!doc.querySelector('.shinka-onboarding img'),'no hidden duplicate image');
-   const rect=space.getBoundingClientRect(),css=doc.defaultView.getComputedStyle(space);check(rect.width===240&&rect.height===240&&css.backgroundImage==='none'&&css.backgroundColor==='rgba(0, 0, 0, 0)','original square geometry without a painted layer');
+   const space=doc.querySelector('.shinka-onboarding-art-space');
+   check(!doc.querySelector('.shinka-onboarding img'),'no duplicate content bitmap');
+   if(i===0) {
+    check(!space&&!Array.from(doc.querySelectorAll('main span')).some(span=>span.textContent.trim()==='Shinka'),'compact intro has no empty square or extra wordmark');
+   } else {
+    check(space&&space.childElementCount===0&&!space.textContent,'empty art slot');
+    const rect=space.getBoundingClientRect(),css=doc.defaultView.getComputedStyle(space);
+    check(rect.width===240&&rect.height===240&&css.backgroundImage==='none'&&css.backgroundColor==='rgba(0, 0, 0, 0)','original square geometry without a painted layer');
+   }
    check(!doc.body.textContent.includes('Account & Privacy')&&!doc.body.textContent.includes('Hesap ve Gizlilik'),`${state} no privacy link`);
    check(doc.documentElement.scrollWidth<=361,`${state} overflow`);
    if(i===4)check(button(doc,c.finish),'Finish label');

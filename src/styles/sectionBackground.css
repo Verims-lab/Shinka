@@ -1,45 +1,52 @@
-body { background-color: transparent; }
-
 /* Outside route motion and document flow. The large viewport keeps the art
    anchored when browser chrome or the keyboard changes the visual viewport. */
 .shinka-app-backdrop {
   position: fixed;
-  inset: 0 0 auto;
+  inset: 0;
   z-index: -1;
   height: 100vh;
   height: 100lvh;
   pointer-events: none;
-  background-color: #faefe9;
+  background: #faefe9;
 }
 
 /* Fit the original 942 × 1670 composition. Cream fills any extra viewport
    space, with a narrow feather where the edge meets that fallback. */
 .shinka-app-backdrop::before,
 .shinka-app-backdrop::after {
-  content: "";
   position: absolute;
-  inset: auto 0 0;
-  margin-inline: auto;
+  inset: var(--art-inset, auto 0 0);
+  margin: 0 auto;
   width: min(100%, calc(100vh * 942 / 1670));
   width: min(100%, calc(100lvh * 942 / 1670));
   aspect-ratio: 942 / 1670;
 }
 
 .shinka-app-backdrop::before {
+  content: "";
   background: url("../assets/shinka-background.png") center / contain no-repeat;
-  mask-image: linear-gradient(90deg, transparent, #000 4% 96%, transparent);
+  mask: linear-gradient(90deg, transparent, #000 4% 96%, transparent);
 }
 
 /* Foreground headings can cross the embedded wordmark when scrolling.
    Keep the cream contrast wash localized to that part of the composition. */
 .shinka-app-backdrop::after {
+  content: var(--backdrop-wash, "");
   background: radial-gradient(ellipse 44% 29% at 19% 11%, rgb(250 239 233 / .8) 63%, transparent 90%);
 }
 
 @media (max-aspect-ratio: 942/1670) {
   .shinka-app-backdrop::before {
-    mask-image: linear-gradient(transparent, #000 3%);
+    mask: linear-gradient(var(--mask-angle, 0deg), #000 97%, transparent);
   }
+}
+
+/* ON-01 anchors the original logo at the safe top left and feathers the lower edge. */
+.shinka-app-backdrop:has(+ .shinka-route-clip [data-onboarding-intro]) {
+  --art-inset: var(--safe-top) auto auto var(--safe-left);
+  --mask-angle: 180deg;
+  --backdrop-wash: none;
+  overflow: hidden;
 }
 
 .dark .shinka-app-backdrop::after {
@@ -56,6 +63,7 @@ body { background-color: transparent; }
 
 /* Default page shells also cover loading and error states. Scope the paint
    to the app with a backdrop so internal screens keep their flat surface. */
+body,
 .shinka-app-backdrop ~ .shinka-route-clip [data-probe-root].bg-shinka-ivory {
   background-color: transparent;
 }

@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-065
+**Current BuildMarker:** Buildmarker-066
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 066 — Compact ON-01 layout
+
+Deliver on `AydanTest` from the clean fast-forward to `15d83fc`. Record Buildmarker-066 / HC-065.0 with `recordBuild` and retain 062–066 in active history. Scope is ON-01 presentation, affected regressions and their Health and documentation mapping. Keep the supplied PNG bytes, 061 auth-first flow and 065 styling outside ON-01. Use local browser fixtures. [066 evidence](reports/SHINKA_ONBOARDING_INTRO_066.md)
 
 ## 065 — Shared branded screen background
 

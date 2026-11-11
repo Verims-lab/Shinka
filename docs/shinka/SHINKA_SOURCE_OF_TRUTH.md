@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-065
+**Current BuildMarker:** Buildmarker-066
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 066 — Compact first onboarding screen
+
+The owner's current ON-01 request preserves the embedded PNG logo in its original colors at the top-left safe area. ON-01 drops the separate Shinka wordmark and the 240px square slot. Show the heading, intro, three descriptions and Begin together on the initial common portrait viewport. Keep the step counter, three icons, approved TR/EN copy and auth-first transition. ON-02 through ON-05 retain their existing artwork position, wordmarks and square slots. [066 delivery](reports/SHINKA_ONBOARDING_INTRO_066.md)
 
 ## 065 — Shared branded screen background (2026-11-11)
 
