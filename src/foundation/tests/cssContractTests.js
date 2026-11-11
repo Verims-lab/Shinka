@@ -140,12 +140,20 @@ export const CSS_CONTRACT_TESTS = [
       try{assert(getComputedStyle(layer,"::after").content!=="none",'dark overlay present');}finally{applyAppTheme(before.source==='UNVERIFIED_DEFAULT'?null:before.theme);}
     });
     for(const state of ['UNAUTHENTICATED_INTRO','AUTHENTICATED_NAME_REQUIRED','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP']) {
-      await rendered(h('div',null,h(AppBackdrop),h(OnboardingScreen,{state,authenticated:state.startsWith('AUTHENTICATED'),initialLanguage:'en',request:async()=>{throw new Error('UNEXPECTED_FIXTURE_IO');}})),host=>{
+      await rendered(h('div',null,h(AppBackdrop),h('div',{className:'shinka-route-clip'},h(OnboardingScreen,{state,authenticated:state.startsWith('AUTHENTICATED'),initialLanguage:'en',request:async()=>{throw new Error('UNEXPECTED_FIXTURE_IO');}}))),host=>{
         assert(host.querySelectorAll('[data-app-backdrop]').length===1&&!host.querySelector('img'),'one backdrop, no second content bitmap');
-        const space=host.querySelector('.shinka-onboarding-art-space'),css=measure(space);
-        assert(space.getAttribute('aria-hidden')==='true'&&space.childElementCount===0&&css.backgroundImage==='none'&&css.backgroundColor==='rgba(0, 0, 0, 0)','empty transparent layout space');
-        assert(getComputedStyle(space,'::before').content==='none'&&getComputedStyle(space,'::after').content==='none','no replacement pseudo-decoration');
-        assert(png.test(getComputedStyle(host.querySelector('[data-app-backdrop]'),'::before').backgroundImage),'approved composition remains');
+        const space=host.querySelector('.shinka-onboarding-art-space'),layer=host.querySelector('[data-app-backdrop]');
+        const art=getComputedStyle(layer,'::before'),wash=getComputedStyle(layer,'::after');
+        if(state==='UNAUTHENTICATED_INTRO') {
+          const safeTop=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-top'))||0;
+          assert(!space&&parseFloat(art.top)===safeTop&&wash.content==='none','intro anchors the original logo and omits the square slot');
+        } else {
+          const css=measure(space);
+          assert(space.getAttribute('aria-hidden')==='true'&&space.childElementCount===0&&css.backgroundImage==='none'&&css.backgroundColor==='rgba(0, 0, 0, 0)','empty transparent layout space');
+          assert(getComputedStyle(space,'::before').content==='none'&&getComputedStyle(space,'::after').content==='none','no replacement pseudo-decoration');
+          assert(art.bottom==='0px'&&wash.content!=='none','other steps keep the bottom-anchored composition');
+        }
+        assert(png.test(art.backgroundImage),'approved composition remains');
       });
     }
     const backgroundHealth = H13_CASES.find(c => c.id === 'H13-020');

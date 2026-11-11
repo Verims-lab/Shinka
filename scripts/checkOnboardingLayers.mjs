@@ -5,6 +5,62 @@ import path from 'node:path';
 import { loadAppBackdrop } from './checkAppBackdrop.mjs';
 import { doubleText } from './mobileSurfaceMeasurements.mjs';
 
+async function checkIntroLayout(page, scale) {
+  await loadAppBackdrop(page);
+  const result = await page.evaluate(() => {
+    const intro = document.querySelector('[data-onboarding-intro]');
+    const screen = intro.closest('main');
+    const backdrop = document.querySelector('[data-app-backdrop]');
+    const art = getComputedStyle(backdrop, '::before');
+    const root = getComputedStyle(document.documentElement);
+    const title = screen.querySelector('h1').getBoundingClientRect();
+    const copy = intro.querySelector('p').getBoundingClientRect();
+    const cta = intro.querySelector('button');
+    const button = cta.getBoundingClientRect();
+    const rows = [...intro.querySelectorAll('[data-intro-row]')].map(row => {
+      const text = row.querySelector('[data-intro-description]');
+      const range = document.createRange();
+      range.selectNodeContents(text);
+      const lines = new Set([...range.getClientRects()].map(rect => Math.round(rect.top))).size;
+      return {
+        id: row.dataset.introRow, lines, height: row.getBoundingClientRect().height,
+        titleFont: parseFloat(getComputedStyle(text.previousElementSibling).fontSize),
+        descriptionFont: parseFloat(getComputedStyle(text).fontSize),
+      };
+    });
+    return {
+      width: innerWidth, height: innerHeight, scrollY, scrollHeight: document.documentElement.scrollHeight,
+      safeTop: parseFloat(root.getPropertyValue('--safe-top')) || 0,
+      safeLeft: parseFloat(root.getPropertyValue('--safe-left')) || 0,
+      artTop: parseFloat(art.top), artLeft: parseFloat(art.left), artHeight: parseFloat(art.height),
+      opacity: getComputedStyle(backdrop).opacity, filter: art.filter,
+      wash: getComputedStyle(backdrop, '::after').content,
+      duplicateWordmark: [...screen.querySelectorAll('span')].some(span => span.textContent.trim() === 'Shinka'),
+      titleTop: title.top, copyBottom: copy.bottom, ctaTop: button.top, ctaBottom: button.bottom,
+      ctaHeight: button.height, ctaDisabled: cta.disabled, rows,
+    };
+  });
+  assert.equal(result.duplicateWordmark, false);
+  assert.equal(result.artTop, result.safeTop);
+  assert.equal(result.artLeft, result.safeLeft);
+  assert.equal(result.opacity, '1');
+  assert.equal(result.filter, 'none');
+  assert.equal(result.wash, 'none');
+  assert(result.titleTop + result.scrollY >= result.artTop + result.artHeight * 347 / 1670 + 4, 'title clears the original logo');
+  assert.equal(result.rows.length, 3);
+  assert(result.ctaHeight >= 52 && !result.ctaDisabled, 'Begin keeps its primary touch target');
+  if (scale === 1 && result.width < result.height) {
+    assert(result.scrollY === 0 && result.scrollHeight <= result.height + 1, 'intro fits at first paint');
+    assert(result.copyBottom <= result.ctaTop && result.ctaBottom <= result.height + 1, 'copy and Begin are visible together');
+    assert(result.rows.every(row => row.height <= 60 && row.titleFont === 20 && Math.abs(row.descriptionFont - 13.6) < .1), 'compact row dimensions');
+    for (const id of ['introMoon', 'birthChart']) {
+      assert.equal(result.rows.find(row => row.id === id).lines, 1, id + ' description');
+    }
+  }
+  if (scale === 2) assert(result.rows.every(row => row.descriptionFont >= 27.1), 'descriptions scale with text enlargement');
+  return result;
+}
+
 // Real App + Onboarding + bundled backdrop together. SDK transport is synthetic.
 // Public fonts load only for an explicit visual capture.
 export async function checkOnboardingLayers(browser, origin, directory) {
@@ -27,7 +83,12 @@ export async function checkOnboardingLayers(browser, origin, directory) {
       }
       const asset=assets.get(url.href); return route.fulfill({status:200,contentType:asset.contentType,body:asset.body});
     });
-    const resetText = () => page.evaluate(()=>document.querySelectorAll('body *').forEach(el=>{if(el instanceof HTMLElement)el.style.removeProperty('font-size');}));
+    const resetText = () => page.evaluate(() => {
+      for (const element of document.querySelectorAll('[data-layer-font-size]')) {
+        element.style.fontSize = element.dataset.layerFontSize;
+        delete element.dataset.layerFontSize;
+      }
+    });
     const prepare = async () => {
       if (directory) {
         await page.evaluate(href=>{if(!document.querySelector('[data-layer-font]')){const link=document.createElement('link');link.rel='stylesheet';link.href=href;link.dataset.layerFont='true';document.head.append(link);}},fontCss);
@@ -35,7 +96,15 @@ export async function checkOnboardingLayers(browser, origin, directory) {
         await page.evaluate(()=>document.fonts.ready);
         await loadAppBackdrop(page);
       }
-      await resetText(); if(scale===2)await doubleText(page);
+      if (scale === 2) {
+        // Restore authored inline sizes when leaving a zoomed step.
+        await page.evaluate(() => {
+          for (const element of document.querySelectorAll('body *')) {
+            if (element instanceof HTMLElement) element.dataset.layerFontSize = element.style.fontSize;
+          }
+        });
+        await doubleText(page);
+      }
     };
     const inspect = async () => page.evaluate(()=>{
       const box = el=>{const r=el.getBoundingClientRect();return {x:r.x,y:r.y+scrollY,width:r.width,height:r.height};};
@@ -55,7 +124,7 @@ export async function checkOnboardingLayers(browser, origin, directory) {
         background:{position:css.position,y:layer.getBoundingClientRect().y,height:layer.getBoundingClientRect().height,image:art.backgroundImage,repeat:art.backgroundRepeat,size:art.backgroundSize,mask:art.maskImage},
         light:!document.documentElement.classList.contains('dark'),width:innerWidth,scrollWidth:document.documentElement.scrollWidth,scrollY,maxScroll:document.documentElement.scrollHeight-innerHeight,
         title:box(document.querySelector('h1')),card:box(document.querySelector('.shinka-intro-shell')),space:space?box(space):null,
-        rowIcons:document.querySelectorAll('[data-intro-row] svg').length,
+        intro:!!document.querySelector('[data-onboarding-intro]'),rowIcons:document.querySelectorAll('[data-intro-row] svg').length,
         controls:[...document.querySelectorAll('main input,main button,main label')].map(el=>({key:el.id||el.getAttribute('aria-label')||el.textContent.trim(),...box(el)}))};
     });
     const verify = value => {
@@ -64,7 +133,8 @@ export async function checkOnboardingLayers(browser, origin, directory) {
       assert.equal(value.background.position,'fixed');assert.equal(value.background.y,0);
       assert.equal(value.background.size,'contain');assert.equal(value.background.repeat,'no-repeat');
       assert(value.scrollWidth<=value.width+1,'no horizontal overflow');
-      assert(value.space && Math.abs(value.space.width-240)<1 && Math.abs(value.space.height-240)<1,'former 240px square layout slot preserved');
+      if(value.intro)assert.equal(value.space,null,'intro reserves only the logo height');
+      else assert(value.space && Math.abs(value.space.width-240)<1 && Math.abs(value.space.height-240)<1,'ON-02 through ON-05 retain the 240px slot');
     };
     const visit = async step => {
       if(step===1)await page.goto(`${origin}/?appFixture=1&sdkSession=anonymous`);
@@ -77,6 +147,22 @@ export async function checkOnboardingLayers(browser, origin, directory) {
     try {
       for(const step of [1,2,3,4,5]) {
         await resetText();await visit(step);
+        const intro = step === 1 ? await checkIntroLayout(page, scale) : null;
+        let safeAreaIntro;
+        if (intro && language === 'tr' && width === 390 && scale === 1) {
+          await page.evaluate(() => {
+            document.documentElement.style.setProperty('--safe-top', '47px');
+            document.documentElement.style.setProperty('--safe-bottom', '34px');
+          });
+          try {
+            safeAreaIntro = await checkIntroLayout(page, scale);
+          } finally {
+            await page.evaluate(() => {
+              document.documentElement.style.removeProperty('--safe-top');
+              document.documentElement.style.removeProperty('--safe-bottom');
+            });
+          }
+        }
         const views=[];
         for(const [label,fraction] of [['top',0],['middle',0.5],['bottom',1]]) {
           await page.evaluate(f=>scrollTo(0,(document.documentElement.scrollHeight-innerHeight)*f),fraction);
@@ -103,7 +189,7 @@ export async function checkOnboardingLayers(browser, origin, directory) {
           if(step===3) {assert.equal(await page.locator('[data-provider]').count(),0);await page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true}).click();await page.locator('#display_name').waitFor();assert.equal(await page.locator('#display_name').inputValue(),'Ada');}
           if(step===4) {await page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true}).click();await page.locator('#birth_date').waitFor();assert.equal(await page.locator('#birth_date').inputValue(),'1990-01-01');assert.equal(await page.locator('#birth_time').inputValue(),'10:30');}
         }
-        results.push({language,width,height,textScale:scale,step,passed:true,views,keyboard:'FOCUS_AND_REDUCED_VIEWPORT_ONLY'});
+        results.push({language,width,height,textScale:scale,step,passed:true,views,...(intro?{intro,safeAreaIntro}:{}),keyboard:'FOCUS_AND_REDUCED_VIEWPORT_ONLY'});
       }
       await page.setViewportSize({width:height,height:width});verify(await inspect());
       await page.setViewportSize({width,height});verify(await inspect());

@@ -132,6 +132,7 @@ export default function OnboardingScreen({
   if (!authenticated && !["UNAUTHENTICATED_INTRO", "UNAUTHENTICATED_SIGN_IN"].includes(state)) return null;
   const screen = SCREENS[state] || {};
   const step = screen.step;
+  const intro = step === 1;
   const airy = Boolean(step);
   const body = () => {
     if (state === "UNAUTHENTICATED_INTRO")
@@ -228,24 +229,27 @@ export default function OnboardingScreen({
   return (
     <PageContainer className="shinka-onboarding" surface="section">
       <main
-        className="mx-auto max-w-md space-y-6 py-6"
+        className={`mx-auto max-w-md ${intro ? "relative space-y-2" : "space-y-6 py-6"}`}
+        style={intro ? { paddingTop: "calc(8px + min(37.5vw, 21.2vh) + var(--safe-top) - max(24px, var(--safe-top)))" } : undefined}
         data-onboarding-state={state}
         lang={language}
       >
-        <div className="grid grid-cols-[minmax(2.75rem,1fr)_auto_minmax(2.75rem,1fr)] items-center gap-2">
-          <div>
-            {screen.back && (
-              <ShinkaButton variant="ghost" aria-label={t("back")} data-onboarding-back disabled={busy} onClick={() => {
-                if (state === "FIRST_SHINKA_DEPENDENCY" || state === "AUTHENTICATED_PROFILE_REQUIRED" || state === "AUTHENTICATED_NAME_REQUIRED") resume.current = state;
-                onState(state === "AUTHENTICATED_PROFILE_REQUIRED" && !profile ? "AUTHENTICATED_NAME_REQUIRED" : screen.back);
-              }}>
-                <ChevronLeft aria-hidden="true" className="h-5 w-5" />
-              </ShinkaButton>
-            )}
+        {!intro && (
+          <div className="grid items-center gap-2" style={{ gridTemplateColumns: "minmax(2.75rem,1fr) auto minmax(2.75rem,1fr)" }}>
+            <div>
+              {screen.back && (
+                <ShinkaButton variant="ghost" aria-label={t("back")} data-onboarding-back disabled={busy} onClick={() => {
+                  if (state === "FIRST_SHINKA_DEPENDENCY" || state === "AUTHENTICATED_PROFILE_REQUIRED" || state === "AUTHENTICATED_NAME_REQUIRED") resume.current = state;
+                  onState(state === "AUTHENTICATED_PROFILE_REQUIRED" && !profile ? "AUTHENTICATED_NAME_REQUIRED" : screen.back);
+                }}>
+                  <ChevronLeft aria-hidden="true" className="h-5 w-5" />
+                </ShinkaButton>
+              )}
+            </div>
+            <span className="font-heading text-3xl text-shinka-plum-deep">Shinka</span>
+            <div aria-hidden="true" />
           </div>
-          <span className="font-heading text-3xl text-shinka-plum-deep">Shinka</span>
-          <div aria-hidden="true" />
-        </div>
+        )}
         <>
           {dependencies.length > 0 && (
             <div role="status" className="break-words text-shinka-small">
@@ -253,22 +257,22 @@ export default function OnboardingScreen({
             </div>
           )}
           {step && (
-            <p aria-hidden="true" className="text-shinka-small text-shinka-taupe" data-onboarding-step={step}>
+            <p aria-hidden="true" className={`${intro ? "absolute right-0 top-0 " : ""}text-shinka-small text-shinka-taupe`} data-onboarding-step={step}>
               {t("stepOf").replace("{n}", String(step))}
             </p>
           )}
-          {airy && <div className="shinka-onboarding-art-space" aria-hidden="true" />}
+          {airy && !intro && <div className="shinka-onboarding-art-space" aria-hidden="true" />}
           <div className={airy ? "space-y-2 text-center" : ""}>
             <h1
               ref={title}
               tabIndex={-1}
-              className={`font-heading text-shinka-h1 text-shinka-plum-deep outline-none ${airy ? "text-center" : ""} ${step === 1 || step === 4 ? "shinka-unframed-title" : ""}`}
+              className={`font-heading ${intro ? "text-shinka-h2" : "text-shinka-h1"} text-shinka-plum-deep outline-none ${airy ? "text-center" : ""} ${step === 1 || step === 4 ? "shinka-unframed-title" : ""}`}
             >
               {t(screen.title)}
             </h1>
             {screen.subtitle && <p className="text-shinka-taupe">{t(screen.subtitle)}</p>}
           </div>
-          <ShinkaCard surface={state === 'FIRST_SHINKA_DEPENDENCY' ? 'plain' : 'card'} className={airy ? "shinka-intro-shell" : ""}>
+          <ShinkaCard surface={airy || state === 'FIRST_SHINKA_DEPENDENCY' ? 'plain' : 'card'} padded={!airy} className={airy ? "shinka-intro-shell" : ""}>
             <div className="space-y-5" aria-busy={busy}>
               {body()}
               {error && !error.field && (

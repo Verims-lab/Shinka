@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-065
+**Current BuildMarker:** Buildmarker-066
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,6 +12,10 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 066 — ON-01 compact presentation
+
+Anchor the single bundled composition at the safe top left on ON-01. Keep the original logo fully colored and proportional. Reserve only its painted height and a small gap before the title. Keep the counter at the top right. Use the smaller heading token, compact three rows and the existing primary CTA. Moon and birth-chart descriptions fit on one line at the default text size on common portrait widths. At enlarged text or reduced height, copy can wrap and the document can scroll. [066 layout and verification](reports/SHINKA_ONBOARDING_INTRO_066.md)
 
 ## 065 — Shared branded screen background (2026-11-11)
 
