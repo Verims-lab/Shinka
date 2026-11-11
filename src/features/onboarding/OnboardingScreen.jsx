@@ -17,16 +17,15 @@ import {
 import { onboardingRequest, assertOnboardingProgress, isOnboardingPrivacyRestriction } from "@/services/onboardingService";
 import FirstShinka from '@/features/daily/FirstShinka';
 // Single screen metadata map (SRC-03 presentation + 2026-11-09 auth-first user decision). Five numbered main steps;
-// preparation/inactive are unnumbered interstitials. `back` is a pure local view change:
-// no logout, no OAuth restart, no write. ON-05 → ON-04 keeps the form values; re-saving
-// ON-04 is allowed server-side only while onboarding is unfinished.
+// Preparation/inactive are unnumbered. Back stays within the current session mode.
+// ON-05 → ON-04 preserves form values for an explicit profile correction.
 const SCREENS = {
   UNAUTHENTICATED_INTRO: { step: 1, title: "intro" },
-  AUTHENTICATED_NAME_REQUIRED: { step: 3, title: "nameTitle", subtitle: "nameSubtitle", back: "UNAUTHENTICATED_SIGN_IN" },
   UNAUTHENTICATED_SIGN_IN: { step: 2, title: "signIn", subtitle: "signInSubtitle", back: "UNAUTHENTICATED_INTRO" },
-  AUTHENTICATED_PROFILE_REQUIRED: { step: 4, title: "aboutTitle", subtitle: "aboutSubtitle", back: "UNAUTHENTICATED_SIGN_IN" },
+  AUTHENTICATED_NAME_REQUIRED: { step: 3, title: "nameTitle", subtitle: "nameSubtitle" },
+  AUTHENTICATED_PROFILE_REQUIRED: { step: 4, title: "aboutTitle", subtitle: "aboutSubtitle" },
   AUTHENTICATED_CYCLE_STEP: { step: 5, title: "cycle", subtitle: "cycleSubtitle", back: "AUTHENTICATED_PROFILE_REQUIRED" },
-  FIRST_SHINKA_DEPENDENCY: { title: "preparation", back: "UNAUTHENTICATED_SIGN_IN" },
+  FIRST_SHINKA_DEPENDENCY: { title: "preparation" },
   INACTIVE_ACCOUNT: { title: "inactive" },
 };
 
@@ -61,7 +60,7 @@ export default function OnboardingScreen({
   onSignOut = null,
 }) {
   const language = resolveLanguage(initialLanguage);
-  const resume = useRef("AUTHENTICATED_PROFILE_REQUIRED");
+  const [canReturnToName, setCanReturnToName] = useState(false);
   const [name, setName] = useState(
       () => profile?.display_name ?? "",
     ),
@@ -136,6 +135,7 @@ export default function OnboardingScreen({
     if (!mounted.current || ticket !== generation.current) return;
     assertOnboardingProgress(actionName, payload, result);
     if (result.profile) {
+      setCanReturnToName(false);
       setName(result.profile.display_name || "");
       setForm(value => ({ ...value, birth_date: result.profile.birth_date || "", birth_time: result.profile.birth_time || "" }));
     }
@@ -147,12 +147,22 @@ export default function OnboardingScreen({
   };
   const fieldError = (key) => <FieldError name={key} error={error} t={t} />;
   const formProps = { form, update, error, busy, t, today, run, submit };
-  if (!authenticated && !["UNAUTHENTICATED_INTRO", "UNAUTHENTICATED_SIGN_IN"].includes(state)) return null;
-  const screen = SCREENS[state] || {};
+  const screen = SCREENS[state];
+  const intro = state === "UNAUTHENTICATED_INTRO";
+  const anonymousSignIn = state === "UNAUTHENTICATED_SIGN_IN";
+  const anonymous = intro || anonymousSignIn;
+  if (!screen || anonymous === authenticated) return null;
   const step = screen.step;
-  const intro = step === 1;
-  const anonymousSignIn = step === 2 && !authenticated;
   const airy = Boolean(step);
+  // Only an unsaved name choice made in this mounted form can be revisited.
+  const back = state === "AUTHENTICATED_PROFILE_REQUIRED" && canReturnToName && !profile
+    ? "AUTHENTICATED_NAME_REQUIRED"
+    : screen.back;
+  const advanceName = (value) => {
+    setName(value ?? "");
+    setCanReturnToName(true);
+    onState("AUTHENTICATED_PROFILE_REQUIRED");
+  };
   const body = () => {
     if (state === "UNAUTHENTICATED_INTRO")
       return (
@@ -186,11 +196,7 @@ export default function OnboardingScreen({
           <ShinkaButton
             className="w-full"
             onClick={() =>
-              run(async () => {
-                const value = optionalName(nameDraft.current);
-                setName(value ?? "");
-                onState("AUTHENTICATED_PROFILE_REQUIRED");
-              })
+              run(async () => advanceName(optionalName(nameDraft.current)))
             }
           >
             {t("continue")}
@@ -201,18 +207,15 @@ export default function OnboardingScreen({
             disabled={busy || Boolean(name.trim())}
             onClick={() => run(async () => {
               if (nameDraft.current.trim()) return;
-              setName("");
-              onState("AUTHENTICATED_PROFILE_REQUIRED");
+              advanceName(null);
             })}
           >
             {t("preferNot")}
           </ShinkaButton>
         </>
       );
-    if (state === "UNAUTHENTICATED_SIGN_IN")
-      return authenticated
-        ? <><ShinkaButton className="w-full" onClick={() => onState(resume.current)}>{t("continue")}</ShinkaButton>{onSignOut && <ShinkaButton variant="secondary" className="w-full" disabled={busy} onClick={() => onSignOut()}>{t("signOut")}</ShinkaButton>}</>
-        : <SignIn language={language} authenticate={authenticate} onBusy={setBusy} />;
+    if (anonymousSignIn)
+      return <SignIn language={language} authenticate={authenticate} onBusy={setBusy} />;
     if (state === "AUTHENTICATED_PROFILE_REQUIRED")
       return (
         <ProfileForm
@@ -258,11 +261,8 @@ export default function OnboardingScreen({
         {!intro && (
           <div className="grid items-center gap-2" style={{ gridTemplateColumns: "minmax(2.75rem,1fr) auto minmax(2.75rem,1fr)" }}>
             <div>
-              {screen.back && (
-                <ShinkaButton variant="ghost" aria-label={t("back")} data-onboarding-back disabled={busy} onClick={() => {
-                  if (state === "FIRST_SHINKA_DEPENDENCY" || state === "AUTHENTICATED_PROFILE_REQUIRED" || state === "AUTHENTICATED_NAME_REQUIRED") resume.current = state;
-                  onState(state === "AUTHENTICATED_PROFILE_REQUIRED" && !profile ? "AUTHENTICATED_NAME_REQUIRED" : screen.back);
-                }}>
+              {back && (
+                <ShinkaButton variant="ghost" aria-label={t("back")} data-onboarding-back disabled={busy} onClick={() => onState(back)}>
                   <ChevronLeft aria-hidden="true" className="h-5 w-5" />
                 </ShinkaButton>
               )}
@@ -318,6 +318,9 @@ export default function OnboardingScreen({
                     {error.code}
                   </p>
                 </div>
+              )}
+              {authenticated && onSignOut && state !== "INACTIVE_ACCOUNT" && (
+                <ShinkaButton variant="secondary" className="w-full" disabled={busy} onClick={() => onSignOut()}>{t("signOut")}</ShinkaButton>
               )}
             </div>
           </ShinkaCard>

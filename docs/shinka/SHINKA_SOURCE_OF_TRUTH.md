@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-070
+**Current BuildMarker:** Buildmarker-071
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -12,13 +12,19 @@
 
 
 
-## 069 — Welcome authentication states and release evidence
+## 071 — Direct resumption after verified sign-in
+
+The owner's authenticated onboarding navigation request supersedes the signed-in Welcome and Continue behavior described in 061 and 068–070. ON-01 and ON-02 are anonymous entry screens. After admission, wait for verified owner progress and open ON-03, ON-04, ON-05, preparation or Home directly. Unavailable or inconsistent progress shows the existing Retry state. Lifecycle and privacy restrictions keep their existing routes.
+
+Back stays within the admitted form. ON-04 can return to a name draft from the current unsaved form. ON-05 can return to ON-04 for a profile correction. Direct ON-03, saved or reset ON-04 and preparation have no earlier form destination. A persisted NULL name counts as a completed choice. Cycle Skip reaches preparation for the current session. The verified first daily record remains the durable completion boundary. [071 delivery](reports/SHINKA_AUTHENTICATED_ONBOARDING_071.md)
+
+## Historical 069 — Welcome authentication states and release evidence
 
 On anonymous ON-02, Begin opens the 18+ declaration with Apple and Google. On authenticated Welcome, Continue resumes the admitted user's onboarding. The supplied Base44 Preview image shows the authenticated Continue screen. Record published visibility with the expected Buildmarker and a fresh anonymous session. The physical-device and real provider callback checks remain external. [069 investigation](reports/SHINKA_ONBOARDING_AUTH_069.md)
 
 ## 068 — Mobile sign-in visibility
 
-ON-02 after Begin displays the initially unchecked 18+ declaration and Apple and Google sign-in actions to anonymous users. The empty artwork slot gives the form priority on short portrait screens. A verified session follows the 061 routing decision. The authenticated Welcome screen uses Continue to restore the current onboarding state. [068 delivery](reports/SHINKA_ONBOARDING_SIGN_IN_068.md)
+ON-02 after Begin displays the initially unchecked 18+ declaration and Apple and Google sign-in actions to anonymous users. The empty artwork slot gives the form priority on short portrait screens. Direct authenticated resumption follows 071 above. [068 delivery](reports/SHINKA_ONBOARDING_SIGN_IN_068.md)
 
 ## 067 — First onboarding spacing
 

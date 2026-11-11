@@ -6,7 +6,9 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
-[069 Welcome authentication verification](docs/shinka/reports/SHINKA_ONBOARDING_AUTH_069.md) documents the authenticated Preview screen, the observed public release and the mandatory auth-first regression.
+[071 authenticated onboarding navigation](docs/shinka/reports/SHINKA_AUTHENTICATED_ONBOARDING_071.md) uses verified progress to open the remaining step or Home directly. The mandatory auth-first browser gate covers anonymous sign-in, held and invalid progress, retry, Back and optional steps.
+
+[069 Welcome authentication verification](docs/shinka/reports/SHINKA_ONBOARDING_AUTH_069.md) documents the historical Preview screen and public release observation.
 
 [068 mobile sign-in visibility](docs/shinka/reports/SHINKA_ONBOARDING_SIGN_IN_068.md) fits the 18+ declaration and both provider buttons into the first mobile portrait viewport on ON-02.
 
@@ -153,7 +155,7 @@ npm run build
 
 The CLI executes the comprehensive `src/foundation/tests` definitions; Health Center runs the declared in-app subset in a temporary local Chromium or WebKit harness. It renders real pages for DOM probes and substitutes only backend access with synthetic fixtures; it never contacts live Base44. Any failed test, Health evidence check or browser exception returns a non-zero exit code. Node must permit a loopback listener and the selected browser execution. Standard Playwright browser-cache configuration is supported.
 
-The full Foundation command includes the mandatory auth-first Welcome check. Use `FOUNDATION_AUTH_FIRST_ONLY=1 npm run test:foundation` for the focused run. For release acceptance, run `node scripts/checkPublishedOnboarding.mjs` from the release checkout after publication. It checks the live anonymous UI and expected Buildmarker in fresh mobile browser contexts using public assets, public settings and the anonymous session read. The separate real OAuth callback check is recorded under H06-007.
+The full Foundation command includes the mandatory auth-first onboarding check. Use `FOUNDATION_AUTH_FIRST_ONLY=1 npm run test:foundation` for the focused run. For release acceptance, run `node scripts/checkPublishedOnboarding.mjs` from the release checkout after publication. It checks the live anonymous UI and expected Buildmarker in fresh mobile browser contexts using public assets, public settings and the anonymous session read. The separate real OAuth callback check is recorded under H06-007.
 
 `security:deps` uses npm's native High threshold, including development dependencies: Critical/High or registry errors fail non-zero; remaining Moderate/Low findings still print. Run it for every package. Use `npm ci` for reproducible validation; do not edit the lockfile manually.
 

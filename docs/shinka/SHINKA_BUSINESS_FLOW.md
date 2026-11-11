@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-070
+**Current BuildMarker:** Buildmarker-071
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -27,6 +27,10 @@ Read-only inventory on 2026-11-11 found two RESET_ACTIVE/PROFILE receipts, not f
 Calendar edits existing period **start dates only**. One Save is exactly one add, edit or delete; edit preserves the native period ID and never becomes delete+add. A saved start initially selects deletion, then a different day selects movement; both are unsaved intentions until explicit Save/confirmation. Predictions and derived period days are not editable records. No end date, duration or multi-day/batch model is introduced.
 
 Status checking is now strictly read-only, including repeated checks and PENDING/ABSENT. A separate explicit continuation preserves the original action ID/revision/payload, rereads current receipt/guards and uses the remaining 20-second total budget. APPLIED never rewrites. Failed/expired/conflicting checks cannot create success or a new operation. Passive reopening remains read-only; a saved pending intent is recovered through the existing server projection. Consent, owner/ACTIVE, lifecycle, minimum15, owner today and OD-012 remain backend authorities. Tab/month navigation retains unsent drafts in memory; cancel clears them without writes; session end/reload does not persist them. Historical 056 combined-check wording is superseded only for this UI action separation.
+
+## 071 — Direct authenticated onboarding flow
+
+Anonymous visitors follow Introduction → 18+ and Apple/Google. After authentication, verified server progress opens the next incomplete form or preparation. Durable completion opens Home. A missing or inconsistent read stays in loading or Retry. Back follows the 071 session-scoped UX rules. Saved optional choices and server-owned lifecycle restrictions apply across reopen. [071 delivery](reports/SHINKA_AUTHENTICATED_ONBOARDING_071.md)
 
 ## 061 — Authentication before personal onboarding (2026-11-09)
 
@@ -145,9 +149,9 @@ Calendar uses backend now + validated request IANA/persisted fallback, never bod
 
 Saved preference is resolved on hydrate/reopen/reset; absent preference initializes from the browser language (TR/EN variants, otherwise EN). Old URL/transient language hints are ignored. ON-04 needs only valid adult DOB; blank time/place remain NULL, no GeoNames call/secret construction. Unselected typed place and partial time remain validation errors with clear/cancel paths.
 
-Preparation Back returns to authenticated welcome, keeping the form draft and resuming preparation on Continue. An issued daily request may still persist; old completion cannot navigate the hidden/replaced view. Retry starts a fresh bounded service invocation and rereads/reconciles today's stored candidate before generating. Only verified persistent daily result opens Home; no synthetic completion flag. Safe allowlisted error code supplements the existing localized error. Unknown outcome does not mean rollback. Same-day content, consent and health records remain governed by existing native rules. [036 single delivery report](reports/SHINKA_ONBOARDING_CLOSURE_036.md).
+Preparation stays in the admitted flow under 071. Retry starts a fresh bounded service invocation and rereads today's stored candidate before generating. A verified persistent daily result opens Home. Existing consent and same-day readback rules apply. [036 single delivery report](reports/SHINKA_ONBOARDING_CLOSURE_036.md)
 
-## Current onboarding flow and mutation boundary — 036
+## Historical onboarding flow and mutation boundary — 036
 
 ON-01→02→03→04→05→unnumbered ON-06→Home. Intro/Name/Back do not call auth or save. Name is optional, trimmed and ≤50 Unicode code points; explicit omission clears its transient value. 18+ is separate from health consent. ON-04 Back returns to a welcome view that retains the authenticated session and offers Continue back to the in-memory profile draft; it never invokes OAuth/logout. ON-05 Back edits only the unfinished profile and retains in-memory cycle input. Verified profile readback precedes ON-05; fulfilled/ambiguous responses cannot advance. UI state is never backend authority.
 

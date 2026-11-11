@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-070
+**Current BuildMarker:** Buildmarker-071
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -13,15 +13,21 @@
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
 
+## 071 — Session-scoped onboarding navigation
+
+Begin takes anonymous visitors to 2/5 with the unchecked 18+ declaration and both provider buttons. A verified session waits for server progress and goes directly to the remaining form, preparation or Home. Keep the 070 first-viewport ON-02 layout. The existing Sign out action is available in the signed-in steps and preparation.
+
+ON-02 Back opens ON-01. In a signed-in flow, Back can revisit the mounted name draft from ON-04 before the profile is saved, and ON-05 can reopen the profile with drafts intact. Direct ON-03, saved or reset ON-04 and preparation have no Back button. [071 delivery](reports/SHINKA_AUTHENTICATED_ONBOARDING_071.md)
+
 ## 070 — ON-02 first-viewport sign-in priority
 
-The empty artwork slot on the not-signed-in Welcome is a pure layout gap: the shared backdrop already paints the composition, so the slot now caps at 48px, may collapse to zero, and ON-02 uses a compact 12px stack rhythm. The 18+ declaration, Apple and Google therefore keep the first viewport on short mobile viewports, inside the Base44 Preview frame and at enlarged text, while the backdrop, wordmark, typography and control order are unchanged. Signing in, the 18+ gate and every other numbered step are untouched: a verified session still gets the existing authenticated Welcome (Continue resumes the form, no provider controls), and both branches keep the 2/5 counter. `/auth-shell-probe` now also reports `data-probe-viewport="IN_VIEW"` from the committed shell, so the running published app states whether the three controls are inside the visible viewport. [070 verification](reports/SHINKA_ONBOARDING_WELCOME_070.md)
+On anonymous Welcome, the shared backdrop paints the artwork. The empty layout slot can collapse to zero and caps at 48px. ON-02 keeps the 2/5 counter and a compact 12px stack so the 18+ declaration, Apple and Google stay reachable on short frames and with enlarged text. A verified session follows 071 above. The committed `/auth-shell-probe` reports whether the three controls fit inside the visible viewport through `data-probe-viewport`. [070 verification](reports/SHINKA_ONBOARDING_WELCOME_070.md)
 
-## 070 continuation — Sign out on the signed-in Welcome (2026-11-11)
+## Historical 070 continuation — Sign out on the signed-in Welcome (2026-11-11)
 
 The owner's 2026-11-11 report ("Apple and Google never appear in the preview") is a session-state fact, not a layering defect: with a verified session ON-02 renders the authenticated Welcome, which carried only Continue, so the provider actions could not appear there. The 070 layout already keeps both controls inside the first viewport whenever the anonymous branch renders. To make the sign-in screen reachable on a device whose session is open, the authenticated Welcome now shows one secondary `Sign out` / `Çıkış yap` action under Continue; it ends the session through the existing `logout()` boundary, which returns to `/login` and therefore renders the anonymous ON-02 with the 18+ declaration, Apple and Google. Nothing else changed: the anonymous branch, the age gate before any provider call, provider order, the `resume` Continue behavior, the 2/5 counter, copy and layout are untouched, and the action exists only on the authenticated variant.
 
-## 069 — ON-02 session-specific actions
+## Historical 069 — ON-02 session-specific actions
 
 Anonymous Welcome shows the 18+ declaration and both approved provider actions in the initial mobile viewport, with unobstructed touch targets. Authenticated Welcome shows Continue and resumes the current form. The onboarding shell exposes the canonical Buildmarker for read-only release verification. [069 verification](reports/SHINKA_ONBOARDING_AUTH_069.md)
 
@@ -70,7 +76,7 @@ Check status only reads the original receipt. APPLIED confirms only after matchi
 
 **Current order: ON-01 Introduction → ON-02 Welcome / Apple+Google and separate unchecked 18+ → verified server progress → ON-03 optional name → ON-04 personal details → ON-05 optional cycle → unnumbered preparation → Home.** Only 1–5 are numbered. Verified completed users see Home without a name/login flash; unresolved admission/progress shows neutral loading or Retry. Existing backgrounds, typography, light onboarding and saved-language rules stay unchanged.
 
-ON-02 Back returns to intro. ON-03 Back returns to authenticated welcome/Continue, without provider buttons or logout. Unsaved ON-04 Back returns to the current name draft; persisted/reset ON-04 and preparation retain authenticated welcome. ON-05 Back retains profile/cycle drafts. The name's associated inner label, optional/50-character rule and nonblank Skip guard are unchanged. The owner’s 2026-11-09 request supersedes older name-before-login mappings below; historical screenshots/source receipts remain historical.
+Back follows the session-scoped 071 decision above. The name's associated inner label, optional/50-character rule and nonblank Skip guard apply after admission. Historical screenshots and source receipts retain their original screen order.
 
 [061 implementation and execution](reports/SHINKA_AUTH_FIRST_ONBOARDING_061.md).
 
@@ -195,7 +201,7 @@ Calendar future cells remain browseable and selected is not recorded. Selected f
 
 BirthTimeField is a text HH:mm input (24-hour, no UTC conversion). 00:00/23:59 valid; partial/out-of-range input gets the existing TIME_INVALID copy and can be cleared. The icon is a labelled 44px button. The application dialog is portalled outside the profile form, constrained by viewport height with scrolling; Hour/Minute selects start empty unless an existing valid time exists. Only Set commits a valid draft. Cancel/Back/Escape preserve the prior value and restore trigger focus; Clear commits empty. Modal closes before page navigation; no hidden test language controls. Native birth-date calendar stays unchanged. New time helper copy is scoped to this user request and centralized EN/TR. All modal focus traps include editable controls. Physical Android/iOS acceptance is separate. [036 single delivery report](reports/SHINKA_ONBOARDING_CLOSURE_036.md).
 
-## Current onboarding interaction — 036
+## Historical onboarding interaction — 036
 
 The five numbered screens are Introduction, optional Name, Welcome/18+, Personal details, optional Cycle. Preparation, errors and inactive are unnumbered. ON-02/03/04/05 have visible accessible Back. ON-04 returns to an authenticated welcome: Continue restores the same form without OAuth/logout. ON-05→04→05 preserves entered cycle values while mounted. Reopen comes from backend state. Onboarding has no manual TR/EN controls. Saved preference precedes device TR/EN variants; unsupported device language falls back to EN. Propagated saved preference changes preserve drafts; You remains the preference editor.
 
@@ -352,8 +358,8 @@ Introduction → Welcome / Sign In → Optional name → Personal Details → Yo
 - ON-01 (user decision 2026-10-26): brand (036: automatic saved/device language, no TR/EN buttons) → single decorative moon/botanical composition in SectionBackdrop (054: no separate content image; empty 240px-square flow space retained) → centered unframed title "A gentle guide to your daily rhythm" / "Günlük ritmine nazik bir rehber" → intro paragraph → three rows together from first render (no carousel/auto-advance): Your cycle (Flower2) "Understand your unique rhythm"; The Moon (Moon) "Discover its influence on your day"; Your birth chart (Sun) "See the bigger picture about you" → primary Begin (→ ON-02 once). Rows sit on the watercolor shell (no single white card); vertical scroll on short screens; step indicator unchanged; no new consent/legal text. New TR strings (Döngün, Ay, descriptions, paragraph) approved by the user on 2026-10-26.
 - ON-03: authenticated optional name ≤50; Continue / Prefer not to say; blank not stored. The persistent Adın/Name label sits inside the existing soft framed-field container, above the input in normal flow; htmlFor/id association and given-name autocomplete remain. It is never a disappearing placeholder. Only one label; entered value never overlaps it, including 200% text. The wrapper keeps a visible focus-within ring; no duplicate outer label or inner ring.
 - ON-02: 18+ checkbox default empty; Apple/Google auth not started until checked; no warning on user cancel.
-- ON-01–ON-05 shared presentation (user decision 2026-10-26, five reference images): one shell/header (back slot · centred Shinka · empty balance slot), "N of 5" counter, one shared SectionBackdrop moon/botanical composition on every numbered step (054: no second scrolling bitmap), centred title + subtitle (ON-03 nameSubtitle, ON-02 signInSubtitle, ON-04 aboutSubtitle, ON-05 cycleSubtitle), plum primary buttons. Pre-auth Back appears on ON-02 (→ON-01); ON-03 is authenticated and returns to welcome/Continue without restarting OAuth. ON-05 → ON-04 back (user decision 2026-10-26) is a local view change that keeps entered values; re-saving ON-04 updates the profile server-side only while no daily message exists (onboarding unfinished), otherwise ONBOARDING_ALREADY_SAVED. 061: unsaved ON-04 Back returns to authenticated name; saved/reset profiles return to authenticated welcome/Continue. ON-05 primary is Finish/Bitir (same save); 5/28 are placeholders only. Account & Privacy is not shown on any onboarding header; it stays under You/Profile and its direct route. Legal links omitted (no approved targets).
-- ON-04 presentation (036 current): the unframed Base44 title and existing subtitle/moon/botanical shell remain; framed date is required, time and birthplace optional. Birthplace is the single non-modal autocomplete defined above. The 036 user decision supersedes the old no-Back rule: 061: saved/reset profiles return to authenticated welcome with session-preserving Continue; new unsaved profile forms return to the authenticated name draft. The 035 report retains the historical decision. The prior inline country/region/settlement panel is historical, superseded by the attached GeoNames decision.
+- ON-02–ON-05 use a shared header, centered title and subtitle, numbered counters and plum primary buttons over the shared backdrop. Back follows 071. ON-05 → ON-04 keeps entered values for an explicit profile correction. Re-saving ON-04 updates the server profile only while onboarding is unfinished, otherwise ONBOARDING_ALREADY_SAVED. The ON-05 primary action is Finish/Bitir and 5/28 are placeholders. Account & Privacy stays under You/Profile and its direct route. Legal links await approved destinations.
+- ON-04 presentation uses the unframed Base44 title and the existing subtitle and botanical shell. The framed date is required. Time and the single non-modal birthplace autocomplete are optional.
 - ON-04: DOB required; Birth time optional 24h HH:mm; Birthplace optional A/P GeoNames search and explicit selection; birth_date alone determines Sun; missing time stays NULL, no 00:00 fallback; no UNCERTAIN.
 - ON-05: Last period start date, Period duration, Cycle length; 5/28 faint placeholders only; Skip for now; independent explicit consent checkbox when data entered.
 - ON-06: "A little moment, just for you" / "We’re preparing your first Shinka insight"; first pair prepared once, then Home.

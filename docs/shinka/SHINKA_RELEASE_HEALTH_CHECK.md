@@ -2,16 +2,22 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-070
+**Current BuildMarker:** Buildmarker-071
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-069.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-070.0. Repository, synthetic and external evidence have separate results.
 
 
 
-## 069 — Mandatory Welcome authentication gate
+## 071 — Mandatory verified onboarding navigation gate
+
+Buildmarker-071 / HC-070.0 retains 186 cases. H06-006 and H07-012 cover verified resumption, preserved optional choices and durable Home entry. H13-012 and H13-021 cover session-scoped navigation and anonymous ON-02 visibility. The server plan now includes H13-021, and the local Health smoke requires it alongside H06-006 and H07-012. H05-009 retains the approved content validation policy for this package and 070.
+
+Run the mandatory Foundation browser gate in Chromium and WebKit. `checkAuthFirstOnboarding` exercises Begin to 2/5, the 18+ gate and both provider dispatches, direct admission to 3/5, 4/5, 5/5, preparation or Home, held hydration and reload, invalid and unavailable progress with Retry, optional name and cycle choices, and browser and form Back without an ON-01/02 flash for an admitted session. `checkOnboardingLayers` retains the mobile viewport and accessibility coverage. Record local synthetic and deployed evidence separately. [071 delivery](reports/SHINKA_AUTHENTICATED_ONBOARDING_071.md)
+
+## 069–070 — Historical Welcome authentication gate
 
 Buildmarker-070 / HC-069.0 adds H13-021, the build-time ON-02 sign-in contract (anonymous branch renders SignIn; unchecked 18+ declaration; both provider actions; provider auth refused before consent; artwork slot capped at 48px). `checkOnboardingLayers` now fails when the unpainted slot exceeds 48px above the controls, and `/auth-shell-probe` exposes `data-probe-viewport` so the published app reports whether the three controls are inside the visible viewport. Catalog cases: 186. [070 evidence](reports/SHINKA_ONBOARDING_WELCOME_070.md)
 

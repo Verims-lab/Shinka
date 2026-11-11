@@ -28,6 +28,7 @@ export async function checkInAppHealth(page, origin) {
   for(const row of result.cases)assert.equal(row.status,unavailable.has(row.id)?'BLOCKED':'PASS',`${row.id}: ${row.reason}; ${JSON.stringify(row.actual)}`);
   assert.equal(result.scope,'IN_APP_HEALTH');assert.equal(result.frames,0);
   for(const id of ['H03-007','H13-012']){assert(!result.cases.some(c=>c.id===id));assert(result.transfers.includes(id));}
+  for(const id of ['H06-006','H07-012','H13-021'])assert.equal(result.cases.find(c=>c.id===id)?.status,'PASS',`${id} is required in the in-app Health plan`);
   assert.equal(result.cases.find(c=>c.id==='H10-003').status,'PASS');
   assert.equal(result.cases.find(c=>c.id==='H13-004').actual.width,page.viewportSize().width);
   assert(!result.cases.some(c=>/TIMEOUT/.test(c.reason||'')));
