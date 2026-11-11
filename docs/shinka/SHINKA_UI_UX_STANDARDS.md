@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-069
+**Current BuildMarker:** Buildmarker-070
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,6 +12,10 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 070 — ON-02 first-viewport sign-in priority
+
+The empty artwork slot on the not-signed-in Welcome is a pure layout gap: the shared backdrop already paints the composition, so the slot now caps at 48px, may collapse to zero, and ON-02 uses a compact 12px stack rhythm. The 18+ declaration, Apple and Google therefore keep the first viewport on short mobile viewports, inside the Base44 Preview frame and at enlarged text, while the backdrop, wordmark, typography and control order are unchanged. Signing in, the 18+ gate and every other numbered step are untouched: a verified session still gets the existing authenticated Welcome (Continue resumes the form, no provider controls), and both branches keep the 2/5 counter. `/auth-shell-probe` now also reports `data-probe-viewport="IN_VIEW"` from the committed shell, so the running published app states whether the three controls are inside the visible viewport. [070 verification](reports/SHINKA_ONBOARDING_WELCOME_070.md)
 
 ## 069 — ON-02 session-specific actions
 

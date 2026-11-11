@@ -47,4 +47,8 @@ export const H13_STATIC_CASES = [
       probe.remove();
     }
   }, { runnerType: RUNNER.DOM, classification: CLASS.SYNTHETIC_RUNTIME }),
+  c("H13-021", "Anonymous Welcome sign-in controls contract", "Build-time inspection of the shipped ON-02 sources: the anonymous branch renders SignIn, which contains the unchecked 18+ declaration and both Apple and Google provider actions; provider auth is refused before the declaration; the unpainted artwork slot stays capped so the controls keep the first viewport. checkAuthFirstOnboarding additionally drives Begin to 2/5 in the real App and requires hit-test visibility, zero OAuth dispatch before consent and both provider dispatches after it.", async (ctx) => {
+    const signIn = (await ctx.inspection()).onboarding.signIn;
+    return verdict(signIn.ok, ev(CLASS.STATIC, "src/features/onboarding/OnboardingScreen.jsx + SignIn.jsx + src/services/authService.js", signIn, { anonymousBranch: true, ageDeclaration: true, appleProvider: true, googleProvider: true, ageGateBeforeAuth: true, artSlotCapped: true }, "Source contract; committed UI and provider transport are covered by the local browser matrix and the /auth-shell-probe viewport attribute"));
+  }),
 ];

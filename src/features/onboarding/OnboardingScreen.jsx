@@ -40,7 +40,10 @@ const INTRO_LAYOUT = {
 };
 // Keep the safe padding below the form when larger text needs document scrolling.
 const SIGN_IN_LAYOUT = { height: ONBOARDING_VIEWPORT_HEIGHT, minHeight: "fit-content" };
-const SIGN_IN_ART_SPACE = { flex: "1 1 0px", maxHeight: 240, aspectRatio: "auto" };
+// The artwork slot paints nothing (the shared backdrop owns the composition). On ON-02 it must
+// never reserve a tall gap: the 18+ declaration and both provider buttons come first on short
+// viewports, so the slot is capped low and may collapse to zero.
+const SIGN_IN_ART_SPACE = { flex: "1 1 0px", minHeight: 0, maxHeight: 48, aspectRatio: "auto" };
 
 /** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,authenticated?:boolean,onRestricted?:Function,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
 export default function OnboardingScreen({
@@ -244,7 +247,7 @@ export default function OnboardingScreen({
   return (
     <PageContainer className="shinka-onboarding" surface="section">
       <main
-        className={`mx-auto max-w-md${intro || anonymousSignIn ? " flex flex-col" : ""}${intro ? "" : " space-y-6 py-6"}`}
+        className={`mx-auto max-w-md${intro || anonymousSignIn ? " flex flex-col" : ""}${intro ? "" : anonymousSignIn ? " space-y-3 py-2" : " space-y-6 py-6"}`}
         style={intro ? INTRO_LAYOUT : anonymousSignIn ? SIGN_IN_LAYOUT : undefined}
         data-onboarding-step={intro ? step : undefined}
         data-onboarding-state={state}

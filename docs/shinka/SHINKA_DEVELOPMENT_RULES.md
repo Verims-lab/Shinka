@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-069
+**Current BuildMarker:** Buildmarker-070
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
@@ -11,6 +11,8 @@
 
 
 ## 069 — Welcome authentication regression and published check
+
+Start 070 from `4b33595`. Record Buildmarker-070 / HC-069.0 with `recordBuild` and retain 066–070. The ON-02 contract is now guarded twice: H13-021 for the shipped source and `checkSignInLayout`'s artwork-slot cap for the real App render. Read the live state from `/auth-shell-probe` (`data-probe-status`, `data-probe-viewport`) on the published origin before claiming the published controls are visible. [070 evidence](reports/SHINKA_ONBOARDING_WELCOME_070.md)
 
 Start 069 on `AydanTest` from `6504ced`. Record Buildmarker-069 / HC-068.0 with `recordBuild` and retain 065–069. Require the Foundation auth-first browser gate in Chromium and WebKit. Use the read-only published smoke from the expected release checkout after owner publication. The user verifies real OAuth and physical-device behavior. [069 evidence](reports/SHINKA_ONBOARDING_AUTH_069.md)
 

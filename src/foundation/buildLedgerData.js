@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-065",
-    "package_name": "Shared branded screen background",
-    "package_type": "TARGETED_UI",
-    "created_at": "2026-11-11T11:26:02Z",
-    "health_catalog_version": "HC-064.0",
-    "short_summary": "One original bundled PNG across user-facing Shinka routes. The integrated AydanTest checkout retains the 064 admin reset retirement and historical receipts.",
-    "full_health_status": "NOT_RUN",
-    "notes": "HC-064.0 updates H13-012, H13-020 and H05-009. Standalone and integrated local evidence is recorded in reports/SHINKA_APP_BACKGROUND_065.md. Hosted Full Health and physical-device acceptance remain separate."
-  },
-  {
     "build_marker": "Buildmarker-066",
     "package_name": "Compact first onboarding screen",
     "package_type": "TARGETED_UI",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Trace anonymous and authenticated Welcome, verify both provider dispatches and check the expected published build.",
     "full_health_status": "NOT_RUN",
     "notes": "Preview shows authenticated Continue. Published 068 passed all eight anonymous visibility cases per engine. The 069 auth-first gate passed 16/16 in both engines. See reports/SHINKA_ONBOARDING_AUTH_069.md for full-suite results and the publication gate."
+  },
+  {
+    "build_marker": "Buildmarker-070",
+    "package_name": "ON-02 first-viewport sign-in priority",
+    "package_type": "TARGETED_UI",
+    "created_at": "2026-11-11T18:20:00Z",
+    "health_catalog_version": "HC-069.0",
+    "short_summary": "The unpainted ON-02 artwork slot caps at 48px and the anonymous Welcome uses a compact stack, so the 18+ declaration and both approved provider actions keep the first viewport on short mobile frames and enlarged text.",
+    "full_health_status": "NOT_RUN",
+    "notes": "HC-069.0 adds H13-021 (build-time ON-02 sign-in contract) and extends checkSignInLayout with the artwork-slot cap. The committed /auth-shell-probe now publishes data-probe-viewport so the running app reports whether the declaration and both provider buttons are inside the visible viewport. Live published 069 reads (/login DOM, probe READY) confirmed the controls existed in the bundle before this change; browser matrices and physical-device acceptance for 070 are NOT_RUN in this sandbox. Details: reports/SHINKA_ONBOARDING_WELCOME_070.md."
   }
 ];

@@ -115,6 +115,7 @@ export async function checkSignInLayout(page, scale = 1) {
       viewportLeft: viewport?.offsetLeft ?? 0, viewportTop: viewport?.offsetTop ?? 0,
       scrollHeight: document.documentElement.scrollHeight,
       paddingTop: parseFloat(shell.paddingTop), paddingBottom: parseFloat(shell.paddingBottom),
+      artSpace: main?.querySelector('.shinka-onboarding-art-space')?.getBoundingClientRect().height ?? 0,
     };
   });
   assert(result, 'sign-in renders a labelled 18+ checkbox');
@@ -123,6 +124,9 @@ export async function checkSignInLayout(page, scale = 1) {
   assert.deepEqual(result.providers, ['apple', 'google']);
   assert(result.enabled && !result.checked, 'age confirmation starts unchecked with accessible provider actions');
   assert(result.controls.every(control => control.visible && control.height >= 44), 'visible controls retain their touch targets');
+  // Regression guard for the 068/070 defect: the unpainted artwork slot must never
+  // reserve a tall gap that pushes the three sign-in controls below the fold.
+  assert(result.artSpace <= 48, 'the empty ON-02 artwork slot stays capped above the sign-in controls');
   const last = result.controls.at(-1);
   assert(last.bottom + result.scrollY + result.paddingBottom <= result.scrollHeight + 1, 'Google remains reachable above the bottom safe padding');
   if (scale === 1 && result.width < result.height) {
