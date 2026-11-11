@@ -6,7 +6,8 @@ export function inspectAuthShell(root) {
   let geometry=null,inView=null;
   if(shell&&container){
     const buttons=Array.from(shell.querySelectorAll('[data-provider]')),win=root.ownerDocument.defaultView,style=win.getComputedStyle(container);
-    const controls=[root.querySelector('#age-declaration')?.labels?.[0],...buttons].filter(Boolean).map(el=>el.getBoundingClientRect());
+    const age=shell.querySelector('#age-declaration'),ageLabel=age instanceof win.HTMLInputElement?age.labels?.[0]??null:null;
+    const controls=[ageLabel,...buttons].filter(el=>el!==null).map(el=>el.getBoundingClientRect());
     geometry={providers:buttons.map(b=>b.getAttribute('data-provider')).sort().join(),heights:buttons.map(b=>b.getBoundingClientRect().height),padding:[style.paddingLeft,style.paddingRight],passwords:root.querySelectorAll('input[type="password"]').length,ageChecked:root.querySelector('input')?.checked};
     // Real running-app evidence: the 18+ declaration and both providers are inside the
     // visible viewport, not merely present in the DOM.

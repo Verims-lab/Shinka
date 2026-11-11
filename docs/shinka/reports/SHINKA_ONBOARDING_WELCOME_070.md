@@ -1,6 +1,6 @@
 # 070 — ON-02 sign-in visibility: investigation and first-viewport priority
 
-Buildmarker-070 / HC-069.0. Repository state: `4b33595` (clean tree).
+Buildmarker-070 / HC-069.0. Repository state: `f87af36` plus the working-tree type fix in `src/foundation/probes/inspectAuthShell.js`.
 
 ## 1. What was actually running
 
@@ -29,7 +29,8 @@ So the anonymous ON-02 markup and its committed geometry are present in the publ
 ## 4. Verification performed in this package
 
 - Live published reads above (`/login` DOM, `/auth-shell-probe` status) — the shipped 069 bundle contains the three controls.
-- `npm run build`, `npm run lint`, `npm run typecheck` and the repository Health generator were run from this checkout.
+- Local gates on the final tree, all PASS: `npm run typecheck` (no diagnostics after the `HTMLInputElement` narrowing in `inspectAuthShell`), `npm run lint` (no findings), `npm run build` (`dist/index.html` written), `node scripts/checkOnboardingLayers.mjs` (exit 0), `npm run health:repo` and the static-evidence check (`signIn.artSlotCap=48`, `artSlotCapped=true`, marker single-source, docs aligned, ledger generated history matches).
+- `npm run test:foundation` static scope PASS: the actual `onboarding` and `you` TS entry handlers reject all 4 negative requests with zero quota/provider/secret access, and both SDK loopback checks (`SDK02`, `SDK03`) pass. `hostedCleanupVerified` and `hostedMutationVerified` remain false: no hosted mutation is claimed.
 - The browser matrices (`checkAuthFirstOnboarding`, `checkOnboardingLayers`, `checkPublishedOnboarding`, the 320/360/390/430 onboarding layer matrix) require a Playwright browser binary that this sandbox cannot install; they are the gates to run in the release environment and are **NOT_RUN** here. Physical-device acceptance is H13-013 and remains open.
 
 ## 5. What the owner sees after publication
