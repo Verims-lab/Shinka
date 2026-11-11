@@ -6,6 +6,8 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
+[065 shared screen background](docs/shinka/reports/SHINKA_APP_BACKGROUND_065.md) uses the original bundled Shinka PNG across user-facing routes, including onboarding, sign-in and account privacy. The application owns one fixed decorative layer and the navigation background lets it show through. Existing logo text remains visible. The focused local check is `FOUNDATION_BACKDROP_ONLY=1 npm run test:foundation`; set `FOUNDATION_BACKDROP_DIR` to an absolute output directory for screenshots.
+
 [064 Test Tools retirement](docs/shinka/reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md): admin reset is removed from UI and backend commands. Existing receipts remain readable/fenced; the two authorized live removals are still blocked by active legacy receipts. No schema push is required.
 
 ## Test auth-first onboarding (Buildmarker-061 / HC-060.0)

@@ -1,16 +1,15 @@
 import assert from 'node:assert/strict';
 import { mkdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { BACKGROUND_ASSETS } from '../src/foundation/sectionBackgrounds.js';
+import { loadAppBackdrop } from './checkAppBackdrop.mjs';
 import { doubleText } from './mobileSurfaceMeasurements.mjs';
 import { checkOnboardingLayers } from './checkOnboardingLayers.mjs';
 
-// Real App/pages, synthetic SDK only. Optional captures load only existing public
-// artwork/fonts; no Base44 application API or provider call is allowed.
+// Real App/pages, synthetic SDK only. The bundled art loads locally.
+// Optional captures also allow the app fonts.
 export async function checkOnboardingPresentation(browser, origin, directory) {
  const html=await readFile('index.html','utf8');
  const fontCss=html.match(/href="(https:\/\/fonts.googleapis.com\/css2[^\"]+)"/)[1];
- const assets=new Set([BACKGROUND_ASSETS.onboardingMoon,fontCss]);
  const results=[];
  if(directory)await mkdir(directory,{recursive:true});
  for(const language of ['tr','en'])for(const width of [360,390])for(const textScale of [1,2]){
@@ -19,7 +18,7 @@ export async function checkOnboardingPresentation(browser, origin, directory) {
   page.on('pageerror',e=>errors.push(e.message));
   await page.route('**/*',route=>{
    const url=new URL(route.request().url());
-   const visual=directory&&route.request().method()==='GET'&&(assets.has(url.href)||(url.origin==='https://fonts.gstatic.com'&&url.pathname.startsWith('/s/')));
+   const visual=directory&&route.request().method()==='GET'&&(url.href===fontCss||(url.origin==='https://fonts.gstatic.com'&&url.pathname.startsWith('/s/')));
    return url.origin===origin||visual?route.continue():route.abort();
   });
   const prepare=async()=>{
@@ -27,7 +26,7 @@ export async function checkOnboardingPresentation(browser, origin, directory) {
     await page.evaluate(href=>{if(!document.querySelector('link[data-capture-font]')){const link=document.createElement('link');link.rel='stylesheet';link.href=href;link.dataset.captureFont='true';document.head.append(link);}},fontCss);
     await page.waitForFunction(()=>document.querySelector('link[data-capture-font]')?.sheet);
     await page.evaluate(()=>document.fonts.ready);
-    await page.evaluate(url=>new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(true);img.onerror=()=>reject(new Error('BACKGROUND_ASSET_UNAVAILABLE'));img.src=url;}),BACKGROUND_ASSETS.onboardingMoon);
+    await loadAppBackdrop(page);
    }
    if(textScale===2)await doubleText(page);
   };

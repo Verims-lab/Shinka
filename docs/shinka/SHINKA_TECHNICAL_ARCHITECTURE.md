@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-064
+**Current BuildMarker:** Buildmarker-065
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -11,6 +11,11 @@
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
+
+
+## 065 — Shared backdrop ownership
+
+`App.jsx` mounts one `AppBackdrop` alongside `RouteMotion`, covering user-facing loading and error states as well as completed routes. `sectionBackground.css` owns the asset URL, proportional viewport fit, fallback and navigation paint. The 046 per-section CDN mapping is retired. The backend and the saved account theme resolver retain their existing contracts.
 
 
 ## 064 — Admin reset retirement and selected-user removal (2026-11-11)
@@ -130,7 +135,7 @@ The existing internalHealth dispatcher gains only dailyReferenceMigration with a
 
 The 045 logical ID model and compatible physical schema remain distinct. Final removal requires hosted all-page absence plus unchanged assignments/notification references, not a synthetic migration PASS; the current execution record is linked from [045](reports/SHINKA_ID_MODEL_045.md).
 
-## 046 — Section backdrop ownership
+## Historical 046 — Section backdrop ownership (superseded by 065)
 `sectionBackgrounds.js` maps five logical sections to two CDN assets; `SectionBackdrop` is the single fixed layer per section, styled in `sectionBackground.css`. `PageContainer` and section roots are transparent. Health H13-020 verifies mapping and single ownership.
 
 ## 045 — ID reads, projections and maintenance boundary

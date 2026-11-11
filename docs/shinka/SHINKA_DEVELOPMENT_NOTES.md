@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-064
+**Current BuildMarker:** Buildmarker-065
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 065 — Shared branded screen background
+
+The supplied PNG is bundled byte-for-byte on `AydanTest`. One fixed layer covers user-facing screens and the navigation safe area. Existing wordmarks remain, and a localized wash improves contrast where they overlap the artwork. The delivery report records the standalone backdrop results and the checks on the integrated branch. [065 delivery](reports/SHINKA_APP_BACKGROUND_065.md).
 
 ## 064 — Two exact test accounts: one-off maintenance closure (2026-11-11)
 

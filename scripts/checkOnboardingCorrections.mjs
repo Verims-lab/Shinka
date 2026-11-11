@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { BACKGROUND_ASSETS } from '../src/foundation/sectionBackgrounds.js';
+import { loadAppBackdrop } from './checkAppBackdrop.mjs';
 import { FIRST_CONTENT_SOURCE } from '../base44/shared/firstContentSource.js';
 import { doubleText } from './mobileSurfaceMeasurements.mjs';
 
@@ -15,10 +15,10 @@ export async function checkOnboardingCorrections(browser, origin, directory) {
   for(const language of ['tr','en'])for(const [width,height] of [[320,568],[390,844]])for(const scale of [1,2]) {
     const context=await browser.newContext({locale:language,viewport:{width,height},colorScheme:'dark'}),page=await context.newPage(),errors=[];
     page.on('pageerror',e=>errors.push(e.message));const copy=language==='tr'?{AGE_UNDER_18:'Shinka yalnızca 18 yaş ve üzeri kullanıcılar içindir',GEONAMES_QUOTA_NOT_READY:'Yer araması henüz kullanıma hazır değil.'}:{AGE_UNDER_18:'Shinka is available for users aged 18 and over',GEONAMES_QUOTA_NOT_READY:'Place search is not set up yet.'};
-    await page.route('**/*',r=>{const u=new URL(r.request().url());const visual=directory&&r.request().method()==='GET'&&([BACKGROUND_ASSETS.onboardingMoon,BACKGROUND_ASSETS.watercolor,font].includes(u.href)||u.origin==='https://fonts.gstatic.com');return u.origin===origin||visual?r.continue():r.abort();});
+    await page.route('**/*',r=>{const u=new URL(r.request().url());const visual=directory&&r.request().method()==='GET'&&(u.href===font||u.origin==='https://fonts.gstatic.com');return u.origin===origin||visual?r.continue():r.abort();});
     const scaleText=async()=>{await page.evaluate(()=>document.querySelectorAll('body *').forEach(el=>{if(el instanceof HTMLElement)el.style.removeProperty('font-size');}));if(scale===2)await doubleText(page);};
     const prepare=async()=>{
-      if(directory){await page.evaluate(href=>{const l=document.createElement('link');l.rel='stylesheet';l.href=href;document.head.append(l);},font);await page.waitForFunction(()=>[...document.querySelectorAll('link')].some(l=>l.href.includes('fonts.googleapis')&&l.sheet));await page.evaluate(()=>document.fonts.ready);await page.evaluate(url=>new Promise((ok,no)=>{const i=new Image();i.onload=()=>ok(true);i.onerror=()=>no(Error('BACKGROUND_LOAD'));i.src=url;}),BACKGROUND_ASSETS.onboardingMoon);}
+      if(directory){await page.evaluate(href=>{const l=document.createElement('link');l.rel='stylesheet';l.href=href;document.head.append(l);},font);await page.waitForFunction(()=>[...document.querySelectorAll('link')].some(l=>l.href.includes('fonts.googleapis')&&l.sheet));await page.evaluate(()=>document.fonts.ready);await loadAppBackdrop(page);}
       await scaleText();
     };
     const capture=async name=>{if(directory)await page.screenshot({path:path.join(directory,`${name}-${language}-${width}-${scale}.png`)});};

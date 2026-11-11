@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-060",
-    "package_name": "Account privacy confirmation and bounded read-only status recovery",
-    "package_type": "FOCUSED_FIX",
-    "created_at": "2026-11-09",
-    "health_catalog_version": "HC-059.0",
-    "short_summary": "Approved concise erasure copy; distinct status/auth/transient outcomes, bounded/coalesced queries, request-bound native-owner recovery and cancellation isolation. Active removal never implies permanent platform erasure.",
-    "full_health_status": "NOT_RUN",
-    "notes": "Chromium/WebKit 800/800 each; final boundary 34/34 each, 35 privacy scenarios/engine, zero page errors. Quality/performance/last-five PASS; dependency vulnerabilities 0. Health +0/~4/-0; local synthetic 147 PASS/13 expected hosted BLOCKED/0 FAIL, save/list/open PASS. No schema change, live deletion/resume/cleanup/Health/scan/main publish. Original video cause and physical/provider/incident recovery remain unverified. Report: reports/SHINKA_PRIVACY_STATUS_060.md. Active 056–060."
-  },
-  {
     "build_marker": "Buildmarker-061",
     "package_name": "Authenticate before personal onboarding",
     "package_type": "TARGETED_FIX",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Admin reset creation/resume retired; historical lifecycle and owner continuation preserved. Two authorized live removals blocked by existing RESET_ACTIVE receipts.",
     "full_health_status": "NOT_RUN",
     "notes": "Local Chromium/WebKit 803/803 each; quality, dependency security (0 advisories), performance and last-five PASS. Local synthetic Health 146 PASS/13 expected hosted-prerequisite BLOCKED/0 FAIL. Health +0/~8/-1. No live writes; both selected removals remain blocked by TEST_TARGET_BUSY. Historical reset IDs/fences preserved. See reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md. Main merge/publish remains owner-controlled."
+  },
+  {
+    "build_marker": "Buildmarker-065",
+    "package_name": "Shared branded screen background",
+    "package_type": "TARGETED_UI",
+    "created_at": "2026-11-11T11:26:02Z",
+    "health_catalog_version": "HC-064.0",
+    "short_summary": "One original bundled PNG across user-facing Shinka routes. The integrated AydanTest checkout retains the 064 admin reset retirement and historical receipts.",
+    "full_health_status": "NOT_RUN",
+    "notes": "HC-064.0 updates H13-012, H13-020 and H05-009. Standalone and integrated local evidence is recorded in reports/SHINKA_APP_BACKGROUND_065.md. Hosted Full Health and physical-device acceptance remain separate."
   }
 ];

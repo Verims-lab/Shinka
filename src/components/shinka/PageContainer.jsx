@@ -1,5 +1,5 @@
-// surface="section": transparent root over the section's SectionBackdrop;
-// default "ivory" keeps the flat internal/neutral surface.
+// "section" is transparent even in isolated fixtures. In the app the shared
+// backdrop also shows through default page containers on user-facing routes.
 export default function PageContainer({ children, className = "", surface = "ivory", ...props }) {
   const bg = surface === "section" ? "" : "bg-shinka-ivory ";
   return (

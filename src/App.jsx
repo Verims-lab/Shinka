@@ -6,8 +6,10 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClientInstance } from "@/lib/query-client";
 import {
   BrowserRouter as Router,
+  matchPath,
   Route,
   Routes,
+  useLocation,
 } from "react-router-dom";
 import PageNotFound from "./lib/PageNotFound";
 import { AuthProvider, useAuth } from "@/lib/AuthContext";
@@ -17,6 +19,8 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 // Add page imports here
 import ProductRoute from "@/components/ProductRoute";
 import AdminGate from "@/components/internal/AdminGate";
+import AppBackdrop from "@/components/shinka/AppBackdrop";
+import { INTERNAL_ROUTES } from "@/foundation/internalNavigation";
 const TestTools = lazy(() => import("@/pages/internal/TestTools"));
 const AccountPrivacy = lazy(() => import("@/pages/AccountPrivacy"));
 const AdminPanel = lazy(() => import("@/pages/internal/AdminPanel"));
@@ -27,6 +31,11 @@ const HealthCenter = lazy(() => import("@/pages/internal/HealthCenter"));
 const AuthShellProbe = lazy(() => import("@/foundation/probes/AuthShellProbe"));
 import { isAuthProbePath } from "@/foundation/probes/authProbeRoute";
 import LoginRedirect from "@/components/LoginRedirect";
+
+function ProductBackdrop() {
+  const { pathname } = useLocation();
+  return INTERNAL_ROUTES.some(path => matchPath(path, pathname)) ? null : <AppBackdrop />;
+}
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError } = useAuth();
@@ -104,6 +113,7 @@ function App() {
       <QueryClientProvider client={queryClientInstance}>
         <Router>
           <ScrollToTop />
+          <ProductBackdrop />
           <RouteMotion><AuthenticatedApp /></RouteMotion>
         </Router>
         <Toaster />

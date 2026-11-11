@@ -20,7 +20,7 @@ import { EXPECTED_UIUX_PARTS, SOURCE_PROVENANCE, ORIGINAL_ARTIFACTS_HASH_VERIFIE
 
 export function buildStaticEvidence(root = process.cwd()) {
   const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
-  const scan = (dir, re) => fs.readdirSync(path.join(root, dir), { recursive: true, encoding:"utf8" }).filter((p) => re.test(p) && !p.endsWith(".d.ts")).map((p) => `${dir}/${p}`);
+  const scan = (dir, re) => fs.readdirSync(path.join(root, dir), { recursive: true, encoding:"utf8" }).filter((p) => re.test(p) && !p.endsWith(".d.ts")).map((p) => `${dir}/${p.split(path.sep).join("/")}`);
   const files = [...scan("src", /\.(js|jsx|ts|tsx|css)$/), ...scan("base44", /\.(js|ts|jsonc)$/), ...scan("scripts", /\.(js|mjs|jsx)$/),
     ...fs.readdirSync(root).filter((p) => /(?:config\.[cm]?js|package\.json)$/.test(p))].sort();
   const raw = Object.fromEntries(files.map((p) => [`/${p}`, read(p)]));

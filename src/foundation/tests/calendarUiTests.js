@@ -144,7 +144,9 @@ export const CALENDAR_UI_TESTS = [
    day.focus();day.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}));
    check(document.activeElement===host.querySelector('[data-calendar-date="2026-10-02"]'),'arrow focus');
    check(![...host.querySelectorAll('header button')].some(b=>['TR','EN'].includes(b.textContent.trim())),'no header language buttons');
-   root.render(createElement(Calendar,{language:'tr',request:f.request}));await pause();check(host.textContent.includes('Kayıtlı regl başlangıcı') && host.textContent.includes('Tahmini'),'TR labels');
+   root.render(createElement(Calendar,{language:'tr',request:f.request}));
+   await until(()=>host.querySelector('nav a[aria-current="page"]')?.getAttribute('href')==='/calendar?lang=tr');
+   check(host.textContent.includes('Kayıtlı regl başlangıcı') && host.textContent.includes('Tahmini'),'TR labels');
    check(host.querySelector('[data-calendar-edit]')&&!host.querySelector('input[type=date]') && host.querySelector('nav a[aria-current="page"]').getAttribute('href')==='/calendar?lang=tr','localized nav and label');
  })],
  ['CU02','Actual start delete confirmation, cancel and last-delete empty state',async()=>probe(async(root,host)=>{
@@ -155,8 +157,9 @@ export const CALENDAR_UI_TESTS = [
    check(host.querySelector('dialog').textContent.includes('1 October 2026'));
    button(host.querySelector('dialog'),'Cancel').click();await until(()=>!host.querySelector('dialog'));check(f.rows.user_period_record.length===1);
    trigger.click();await until(()=>host.querySelector('dialog[open]'));
-   button(host.querySelector('dialog'),'Delete period start').click();await until(()=>!f.rows.user_period_record.length);await pause();
-   check(!host.querySelector('dialog') && host.textContent.includes('No period predictions yet') && !f.rows.user_cycle_phase_day.length);
+   button(host.querySelector('dialog'),'Delete period start').click();
+   await until(()=>!host.querySelector('dialog') && host.textContent.includes('No period predictions yet'));
+   check(!f.rows.user_period_record.length && !f.rows.user_cycle_phase_day.length);
  })],
  ['CU03','No consent hides health; exact approved checkbox starts unchecked; production block is visible',async()=>probe(async(root,host)=>{
    const f=calendarFixture({granted:false});
@@ -179,7 +182,8 @@ export const CALENDAR_UI_TESTS = [
    root.render(createElement(Calendar,{language:'en',request:f.request}));await until(()=>host.querySelector('[data-calendar-date="2026-10-01"]'));
    f.rows.user_health_consent[0].consent_status='WITHDRAWN';f.rows.user_health_consent[0].withdrawn_at='2026-10-20T13:00:00.000Z';
    window.dispatchEvent(new Event('shinka-health-access-changed'));
-   await until(()=>!host.querySelector('[data-start="true"]'));host.querySelector('[data-calendar-edit]').click();await until(()=>host.querySelector('input[type=checkbox]'));
+   await until(()=>host.querySelector('[data-calendar-edit]') && !host.querySelector('[data-start="true"]'));
+   host.querySelector('[data-calendar-edit]').click();await until(()=>host.querySelector('input[type=checkbox]'));
    check(!host.querySelector('[aria-label*="Recorded period start"]') && !host.querySelector('[aria-label*="Predicted"]'));
  })],
 ];

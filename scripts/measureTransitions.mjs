@@ -8,7 +8,6 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { staticEvidencePlugin } from './staticEvidence.mjs';
-import { BACKGROUND_ASSETS } from '../src/foundation/sectionBackgrounds.js';
 
 const root = path.resolve(process.env.MEASUREMENT_SOURCE || process.cwd()), directory = path.resolve(process.argv[2] || '/tmp/shinka-transitions');
 if (directory === root || directory.startsWith(root + path.sep)) throw new Error('Output must be outside checkout');
@@ -27,18 +26,18 @@ const server = createServer(async (req, res) => {
     const pathname = new URL(req.url, 'http://localhost').pathname;
     const file = pathname.startsWith('/assets/') ? path.join(directory, 'production', pathname) : path.join(directory, 'production/index.html');
     const body = await readFile(file);
-    res.setHeader('Content-Type', file.endsWith('.js') ? 'application/javascript' : file.endsWith('.css') ? 'text/css' : 'text/html');
+    res.setHeader('Content-Type', file.endsWith('.js') ? 'application/javascript' : file.endsWith('.css') ? 'text/css' : file.endsWith('.png') ? 'image/png' : 'text/html');
     res.end(body);
   } catch { res.writeHead(404).end(); }
 });
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const origin = `http://127.0.0.1:${server.address().port}`;
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-const watercolor=process.env.SHINKA_LAB_WATERCOLOR?await readFile(process.env.SHINKA_LAB_WATERCOLOR):null;
-const profile = { apiLatencyMs: 200, assetLatencyMs: 40, cpuSlowdown: 4, viewport: { width: 390, height: 844 }, samples: 5, bandwidthLimit: null, externalFonts: 'BLOCKED_IN_BOTH_RUNS', background:watercolor?{bytes:watercolor.length,sha256:createHash('sha256').update(watercolor).digest('hex'),source:'PINNED_EXISTING_PUBLIC_CDN_ASSET'}:'EXCLUDED_NOT_ASSET_COMPLETE' };
+const background = await readFile(path.join(root, 'src/assets/shinka-background.png'));
+const profile = { apiLatencyMs: 200, assetLatencyMs: 40, cpuSlowdown: 4, viewport: { width: 390, height: 844 }, samples: 5, bandwidthLimit: null, externalFonts: 'BLOCKED_IN_BOTH_RUNS', background: { bytes: background.length, sha256: createHash('sha256').update(background).digest('hex'), source: 'BUNDLED_PNG' } };
 const ready = { home: '[data-daily-id]', calendar: '[data-calendar-root] [role=grid]', pattern: '[data-lunar-timeline]', you: '[data-you-consent]' };
 const routeOf = screen => screen === 'home' ? '/' : `/${screen}`;
-const rows = [], openings=[], errors = [], blocked = new Set(), excludedAssets=new Set();
+const rows = [], openings=[], errors = [], blocked = new Set();
 const browser = await chromium.launch({ headless: true });
 try {
   for (let sample = 0; sample < profile.samples; sample++) {
@@ -61,10 +60,6 @@ try {
         await route.fulfill({ json: value });
         call.end=await page.evaluate(() => performance.now());
       } else if (url.origin === origin) { if (url.pathname.startsWith('/assets/')) await sleep(profile.assetLatencyMs); await route.continue(); }
-      else if(Object.values(BACKGROUND_ASSETS).includes(url.href)) {
-        if(watercolor&&url.href===BACKGROUND_ASSETS.watercolor){await sleep(profile.assetLatencyMs);await route.fulfill({contentType:'image/jpeg',body:watercolor});}
-        else {excludedAssets.add(url.href);await route.abort();}
-      }
       else { blocked.add(url.origin); await route.abort(); }
     });
     await page.addInitScript(() => {
@@ -120,7 +115,7 @@ try {
     await context.close();
   }
 } finally { await browser.close(); await new Promise(resolve => server.close(resolve)); }
-const result = { scope: 'LOCAL_PRODUCTION_BUILD_REAL_SDK_SYNTHETIC_HTTP_NO_HOSTED_NO_FIELD_INP', nodeEnv: process.env.NODE_ENV, commit: process.env.MEASUREMENT_REVISION || execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), browser: 'Chromium', profile, openings, rows, errors, blocked: [...blocked], excludedAssets:[...excludedAssets] };
+const result = { scope: 'LOCAL_PRODUCTION_BUILD_REAL_SDK_SYNTHETIC_HTTP_NO_HOSTED_NO_FIELD_INP', nodeEnv: process.env.NODE_ENV, commit: process.env.MEASUREMENT_REVISION || execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), browser: 'Chromium', profile, openings, rows, errors, blocked: [...blocked] };
 await writeFile(path.join(directory, 'transitions.json'), JSON.stringify(result, null, 2) + '\n');
 console.log(JSON.stringify({ output: path.join(directory, 'transitions.json'), transitions: rows.length, errors, blocked: [...blocked] }));
 if (errors.length || [...blocked].some(value => value !== 'https://fonts.googleapis.com')) process.exitCode = 1;

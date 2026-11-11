@@ -25,6 +25,7 @@ export async function checkReopenApp(browser,origin){
     // calls are not made while either new authority read remains unresolved.
     await page.evaluate(()=>{window.__authFixture.holdStartup('settings');window.__authFixture.holdStartup('session');window.__beforeCold=window.__sdkLabCalls.filter(c=>c.name!=='applicationSession').length;void window.__appAuth.checkAppState();});
     await page.waitForFunction(()=>window.__authFixture.startupStarted.session===2);
+    await page.locator('[data-route-motion] .animate-spin').waitFor();
     assert.equal(await page.locator('[data-home-root]').count(),0);
     assert.equal(await page.evaluate(()=>window.__sdkLabCalls.filter(c=>c.name!=='applicationSession').length-window.__beforeCold),0);
     await settle('session',1,identity);await settle('settings',1,{});await page.locator('[data-daily-id]').waitFor();

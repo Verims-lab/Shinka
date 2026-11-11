@@ -3,6 +3,7 @@ import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { createServer } from "node:http";
 import { gzipSync } from "node:zlib";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 import { FIRST_CONTENT_SOURCE } from '../base44/shared/firstContentSource.js';
 const root = process.cwd(),
   label = "maintenance",
@@ -12,17 +13,17 @@ const root = process.cwd(),
 if (directory === root || directory.startsWith(root + path.sep))
   throw new Error("Measurement output must be outside the checkout");
 const require = createRequire(path.join(root, "package.json"));
-const { build } = await import(require.resolve("vite"));
+const importFromRoot = (id) => import(pathToFileURL(require.resolve(id)).href);
+const { build, normalizePath } = await importFromRoot("vite");
 const { chromium } = require("playwright");
-const { default: react } = await import(
-  require.resolve("@vitejs/plugin-react")
-);
-const { default: tailwindcss } = await import(
-  require.resolve("@tailwindcss/vite")
-);
+const { default: react } = await importFromRoot("@vitejs/plugin-react");
+const { default: tailwindcss } = await importFromRoot("@tailwindcss/vite");
 const { staticEvidencePlugin } = await import(
-  path.join(root, "scripts/staticEvidence.mjs")
+  pathToFileURL(path.join(root, "scripts/staticEvidence.mjs")).href
 );
+const moduleRoot = normalizePath(root);
+const isProjectModule = (id) => normalizePath(id).startsWith(moduleRoot + "/") && !normalizePath(id).includes("/node_modules/");
+const projectPath = (id) => normalizePath(id).slice(moduleRoot.length);
 await mkdir(directory, { recursive: true });
 const summarize = (bundle) => {
   const chunks = Object.values(bundle),
@@ -37,8 +38,8 @@ const summarize = (bundle) => {
   visit(entry.fileName);
   const modules = [...initial]
     .flatMap((file) => Object.keys(bundle[file]?.modules || {}))
-    .filter((id) => id.startsWith(root) && !id.includes("node_modules"))
-    .map((id) => id.slice(root.length));
+    .filter(isProjectModule)
+    .map(projectPath);
   const size = (list) =>
     list.reduce(
       (r, c) => {
@@ -72,21 +73,13 @@ await build({
       generateBundle(_, bundle) {
         production = summarize(bundle);
         graph = [...this.getModuleIds()]
-          .filter((id) => id.startsWith(root) && !id.includes("node_modules"))
+          .filter(isProjectModule)
           .map((id) => {
             const m = this.getModuleInfo(id);
             return {
-              id: id.slice(root.length),
-              imports: m.importedIds
-                .filter(
-                  (x) => x.startsWith(root) && !x.includes("node_modules"),
-                )
-                .map((x) => x.slice(root.length)),
-              dynamic: m.dynamicallyImportedIds
-                .filter(
-                  (x) => x.startsWith(root) && !x.includes("node_modules"),
-                )
-                .map((x) => x.slice(root.length)),
+              id: projectPath(id),
+              imports: m.importedIds.filter(isProjectModule).map(projectPath),
+              dynamic: m.dynamicallyImportedIds.filter(isProjectModule).map(projectPath),
             };
           });
       },
@@ -145,7 +138,9 @@ const server = createServer(async (req, res) => {
         ? "application/javascript"
         : p.endsWith(".css")
           ? "text/css"
-          : "text/html",
+          : p.endsWith(".png")
+            ? "image/png"
+            : "text/html",
     );
     res.end(bytes);
   } catch {

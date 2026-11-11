@@ -8,7 +8,7 @@ export async function inspectMobileSurface(page, darkBackdropWorstCase = false) 
     const over = (front, back) => front.slice(0,3).map((v,i)=>v*front[3]+back[i]*(1-front[3]));
     // Bound every possible dark-background image pixel by compositing white
     // under its actual overlay; cards then composite normally above that base.
-    const backdrop=document.querySelector('.shinka-section-backdrop');
+    const backdrop=document.querySelector('[data-app-backdrop]');
     const overlay=darkBackdropWorstCase&&document.documentElement.classList.contains('dark')&&backdrop?rgba(getComputedStyle(backdrop,'::after').backgroundColor):null;
     const background = el => {
       const chain = []; for(let n=el;n;n=n.parentElement) chain.unshift(n);

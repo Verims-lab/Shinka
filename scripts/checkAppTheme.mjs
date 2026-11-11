@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { doubleText, inspectMobileSurface } from './mobileSurfaceMeasurements.mjs';
 import { pickPreference, preferenceValue } from './preferencePicker.mjs';
+import { readBackdrop } from './checkAppBackdrop.mjs';
 
 // Real App/AuthProvider/Onboarding/You; only SDK IO is replaced by native fixtures.
 // All external requests are denied. No physical-device or hosted claim.
@@ -23,11 +24,12 @@ export async function checkAppTheme(browser, origin) {
         assert.equal(await page.evaluate(()=>matchMedia('(prefers-color-scheme: dark)').matches),os==='dark');
         if(section!=='you'){await page.locator('nav a:visible').nth(['home','calendar','pattern'].indexOf(section)).click();await page.locator(`[data-${section}-root]`).waitFor();}
         await theme(app);
-        const art=()=>page.locator('[data-section-backdrop]').evaluate(el=>{const s=getComputedStyle(el,'::before');return {section:el.getAttribute('data-section-backdrop'),image:s.backgroundImage,size:s.backgroundSize,overlay:getComputedStyle(el,'::after').backgroundColor};});
-        const before=await art();assert.equal(before.section,section);assert(before.image.includes('media.base44.com')&&before.size==='cover');
+        const before=await readBackdrop(page);
+        assert.equal(new URL(before.source).origin,origin);
+        assert.equal(before.size,'contain');
         const measurement=await inspectMobileSurface(page,true);
         rows.push({scenario:`theme-${os}-${app}-${language}-${width}-${section}`,measurement,passed:measurement.scheme===app&&!measurement.contrastFailures.length&&measurement.scrollWidth<=width+1});
-        await page.emulateMedia({colorScheme:os==='dark'?'light':'dark'});assert.equal(await current(),app);assert.deepEqual(await art(),before);
+        await page.emulateMedia({colorScheme:os==='dark'?'light':'dark'});assert.equal(await current(),app);assert.deepEqual(await readBackdrop(page),before);
       }
       await page.locator('[data-profile-trigger]:visible').click();await page.locator('#you-theme').waitFor();await doubleText(page);
       const measured=await inspectMobileSurface(page,true);
