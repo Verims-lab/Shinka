@@ -30,19 +30,17 @@ const SCREENS = {
 };
 
 const ONBOARDING_VIEWPORT_HEIGHT = "calc(100dvh - max(24px, var(--safe-top)) - max(24px, var(--safe-bottom)))";
+// Clear the embedded logo at the same contained image scale used by the backdrop.
+const LOGO_CLEARANCE = "calc(8px + min(37.5vw, 21.2vh) + var(--safe-top) - max(24px, var(--safe-top)))";
 // Scale ON-01 spacing inside the safe content area, above the 52px CTA.
 const INTRO_USABLE_HEIGHT = `max(0px, calc(${ONBOARDING_VIEWPORT_HEIGHT} - 52px))`;
 const INTRO_LAYOUT = {
   height: ONBOARDING_VIEWPORT_HEIGHT,
   minHeight: "min-content",
-  paddingTop: "calc(8px + min(37.5vw, 21.2vh) + var(--safe-top) - max(24px, var(--safe-top)))",
+  paddingTop: LOGO_CLEARANCE,
 };
-// Keep the safe padding below the form when larger text needs document scrolling.
-const SIGN_IN_LAYOUT = { height: ONBOARDING_VIEWPORT_HEIGHT, minHeight: "fit-content" };
-// The artwork slot paints nothing (the shared backdrop owns the composition). On ON-02 it must
-// never reserve a tall gap: the 18+ declaration and both provider buttons come first on short
-// viewports, so the slot is capped low and may collapse to zero.
-const SIGN_IN_ART_SPACE = { flex: "1 1 0px", minHeight: 0, maxHeight: 48, aspectRatio: "auto" };
+const FOLLOWUP_LAYOUT = { paddingTop: LOGO_CLEARANCE };
+const CENTERED_CONTENT = "mx-auto max-w-md";
 
 /** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,authenticated?:boolean,onRestricted?:Function,onSignOut?:Function|null,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
 export default function OnboardingScreen({
@@ -94,7 +92,13 @@ export default function OnboardingScreen({
   }, []);
   useEffect(() => {
     setError(null);
-    title.current?.focus();
+    const heading = title.current;
+    if (state === "UNAUTHENTICATED_INTRO") {
+      heading?.focus();
+    } else {
+      heading?.ownerDocument.defaultView?.scrollTo(0, 0);
+      heading?.focus({ preventScroll: true });
+    }
   }, [state]);
   useEffect(() => {
     if (error?.field && !busy)
@@ -154,6 +158,7 @@ export default function OnboardingScreen({
   if (!screen || anonymous === authenticated) return null;
   const step = screen.step;
   const airy = Boolean(step);
+  const contentWidth = intro ? "" : CENTERED_CONTENT;
   // Only an unsaved name choice made in this mounted form can be revisited.
   const back = state === "AUTHENTICATED_PROFILE_REQUIRED" && canReturnToName && !profile
     ? "AUTHENTICATED_NAME_REQUIRED"
@@ -249,51 +254,36 @@ export default function OnboardingScreen({
       : t(error.code)
     : null;
   return (
-    <PageContainer className="shinka-onboarding" surface="section">
+    <PageContainer className={intro ? "shinka-onboarding" : "shinka-onboarding shinka-onboarding-followup"} surface="section">
       <main
-        className={`mx-auto max-w-md${intro || anonymousSignIn ? " flex flex-col" : ""}${intro ? "" : anonymousSignIn ? " space-y-3 py-2" : " space-y-6 py-6"}`}
-        style={intro ? INTRO_LAYOUT : anonymousSignIn ? SIGN_IN_LAYOUT : undefined}
+        className={intro ? `${CENTERED_CONTENT} flex flex-col` : "space-y-3"}
+        style={intro ? INTRO_LAYOUT : FOLLOWUP_LAYOUT}
         data-onboarding-step={intro ? step : undefined}
         data-onboarding-state={state}
         data-shinka-build={BUILD_MARKER}
         lang={language}
       >
-        {!intro && (
-          <div className="grid items-center gap-2" style={{ gridTemplateColumns: "minmax(2.75rem,1fr) auto minmax(2.75rem,1fr)" }}>
-            <div>
-              {back && (
-                <ShinkaButton variant="ghost" aria-label={t("back")} data-onboarding-back disabled={busy} onClick={() => onState(back)}>
-                  <ChevronLeft aria-hidden="true" className="h-5 w-5" />
-                </ShinkaButton>
-              )}
-            </div>
-            <span className="font-heading text-3xl text-shinka-plum-deep">Shinka</span>
-            <div aria-hidden="true" />
-          </div>
+        {step && !intro && (
+          <header className="flex items-center gap-2" data-onboarding-progress>
+            <ShinkaButton variant="ghost" aria-label={t("back")} data-onboarding-back disabled={!back || busy} onClick={back ? () => onState(back) : undefined}>
+              <ChevronLeft aria-hidden="true" className="h-5 w-5" />
+            </ShinkaButton>
+            <p className="text-shinka-small text-shinka-taupe" data-onboarding-step={step}>
+              {t("stepOf").replace("{n}", String(step))}
+            </p>
+          </header>
         )}
         <>
           {dependencies.length > 0 && (
-            <div role="status" className="break-words text-shinka-small">
+            <div role="status" className={`${contentWidth} break-words text-shinka-small`}>
               {dependencies.join(" · ")}
             </div>
-          )}
-          {step && !intro && (
-            <p aria-hidden="true" className="text-shinka-small text-shinka-taupe" data-onboarding-step={step}>
-              {t("stepOf").replace("{n}", String(step))}
-            </p>
-          )}
-          {airy && !intro && (
-            <div
-              className="shinka-onboarding-art-space"
-              style={anonymousSignIn ? SIGN_IN_ART_SPACE : undefined}
-              aria-hidden="true"
-            />
           )}
           {intro && (
             <div aria-hidden="true" style={{ flexGrow: 1, maxHeight: `calc(${INTRO_USABLE_HEIGHT} / 10)` }} />
           )}
           <div
-            className={airy ? "space-y-2 text-center" : ""}
+            className={`${contentWidth} ${airy ? "space-y-2 text-center" : ""}`.trim()}
             style={intro ? { marginBlockEnd: `calc(${INTRO_USABLE_HEIGHT} / 40)` } : undefined}
           >
             <h1
@@ -305,7 +295,7 @@ export default function OnboardingScreen({
             </h1>
             {screen.subtitle && <p className="text-shinka-taupe">{t(screen.subtitle)}</p>}
           </div>
-          <ShinkaCard surface={airy || state === 'FIRST_SHINKA_DEPENDENCY' ? 'plain' : 'card'} padded={!airy} className={airy ? "shinka-intro-shell" : ""}>
+          <ShinkaCard surface={airy || state === 'FIRST_SHINKA_DEPENDENCY' ? 'plain' : 'card'} padded={!airy} className={`${contentWidth} ${airy ? "shinka-intro-shell" : ""}`.trim()}>
             <div className="space-y-5" aria-busy={busy}>
               {body()}
               {error && !error.field && (

@@ -43,7 +43,7 @@ export const ONBOARDING_CLOSURE_UI_TESTS=[
   const dailyRequest=async()=>{dailyCalls++;const result=await backend.daily();if(dailyCalls===1){started=true;await gate;}return result;};
   await auditScreen('AUTHENTICATED_PROFILE_REQUIRED',async(f,host,wait,turn)=>{
    input(host,'birth_date','1990-01-01');input(host,'birth_time','23:59');await turn();
-   check(!host.querySelector('[data-onboarding-back],#display_name,[data-provider]')&&f.calls.length===0,'saved profile must start at ON-04');
+   check(host.querySelector('[data-onboarding-back]:disabled')&&!host.querySelector('#display_name,[data-provider]')&&f.calls.length===0,'saved profile must start at ON-04');
    button(host,'Continue').click();await wait(()=>host.querySelector('#period_start_date'));button(host,'Skip for now').click();while(!started)await turn();
    check(state(host)==='FIRST_SHINKA_DEPENDENCY'&&!host.querySelector('[data-onboarding-back],[data-provider]'),'preparation must stay pending');
    resolve();await wait(()=>f.transitions.some(t=>t.next==='ACTIVE_EXISTING_USER'));

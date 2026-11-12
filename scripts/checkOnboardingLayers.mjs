@@ -115,7 +115,7 @@ export async function checkSignInLayout(page, scale = 1) {
       viewportLeft: viewport?.offsetLeft ?? 0, viewportTop: viewport?.offsetTop ?? 0,
       scrollHeight: document.documentElement.scrollHeight,
       paddingTop: parseFloat(shell.paddingTop), paddingBottom: parseFloat(shell.paddingBottom),
-      artSpace: main?.querySelector('.shinka-onboarding-art-space')?.getBoundingClientRect().height ?? 0,
+      artworkSpacer: !!main?.querySelector('.shinka-onboarding-art-space'),
     };
   });
   assert(result, 'sign-in renders a labelled 18+ checkbox');
@@ -124,9 +124,7 @@ export async function checkSignInLayout(page, scale = 1) {
   assert.deepEqual(result.providers, ['apple', 'google']);
   assert(result.enabled && !result.checked, 'age confirmation starts unchecked with accessible provider actions');
   assert(result.controls.every(control => control.visible && control.height >= 44), 'visible controls retain their touch targets');
-  // Regression guard for the 068/070 defect: the unpainted artwork slot must never
-  // reserve a tall gap that pushes the three sign-in controls below the fold.
-  assert(result.artSpace <= 48, 'the empty ON-02 artwork slot stays capped above the sign-in controls');
+  assert(!result.artworkSpacer, 'the shared logo clearance replaces the empty ON-02 artwork slot');
   const last = result.controls.at(-1);
   assert(last.bottom + result.scrollY + result.paddingBottom <= result.scrollHeight + 1, 'Google remains reachable above the bottom safe padding');
   if (scale === 1 && result.width < result.height) {
@@ -149,7 +147,7 @@ export async function checkOnboardingLayers(browser, origin, directory) {
   const fontCss = (await readFile('index.html','utf8')).match(/href="(https:\/\/fonts.googleapis.com\/css2[^\"]+)"/)[1];
   const assets = new Map(), results = [];
   if (directory) await mkdir(directory,{recursive:true});
-  const sizes = [[320,568],[320,640],[360,640],[390,844],[430,932],[844,390]];
+  const sizes = [[320,568],[320,640],[360,640],[390,844],[430,932],[844,390],[1280,900]];
   for (const language of ['tr','en']) for (const [width,height] of sizes) for (const scale of [1,2]) {
     const context = await browser.newContext({locale:language==='tr'?'tr-TR':'en-US',viewport:{width,height},colorScheme:'dark'});
     const page = await context.newPage(), errors = [];
@@ -189,7 +187,7 @@ export async function checkOnboardingLayers(browser, origin, directory) {
       }
     };
     const inspect = async () => page.evaluate(()=>{
-      const box = el=>{const r=el.getBoundingClientRect();return {x:r.x,y:r.y+scrollY,width:r.width,height:r.height};};
+      const box = el=>{if(!el)return null;const r=el.getBoundingClientRect();return {x:r.x,y:r.y+scrollY,width:r.width,height:r.height};};
       const bitmaps=[];
       // Check every element and both pseudo-elements: distinct URLs can contain
       // the same composition. SVG row/field icons are intentionally not bitmaps.
@@ -200,26 +198,50 @@ export async function checkOnboardingLayers(browser, origin, directory) {
           if(css.backgroundImage.includes('url('))bitmaps.push({kind:pseudo||'background',source:css.backgroundImage});
         }
       }
+      const main=document.querySelector('main[data-onboarding-state]');
       const layer=document.querySelector('[data-app-backdrop]'),css=getComputedStyle(layer),art=getComputedStyle(layer,'::before');
-      const space=document.querySelector('.shinka-onboarding-art-space');
+      const progress=main.querySelector('[data-onboarding-progress]'),card=main.querySelector('section');
+      const safe=getComputedStyle(main.closest('.shinka-safe-content'));
+      const root=getComputedStyle(document.documentElement);
       return {bitmaps,images:document.querySelectorAll('.shinka-onboarding img').length,layers:document.querySelectorAll('[data-app-backdrop]').length,
-        background:{position:css.position,y:layer.getBoundingClientRect().y,height:layer.getBoundingClientRect().height,image:art.backgroundImage,repeat:art.backgroundRepeat,size:art.backgroundSize,mask:art.maskImage},
-        light:!document.documentElement.classList.contains('dark'),width:innerWidth,scrollWidth:document.documentElement.scrollWidth,scrollY,maxScroll:document.documentElement.scrollHeight-innerHeight,
-        title:box(document.querySelector('h1')),card:box(document.querySelector('.shinka-intro-shell')),space:space?box(space):null,
-        intro:!!document.querySelector('[data-onboarding-intro]'),signIn:!!document.querySelector('[data-auth-shell]'),
+        background:{position:css.position,y:layer.getBoundingClientRect().y,height:layer.getBoundingClientRect().height,image:art.backgroundImage,repeat:art.backgroundRepeat,size:art.backgroundSize,mask:art.maskImage,
+          top:parseFloat(art.top),left:parseFloat(art.left),artWidth:parseFloat(art.width),artHeight:parseFloat(art.height),wash:getComputedStyle(layer,'::after').content,opacity:art.opacity,filter:art.filter},
+        safeTop:parseFloat(root.getPropertyValue('--safe-top'))||0,safeLeft:parseFloat(root.getPropertyValue('--safe-left'))||0,
+        contentLeft:parseFloat(safe.paddingLeft),contentRight:parseFloat(safe.paddingRight),
+        light:!document.documentElement.classList.contains('dark'),width:innerWidth,height:innerHeight,scrollWidth:document.documentElement.scrollWidth,scrollY,maxScroll:document.documentElement.scrollHeight-innerHeight,
+        title:box(main.querySelector('h1')),subtitle:box(main.querySelector('h1 + p')),card:box(card),
+        progress:progress?{box:box(progress),arrow:box(progress.querySelector('[data-onboarding-back]')),counter:box(progress.querySelector('[data-onboarding-step]'))}:null,
+        artworkSpacer:!!main.querySelector('.shinka-onboarding-art-space'),
+        duplicateWordmark:[...main.querySelectorAll('span')].some(span=>span.textContent.trim()==='Shinka'),
         rowIcons:document.querySelectorAll('[data-intro-row] svg').length,
-        controls:[...document.querySelectorAll('main input,main button,main label')].map(el=>({key:el.id||el.getAttribute('aria-label')||el.textContent.trim(),...box(el)}))};
+        controls:[...main.querySelectorAll('input,button,label')].map(el=>({key:el.id||el.getAttribute('aria-label')||el.textContent.trim(),inCard:card.contains(el),...box(el)}))};
     });
     const verify = value => {
       assert.equal(value.layers,1);assert.equal(value.images,0);assert.equal(value.bitmaps.length,1,'one bitmap composition across the complete page');
       assert(value.bitmaps[0].source.includes(`${origin}/assets/shinka-background-`));assert(value.light,'onboarding remains light under dark OS');
       assert.equal(value.background.position,'fixed');assert.equal(value.background.y,0);
       assert.equal(value.background.size,'contain');assert.equal(value.background.repeat,'no-repeat');
+      assert.equal(value.background.top,value.safeTop);
+      assert.equal(value.background.left,value.safeLeft);
+      assert.equal(value.background.opacity,'1');
+      assert.equal(value.background.filter,'none');
+      assert.equal(value.background.wash,'none');
+      assert(Math.abs(value.background.artWidth*1670/942-value.background.artHeight)<1,'contained art keeps its aspect ratio');
       assert(value.scrollWidth<=value.width+1,'no horizontal overflow');
-      if(value.intro)assert.equal(value.space,null,'intro reserves only the logo height');
-      else {
-        assert(value.space && Math.abs(value.space.width-240)<1,'empty artwork slot retains its width');
-        assert(value.signIn ? value.space.height<=240.5 : Math.abs(value.space.height-240)<1,'only anonymous sign-in can shrink the artwork slot');
+      assert(!value.artworkSpacer&&!value.duplicateWordmark,'one original logo with no legacy spacer');
+      const logoBottom=value.background.top+value.background.artHeight*347/1670;
+      assert((value.progress?.box??value.title).y>=logoBottom+4,'first content clears the embedded logo');
+      if(value.progress){
+        const {box,arrow,counter}=value.progress;
+        assert(box.y<=logoBottom+16 && Math.abs(arrow.x-value.contentLeft)<1,'counter row starts at the safe left below the logo');
+        assert(arrow.width>=44&&arrow.height>=44&&counter.x>=arrow.x+arrow.width,'arrow has a touch target and sits beside the counter');
+        assert(Math.abs(counter.y+counter.height/2-arrow.y-arrow.height/2)<1,'counter and Back share one row');
+        assert(value.title.y>=box.y+box.height-.5,'title follows the counter row');
+      }
+      const lastText=value.subtitle??value.title;
+      assert(value.card.y>=lastText.y+lastText.height-.5,'form follows heading and copy');
+      for(const control of value.controls.filter(control=>control.inCard)){
+        assert(control.y>=value.card.y-.5&&control.x>=value.contentLeft-1&&control.x+control.width<=value.width-value.contentRight+1,'form controls stay inside the safe content area');
       }
     };
     const visit = async step => {
@@ -228,39 +250,53 @@ export async function checkOnboardingLayers(browser, origin, directory) {
       if(step===3)await page.goto(`${origin}/?appFixture=1&sdkSession=user&language=${language}&onboardingState=AUTHENTICATED_NAME_REQUIRED`);
       if(step===4)await page.goto(`${origin}/?appFixture=1&sdkSession=user&language=${language}&onboardingVisual=1`);
       if(step===5)await page.getByRole('button',{name:language==='tr'?'Devam et':'Continue',exact:true}).click();
-      await page.locator(`[data-onboarding-step="${step}"]`).waitFor();await prepare();
+      if(step==='preparation')await page.goto(`${origin}/onboarding?appFixture=1&sdkSession=user&language=${language}&onboardingState=FIRST_SHINKA_DEPENDENCY&holdDaily=1`);
+      const ready=step==='preparation'?'[data-onboarding-state="FIRST_SHINKA_DEPENDENCY"]':`[data-onboarding-step="${step}"]`;
+      await page.locator(ready).waitFor();await prepare();
     };
     try {
-      for(const step of [1,2,3,4,5]) {
+      let introPaint;
+      for(const step of [1,2,3,4,5,'preparation']) {
         await resetText();await visit(step);
         const checkLayout = step === 1 ? checkIntroLayout : step === 2 ? checkSignInLayout : null;
         const layout = checkLayout ? await checkLayout(page, scale) : null;
         let safeArea;
-        if (checkLayout && language === 'tr' && width === 390 && scale === 1) {
+        if (language === 'tr' && width === 390 && scale === 1) {
           await page.evaluate(() => {
             document.documentElement.style.setProperty('--safe-top', '47px');
             document.documentElement.style.setProperty('--safe-bottom', '34px');
+            document.documentElement.style.setProperty('--safe-left', '16px');
           });
           try {
-            safeArea = await checkLayout(page, scale);
+            verify(await inspect());
+            if(checkLayout) safeArea = await checkLayout(page, scale);
           } finally {
             await page.evaluate(() => {
               document.documentElement.style.removeProperty('--safe-top');
               document.documentElement.style.removeProperty('--safe-bottom');
+              document.documentElement.style.removeProperty('--safe-left');
             });
           }
         }
         const views=[];
         for(const [label,fraction] of [['top',0],['middle',0.5],['bottom',1]]) {
-          await page.evaluate(f=>scrollTo(0,(document.documentElement.scrollHeight-innerHeight)*f),fraction);
-          await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+          await page.evaluate(f=>scrollTo({top:(document.documentElement.scrollHeight-innerHeight)*f,behavior:'instant'}),fraction);
           const value=await inspect();verify(value);if(step===1)assert.equal(value.rowIcons,3);
           views.push({label,...value});
           // Representative matched viewport captures; every matrix cell is measured.
           if(directory && (scale===1 && language==='tr'&&width===360 || language==='en'&&width===390 || scale===2 && language==='tr'&&width===320))await page.screenshot({path:path.join(directory,`on-${step}-${language}-${width}-${height}${scale===2?'-200':''}-${label}.png`)});
         }
+        if(step===1)introPaint=views[0].background;
+        else assert.deepEqual(views[0].background,introPaint,'the backdrop matches ON-01 at the same viewport');
+        const first=views[0];
+        assert.equal(Boolean(first.progress),step!==1&&step!=='preparation');
+        const fieldId={3:'display_name',4:'birth_date',5:'period_start_date'}[step];
+        if(fieldId&&scale===1&&width<height){
+          const field=first.controls.find(control=>control.key===fieldId&&control.height>0);
+          assert(field&&field.y+field.height<=height,'heading and first field fit on entry');
+        }
         for(const value of views) {
-          assert.equal(value.background.height,views[0].background.height);
+          assert.deepEqual(value.background,views[0].background,'scroll keeps the art stable');
           assert(Math.abs(value.title.y-views[0].title.y)<1,'scroll does not move document layout');
         }
         if(step===3 || step===4) {
@@ -274,7 +310,9 @@ export async function checkOnboardingLayers(browser, origin, directory) {
         if(step===2 || step===5) {
           await resetText();await back.click();await page.locator(`[data-onboarding-step="${step-1}"]`).waitFor();await prepare();verify(await inspect());
           if(step===2) {await page.getByRole('button',{name:language==='tr'?'Başla':'Begin',exact:true}).click();await page.locator('#age-declaration').waitFor();assert.equal(await page.locator('#display_name').count(),0);}
-          if(step===5) {assert.equal(await back.count(),0);assert.equal(await page.locator('#birth_date').inputValue(),'1990-01-01');assert.equal(await page.locator('#birth_time').inputValue(),'10:30');}
+          if(step===5) {assert(await back.isDisabled());assert.equal(await page.locator('#birth_date').inputValue(),'1990-01-01');assert.equal(await page.locator('#birth_time').inputValue(),'10:30');}
+        } else if(step===3||step===4) {
+          assert(await back.isDisabled());
         } else {
           assert.equal(await back.count(),0);
         }

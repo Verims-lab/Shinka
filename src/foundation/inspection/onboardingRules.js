@@ -29,13 +29,10 @@ export function inspectOnboardingSurface(sources,approvedCopy) {
   return {ok:duplicates.length===0&&credentials.length===0,duplicateCopyFiles:duplicates.map(r=>r.file),unsafeProviderFiles:credentials.map(r=>r.file),signIn:inspectSignInControls(sources)};
 }
 // ON-02 contract: the anonymous Welcome always renders the 18+ declaration and both approved
-// providers, provider auth is unreachable while the declaration is unchecked, and the unpainted
-// artwork slot cannot reserve a tall gap above them. Source-level guard for the 068/070 defect.
-const SIGN_IN_ART_SLOT_CAP = 48;
+// providers. The declaration gates auth and the shared logo clearance replaces the empty artwork slot.
 export function inspectSignInControls(sources) {
   const screen=sources['/src/features/onboarding/OnboardingScreen.jsx']||'';
   const signIn=sources['/src/features/onboarding/SignIn.jsx']||'';
-  const artCap=Number(/SIGN_IN_ART_SPACE\s*=\s*\{[^}]*maxHeight:\s*(\d+)/.exec(screen)?.[1] ?? NaN);
   const controls={
     anonymousBranch: /anonymousSignIn = state === "UNAUTHENTICATED_SIGN_IN"/.test(screen)
       && /if \(!screen \|\| anonymous === authenticated\) return null/.test(screen)
@@ -44,8 +41,7 @@ export function inspectSignInControls(sources) {
     appleProvider: /data-provider="apple"/.test(signIn),
     googleProvider: /data-provider="google"/.test(signIn),
     ageGateBeforeAuth: /authenticate\(provider,[^)]*checked\)/.test(signIn) && /ageConfirmed !== true/.test(sources['/src/services/authService.js']||''),
-    artSlotCap: Number.isFinite(artCap) ? artCap : null,
-    artSlotCapped: Number.isFinite(artCap) && artCap <= SIGN_IN_ART_SLOT_CAP,
+    artworkSpacerAbsent: !screen.includes('shinka-onboarding-art-space'),
   };
-  return { ...controls, ok: controls.anonymousBranch && controls.ageDeclaration && controls.appleProvider && controls.googleProvider && controls.ageGateBeforeAuth && controls.artSlotCapped };
+  return { ...controls, ok: Object.values(controls).every(Boolean) };
 }

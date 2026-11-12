@@ -83,7 +83,7 @@ export async function checkAuthFirstOnboarding(browser, origin) {
    await page.goBack();
    await page.waitForURL(url=>url.pathname==='/');
    await state(nameStep);
-   assert.equal(await back.count(),0,'no earlier authenticated step before name');
+   assert(await back.isDisabled(),'no earlier authenticated step before name');
    assert(await page.getByRole('button',{name:language==='tr'?'Çıkış yap':'Sign out',exact:true}).isVisible());
    await doubleText(page);
    const name=page.getByRole('textbox',{name:language==='tr'?'Adın':'Name',exact:true});
@@ -94,7 +94,7 @@ export async function checkAuthFirstOnboarding(browser, origin) {
    await state(profileStep);
    await page.locator('#birth_date').fill('1990-01-01');await next().click();await state(cycleStep);
    await back.click();await state(profileStep);
-   assert.equal(await back.count(),0,'saved NULL name must not reopen the name step');
+   assert(await back.isDisabled(),'saved NULL name must not reopen the name step');
    assert.equal(await page.locator('#birth_date').inputValue(),'1990-01-01');
    await next().click();await state(cycleStep);
    await page.evaluate(()=>window.__authFixture.holdOperation('dailyMessage'));
@@ -130,7 +130,8 @@ export async function checkAuthFirstOnboarding(browser, origin) {
      await page.evaluate(()=>window.__authFixture.releaseHydration());
      if(target) await state(target); else await home.waitFor();
      assert.deepEqual(await observed(),target?[target]:[],'fresh admission must open only the verified step');
-     assert.equal(await back.count(),target===cycleStep?1:0);
+     if(target && target!==preparation) assert.equal(await back.isEnabled(),target===cycleStep);
+     else assert.equal(await back.count(),0);
      await assertReadOnly();
     }
     results.push({language,width,scenario:`${scenario}-held-hydrate-and-reload`,passed:true});

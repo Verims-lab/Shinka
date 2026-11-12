@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-071
+**Current BuildMarker:** Buildmarker-072
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 072 — Shared onboarding artwork
+
+Record Buildmarker-072 / HC-071.0 with `recordBuild` and retain 068–072. Measure the numbered screens and preparation against ON-01 in the existing onboarding presentation matrix. Retain the auth-first gate and verify enabled and disabled Back states under 071. [072 delivery](reports/SHINKA_ONBOARDING_BACKDROP_072.md)
 
 ## 071 — Verified onboarding navigation
 
