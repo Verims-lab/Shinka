@@ -1,73 +1,60 @@
-/* Outside route motion and document flow. The large viewport keeps the art
-   anchored when browser chrome or the keyboard changes the visual viewport. */
-.shinka-app-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  height: 100vh;
-  height: 100lvh;
-  pointer-events: none;
-  background: #faefe9;
+.shinka-app-backdrop, .shinka-app-backdrop + .shinka-route-clip {
+  --shinka-art-width: min(
+    calc(100vw - var(--safe-left) - var(--safe-right)),
+    calc((100lvh - var(--safe-top) - var(--safe-bottom)) * 941 / 1672)
+  );
+  /* The supplied wordmark ends at y=314 and spans the central 302px. */
+  --shinka-brand-space: calc(var(--safe-top) + var(--shinka-art-width) * 314 / 941 + 8px);
 }
 
-/* Fit the original 942 × 1670 composition. Cream fills any extra viewport
-   space, with a narrow feather where the edge meets that fallback. */
-.shinka-app-backdrop::before,
-.shinka-app-backdrop::after {
+html:has(#root > .shinka-app-backdrop):not(.dark) { background-color: #faefe9; }
+body { background-color: transparent; }
+#root:has(> .shinka-app-backdrop) { position: relative; isolation: isolate; }
+
+/* Keep the image at the document top so the logo scrolls with its clearance. */
+.shinka-app-backdrop {
   position: absolute;
-  inset: var(--art-inset, auto 0 0);
-  margin: 0 auto;
-  width: min(100%, calc(100vh * 942 / 1670));
-  width: min(100%, calc(100lvh * 942 / 1670));
-  aspect-ratio: 942 / 1670;
+  inset: 0 0 auto;
+  height: 100lvh;
+  max-height: 100%;
+  overflow: clip;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .shinka-app-backdrop::before {
   content: "";
+  position: absolute;
+  inset: var(--safe-top) var(--safe-right) auto var(--safe-left);
+  margin-inline: auto;
+  width: min(calc(100% - var(--safe-left) - var(--safe-right)), var(--shinka-art-width));
+  aspect-ratio: 941 / 1672;
   background: url("../assets/shinka-background.png") center / contain no-repeat;
-  mask: linear-gradient(90deg, transparent, #000 4% 96%, transparent);
 }
 
-/* Foreground headings can cross the embedded wordmark when scrolling.
-   Keep the cream contrast wash localized to that part of the composition. */
-.shinka-app-backdrop::after {
-  content: var(--backdrop-wash, "");
-  background: radial-gradient(ellipse 44% 29% at 19% 11%, rgb(250 239 233 / .8) 63%, transparent 90%);
+.shinka-app-backdrop + .shinka-route-clip { padding-top: var(--shinka-brand-space); }
+.shinka-app-backdrop + .shinka-route-clip .shinka-viewport {
+  min-height: calc(100dvh - var(--shinka-brand-space));
+}
+.shinka-app-backdrop + .shinka-route-clip :is(.shinka-safe-shell, .shinka-onboarding > .shinka-safe-content) {
+  padding-top: 0;
+}
+.shinka-app-backdrop + .shinka-route-clip [data-probe-root].bg-shinka-ivory { background-color: transparent; }
+.shinka-app-backdrop + .shinka-route-clip .shinka-product-nav { background-color: rgb(var(--shinka-white) / 0.8); }
+
+/* Dark text surfaces begin below the artwork header, with open side gutters. */
+.dark .shinka-app-backdrop + .shinka-route-clip > [data-route-motion] {
+  background: linear-gradient(rgb(var(--shinka-ivory)) 0 0) center / calc(100% - 24px) 100% no-repeat;
 }
 
-@media (max-aspect-ratio: 942/1670) {
-  .shinka-app-backdrop::before {
-    mask: linear-gradient(var(--mask-angle, 0deg), #000 97%, transparent);
-  }
+.shinka-app-backdrop + .shinka-route-clip .shinka-onboarding-numbered > .shinka-safe-content {
+  display: flow-root;
+  max-width: none;
 }
-
-/* Onboarding anchors the original logo at the safe top left and feathers the lower edge. */
-.shinka-app-backdrop:has(+ .shinka-route-clip .shinka-onboarding) {
-  --art-inset: var(--safe-top) auto auto var(--safe-left);
-  --mask-angle: 180deg;
-  --backdrop-wash: none;
-  overflow: hidden;
-}
-
-.dark .shinka-app-backdrop::after {
-  inset: 0;
-  width: auto;
-  aspect-ratio: auto;
-  background: rgb(var(--shinka-ivory) / 0.86);
-}
-
-/* The not-found screen's slate text uses its light surface in both themes. */
-.dark .shinka-not-found {
-  background-color: rgb(248 250 252 / .9);
-}
-
-/* Default page shells also cover loading and error states. Scope the paint
-   to the app with a backdrop so internal screens keep their flat surface. */
-body,
-.shinka-app-backdrop ~ .shinka-route-clip [data-probe-root].bg-shinka-ivory {
-  background-color: transparent;
-}
-
-.shinka-app-backdrop ~ .shinka-route-clip .shinka-product-nav {
-  background-color: rgb(var(--shinka-white) / 0.8);
+.shinka-app-backdrop + .shinka-route-clip .shinka-progress-slot {
+  margin-top: calc(var(--safe-top) + 8px - var(--shinka-brand-space));
+  margin-left: calc(max(12px, var(--safe-left)) - max(20px, var(--safe-left)));
+  margin-bottom: 0;
+  min-height: calc(var(--shinka-brand-space) - var(--safe-top) - 8px);
+  max-width: calc((100vw + var(--safe-left) - var(--safe-right)) / 2 - var(--shinka-art-width) * 151 / 941 - max(12px, var(--safe-left)) - 12px);
 }

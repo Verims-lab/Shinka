@@ -31,9 +31,19 @@ export async function checkCalendarCorrections(browser, origin, directory) {
       await save.click();await edit.waitFor();assert.equal((await rows()).length,2);assert.equal(await writes(),1);
       const added=(await rows()).find(r=>r.date==='2026-10-20');await capture('added');
       await edit.click();await day('2026-10-20').click();await day('2026-10-19').click();assert.equal(await day('2026-10-20').getAttribute('data-draft'),'from');await scaleText();await capture('move-draft');
-      // Pull refresh does not discard or save a draft.
+      // Start on the artwork header. Pull refresh keeps the unsaved draft.
       const reads=await page.evaluate(()=>window.__authFixture.calls.filter(c=>c.name==='calendar').length);
-      await page.evaluate(()=>{scrollTo(0,0);const target=document.querySelector('[data-calendar-root] h1');for(const [type,y] of [['touchstart',0],['touchmove',90],['touchend',90]]){const e=new Event(type,{bubbles:true});Object.defineProperty(e,'touches',{value:type==='touchend'?[]:[{clientX:50,clientY:y}]});target.dispatchEvent(e);}});
+      await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+      await page.waitForFunction(()=>scrollY===0);
+      await page.evaluate(()=>{
+        const x=50,y=16,target=document.elementFromPoint(x,y);
+        if (!target?.closest('.shinka-route-clip') || target.closest('.shinka-viewport')) throw new Error('Expected the reserved artwork area above the Calendar viewport');
+        for (const [type,dy] of [['touchstart',0],['touchmove',90],['touchend',90]]) {
+          const event=new Event(type,{bubbles:true});
+          Object.defineProperty(event,'touches',{value:type==='touchend'?[]:[{clientX:x,clientY:y+dy}]});
+          target.dispatchEvent(event);
+        }
+      });
       await page.waitForFunction(n=>window.__authFixture.calls.filter(c=>c.name==='calendar').length>n,reads);await page.locator('[data-refresh-control][aria-busy=false]').waitFor({state:'attached'});assert.equal(await day('2026-10-19').getAttribute('data-draft'),'edit');assert.equal(await writes(),1);
       await save.click();await edit.waitFor();assert.deepEqual((await rows()).find(r=>r.id===added.id),{id:added.id,date:'2026-10-19'});assert.equal(await writes(),2);await capture('moved');
       await edit.click();await day('2026-10-19').click();await save.click();await page.locator('dialog[open]').waitFor();await page.keyboard.press('Escape');await page.locator('dialog').waitFor({state:'detached'});await page.waitForFunction(()=>document.activeElement?.hasAttribute('data-calendar-save'));assert.equal(await writes(),2);

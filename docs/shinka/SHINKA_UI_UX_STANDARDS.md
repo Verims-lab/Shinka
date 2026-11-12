@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-072
-**Last Updated:** 2026-11-11
+**Current BuildMarker:** Buildmarker-073
+**Last Updated:** 2026-11-12
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
@@ -13,7 +13,11 @@
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
 
-## 072 — Shared onboarding artwork and counter
+## 073 — Centered logo and safe progress placement
+
+The shared user-facing backdrop contains the supplied 941 × 1672 image at the document top. Its top-center wordmark scrolls with its reserved space. Keep headings, forms and actions below the logo, and use the open upper-left area for the ON-02–05 counter and Back control. Allow counter text to wrap at enlarged text size while preserving the 44px Back target. Follow 071 for enabled destinations and 067 for ON-01 content, spacing and Begin. Use the original artwork pixels in both themes. In dark mode, a separate reading surface below the logo keeps the theme's content legible. [073 delivery](reports/SHINKA_CENTERED_BACKGROUND_073.md)
+
+## Historical 072 — Shared onboarding artwork and counter
 
 ON-02 through ON-05 and the shared follow-up shell use the ON-01 artwork position, scale and original logo colors. Reserve the scaled logo height in normal flow. The localized step counter and accessible Back control share a row at the safe left, with the title and form below. Preparation remains unnumbered. The existing ON-01 spacing, compact rows and Begin treatment apply to the introduction. Keep the 18+ declaration and both providers reachable in the initial normal-size portrait viewport. At enlarged text and with the keyboard, the document scrolls to the form controls. [072 delivery](reports/SHINKA_ONBOARDING_BACKDROP_072.md)
 
@@ -21,7 +25,7 @@ ON-02 through ON-05 and the shared follow-up shell use the ON-01 artwork positio
 
 Begin takes anonymous visitors to 2/5 with the unchecked 18+ declaration and both provider buttons. A verified session waits for server progress and goes directly to the remaining form, preparation or Home. The existing Sign out action is available in the signed-in steps and preparation.
 
-ON-02 Back opens ON-01. In a signed-in flow, Back can revisit the mounted name draft from ON-04 before the profile is saved, and ON-05 can reopen the profile with drafts intact. Direct ON-03 and saved or reset ON-04 display a disabled Back control under 072. Preparation has no prior step. [071 delivery](reports/SHINKA_AUTHENTICATED_ONBOARDING_071.md)
+ON-02 Back opens ON-01. In a signed-in flow, Back can revisit the mounted name draft from ON-04 before the profile is saved, and ON-05 can reopen the profile with drafts intact. Direct ON-03 and saved or reset ON-04 display a disabled Back control. Preparation has no prior step. [071 delivery](reports/SHINKA_AUTHENTICATED_ONBOARDING_071.md)
 
 ## Historical 070 — ON-02 first-viewport sign-in priority
 
@@ -35,7 +39,7 @@ The owner's 2026-11-11 report ("Apple and Google never appear in the preview") i
 
 Anonymous Welcome shows the 18+ declaration and both approved provider actions in the initial mobile viewport, with unobstructed touch targets. Authenticated Welcome shows Continue and resumes the current form. The onboarding shell exposes the canonical Buildmarker for read-only release verification. [069 verification](reports/SHINKA_ONBOARDING_AUTH_069.md)
 
-## 068 — ON-02 mobile sign-in
+## Historical 068 — ON-02 mobile sign-in
 
 On anonymous Welcome, the empty artwork slot can grow to 240px when the safe viewport has room. Its height yields to the 18+ declaration and Apple and Google buttons on shorter screens. Keep the shared PNG, the 2/5 counter and the existing touch targets. At enlarged text or reduced height the document can scroll to all actions. [068 measurements](reports/SHINKA_ONBOARDING_SIGN_IN_068.md)
 
@@ -43,11 +47,11 @@ On anonymous Welcome, the empty artwork slot can grow to 240px when the safe vie
 
 The usable height is the visible viewport after the shell's top and bottom safe padding and the 52px primary CTA. Aim to lower the 066 heading position by 10% of that height. The space from the heading to the introduction paragraph is 2.5%. Use 12px between consecutive boxes and between the third box and Begin. On short portrait screens the heading shift uses the available space so Begin stays in view. ON-02 through ON-05 show their respective page numbers. [067 measurements](reports/SHINKA_ONBOARDING_SPACING_067.md)
 
-## 066 — ON-01 compact presentation
+## Historical 066 — ON-01 compact presentation
 
 Anchor the single bundled composition at the safe top left on ON-01. Keep the original logo fully colored and proportional. Use the smaller heading token, compact three rows and the existing primary CTA. Moon and birth-chart descriptions fit on one line at the default text size on common portrait widths. At enlarged text or reduced height, copy can wrap and the document can scroll. [066 layout and verification](reports/SHINKA_ONBOARDING_INTRO_066.md)
 
-## 065 — Shared branded screen background (2026-11-11)
+## Historical 065 — Shared branded screen background (2026-11-11)
 
 Every user-facing App route shares the bundled 942 × 1670 owner PNG, including onboarding and first-content preparation, Apple/Google sign-in, Home, Calendar, Pattern, You, Account & Privacy, account deletion, and loading, retry and not-found states. The decorative layer sits outside route motion and behind the translucent bottom navigation. Fit the full image proportionally to the large viewport and anchor it at the bottom so the artwork reaches the navigation on tall screens. Fill any remaining space with matching cream and feather the narrow edge that meets it. A localized cream wash behind the PNG's wordmark keeps overlapping light-mode headings readable. Dark mode uses the existing theme-controlled veil. Keep the existing safe insets, page flow, 240px onboarding spacing and logo text. Internal administration keeps its flat surface. [065 scope and verification](reports/SHINKA_APP_BACKGROUND_065.md)
 
@@ -127,7 +131,7 @@ A complete DOB uses the shared date-only validation with server-provided today i
 Missing/invalid shared quota is distinct from temporary rate limiting and provider failure. Central onboardingCopy explains that place search is not set up yet, keeps typing, and offers the existing optional-clear path; quota exhaustion retains the existing try-later copy and Retry-After. No invented result, forced birthplace, automatic retry or settings button. Default/onboarding light, verified Profile-only dark, watercolor and 054's single composition remain unchanged. [Execution and matched images](reports/SHINKA_ONBOARDING_FIX_055.md).
 
 
-## 054 — One onboarding moon/botanical composition
+## Historical 054 — One onboarding moon/botanical composition
 
 ON-01–ON-05 use only the approved fixed SectionBackdrop onboarding image. The former scrolling IntroArt bitmap duplicated a composition already inside that backdrop and is removed, including its asset URL/import/blend CSS. A transparent, empty, aria-hidden square layout slot (width 100%, max 240 CSS px, aspect-ratio 1) keeps the existing heading, subtitle, card, field and button positions. It paints no bitmap, pseudo-decoration, mask or covering layer. The three introduction row SVG icons remain. Palette, watercolor texture, lines, background crop/fade, typography and manual light-default/verified-Profile-dark policy are unchanged.
 

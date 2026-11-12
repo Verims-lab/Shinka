@@ -60,7 +60,7 @@ export default function Onboarding({initialEntry='UNAUTHENTICATED_INTRO',destina
   if(authError?.type==='session_unverified'&&!snapshot)return <SessionRetry/>;
   if(isLoadingAuth||isLoadingPublicSettings)return <PageContainer><p role="status" aria-label="Shinka">…</p></PageContainer>;
   if(!isAuthenticated)return <RouteBoundary><OnboardingScreen state={entry} initialLanguage={language} onState={setEntry}/></RouteBoundary>;
-  if(!snapshot||snapshot.ownerSession!==user?.id)return <PageContainer><header className="flex items-center justify-between mx-auto max-w-md pt-6"><span className="font-heading text-2xl">Shinka</span></header><main className="mx-auto max-w-md space-y-5 py-10" aria-busy={!error}>
+  if(!snapshot||snapshot.ownerSession!==user?.id)return <PageContainer><main className="mx-auto max-w-md space-y-5 py-10" aria-busy={!error}>
     {error?<><p role="alert">{onboardingCopy('systemError',language)}</p><p className="break-words text-shinka-small">{error}</p><ShinkaButton onClick={load}>{onboardingCopy('retry',language)}</ShinkaButton></>:<p role="status" aria-label="Shinka">…</p>}
   </main></PageContainer>;
   if(snapshot.state==='ACTIVE_EXISTING_USER') {

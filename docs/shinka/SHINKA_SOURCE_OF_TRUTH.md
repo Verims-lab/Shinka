@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-072
-**Last Updated:** 2026-11-11
+**Current BuildMarker:** Buildmarker-073
+**Last Updated:** 2026-11-12
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
@@ -12,7 +12,11 @@
 
 
 
-## 072 — Shared onboarding artwork and progress row
+## 073 — Original centered-logo backdrop
+
+The owner's Backround.png supersedes the earlier artwork on user-facing screens. Use the supplied bytes as one contained image with its centered top logo at the document start, within the safe area. Reserve the logo height before the foreground content. Place the ON-02–05 counter and session-scoped Back beside the logo in the upper-left area. ON-01 and preparation keep their existing numbering policy. Dark content surfaces provide readable contrast and the visible artwork retains its original pixels. [073 delivery](reports/SHINKA_CENTERED_BACKGROUND_073.md)
+
+## Historical 072 — Shared onboarding artwork and progress row
 
 The owner’s comparison of ON-01 and ON-02 sets ON-01 as the artwork reference for the numbered steps and follow-ups rendered in the same shell. Use the original fixed PNG and its safe top-left fit. ON-02 through ON-05 place the localized counter and Back together below the embedded logo. Back is enabled when the current session has a valid prior step under 071. Preparation keeps the shared artwork and remains unnumbered. [072 delivery](reports/SHINKA_ONBOARDING_BACKDROP_072.md)
 
@@ -34,11 +38,11 @@ ON-02 after Begin displays the initially unchecked 18+ declaration and Apple and
 
 The owner's current ON-01 request removes the intro counter. Scale the heading offset and copy gap to the safe viewport above Begin. Increase the two gaps between rows and the gap before Begin from 8px to 12px. Give the full intro and Begin priority on the shortest portrait viewports by limiting the heading offset to the space available. [067 delivery](reports/SHINKA_ONBOARDING_SPACING_067.md)
 
-## 066 — Compact first onboarding screen
+## Historical 066 — Compact first onboarding screen
 
 The 066 ON-01 package preserves the embedded PNG logo in its original colors at the top-left safe area. ON-01 drops the separate Shinka wordmark and the 240px square slot. Show the heading, intro, three descriptions and Begin together on the initial common portrait viewport. Use the three icons, approved TR/EN copy and auth-first transition. ON-02 through ON-05 retain their existing artwork position, wordmarks and square slots. [066 delivery](reports/SHINKA_ONBOARDING_INTRO_066.md)
 
-## 065 — Shared branded screen background (2026-11-11)
+## Historical 065 — Shared branded screen background (2026-11-11)
 
 The owner's “Replace All Shinka Screen Backgrounds” request and the attached “Şinka Logolu Zarif Pembe Botanik Zemin.png” supersede 046's per-section assets and the image choice in 054. The supplied PNG is the sole decorative bitmap for all user-facing routes. Its original bytes, proportions and artwork are the source. Retain the existing UI wordmarks and report their coexistence with the embedded logo. The 054 onboarding spacing and 048 saved-theme authority still apply. [065 delivery](reports/SHINKA_APP_BACKGROUND_065.md)
 

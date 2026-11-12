@@ -1,5 +1,3 @@
-/* The counter aligns with the art across viewport widths; the forms stay centered. */
-.shinka-onboarding-followup > .shinka-safe-content { max-width: none; }
 /* Announced headings and the name field use their existing focus treatments.
    The name input's visible ring is on its surrounding frame. */
 .shinka-unframed-title:focus,

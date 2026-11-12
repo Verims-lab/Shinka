@@ -15,8 +15,7 @@ export default function Home({ profileAccess = undefined, renderProfileAccess = 
   const row = daily.value?.daily;
   const copy = key => dailyCopy(key, language);
   return <div className="shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col" lang={language} data-home-root>
-    <header className="flex flex-wrap items-center justify-between px-5 pt-6 gap-2">
-      <span className="font-heading font-medium text-shinka-h3 text-shinka-plum">Shinka</span>
+    <header className="flex flex-wrap items-center justify-end px-5 pt-2 gap-2">
       {renderProfileAccess?.(language) || profileAccess || <ProfileMenu language={language}/>}
     </header>
     <main className="flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6">

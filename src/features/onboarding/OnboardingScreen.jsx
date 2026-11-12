@@ -30,16 +30,12 @@ const SCREENS = {
 };
 
 const ONBOARDING_VIEWPORT_HEIGHT = "calc(100dvh - max(24px, var(--safe-top)) - max(24px, var(--safe-bottom)))";
-// Clear the embedded logo at the same contained image scale used by the backdrop.
-const LOGO_CLEARANCE = "calc(8px + min(37.5vw, 21.2vh) + var(--safe-top) - max(24px, var(--safe-top)))";
 // Scale ON-01 spacing inside the safe content area, above the 52px CTA.
 const INTRO_USABLE_HEIGHT = `max(0px, calc(${ONBOARDING_VIEWPORT_HEIGHT} - 52px))`;
 const INTRO_LAYOUT = {
-  height: ONBOARDING_VIEWPORT_HEIGHT,
+  height: "calc(100dvh - var(--shinka-brand-space, max(24px, var(--safe-top))) - max(24px, var(--safe-bottom)))",
   minHeight: "min-content",
-  paddingTop: LOGO_CLEARANCE,
 };
-const FOLLOWUP_LAYOUT = { paddingTop: LOGO_CLEARANCE };
 const CENTERED_CONTENT = "mx-auto max-w-md";
 
 /** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,authenticated?:boolean,onRestricted?:Function,onSignOut?:Function|null,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
@@ -158,7 +154,7 @@ export default function OnboardingScreen({
   if (!screen || anonymous === authenticated) return null;
   const step = screen.step;
   const airy = Boolean(step);
-  const contentWidth = intro ? "" : CENTERED_CONTENT;
+  const numbered = airy && !intro;
   // Only an unsaved name choice made in this mounted form can be revisited.
   const back = state === "AUTHENTICATED_PROFILE_REQUIRED" && canReturnToName && !profile
     ? "AUTHENTICATED_NAME_REQUIRED"
@@ -254,28 +250,30 @@ export default function OnboardingScreen({
       : t(error.code)
     : null;
   return (
-    <PageContainer className={intro ? "shinka-onboarding" : "shinka-onboarding shinka-onboarding-followup"} surface="section">
+    <PageContainer className={numbered ? "shinka-onboarding shinka-onboarding-numbered" : "shinka-onboarding"} surface="section">
+      {numbered && (
+        <header className="shinka-progress-slot" lang={language}>
+          <div className="flex items-center gap-1" data-onboarding-progress>
+            <ShinkaButton variant="ghost" aria-label={t("back")} data-onboarding-back className="shrink-0" style={{ paddingInline: 0 }} disabled={!back || busy} onClick={back ? () => onState(back) : undefined}>
+              <ChevronLeft aria-hidden="true" className="h-5 w-5" />
+            </ShinkaButton>
+            <p className="min-w-0 break-words text-shinka-small leading-tight text-shinka-taupe" data-onboarding-step={step}>
+              {t("stepOf").replace("{n}", String(step))}
+            </p>
+          </div>
+        </header>
+      )}
       <main
-        className={intro ? `${CENTERED_CONTENT} flex flex-col` : "space-y-3"}
-        style={intro ? INTRO_LAYOUT : FOLLOWUP_LAYOUT}
+        className={`${CENTERED_CONTENT} ${intro ? "flex flex-col" : "space-y-3"}`}
+        style={intro ? INTRO_LAYOUT : undefined}
         data-onboarding-step={intro ? step : undefined}
         data-onboarding-state={state}
         data-shinka-build={BUILD_MARKER}
         lang={language}
       >
-        {step && !intro && (
-          <header className="flex items-center gap-2" data-onboarding-progress>
-            <ShinkaButton variant="ghost" aria-label={t("back")} data-onboarding-back disabled={!back || busy} onClick={back ? () => onState(back) : undefined}>
-              <ChevronLeft aria-hidden="true" className="h-5 w-5" />
-            </ShinkaButton>
-            <p className="text-shinka-small text-shinka-taupe" data-onboarding-step={step}>
-              {t("stepOf").replace("{n}", String(step))}
-            </p>
-          </header>
-        )}
         <>
           {dependencies.length > 0 && (
-            <div role="status" className={`${contentWidth} break-words text-shinka-small`}>
+            <div role="status" className="break-words text-shinka-small">
               {dependencies.join(" · ")}
             </div>
           )}
@@ -283,7 +281,7 @@ export default function OnboardingScreen({
             <div aria-hidden="true" style={{ flexGrow: 1, maxHeight: `calc(${INTRO_USABLE_HEIGHT} / 10)` }} />
           )}
           <div
-            className={`${contentWidth} ${airy ? "space-y-2 text-center" : ""}`.trim()}
+            className={airy ? "space-y-2 text-center" : ""}
             style={intro ? { marginBlockEnd: `calc(${INTRO_USABLE_HEIGHT} / 40)` } : undefined}
           >
             <h1
@@ -295,7 +293,7 @@ export default function OnboardingScreen({
             </h1>
             {screen.subtitle && <p className="text-shinka-taupe">{t(screen.subtitle)}</p>}
           </div>
-          <ShinkaCard surface={airy || state === 'FIRST_SHINKA_DEPENDENCY' ? 'plain' : 'card'} padded={!airy} className={`${contentWidth} ${airy ? "shinka-intro-shell" : ""}`.trim()}>
+          <ShinkaCard surface={airy || state === 'FIRST_SHINKA_DEPENDENCY' ? 'plain' : 'card'} padded={!airy} className={airy ? "shinka-intro-shell" : ""}>
             <div className="space-y-5" aria-busy={busy}>
               {body()}
               {error && !error.field && (

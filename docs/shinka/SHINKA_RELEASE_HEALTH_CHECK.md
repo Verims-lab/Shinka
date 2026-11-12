@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-072
-**Last Updated:** 2026-11-11
+**Current BuildMarker:** Buildmarker-073
+**Last Updated:** 2026-11-12
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-071.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-072.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 073 — Centered artwork across user-facing screens
+
+Buildmarker-073 / HC-072.0 retains 186 cases. H13-012 maps the centered safe-area logo, upper-left progress placement, document scrolling, dark reading contrast and both browser matrices. H13-020 checks contained, untinted document artwork with the internal surface excluded. The local backdrop runner verifies the image SHA-256 and compares light and dark logo crops when captures are enabled. The Calendar corrections matrix starts the pull gesture in the artwork header and checks that the draft is preserved. H05-009 includes 073 in the existing content policy. [073 delivery](reports/SHINKA_CENTERED_BACKGROUND_073.md)
 
 ## 072 — Shared onboarding backdrop and progress row
 
