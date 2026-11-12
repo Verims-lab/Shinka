@@ -35,7 +35,7 @@ export async function checkTermsAcceptance(browser,origin,directory){
       assert.deepEqual(measurements.links.map(link=>link.url),urls);assert(measurements.links.every(link=>link.height>=44));
       assert.equal(measurements.names[1],language==='tr'?'Kullanım Koşullarını kabul ediyorum':'I agree to the Terms of Use');
       assert.equal(await page.getByRole('checkbox',{name:measurements.names[1],exact:true}).count(),1,'full Terms sentence labels the checkbox for assistive technology');
-      assert.equal(measurements.privacy,language==='tr'?'Kişisel verilerinizi Gizlilik Politikamız kapsamında koruyoruz':'We handle your personal information in our Privacy Policy.');
+      assert.equal(measurements.privacy,language==='tr'?'Kişisel verilerinizi Gizlilik Politikamız kapsamında koruyoruz.':'We handle your personal information in our Privacy Policy.');
       for(const selector of ['label[for=age-declaration]','label[for=terms-declaration]','.shinka-legal-link','[data-provider=apple]','[data-provider=google]']){
         for(const control of await page.locator(selector).all()){
           await control.scrollIntoViewIfNeeded();
