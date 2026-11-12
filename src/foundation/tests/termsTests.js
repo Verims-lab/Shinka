@@ -125,7 +125,7 @@ export const TERMS_TESTS=[
   check(en.termsAgreement==='I agree to the Terms of Use');
   check(tr.termsAgreement==='Kullanım Koşullarını kabul ediyorum');
   check(en.privacyInformation==='We handle your personal information in our Privacy Policy.');
-  check(tr.privacyInformation==='Kişisel verilerinizi Gizlilik Politikamız kapsamında koruyoruz');
+  check(tr.privacyInformation==='Kişisel verilerinizi Gizlilik Politikamız kapsamında koruyoruz.');
   check(ACCOUNT_CLEANUP.includes('UserTermsAcceptance')&&!HEALTH_CLEANUP.includes('UserTermsAcceptance'));
   check((await loadStaticEvidence()).domain.termsPolicy);
  }],
