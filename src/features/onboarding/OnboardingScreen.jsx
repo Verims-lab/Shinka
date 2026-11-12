@@ -38,7 +38,7 @@ const INTRO_LAYOUT = {
 };
 const CENTERED_CONTENT = "mx-auto max-w-md";
 
-/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,authenticated?:boolean,onRestricted?:Function,onSignOut?:Function|null,authenticate?:typeof beginProviderAuth,dependencies?:string[]}} props */
+/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,authenticated?:boolean,onRestricted?:Function,onSignOut?:Function|null,authenticate?:typeof beginProviderAuth,legalPolicy?:()=>Promise<any>,dependencies?:string[]}} props */
 export default function OnboardingScreen({
   state,
   initialLanguage = undefined,
@@ -50,6 +50,7 @@ export default function OnboardingScreen({
   onState = () => {},
   onRestricted = () => {},
   authenticate = beginProviderAuth,
+  legalPolicy = undefined,
   dependencies = [],
   onSignOut = null,
 }) {
@@ -216,7 +217,7 @@ export default function OnboardingScreen({
         </>
       );
     if (anonymousSignIn)
-      return <SignIn language={language} authenticate={authenticate} onBusy={setBusy} />;
+      return <SignIn language={language} authenticate={authenticate} onBusy={setBusy} loadPolicy={legalPolicy} />;
     if (state === "AUTHENTICATED_PROFILE_REQUIRED")
       return (
         <ProfileForm

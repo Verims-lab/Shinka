@@ -44,6 +44,10 @@ export async function onboardingProbe(step, width, run, props = {}, context = {}
     const host = doc.createElement('div'); doc.body.appendChild(host); root = createRoot(host);
     stage('FIXTURE_RENDER'); root.render(createElement(OnboardingFixture, {step, ...props}));
     await wait(() => !!doc.querySelector('[data-onboarding-state]'));
+    // Observe the screen's initial focus effect before sending user events.
+    // Otherwise a delayed WebKit commit can move focus away while the probe
+    // types, closing an otherwise correct combobox or stealing dialog return.
+    await wait(() => doc.activeElement === doc.querySelector('h1'));
     stage('INTERACTION'); await run(doc, frame.contentWindow);
   } finally { cleanup(); signal?.removeEventListener('abort', cleanup); }
 }
@@ -142,7 +146,7 @@ export const ONBOARDING_UI_TESTS=[
   input(doc,'display_name','');await testDelay(50,context.signal);button(doc,'Prefer not to say').click();await waitForFixture(()=>doc.querySelector('#birth_date'),doc.body,context);check(!doc.querySelector('[data-provider]'));
  },{},context);}],
  ['U03','18+ error is associated; only Apple/Google exposed and failure safe',async(context={})=>{const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);await probe('UNAUTHENTICATED_SIGN_IN',360,async doc=>{
-  check([...doc.querySelectorAll('[data-provider]')].map(e=>e.getAttribute('data-provider')).join()==='apple,google');doc.querySelector('[data-provider=apple]').click();await pause();check(doc.querySelector('#age-error')?.textContent==='Please confirm that you are 18 or older');doc.querySelector('#age-declaration').click();await pause();doc.querySelector('[data-provider=google]').click();await pause();check(doc.querySelector('[data-error-code]')?.textContent==='We couldn’t sign you in. Please try again');check(!doc.querySelector('input[type=password]'));
+  check([...doc.querySelectorAll('[data-provider]')].map(e=>e.getAttribute('data-provider')).join()==='apple,google');doc.querySelector('[data-provider=apple]').click();await pause();check(doc.querySelector('#age-error')?.textContent==='Please confirm that you are 18 or older');doc.querySelector('#age-declaration').click();doc.querySelector('#terms-declaration').click();await pause();doc.querySelector('[data-provider=google]').click();await pause();check(doc.querySelector('[data-error-code]')?.textContent==='We couldn’t sign you in. Please try again');check(!doc.querySelector('input[type=password]'));
  });}],
  ['U04','DOB errors focus explanation without reopening picker; typed-but-unselected birthplace blocked; clearing allows NULL save',async(context={})=>{const probe=(...args)=>onboardingProbe(args[0],args[1],args[2],args[3],context), pause=()=>testDelay(50,context.signal);await probe('AUTHENTICATED_PROFILE_REQUIRED',360,async doc=>{
   check(doc.querySelector('#birth_time').value==='');button(doc,'Continue').click();await pause();check(doc.activeElement.id==='birth_date-error'&&doc.querySelector('#birth_date-error'),`DOB focus ${doc.activeElement.id} error ${doc.querySelector('[role=alert]')?.textContent}`);input(doc,'birth_date','1990-01-01');typePlace(doc,'Kansas');await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('#birthplace-error'),`place error ${doc.querySelector('[role=alert]')?.textContent}`);clearButton(doc).click();await pause();button(doc,'Continue').click();await pause();check(doc.querySelector('[data-onboarding-state]').getAttribute('data-onboarding-state')==='AUTHENTICATED_CYCLE_STEP',`profile save ${doc.querySelector('[role=alert]')?.textContent}`);

@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-073
+**Current BuildMarker:** Buildmarker-074
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
-**Last Updated:** 2026-11-11
+**Last Updated:** 2026-11-12
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
 **External Verification Required:** All rows marked UNVERIFIED.
+
+## 074 — Versioned legal admission, distinct health consent
+
+Native authentication is necessary but not sufficient for product/admin access. Fresh current-owner/current-version acceptance is required by frontend routing and backend/per-write guards. No pre-auth identity inference, custom User legal flag or browser timestamp is trusted. Public policy exposes no user data. Strict payload rejects owner/role/time; backend generates UTC time, appends history and verifies readback. Unknown/failed/timeout state stays closed; only explicit status can confirm, and only a successful absent read enables an explicit same-intent retry. Missing SHINKA_TERMS_VERSION is CONFIGURATION_REQUIRED. Owner privacy/erasure remains independently available. Health consent is optional and separate; withdrawal retains Terms, owner erasure removes its history. Deployed direct-access enforcement remains an external acceptance requirement. [074 contract, source review and execution](reports/SHINKA_ONBOARDING_TERMS_074.md).
 
 ## 064 — Admin reset retirement and selected-user removal (2026-11-11)
 

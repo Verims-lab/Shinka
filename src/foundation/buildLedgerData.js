@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-069",
-    "package_name": "Welcome authentication and published verification",
-    "package_type": "TARGETED_REGRESSION",
-    "created_at": "2026-11-11T17:41:26Z",
-    "health_catalog_version": "HC-068.0",
-    "short_summary": "Trace anonymous and authenticated Welcome, verify both provider dispatches and check the expected published build.",
-    "full_health_status": "NOT_RUN",
-    "notes": "Preview shows authenticated Continue. Published 068 passed all eight anonymous visibility cases per engine. The 069 auth-first gate passed 16/16 in both engines. See reports/SHINKA_ONBOARDING_AUTH_069.md for full-suite results and the publication gate."
-  },
-  {
     "build_marker": "Buildmarker-070",
     "package_name": "ON-02 first-viewport sign-in priority",
     "package_type": "TARGETED_UI",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "The supplied Backround.png anchors its original centered logo across user routes. The shared frame clears the wordmark and places ON-02–05 progress at the safe upper left.",
     "full_health_status": "NOT_RUN",
     "notes": "HC-072.0 extends H05-009, H13-012 and H13-020. Local regressions verify exact image bytes, responsive placement, dark contrast, session-scoped Back and matching logo screenshot pixels. See reports/SHINKA_CENTERED_BACKGROUND_073.md."
+  },
+  {
+    "build_marker": "Buildmarker-074",
+    "notes": "GizemTest only. Missing dedicated ON-02 asset preserves 073 PNG. No approved legal version default; SHINKA_TERMS_VERSION is a release prerequisite. H06-008/009 and TA01–TA14 cover native history/unknown outcomes and actual App admission. Existing DOB, five-step, optional health and domain rules remain. Local execution and external limits: reports/SHINKA_ONBOARDING_TERMS_074.md. Both engines: 817 core tests and 26 ON-02 cases PASS. Chromium full PASS; full WebKit Health H08-004/RC06 still times out at the unchanged 5s helper cap. Hosted verification NOT_RUN.",
+    "package_type": "FEATURE",
+    "package_name": "ON-02 legal declarations and versioned native admission",
+    "health_catalog_version": "HC-073.0",
+    "created_at": "2026-11-12T11:40:21Z",
+    "full_health_status": "NOT_RUN",
+    "short_summary": "Preserve Welcome headings, add five viewport units and 70% declaration type, exact Terms/Privacy links, shared provider gates and server-owned versioned acceptance history."
   }
 ];

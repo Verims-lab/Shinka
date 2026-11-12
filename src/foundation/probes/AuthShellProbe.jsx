@@ -21,7 +21,7 @@ function Shell() {
   },[]);
   const status=probe.status;
   return <div ref={root} data-auth-probe="unauthenticated-shell" data-probe-route={AUTH_PROBE_PATH} data-probe-status={status} data-probe-viewport={probe.inView===null?undefined:probe.inView?'IN_VIEW':'OFFSCREEN'} data-probe-error={status==='ERROR'?'AUTH_PROBE_SHELL_MISSING':undefined} data-probe-lifecycle={status==='READY'?'COMMIT_VERIFIED':status==='ERROR'?'COMMIT_REJECTED':'MOUNTING'}>
-    <OnboardingScreen state={AUTH_PROBE_SCREEN} initialLanguage="en"/>
+    <OnboardingScreen state={AUTH_PROBE_SCREEN} initialLanguage="en" legalPolicy={async()=>({version:null})}/>
   </div>;
 }
 

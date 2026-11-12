@@ -10,6 +10,7 @@ import { onboardingOperation } from "../../../base44/shared/onboardingOperations
 import { sdkOnboardingFixture } from "./base44OnboardingFixture";
 import { placeFetch } from "./geonamesSearchFixture";
 import { check, rejects } from "./dataModelTests";
+import { testDelay } from '../testExecution';
 
 const marker = (n) => `Buildmarker-${String(n).padStart(3, "0")}`;
 const entry = (n) => ({
@@ -150,7 +151,7 @@ export const MAINTENANCE_TESTS = [
   [
     "M09",
     "Health runner rejects duplicate starts, ignores stale history and preserves completed audit on unmount",
-    async () => {
+    async (context = {}) => {
       const { useHealthRunner } = await import("../health/useHealthRunner");
       /** @type {ReturnType<typeof useHealthRunner>} */
       let hook;
@@ -184,7 +185,9 @@ export const MAINTENANCE_TESTS = [
       const root = createRoot(host);
       try {
         root.render(createElement(Harness));
-        await pause();
+        // A fixed 30ms sleep is not evidence that React committed this hook.
+        // Keep the ordinary test deadline/cancellation and wait for its API.
+        while (!hook || pending.length === 0) await testDelay(0, context.signal);
         const reload = hook.loadHistory();
         pending[1]([{ id: "new" }]);
         await reload;
@@ -206,7 +209,7 @@ export const MAINTENANCE_TESTS = [
       }
     },
   ],
-  ["M10", "Failed Health save retries the same completed run without rerunning tests", async () => {
+  ["M10", "Failed Health save retries the same completed run without rerunning tests", async (context = {}) => {
     const {useHealthRunner}=await import('../health/useHealthRunner');
     /** @type {ReturnType<typeof useHealthRunner>} */
     let hook;
@@ -217,7 +220,14 @@ export const MAINTENANCE_TESTS = [
     const operations={list:async()=>[],run:async()=>{runs++;return report;},save:async value=>{check(value===report);if(++saves===1)throw new Error('private');}};
     function Harness(){hook=useHealthRunner(operations);return null;}
     const host=document.createElement('div');document.body.appendChild(host);const root=createRoot(host);
-    try {root.render(createElement(Harness));await pause();await hook.run();await pause();check(hook.report===report&&hook.saveError);await hook.retrySave();await pause();check(runs===1&&saves===2&&hook.saveError===null);}
+    try {
+      root.render(createElement(Harness));
+      while(!hook)await testDelay(0,context.signal);
+      await hook.run();while(hook.report!==report||!hook.saveError)await testDelay(0,context.signal);
+      check(hook.report===report&&hook.saveError);await hook.retrySave();
+      while(hook.saveError!==null)await testDelay(0,context.signal);
+      check(runs===1&&saves===2&&hook.saveError===null);
+    }
     finally {root.unmount();host.remove();}
   }],
 ];

@@ -54,7 +54,7 @@ export async function checkAuthFirstOnboarding(browser, origin) {
    const age=page.locator('#age-declaration');
    assert.equal(await page.locator('#display_name,#birth_date').count(),0);
    assert.equal(await page.evaluate(()=>window.__sdkLabCalls.filter(c=>c.name==='onboarding').length),0);
-   const providerCalls = () => page.evaluate(() => window.__authFixture.providerCalls);
+   const providerCalls = () => page.evaluate(() => window.__authFixture.providerCalls.map(call=>({...call,returnTo:new URL(call.returnTo,location.origin).pathname})));
    const providerButton = provider => page.locator(`[data-provider="${provider}"]`);
    for (const provider of welcome.providers) {
     await providerButton(provider).click();
@@ -62,6 +62,8 @@ export async function checkAuthFirstOnboarding(browser, origin) {
     assert.deepEqual(await providerCalls(), [], 'unchecked age cannot start either OAuth flow');
    }
    await age.check();
+   for(const provider of welcome.providers){await providerButton(provider).click();await page.locator('#terms-error').waitFor();assert.deepEqual(await providerCalls(),[]);}
+   await page.locator('#terms-declaration').check();
    const expectedCalls = [];
    for (const provider of welcome.providers) {
     await providerButton(provider).click();

@@ -3,7 +3,7 @@ import { InternalError } from './internalAuthorization.js';
 export const PRIVACY_KINDS = Object.freeze(['WITHDRAW_HEALTH', 'DELETE_ACCOUNT']);
 export const HEALTH_CLEANUP = Object.freeze(['UserCalendarAction', 'UserCyclePhaseDay', 'UserCyclePrediction', 'UserPeriodRecord', 'UserCycleSettings']);
 // No source authorizes personal-history retention for an owner's erasure request.
-export const ACCOUNT_CLEANUP = Object.freeze([...HEALTH_CLEANUP, 'NotificationDelivery', 'UserPatternSummary', 'UserDailyMessage', 'UserHealthConsentEvent', 'UserHealthConsent', 'HealthDataDeletionJob', 'DataProtectionEvent', 'UserPreferences', 'UserProfile', 'AdminAuditLog', 'AdminTestOperation']);
+export const ACCOUNT_CLEANUP = Object.freeze([...HEALTH_CLEANUP, 'NotificationDelivery', 'UserPatternSummary', 'UserDailyMessage', 'UserHealthConsentEvent', 'UserHealthConsent', 'HealthDataDeletionJob', 'DataProtectionEvent', 'UserPreferences', 'UserProfile', 'AdminAuditLog', 'AdminTestOperation', 'UserTermsAcceptance']);
 export const privacyFail = (code, status = 409) => { throw new InternalError(code, status); };
 export async function privacyHash(value) {
   return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(value))), b => b.toString(16).padStart(2, '0')).join('');

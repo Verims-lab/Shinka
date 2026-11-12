@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-073
+**Current BuildMarker:** Buildmarker-074
 **Last Updated:** 2026-11-12
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 074 — ON-02 declarations and versioned legal admission
+
+The owner's current ON-02 request adds exact localized Terms of Use acceptance and informational Privacy links, shared pre-provider new-user age/Terms validation and server-owned version/time history. Authentication alone does not admit a user without verified current acceptance. Returning users may authenticate with a fresh age declaration, then reuse valid current evidence; absent/old/unknown evidence stays behind the legal gate. 061/071's five-step authenticated progress remains unchanged. No approved legal version or new ON-02 asset was supplied: server configuration is required and 073's PNG is preserved. This supersedes the original legal terminology within the newly specified screen; original sources are not retrospectively approved. [074 contract, source review and execution](reports/SHINKA_ONBOARDING_TERMS_074.md).
 
 ## 073 — Original centered-logo backdrop
 

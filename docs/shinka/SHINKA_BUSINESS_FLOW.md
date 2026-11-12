@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-073
-**Last Updated:** 2026-11-11
+**Current BuildMarker:** Buildmarker-074
+**Last Updated:** 2026-11-12
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
@@ -12,6 +12,10 @@
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 
+
+## 074 — Authentication and legal admission
+
+New-user provider initiation requires separate unchecked age and Terms confirmations; Privacy is informational. Returning-login mode still requires age and checks actual owner/version evidence after Apple/Google. Current acceptance resumes the verified existing form/Home without rewriting its time. Missing, outdated, failed or unknown evidence grants no product/admin access. An explicit owner/version acceptance appends server-time history and requires readback plus fresh applicationSession before personal hydration. A failed status check never replays an uncertain write; a separate same-intent retry needs verified absence. Health consent, DOB validation and five numbered steps remain independent. [074 contract, source review and execution](reports/SHINKA_ONBOARDING_TERMS_074.md).
 
 ## 064 — Admin reset retirement and selected-user removal (2026-11-11)
 

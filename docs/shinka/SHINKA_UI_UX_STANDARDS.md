@@ -2,16 +2,20 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-073
+**Current BuildMarker:** Buildmarker-074
 **Last Updated:** 2026-11-12
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
 **Implemented:** Tokens (`src/foundation/designTokens.js` ↔ `src/index.css`), contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), primitives (`src/components/shinka/`), Foundation shell aligned; scoped Profile/You admin menu and internal panel.
-**Not Implemented:** Current-build hosted/device acceptance, approved legal destinations and permanent platform/provider erasure. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
+**Not Implemented:** Current-build hosted/device acceptance, approved legal version configuration and permanent platform/provider erasure. ON-02 legal destinations were supplied by the 074 request. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 074 — ON-02 legal declarations
+
+Keep Welcome heading/subtitle text, typography and position. Add exactly 5dvh above only the declaration block. Age and Terms label spans inherit 70% of the previous age-label font (measured 16px → 11.2px); checkboxes remain 24px and touch rows/underlined links >=44px. Natural document scrolling supersedes the historical promise that all new controls fit every short initial viewport. New-user age/Terms start unchecked. Terms: EN “I agree to the Terms of Use”, TR “Kullanım Koşullarını kabul ediyorum”; only “Terms of Use” / “Kullanım Koşullarını” links to https://shinkadaily.com/terms/. Privacy: EN “We handle your personal information in our Privacy Policy.”, TR “Kişisel verilerinizi Gizlilik Politikamız kapsamında koruyoruz”; only “Privacy Policy” / “Gizlilik Politikamız” links to https://shinkadaily.com/privacy/. Link activation does not toggle Terms; no Privacy checkbox exists. Explicit returning login resets age unchecked. Missing/outdated authenticated acceptance uses a legal admission gate, not a sixth numbered step. Preserve the existing background because no replacement was found. [074 contract, source review and execution](reports/SHINKA_ONBOARDING_TERMS_074.md).
 
 ## 073 — Centered logo and safe progress placement
 

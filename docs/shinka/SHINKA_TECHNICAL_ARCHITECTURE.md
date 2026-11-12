@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-073
-**Last Updated:** 2026-11-11
+**Current BuildMarker:** Buildmarker-074
+**Last Updated:** 2026-11-12
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
@@ -12,6 +12,10 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 074 — Legal admission boundary
+
+App lazily mounts TermsGate before any authenticated product/admin route unless applicationSession verifies CURRENT Terms. Owner privacy routes stay independent. Native identity/lifecycle is established before legal history lookup; createNativeClient adds fresh legal admission inside per-write guards. Session and narrow termsAcceptance are intentional authentication-only exceptions; internal Health/Test Tools also enforce legal admission. The disabled notification entry stays disabled. termsAcceptance exposes only public policy metadata and authenticated owner status/append. Runtime SHINKA_TERMS_VERSION has no default; one-use OAuth version/nonce intent is not authority. Server timestamp/history/readback and 15s client unknown-outcome/status/same-intent handling preserve Base44 as the only backend. No dependency is added. [074 contract, source review and execution](reports/SHINKA_ONBOARDING_TERMS_074.md).
 
 ## 065 — Shared backdrop ownership
 

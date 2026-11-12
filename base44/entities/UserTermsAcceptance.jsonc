@@ -1,0 +1,15 @@
+{
+  "name": "UserTermsAcceptance",
+  "type": "object",
+  "description": "074 owner legal acceptance events. Backend append/read only; no normal update/delete. Confirmed owner account erasure is the existing privacy exception. Separate from optional health consent.",
+  "properties": {
+    "user_id": { "type": "string" },
+    "terms_version": { "type": "string" },
+    "accepted_at": { "type": "string", "format": "date-time" },
+    "status": { "type": "string", "enum": ["ACCEPTED"] },
+    "document_url": { "type": "string" },
+    "intent_id": { "type": "string" }
+  },
+  "required": ["user_id", "terms_version", "accepted_at", "status", "document_url", "intent_id"],
+  "rls": { "read": false, "create": false, "update": false, "delete": false }
+}

@@ -18,7 +18,7 @@ const matches = (row, query) => Object.entries(query).every(([key, value]) => {
 export function nativeFixture({ granted = true } = {}) {
   const daily = dailyFixture();
   const tables = Object.fromEntries(Object.keys(DOMAIN_SCHEMAS).map(name => [physicalName(name), clone(daily.rows[name])]));
-  Object.assign(tables, { User: [{ id: 'ownerA', role: 'user' }, { id: 'ownerB', role: 'user' }, { id: 'adminA', role: 'admin' }, { id: 'adminB', role: 'admin' }], AdminTestOperation: [], UserCalendarAction: [], InternalHealthRun: [], UserPrivacyRequest: [], PrivacyRecoveryReceipt: [], NotificationSchedule: [] });
+  Object.assign(tables, { User: [{ id: 'ownerA', role: 'user' }, { id: 'ownerB', role: 'user' }, { id: 'adminA', role: 'admin' }, { id: 'adminB', role: 'admin' }], AdminTestOperation: [], UserCalendarAction: [], InternalHealthRun: [], UserPrivacyRequest: [], PrivacyRecoveryReceipt: [], NotificationSchedule: [], UserTermsAcceptance: [] });
   if (granted) {
     tables.UserHealthConsent.push({ id: 'consent', user_id: 'ownerA', consent_status: 'GRANTED', consent_version: HEALTH_CONSENT_VERSION, granted_at: DAILY_NOW, withdrawn_at: null });
     tables.UserHealthConsentEvent.push({ id: 'grant', user_id: 'ownerA', event_type: 'GRANTED', consent_version: HEALTH_CONSENT_VERSION, occurred_at: DAILY_NOW });

@@ -3,6 +3,7 @@ import { renderBuildHistory } from '../src/foundation/buildHistoryPolicy.js';
 // Build/server-only inspection. Only allowlisted results + hashes enter the virtual module.
 import { inspectGeoNamesEntry, inspectOnboardingSurface } from '../src/foundation/inspection/onboardingRules.js';
 import { ONBOARDING_COPY } from '../src/foundation/i18n/onboardingCopy.js';
+import { TERMS_COPY } from '../src/foundation/i18n/termsCopy.js';
 import { APPROVED_COPY } from '../src/foundation/uiuxTables.js';
 import fs from "node:fs";
 import { inspectProductWriteSurface } from "../src/foundation/inspection/domainRules.js";
@@ -44,7 +45,7 @@ export function buildStaticEvidence(root = process.cwd()) {
     dependencies: inspectDependencies(syntax),
     activeBuildHistory: { generatedMatches: history === renderBuildHistory(BUILD_LEDGER, BUILD_MARKER), entries: BUILD_LEDGER.length },
     domain: { ...inspectDomainSchemas(root), writeSurface: inspectProductWriteSurface(syntax) },
-    onboarding: inspectOnboardingSurface(syntax,[...Object.values(APPROVED_COPY).flat(),...Object.values(ONBOARDING_COPY.en),...Object.values(ONBOARDING_COPY.tr)]),
+    onboarding: inspectOnboardingSurface(syntax,[...Object.values(APPROVED_COPY).flat(),...Object.values(ONBOARDING_COPY.en),...Object.values(ONBOARDING_COPY.tr),...Object.values(TERMS_COPY.en),...Object.values(TERMS_COPY.tr)]),
     geoNamesEntry: inspectGeoNamesEntry(syntax['/base44/functions/onboarding/entry.ts']||''),
     marker: checkSingleSource(syntax), legacy: findLegacyImports(syntax), secretFiles: findSecrets(raw), emailFiles: findPersonalEmails(raw),
     boundaries: missingBoundaries(Object.keys(raw)), internalUi: checkInternalUiPurity(syntax), authSurface: checkAuthSurface(syntax),

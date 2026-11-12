@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-073
+**Current BuildMarker:** Buildmarker-074
 **Last Updated:** 2026-11-12
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
@@ -10,6 +10,12 @@
 **Scope:** Health catalog HC-072.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 074 — Legal acceptance regression and release gate
+
+Local execution: Chromium full Foundation passed; both engines passed all 817 core tests and the 26-case ON-02 matrix. Full WebKit remains open at H08-004/RC06 with TEST_TIMEOUT under the unchanged 5-second Health helper budget. Hosted/device acceptance remains NOT_RUN.
+
+HC-073.0 adds H06-008/009 (188 catalog cases); TA01–TA14 verify provider combinations, native owner/time/version history, failed/unknown/timeout/concurrency, one-use intent and privacy cleanup. H06/H04/H13 evidence is updated; no prior case is deleted. Full Foundation requires checkTermsAcceptance's real-App TR/EN responsive/type/spacing/link/accessibility and returning/session/recovery matrix in Chromium and WebKit, plus prior DOB/progress/auth regressions. Release needs the approved SHINKA_TERMS_VERSION and owner-run new-schema/full-graph hosted acceptance. The new ON-02 image is missing; 073's asset remains. Local synthetic PASS does not close H06-007 or physical/deployed security acceptance. [074 contract, source review and execution](reports/SHINKA_ONBOARDING_TERMS_074.md).
 
 ## 073 — Centered artwork across user-facing screens
 

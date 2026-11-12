@@ -31,7 +31,7 @@ async function fixture(path, run, context = {}, initial = identity(), settings =
   function Observer() { f.auth = useAuth(); f.location = useLocation(); return h('output', {'data-auth-observed':true}, JSON.stringify({id:f.auth.user?.id,admin:f.auth.isAdmin,checked:f.auth.authChecked,error:f.auth.authError,refresh:f.auth.isRefreshingAuth,path:f.location.pathname})); }
   const screen = name => h('div', {[`data-${name}`]:true}, name);
   root.render(h(AuthProvider,{client,sessionTiming:timing,sessionWait,sessionTimers},h(MemoryRouter,{initialEntries:[path]},h(Observer),h(Routes,null,
-    h(Route,{path:'/login',element:h(ProtectedRoute,{unauthenticatedElement:h(SignIn,{authenticate:async (...args)=>{f.logins.push(args);return {ok:true,code:null};}})},screen('callback-accepted'))}),
+    h(Route,{path:'/login',element:h(ProtectedRoute,{unauthenticatedElement:h(SignIn,{loadPolicy:async()=>({version:'test-terms-v1'}),authenticate:async (...args)=>{f.logins.push(args);return {ok:true,code:null};}})},screen('callback-accepted'))}),
     h(Route,{element:h(ProtectedRoute,{unauthenticatedElement:h(LoginRedirect)})},
       h(Route,{path:'/private',element:screen('private')}),
       h(Route,{element:h(AdminGate)},h(Route,{path:'/internal/test-tools',element:screen('admin-operation')})))))));
@@ -156,7 +156,9 @@ export const SESSION_INTEGRATION_TESTS = [
         await wait(()=>q('[data-auth-shell]'));check(f.location.pathname==='/login','missing redirect');
         const search=f.location.search;check(safeReturnTo(search)==='/private?view=ok','destination lost');
         window.history.replaceState(null,'',`/login${search}`);
-        q('#age-declaration').click();await testEventTurn(context.signal);const button=q('[data-provider="google"]');button.click();button.click();
+        q('#age-declaration').click();await testEventTurn(context.signal);q('#terms-declaration').click();await testEventTurn(context.signal);
+        check(q('#age-declaration').checked&&q('#terms-declaration').checked,'both declarations checked before provider');
+        const button=q('[data-provider="google"]');button.click();button.click();
         await wait(()=>f.logins.length===1);check(f.logins[0][1]==='/private?view=ok'&&f.logins[0][2]===true,'provider return/consent');
         f.me=async()=>identity('synthetic-return','user');await f.auth.checkAppState();await wait(()=>q('[data-callback-accepted]'));
         check(!q('[data-auth-shell]')&&f.logins.length===1,'second app login');

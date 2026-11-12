@@ -23,7 +23,7 @@ export const PATTERN_UI_TESTS=[
    try {
      render(true);await until(()=>host.querySelector('[data-theme-id]')&&host.querySelector('[data-lunar-timeline]'));
      render(false);await pause();await clock.advance(300000);check(calls===2,'hidden tab polled');
-     hold=true;render(true);await pause();check(calls===4,'kept tab did not refresh on return');
+     hold=true;render(true);await until(()=>calls>=4);check(calls===4,'kept tab did not refresh on return');
      check(host.querySelector('[data-theme-id]')&&host.querySelector('[data-lunar-timeline]'),'return blanked cards');
      hold=false;releases.splice(0).forEach(fn=>fn());await until(()=>[...host.querySelectorAll('[data-pattern-section]')].every(el=>el.getAttribute('aria-busy')==='false'));
      check(calls===4&&f.state.calls.every(c=>c.method==='filter'));

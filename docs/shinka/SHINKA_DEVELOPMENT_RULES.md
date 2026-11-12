@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-073
+**Current BuildMarker:** Buildmarker-074
 **Last Updated:** 2026-11-12
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 074 — ON-02 legal acceptance delivery
+
+Work exclusively on existing GizemTest. Fetch both refs; integrate missing main commits without discarding history. This request authorizes commit/delivery to GizemTest, never main/publish/live mutation. Generate Buildmarker-074 / HC-073.0 once with recordBuild, retaining 070–074. Preserve five-step/DOB/health/domain rules and original PNG. Require both-engine Foundation including checkTermsAcceptance and prior auth-first/presentation gates; retain hosted/device limits and failed attempts. Validate the 29-schema complete release-artifact preparation separately; do not deploy it. [074 contract, source review and execution](reports/SHINKA_ONBOARDING_TERMS_074.md).
 
 ## 073 — Centered global artwork
 

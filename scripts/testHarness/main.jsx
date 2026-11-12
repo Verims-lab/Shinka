@@ -51,19 +51,41 @@ window.__foundationCatalog = {version:HEALTH_CATALOG_VERSION,suites:SUITES.lengt
   external:HEALTH_CASES.filter(c=>c.applicability===A.EXTERNAL).length};
 window.__staticHealthEvidence = async () => {
   const context = createHealthContext();
-  return Promise.all([...NATIVE_HEALTH_CASES.filter(c=>c.runnerType==='RUNTIME'),...H01_CASES.filter(c=>c.id==="H01-006"),...H03_CASES.filter((c)=>["H03-001","H03-004","H03-006","H03-008","H03-009","H03-010"].includes(c.id)),...H04_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)),...H12_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)),...H13_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id))].map(async(c)=>({id:c.id,...await c.run(context)})));
+  const cases=[...NATIVE_HEALTH_CASES.filter(c=>c.runnerType==='RUNTIME'),...H01_CASES.filter(c=>c.id==="H01-006"),...H03_CASES.filter((c)=>["H03-001","H03-004","H03-006","H03-008","H03-009","H03-010"].includes(c.id)),...H04_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)),...H12_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)),...H13_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id))];
+  const results=[];
+  // Match the bounded runner's completed-test cache instead of starting every
+  // duplicate helper concurrently. Each case and its original budget remain.
+  for(const c of cases){
+    try{results.push({id:c.id,...await c.run(context)});}
+    catch(error){throw new Error(`STATIC_HEALTH_CASE_FAILED:${c.id}:${error.testId||''}:${error.message}`);}
+  }
+  return results;
 };
 
-window.__onboardingHealthEvidence = async () => Promise.all(ONBOARDING_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)).map(async c=>({id:c.id,...await c.run({})})));
+window.__onboardingHealthEvidence = async () => {
+  const results=[];
+  // Legal intent probes include browser history/storage boundaries. Keep these
+  // helper cases isolated, like the daily/calendar evidence below; preserve the
+  // same per-test timeout and every assertion.
+  for(const c of ONBOARDING_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id))){
+    try{results.push({id:c.id,...await c.run({})});}
+    catch(error){throw new Error(`ONBOARDING_HEALTH_CASE_FAILED:${c.id}:${error.testId||''}:${error.message}`);}
+  }
+  return results;
+};
 window.__dailyHealthEvidence = async () => {
   const out=[];
   // Only synthetic cases here. H09-004 needs hosted evidence and remains blocked.
-  for(const c of DAILY_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)&&c.runnerType==='RUNTIME'))out.push({id:c.id,...await c.run({})});
+  for(const c of DAILY_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)&&c.runnerType==='RUNTIME')){
+    try{out.push({id:c.id,...await c.run({})});}catch(error){throw new Error(`DAILY_HEALTH_CASE_FAILED:${c.id}:${error.testId||''}:${error.message}`);}
+  }
   return out;
 };
 window.__calendarHealthEvidence = async () => {
   const out=[];
-  for(const c of CALENDAR_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)&&c.runnerType==='RUNTIME'))out.push({id:c.id,...await c.run({})});
+  for(const c of CALENDAR_HEALTH_CASES.filter(c=>c.applicability===A.CURRENT&&!LOCAL_HEALTH_IDS.has(c.id)&&c.runnerType==='RUNTIME')){
+    try{out.push({id:c.id,...await c.run({})});}catch(error){throw new Error(`CALENDAR_HEALTH_CASE_FAILED:${c.id}:${error.testId||''}:${error.message}`);}
+  }
   return out;
 };
 

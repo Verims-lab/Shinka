@@ -81,5 +81,5 @@ export async function checkPreferenceSheets(browser, origin, directory) {
     assert.equal(await preferenceValue(page,'you-theme'),'light');assert.equal(await notice().count(),0);assert.equal(await page.evaluate(()=>!!history.state?.shinkaLayer),false);
     rows.push({scenario:'pending-verified-reopen-conflict-and-open-layer-account-change',passed:true});
     assert.equal(errors.length,0);return {scope:'LOCAL_REAL_APP_SYNTHETIC_SDK',rows,pageErrors:errors,physicalDevice:false};
-  } catch(error) {console.error(JSON.stringify({completedPreferenceChecks:rows},null,2));throw error;} finally {await context.close();}
+  } catch(error) {console.error(JSON.stringify({completedPreferenceChecks:rows,failedPage:await page.evaluate(()=>({path:location.pathname,headings:[...document.querySelectorAll('h1')].map(el=>el.textContent),termsGate:!!document.querySelector('[data-terms-gate]'),authError:window.__appAuth?.authError,calls:window.__sdkLabCalls}))},null,2));throw error;} finally {await context.close();}
 }

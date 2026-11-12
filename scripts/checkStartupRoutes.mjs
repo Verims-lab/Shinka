@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-const id=(name='A',role='admin')=>({id:`synthetic-${name}`,role,authority:'BASE44_NATIVE_V1'});
+const id=(name='A',role='admin')=>({id:`synthetic-${name}`,role,authority:'BASE44_NATIVE_V1',terms:{state:'CURRENT',version:'test-terms-v1',acceptance:{id:'synthetic-acceptance',status:'ACCEPTED',acceptedAt:'2026-11-01T12:00:00Z'}}});
 // Real App, real provider/routes/controllers; only SDK IO and deferred gates substituted.
 export async function checkStartupRoutes(page,origin) {
   const results=[];

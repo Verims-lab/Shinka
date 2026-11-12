@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_DATA_MODEL.md
 **Status:** ACTIVE — 20 physical repository schemas; deployed verification pending
-**Current BuildMarker:** Buildmarker-073
-**Last Updated:** 2026-11-11
+**Current BuildMarker:** Buildmarker-074
+**Last Updated:** 2026-11-12
 **Authoritative Source References:** SRC-05 DB v1.2, SRC-07 Entity_Iliskiler v1.2 (SRC-06 v1.1 superseded)
 **Purpose:** Authoritative 20-entity product contract and its Base44 dependencies.
 **Scope:** Product domain entities + separately listed internal tooling storage.
@@ -14,6 +14,10 @@
 Common: every user entity owns `user_id` → Base44 User.id (owner from auth context). Date = local YYYY-MM-DD; instant = UTC; time = local HH:mm; timezone = IANA. Optional user inputs stay NULL. 5/28 are cycle calculation defaults; the approved Sun rule uses only birth_date and has no time fallback.
 
 
+
+## 074 — Terms acceptance operational event
+
+UserTermsAcceptance adds one operational schema: required user_id → native User.id, terms_version, server UTC accepted_at, status ACCEPTED, document_url and intent_id. Inventory: 20 unchanged product + 8 operational + native User = 29. Direct CRUD is denied; the owner legal backend appends/reads only. Current-version repeat returns the first verified event without updating its time; new versions append. Concurrent events are retained and deterministically read; no unsupported UNIQUE/transaction guarantee is claimed. Malformed/foreign/overflow reads fail closed. Optional health withdrawal retains history; explicit owner erasure removes only the owner's events through the verified cleanup exception. No legal retention period or legacy acceptance is invented. [074 contract, source review and execution](reports/SHINKA_ONBOARDING_TERMS_074.md).
 
 ## 064 — Admin reset retirement and selected-user removal (2026-11-11)
 

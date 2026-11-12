@@ -13,6 +13,7 @@ import * as authorization from '../base44/shared/internalAuthorization.js';
 import * as privacyPolicy from '../base44/shared/privacyPolicy.js';
 import * as healthReadDiagnostics from '../base44/shared/healthReadDiagnostics.js';
 import * as boundedJson from '../base44/shared/boundedJson.js';
+import * as termsAcceptance from '../base44/shared/termsAcceptance.js';
 import * as geonamesGuard from '../base44/shared/geonamesGuard.js';
 import { internalHealthOperation } from '../base44/shared/internalHealthOperations.js';
 export async function verifyNativeEntries(root) {
@@ -23,10 +24,13 @@ export async function verifyNativeEntries(root) {
     assert.match(data.diagnostic.requestId,/^[a-f0-9-]{36}$/);assert.ok(!JSON.stringify(data).includes('NEVER_SERIALIZE'));
   }
   let role = 'admin', exists = true, token = true, secretReads = 0;
+  const runtime = { secrets: { get: name => { assert.equal(name,'SHINKA_TERMS_VERSION');secretReads++;return 'test-terms-v1'; } } };
+  const termsRows=[{id:'synthetic-acceptance',user_id:'synthetic-admin',terms_version:'test-terms-v1',accepted_at:'2026-11-01T12:00:00.000Z',status:'ACCEPTED',document_url:termsAcceptance.TERMS_URL,intent_id:'00000000-0000-4000-8000-000000000001'}];
   const client = { auth: { me: async () => token ? { id: 'synthetic-admin', role: 'cached-admin' } : null }, asServiceRole: { entities: {
     User: { filter: async () => exists ? [{ id: 'synthetic-admin', role }] : [] },
     AdminTestOperation: { filter: async () => [] },
     UserPrivacyRequest: { filter: async () => [] },
+    UserTermsAcceptance: { filter: async query => termsRows.filter(row=>row.user_id===query.user_id&&row.terms_version===query.terms_version), create:async row=>{const saved={id:'new-acceptance',...row};termsRows.push(saved);return saved;} },
   } } };
   const safeLogs=[];
   const load = async (path, imports) => {
@@ -37,12 +41,14 @@ export async function verifyNativeEntries(root) {
   };
   const native = await load('base44/shared/nativeClient.ts', {
     'npm:@base44/sdk@0.8.54': { createClientFromRequest: () => client },
-    'base44:runtime': { secrets: { get: () => { secretReads++; return undefined; } } },
+    'base44:runtime': runtime,
+    './termsAcceptance.js': termsAcceptance,
     './userLifecycle.js': { withUserLifecycle }, './nativeWriteChecks.js': { withNativeWriteChecks },
   });
   const session = await load('base44/functions/applicationSession/entry.ts', {
     '../../shared/nativeClient.ts': native, '../../shared/internalAuthorization.js': authorization,
     '../../shared/privacyPolicy.js': privacyPolicy, '../../shared/healthReadDiagnostics.js': healthReadDiagnostics, '../../shared/boundedJson.js': boundedJson,
+    'base44:runtime': runtime, '../../shared/termsAcceptance.js': termsAcceptance,
   });
   const artifacts = await load('base44/functions/validateContentArtifacts/entry.ts', {
     '../../shared/nativeClient.ts': native,
@@ -54,6 +60,20 @@ export async function verifyNativeEntries(root) {
   role = 'user'; assert.equal((await artifactCall()).status, 403);
   role = 'admin';
   const call = body => session.default(new Request('https://fixture.invalid/session', { method: 'POST', body }));
+  const termsEntry=await load('base44/functions/termsAcceptance/entry.ts',{
+    'npm:@base44/sdk@0.8.54':{createClientFromRequest:()=>client},'base44:runtime':runtime,
+    '../../shared/userLifecycle.js':{withUserLifecycle},'../../shared/termsAcceptance.js':termsAcceptance,
+  });
+  const termsCall=body=>termsEntry.default(new Request('https://fixture.invalid/terms',{method:'POST',body:JSON.stringify(body)}));
+  token=false;assert.equal((await termsCall({action:'policy'})).status,200);assert.equal((await termsCall({action:'status'})).status,401);token=true;
+  termsRows.length=0;
+  assert.equal((await (await call('{}')).json()).terms.state,'REQUIRED');
+  await assert.rejects(native.createNativeClient({}).auth.me(),{code:'TERMS_REQUIRED'});
+  const acceptance={action:'accept',version:'test-terms-v1',confirmed:true,age_confirmed:true,intent_id:crypto.randomUUID()};
+  const before=Date.now();assert.equal((await termsCall(acceptance)).status,200);
+  assert.equal(termsRows[0].user_id,'synthetic-admin');assert.ok(Date.parse(termsRows[0].accepted_at)>=before&&Date.parse(termsRows[0].accepted_at)<=Date.now());
+  assert.equal((await termsCall({...acceptance,accepted_at:'1990-01-01T00:00:00Z'})).status,400);
+  assert.equal((await native.createNativeClient({}).auth.me()).id,'synthetic-admin');
   assert.equal((await (await call('{}')).json()).role, 'admin');
   role = 'user'; assert.equal((await (await call('{}')).json()).role, 'user');
   exists = false; assert.equal((await call('{}')).status,401);
@@ -70,7 +90,7 @@ export async function verifyNativeEntries(root) {
   }
   client.asServiceRole.entities.UserPrivacyRequest.filter=originalPrivacyRead;
   assert.ok(!JSON.stringify(safeLogs).includes('PRIVATE'));
-  assert.equal(secretReads,0, 'Session/login must not require a SQL or maintenance secret');
+  assert.ok(secretReads>0, 'Only the explicit server legal version is read; no SQL, provider or maintenance credential');
   const handler = (_req, createClient, deps) => { assert.equal(createClient,native.createNativeClient); assert.equal(deps.native,true); return 'native-route'; };
   const daily = await load('base44/functions/dailyMessage/entry.ts', {
     '../../shared/nativeClient.ts': native,
@@ -108,7 +128,8 @@ export async function verifyNativeEntries(root) {
   assert.equal(await privacy.default({}), 'owner-privacy-route');
   const health = await load('base44/functions/internalHealth/entry.ts', {
     'npm:@base44/sdk@0.8.54': {createClientFromRequest:rawClient},
-    'base44:runtime': {secrets:{get:()=>{throw new Error('UNEXPECTED_SECRET_READ');}}},
+    'base44:runtime': runtime,
+    '../../shared/termsAcceptance.js':termsAcceptance,
     '../../shared/userLifecycle.js':{withUserLifecycle},
     '../../shared/internalAuthorization.js':authorization,
     '../../shared/internalHealthOperations.js':{internalHealthOperation},
@@ -127,5 +148,5 @@ export async function verifyNativeEntries(root) {
   assert.equal((await healthCall({action:'healthRetention',request:{action:'dryRun'}})).status,409);
   assert.equal((await healthCall({action:'delete',entity:'User'})).status,400);
   assert.equal(historyReads,1);
-  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 10, nativeRoutes: 5, artifactEntryChecks: 2, internalHealthEntryChecks:7, loginSecretReads: secretReads, hostedVerified: false, passed: true };
+  return { scope: 'LOCAL_PLATFORM_IMPORT_SUBSTITUTION', sessionChecks: 11, termsEntryChecks:7, nativeRoutes: 5, artifactEntryChecks: 2, internalHealthEntryChecks:7, legalConfigurationReads: secretReads, otherLoginSecretReads:0, hostedVerified: false, passed: true };
 }

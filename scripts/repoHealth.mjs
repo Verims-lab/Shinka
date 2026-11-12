@@ -16,7 +16,7 @@ const checks={
   guardedNotificationSchedule:e.domain.notificationSchedulePolicy,
   guardedGeoNamesQuota:e.domain.geoNamesQuotaPolicy,
   guardedHealthHistory:e.domain.healthHistoryPolicy,
-  separateBuiltinUserAndTooling:e.domain.builtinUserSeparate&&e.domain.internal===7&&e.domain.testOperationPolicy&&e.domain.calendarActionPolicy&&e.domain.privacyPolicies,
+  separateBuiltinUserAndTooling:e.domain.builtinUserSeparate&&e.domain.internal===8&&e.domain.testOperationPolicy&&e.domain.calendarActionPolicy&&e.domain.privacyPolicies&&e.domain.termsPolicy,
   exactAuthoritativeFields:Object.keys(SOURCE_FIELD_NAMES).length===20&&Object.entries(SOURCE_FIELD_NAMES).every(([entity,fields])=>JSON.stringify([...expectedDomainFields(entity,fields)].sort())===JSON.stringify(Object.keys(DOMAIN_SCHEMAS[entity].properties).sort())),
   completeAccessMatrix:e.domain.accessMatrixComplete&&e.domain.accessMatrixRows===20,
   directSdkOperationsDenied:e.domain.directOperationsDenied,
