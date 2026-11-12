@@ -30,7 +30,7 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
   const [appPublicSettings, setAppPublicSettings] = useState(null);
   const [publicSettingsDiagnostic, setPublicSettingsDiagnostic] = useState(null);
   const generation = useRef(0), appGeneration = useRef(0), signedOut = useRef(false), refused = useRef(false);
-  const privacyVersion = useRef(null), retryNotBefore = useRef(0);
+  const privacyVersion = useRef(null), legalVersion = useRef(null), retryNotBefore = useRef(0);
   const retryController = useRef(null), settingsController = useRef(null);
   useEffect(() => {
     if (!isAuthenticated || isLoadingAuth || isLoadingPublicSettings || authError) applyAppTheme(null, themeDocument);
@@ -62,6 +62,12 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
       if (currentUser?.authority !== 'BASE44_NATIVE_V1' || !['admin','user'].includes(currentUser?.role)) throw new Error('APPLICATION_SESSION_UNVERIFIED');
       if (ticket !== generation.current) return false;
       if (!currentUser?.id) throw new Error("AUTH_SESSION_REQUIRED");
+      const legalScope = `${currentUser.id}:${JSON.stringify(currentUser.terms || null)}`;
+      if (legalVersion.current && legalVersion.current !== legalScope) {
+        queryClientInstance.clear();
+        events.dispatchEvent(new Event('shinka-session-ended'));
+      }
+      legalVersion.current = legalScope;
       if (privacyVersion.current && privacyVersion.current !== `${currentUser.id}:${currentUser.privacyRevision || ''}`) events.dispatchEvent(new Event(privacyVersion.current.startsWith(`${currentUser.id}:`) ? 'shinka-health-access-changed' : 'shinka-session-ended'));
       privacyVersion.current = `${currentUser.id}:${currentUser.privacyRevision || ''}`;
       retryNotBefore.current = 0;

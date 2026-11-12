@@ -132,10 +132,10 @@ export async function checkSignInLayout(page, scale = 1) {
     assert.equal(result.scrollY, 0, 'Welcome opens at the top of the document');
     for (const control of result.controls) {
       assert(control.top >= viewportTop + result.paddingTop - 1 &&
-        control.bottom <= viewportTop + height - result.paddingBottom + 1 &&
+        control.bottom + result.scrollY <= result.scrollHeight - result.paddingBottom + 1 &&
         control.left >= viewportLeft - 1 && control.right <= viewportLeft + width + 1,
-      '18+ confirmation and both provider actions fit the initial safe viewport');
-      assert(control.receivesInput, 'no overlapping or clipped layer covers the sign-in controls');
+      'confirmation and provider actions remain inside the scrollable safe document');
+      if(control.bottom<=viewportTop+height)assert(control.receivesInput, 'no overlapping or clipped layer covers visible sign-in controls');
     }
   }
   return result;

@@ -27,7 +27,7 @@ export async function auditScreen(initial,run,context={},options={}) {
  const request=async(action,payload={})=>{f.calls.push({action,payload});return (options.request||backend.request)(action,payload);};
  const root=createRoot(host);let disposed=false;
  const dispose=()=>{if(disposed)return;disposed=true;root.unmount();host.remove();};context.cleanup?.(dispose);
- function Fixture(){const [state,setState]=useState(initial),[language,setLanguage]=useState('en');f.locale=setLanguage;return h(OnboardingScreen,{state,initialLanguage:language,authenticated:initial.startsWith('AUTHENTICATED'),profile:f.profile || (f.name ? {display_name:f.name} : null),today:'2026-10-19',request,...options.props,onState:(next,result)=>{f.transitions.push({next,result});setState(next);}});}
+ function Fixture(){const [state,setState]=useState(initial),[language,setLanguage]=useState('en');f.locale=setLanguage;return h(OnboardingScreen,{state,legalPolicy:async()=>({version:'test-terms-v1'}),initialLanguage:language,authenticated:initial.startsWith('AUTHENTICATED'),profile:f.profile || (f.name ? {display_name:f.name} : null),today:'2026-10-19',request,...options.props,onState:(next,result)=>{f.transitions.push({next,result});setState(next);}});}
  root.render(h(Fixture));const wait=async fn=>{try{await waitForFixture(fn,host.ownerDocument.body,context);}catch{throw new Error(`${String(fn).slice(0,65)} ${stateOf(host)} busy=${!!host.querySelector('[aria-busy=\"true\"]')}`);}},turn=()=>testEventTurn(context.signal);
  try{await wait(()=>stateOf(host));await run(f,host,wait,turn,dispose);}finally{dispose();}
 }
@@ -114,10 +114,12 @@ export const ONBOARDING_AUDIT_UI_TESTS=[
  }],
  ['OU07','SignIn gates provider on age, coalesces double taps, handles cancel/failure and protects Back during pending OAuth',async(context={})=>{
   const gate=deferred();let calls=0,mode='pending';
-  const authenticate=(provider,url,age)=>beginProviderAuth(provider,url,age,{loginWithProvider:async()=>{calls++;if(mode==='pending')return gate.promise;if(mode==='cancel')throw {code:'popup_closed_by_user'};throw new Error('private fixture error');}});
+  const authenticate=(provider,url,age,_auth,declarations)=>beginProviderAuth(provider,url,age,{loginWithProvider:async()=>{calls++;if(mode==='pending')return gate.promise;if(mode==='cancel')throw {code:'popup_closed_by_user'};throw new Error('private fixture error');}},declarations);
   await auditScreen('UNAUTHENTICATED_SIGN_IN',async(f,host,wait,turn)=>{
    host.querySelector('[data-provider=apple]').click();await wait(()=>host.querySelector('#age-error'));check(calls===0,'provider called without age');
-   host.querySelector('#age-declaration').click();await turn();const google=host.querySelector('[data-provider=google]');google.click();google.click();
+   host.querySelector('#age-declaration').click();await turn();host.querySelector('#terms-declaration').click();await turn();
+   check(host.querySelector('#age-declaration').checked&&host.querySelector('#terms-declaration').checked,'both declarations checked before provider');
+   const google=host.querySelector('[data-provider=google]');google.click();google.click();
    await wait(()=>host.querySelector('button[data-onboarding-back]').disabled);check(calls===1&&host.querySelector('#age-declaration').disabled,'pending double auth/back');
    gate.resolve(undefined);await wait(()=>!google.disabled);mode='cancel';google.click();await turn();await wait(()=>!google.disabled);check(!host.querySelector('[data-error-code]'),'cancel became error');
    mode='error';google.click();await wait(()=>host.querySelector('[data-error-code=AUTH_PROVIDER_FAILED]'));check(!host.textContent.includes('private fixture'),'raw auth error');

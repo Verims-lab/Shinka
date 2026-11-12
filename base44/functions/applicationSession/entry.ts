@@ -3,6 +3,8 @@ import { createNativeClient } from '../../shared/nativeClient.ts';
 import { InternalError, requireAuthenticatedUser } from '../../shared/internalAuthorization.js';
 import { readPrivacyRequests, privacyHash } from '../../shared/privacyPolicy.js';
 import { readBoundedJson } from '../../shared/boundedJson.js';
+import { secrets } from 'base44:runtime';
+import { termsPolicy, sessionTermsStatus } from '../../shared/termsAcceptance.js';
 
 export default async function (req) {
   const requestId=crypto.randomUUID(),started=Date.now();
@@ -11,11 +13,12 @@ export default async function (req) {
     if (req.method !== 'POST') throw new InternalError('METHOD_NOT_ALLOWED', 405);
     const body = await readBoundedJson(req, 1000, (code, status) => { throw new InternalError(code, status); });
     if (Object.keys(body).length) throw new InternalError('INVALID_REQUEST', 400);
-    const client = createNativeClient(req), user = await requireAuthenticatedUser(client);
+    const client = createNativeClient(req, { terms: false }), user = await requireAuthenticatedUser(client);
     stage='LIFECYCLE_READ';
     const requests = await readPrivacyRequests(client, user.id);
     const privacyRevision = await privacyHash(JSON.stringify(requests.map(row => [row.id, row.status])));
-    return Response.json({ id: user.id, role: user.role, privacyRevision, authority: 'BASE44_NATIVE_V1' });
+    const terms = await sessionTermsStatus(client, user, termsPolicy(secrets.get('SHINKA_TERMS_VERSION')));
+    return Response.json({ id: user.id, role: user.role, privacyRevision, terms, authority: 'BASE44_NATIVE_V1' });
   } catch (error) {
     const diagnostic={...healthReadDiagnostic(error,{stage,durationMs:Date.now()-started}),requestId};
     console.error('SESSION_FAILURE', JSON.stringify(diagnostic));

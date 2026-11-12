@@ -41,6 +41,19 @@ let session = params.get('sdkSession') || 'anonymous';
 let delayed = null;
 const calls = [];
 const providerCalls = [];
+let providerMode='error';
+// Explicitly synthetic legal configuration; never a product/legal version.
+let termsVersion = 'test-terms-v1';
+const termsEvents = [];
+let termsReadFailure = false, termsWriteFailure = null;
+const termsStatus = () => {
+  if(termsReadFailure)throw new Error('SYNTHETIC_TERMS_READ_FAILED');
+  if(!termsVersion)return {state:'CONFIGURATION_REQUIRED',version:null};
+  const event=termsEvents.find(row=>row.owner===session&&row.version===termsVersion);
+  // Existing general fixtures model users with verified current acceptance.
+  if(!params.has('termsFixture')||event)return {state:'CURRENT',version:termsVersion,acceptance:{id:event?.id||'synthetic-acceptance',status:'ACCEPTED',acceptedAt:event?.acceptedAt||'2026-11-01T12:00:00.000Z'}};
+  return {state:'REQUIRED',version:termsVersion};
+};
 const operationGates = new Map(), operationFailures = new Set();
 globalThis.__sdkLabCalls = calls; // CLI-only action-name counters; never request payloads.
 let releaseHydration;
@@ -71,6 +84,12 @@ const startupGates = { settings:[], session:[] };
 const holdStartup = name => { let resolve,reject; const promise=new Promise((ok,no)=>{resolve=ok;reject=no;});startupGates[name].push({promise,resolve,reject}); };
 if(params.has('startupFixture')) { holdStartup('settings');holdStartup('session'); }
 export const authFixture = {
+  providerMode(value){providerMode=value;},
+  termsEvents,
+  termsVersion(value){termsVersion=value;},
+  termsReadFailure(value){termsReadFailure=value;},
+  termsWriteFailure(value){termsWriteFailure=value;},
+  seedTerms(version=termsVersion){termsEvents.push({id:crypto.randomUUID(),owner:session,version,acceptedAt:'2026-11-01T12:00:00.000Z'});},
   calls,
   providerCalls,
   startupStarted:{settings:0,session:0},
@@ -98,6 +117,7 @@ export const base44 = {
     logout: () => { session = 'anonymous'; },
     loginWithProvider: async (provider, returnTo) => {
       providerCalls.push({ provider, returnTo });
+      if(providerMode==='redirect')return;
       throw new Error('SYNTHETIC_AUTH_NO_REDIRECT');
     },
   },
@@ -106,7 +126,18 @@ export const base44 = {
     calls.push({ name, action: body.action }); // Action names only; no user payload.
     if(operationGates.has(name))await operationGates.get(name).promise;
     if(operationFailures.delete(`${name}.${body.action}`)||operationFailures.delete(name))throw new Error('SYNTHETIC_NETWORK_FAILURE');
-    if (name === 'applicationSession') { const i=authFixture.startupStarted.session++; return {data: startupGates.session[i] ? await startupGates.session[i].promise : {...await base44.auth.me(),authority:'BASE44_NATIVE_V1'}}; }
+    if (name === 'applicationSession') { const i=authFixture.startupStarted.session++; return {data: startupGates.session[i] ? await startupGates.session[i].promise : {...await base44.auth.me(),terms:termsReadFailure?{state:'UNAVAILABLE',version:termsVersion}:termsStatus(),authority:'BASE44_NATIVE_V1'}}; }
+    if(name==='termsAcceptance'){
+      if(body.action==='policy')return {data:{state:termsVersion?'READY':'CONFIGURATION_REQUIRED',version:termsVersion,termsUrl:'https://shinkadaily.com/terms/',privacyUrl:'https://shinkadaily.com/privacy/'}};
+      await base44.auth.me();
+      if(body.action==='accept'){
+        if(body.version!==termsVersion)throw {code:'TERMS_VERSION_CHANGED'};
+        if(termsWriteFailure==='before')throw new Error('SYNTHETIC_TERMS_WRITE_FAILED');
+        if(termsStatus().state!=='CURRENT')termsEvents.push({id:crypto.randomUUID(),owner:session,version:termsVersion,acceptedAt:new Date().toISOString(),intent_id:body.intent_id});
+        if(termsWriteFailure==='after')throw new Error('SYNTHETIC_TERMS_ACK_LOST');
+      }
+      return {data:termsStatus()};
+    }
     if(params.has('authFirst') && ['onboarding','dailyMessage'].includes(name)) {
       await hydration;authFixture.hydrationReturned=true;
       if(name==='onboarding' && body.action==='hydrate' && nextHydrationResponse){

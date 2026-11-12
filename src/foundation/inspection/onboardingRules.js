@@ -23,7 +23,7 @@ export function inspectOnboardingSurface(sources,approvedCopy) {
   const duplicates=[],credentials=[];
   for(const [file,code] of Object.entries(sources)){
     if(!file.startsWith('/src/features/onboarding/')&&!['/src/pages/Onboarding.jsx','/src/services/onboardingService.js'].includes(file))continue;
-    for(const node of syntaxNodes(code))if((node.type==='Literal'||node.type==='JSXText')&&typeof node.value==='string'&&approvedCopy.includes(node.value.trim()))duplicates.push({file});
+    for(const node of syntaxNodes(code))if((node.type==='Literal'||node.type==='JSXText')&&typeof node.value==='string'&&node.value.trim()&&approvedCopy.includes(node.value.trim()))duplicates.push({file});
     if(/GEONAMES_USERNAME|(?:api|secure)\.geonames\.org|navigator\.geolocation/.test(code))credentials.push({file});
   }
   return {ok:duplicates.length===0&&credentials.length===0,duplicateCopyFiles:duplicates.map(r=>r.file),unsafeProviderFiles:credentials.map(r=>r.file),signIn:inspectSignInControls(sources)};
@@ -33,14 +33,22 @@ export function inspectOnboardingSurface(sources,approvedCopy) {
 export function inspectSignInControls(sources) {
   const screen=sources['/src/features/onboarding/OnboardingScreen.jsx']||'';
   const signIn=sources['/src/features/onboarding/SignIn.jsx']||'';
+  const declarations=sources['/src/features/onboarding/LegalDeclarations.jsx']||'';
+  const service=sources['/src/services/authService.js']||'';
+  const termsService=sources['/src/services/termsService.js']||'';
   const controls={
     anonymousBranch: /anonymousSignIn = state === "UNAUTHENTICATED_SIGN_IN"/.test(screen)
       && /if \(!screen \|\| anonymous === authenticated\) return null/.test(screen)
       && /if \(anonymousSignIn\)\s*return <SignIn\b/.test(screen),
-    ageDeclaration: /id="age-declaration"/.test(signIn) && /type="checkbox"/.test(signIn),
+    ageDeclaration: /<LegalDeclarations\b/.test(signIn) && /id="age-declaration"/.test(declarations) && /type="checkbox"/.test(declarations),
+    termsDeclaration: /id="terms-declaration"/.test(declarations) && /termsConfirmed:terms/.test(signIn),
     appleProvider: /data-provider="apple"/.test(signIn),
     googleProvider: /data-provider="google"/.test(signIn),
-    ageGateBeforeAuth: /authenticate\(provider,[^)]*checked\)/.test(signIn) && /ageConfirmed !== true/.test(sources['/src/services/authService.js']||''),
+    ageGateBeforeAuth: signIn.indexOf('validateAuthDeclarations(checked,declarations)') >= 0
+      && signIn.indexOf('validateAuthDeclarations(checked,declarations)') < signIn.indexOf('await authenticate(')
+      && service.indexOf('validateAuthDeclarations(ageConfirmed, declarations)') >= 0
+      && service.indexOf('validateAuthDeclarations(ageConfirmed, declarations)') < service.indexOf('await auth.loginWithProvider(')
+      && /ageConfirmed !== true/.test(termsService) && /termsConfirmed !== true/.test(termsService),
     artworkSpacerAbsent: !screen.includes('shinka-onboarding-art-space'),
   };
   return { ...controls, ok: Object.values(controls).every(Boolean) };

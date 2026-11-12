@@ -6,6 +6,8 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
+Buildmarker-074 / HC-073.0 adds ON-02 age/Terms declarations, legal links and version-aware native admission. The existing PNG is preserved because no new ON-02 asset was found. **Release prerequisite:** obtain the approved legal document identifier and set server `SHINKA_TERMS_VERSION`; there is no default. Sync the new closed UserTermsAcceptance schema and matching termsAcceptance/session/shared/frontend graph through the owner workflow. No live migration/deploy is part of this change. `FOUNDATION_TERMS_ONLY=1 npm run test:foundation` runs the focused local matrix; full Foundation includes it. [074 contract, source amendments and actual test results](docs/shinka/reports/SHINKA_ONBOARDING_TERMS_074.md).
+
 Buildmarker-073 uses the supplied Backround.png on user-facing routes. Its centered logo anchors at the document top. The ON-02–05 counter and session-scoped Back occupy the upper-left artwork space. Run `FOUNDATION_BACKDROP_ONLY=1 npm run test:foundation` for the focused check. Set `FOUNDATION_BACKDROP_DIR` to an absolute output directory for screenshots. [073 centered-logo backdrop](docs/shinka/reports/SHINKA_CENTERED_BACKGROUND_073.md)
 
 The preceding onboarding artwork and counter layout are recorded in [072 shared onboarding backdrop](docs/shinka/reports/SHINKA_ONBOARDING_BACKDROP_072.md).

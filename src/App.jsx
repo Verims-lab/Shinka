@@ -31,6 +31,8 @@ const HealthCenter = lazy(() => import("@/pages/internal/HealthCenter"));
 const AuthShellProbe = lazy(() => import("@/foundation/probes/AuthShellProbe"));
 import { isAuthProbePath } from "@/foundation/probes/authProbeRoute";
 import LoginRedirect from "@/components/LoginRedirect";
+import { currentTerms } from '@/foundation/termsPolicy';
+const TermsGate = lazy(() => import('@/features/onboarding/TermsGate'));
 
 function ProductBackdrop() {
   const { pathname } = useLocation();
@@ -38,7 +40,7 @@ function ProductBackdrop() {
 }
 
 const AuthenticatedApp = () => {
-  const { isLoadingAuth, isLoadingPublicSettings, authError } = useAuth();
+  const { isLoadingAuth, isLoadingPublicSettings, authError, isAuthenticated, user } = useAuth();
 
   if (isLoadingPublicSettings || isLoadingAuth) {
     return (
@@ -52,6 +54,11 @@ const AuthenticatedApp = () => {
     if (authError.type === "user_not_registered" && !['/account-privacy','/delete-account'].includes(window.location.pathname)) {
       return <UserNotRegisteredError />;
     }
+  }
+
+  // Owner privacy/erasure remains reachable independently of legal admission.
+  if (isAuthenticated && !currentTerms(user?.terms) && !['/account-privacy','/delete-account'].includes(window.location.pathname)) {
+    return <RouteBoundary><TermsGate key={`${user.id}:${user.terms?.version}:${user.terms?.state}`} /></RouteBoundary>;
   }
 
   return (

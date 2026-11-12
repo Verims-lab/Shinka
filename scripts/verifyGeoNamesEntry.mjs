@@ -7,17 +7,19 @@ import assert from 'node:assert/strict';
 import { handleInternalRequest } from '../base44/shared/internalAuthorization.js';
 import { internalHealthOperation } from '../base44/shared/internalHealthOperations.js';
 import { createGeoNamesGuard } from '../base44/shared/geonamesGuard.js';
+import { withTermsAdmission, TERMS_URL } from '../base44/shared/termsAcceptance.js';
 
 export async function verifyGeoNamesRuntimeProbeEntry(root) {
   const source=await readFile(`${root}/base44/functions/internalHealth/entry.ts`,'utf8');
   const output=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
   const exports={};let role=null,reads=0,runs=0,factories=0,currentValue='fixture-first',currentSignal;
-  const client={auth:{me:async()=>role?{id:'fixture-admin',role}:null},get asServiceRole(){throw new Error('no entity access in probe');}};
+  const client={auth:{me:async()=>role?{id:'fixture-admin',role}:null},asServiceRole:{entities:{UserTermsAcceptance:{filter:async()=>[{id:'terms-fixture',user_id:'fixture-admin',terms_version:'test-terms-v1',status:'ACCEPTED',accepted_at:'2026-11-01T12:00:00Z',document_url:TERMS_URL,intent_id:'00000000-0000-4000-8000-000000000001'}]}}}};
   const imports={
     "../../shared/userLifecycle.js":{withUserLifecycle:client=>client},
+    '../../shared/termsAcceptance.js':{withTermsAdmission},
     'npm:@base44/sdk@0.8.54':{createClientFromRequest:()=>client},
     '../../shared/healthPersistence.js':{healthUploadSigner:()=>{throw new Error('health signer accessed by transport probe');}},
-    'base44:runtime':{secrets:{get:key=>{assert.equal(role,'admin');assert.equal(key,'GEONAMES_USERNAME');reads++;return currentValue;}}},
+    'base44:runtime':{secrets:{get:key=>{if(key==='SHINKA_TERMS_VERSION')return 'test-terms-v1';assert.equal(role,'admin');assert.equal(key,'GEONAMES_USERNAME');reads++;return currentValue;}}},
     '../../shared/internalAuthorization.js':{handleInternalRequest},
     '../../shared/internalHealthOperations.js':{internalHealthOperation},
     '../../shared/geonamesRuntimeProbe.js':{createGeoNamesRuntimeProbe:()=>{

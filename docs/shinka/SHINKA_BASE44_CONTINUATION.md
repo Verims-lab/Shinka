@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** ACTIVE — 051 cleanup accepted; final daily schema observed; scoped 058 acceptance ledger
-**Current BuildMarker:** Buildmarker-073
-**Last Updated:** 2026-11-11
+**Current BuildMarker:** Buildmarker-074
+**Last Updated:** 2026-11-12
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test delivery; 051 authorizes targeted hosted observation and reviewed historical maintenance on the named existing app. No agent main merge/publish, new external service or paid resource.
 
 
+
+## 074 — Legal acceptance release prerequisite
+
+This delivery adds UserTermsAcceptance (29 physical schemas) and termsAcceptance, with matching session/shared/native/internal entries and frontend. Owner release must review the complete inventory, sync the new closed schema and full matching code graph, and configure the legally approved SHINKA_TERMS_VERSION. It is intentionally unavailable without that decision. No entity push, CLI deploy, live acceptance write or publication is performed. Preserve public owner privacy/erasure access and the separate optional health model. [074 contract, source review and execution](reports/SHINKA_ONBOARDING_TERMS_074.md).
 
 ## 064 — Admin reset retirement and selected-user removal (2026-11-11)
 

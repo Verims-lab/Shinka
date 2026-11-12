@@ -1,4 +1,5 @@
 import { checkAuthFirstOnboarding } from './checkAuthFirstOnboarding.mjs';
+import { checkTermsAcceptance } from './checkTermsAcceptance.mjs';
 import { checkReopenApp } from './checkReopenApp.mjs';
 import { checkReopenNavigation } from './checkReopenNavigation.mjs';
 import { checkCalendarCorrections } from './checkCalendarCorrections.mjs';
@@ -99,6 +100,8 @@ try {
   if (process.env.FOUNDATION_BACKDROP_ONLY === '1') {
     console.log(JSON.stringify({ appBackdrop: await checkAppBackdrop(browser, origin, process.env.FOUNDATION_BACKDROP_DIR), pageErrors }));
     if (pageErrors.length) process.exitCode = 1;
+  } else if (process.env.FOUNDATION_TERMS_ONLY === '1') {
+    console.log(JSON.stringify({termsAcceptance:await checkTermsAcceptance(browser,origin,process.env.FOUNDATION_TERMS_DIR),pageErrors}));
   } else if (process.env.FOUNDATION_AUTH_FIRST_ONLY === '1') {
     console.log(JSON.stringify({authFirstOnboarding:await checkAuthFirstOnboarding(browser,origin),pageErrors}));
   } else if (process.env.FOUNDATION_CALENDAR_ONLY === '1') {
@@ -133,6 +136,15 @@ try {
   } else if (process.env.FOUNDATION_ONBOARDING_ONLY === '1') {
     const onboardingClosure=await checkOnboardingClosure(browser,origin,process.env.FOUNDATION_ONBOARDING_DIR);
     console.log(JSON.stringify({onboardingClosure,pageErrors},null,2));
+  } else if (process.env.FOUNDATION_EVIDENCE_ONLY === '1') {
+    for(const [group,method] of [['health','__staticHealthEvidence'],['onboarding','__onboardingHealthEvidence'],['daily','__dailyHealthEvidence'],['admin','__adminTestHealthEvidence'],['calendar','__calendarHealthEvidence']]){
+      try{
+        const rows=await page.evaluate(name=>window[name](),method),failed=rows.filter(row=>row.status!=='PASS').map(row=>row.id);
+        console.log(JSON.stringify({evidenceGroup:group,total:rows.length,failed}));
+        if(failed.length)process.exitCode=1;
+      }catch(error){console.error(JSON.stringify({evidenceGroup:group,error:error.message}));process.exitCode=1;}
+    }
+    if(pageErrors.length)process.exitCode=1;
   } else if (process.env.FOUNDATION_HEALTH_ONLY === '1') {
     console.log(JSON.stringify({diagnosticOnly:true,inAppHealth:await checkInAppHealth(page,origin),pageErrors},null,2));
     if(pageErrors.length)process.exitCode=1;
@@ -167,6 +179,7 @@ try {
   } else {
   if(process.env.FOUNDATION_VISUAL_DIR){await captureFoundationVisuals(page,origin,path.resolve(process.env.FOUNDATION_VISUAL_DIR));await page.setViewportSize({width:1280,height:900});}
   if(!process.env.FOUNDATION_TEST_IDS)console.log(JSON.stringify({authFirstOnboarding:await checkAuthFirstOnboarding(browser,origin)}));
+  if(!process.env.FOUNDATION_TEST_IDS)console.log(JSON.stringify({termsAcceptance:await checkTermsAcceptance(browser,origin,process.env.FOUNDATION_TERMS_DIR)}));
   await page.goto(`${origin}/internal/health`);
   await page.waitForSelector("[data-health-root]");
   const results=await page.evaluate(ids=>window.__runFoundationTests({ids}),process.env.FOUNDATION_TEST_IDS?.split(','));

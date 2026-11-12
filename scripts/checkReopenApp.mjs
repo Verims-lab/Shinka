@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { FIRST_CONTENT_SOURCE } from '../base44/shared/firstContentSource.js';
-const identity={id:'synthetic-user',role:'user',authority:'BASE44_NATIVE_V1'};
+const identity={id:'synthetic-user',role:'user',authority:'BASE44_NATIVE_V1',terms:{state:'CURRENT',version:'test-terms-v1',acceptance:{id:'synthetic-acceptance',status:'ACCEPTED',acceptedAt:'2026-11-01T12:00:00Z'}}};
 export async function checkReopenApp(browser,origin){
   const context=await browser.newContext({viewport:{width:390,height:744}}),page=await context.newPage(),rows=[],errors=[];
   page.on('pageerror',e=>errors.push(e.message));

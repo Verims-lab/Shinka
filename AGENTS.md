@@ -6,6 +6,10 @@ This is a Base44 app repository. Treat it as user-owned application code, keep c
 
 Start with `README.md` for local setup, environment variables, and publish workflow.
 
+## Working Branch
+
+All development must use the existing `GizemTest` branch. Do not create a replacement branch. Before work, fetch `main` and `GizemTest`, inspect local changes and ancestry, and safely integrate any missing `main` commits while staying on `GizemTest`; preserve all branch history and uncommitted work. Never develop on, commit/push to, or merge into `main`, and never force-push. Complete the authorized implementation, applicable checks and documentation before committing and delivering to `origin/GizemTest`; verify fetched local/remote equality and a clean tree. Publication and live data operations require their own user authorization. See the 074 delivery contract in `docs/shinka/reports/SHINKA_ONBOARDING_TERMS_074.md` for the current legal-admission release prerequisites.
+
 ## Base44 References
 
 - CLI overview: https://docs.base44.com/developers/references/cli/get-started/overview.md

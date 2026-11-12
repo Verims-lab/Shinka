@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-073
-**Last Updated:** 2026-11-11
+**Current BuildMarker:** Buildmarker-074
+**Last Updated:** 2026-11-12
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 074 — ON-02 legal acceptance
+
+Started from GizemTest c10fcdd with main b77ce45 ahead by 24 and no unique GizemTest commits; safe fast-forward preserved history and synchronized the remote branch before development. Git CLI lacks a write credential; the connected GitHub service performed the authorized branch update. Final delivery must verify fetched local/remote identity and clean status. No live mutation or publication is included. [074 contract, source review and execution](reports/SHINKA_ONBOARDING_TERMS_074.md).
 
 ## 065 — Shared branded screen background
 

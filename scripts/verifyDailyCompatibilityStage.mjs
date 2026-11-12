@@ -9,7 +9,7 @@ const root=process.cwd(),temp=await mkdtemp(path.join(tmpdir(),'shinka-045-compa
 const fields=['message_tr_snapshot','suggestion_tr_snapshot','message_en_snapshot','suggestion_en_snapshot'];
 try {
   const names=(await readdir('base44/entities')).filter(name=>name.endsWith('.jsonc')).sort();
-  assert.equal(names.length,28);
+  assert.equal(names.length,29);
   const original=new Map(await Promise.all(names.map(async name=>[name,await readFile(path.join(root,'base44/entities',name))])));
   const results=[];
   for(const mode of ['current','final']){
@@ -17,7 +17,7 @@ try {
     if(mode!=='current')args.push(mode); // Exercise the safe no-mode default.
     execFileSync(process.execPath,args,{cwd:root});
     const manifest=JSON.parse(await readFile(path.join(dest,'manifest.json'),'utf8'));
-    assert.equal(manifest.mode,mode);assert.equal(manifest.hostedCleanupVerified,false);assert.equal(manifest.files.length,28);
+    assert.equal(manifest.mode,mode);assert.equal(manifest.hostedCleanupVerified,false);assert.equal(manifest.files.length,29);
     assert.equal(manifest.dailySchemaPhase,'ID_ONLY_SCHEMA');
     for(const name of names){
       const bytes=await readFile(path.join(dest,'base44/entities',name));
@@ -30,7 +30,7 @@ try {
         assert.ok(['create','read','update','delete'].every(key=>row.rls[key]===false));
       }
     }
-    results.push({mode,status:'PASS',schemas:28,hostedCleanupVerified:false});
+    results.push({mode,status:'PASS',schemas:29,hostedCleanupVerified:false});
   }
   assert.throws(()=>execFileSync(process.execPath,['scripts/prepareSchemaStage.mjs',path.join(temp,'retired'),'HEAD','daily-compat'],{cwd:root,stdio:'pipe'}),/retired daily-compat/);
   for(const name of names)assert.deepEqual(await readFile(path.join(root,'base44/entities',name)),original.get(name));
