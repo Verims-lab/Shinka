@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-071
+**Current BuildMarker:** Buildmarker-072
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-070.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-071.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 072 — Shared onboarding backdrop and progress row
+
+Buildmarker-072 / HC-071.0 retains 186 cases. H13-012 maps the ON-01 reference comparison, original logo paint, safe top-left clearance, progress and Back alignment, and form visibility. H13-020 verifies the shared contained PNG across onboarding. H13-021 retains the provider and age gate and checks that the legacy empty spacer is absent. H05-009 includes 072 in the existing content validation policy. The local matrix covers TR and EN at 320, 360, 390 and 430 pixels, landscape, desktop, enlarged text, simulated safe areas, reduced viewport and scrolling. The mandatory auth-first gate keeps 071's navigation checks. [072 delivery](reports/SHINKA_ONBOARDING_BACKDROP_072.md)
 
 ## 071 — Mandatory verified onboarding navigation gate
 

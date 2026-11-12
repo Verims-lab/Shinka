@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-067",
-    "package_name": "First onboarding spacing and counter",
-    "package_type": "TARGETED_UI",
-    "created_at": "2026-11-11T16:07:11Z",
-    "health_catalog_version": "HC-066.0",
-    "short_summary": "ON-01 has no page counter and uses proportional heading spacing and larger gaps between boxes and Begin.",
-    "full_health_status": "NOT_RUN",
-    "notes": "HC-066.0 updates H13-012 and H05-009. Chromium full 803/803. Both onboarding matrices passed. WebKit full stopped on two baseline fixture failures and the focused candidate rerun passed. See reports/SHINKA_ONBOARDING_SPACING_067.md."
-  },
-  {
     "build_marker": "Buildmarker-068",
     "package_name": "Mobile Welcome sign-in visibility",
     "package_type": "TARGETED_UI",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Verified owner progress opens the remaining onboarding form, preparation or Home directly. Anonymous entry and provider gating remain available, and Back stays inside the admitted form.",
     "full_health_status": "NOT_RUN",
     "notes": "HC-070.0 extends the mandatory local auth-first gate to direct resumption, held/invalid progress, retry, reload, optional choices and Back. See reports/SHINKA_AUTHENTICATED_ONBOARDING_071.md for execution and external limits."
+  },
+  {
+    "build_marker": "Buildmarker-072",
+    "package_name": "Shared onboarding backdrop and progress row",
+    "package_type": "TARGETED_UI",
+    "created_at": "2026-11-12T08:24:10Z",
+    "health_catalog_version": "HC-071.0",
+    "short_summary": "All onboarding shell screens reuse ON-01's original-color backdrop and safe top-left artwork fit. Numbered follow-up screens place the counter and session-scoped Back beneath the logo.",
+    "full_health_status": "NOT_RUN",
+    "notes": "HC-071.0 updates H05-009, H13-012, H13-020 and H13-021. Local onboarding presentation and auth-first regressions compare art fit, clearance, control visibility and safe navigation. See reports/SHINKA_ONBOARDING_BACKDROP_072.md for execution."
   }
 ];

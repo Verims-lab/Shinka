@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-071
+**Current BuildMarker:** Buildmarker-072
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 072 — Shared onboarding artwork and progress row
+
+The owner’s comparison of ON-01 and ON-02 sets ON-01 as the artwork reference for the numbered steps and follow-ups rendered in the same shell. Use the original fixed PNG and its safe top-left fit. ON-02 through ON-05 place the localized counter and Back together below the embedded logo. Back is enabled when the current session has a valid prior step under 071. Preparation keeps the shared artwork and remains unnumbered. [072 delivery](reports/SHINKA_ONBOARDING_BACKDROP_072.md)
 
 ## 071 — Direct resumption after verified sign-in
 
@@ -24,7 +28,7 @@ On anonymous ON-02, Begin opens the 18+ declaration with Apple and Google. On au
 
 ## 068 — Mobile sign-in visibility
 
-ON-02 after Begin displays the initially unchecked 18+ declaration and Apple and Google sign-in actions to anonymous users. The empty artwork slot gives the form priority on short portrait screens. Direct authenticated resumption follows 071 above. [068 delivery](reports/SHINKA_ONBOARDING_SIGN_IN_068.md)
+ON-02 after Begin displays the initially unchecked 18+ declaration and Apple and Google sign-in actions to anonymous users. The 072 logo clearance supersedes the empty artwork slot. Direct authenticated resumption follows 071 above. [068 delivery](reports/SHINKA_ONBOARDING_SIGN_IN_068.md)
 
 ## 067 — First onboarding spacing
 

@@ -6,6 +6,8 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
+[072 shared onboarding backdrop](docs/shinka/reports/SHINKA_ONBOARDING_BACKDROP_072.md) gives ON-02 through ON-05 and preparation the original-color artwork fit from ON-01. The counter and session-scoped Back sit under the logo.
+
 [071 authenticated onboarding navigation](docs/shinka/reports/SHINKA_AUTHENTICATED_ONBOARDING_071.md) uses verified progress to open the remaining step or Home directly. The mandatory auth-first browser gate covers anonymous sign-in, held and invalid progress, retry, Back and optional steps.
 
 [069 Welcome authentication verification](docs/shinka/reports/SHINKA_ONBOARDING_AUTH_069.md) documents the historical Preview screen and public release observation.

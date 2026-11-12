@@ -41,8 +41,8 @@
   }
 }
 
-/* ON-01 anchors the original logo at the safe top left and feathers the lower edge. */
-.shinka-app-backdrop:has(+ .shinka-route-clip [data-onboarding-intro]) {
+/* Onboarding anchors the original logo at the safe top left and feathers the lower edge. */
+.shinka-app-backdrop:has(+ .shinka-route-clip .shinka-onboarding) {
   --art-inset: var(--safe-top) auto auto var(--safe-left);
   --mask-angle: 180deg;
   --backdrop-wash: none;

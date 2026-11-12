@@ -144,15 +144,9 @@ export const CSS_CONTRACT_TESTS = [
         assert(host.querySelectorAll('[data-app-backdrop]').length===1&&!host.querySelector('img'),'one backdrop, no second content bitmap');
         const space=host.querySelector('.shinka-onboarding-art-space'),layer=host.querySelector('[data-app-backdrop]');
         const art=getComputedStyle(layer,'::before'),wash=getComputedStyle(layer,'::after');
-        if(state==='UNAUTHENTICATED_INTRO') {
-          const safeTop=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-top'))||0;
-          assert(!space&&parseFloat(art.top)===safeTop&&wash.content==='none','intro anchors the original logo and omits the square slot');
-        } else {
-          const css=measure(space);
-          assert(space.getAttribute('aria-hidden')==='true'&&space.childElementCount===0&&css.backgroundImage==='none'&&css.backgroundColor==='rgba(0, 0, 0, 0)','empty transparent layout space');
-          assert(getComputedStyle(space,'::before').content==='none'&&getComputedStyle(space,'::after').content==='none','no replacement pseudo-decoration');
-          assert(art.bottom==='0px'&&wash.content!=='none','other steps keep the bottom-anchored composition');
-        }
+        const root=getComputedStyle(document.documentElement);
+        const safeTop=parseFloat(root.getPropertyValue('--safe-top'))||0, safeLeft=parseFloat(root.getPropertyValue('--safe-left'))||0;
+        assert(!space&&parseFloat(art.top)===safeTop&&parseFloat(art.left)===safeLeft&&wash.content==='none','each step anchors the original logo at the safe top-left');
         assert(png.test(art.backgroundImage),'approved composition remains');
       });
     }

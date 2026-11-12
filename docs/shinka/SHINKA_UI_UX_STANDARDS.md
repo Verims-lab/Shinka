@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-071
+**Current BuildMarker:** Buildmarker-072
 **Last Updated:** 2026-11-11
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -13,13 +13,17 @@
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
 
+## 072 — Shared onboarding artwork and counter
+
+ON-02 through ON-05 and the shared follow-up shell use the ON-01 artwork position, scale and original logo colors. Reserve the scaled logo height in normal flow. The localized step counter and accessible Back control share a row at the safe left, with the title and form below. Preparation remains unnumbered. The existing ON-01 spacing, compact rows and Begin treatment apply to the introduction. Keep the 18+ declaration and both providers reachable in the initial normal-size portrait viewport. At enlarged text and with the keyboard, the document scrolls to the form controls. [072 delivery](reports/SHINKA_ONBOARDING_BACKDROP_072.md)
+
 ## 071 — Session-scoped onboarding navigation
 
-Begin takes anonymous visitors to 2/5 with the unchecked 18+ declaration and both provider buttons. A verified session waits for server progress and goes directly to the remaining form, preparation or Home. Keep the 070 first-viewport ON-02 layout. The existing Sign out action is available in the signed-in steps and preparation.
+Begin takes anonymous visitors to 2/5 with the unchecked 18+ declaration and both provider buttons. A verified session waits for server progress and goes directly to the remaining form, preparation or Home. The existing Sign out action is available in the signed-in steps and preparation.
 
-ON-02 Back opens ON-01. In a signed-in flow, Back can revisit the mounted name draft from ON-04 before the profile is saved, and ON-05 can reopen the profile with drafts intact. Direct ON-03, saved or reset ON-04 and preparation have no Back button. [071 delivery](reports/SHINKA_AUTHENTICATED_ONBOARDING_071.md)
+ON-02 Back opens ON-01. In a signed-in flow, Back can revisit the mounted name draft from ON-04 before the profile is saved, and ON-05 can reopen the profile with drafts intact. Direct ON-03 and saved or reset ON-04 display a disabled Back control under 072. Preparation has no prior step. [071 delivery](reports/SHINKA_AUTHENTICATED_ONBOARDING_071.md)
 
-## 070 — ON-02 first-viewport sign-in priority
+## Historical 070 — ON-02 first-viewport sign-in priority
 
 On anonymous Welcome, the shared backdrop paints the artwork. The empty layout slot can collapse to zero and caps at 48px. ON-02 keeps the 2/5 counter and a compact 12px stack so the 18+ declaration, Apple and Google stay reachable on short frames and with enlarged text. A verified session follows 071 above. The committed `/auth-shell-probe` reports whether the three controls fit inside the visible viewport through `data-probe-viewport`. [070 verification](reports/SHINKA_ONBOARDING_WELCOME_070.md)
 
