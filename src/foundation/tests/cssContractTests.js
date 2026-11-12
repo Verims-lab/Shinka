@@ -129,15 +129,15 @@ export const CSS_CONTRACT_TESTS = [
       assert(measure(host.querySelector("[data-probe-root]")).backgroundColor==="rgba(0, 0, 0, 0)",'default loading shell reveals the backdrop');
     });
   }],
-  ["T82","One fixed decorative PNG with intact proportions and the manual dark contrast layer",async()=>{
+  ["T82","One unaltered decorative PNG anchored at the document top in both themes",async()=>{
     const png = /\/shinka-background(?:-[\w-]+)?\.png/;
     await rendered(h(AppBackdrop),host=>{
       const layer=host.querySelector("[data-app-backdrop]"),s=measure(layer);
-      assert(layer.getAttribute("aria-hidden")==="true"&&!layer.textContent&&s.pointerEvents==="none"&&s.position==="fixed"&&s.zIndex==="-1",'decorative fixed layer');
+      assert(layer.getAttribute("aria-hidden")==="true"&&!layer.textContent&&s.pointerEvents==="none"&&s.position==="absolute"&&s.zIndex==="-1",'decorative document layer');
       const art=getComputedStyle(layer,"::before");
       assert(png.test(art.backgroundImage)&&art.backgroundRepeat==="no-repeat"&&art.backgroundSize==="contain",'bundled original, no tiling or stretch');
       const before=appThemeExpectation();applyAppTheme('dark');
-      try{assert(getComputedStyle(layer,"::after").content!=="none",'dark overlay present');}finally{applyAppTheme(before.source==='UNVERIFIED_DEFAULT'?null:before.theme);}
+      try{assert(getComputedStyle(layer,"::after").content==="none"&&art.filter==="none"&&art.maskImage==="none"&&art.opacity==="1",'dark mode preserves the original pixels');}finally{applyAppTheme(before.source==='UNVERIFIED_DEFAULT'?null:before.theme);}
     });
     for(const state of ['UNAUTHENTICATED_INTRO','AUTHENTICATED_NAME_REQUIRED','UNAUTHENTICATED_SIGN_IN','AUTHENTICATED_PROFILE_REQUIRED','AUTHENTICATED_CYCLE_STEP']) {
       await rendered(h('div',null,h(AppBackdrop),h('div',{className:'shinka-route-clip'},h(OnboardingScreen,{state,authenticated:state.startsWith('AUTHENTICATED'),initialLanguage:'en',request:async()=>{throw new Error('UNEXPECTED_FIXTURE_IO');}}))),host=>{
@@ -146,7 +146,7 @@ export const CSS_CONTRACT_TESTS = [
         const art=getComputedStyle(layer,'::before'),wash=getComputedStyle(layer,'::after');
         const root=getComputedStyle(document.documentElement);
         const safeTop=parseFloat(root.getPropertyValue('--safe-top'))||0, safeLeft=parseFloat(root.getPropertyValue('--safe-left'))||0;
-        assert(!space&&parseFloat(art.top)===safeTop&&parseFloat(art.left)===safeLeft&&wash.content==='none','each step anchors the original logo at the safe top-left');
+        assert(!space&&parseFloat(art.top)===safeTop&&parseFloat(art.left)===safeLeft&&wash.content==='none','each step uses the safe original artwork');
         assert(png.test(art.backgroundImage),'approved composition remains');
       });
     }

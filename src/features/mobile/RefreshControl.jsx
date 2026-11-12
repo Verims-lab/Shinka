@@ -14,7 +14,9 @@ export default function RefreshControl({ language, refresh, loading, error, disa
   };
   latest.current = { invoke, disabled, loading };
   useEffect(() => {
-    const surface = anchor.current?.closest('.shinka-viewport');
+    const viewport = anchor.current?.closest('.shinka-viewport');
+    // The artwork header is part of the route's touch surface.
+    const surface = viewport?.closest('.shinka-route-clip') || viewport;
     if (!surface || !CSS.supports('overscroll-behavior-y', 'contain')) return;
     let start = null, pulled = 0;
     const blocked = target => latest.current.disabled || latest.current.loading || pending.current ||

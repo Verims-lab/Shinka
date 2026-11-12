@@ -2,7 +2,7 @@ import React from 'react';
 
 const UserNotRegisteredError = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="shinka-viewport flex flex-col items-center justify-center">
       <div className="max-w-md w-full p-8 bg-shinka-white rounded-lg shadow-lg border border-slate-100">
         <div className="text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-orange-100">

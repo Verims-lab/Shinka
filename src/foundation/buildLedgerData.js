@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-068",
-    "package_name": "Mobile Welcome sign-in visibility",
-    "package_type": "TARGETED_UI",
-    "created_at": "2026-11-11T16:53:42Z",
-    "health_catalog_version": "HC-067.0",
-    "short_summary": "Anonymous ON-02 yields unused artwork space to the 18+ declaration and Apple and Google sign-in buttons.",
-    "full_health_status": "NOT_RUN",
-    "notes": "HC-067.0 updates H13-012 and H05-009. ON-02 viewport and auth-first checks passed in both engines. Chromium base 803/803. Full browser interruptions and focused results are in reports/SHINKA_ONBOARDING_SIGN_IN_068.md."
-  },
-  {
     "build_marker": "Buildmarker-069",
     "package_name": "Welcome authentication and published verification",
     "package_type": "TARGETED_REGRESSION",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "All onboarding shell screens reuse ON-01's original-color backdrop and safe top-left artwork fit. Numbered follow-up screens place the counter and session-scoped Back beneath the logo.",
     "full_health_status": "NOT_RUN",
     "notes": "HC-071.0 updates H05-009, H13-012, H13-020 and H13-021. Local onboarding presentation and auth-first regressions compare art fit, clearance, control visibility and safe navigation. See reports/SHINKA_ONBOARDING_BACKDROP_072.md for execution."
+  },
+  {
+    "build_marker": "Buildmarker-073",
+    "package_name": "Original centered-logo backdrop across Shinka",
+    "package_type": "TARGETED_UI",
+    "created_at": "2026-11-12T09:47:57Z",
+    "health_catalog_version": "HC-072.0",
+    "short_summary": "The supplied Backround.png anchors its original centered logo across user routes. The shared frame clears the wordmark and places ON-02–05 progress at the safe upper left.",
+    "full_health_status": "NOT_RUN",
+    "notes": "HC-072.0 extends H05-009, H13-012 and H13-020. Local regressions verify exact image bytes, responsive placement, dark contrast, session-scoped Back and matching logo screenshot pixels. See reports/SHINKA_CENTERED_BACKGROUND_073.md."
   }
 ];

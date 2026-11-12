@@ -19,8 +19,7 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
   const needsConsent = value?.state === 'CONSENT_REQUIRED' && !value.recovery;
   const validationError = /^PERIOD_(DATE_|START_FUTURE|DUPLICATE|CONFLICT)/.test(state.error || '');
   return <div lang={language} data-calendar-root className="shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col">
-    <header className="flex flex-wrap items-center justify-between px-5 pt-6 gap-2">
-      <span className="font-heading font-medium text-shinka-h3 text-shinka-plum">Shinka</span>
+    <header className="flex flex-wrap items-center justify-end px-5 pt-2 gap-2">
       {renderProfileAccess?.(language) || <ProfileMenu language={language}/>}
     </header>
     <main className="flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6">

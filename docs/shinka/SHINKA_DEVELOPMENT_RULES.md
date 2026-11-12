@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-072
-**Last Updated:** 2026-11-11
+**Current BuildMarker:** Buildmarker-073
+**Last Updated:** 2026-11-12
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 073 — Centered global artwork
+
+Record Buildmarker-073 / HC-072.0 with `recordBuild` and retain 069–073. Run the user-route backdrop and onboarding presentation matrices in Chromium and WebKit. Retain the auth-first and verified-theme gates. Verify the source and built PNG hashes and capture representative screenshots through the local backdrop runner. [073 delivery](reports/SHINKA_CENTERED_BACKGROUND_073.md)
 
 ## 072 — Shared onboarding artwork
 

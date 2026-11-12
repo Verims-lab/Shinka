@@ -6,7 +6,9 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
-[072 shared onboarding backdrop](docs/shinka/reports/SHINKA_ONBOARDING_BACKDROP_072.md) gives ON-02 through ON-05 and preparation the original-color artwork fit from ON-01. The counter and session-scoped Back sit under the logo.
+Buildmarker-073 uses the supplied Backround.png on user-facing routes. Its centered logo anchors at the document top. The ON-02–05 counter and session-scoped Back occupy the upper-left artwork space. Run `FOUNDATION_BACKDROP_ONLY=1 npm run test:foundation` for the focused check. Set `FOUNDATION_BACKDROP_DIR` to an absolute output directory for screenshots. [073 centered-logo backdrop](docs/shinka/reports/SHINKA_CENTERED_BACKGROUND_073.md)
+
+The preceding onboarding artwork and counter layout are recorded in [072 shared onboarding backdrop](docs/shinka/reports/SHINKA_ONBOARDING_BACKDROP_072.md).
 
 [071 authenticated onboarding navigation](docs/shinka/reports/SHINKA_AUTHENTICATED_ONBOARDING_071.md) uses verified progress to open the remaining step or Home directly. The mandatory auth-first browser gate covers anonymous sign-in, held and invalid progress, retry, Back and optional steps.
 
@@ -16,9 +18,9 @@ Git branch, Builder sync, published frontend and backend data environment are se
 
 [067 first onboarding spacing](docs/shinka/reports/SHINKA_ONBOARDING_SPACING_067.md) removes the first screen's counter and adjusts its vertical spacing within the safe viewport.
 
-[066 first onboarding screen](docs/shinka/reports/SHINKA_ONBOARDING_INTRO_066.md) keeps the original top-left logo and brings the intro, three compact rows and Begin into the first portrait viewport.
+Buildmarker-066 brought the intro, three compact rows and Begin into the first portrait viewport. [066 first onboarding screen](docs/shinka/reports/SHINKA_ONBOARDING_INTRO_066.md)
 
-[065 shared screen background](docs/shinka/reports/SHINKA_APP_BACKGROUND_065.md) uses the original bundled Shinka PNG across user-facing routes, including onboarding, sign-in and account privacy. The application owns one fixed decorative layer and the navigation background lets it show through. The focused local check is `FOUNDATION_BACKDROP_ONLY=1 npm run test:foundation`. Set `FOUNDATION_BACKDROP_DIR` to an absolute output directory for screenshots.
+Buildmarker-065 introduced a single shared PNG across user-facing routes. [065 shared screen background](docs/shinka/reports/SHINKA_APP_BACKGROUND_065.md)
 
 [064 Test Tools retirement](docs/shinka/reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md): admin reset is removed from UI and backend commands. Existing receipts remain readable/fenced; the two authorized live removals are still blocked by active legacy receipts. No schema push is required.
 

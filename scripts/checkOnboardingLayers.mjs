@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
-import { loadAppBackdrop } from './checkAppBackdrop.mjs';
+import { artwork, loadAppBackdrop } from './checkAppBackdrop.mjs';
 import { doubleText } from './mobileSurfaceMeasurements.mjs';
 
 async function checkIntroLayout(page, scale) {
@@ -30,16 +30,16 @@ async function checkIntroLayout(page, scale) {
         descriptionFont: parseFloat(getComputedStyle(text).fontSize),
       };
     });
-    const topPadding = parseFloat(shell.paddingTop);
     const bottomPadding = parseFloat(shell.paddingBottom);
     const safeTop = parseFloat(root.getPropertyValue('--safe-top')) || 0;
-    const originalTitleTop = 8 + Math.min(innerWidth * .375, innerHeight * .212) + safeTop;
+    const originalTitleTop = screen.getBoundingClientRect().top + scrollY;
     return {
       width: innerWidth, height: innerHeight, scrollY, scrollHeight: document.documentElement.scrollHeight,
       safeTop, bottomPadding, originalTitleTop,
-      usableHeight: Math.max(0, innerHeight - topPadding - bottomPadding - button.height),
+      usableHeight: Math.max(0, innerHeight - Math.max(24,safeTop) - bottomPadding - button.height),
       safeLeft: parseFloat(root.getPropertyValue('--safe-left')) || 0,
-      artTop: parseFloat(art.top), artLeft: parseFloat(art.left), artHeight: parseFloat(art.height),
+      safeRight: parseFloat(root.getPropertyValue('--safe-right')) || 0, clientWidth: document.documentElement.clientWidth,
+      artTop: parseFloat(art.top), artLeft: parseFloat(art.left)+(parseFloat(art.marginLeft)||0), artWidth: parseFloat(art.width), artHeight: parseFloat(art.height),
       opacity: getComputedStyle(backdrop).opacity, filter: art.filter,
       wash: getComputedStyle(backdrop, '::after').content,
       duplicateWordmark: [...screen.querySelectorAll('span')].some(span => span.textContent.trim() === 'Shinka'),
@@ -52,11 +52,11 @@ async function checkIntroLayout(page, scale) {
   assert.equal(result.duplicateWordmark, false);
   assert.equal(result.counterPresent, false);
   assert.equal(result.artTop, result.safeTop);
-  assert.equal(result.artLeft, result.safeLeft);
+  assert(Math.abs(result.artLeft+result.artWidth/2-(result.clientWidth+result.safeLeft-result.safeRight)/2)<1,'art centers in the safe viewport');
   assert.equal(result.opacity, '1');
   assert.equal(result.filter, 'none');
   assert.equal(result.wash, 'none');
-  assert(result.titleTop + result.scrollY >= result.artTop + result.artHeight * 347 / 1670 + 4, 'title clears the original logo');
+  assert(result.titleTop + result.scrollY >= result.artTop + result.artHeight * artwork.logoBottom / artwork.height + 4, 'title clears the original logo');
   assert.equal(result.rows.length, 3);
   assert(result.ctaHeight >= 52 && !result.ctaDisabled, 'Begin keeps its primary touch target');
   if (scale === 1 && result.width < result.height) {
@@ -106,7 +106,7 @@ export async function checkSignInLayout(page, scale = 1) {
     });
     return {
       state: main?.dataset.onboardingState,
-      step: main?.querySelector('p[data-onboarding-step]')?.dataset.onboardingStep,
+      step: panel.closest('.shinka-onboarding')?.querySelector('p[data-onboarding-step]')?.dataset.onboardingStep,
       buildMarker: main?.dataset.shinkaBuild ?? null,
       providers: providers.map(element => element.dataset.provider),
       enabled: !age.disabled && providers.every(element => element instanceof HTMLButtonElement && !element.disabled),
@@ -147,7 +147,7 @@ export async function checkOnboardingLayers(browser, origin, directory) {
   const fontCss = (await readFile('index.html','utf8')).match(/href="(https:\/\/fonts.googleapis.com\/css2[^\"]+)"/)[1];
   const assets = new Map(), results = [];
   if (directory) await mkdir(directory,{recursive:true});
-  const sizes = [[320,568],[320,640],[360,640],[390,844],[430,932],[844,390],[1280,900]];
+  const sizes = [[320,568],[320,640],[360,640],[390,844],[430,932],[768,1024],[844,390],[1280,900]];
   for (const language of ['tr','en']) for (const [width,height] of sizes) for (const scale of [1,2]) {
     const context = await browser.newContext({locale:language==='tr'?'tr-TR':'en-US',viewport:{width,height},colorScheme:'dark'});
     const page = await context.newPage(), errors = [];
@@ -200,17 +200,18 @@ export async function checkOnboardingLayers(browser, origin, directory) {
       }
       const main=document.querySelector('main[data-onboarding-state]');
       const layer=document.querySelector('[data-app-backdrop]'),css=getComputedStyle(layer),art=getComputedStyle(layer,'::before');
-      const progress=main.querySelector('[data-onboarding-progress]'),card=main.querySelector('section');
+      const progress=main.closest('.shinka-onboarding').querySelector('[data-onboarding-progress]'),card=main.querySelector('section');
       const safe=getComputedStyle(main.closest('.shinka-safe-content'));
       const root=getComputedStyle(document.documentElement);
       return {bitmaps,images:document.querySelectorAll('.shinka-onboarding img').length,layers:document.querySelectorAll('[data-app-backdrop]').length,
-        background:{position:css.position,y:layer.getBoundingClientRect().y,height:layer.getBoundingClientRect().height,image:art.backgroundImage,repeat:art.backgroundRepeat,size:art.backgroundSize,mask:art.maskImage,
-          top:parseFloat(art.top),left:parseFloat(art.left),artWidth:parseFloat(art.width),artHeight:parseFloat(art.height),wash:getComputedStyle(layer,'::after').content,opacity:art.opacity,filter:art.filter},
+        background:{position:css.position,y:layer.getBoundingClientRect().y+scrollY,image:art.backgroundImage,repeat:art.backgroundRepeat,size:art.backgroundSize,mask:art.maskImage,
+          top:parseFloat(art.top),left:parseFloat(art.left)+(parseFloat(art.marginLeft)||0),artWidth:parseFloat(art.width),artHeight:parseFloat(art.height),wash:getComputedStyle(layer,'::after').content,opacity:art.opacity,filter:art.filter},
         safeTop:parseFloat(root.getPropertyValue('--safe-top'))||0,safeLeft:parseFloat(root.getPropertyValue('--safe-left'))||0,
+        safeRight:parseFloat(root.getPropertyValue('--safe-right'))||0,clientWidth:document.documentElement.clientWidth,
         contentLeft:parseFloat(safe.paddingLeft),contentRight:parseFloat(safe.paddingRight),
         light:!document.documentElement.classList.contains('dark'),width:innerWidth,height:innerHeight,scrollWidth:document.documentElement.scrollWidth,scrollY,maxScroll:document.documentElement.scrollHeight-innerHeight,
         title:box(main.querySelector('h1')),subtitle:box(main.querySelector('h1 + p')),card:box(card),
-        progress:progress?{box:box(progress),arrow:box(progress.querySelector('[data-onboarding-back]')),counter:box(progress.querySelector('[data-onboarding-step]'))}:null,
+        progress:progress?{language:progress.closest('[lang]')?.lang,box:box(progress),arrow:box(progress.querySelector('[data-onboarding-back]')),counter:box(progress.querySelector('[data-onboarding-step]'))}:null,
         artworkSpacer:!!main.querySelector('.shinka-onboarding-art-space'),
         duplicateWordmark:[...main.querySelectorAll('span')].some(span=>span.textContent.trim()==='Shinka'),
         rowIcons:document.querySelectorAll('[data-intro-row] svg').length,
@@ -219,24 +220,28 @@ export async function checkOnboardingLayers(browser, origin, directory) {
     const verify = value => {
       assert.equal(value.layers,1);assert.equal(value.images,0);assert.equal(value.bitmaps.length,1,'one bitmap composition across the complete page');
       assert(value.bitmaps[0].source.includes(`${origin}/assets/shinka-background-`));assert(value.light,'onboarding remains light under dark OS');
-      assert.equal(value.background.position,'fixed');assert.equal(value.background.y,0);
+      assert.equal(value.background.position,'absolute');assert.equal(value.background.y,0);
       assert.equal(value.background.size,'contain');assert.equal(value.background.repeat,'no-repeat');
       assert.equal(value.background.top,value.safeTop);
-      assert.equal(value.background.left,value.safeLeft);
+      assert(Math.abs(value.background.left+value.background.artWidth/2-(value.clientWidth+value.safeLeft-value.safeRight)/2)<1,'art centers in the safe viewport');
       assert.equal(value.background.opacity,'1');
       assert.equal(value.background.filter,'none');
       assert.equal(value.background.wash,'none');
-      assert(Math.abs(value.background.artWidth*1670/942-value.background.artHeight)<1,'contained art keeps its aspect ratio');
+      assert.equal(value.background.mask,'none');
+      assert(Math.abs(value.background.artWidth*artwork.height/artwork.width-value.background.artHeight)<1,'contained art keeps its aspect ratio');
       assert(value.scrollWidth<=value.width+1,'no horizontal overflow');
       assert(!value.artworkSpacer&&!value.duplicateWordmark,'one original logo with no legacy spacer');
-      const logoBottom=value.background.top+value.background.artHeight*347/1670;
-      assert((value.progress?.box??value.title).y>=logoBottom+4,'first content clears the embedded logo');
+      const logoBottom=value.background.top+value.background.artHeight*artwork.logoBottom/artwork.height;
+      assert(value.title.y>=logoBottom+4,'content clears the embedded logo');
       if(value.progress){
         const {box,arrow,counter}=value.progress;
-        assert(box.y<=logoBottom+16 && Math.abs(arrow.x-value.contentLeft)<1,'counter row starts at the safe left below the logo');
+        assert.equal(value.progress.language,language,'the progress row uses the onboarding language');
+        const logoLeft=value.background.left+value.background.artWidth*artwork.logoLeft/artwork.width;
+        assert(Math.abs(box.y-value.safeTop-8)<1&&Math.abs(arrow.x-Math.max(12,value.safeLeft))<1,'counter is in the upper-left safe area');
+        assert(box.x+box.width<=logoLeft-4,'the progress row clears the centered logo');
         assert(arrow.width>=44&&arrow.height>=44&&counter.x>=arrow.x+arrow.width,'arrow has a touch target and sits beside the counter');
         assert(Math.abs(counter.y+counter.height/2-arrow.y-arrow.height/2)<1,'counter and Back share one row');
-        assert(value.title.y>=box.y+box.height-.5,'title follows the counter row');
+        assert(value.title.y>=box.y+box.height-.5,`title follows the counter row at ${value.width}×${value.height} (title ${value.title.y}, row ends ${box.y+box.height})`);
       }
       const lastText=value.subtitle??value.title;
       assert(value.card.y>=lastText.y+lastText.height-.5,'form follows heading and copy');
