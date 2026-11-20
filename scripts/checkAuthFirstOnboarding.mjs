@@ -47,7 +47,7 @@ export async function checkAuthFirstOnboarding(browser, origin) {
   };
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   try {
-   await page.goto(`${origin}/?appFixture=1&sdkSession=anonymous&authFirst=new&language=${language}`);
+   await page.goto(`${origin}/?appFixture=1&sdkSession=anonymous&termsFixture=1&authFirst=new&language=${language}`);
    await state('UNAUTHENTICATED_INTRO');await page.getByRole('button',{name:language==='tr'?'Başla':'Begin',exact:true}).click();await state('UNAUTHENTICATED_SIGN_IN');
    const welcome = await checkSignInLayout(page);
    assert.equal(welcome.buildMarker, BUILD_MARKER);
@@ -71,16 +71,20 @@ export async function checkAuthFirstOnboarding(browser, origin) {
     expectedCalls.push({ provider, returnTo: '/login' });
     assert.deepEqual(await providerCalls(), expectedCalls);
    }
+   await page.evaluate(()=>window.__authFixture.providerMode('redirect'));
+   await providerButton('google').click();expectedCalls.push({provider:'google',returnTo:'/login'});
    // Model the provider's /login return entry with the real App admission path.
    await page.evaluate(async()=>{
     const callback=new URL(location.href);
     callback.pathname='/login';
+    callback.searchParams.set('terms_intent',new URL(window.__authFixture.providerCalls.at(-1).returnTo,location.origin).searchParams.get('terms_intent'));
     history.pushState(history.state,'',callback);
     window.dispatchEvent(new PopStateEvent('popstate'));
     window.__authFixture.setSession('user');
     await window.__appAuth.checkAppState();
    });
    await state(nameStep);
+   assert.equal(await page.evaluate(()=>window.__authFixture.termsEvents.length),1,'new account legal acceptance precedes name');
    await page.evaluate(()=>{window.__seenOnboarding.length=0;});
    await page.goBack();
    await page.waitForURL(url=>url.pathname==='/');
@@ -100,20 +104,25 @@ export async function checkAuthFirstOnboarding(browser, origin) {
    assert.equal(await page.locator('#birth_date').inputValue(),'1990-01-01');
    await next().click();await state(cycleStep);
    await page.evaluate(()=>window.__authFixture.holdOperation('dailyMessage'));
-   await page.getByRole('button',{name:language==='tr'?'Şimdilik geç':'Skip for now',exact:true}).click();
+   const grant=width===390;
+   if(grant){
+    await page.locator('#period_start_date').fill('2026-10-18');await page.locator('#health_consent').check();
+    await page.evaluate(()=>window.__authFixture.failOperation('dailyMessage'));await page.locator('[data-onboarding-state] form button[type=submit]').click();
+   }else await page.getByRole('button',{name:language==='tr'?'Şimdilik geç':'Skip for now',exact:true}).click();
    await state(preparation);
    assert.equal(await back.count(),0,'preparation must not send a signed-in user back to Welcome or cycle');
    await page.evaluate(()=>window.__authFixture.releaseOperation('dailyMessage'));
+   if(grant){await page.locator('[data-daily-state]:not([data-daily-state=loading]) button').click();}
    await home.waitFor();
    assert.deepEqual(await page.evaluate(()=>{
     const rows=window.__authFirstLab.rows;
     return [rows.user_profile[0].display_name,rows.user_period_record.length,rows.user_health_consent.length,rows.user_daily_message.length];
-   }),[null,0,0,1]);
+   }),[null,grant?1:0,grant?1:0,1]);
    await page.evaluate(async()=>{await window.__appAuth.checkAppState();});await home.waitFor();
    assert.deepEqual(await observed(),[nameStep,profileStep,cycleStep,preparation]);
    assert.deepEqual(await providerCalls(),expectedCalls);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
-   results.push({language,width,textScale:2,scenario:'intro-oauth-history-back-optional-name-cycle-home-reopen',
+   results.push({language,width,textScale:2,scenario:grant?'intro-oauth-accept-name-profile-health-grant-first-daily-retry-home':'intro-oauth-accept-history-back-optional-name-cycle-skip-home-reopen',
     providerDispatch:expectedCalls,passed:true});
 
    const openVerified=(route,scenario)=>page.goto(`${origin}${route}?appFixture=1&sdkSession=user&authFirst=${scenario}&language=${language}&holdHydration=1${scenario==='preparation'?'&holdDaily=1':''}`);

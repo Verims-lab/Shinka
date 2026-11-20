@@ -3,24 +3,35 @@ import { TERMS_URL, PRIVACY_URL, validTermsVersion, currentTerms } from '@/found
 export { TERMS_URL, PRIVACY_URL, validTermsVersion, currentTerms } from '@/foundation/termsPolicy';
 
 const error = (code, unknown = false) => Object.assign(new Error(code), { code, unknown });
-/** @param {string} action @param {object} payload @param {{functions:{invoke:(name:string,body:object)=>Promise<{data:any}>}}} client @param {number} timeoutMs */
-export async function termsRequest(action, payload = {}, client = base44, timeoutMs = 15000) {
-  let timer;
+const CODES = new Set(['TERMS_VERSION_CHANGED','TERMS_CONFIRMATION_REQUIRED','TERMS_CONFIGURATION_REQUIRED','TERMS_STATE_UNAVAILABLE','TERMS_WRITE_UNCONFIRMED','AUTH_REQUIRED','ACCOUNT_DELETION_IN_PROGRESS','TERMS_FORBIDDEN','TERMS_RATE_LIMITED','TERMS_TEMPORARILY_UNAVAILABLE','TERMS_TIMEOUT','TERMS_INVALID_RESPONSE','TERMS_CANCELLED']);
+/** @param {string} action @param {object} payload @param {{functions:{invoke:(name:string,body:object)=>Promise<{data:any}>}}} client @param {number} timeoutMs @param {{signal?:AbortSignal}} options */
+export async function termsRequest(action, payload = {}, client = base44, timeoutMs = 15000, {signal} = {}) {
+  let timer, abort;
   try {
-    const response = await Promise.race([client.functions.invoke('termsAcceptance', { action, ...payload }), new Promise((_, reject) => { timer = setTimeout(() => reject(error('TERMS_STATE_UNAVAILABLE')), timeoutMs); })]);
+    const response = await Promise.race([
+      new Promise((_, reject) => {
+        abort = () => reject(error('TERMS_CANCELLED'));
+        if(signal?.aborted)return abort();
+        signal?.addEventListener('abort',abort,{once:true});
+        timer=setTimeout(()=>reject(error('TERMS_TIMEOUT')),timeoutMs);
+      }),
+      Promise.resolve().then(()=>{if(signal?.aborted)throw error('TERMS_CANCELLED');return client.functions.invoke('termsAcceptance',{action,...payload});}),
+    ]);
     const value = response?.data;
     if (value?.error_code) throw error(value.error_code);
     const configured = validTermsVersion(value?.version);
     const valid = action === 'policy'
       ? value?.termsUrl === TERMS_URL && value?.privacyUrl === PRIVACY_URL && (value.state === 'READY' && configured || value.state === 'CONFIGURATION_REQUIRED' && value.version === null)
       : currentTerms(value) || value?.state === 'REQUIRED' && configured || value?.state === 'CONFIGURATION_REQUIRED' && value.version === null;
-    if (!valid || action === 'accept' && !currentTerms(value)) throw error('TERMS_STATE_UNAVAILABLE');
+    if (!valid || action === 'accept' && !currentTerms(value)) throw error('TERMS_INVALID_RESPONSE');
     return value;
   } catch (failure) {
-    const code = failure?.response?.data?.error_code || failure?.code;
-    const definite = ['INVALID_REQUEST','TERMS_VERSION_CHANGED','TERMS_CONFIRMATION_REQUIRED','TERMS_CONFIGURATION_REQUIRED','AUTH_REQUIRED','ACCOUNT_DELETION_IN_PROGRESS'].includes(code);
-    throw error(/^TERMS_|^AUTH_REQUIRED$|^ACCOUNT_DELETION_IN_PROGRESS$/.test(code || '') ? code : 'TERMS_STATE_UNAVAILABLE', action === 'accept' && !definite);
-  } finally { clearTimeout(timer); }
+    const status=failure?.response?.status ?? failure?.status;
+    const raw=failure?.response?.data?.error_code || failure?.code;
+    const code=status===401?'AUTH_REQUIRED':status===403?(raw==='ACCOUNT_DELETION_IN_PROGRESS'?raw:'TERMS_FORBIDDEN'):status===429?'TERMS_RATE_LIMITED':status>=500&&!CODES.has(raw)?'TERMS_TEMPORARILY_UNAVAILABLE':CODES.has(raw)?raw:'TERMS_STATE_UNAVAILABLE';
+    const definite = ['TERMS_VERSION_CHANGED','TERMS_CONFIRMATION_REQUIRED','TERMS_CONFIGURATION_REQUIRED','AUTH_REQUIRED','ACCOUNT_DELETION_IN_PROGRESS','TERMS_FORBIDDEN'].includes(code);
+    throw error(code, action === 'accept' && !definite);
+  } finally { clearTimeout(timer);signal?.removeEventListener('abort',abort); }
 }
 
 // One-use, short-lived declaration intent, never an acceptance record or an

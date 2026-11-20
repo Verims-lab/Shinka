@@ -2,13 +2,18 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-074
+**Current BuildMarker:** Buildmarker-075
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
-**Last Updated:** 2026-11-12
+**Last Updated:** 2026-11-20
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
 **External Verification Required:** All rows marked UNVERIFIED.
+
+## 075 — Legal readiness remains a server boundary
+
+Owner approval on 2026-11-20 identifies `terms-v1.0` for the current Terms page; it is not an independent legal review or any user's acceptance. No legal default, client authority, broad recovery privilege, schema change or consent replacement is introduced. Read errors distinguish 401/403, 429 and service failures with fixed safe codes; no raw provider exception/PII is returned. Read-only status and external-return checks cannot write. SDK waits are bounded/cancelled at the UI scope; cancellation discards late replies and does not claim server rollback. A changed policy invalidates the checked draft; the new acceptance still requires owner/time persistence, readback and fresh session admission. [075 evidence and execution](reports/SHINKA_ONBOARDING_RECOVERY_075.md).
+
 
 ## 074 — Versioned legal admission, distinct health consent
 

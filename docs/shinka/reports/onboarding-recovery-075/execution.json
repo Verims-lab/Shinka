@@ -1,0 +1,321 @@
+{
+  "date": "2026-11-20",
+  "buildMarker": "Buildmarker-075",
+  "healthCatalog": "HC-074.0",
+  "scope": "LOCAL_SYNTHETIC_AND_PUBLIC_READ_ONLY",
+  "hostedUserAcceptanceVerified": false,
+  "configurationApplied": false,
+  "physicalDeviceVerified": false,
+  "engines": {
+    "chromium": {
+      "browser": {
+        "engine": "chromium",
+        "version": "156.0.8078.4",
+        "physicalDevice": false
+      },
+      "tests": 820,
+      "passed": 820,
+      "failed": 0,
+      "pageErrors": [],
+      "healthEvidence": {
+        "health": {
+          "cases": 63,
+          "statuses": {
+            "PASS": 63,
+            "FAIL": 0,
+            "BLOCKED": 0
+          }
+        },
+        "onboardingHealth": {
+          "cases": 23,
+          "statuses": {
+            "PASS": 23,
+            "FAIL": 0,
+            "BLOCKED": 0
+          }
+        },
+        "dailyHealth": {
+          "cases": 9,
+          "statuses": {
+            "PASS": 9,
+            "FAIL": 0,
+            "BLOCKED": 0
+          }
+        },
+        "calendarHealth": {
+          "cases": 6,
+          "statuses": {
+            "PASS": 6,
+            "FAIL": 0,
+            "BLOCKED": 0
+          }
+        },
+        "adminTestHealth": {
+          "cases": 3,
+          "statuses": {
+            "PASS": 3,
+            "FAIL": 0,
+            "BLOCKED": 0
+          }
+        }
+      },
+      "routeChecks": {
+        "productionRouting": 5,
+        "onboardingClosure": 6,
+        "onboardingPresentation": 9,
+        "dailyFlow": 5,
+        "privacyFlow": 35,
+        "reopenApp": 2,
+        "startupRoutes": 2
+      },
+      "inAppHealth": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "passed": true,
+        "saveState": "SAVED",
+        "historyListed": true,
+        "privateReportOpened": true,
+        "physicalDevice": false,
+        "counts": {
+          "PASS": 149,
+          "FAIL": 0,
+          "BLOCKED": 13
+        },
+        "blockedIds": [
+          "H04-019",
+          "H05-001",
+          "H05-002",
+          "H05-003",
+          "H05-004",
+          "H05-005",
+          "H05-006",
+          "H05-007",
+          "H05-008",
+          "H05-009",
+          "H08-005",
+          "H09-004",
+          "H12-031"
+        ]
+      },
+      "termsScenarios": 44
+    },
+    "webkit": {
+      "browser": {
+        "engine": "webkit",
+        "version": "27.2",
+        "physicalDevice": false
+      },
+      "tests": 820,
+      "passed": 820,
+      "failed": 0,
+      "pageErrors": [],
+      "healthEvidence": {
+        "health": {
+          "cases": 63,
+          "statuses": {
+            "PASS": 63,
+            "FAIL": 0,
+            "BLOCKED": 0
+          }
+        },
+        "onboardingHealth": {
+          "cases": 23,
+          "statuses": {
+            "PASS": 23,
+            "FAIL": 0,
+            "BLOCKED": 0
+          }
+        },
+        "dailyHealth": {
+          "cases": 9,
+          "statuses": {
+            "PASS": 9,
+            "FAIL": 0,
+            "BLOCKED": 0
+          }
+        },
+        "calendarHealth": {
+          "cases": 6,
+          "statuses": {
+            "PASS": 6,
+            "FAIL": 0,
+            "BLOCKED": 0
+          }
+        },
+        "adminTestHealth": {
+          "cases": 3,
+          "statuses": {
+            "PASS": 3,
+            "FAIL": 0,
+            "BLOCKED": 0
+          }
+        }
+      },
+      "routeChecks": {
+        "productionRouting": 5,
+        "onboardingClosure": 6,
+        "onboardingPresentation": 9,
+        "dailyFlow": 5,
+        "privacyFlow": 35,
+        "reopenApp": 2,
+        "startupRoutes": 2
+      },
+      "inAppHealth": {
+        "scope": "LOCAL_REAL_UI_SYNTHETIC_TRANSPORT",
+        "passed": true,
+        "saveState": "SAVED",
+        "historyListed": true,
+        "privateReportOpened": true,
+        "physicalDevice": false,
+        "counts": {
+          "PASS": 149,
+          "FAIL": 0,
+          "BLOCKED": 13
+        },
+        "blockedIds": [
+          "H04-019",
+          "H05-001",
+          "H05-002",
+          "H05-003",
+          "H05-004",
+          "H05-005",
+          "H05-006",
+          "H05-007",
+          "H05-008",
+          "H05-009",
+          "H08-005",
+          "H09-004",
+          "H12-031"
+        ]
+      },
+      "termsScenarios": 44
+    }
+  },
+  "authFirstFinal": {
+    "chromium": {
+      "scenarios": 32,
+      "passed": true,
+      "branches": [
+        "complete-held-hydrate-and-reload",
+        "cycle-held-hydrate-and-reload",
+        "intro-oauth-accept-history-back-optional-name-cycle-skip-home-reopen",
+        "intro-oauth-accept-name-profile-health-grant-first-daily-retry-home",
+        "invalid-then-unavailable-progress-retry",
+        "new-held-hydrate-and-reload",
+        "null-name-held-hydrate-and-reload",
+        "partial-held-hydrate-and-reload",
+        "preparation-held-hydrate-and-reload"
+      ],
+      "pageErrors": []
+    },
+    "webkit": {
+      "scenarios": 32,
+      "passed": true,
+      "branches": [
+        "complete-held-hydrate-and-reload",
+        "cycle-held-hydrate-and-reload",
+        "intro-oauth-accept-history-back-optional-name-cycle-skip-home-reopen",
+        "intro-oauth-accept-name-profile-health-grant-first-daily-retry-home",
+        "invalid-then-unavailable-progress-retry",
+        "new-held-hydrate-and-reload",
+        "null-name-held-hydrate-and-reload",
+        "partial-held-hydrate-and-reload",
+        "preparation-held-hydrate-and-reload"
+      ],
+      "pageErrors": []
+    }
+  },
+  "performance": {
+    "environment": {
+      "node": "v26.0.0",
+      "platform": "darwin",
+      "arch": "arm64",
+      "browser": "Playwright Chromium, headless, cold context, 360x740, loopback, no throttling; SDK transport stubbed, external fonts blocked; not user metrics"
+    },
+    "lazyRetry": {
+      "passed": true,
+      "scope": "Synthetic network asset failure and full-reload retry, real App route"
+    },
+    "vitalsAcceptance": {
+      "status": "NOT_MEASURED",
+      "reason": "No field p75 or INP; local LCP/CLS only, not a production acceptance gate"
+    },
+    "initialJS": {
+      "raw": 493936,
+      "gzip": 164745
+    },
+    "css": {
+      "raw": 83283,
+      "gzip": 15985
+    },
+    "routes": 9,
+    "samplesPerRoute": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ]
+  },
+  "healthChanges": {
+    "added": 0,
+    "updated": 4,
+    "removed": 0,
+    "ids": [
+      "H05-009",
+      "H06-008",
+      "H06-009",
+      "H13-012"
+    ]
+  },
+  "retainedFailures": [
+    {
+      "stage": "pre-fix Chromium",
+      "failure": "configuration error disappears when declarations checked",
+      "result": "reproduced and corrected"
+    },
+    {
+      "stage": "intermediate Chromium build before 075 content-policy extension",
+      "failures": [
+        "HD11",
+        "HD13",
+        "HD10",
+        "HC08",
+        "DM23",
+        "H05-010"
+      ],
+      "result": "staged-content allowlist aligned; predicates unchanged"
+    },
+    {
+      "stage": "new E2E grant scenario first attempt",
+      "failure": "test searched Continue instead of existing Finish submit on cycle screen",
+      "result": "test bound to actual submit; product copy unchanged"
+    }
+  ],
+  "quality": {
+    "npmCi": "PASS",
+    "npmLs": "PASS",
+    "npmAudit": {
+      "status": "PASS",
+      "vulnerabilities": 0
+    },
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS",
+    "repoHealth": "PASS",
+    "buildHistory": {
+      "status": "PASS",
+      "packages": [
+        "071",
+        "072",
+        "073",
+        "074",
+        "075"
+      ]
+    },
+    "performance": "PASS"
+  }
+}

@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-074
-**Last Updated:** 2026-11-12
+**Current BuildMarker:** Buildmarker-075
+**Last Updated:** 2026-11-20
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
@@ -11,6 +11,11 @@
 **Not Implemented:** Hosted acceptance for native daily/Calendar/Pattern/You/privacy flows, permanent platform/provider erasure and production notification binding/device delivery (029).
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
+
+
+## 075 — Approved policy and admission recovery
+
+The owner approved the current https://shinkadaily.com/terms/ document as `terms-v1.0` on 2026-11-20. This is product-owner approval, not evidence of independent legal review. Readiness requires the server setting; HTTP 200, checkbox state and public URLs are not acceptance. Identity → ready current version → explicit owner acceptance/readback → fresh applicationSession → existing first-incomplete-step/Home remains mandatory. External-return/status reads never automatically accept; the existing one-use matching OAuth declaration is the only previously explicit intent carried across login. Old-version drafts clear. Unknown writes are reconciled before same-intent retry. A lagging session after saved acceptance shows check-again without re-writing or a remount loop. [075 evidence and execution](reports/SHINKA_ONBOARDING_RECOVERY_075.md).
 
 
 ## 074 — Authentication and legal admission

@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-20T14:43:05.633Z",
+  "readOnly": true,
+  "policy": {
+    "http": 200,
+    "state": "CONFIGURATION_REQUIRED",
+    "version": null,
+    "termsUrl": "https://shinkadaily.com/terms/",
+    "privacyUrl": "https://shinkadaily.com/privacy/"
+  },
+  "frontend": {
+    "http": 200,
+    "assets": [
+      "/assets/index-BogPa6gD.js",
+      "/assets/rolldown-runtime-hePW80VL.js",
+      "/assets/jsx-runtime-096o_Uk7.js",
+      "/assets/createLucideIcon-qUnU7djM.js",
+      "/assets/base44Client-DgTIZ6nX.js",
+      "/assets/strings-C2kfL8oU.js",
+      "/assets/uiuxTables-CUjjZ_ar.js",
+      "/assets/healthReadRetry-B9ByxbXN.js",
+      "/assets/internalAuthorization-CnCwUHH0.js",
+      "/assets/onboardingValidation-RlffpHfY.js",
+      "/assets/useTabVisibility-B8YCDuOm.js",
+      "/assets/index--dSayImL.css"
+    ]
+  }
+}

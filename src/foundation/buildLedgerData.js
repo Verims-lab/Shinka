@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-070",
-    "package_name": "ON-02 first-viewport sign-in priority",
-    "package_type": "TARGETED_UI",
-    "created_at": "2026-11-11T18:20:00Z",
-    "health_catalog_version": "HC-069.0",
-    "short_summary": "The unpainted ON-02 artwork slot caps at 48px and the anonymous Welcome uses a compact stack, so the 18+ declaration and both approved provider actions keep the first viewport on short mobile frames and enlarged text.",
-    "full_health_status": "NOT_RUN",
-    "notes": "HC-069.0 adds H13-021 (build-time ON-02 sign-in contract) and extends checkSignInLayout with the artwork-slot cap. The committed /auth-shell-probe now publishes data-probe-viewport so the running app reports whether the declaration and both provider buttons are inside the visible viewport. Live published 069 reads (/login DOM, probe READY) confirmed the controls existed in the bundle before this change; browser matrices and physical-device acceptance for 070 are NOT_RUN in this sandbox. Details: reports/SHINKA_ONBOARDING_WELCOME_070.md."
-  },
-  {
     "build_marker": "Buildmarker-071",
     "package_name": "Direct authenticated onboarding navigation",
     "package_type": "TARGETED_FIX",
@@ -49,5 +39,15 @@ export default [
     "created_at": "2026-11-12T11:40:21Z",
     "full_health_status": "NOT_RUN",
     "short_summary": "Preserve Welcome headings, add five viewport units and 70% declaration type, exact Terms/Privacy links, shared provider gates and server-owned versioned acceptance history."
+  },
+  {
+    "build_marker": "Buildmarker-075",
+    "package_name": "Onboarding legal readiness and recovery",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-11-20T15:00:00Z",
+    "health_catalog_version": "HC-074.0",
+    "short_summary": "Keep missing legal configuration visible; separate readiness, explicit version-bound acceptance and fresh session admission. Read-only return/retry, bounded cancellation and transport diagnostics preserve onboarding and lifecycle authority.",
+    "full_health_status": "NOT_RUN",
+    "notes": "Owner approved terms-v1.0 on 2026-11-20 (product approval, not independent legal review). Live public policy CONFIGURATION_REQUIRED/version null; no management access, setting not applied. Chromium/WebKit 820/820 each; 44 legal and 32 auth-first scenarios each; mandatory quality/size gates PASS. HC changes H05-009/H06-008/H06-009/H13-012, 0 added/removed. Real OAuth/APK and owner configuration/publish remain open. See reports/SHINKA_ONBOARDING_RECOVERY_075.md."
   }
 ];

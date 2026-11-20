@@ -2,15 +2,20 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-074
-**Last Updated:** 2026-11-12
+**Current BuildMarker:** Buildmarker-075
+**Last Updated:** 2026-11-20
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
 **Implemented:** Tokens (`src/foundation/designTokens.js` ↔ `src/index.css`), contract (`src/foundation/uiContract.js`), localization infra (`src/foundation/i18n/strings.js`), primitives (`src/components/shinka/`), Foundation shell aligned; scoped Profile/You admin menu and internal panel.
-**Not Implemented:** Current-build hosted/device acceptance, approved legal version configuration and permanent platform/provider erasure. ON-02 legal destinations were supplied by the 074 request. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
+**Not Implemented:** Current-build hosted/device acceptance, deployment of the owner-approved legal version and permanent platform/provider erasure. ON-02 legal destinations were supplied by the 074 request. Native ON-06/Home, Calendar and Pattern are implemented; live evidence remains separate.
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
+
+
+## 075 — Legal readiness and explicit acceptance recovery
+
+Configuration errors remain visible when checkboxes change. Document links remain informational. Returning from a document rechecks status without accepting; a newly available/different version clears the Terms draft for renewed explicit approval. “Accept and continue” writes once; “Check acceptance status” only reads. Unknown writes require a successful absent read before the separate same-intent retry. Loading is bounded; auth, forbidden, rate-limit, service, invalid-response and timeout messages differ in central TR/EN copy. A saved acceptance with an unconfirmed session stays behind the gate with an explicit check action, not an automatic remount loop. Anonymous policy failures offer a read-only retry. No sixth numbered step or change to existing typography/background, optional fields, back navigation or health consent. [075 evidence and execution](reports/SHINKA_ONBOARDING_RECOVERY_075.md).
 
 
 ## 074 — ON-02 legal declarations

@@ -4,6 +4,15 @@ import { readBoundedJson } from './boundedJson.js';
 export const TERMS_URL = 'https://shinkadaily.com/terms/';
 export const PRIVACY_URL = 'https://shinkadaily.com/privacy/';
 const fail = (code, status = 503) => { throw new InternalError(code, status); };
+// Preserve safe transport distinctions without returning provider messages.
+function readFailure(error) {
+  const status=error?.diagnostic?.httpStatus ?? error?.response?.status ?? error?.status;
+  if(status===429)return new InternalError('TERMS_RATE_LIMITED',429);
+  if(error instanceof InternalError)return error;
+  if(status===401)return new InternalError('AUTH_REQUIRED',401);
+  if(status===403)return new InternalError('TERMS_FORBIDDEN',403);
+  return new InternalError(status>=500?'TERMS_TEMPORARILY_UNAVAILABLE':'TERMS_STATE_UNAVAILABLE',503);
+}
 const versionValid = value => typeof value === 'string' && /^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$/.test(value);
 const intentValid = value => typeof value === 'string' && /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(value);
 
@@ -19,7 +28,7 @@ export async function readTermsStatus(client, principal, policy) {
   let rows;
   try {
     rows = await client.asServiceRole.entities.UserTermsAcceptance.filter({ user_id: principal.id, terms_version: policy.version }, 'accepted_at', 101, 0);
-  } catch { fail('TERMS_STATE_UNAVAILABLE'); }
+  } catch (error) { throw readFailure(error); }
   if (!Array.isArray(rows) || rows.length > 100 || rows.some(row => !row.id || row.user_id !== principal.id || row.terms_version !== policy.version || row.status !== 'ACCEPTED' || row.document_url !== TERMS_URL || !intentValid(row.intent_id) || typeof row.accepted_at !== 'string' || !/^\d{4}-\d{2}-\d{2}T.*Z$/.test(row.accepted_at) || !Number.isFinite(Date.parse(row.accepted_at)))) fail('TERMS_STATE_UNAVAILABLE');
   // Concurrent creates may coexist: preserve all evidence and deterministically
   // use the first verified event. Native UNIQUE/transaction support is not assumed.
@@ -78,6 +87,7 @@ export async function handleTermsRequest(req, createClient, dependencies) {
     const body = await readBoundedJson(req, 1500, fail);
     return Response.json(await termsOperation(createClient(req), body, dependencies));
   } catch (error) {
-    return Response.json({ error_code: error instanceof InternalError ? error.code : 'TERMS_STATE_UNAVAILABLE' }, { status: error instanceof InternalError ? error.status : 503 });
+    const failure=readFailure(error);
+    return Response.json({error_code:failure.code},{status:failure.status});
   }
 }
