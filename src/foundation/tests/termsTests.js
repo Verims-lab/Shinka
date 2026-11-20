@@ -139,4 +139,29 @@ export const TERMS_TESTS=[
     sessionStorage.setItem('shinka.terms-intent.v1',JSON.stringify({...saved,createdAt:Date.now()-600001}));history.replaceState(history.state,'',next);check(takeTermsIntent()===null);
   }finally{clearTermsIntent();history.replaceState(history.state,'',original);}
  }],
+ ['TA15','Terms transport distinguishes config, auth, rate limit, service, timeout and malformed responses',async()=>{
+  for(const [status,code] of [[401,'AUTH_REQUIRED'],[403,'TERMS_FORBIDDEN'],[429,'TERMS_RATE_LIMITED'],[503,'TERMS_TEMPORARILY_UNAVAILABLE']]){
+   let calls=0;const client={functions:{invoke:async()=>{calls++;throw {response:{status,data:{message:'PRIVATE_DO_NOT_EXPOSE'}}};}}};
+   for(const action of ['status','accept'])try{await termsRequest(action,{},client);throw new Error('EXPECTED_FAILURE');}catch(failure){check(failure.code===code&&failure.unknown===(action==='accept'&&Number(status)>=429));check(!failure.message.includes('PRIVATE'));}
+   check(calls===2,'no automatic write/read retry');
+  }
+  await rejects(()=>termsRequest('status',{}, {functions:{invoke:async()=>({data:{state:'CURRENT'}})}}),'TERMS_INVALID_RESPONSE');
+  await rejects(()=>termsRequest('status',{}, {functions:{invoke:()=>new Promise(()=>{})}},5),'TERMS_TIMEOUT');
+  const policy=await termsRequest('policy',{}, {functions:{invoke:async()=>({data:termsPolicy(null)})}});check(policy.state==='CONFIGURATION_REQUIRED');
+ }],
+ ['TA16','Cancelled Terms waits clean up and ignore late replies without treating the SDK write as rolled back',async()=>{
+  let release=(_value)=>{},calls=0;const wait=new Promise(resolve=>{release=resolve;}),controller=new AbortController();
+  const pending=termsRequest('accept',{}, {functions:{invoke:()=>{calls++;return wait;}}},15000,{signal:controller.signal});
+  await Promise.resolve();controller.abort();
+  try{await pending;throw new Error('EXPECTED_FAILURE');}catch(failure){check(failure.code==='TERMS_CANCELLED'&&failure.unknown);}
+  release({data:{state:'REQUIRED',version:VERSION}});await Promise.resolve();check(calls===1);
+  await rejects(()=>termsRequest('status',{}, {functions:{invoke:async()=>{calls++;return {data:null};}}},15000,{signal:controller.signal}),'TERMS_CANCELLED');check(calls===1);
+ }],
+ ['TA17','Backend acceptance reads retain safe 429/5xx/unauthorized distinctions with zero writes',async()=>{
+  for(const [status,code] of [[401,'AUTH_REQUIRED'],[403,'TERMS_FORBIDDEN'],[429,'TERMS_RATE_LIMITED'],[503,'TERMS_TEMPORARILY_UNAVAILABLE']]){
+   const f=fixture();f.state.before=call=>{if(call.name==='UserTermsAcceptance'&&call.method==='filter')throw {response:{status,data:{secret:'PRIVATE'}}};};
+   const response=await f.http({action:'status'});check(response.status===status);const json=await response.json();check(json.error_code===code&&Object.keys(json).length===1);check(f.tables.UserTermsAcceptance.length===0);
+  }
+ }],
+
 ];

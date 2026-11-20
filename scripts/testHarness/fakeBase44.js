@@ -45,9 +45,9 @@ let providerMode='error';
 // Explicitly synthetic legal configuration; never a product/legal version.
 let termsVersion = 'test-terms-v1';
 const termsEvents = [];
-let termsReadFailure = false, termsWriteFailure = null;
+let termsReadFailure = false, termsWriteFailure = null, termsSessionOverride = null;
 const termsStatus = () => {
-  if(termsReadFailure)throw new Error('SYNTHETIC_TERMS_READ_FAILED');
+  if(termsReadFailure)throw (typeof termsReadFailure==='number'?{response:{status:termsReadFailure}}:new Error('SYNTHETIC_TERMS_READ_FAILED'));
   if(!termsVersion)return {state:'CONFIGURATION_REQUIRED',version:null};
   const event=termsEvents.find(row=>row.owner===session&&row.version===termsVersion);
   // Existing general fixtures model users with verified current acceptance.
@@ -86,6 +86,7 @@ if(params.has('startupFixture')) { holdStartup('settings');holdStartup('session'
 export const authFixture = {
   providerMode(value){providerMode=value;},
   termsEvents,
+  termsSession(value){termsSessionOverride=value;},
   termsVersion(value){termsVersion=value;},
   termsReadFailure(value){termsReadFailure=value;},
   termsWriteFailure(value){termsWriteFailure=value;},
@@ -126,7 +127,7 @@ export const base44 = {
     calls.push({ name, action: body.action }); // Action names only; no user payload.
     if(operationGates.has(name))await operationGates.get(name).promise;
     if(operationFailures.delete(`${name}.${body.action}`)||operationFailures.delete(name))throw new Error('SYNTHETIC_NETWORK_FAILURE');
-    if (name === 'applicationSession') { const i=authFixture.startupStarted.session++; return {data: startupGates.session[i] ? await startupGates.session[i].promise : {...await base44.auth.me(),terms:termsReadFailure?{state:'UNAVAILABLE',version:termsVersion}:termsStatus(),authority:'BASE44_NATIVE_V1'}}; }
+    if (name === 'applicationSession') { const i=authFixture.startupStarted.session++; return {data: startupGates.session[i] ? await startupGates.session[i].promise : {...await base44.auth.me(),terms:termsSessionOverride||(termsReadFailure?{state:'UNAVAILABLE',version:termsVersion}:termsStatus()),authority:'BASE44_NATIVE_V1'}}; }
     if(name==='termsAcceptance'){
       if(body.action==='policy')return {data:{state:termsVersion?'READY':'CONFIGURATION_REQUIRED',version:termsVersion,termsUrl:'https://shinkadaily.com/terms/',privacyUrl:'https://shinkadaily.com/privacy/'}};
       await base44.auth.me();

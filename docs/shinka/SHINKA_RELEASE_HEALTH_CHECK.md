@@ -2,13 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-074
-**Last Updated:** 2026-11-12
+**Current BuildMarker:** Buildmarker-075
+**Last Updated:** 2026-11-20
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
 **Scope:** Health catalog HC-072.0. Repository, synthetic and external evidence have separate results.
 
+
+
+## 075 — Targeted onboarding admission recovery
+
+Buildmarker-075 / HC-074.0 retains 188 cases: 0 added, 4 updated (H05-009, H06-008, H06-009, H13-012), 0 removed. H06-008 adds executable TA17 safe backend read diagnostics; H06-009 adds TA15/TA16 transport classification and cancellation/late-reply checks. H13-012 and localRegressionRequirements map checkTermsRecovery (real App) and the extended intro/OAuth → legal acceptance → optional-name/profile/cycle → Home journey. Preserve 074's failed WebKit attempt and all external gates. Public CONFIGURATION_REQUIRED is a real configuration blocker, not PASS; synthetic legal versions and transport are not hosted acceptance. Execution and remaining configuration/device requirements: [075 evidence and execution](reports/SHINKA_ONBOARDING_RECOVERY_075.md).
 
 
 ## 074 — Legal acceptance regression and release gate
@@ -47,11 +52,11 @@ Buildmarker-067 / HC-066.0 updates two existing cases. H13-012 maps the `checkOn
 
 ## 066 — First onboarding viewport
 
-Buildmarker-066 / HC-065.0 changes **0 added / 3 updated / 0 removed**. H13-012 maps the ON-01 real-App portrait, safe-area, line-fit and 200% text checks in `checkOnboardingLayers`. H13-020 and T82 verify the intro's original-color shared paint and the retained composition on later steps. U16/U18 preserve copy, icon, step, Back and Begin coverage. H05-009 includes 066 under the existing content policy. The catalog remains at 185 cases. [066 execution](reports/SHINKA_ONBOARDING_INTRO_066.md)
+Buildmarker-066 / HC-065.0 changes **0 added / 4 updated / 0 removed**. H13-012 maps the ON-01 real-App portrait, safe-area, line-fit and 200% text checks in `checkOnboardingLayers`. H13-020 and T82 verify the intro's original-color shared paint and the retained composition on later steps. U16/U18 preserve copy, icon, step, Back and Begin coverage. H05-009 includes 066 under the existing content policy. The catalog remains at 185 cases. [066 execution](reports/SHINKA_ONBOARDING_INTRO_066.md)
 
 ## 065 — Shared backdrop regression scope
 
-Buildmarker-065 / HC-064.0 changes **0 added / 3 updated / 0 removed**. H13-020 checks the shared, decorative fixed PNG paint and the flat internal document. H13-012 maps the real-App route matrix and existing onboarding/theme/navigation checks. H05-009 recognizes 065 under the same content verification policy. T81/T82 still verify shell and onboarding composition boundaries. The local matrix checks image loading, responsive fit, overflow, fixed paint on scroll, safe-area padding and manual themes. Existing onboarding regressions exercise focus and a reduced viewport. The catalog remains at 185 cases (159 in-app, 12 local-only, 14 external). [065 verification](reports/SHINKA_APP_BACKGROUND_065.md)
+Buildmarker-065 / HC-064.0 changes **0 added / 4 updated / 0 removed**. H13-020 checks the shared, decorative fixed PNG paint and the flat internal document. H13-012 maps the real-App route matrix and existing onboarding/theme/navigation checks. H05-009 recognizes 065 under the same content verification policy. T81/T82 still verify shell and onboarding composition boundaries. The local matrix checks image loading, responsive fit, overflow, fixed paint on scroll, safe-area padding and manual themes. Existing onboarding regressions exercise focus and a reduced viewport. The catalog remains at 185 cases (159 in-app, 12 local-only, 14 external). [065 verification](reports/SHINKA_APP_BACKGROUND_065.md)
 
 ## 064 — Admin reset retirement and selected-user removal (2026-11-11)
 
@@ -142,7 +147,7 @@ Actual results, initial failed harness assertions and gate outcomes: [055 report
 
 ## 054 — Onboarding single-composition regression
 
-Health delta **0 added / 3 updated / 0 removed**: H13-012 and its serialized localRegressionRequirements map the full-App checkOnboardingPresentation/checkOnboardingLayers matrix; H13-020 checks the current document for extra onboarding bitmaps while retaining mapping/single backdrop assertions; H05-009 recognizes 054 under the unchanged strict approved-content policy. U16/U18 replace the old required content img with no duplicate bitmap, preserved empty spacing and three row icons; T82 covers backdrop and each complete OnboardingScreen together. No test or external acceptance case removed. Catalog remains 186 IDs / 160 in-app / 12 local / 14 external, version HC-053.0.
+Health delta **0 added / 4 updated / 0 removed**: H13-012 and its serialized localRegressionRequirements map the full-App checkOnboardingPresentation/checkOnboardingLayers matrix; H13-020 checks the current document for extra onboarding bitmaps while retaining mapping/single backdrop assertions; H05-009 recognizes 054 under the unchanged strict approved-content policy. U16/U18 replace the old required content img with no duplicate bitmap, preserved empty spacing and three row icons; T82 covers backdrop and each complete OnboardingScreen together. No test or external acceptance case removed. Catalog remains 186 IDs / 160 in-app / 12 local / 14 external, version HC-053.0.
 
 Chromium/WebKit each passed 771/771 plus the 100-step/300-scroll loaded-asset matrix; quality/performance gates passed. Local synthetic Health was 147 PASS / 13 expected hosted-prerequisite BLOCKED / 0 FAIL, with save/list/open verified. Matched loaded-asset visual evidence and actual execution are in [054 delivery](reports/SHINKA_ONBOARDING_LAYER_054.md). Physical Android/iOS keyboard, viewport and wrapper acceptance remains external (H13-013); no hosted Full Health or scan in this package.
 

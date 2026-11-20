@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
+import { checkTermsRecovery } from './checkTermsRecovery.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { doubleText } from './mobileSurfaceMeasurements.mjs';
 
 const urls=['https://shinkadaily.com/terms/','https://shinkadaily.com/privacy/'];
 export async function checkTermsAcceptance(browser,origin,directory){
-  const results=[];
+  const results=await checkTermsRecovery(browser,origin);
   if(directory)await mkdir(directory,{recursive:true});
   for(const language of ['tr','en'])for(const [width,height] of [[320,568],[360,640],[390,844],[430,932],[768,1024],[844,390]])for(const scale of [1,2]){
     const context=await browser.newContext({locale:language==='tr'?'tr-TR':'en-US',viewport:{width,height},colorScheme:scale===1?'light':'dark',hasTouch:true}),page=await context.newPage();

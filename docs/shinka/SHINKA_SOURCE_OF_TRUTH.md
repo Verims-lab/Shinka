@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-074
-**Last Updated:** 2026-11-12
+**Current BuildMarker:** Buildmarker-075
+**Last Updated:** 2026-11-20
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
@@ -12,9 +12,14 @@
 
 
 
+## 075 — Product-owner legal version decision, 2026-11-20
+
+The user's explicit reply approves the currently published https://shinkadaily.com/terms/ text under identifier `terms-v1.0`. This resolves 074's missing **product decision**, not deployment, legal-review, user-acceptance or physical-device evidence. No independent legal review or effective date was supplied/asserted. The identifier is public document metadata, not a credential; no secret file/value is embedded in application code. Runtime authority remains the server `SHINKA_TERMS_VERSION` read through Base44 `secrets.get`. Do not add a default or infer approval from a page date. The 2026-11-20 public policy read returned CONFIGURATION_REQUIRED/version null; management access was unavailable, so server configuration remains unverified/not applied in this work. Existing acceptance history is never bulk edited. [075 evidence and execution](reports/SHINKA_ONBOARDING_RECOVERY_075.md).
+
+
 ## 074 — ON-02 declarations and versioned legal admission
 
-The owner's current ON-02 request adds exact localized Terms of Use acceptance and informational Privacy links, shared pre-provider new-user age/Terms validation and server-owned version/time history. Authentication alone does not admit a user without verified current acceptance. Returning users may authenticate with a fresh age declaration, then reuse valid current evidence; absent/old/unknown evidence stays behind the legal gate. 061/071's five-step authenticated progress remains unchanged. No approved legal version or new ON-02 asset was supplied: server configuration is required and 073's PNG is preserved. This supersedes the original legal terminology within the newly specified screen; original sources are not retrospectively approved. [074 contract, source review and execution](reports/SHINKA_ONBOARDING_TERMS_074.md).
+The owner's current ON-02 request adds exact localized Terms of Use acceptance and informational Privacy links, shared pre-provider new-user age/Terms validation and server-owned version/time history. Authentication alone does not admit a user without verified current acceptance. Returning users may authenticate with a fresh age declaration, then reuse valid current evidence; absent/old/unknown evidence stays behind the legal gate. 061/071's five-step authenticated progress remains unchanged. At the 074 checkpoint no approved legal version or new ON-02 asset was supplied. The 075 owner decision above now supplies the version identifier; server configuration remains separately required and 073's PNG is preserved. This supersedes the original legal terminology within the newly specified screen; original sources are not retrospectively approved. [074 contract, source review and execution](reports/SHINKA_ONBOARDING_TERMS_074.md).
 
 ## 073 — Original centered-logo backdrop
 

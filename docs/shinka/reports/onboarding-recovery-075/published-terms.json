@@ -1,0 +1,21 @@
+{
+  "asset": "TermsGate-DRjj3Iig.js",
+  "sha256": "1462c3b88b02df8310c891b5f339050cae80bfbeffb9d2ede5f9c86f675d6190",
+  "markers": [],
+  "deps": [
+    "./rolldown-runtime-hePW80VL.js",
+    "./jsx-runtime-096o_Uk7.js",
+    "./base44Client-DgTIZ6nX.js",
+    "./strings-C2kfL8oU.js",
+    "./index-BogPa6gD.js",
+    "./termsCopy-DI6Nv8U8.js",
+    "./LegalDeclarations-BFy6_X4O.js",
+    "./buildMarker-CgfhSji-.js"
+  ],
+  "./buildMarker-CgfhSji-.js": {
+    "markers": [
+      "Buildmarker-074"
+    ],
+    "sha256": "2415cee93bcf70db109b084c7133a5b902f26e6e80ab0d8f57aab59c0a0cc57d"
+  }
+}

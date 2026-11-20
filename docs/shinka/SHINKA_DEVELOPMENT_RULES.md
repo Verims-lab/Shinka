@@ -2,12 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-074
-**Last Updated:** 2026-11-12
+**Current BuildMarker:** Buildmarker-075
+**Last Updated:** 2026-11-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
+
+
+## 075 — Focused onboarding recovery
+
+Current explicit request delivers to Test; it overrides AGENTS.md's prior GizemTest assignment for this task. Preserve main and both developer branches. Advance once to Buildmarker-075 / HC-074.0 using recordBuild; retain 071–075. Run the existing mandatory local gates plus legal recovery/auth-first E2E in both engines; no assertion or budget relaxation. Public policy reads and the specifically authorized missing server setting are separate from publish or user acceptance. No live Full Health, Security scan, user operations, import or notification dispatch. [075 evidence and execution](reports/SHINKA_ONBOARDING_RECOVERY_075.md).
 
 
 ## 074 — ON-02 legal acceptance delivery

@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-074
-**Last Updated:** 2026-11-12
+**Current BuildMarker:** Buildmarker-075
+**Last Updated:** 2026-11-20
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
@@ -11,6 +11,11 @@
 **Not Implemented:** permanent platform/provider erasure and production notification scheduler/push bindings (local core implemented in 029). Native daily/Calendar had partial hosted 016 evidence; current-build acceptance remains separate.
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
+
+
+## 075 — Bounded legal recovery on the existing boundary
+
+termsService retains the SDK transport with a 15s bounded wait and AbortSignal for scope cleanup (not a claim of network/server cancellation). TermsGate coalesces local actions, retains unknown intent, clears drafts on confirmed version changes, and reads on external-document return. After verified acceptance it rechecks the existing AuthProvider session without resetting/remounting the application; contradictory old session evidence stays gated. termsAcceptance preserves safe transport distinctions on read failures; lifecycle, owner, append/readback, native secret API and current-version write guards are unchanged. [075 evidence and execution](reports/SHINKA_ONBOARDING_RECOVERY_075.md).
 
 
 ## 074 — Legal admission boundary

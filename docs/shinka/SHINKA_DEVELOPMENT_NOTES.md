@@ -2,12 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-074
-**Last Updated:** 2026-11-12
+**Current BuildMarker:** Buildmarker-075
+**Last Updated:** 2026-11-20
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
+
+
+## 075 — Onboarding Terms configuration incident (2026-11-20)
+
+Video reviewed (32.799s); published TermsGate imports Buildmarker-074. Anonymous public policy read on 2026-11-20 returned HTTP 200 / CONFIGURATION_REQUIRED / version null. This proves effective missing/invalid policy configuration, not the exact stored secret or APK/backend commit. The owner then approved terms-v1.0 (product approval only). Management CLI reports Not logged in and no open-browser tool is available; server setting was not changed. The pre-fix real-App regression failed because checked declarations erased the configuration error while no acceptance action was available. Targeted recovery, diagnostics and late-response regressions were added. Chromium/WebKit each passed 820/820, the 44-scenario legal matrix and 32-scenario auth-first matrix; mandatory quality/performance gates passed. Local synthetic Health retained 13 expected platform/data blockers and no failures. Actual execution is recorded in [075 evidence and execution](reports/SHINKA_ONBOARDING_RECOVERY_075.md). No live user writes or publish occurred.
 
 
 ## 074 — ON-02 legal acceptance
