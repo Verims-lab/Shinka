@@ -1,6 +1,6 @@
-/* Announced headings and the name field use their existing focus treatments.
+/* Announced onboarding headings receive focus without a visible frame.
    The name input's visible ring is on its surrounding frame. */
-.shinka-unframed-title:focus,
+h1.shinka-unframed-title:focus,
 .shinka-name-field input:focus { outline: none; }
 /* Composite time/place controls use the soft frame as their sole focus boundary.
    The unlayered mobile :focus-visible rule otherwise wins over Tailwind utilities. */

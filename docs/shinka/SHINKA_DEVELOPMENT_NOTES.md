@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-076
+**Current BuildMarker:** Buildmarker-077
 **Last Updated:** 2026-11-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 077 — Welcome heading frame (2026-11-22)
+
+Clean AydanTest fast-forwarded from a56c95f to main e6dd8b4, with identical trees. The global unlayered focus-visible rule overrode the heading utility. Only ON-01/04 received the existing stronger title class. The correction applies that class to every announced title and scopes its CSS to h1. The new logout regression failed with solid outline before the correction. [077 execution](reports/SHINKA_ONBOARDING_FOCUS_077.md)
 
 ## 076 — Unified provider entry (2026-11-22)
 

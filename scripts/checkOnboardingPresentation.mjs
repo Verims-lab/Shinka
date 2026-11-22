@@ -4,10 +4,12 @@ import path from 'node:path';
 import { loadAppBackdrop } from './checkAppBackdrop.mjs';
 import { doubleText } from './mobileSurfaceMeasurements.mjs';
 import { checkOnboardingLayers } from './checkOnboardingLayers.mjs';
+import { checkOnboardingFocus } from './checkOnboardingFocus.mjs';
 
 // Real App/pages, synthetic SDK only. The bundled art loads locally.
 // Optional captures also allow the app fonts.
 export async function checkOnboardingPresentation(browser, origin, directory) {
+ const focus=await checkOnboardingFocus(browser,origin,directory?path.join(directory,'focus'):undefined);
  const html=await readFile('index.html','utf8');
  const fontCss=html.match(/href="(https:\/\/fonts.googleapis.com\/css2[^\"]+)"/)[1];
  const results=[];
@@ -66,5 +68,5 @@ export async function checkOnboardingPresentation(browser, origin, directory) {
    results.push({language,width,textScale,passed:true,intro,profile,name:{empty,focused,filled,longFilled},publicAssets:directory?'LOADED':'BLOCKED_OFFLINE',pageErrors:errors});
   } finally {await context.close();}
  }
- return [...results,{layers:await checkOnboardingLayers(browser,origin,directory?path.join(directory,'layers'):undefined)}];
+ return [...results,{focus,layers:await checkOnboardingLayers(browser,origin,directory?path.join(directory,'layers'):undefined)}];
 }

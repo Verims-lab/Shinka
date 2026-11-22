@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-076
+**Current BuildMarker:** Buildmarker-077
 **Last Updated:** 2026-11-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 077 — Scoped heading focus correction
+
+Record Buildmarker-077 / HC-076.0 with 073–077 retained. Use the existing title class and keep the global interactive focus rule. The mandatory presentation runner checks actual logout and keyboard traversal. U18 checks all numbered and preparation headings. Run relevant Chromium/WebKit and quality gates, record actual results and deliver only AydanTest. [077 focus regression](reports/SHINKA_ONBOARDING_FOCUS_077.md)
 
 ## 076 — Unified ON-02 provider flow
 
