@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-077
+**Current BuildMarker:** Buildmarker-078
 **Last Updated:** 2026-11-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 078 — Shared navigation safe-area ownership
+
+Record Buildmarker-078 / HC-077.0 with 074–078 retained. Use the shared navigation component and one transparent system-inset owner. Measure the painted row, complete footer, ancestors and last content independently. The mandatory navigation gate includes 430px alongside prior widths, two languages, enlarged text, env/0/24/34px insets, negative duplicate shell/nav padding and footer margins, plus keyboard viewport restoration. Run both browser engines and relevant functional/mobile/backdrop and quality checks. Preserve earlier failed or incomplete release-wide results. Deliver only AydanTest. [078 navigation alignment](reports/SHINKA_NAVIGATION_ALIGNMENT_078.md)
 
 ## 077 — Scoped heading focus correction
 

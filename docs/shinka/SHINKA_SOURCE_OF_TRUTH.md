@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-077
+**Current BuildMarker:** Buildmarker-078
 **Last Updated:** 2026-11-22
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 078 — Shared navigation alignment
+
+The owner's requested vertical alignment applies to Home, Calendar and Pattern. The visible painted row centers the icon and label as one group. Its single bottom system inset belongs to a transparent outer container, with controls above the gesture region. Preserve the existing icon/type/color, 44px minimum targets, equal thirds and total footer height. The older 057/059 placement of the inset inside the painted row is superseded. [078 navigation alignment](reports/SHINKA_NAVIGATION_ALIGNMENT_078.md)
 
 ## 077 — Announced onboarding headings
 

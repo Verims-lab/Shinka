@@ -144,10 +144,11 @@ export async function checkAppBackdrop(browser, origin, directory) {
             await nav.scrollIntoViewIfNeeded();
             const surface = await nav.evaluate(el => {
               const css = getComputedStyle(el);
-              return { position: css.position, padding: css.paddingBottom, background: css.backgroundColor };
+              return { position: css.position, padding: css.paddingBottom, safePadding: getComputedStyle(el.closest('.shinka-nav-safe-area')).paddingBottom, background: css.backgroundColor };
             });
             assert.equal(surface.position, 'static');
-            assert.equal(surface.padding, '34px');
+            assert.equal(surface.padding, '0px');
+            assert.equal(surface.safePadding, '34px');
             assert.match(surface.background, /^rgba\(.+, 0\.8\)$/);
             const scrolled=await readBackdrop(page);
             assert.equal(scrolled.documentTop,0);

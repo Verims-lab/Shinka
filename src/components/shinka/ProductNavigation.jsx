@@ -10,7 +10,8 @@ const ICONS = { House, CalendarDays, Moon };
 export const reselectTab = event => { event.preventDefault(); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); };
 export default function ProductNavigation({ current, language }) {
   const inRouter = useInRouterContext();
-  return <nav aria-label={dailyCopy('navigation', language)} className="shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white">
+  return <div className="shinka-nav-safe-area">
+    <nav aria-label={dailyCopy('navigation', language)} className="shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white">
     {BOTTOM_NAV.map(item => {
       const Icon = ICONS[item.component], active = item.key === current;
       const content = <><Icon className="h-5 w-5" aria-hidden="true"/><span className="min-w-0 max-w-full break-words text-center">{t(item.labelKey, language)}</span></>;
@@ -20,5 +21,6 @@ export default function ProductNavigation({ current, language }) {
       return inRouter ? <Link key={item.key} to={destination} state={{ productTab: true }} onClick={onClick} aria-current={active ? 'page' : undefined} className={classes}>{content}</Link> :
           <a key={item.key} href={destination} onClick={onClick} aria-current={active ? 'page' : undefined} className={classes}>{content}</a>;
     })}
-  </nav>;
+    </nav>
+  </div>;
 }

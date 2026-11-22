@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-077
+**Current BuildMarker:** Buildmarker-078
 **Last Updated:** 2026-11-22
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,6 +12,10 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 078 — Visible navigation and system inset
+
+Home, Calendar and Pattern share one painted navigation row: a 44px minimum growing row plus its existing 1px top border. Center each unchanged icon and label group within that row and retain equal thirds. Reserve the bottom system inset once in the transparent outer shinka-nav-safe-area; it is outside the painted nav and all touch targets. No extra footer height, margin or shell padding. This supersedes 057/059's inset ownership inside the painted nav, preserving their geometry, content-clearance and navigation requirements. Physical system-bar ownership remains separate from DOM simulations. [078 navigation alignment](reports/SHINKA_NAVIGATION_ALIGNMENT_078.md)
 
 ## 077 — Onboarding heading focus
 

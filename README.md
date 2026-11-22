@@ -6,6 +6,8 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
+Buildmarker-078 / HC-077.0 separates the system gesture inset from the painted shared navigation row. Home, Calendar and Pattern retain the same controls and total footer height. The mandatory navigation matrix checks four mobile widths, enlarged text and single-owner safe areas. [078 navigation alignment](docs/shinka/reports/SHINKA_NAVIGATION_ALIGNMENT_078.md)
+
 Buildmarker-077 / HC-076.0 applies the existing heading focus treatment across onboarding. The presentation gate checks logout to Welcome and visible keyboard indicators on controls. [077 focus regression](docs/shinka/reports/SHINKA_ONBOARDING_FOCUS_077.md)
 
 Buildmarker-076 / HC-075.0 uses one Apple/Google entry for all users. Age is confirmed before OAuth. Current server Terms acceptance and verified onboarding progress select the next screen. Privacy information shares the checkbox text typography. The mandatory Terms browser matrix includes both providers and all account progress states. [076 implementation and execution](docs/shinka/reports/SHINKA_UNIFIED_AUTHENTICATION_076.md)

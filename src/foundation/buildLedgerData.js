@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-073",
-    "package_name": "Original centered-logo backdrop across Shinka",
-    "package_type": "TARGETED_UI",
-    "created_at": "2026-11-12T09:47:57Z",
-    "health_catalog_version": "HC-072.0",
-    "short_summary": "The supplied Backround.png anchors its original centered logo across user routes. The shared frame clears the wordmark and places ON-02–05 progress at the safe upper left.",
-    "full_health_status": "NOT_RUN",
-    "notes": "HC-072.0 extends H05-009, H13-012 and H13-020. Local regressions verify exact image bytes, responsive placement, dark contrast, session-scoped Back and matching logo screenshot pixels. See reports/SHINKA_CENTERED_BACKGROUND_073.md."
-  },
-  {
     "build_marker": "Buildmarker-074",
     "notes": "GizemTest only. Missing dedicated ON-02 asset preserves 073 PNG. No approved legal version default; SHINKA_TERMS_VERSION is a release prerequisite. H06-008/009 and TA01–TA14 cover native history/unknown outcomes and actual App admission. Existing DOB, five-step, optional health and domain rules remain. Local execution and external limits: reports/SHINKA_ONBOARDING_TERMS_074.md. Both engines: 817 core tests and 26 ON-02 cases PASS. Chromium full PASS; full WebKit Health H08-004/RC06 still times out at the unchanged 5s helper cap. Hosted verification NOT_RUN.",
     "package_type": "FEATURE",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "All announced onboarding headings reuse the existing unframed focus treatment. Interactive keyboard indicators stay visible.",
     "full_health_status": "NOT_RUN",
     "notes": "HC-076.0 updates H13-012 and H05-009. Mandatory presentation checks include logout to Welcome, automatic heading focus, keyboard rings and stable type/layout in both languages at mobile widths. U18 covers every numbered heading and preparation. Execution is in reports/SHINKA_ONBOARDING_FOCUS_077.md."
+  },
+  {
+    "full_health_status": "NOT_RUN",
+    "created_at": "2026-11-22T21:07:52Z",
+    "notes": "HC-077.0 updates H13-012 and H05-009 without changing the 188-case inventory. Mandatory shared-navigation checks cover Home/Calendar/Pattern in TR/EN, four portrait widths and landscape, 200% text, injected safe areas, negative duplicate spacers and keyboard viewport restoration. See reports/SHINKA_NAVIGATION_ALIGNMENT_078.md for execution and physical-device limits.",
+    "short_summary": "Separate the system gesture inset from the painted shared navigation row. Center each unchanged icon and label within the visible row, preserving total footer height and navigation behavior.",
+    "package_name": "Centered visible bottom navigation",
+    "health_catalog_version": "HC-077.0",
+    "package_type": "TARGETED_UI",
+    "build_marker": "Buildmarker-078"
   }
 ];
