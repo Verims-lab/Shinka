@@ -44,10 +44,12 @@ export function inspectSignInControls(sources) {
     termsDeclaration: /id="terms-declaration"/.test(declarations) && /termsConfirmed:terms/.test(signIn),
     appleProvider: /data-provider="apple"/.test(signIn),
     googleProvider: /data-provider="google"/.test(signIn),
-    ageGateBeforeAuth: signIn.indexOf('validateAuthDeclarations(checked,declarations)') >= 0
-      && signIn.indexOf('validateAuthDeclarations(checked,declarations)') < signIn.indexOf('await authenticate(')
-      && service.indexOf('validateAuthDeclarations(ageConfirmed, declarations)') >= 0
-      && service.indexOf('validateAuthDeclarations(ageConfirmed, declarations)') < service.indexOf('await auth.loginWithProvider(')
+    unifiedProviders: !/data-auth-returning|setReturning|returning=/.test(signIn)
+      && !/returning/.test(declarations),
+    ageGateBeforeAuth: signIn.indexOf('validateProviderDeclarations(checked,declarations)') >= 0
+      && signIn.indexOf('validateProviderDeclarations(checked,declarations)') < signIn.indexOf('await authenticate(')
+      && service.indexOf('validateProviderDeclarations(ageConfirmed, declarations)') >= 0
+      && service.indexOf('validateProviderDeclarations(ageConfirmed, declarations)') < service.indexOf('await auth.loginWithProvider(')
       && /ageConfirmed !== true/.test(termsService) && /termsConfirmed !== true/.test(termsService),
     artworkSpacerAbsent: !screen.includes('shinka-onboarding-art-space'),
   };

@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-075
+**Current BuildMarker:** Buildmarker-076
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
-**Last Updated:** 2026-11-20
+**Last Updated:** 2026-11-22
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
 **External Verification Required:** All rows marked UNVERIFIED.
+
+## 076 — Unified OAuth entry and existing acceptance
+
+Age is checked before either provider. A Terms checkbox supplies only a bounded callback intent. Without that intent, authenticated users require current server acceptance or explicit confirmation at the existing legal gate before product access. Account type, email and local storage never establish identity, acceptance or onboarding completion. Reusing verified current acceptance appends no extra event. Keep the backend, version authority, privacy exceptions and 075 recovery safeguards. [076 implementation and execution](reports/SHINKA_UNIFIED_AUTHENTICATION_076.md)
 
 ## 075 — Legal readiness remains a server boundary
 

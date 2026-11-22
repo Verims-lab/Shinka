@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { checkTermsRecovery } from './checkTermsRecovery.mjs';
+import { checkUnifiedAuthentication } from './checkUnifiedAuthentication.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { doubleText } from './mobileSurfaceMeasurements.mjs';
@@ -20,17 +21,24 @@ export async function checkTermsAcceptance(browser,origin,directory){
         const panel=document.querySelector('[data-auth-shell]'),age=panel.querySelector('#age-declaration'),terms=panel.querySelector('#terms-declaration');
         const texts=[...panel.querySelectorAll('.shinka-declaration-copy')],heading=panel.closest('main').querySelector('h1'),description=heading.nextElementSibling;
         const box=element=>{const r=element.getBoundingClientRect(),s=getComputedStyle(element);return {x:r.x,y:r.y+scrollY,width:r.width,height:r.height,font:s.fontSize,family:s.fontFamily,weight:s.fontWeight,align:s.textAlign,text:element.textContent};};
+        const typography=element=>{const s=getComputedStyle(element);return {family:s.fontFamily,size:s.fontSize,weight:s.fontWeight,lineHeight:s.lineHeight};};
+        const privacy=panel.querySelector('.shinka-privacy-information');
         const before={heading:box(heading),description:box(description),age:box(age.labels[0]),fonts:texts.map(text=>parseFloat(getComputedStyle(text).fontSize)),checkbox:box(age)};
+        const declarationType=[...texts,privacy,...panel.querySelectorAll('.shinka-legal-link')].map(typography);
         const originalFont=texts[0].style.fontSize;
         panel.style.paddingBlockStart='0px';texts[0].style.fontSize='1em';
         const baseline={heading:box(heading),description:box(description),age:box(age.labels[0]),font:parseFloat(getComputedStyle(texts[0]).fontSize)};
         panel.style.removeProperty('padding-block-start');texts[0].style.fontSize=originalFont;
-        return {before,baseline,checked:[age.checked,terms.checked],names:[age.labels[0].textContent,terms.labels[0].textContent],privacy:panel.querySelector('.shinka-privacy-information').textContent,links:[...panel.querySelectorAll('a')].map(link=>({url:link.href,text:link.textContent,height:link.getBoundingClientRect().height})),checkboxCount:panel.querySelectorAll('[type=checkbox]').length,overflow:document.documentElement.scrollWidth>innerWidth+1,light:!document.documentElement.classList.contains('dark')};
+        return {before,baseline,declarationType,checked:[age.checked,terms.checked],names:[age.labels[0].textContent,terms.labels[0].textContent],privacy:privacy.textContent,links:[...panel.querySelectorAll('a')].map(link=>({url:link.href,text:link.textContent,height:link.getBoundingClientRect().height})),checkboxCount:panel.querySelectorAll('[type=checkbox]').length,overflow:document.documentElement.scrollWidth>innerWidth+1,light:!document.documentElement.classList.contains('dark')};
       });
       assert.deepEqual(measurements.before.heading,measurements.baseline.heading,'Welcome geometry and type do not move');
       assert.deepEqual(measurements.before.description,measurements.baseline.description,'description stays unchanged');
       assert(Math.abs(measurements.before.age.y-measurements.baseline.age.y-height*.05)<.6,'only the consent section moves five viewport units');
       for(const font of measurements.before.fonts)assert(Math.abs(font-measurements.baseline.font*.7)<.05,'both declaration labels are exactly 70%');
+      assert.equal(measurements.declarationType.length,5);
+      for(const type of measurements.declarationType)assert.deepEqual(type,measurements.declarationType[0],'Privacy and both legal links match checkbox text typography');
+      assert.equal(await page.locator('[data-auth-returning]').count(),0);
+      assert.equal(await page.getByRole('button',{name:/^(Zaten bir hesabım var|Hesap oluştur|I already have an account|Create an account)$/}).count(),0);
       assert.equal(measurements.before.checkbox.width,24);assert.equal(measurements.before.checkbox.height,24);
       assert.deepEqual(measurements.checked,[false,false]);assert.equal(measurements.checkboxCount,2);assert(!measurements.overflow&&measurements.light);
       assert.deepEqual(measurements.links.map(link=>link.url),urls);assert(measurements.links.every(link=>link.height>=44));
@@ -67,10 +75,10 @@ export async function checkTermsAcceptance(browser,origin,directory){
         await page.locator('#age-declaration').setChecked(age);await page.locator('#terms-declaration').setChecked(terms);
         const count=await page.evaluate(()=>window.__authFixture.providerCalls.length);
         await page.locator(`[data-provider=${provider}]`).click();
-        await page.locator(age&&terms?'[data-error-code=AUTH_PROVIDER_FAILED]':age?'#terms-error':'#age-error').waitFor();
-        assert.equal(await page.evaluate(()=>window.__authFixture.providerCalls.length),count+Number(age&&terms));
+        await page.locator(age?'[data-error-code=AUTH_PROVIDER_FAILED]':'#age-error').waitFor();
+        assert.equal(await page.evaluate(()=>window.__authFixture.providerCalls.length),count+Number(age));
       }
-      await page.locator('[data-auth-returning]').click();assert.equal(await page.locator('#terms-declaration').count(),0);assert(!await page.locator('#age-declaration').isChecked());
+      await page.locator('#age-declaration').uncheck();await page.locator('#terms-declaration').uncheck();
       await page.locator('[data-provider=apple]').click();await page.locator('#age-error').waitFor();await page.locator('#age-declaration').check();await page.locator('[data-provider=apple]').click();await page.locator('[data-error-code=AUTH_PROVIDER_FAILED]').waitFor();
       assert.equal(await page.evaluate(()=>window.__authFixture.providerCalls.at(-1).returnTo),'/login');
       // New-user declaration crosses only the matching callback; it is recorded
@@ -98,9 +106,10 @@ export async function checkTermsAcceptance(browser,origin,directory){
       // Configuration and owner privacy exceptions fail/operate independently.
       await open();await page.evaluate(async()=>{window.__authFixture.termsVersion(null);await window.__appAuth.checkUserAuth();});await page.locator('[data-terms-error=TERMS_CONFIGURATION_REQUIRED]').waitFor();assert.deepEqual(await privateCalls(),[]);
       await page.goto(`${origin}/account-privacy?appFixture=1&sdkSession=user&termsFixture=1&language=${language}`);await page.locator('[data-privacy-actions]').waitFor();assert.equal(await page.locator('[data-terms-gate]').count(),0);
-      results.push({language,flow:'both-provider-matrix-returning-current-outdated-failed-unknown-config-privacy',passed:true});
+      results.push({language,flow:'unified-provider-matrix-current-outdated-failed-unknown-config-privacy',passed:true});
     }finally{await context.close();}
   }
+  results.push(...await checkUnifiedAuthentication(browser,origin));
   const receipt={scope:'LOCAL_REAL_APP_SYNTHETIC_SDK',hostedVerified:false,results};
   if(directory)await writeFile(path.join(directory,'terms.json'),JSON.stringify(receipt,null,2));
   return receipt;

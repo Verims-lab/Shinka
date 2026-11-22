@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-075
-**Last Updated:** 2026-11-20
+**Current BuildMarker:** Buildmarker-076
+**Last Updated:** 2026-11-22
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-072.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-075.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 076 — Unified authentication regression gate
+
+Buildmarker-076 / HC-075.0 retains 188 cases. Five existing cases change, H05-009, H06-002, H06-009, H13-012 and H13-021. The required checkTermsAcceptance matrix includes checkUnifiedAuthentication. Both providers must resume new, incomplete and complete owners from fresh server progress and reuse current acceptance without another write. Missing, outdated and unavailable acceptance must block product routes. TR/EN mobile checks compare exact font family, size, weight and line-height for Privacy, both checkbox labels and legal links, with no account-mode buttons. Keep the 075 recovery, 071 auth-first and existing backend Terms regressions. [076 implementation and execution](reports/SHINKA_UNIFIED_AUTHENTICATION_076.md)
 
 ## 075 — Targeted onboarding admission recovery
 

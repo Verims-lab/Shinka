@@ -56,9 +56,16 @@ export function takeTermsIntent() {
     return nonce && value?.nonce === nonce && validTermsVersion(value.version) && Number.isFinite(value.createdAt) && Date.now() >= value.createdAt && Date.now() - value.createdAt <= 10 * 60 * 1000 ? value : null;
   } catch { clearTermsIntent(); return null; }
 }
-export function validateAuthDeclarations(ageConfirmed, { termsConfirmed = false, returning = false, version = null } = {}) {
+export function validateAuthDeclarations(ageConfirmed, { termsConfirmed = false, version = null } = {}) {
   if (ageConfirmed !== true) return 'AGE_DECLARATION_REQUIRED';
-  if (returning === true) return null; // Identity/acceptance checked AFTER OAuth; no app access yet.
   if (termsConfirmed !== true) return 'TERMS_CONFIRMATION_REQUIRED';
   return validTermsVersion(version) ? null : 'TERMS_CONFIGURATION_REQUIRED';
+}
+
+// OAuth can identify an existing owner before a fresh acceptance is needed.
+// App admission still requires current server-verified Terms for that owner.
+/** @param {boolean} ageConfirmed @param {{termsConfirmed?:boolean,version?:string}} declarations */
+export function validateProviderDeclarations(ageConfirmed, declarations = {}) {
+  if (ageConfirmed !== true) return 'AGE_DECLARATION_REQUIRED';
+  return declarations.termsConfirmed === true ? validateAuthDeclarations(ageConfirmed, declarations) : null;
 }

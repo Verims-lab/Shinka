@@ -4,7 +4,7 @@ import { check, rejects } from './dataModelTests';
 import { termsPolicy, termsOperation, handleTermsRequest, withTermsAdmission, TERMS_URL } from '../../../base44/shared/termsAcceptance.js';
 import { withUserLifecycle } from '../../../base44/shared/userLifecycle.js';
 import { ACCOUNT_CLEANUP, HEALTH_CLEANUP } from '../../../base44/shared/privacyPolicy.js';
-import { termsRequest, currentTerms, validateAuthDeclarations, prepareTermsIntent, takeTermsIntent, clearTermsIntent } from '@/services/termsService';
+import { termsRequest, currentTerms, validateAuthDeclarations, validateProviderDeclarations, prepareTermsIntent, takeTermsIntent, clearTermsIntent } from '@/services/termsService';
 import { beginProviderAuth } from '@/services/authService';
 import { TERMS_COPY } from '../i18n/termsCopy';
 import { loadStaticEvidence } from '../inspection/sourceScanner';
@@ -30,16 +30,19 @@ export const TERMS_TESTS=[
     check(f.tables.UserTermsAcceptance.some(row=>row.user_id==='ownerB'));
   }
  }],
- ['TA01','Both providers reject all missing age/Terms combinations before SDK IO',async()=>{
-  let calls=0;const auth={loginWithProvider:async()=>{calls++;}};
+ ['TA01','Unified providers require age and carry only explicit current-version Terms intent',async()=>{
+  const calls=[];const auth={loginWithProvider:async(provider,destination)=>{calls.push({provider,destination});}};
   for(const provider of ['apple','google'])for(const age of [false,true])for(const terms of [false,true]){
     const legal={termsConfirmed:terms,version:VERSION};
     const result=await beginProviderAuth(provider,'/login',age,auth,legal);
-    check(result.ok===(age&&terms),`${provider}:${age}:${terms}`);
+    check(result.ok===age,`${provider}:${age}:${terms}`);
+    if(result.ok)check(new URL(calls.at(-1).destination,location.origin).searchParams.has('terms_intent')===terms);
   }
-  check(calls===2);clearTermsIntent();
-  check(validateAuthDeclarations(true,{returning:true})===null);
-  check(validateAuthDeclarations(false,{returning:true})==='AGE_DECLARATION_REQUIRED');
+  check(calls.length===4);clearTermsIntent();
+  check(validateProviderDeclarations(true)===null);
+  check(validateProviderDeclarations(false)==='AGE_DECLARATION_REQUIRED');
+  check(validateProviderDeclarations(true,{termsConfirmed:true})==='TERMS_CONFIGURATION_REQUIRED');
+  check(validateAuthDeclarations(true)==='TERMS_CONFIRMATION_REQUIRED');
   check(validateAuthDeclarations(true,{termsConfirmed:true})==='TERMS_CONFIGURATION_REQUIRED');
  }],
  ['TA02','No default legal version; anonymous policy exposes only approved URL metadata',async()=>{
