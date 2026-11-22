@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-076
+**Current BuildMarker:** Buildmarker-077
 **Last Updated:** 2026-11-22
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-075.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-076.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 077 — Heading focus and control visibility
+
+Buildmarker-077 / HC-076.0 retains 188 cases. H13-012 maps the mandatory checkOnboardingFocus matrix through checkOnboardingPresentation and the extended U18 checks. Verify logout to anonymous Welcome, automatic h1 focus, no heading outline/border/shadow, stable type/geometry and visible keyboard indicators on age/Terms, legal links, providers and the name input. U18 covers all numbered headings and preparation. H05-009 recognizes 077 under the existing content policy. [077 execution](reports/SHINKA_ONBOARDING_FOCUS_077.md)
 
 ## 076 — Unified authentication regression gate
 

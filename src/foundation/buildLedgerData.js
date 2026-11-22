@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-072",
-    "package_name": "Shared onboarding backdrop and progress row",
-    "package_type": "TARGETED_UI",
-    "created_at": "2026-11-12T08:24:10Z",
-    "health_catalog_version": "HC-071.0",
-    "short_summary": "All onboarding shell screens reuse ON-01's original-color backdrop and safe top-left artwork fit. Numbered follow-up screens place the counter and session-scoped Back beneath the logo.",
-    "full_health_status": "NOT_RUN",
-    "notes": "HC-071.0 updates H05-009, H13-012, H13-020 and H13-021. Local onboarding presentation and auth-first regressions compare art fit, clearance, control visibility and safe navigation. See reports/SHINKA_ONBOARDING_BACKDROP_072.md for execution."
-  },
-  {
     "build_marker": "Buildmarker-073",
     "package_name": "Original centered-logo backdrop across Shinka",
     "package_type": "TARGETED_UI",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "One Apple/Google entry uses native identity, current server Terms and verified onboarding progress. Privacy information reuses checkbox typography.",
     "full_health_status": "NOT_RUN",
     "notes": "HC-075.0 updates H05-009, H06-002, H06-009, H13-012 and H13-021. Mandatory real-App checks cover both providers, new/incomplete/completed users, current/absent/outdated/unavailable acceptance and TR/EN typography. Execution is recorded in reports/SHINKA_UNIFIED_AUTHENTICATION_076.md."
+  },
+  {
+    "build_marker": "Buildmarker-077",
+    "package_name": "Accessible onboarding heading focus",
+    "package_type": "TARGETED_UI",
+    "created_at": "2026-11-22T20:08:47Z",
+    "health_catalog_version": "HC-076.0",
+    "short_summary": "All announced onboarding headings reuse the existing unframed focus treatment. Interactive keyboard indicators stay visible.",
+    "full_health_status": "NOT_RUN",
+    "notes": "HC-076.0 updates H13-012 and H05-009. Mandatory presentation checks include logout to Welcome, automatic heading focus, keyboard rings and stable type/layout in both languages at mobile widths. U18 covers every numbered heading and preparation. Execution is in reports/SHINKA_ONBOARDING_FOCUS_077.md."
   }
 ];

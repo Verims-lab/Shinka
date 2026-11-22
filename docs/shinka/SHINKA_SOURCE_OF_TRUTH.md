@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-076
+**Current BuildMarker:** Buildmarker-077
 **Last Updated:** 2026-11-22
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 077 — Announced onboarding headings
+
+All programmatically focused onboarding headings use the existing unframed title style. Preserve the h1 role, tabindex -1 and focus call on entry. Keep visible keyboard indicators on inputs, checkboxes, links and buttons. [077 focus regression](reports/SHINKA_ONBOARDING_FOCUS_077.md)
 
 ## 076 — Unified provider entry, 2026-11-22
 

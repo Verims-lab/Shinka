@@ -288,7 +288,7 @@ export default function OnboardingScreen({
             <h1
               ref={title}
               tabIndex={-1}
-              className={`font-heading ${intro ? "text-shinka-h2" : "text-shinka-h1"} text-shinka-plum-deep outline-none ${airy ? "text-center" : ""} ${step === 1 || step === 4 ? "shinka-unframed-title" : ""}`}
+              className={`shinka-unframed-title font-heading ${intro ? "text-shinka-h2" : "text-shinka-h1"} text-shinka-plum-deep outline-none ${airy ? "text-center" : ""}`}
             >
               {t(screen.title)}
             </h1>
