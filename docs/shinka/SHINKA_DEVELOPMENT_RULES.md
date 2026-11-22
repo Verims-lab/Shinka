@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-075
-**Last Updated:** 2026-11-20
+**Current BuildMarker:** Buildmarker-076
+**Last Updated:** 2026-11-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 076 — Unified ON-02 provider flow
+
+The current owner instruction delivers only to AydanTest and supersedes the preceding branch assignments. Generate Buildmarker-076 / HC-075.0 once, retaining 072–076. Update the existing legal, auth-first and mobile regression gates. Keep server identity, acceptance, progress and optional-field authority. Run the unified provider and exact typography checks in both browsers, with local transport isolated. Record failures and hosted limitations. [076 implementation and execution](reports/SHINKA_UNIFIED_AUTHENTICATION_076.md)
 
 ## 075 — Focused onboarding recovery
 

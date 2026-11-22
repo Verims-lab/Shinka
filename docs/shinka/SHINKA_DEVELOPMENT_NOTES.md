@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-075
-**Last Updated:** 2026-11-20
+**Current BuildMarker:** Buildmarker-076
+**Last Updated:** 2026-11-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 076 — Unified provider entry (2026-11-22)
+
+AydanTest fast-forwarded from 05155f8 to main 9d04928 before this package. Remove account-mode switching, keep verified legal/progress admission, and share checkbox typography with Privacy. Existing browser/Health tests now guard common provider routing and current acceptance reuse. The report records actual local execution and external acceptance limits. [076 implementation and execution](reports/SHINKA_UNIFIED_AUTHENTICATION_076.md)
 
 ## 075 — Onboarding Terms configuration incident (2026-11-20)
 

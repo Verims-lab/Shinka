@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-071",
-    "package_name": "Direct authenticated onboarding navigation",
-    "package_type": "TARGETED_FIX",
-    "created_at": "2026-11-11T18:52:54Z",
-    "health_catalog_version": "HC-070.0",
-    "short_summary": "Verified owner progress opens the remaining onboarding form, preparation or Home directly. Anonymous entry and provider gating remain available, and Back stays inside the admitted form.",
-    "full_health_status": "NOT_RUN",
-    "notes": "HC-070.0 extends the mandatory local auth-first gate to direct resumption, held/invalid progress, retry, reload, optional choices and Back. See reports/SHINKA_AUTHENTICATED_ONBOARDING_071.md for execution and external limits."
-  },
-  {
     "build_marker": "Buildmarker-072",
     "package_name": "Shared onboarding backdrop and progress row",
     "package_type": "TARGETED_UI",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Keep missing legal configuration visible; separate readiness, explicit version-bound acceptance and fresh session admission. Read-only return/retry, bounded cancellation and transport diagnostics preserve onboarding and lifecycle authority.",
     "full_health_status": "NOT_RUN",
     "notes": "Owner approved terms-v1.0 on 2026-11-20 (product approval, not independent legal review). Live public policy CONFIGURATION_REQUIRED/version null; no management access, setting not applied. Chromium/WebKit 820/820 each; 44 legal and 32 auth-first scenarios each; mandatory quality/size gates PASS. HC changes H05-009/H06-008/H06-009/H13-012, 0 added/removed. Real OAuth/APK and owner configuration/publish remain open. See reports/SHINKA_ONBOARDING_RECOVERY_075.md."
+  },
+  {
+    "build_marker": "Buildmarker-076",
+    "package_name": "Unified onboarding provider entry",
+    "package_type": "TARGETED_UI",
+    "created_at": "2026-11-22T18:05:00Z",
+    "health_catalog_version": "HC-075.0",
+    "short_summary": "One Apple/Google entry uses native identity, current server Terms and verified onboarding progress. Privacy information reuses checkbox typography.",
+    "full_health_status": "NOT_RUN",
+    "notes": "HC-075.0 updates H05-009, H06-002, H06-009, H13-012 and H13-021. Mandatory real-App checks cover both providers, new/incomplete/completed users, current/absent/outdated/unavailable acceptance and TR/EN typography. Execution is recorded in reports/SHINKA_UNIFIED_AUTHENTICATION_076.md."
   }
 ];

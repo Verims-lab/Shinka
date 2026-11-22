@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-075
-**Last Updated:** 2026-11-20
+**Current BuildMarker:** Buildmarker-076
+**Last Updated:** 2026-11-22
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 076 — Unified provider entry, 2026-11-22
+
+The owner's current request removes the new/existing account selector from ON-02. Both providers share one entry. Require age before OAuth. A checked Terms declaration carries the existing version-bound intent. An unchecked declaration permits identity verification, then fresh server acceptance determines whether explicit legal confirmation is required before any personal route. Current owner/version acceptance is reused. Verified server onboarding progress selects name, profile, cycle, preparation or Home. The 071 optional-field and saved NULL-name rules apply. Privacy information reuses checkbox typography in both languages. [076 implementation and execution](reports/SHINKA_UNIFIED_AUTHENTICATION_076.md)
 
 ## 075 — Product-owner legal version decision, 2026-11-20
 

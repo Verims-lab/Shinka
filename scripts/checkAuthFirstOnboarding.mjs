@@ -62,9 +62,13 @@ export async function checkAuthFirstOnboarding(browser, origin) {
     assert.deepEqual(await providerCalls(), [], 'unchecked age cannot start either OAuth flow');
    }
    await age.check();
-   for(const provider of welcome.providers){await providerButton(provider).click();await page.locator('#terms-error').waitFor();assert.deepEqual(await providerCalls(),[]);}
-   await page.locator('#terms-declaration').check();
    const expectedCalls = [];
+   for(const provider of welcome.providers){
+    await providerButton(provider).click();await page.locator('[data-error-code="AUTH_PROVIDER_FAILED"]').waitFor();
+    expectedCalls.push({provider,returnTo:'/login'});
+    assert.deepEqual(await providerCalls(),expectedCalls,'age-only OAuth defers to verified server acceptance');
+   }
+   await page.locator('#terms-declaration').check();
    for (const provider of welcome.providers) {
     await providerButton(provider).click();
     await page.locator('[data-error-code="AUTH_PROVIDER_FAILED"]').waitFor();

@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-075
-**Last Updated:** 2026-11-20
+**Current BuildMarker:** Buildmarker-076
+**Last Updated:** 2026-11-22
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
@@ -12,6 +12,10 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 076 — Shared provider validation
+
+SignIn and authService share validateProviderDeclarations. TermsGate retains validateAuthDeclarations for explicit acceptance. The existing applicationSession/App legal boundary and Onboarding hydrate resolver select admission and progress. LegalDeclarations shares its declaration typography with Privacy information. The mandatory browser Terms suite invokes the unified callback matrix with isolated SDK IO. [076 implementation and execution](reports/SHINKA_UNIFIED_AUTHENTICATION_076.md)
 
 ## 075 — Bounded legal recovery on the existing boundary
 

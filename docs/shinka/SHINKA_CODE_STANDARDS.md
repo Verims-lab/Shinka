@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-075
-**Last Updated:** 2026-11-11
+**Current BuildMarker:** Buildmarker-076
+**Last Updated:** 2026-11-22
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
 **Scope:** All source (client, backend, internal tooling).
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 076 — Provider and product admission boundaries
+
+Provider validation requires age and validates an explicitly checked Terms intent. Authenticated legal validation requires both declarations and a current version. Reuse the existing Terms service and server admission guards. UI account modes and browser account-status heuristics must not select a route. The shared declaration style also renders Privacy information. Test computed typography and both provider callbacks with current, missing, outdated and unavailable acceptance. [076 implementation and execution](reports/SHINKA_UNIFIED_AUTHENTICATION_076.md)
 
 ## 065 — Shared backdrop
 
