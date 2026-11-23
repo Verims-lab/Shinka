@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-080
+**Current BuildMarker:** Buildmarker-081
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-079.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-080.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 081 — Visible bar and explicit safe-area ownership
+
+Buildmarker-081 / HC-080.0 retains 188 cases: 0 added / 2 updated / 0 removed. H13-012 plus serialized scope require checkSafeAreaOwnership and checkNavigationDiagnostic through checkReopenNavigation: visible-bar and dock bounds separately, zero dock padding, unchanged 67px normal bar and 12px internals, 30px native-consumed/edge-to-edge/partial ownership, four widths, all three screens, scroll, resize/restore and a strict read-only diagnostic whitelist. The test supplies the native-consumption declaration explicitly; it is not physical detection. Keep genuine iOS/Android insets and prior visual viewport, route, text enlargement and theme gates. H05-009 recognizes 081 without changing source/hash/count predicates. H13-013 remains external; physical resolution requires device/native bounds and exact deployed build, not a synthetic PASS. [081 evidence and limitations](reports/SHINKA_NAVIGATION_SAFE_AREA_081.md)
 
 ## 080 — Android viewport gap regression
 

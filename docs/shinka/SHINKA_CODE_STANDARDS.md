@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-080
+**Current BuildMarker:** Buildmarker-081
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 081 — Safe-area ownership and diagnostic isolation
+
+Dock padding stays zero; its border box and the painted bar coincide. Apply only the remaining unconsumed inset to position and derive flow reservation from measured bar height plus actual viewport clearance. Observe the inset separately because moving a bar does not resize its border box. Keep 080 native-bottom calibration and zoom behavior. --shinka-native-consumed-bottom is a host integration contract, not an automatically detected value; never set it from a user-agent or guessed screen offset. The navDiagnostics=1 diagnostic is opt-in, lazily loaded and local/read-only, with a fixed geometry/build whitelist and no SDK, identity, storage, clipboard or network access. [081 evidence and limitations](reports/SHINKA_NAVIGATION_SAFE_AREA_081.md)
 
 ## 080 — Independent viewport geometry
 

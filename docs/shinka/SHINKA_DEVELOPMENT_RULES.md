@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-080
+**Current BuildMarker:** Buildmarker-081
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 081 — Safe-area investigation and bounded correction
+
+Record Buildmarker-081 / HC-080.0 once, retaining 077–081. Preserve bar dimensions and internal styles. Reproduce the visible-bar versus dock discrepancy before changing safe-area ownership; require 30px explicit native-consumed and genuine edge-to-edge cases in both engines, plus prior positioning, theme and navigation coverage. Supply an opt-in read-only device diagnostic. A native-consumed declaration must come from measured host bounds; no native bridge/source is present here, and a browser cannot prove that contract from its own viewport alone. Keep physical resolution open without that evidence. Preserve historical failures and unchanged quality/byte gates. Deliver only AydanTest; no main write or Base44 publication. [081 evidence and limitations](reports/SHINKA_NAVIGATION_SAFE_AREA_081.md)
 
 ## 080 — Android viewport investigation
 

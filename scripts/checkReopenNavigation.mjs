@@ -15,8 +15,11 @@ const open = async (page, origin, route, ready, language = 'tr') => {
 const settled = async page => page.waitForFunction(() => {
   const nav = [...document.querySelectorAll('nav.shinka-product-nav')].find(el => el.getClientRects().length);
   if(!nav)return false;
-  const dock=nav.closest('.shinka-nav-dock'),covered=parseFloat(dock.style.getPropertyValue('--shinka-viewport-occlusion'))||0;
-  return Math.abs(nav.closest('.shinka-nav-safe-area').getBoundingClientRect().height-dock.getBoundingClientRect().height-covered)<.5;
+  const dock=nav.closest('.shinka-nav-dock'),box=dock.getBoundingClientRect();
+  return Math.abs(nav.closest('.shinka-nav-safe-area').getBoundingClientRect().height-box.height-Math.max(0,document.documentElement.clientHeight-box.bottom))<.5;
+}).catch(async error => {
+  console.error(JSON.stringify({navigationSettlementFailure:await navGeometry(page),dockStyles:await page.locator('.shinka-nav-dock:visible').getAttribute('style')}));
+  throw error;
 });
 const scroll = async (page, stage) => page.evaluate(async stage => {
   const maximum = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -40,6 +43,7 @@ export const navGeometry = page => page.locator('nav.shinka-product-nav:visible'
     shellTail:shell.getBoundingClientRect().bottom-spaceBox.bottom, documentTail:document.documentElement.scrollHeight-(spaceBox.bottom+scrollY),
     contentOverlap:Math.max(0,main.lastElementChild.getBoundingClientRect().bottom-navBox.top),
     safeBottom:parseFloat(root.getPropertyValue('--safe-bottom'))||0, safeLeft:parseFloat(root.getPropertyValue('--safe-left'))||0, safeRight:parseFloat(root.getPropertyValue('--safe-right'))||0,
+    nativeConsumedBottom:parseFloat(root.getPropertyValue('--shinka-native-consumed-bottom'))||0,
     viewport:innerWidth, viewportHeight:innerHeight, layoutHeight, visibleBottom, covered:Math.max(0,layoutHeight-visibleBottom), overflow:document.documentElement.scrollWidth,
     scrollY, motionTransform:getComputedStyle(nav.closest('[data-route-motion]') || shell).transform,
     links:[...nav.children].map(link => {
@@ -58,12 +62,12 @@ function assertBottomOwnership(measured, {end=false} = {}) {
   for (const key of ['marginBottom','dockMarginBottom','shellPaddingBottom','spacePaddingBottom','contentSpaceGap','shellTail'])
     assert(Math.abs(measured[key])<1,key+': duplicate footer space');
   assert.equal(measured.safeBackground,'rgba(0, 0, 0, 0)','system inset must remain separate from the painted bar');
-  const remainingSafe=Math.max(0,measured.safeBottom-measured.covered);
-  assert(Math.abs(measured.dock.y+measured.dock.height-measured.visibleBottom)<1,'dock bottom differs from the visible viewport');
-  assert(Math.abs(measured.safePaddingBottom-remainingSafe)<1,'system inset missing/doubled');
+  const remainingSafe=Math.max(0,measured.safeBottom-measured.nativeConsumedBottom-measured.covered);
+  assert(Math.abs(measured.dock.y+measured.dock.height-(measured.visibleBottom-remainingSafe))<1,'dock bottom differs from the usable visible viewport');
+  assert.equal(measured.safePaddingBottom,0,'system inset must not create transparent dock padding');
   assert(Math.abs(measured.nav.y+measured.nav.height-(measured.visibleBottom-remainingSafe))<1,'blank gap below the painted navigation');
-  assert(Math.abs(measured.dock.height-measured.nav.height-remainingSafe)<1,'extra dock row/gap');
-  assert(Math.abs(measured.space.height-measured.dock.height-measured.covered)<1,'content reservation differs from navigation and occluded viewport height');
+  assert(Math.abs(measured.dock.height-measured.nav.height)<1,'extra dock row/gap');
+  assert(Math.abs(measured.space.height-measured.dock.height-measured.covered-remainingSafe)<1,'content reservation differs from navigation and occluded viewport height');
   assert(Math.abs(measured.nav.x-measured.safeLeft)<1&&Math.abs(measured.nav.x+measured.nav.width-(measured.viewport-measured.safeRight))<1,'horizontal safe areas missing/doubled');
   assert(Math.abs(measured.documentTail)<1,'extra document space after the reserved footer');
   assert(measured.overflow<=measured.viewport+1,'horizontal overflow');
@@ -89,6 +93,7 @@ export async function rejectExtraSpace(page) {
   for(const [css,message] of [
     ['.shinka-safe-shell {padding-bottom:34px!important}',/shellPaddingBottom/],
     ['.shinka-product-nav {padding-bottom:34px!important}',/system inset/],
+    ['.shinka-nav-dock {padding-bottom:30px!important}',/usable visible viewport|transparent dock padding|blank gap/],
     ['.shinka-nav-dock {margin-bottom:40px!important}',/dockMarginBottom/],
     ['.shinka-nav-dock {bottom:40px!important}',/visible viewport/],
     ['.shinka-nav-dock {position:static!important}',/stay fixed/],
@@ -200,8 +205,8 @@ export async function checkAndroidViewportGeometry(browser,origin,directory) {
             for(const stage of ['initial','end']){
               await page.evaluate(async stage=>{scrollTo(0,stage==='end'?document.documentElement.scrollHeight-document.documentElement.clientHeight:0);await new Promise(requestAnimationFrame);await new Promise(requestAnimationFrame);},stage);
               const measured=await navGeometry(page),dockBottom=measured.dock.y+measured.dock.height;
-              const actualGap=expectedBottom-dockBottom,paintedGap=expectedBottom-(measured.nav.y+measured.nav.height)-expectedInset;
-              const row={surface,width,phase,inset,stage,cssHeight,reportedInner,visualHeight,offsetTop,expectedBottom,expectedInset,actualGap,paintedGap,...measured,physicalDevice:false};
+              const actualGap=expectedBottom-dockBottom-expectedInset,paintedGap=expectedBottom-(measured.nav.y+measured.nav.height)-expectedInset;
+              const row={surface,width,phase,inset,stage,cssHeight,reportedInner,visualHeight,offsetTop,expectedBottom,expectedInset,actualGap,paintedGap,visibleBottomToBar:expectedBottom-(measured.nav.y+measured.nav.height),...measured,physicalDevice:false};
               rows.push(row);
               assert(Math.abs(actualGap)<1&&Math.abs(paintedGap)<1,JSON.stringify({failure:'ANDROID_VIEWPORT_GAP',surface,width,phase,inset,stage,actualGap,paintedGap,cssHeight,innerHeight:measured.viewportHeight,visualBottom:measured.visibleBottom,appliedOffset:await page.locator('.shinka-nav-dock:visible').evaluate(el=>el.style.getPropertyValue('--shinka-viewport-bottom'))}));
               assertBottomOwnership(measured,{end:stage==='end'});row.passed=true;
@@ -214,6 +219,95 @@ export async function checkAndroidViewportGeometry(browser,origin,directory) {
     }
     return rows;
   }finally{if(directory)await writeFile(`${directory}/android-viewport.json`,JSON.stringify(rows,null,2));}
+}
+
+// The native-consumed inset is an explicit host contract, not an Android/UA
+// guess. A browser cannot observe the external native view's window bounds.
+export async function checkSafeAreaOwnership(browser,origin,directory) {
+  const rows=[];
+  if(directory)await mkdir(directory,{recursive:true});
+  try {
+    for(const width of [320,360,390,430]) {
+      const context=await browser.newContext({viewport:{width,height:800},isMobile:true,hasTouch:true}),page=await context.newPage(),errors=[];
+      page.on('pageerror',error=>errors.push(error.message));
+      await page.route('**/*',route=>new URL(route.request().url()).origin===origin?route.continue():route.abort());
+      await seed(page);
+      try {
+        for(const [surface,route,ready] of surfaces) {
+          await open(page,origin,route,ready);
+          for(const [mode,inset,consumed] of [['native-consumed',30,30],['edge-to-edge',30,0],['partly-consumed',30,12],['no-inset',0,0]]) {
+            await page.evaluate(({inset,consumed})=>{
+              document.documentElement.style.setProperty('--safe-bottom',inset+'px');
+              document.documentElement.style.setProperty('--shinka-native-consumed-bottom',consumed+'px');
+              dispatchEvent(new Event('resize'));
+            },{inset,consumed});
+            for(const [phase,height] of [['normal',800],['keyboard-resize',480],['restored',800]]) {
+              await page.setViewportSize({width,height});
+              for(const stage of ['initial','end']) {
+                await scroll(page,stage);await settled(page);
+                const measured=await navGeometry(page),navBottom=measured.nav.y+measured.nav.height,dockBottom=measured.dock.y+measured.dock.height;
+                // Independent native bounds: a 30px external system bar is
+                // outside the usable viewport in consumed mode, inside in edge
+                // mode. Neither dock padding nor app offsets define this edge.
+                const expectedBottom=height-Math.max(0,inset-consumed);
+                const row={surface,width,mode,inset,consumed,phase,stage,expectedBottom,navBottom,dockBottom,visibleGap:expectedBottom-navBottom,...measured,physicalDevice:false};rows.push(row);
+                assert(Math.abs(row.visibleGap)<1,JSON.stringify({failure:'VISIBLE_BAR_SAFE_AREA_GAP',surface,width,mode,phase,stage,expectedBottom,navBottom,dockBottom,padding:measured.safePaddingBottom,gap:row.visibleGap}));
+                assert.equal(measured.nav.height,67,'the bar height must remain unchanged');
+                assert.equal(measured.safePaddingBottom,0,'dock must not add a second transparent safe-area row');
+                assert(Math.abs(navBottom-dockBottom)<1,'bar and dock bottom must agree');
+                assertBottomOwnership(measured,{end:stage==='end'});row.passed=true;
+                if(directory&&width===390&&stage==='initial'&&phase==='normal')await page.screenshot({path:`${directory}/${surface}-${mode}.png`});
+              }
+            }
+          }
+        }
+        assert.equal(errors.length,0);
+      }finally{await context.close();}
+    }
+    rows.push(...await checkNavigationDiagnostic(browser,origin));
+    return rows;
+  }finally{if(directory)await writeFile(directory+'/safe-area.json',JSON.stringify(rows,null,2));}
+}
+
+export async function checkNavigationDiagnostic(browser,origin) {
+  const context=await browser.newContext({viewport:{width:390,height:800}}),page=await context.newPage(),errors=[],rows=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  await page.route('**/*',route=>new URL(route.request().url()).origin===origin?route.continue():route.abort());
+  await seed(page);
+  try {
+    await open(page,origin,'/','[data-daily-id]');
+    assert.equal(await page.locator('[data-navigation-diagnostics]').count(),0,'diagnostic must be opt-in');
+    await page.goto(origin+'/?appFixture=1&sdkSession=admin&onboardingState=ACTIVE_EXISTING_USER&navDiagnostics=1');
+    await page.locator('[data-daily-id]').waitFor();
+    const panel=page.locator('[data-navigation-diagnostics]');await panel.waitFor();
+    for(const [mode,consumed] of [['unverified',0],['declared-consumed',30]]) {
+      await page.evaluate(consumed=>{
+        document.documentElement.style.setProperty('--safe-bottom','30px');
+        document.documentElement.style.setProperty('--shinka-native-consumed-bottom',consumed+'px');
+        dispatchEvent(new Event('resize'));
+      },consumed);
+      await settled(page);
+      const before=await navGeometry(page),calls=await page.evaluate(()=>window.__authFixture.calls.length);
+      await panel.getByRole('button',{name:'Ölçümü yenile'}).click();
+      const sample=JSON.parse(await panel.locator('pre').innerText());
+      assert.match(sample.build,/^Buildmarker-\d{3}$/);
+      assert.equal(sample.nativeConsumptionVerified,false,'web metrics cannot prove native consumption');
+      assert.equal(sample.nativeWindowBounds,'NOT_OBSERVABLE_FROM_WEB');
+      assert.equal(sample.dockPaddingBottom,0);assert.equal(sample.dockToBar,0);
+      assert.equal(sample.nativeConsumedBottomDeclaration,consumed);
+      assert.equal(sample.visibleBottomToBar,30-consumed);
+      assert.deepEqual(Object.keys(sample).sort(),['build','physicalVerification','nativeWindowBounds','viewport','screen','standalone','viewportFit','safeBottom','nativeConsumedBottomDeclaration','nativeConsumptionVerified','bar','dock','placeholder','dockPaddingBottom','dockBottomInset','residualViewportOffset','viewportOcclusion','visibleBottomToBar','visibleBottomToDock','dockToBar'].sort(),'diagnostic field whitelist changed');
+      assert(!JSON.stringify(sample).includes('Ada'),'diagnostic exposed fixture identity');
+      assert.equal(await page.evaluate(()=>window.__authFixture.calls.length),calls,'sampling must not call a service');
+      const after=await navGeometry(page);assert.deepEqual(after.nav,before.nav,'sampling moved the navigation');
+      rows.push({scenario:'read-only-opt-in-diagnostic',mode,sample,passed:true,physicalDevice:false});
+    }
+    await page.locator('nav.shinka-product-nav:visible a[href^="/calendar"]').click();await page.locator('[data-calendar-date]').first().waitFor();
+    await panel.getByRole('button',{name:'Ölçümü yenile'}).click();
+    assert.equal(await panel.count(),1,'retained tabs duplicated the diagnostic');
+    await panel.getByRole('button',{name:'Kapat'}).click();assert.equal(await panel.count(),0);
+    assert.equal(errors.length,0);return rows;
+  }finally{await context.close();}
 }
 
 // Real App, isolated SDK transport. No inference about native system bars.
@@ -260,5 +354,6 @@ export async function checkReopenNavigation(browser,origin,directory,{visualAsse
   rows.push(...await checkVisibleViewport(browser,origin));
   rows.push(...await checkNavigationEntryRoutes(browser,origin));
   rows.push(...await checkAndroidViewportGeometry(browser,origin,directory ? `${directory}/android` : undefined));
+  rows.push(...await checkSafeAreaOwnership(browser,origin,directory ? `${directory}/safe-area` : undefined));
   if(directory)await writeFile(directory+'/navigation.json',JSON.stringify(rows,null,2));return rows;
 }

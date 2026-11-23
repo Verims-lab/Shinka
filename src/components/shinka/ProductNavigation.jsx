@@ -11,14 +11,14 @@ const ICONS = { House, CalendarDays, Moon };
 export const reselectTab = event => { event.preventDefault(); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); };
 export default function ProductNavigation({ current, language }) {
   const inRouter = useInRouterContext();
-  const space = useRef(null), dock = useRef(null);
+  const space = useRef(null), dock = useRef(null), inset = useRef(null);
   useLayoutEffect(() => {
     const element = dock.current, placeholder = space.current, viewport = window.visualViewport;
-    let covered = 0;
     const reserve = () => {
       // Retained hidden tabs keep their last measured space for scroll restore.
       if (!element.getClientRects().length) return;
-      const height = `${element.getBoundingClientRect().height + covered}px`;
+      const bounds = element.getBoundingClientRect();
+      const height = `${bounds.height + Math.max(0, document.documentElement.clientHeight - bounds.bottom)}px`;
       placeholder.style.height = height;
       placeholder.closest('.shinka-safe-shell')?.style.setProperty('--shinka-nav-height', height);
     };
@@ -27,28 +27,36 @@ export default function ProductNavigation({ current, language }) {
       // The browser may already move fixed content when its viewport shrinks.
       // Measure this dock's native CSS anchor instead of applying innerHeight's
       // difference a second time. Pinch zoom keeps the browser's own behavior.
-      element.style.setProperty('--shinka-viewport-bottom', '0px');
+      element.style.bottom = '0px';
       const nativeBottom = element.getBoundingClientRect().bottom;
       const visibleBottom = viewport?.scale === 1 ? Math.min(nativeBottom, viewport.height + viewport.offsetTop) : nativeBottom;
-      covered = viewport?.scale === 1 ? Math.max(0, document.documentElement.clientHeight - visibleBottom) : 0;
+      const covered = viewport?.scale === 1 ? Math.max(0, document.documentElement.clientHeight - visibleBottom) : 0;
       element.style.setProperty('--shinka-viewport-bottom', `${Math.max(0, nativeBottom - visibleBottom)}px`);
       element.style.setProperty('--shinka-viewport-occlusion', `${covered}px`);
+      element.style.removeProperty('bottom');
       reserve();
     };
     align();
     const observer = new ResizeObserver(align);
     observer.observe(element, { box: 'border-box' });
+    // Position changes do not resize the bar. Observe CSS viewport/inset size
+    // separately, including WebKit's clientHeight update after resize events.
+    observer.observe(inset.current, { box: 'border-box' });
+    const hostInsets = new MutationObserver(align);
+    hostInsets.observe(document.documentElement, { attributes: true, attributeFilter: ['style'] });
     window.addEventListener('resize', align);
     viewport?.addEventListener('resize', align);
     viewport?.addEventListener('scroll', align);
     return () => {
       observer.disconnect();
+      hostInsets.disconnect();
       window.removeEventListener('resize', align);
       viewport?.removeEventListener('resize', align);
       viewport?.removeEventListener('scroll', align);
     };
   }, []);
   return <div ref={space} className="shinka-nav-safe-area">
+    <span ref={inset} className="shinka-nav-inset-probe" aria-hidden="true" />
     <div ref={dock} className="shinka-nav-dock">
     <nav aria-label={dailyCopy('navigation', language)} className="shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white">
     {BOTTOM_NAV.map(item => {

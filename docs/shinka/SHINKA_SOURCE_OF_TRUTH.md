@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-080
+**Current BuildMarker:** Buildmarker-081
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 081 — Position-only navigation correction
+
+The current instruction freezes navigation height, internal padding, icons, labels and alignment: only the whole-bar position may change. Measure the painted navigation and outer dock separately. A nonzero reported safe inset must not be added twice when the host has already consumed it, and genuine system overlap must stay protected. Native window bounds are not observable from web metrics alone. Preserve default protection until the host supplies measured consumption or zeros forwarded insets; do not claim physical Android resolution from an injected contract or browser emulation. [081 evidence and limitations](reports/SHINKA_NAVIGATION_SAFE_AREA_081.md)
 
 ## 080 — Android viewport correction
 
