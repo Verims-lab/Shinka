@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-077
+**Current BuildMarker:** Buildmarker-078
 **Last Updated:** 2026-11-22
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
@@ -10,6 +10,10 @@
 **Scope:** Health catalog HC-076.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 078 — Navigation row and system-inset separation
+
+Buildmarker-078 / HC-077.0 retains 188 cases: 0 added / 2 updated / 0 removed. H13-012 and its serialized scope require checkReopenNavigation to measure the painted row and transparent safe-area owner independently. Cover Home/Calendar/Pattern, TR/EN, 320/360/390/430px and landscape, 100/200% text, env/0/24/34px insets, equal thirds and centered groups, 44px targets, no clipping/overflow/content overlap or duplicate footer padding, and keyboard viewport restoration. Negative shell/nav inset and footer-margin fixtures must fail. Existing product-navigation, mobile-interaction and backdrop gates retain routing, focus and manual theme coverage. H05-009 recognizes 078 with unchanged source/hash/count predicates. Local simulations do not certify physical devices or published builds. [078 execution](reports/SHINKA_NAVIGATION_ALIGNMENT_078.md)
 
 ## 077 — Heading focus and control visibility
 

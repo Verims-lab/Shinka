@@ -6,11 +6,12 @@ import { FIRST_CONTENT_SOURCE } from '../base44/shared/firstContentSource.js';
 
 export const navGeometry = page => page.locator('nav.shinka-product-nav:visible').evaluate(nav => {
   const box = e => { const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height}; };
-  const style=getComputedStyle(nav),shell=nav.parentElement,main=shell.querySelector('main'),mainBox=main.getBoundingClientRect(),navBox=nav.getBoundingClientRect();
-  return {nav:box(nav),paddingBottom:parseFloat(style.paddingBottom),border:parseFloat(style.borderTopWidth),
+  const style=getComputedStyle(nav),safeArea=nav.closest('.shinka-nav-safe-area'),shell=nav.closest('.shinka-safe-shell'),main=shell.querySelector('main'),mainBox=main.getBoundingClientRect(),navBox=nav.getBoundingClientRect(),safeBox=safeArea.getBoundingClientRect();
+  return {nav:box(nav),safeArea:box(safeArea),safePaddingBottom:parseFloat(getComputedStyle(safeArea).paddingBottom),safeBackground:getComputedStyle(safeArea).backgroundColor,
+    paddingBottom:parseFloat(style.paddingBottom),border:parseFloat(style.borderTopWidth),
     position:style.position,marginBottom:parseFloat(style.marginBottom),shellPaddingBottom:parseFloat(getComputedStyle(shell).paddingBottom),
     contentPaddingBottom:parseFloat(getComputedStyle(main).paddingBottom),contentNavGap:navBox.top-mainBox.bottom,
-    shellTail:shell.getBoundingClientRect().bottom-navBox.bottom,documentTail:document.documentElement.scrollHeight-(navBox.bottom+scrollY),
+    shellTail:shell.getBoundingClientRect().bottom-safeBox.bottom,documentTail:document.documentElement.scrollHeight-(safeBox.bottom+scrollY),
     contentOverlap:Math.max(0,main.lastElementChild.getBoundingClientRect().bottom-navBox.top),
     viewport:innerWidth,overflow:document.documentElement.scrollWidth,
     links:[...nav.children].map(a=>{const icon=a.querySelector('svg'),range=document.createRange();
@@ -19,12 +20,16 @@ export const navGeometry = page => page.locator('nav.shinka-product-nav:visible'
       return {box:r,icon:i,label:{x:text.x,y:text.y,width:text.width,height:text.height},groupTop:i.y,groupBottom:text.bottom};})};
 });
 
-// The 057 nav-only measurements could miss an extra shell/footer spacer.
-// Measure those independently; system UI outside the WebView is not DOM padding.
+// The visible row and reserved system inset have different boxes. Measure both
+// and their ancestors; system UI outside the WebView is not DOM padding.
 function assertBottomOwnership(measured) {
   assert.equal(measured.position,'static','navigation must remain in normal document flow');
+  assert.equal(measured.paddingBottom,0,'the visible navigation must not consume the system inset');
   for(const key of ['marginBottom','shellPaddingBottom','contentNavGap','shellTail','contentOverlap'])
     assert(Math.abs(measured[key])<1,`${key}: extra bottom space or obscured content`);
+  assert.equal(measured.safeBackground,'rgba(0, 0, 0, 0)','the reserved system inset must not extend the painted navigation');
+  assert(Math.abs(measured.safeArea.height-measured.nav.height-measured.safePaddingBottom)<1,'inset missing/doubled');
+  assert(Math.abs(measured.nav.y-measured.safeArea.y)<1,'extra space above the navigation row');
   assert(measured.documentTail<1,'extra document spacer below navigation');
 }
 
@@ -33,7 +38,7 @@ function assertBottomOwnership(measured) {
 export async function checkReopenNavigation(browser,origin,directory,{baseline=false,visualAssets=false}={}) {
   const fontCss=(await readFile('index.html','utf8')).match(/href="(https:\/\/fonts.googleapis.com\/css2[^"]+)"/)[1];
   if(directory)await mkdir(directory,{recursive:true});const rows=[];
-  for(const language of ['tr','en'])for(const [width,height] of [[320,568],[360,740],[390,844],[740,320]])for(const scale of [1,2]){
+  for(const language of ['tr','en'])for(const [width,height] of [[320,568],[360,740],[390,844],[430,932],[740,320]])for(const scale of [1,2]){
     const context=await browser.newContext({viewport:{width,height},locale:language,hasTouch:true}),page=await context.newPage();
     const errors=[];page.on('pageerror',e=>errors.push(e.message));
     await page.route('**/*',r=>{const url=new URL(r.request().url());const asset=visualAssets&&r.request().method()==='GET'&&(url.href===fontCss||url.origin==='https://fonts.gstatic.com'&&url.pathname.startsWith('/s/'));return url.origin===origin||asset?r.continue():r.abort();});
@@ -55,10 +60,10 @@ export async function checkReopenNavigation(browser,origin,directory,{baseline=f
           assert.equal(links.length,3);assert(measured.overflow<=width+1);
           assert(links.every(l=>l.box.width>=44&&l.box.height>=44));
           assert(Math.max(...links.map(l=>l.box.width))-Math.min(...links.map(l=>l.box.width))<1);
-          assert(Math.abs(measured.nav.height-measured.border-measured.paddingBottom-links[0].box.height)<1,'extra nav row/gap');
+          assert(Math.abs(measured.nav.height-measured.border-links[0].box.height)<1,'extra nav row/gap');
           assertBottomOwnership(measured);
-          if(inset!==null)assert.equal(measured.paddingBottom,inset,'inset missing/doubled');
-          if(!baseline)for(const l of links){assert(Math.abs((l.box.y+l.box.height/2)-(l.groupTop+l.groupBottom)/2)<1);assert(Math.abs(l.icon.x+l.icon.width/2-l.box.x-l.box.width/2)<1);assert(Math.abs(l.label.x+l.label.width/2-l.box.x-l.box.width/2)<1);assert(l.label.width<=l.box.width+1,JSON.stringify({language,width,height,scale,surface,inset,label:l.label,link:l.box}));}
+          if(inset!==null)assert.equal(measured.safePaddingBottom,inset,'inset missing/doubled');
+          if(!baseline)for(const l of links){assert(Math.abs((measured.nav.y+measured.border+(measured.nav.height-measured.border)/2)-(l.groupTop+l.groupBottom)/2)<1,'icon and label must center in the visible navigation row');assert(l.box.y+l.box.height<=measured.safeArea.y+measured.safeArea.height-measured.safePaddingBottom+1,'interactive target enters the system gesture inset');assert.equal(l.icon.width,20);assert.equal(l.icon.height,20);assert(Math.abs(l.icon.x+l.icon.width/2-l.box.x-l.box.width/2)<1);assert(Math.abs(l.label.x+l.label.width/2-l.box.x-l.box.width/2)<1);assert(l.label.width<=l.box.width+1,JSON.stringify({language,width,height,scale,surface,inset,label:l.label,link:l.box}));}
           if(!baseline&&scale===1)assert.equal(links[0].box.height,44);
           rows.push({language,width,height,scale,surface,inset:inset===null?'env':inset,...measured,passed:true,physicalDevice:false,publicAssets:visualAssets?'LOADED':'BLOCKED_OFFLINE'});
           if(directory&&width===390&&scale===1)await page.screenshot({path:`${directory}/${surface}-${language}-${inset===null?'env':inset}.png`,fullPage:true});
@@ -72,8 +77,12 @@ export async function checkReopenNavigation(browser,origin,directory,{baseline=f
           const spacerMeasurement=await navGeometry(page);
           assert.throws(()=>assertBottomOwnership(spacerMeasurement),/marginBottom/);
           await spacer.evaluate(node=>node.remove());
+          const duplicateNav=await page.addStyleTag({content:'.shinka-product-nav { padding-bottom:34px !important; }'});
+          const duplicateNavMeasurement=await navGeometry(page);
+          assert.throws(()=>assertBottomOwnership(duplicateNavMeasurement),/system inset/);
+          await duplicateNav.evaluate(node=>node.remove());
           assertBottomOwnership(await navGeometry(page));
-          rows.push({scenario:'duplicate-shell-inset-and-footer-spacer-rejected',passed:true,physicalDevice:false});
+          rows.push({scenario:'duplicate-shell-nav-insets-and-footer-spacer-rejected',passed:true,physicalDevice:false});
         }
         if(surface==='calendar'&&height>width){
           const input=page.locator('[data-calendar-date]').first(),value=await input.getAttribute('data-calendar-date'),before=await navGeometry(page);

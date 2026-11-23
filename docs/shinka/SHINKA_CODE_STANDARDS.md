@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-077
+**Current BuildMarker:** Buildmarker-078
 **Last Updated:** 2026-11-22
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 078 — Navigation geometry
+
+Keep system-safe padding in the shared navigation's transparent outer container. The painted nav contains only its border and auto-growing control row. Regressions must compare the complete icon/label group with the visible row center and verify touch targets remain above the reserved inset. Measure footer/ancestor ownership separately and reject duplicate inset, margin and content overlap. [078 navigation alignment](reports/SHINKA_NAVIGATION_ALIGNMENT_078.md)
 
 ## 076 — Provider and product admission boundaries
 

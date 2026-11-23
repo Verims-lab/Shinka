@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-077
+**Current BuildMarker:** Buildmarker-078
 **Last Updated:** 2026-11-22
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 078 — Navigation painted area
+
+Clean AydanTest fast-forwarded from ebcd1da to main 6fcc651 before editing; their trees match. Before correction, the three routes measured 45/69/79px painted nav height at 0/24/34px inset, while the control row stayed 44px. The system inset extended the row's paint below the centered controls. The shared outer container now reserves that same inset transparently; visible nav stays 45px at normal text and total footer height is preserved. No arbitrary icon offset or new height is introduced. [078 measurements and execution](reports/SHINKA_NAVIGATION_ALIGNMENT_078.md)
 
 ## 077 — Welcome heading frame (2026-11-22)
 
