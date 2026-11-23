@@ -6,6 +6,8 @@ Use this repository to run and edit the app locally, then publish changes back t
 
 Git branch, Builder sync, published frontend and backend data environment are separate. Test is not an isolated database; follow the configured owner sync/publish flow.
 
+Buildmarker-081 / HC-080.0 separates the visible bar boundary from native-consumed safe-area ownership without resizing the navigation. Add `navDiagnostics=1` to the page URL for a local, read-only geometry/build panel; it reads no user data and sends nothing. No native consumption is guessed: the host must zero handled insets or declare its measured consumed amount. Physical Android resolution remains open pending device evidence. [081 investigation and limits](docs/shinka/reports/SHINKA_NAVIGATION_SAFE_AREA_081.md)
+
 Buildmarker-080 / HC-079.0 measures the dock at its native CSS bottom before applying any remaining viewport correction. Android-like tests vary JavaScript height separately from real CSS geometry to prevent double compensation. Physical Android acceptance remains NOT_RUN without device metrics. [080 Android viewport correction](docs/shinka/reports/SHINKA_ANDROID_VIEWPORT_080.md)
 
 Buildmarker-079 / HC-078.0 fixes the shared navigation to the visible viewport. A measured placeholder protects the last content; 12px internal padding stays separate from the system inset. Navigation tests check initial, middle and end scroll, short/tall mobile screens and viewport shrink/restore. [079 fixed navigation](docs/shinka/reports/SHINKA_FIXED_NAVIGATION_079.md)

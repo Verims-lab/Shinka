@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-076",
-    "package_name": "Unified onboarding provider entry",
-    "package_type": "TARGETED_UI",
-    "created_at": "2026-11-22T18:05:00Z",
-    "health_catalog_version": "HC-075.0",
-    "short_summary": "One Apple/Google entry uses native identity, current server Terms and verified onboarding progress. Privacy information reuses checkbox typography.",
-    "full_health_status": "NOT_RUN",
-    "notes": "HC-075.0 updates H05-009, H06-002, H06-009, H13-012 and H13-021. Mandatory real-App checks cover both providers, new/incomplete/completed users, current/absent/outdated/unavailable acceptance and TR/EN typography. Execution is recorded in reports/SHINKA_UNIFIED_AUTHENTICATION_076.md."
-  },
-  {
     "build_marker": "Buildmarker-077",
     "package_name": "Accessible onboarding heading focus",
     "package_type": "TARGETED_UI",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Measure the native CSS fixed anchor before applying any residual visual viewport correction. Separate content occlusion from positioning and retain balanced navigation spacing and system insets.",
     "full_health_status": "NOT_RUN",
     "package_type": "TARGETED_FIX"
+  },
+  {
+    "build_marker": "Buildmarker-081",
+    "package_name": "Visible navigation safe-area boundary and diagnostics",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-11-23T14:17:40.233Z",
+    "health_catalog_version": "HC-080.0",
+    "short_summary": "Remove transparent dock padding without resizing the bar. Position at the unconsumed safe boundary, reserve measured clearance once and expose an opt-in read-only geometry diagnostic. Native-consumed insets require a measured host declaration or correct native zeroing.",
+    "full_health_status": "NOT_RUN",
+    "notes": "HC-080.0 updates H13-012 and H05-009, retaining 188 cases. Mandatory regression measures the painted bar and dock independently with a 30px inset, explicit native-consumed, partial and edge-to-edge ownership, viewport restore and read-only diagnostic checks. The supplied Android video and published 080 assets are evidence of the report, not native viewport telemetry. No native inset bridge exists in this repository; default unverified insets stay protected. Physical resolution remains OPEN_PENDING_DEVICE_MEASUREMENTS_AND_NATIVE_OWNERSHIP. No publication or live data operation. See reports/SHINKA_NAVIGATION_SAFE_AREA_081.md."
   }
 ];

@@ -1,5 +1,5 @@
 import RouteMotion from "@/features/mobile/RouteMotion";
-import { lazy } from "react";
+import { lazy, Suspense, useState } from "react";
 import RouteBoundary from "@/components/RouteBoundary";
 import { Toaster } from "@/components/ui/toaster";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -33,6 +33,12 @@ import { isAuthProbePath } from "@/foundation/probes/authProbeRoute";
 import LoginRedirect from "@/components/LoginRedirect";
 import { currentTerms } from '@/foundation/termsPolicy';
 const TermsGate = lazy(() => import('@/features/onboarding/TermsGate'));
+const NavigationDiagnostics = lazy(() => import('@/foundation/probes/NavigationDiagnostics'));
+
+function NavigationDiagnosticOptIn() {
+  const [enabled] = useState(() => new URLSearchParams(window.location.search).get('navDiagnostics') === '1');
+  return enabled ? <Suspense fallback={null}><NavigationDiagnostics /></Suspense> : null;
+}
 
 function ProductBackdrop() {
   const { pathname } = useLocation();
@@ -122,6 +128,7 @@ function App() {
           <ScrollToTop />
           <ProductBackdrop />
           <RouteMotion><AuthenticatedApp /></RouteMotion>
+          <NavigationDiagnosticOptIn />
         </Router>
         <Toaster />
       </QueryClientProvider>

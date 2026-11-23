@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-080
+**Current BuildMarker:** Buildmarker-081
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,6 +12,10 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 081 — Visible navigation boundary
+
+Preserve the current bar height, 12px internal padding, icon/label sizes, typography, colors and alignment. The painted bar and dock must have the same bottom edge; do not create a transparent safe-padding row. Position the entire bar above only the unconsumed system region and reserve that measured clearance once. A native host that already consumed an inset must zero it before forwarding, or explicitly declare its measured consumed amount in --shinka-native-consumed-bottom (CSS px). Do not infer consumption from Android identity, screen dimensions or stale innerHeight. With no verified host declaration, preserve genuine browser safe areas. This supersedes only 078–080 dock padding ownership, not physical acceptance. [081 evidence and limitations](reports/SHINKA_NAVIGATION_SAFE_AREA_081.md)
 
 ## 080 — Native CSS viewport ownership
 

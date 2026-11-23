@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-080
+**Current BuildMarker:** Buildmarker-081
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 081 — Painted bar, dock and native ownership
+
+Clean AydanTest fast-forwarded from 713fb62 to main eb37ce4 before editing; the new main commit only merges 080. The supplied 11.98-second Android video shows the band on Home and Calendar but contains no CSS/inset telemetry. Public static GETs at 14:07 UTC reported Buildmarker-080 and the current native-edge calibration. A controlled 30px reported/already-consumed inset produced dock bottom 800px versus painted-bar bottom 770px under 080. This verifies a padding mechanism under that explicit native-ownership model, not the actual phone native bounds. ADB and native wrapper source are unavailable. [081 evidence and limitations](reports/SHINKA_NAVIGATION_SAFE_AREA_081.md)
 
 ## 080 — Android double compensation
 
