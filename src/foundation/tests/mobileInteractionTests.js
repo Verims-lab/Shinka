@@ -83,7 +83,8 @@ export const MOBILE_INTERACTION_TESTS = [
   ['MI05', 'Route transitions distinguish tabs/hierarchy/back and respect reduced motion', () => {
     check(!routeMotion('/', '/calendar', 'PUSH', false).x, 'tabs slide');
     check(routeMotion('/you', '/account-privacy', 'PUSH', false).x[0] === 12, 'forward');
-    check(routeMotion('/account-privacy', '/you', 'POP', false).x[0] === -12, 'back');
+    check(!routeMotion('/account-privacy', '/you', 'POP', false).x, 'product navigation has a transformed ancestor');
+    check(routeMotion('/you', '/account-privacy', 'POP', false).x[0] === -12, 'back');
     check(!routeMotion('/', '/you', 'PUSH', true).x && routeMotion('/', '/you', 'PUSH', true).opacity[0] === 1, 'reduced');
   }],
 ];

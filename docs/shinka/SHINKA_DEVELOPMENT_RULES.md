@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-078
-**Last Updated:** 2026-11-22
+**Current BuildMarker:** Buildmarker-079
+**Last Updated:** 2026-11-23
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 079 — Fixed navigation and content reservation
+
+Generate Buildmarker-079 / HC-078.0 once, retaining 075–079. Regress the actual visible viewport bottom separately from the document reservation. Keep dynamic height measurement, single safe-area ownership, 12px internal padding and motion-safe product routes. Require short/tall TR/EN mobile widths, doubled text, scrolling, layout/visual viewport resize, duplicate-inset/static-offset negatives and retained tab routing in Chromium/WebKit. Record incomplete or failed checks without relaxing gates. Deliver only AydanTest. [079 fixed navigation](reports/SHINKA_FIXED_NAVIGATION_079.md)
 
 ## 078 — Shared navigation safe-area ownership
 

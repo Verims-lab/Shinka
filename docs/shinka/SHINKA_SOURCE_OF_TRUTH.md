@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-078
-**Last Updated:** 2026-11-22
+**Current BuildMarker:** Buildmarker-079
+**Last Updated:** 2026-11-23
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 079 — Fixed product navigation
+
+The owner requires viewport-anchored Home/Calendar/Pattern navigation while document content scrolls, balanced 12px internal padding and content-safe measured reservation. System safe space remains outside the painted bar and is not added again when already occluded by a reduced visual viewport. This supersedes the older static-footer policy. Shared You navigation follows the same behavior; product logic, copy, colors and icons remain unchanged. [079 fixed navigation](reports/SHINKA_FIXED_NAVIGATION_079.md)
 
 ## 078 — Shared navigation alignment
 

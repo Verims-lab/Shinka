@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-078
-**Last Updated:** 2026-11-22
+**Current BuildMarker:** Buildmarker-079
+**Last Updated:** 2026-11-23
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
 **Scope:** All source (client, backend, internal tooling).
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 079 — Fixed navigation layout
+
+Measure the shared dock's real border-box height before paint and on size changes; reserve that height plus any occluded viewport region in flow so the last content can scroll above a keyboard. Retained hidden tabs keep their last reservation for scroll restoration. Derive vertical occlusion from visual viewport metrics, with window resize fallback; the dock reserves only the unoccluded system inset. Never transform an ancestor of a fixed product bar. Keep original control type/icon/gap and keyboard indicators. Regress position during scroll and route motion, content clearance and dynamic text height. [079 fixed navigation](reports/SHINKA_FIXED_NAVIGATION_079.md)
 
 ## 078 — Navigation geometry
 

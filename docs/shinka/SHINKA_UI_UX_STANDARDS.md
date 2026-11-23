@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-078
-**Last Updated:** 2026-11-22
+**Current BuildMarker:** Buildmarker-079
+**Last Updated:** 2026-11-23
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
@@ -12,6 +12,12 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 079 — Viewport-anchored product navigation
+
+The owner's current request supersedes 057/059/078's normal-flow footer and minimal internal padding. Keep the shared bar fixed to the visible viewport above the unoccluded system inset. Center each original icon/label group with 12px minimum internal top/bottom padding and the existing 4px gap; allow wrapping and height growth. Reserve its measured total height once in document flow so the last content remains reachable. No arbitrary bottom offset or duplicate safe compensation. Product routes use opacity-only motion to preserve the fixed containing block. [079 fixed navigation](reports/SHINKA_FIXED_NAVIGATION_079.md)
+
+A route containing product navigation must have no transformed motion ancestor, including verified Home rendered on a public entry URL after authentication.
 
 ## 078 — Visible navigation and system inset
 

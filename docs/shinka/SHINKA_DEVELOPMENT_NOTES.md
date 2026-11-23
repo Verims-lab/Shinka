@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-078
-**Last Updated:** 2026-11-22
+**Current BuildMarker:** Buildmarker-079
+**Last Updated:** 2026-11-23
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 079 — Navigation viewport position
+
+Clean AydanTest fast-forwarded from 87371ac to main 80cacdd before editing; the trees match. In the 320x568 baseline, initial Home/Calendar/Pattern nav bottoms were about 657/802/805px at zero inset, outside the visible viewport. They reached the bottom only after document scrolling. 078 asserted document-end ownership, not persistent viewport position. The current dock fixes that contract and uses measured content reservation. Product-route transforms also needed prevention because they capture fixed descendants. [079 measurements and execution](reports/SHINKA_FIXED_NAVIGATION_079.md)
 
 ## 078 — Navigation painted area
 

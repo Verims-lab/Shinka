@@ -2,6 +2,9 @@ import assert from 'node:assert/strict';
 import { FIRST_CONTENT_SOURCE } from '../base44/shared/firstContentSource.js';
 // Real App/router/controllers. Only SDK transport is synthetic. No live data.
 export async function checkProductNavigation(page, origin) {
+  await page.bringToFront();
+  const originalViewport = page.viewportSize();
+  await page.setViewportSize({width:390,height:664});
   const pair = FIRST_CONTENT_SOURCE.pairs[0];
   await page.addInitScript(pair => { window.__dailyFixture = { state: 'ACTIVE_EXISTING_USER', persisted: true, profile: { display_name: 'Synthetic navigation' }, daily: { id: 'navigation-day', shinka_date: '2026-10-20', message_tr_snapshot: pair[2], suggestion_tr_snapshot: pair[3], message_en_snapshot: pair[4], suggestion_en_snapshot: pair[5] } }; }, pair);
   await page.goto(`${origin}/?appFixture=1&sdkSession=user&onboardingState=ACTIVE_EXISTING_USER&language=tr`);
@@ -12,9 +15,27 @@ export async function checkProductNavigation(page, origin) {
   await page.locator('nav a:visible').nth(2).focus();
   assert.deepEqual(await calls(), initial, 'navigation focus/hover triggered backend prefetch');
   const ready = { calendar: '[data-calendar-root] [role=grid]', pattern: '[data-lunar-timeline]', you: '[data-you-consent]', home: '[data-daily-id]' };
+  // The three product tabs share a retained lifetime. You remains its existing
+  // separate route; entering it must not expand this scroll-retention contract.
+  let savedPatternScroll;
+  for(const [index,to] of ['pattern','calendar','pattern','home'].entries()){
+    await page.locator(`nav a:visible[href^="${to==='home'?'/':'/'+to}?lang="]`).first().click();
+    await page.locator(ready[to]).waitFor();
+    if(index===0){await page.evaluate(()=>scrollTo(0,document.documentElement.scrollHeight));await page.waitForFunction(()=>scrollY>0);savedPatternScroll=await page.evaluate(()=>scrollY);}
+    if(index===2){const restored=await page.evaluate(()=>scrollY);assert(Math.abs(restored-savedPatternScroll)<1,`retained product tab scroll changed: ${savedPatternScroll} -> ${restored}`);}
+  }
   for (const to of ['calendar','pattern','you','home','pattern','calendar','home','you']) {
     await page.locator(to === 'you' ? 'a[data-profile-trigger]:visible' : `nav a:visible[href^="${to === 'home' ? '/' : '/' + to}?lang="]`).first().click();
     await page.locator(ready[to]).waitFor();
+    const frames = await page.locator('.shinka-nav-dock:visible').evaluate(async dock => {
+      const samples=[];
+      for(let frame=0;frame<12;frame++){
+        await new Promise(requestAnimationFrame);
+        samples.push({bottom:dock.getBoundingClientRect().bottom,viewport:window.visualViewport?.height+window.visualViewport?.offsetTop||innerHeight,transform:getComputedStyle(dock.closest('[data-route-motion]')).transform});
+      }
+      return samples;
+    });
+    assert(frames.every(sample=>Math.abs(sample.bottom-sample.viewport)<1&&sample.transform==='none'),'route motion displaced the fixed navigation');
   }
   assert.equal((await calls()).filter(c => c.name === 'onboarding' && c.action === 'hydrate').length, 1, 'product navigation remounted resolver');
   assert.equal((await calls()).filter(c => c.name === 'applicationSession').length, 1);
@@ -62,5 +83,6 @@ export async function checkProductNavigation(page, origin) {
     assert.equal(await page.locator('a[href="/internal"]').count(),1,'BFCache returned stale role');
   }
   const realBfcache={status:restored?'PASS':'NOT_RUN',persistedPageShowObserved:restored,syntheticEvent:false,reason:restored?'Actual cached document reverified changed synthetic server role':'This browser/automation run reloaded the document; no cached restoration was observed'};
-  return { passed: true, scope: 'LOCAL_REAL_APP_SYNTHETIC_SDK', hydrationPerProductSession: 1, noBackendPrefetch: true, backForwardReload: true, rapidNavigationLateResponse: true, privacyAndAccountSwitchInvalidate: true, logoutBackConcealsData: true, realBfcache };
+  await page.setViewportSize(originalViewport);
+  return { passed: true, scope: 'LOCAL_REAL_APP_SYNTHETIC_SDK', fixedNavigationDuringRouteMotion:true, retainedPatternScroll:true, hydrationPerProductSession: 1, noBackendPrefetch: true, backForwardReload: true, rapidNavigationLateResponse: true, privacyAndAccountSwitchInvalidate: true, logoutBackConcealsData: true, realBfcache };
 }
