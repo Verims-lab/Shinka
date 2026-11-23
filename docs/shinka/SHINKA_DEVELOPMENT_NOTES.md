@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-081
+**Current BuildMarker:** Buildmarker-082
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 082 — Null diagnostic snapshot reproduced
+
+Clean AydanTest fast-forwarded from 3d4868a to main 343ac73 before editing; that main commit only merges 081. Static published assets report Buildmarker-081 at 2026-11-23 19:25 UTC. The old useState snapshot can run before authenticated product navigation mounts and never refresh automatically; the action row can scroll out of view. A held-hydration real-App test reproduces null bounds after navigation is visible. The two user screenshots show safeBottom=48 and declaration=0 but omit bar and usable viewport bounds; exact native ownership is still unverified. [082 investigation and execution](reports/SHINKA_NAVIGATION_DIAGNOSTICS_082.md)
 
 ## 081 — Painted bar, dock and native ownership
 

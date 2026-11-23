@@ -1,4 +1,5 @@
 import RouteMotion from "@/features/mobile/RouteMotion";
+import { NavigationGeometryProvider } from '@/features/mobile/NavigationGeometryContext';
 import { lazy, Suspense, useState } from "react";
 import RouteBoundary from "@/components/RouteBoundary";
 import { Toaster } from "@/components/ui/toaster";
@@ -122,7 +123,7 @@ function App() {
     );
   return (
     <>
-    <AuthProvider>
+    <NavigationGeometryProvider><AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
         <Router>
           <ScrollToTop />
@@ -132,7 +133,7 @@ function App() {
         </Router>
         <Toaster />
       </QueryClientProvider>
-    </AuthProvider>
+    </AuthProvider></NavigationGeometryProvider>
     </>
   );
 }

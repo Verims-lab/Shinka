@@ -235,7 +235,7 @@ export async function checkSafeAreaOwnership(browser,origin,directory) {
       try {
         for(const [surface,route,ready] of surfaces) {
           await open(page,origin,route,ready);
-          for(const [mode,inset,consumed] of [['native-consumed',30,30],['edge-to-edge',30,0],['partly-consumed',30,12],['no-inset',0,0]]) {
+          for(const [mode,inset,consumed] of [['native-consumed',30,30],['edge-to-edge',30,0],['partly-consumed',30,12],['no-inset',0,0],['native-consumed-48',48,48],['edge-to-edge-48',48,0]]) {
             await page.evaluate(({inset,consumed})=>{
               document.documentElement.style.setProperty('--safe-bottom',inset+'px');
               document.documentElement.style.setProperty('--shinka-native-consumed-bottom',consumed+'px');
@@ -246,7 +246,7 @@ export async function checkSafeAreaOwnership(browser,origin,directory) {
               for(const stage of ['initial','end']) {
                 await scroll(page,stage);await settled(page);
                 const measured=await navGeometry(page),navBottom=measured.nav.y+measured.nav.height,dockBottom=measured.dock.y+measured.dock.height;
-                // Independent native bounds: a 30px external system bar is
+                // Independent native bounds: a 30/48px external system bar is
                 // outside the usable viewport in consumed mode, inside in edge
                 // mode. Neither dock padding nor app offsets define this edge.
                 const expectedBottom=height-Math.max(0,inset-consumed);
@@ -277,16 +277,29 @@ export async function checkNavigationDiagnostic(browser,origin) {
   try {
     await open(page,origin,'/','[data-daily-id]');
     assert.equal(await page.locator('[data-navigation-diagnostics]').count(),0,'diagnostic must be opt-in');
-    await page.goto(origin+'/?appFixture=1&sdkSession=admin&onboardingState=ACTIVE_EXISTING_USER&navDiagnostics=1');
-    await page.locator('[data-daily-id]').waitFor();
+    await page.goto(origin+'/?appFixture=1&sdkSession=admin&onboardingState=ACTIVE_EXISTING_USER&navDiagnostics=1&holdHydration=1');
     const panel=page.locator('[data-navigation-diagnostics]');await panel.waitFor();
-    for(const [mode,consumed] of [['unverified',0],['declared-consumed',30]]) {
-      await page.evaluate(consumed=>{
-        document.documentElement.style.setProperty('--safe-bottom','30px');
+    const sample=async()=>JSON.parse(await panel.locator('pre').innerText());
+    const waiting=await sample();
+    assert.equal(waiting.bar,null,'held hydration must not invent navigation bounds');
+    assert.equal(waiting.measurementState,'WAITING_FOR_NAVIGATION');
+    assert.equal(waiting.dockPaddingBottom,null,'an unmounted dock is unmeasured, not zero padding');
+    await page.evaluate(()=>window.__authFixture.releaseHydration());
+    await page.locator('[data-daily-id]').waitFor();
+    await page.waitForFunction(()=>JSON.parse(document.querySelector('[data-navigation-diagnostics] pre').textContent).bar!==null,null,{timeout:5000});
+    const mounted=await sample();
+    assert.equal(mounted.measurementState,'MEASURED');
+    assert.equal(mounted.navigationSource,'REGISTERED_ELEMENT_REFERENCES');
+    assert(mounted.bar&&mounted.dock&&mounted.placeholder,'automatically measure all mounted references');
+    rows.push({scenario:'diagnostic-after-held-mount',sample:mounted,passed:true,physicalDevice:false});
+    for(const [mode,inset,consumed] of [['unverified',30,0],['declared-consumed',30,30],['unverified-48',48,0],['declared-consumed-48',48,48]]) {
+      await page.evaluate(({inset,consumed})=>{
+        document.documentElement.style.setProperty('--safe-bottom',inset+'px');
         document.documentElement.style.setProperty('--shinka-native-consumed-bottom',consumed+'px');
         dispatchEvent(new Event('resize'));
-      },consumed);
+      },{inset,consumed});
       await settled(page);
+      await page.waitForFunction(expected=>JSON.parse(document.querySelector('[data-navigation-diagnostics] pre').textContent).visibleBottomToBar===expected,inset-consumed);
       const before=await navGeometry(page),calls=await page.evaluate(()=>window.__authFixture.calls.length);
       await panel.getByRole('button',{name:'Ölçümü yenile'}).click();
       const sample=JSON.parse(await panel.locator('pre').innerText());
@@ -295,16 +308,40 @@ export async function checkNavigationDiagnostic(browser,origin) {
       assert.equal(sample.nativeWindowBounds,'NOT_OBSERVABLE_FROM_WEB');
       assert.equal(sample.dockPaddingBottom,0);assert.equal(sample.dockToBar,0);
       assert.equal(sample.nativeConsumedBottomDeclaration,consumed);
-      assert.equal(sample.visibleBottomToBar,30-consumed);
-      assert.deepEqual(Object.keys(sample).sort(),['build','physicalVerification','nativeWindowBounds','viewport','screen','standalone','viewportFit','safeBottom','nativeConsumedBottomDeclaration','nativeConsumptionVerified','bar','dock','placeholder','dockPaddingBottom','dockBottomInset','residualViewportOffset','viewportOcclusion','visibleBottomToBar','visibleBottomToDock','dockToBar'].sort(),'diagnostic field whitelist changed');
+      assert.equal(sample.visibleBottomToBar,inset-consumed);
+      assert.deepEqual(Object.keys(sample).sort(),['build','measurementState','navigationSource','physicalVerification','nativeWindowBounds','viewport','screen','standalone','viewportFit','safeBottom','nativeConsumedBottomDeclaration','nativeConsumptionVerified','bar','dock','placeholder','dockPaddingBottom','dockBottomInset','residualViewportOffset','viewportOcclusion','visibleBottomToBar','visibleBottomToDock','dockToBar'].sort(),'diagnostic field whitelist changed');
       assert(!JSON.stringify(sample).includes('Ada'),'diagnostic exposed fixture identity');
       assert.equal(await page.evaluate(()=>window.__authFixture.calls.length),calls,'sampling must not call a service');
       const after=await navGeometry(page);assert.deepEqual(after.nav,before.nav,'sampling moved the navigation');
       rows.push({scenario:'read-only-opt-in-diagnostic',mode,sample,passed:true,physicalDevice:false});
     }
     await page.locator('nav.shinka-product-nav:visible a[href^="/calendar"]').click();await page.locator('[data-calendar-date]').first().waitFor();
-    await panel.getByRole('button',{name:'Ölçümü yenile'}).click();
+    await page.waitForFunction(()=>JSON.parse(document.querySelector('[data-navigation-diagnostics] pre').textContent).placeholder.top===document.querySelector('[data-calendar-root] .shinka-nav-safe-area').getBoundingClientRect().top);
+    assert((await sample()).bar,'retained hidden Home must not hide the active Calendar reference');
     assert.equal(await panel.count(),1,'retained tabs duplicated the diagnostic');
+    await page.locator('nav.shinka-product-nav:visible a[href^="/pattern"]').click();await page.locator('[data-lunar-timeline]').waitFor();
+    await page.waitForFunction(()=>JSON.parse(document.querySelector('[data-navigation-diagnostics] pre').textContent).placeholder.top===document.querySelector('[data-pattern-root] .shinka-nav-safe-area').getBoundingClientRect().top);
+    const beforeResize=await sample();await page.setViewportSize({width:390,height:600});
+    await page.waitForFunction(()=>JSON.parse(document.querySelector('[data-navigation-diagnostics] pre').textContent).viewport.clientHeight===600);
+    assert.notEqual((await sample()).bar.bottom,beforeResize.bar.bottom,'resize did not update the registered bar');
+    await panel.locator('pre').evaluate(pre=>{pre.scrollTop=pre.scrollHeight;});
+    assert(await panel.getByRole('button',{name:'Ölçümü yenile'}).isVisible(),'diagnostic actions must remain visible while JSON scrolls');
+    const panelBounds=await panel.boundingBox(),buttonBounds=await panel.getByRole('button',{name:'Ölçümü yenile'}).boundingBox();
+    assert(buttonBounds.y>=panelBounds.y&&buttonBounds.y+buttonBounds.height<=panelBounds.y+panelBounds.height);
+    await page.evaluate(()=>{const original=document.querySelectorAll.bind(document);window.__navSelectorCalls=0;window.__restoreNavigationSelectors=()=>{document.querySelectorAll=original;};document.querySelectorAll=function(selector){if(selector==='nav.shinka-product-nav'){window.__navSelectorCalls++;return [];}return original(selector);};});
+    await panel.getByRole('button',{name:'Ölçümü yenile'}).click();
+    assert((await sample()).bar,'refresh must use actual registered elements, not a fragile selector');
+    assert.equal(await page.evaluate(()=>window.__navSelectorCalls),0);
+    await page.evaluate(()=>window.__restoreNavigationSelectors());
+    rows.push({scenario:'diagnostic-direct-references-retained-tabs-resize-and-accessible-actions',passed:true,physicalDevice:false});
+    await page.evaluate(()=>{window.__authFixture.holdOperation('onboarding');dispatchEvent(new Event('shinka-health-access-changed'));});
+    await page.waitForFunction(()=>!document.querySelector('[data-pattern-root]'));
+    await page.waitForFunction(()=>JSON.parse(document.querySelector('[data-navigation-diagnostics] pre').textContent).measurementState==='WAITING_FOR_NAVIGATION');
+    const unmounted=await sample();assert.equal(unmounted.bar,null);assert.equal(unmounted.dock,null);assert.equal(unmounted.dockPaddingBottom,null);
+    await page.evaluate(()=>window.__authFixture.releaseOperation('onboarding'));
+    await page.locator('[data-lunar-timeline]').waitFor();
+    await page.waitForFunction(()=>JSON.parse(document.querySelector('[data-navigation-diagnostics] pre').textContent).measurementState==='MEASURED');
+    rows.push({scenario:'diagnostic-cleans-unmounted-references-and-remeasures-on-return',passed:true,physicalDevice:false});
     await panel.getByRole('button',{name:'Kapat'}).click();assert.equal(await panel.count(),0);
     assert.equal(errors.length,0);return rows;
   }finally{await context.close();}

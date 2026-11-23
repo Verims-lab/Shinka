@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-081
+**Current BuildMarker:** Buildmarker-082
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,6 +12,10 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 082 — Mounted navigation measurements
+
+Preserve the whole navigation appearance and existing safe-area ownership. The optional diagnostic must automatically measure actual mounted/visible bar, dock and placeholder references; retained hidden tabs must not supply stale bounds. Before mount show WAITING_FOR_NAVIGATION and null unavailable metrics, not zero padding. Refresh/Close remain visible while only JSON scrolls. Reported safeBottom=48 with a zero consumption declaration does not establish native ownership; retain genuine iOS and Android protection until measured ownership exists. [082 investigation and execution](reports/SHINKA_NAVIGATION_DIAGNOSTICS_082.md)
 
 ## 081 — Visible navigation boundary
 

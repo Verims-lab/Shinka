@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-081
+**Current BuildMarker:** Buildmarker-082
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 082 — Direct references and measurement lifecycle
+
+Use an App-scoped element registry with deterministic register/unregister and subscription cleanup, not global selector discovery or user state. The opt-in diagnostic follows mount/unmount, active retained elements, owner layout, scroll and viewport events. Coalesce sampling to animation frames and compare snapshots before updating. Keep the fixed geometry/build whitelist, no SDK/storage/network/clipboard data access, explicit waiting state and null unmeasured dimensions. Do not change navigation styles or zero Android safe areas from the 48px value alone. [082 investigation and execution](reports/SHINKA_NAVIGATION_DIAGNOSTICS_082.md)
 
 ## 081 — Safe-area ownership and diagnostic isolation
 
