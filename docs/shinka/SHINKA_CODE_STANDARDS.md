@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-079
+**Current BuildMarker:** Buildmarker-080
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 080 — Independent viewport geometry
+
+Use actual native CSS dock geometry for residual positioning. Use the document's client viewport for content occlusion; innerHeight is diagnostic input, not the positioning authority. Keep the safe-inset calculation separate from the residual offset and re-align when a retained dock becomes visible. Regression oracles must independently vary real CSS viewport size and exposed JavaScript metrics, rather than repeating the application formula. Preserve observer cleanup, focus and zoom behavior. [080 diagnosis and acceptance](reports/SHINKA_ANDROID_VIEWPORT_080.md)
 
 ## 079 — Fixed navigation layout
 

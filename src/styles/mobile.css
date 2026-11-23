@@ -11,7 +11,7 @@ button, [role="tab"], nav a, svg[aria-hidden="true"] { -webkit-user-select: none
   position: fixed;
   inset: auto var(--safe-right) var(--shinka-viewport-bottom, 0px) var(--safe-left);
   z-index: 30;
-  padding-bottom: max(0px, calc(var(--safe-bottom) - var(--shinka-viewport-bottom, 0px)));
+  padding-bottom: max(0px, calc(var(--safe-bottom) - var(--shinka-viewport-occlusion, 0px)));
 }
 .shinka-safe-shell { padding-bottom: 0; }
 .shinka-safe-shell :is(input, select, textarea, button, a, [tabindex]) { scroll-margin-bottom: calc(var(--shinka-nav-height, 0px) + 24px); }

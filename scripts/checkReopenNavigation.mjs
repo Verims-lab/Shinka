@@ -15,11 +15,11 @@ const open = async (page, origin, route, ready, language = 'tr') => {
 const settled = async page => page.waitForFunction(() => {
   const nav = [...document.querySelectorAll('nav.shinka-product-nav')].find(el => el.getClientRects().length);
   if(!nav)return false;
-  const dock=nav.closest('.shinka-nav-dock'),covered=parseFloat(dock.style.getPropertyValue('--shinka-viewport-bottom'))||0;
+  const dock=nav.closest('.shinka-nav-dock'),covered=parseFloat(dock.style.getPropertyValue('--shinka-viewport-occlusion'))||0;
   return Math.abs(nav.closest('.shinka-nav-safe-area').getBoundingClientRect().height-dock.getBoundingClientRect().height-covered)<.5;
 });
 const scroll = async (page, stage) => page.evaluate(async stage => {
-  const maximum = document.documentElement.scrollHeight - innerHeight;
+  const maximum = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   scrollTo(0, stage === 'initial' ? 0 : stage === 'middle' ? maximum / 2 : maximum);
   await new Promise(requestAnimationFrame);
 }, stage);
@@ -29,7 +29,8 @@ export const navGeometry = page => page.locator('nav.shinka-product-nav:visible'
   const dock = nav.closest('.shinka-nav-dock'), space = nav.closest('.shinka-nav-safe-area'), shell = nav.closest('.shinka-safe-shell'), main = shell.querySelector('main');
   const style = getComputedStyle(nav), dockStyle = getComputedStyle(dock), root = getComputedStyle(document.documentElement);
   const navBox = nav.getBoundingClientRect(), spaceBox = space.getBoundingClientRect(), mainBox = main.getBoundingClientRect();
-  const viewport = window.visualViewport, visibleBottom = viewport ? viewport.height + viewport.offsetTop : innerHeight;
+  const layoutHeight=document.documentElement.clientHeight;
+  const viewport = window.visualViewport, visibleBottom = viewport?.scale===1 ? Math.min(layoutHeight,viewport.height+viewport.offsetTop) : layoutHeight;
   return {
     nav:box(nav), dock:box(dock), space:box(space), position:style.position, dockPosition:dockStyle.position,
     paddingBottom:parseFloat(style.paddingBottom), safePaddingBottom:parseFloat(dockStyle.paddingBottom), safeBackground:dockStyle.backgroundColor,
@@ -39,7 +40,7 @@ export const navGeometry = page => page.locator('nav.shinka-product-nav:visible'
     shellTail:shell.getBoundingClientRect().bottom-spaceBox.bottom, documentTail:document.documentElement.scrollHeight-(spaceBox.bottom+scrollY),
     contentOverlap:Math.max(0,main.lastElementChild.getBoundingClientRect().bottom-navBox.top),
     safeBottom:parseFloat(root.getPropertyValue('--safe-bottom'))||0, safeLeft:parseFloat(root.getPropertyValue('--safe-left'))||0, safeRight:parseFloat(root.getPropertyValue('--safe-right'))||0,
-    viewport:innerWidth, viewportHeight:innerHeight, visibleBottom, covered:Math.max(0,innerHeight-visibleBottom), overflow:document.documentElement.scrollWidth,
+    viewport:innerWidth, viewportHeight:innerHeight, layoutHeight, visibleBottom, covered:Math.max(0,layoutHeight-visibleBottom), overflow:document.documentElement.scrollWidth,
     scrollY, motionTransform:getComputedStyle(nav.closest('[data-route-motion]') || shell).transform,
     links:[...nav.children].map(link => {
       const icon=box(link.querySelector('svg')),label=box(link.querySelector('span')),rect=box(link),css=getComputedStyle(link);
@@ -58,8 +59,8 @@ function assertBottomOwnership(measured, {end=false} = {}) {
     assert(Math.abs(measured[key])<1,key+': duplicate footer space');
   assert.equal(measured.safeBackground,'rgba(0, 0, 0, 0)','system inset must remain separate from the painted bar');
   const remainingSafe=Math.max(0,measured.safeBottom-measured.covered);
-  assert(Math.abs(measured.safePaddingBottom-remainingSafe)<1,'system inset missing/doubled');
   assert(Math.abs(measured.dock.y+measured.dock.height-measured.visibleBottom)<1,'dock bottom differs from the visible viewport');
+  assert(Math.abs(measured.safePaddingBottom-remainingSafe)<1,'system inset missing/doubled');
   assert(Math.abs(measured.nav.y+measured.nav.height-(measured.visibleBottom-remainingSafe))<1,'blank gap below the painted navigation');
   assert(Math.abs(measured.dock.height-measured.nav.height-remainingSafe)<1,'extra dock row/gap');
   assert(Math.abs(measured.space.height-measured.dock.height-measured.covered)<1,'content reservation differs from navigation and occluded viewport height');
@@ -84,7 +85,7 @@ function assertBottomOwnership(measured, {end=false} = {}) {
   }
 }
 
-async function rejectExtraSpace(page) {
+export async function rejectExtraSpace(page) {
   for(const [css,message] of [
     ['.shinka-safe-shell {padding-bottom:34px!important}',/shellPaddingBottom/],
     ['.shinka-product-nav {padding-bottom:34px!important}',/system inset/],
@@ -97,6 +98,10 @@ async function rejectExtraSpace(page) {
     const measured=await navGeometry(page);
     assert.throws(()=>assertBottomOwnership(measured),message);
     await injected.evaluate(node=>node.remove());
+    // Each intentionally invalid CSS configuration must leave a fresh native
+    // measurement before the next independent negative fixture.
+    await page.evaluate(()=>dispatchEvent(new Event('resize')));
+    await settled(page);assertBottomOwnership(await navGeometry(page));
   }
 }
 
@@ -146,6 +151,71 @@ export async function checkNavigationEntryRoutes(browser,origin) {
   }finally{await context.close();}
 }
 
+export async function checkAndroidViewportGeometry(browser,origin,directory) {
+  const rows=[];
+  if(directory)await mkdir(directory,{recursive:true});
+  const phases=[
+    ['native-resized-stale-inner',640,740,null,0],
+    ['normal',800,null,null,0],
+    ['visual-only-toolbar',800,null,700,0],
+    ['native-toolbar-resize',700,800,null,0],
+    ['keyboard-visual-only',800,null,480,0],
+    ['keyboard-native-resized',480,800,null,0],
+    ['visual-pan',800,null,460,20],
+    ['restored',800,null,null,0],
+  ];
+  try{
+    for(const width of [320,360,390,430]){
+      const context=await browser.newContext({viewport:{width,height:800},locale:'tr-TR',isMobile:true,hasTouch:true}),page=await context.newPage(),errors=[];
+      page.on('pageerror',error=>errors.push(error.message));
+      await page.route('**/*',route=>new URL(route.request().url()).origin===origin?route.continue():route.abort());
+      await seed(page);
+      await page.addInitScript(()=>{
+        // CSS and clientHeight retain real browser geometry. Only the exposed
+        // JS height and visual metrics can vary, independently of that geometry.
+        const native=window.visualViewport,innerGetter=Object.getOwnPropertyDescriptor(window,'innerHeight')?.get;
+        const state={inner:null,height:null,offsetTop:0},viewport=new EventTarget();
+        Object.defineProperty(window,'innerHeight',{configurable:true,get:()=>state.inner??(innerGetter?innerGetter.call(window):document.documentElement.clientHeight)});
+        Object.defineProperties(viewport,{
+          height:{get:()=>state.height??native?.height??document.documentElement.clientHeight},
+          width:{get:()=>native?.width??document.documentElement.clientWidth},
+          offsetTop:{get:()=>state.offsetTop},scale:{get:()=>1},
+        });
+        for(const name of ['resize','scroll'])native?.addEventListener(name,()=>viewport.dispatchEvent(new Event(name)));
+        Object.defineProperty(window,'visualViewport',{configurable:true,value:viewport});
+        window.__navigationViewportFixture=patch=>{Object.assign(state,patch);viewport.dispatchEvent(new Event('resize'));viewport.dispatchEvent(new Event('scroll'));};
+      });
+      try{
+        for(const [surface,route] of surfaces){
+          await open(page,origin,route,`[data-${surface}-root]`);
+          for(const inset of [0,24,34])for(const [phase,cssHeight,reportedInner,visualHeight,offsetTop] of phases){
+            await page.setViewportSize({width,height:cssHeight});
+            await page.evaluate(({inset,reportedInner,visualHeight,offsetTop})=>{
+              document.documentElement.style.setProperty('--safe-bottom',inset+'px');
+              window.__navigationViewportFixture({inner:reportedInner,height:visualHeight,offsetTop});
+            },{inset,reportedInner,visualHeight,offsetTop});
+            // The oracle is Playwright's actual CSS viewport, not innerHeight or
+            // the application offset. Real CSS fixed positioning is not mocked.
+            const expectedBottom=Math.min(cssHeight,(visualHeight??cssHeight)+offsetTop),expectedInset=Math.max(0,inset-(cssHeight-expectedBottom));
+            for(const stage of ['initial','end']){
+              await page.evaluate(async stage=>{scrollTo(0,stage==='end'?document.documentElement.scrollHeight-document.documentElement.clientHeight:0);await new Promise(requestAnimationFrame);await new Promise(requestAnimationFrame);},stage);
+              const measured=await navGeometry(page),dockBottom=measured.dock.y+measured.dock.height;
+              const actualGap=expectedBottom-dockBottom,paintedGap=expectedBottom-(measured.nav.y+measured.nav.height)-expectedInset;
+              const row={surface,width,phase,inset,stage,cssHeight,reportedInner,visualHeight,offsetTop,expectedBottom,expectedInset,actualGap,paintedGap,...measured,physicalDevice:false};
+              rows.push(row);
+              assert(Math.abs(actualGap)<1&&Math.abs(paintedGap)<1,JSON.stringify({failure:'ANDROID_VIEWPORT_GAP',surface,width,phase,inset,stage,actualGap,paintedGap,cssHeight,innerHeight:measured.viewportHeight,visualBottom:measured.visibleBottom,appliedOffset:await page.locator('.shinka-nav-dock:visible').evaluate(el=>el.style.getPropertyValue('--shinka-viewport-bottom'))}));
+              assertBottomOwnership(measured,{end:stage==='end'});row.passed=true;
+              if(directory&&width===390&&inset===0&&stage==='initial'&&['native-resized-stale-inner','keyboard-native-resized'].includes(phase))await page.screenshot({path:`${directory}/${surface}-${phase}.png`});
+            }
+          }
+        }
+        assert.equal(errors.length,0);
+      }finally{await context.close();}
+    }
+    return rows;
+  }finally{if(directory)await writeFile(`${directory}/android-viewport.json`,JSON.stringify(rows,null,2));}
+}
+
 // Real App, isolated SDK transport. No inference about native system bars.
 export async function checkReopenNavigation(browser,origin,directory,{visualAssets=false}={}) {
   const fontCss=(await readFile('index.html','utf8')).match(/href="(https:\/\/fonts.googleapis.com\/css2[^"]+)"/)[1];
@@ -189,5 +259,6 @@ export async function checkReopenNavigation(browser,origin,directory,{visualAsse
   }
   rows.push(...await checkVisibleViewport(browser,origin));
   rows.push(...await checkNavigationEntryRoutes(browser,origin));
+  rows.push(...await checkAndroidViewportGeometry(browser,origin,directory ? `${directory}/android` : undefined));
   if(directory)await writeFile(directory+'/navigation.json',JSON.stringify(rows,null,2));return rows;
 }

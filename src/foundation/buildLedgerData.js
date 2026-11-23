@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-075",
-    "package_name": "Onboarding legal readiness and recovery",
-    "package_type": "TARGETED_FIX",
-    "created_at": "2026-11-20T15:00:00Z",
-    "health_catalog_version": "HC-074.0",
-    "short_summary": "Keep missing legal configuration visible; separate readiness, explicit version-bound acceptance and fresh session admission. Read-only return/retry, bounded cancellation and transport diagnostics preserve onboarding and lifecycle authority.",
-    "full_health_status": "NOT_RUN",
-    "notes": "Owner approved terms-v1.0 on 2026-11-20 (product approval, not independent legal review). Live public policy CONFIGURATION_REQUIRED/version null; no management access, setting not applied. Chromium/WebKit 820/820 each; 44 legal and 32 auth-first scenarios each; mandatory quality/size gates PASS. HC changes H05-009/H06-008/H06-009/H13-012, 0 added/removed. Real OAuth/APK and owner configuration/publish remain open. See reports/SHINKA_ONBOARDING_RECOVERY_075.md."
-  },
-  {
     "build_marker": "Buildmarker-076",
     "package_name": "Unified onboarding provider entry",
     "package_type": "TARGETED_UI",
@@ -49,5 +39,15 @@ export default [
     "package_name": "Viewport-anchored product navigation",
     "created_at": "2026-11-23T08:53:27Z",
     "full_health_status": "NOT_RUN"
+  },
+  {
+    "package_name": "Android navigation viewport compensation",
+    "created_at": "2026-11-23T10:29:36Z",
+    "notes": "HC-079.0 updates H13-012 and H05-009, retaining 188 cases. A real CSS viewport oracle reproduces the 079 stale-innerHeight double compensation instead of repeating its offset formula. The mandatory navigation runner includes Android-like native and visual-only resize scenarios. Static published assets were inspected without application/data endpoints; physical Android and exact installed bundle remain NOT_RUN. See reports/SHINKA_ANDROID_VIEWPORT_080.md.",
+    "build_marker": "Buildmarker-080",
+    "health_catalog_version": "HC-079.0",
+    "short_summary": "Measure the native CSS fixed anchor before applying any residual visual viewport correction. Separate content occlusion from positioning and retain balanced navigation spacing and system insets.",
+    "full_health_status": "NOT_RUN",
+    "package_type": "TARGETED_FIX"
   }
 ];

@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-079
+**Current BuildMarker:** Buildmarker-080
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 080 — Android double compensation
+
+Clean AydanTest fast-forwarded from ddecb3b to main 9d84260, preserving the 079 merge and Vite plugin update. A new independent configuration measured a 100 CSS px gap under 079: actual CSS viewport 640px, exposed innerHeight 740px and visual bottom 640px, with an unnecessary 100px applied offset. Public static assets reported Buildmarker-079 and the same formula. The fix measures native CSS placement first. Exact phone metrics and installed bundle identity remain unverified; there is no available Android debugging bridge/native project in this checkout. [080 diagnosis and execution](reports/SHINKA_ANDROID_VIEWPORT_080.md)
 
 ## 079 — Navigation viewport position
 

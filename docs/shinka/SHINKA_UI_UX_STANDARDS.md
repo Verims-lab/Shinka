@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-079
+**Current BuildMarker:** Buildmarker-080
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,6 +12,10 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 080 — Native CSS viewport ownership
+
+Preserve the fixed shared bar, original styling and balanced 12px internal padding. Measure its native bottom:0 position before applying a residual visual-viewport correction. Never add innerHeight's difference when CSS already accounts for the reduced viewport. System inset and content occlusion are separate from that positioning correction. Native-consumed insets must be zeroed by the native wrapper; do not remove valid web safe areas based on a screenshot. This supersedes only 079's height-difference calculation. [080 diagnosis and acceptance](reports/SHINKA_ANDROID_VIEWPORT_080.md)
 
 ## 079 — Viewport-anchored product navigation
 
