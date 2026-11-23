@@ -4,91 +4,182 @@ import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { doubleText } from './mobileSurfaceMeasurements.mjs';
 import { FIRST_CONTENT_SOURCE } from '../base44/shared/firstContentSource.js';
 
+const surfaces = [['home','/','[data-daily-id]'],['calendar','/calendar','[data-calendar-date]'],['pattern','/pattern','[data-lunar-timeline]']];
+const seed = async page => page.addInitScript(pair => {
+  window.__dailyFixture = {state:'ACTIVE_EXISTING_USER',persisted:true,profile:{display_name:'Ada'},daily:{id:'navigation-existing',shinka_date:'2026-10-20',message_tr_snapshot:pair[2],suggestion_tr_snapshot:pair[3],message_en_snapshot:pair[4],suggestion_en_snapshot:pair[5]}};
+}, FIRST_CONTENT_SOURCE.pairs[0]);
+const open = async (page, origin, route, ready, language = 'tr') => {
+  await page.goto(origin+route+'?appFixture=1&sdkSession=admin&onboardingState=ACTIVE_EXISTING_USER&language='+language);
+  await page.locator(ready).first().waitFor();
+};
+const settled = async page => page.waitForFunction(() => {
+  const nav = [...document.querySelectorAll('nav.shinka-product-nav')].find(el => el.getClientRects().length);
+  if(!nav)return false;
+  const dock=nav.closest('.shinka-nav-dock'),covered=parseFloat(dock.style.getPropertyValue('--shinka-viewport-bottom'))||0;
+  return Math.abs(nav.closest('.shinka-nav-safe-area').getBoundingClientRect().height-dock.getBoundingClientRect().height-covered)<.5;
+});
+const scroll = async (page, stage) => page.evaluate(async stage => {
+  const maximum = document.documentElement.scrollHeight - innerHeight;
+  scrollTo(0, stage === 'initial' ? 0 : stage === 'middle' ? maximum / 2 : maximum);
+  await new Promise(requestAnimationFrame);
+}, stage);
+
 export const navGeometry = page => page.locator('nav.shinka-product-nav:visible').evaluate(nav => {
-  const box = e => { const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height}; };
-  const style=getComputedStyle(nav),safeArea=nav.closest('.shinka-nav-safe-area'),shell=nav.closest('.shinka-safe-shell'),main=shell.querySelector('main'),mainBox=main.getBoundingClientRect(),navBox=nav.getBoundingClientRect(),safeBox=safeArea.getBoundingClientRect();
-  return {nav:box(nav),safeArea:box(safeArea),safePaddingBottom:parseFloat(getComputedStyle(safeArea).paddingBottom),safeBackground:getComputedStyle(safeArea).backgroundColor,
-    paddingBottom:parseFloat(style.paddingBottom),border:parseFloat(style.borderTopWidth),
-    position:style.position,marginBottom:parseFloat(style.marginBottom),shellPaddingBottom:parseFloat(getComputedStyle(shell).paddingBottom),
-    contentPaddingBottom:parseFloat(getComputedStyle(main).paddingBottom),contentNavGap:navBox.top-mainBox.bottom,
-    shellTail:shell.getBoundingClientRect().bottom-safeBox.bottom,documentTail:document.documentElement.scrollHeight-(safeBox.bottom+scrollY),
+  const box = element => { const r = element.getBoundingClientRect(); return {x:r.x,y:r.y,width:r.width,height:r.height}; };
+  const dock = nav.closest('.shinka-nav-dock'), space = nav.closest('.shinka-nav-safe-area'), shell = nav.closest('.shinka-safe-shell'), main = shell.querySelector('main');
+  const style = getComputedStyle(nav), dockStyle = getComputedStyle(dock), root = getComputedStyle(document.documentElement);
+  const navBox = nav.getBoundingClientRect(), spaceBox = space.getBoundingClientRect(), mainBox = main.getBoundingClientRect();
+  const viewport = window.visualViewport, visibleBottom = viewport ? viewport.height + viewport.offsetTop : innerHeight;
+  return {
+    nav:box(nav), dock:box(dock), space:box(space), position:style.position, dockPosition:dockStyle.position,
+    paddingBottom:parseFloat(style.paddingBottom), safePaddingBottom:parseFloat(dockStyle.paddingBottom), safeBackground:dockStyle.backgroundColor,
+    border:parseFloat(style.borderTopWidth), marginBottom:parseFloat(style.marginBottom), dockMarginBottom:parseFloat(dockStyle.marginBottom),
+    shellPaddingBottom:parseFloat(getComputedStyle(shell).paddingBottom), spacePaddingBottom:parseFloat(getComputedStyle(space).paddingBottom),
+    contentPaddingBottom:parseFloat(getComputedStyle(main).paddingBottom), contentSpaceGap:spaceBox.top-mainBox.bottom,
+    shellTail:shell.getBoundingClientRect().bottom-spaceBox.bottom, documentTail:document.documentElement.scrollHeight-(spaceBox.bottom+scrollY),
     contentOverlap:Math.max(0,main.lastElementChild.getBoundingClientRect().bottom-navBox.top),
-    viewport:innerWidth,overflow:document.documentElement.scrollWidth,
-    links:[...nav.children].map(a=>{const icon=a.querySelector('svg'),range=document.createRange();
-      const label=a.querySelector('span')||[...a.childNodes].find(n=>n.nodeType===Node.TEXT_NODE&&n.textContent.trim());
-      range.selectNodeContents(label);const text=label instanceof Element?label.getBoundingClientRect():range.getBoundingClientRect(),r=box(a),i=box(icon);
-      return {box:r,icon:i,label:{x:text.x,y:text.y,width:text.width,height:text.height},groupTop:i.y,groupBottom:text.bottom};})};
+    safeBottom:parseFloat(root.getPropertyValue('--safe-bottom'))||0, safeLeft:parseFloat(root.getPropertyValue('--safe-left'))||0, safeRight:parseFloat(root.getPropertyValue('--safe-right'))||0,
+    viewport:innerWidth, viewportHeight:innerHeight, visibleBottom, covered:Math.max(0,innerHeight-visibleBottom), overflow:document.documentElement.scrollWidth,
+    scrollY, motionTransform:getComputedStyle(nav.closest('[data-route-motion]') || shell).transform,
+    links:[...nav.children].map(link => {
+      const icon=box(link.querySelector('svg')),label=box(link.querySelector('span')),rect=box(link),css=getComputedStyle(link);
+      const hit=document.elementFromPoint(rect.x+rect.width/2,rect.y+rect.height/2);
+      return {box:rect,icon,label,groupTop:icon.y,groupBottom:label.y+label.height,paddingTop:parseFloat(css.paddingTop),paddingBottom:parseFloat(css.paddingBottom),receivesInput:!!hit&&link.contains(hit)};
+    }),
+  };
 });
 
-// The visible row and reserved system inset have different boxes. Measure both
-// and their ancestors; system UI outside the WebView is not DOM padding.
-function assertBottomOwnership(measured) {
-  assert.equal(measured.position,'static','navigation must remain in normal document flow');
-  assert.equal(measured.paddingBottom,0,'the visible navigation must not consume the system inset');
-  for(const key of ['marginBottom','shellPaddingBottom','contentNavGap','shellTail','contentOverlap'])
-    assert(Math.abs(measured[key])<1,`${key}: extra bottom space or obscured content`);
-  assert.equal(measured.safeBackground,'rgba(0, 0, 0, 0)','the reserved system inset must not extend the painted navigation');
-  assert(Math.abs(measured.safeArea.height-measured.nav.height-measured.safePaddingBottom)<1,'inset missing/doubled');
-  assert(Math.abs(measured.nav.y-measured.safeArea.y)<1,'extra space above the navigation row');
-  assert(measured.documentTail<1,'extra document spacer below navigation');
+// Viewport anchoring and document reservation are independent invariants.
+function assertBottomOwnership(measured, {end=false} = {}) {
+  assert.equal(measured.dockPosition,'fixed','navigation dock must stay fixed to the viewport');
+  assert.equal(measured.motionTransform,'none','a transformed ancestor captures fixed positioning');
+  assert.equal(measured.paddingBottom,0,'painted nav must not consume the system inset');
+  for (const key of ['marginBottom','dockMarginBottom','shellPaddingBottom','spacePaddingBottom','contentSpaceGap','shellTail'])
+    assert(Math.abs(measured[key])<1,key+': duplicate footer space');
+  assert.equal(measured.safeBackground,'rgba(0, 0, 0, 0)','system inset must remain separate from the painted bar');
+  const remainingSafe=Math.max(0,measured.safeBottom-measured.covered);
+  assert(Math.abs(measured.safePaddingBottom-remainingSafe)<1,'system inset missing/doubled');
+  assert(Math.abs(measured.dock.y+measured.dock.height-measured.visibleBottom)<1,'dock bottom differs from the visible viewport');
+  assert(Math.abs(measured.nav.y+measured.nav.height-(measured.visibleBottom-remainingSafe))<1,'blank gap below the painted navigation');
+  assert(Math.abs(measured.dock.height-measured.nav.height-remainingSafe)<1,'extra dock row/gap');
+  assert(Math.abs(measured.space.height-measured.dock.height-measured.covered)<1,'content reservation differs from navigation and occluded viewport height');
+  assert(Math.abs(measured.nav.x-measured.safeLeft)<1&&Math.abs(measured.nav.x+measured.nav.width-(measured.viewport-measured.safeRight))<1,'horizontal safe areas missing/doubled');
+  assert(Math.abs(measured.documentTail)<1,'extra document space after the reserved footer');
+  assert(measured.overflow<=measured.viewport+1,'horizontal overflow');
+  if(end)assert(measured.contentOverlap<1,'last content is hidden behind the fixed navigation');
+  const links=measured.links;
+  assert.equal(links.length,3);
+  assert(Math.max(...links.map(link=>link.box.width))-Math.min(...links.map(link=>link.box.width))<1,'unequal columns');
+  assert(Math.abs(measured.nav.height-measured.border-links[0].box.height)<1,'extra navigation row');
+  for(const link of links){
+    assert(link.box.width>=44&&link.box.height>=44&&link.receivesInput,'navigation target is clipped, covered or too small');
+    assert(link.paddingTop>=12&&link.paddingBottom>=12,'internal padding is below 12px');
+    assert(link.groupTop-link.box.y>=12-.5&&link.box.y+link.box.height-link.groupBottom>=12-.5,'icon/label touches an edge');
+    assert(Math.abs(measured.nav.y+measured.border+(measured.nav.height-measured.border)/2-(link.groupTop+link.groupBottom)/2)<1,'icon and label group is not centered');
+    assert.equal(link.icon.width,20);assert.equal(link.icon.height,20);
+    assert(Math.abs(link.label.y-link.icon.y-link.icon.height-4)<1,'icon/label gap changed');
+    assert(Math.abs(link.icon.x+link.icon.width/2-link.box.x-link.box.width/2)<1);
+    assert(Math.abs(link.label.x+link.label.width/2-link.box.x-link.box.width/2)<1);
+    assert(link.label.width<=link.box.width+1,'label overflow');
+  }
 }
 
-// Actual App, isolated transport; env() and injected inset measurements are
-// separate. No inference about Android system bars or a native wrapper.
-export async function checkReopenNavigation(browser,origin,directory,{baseline=false,visualAssets=false}={}) {
+async function rejectExtraSpace(page) {
+  for(const [css,message] of [
+    ['.shinka-safe-shell {padding-bottom:34px!important}',/shellPaddingBottom/],
+    ['.shinka-product-nav {padding-bottom:34px!important}',/system inset/],
+    ['.shinka-nav-dock {margin-bottom:40px!important}',/dockMarginBottom/],
+    ['.shinka-nav-dock {bottom:40px!important}',/visible viewport/],
+    ['.shinka-nav-dock {position:static!important}',/stay fixed/],
+    ['.shinka-nav-safe-area {height:0!important}',/content reservation/],
+  ]) {
+    const injected=await page.addStyleTag({content:css});
+    const measured=await navGeometry(page);
+    assert.throws(()=>assertBottomOwnership(measured),message);
+    await injected.evaluate(node=>node.remove());
+  }
+}
+
+export async function checkVisibleViewport(browser,origin) {
+  const rows=[],context=await browser.newContext({viewport:{width:390,height:844},locale:'tr-TR'}),page=await context.newPage();
+  const errors=[];page.on('pageerror',error=>errors.push(error.message));
+  await page.route('**/*',route=>new URL(route.request().url()).origin===origin?route.continue():route.abort());
+  await seed(page);
+  await page.addInitScript(()=>{
+    // Only metrics/events are synthetic; the real App and fixed CSS are measured.
+    const viewport=new EventTarget();Object.assign(viewport,{height:innerHeight,offsetTop:0,scale:1});
+    Object.defineProperty(window,'visualViewport',{configurable:true,value:viewport});
+  });
+  try {
+    for(const [surface,route,ready] of surfaces){
+      await open(page,origin,route,ready);
+      await page.evaluate(()=>document.documentElement.style.setProperty('--safe-bottom','34px'));
+      for(const [height,offsetTop,scenario] of [[564,0,'visual-only-shrink'],[544,20,'visual-offset-scroll'],[844,0,'visual-restore']]){
+        await page.evaluate(({height,offsetTop})=>{Object.assign(window.visualViewport,{height,offsetTop});window.visualViewport.dispatchEvent(new Event('resize'));window.visualViewport.dispatchEvent(new Event('scroll'));},{height,offsetTop});
+        await settled(page);await scroll(page,'end');const measured=await navGeometry(page);assertBottomOwnership(measured,{end:true});
+        rows.push({surface,scenario,...measured,passed:true,physicalDevice:false,scope:'SYNTHETIC_VISUAL_VIEWPORT_METRICS_NOT_OS_KEYBOARD'});
+      }
+    }
+    assert.equal(errors.length,0);return rows;
+  } finally {await context.close();}
+}
+
+export async function checkNavigationEntryRoutes(browser,origin) {
+  const rows=[],context=await browser.newContext({viewport:{width:390,height:664},locale:'tr-TR'}),page=await context.newPage(),errors=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  await page.route('**/*',route=>new URL(route.request().url()).origin===origin?route.continue():route.abort());
+  await seed(page);
+  try{
+    for(const entry of ['/login','/onboarding']){
+      await open(page,origin,'/account-privacy','[data-privacy-actions]');
+      await page.evaluate(entry=>{
+        history.pushState({...history.state,idx:(history.state?.idx||0)+1,key:crypto.randomUUID()},'',entry+'?appFixture=1&sdkSession=admin&onboardingState=ACTIVE_EXISTING_USER&language=tr');
+        dispatchEvent(new PopStateEvent('popstate',{state:history.state}));
+      },entry);
+      await page.locator('[data-daily-id]').waitFor();await settled(page);
+      for(const stage of ['initial','end']){
+        await scroll(page,stage);const measured=await navGeometry(page);assertBottomOwnership(measured,{end:stage==='end'});
+        rows.push({entry,stage,...measured,passed:true,physicalDevice:false,scope:'REAL_APP_SPA_HISTORY_WITH_VERIFIED_SYNTHETIC_PROGRESS'});
+      }
+    }
+    assert.equal(errors.length,0);return rows;
+  }finally{await context.close();}
+}
+
+// Real App, isolated SDK transport. No inference about native system bars.
+export async function checkReopenNavigation(browser,origin,directory,{visualAssets=false}={}) {
   const fontCss=(await readFile('index.html','utf8')).match(/href="(https:\/\/fonts.googleapis.com\/css2[^"]+)"/)[1];
   if(directory)await mkdir(directory,{recursive:true});const rows=[];
-  for(const language of ['tr','en'])for(const [width,height] of [[320,568],[360,740],[390,844],[430,932],[740,320]])for(const scale of [1,2]){
-    const context=await browser.newContext({viewport:{width,height},locale:language,hasTouch:true}),page=await context.newPage();
-    const errors=[];page.on('pageerror',e=>errors.push(e.message));
-    await page.route('**/*',r=>{const url=new URL(r.request().url());const asset=visualAssets&&r.request().method()==='GET'&&(url.href===fontCss||url.origin==='https://fonts.gstatic.com'&&url.pathname.startsWith('/s/'));return url.origin===origin||asset?r.continue():r.abort();});
-    await page.addInitScript(pair=>{window.__dailyFixture={state:'ACTIVE_EXISTING_USER',persisted:true,profile:{display_name:'Ada'},daily:{id:'navigation-existing',shinka_date:'2026-10-20',message_tr_snapshot:pair[2],suggestion_tr_snapshot:pair[3],message_en_snapshot:pair[4],suggestion_en_snapshot:pair[5]}};},FIRST_CONTENT_SOURCE.pairs[0]);
+  const viewports=[[320,480],[320,740],[360,568],[360,800],[390,664],[390,844],[430,740],[430,932],[740,320]];
+  for(const language of ['tr','en'])for(const [width,height] of viewports)for(const scale of [1,2]){
+    const context=await browser.newContext({viewport:{width,height},locale:language,hasTouch:true}),page=await context.newPage(),errors=[];
+    page.on('pageerror',error=>errors.push(error.message));
+    await page.route('**/*',route=>{const url=new URL(route.request().url()),asset=visualAssets&&route.request().method()==='GET'&&(url.href===fontCss||url.origin==='https://fonts.gstatic.com'&&url.pathname.startsWith('/s/'));return url.origin===origin||asset?route.continue():route.abort();});
+    await seed(page);
     try {
-      for(const [surface,url,ready] of [['home','/','[data-daily-id]'],['calendar','/calendar','[data-calendar-date]'],['pattern','/pattern','[data-lunar-timeline]']]){
-        await page.goto(`${origin}${url}?appFixture=1&sdkSession=admin&onboardingState=ACTIVE_EXISTING_USER&language=${language}`);
-        await page.locator(ready).first().waitFor();
-        // A baseline component supplied by the temporary Vite transform is outside Tailwind source scanning. Reproduce its original min-h-14 utility exactly.
-        if(baseline)await page.addStyleTag({content:'.shinka-product-nav > a { min-height: 3.5rem; }'});
+      for(const [surface,url,ready] of surfaces){
+        await open(page,origin,url,ready,language);
         if(visualAssets){await page.evaluate(href=>{const link=document.createElement('link');link.rel='stylesheet';link.href=href;link.dataset.captureFont='true';document.head.append(link);},fontCss);await page.waitForFunction(()=>document.querySelector('link[data-capture-font]')?.sheet);await page.evaluate(()=>document.fonts.ready);await loadAppBackdrop(page);}
         if(scale===2)await doubleText(page);
-        // 0: inset already consumed outside the WebView; 24: synthetic Android
-        // edge-to-edge gesture inset; 34: synthetic iOS home indicator. Neither
-        // value certifies a real wrapper or the height of Android system UI.
         for(const inset of [null,0,24,34]){
-          await page.evaluate(inset=>inset===null?document.documentElement.style.removeProperty('--safe-bottom'):document.documentElement.style.setProperty('--safe-bottom',`${inset}px`),inset);
-          const measured=await navGeometry(page),links=measured.links;
-          assert.equal(links.length,3);assert(measured.overflow<=width+1);
-          assert(links.every(l=>l.box.width>=44&&l.box.height>=44));
-          assert(Math.max(...links.map(l=>l.box.width))-Math.min(...links.map(l=>l.box.width))<1);
-          assert(Math.abs(measured.nav.height-measured.border-links[0].box.height)<1,'extra nav row/gap');
-          assertBottomOwnership(measured);
-          if(inset!==null)assert.equal(measured.safePaddingBottom,inset,'inset missing/doubled');
-          if(!baseline)for(const l of links){assert(Math.abs((measured.nav.y+measured.border+(measured.nav.height-measured.border)/2)-(l.groupTop+l.groupBottom)/2)<1,'icon and label must center in the visible navigation row');assert(l.box.y+l.box.height<=measured.safeArea.y+measured.safeArea.height-measured.safePaddingBottom+1,'interactive target enters the system gesture inset');assert.equal(l.icon.width,20);assert.equal(l.icon.height,20);assert(Math.abs(l.icon.x+l.icon.width/2-l.box.x-l.box.width/2)<1);assert(Math.abs(l.label.x+l.label.width/2-l.box.x-l.box.width/2)<1);assert(l.label.width<=l.box.width+1,JSON.stringify({language,width,height,scale,surface,inset,label:l.label,link:l.box}));}
-          if(!baseline&&scale===1)assert.equal(links[0].box.height,44);
-          rows.push({language,width,height,scale,surface,inset:inset===null?'env':inset,...measured,passed:true,physicalDevice:false,publicAssets:visualAssets?'LOADED':'BLOCKED_OFFLINE'});
-          if(directory&&width===390&&scale===1)await page.screenshot({path:`${directory}/${surface}-${language}-${inset===null?'env':inset}.png`,fullPage:true});
+          // 0: native-consumed inset; 24/34: Android/iOS gesture simulations.
+          await page.evaluate(inset=>{inset===null?document.documentElement.style.removeProperty('--safe-bottom'):document.documentElement.style.setProperty('--safe-bottom',inset+'px');},inset);
+          await settled(page);
+          for(const stage of ['initial','middle','end']){
+            await scroll(page,stage);const measured=await navGeometry(page);assertBottomOwnership(measured,{end:stage==='end'});
+            rows.push({language,width,height,scale,surface,inset:inset===null?'env':inset,stage,...measured,passed:true,physicalDevice:false});
+            if(directory&&width===390&&height===844&&scale===1&&inset===34&&stage!=='middle')await page.screenshot({path:directory+'/'+surface+'-'+language+'-'+stage+'.png'});
+          }
         }
-        if(surface==='home'&&width===320&&language==='tr'&&scale===1){
-          const duplicate=await page.addStyleTag({content:'.shinka-safe-shell { padding-bottom:34px !important; }'});
-          const duplicateMeasurement=await navGeometry(page);
-          assert.throws(()=>assertBottomOwnership(duplicateMeasurement),/shellPaddingBottom/);
-          await duplicate.evaluate(node=>node.remove());
-          const spacer=await page.addStyleTag({content:'.shinka-product-nav { margin-bottom:40px !important; }'});
-          const spacerMeasurement=await navGeometry(page);
-          assert.throws(()=>assertBottomOwnership(spacerMeasurement),/marginBottom/);
-          await spacer.evaluate(node=>node.remove());
-          const duplicateNav=await page.addStyleTag({content:'.shinka-product-nav { padding-bottom:34px !important; }'});
-          const duplicateNavMeasurement=await navGeometry(page);
-          assert.throws(()=>assertBottomOwnership(duplicateNavMeasurement),/system inset/);
-          await duplicateNav.evaluate(node=>node.remove());
-          assertBottomOwnership(await navGeometry(page));
-          rows.push({scenario:'duplicate-shell-nav-insets-and-footer-spacer-rejected',passed:true,physicalDevice:false});
+        if(surface==='home'&&width===320&&height===480&&language==='tr'&&scale===1){
+          await rejectExtraSpace(page);await settled(page);assertBottomOwnership(await navGeometry(page));
+          rows.push({scenario:'duplicate-insets-static-footer-offset-and-missing-reservation-rejected',passed:true,physicalDevice:false});
         }
         if(surface==='calendar'&&height>width){
           const input=page.locator('[data-calendar-date]').first(),value=await input.getAttribute('data-calendar-date'),before=await navGeometry(page);
-          await input.focus();await page.setViewportSize({width,height:320});await input.scrollIntoViewIfNeeded();
-          assertBottomOwnership(await navGeometry(page));assert.equal(await input.getAttribute('data-calendar-date'),value);
-          await page.setViewportSize({width,height});await input.blur();
+          await input.focus();await page.setViewportSize({width,height:320});await settled(page);await scroll(page,'end');assertBottomOwnership(await navGeometry(page),{end:true});
+          assert.equal(await input.getAttribute('data-calendar-date'),value);
+          await page.setViewportSize({width,height});await input.blur();await settled(page);
           const restored=await navGeometry(page);assertBottomOwnership(restored);assert.equal(restored.nav.height,before.nav.height);
           rows.push({language,width,height,scale,surface,scenario:'keyboard-viewport-shrink-restore',passed:true,physicalDevice:false,scope:'SIMULATED_RESIZE_AND_FOCUS_NOT_OS_KEYBOARD'});
         }
@@ -96,5 +187,7 @@ export async function checkReopenNavigation(browser,origin,directory,{baseline=f
       assert.equal(errors.length,0);
     } finally {await context.close();}
   }
-  if(directory)await writeFile(`${directory}/navigation.json`,JSON.stringify(rows,null,2));return rows;
+  rows.push(...await checkVisibleViewport(browser,origin));
+  rows.push(...await checkNavigationEntryRoutes(browser,origin));
+  if(directory)await writeFile(directory+'/navigation.json',JSON.stringify(rows,null,2));return rows;
 }

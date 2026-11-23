@@ -2,14 +2,20 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-078
-**Last Updated:** 2026-11-22
+**Current BuildMarker:** Buildmarker-079
+**Last Updated:** 2026-11-23
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-076.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-078.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 079 — Actual viewport-bottom regression
+
+Buildmarker-079 / HC-078.0 retains 188 cases: 0 added / 2 updated / 0 removed. H13-012 and its serialized scope map fixed dock geometry at initial/middle/end scroll, measured content reservation, centered icon/label groups with at least 12px balanced internal padding, single safe inset and final-content reachability. Cover TR/EN, four mobile widths with short/tall heights, landscape and doubled text; native env and 0/24/34px simulations, layout resize/focus and synthetic visual-only shrink/offset/restore. Negative fixtures reject static positioning, arbitrary bottom gaps, duplicate insets and missing reservation. Product navigation also samples fixed position through route motion and preserves tab scroll, session and logout behavior; MI05 retains motion semantics. H05-009 recognizes 079 without changing source verification. Physical devices and real OS keyboards remain external. [079 execution](reports/SHINKA_FIXED_NAVIGATION_079.md)
+
+The same gate also verifies admitted Home on /login and /onboarding after SPA history transitions, preventing a stale route transform from capturing the fixed dock.
 
 ## 078 — Navigation row and system-inset separation
 

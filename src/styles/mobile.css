@@ -4,14 +4,24 @@
 html { overscroll-behavior-y: contain; background: rgb(var(--shinka-ivory)); color-scheme: light; }
 button, [role="tab"], nav a, svg[aria-hidden="true"] { -webkit-user-select: none; user-select: none; }
 :focus-visible { outline: 2px solid rgb(var(--shinka-plum)); outline-offset: 2px; }
-/* Keep the system gesture inset outside the painted navigation row. */
-.shinka-nav-safe-area { flex-shrink: 0; padding-bottom: var(--safe-bottom); }
+/* The placeholder reserves the dock and any occluded viewport for last content.
+   Only the unoccluded part of the system inset belongs below the painted row. */
+.shinka-nav-safe-area { flex-shrink: 0; }
+.shinka-nav-dock {
+  position: fixed;
+  inset: auto var(--safe-right) var(--shinka-viewport-bottom, 0px) var(--safe-left);
+  z-index: 30;
+  padding-bottom: max(0px, calc(var(--safe-bottom) - var(--shinka-viewport-bottom, 0px)));
+}
 .shinka-safe-shell { padding-bottom: 0; }
+.shinka-safe-shell :is(input, select, textarea, button, a, [tabindex]) { scroll-margin-bottom: calc(var(--shinka-nav-height, 0px) + 24px); }
 .shinka-calendar-dialog, .shinka-place-sheet, .shinka-place-options { overscroll-behavior-y: contain; }
 .shinka-place-sheet { position: fixed; inset: auto 0 0; z-index: 60; max-height: 85vh; max-height: 85dvh; margin: 0; width: 100%; max-width: none; overflow-y: auto; display: flex; flex-direction: column; border-radius: 20px 20px 0 0; background: rgb(var(--shinka-white)); color: rgb(var(--shinka-ink)); padding: 20px max(20px, var(--safe-right)) max(20px, var(--safe-bottom)) max(20px, var(--safe-left)); }
 .shinka-place-sheet > header, .shinka-place-sheet > footer { flex-shrink: 0; }
 .shinka-place-options { overflow-y: auto; min-height: min(120px, 20dvh); flex: 1 1 auto; }
 .shinka-route-clip { overflow-x: clip; }
+/* Verified Home can also appear on /login or /onboarding after admission. */
+.shinka-route-clip:has(.shinka-product-nav) > [data-route-motion] { transform: none !important; }
 .shinka-place-option { display: block; width: 100%; min-height: 52px; padding: 12px; text-align: left; overflow-wrap: anywhere; border-bottom: 1px solid rgb(var(--shinka-line)); }
 .shinka-place-option[aria-checked="true"] { background: rgb(var(--shinka-lavender)); font-weight: 600; }
 .shinka-place-sheet::backdrop { background: rgb(10 5 10 / .55); }

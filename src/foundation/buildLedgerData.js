@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-074",
-    "notes": "GizemTest only. Missing dedicated ON-02 asset preserves 073 PNG. No approved legal version default; SHINKA_TERMS_VERSION is a release prerequisite. H06-008/009 and TA01–TA14 cover native history/unknown outcomes and actual App admission. Existing DOB, five-step, optional health and domain rules remain. Local execution and external limits: reports/SHINKA_ONBOARDING_TERMS_074.md. Both engines: 817 core tests and 26 ON-02 cases PASS. Chromium full PASS; full WebKit Health H08-004/RC06 still times out at the unchanged 5s helper cap. Hosted verification NOT_RUN.",
-    "package_type": "FEATURE",
-    "package_name": "ON-02 legal declarations and versioned native admission",
-    "health_catalog_version": "HC-073.0",
-    "created_at": "2026-11-12T11:40:21Z",
-    "full_health_status": "NOT_RUN",
-    "short_summary": "Preserve Welcome headings, add five viewport units and 70% declaration type, exact Terms/Privacy links, shared provider gates and server-owned versioned acceptance history."
-  },
-  {
     "build_marker": "Buildmarker-075",
     "package_name": "Onboarding legal readiness and recovery",
     "package_type": "TARGETED_FIX",
@@ -49,5 +39,15 @@ export default [
     "health_catalog_version": "HC-077.0",
     "package_type": "TARGETED_UI",
     "build_marker": "Buildmarker-078"
+  },
+  {
+    "short_summary": "Anchor the shared navigation to the visible application viewport, reserve its measured height in document flow, and keep 12px balanced internal padding separate from unoccluded system insets.",
+    "health_catalog_version": "HC-078.0",
+    "notes": "HC-078.0 updates H13-012 and H05-009 with the existing 188 cases. Mandatory navigation coverage measures actual viewport/safe-area position at initial/middle/end scroll, short/tall TR/EN mobile layouts, enlarged text, layout and synthetic visual viewport keyboard scenarios, negative footer offsets and retained tab/route motion. Original PNG, icons, type, colors and navigation data are preserved. Actual execution and remaining gate limits are in reports/SHINKA_FIXED_NAVIGATION_079.md.",
+    "build_marker": "Buildmarker-079",
+    "package_type": "TARGETED_UI",
+    "package_name": "Viewport-anchored product navigation",
+    "created_at": "2026-11-23T08:53:27Z",
+    "full_health_status": "NOT_RUN"
   }
 ];

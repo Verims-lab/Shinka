@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigationType } from 'react-router-dom';
 
-const tabs = new Set(['/', '/calendar', '/pattern']);
+const productRoutes = new Set(['/', '/calendar', '/pattern', '/you']);
 export function routeMotion(from, to, navigation, reduced) {
   if (reduced || from === to) return { opacity: [1, 1] };
-  if (tabs.has(from) && tabs.has(to)) return { opacity: [0.75, 1] };
+  // A transform would make the fixed product navigation relative to this page.
+  if (productRoutes.has(to)) return { opacity: [0.75, 1] };
   return { opacity: [0.75, 1], x: [navigation === 'POP' ? -12 : 12, 0] };
 }
 // Animate the existing node, never a keyed second page / retained exit tree.
