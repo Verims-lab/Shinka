@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-082
+**Current BuildMarker:** Buildmarker-083
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 083 — Reproduced 48px bottom-position error
+
+Clean AydanTest fast-forwarded from b2b7d45 to main 7b6d521 before editing; this only preserves the 082 merge. The owner supplies 082 viewport bottom 724, painted/dock bottom 676, CSS bottom 48, padding 0 and occlusion 0. Earlier diagnostics supply available screen 360x772. The actual local App reproduces these vertical values without a native declaration. The new policy removes the navigation-only duplicate inset when all recorded behavior checks agree, preserving safe fallbacks and the original row styling. [083 correction and execution](reports/SHINKA_ANDROID_POSITION_083.md)
 
 ## 082 — Null diagnostic snapshot reproduced
 

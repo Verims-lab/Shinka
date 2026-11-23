@@ -30,6 +30,8 @@ export function readNavigationGeometry(elements = null) {
     safeBottom: pixels(rootStyle.getPropertyValue('--safe-bottom')),
     nativeConsumedBottomDeclaration: pixels(rootStyle.getPropertyValue('--shinka-native-consumed-bottom')),
     nativeConsumptionVerified: false,
+    viewportConsumedBottom: dockStyle ? pixels(dockStyle.getPropertyValue('--shinka-viewport-consumed-bottom')) : null,
+    insetPolicy: dock?.dataset.insetPolicy || null,
     bar, dock:outer, placeholder:bounds(placeholder),
     dockPaddingBottom: dockStyle ? pixels(dockStyle.paddingBottom) : null, dockBottomInset:dockStyle ? pixels(dockStyle.bottom) : null,
     residualViewportOffset: dockStyle ? pixels(dockStyle.getPropertyValue('--shinka-viewport-bottom')) : null,

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-082
+**Current BuildMarker:** Buildmarker-083
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 083 — Scoped viewport compatibility policy
+
+Read the painted/dock bounds and applied bottom before temporarily measuring the native CSS bottom:0 anchor. Android identity is only a platform guard: require top-level browser mode, scale 1, portrait/full-width screen, matching client/native/visible bounds, available-screen exclusion matching the whole inset, and the same inset visible in CSS and both bar/dock geometry with zero dock padding. Use no production 48px constant. Explicit native declarations win. Keep the confirmed profile only in App memory across reduced keyboard/toolbars; reset on screen/width/DPR/inset/mode/zoom changes or a larger native anchor. Unknowns fall back to the original safe inset. Diagnostics distinguish viewport-applied consumption from native declarations; no native verification is fabricated. [083 correction and execution](reports/SHINKA_ANDROID_POSITION_083.md)
 
 ## 082 — Direct references and measurement lifecycle
 

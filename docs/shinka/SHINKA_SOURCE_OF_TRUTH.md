@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-082
+**Current BuildMarker:** Buildmarker-083
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 083 — Owner-confirmed usable viewport boundary
+
+The current instruction explicitly identifies 724px as the usable Android viewport bottom and the 676px bar/dock bottom as a confirmed 48px positioning error, with zero padding and occlusion. This is new owner evidence beyond the incomplete 081/082 screenshots; their pending statuses remain historical. Correct the bounded matching browser behavior using independent viewport/screen and painted-box measurements, not safeBottom or a user-agent alone. Do not require a new native bridge for the recorded case, hardcode a device size/offset, or remove genuine global safe areas. The local replay validates the correction; physical 083 after-verification remains pending. [083 correction and execution](reports/SHINKA_ANDROID_POSITION_083.md)
 
 ## 082 — Physical screenshot evidence and diagnostic authority
 
