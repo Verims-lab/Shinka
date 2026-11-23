@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-079
+**Current BuildMarker:** Buildmarker-080
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 080 — Android viewport investigation
+
+Record Buildmarker-080 / HC-079.0 once, retaining 076–080. Preserve main's Base44 Vite plugin 1.0.53 and use the updated lock. Reproduce the stale-JavaScript-height gap against real CSS positioning before changing the algorithm. Add the independent Android viewport matrix to the mandatory navigation gate, retain 079's layout/visual resize and routing coverage, and run both engines and relevant quality gates. Public static GETs are separate from application/data calls; no publish or live-data operation. Physical Android must remain NOT_RUN without actual device evidence. Deliver only AydanTest. [080 diagnosis and acceptance](reports/SHINKA_ANDROID_VIEWPORT_080.md)
 
 ## 079 — Fixed navigation and content reservation
 

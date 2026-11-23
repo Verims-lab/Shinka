@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-079
+**Current BuildMarker:** Buildmarker-080
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-078.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-079.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 080 — Android viewport gap regression
+
+Buildmarker-080 / HC-079.0 retains 188 cases: 0 added / 2 updated / 0 removed. H13-012 and serialized scope require checkAndroidViewportGeometry through the mandatory checkReopenNavigation gate. Test Home/Calendar/Pattern at four mobile widths with real CSS resizes, stale innerHeight, native-resized and visual-only toolbar/keyboard modes, pan/restore, 0/24/34px insets and initial/end scroll. The gap oracle comes from actual browser viewport geometry, independently of the application offset. Retain 079's centered 12px groups, content clearance, route/alias and manual-theme coverage. H05-009 recognizes 080 with unchanged content predicates. No physical Android PASS is derived from emulation; H13-013 remains external. [080 diagnosis and execution](reports/SHINKA_ANDROID_VIEWPORT_080.md)
 
 ## 079 — Actual viewport-bottom regression
 

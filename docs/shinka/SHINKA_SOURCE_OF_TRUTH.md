@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-079
+**Current BuildMarker:** Buildmarker-080
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 080 — Android viewport correction
+
+The current request requires removing unintended viewport compensation while preserving 079's fixed bar, content reachability, safe areas and 12px spacing. Native CSS position is measured before any residual correction. Local source and public static assets can verify the code path; neither screenshots nor emulation establish the exact installed Android bundle, native inset ownership or physical resolution. Keep those acceptance results explicitly NOT_RUN until measured on the device. [080 diagnosis and acceptance](reports/SHINKA_ANDROID_VIEWPORT_080.md)
 
 ## 079 — Fixed product navigation
 

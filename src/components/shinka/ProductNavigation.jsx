@@ -23,12 +23,20 @@ export default function ProductNavigation({ current, language }) {
       placeholder.closest('.shinka-safe-shell')?.style.setProperty('--shinka-nav-height', height);
     };
     const align = () => {
-      covered = viewport?.scale === 1 ? Math.max(0, innerHeight - viewport.height - viewport.offsetTop) : 0;
-      element.style.setProperty('--shinka-viewport-bottom', `${covered}px`);
+      if (!element.getClientRects().length) return;
+      // The browser may already move fixed content when its viewport shrinks.
+      // Measure this dock's native CSS anchor instead of applying innerHeight's
+      // difference a second time. Pinch zoom keeps the browser's own behavior.
+      element.style.setProperty('--shinka-viewport-bottom', '0px');
+      const nativeBottom = element.getBoundingClientRect().bottom;
+      const visibleBottom = viewport?.scale === 1 ? Math.min(nativeBottom, viewport.height + viewport.offsetTop) : nativeBottom;
+      covered = viewport?.scale === 1 ? Math.max(0, document.documentElement.clientHeight - visibleBottom) : 0;
+      element.style.setProperty('--shinka-viewport-bottom', `${Math.max(0, nativeBottom - visibleBottom)}px`);
+      element.style.setProperty('--shinka-viewport-occlusion', `${covered}px`);
       reserve();
     };
     align();
-    const observer = new ResizeObserver(reserve);
+    const observer = new ResizeObserver(align);
     observer.observe(element, { box: 'border-box' });
     window.addEventListener('resize', align);
     viewport?.addEventListener('resize', align);

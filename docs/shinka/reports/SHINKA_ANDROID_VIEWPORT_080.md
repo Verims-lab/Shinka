@@ -1,0 +1,41 @@
+# 080 — Android bottom-navigation viewport gap
+
+Buildmarker-080 / HC-079.0. Clean AydanTest fast-forwarded from ddecb3b to main 9d84260 before editing. This preserves the 079 merge and main's Base44 Vite plugin 1.0.53 update; the locked dependencies were installed successfully. No main write, PR, Base44 publication or production-data operation.
+
+## Verified diagnosis and limits
+
+079 treated innerHeight minus visualViewport.height and offsetTop as an additional CSS bottom offset. That assumes CSS fixed positioning still uses the larger height. The new regression leaves real browser CSS positioning intact and varies only the exposed JavaScript height independently: CSS viewport 640px, innerHeight 740px, visual bottom 640px. Under 079, Home's dock bottom was 540px: a measured unintended 100 CSS px gap. The failing regression and its geometry were retained before the correction.
+
+Only public HTML/JS assets were read on 2026-11-23 at 10:23 UTC. No app code, authentication/session or data endpoint was executed. The public build marker was 079, and /assets/index-Dcja8g-8.js contained the same innerHeight subtraction (SHA-256 3b0c5e602c166d6cf23288dea9472bb7554342efb74365bbf0f0076a639ada6d). This confirms the defective code path is published, rather than merely absent from the public build. It does not identify the installed phone's exact cached bundle or commit. [Published marker](https://shinka-rhythm-flow.base44.app/assets/buildMarker-BRIVP-Gn.js), [published entry](https://shinka-rhythm-flow.base44.app/assets/index-Dcja8g-8.js).
+
+A separate static CSS read at 10:44 UTC confirmed position:fixed, the old viewport-bottom variable in both the bottom inset and safe-area padding, and the containing-block transform guard. The new separate occlusion variable was absent. This supports the 079 code-path diagnosis; no rendered production session was opened. [Published stylesheet](https://shinka-rhythm-flow.base44.app/assets/index-Duw5mHKQ.css).
+
+The supplied phone images show a separate gap above the native system buttons. Their pixels are not calibrated CSS pixels, and they contain no runtime viewport/inset measurements. Therefore the exact physical cause and gap remain unverified. ADB was unavailable and no native Android wrapper source was found. Physical Android verification: **NOT_RUN**. Native inset forwarding could also duplicate consumed system space; that possibility is not silently dismissed or treated as proven.
+
+[Chrome's viewport guidance](https://developer.chrome.com/blog/viewport-resize-behavior) distinguishes visual-only and layout resize behavior and explicitly separates WebView. [Android's current WebView inset guidance](https://developer.android.com/develop/ui/views/layout/webapps/understand-window-insets) describes native-consumed inset double padding and the need to forward zeroed values. Valid CSS safe areas are retained; no user-agent guess or fixed pixel subtraction is introduced.
+
+[MDN's VisualViewport reference](https://developer.mozilla.org/en-US/docs/Web/API/VisualViewport) notes that iframe metrics match the frame layout viewport. This can explain why an embedded Preview hides a top-level viewport mismatch. The user's Preview DOM was not inspected, so this is an explanatory possibility, not proof of its hosting mode.
+
+## Correction
+
+The dock is first measured at its native CSS bottom:0 position. Only a real remaining difference to the visible edge is applied. A browser that already anchors the dock to the reduced viewport therefore receives zero extra offset. Visual-only occlusion that genuinely leaves the CSS anchor below the visible edge still receives the measured residual correction.
+
+Content reservation uses the dock's measured border box plus document-client viewport occlusion. Safe-area padding uses that occlusion separately from the positioning correction. This preserves last-content reachability and avoids applying the same height difference twice. The observer re-aligns visible docks, including retained tabs returning after a resize. Fixed-position containing-block guards, 12px internal padding, icons, fonts, colors, routes, focus and original artwork remain.
+
+## Permanent coverage and documentation
+
+checkAndroidViewportGeometry is mandatory through checkReopenNavigation. It tests Home/Calendar/Pattern at 320/360/390/430px, actual CSS viewport changes, independently stale innerHeight, visual-only changes, toolbar/keyboard shrink, pan, restore, 0/24/34px insets and first/end scroll. Its expected bottom comes from the browser viewport configured by the test, not the application offset. Existing geometry, enlarged text, route/alias, background and content-clearance gates remain.
+
+H13-012 plus serialized scope and H05-009 update; catalog count stays 188. recordBuild retains 076–080. Current UI/UX, Code Standards, Source of Truth, Development Rules/Notes, Release HealthCheck and README describe the corrected authority. Historical 078/079 reports and failed results are preserved.
+
+## Execution
+
+- Chromium and WebKit each passed all 1,918 mandatory navigation cases: the retained 1,342-case gate plus 576 independent Android-like metric configurations. The Android matrix covers all three screens, four widths, eight resize/restore phases, three safe insets and initial/end scroll. Maximum unintended dock gap and maximum safe-area-adjusted painted gap were both **0 CSS px** in each engine. The controlled 079 Home baseline was **100 CSS px**; only that first failing pre-fix scenario was measured, so no unexecuted pre-fix matrix is claimed.
+- Both engines passed the actual product-navigation/session/Back/logout flow, all 67 backdrop/manual-theme scenarios and the six selected Foundation cases T35, T36, T81, T82, MI05 and CQ10. Completed runs reported zero page errors. Home, Calendar and Pattern captures in the native-resized/stale-JS configuration were inspected. Existing icons, centered 12px internal spacing and original artwork checks remain in the gate.
+- Locked npm ci, dependency tree, direct npm audit with the unchanged high-severity options, typecheck, lint, production build, Repo Health and generated history passed. Audit found zero vulnerabilities. Main's Vite plugin update is preserved; this package makes no additional package or lock change. The five active packages are 076–080 and the catalog retains 188 cases.
+- The maintenance byte gate remains **FAIL** under unchanged thresholds: initial JS 495,069 raw / 165,394 gzip bytes versus 500,000 / 165,000; CSS 83,678 raw / 16,126 gzip versus 90,000 / 16,000. All 27 local cold-route samples had zero page errors, lazy-chunk retry passed and static cycles were zero. Earlier 078/079 size failures are retained; no release-wide readiness is inferred.
+- The new Android regression first failed against 079 with an independently measured 100px gap. Early combined runs also exposed negative-fixture diagnostic ordering and WebKit state left by intentionally invalid CSS. Viewport-gap diagnosis was ordered before related inset failures, and each fixture now restores CSS and triggers fresh native measurement before the next case. All original invariants remain; Chromium also passed the six isolated negatives separately. Failed receipts were preserved, not relabeled PASS.
+
+The canonical harness used isolated SDK/provider transport with external application requests blocked. Focused orchestration, measurement receipts, screenshots and temporary files remain outside the checkout. The full Foundation/Health release-wide run was not executed or declared passed; previous 076/078/079 incomplete gates, the earlier WebKit gesture limitation and actual BFCache NOT_RUN results remain separate historical evidence.
+
+**Physical Android: NOT_RUN.** No device viewport/inset telemetry or exact installed bundle was available. The local 100→0 CSS px result proves the reproduced code mechanism, not resolution on the user's phone. The physical acceptance must record innerHeight, document clientHeight, visualViewport height/offsetTop/scale, safe-bottom, applied offset/occlusion, actual dock/bar bounds and native application bounds. If a wrapper forwards already-consumed system insets, that native ownership must be corrected rather than hidden by an arbitrary web offset. Buildmarker-080 was not published to Base44 and no production data was changed.
