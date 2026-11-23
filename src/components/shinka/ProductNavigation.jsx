@@ -4,6 +4,7 @@ import { t } from '@/foundation/i18n/strings';
 import { dailyCopy } from '@/foundation/i18n/dailyCopy';
 import { Link, useInRouterContext } from 'react-router-dom';
 import { useLayoutEffect, useRef } from 'react';
+import { useNavigationGeometry } from '@/features/mobile/NavigationGeometryContext';
 const ICONS = { House, CalendarDays, Moon };
 // Re-pressing the active tab returns to its root: tabs have no sub-routes, so
 // that means scrolling to top without a duplicate history entry. In-page
@@ -11,7 +12,8 @@ const ICONS = { House, CalendarDays, Moon };
 export const reselectTab = event => { event.preventDefault(); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); };
 export default function ProductNavigation({ current, language }) {
   const inRouter = useInRouterContext();
-  const space = useRef(null), dock = useRef(null), inset = useRef(null);
+  const navigation = useNavigationGeometry();
+  const space = useRef(null), dock = useRef(null), inset = useRef(null), bar = useRef(null);
   useLayoutEffect(() => {
     const element = dock.current, placeholder = space.current, viewport = window.visualViewport;
     const reserve = () => {
@@ -35,7 +37,9 @@ export default function ProductNavigation({ current, language }) {
       element.style.setProperty('--shinka-viewport-occlusion', `${covered}px`);
       element.style.removeProperty('bottom');
       reserve();
+      navigation?.notify();
     };
+    const unregister = navigation?.register({ nav:bar.current, dock:element, placeholder });
     align();
     const observer = new ResizeObserver(align);
     observer.observe(element, { box: 'border-box' });
@@ -50,15 +54,16 @@ export default function ProductNavigation({ current, language }) {
     return () => {
       observer.disconnect();
       hostInsets.disconnect();
+      unregister?.();
       window.removeEventListener('resize', align);
       viewport?.removeEventListener('resize', align);
       viewport?.removeEventListener('scroll', align);
     };
-  }, []);
+  }, [navigation]);
   return <div ref={space} className="shinka-nav-safe-area">
     <span ref={inset} className="shinka-nav-inset-probe" aria-hidden="true" />
     <div ref={dock} className="shinka-nav-dock">
-    <nav aria-label={dailyCopy('navigation', language)} className="shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white">
+    <nav ref={bar} aria-label={dailyCopy('navigation', language)} className="shinka-product-nav grid grid-cols-3 border-t border-shinka-line bg-shinka-white">
     {BOTTOM_NAV.map(item => {
       const Icon = ICONS[item.component], active = item.key === current;
       const content = <><Icon className="h-5 w-5" aria-hidden="true"/><span className="min-w-0 max-w-full break-words text-center">{t(item.labelKey, language)}</span></>;

@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-077",
-    "package_name": "Accessible onboarding heading focus",
-    "package_type": "TARGETED_UI",
-    "created_at": "2026-11-22T20:08:47Z",
-    "health_catalog_version": "HC-076.0",
-    "short_summary": "All announced onboarding headings reuse the existing unframed focus treatment. Interactive keyboard indicators stay visible.",
-    "full_health_status": "NOT_RUN",
-    "notes": "HC-076.0 updates H13-012 and H05-009. Mandatory presentation checks include logout to Welcome, automatic heading focus, keyboard rings and stable type/layout in both languages at mobile widths. U18 covers every numbered heading and preparation. Execution is in reports/SHINKA_ONBOARDING_FOCUS_077.md."
-  },
-  {
     "full_health_status": "NOT_RUN",
     "created_at": "2026-11-22T21:07:52Z",
     "notes": "HC-077.0 updates H13-012 and H05-009 without changing the 188-case inventory. Mandatory shared-navigation checks cover Home/Calendar/Pattern in TR/EN, four portrait widths and landscape, 200% text, injected safe areas, negative duplicate spacers and keyboard viewport restoration. See reports/SHINKA_NAVIGATION_ALIGNMENT_078.md for execution and physical-device limits.",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Remove transparent dock padding without resizing the bar. Position at the unconsumed safe boundary, reserve measured clearance once and expose an opt-in read-only geometry diagnostic. Native-consumed insets require a measured host declaration or correct native zeroing.",
     "full_health_status": "NOT_RUN",
     "notes": "HC-080.0 updates H13-012 and H05-009, retaining 188 cases. Mandatory regression measures the painted bar and dock independently with a 30px inset, explicit native-consumed, partial and edge-to-edge ownership, viewport restore and read-only diagnostic checks. The supplied Android video and published 080 assets are evidence of the report, not native viewport telemetry. No native inset bridge exists in this repository; default unverified insets stay protected. Physical resolution remains OPEN_PENDING_DEVICE_MEASUREMENTS_AND_NATIVE_OWNERSHIP. No publication or live data operation. See reports/SHINKA_NAVIGATION_SAFE_AREA_081.md."
+  },
+  {
+    "build_marker": "Buildmarker-082",
+    "package_name": "Mounted navigation measurements and 48px inset regression",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-11-23T19:30:29.216Z",
+    "health_catalog_version": "HC-081.0",
+    "short_summary": "Measure actual navigation through registered element references after mount, layout and viewport changes. Keep diagnostic actions accessible and cover both genuine and declared native-consumed 48px system regions. Preserve navigation dimensions and safe-area defaults.",
+    "full_health_status": "NOT_RUN",
+    "notes": "H13-012 and H05-009 update; catalog retains 188 cases. The 081 null snapshot is reproduced under held hydration before correction. Direct-reference, automatic refresh, retained-tab, resize, cleanup and 48px ownership regressions are mandatory. Physical screenshots report a 48px gap but omit usable-viewport and native bounds; do not infer consumed insets from zero declarations or screen size. The native ownership rule and navigation styles remain unchanged; physical position closure remains OPEN_PENDING_DEVICE_GEOMETRY_AND_NATIVE_OWNERSHIP. See reports/SHINKA_NAVIGATION_DIAGNOSTICS_082.md. No main write, publication or live data operation."
   }
 ];

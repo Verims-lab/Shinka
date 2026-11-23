@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-081
+**Current BuildMarker:** Buildmarker-082
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-080.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-081.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 082 — Mounted navigation and duplicate 48px coverage
+
+Buildmarker-082 / HC-081.0 retains 188 cases: 0 added / 2 updated / 0 removed. H13-012 and serialized scope require the extended checkNavigationDiagnostic through checkReopenNavigation: held hydration to automatic non-null mounted bar/dock/placeholder refs, active hidden-tab exclusion, delayed layout and viewport refresh, selector-independent manual sampling, unmount cleanup, remount, visible tool actions and strict private-data-free whitelist. checkSafeAreaOwnership adds 48px genuine and explicitly native-consumed system regions on Home/Calendar/Pattern at four mobile widths with scroll and resize. H05-009 recognizes 082 under unchanged content predicates. A supplied host declaration is synthetic evidence, not physical detection; H13-013 remains external and the reported Android incident stays open. [082 investigation and execution](reports/SHINKA_NAVIGATION_DIAGNOSTICS_082.md)
 
 ## 081 — Visible bar and explicit safe-area ownership
 

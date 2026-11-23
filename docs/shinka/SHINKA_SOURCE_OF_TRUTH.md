@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-081
+**Current BuildMarker:** Buildmarker-082
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 082 — Physical screenshot evidence and diagnostic authority
+
+The current owner supplies Android screenshots with safeBottom=48, no consumption declaration and null bar/dock measurements. This proves a failed diagnostic snapshot and reports a visible gap, not native system ownership. A zero declaration is absence of a contract, not proof that native consumed zero. Fix the mounted-reference measurement lifecycle first, preserve navigation dimensions and safely verified inset handling, and keep physical positioning closure pending missing usable-viewport/native geometry. No universal screen-size or user-agent zero-inset rule is authorized. [082 investigation and execution](reports/SHINKA_NAVIGATION_DIAGNOSTICS_082.md)
 
 ## 081 — Position-only navigation correction
 

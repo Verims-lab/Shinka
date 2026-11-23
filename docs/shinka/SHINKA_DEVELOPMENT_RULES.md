@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-081
+**Current BuildMarker:** Buildmarker-082
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 082 — Diagnostic correction and unresolved native boundary
+
+Record Buildmarker-082 / HC-081.0 once, retaining 078–082. Reproduce 081 null measurement after held hydration before fixing references and automatic refresh. Test all three tabs, hidden retention, delayed content, resize, unmount/remount, accessible tool controls, privacy and 48px genuine/declared-consumed ownership in both engines. Preserve navigation styling and 081 native authority until actual window bounds establish consumption. Record the user-reported physical gap separately from local injected-host models; request missing runtime geometry without publishing or touching live data. Keep historical failures and unchanged byte gates. Deliver only AydanTest. [082 investigation and execution](reports/SHINKA_NAVIGATION_DIAGNOSTICS_082.md)
 
 ## 081 — Safe-area investigation and bounded correction
 
