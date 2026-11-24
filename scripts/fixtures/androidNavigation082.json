@@ -1,0 +1,11 @@
+{
+  "source": "Owner-confirmed physical Android Buildmarker-082 diagnostics, 2026-11-23; screen dimensions from preceding owner screenshots",
+  "width": 360,
+  "screenAvailableWidth": 360,
+  "screenAvailableHeight": 772,
+  "viewportBottom": 724,
+  "safeBottom": 48,
+  "nativeConsumedDeclaration": 0,
+  "before": { "barBottom": 676, "dockBottom": 676, "dockInset": 48, "dockPadding": 0, "viewportOcclusion": 0, "gap": 48 },
+  "expected": { "barBottom": 724, "dockBottom": 724, "visibleBottomToBar": 0, "normalHeight": 67 }
+}

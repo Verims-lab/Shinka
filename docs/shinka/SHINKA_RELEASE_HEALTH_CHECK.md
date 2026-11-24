@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-082
+**Current BuildMarker:** Buildmarker-083
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-081.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-082.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 083 — Recorded Android boundary regression
+
+Buildmarker-083 / HC-082.0 keeps 188 cases: 0 added / 2 updated / 0 removed. H13-012 plus serialized scope require checkConfirmedAndroidNavigation/checkProtectedNavigationInsets through checkReopenNavigation. Use the checked-in owner 082 receipt and independently configured CSS viewport: require painted and dock bottoms 724, gap 0 and unchanged normal 67px row without a native declaration. Cover 320/360/390/430px, scroll, native/visual keyboard resize, stale visual metrics, restore and transitions back to genuine edge-to-edge. Require iOS, genuine/unknown Android geometry, explicit native priority, non-browser/zoom/missing-metric safe fallbacks and additional heights. Keep iframe DENY; its pure-policy guard is separate from iframe UI evidence. H05-009 recognizes 083 under unchanged content predicates. Physical 083 after remains external. [083 correction and execution](reports/SHINKA_ANDROID_POSITION_083.md)
 
 ## 082 — Mounted navigation and duplicate 48px coverage
 

@@ -1,4 +1,5 @@
 import { loadAppBackdrop } from './checkAppBackdrop.mjs';
+import { checkConfirmedAndroidNavigation } from './checkConfirmedAndroidNavigation.mjs';
 import assert from 'node:assert/strict';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { doubleText } from './mobileSurfaceMeasurements.mjs';
@@ -44,6 +45,7 @@ export const navGeometry = page => page.locator('nav.shinka-product-nav:visible'
     contentOverlap:Math.max(0,main.lastElementChild.getBoundingClientRect().bottom-navBox.top),
     safeBottom:parseFloat(root.getPropertyValue('--safe-bottom'))||0, safeLeft:parseFloat(root.getPropertyValue('--safe-left'))||0, safeRight:parseFloat(root.getPropertyValue('--safe-right'))||0,
     nativeConsumedBottom:parseFloat(root.getPropertyValue('--shinka-native-consumed-bottom'))||0,
+    viewportConsumedBottom:parseFloat(dockStyle.getPropertyValue('--shinka-viewport-consumed-bottom'))||0,
     viewport:innerWidth, viewportHeight:innerHeight, layoutHeight, visibleBottom, covered:Math.max(0,layoutHeight-visibleBottom), overflow:document.documentElement.scrollWidth,
     scrollY, motionTransform:getComputedStyle(nav.closest('[data-route-motion]') || shell).transform,
     links:[...nav.children].map(link => {
@@ -62,7 +64,7 @@ function assertBottomOwnership(measured, {end=false} = {}) {
   for (const key of ['marginBottom','dockMarginBottom','shellPaddingBottom','spacePaddingBottom','contentSpaceGap','shellTail'])
     assert(Math.abs(measured[key])<1,key+': duplicate footer space');
   assert.equal(measured.safeBackground,'rgba(0, 0, 0, 0)','system inset must remain separate from the painted bar');
-  const remainingSafe=Math.max(0,measured.safeBottom-measured.nativeConsumedBottom-measured.covered);
+  const remainingSafe=Math.max(0,measured.safeBottom-Math.max(measured.nativeConsumedBottom,measured.viewportConsumedBottom)-measured.covered);
   assert(Math.abs(measured.dock.y+measured.dock.height-(measured.visibleBottom-remainingSafe))<1,'dock bottom differs from the usable visible viewport');
   assert.equal(measured.safePaddingBottom,0,'system inset must not create transparent dock padding');
   assert(Math.abs(measured.nav.y+measured.nav.height-(measured.visibleBottom-remainingSafe))<1,'blank gap below the painted navigation');
@@ -309,7 +311,7 @@ export async function checkNavigationDiagnostic(browser,origin) {
       assert.equal(sample.dockPaddingBottom,0);assert.equal(sample.dockToBar,0);
       assert.equal(sample.nativeConsumedBottomDeclaration,consumed);
       assert.equal(sample.visibleBottomToBar,inset-consumed);
-      assert.deepEqual(Object.keys(sample).sort(),['build','measurementState','navigationSource','physicalVerification','nativeWindowBounds','viewport','screen','standalone','viewportFit','safeBottom','nativeConsumedBottomDeclaration','nativeConsumptionVerified','bar','dock','placeholder','dockPaddingBottom','dockBottomInset','residualViewportOffset','viewportOcclusion','visibleBottomToBar','visibleBottomToDock','dockToBar'].sort(),'diagnostic field whitelist changed');
+      assert.deepEqual(Object.keys(sample).sort(),['build','measurementState','navigationSource','physicalVerification','nativeWindowBounds','viewport','screen','standalone','viewportFit','safeBottom','nativeConsumedBottomDeclaration','nativeConsumptionVerified','viewportConsumedBottom','insetPolicy','bar','dock','placeholder','dockPaddingBottom','dockBottomInset','residualViewportOffset','viewportOcclusion','visibleBottomToBar','visibleBottomToDock','dockToBar'].sort(),'diagnostic field whitelist changed');
       assert(!JSON.stringify(sample).includes('Ada'),'diagnostic exposed fixture identity');
       assert.equal(await page.evaluate(()=>window.__authFixture.calls.length),calls,'sampling must not call a service');
       const after=await navGeometry(page);assert.deepEqual(after.nav,before.nav,'sampling moved the navigation');
@@ -392,5 +394,6 @@ export async function checkReopenNavigation(browser,origin,directory,{visualAsse
   rows.push(...await checkNavigationEntryRoutes(browser,origin));
   rows.push(...await checkAndroidViewportGeometry(browser,origin,directory ? `${directory}/android` : undefined));
   rows.push(...await checkSafeAreaOwnership(browser,origin,directory ? `${directory}/safe-area` : undefined));
+  rows.push(...await checkConfirmedAndroidNavigation(browser,origin,directory ? `${directory}/confirmed-android` : undefined));
   if(directory)await writeFile(directory+'/navigation.json',JSON.stringify(rows,null,2));return rows;
 }

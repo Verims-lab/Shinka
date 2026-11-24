@@ -7,8 +7,10 @@ button, [role="tab"], nav a, svg[aria-hidden="true"] { -webkit-user-select: none
 /* The bar and dock have identical bounds. System space is a positioning
    boundary, never an extra transparent row. A native host that forwards an
    already-consumed inset can declare that measured amount in CSS pixels;
-   absent that contract, preserve the browser's safe area (including Android). */
-.shinka-nav-safe-area { flex-shrink: 0; --shinka-nav-inset: max(0px, calc(var(--safe-bottom) - var(--shinka-native-consumed-bottom, 0px))); }
+   A separately matched Android viewport can already exclude that same region.
+   All other viewports retain the browser's safe area. Neither value changes
+   the raw root inset or the bar's internal padding/height. */
+.shinka-nav-safe-area { flex-shrink: 0; --shinka-nav-inset: max(0px, calc(var(--safe-bottom) - max(var(--shinka-native-consumed-bottom, 0px), var(--shinka-viewport-consumed-bottom, 0px)))); }
 .shinka-nav-inset-probe { position: fixed; top: 0; left: 0; width: calc(1px + var(--shinka-nav-inset)); height: 100dvh; visibility: hidden; pointer-events: none; }
 .shinka-nav-dock {
   position: fixed;

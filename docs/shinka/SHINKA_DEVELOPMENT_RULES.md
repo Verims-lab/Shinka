@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-082
+**Current BuildMarker:** Buildmarker-083
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 083 — Verified position correction
+
+Generate Buildmarker-083 / HC-082.0 once, retaining 079–083. Current owner-confirmed 724/676 measurements supersede the prior missing-geometry blocker for this recorded Android behavior. Reproduce the 48px applied-inset error before changing position, then require both painted and dock bottoms at 724 without supplying a native-consumption declaration. Preserve row dimensions and all earlier scroll, session, keyboard, backdrop and direct-reference gates. Add conservative Android/iOS/unknown-mode and different-size checks; keep server iframe protection intact. Preserve failed attempts and unchanged byte gates. Deliver only AydanTest; physical after-acceptance and Base44 publication remain separate. [083 correction and execution](reports/SHINKA_ANDROID_POSITION_083.md)
 
 ## 082 — Diagnostic correction and unresolved native boundary
 

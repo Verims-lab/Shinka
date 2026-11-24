@@ -1,4 +1,5 @@
 import { createContext, useContext, useMemo } from 'react';
+import { createNavigationInsetResolver } from './navigationInset';
 
 const NavigationGeometryContext = createContext(null);
 
@@ -7,6 +8,7 @@ function createRegistry() {
   const entries = new Set(), listeners = new Set();
   const notify = () => listeners.forEach(listener => listener());
   return {
+    resolveInset: createNavigationInsetResolver(),
     register(elements) {
       entries.add(elements); notify();
       return () => { entries.delete(elements); notify(); };
