@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-087
+**Current BuildMarker:** Buildmarker-088
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-086.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-087.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 088 — Suggestion-note regression
+
+HC-087.0 retains 188 cases: 0 added / 3 updated / 0 removed (H05-009, H07-013, H13-012). checkHomePresentation now runs 80 combinations per engine: original 48 standard cases plus 32 longest-source mobile cases, TR/EN and verified fixture light/dark, six sizes (320/360/390/430/tablet/desktop), normal/doubled text. Assert semantic h2/p, original outer surface, smaller heading, italic body, thin plum rule, full wrapping and conservative text contrast >=4.5 against any underlying artwork. No completion control, reserved footer/padding or min-height. Current baseline comparisons freeze Your Shinka HTML/style/bounds, greeting/profile bounds/style, nav and artwork. Retain daily/Core/083 gates and all 087 profile behavior. H05 recognizes 088 with unchanged content predicates. Source hashes protect all other src/base44 code and Home outside the note interior; hosted/physical evidence remains separate. [088 execution](reports/SHINKA_SUGGESTION_NOTE_088.md)
 
 ## 087 — Shared profile position regression
 
