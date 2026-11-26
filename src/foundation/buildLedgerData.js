@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "short_summary": "Anchor the shared navigation to the visible application viewport, reserve its measured height in document flow, and keep 12px balanced internal padding separate from unoccluded system insets.",
-    "health_catalog_version": "HC-078.0",
-    "notes": "HC-078.0 updates H13-012 and H05-009 with the existing 188 cases. Mandatory navigation coverage measures actual viewport/safe-area position at initial/middle/end scroll, short/tall TR/EN mobile layouts, enlarged text, layout and synthetic visual viewport keyboard scenarios, negative footer offsets and retained tab/route motion. Original PNG, icons, type, colors and navigation data are preserved. Actual execution and remaining gate limits are in reports/SHINKA_FIXED_NAVIGATION_079.md.",
-    "build_marker": "Buildmarker-079",
-    "package_type": "TARGETED_UI",
-    "package_name": "Viewport-anchored product navigation",
-    "created_at": "2026-11-23T08:53:27Z",
-    "full_health_status": "NOT_RUN"
-  },
-  {
     "package_name": "Android navigation viewport compensation",
     "created_at": "2026-11-23T10:29:36Z",
     "notes": "HC-079.0 updates H13-012 and H05-009, retaining 188 cases. A real CSS viewport oracle reproduces the 079 stale-innerHeight double compensation instead of repeating its offset formula. The mandatory navigation runner includes Android-like native and visual-only resize scenarios. Static published assets were inspected without application/data endpoints; physical Android and exact installed bundle remain NOT_RUN. See reports/SHINKA_ANDROID_VIEWPORT_080.md.",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Remove the extra positioning inset for the owner-confirmed Android clamped-viewport behavior. Match native CSS, visible/client viewport, available screen and painted/dock offset together; preserve genuine safe-area fallbacks and existing navigation dimensions.",
     "full_health_status": "NOT_RUN",
     "notes": "H13-012 and H05-009 update; retain 188 cases and active 079–083. The 082 receipt reproduces viewport 724, bar/dock 676, padding/occlusion 0 and bottom inset 48 before correction. Mandatory real-App regression requires bar/dock 724 with unchanged height and no native declaration; screen availHeight 772 comes from preceding owner diagnostics. The scoped compatibility rule is not universal native detection. Preserve explicit native contracts, iOS/genuine edge-to-edge/unknown/zoom/non-browser fallbacks, scrolling and keyboard reservation. Physical 083 after-verification remains pending owner publication; no main write or Base44 publication. See reports/SHINKA_ANDROID_POSITION_083.md."
+  },
+  {
+    "full_health_status": "NOT_RUN",
+    "package_type": "TARGETED_FIX",
+    "notes": "H13-019 adds Apple and Google callback replays, legal and onboarding isolation, same-request continuation and lost native removal acknowledgement. H05-009 recognizes 084 under the existing content policy. No new schema or recovery policy. Hosted provider, platform erasure and affected account evidence require separate verification.",
+    "health_catalog_version": "HC-083.0",
+    "build_marker": "Buildmarker-084",
+    "package_name": "Account deletion reauthentication recovery",
+    "short_summary": "Keep deletion-restricted provider returns on Account & Privacy, verify the existing request with its native owner, and offer explicit continuation with read-only recovery after native removal.",
+    "created_at": "2026-11-26T07:06:13.8695597Z"
   }
 ];

@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-083
+**Current BuildMarker:** Buildmarker-084
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 084 — Account deletion reauthentication
+
+The current task targets only GizemTest and authorizes local synthetic regression and Git delivery. Keep product lifecycle admission closed and use the existing accountPrivacy owner guard for request status and explicit continuation. Keep platform erasure, live account recovery and Base44 publication subject to separate authorization. [084 investigation and operator procedure](reports/SHINKA_DELETION_REAUTHENTICATION_084.md)
 
 ## 083 — Verified position correction
 

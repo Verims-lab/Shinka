@@ -18,6 +18,7 @@ const copy = {
     protected: 'Bu hesap yönetici erişimi taşıyor. Uygulama sahibi ve son yönetici koruması nedeniyle bu ekrandan silinemez',
     noConsent: 'Geri çekilecek aktif sağlık verisi onamın yok', error: 'İşlem doğrulanamadı. Lütfen tekrar dene',
     collision: 'Başka bir hesap işlemi devam ediyor. Yeni işlem başlatılmadı',
+    restrictedUnavailable: 'Hesabın kullanıma kapalı. Silme talebinin durumu doğrulanamadı. Durumu tekrar kontrol et. Sorun sürerse Shinka desteğine başvur',
     external: 'Shinka hesap silme talebi', signOut: 'Çıkış yap',
   },
   en: {
@@ -37,6 +38,7 @@ const copy = {
     protected: 'This account has administrator access. App-owner and last-admin protection prevent removal from this screen',
     noConsent: 'You have no active health data consent to withdraw', error: 'The operation could not be confirmed. Please try again',
     collision: 'Another account operation is in progress. No new operation was started',
+    restrictedUnavailable: 'Your account is restricted. We could not verify the deletion request. Check the status again. If the problem persists, contact Shinka support',
     external: 'Shinka account deletion request', signOut: 'Sign out',
   },
 };

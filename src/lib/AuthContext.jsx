@@ -78,7 +78,8 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
       if (classifySessionFailure(error) === "INVALID") {
         events.dispatchEvent(new Event('shinka-session-ended'));
         setUser(null); setIsAuthenticated(false);
-        setAuthError({ type: error?.response?.data?.error_code === "ACCOUNT_DELETION_IN_PROGRESS" ? "lifecycle_restricted" : "auth_required", code: safeAuthError(error, "session"), diagnostic:healthReadDiagnostic(error,{stage:"SESSION_AUTH_LIFECYCLE",durationMs:sessionTiming.now()-started}) });
+        const code = error?.response?.data?.error_code ?? error?.data?.error_code;
+        setAuthError({ type: code === "ACCOUNT_DELETION_IN_PROGRESS" ? "lifecycle_restricted" : "auth_required", code: safeAuthError(error, "session"), diagnostic:healthReadDiagnostic(error,{stage:"SESSION_AUTH_LIFECYCLE",durationMs:sessionTiming.now()-started}) });
       } else {
         retryNotBefore.current = sessionTiming.now() + retryHint(error, sessionTiming.now());
         // Transient: no logout or login redirect. authError blocks isAdmin, so a
@@ -189,6 +190,7 @@ export const AuthProvider = ({ children, client = base44, sessionTiming = SESSIO
     queryClientInstance.clear();
     if (!preservePrivacyRecovery) privacyRecoveryStore.clear();
     setUser(null); setIsAuthenticated(false); setAuthChecked(true);
+    setAuthError(null);
     setIsLoadingAuth(false); setIsRefreshingAuth(false); setIsLoadingPublicSettings(false);
     try { await client.auth.logout(shouldRedirect ? `${window.location.origin}/login` : undefined); }
     catch (error) { setAuthError({ type: "auth_required", code: safeAuthError(error, "session") }); }
