@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "package_name": "Android navigation viewport compensation",
-    "created_at": "2026-11-23T10:29:36Z",
-    "notes": "HC-079.0 updates H13-012 and H05-009, retaining 188 cases. A real CSS viewport oracle reproduces the 079 stale-innerHeight double compensation instead of repeating its offset formula. The mandatory navigation runner includes Android-like native and visual-only resize scenarios. Static published assets were inspected without application/data endpoints; physical Android and exact installed bundle remain NOT_RUN. See reports/SHINKA_ANDROID_VIEWPORT_080.md.",
-    "build_marker": "Buildmarker-080",
-    "health_catalog_version": "HC-079.0",
-    "short_summary": "Measure the native CSS fixed anchor before applying any residual visual viewport correction. Separate content occlusion from positioning and retain balanced navigation spacing and system insets.",
-    "full_health_status": "NOT_RUN",
-    "package_type": "TARGETED_FIX"
-  },
-  {
     "build_marker": "Buildmarker-081",
     "package_name": "Visible navigation safe-area boundary and diagnostics",
     "package_type": "TARGETED_FIX",
@@ -49,5 +39,15 @@ export default [
     "package_name": "Account deletion reauthentication recovery",
     "short_summary": "Keep deletion-restricted provider returns on Account & Privacy, verify the existing request with its native owner, and offer explicit continuation with read-only recovery after native removal.",
     "created_at": "2026-11-26T07:06:13.8695597Z"
+  },
+  {
+    "build_marker": "Buildmarker-085",
+    "package_name": "Admin-only isolated onboarding simulation",
+    "package_type": "FEATURE",
+    "created_at": "2026-11-26T08:46:41.952Z",
+    "health_catalog_version": "HC-084.0",
+    "short_summary": "Add an admin-only visual rehearsal of the real onboarding 1–5/preparation components with in-memory providers, policy, profile, cycle and first-daily responses. Preserve real authentication, legal admission and account progress.",
+    "full_health_status": "NOT_RUN",
+    "notes": "H12-028, H13-016 and H05-009 update; retain 188 cases and active 081–085. SIM01/SIM02 and the mandatory real-App Chromium/WebKit matrix cover declarations, both fake providers, forms, Back, preparation, exit/restart, route denial and no product/OAuth/storage mutation. See reports/SHINKA_ONBOARDING_TEST_MODE_085.md for actual execution and retained failures. Simulation is not real integration acceptance. Earlier byte-gate failures and physical/provider prerequisites remain separate. No main write, production data operation or Base44 publication."
   }
 ];

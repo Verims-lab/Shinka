@@ -29,16 +29,16 @@ const SCREENS = {
   INACTIVE_ACCOUNT: { title: "inactive" },
 };
 
-const ONBOARDING_VIEWPORT_HEIGHT = "calc(100dvh - max(24px, var(--safe-top)) - max(24px, var(--safe-bottom)))";
+const ONBOARDING_VIEWPORT_HEIGHT = "calc(var(--shinka-onboarding-viewport-height, 100dvh) - max(24px, var(--safe-top)) - max(24px, var(--safe-bottom)))";
 // Scale ON-01 spacing inside the safe content area, above the 52px CTA.
 const INTRO_USABLE_HEIGHT = `max(0px, calc(${ONBOARDING_VIEWPORT_HEIGHT} - 52px))`;
 const INTRO_LAYOUT = {
-  height: "calc(100dvh - var(--shinka-brand-space, max(24px, var(--safe-top))) - max(24px, var(--safe-bottom)))",
+  height: "calc(var(--shinka-onboarding-viewport-height, 100dvh) - var(--shinka-brand-space, max(24px, var(--safe-top))) - max(24px, var(--safe-bottom)))",
   minHeight: "min-content",
 };
 const CENTERED_CONTENT = "mx-auto max-w-md";
 
-/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,authenticated?:boolean,onRestricted?:Function,onSignOut?:Function|null,authenticate?:typeof beginProviderAuth,legalPolicy?:()=>Promise<any>,dependencies?:string[]}} props */
+/** @param {{state:string,initialLanguage?:string,today?:string,profile?:any,request?:Function,dailyRequest?:Function,onState?:Function,authenticated?:boolean,onRestricted?:Function,onSignOut?:Function|null,authenticate?:typeof beginProviderAuth,legalPolicy?:()=>Promise<any>,dependencies?:string[],backTarget?:string|null,onAuthenticated?:Function,legalLinks?:{terms:string,privacy:string}}} props */
 export default function OnboardingScreen({
   state,
   initialLanguage = undefined,
@@ -53,6 +53,9 @@ export default function OnboardingScreen({
   legalPolicy = undefined,
   dependencies = [],
   onSignOut = null,
+  backTarget = undefined,
+  onAuthenticated = undefined,
+  legalLinks = undefined,
 }) {
   const language = resolveLanguage(initialLanguage);
   const [canReturnToName, setCanReturnToName] = useState(false);
@@ -157,7 +160,7 @@ export default function OnboardingScreen({
   const airy = Boolean(step);
   const numbered = airy && !intro;
   // Only an unsaved name choice made in this mounted form can be revisited.
-  const back = state === "AUTHENTICATED_PROFILE_REQUIRED" && canReturnToName && !profile
+  const back = backTarget !== undefined ? backTarget : state === "AUTHENTICATED_PROFILE_REQUIRED" && canReturnToName && !profile
     ? "AUTHENTICATED_NAME_REQUIRED"
     : screen.back;
   const advanceName = (value) => {
@@ -217,7 +220,7 @@ export default function OnboardingScreen({
         </>
       );
     if (anonymousSignIn)
-      return <SignIn language={language} authenticate={authenticate} onBusy={setBusy} loadPolicy={legalPolicy} />;
+      return <SignIn language={language} authenticate={authenticate} onBusy={setBusy} loadPolicy={legalPolicy} onAuthenticated={onAuthenticated} legalLinks={legalLinks} />;
     if (state === "AUTHENTICATED_PROFILE_REQUIRED")
       return (
         <ProfileForm

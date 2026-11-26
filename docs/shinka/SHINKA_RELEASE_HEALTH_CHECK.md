@@ -2,14 +2,20 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-084
-**Last Updated:** 2026-11-23
+**Current BuildMarker:** Buildmarker-085
+**Last Updated:** 2026-11-26
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
 **Scope:** Health catalog HC-083.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 085 — Mandatory onboarding simulation regression
+
+The App matrix also requires simulated Sign out with zero real logout calls, plus completion → preparation → cycle Back preserving the current draft. HB01/HB02 and H03-006 retain the narrow source boundary and negative IO/import fixtures; AN03/AN04 cover every internal route.
+
+HC-084.0 retains 188 cases: 0 added / 3 updated / 0 removed. H12-028 executes SIM01/SIM02 for explicit adapters, shared validation, fictional declarations, unsupported-action refusal, disposal and fresh-run isolation. H13-016 and its serialized scope require scripts/checkOnboardingSimulation.mjs: real App and real gates; 320/360/390/430px TR/EN; 1–5/preparation; both fake providers; declaration/field validation; Back/Next; optional name/cycle; keyboard-height resize; restart/exit/reload/history; real identity/storage equality; zero product/OAuth calls; anonymous/non-admin/pending/revoked/unavailable admission; dark reading surface and safe insets. H05-009 recognizes 085 under unchanged source/hash/count predicates. The full Foundation runner always executes the new App matrix unless explicitly narrowed; FOUNDATION_ONBOARDING_TEST_ONLY=1 runs it alone. In-app Health cannot claim local UI or real provider evidence by substituting unit success. [085 execution and limits](reports/SHINKA_ONBOARDING_TEST_MODE_085.md)
 
 ## 084 — Account deletion reauthentication
 

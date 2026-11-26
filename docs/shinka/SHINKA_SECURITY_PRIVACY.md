@@ -2,13 +2,19 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-084
+**Current BuildMarker:** Buildmarker-085
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
-**Last Updated:** 2026-11-23
+**Last Updated:** 2026-11-26
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
 **External Verification Required:** All rows marked UNVERIFIED.
+
+## 085 — Test Mode isolation and authority
+
+The actual onboarding Sign out control is simulated locally with a fresh ON-02 fixture. Independent provider/logout counters must remain zero. H03-006's reviewed import boundary also scans the adapter and rejects service/SDK imports and browser IO/storage; HB02 retains negative injections. No feature-directory exemption is authorized.
+
+Only real verified administrators with current legal admission can open the simulation, including direct URLs. Existing session verification and bounded revocation checks remain active; pending tools are hidden/inert and denied/unverified results remove them. Fictional authenticated state never enters AuthContext or changes the real account. The adapter has no backend/client/storage transport; profile/cycle/consent/provider/policy/daily envelopes exist only in component memory and are destroyed on exit/restart/unmount. Local legal fragment links cannot navigate to hosted documents or accept Terms. The new-user fixture requires local age/Terms confirmation, without recording real acceptance. UI rehearsal does not certify OAuth, legal callback persistence or production backend integration. Real admin/session admission reads are separate from zero simulated product IO. Retired RESET_ONBOARDING stays retired. [085](reports/SHINKA_ONBOARDING_TEST_MODE_085.md)
 
 ## 076 — Unified OAuth entry and existing acceptance
 

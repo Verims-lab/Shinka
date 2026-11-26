@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-084
-**Last Updated:** 2026-11-23
+**Current BuildMarker:** Buildmarker-085
+**Last Updated:** 2026-11-26
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
@@ -12,6 +12,10 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 085 — In-memory visual rehearsal
+
+Test Tools navigates to a separate lazy admin route, unmounting its existing real operation hook. OnboardingTest renders the real OnboardingScreen, SignIn, LegalDeclarations, profile/cycle forms and FirstShinka through a private createOnboardingSimulation instance. All service seams are explicitly injected. The real AuthProvider, current Terms gate and AdminGate stay outside the simulation. Only local UI state advances; completion stays inside the tool instead of loading real product pages. No backend model, SDK integration or persistence path changes. [085](reports/SHINKA_ONBOARDING_TEST_MODE_085.md)
 
 ## 084 — Restricted privacy routing
 

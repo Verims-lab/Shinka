@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-084
-**Last Updated:** 2026-11-23
+**Current BuildMarker:** Buildmarker-085
+**Last Updated:** 2026-11-26
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
 **Scope:** All source (client, backend, internal tooling).
@@ -37,6 +37,12 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 085 — Simulation dependency boundary
+
+H03-006 / HB01–HB02 require exact file-specific presentation imports and a pure-validation-only adapter. Do not exempt the feature directory. Keep the negative SDK, unknown import and browser IO/storage fixtures. All internal route denial fixtures must include nested simulation routes. The preview's Sign out resets only its local fixture; the real logout remains unreachable.
+
+Keep the preview route lazy under ProtectedRoute/AdminGate; do not add a public flag, fake AuthProvider, SDK monkeypatch or production test branch. The simulation adapter imports only shared pure validation and supplies all four existing UI seams: onboarding request, provider authentication, legal policy and first-daily request. Unknown actions and disposed adapters reject. No production fallback, real identity input, browser persistence, URL draft or telemetry is permitted. Dispose on exit, restart and unmount; real role loss removes the route. Optional heading/back/legal-link/auth-completion presentation props retain their production defaults. Test dispatch, storage and real identity independently of visible UI. [085](reports/SHINKA_ONBOARDING_TEST_MODE_085.md)
 
 ## 083 — Scoped viewport compatibility policy
 

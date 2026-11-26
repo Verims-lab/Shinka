@@ -27,6 +27,7 @@ import { collectBrowserMeasurements } from './browserMeasurements.mjs';
 import { verifyNativeEntries } from './verifyNativeEntries.mjs';
 import { verifySecurity028 } from './verifySecurity028.mjs';
 import { checkAdminTestTools } from './checkAdminTestTools.mjs';
+import { checkOnboardingSimulation } from './checkOnboardingSimulation.mjs';
 import { checkAdminNavigation } from './checkAdminNavigation.mjs';
 import { checkDailyFlow } from './checkDailyFlow.mjs';
 import { checkCalendarFlow, checkCalendarContinuity } from './checkCalendarFlow.mjs';
@@ -97,7 +98,9 @@ try {
     if(location.origin===origin)sessionStorage.setItem('shinka.browser-evidence.v1',JSON.stringify(bundle));
   },{bundle:probeBundle,origin});
   await page.evaluate(bundle=>window.__acceptBrowserEvidence(bundle),probeBundle);
-  if (process.env.FOUNDATION_BACKDROP_ONLY === '1') {
+  if (process.env.FOUNDATION_ONBOARDING_TEST_ONLY === '1') {
+    console.log(JSON.stringify({onboardingSimulation:await checkOnboardingSimulation(browser,origin,process.env.FOUNDATION_ONBOARDING_TEST_DIR),pageErrors}));
+  } else if (process.env.FOUNDATION_BACKDROP_ONLY === '1') {
     console.log(JSON.stringify({ appBackdrop: await checkAppBackdrop(browser, origin, process.env.FOUNDATION_BACKDROP_DIR), pageErrors }));
     if (pageErrors.length) process.exitCode = 1;
   } else if (process.env.FOUNDATION_TERMS_ONLY === '1') {
@@ -180,6 +183,7 @@ try {
   if(process.env.FOUNDATION_VISUAL_DIR){await captureFoundationVisuals(page,origin,path.resolve(process.env.FOUNDATION_VISUAL_DIR));await page.setViewportSize({width:1280,height:900});}
   if(!process.env.FOUNDATION_TEST_IDS)console.log(JSON.stringify({authFirstOnboarding:await checkAuthFirstOnboarding(browser,origin)}));
   if(!process.env.FOUNDATION_TEST_IDS)console.log(JSON.stringify({termsAcceptance:await checkTermsAcceptance(browser,origin,process.env.FOUNDATION_TERMS_DIR)}));
+  if(!process.env.FOUNDATION_TEST_IDS)console.log(JSON.stringify({onboardingSimulation:await checkOnboardingSimulation(browser,origin,process.env.FOUNDATION_ONBOARDING_TEST_DIR)}));
   await page.goto(`${origin}/internal/health`);
   await page.waitForSelector("[data-health-root]");
   const results=await page.evaluate(ids=>window.__runFoundationTests({ids}),process.env.FOUNDATION_TEST_IDS?.split(','));

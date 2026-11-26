@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-084
-**Last Updated:** 2026-11-23
+**Current BuildMarker:** Buildmarker-085
+**Last Updated:** 2026-11-26
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 085 — Onboarding Test Mode
+
+Clean AydanTest at 6fe9720 fast-forwarded to origin/main 578a443 (four commits) before editing. The incoming 084 privacy recovery, Base44 dependency lock and LF history rule are preserved. The feature is an admin-only frontend simulation with no real provider/product IO. Execution results and retained failed attempts are recorded in [085](reports/SHINKA_ONBOARDING_TEST_MODE_085.md); earlier package results remain historical.
 
 ## 083 — Reproduced 48px bottom-position error
 

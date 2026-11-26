@@ -23,6 +23,7 @@ import AdminGate from "@/components/internal/AdminGate";
 import AppBackdrop from "@/components/shinka/AppBackdrop";
 import { INTERNAL_ROUTES } from "@/foundation/internalNavigation";
 const TestTools = lazy(() => import("@/pages/internal/TestTools"));
+const OnboardingTest = lazy(() => import("@/pages/internal/OnboardingTest"));
 const AccountPrivacy = lazy(() => import("@/pages/AccountPrivacy"));
 const AdminPanel = lazy(() => import("@/pages/internal/AdminPanel"));
 const BuildEnvironment = lazy(
@@ -90,6 +91,7 @@ const AuthenticatedApp = () => {
       >
         <Route element={<AdminGate />}>
           <Route path="/internal/test-tools" element={<RouteBoundary><TestTools /></RouteBoundary>} />
+          <Route path="/internal/test-tools/onboarding" element={<RouteBoundary><OnboardingTest /></RouteBoundary>} />
           <Route path="/internal" element={<RouteBoundary><AdminPanel /></RouteBoundary>} />
           <Route
             path="/internal/build"

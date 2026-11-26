@@ -39,7 +39,7 @@ async function fixture(identity, path, run, language = 'en', context = {}) {
       h(Route, { element: h(ProtectedRoute, { unauthenticatedElement: h(Navigate, { to: '/login', replace: true }) }) },
         h(Route, { element: h(AdminGate) },
           h(Route, { path: '/internal', element: h(AdminPanel) }),
-          ...INTERNAL_TOOLS.map(({ path }) => h(Route, { key: path, path, element: tool }))))))));
+          ...INTERNAL_ROUTES.filter(path => path !== '/internal').map(path => h(Route, { key: path, path, element: tool }))))))));
   const q = selector => host.querySelector(selector);
   try { await wait(() => f.auth); await run(f, q, host, wait); }
   finally { dispose(); }
@@ -47,8 +47,8 @@ async function fixture(identity, path, run, language = 'en', context = {}) {
 
 /** @type {import('./testTypes').FoundationTest[]} */
 export const ADMIN_NAV_TESTS = [
-  ['AN01', 'Internal inventory has exactly the panel and three tools; language is display-only', () => {
-    assert(INTERNAL_ROUTES.join() === '/internal,/internal/test-tools,/internal/health,/internal/build', 'route inventory');
+  ['AN01', 'Internal inventory has panel, three tools and guarded onboarding preview; language is display-only', () => {
+    assert(INTERNAL_ROUTES.join() === '/internal,/internal/test-tools,/internal/health,/internal/build,/internal/test-tools/onboarding', 'route inventory');
     assert(internalLanguage({ language: 'tr', role: 'admin' }) === 'tr', 'TR routing');
     assert(['en', 'tr'].includes(internalLanguage({ language: 'javascript:alert(1)' })), 'unsafe locale');
     assert(t('admin.healthDescription', 'tr') === 'Sağlık kontrolleri, testler ve sonuçlar.' && t('admin.buildDescription', 'tr') === 'Güncel sürüm, ortam bilgileri ve paket geçmişi.', 'approved copy');

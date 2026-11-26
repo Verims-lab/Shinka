@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** ACTIVE — 051 cleanup accepted; final daily schema observed; scoped 058 acceptance ledger
-**Current BuildMarker:** Buildmarker-084
-**Last Updated:** 2026-11-12
+**Current BuildMarker:** Buildmarker-085
+**Last Updated:** 2026-11-26
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test delivery; 051 authorizes targeted hosted observation and reviewed historical maintenance on the named existing app. No agent main merge/publish, new external service or paid resource.
 
 
+
+## 085 — Frontend-only Test Tools simulation
+
+The new admin route needs no schema, seed, user reset, backend test switch or OAuth configuration. All fictional IO is in memory behind the existing real admin/Terms gate. Git delivery is only AydanTest. Base44 synchronization/publication and hosted/device/provider acceptance remain separate owner actions; this package performs none. Preserve 084 deletion recovery and all earlier production acceptance prerequisites. [085](reports/SHINKA_ONBOARDING_TEST_MODE_085.md)
 
 ## 074 — Legal acceptance release prerequisite
 
