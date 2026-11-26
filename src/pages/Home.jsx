@@ -2,6 +2,7 @@ import RefreshControl from "@/features/mobile/RefreshControl";
 import { useEffect, useState } from 'react';
 import ProductNavigation from '@/components/shinka/ProductNavigation';
 import ProfileMenu from '@/components/profile/ProfileMenu';
+import ProfileLogoSlot from '@/components/profile/ProfileLogoSlot';
 import ShinkaCard from '@/components/shinka/ShinkaCard';
 import { resolveLanguage } from '@/foundation/i18n/strings';
 import { dailyCopy } from '@/foundation/i18n/dailyCopy';
@@ -14,11 +15,11 @@ export default function Home({ profileAccess = undefined, renderProfileAccess = 
   const name = daily.value ? daily.value.profile ? daily.value.profile.display_name : profile?.display_name : null;
   const row = daily.value?.daily;
   const copy = key => dailyCopy(key, language);
-  return <div className="shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col" lang={language} data-home-root>
+  return <div className="relative shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col" lang={language} data-home-root>
     <main className="flex-1 w-full max-w-xl mx-auto px-5 py-4 space-y-6">
       <header className="flex items-center justify-between gap-3">
         <h1 className="min-w-0 flex-1 font-heading font-medium text-shinka-h2 break-words">{copy('greeting')}{name?.trim() ? `, ${name.trim()}` : ''}</h1>
-        <div className="shrink-0">{renderProfileAccess?.(language) || profileAccess || <ProfileMenu language={language}/>}</div>
+        <div className="shrink-0"><ProfileLogoSlot>{renderProfileAccess?.(language) || profileAccess || <ProfileMenu language={language}/>}</ProfileLogoSlot></div>
       </header>
       <RefreshControl showButton={false} language={language} refresh={daily.reload} loading={daily.loading} error={null}/>
       {row ? <div className="space-y-5" data-daily-id={row.id}>

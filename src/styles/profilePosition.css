@@ -1,0 +1,15 @@
+/* Each product page is the positioning anchor. Its top already follows the
+   shared artwork clearance; subtract that same value, without moving the art
+   or changing page flow. This control scrolls with the document/logo. */
+.shinka-profile-logo {
+  position: absolute;
+  top: calc(var(--safe-top, 0px) + 16px - var(--shinka-brand-space, 0px));
+  right: max(20px, var(--safe-right, 0px));
+  width: 2.75rem;
+  min-height: 2.75rem;
+  z-index: 20;
+  border-radius: 50%;
+}
+/* Preserve the control's former dark reading surface over the pale artwork;
+   its own glyph, border, background, size and focus styles are untouched. */
+.dark .shinka-profile-logo { background-color: rgb(var(--shinka-ivory)); }

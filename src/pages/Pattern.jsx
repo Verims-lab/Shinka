@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ProfileMenu from '@/components/profile/ProfileMenu';
+import ProfileLogoSlot from '@/components/profile/ProfileLogoSlot';
 import ShinkaButton from '@/components/shinka/ShinkaButton';
 import ShinkaCard from '@/components/shinka/ShinkaCard';
 import ProductNavigation from '@/components/shinka/ProductNavigation';
@@ -10,9 +11,9 @@ export default function Pattern({ language: initialLanguage = 'en', renderProfil
   const [language, setLanguage] = useState(initialLanguage);
   useEffect(() => { if(initialLanguage) setLanguage(initialLanguage); }, [initialLanguage]);
   const state = usePattern(request, runtime, active), copy = key => patternCopy(key, language);
-  return <div lang={language} data-pattern-root className="shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col">
+  return <div lang={language} data-pattern-root className="relative shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col">
     <header className="flex flex-wrap items-center justify-end px-5 pt-2 gap-2">
-      {renderProfileAccess?.(language) || <ProfileMenu language={language}/>}
+      <ProfileLogoSlot>{renderProfileAccess?.(language) || <ProfileMenu language={language}/>}</ProfileLogoSlot>
     </header>
     <main className="flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6">
       <h1 className="font-heading text-shinka-h1">{copy('title')}</h1>

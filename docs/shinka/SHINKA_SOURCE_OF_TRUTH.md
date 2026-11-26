@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-086
+**Current BuildMarker:** Buildmarker-087
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 087 — Profile control in the logo corner
+
+The current owner request supersedes only 086's inline profile position. Across Home, Calendar, Pattern and You, move each existing control into the upper-right artwork area. Preserve its design, size, access/routing and DOM ownership. Do not add an icon where none existed. Freeze background/image/logo geometry, bottom navigation and 083 correction, plus Home 086 greeting/card type, surfaces and flow. No account/data/auth change. [087](reports/SHINKA_PROFILE_POSITION_087.md)
 
 ## 086 — Home-only visual refinement
 

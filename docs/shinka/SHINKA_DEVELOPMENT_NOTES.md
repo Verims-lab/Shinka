@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-086
+**Current BuildMarker:** Buildmarker-087
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 087 — Logo-corner profile control
+
+The owner identifies the 086 greeting-row icon as current, not desired. Only its position is superseded. The four page layouts retain their previous flow footprint; typography/cards remain unchanged. Clean branch synchronization and baseline/source protection precede implementation. Actual results, failed attempts and remaining external checks are recorded in [087](reports/SHINKA_PROFILE_POSITION_087.md).
 
 ## 086 — Home refinement and evidence
 

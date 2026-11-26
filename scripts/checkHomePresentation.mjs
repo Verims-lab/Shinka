@@ -60,7 +60,8 @@ export async function checkHomePresentation(browser, origin, directory, baseline
             assert.equal(card.textStyle.font,15*scale+'px');
           }
           assert(metrics.heading.y >= paint.logo.bottom, 'greeting must clear the original logo');
-          assert(Math.abs(metrics.profile.y+metrics.profile.height/2-metrics.heading.y-metrics.heading.height/2)<1, 'greeting/profile group alignment');
+          assert(Math.abs(metrics.profile.y-paint.inset.top-16)<1, 'profile must be in the safe logo area');
+          assert(metrics.profile.x>=paint.logo.right+8, 'profile must clear the original logo');
           assert(metrics.profile.width>=44&&metrics.profile.height>=44);
           assert(metrics.heading.x+metrics.heading.width <= metrics.profile.x+1);
           const prior=before.find(row=>row.key===key);

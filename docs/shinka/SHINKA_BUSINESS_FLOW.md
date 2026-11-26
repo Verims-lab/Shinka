@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-086
+**Current BuildMarker:** Buildmarker-087
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -12,6 +12,10 @@
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 
+
+## 087 — Profile entry position only
+
+The same verified ProfileAccess link/menu opens You with the existing locale, including the current self-link on You. Only visual placement changes. Authenticated progress, owner data, privacy actions, account state, Back/history and optional fields are unchanged. The position wrapper performs no reads, writes or authorization. [087](reports/SHINKA_PROFILE_POSITION_087.md)
 
 ## 086 — Home presentation amendment
 

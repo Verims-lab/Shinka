@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-086
+**Current BuildMarker:** Buildmarker-087
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -12,6 +12,10 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 087 — Presentation-only profile slot
+
+One ProfileLogoSlot and its scoped stylesheet position existing profile children; four product page roots become relative anchors. No new provider, portal, route, auth decision, business hook or dependency is introduced. Existing links/menu props remain verbatim. Retained hidden/inert page ownership and current admission guards remain effective because the control stays in the page DOM. The 44px flow slot preserves existing content geometry. Global backdrop/navigation styles and 083 viewport code are byte-identical. [087](reports/SHINKA_PROFILE_POSITION_087.md)
 
 ## 086 — Home-only component composition
 

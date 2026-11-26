@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** ACTIVE — 051 cleanup accepted; final daily schema observed; scoped 058 acceptance ledger
-**Current BuildMarker:** Buildmarker-086
+**Current BuildMarker:** Buildmarker-087
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test delivery; 051 authorizes targeted hosted observation and reviewed historical maintenance on the named existing app. No agent main merge/publish, new external service or paid resource.
 
 
+
+## 087 — Profile position frontend package
+
+No schema, backend, OAuth, import, account or user-progress change is required. Deliver only the frontend/component, tests and governance to AydanTest. The owner controls later Base44 synchronization/publication and physical-device acceptance; none is performed here. [087](reports/SHINKA_PROFILE_POSITION_087.md)
 
 ## 086 — Home frontend package
 

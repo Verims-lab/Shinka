@@ -42,6 +42,10 @@ Buildmarker-065 introduced a single shared PNG across user-facing routes. [065 s
 
 [064 Test Tools retirement](docs/shinka/reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md): admin reset is removed from UI and backend commands. Existing receipts remain readable/fenced; the two authorized live removals are still blocked by active legacy receipts. No schema push is required.
 
+## Profile position — 087 / HC-086.0
+
+Existing Home, Calendar, Pattern and You profile controls share the safe upper-right logo area. Their original design/access and flow footprint are preserved, keeping the 086 Home heading/cards, background and 083 navigation unchanged. This supersedes only 086's inline profile placement. Run `FOUNDATION_PROFILE_POSITION_ONLY=1 npm run test:foundation` for the local real-App/synthetic-SDK matrix in each browser. [087 scope and execution](docs/shinka/reports/SHINKA_PROFILE_POSITION_087.md)
+
 ## Home refinement — 086 / HC-085.0
 
 Home aligns its greeting/profile and presents the daily message and suggestion in two soft translucent containers. Background, navigation, 083 positioning and content selection are unchanged. `FOUNDATION_HOME_ONLY=1 npm run test:foundation` runs the focused Home/daily matrix. [086 scope and execution](docs/shinka/reports/SHINKA_HOME_REFINEMENT_086.md)
