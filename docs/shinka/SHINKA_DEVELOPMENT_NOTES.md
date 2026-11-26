@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-085
+**Current BuildMarker:** Buildmarker-086
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 086 — Home refinement and evidence
+
+Only Home product UI changes; 055's preparation surface remains plain. Main merge 1ec5493 was integrated with a clean fast-forward. Pre-change Chromium/WebKit captures and protected-file hashes are recorded outside the repository; final execution and retained failures are in [086](reports/SHINKA_HOME_REFINEMENT_086.md). Do not certify physical Android, production data, or release readiness from synthetic browser results.
 
 ## 085 — Onboarding Test Mode
 

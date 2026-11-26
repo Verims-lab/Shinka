@@ -91,7 +91,9 @@ export const DAILY_UI_TESTS = [
     root.render(createElement(Home, { language, initialDaily: result, request })); await eventually(() => host.querySelector('[data-daily-message]')?.textContent === (language === 'tr' ? 'TR mesaj' : 'EN message'));
     check(host.querySelector('[data-daily-id]').getAttribute('data-daily-id') === 'earlier');
     check(host.querySelector('[data-daily-message]').textContent === (language === 'tr' ? 'TR mesaj' : 'EN message'));
-    for(const el of host.querySelectorAll('[data-daily-id] section')){const css=getComputedStyle(el);check(css.backgroundColor==='rgba(0, 0, 0, 0)'&&parseFloat(css.borderTopWidth)===0&&css.boxShadow==='none','daily text has no card surface');}
+    const cards=host.querySelectorAll('[data-home-card]');check(cards.length===2,'two separate Home surfaces');
+    for(const el of cards){const css=getComputedStyle(el);check(css.backgroundColor.endsWith(', 0.8)')&&css.borderRadius==='20px'&&parseFloat(css.borderTopWidth)===0&&css.boxShadow==='none','soft Home surface');}
+    for(const el of host.querySelectorAll('[data-home-card] section')){const css=getComputedStyle(el);check(css.backgroundColor==='rgba(0, 0, 0, 0)'&&parseFloat(css.borderTopWidth)===0&&css.boxShadow==='none','shared plain card remains unchanged');}
     check(!technical.some(text => host.textContent.includes(text)) && ![...host.querySelectorAll('[data-home-root] [role="status"]:empty')].some(node=>node.getClientRects().length));
   }
   check(requests === 0 && result.notice === 'DAILY_DUPLICATE_RECONCILED');

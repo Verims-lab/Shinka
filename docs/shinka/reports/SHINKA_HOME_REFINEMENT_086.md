@@ -1,0 +1,29 @@
+# 086 — Home UI refinement
+
+Buildmarker-086 / HC-085.0. Clean AydanTest fast-forwarded from 881a335 to main 1ec5493 before development. That merge contains 085 without application file changes.
+
+## Scope and approved behavior
+
+Home alone places its unchanged profile access beside the greeting in the existing content column. Removing the standalone 52px profile row and reducing main vertical padding from 32px to 16px removes the duplicate top gap without moving the background/logo. The greeting uses the existing 28/34px token; both section headings retain matching 24/30px, weight 500 and the same heading font. Message/suggestion text uses the existing 15/22px token, preserving complete whitespace and wrapping.
+
+Two separate outer divs use token white at 80% opacity, 20px radius, no border/shadow and a 20px gap. The existing plain ShinkaCard provides 20px inner padding and identical heading markup. This follows the supplied onboarding reference's soft RGB-alpha surface, without changing onboarding. The established dark surface token preserves contrast and theme preferences. Shared ShinkaCard defaults, loading/error controls, preparation, localized text, daily/Pair IDs, content selection, refresh, authentication and profile routing are unchanged. Only Home's portion of the 055 transparent-surface decision is superseded.
+
+Original PNG, backdrop component/CSS, global styles, navigation component/inset/viewport policy and 083 correction are untouched. Protected file hashes and before/after computed art, navigation and profile styles verify this independently of the changed content. No dependency, schema, backend, production data, PR, main write or Base44 publication belongs to this package.
+
+## Regression and Health coverage
+
+The mandatory Foundation runner includes checkHomePresentation; FOUNDATION_HOME_ONLY=1 also runs checkDailyFlow. Each engine captures 48 combinations: 320×568, 360×740, 390×844, 430×932, 768×1024 and 1280×900; TR/EN; light/dark CSS and normal/doubled text. It checks typography, separate exact-opacity/radius surfaces, logo clearance, profile alignment/44px access/return, full wrapping, exact source text/ID and zero presentation-triggered writes. Art geometry and complete nav/icon/link/style bounds must equal matching pre-change captures; fixed position is checked during scroll. At 390px the fixture supplies a 34px safe inset. Baseline captures are measurements, never tests marked PASS. Real preference behavior and 083's recorded Android/iOS/keyboard matrix remain separate existing gates.
+
+DU04 now requires two soft Home surfaces and unchanged plain inner sections; checkOnboardingCorrections retains the preparation/plain-inner checks. H07-013, H13-012 and serialized scope include the Home matrix; H05-009 recognizes 086 without changing content predicates. HC-085.0 retains 188 cases (three updated, none added/removed); active history retains 082–086.
+
+## Execution
+
+- Chromium and WebKit each passed **48/48 Home combinations** and **5/5 existing daily-flow scenarios**, with no reported page errors. Matching before/after captures preserve the complete measured nav/profile styles and art geometry. Screenshots were inspected; themed captures are taken before visiting You so its verified preferences cannot replace the temporary CSS test theme.
+- Both engines passed the existing **2,626-case navigation matrix**, including 083's recorded Android fixture, all three product tabs, genuine/iOS/unknown-inset fallbacks, scroll, keyboard resize and restoration. The recorded corrected bar/dock boundary remains 724px with zero bottom gap and unchanged bar height. These are browser fixtures, not physical Android acceptance.
+- Chromium passed **822/822 canonical base tests**. WebKit recorded **820 PASS / 2 DOM_WAIT timeouts** in SS07/SS08 during the parallel run; both unchanged session tests then passed an isolated **2/2** rerun. The first failed run is retained and is not relabeled as an all-pass full run. No auth code or timeout requirement was modified. The complete default Foundation pipeline was not run; these are the explicit scoped gate results.
+- Locked install, full dependency tree, fresh npm audit/native High-threshold gate, typecheck, lint, production build, Repo Health, generated five-package history and delivery review passed. Audit reported **zero vulnerabilities**. Hashes of **34 protected files** stayed identical, covering the background, navigation/policy, global styles, shared card, profile controls, onboarding, Calendar and Pattern. Only Home.jsx changed among product UI files; no dependencies or backups were added.
+- The performance gate is **FAIL** under unchanged budgets. Initial JS measured **499,145 raw / 166,892 gzip** (limits 500,000 / 165,000); CSS **85,335 raw / 16,663 gzip** (90,000 / 16,000). Both raw limits passed and both gzip limits failed; earlier 085 already recorded both gzip overruns. No waiver or release-ready claim is made. Static cycles: **0**; lazy-asset reload recovery passed; **27 cold route samples** had no page exceptions.
+
+Initial capture attempts used an incomplete fictional daily envelope and were correctly rejected by the existing readback guard; the fixture was completed without changing production validation. A first surface assertion exposed Tailwind's Oklab serialization; Home now uses the same explicit RGB-alpha token pattern as the reference onboarding. An initial You-return fixture switched between two isolated daily labs; a CLI-only flag keeps this visual journey on the same fictional record. It is absent from the product build. Original attempt logs remain outside the checkout; no historical report was rewritten.
+
+Base44/device verification and current hosted Full Health remain **NOT_RUN**. No publication or live data action occurred. The owner retains later synchronization/publication and physical acceptance.

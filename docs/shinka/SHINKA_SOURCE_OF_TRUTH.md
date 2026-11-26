@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-085
+**Current BuildMarker:** Buildmarker-086
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 086 — Home-only visual refinement
+
+The 2026-11-26 owner request supersedes only the Home portion of 055's transparent daily presentation. Add two separate 80% token-white rounded surfaces for Your Shinka and Today's Suggestion. Keep preparation plain. Bring Home greeting/profile into one content-aligned row below the unchanged logo; use existing smaller greeting/body tokens and matching section headings. PNG bytes, composition, colors, transparency and position, plus every bottom-navigation property and 083 policy, are frozen. No content/selection/auth/data change. [086](reports/SHINKA_HOME_REFINEMENT_086.md)
 
 ## 085 — Admin-only onboarding simulation
 

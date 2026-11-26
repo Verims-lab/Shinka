@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-085
+**Current BuildMarker:** Buildmarker-086
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 086 — Scoped Home styling and regression
+
+Use Home-only composition and existing design tokens. Do not change a shared card or add global CSS for this refinement. Keep complete text wrapping, one h1, two matching h2 headings, existing profile semantics and 44px targets. checkHomePresentation joins the mandatory Foundation runner; FOUNDATION_HOME_ONLY=1 also runs existing checkDailyFlow. Optional baseline/comparison paths stay CLI-only. Compare computed navigation/profile styles and art geometry against pre-change captures and verify protected files by hash. [086](reports/SHINKA_HOME_REFINEMENT_086.md)
 
 ## 085 — Simulation dependency boundary
 

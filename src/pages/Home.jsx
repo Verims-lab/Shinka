@@ -15,15 +15,19 @@ export default function Home({ profileAccess = undefined, renderProfileAccess = 
   const row = daily.value?.daily;
   const copy = key => dailyCopy(key, language);
   return <div className="shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col" lang={language} data-home-root>
-    <header className="flex flex-wrap items-center justify-end px-5 pt-2 gap-2">
-      {renderProfileAccess?.(language) || profileAccess || <ProfileMenu language={language}/>}
-    </header>
-    <main className="flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6">
-      <h1 className="font-heading font-medium text-shinka-h1 break-words">{copy('greeting')}{name?.trim() ? `, ${name.trim()}` : ''}</h1>
+    <main className="flex-1 w-full max-w-xl mx-auto px-5 py-4 space-y-6">
+      <header className="flex items-center justify-between gap-3">
+        <h1 className="min-w-0 flex-1 font-heading font-medium text-shinka-h2 break-words">{copy('greeting')}{name?.trim() ? `, ${name.trim()}` : ''}</h1>
+        <div className="shrink-0">{renderProfileAccess?.(language) || profileAccess || <ProfileMenu language={language}/>}</div>
+      </header>
       <RefreshControl showButton={false} language={language} refresh={daily.reload} loading={daily.loading} error={null}/>
       {row ? <div className="space-y-5" data-daily-id={row.id}>
-        <ShinkaCard surface="plain" title={copy('shinka')}><p className="text-shinka-body-lg whitespace-pre-wrap break-words" data-daily-message>{row[`message_${language}_snapshot`]}</p></ShinkaCard>
-        <ShinkaCard surface="plain" title={copy('suggestion')}><p className="text-shinka-body-lg whitespace-pre-wrap break-words" data-daily-suggestion>{row[`suggestion_${language}_snapshot`]}</p></ShinkaCard>
+        <div className="rounded-shinka-lg" style={{ backgroundColor: 'rgb(var(--shinka-white) / 0.8)' }} data-home-card="message">
+          <ShinkaCard surface="plain" title={copy('shinka')}><p className="text-shinka-body whitespace-pre-wrap break-words" data-daily-message>{row[`message_${language}_snapshot`]}</p></ShinkaCard>
+        </div>
+        <div className="rounded-shinka-lg" style={{ backgroundColor: 'rgb(var(--shinka-white) / 0.8)' }} data-home-card="suggestion">
+          <ShinkaCard surface="plain" title={copy('suggestion')}><p className="text-shinka-body whitespace-pre-wrap break-words" data-daily-suggestion>{row[`suggestion_${language}_snapshot`]}</p></ShinkaCard>
+        </div>
         {daily.error && <DailyStatus {...daily} language={language}/>}
       </div> : <ShinkaCard surface="plain"><DailyStatus {...daily} language={language}/></ShinkaCard>}
     </main>

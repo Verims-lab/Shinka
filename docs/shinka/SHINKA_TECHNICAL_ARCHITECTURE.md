@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-085
+**Current BuildMarker:** Buildmarker-086
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -12,6 +12,10 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 086 — Home-only component composition
+
+Home.jsx owns the refinement. Reposition the existing injected ProfileAccess without changing it, and wrap existing plain ShinkaCards in two token-colored rounded divs. Reuse existing typography/spacing/radius tokens and the reference onboarding RGB-alpha pattern. No shared component, stylesheet, background, navigation, request/hook, backend or dependency change. Keep 083 viewport/inset ownership byte-identical. [086](reports/SHINKA_HOME_REFINEMENT_086.md)
 
 ## 085 — In-memory visual rehearsal
 

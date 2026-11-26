@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-085
+**Current BuildMarker:** Buildmarker-086
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 086 — Home-only delivery and protected baseline
+
+Clean AydanTest fast-forwarded from 881a335 to main 1ec5493 before development; the merge contains 085 without file changes. Record Buildmarker-086 / HC-085.0 once, retaining 082–086. Require both-engine Home presentation and existing daily/navigation gates, protected source hashes, type/lint/build/repo/dependency/performance checks. Baseline captures are unasserted measurements, never PASS. Preserve historical failures and budgets. Deliver only AydanTest; no PR, main write, Base44 publication or live data. [086](reports/SHINKA_HOME_REFINEMENT_086.md)
 
 ## 085 — Isolated onboarding Test Mode
 
