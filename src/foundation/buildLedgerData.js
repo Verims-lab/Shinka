@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-081",
-    "package_name": "Visible navigation safe-area boundary and diagnostics",
-    "package_type": "TARGETED_FIX",
-    "created_at": "2026-11-23T14:17:40.233Z",
-    "health_catalog_version": "HC-080.0",
-    "short_summary": "Remove transparent dock padding without resizing the bar. Position at the unconsumed safe boundary, reserve measured clearance once and expose an opt-in read-only geometry diagnostic. Native-consumed insets require a measured host declaration or correct native zeroing.",
-    "full_health_status": "NOT_RUN",
-    "notes": "HC-080.0 updates H13-012 and H05-009, retaining 188 cases. Mandatory regression measures the painted bar and dock independently with a 30px inset, explicit native-consumed, partial and edge-to-edge ownership, viewport restore and read-only diagnostic checks. The supplied Android video and published 080 assets are evidence of the report, not native viewport telemetry. No native inset bridge exists in this repository; default unverified insets stay protected. Physical resolution remains OPEN_PENDING_DEVICE_MEASUREMENTS_AND_NATIVE_OWNERSHIP. No publication or live data operation. See reports/SHINKA_NAVIGATION_SAFE_AREA_081.md."
-  },
-  {
     "build_marker": "Buildmarker-082",
     "package_name": "Mounted navigation measurements and 48px inset regression",
     "package_type": "TARGETED_FIX",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Add an admin-only visual rehearsal of the real onboarding 1–5/preparation components with in-memory providers, policy, profile, cycle and first-daily responses. Preserve real authentication, legal admission and account progress.",
     "full_health_status": "NOT_RUN",
     "notes": "H12-028, H13-016 and H05-009 update; retain 188 cases and active 081–085. SIM01/SIM02 and the mandatory real-App Chromium/WebKit matrix cover declarations, both fake providers, forms, Back, preparation, exit/restart, route denial and no product/OAuth/storage mutation. See reports/SHINKA_ONBOARDING_TEST_MODE_085.md for actual execution and retained failures. Simulation is not real integration acceptance. Earlier byte-gate failures and physical/provider prerequisites remain separate. No main write, production data operation or Base44 publication."
+  },
+  {
+    "build_marker": "Buildmarker-086",
+    "package_name": "Home spacing, typography and soft reading surfaces",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-11-26T09:41:14.416Z",
+    "health_catalog_version": "HC-085.0",
+    "short_summary": "Refine Home only: one aligned greeting/profile row, smaller existing type tokens and two separate translucent rounded reading surfaces. Preserve original background, complete bottom navigation, 083 correction and all data/selection behavior.",
+    "full_health_status": "NOT_RUN",
+    "notes": "H05-009, H07-013 and H13-012 update; retain 188 cases and 082–086. Both-engine real-App matrix covers 48 responsive/localized/theme/text combinations plus unchanged art/navigation baseline and protected source hashes. Preserve daily/Retry/access and 083 navigation regressions. The 055 Home transparency rule is superseded only for these outer surfaces; preparation and shared card defaults stay plain/unchanged. See reports/SHINKA_HOME_REFINEMENT_086.md for actual results, retained failures and unchanged byte budgets. No main write, PR, Base44 publication or production operation."
   }
 ];

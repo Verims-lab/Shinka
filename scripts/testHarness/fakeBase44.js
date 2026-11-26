@@ -227,6 +227,9 @@ export const base44 = {
       return {data:await onboardingOperation(fixture.client,body,fixture.dependencies)};
     }
     if (name === 'dailyMessage') {
+      // Home visual comparison keeps one fictional record across You/Back.
+      // CLI-only alias; the product build never reads this fixture flag.
+      if(params.has('homePresentation') && globalThis.__dailyFixture)return {data:structuredClone(globalThis.__dailyFixture)};
       if(youLab)return {data:await(await loadYouLab()).today()};
       dailyAttempts++;
       if (params.get('dailyScenario') === 'notReady' || params.get('dailyScenario') === 'retry' && dailyAttempts === 1) return { data: { error_code: 'DAILY_ATOMIC_CAPABILITY_REQUIRED' } };

@@ -30,6 +30,7 @@ import { checkAdminTestTools } from './checkAdminTestTools.mjs';
 import { checkOnboardingSimulation } from './checkOnboardingSimulation.mjs';
 import { checkAdminNavigation } from './checkAdminNavigation.mjs';
 import { checkDailyFlow } from './checkDailyFlow.mjs';
+import { checkHomePresentation } from './checkHomePresentation.mjs';
 import { checkCalendarFlow, checkCalendarContinuity } from './checkCalendarFlow.mjs';
 import { verifyDependencyRules } from './verifyDependencyRules.mjs';
 import { checkMobile } from './checkMobile.mjs';
@@ -98,7 +99,10 @@ try {
     if(location.origin===origin)sessionStorage.setItem('shinka.browser-evidence.v1',JSON.stringify(bundle));
   },{bundle:probeBundle,origin});
   await page.evaluate(bundle=>window.__acceptBrowserEvidence(bundle),probeBundle);
-  if (process.env.FOUNDATION_ONBOARDING_TEST_ONLY === '1') {
+  if (process.env.FOUNDATION_HOME_ONLY === '1') {
+    console.log(JSON.stringify({homePresentation:await checkHomePresentation(browser,origin,process.env.FOUNDATION_HOME_DIR,process.env.FOUNDATION_HOME_BASELINE==='1',process.env.FOUNDATION_HOME_COMPARISON),dailyFlow:process.env.FOUNDATION_HOME_BASELINE==='1'?undefined:await checkDailyFlow(page,origin),pageErrors}));
+    if(pageErrors.length)process.exitCode=1;
+  } else if (process.env.FOUNDATION_ONBOARDING_TEST_ONLY === '1') {
     console.log(JSON.stringify({onboardingSimulation:await checkOnboardingSimulation(browser,origin,process.env.FOUNDATION_ONBOARDING_TEST_DIR),pageErrors}));
   } else if (process.env.FOUNDATION_BACKDROP_ONLY === '1') {
     console.log(JSON.stringify({ appBackdrop: await checkAppBackdrop(browser, origin, process.env.FOUNDATION_BACKDROP_DIR), pageErrors }));
@@ -184,6 +188,7 @@ try {
   if(!process.env.FOUNDATION_TEST_IDS)console.log(JSON.stringify({authFirstOnboarding:await checkAuthFirstOnboarding(browser,origin)}));
   if(!process.env.FOUNDATION_TEST_IDS)console.log(JSON.stringify({termsAcceptance:await checkTermsAcceptance(browser,origin,process.env.FOUNDATION_TERMS_DIR)}));
   if(!process.env.FOUNDATION_TEST_IDS)console.log(JSON.stringify({onboardingSimulation:await checkOnboardingSimulation(browser,origin,process.env.FOUNDATION_ONBOARDING_TEST_DIR)}));
+  if(!process.env.FOUNDATION_TEST_IDS)console.log(JSON.stringify({homePresentation:await checkHomePresentation(browser,origin,process.env.FOUNDATION_HOME_DIR,false,process.env.FOUNDATION_HOME_COMPARISON)}));
   await page.goto(`${origin}/internal/health`);
   await page.waitForSelector("[data-health-root]");
   const results=await page.evaluate(ids=>window.__runFoundationTests({ids}),process.env.FOUNDATION_TEST_IDS?.split(','));

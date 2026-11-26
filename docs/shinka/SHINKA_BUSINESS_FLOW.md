@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-085
+**Current BuildMarker:** Buildmarker-086
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -12,6 +12,10 @@
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 
+
+## 086 — Home presentation amendment
+
+The fixed localized greeting, optional verified name, source text, daily ID/Pair selection, foreground refresh, error/Retry, privacy clearing and profile navigation are unchanged. Only Home spacing/type and two outer reading surfaces change. The 055 transparent Home appearance is superseded; preparation and every other screen are preserved. [086](reports/SHINKA_HOME_REFINEMENT_086.md)
 
 ## 085 — Administrator visual test journey
 

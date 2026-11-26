@@ -53,7 +53,7 @@ export async function checkOnboardingCorrections(browser, origin, directory) {
       await page.locator('[data-daily-state=loading]').waitFor();await prepare();await plain('main > section');await fits();await capture('preparing');
       await page.evaluate(()=>window.__authFixture.releaseOperation('dailyMessage'));await page.locator('[data-daily-state=notReady]').waitFor();await plain('main > section');await capture('preparation');
       await page.evaluate(value=>{window.__dailyFixture=value;},daily);await page.locator('[data-daily-state] button').click();await page.locator('[data-daily-id="local-ui-daily"]').waitFor();
-      await scaleText();await plain('[data-daily-id] > section');assert.equal(await page.locator('[data-daily-message]').textContent(),language==='tr'?pair[2]:pair[4]);assert.equal(await page.locator('[data-daily-suggestion]').textContent(),language==='tr'?pair[3]:pair[5]);await fits();await capture('home');
+      await scaleText();await plain('[data-home-card] > section');assert.equal(await page.locator('[data-daily-message]').textContent(),language==='tr'?pair[2]:pair[4]);assert.equal(await page.locator('[data-daily-suggestion]').textContent(),language==='tr'?pair[3]:pair[5]);await fits();await capture('home');
       assert.equal(errors.length,0);results.push({language,width,height,scale,passed:true,physicalDevice:false,scope:'LOCAL_REAL_APP_SYNTHETIC_SDK',pageErrors:errors});
     } finally {await context.close();}
   }

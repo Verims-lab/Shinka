@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-085
+**Current BuildMarker:** Buildmarker-086
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-083.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-085.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 086 — Home presentation regression
+
+HC-085.0 retains 188 cases: 0 added / 3 updated / 0 removed (H05-009, H07-013, H13-012). The latter two and serialized scope require checkHomePresentation: 48 combinations per engine (six portrait/tablet/desktop sizes, TR/EN, light/dark and 100/200% text), matching headings, exact opacity/radius, readable smaller text, logo clearance, profile routing, scroll, exact content/ID and no UI mutation. When baseline is supplied, navigation box/links/icons/styles and artwork geometry must be identical. DU04 checks two Home surfaces and unchanged plain inner cards; checkOnboardingCorrections retains transparent preparation and inner-card checks. Existing 083 recorded Android/iOS/keyboard regression stays mandatory and unchanged. Source-hash evidence covers background/nav/onboarding/Calendar/Pattern/shared styles. H05-009 recognizes 086 under unchanged content predicates. Current published Full Health remains separately NOT_RUN. [086 execution](reports/SHINKA_HOME_REFINEMENT_086.md)
 
 ## 085 — Mandatory onboarding simulation regression
 
