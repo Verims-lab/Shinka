@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-083
+**Current BuildMarker:** Buildmarker-084
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-082.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-083.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 084 — Account deletion reauthentication
+
+HC-083.0 retains 188 cases. H13-019 and its serialized scope require the real App privacy regression in `checkPrivacyFlow.mjs` for Apple and Google callback replay. The synthetic native lifecycle rejects product admission after an interrupted deletion. Both callbacks must reach a stable privacy view even with unaccepted Terms, read the native owner's existing request, and offer explicit continuation without starting another request or hydrating onboarding. One replay loses the native removal acknowledgement and verifies the same request through a read-only status retry. Existing H11-003 and H12-039 retain the backend cleanup, timeout, authority and receipt regressions. H05-009 recognizes Buildmarker-084 under the existing content predicates. Real OAuth, platform erasure and the reported live account remain external.
 
 ## 083 — Recorded Android boundary regression
 

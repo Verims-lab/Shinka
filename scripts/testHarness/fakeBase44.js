@@ -1,4 +1,5 @@
 import { normalizeDomainRead } from '../../base44/shared/domainValidation.js';
+import { withUserLifecycle } from '../../base44/shared/userLifecycle.js';
 
 let authFirstLab;
 async function loadAuthFirstLab() {
@@ -22,7 +23,15 @@ async function loadAuthFirstLab() {
 }
 let privacyLab;
 let onboardingVisualLab;
-const loadPrivacyLab = () => privacyLab ||= import('@/foundation/tests/privacyFixture').then(({privacyFixture})=>{const f=privacyFixture();globalThis.__privacyLab=f;return f;});
+const loadPrivacyLab = () => privacyLab ||= import('@/foundation/tests/privacyFixture').then(async ({privacyFixture, privacyIntent})=>{
+  const f=privacyFixture();
+  if (params.has('privacyReturn')) {
+    f.once('before', c => c.name === 'User' && c.method === 'delete');
+    await f.request('begin', privacyIntent('DELETE_ACCOUNT')).catch(() => {});
+    if (f.tables.UserPrivacyRequest[0]?.status !== 'NATIVE_REMOVAL_PENDING') throw new Error('Deletion interruption fixture failed');
+  }
+  globalThis.__privacyLab=f;return f;
+});
 let youLab;
 const themeLabs = new Map();
 const loadYouLab = (actor = session) => {
@@ -127,7 +136,15 @@ export const base44 = {
     calls.push({ name, action: body.action }); // Action names only; no user payload.
     if(operationGates.has(name))await operationGates.get(name).promise;
     if(operationFailures.delete(`${name}.${body.action}`)||operationFailures.delete(name))throw new Error('SYNTHETIC_NETWORK_FAILURE');
-    if (name === 'applicationSession') { const i=authFixture.startupStarted.session++; return {data: startupGates.session[i] ? await startupGates.session[i].promise : {...await base44.auth.me(),terms:termsSessionOverride||(termsReadFailure?{state:'UNAVAILABLE',version:termsVersion}:termsStatus()),authority:'BASE44_NATIVE_V1'}}; }
+    if (name === 'applicationSession') {
+      const i=authFixture.startupStarted.session++;
+      if (params.has('privacyReturn')) {
+        const f = await loadPrivacyLab();
+        try { await withUserLifecycle(f.raw(session === 'user' ? 'ownerA' : null)).auth.me(); }
+        catch (error) { throw { response: { status: error.status ?? 401, data: { error_code: error.code } } }; }
+      }
+      return {data: startupGates.session[i] ? await startupGates.session[i].promise : {...await base44.auth.me(),terms:termsSessionOverride||(termsReadFailure?{state:'UNAVAILABLE',version:termsVersion}:termsStatus()),authority:'BASE44_NATIVE_V1'}};
+    }
     if(name==='termsAcceptance'){
       if(body.action==='policy')return {data:{state:termsVersion?'READY':'CONFIGURATION_REQUIRED',version:termsVersion,termsUrl:'https://shinkadaily.com/terms/',privacyUrl:'https://shinkadaily.com/privacy/'}};
       await base44.auth.me();

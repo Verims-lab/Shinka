@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-083
+**Current BuildMarker:** Buildmarker-084
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -57,7 +57,7 @@ Reset stage remains authoritative and keeps preserved name/profile values; a res
 
 The approved confirmation says account and personal information will be removed from the app, access stops, and permanent deletion awaits verification. It supersedes the long technical 023 confirmation text, not its erasure mechanism. Cancel sends nothing; duplicate confirm shares one dispatch/recovery intent.
 
-Check status only reads the same request. Display verified IN_PROGRESS, verified active removal with permanent erasure pending, unconfirmed result, temporary unavailability/time limit, or required sign-in distinctly. A locally saved intent is not evidence that the server saved it. A read failure offers another read, never automatic cleanup. Explicit Continue remains separate and requires a verified resumable view/native authority. Public privacy entry and existing Apple/Google return path stay usable without completing onboarding; locale is retained. With a saved recovery intent, omit the unrelated new-deletion sign-in card. Invalid/expired recovery shows the sign-in path in context. A current native owner can reread the exact expired receipt-bound request; removed/new identities cannot reclaim it. [060 evidence](reports/SHINKA_PRIVACY_STATUS_060.md).
+Check status only reads the same request. Display verified IN_PROGRESS, verified active removal with permanent erasure pending, unconfirmed result, temporary unavailability/time limit, or required sign-in distinctly. A read failure offers another read. Explicit Continue requires a verified resumable view and fresh native authority. Apple/Google return for a deletion-restricted account opens Account & Privacy and reads the existing request for the native owner. This view offers Check status and, after owner verification, Continue. Onboarding, Terms acceptance and new privacy actions stay closed. A saved receipt still supports minimal read-only status after native removal. An expired receipt requires the original native owner for its request-bound read. [060 evidence](reports/SHINKA_PRIVACY_STATUS_060.md).
 
 
 ## 059 — Single Pattern theme, Lunar Timeline and navigation evidence (2026-11-09)

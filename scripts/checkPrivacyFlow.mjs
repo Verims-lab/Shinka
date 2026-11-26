@@ -30,7 +30,7 @@ export async function checkPrivacyFlow(page, origin, directory) {
       results.push({ scenario: `privacy-${width}-${language}-${scale}`, passed: true, geometry, scope: 'LOCAL_BROWSER_SYNTHETIC' });
     }
     await page.keyboard.press('Escape');
-    assert.equal(await page.locator('dialog').count(), 0);
+    await page.locator('dialog').waitFor({ state: 'detached' });
     assert(await page.evaluate(() => window.__privacyLab.state.calls.every(c => c.method === 'filter')));
   }
   await page.goto(`${origin}/account-privacy?appFixture=1&sdkSession=user&lang=en&intent=delete`);
@@ -97,6 +97,48 @@ export async function checkPrivacyFlow(page, origin, directory) {
     assert.deepEqual(after, before);
     if (directory) await page.screenshot({ path: path.join(directory, `privacy-status-expired-${width}-${language}-2.png`), fullPage: true });
     results.push({ scenario: `expired-anonymous-no-writes-${width}-${language}-2`, passed: true, physicalDevice: false });
+  }
+  for (const provider of ['google', 'apple']) {
+    await page.evaluate(() => sessionStorage.removeItem('shinka.privacy-recovery.v1'));
+    const returnTo = '/account-privacy?lang=en';
+    await page.goto(`${origin}/login?appFixture=1&termsFixture=1&returnTo=${encodeURIComponent(returnTo)}`);
+    await page.locator('#age-declaration').check();
+    await page.waitForFunction(() => globalThis.__sdkLabCalls.some(call => call.name === 'termsAcceptance' && call.action === 'policy'));
+    await page.locator('#terms-declaration').check();
+    await page.evaluate(() => window.__authFixture.providerMode('redirect'));
+    await page.locator(`[data-provider="${provider}"]`).click();
+    await page.waitForFunction(provider => globalThis.__authFixture.providerCalls.some(call => call.provider === provider), provider);
+
+    // Replay the provider return with a native session and the same interrupted
+    // request. The real lifecycle wrapper rejects the product session.
+    const callback = new URL(await page.evaluate(() => window.__authFixture.providerCalls[0].returnTo), origin);
+    assert.equal(callback.pathname, '/account-privacy');
+    assert(callback.searchParams.has('terms_intent'));
+    if (provider === 'apple') callback.pathname = '/login';
+    for (const [key, value] of Object.entries({ appFixture: '1', sdkSession: 'user', termsFixture: '1', privacyReturn: '1', intent: 'delete' })) callback.searchParams.set(key, value);
+    await page.goto(callback.href);
+    await page.getByText(privacyCopy('inProgress'), { exact: true }).waitFor();
+    assert.equal(new URL(page.url()).pathname, '/account-privacy');
+    assert.equal(await page.locator('[data-auth-shell], [data-onboarding-state], dialog, [data-provider]').count(), 0);
+    assert.equal(await page.getByRole('link', { name: privacyCopy('login') }).count(), 0);
+    assert.equal(await page.getByRole('button', { name: privacyCopy('delete') }).count(), 0);
+    const original = await page.evaluate(() => window.__privacyLab.tables.UserPrivacyRequest[0].id);
+    assert(await page.evaluate(() => window.__sdkLabCalls.every(c => c.name !== 'onboarding' && c.name !== 'termsAcceptance' && c.action !== 'begin' && c.action !== 'resume')));
+
+    if (provider === 'apple') await page.evaluate(() => window.__privacyLab.once('after', c => c.name === 'User' && c.method === 'delete'));
+    await page.getByRole('button', { name: privacyCopy('resume'), exact: true }).click();
+    if (provider === 'apple') {
+      await page.getByRole('alert').filter({ hasText: privacyCopy('unknown') }).waitFor();
+      assert.equal(await page.locator('[data-privacy-platform-pending]').count(), 0);
+      await page.getByRole('button', { name: privacyCopy('check'), exact: true }).click();
+    }
+    await page.locator('[data-privacy-platform-pending]').waitFor();
+    assert.deepEqual(await page.evaluate(() => ({
+      ids: window.__privacyLab.tables.UserPrivacyRequest.map(row => row.id),
+      userPresent: window.__privacyLab.tables.User.some(row => row.id === 'ownerA'),
+      actions: window.__sdkLabCalls.filter(c => ['begin', 'resume'].includes(c.action)).map(c => c.action),
+    })), { ids: [original], userPresent: false, actions: ['resume'] });
+    results.push({ scenario: `restricted-deletion-${provider}-callback`, passed: true, physicalDevice: false });
   }
   return results;
 }

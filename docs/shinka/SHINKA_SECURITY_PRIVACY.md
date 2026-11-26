@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-083
+**Current BuildMarker:** Buildmarker-084
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
@@ -215,6 +215,8 @@ Admin authentication, fresh native identity/lifecycle, owner privacy fences and 
 The authorized prod probe used existing read actions only; no onam, reset/resume, deletion, schema write or content import occurred. Successful read-only readiness and synthetic regressions are not consent/deletion/hosted mutation proof. The existing shared prod data environment remains shared.
 
 ## Owner privacy authority and erasure exception — 023
+
+After a deletion-restricted provider return, the browser asks `accountPrivacy` for owner-scoped `DELETE_ACCOUNT` status without a recovery key. Only verified in-progress status enables explicit Resume. Resume uses the existing confirmed request and current native User guard, and may save a fresh bounded read-only receipt before native removal. After an unknown result, a receipt can establish platform-pending or platform-review status when the native session has been lost. Its response cannot enable Resume. Product, Terms, admin and onboarding authority still come from their existing server gates.
 
 `accountPrivacy` is a separate closed backend route. It uses the verified native session plus a fresh native User read; it deliberately bypasses normal product tombstone admission only to continue that owner's already confirmed privacy request. No caller owner/target/role/status/event time is accepted. Begin requires explicit true confirmation; read/status never mutate. Resume needs the current owner's native session. Incomplete profiles are allowed for account erasure. Native admin self-removal remains protected; no ordinary-user access to Admin Test Tools is introduced.
 

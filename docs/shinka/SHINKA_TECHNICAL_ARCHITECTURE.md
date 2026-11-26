@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-083
+**Current BuildMarker:** Buildmarker-084
 **Last Updated:** 2026-11-23
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -12,6 +12,10 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 084 — Restricted privacy routing
+
+AuthContext keeps deletion restriction distinct from an anonymous session. AccountPrivacy uses that distinction to select a request-scoped controller without granting product authentication. The controller reads owner status through accountPrivacy, offers explicit same-request continuation after verification and uses a bounded receipt for read-only recovery if native removal has already ended authentication. [084 investigation and operator procedure](reports/SHINKA_DELETION_REAUTHENTICATION_084.md)
 
 ## 076 — Shared provider validation
 
