@@ -1,6 +1,12 @@
 // New Test Tools product copy, scoped to the explicit 2026-10-20 request.
 export const TEST_TOOLS_COPY = Object.freeze({
   tr: {
+    simulationStart: "Onboarding'i Test Et", simulationTitle: 'Onboarding simülasyonu',
+    simulationMode: 'Test Modu', simulationExit: 'Testten Çık',
+    simulationNotice: 'Yalnızca kurgusal bilgi kullan. Bu simülasyon kaydedilmez; gerçek giriş veya hesap işlemi yapmaz.',
+    simulationBack: 'Önceki ekran', simulationRestart: 'Yeniden başlat',
+    simulationPrepare: 'Hazırlığı tamamla', simulationComplete: 'Simülasyon tamamlandı',
+    simulationLegal: 'Bu bağlantı simüle edildi. Gerçek belge açılmadı ve yasal kabul kaydedilmedi.',
     deleting:'Kullanıcı uygulamadan kaldırılıyor…', unknownResult:'İşlem sonucu henüz doğrulanamadı. Mevcut operasyonun durumunu kontrol et', details:'Teknik ayrıntılar',
     identity: 'Mevcut kimlik', calendar_actions: 'Takvim işlem kayıtları',
     PROFILE: "Kişisel bilgiler", CYCLE: "Döngü", FIRST_SHINKA: "İlk Shinka", DONE: "Tamamlandı", START: "Başlangıç kaydedildi", NOTIFICATIONS: "Bekleyen bildirimler", USER: "User kaydı", VERIFY: "Son doğrulama",
@@ -49,6 +55,12 @@ export const TEST_TOOLS_COPY = Object.freeze({
     unknownCount: 'Hedefe göre sayılmaz; korunur',
   },
   en: {
+    simulationStart: 'Test Onboarding', simulationTitle: 'Onboarding simulation',
+    simulationMode: 'Test Mode', simulationExit: 'Exit Test',
+    simulationNotice: 'Use fictional information only. This simulation is not saved and performs no real sign-in or account operations.',
+    simulationBack: 'Previous screen', simulationRestart: 'Restart',
+    simulationPrepare: 'Finish preparation', simulationComplete: 'Simulation complete',
+    simulationLegal: 'This link was simulated. No real document was opened or legal acceptance saved.',
     deleting:'Removing user from the app…', unknownResult:'The result is not confirmed yet. Check the existing operation’s status', details:'Technical details',
     identity: 'Current identity', calendar_actions: 'Calendar operation records',
     PROFILE: "Personal details", CYCLE: "Cycle", FIRST_SHINKA: "First Shinka", DONE: "Completed", START: "Start recorded", NOTIFICATIONS: "Pending notifications", USER: "User record", VERIFY: "Final verification",

@@ -53,6 +53,13 @@ export const HARDENING_TESTS = [
       }
     }
     assert(checkInternalUiPurity({[hook]:"import {adminTestRequest} from '@/services/internal/adminTestTools';"}).violations.length===0,"guarded service rejected");
+    const preview='/src/pages/internal/OnboardingTest.jsx', adapter='/src/features/adminTestTools/onboardingSimulation.js';
+    assert(checkInternalUiPurity({[preview]:"import Screen from '@/features/onboarding/OnboardingScreen'; import './unreviewed';"}).violations.length===1,'preview allowlist widened');
+    assert(checkInternalUiPurity({[adapter]:"import {validateBirthDate} from '../../../base44/shared/onboardingValidation.js';"}).violations.length===0,'pure fixture validation rejected');
+    for (const file of [preview,adapter]) assert(checkInternalUiPurity({[file]:"import client from '@/api/base44Client'; client.functions.invoke('onboarding');"}).violations.length>0,'simulation SDK boundary escaped');
+    for (const code of ["fetch('/api');",'sessionStorage.setItem("test","data");','window.location.assign("/login");',"import request from '@/services/internal/adminTestTools';"]) {
+      assert(checkInternalUiPurity({[adapter]:code}).violations.length>0,'simulation transport/storage escaped');
+    }
   }],
   ["T52","Legacy dynamic imports detected; strings/comments/templates remain data",()=>{
     const fixtures = {

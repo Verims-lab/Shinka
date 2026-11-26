@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-084
-**Last Updated:** 2026-11-23
+**Current BuildMarker:** Buildmarker-085
+**Last Updated:** 2026-11-26
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 085 — Admin-only onboarding simulation
+
+The 2026-11-26 owner request adds an isolated visual rehearsal, not onboarding reset or real account admission. Only the existing verified admin and current Terms boundary admits /internal/test-tools/onboarding. Reuse numbered ON-01–05 and unnumbered preparation with in-memory fictional provider/policy/profile/cycle/daily responses. Production 071/074/076 routing, legal/age requirements, optional fields and the retired reset boundary remain unchanged. No test state may reach Base44, real OAuth, storage, logs or URL payloads. [085 contract and verification](reports/SHINKA_ONBOARDING_TEST_MODE_085.md)
 
 ## 083 — Owner-confirmed usable viewport boundary
 

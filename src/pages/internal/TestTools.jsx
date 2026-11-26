@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import PageContainer from '@/components/shinka/PageContainer';
 import PageHeader from '@/components/shinka/PageHeader';
@@ -6,7 +6,7 @@ import ShinkaCard from '@/components/shinka/ShinkaCard';
 import ShinkaInput from '@/components/shinka/ShinkaInput';
 import ShinkaButton from '@/components/shinka/ShinkaButton';
 import InternalNav from '@/components/internal/InternalNav';
-import { internalLanguage } from '@/foundation/internalNavigation';
+import { internalLanguage, ONBOARDING_TEST_PATH } from '@/foundation/internalNavigation';
 import { testToolsCopy as copy } from '@/foundation/i18n/testToolsCopy';
 import { ADMIN_TEST_TOOLS } from '@/features/adminTestTools/catalog';
 import { useTestTools } from '@/features/adminTestTools/useTestTools';
@@ -14,12 +14,18 @@ import ImpactPreview from '@/features/adminTestTools/ImpactPreview';
 
 export default function TestTools({ request = undefined, wait = undefined, clock = undefined }) {
   const language = internalLanguage(useLocation().state), text = key => copy(key, language);
+  const navigate = useNavigate();
   const tools = useTestTools(request, wait, clock);
   const target = tools.value?.target, environment = tools.preview?.environment || tools.value?.environment;
   const lookupButton = useRef(null);
   return <PageContainer>
     <InternalNav /><PageHeader eyebrow="Shinka" title={text('title')} />
     <main data-test-tools data-test-phase={tools.phase} data-test-busy={tools.busy} className="space-y-5">
+      <ShinkaCard title={text('simulationTitle')}>
+        <p className="mb-4">{text('simulationNotice')}</p>
+        <ShinkaButton data-onboarding-test-entry disabled={tools.busy || !!tools.job || !!tools.pendingId}
+          onClick={() => navigate(ONBOARDING_TEST_PATH, { state: { language } })}>{text('simulationStart')}</ShinkaButton>
+      </ShinkaCard>
       <ShinkaCard title={text('target')}>
         <form className="space-y-4" onSubmit={e => { e.preventDefault(); tools.lookup(); }}>
           <label className="block space-y-2" htmlFor="test-user-id"><span>{text('userId')}</span>

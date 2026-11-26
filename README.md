@@ -42,6 +42,10 @@ Buildmarker-065 introduced a single shared PNG across user-facing routes. [065 s
 
 [064 Test Tools retirement](docs/shinka/reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md): admin reset is removed from UI and backend commands. Existing receipts remain readable/fenced; the two authorized live removals are still blocked by active legacy receipts. No schema push is required.
 
+## Admin onboarding rehearsal — 085 / HC-084.0
+
+Admin Panel → Test Tools → **Onboarding'i Test Et** opens the actual 1–5/preparation UI with fictional in-memory responses. Use fictional inputs and local declarations, then either provider button. **Test Modu**, Previous screen, Restart and **Testten Çık** remain available. Finish preparation explicitly to inspect the local completion view. No target selection, reset, real OAuth or product data access/write occurs; existing real admin/session checks stay active. Exit/reload clears the simulation. This is visual UI testing, not real integration acceptance. Run `FOUNDATION_ONBOARDING_TEST_ONLY=1 npm run test:foundation` with `FOUNDATION_BROWSER=chromium` or `webkit`. [085 contract and execution](docs/shinka/reports/SHINKA_ONBOARDING_TEST_MODE_085.md)
+
 ## Test auth-first onboarding (Buildmarker-061 / HC-060.0)
 
 [061 focused delivery and rollout](docs/shinka/reports/SHINKA_AUTH_FIRST_ONBOARDING_061.md): intro → Apple/Google → fresh server progress → optional name/profile/cycle. Completed users bypass onboarding; saved NULL names, legacy reset receipts and privacy rules remain authoritative. No schema/import/new auth system. Owner syncs matching backend/shared/frontend and publishes; real OAuth/native acceptance remains separate from local fixtures.

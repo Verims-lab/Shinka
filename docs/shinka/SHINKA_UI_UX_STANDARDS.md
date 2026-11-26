@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-084
-**Last Updated:** 2026-11-23
+**Current BuildMarker:** Buildmarker-085
+**Last Updated:** 2026-11-26
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
@@ -12,6 +12,10 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 085 — Test Tools onboarding rehearsal
+
+Test Tools offers “Onboarding'i Test Et” without selecting a target. The separate admin route displays a sticky Test Modu / Testten Çık toolbar with Previous screen and Restart. It contains the actual onboarding components, original centered artwork, controls, validators and translated copy. A scoped viewport-height token reserves toolbar space; ordinary onboarding geometry is unchanged. Back may revisit every simulated screen, including preparation; production authenticated Back remains governed by 071. Preparation waits for explicit Finish preparation before the local completion view, which never opens real Home. Restart/reload clears fictional drafts and declarations. Preserve dark reading surfaces and the real admin theme. [085](reports/SHINKA_ONBOARDING_TEST_MODE_085.md)
 
 ## 083 — Confirmed Android whole-bar position
 

@@ -7,6 +7,7 @@ export const INTERNAL_TOOLS = Object.freeze([
   { path: "/internal/health", titleKey: "admin.health", descriptionKey: "admin.healthDescription" },
   { path: "/internal/build", titleKey: "admin.build", descriptionKey: "admin.buildDescription" },
 ]);
-export const INTERNAL_ROUTES = Object.freeze([ADMIN_PANEL_PATH, ...INTERNAL_TOOLS.map(tool => tool.path)]);
+export const ONBOARDING_TEST_PATH = '/internal/test-tools/onboarding';
+export const INTERNAL_ROUTES = Object.freeze([ADMIN_PANEL_PATH, ...INTERNAL_TOOLS.map(tool => tool.path), ONBOARDING_TEST_PATH]);
 export const internalLanguage = (state) => SUPPORTED_LANGUAGES.includes(state?.language) ? state.language : resolveLanguage();
 export const internalLinkClass = "min-h-11 px-4 inline-flex items-center rounded-xl text-sm border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-shinka-plum";

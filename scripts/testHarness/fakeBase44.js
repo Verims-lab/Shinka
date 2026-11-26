@@ -50,11 +50,13 @@ let session = params.get('sdkSession') || 'anonymous';
 let delayed = null;
 const calls = [];
 const providerCalls = [];
+let logoutCalls = 0;
 let providerMode='error';
 // Explicitly synthetic legal configuration; never a product/legal version.
 let termsVersion = 'test-terms-v1';
 const termsEvents = [];
 let termsReadFailure = false, termsWriteFailure = null, termsSessionOverride = null;
+let sessionUnavailable = false;
 const termsStatus = () => {
   if(termsReadFailure)throw (typeof termsReadFailure==='number'?{response:{status:termsReadFailure}}:new Error('SYNTHETIC_TERMS_READ_FAILED'));
   if(!termsVersion)return {state:'CONFIGURATION_REQUIRED',version:null};
@@ -93,6 +95,8 @@ const startupGates = { settings:[], session:[] };
 const holdStartup = name => { let resolve,reject; const promise=new Promise((ok,no)=>{resolve=ok;reject=no;});startupGates[name].push({promise,resolve,reject}); };
 if(params.has('startupFixture')) { holdStartup('settings');holdStartup('session'); }
 export const authFixture = {
+  get logoutCalls() { return logoutCalls; },
+  sessionUnavailable(value) { sessionUnavailable = value; },
   providerMode(value){providerMode=value;},
   termsEvents,
   termsSession(value){termsSessionOverride=value;},
@@ -124,7 +128,7 @@ export const base44 = {
       if (session === 'admin' || session === 'user') return { id: `synthetic-${session}`, role: session };
       throw Object.assign(new Error('SYNTHETIC_ANONYMOUS'), {status:401});
     },
-    logout: () => { session = 'anonymous'; },
+    logout: () => { logoutCalls++; session = 'anonymous'; },
     loginWithProvider: async (provider, returnTo) => {
       providerCalls.push({ provider, returnTo });
       if(providerMode==='redirect')return;
@@ -137,6 +141,7 @@ export const base44 = {
     if(operationGates.has(name))await operationGates.get(name).promise;
     if(operationFailures.delete(`${name}.${body.action}`)||operationFailures.delete(name))throw new Error('SYNTHETIC_NETWORK_FAILURE');
     if (name === 'applicationSession') {
+      if (sessionUnavailable) throw new Error('SYNTHETIC_SESSION_UNAVAILABLE');
       const i=authFixture.startupStarted.session++;
       if (params.has('privacyReturn')) {
         const f = await loadPrivacyLab();

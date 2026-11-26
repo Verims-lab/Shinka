@@ -85,12 +85,23 @@ const INTERNAL_FEATURE_UI = {
   "@/features/adminTestTools/ImpactPreview": "/src/features/adminTestTools/ImpactPreview.jsx",
 };
 const UI_FORBIDDEN_TOKENS = /\.entities\.|functions\.invoke|shinka_date|cycle_length|sun_sign|moon_phase_code/;
+const SIMULATION_ADAPTER = '/src/features/adminTestTools/onboardingSimulation.js';
+// Exact presentation dependencies for the guarded preview, not a feature-wide
+// exception. Its adapter accepts only the existing pure validation contract.
+const SIMULATION_IMPORTS = {
+  '/src/pages/internal/OnboardingTest.jsx': ['@/features/onboarding/OnboardingScreen', '@/features/adminTestTools/onboardingSimulation', '@/styles/onboardingTest.css'],
+  [SIMULATION_ADAPTER]: ['../../../base44/shared/onboardingValidation.js'],
+};
 export function checkInternalUiPurity(sources) {
-  const files = Object.keys(sources).filter((p) => p.startsWith("/src/pages/internal/") || p.startsWith("/src/components/internal/") || Object.values(INTERNAL_FEATURE_UI).includes(p));
+  const files = Object.keys(sources).filter((p) => p.startsWith("/src/pages/internal/") || p.startsWith("/src/components/internal/") || Object.values(INTERNAL_FEATURE_UI).includes(p) || p === SIMULATION_ADAPTER);
   const violations = [];
   for (const p of files) {
-    for (const spec of importsOf(sources[p])) if (!UI_ALLOWED.some((re) => re.test(spec)) && !Object.hasOwn(INTERNAL_FEATURE_UI, spec)) violations.push({ file: p, spec });
+    for (const spec of importsOf(sources[p])) {
+      const reviewed = SIMULATION_IMPORTS[p]?.includes(spec);
+      if (!(reviewed || (p !== SIMULATION_ADAPTER && (UI_ALLOWED.some((re) => re.test(spec)) || Object.hasOwn(INTERNAL_FEATURE_UI, spec))))) violations.push({ file: p, spec });
+    }
     if (UI_FORBIDDEN_TOKENS.test(sources[p])) violations.push({ file: p, spec: "FORBIDDEN_TOKEN" });
+    if (p === SIMULATION_ADAPTER && syntaxNodes(sources[p]).some(node => node.type === 'Identifier' && ['base44','fetch','XMLHttpRequest','WebSocket','localStorage','sessionStorage','indexedDB','navigator','document','window','location'].includes(node.name))) violations.push({ file: p, spec: 'SIMULATION_IO' });
   }
   return { files: files.length, violations };
 }

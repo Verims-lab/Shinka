@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-084
-**Last Updated:** 2026-11-23
+**Current BuildMarker:** Buildmarker-085
+**Last Updated:** 2026-11-26
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
@@ -12,6 +12,10 @@
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 
+
+## 085 — Administrator visual test journey
+
+Admin Panel → Test Tools → Onboarding'i Test Et opens fictional ON-01–05 and preparation. Explicit local declarations and fake Apple/Google responses advance the new-user fixture; optional name and cycle remain optional. Previous screen and Restart apply only to the simulation. Exit returns to Test Tools with the real account unchanged. This rehearsal neither resets real onboarding nor verifies existing-account/OAuth/server-progress behavior; production 071/074/076 rules still apply. [085](reports/SHINKA_ONBOARDING_TEST_MODE_085.md)
 
 ## 076 — Unified authentication and verified progress
 

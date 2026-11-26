@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-084
-**Last Updated:** 2026-11-23
+**Current BuildMarker:** Buildmarker-085
+**Last Updated:** 2026-11-26
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 085 — Isolated onboarding Test Mode
+
+Deliver only AydanTest after preserving main 578a443, including 084 privacy recovery and locked Base44 package updates. Record Buildmarker-085 / HC-084.0 once and retain 081–085. The mandatory Foundation runner includes checkOnboardingSimulation in Chromium/WebKit, with SIM01/SIM02 in the canonical tests and H12-028. H13-016 requires the real App admin/mobile/no-IO matrix. Run existing auth-first, Terms, onboarding and Test Tools regression plus quality/dependency/performance gates. Retain failed attempts and byte gates. No reset endpoint, real provider, hosted data operation, main write or publication is authorized. [085](reports/SHINKA_ONBOARDING_TEST_MODE_085.md)
 
 ## 084 — Account deletion reauthentication
 
