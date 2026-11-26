@@ -2,6 +2,7 @@ import RefreshControl from "@/features/mobile/RefreshControl";
 import { mobileCopy } from "@/foundation/i18n/mobileCopy";
 import { useEffect, useState } from 'react';
 import ProfileMenu from '@/components/profile/ProfileMenu';
+import ProfileLogoSlot from '@/components/profile/ProfileLogoSlot';
 import ShinkaButton from '@/components/shinka/ShinkaButton';
 import ProductNavigation from '@/components/shinka/ProductNavigation';
 import { calendarCopy, calendarErrorKey } from '@/foundation/i18n/calendarCopy';
@@ -18,9 +19,9 @@ export default function Calendar({ language: initialLanguage = 'en', renderProfi
   const unresolved = state.outcome === 'unknown';
   const needsConsent = value?.state === 'CONSENT_REQUIRED' && !value.recovery;
   const validationError = /^PERIOD_(DATE_|START_FUTURE|DUPLICATE|CONFLICT)/.test(state.error || '');
-  return <div lang={language} data-calendar-root className="shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col">
+  return <div lang={language} data-calendar-root className="relative shinka-viewport shinka-safe-shell text-shinka-ink font-body flex flex-col">
     <header className="flex flex-wrap items-center justify-end px-5 pt-2 gap-2">
-      {renderProfileAccess?.(language) || <ProfileMenu language={language}/>}
+      <ProfileLogoSlot>{renderProfileAccess?.(language) || <ProfileMenu language={language}/>}</ProfileLogoSlot>
     </header>
     <main className="flex-1 w-full max-w-xl mx-auto px-5 py-8 space-y-6">
       <h1 className="font-heading text-shinka-h1">{copy('title')}</h1>

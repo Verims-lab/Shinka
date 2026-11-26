@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-082",
-    "package_name": "Mounted navigation measurements and 48px inset regression",
-    "package_type": "TARGETED_FIX",
-    "created_at": "2026-11-23T19:30:29.216Z",
-    "health_catalog_version": "HC-081.0",
-    "short_summary": "Measure actual navigation through registered element references after mount, layout and viewport changes. Keep diagnostic actions accessible and cover both genuine and declared native-consumed 48px system regions. Preserve navigation dimensions and safe-area defaults.",
-    "full_health_status": "NOT_RUN",
-    "notes": "H13-012 and H05-009 update; catalog retains 188 cases. The 081 null snapshot is reproduced under held hydration before correction. Direct-reference, automatic refresh, retained-tab, resize, cleanup and 48px ownership regressions are mandatory. Physical screenshots report a 48px gap but omit usable-viewport and native bounds; do not infer consumed insets from zero declarations or screen size. The native ownership rule and navigation styles remain unchanged; physical position closure remains OPEN_PENDING_DEVICE_GEOMETRY_AND_NATIVE_OWNERSHIP. See reports/SHINKA_NAVIGATION_DIAGNOSTICS_082.md. No main write, publication or live data operation."
-  },
-  {
     "build_marker": "Buildmarker-083",
     "package_name": "Confirmed Android navigation position correction",
     "package_type": "TARGETED_FIX",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Refine Home only: one aligned greeting/profile row, smaller existing type tokens and two separate translucent rounded reading surfaces. Preserve original background, complete bottom navigation, 083 correction and all data/selection behavior.",
     "full_health_status": "NOT_RUN",
     "notes": "H05-009, H07-013 and H13-012 update; retain 188 cases and 082–086. Both-engine real-App matrix covers 48 responsive/localized/theme/text combinations plus unchanged art/navigation baseline and protected source hashes. Preserve daily/Retry/access and 083 navigation regressions. The 055 Home transparency rule is superseded only for these outer surfaces; preparation and shared card defaults stay plain/unchanged. See reports/SHINKA_HOME_REFINEMENT_086.md for actual results, retained failures and unchanged byte budgets. No main write, PR, Base44 publication or production operation."
+  },
+  {
+    "build_marker": "Buildmarker-087",
+    "package_name": "Shared profile control in the safe logo corner",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-11-26T15:09:33.890Z",
+    "health_catalog_version": "HC-086.0",
+    "short_summary": "Move existing Home/Calendar/Pattern/You profile controls to one safe logo-corner position. Preserve control design/access, hidden-tab ownership, Home 086 content layout, background and 083 navigation behavior.",
+    "full_health_status": "NOT_RUN",
+    "notes": "H05-009, H07-013 and H13-012 update; retain 188 cases and 083–087. Mandatory both-engine 112-case real-App profile matrix checks safe areas, no duplicates, keyboard/profile navigation, original icon style and unchanged baseline headings/Home cards/art/nav. Existing Home and 083 gates remain. No provider, portal, auth/data/routing or dependency change. Actual execution, retained failures and unchanged byte budgets are in reports/SHINKA_PROFILE_POSITION_087.md. Physical/device/hosted acceptance remains external; no main write, PR or Base44 publication."
   }
 ];

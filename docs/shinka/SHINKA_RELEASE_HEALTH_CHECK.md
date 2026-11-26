@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-086
+**Current BuildMarker:** Buildmarker-087
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-085.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-086.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 087 — Shared profile position regression
+
+HC-086.0 retains 188 cases: 0 added / 3 updated / 0 removed (H05-009, H07-013, H13-012). H07/H13 and serialized scope require checkProfilePosition: 112 combinations per engine across all four product screens, TR/EN, verified fixture light/dark, four mobile widths plus tablet/desktop and doubled text at 320px. Require safe-top/right alignment, no logo collision, original 44px control/20px SVG/style/href, one visible instance through retained tabs, keyboard/profile access and document scrolling. With baseline, headings, Home cards/HTML, background and bottom navigation must match exactly. Existing Home 48-case and 083 navigation gates remain mandatory. Protected-file hashes preserve original assets/global styles/profile controls/navigation/auth/onboarding. H05 recognizes 087 with unchanged content predicates. Hosted/device Health remains separate. [087 execution](reports/SHINKA_PROFILE_POSITION_087.md)
 
 ## 086 — Home presentation regression
 

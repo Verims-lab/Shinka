@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-086
+**Current BuildMarker:** Buildmarker-087
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 087 — Profile positioning delivery
+
+Clean AydanTest fast-forwarded from 4d397ba to main ee000f1 (086 merge; no file changes). Record Buildmarker-087 / HC-086.0 once, retaining 083–087. Require both-engine profile/baseline, Home and existing 083 navigation regression, type/lint/build/repo/dependency/performance checks. Preserve historical failures and unchanged budgets. Deliver only AydanTest; no main write, force-push, PR, Base44 publication or production data action. [087](reports/SHINKA_PROFILE_POSITION_087.md)
 
 ## 086 — Home-only delivery and protected baseline
 
