@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-087
+**Current BuildMarker:** Buildmarker-088
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,6 +12,10 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 088 — Home suggestion as an editorial note
+
+Only the suggestion interior changes. Keep the existing 20px radius, 80% token-white surface and 20px ShinkaCard padding. Render the localized title as semantic h2 with existing h4 token (20/26px instead of 24/30px), same heading family/500 weight and a 12px following gap. Keep readable body 15/22px, 400 weight, original ink/body family; apply italic, a 1px 30%-plum left border and 16px inset. Preserve full pre-wrapped text without truncation, natural height and 20px bottom card padding. No quote semantics or new font asset, footer, placeholder or Done control. Dark mode uses the existing verified palette. Your Shinka markup/type and 087/083/artwork are frozen. [088](reports/SHINKA_SUGGESTION_NOTE_088.md)
 
 ## 087 — Shared logo-area profile position
 

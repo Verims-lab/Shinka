@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-087
+**Current BuildMarker:** Buildmarker-088
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 088 — Focused Home note delivery
+
+Clean AydanTest fast-forwarded from 99af30a to main 02485f8 (087 merge, identical files) before editing. Record Buildmarker-088 / HC-087.0 once, retaining 084–088. Require both-engine Home/baseline, daily/core and existing 083 navigation regression, protected source hashes, dependency/type/lint/build/repo/performance checks. Preserve historical results and unchanged byte budgets. Only AydanTest may be delivered; no main write, PR, force-push, Base44 publication or production data action. [088](reports/SHINKA_SUGGESTION_NOTE_088.md)
 
 ## 087 — Profile positioning delivery
 

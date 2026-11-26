@@ -27,7 +27,10 @@ export default function Home({ profileAccess = undefined, renderProfileAccess = 
           <ShinkaCard surface="plain" title={copy('shinka')}><p className="text-shinka-body whitespace-pre-wrap break-words" data-daily-message>{row[`message_${language}_snapshot`]}</p></ShinkaCard>
         </div>
         <div className="rounded-shinka-lg" style={{ backgroundColor: 'rgb(var(--shinka-white) / 0.8)' }} data-home-card="suggestion">
-          <ShinkaCard surface="plain" title={copy('suggestion')}><p className="text-shinka-body whitespace-pre-wrap break-words" data-daily-suggestion>{row[`suggestion_${language}_snapshot`]}</p></ShinkaCard>
+          <ShinkaCard surface="plain">
+            <h2 className="font-heading font-medium text-shinka-h4 text-shinka-plum-deep mb-3">{copy('suggestion')}</h2>
+            <p className="text-shinka-body italic whitespace-pre-wrap break-words border-l pl-4" style={{ borderLeftColor: 'rgb(var(--shinka-plum) / 0.3)' }} data-daily-suggestion>{row[`suggestion_${language}_snapshot`]}</p>
+          </ShinkaCard>
         </div>
         {daily.error && <DailyStatus {...daily} language={language}/>}
       </div> : <ShinkaCard surface="plain"><DailyStatus {...daily} language={language}/></ShinkaCard>}

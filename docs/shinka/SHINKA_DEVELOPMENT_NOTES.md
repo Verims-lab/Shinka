@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-087
+**Current BuildMarker:** Buildmarker-088
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 088 — Editorial suggestion interior
+
+The owner approved a smaller title, readable italic suggestion and subtle plum left rule within the existing outer card. Your Shinka, background, logo, profile and navigation remain protected. A future Done feature is expressly deferred; no data model, account write or placeholder space is added. Actual checks and remaining external acceptance are recorded in [088](reports/SHINKA_SUGGESTION_NOTE_088.md).
 
 ## 087 — Logo-corner profile control
 

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-087
+**Current BuildMarker:** Buildmarker-088
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 088 — Today's Suggestion editorial note
+
+The owner's current request supersedes only 086's equal heading/body treatment for Today's Suggestion. Keep its rounded 80% token-white outer surface, but use a slightly smaller heading, readable italic body and subtle plum left rule. Your Shinka and all other Home layout, 087 profile placement, background/logo, 083 navigation and atomic-pair/content behavior remain unchanged. A possible future Done checkbox is not approved for this package: no control, empty reservation, completion state or schema. [088](reports/SHINKA_SUGGESTION_NOTE_088.md)
 
 ## 087 — Profile control in the logo corner
 

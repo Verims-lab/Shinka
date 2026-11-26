@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-087
+**Current BuildMarker:** Buildmarker-088
 **Last Updated:** 2026-11-26
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 088 — Suggestion presentation boundary
+
+Keep the change inside Home's existing suggestion ShinkaCard; do not change shared card defaults, fonts, global styles, localization, hooks or data fields. Keep semantic h2 and p; a decorative CSS border is not a blockquote or new interactive element. Extend checkHomePresentation rather than create a parallel UI harness. Require all 80 current baseline rows before comparison. Compare Your Shinka HTML/style/geometry plus greeting/profile/nav/art exactly; allow only the suggestion's approved inner style and natural height to change. Long cases select actual source copy in CLI fixtures only. No completion state or reserved space. [088](reports/SHINKA_SUGGESTION_NOTE_088.md)
 
 ## 087 — Profile placement boundary
 

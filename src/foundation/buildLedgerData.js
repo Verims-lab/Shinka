@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-083",
-    "package_name": "Confirmed Android navigation position correction",
-    "package_type": "TARGETED_FIX",
-    "created_at": "2026-11-23T20:21:15.096Z",
-    "health_catalog_version": "HC-082.0",
-    "short_summary": "Remove the extra positioning inset for the owner-confirmed Android clamped-viewport behavior. Match native CSS, visible/client viewport, available screen and painted/dock offset together; preserve genuine safe-area fallbacks and existing navigation dimensions.",
-    "full_health_status": "NOT_RUN",
-    "notes": "H13-012 and H05-009 update; retain 188 cases and active 079–083. The 082 receipt reproduces viewport 724, bar/dock 676, padding/occlusion 0 and bottom inset 48 before correction. Mandatory real-App regression requires bar/dock 724 with unchanged height and no native declaration; screen availHeight 772 comes from preceding owner diagnostics. The scoped compatibility rule is not universal native detection. Preserve explicit native contracts, iOS/genuine edge-to-edge/unknown/zoom/non-browser fallbacks, scrolling and keyboard reservation. Physical 083 after-verification remains pending owner publication; no main write or Base44 publication. See reports/SHINKA_ANDROID_POSITION_083.md."
-  },
-  {
     "full_health_status": "NOT_RUN",
     "package_type": "TARGETED_FIX",
     "notes": "H13-019 adds Apple and Google callback replays, legal and onboarding isolation, same-request continuation and lost native removal acknowledgement. H05-009 recognizes 084 under the existing content policy. No new schema or recovery policy. Hosted provider, platform erasure and affected account evidence require separate verification.",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Move existing Home/Calendar/Pattern/You profile controls to one safe logo-corner position. Preserve control design/access, hidden-tab ownership, Home 086 content layout, background and 083 navigation behavior.",
     "full_health_status": "NOT_RUN",
     "notes": "H05-009, H07-013 and H13-012 update; retain 188 cases and 083–087. Mandatory both-engine 112-case real-App profile matrix checks safe areas, no duplicates, keyboard/profile navigation, original icon style and unchanged baseline headings/Home cards/art/nav. Existing Home and 083 gates remain. No provider, portal, auth/data/routing or dependency change. Actual execution, retained failures and unchanged byte budgets are in reports/SHINKA_PROFILE_POSITION_087.md. Physical/device/hosted acceptance remains external; no main write, PR or Base44 publication."
+  },
+  {
+    "build_marker": "Buildmarker-088",
+    "package_name": "Home suggestion editorial note",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-11-26T16:29:22.327Z",
+    "health_catalog_version": "HC-087.0",
+    "short_summary": "Differentiate only Today's Suggestion with the existing smaller heading token, readable italic body and a subtle plum left rule. Preserve its outer card, Your Shinka, profile 087, navigation 083, art and immutable paired content.",
+    "full_health_status": "NOT_RUN",
+    "notes": "H05-009, H07-013 and H13-012 update; retain 188 cases and 084–088. Both-engine 80-case actual-App Home gate uses verified fixture themes, bilingual standard/longest-source copy and doubled text; baseline freezes Your Shinka, greeting/profile/nav/art. Keep complete text/contrast, natural height and no completion UI/reserved space/state. Run existing daily/Core/083 and quality/dependency/performance gates. Actual execution and unchanged failing budgets, if any, are retained in reports/SHINKA_SUGGESTION_NOTE_088.md. No shared component/engine/font/schema/dependency or production operation change. Physical/hosted acceptance is external; no main write, PR or Base44 publication."
   }
 ];
