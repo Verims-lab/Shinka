@@ -1,3 +1,4 @@
+import { withCalendarReads, createCalendarReadContext } from '../base44/shared/calendarReadContext.js';
 import { handleCalendarRequest } from '../base44/shared/calendarOperation.js';
 import { handlePatternRequest } from '../base44/shared/patternOperation.js';
 import { artifactOperation } from '../base44/shared/contentArtifactOperation.ts';
@@ -19,7 +20,7 @@ import { internalHealthOperation } from '../base44/shared/internalHealthOperatio
 export async function verifyNativeEntries(root) {
   for (const [handler,action] of [[handleCalendarRequest,'read'],[handlePatternRequest,'themes']]) {
     const response=await handler(new Request('https://fixture.invalid/read',{method:'POST',body:JSON.stringify({action})}),()=>({auth:{me:async()=>{throw {response:{status:429,headers:{'retry-after':'2'},data:{private:'NEVER_SERIALIZE'}}};}}}));
-    const data=await response.json();assert.equal(response.status,503);assert.equal(data.diagnostic.httpStatus,429);
+    const data=await response.json();assert.equal(response.status,handler===handleCalendarRequest?429:503);assert.equal(data.diagnostic.httpStatus,429);
     assert.equal(data.diagnostic.stage,'SESSION_AUTH');assert.equal(data.retry_after_ms,2000);
     assert.match(data.diagnostic.requestId,/^[a-f0-9-]{36}$/);assert.ok(!JSON.stringify(data).includes('NEVER_SERIALIZE'));
   }
@@ -42,6 +43,7 @@ export async function verifyNativeEntries(root) {
   const native = await load('base44/shared/nativeClient.ts', {
     'npm:@base44/sdk@0.8.54': { createClientFromRequest: () => client },
     'base44:runtime': runtime,
+    './calendarReadContext.js': { withCalendarReads },
     './termsAcceptance.js': termsAcceptance,
     './userLifecycle.js': { withUserLifecycle }, './nativeWriteChecks.js': { withNativeWriteChecks },
   });
@@ -99,7 +101,23 @@ export async function verifyNativeEntries(root) {
     '../../shared/firstContentSource.js': { FIRST_CONTENT_SOURCE: {} },
     '../../shared/contentCategoryDecision.js': { CONTENT_CATEGORY_DECISION: {} },
   });
-  const calendar = await load('base44/functions/calendar/entry.ts', { '../../shared/nativeClient.ts': native, '../../shared/calendarOperation.js': { handleCalendarRequest: handler } });
+  const calendar = await load('base44/functions/calendar/entry.ts', { '../../shared/nativeClient.ts': native, '../../shared/calendarOperation.js': { handleCalendarRequest: async (_req, createClient, deps) => {
+    assert.equal(deps.native,true);
+    let attempts=0;const original=client.asServiceRole.entities.User.filter;
+    client.asServiceRole.entities.User.filter=async(...args)=>{if(++attempts===1)throw {response:{status:429,headers:{'retry-after':'1'}}};return original(...args);};
+    const waits=[],context=createCalendarReadContext({sleep:async ms=>{waits.push(ms);},emit:()=>{}});
+    try { const admitted=createClient({},context);assert.equal((await admitted.auth.me()).id,'synthetic-admin');assert.equal(attempts,2);assert.equal(waits[0],1000);
+      const originalTermsRead=client.asServiceRole.entities.UserTermsAcceptance.filter;
+      client.asServiceRole.entities.UserTermsAcceptance.filter=async()=>{throw{response:{status:429,headers:{'retry-after':'60'}}};};
+      try {
+        const reads=createCalendarReadContext({sleep:async()=>{throw new Error('LONG_RETRY_MUST_NOT_WAIT');},emit:()=>{}});
+        const failed=await handleCalendarRequest(new Request('https://fixture.invalid/calendar',{method:'POST',body:'{"action":"read"}'}),(_req,ctx)=>native.createNativeClient(_req,{calendarReads:ctx}),{native:true,reads});
+        const body=await failed.json();assert.equal(failed.status,429);assert.equal(failed.headers.get('Retry-After'),'60');assert.ok(body.retry_after_ms>59000&&body.retry_after_ms<=60000);
+      }finally{client.asServiceRole.entities.UserTermsAcceptance.filter=originalTermsRead;}
+      const savedTerms=termsRows.splice(0);try{await assert.rejects(admitted.auth.me(),{code:'TERMS_REQUIRED'});}finally{termsRows.push(...savedTerms);}
+    } finally {client.asServiceRole.entities.User.filter=original;context.close();}
+    return 'native-route';
+  } } });
   assert.equal(await daily.default({}), 'native-route'); assert.equal(await calendar.default({}), 'native-route');
   const pattern = await load('base44/functions/pattern/entry.ts', {
     '../../shared/nativeClient.ts': native,

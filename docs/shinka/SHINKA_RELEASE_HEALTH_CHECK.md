@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-092
+**Current BuildMarker:** Buildmarker-093
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-091.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-092.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 093 — Mandatory Calendar readback recovery gate
+
+HC-092.0 retains 188 cases: 0 added / 3 updated / 0 removed (H05-009, H08-004, H12-027). RC17–RC24 bring canonical regressions to 840. Require persisted November 3 period/readback429/PENDING then same-ID APPLIED with one total period create; no consent/event changes on complete-result recovery; APPLIED replay, rivals, changed/cancelled receipt, unrelated revision, duplicate result, missing/wrong grant evidence and withdrawal rejection. Verify Retry-After seconds/GMT, shared bounded GET retries, close/deadline, no SDK write retry, sanitized diagnostics, native TS-entry lifecycle/Terms enforcement, unchanged two-pass reads and existing Calendar App matrices in Chromium/WebKit. Hosted/device acceptance and source parity remain separate. [093 implementation, evidence and rollout](reports/SHINKA_CALENDAR_READBACK_093.md).
 
 ## 092 — Empty-state and consent regression
 

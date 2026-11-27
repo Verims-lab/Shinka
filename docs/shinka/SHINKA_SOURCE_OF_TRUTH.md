@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-092
+**Current BuildMarker:** Buildmarker-093
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 093 — Calendar receipt recovery and throttle classification
+
+An existing owner-scoped matching period is not recreated to finish a PENDING receipt. Fresh confirmed health/access, original immutable intent, base/result revision and competing work checks decide receipt-only completion. Complete initial grants use their original timestamp/event and unique first record; partial grants keep their explicit guarded recovery path. Authentication, Terms, privacy and deletion remain mandatory. Read-only status never completes a receipt; continuation remains an explicit same-ID action. [093 implementation, evidence and rollout](reports/SHINKA_CALENDAR_READBACK_093.md).
 
 ## 092 — Optional Calendar empty-state invitation
 

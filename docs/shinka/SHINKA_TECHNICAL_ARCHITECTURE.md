@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-092
+**Current BuildMarker:** Buildmarker-093
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -12,6 +12,10 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 093 — Bounded Calendar GET recovery
+
+Calendar alone installs a request-local SDK boundary below lifecycle/Terms/write guards. Only completed raw HTTP429 filter/auth.me rejections can retry once, with at most two extra GETs per request, minimum 500ms, Retry-After respected and an 18s retry-dispatch budget reserving 1s; no new request after budget/closure. This cannot cancel an in-flight SDK call or guarantee a total network deadline. Mutations and composite persistence routines are never automatically repeated. Two independent snapshot passes, preflight, postwrite readback and fresh security guards remain uncached. Only the duplicate initial resume receipt read and the unnecessary grant-completion path for an already verified result are removed. Narrow receipt updateMany + readback is not native CAS, a transaction or cross-worker serialization. [093 implementation, evidence and rollout](reports/SHINKA_CALENDAR_READBACK_093.md).
 
 ## 092 — Shared Calendar consent presentation
 

@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-092
+**Current BuildMarker:** Buildmarker-093
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
 **External Verification Required:** All rows marked UNVERIFIED.
+
+## 093 — Receipt-only recovery safeguards
+
+Recovery may update only the original receipt after owner, ACTIVE/lifecycle/current Terms/privacy, consent version/event/deletion, date, unique result, immutable intent and competing-operation checks. For non-grant intents, reversing only the intended period change must reproduce base_revision; complete initial grants must match the receipt grant_at and one first period without cycle settings. Legacy initial receipts do not contain a full pre-grant snapshot, so this is not proof of atomic causality. Ambiguous/racing outcomes remain blocked, never cancelled or rewritten automatically. Logs allow only source version, server request UUID, closed stages/entity/method/status/counters/duration; no owner IDs, dates, query/body/rows, tokens or raw SDK messages. [093 implementation, evidence and rollout](reports/SHINKA_CALENDAR_READBACK_093.md).
 
 ## 092 — Local consent intent is not a grant
 
