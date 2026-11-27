@@ -16,12 +16,52 @@ const day=(host,date)=>host.querySelector(`[data-calendar-date="${date}"]`);
 const choose=async(host,date)=>{day(host,date).click();await pause();};
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CALENDAR_UI_TESTS = [
+ ['CU14','TR/EN empty Calendar consent is unchecked, survives date/month selection and persists once only through explicit save',async()=>probe(async(root,host)=>{
+   for(const language of ['tr','en']){
+     const f=nativeFixture({granted:false});let writes=0;
+     root.render(createElement(Calendar,{key:language,language,request:(action,body)=>{if(action!=='read')writes++;return f.cal({action,...body});}}));
+     await until(()=>host.querySelector('[data-calendar-root]')?.getAttribute('lang')===language&&day(host,'2026-10-19'));
+     const intro=language==='tr'?'Döngüne dair daha kişisel yorumlar için son regl başlangıç tarihini ekleyebilirsin.':'For more personalized insights into your cycle, you can add the start date of your last period.';
+     check(host.querySelector('[data-calendar-empty-intro]')?.textContent===intro,'empty introduction is missing');
+     check(host.querySelectorAll('input[type=checkbox]').length===1&&!host.querySelector('input[type=checkbox]').checked&&!host.querySelector('[data-calendar-add]'));
+     host.querySelector('input[type=checkbox]').click();await pause();check(host.querySelector('input[type=checkbox]').checked&&!writes&&!f.tables.UserHealthConsent.length&&!f.tables.UserHealthConsentEvent.length);
+     host.querySelector('button[aria-label="'+(language==='tr'?'Önceki ay':'Previous month')+'"]').click();await until(()=>day(host,'2026-09-19')&&host.querySelector('[data-calendar-empty-intro]'));
+     check(host.querySelector('input[type=checkbox]').checked,'safe month inspection lost consent intent');
+     await choose(host,'2026-09-19');check(!host.querySelector('[data-calendar-empty-intro]')&&host.querySelectorAll('input[type=checkbox]').length===1&&host.querySelector('input[type=checkbox]').checked&&!host.querySelector('[data-calendar-add]').disabled);
+     await choose(host,'2026-09-18');check(host.querySelector('input[type=checkbox]').checked&&!writes);
+     host.querySelector('input[type=checkbox]').click();await pause();check(host.querySelector('[data-calendar-add]').disabled);host.querySelector('input[type=checkbox]').click();await pause();host.querySelector('[data-calendar-add]').click();
+     await until(()=>host.textContent.includes(language==='tr'?'Regl başlangıcı kaydedildi':'Period start saved'));
+     check(writes===1&&f.tables.UserPeriodRecord.length===1&&f.tables.UserHealthConsent.length===1&&f.tables.UserHealthConsentEvent.length===1&&!host.querySelector('input[type=checkbox],[data-calendar-empty-intro]'));
+     const granted=nativeFixture(),events=JSON.stringify(granted.tables.UserHealthConsentEvent);
+     root.render(createElement(Calendar,{key:language+'-granted',language,request:(action,body)=>granted.cal({action,...body})}));await until(()=>host.querySelector('[data-calendar-empty-intro]')&&day(host,'2026-10-19'));
+     check(!host.querySelector('input[type=checkbox]'),'verified GRANTED consent requested again');await choose(host,'2026-10-19');check(!host.querySelector('input[type=checkbox]')&&!host.querySelector('[data-calendar-add]').disabled);host.querySelector('[data-calendar-add]').click();
+     await until(()=>granted.tables.UserPeriodRecord.length===1&&host.querySelector('[data-calendar-move]'));check(JSON.stringify(granted.tables.UserHealthConsentEvent)===events&&granted.tables.UserHealthConsent.length===1,'existing consent was duplicated');
+   }
+ })],
+ ['CU15','Calendar intro uses whole-history server evidence and yields to withdrawal, pending receipts, restrictions and unverified reads',async()=>probe(async(root,host)=>{
+   const existing=nativeFixture();await existing.change('add',{date:'2026-10-01'});
+   root.render(createElement(Calendar,{key:'existing',language:'en',request:(action,body)=>existing.cal({action,...body,month:body.month||'2026-11'})}));await until(()=>day(host,'2026-11-01'));check(!host.querySelector('[data-calendar-empty-intro],input[type=checkbox]'),'empty month was mistaken for empty history');
+   for(const [key,extra]of /** @type {[string, {hasPeriods?:boolean, writable?:boolean}][]} */ ([['unverified',{hasPeriods:undefined}],['blocked',{writable:false}]])){
+     const f=nativeFixture({granted:false});root.render(createElement(Calendar,{key,language:'en',request:async(action,body)=>({...await f.cal({action,...body}),...extra})}));await until(()=>day(host,'2026-10-19')&&!day(host,'2026-11-01'));await pause();check(!host.querySelector('[data-calendar-empty-intro],input[type=checkbox]'));
+   }
+   const pending=nativeFixture();pending.once('before',call=>call.name==='UserPeriodRecord'&&call.method==='create');try{await pending.change('add',{date:'2026-10-11'});}catch{/* durable synthetic receipt */}
+   root.render(createElement(Calendar,{key:'pending',language:'en',request:(action,body)=>pending.cal({action,...body})}));await until(()=>host.querySelector('[data-calendar-recovery]'));check(!host.querySelector('[data-calendar-empty-intro],input[type=checkbox]')&&!pending.tables.UserPeriodRecord.length&&pending.tables.UserCalendarAction[0].status==='PENDING');
+   const blocked=nativeFixture();blocked.state.time='2026-10-21T12:00:00Z';blocked.tables.UserHealthConsent[0].consent_status='WITHDRAWN';blocked.tables.UserHealthConsent[0].withdrawn_at='2026-10-20T13:00:00Z';
+   blocked.tables.UserHealthConsentEvent.push({id:'withdrawal',user_id:'ownerA',event_type:'WITHDRAWN',consent_version:blocked.tables.UserHealthConsent[0].consent_version,occurred_at:'2026-10-20T13:00:00Z'});
+   blocked.tables.HealthDataDeletionJob.push({id:'deletion',user_id:'ownerA',job_status:'PENDING',protection_event_id:'withdrawal',requested_at:'2026-10-20T13:00:00Z',retry_count:0});
+   root.render(createElement(Calendar,{key:'withdrawal-job',language:'en',request:(action,body)=>blocked.cal({action,...body})}));await until(()=>host.querySelector('[data-calendar-error=HEALTH_DELETION_PENDING]'));check(!host.querySelector('[data-calendar-empty-intro],input[type=checkbox]')&&blocked.tables.UserHealthConsent[0].consent_status==='WITHDRAWN'&&blocked.tables.UserHealthConsentEvent.length===2&&!blocked.tables.UserPeriodRecord.length);
+   const withdrawn=nativeFixture({granted:false});let denied=false;
+   const request=(action,body)=>{if(denied)throw{code:'HEALTH_DELETION_PENDING'};return withdrawn.cal({action,...body});};
+   root.render(createElement(Calendar,{key:'withdrawn',language:'en',request}));await until(()=>host.querySelector('[data-calendar-empty-intro]'));host.querySelector('input[type=checkbox]').click();await pause();check(host.querySelector('input[type=checkbox]').checked);
+   denied=true;window.dispatchEvent(new Event('shinka-health-access-changed'));await until(()=>host.querySelector('[data-calendar-error=HEALTH_DELETION_PENDING]'));check(!host.querySelector('[data-calendar-empty-intro],input[type=checkbox],[data-calendar-selection]')&&!withdrawn.tables.UserHealthConsent.length&&!withdrawn.tables.UserHealthConsentEvent.length);
+   denied=false;window.dispatchEvent(new Event('shinka-health-access-changed'));await until(()=>host.querySelector('[data-calendar-empty-intro]'));check(!host.querySelector('input[type=checkbox]').checked,'privacy invalidation retained consent intent');
+ })],
  ['CU13','TR/EN Calendar omits redundant absence messages while retaining consent, date restrictions and confirmed saving feedback',async()=>probe(async(root,host)=>{
    for(const language of ['tr','en']){
      const f=nativeFixture();let writes=0;
      root.render(createElement(Calendar,{key:language,language,request:(action,body)=>{if(action!=='read')writes++;return f.cal({action,...body});}}));
      await until(()=>host.querySelector('[data-calendar-root]')?.getAttribute('lang')===language&&day(host,'2026-10-19'));
-     check(host.querySelector('[data-calendar-selection-hint]').textContent===(language==='tr'?'Durumunu görmek için takvimden bir gün seç':'Select a day to see its details'),'empty calendar must use only the selection prompt');
+     check(host.querySelector('[data-calendar-selection-hint]').textContent===(language==='tr'?'Döngüne dair daha kişisel yorumlar için son regl başlangıç tarihini ekleyebilirsin.':'For more personalized insights into your cycle, you can add the start date of your last period.'),'empty calendar must use the approved introduction');
      await choose(host,'2026-10-19');
      const details=host.querySelector('[data-calendar-selection]'),status=details.querySelector('[data-calendar-day-status]');
      check(status.hidden&&!status.textContent,'unrecorded date must not display an absence message');

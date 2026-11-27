@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-091
+**Current BuildMarker:** Buildmarker-092
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 092 — Conservative presentation and local draft retention
+
+Use exact server booleans to gate empty presentation; never derive empty history from monthly starts or infer onboarding skip. Reuse one approved checkbox element and current state.consent without new storage or service calls. The only controller change retains the local checkbox through unchanged admitted reads; existing hide/invalidate/confirmed-save resets and mutation/recovery implementation stay intact. CU14/CU15 and RC16 cover zero-write reads, first-save event uniqueness, server revision/restrictions and privacy resets. Extend the existing App Calendar matrix with CLI-only native consent fixtures. [092](reports/SHINKA_CALENDAR_CONSENT_092.md)
 
 ## 091 — Preserve meaningful feedback
 

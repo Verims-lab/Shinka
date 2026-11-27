@@ -9,7 +9,18 @@ export default function CalendarDayDetails({ state, language }) {
   const day = calendarSelection(state), unknown = !!state.pendingOperation || state.outcome === 'unknown' || state.serverPending;
   const locked = state.busy || state.loading || unknown || !value.writable;
   const needsConsent = value.state === 'CONSENT_REQUIRED' && !value.recovery;
-  if (!day) return <p role="status" className="text-shinka-body" data-calendar-selection-hint>{copy('selectPrompt')}</p>;
+  const consentField = <label className="flex gap-3 items-start min-h-11 cursor-pointer">
+      <span className="min-h-11 min-w-11 flex items-center justify-center"><input type="checkbox" checked={state.consent} disabled={locked} onChange={event => controller.consent(event.target.checked)} className="h-6 w-6 accent-shinka-plum"/></span>
+      <span className="text-shinka-body">{onboardingCopy('health_consent', language)}</span>
+    </label>;
+  if (!day) {
+    const empty = !state.selected && value.hasPeriods === false && value.pendingReview === false && !value.recovery &&
+      ['READY', 'CONSENT_REQUIRED'].includes(value.state) && !locked && !state.error && !state.refreshError && !value.calculationError && !value.calculationNotice;
+    return empty ? <section data-calendar-empty className="space-y-3">
+      <p role="status" data-calendar-empty-intro data-calendar-selection-hint className="text-shinka-body">{copy('emptyIntro')}</p>
+      {needsConsent && consentField}
+    </section> : null;
+  }
   const status = day.start ? 'recordedStart' : value.state === 'RECOVERY_REQUIRED' ? 'unverifiedDay' : !unknown && state.moving && day.action ? 'notSaved' : day.recorded ? 'recordedInterval' : day.predicted ? 'predictedInterval' : day.future ? 'futureInfo' : needsConsent ? 'consent' : null;
   const invalid = !!day.error || /^PERIOD_/.test(state.error || '');
   const canAdd = day.action === 'add' && !day.future;
@@ -28,10 +39,7 @@ export default function CalendarDayDetails({ state, language }) {
     {!unknown && state.moving && state.editing && <p id="calendar-move-hint" className="text-shinka-body">{copy('moveFrom')}: {formatCalendarDate(state.editing.date, language)}. {copy('moveHint')}</p>}
     {!unknown && state.moving && day.action && (day.recorded || day.predicted) && <p className="text-shinka-caption">{copy(day.recorded ? 'recordedInterval' : 'predictionNote')}</p>}
     {!unknown && day.error && !state.error && (state.moving || !day.future) && <p id="calendar-draft-error" role={state.moving ? 'alert' : 'status'} className="text-shinka-body">{copy(day.error === 'PERIOD_CONFLICT' ? 'spacing' : day.error === 'PERIOD_DUPLICATE' ? 'duplicate' : 'future')}</p>}
-    {!unknown && needsConsent && canAdd && <label className="flex gap-3 items-start min-h-11 cursor-pointer">
-      <span className="min-h-11 min-w-11 flex items-center justify-center"><input type="checkbox" checked={state.consent} disabled={locked} onChange={event => controller.consent(event.target.checked)} className="h-6 w-6 accent-shinka-plum"/></span>
-      <span className="text-shinka-body">{onboardingCopy('health_consent', language)}</span>
-    </label>}
+    {!unknown && needsConsent && canAdd && consentField}
     {!unknown && (state.moving || day.start || canAdd) && <div className="flex flex-wrap gap-2" role="group" aria-label={copy('dateActions')} aria-busy={state.busy}>
       {state.moving ? <>
         <ShinkaButton data-calendar-save disabled={locked || !day.action || invalid} onClick={save}>{copy('saveMove')}</ShinkaButton>

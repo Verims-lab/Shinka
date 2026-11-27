@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-091
+**Current BuildMarker:** Buildmarker-092
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 092 — Optional Calendar empty-state invitation
+
+The current request supersedes 091 only for a genuinely unselected, server-projected empty and unrestricted Calendar. Show the exact optional Turkish invitation and equivalent English. Use strict server hasPeriods=false and confirmed read state, not an empty monthly starts array or an invented onboarding-skip flag. Keep recorded/selected/restricted/recovery notices separate. Valid GRANTED consent is not requested again; other permitted first saves require explicit approved consent. [092](reports/SHINKA_CALENDAR_CONSENT_092.md)
 
 ## 091 — Calendar message simplification
 

@@ -73,7 +73,7 @@ export function createCalendarController(request, now = () => Date.now()) {
     const wasUncertain = unresolved();
     if (changedMonth) inspection++;
     set({ loading: true, ...(month ? { month } : {}), refreshError: null, readDiagnostic: null,
-      ...(changedMonth && (!state.moving || wasUncertain) ? { selected: '', editing: null, moving: false, consent: false } : {}),
+      ...(changedMonth && (!state.moving || wasUncertain) ? { selected: '', editing: null, moving: false, consent: state.value?.state === 'CONSENT_REQUIRED' && !wasUncertain ? state.consent : false } : {}),
       ...(!wasUncertain && !keepFeedback ? { error: null, success: null } : {}) });
     task.promise = (async () => {
       try {
@@ -81,7 +81,13 @@ export function createCalendarController(request, now = () => Date.now()) {
         if (owner !== generation || ticket !== readGeneration || disposed) return;
         if (intent && retry !== intent) { refreshInspection(); return; }
         const denied = value.state === 'CONSENT_REQUIRED' && !value.recovery && !(retry?.payload.health_consent === true && value.checkedAction?.status === 'ABSENT');
-        if (denied) { set({ ...hide(), value, month: value.month, error: null }); return; }
+        if (denied) {
+          // Retain only an explicit, unsaved checkbox intent after an unchanged,
+          // admitted read. This never establishes persisted consent or write authority.
+          const consent = state.consent && state.value?.state === 'CONSENT_REQUIRED' && state.value.revision === value.revision &&
+            value.hasPeriods === false && value.pendingReview === false && value.writable && !wasUncertain && !unresolved();
+          set({ ...hide(), value, month: value.month, error: null, consent }); return;
+        }
         if (checked(value, true)) return;
         if (retry && value.recovery && value.recovery.action_id !== retry.payload.action_id) {
           set({ value, month: value.month, serverPending: value.pendingReview === true, error: 'CALENDAR_ACTION_CONFLICT', outcome: 'unknown', canContinue: false, pendingOperation: operationView(retry, 'CONFLICT') }); return;

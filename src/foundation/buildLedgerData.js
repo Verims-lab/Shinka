@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-087",
-    "package_name": "Shared profile control in the safe logo corner",
-    "package_type": "TARGETED_FIX",
-    "created_at": "2026-11-26T15:09:33.890Z",
-    "health_catalog_version": "HC-086.0",
-    "short_summary": "Move existing Home/Calendar/Pattern/You profile controls to one safe logo-corner position. Preserve control design/access, hidden-tab ownership, Home 086 content layout, background and 083 navigation behavior.",
-    "full_health_status": "NOT_RUN",
-    "notes": "H05-009, H07-013 and H13-012 update; retain 188 cases and 083–087. Mandatory both-engine 112-case real-App profile matrix checks safe areas, no duplicates, keyboard/profile navigation, original icon style and unchanged baseline headings/Home cards/art/nav. Existing Home and 083 gates remain. No provider, portal, auth/data/routing or dependency change. Actual execution, retained failures and unchanged byte budgets are in reports/SHINKA_PROFILE_POSITION_087.md. Physical/device/hosted acceptance remains external; no main write, PR or Base44 publication."
-  },
-  {
     "build_marker": "Buildmarker-088",
     "package_name": "Home suggestion editorial note",
     "package_type": "TARGETED_FIX",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Remove redundant Calendar no-record/no-prediction messages in TR/EN. Keep eligible date heading/save action, meaningful status and all existing data/recovery safeguards without layout or navigation changes.",
     "full_health_status": "NOT_RUN",
     "notes": "188 cases retained, 3 updated; active 087–091. CU13 adds permanent bilingual empty/selected-day and consent/saving protection; existing actual-App Calendar mobile checks assert concise content. Preserve records/predictions/future restrictions, validation and 090 recovery. Product backend/schema/service/controller, CSS/art/profile/navigation and other screens are unchanged; shared Health files change only package metadata/coverage. Actual local execution and unchanged budget failures remain separate from hosted/device NOT_RUN in reports/SHINKA_CALENDAR_MESSAGES_091.md. No live cancellation, production mutation, main write, PR or Base44 publication."
+  },
+  {
+    "build_marker": "Buildmarker-092",
+    "package_name": "Calendar optional empty-state invitation and consent",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-11-27T17:33:23.399Z",
+    "health_catalog_version": "HC-091.0",
+    "short_summary": "Use verified empty Calendar data for an optional first-period invitation and one approved consent checkbox. Preserve explicit local checkbox intent through unchanged reads/date selection; persist only through existing save, with no repeat for GRANTED consent.",
+    "full_health_status": "NOT_RUN",
+    "notes": "188 cases retained, 4 updated; active 088–092. CU14/CU15/RC16 plus existing mobile Calendar matrix cover empty/no-consent/GRANTED, full history, unchanged/revised/blocked/pending/private reads, withdrawal and event uniqueness. Keep original mutation, native/backend/security/recovery/onboarding contracts and 088/087/083 protected surfaces. Shared Health changes are package/coverage metadata only. Actual results, failed attempts, unchanged performance budgets and hosted/device limits are in reports/SHINKA_CALENDAR_CONSENT_092.md. No automatic grant, skip flag, new model/storage, real receipt operation, main write, PR or Base44 publication."
   }
 ];

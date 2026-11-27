@@ -42,6 +42,10 @@ Buildmarker-065 introduced a single shared PNG across user-facing routes. [065 s
 
 [064 Test Tools retirement](docs/shinka/reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md): admin reset is removed from UI and backend commands. Existing receipts remain readable/fenced; the two authorized live removals are still blocked by active legacy receipts. No schema push is required.
 
+## Calendar empty state and consent — 092 / HC-091.0
+
+An unselected, server-projected empty and unrestricted Calendar shows the approved optional invitation. One approved consent checkbox appears only when the server requires it; unchanged admitted reads/date selection preserve its unsaved state, and only explicit first-period save persists consent. Current GRANTED consent is reused without duplicate events. [092 scope and execution](docs/shinka/reports/SHINKA_CALENDAR_CONSENT_092.md)
+
 ## Calendar concise messages — 091 / HC-090.0
 
 Calendar omits redundant no-record/no-prediction text in TR/EN. Eligible selected dates show their date heading and save action; meaningful status, consent, validation, saving and recovery feedback stay intact. CU13 and the existing Calendar browser matrix protect this boundary. [091 scope and actual results](docs/shinka/reports/SHINKA_CALENDAR_MESSAGES_091.md)

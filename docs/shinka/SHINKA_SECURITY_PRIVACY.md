@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_SECURITY_PRIVACY.md
 **Status:** ACTIVE — repository guards and synthetic tests; live certification pending
-**Current BuildMarker:** Buildmarker-091
+**Current BuildMarker:** Buildmarker-092
 **Auth policy (OD-003):** RESOLVED_BY_REPOSITORY_POLICY: Apple/Google-only shell and safe localized error mapping implemented. Recorded platform snapshot 2026-10-18 23:11 lists Google/Apple; read-only dashboard inspection on 2026-10-22 also observed both enabled, with default Base44 Google OAuth. Live/native sign-in proof remains unverified (EXTERNAL_RELEASE).
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SRC-01 §8/§13, SRC-04 §3.2/§9/§13/§14, SRC-05 §15
 **Purpose:** Separate PRODUCT REQUIREMENT from BASE44 VERIFIED CAPABILITY.
 **Scope:** Auth, ownership, admin, health data, logs, secrets, restore.
 **External Verification Required:** All rows marked UNVERIFIED.
+
+## 092 — Local consent intent is not a grant
+
+The checkbox is unsaved account-scoped memory, not permission to read health data or evidence of a persisted grant. Preserve it through date/month inspection only when an admitted CONSENT_REQUIRED response has the same revision, explicitly false hasPeriods/pendingReview and writable=true. For a new unsaved checkbox, revised or restricted CONSENT_REQUIRED reads reset the draft; account/health invalidation and confirmed save clear it independently. READY hides the checkbox and reuses the backend-validated grant without another checkbox or event. Initial grant still uses only the existing explicit period-save workflow and fresh owner/consent/event/deletion/readback guards. No automatic grant, skip flag, storage, new health field, backend permission change or live operation. [092](reports/SHINKA_CALENDAR_CONSENT_092.md)
 
 ## 085 — Test Mode isolation and authority
 
