@@ -42,6 +42,10 @@ Buildmarker-065 introduced a single shared PNG across user-facing routes. [065 s
 
 [064 Test Tools retirement](docs/shinka/reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md): admin reset is removed from UI and backend commands. Existing receipts remain readable/fenced; the two authorized live removals are still blocked by active legacy receipts. No schema push is required.
 
+## Calendar concise messages — 091 / HC-090.0
+
+Calendar omits redundant no-record/no-prediction text in TR/EN. Eligible selected dates show their date heading and save action; meaningful status, consent, validation, saving and recovery feedback stay intact. CU13 and the existing Calendar browser matrix protect this boundary. [091 scope and actual results](docs/shinka/reports/SHINKA_CALENDAR_MESSAGES_091.md)
+
 ## Calendar browsing during recovery — 090 / HC-089.0
 
 Unresolved writes no longer freeze inspection or automatically select their date. Original identity is separate; one concise notice and explicit Check/Continue preserve backend safeguards. Calendar alone removes its unused profile flow placeholder, reducing the logo/title gap about 92 to 48px. FOUNDATION_CALENDAR_RECOVERY_ONLY=1 runs the local App/native matrix, also mandatory in default/Calendar gates. [090 scope and actual results](docs/shinka/reports/SHINKA_CALENDAR_RECOVERY_090.md)

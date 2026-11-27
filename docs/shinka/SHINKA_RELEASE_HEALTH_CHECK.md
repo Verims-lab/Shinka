@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-090
+**Current BuildMarker:** Buildmarker-091
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-089.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-090.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 091 — Calendar concise-message regression
+
+HC-090.0 retains 188 cases: 0 added / 3 updated / 0 removed (H05-009, H13-012, H13-015). CU13 brings canonical coverage to 829 tests. Require TR/EN empty/eligible-date message removal and preserved recorded/derived/predicted/future/consent/validation/saving/recovery information. Existing Calendar App cases cover 320/360/390/430, landscape, both themes and enlarged text. Keep all native receipt/idempotency, protected artwork/profile/navigation and external hosted/device gates. [091](reports/SHINKA_CALENDAR_MESSAGES_091.md)
 
 ## 090 — Mandatory browsable-recovery coverage
 

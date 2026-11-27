@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-090
+**Current BuildMarker:** Buildmarker-091
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 091 — Calendar message-only package
+
+Remove redundant no-start/no-prediction copy in both locales while preserving all meaningful feedback and existing Calendar interactions. Add CU13, adapt CU12 and the existing mobile matrix. No live receipt cancellation or health-data operation belongs to this package. Actual execution, prior failures and remaining hosted/device limits are recorded in the 091 report. [091](reports/SHINKA_CALENDAR_MESSAGES_091.md)
 
 ## 090 — Reproduced selection lock
 

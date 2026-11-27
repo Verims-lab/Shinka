@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-086",
-    "package_name": "Home spacing, typography and soft reading surfaces",
-    "package_type": "TARGETED_FIX",
-    "created_at": "2026-11-26T09:41:14.416Z",
-    "health_catalog_version": "HC-085.0",
-    "short_summary": "Refine Home only: one aligned greeting/profile row, smaller existing type tokens and two separate translucent rounded reading surfaces. Preserve original background, complete bottom navigation, 083 correction and all data/selection behavior.",
-    "full_health_status": "NOT_RUN",
-    "notes": "H05-009, H07-013 and H13-012 update; retain 188 cases and 082–086. Both-engine real-App matrix covers 48 responsive/localized/theme/text combinations plus unchanged art/navigation baseline and protected source hashes. Preserve daily/Retry/access and 083 navigation regressions. The 055 Home transparency rule is superseded only for these outer surfaces; preparation and shared card defaults stay plain/unchanged. See reports/SHINKA_HOME_REFINEMENT_086.md for actual results, retained failures and unchanged byte budgets. No main write, PR, Base44 publication or production operation."
-  },
-  {
     "build_marker": "Buildmarker-087",
     "package_name": "Shared profile control in the safe logo corner",
     "package_type": "TARGETED_FIX",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Separate Calendar inspection from original unresolved writes. Keep accurate day status, one recovery notice and explicit original continuation. Reduce Calendar logo/title gap without moving artwork, profile or navigation.",
     "full_health_status": "NOT_RUN",
     "notes": "188 cases retained, 5 updated; active 086–090. RC13–RC15/CU12 and mandatory 20-case App/spacing baseline cover November 11 pending, in-flight/late reads, immutable intent, receipt states, refresh/tab/reload, no replacement/duplicate writes and explicit continuation. Preserve 089 functionality, native/backend/schema/service and other product screens. Actual results, failed attempts, byte budgets and hosted/device blockers are in reports/SHINKA_CALENDAR_RECOVERY_090.md. No main write, PR, force-push, Base44 publication or production mutation."
+  },
+  {
+    "build_marker": "Buildmarker-091",
+    "package_name": "Calendar concise selected-day messages",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-11-27T15:40:25.657Z",
+    "health_catalog_version": "HC-090.0",
+    "short_summary": "Remove redundant Calendar no-record/no-prediction messages in TR/EN. Keep eligible date heading/save action, meaningful status and all existing data/recovery safeguards without layout or navigation changes.",
+    "full_health_status": "NOT_RUN",
+    "notes": "188 cases retained, 3 updated; active 087–091. CU13 adds permanent bilingual empty/selected-day and consent/saving protection; existing actual-App Calendar mobile checks assert concise content. Preserve records/predictions/future restrictions, validation and 090 recovery. Product backend/schema/service/controller, CSS/art/profile/navigation and other screens are unchanged; shared Health files change only package metadata/coverage. Actual local execution and unchanged budget failures remain separate from hosted/device NOT_RUN in reports/SHINKA_CALENDAR_MESSAGES_091.md. No live cancellation, production mutation, main write, PR or Base44 publication."
   }
 ];

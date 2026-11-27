@@ -9,7 +9,7 @@ const en = {
   selectPrompt: 'Select a day to see its details', dateActions: 'Date actions', legend: 'Calendar indicators',
   recordedStart: 'Period start recorded', changeDate: 'Change date', deleteRecord: 'Delete record', markStart: 'Save as period start',
   saveMove: 'Save date change', moveFrom: 'Start to change', moveHint: 'Select the new start date on the calendar',
-  notSaved: 'New start date selected; not saved yet', unrecorded: 'No period start is recorded on this date',
+  notSaved: 'New start date selected; not saved yet',
   recordedInterval: 'In the period interval shown from a recorded start', predictedInterval: 'In an estimated period interval',
   predictionNote: 'This is an estimate, not a recorded period start', predictedFuture: 'This is an estimate. Future dates cannot be recorded as period starts',
   futureInfo: 'Future dates cannot be recorded as period starts', pendingDate: 'The result of the change for this date is not yet confirmed',
@@ -38,7 +38,7 @@ const en = {
   duplicate: APPROVED_COPY.calendar[3], conflict: APPROVED_COPY.calendar[4], saveError: APPROVED_COPY.calendar[5],
   offline: APPROVED_COPY.calendar[6], consent: APPROVED_COPY.calendar[7], deleteTitle: APPROVED_COPY.calendar[8],
   deleteBody: APPROVED_COPY.calendar[9], delete: APPROVED_COPY.calendar[10], cancel: APPROVED_COPY.calendar[11],
-  deleteError: APPROVED_COPY.calendar[12], deleted: APPROVED_COPY.calendar[13], empty: APPROVED_COPY.calendar[14],
+  deleteError: APPROVED_COPY.calendar[12], deleted: APPROVED_COPY.calendar[13],
 };
 const tr = {
   recoveryTitle: 'Önceki takvim işlemi', recoveryNotice: 'Önceki işlem henüz doğrulanmadı. Takvimi inceleyebilirsin; yeni kayıt işlemleri bekliyor.',
@@ -49,7 +49,7 @@ const tr = {
   selectPrompt: 'Durumunu görmek için takvimden bir gün seç', dateActions: 'Tarih işlemleri', legend: 'Takvim işaretleri',
   recordedStart: 'Regl başlangıcı kaydedilmiş', changeDate: 'Tarihi değiştir', deleteRecord: 'Kaydı sil', markStart: 'Regl başlangıcı olarak kaydet',
   saveMove: 'Değişikliği kaydet', moveFrom: 'Değiştirilecek başlangıç', moveHint: 'Yeni başlangıç tarihini takvimden seç',
-  notSaved: 'Yeni başlangıç seçildi; henüz kaydedilmedi', unrecorded: 'Bu tarihte kayıtlı bir regl başlangıcı yok',
+  notSaved: 'Yeni başlangıç seçildi; henüz kaydedilmedi',
   recordedInterval: 'Kaydedilmiş başlangıca göre gösterilen regl aralığında', predictedInterval: 'Tahmini regl aralığında',
   predictionNote: 'Bu bir tahmindir; kayıtlı bir regl başlangıcı değildir', predictedFuture: 'Bu bir tahmindir. Gelecek tarihler regl başlangıcı olarak kaydedilemez',
   futureInfo: 'Gelecek tarihler regl başlangıcı olarak kaydedilemez', pendingDate: 'Bu tarihle ilgili işlemin sonucu henüz doğrulanmadı',
@@ -80,7 +80,7 @@ const tr = {
   consent: 'Devam etmek için döngü verilerinin kullanılmasına açık rıza vermelisin',
   deleteTitle: 'Bu regl başlangıcı silinsin mi?', deleteBody: 'Bu regl başlangıcı silinecek. Döngü tahminlerin güncellenecek',
   delete: 'Regl başlangıcını sil', cancel: 'İptal', deleteError: 'Bu regl başlangıcı silinemedi. Lütfen tekrar dene',
-  deleted: 'Regl başlangıcı silindi', empty: 'Henüz regl tahmini yok. Tahminleri görmek için bir regl başlangıcı işaretle',
+  deleted: 'Regl başlangıcı silindi',
 };
 export const calendarCopy = (key, language = 'en') => (language === 'tr' ? tr : en)[key] || en[key];
 export const calendarErrorKey = (code, action = 'read') => ({

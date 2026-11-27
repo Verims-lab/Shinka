@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-090
+**Current BuildMarker:** Buildmarker-091
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 091 — Calendar message simplification
+
+The current request supersedes only redundant no-record/no-prediction copy in Calendar. With an eligible unrecorded date selected, show its heading and Save as period start. Keep consent, validation, saved/derived/predicted dates, future restrictions, saving and unresolved-write feedback. Selection, mutations, backend data, 090 recovery and protected artwork/profile/navigation are unchanged. [091](reports/SHINKA_CALENDAR_MESSAGES_091.md)
 
 ## 090 — Browsable Calendar recovery
 

@@ -36,7 +36,7 @@ export async function checkCalendarRecovery(browser, origin, directory) {
         assert.equal(await day('2026-11-11').getAttribute('data-start'),'false');
         assert(await day('2026-11-15').isEnabled());await day('2026-11-15').click();
         assert.equal(await page.locator('[data-calendar-selection]').getAttribute('data-selected-date'),'2026-11-15');
-        assert.equal(await page.locator('[data-calendar-day-status]').textContent(),language==='tr'?'Bu tarihte kayıtlı bir regl başlangıcı yok':'No period start is recorded on this date');
+        assert.equal(await page.locator('[data-calendar-day-status]').isVisible(),false);assert.equal(await page.locator('[data-calendar-day-status]').textContent(),'');
         assert.equal(await page.locator('[data-calendar-add],[data-calendar-move],[data-calendar-delete]').count(),0);
         const receipt=await page.evaluate(()=>structuredClone(window.__nativeCalendarLab.tables.UserCalendarAction.find(r=>r.status==='PENDING')));
         await page.locator('[data-calendar-check]').click();await page.locator('[data-calendar-continue]').waitFor();await page.locator('[data-calendar-check]').click();await page.locator('[data-calendar-check]:enabled').waitFor();
