@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-090
+**Current BuildMarker:** Buildmarker-091
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 091 — Calendar copy-only delivery
+
+AydanTest fast-forwarded from 2df5fba to main ce3b484 (090 merge, identical files). Record Buildmarker-091 / HC-090.0 once; retain 087–091. Require CU13 and both-engine Calendar/core, locale/mobile, typecheck/lint/build/repo/history/dependency gates; keep prior failed/NOT_RUN evidence and byte budgets. Deliver only AydanTest, with no main write, PR, publication or live mutation. [091](reports/SHINKA_CALENDAR_MESSAGES_091.md)
 
 ## 090 — Calendar recovery delivery
 

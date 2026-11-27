@@ -16,6 +16,29 @@ const day=(host,date)=>host.querySelector(`[data-calendar-date="${date}"]`);
 const choose=async(host,date)=>{day(host,date).click();await pause();};
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CALENDAR_UI_TESTS = [
+ ['CU13','TR/EN Calendar omits redundant absence messages while retaining consent, date restrictions and confirmed saving feedback',async()=>probe(async(root,host)=>{
+   for(const language of ['tr','en']){
+     const f=nativeFixture();let writes=0;
+     root.render(createElement(Calendar,{key:language,language,request:(action,body)=>{if(action!=='read')writes++;return f.cal({action,...body});}}));
+     await until(()=>host.querySelector('[data-calendar-root]')?.getAttribute('lang')===language&&day(host,'2026-10-19'));
+     check(host.querySelector('[data-calendar-selection-hint]').textContent===(language==='tr'?'Durumunu görmek için takvimden bir gün seç':'Select a day to see its details'),'empty calendar must use only the selection prompt');
+     await choose(host,'2026-10-19');
+     const details=host.querySelector('[data-calendar-selection]'),status=details.querySelector('[data-calendar-day-status]');
+     check(status.hidden&&!status.textContent,'unrecorded date must not display an absence message');
+     check(details.textContent===details.querySelector('h3').textContent+(language==='tr'?'Regl başlangıcı olarak kaydet':'Save as period start'),'eligible day must show only its heading and save action');
+     check([...day(host,'2026-10-19').getAttribute('aria-describedby').split(' ')].every(id=>host.querySelector('#'+id)),'selected day has a dangling description');
+     check(!host.querySelector('[data-calendar-add]').disabled&&writes===0);
+     await choose(host,'2026-10-21');check(host.querySelector('[data-calendar-day-status]').textContent.includes(language==='tr'?'Gelecek':'Future')&&!host.querySelector('[data-calendar-add]')&&writes===0);
+     await choose(host,'2026-10-19');host.querySelector('[data-calendar-add]').click();await until(()=>host.textContent.includes(language==='tr'?'Regl başlangıcı kaydedildi':'Period start saved'));
+     check(writes===1&&host.querySelector('[data-calendar-day-status]').textContent===(language==='tr'?'Regl başlangıcı kaydedilmiş':'Period start recorded')&&host.querySelector('[data-calendar-move]')&&host.querySelector('[data-calendar-delete]'));
+     await choose(host,'2026-10-20');check(host.querySelector('[data-calendar-day-status]').textContent.includes(language==='tr'?'aralığında':'interval')&&!host.querySelector('[data-calendar-add]'));
+     const consent=nativeFixture({granted:false});
+     root.render(createElement(Calendar,{key:language+'-consent',language,request:(action,body)=>consent.cal({action,...body})}));
+     await until(()=>host.querySelector('[data-calendar-selection-hint]')&&day(host,'2026-10-19'));await choose(host,'2026-10-19');
+     check(host.querySelector('input[type=checkbox]')&&!host.querySelector('input[type=checkbox]').checked&&host.querySelector('[data-calendar-add]').disabled&&host.querySelector('[data-calendar-day-status]').textContent.includes(language==='tr'?'rıza':'consent'),'consent information or guard was hidden');
+     check(!consent.tables.UserPeriodRecord.length&&!consent.tables.UserCalendarAction.length);
+   }
+ })],
  ['CU12','November 11 recovery has one notice, truthful inspected-day status and usable read-only controls during status checks in TR/EN',async()=>probe(async(root,host)=>{
    for(const language of ['tr','en']){
      const f=nativeFixture();f.state.time='2026-11-27T12:00:00Z';f.once('before',x=>x.name==='UserPeriodRecord'&&x.method==='create');try{await f.change('add',{date:'2026-11-11'});}catch{/* intentional isolated pending receipt */}
@@ -24,7 +47,7 @@ export const CALENDAR_UI_TESTS = [
      try{
        root.render(createElement(Calendar,{key:language,language,request}));await until(()=>host.querySelector('[data-calendar-root]')?.getAttribute('lang')===language&&day(host,'2026-11-11'));
        check(!day(host,'2026-11-11').disabled&&host.querySelectorAll('[data-calendar-recovery]').length===1&&!host.querySelector('[data-calendar-selection]'));
-       await choose(host,'2026-11-11');check(day(host,'2026-11-11').dataset.start==='false'&&host.querySelector('[data-calendar-day-status]').textContent===(language==='tr'?'Bu tarihte kayıtlı bir regl başlangıcı yok':'No period start is recorded on this date'));
+       await choose(host,'2026-11-11');check(day(host,'2026-11-11').dataset.start==='false'&&host.querySelector('[data-calendar-day-status]').hidden&&!host.querySelector('[data-calendar-day-status]').textContent);
        hold=true;host.querySelector('[data-calendar-check]').click();await until(()=>host.querySelector('[data-calendar-check]')?.disabled);
        await choose(host,'2026-11-15');check(host.querySelector('[data-calendar-selection]').dataset.selectedDate==='2026-11-15'&&host.querySelector('[data-calendar-recovery] time').dateTime==='2026-11-11'&&!host.querySelector('[data-calendar-add],[data-calendar-move],[data-calendar-delete]'));
        await until(()=>held);release();await until(()=>host.querySelector('[data-calendar-continue]')&&!host.querySelector('[data-calendar-check]').disabled);check(writes===0);
@@ -125,7 +148,7 @@ export const CALENDAR_UI_TESTS = [
  })],
  ['CU02','Delete confirmation names the actual date, Cancel restores focus and last deletion removes predictions',async()=>probe(async(root,host)=>{
    const f=calendarFixture();await f.change('add',{date:'2026-10-01'});root.render(createElement(Calendar,{language:'en',request:f.request}));await until(()=>day(host,'2026-10-01'));await choose(host,'2026-10-01');const trigger=host.querySelector('[data-calendar-delete]');trigger.click();await until(()=>host.querySelector('dialog[open]'));check(host.querySelector('dialog').textContent.includes('1 October 2026'));
-   button(host.querySelector('dialog'),'Cancel').click();await until(()=>!host.querySelector('dialog'));check(f.rows.user_period_record.length===1&&document.activeElement===trigger);trigger.click();await until(()=>host.querySelector('dialog[open]'));button(host.querySelector('dialog'),'Delete period start').click();await until(()=>!host.querySelector('dialog')&&host.textContent.includes('No period predictions yet'));check(!f.rows.user_period_record.length&&!f.rows.user_cycle_phase_day.length);
+   button(host.querySelector('dialog'),'Cancel').click();await until(()=>!host.querySelector('dialog'));check(f.rows.user_period_record.length===1&&document.activeElement===trigger);trigger.click();await until(()=>host.querySelector('dialog[open]'));button(host.querySelector('dialog'),'Delete period start').click();await until(()=>!host.querySelector('dialog')&&host.textContent.includes('Period start deleted'));check(!f.rows.user_period_record.length&&!f.rows.user_cycle_phase_day.length);
  })],
  ['CU03','Consent is explicit, unchecked and temporary; unavailable writes never grant or save data',async()=>probe(async(root,host)=>{
    const f=calendarFixture({granted:false}),request=async(action,body)=>({...await f.request(action,body),writable:false});root.render(createElement(Calendar,{language:'tr',request}));await until(()=>host.querySelector('[data-calendar-blocked]'));await choose(host,'2026-10-01');check(host.querySelector('[data-calendar-add]').disabled&&host.querySelector('input[type=checkbox]').disabled&&!f.rows.user_health_consent.length);

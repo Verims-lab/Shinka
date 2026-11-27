@@ -9,8 +9,8 @@ export default function CalendarDayDetails({ state, language }) {
   const day = calendarSelection(state), unknown = !!state.pendingOperation || state.outcome === 'unknown' || state.serverPending;
   const locked = state.busy || state.loading || unknown || !value.writable;
   const needsConsent = value.state === 'CONSENT_REQUIRED' && !value.recovery;
-  if (!day) return <p role="status" className="text-shinka-body" data-calendar-selection-hint>{copy(value.hasPeriods || unknown ? 'selectPrompt' : 'empty')}</p>;
-  const status = day.start ? 'recordedStart' : value.state === 'RECOVERY_REQUIRED' ? 'unverifiedDay' : !unknown && state.moving && day.action ? 'notSaved' : day.recorded ? 'recordedInterval' : day.predicted ? 'predictedInterval' : day.future ? 'futureInfo' : needsConsent ? 'consent' : 'unrecorded';
+  if (!day) return <p role="status" className="text-shinka-body" data-calendar-selection-hint>{copy('selectPrompt')}</p>;
+  const status = day.start ? 'recordedStart' : value.state === 'RECOVERY_REQUIRED' ? 'unverifiedDay' : !unknown && state.moving && day.action ? 'notSaved' : day.recorded ? 'recordedInterval' : day.predicted ? 'predictedInterval' : day.future ? 'futureInfo' : needsConsent ? 'consent' : null;
   const invalid = !!day.error || /^PERIOD_/.test(state.error || '');
   const canAdd = day.action === 'add' && !day.future;
   const save = event => {
@@ -23,7 +23,7 @@ export default function CalendarDayDetails({ state, language }) {
   });
   return <section data-calendar-selection data-selected-date={day.date} className="space-y-3 border-t border-shinka-line pt-4" aria-labelledby="calendar-selected-date">
     <h3 id="calendar-selected-date" className="font-heading font-medium text-shinka-h4"><time dateTime={day.date}>{formatCalendarDate(day.date, language)}</time>{day.today && <span className="ml-2 font-body text-shinka-caption">{copy('today')}</span>}</h3>
-    <p id="calendar-selected-status" role="status" data-calendar-day-status className="text-shinka-body">{copy(status)}</p>
+    <p id="calendar-selected-status" role="status" data-calendar-day-status hidden={!status} className="text-shinka-body">{status && copy(status)}</p>
     {day.predicted && !state.moving && <p className="text-shinka-caption">{copy(day.future ? 'predictedFuture' : 'predictionNote')}</p>}
     {!unknown && state.moving && state.editing && <p id="calendar-move-hint" className="text-shinka-body">{copy('moveFrom')}: {formatCalendarDate(state.editing.date, language)}. {copy('moveHint')}</p>}
     {!unknown && state.moving && day.action && (day.recorded || day.predicted) && <p className="text-shinka-caption">{copy(day.recorded ? 'recordedInterval' : 'predictionNote')}</p>}
@@ -41,6 +41,6 @@ export default function CalendarDayDetails({ state, language }) {
         <ShinkaButton data-calendar-delete variant="ghost" disabled={locked} onClick={event => {event.currentTarget.focus();controller.deletePrompt(true);}}>{copy('deleteRecord')}</ShinkaButton>
       </> : canAdd && <ShinkaButton data-calendar-save data-calendar-add disabled={locked || invalid || needsConsent && !state.consent} onClick={save}>{copy('markStart')}</ShinkaButton>}
     </div>}
-    {!unknown && !needsConsent && !value.hasPeriods && <p role="status" className="text-shinka-caption">{copy('empty')}</p>}
+
   </section>;
 }

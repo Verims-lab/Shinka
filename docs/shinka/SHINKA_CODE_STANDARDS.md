@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-090
+**Current BuildMarker:** Buildmarker-091
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 091 — Preserve meaningful feedback
+
+Keep message removal in CalendarDayDetails and its localized copy only. Retain a hidden empty status target for aria-describedby when no informational status is needed. CU13 verifies exact date-heading/save-only content, initial empty prompt, consent and confirmed-save feedback in both locales; CU12 preserves unresolved intent checks without requiring redundant absence copy. Extend the existing 40-case App Calendar matrix rather than add a parallel harness. [091](reports/SHINKA_CALENDAR_MESSAGES_091.md)
 
 ## 090 — Browsable reconciliation regression
 
