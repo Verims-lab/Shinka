@@ -14,9 +14,12 @@ export async function inspectMobileSurface(page, checkDarkReadingSurface = false
     const gutter=Number(readingStyle?.backgroundSize.match(/^calc\(100% - ([\d.]+)px\) 100%$/)?.[1])/2;
     const background = el => {
       const chain = []; for(let n=el;n;n=n.parentElement) chain.unshift(n);
-      const box=el.getBoundingClientRect();
-      const covered=readingBounds&&box.left>=readingBounds.left+gutter-1&&box.right<=readingBounds.right-gutter+1
-        &&box.top>=readingBounds.top-1&&box.bottom<=readingBounds.bottom+1;
+      // Contrast applies to visible text, not a transparent control's padding.
+      // Calendar's 44px targets can extend into the artwork gutter while their
+      // glyphs remain on the opaque reading surface.
+      const textRects=[];
+      for(const node of el.childNodes)if(node.nodeType===3)for(const match of node.textContent.matchAll(/\S+/g)){const range=document.createRange();range.setStart(node,match.index);range.setEnd(node,match.index+match[0].length);textRects.push(...range.getClientRects());}
+      const covered=readingBounds&&textRects.length&&textRects.every(box=>box.left>=readingBounds.left+gutter-1&&box.right<=readingBounds.right-gutter+1&&box.top>=readingBounds.top-1&&box.bottom<=readingBounds.bottom+1);
       // Outside the opaque reading surface, bound bright artwork by white.
       return chain.reduce((bg,n)=>{
         if(reading&&n===document.documentElement)return [255,255,255];

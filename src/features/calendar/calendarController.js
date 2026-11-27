@@ -5,14 +5,15 @@ const isRejection = code => /^(PERIOD_|CALENDAR_(STATE_CHANGED|ACTION_CONFLICT|A
 
 // Transient UI state only: no health values, receipts or dates in browser storage.
 export function createCalendarController(request, now = () => Date.now()) {
-  let state = { value: null, month: null, selected: '', editing: null, editMode: false, canContinue: false, confirmDelete: false, consent: false, loading: false, busy: false, checking: false, error: null, action: 'read', success: null, refreshError: null, readDiagnostic: null, outcome: null };
+  let state = { value: null, month: null, selected: '', editing: null, moving: false, canContinue: false, confirmDelete: false, consent: false, loading: false, busy: false, checking: false, error: null, action: 'read', success: null, refreshError: null, readDiagnostic: null, outcome: null };
   let generation = 0, disposed = false, mutationPending = null, retry = null, readPending = null;
   let ended = false, offline = false, startedAt = -Infinity, retryAt = -Infinity;
   const listeners = new Set();
   const set = patch => { if (!disposed) { state = { ...state, ...patch }; listeners.forEach(fn => fn()); } };
   const confirm = (value, operation) => {
+    const date = retry?.payload.date || state.editing?.date || state.selected;
     retry = null;
-    set({ value, month: value.month, refreshError: null, readDiagnostic: null, error: null, outcome: 'confirmed', selected: '', editMode: false, canContinue: false, editing: null, confirmDelete: false, consent: false, success: operation === 'delete' ? 'deleted' : 'saved' });
+    set({ value, month: value.month, refreshError: null, readDiagnostic: null, error: null, outcome: 'confirmed', selected: isCalendarDate(date) && date.slice(0, 7) === value.month ? date : '', moving: false, canContinue: false, editing: null, confirmDelete: false, consent: false, success: operation === 'delete' ? 'deleted' : 'saved' });
   };
   const checked = value => {
     if (!retry || value.checkedAction?.action_id !== retry.payload.action_id) return false;
@@ -26,7 +27,12 @@ export function createCalendarController(request, now = () => Date.now()) {
       confirm(value, value.checkedAction.operation); return true;
     }
     if (value.checkedAction.status === 'CONFLICT') {
-      retry = null; set({ value, month: value.month, error: 'CALENDAR_STATE_CHANGED', outcome: 'rejected', success: null }); return true;
+      retry = null; set({ value, month: value.month, error: 'CALENDAR_STATE_CHANGED', outcome: 'rejected', success: null, canContinue: false, confirmDelete: false, editing: null, moving: false }); return true;
+    }
+    if (value.checkedAction.status === 'ABSENT' && state.outcome === 'rejected' && !value.pendingReview && !value.recovery) {
+      // A verified absent receipt after a definite rejection is not an
+      // uncertain write. Never turn a validation failure into a continuation.
+      retry = null; set({ value, month: value.month, canContinue: false }); return true;
     }
     return false;
   };
@@ -49,12 +55,13 @@ export function createCalendarController(request, now = () => Date.now()) {
         if (denied) retry = null;
         if (!denied && checked(value)) return;
         if (!retry && value.recovery) retry = { action: 'resume', payload: { action_id: value.recovery.action_id, revision: value.recovery.revision, month: value.recovery.date.slice(0, 7) } };
-        set({ value, month: value.month, ...(value.recovery ? { action: 'resume', outcome: 'unknown', error: 'CALENDAR_PENDING_REVIEW', selected: value.recovery.date } : {}), ...(denied ? { selected: '', editing: null, editMode: false, canContinue: false, consent: false, outcome: null, error: null, confirmDelete: false } : {}) });
+        const changedMonth = state.month && state.month !== value.month;
+        set({ value, month: value.month, ...(changedMonth && !state.moving && !unresolved ? { selected: '', editing: null, consent: false } : {}), ...(value.recovery ? { action: 'resume', outcome: 'unknown', error: 'CALENDAR_PENDING_REVIEW', selected: value.recovery.date } : {}), ...(denied ? { selected: '', editing: null, moving: false, canContinue: false, consent: false, outcome: null, error: null, confirmDelete: false } : {}) });
       } catch (e) {
         if (ticket !== generation || disposed) return;
         retryAt = now() + (e.retryAfterMs || 0);
         set({ readDiagnostic: productFailureEvidence(e) });
-        if (isCalendarPrivacyError(e.code)) { retry = null; set({ value: null, selected: '', editing: null, editMode: false, canContinue: false, consent: false, confirmDelete: false, outcome: null, error: e.code }); }
+        if (isCalendarPrivacyError(e.code)) { retry = null; set({ value: null, selected: '', editing: null, moving: false, canContinue: false, consent: false, confirmDelete: false, outcome: null, error: e.code }); }
         else set({ refreshError: state.value ? e.code || 'CALENDAR_READ_FAILED' : null, ...(!state.value && !unresolved ? { error: e.code || 'CALENDAR_READ_FAILED', action: 'read' } : {}) });
       } finally { if (ticket === generation) { readPending = null; set({ loading: false }); } }
     })();
@@ -91,14 +98,14 @@ export function createCalendarController(request, now = () => Date.now()) {
       if (ticket !== generation || disposed) return;
       if (isCalendarPrivacyError(e.code)) retry = null;
       const rejected = isRejection(e.code);
-      set({ error: e.code || 'CALENDAR_OPERATION_FAILED', readDiagnostic: productFailureEvidence(e), outcome: rejected ? 'rejected' : 'unknown', ...(isCalendarPrivacyError(e.code) ? { value: null, editing: null, editMode: false, canContinue: false, selected: '', consent: false, confirmDelete: false, outcome: null } : {}) });
+      set({ error: e.code || 'CALENDAR_OPERATION_FAILED', readDiagnostic: productFailureEvidence(e), outcome: rejected ? 'rejected' : 'unknown', ...(isCalendarPrivacyError(e.code) ? { value: null, editing: null, moving: false, canContinue: false, selected: '', consent: false, confirmDelete: false, outcome: null } : {}) });
     } finally { if (mutationPending === task) { mutationPending = null; set({ busy: false }); } }
   };
   const reconcile = async (continueRequested = false) => {
     if (disposed || ended || mutationPending) return;
     if (!retry || !state.value) return load();
     generation++; readPending?.abort.abort(); readPending = null;
-    const intent = retry, ticket = generation, task = { abort: new AbortController() }, started = now();
+    const intent = retry, ticket = generation, task = { abort: new AbortController() }, started = now(), wasUncertain = state.outcome === 'unknown';
     mutationPending = task;
     set({ loading: false, busy: true, checking: true, success: null, canContinue: false });
     let continueIntent = false;
@@ -106,19 +113,21 @@ export function createCalendarController(request, now = () => Date.now()) {
       const value = await request('read', { month: intent.payload.month, action_id: intent.payload.action_id, revision: intent.payload.revision }, { timeoutMs: PRODUCT_READ_MS, signal: task.abort.signal });
       if (ticket !== generation || disposed) return;
       if (value.state === 'CONSENT_REQUIRED' && !value.recovery && intent.payload.health_consent !== true) {
-        retry = null; set({ value, error: null, selected: '', editing: null, editMode: false, canContinue: false, consent: false, confirmDelete: false, outcome: null }); return;
+        retry = null; set({ value, error: null, selected: '', editing: null, moving: false, canContinue: false, consent: false, confirmDelete: false, outcome: null }); return;
       }
       if (checked(value)) return;
       if (value.pendingReview && value.recovery?.action_id !== intent.payload.action_id) throw { code: 'CALENDAR_ACTION_CONFLICT' };
       if (!['PENDING','ABSENT'].includes(value.checkedAction?.status)) throw { code: 'CALENDAR_READBACK_CONFLICT' };
       // Status inspection alone never writes. Only the separately requested
       // continuation may resume this original ID/revision/payload.
-      continueIntent = continueRequested;
-      set({ value, month: value.month, canContinue: true });
+      continueIntent = continueRequested && wasUncertain;
+      set({ value, month: value.month, canContinue: true, outcome: 'unknown', error: state.error || 'CALENDAR_PENDING_REVIEW' });
     } catch (e) {
       if (ticket !== generation || disposed) return;
-      if (isCalendarPrivacyError(e.code)) { retry = null; set({ value: null, selected: '', editing: null, editMode: false, canContinue: false, consent: false, confirmDelete: false, outcome: null }); }
-      set({ error: e.code || 'CALENDAR_READ_FAILED', readDiagnostic: productFailureEvidence(e), ...(isRejection(e.code) ? { outcome: 'rejected' } : {}) });
+      if (isCalendarPrivacyError(e.code)) { retry = null; set({ value: null, selected: '', editing: null, moving: false, canContinue: false, consent: false, confirmDelete: false, outcome: null }); }
+      // A failed/mismatched status read cannot retire an uncertain write.
+      // Only a positively checked receipt above can confirm or reject it.
+      set({ error: e.code || 'CALENDAR_READ_FAILED', readDiagnostic: productFailureEvidence(e), ...(!wasUncertain && isRejection(e.code) ? { outcome: 'rejected' } : {}) });
     } finally {
       if (mutationPending === task) { mutationPending = null; set({ busy: false, checking: false }); }
     }
@@ -128,12 +137,11 @@ export function createCalendarController(request, now = () => Date.now()) {
       await submit(intent.action, true, remaining);
     }
   };
-  const select = (date, { toggle = false } = {}) => {
-    if (state.busy || state.loading || state.outcome === 'unknown') return;
+  const select = date => {
+    if (state.busy || state.loading || state.outcome === 'unknown' || !isCalendarDate(date)) return;
     const start = state.value?.starts.find(row => row.date === date);
-    const clear = toggle && state.selected === date;
     retry = null;
-    set({ selected: clear ? '' : date, editing: clear ? null : toggle ? start || state.editing : state.editing || start || null, confirmDelete: false, error: null, success: null, outcome: null });
+    set({ selected: date, editing: state.moving ? state.editing : start || null, canContinue: false, confirmDelete: false, error: null, success: null, outcome: null });
   };
   return {
     getSnapshot: () => state, subscribe: fn => { listeners.add(fn); return () => listeners.delete(fn); },
@@ -143,22 +151,23 @@ export function createCalendarController(request, now = () => Date.now()) {
     connectionRestored() { if (offline) { offline = false; startedAt = -Infinity; } },
     endSession() { ended = true; this.invalidate(); },
     select,
-    beginEdit() { if (!state.busy && !state.loading && state.outcome !== 'unknown' && state.value?.writable) { retry = null; set({ editMode: true, selected: '', editing: null, error: null, success: null, outcome: null }); } },
-    chooseDay(date) {
-      if (state.busy || state.loading || state.outcome === 'unknown' || !state.value) return;
-      const start = state.value.starts.find(row => row.date === date);
-      if (state.editMode && date > state.value.today && !start) return;
-      if (!state.editMode) { set({ selected: date, success: null }); return; }
-      select(date, { toggle: true });
+    beginMove() {
+      const start = state.value?.starts.find(row => row.date === state.selected);
+      if (!state.busy && !state.loading && state.outcome !== 'unknown' && state.value?.writable && start) { retry = null; set({ moving: true, editing: start, canContinue: false, error: null, success: null, outcome: null }); }
     },
-    cancelEdit() { if (!state.busy && state.outcome !== 'unknown') { retry = null; set({ editing: null, selected: '', consent: false, editMode: false, canContinue: false, confirmDelete: false, error: null, outcome: null, success: null }); } },
+    chooseDay: select,
+    cancelMove() { if (!state.busy && state.outcome !== 'unknown') { const date=state.value?.starts.find(row=>row.id===state.editing?.id)?.date || ''; retry = null; set({ editing: null, selected: date, consent: false, moving: false, canContinue: false, confirmDelete: false, error: null, outcome: null, success: null }); } },
     consent(value) { if (!state.busy && state.outcome !== 'unknown') { retry = null; set({ consent: value }); } },
-    deletePrompt(open) { if (!open || !state.busy) set({ confirmDelete: open }); },
+    deletePrompt(open) {
+      if (!open) { set({ confirmDelete: false }); return; }
+      const start=state.value?.starts.find(row=>row.date===state.selected);
+      if (!state.busy && !state.loading && state.outcome !== 'unknown' && state.value?.writable && start) set({ confirmDelete: true, editing: start, moving: false });
+    },
     retry: () => reconcile(false),
     continueIntent: () => reconcile(true),
     // Known session/consent signals hide synchronously; obsolete reads and
     // mutations are dropped. Ordinary refresh/offline retains the last view.
-    invalidate() { generation++; startedAt = retryAt = -Infinity; retry = null; readPending?.abort.abort(); readPending = null; mutationPending?.abort?.abort(); mutationPending = null; set({ busy: false, checking: false, value: null, selected: '', editing: null, editMode: false, canContinue: false, consent: false, confirmDelete: false, loading: false, error: null, refreshError: null, readDiagnostic: null, success: null, outcome: null }); },
+    invalidate() { generation++; startedAt = retryAt = -Infinity; retry = null; readPending?.abort.abort(); readPending = null; mutationPending?.abort?.abort(); mutationPending = null; set({ busy: false, checking: false, value: null, selected: '', editing: null, moving: false, canContinue: false, consent: false, confirmDelete: false, loading: false, error: null, refreshError: null, readDiagnostic: null, success: null, outcome: null }); },
     dispose() { disposed = true; generation++; mutationPending?.abort?.abort(); readPending?.abort.abort(); readPending = null; listeners.clear(); retry = null; },
   };
 }

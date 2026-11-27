@@ -7,6 +7,27 @@ import { withTestClock, testEventTurn } from './testClock';
 const controller=f=>createCalendarController((action,body)=>f.cal({action,...body}));
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CALENDAR_RECOVERY_TESTS = [
+ ['RC12','An APPLIED receipt at a conflicting later revision clears continuation without claiming success or repeating a write',async()=>{
+   const f=nativeFixture(),calls=[];
+   const c=createCalendarController((action,body)=>{calls.push({action,...body});if(action!=='read')throw {code:'NETWORK'};return f.cal({action,...body});});
+   try{
+     await c.load();c.select('2026-10-01');await c.submit('add');await c.retry();check(c.getSnapshot().canContinue&&c.getSnapshot().outcome==='unknown');
+     const original=calls.find(row=>row.action==='add');await f.cal(original);await f.change('add',{date:'2026-09-01'});
+     await c.retry();check(!c.getSnapshot().canContinue&&c.getSnapshot().outcome==='rejected'&&c.getSnapshot().error==='CALENDAR_STATE_CHANGED'&&!c.getSnapshot().success);
+     await c.continueIntent();check(calls.filter(row=>row.action!=='read').length===1&&f.tables.UserPeriodRecord.length===2);
+   }finally{c.dispose();}
+ }],
+ ['RC11','A rejected change with an ABSENT receipt never becomes an uncertain-write continuation or a duplicate mutation',async()=>{
+   const f=nativeFixture();await f.change('add',{date:'2026-10-01'});const calls=[];
+   const c=createCalendarController((action,body)=>{calls.push({action,...body});return f.cal({action,...body});});
+   try{
+     await c.load();c.select('2026-09-25');await c.submit('add');
+     check(c.getSnapshot().outcome==='rejected'&&c.getSnapshot().error==='PERIOD_CONFLICT');
+     const before=JSON.stringify(f.tables);await c.retry();
+     check(!c.getSnapshot().canContinue&&c.getSnapshot().outcome!=='unknown','ABSENT validation rejection was presented as an uncertain write');
+     await c.continueIntent();check(calls.filter(row=>row.action!=='read').length===1&&JSON.stringify(f.tables)===before,'rejected action was replayed');
+   }finally{c.dispose();}
+ }],
  ['RC10','Native failures preserve safe period/receipt/readback stage and request ID without raw provider details',async()=>{
    for(const [name,method,stage] of [['UserCalendarAction','create','CALENDAR_RECEIPT_CREATE'],['UserPeriodRecord','create','CALENDAR_PERIOD_WRITE'],['UserCalendarAction','update','CALENDAR_RECEIPT_FINISH']]) {
      const f=nativeFixture(),view=await f.cal();f.state.before=async c=>{if(c.name===name&&c.method===method)throw {response:{status:503,data:{private_detail:'PRIVATE_SENTINEL'}},message:'PRIVATE_SENTINEL'};};
@@ -22,7 +43,7 @@ export const CALENDAR_RECOVERY_TESTS = [
      const read=()=>f.cal({action:'read',action_id:body.action_id,revision:body.revision});
      check((await read()).checkedAction.status==='ABSENT');
      if(fault!=='applied')f.once(fault,c=>c.name==='UserPeriodRecord'&&c.method===({add:'create',edit:'updateMany',delete:'deleteMany'}[operation]));
-     if(fault==='applied')await f.cal(body);else await rejects(()=>f.cal(body));
+     if(fault==='applied')await f.cal(body);else {try{await rejects(()=>f.cal(body));}catch(error){throw new Error(`${operation}/${fault}: ${error.message}`);}}
      const before=JSON.stringify(f.tables),calls=f.state.calls.length,view=await read();
      check(view.checkedAction.status===(fault==='applied'?'APPLIED':'PENDING')&&view.checkedAction.action_id===body.action_id);
      check(JSON.stringify(f.tables)===before&&f.state.calls.slice(calls).every(c=>c.method==='filter'),'status check wrote');
@@ -63,7 +84,8 @@ export const CALENDAR_RECOVERY_TESTS = [
    try {
      await d.load();d.select('2026-09-01');await d.submit('add');
      other.once('before',x=>x.name==='UserPeriodRecord'&&x.method==='create');await rejects(()=>other.change('add',{date:'2026-10-01'}));
-     await d.retry();check(writeCalls===1&&other.tables.UserCalendarAction.length===1&&d.getSnapshot().error==='CALENDAR_ACTION_CONFLICT','competing pending intent caused another write');
+     await d.retry();check(writeCalls===1&&other.tables.UserCalendarAction.length===1&&d.getSnapshot().error==='CALENDAR_ACTION_CONFLICT'&&d.getSnapshot().outcome==='unknown'&&!d.getSnapshot().canContinue,'competing pending intent caused another write or unlocked uncertainty');
+     d.chooseDay('2026-10-02');await d.submit('add');check(writeCalls===1&&d.getSnapshot().selected==='2026-09-01','failed status check allowed a replacement intent');
    }finally{d.dispose();}
  }],
  ['RC09','Explicit reconciliation shares the 20s budget, ignores old account check and never writes after failed/budget-exhausted status',async()=>{

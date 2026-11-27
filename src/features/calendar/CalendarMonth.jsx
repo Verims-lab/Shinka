@@ -13,7 +13,7 @@ export function moveMonth(month, delta) {
 export function formatCalendarDate(date, language, options = { day: 'numeric', month: 'long', year: 'numeric' }) {
   return new Intl.DateTimeFormat(language === 'tr' ? 'tr-TR' : 'en-GB', { ...options, timeZone: 'UTC' }).format(new Date(`${date}T12:00:00Z`));
 }
-export default function CalendarMonth({ value, selected, onSelect, onMonth, disabled, language, editMode = false, editing = null }) {
+export default function CalendarMonth({ value, selected, onSelect, onMonth, disabled, language, editing = null }) {
   const root = useRef(null), copy = key => calendarCopy(key, language);
   const first = new Date(`${value.month}-01T12:00:00Z`);
   const offset = (first.getUTCDay() + 6) % 7;
@@ -33,9 +33,9 @@ export default function CalendarMonth({ value, selected, onSelect, onMonth, disa
     buttons[Math.max(0, Math.min(buttons.length - 1, current + deltas[event.key]))]?.focus();
   };
   return <section aria-label={copy('title')} className="space-y-4">
-    <div className="flex items-center justify-between gap-1">
+    <div data-calendar-month-header className="flex items-center justify-between gap-1">
       <ShinkaButton variant="ghost" aria-label={copy('previous')} onClick={() => onMonth(moveMonth(value.month, -1))} disabled={disabled || value.month <= '0001-02'}><ChevronLeft aria-hidden="true"/></ShinkaButton>
-      <h2 className="font-heading text-shinka-h3 text-center" aria-live="polite">{formatCalendarDate(`${value.month}-01`, language, { month: 'long', year: 'numeric' })}</h2>
+      <h2 className="shinka-calendar-month-title font-heading text-shinka-h3 text-center" aria-live="polite">{formatCalendarDate(`${value.month}-01`, language, { month: 'long', year: 'numeric' })}</h2>
       <ShinkaButton variant="ghost" aria-label={copy('next')} onClick={() => onMonth(moveMonth(value.month, 1))} disabled={disabled || value.month >= '9999-11'}><ChevronRight aria-hidden="true"/></ShinkaButton>
     </div>
     <div className="shinka-calendar-grid" ref={root} role="grid" aria-label={copy('title')} onKeyDown={keyboard}>
@@ -44,19 +44,20 @@ export default function CalendarMonth({ value, selected, onSelect, onMonth, disa
       </div>
       {Array.from({ length: cells.length / 7 }, (_, week) => <div role="row" key={week} className="grid grid-cols-7">
         {cells.slice(week * 7, week * 7 + 7).map((day, index) => <div role="gridcell" key={day || `empty-${index}`} aria-selected={!!day && selected === day} className="flex justify-center">
-          {day && <button type="button" data-calendar-date={day} data-start={starts.has(day)} data-draft={editMode && day === selected ? editing ? editing.date === day ? 'delete' : 'edit' : 'add' : editMode && editing?.date === day ? 'from' : undefined} data-period={recorded.has(day)} data-predicted={predicted.has(day)} disabled={disabled || editMode && day > value.today && !starts.has(day)}
-            aria-describedby={editMode ? 'calendar-edit-hint' : undefined}
-            aria-label={[formatCalendarDate(day, language), starts.has(day) ? copy('start') : recorded.has(day) ? copy('period') : predicted.has(day) ? copy('predicted') : '', day === value.today ? copy('today') : '', selected === day ? copy('selected') : '', editMode && day === selected ? copy(editing ? editing.date === day ? 'deleteDraft' : 'editDraft' : 'addDraft') : '', editMode && editing?.date === day && day !== selected ? copy('editDraft') : ''].filter(Boolean).join(', ')}
+          {day && <button type="button" data-calendar-date={day} data-start={starts.has(day)} data-draft={editing && day === selected && day !== editing.date ? 'edit' : editing?.date === day ? 'from' : undefined} data-period={recorded.has(day)} data-predicted={predicted.has(day)} disabled={disabled}
+            aria-describedby={selected === day ? `calendar-selected-status${editing ? ' calendar-move-hint' : ''}` : undefined}
+            aria-label={[formatCalendarDate(day, language), starts.has(day) ? copy('start') : recorded.has(day) ? copy('recordedInterval') : predicted.has(day) ? copy('predictedInterval') : '', day === value.today ? copy('today') : '', selected === day ? copy('selected') : '', editing && day === selected && day !== editing.date ? copy('notSaved') : '', editing?.date === day ? copy('moveFrom') : ''].filter(Boolean).join(', ')}
             aria-current={day === value.today ? 'date' : undefined}
             onClick={() => onSelect(day)}
             className={`shinka-calendar-day text-shinka-body rounded-full text-shinka-ink focus-visible:outline-2 focus-visible:outline-shinka-plum ${recorded.has(day) ? 'bg-shinka-blush' : predicted.has(day) ? 'bg-shinka-lavender' : ''} ${selected === day ? 'ring-2 ring-inset ring-shinka-plum' : ''}`}>
-            {Number(day.slice(-2))}<span aria-hidden="true" className="shinka-calendar-marker">{editMode && day === selected ? editing?.date === day ? '−' : '+' : editMode && editing?.date === day ? '→' : day === value.today ? '•' : ''}</span>{starts.has(day) && <span aria-hidden="true" className="block h-1 w-1 rounded-full bg-shinka-plum mx-auto"/>}
+            {Number(day.slice(-2))}{starts.has(day) && <span aria-hidden="true" data-calendar-start-marker className="shinka-calendar-start-marker"/>}
           </button>}
         </div>)}
       </div>)}
     </div>
-    <ul className="flex flex-wrap gap-x-5 gap-y-2 text-shinka-caption" aria-label={copy('title')}>
-      {['start', 'predicted', 'today', 'selected'].map(key => <li key={key} className="flex items-center gap-2"><span aria-hidden="true" className={`h-4 w-4 rounded-full ${key === 'start' ? 'bg-shinka-blush' : key === 'predicted' ? 'bg-shinka-lavender border border-dashed border-shinka-plum' : key === 'today' ? 'border-b-2 border-shinka-plum' : 'ring-2 ring-inset ring-shinka-plum'}`}/>{copy(key)}</li>)}
+    <ul data-calendar-legend className="flex flex-wrap gap-x-5 gap-y-2 text-shinka-caption" aria-label={copy('legend')}>
+      <li className="flex items-center gap-2"><span aria-hidden="true" className="shinka-calendar-start-key"/>{copy('start')}</li>
+      <li className="flex items-center gap-2"><span aria-hidden="true" className="h-4 w-4 rounded-full bg-shinka-lavender border border-dashed border-shinka-plum"/>{copy('predicted')}</li>
     </ul>
   </section>;
 }

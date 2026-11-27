@@ -2,10 +2,16 @@
 .shinka-calendar-day:focus-visible { outline: 2px dashed rgb(var(--shinka-plum)); outline-offset: 1px; }
 .shinka-calendar-dialog { margin: auto; width: min(440px, calc(100% - 40px)); max-height: 85vh; max-height: 85dvh; overflow: auto; }
 .shinka-calendar-dialog::backdrop { background: rgb(76 38 63 / .35); }
+.shinka-calendar-month-title { min-width: 0; overflow-wrap: anywhere; }
+.shinka-calendar-grid [role="columnheader"] { overflow-wrap: anywhere; }
+/* The narrow 44px grid extends into the artwork gutter. Keep enlarged text on
+   the same dark reading color there, without changing the shared backdrop. */
+html.dark .shinka-calendar-grid { background-color: rgb(var(--shinka-ivory)); border-radius: 12px; }
 @media (max-width: 359px) { .shinka-calendar-grid { margin-inline: -14px; } }
 
-.shinka-calendar-day { position: relative; }
-.shinka-calendar-marker { display: block; font-size: .75em; line-height: 1; }
-.shinka-calendar-day[data-draft="delete"], .shinka-calendar-day[data-draft="from"] { outline: 2px dashed rgb(var(--shinka-plum)); outline-offset: -3px; }
-.shinka-calendar-day[data-draft="add"], .shinka-calendar-day[data-draft="edit"] { background: rgb(var(--shinka-lavender)); }
+.shinka-calendar-day { position: relative; border: 1px solid transparent; }
+.shinka-calendar-day[data-predicted="true"] { border-color: rgb(var(--shinka-plum) / .45); border-style: dashed; }
+.shinka-calendar-day[data-draft="from"] { outline: 2px dashed rgb(var(--shinka-plum)); outline-offset: -4px; }
+.shinka-calendar-start-marker { position: absolute; width: 6px; height: 6px; top: 4px; right: 4px; border-radius: 50%; background: rgb(var(--shinka-plum)); }
+.shinka-calendar-start-key { width: 6px; height: 6px; margin-inline: 5px; border-radius: 50%; background: rgb(var(--shinka-plum)); }
 .shinka-calendar-day[aria-current="date"] { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }

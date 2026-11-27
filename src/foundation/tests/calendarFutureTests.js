@@ -67,7 +67,7 @@ export const CALENDAR_FUTURE_TESTS = [
  ['CF05','Selection/prediction is not saved; future UI handler and false success envelopes cannot confirm mutation',async()=>{
   const f=nativeFixture();await f.change('add',{date:'2026-10-01'});let attempts=0;
   const c=createCalendarController((action,body)=>{if(action!=='read')attempts++;return f.cal({action,...body});});
-  try {await c.load();c.select('2026-10-29');await c.submit('add');check(attempts===0&&c.getSnapshot().error==='PERIOD_START_FUTURE'&&!c.getSnapshot().success);c.cancelEdit();}
+   try {await c.load();c.select('2026-10-29');await c.submit('add');check(attempts===0&&c.getSnapshot().error==='PERIOD_START_FUTURE'&&!c.getSnapshot().success);c.select('2026-10-20');check(!c.getSnapshot().error&&attempts===0);}
   finally {c.dispose();}
   const view=await f.cal();
   for(const invalid of [{...view,mutationConfirmed:false},{...view,mutationConfirmed:true}]) {

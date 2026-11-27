@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-088
-**Last Updated:** 2026-11-26
+**Current BuildMarker:** Buildmarker-089
+**Last Updated:** 2026-11-27
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
 **Scope:** All source (client, backend, internal tooling).
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 089 — Calendar safety and regression
+
+Keep monthly day classification in one pure presentation helper; do not treat starts as complete history or infer predicted starts. Use existing calendarService/native contracts unchanged. Keep date selection/preview separate from mutation and confirmation; no storage or new health model. Preserve unknown intents when status reads fail and validate receipts before clearing warnings. RC11 reproduces the old rejected/ABSENT continuation defect; RC12 checks conflicting receipt cleanup; RC08 prevents replacement writes after failed checks. Retain CU01–CU11/FX02 and actual-App Calendar/mobile matrices. Contrast uses actual direct text ranges, excluding hanging whitespace, rather than transparent control padding; strict AA thresholds stay unchanged. Preserve historical failures, 083/087/088 and all byte budgets. [089](reports/SHINKA_CALENDAR_SIMPLIFICATION_089.md)
 
 ## 088 — Suggestion presentation boundary
 

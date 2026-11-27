@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-088
-**Last Updated:** 2026-11-26
+**Current BuildMarker:** Buildmarker-089
+**Last Updated:** 2026-11-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 089 — Direct Calendar and bounded warning fix
+
+The new owner decision replaces only 062's global edit UI. Local reproduction found a definite rejection plus ABSENT receipt could enable misleading uncertain continuation. Matched APPLIED already cleared warnings and remains unchanged; pending rows alone still cannot confirm. A failed status check must not unlock a previously uncertain intent. The exact cause of a particular hosted warning cannot be established from the supplied text alone; live receipt/error evidence is a separate owner check, not a guessed code defect. All actual runs and failed attempts are retained in [089](reports/SHINKA_CALENDAR_SIMPLIFICATION_089.md).
 
 ## 088 — Editorial suggestion interior
 

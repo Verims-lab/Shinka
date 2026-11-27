@@ -69,7 +69,7 @@ export async function checkMobileInteractions(page,origin,directory){
   rows.push({scenario:'home-no-refresh-target-pull-coalescing-offline-retry-retains-daily',passed:true});
 
   await page.locator('nav a:visible').nth(1).click();await page.locator('[data-calendar-date]').first().waitFor();
-  await page.locator('[data-calendar-edit]').click();await page.locator('[data-calendar-date="2026-10-01"]').click();await page.locator('[data-calendar-date="2026-10-02"]').click();
+  await page.locator('[data-calendar-date="2026-10-01"]').click();await page.locator('[data-calendar-move]').click();await page.locator('[data-calendar-date="2026-10-02"]').click();
   const writes=await page.evaluate(()=>window.__authFixture.calls.filter(c=>c.name==='calendar'&&c.action!=='read').length);
   assert.equal(await page.getByRole('button',{name:'Refresh',exact:true}).count(),0);
   await page.locator('[data-calendar-root] [data-refresh-control][aria-busy=false]').waitFor({state:'attached'});
@@ -78,7 +78,7 @@ export async function checkMobileInteractions(page,origin,directory){
   await page.locator('[data-calendar-root] [data-refresh-control][aria-busy=false]').waitFor({state:'attached'});
   assert.equal(await page.locator('[data-calendar-date][data-draft=edit]').getAttribute('data-calendar-date'),'2026-10-02');
   assert.equal(await page.evaluate(()=>window.__authFixture.calls.filter(c=>c.name==='calendar'&&c.action!=='read').length),writes);
-  await page.locator('[data-calendar-date="2026-10-01"]').click();await page.locator('[data-calendar-save]').click();await page.locator('dialog[open]').waitFor();
+  await page.locator('[data-calendar-cancel]').click();await page.locator('[data-calendar-delete]').click();await page.locator('dialog[open]').waitFor();
   const pathBefore=new URL(page.url()).pathname;await page.goBack();await page.locator('dialog').waitFor({state:'detached'});
   assert.equal(new URL(page.url()).pathname,pathBefore);
   await page.goBack();await page.locator('[data-home-root]').waitFor();await page.goForward();await page.locator('[data-calendar-root]').waitFor();

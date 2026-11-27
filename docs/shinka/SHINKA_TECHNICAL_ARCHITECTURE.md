@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-088
-**Last Updated:** 2026-11-26
+**Current BuildMarker:** Buildmarker-089
+**Last Updated:** 2026-11-27
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
 **Scope:** Client, backend, data, integrations, internal tooling, Health framework.
@@ -12,6 +12,10 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 089 — Calendar presentation and recovery boundary
+
+CalendarDayDetails/calendarSelection replace CalendarEditor/calendarDraft. The controller uses an explicit moving intent, leaving the SDK service and every native operation/schema/calculation unchanged. Day flags are derived from the admitted month snapshot, never from selection. A known rejection is retired only after its original receipt is verified ABSENT without another pending review. A matched CONFLICT clears obsolete continuation; failed/mismatched checks preserve a genuine unknown lock. APPLIED still requires the existing receipt/readback validation. Read-only checks never write; explicit continuation rereads and reuses original ID/revision/payload. UI focus returns to grid on move/cancel and to the delete trigger on modal cancel. [089](reports/SHINKA_CALENDAR_SIMPLIFICATION_089.md)
 
 ## 087 — Presentation-only profile slot
 
