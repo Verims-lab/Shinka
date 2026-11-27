@@ -7,6 +7,22 @@ import { withTestClock, testEventTurn } from './testClock';
 const controller=f=>createCalendarController((action,body)=>f.cal({action,...body}));
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CALENDAR_RECOVERY_TESTS = [
+ ['RC16','Unsaved consent survives only unchanged admitted empty-calendar reads and is cleared by revised, restricted or private state',async()=>{
+   for(const changed of ['revision','paused','pending','privacy']){
+     const f=nativeFixture({granted:false}),before=JSON.stringify(f.tables);let mode=null;
+     const c=createCalendarController(async(action,body)=>{
+       check(action==='read','inspection attempted a write');
+       if(mode==='privacy')throw{code:'HEALTH_DELETION_PENDING'};
+       return{...await f.cal({action,...body}),...(mode==='revision'?{revision:'a'.repeat(64)}:mode==='paused'?{writable:false}:mode==='pending'?{pendingReview:true,writable:false}: {})};
+     });
+     try{
+       await c.load('2026-10');c.consent(true);await c.load('2026-09');check(c.getSnapshot().consent,'unchanged month read lost explicit intent');
+       c.chooseDay('2026-09-19');check(c.getSnapshot().consent&&c.getSnapshot().selected==='2026-09-19');
+       mode=changed;await c.refresh();check(!c.getSnapshot().consent,'changed or restricted response retained consent intent');
+       c.invalidate();check(!c.getSnapshot().consent&&c.getSnapshot().value===null);check(JSON.stringify(f.tables)===before,'consent inspection mutated persisted fixtures');
+     }finally{c.dispose();}
+   }
+ }],
  ['RC14','Read-only inspection survives an in-flight status check or continuation and ignores the old month projection',async()=>{
    for(const phase of ['check','write']){
      const f=nativeFixture();f.state.time='2026-11-27T12:00:00Z';f.once('before',x=>x.name==='UserPeriodRecord'&&x.method==='create');await rejects(()=>f.change('add',{date:'2026-11-11'}));

@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-091
+**Current BuildMarker:** Buildmarker-092
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 092 — Optional first-period invitation
+
+Add the approved bilingual Calendar invitation and one consent control before selecting a date. Keep explicit checked intent across safe unchanged reads and selection, without persisting it before the existing save. No onboarding-skip inference or renewed consent for a verified grant. Actual local results and historical failed attempts are in the 092 report; hosted/device acceptance and the separate live November 11 receipt remain outside this package. [092](reports/SHINKA_CALENDAR_CONSENT_092.md)
 
 ## 091 — Calendar message-only package
 

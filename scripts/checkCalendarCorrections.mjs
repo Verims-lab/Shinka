@@ -62,6 +62,18 @@ export async function checkCalendarCorrections(browser, origin, directory) {
       await day('2026-10-20').click();await scaleText();assert(await page.locator('[data-calendar-add]').isEnabled());assert.equal(await page.locator('[data-calendar-day-status]').isVisible(),false);
       assert.equal(await page.locator('[data-calendar-selection]').textContent(),(await page.locator('#calendar-selected-date').textContent())+(language==='tr'?'Regl başlangıcı olarak kaydet':'Save as period start'));
       assert(!/No period predictions yet|Henüz regl tahmini yok|No period start is recorded|Bu tarihte kayıtlı bir regl başlangıcı yok/.test(await page.locator('[data-calendar-root]').textContent()));assert.equal(await page.locator('[data-predicted=true]').count(),0);await capture('empty-concise');
+      if(scale===1&&width<500){
+        await page.getByRole('button',{name:language==='tr'?'Sonraki ay':'Next month',exact:true}).click();await day('2026-11-01').waitFor();await page.locator('[data-calendar-empty-intro]').waitFor();assert.equal(await page.locator('input[type=checkbox]').count(),0);
+        await page.goto(origin+'/calendar?appFixture=1&sdkSession=admin&onboardingState=ACTIVE_EXISTING_USER&nativeCalendar=1&calendarConsent092=1&themeFixture=1&theme='+theme+'&language='+language);
+        await page.locator('[data-calendar-empty-intro]').waitFor();await loadAppBackdrop(page);const consent=()=>page.locator('[data-calendar-root] input[type=checkbox]');
+        assert.equal(await consent().count(),1);assert.equal(await consent().isChecked(),false);assert.equal(await page.locator('[data-calendar-add]').count(),0);
+        assert.equal(await page.locator('[data-calendar-empty-intro]').textContent(),language==='tr'?'Döngüne dair daha kişisel yorumlar için son regl başlangıç tarihini ekleyebilirsin.':'For more personalized insights into your cycle, you can add the start date of your last period.');
+        await consent().check();assert.deepEqual(await page.evaluate(()=>[window.__nativeCalendarLab.tables.UserHealthConsent.length,window.__nativeCalendarLab.tables.UserHealthConsentEvent.length,window.__nativeCalendarLab.tables.UserPeriodRecord.length]),[0,0,0]);
+        const emptyGeometry=await inspectMobileSurface(page,true);assert.deepEqual(emptyGeometry.textOverflow,[]);assert.deepEqual(emptyGeometry.small,[]);assert.deepEqual(emptyGeometry.contrastFailures,[]);await capture('empty-consent');
+        await page.getByRole('button',{name:language==='tr'?'Önceki ay':'Previous month',exact:true}).click();await day('2026-09-19').waitFor();await page.locator('[data-calendar-empty-intro]').waitFor();assert(await consent().isChecked());
+        await day('2026-09-19').click();assert.equal(await page.locator('[data-calendar-empty-intro]').count(),0);assert.equal(await consent().count(),1);assert(await consent().isChecked());assert(await page.locator('[data-calendar-add]').isEnabled());await page.locator('[data-calendar-add]').click();await page.locator('[data-calendar-move]').waitFor();
+        assert.deepEqual(await page.evaluate(()=>[window.__nativeCalendarLab.tables.UserHealthConsent.length,window.__nativeCalendarLab.tables.UserHealthConsentEvent.length,window.__nativeCalendarLab.tables.UserPeriodRecord.length]),[1,1,1]);assert.equal(await consent().count(),0);assert.deepEqual(errors,[]);
+      }
       results.push({language,width,height,scale,theme,geometry,dialog,pullSupported,pullRefresh:pullSupported?'READ_AND_DRAFT_RETAINED':'UNSUPPORTED_CAPABILITY_GESTURE_IGNORED_DRAFT_RETAINED',passed:true,scope:'LOCAL_REAL_APP_NATIVE_SYNTHETIC',physicalDevice:false});
     }finally{await context.close();}
   }

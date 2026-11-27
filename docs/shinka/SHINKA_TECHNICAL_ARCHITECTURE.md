@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-091
+**Current BuildMarker:** Buildmarker-092
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -12,6 +12,10 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 092 — Shared Calendar consent presentation
+
+CalendarDayDetails gates the optional empty invitation from existing verified server fields and renders one reused approved checkbox. The read controller retains only unsaved consent intent on unchanged admitted CONSENT_REQUIRED revisions; it does not retain authorization. Native read/save DTOs, persistence, ownership, deletion/regrant/recovery guards and onboarding implementation are unchanged. Test fixtures remain CLI-only; no production test bypass. [092](reports/SHINKA_CALENDAR_CONSENT_092.md)
 
 ## 090 — Independent inspection and operation lifetimes
 

@@ -76,7 +76,7 @@ let testToolsLab;
 const healthRuns=[];
 async function loadCalendarLab() {
   if (!calendarLab && params.has('nativeCalendar')) calendarLab = import('@/foundation/tests/nativeFixture').then(async({nativeFixture})=>{
-    const f=nativeFixture();await f.change('add',{date:'2026-10-01'});globalThis.__nativeCalendarLab=f;
+    const f=nativeFixture({granted:!params.has('calendarConsent092')});if(!params.has('calendarConsent092'))await f.change('add',{date:'2026-10-01'});globalThis.__nativeCalendarLab=f;
     if(params.has('calendarRecovery090')){
       f.state.time='2026-11-27T12:00:00Z';
       f.once('before',call=>call.name==='UserPeriodRecord'&&call.method==='create');
