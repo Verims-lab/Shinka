@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-085",
-    "package_name": "Admin-only isolated onboarding simulation",
-    "package_type": "FEATURE",
-    "created_at": "2026-11-26T08:46:41.952Z",
-    "health_catalog_version": "HC-084.0",
-    "short_summary": "Add an admin-only visual rehearsal of the real onboarding 1–5/preparation components with in-memory providers, policy, profile, cycle and first-daily responses. Preserve real authentication, legal admission and account progress.",
-    "full_health_status": "NOT_RUN",
-    "notes": "H12-028, H13-016 and H05-009 update; retain 188 cases and active 081–085. SIM01/SIM02 and the mandatory real-App Chromium/WebKit matrix cover declarations, both fake providers, forms, Back, preparation, exit/restart, route denial and no product/OAuth/storage mutation. See reports/SHINKA_ONBOARDING_TEST_MODE_085.md for actual execution and retained failures. Simulation is not real integration acceptance. Earlier byte-gate failures and physical/provider prerequisites remain separate. No main write, production data operation or Base44 publication."
-  },
-  {
     "build_marker": "Buildmarker-086",
     "package_name": "Home spacing, typography and soft reading surfaces",
     "package_type": "TARGETED_FIX",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Replace Calendar global editing with selected-day status and explicit add/move/delete. Distinguish recorded starts, derived/predicted intervals, today and selection. Preserve backend guards, confirmed readback, original-intent recovery, profile 087, navigation 083 and Home 088.",
     "full_health_status": "NOT_RUN",
     "notes": "188 cases retained, 5 updated; active 085–089. RC11/RC12 add permanent rejected-ABSENT/conflicting-receipt coverage; RC08 retains uncertainty after failed checks. Adapt existing CU/FX/mobile/Calendar matrices to direct date actions, consent, no future saves, same-ID move and confirmed deletion without duplicate writes. Backend/schema/service and all other product screens are protected. Exact results, failed attempts, unchanged byte budgets and hosted/device limits are in reports/SHINKA_CALENDAR_SIMPLIFICATION_089.md. No new health field, backend operation, storage, main write, PR, Base44 publication or production data action."
+  },
+  {
+    "build_marker": "Buildmarker-090",
+    "package_name": "Browsable Calendar recovery and top spacing",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-11-27T08:31:08.402Z",
+    "health_catalog_version": "HC-089.0",
+    "short_summary": "Separate Calendar inspection from original unresolved writes. Keep accurate day status, one recovery notice and explicit original continuation. Reduce Calendar logo/title gap without moving artwork, profile or navigation.",
+    "full_health_status": "NOT_RUN",
+    "notes": "188 cases retained, 5 updated; active 086–090. RC13–RC15/CU12 and mandatory 20-case App/spacing baseline cover November 11 pending, in-flight/late reads, immutable intent, receipt states, refresh/tab/reload, no replacement/duplicate writes and explicit continuation. Preserve 089 functionality, native/backend/schema/service and other product screens. Actual results, failed attempts, byte budgets and hosted/device blockers are in reports/SHINKA_CALENDAR_RECOVERY_090.md. No main write, PR, force-push, Base44 publication or production mutation."
   }
 ];

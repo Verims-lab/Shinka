@@ -7,6 +7,68 @@ import { withTestClock, testEventTurn } from './testClock';
 const controller=f=>createCalendarController((action,body)=>f.cal({action,...body}));
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CALENDAR_RECOVERY_TESTS = [
+ ['RC14','Read-only inspection survives an in-flight status check or continuation and ignores the old month projection',async()=>{
+   for(const phase of ['check','write']){
+     const f=nativeFixture();f.state.time='2026-11-27T12:00:00Z';f.once('before',x=>x.name==='UserPeriodRecord'&&x.method==='create');await rejects(()=>f.change('add',{date:'2026-11-11'}));
+     let arm=false,release=()=>{},started=()=>{};const gate=new Promise(resolve=>{started=()=>resolve(undefined);}),calls=[];
+     const c=createCalendarController(async(action,body)=>{calls.push({action,...body});if(arm&&(phase==='check'?action==='read':action!=='read')){arm=false;const value=phase==='check'?await f.cal({action,...body}):null;started();await new Promise(resolve=>{release=()=>resolve(undefined);});return value||f.cal({action,...body});}return f.cal({action,...body});});
+     try{
+       await c.load('2026-11');c.chooseDay('2026-11-15');if(phase==='write')await c.retry();
+       arm=true;const work=phase==='check'?c.retry():c.continueIntent();await gate;
+       c.chooseDay('2026-11-20');check(c.getSnapshot().selected==='2026-11-20'&&c.getSnapshot().pendingOperation.date==='2026-11-11','busy task blocked inspection');
+       await c.load('2026-12');c.chooseDay('2026-12-02');release();await work;await c.refresh();
+       check(c.getSnapshot().month==='2026-12'&&c.getSnapshot().value.month==='2026-12'&&c.getSnapshot().selected==='2026-12-02','late old-month response overwrote inspection');
+       check(calls.filter(x=>x.action!=='read').length===(phase==='write'?1:0)&&f.tables.UserPeriodRecord.length===(phase==='write'?1:0),'inspection repeated a mutation');
+       check(phase==='write'?!c.getSnapshot().pendingOperation&&!c.getSnapshot().serverPending:c.getSnapshot().pendingOperation.date==='2026-11-11');
+     }finally{release();c.dispose();}
+   }
+ }],
+ ['RC15','ABSENT, PENDING, APPLIED and conflicting receipts preserve inspection without unsafe clearing or automatic writes',async()=>{
+   for(const status of ['ABSENT','PENDING','APPLIED','CONFLICT','PENDING_CONFLICT','PENDING_REJECTED']){
+     const f=nativeFixture();f.state.time='2026-11-27T12:00:00Z';let first=true;const writes=[];
+     const c=createCalendarController(async(action,body)=>{
+       if(action==='read')return f.cal({action,...body});writes.push({action,...body});
+       if(first){first=false;if(status.startsWith('PENDING'))f.once(status==='PENDING'?'after':'before',x=>x.name==='UserPeriodRecord'&&x.method==='create');
+         if(status!=='ABSENT'){try{await f.cal({action,...body});}catch(error){if(!status.startsWith('PENDING'))throw error;}}
+         if(status==='CONFLICT')await f.change('add',{date:'2026-10-01'});
+         if(status==='PENDING_CONFLICT')f.tables.UserPeriodRecord.push({id:'other-client',user_id:'ownerA',period_start_date:'2026-10-01'});
+         throw {code:'NETWORK'};
+       }if(status==='PENDING_REJECTED')f.state.time='2026-11-01T12:00:00Z';return f.cal({action,...body});
+     });
+     try{
+       await c.load('2026-11');c.select('2026-11-11');await c.submit('add');const original=writes[0];
+       await c.load('2026-12');c.chooseDay('2026-12-01');
+       if(['ABSENT','PENDING','PENDING_CONFLICT','PENDING_REJECTED'].includes(status)){
+         await c.retry();check(c.getSnapshot().outcome==='unknown'&&c.getSnapshot().pendingOperation.action_id===original.action_id&&c.getSnapshot().selected==='2026-12-01');
+         await c.submit('add');await c.submit('edit');await c.submit('delete');check(writes.length===1,'unresolved state allowed another write');
+         if(status==='PENDING_CONFLICT'){check(!c.getSnapshot().canContinue&&c.getSnapshot().pendingOperation.status==='CONFLICT');await c.continueIntent();check(writes.length===1);}
+         else if(status==='PENDING_REJECTED'){await c.continueIntent();check(c.getSnapshot().outcome==='unknown'&&c.getSnapshot().pendingOperation.action_id===original.action_id&&c.getSnapshot().pendingOperation.date==='2026-11-11'&&c.getSnapshot().error==='PERIOD_START_FUTURE');await c.submit('add');await c.retry();check(!c.getSnapshot().canContinue);await c.continueIntent();check(writes.length===2&&f.tables.UserCalendarAction[0].status==='PENDING'&&!f.tables.UserPeriodRecord.length);}
+         else{await c.continueIntent();await c.refresh();check(writes.length===2&&writes[1].action_id===original.action_id&&writes[1].date==='2026-11-11'&&f.tables.UserPeriodRecord.length===1);}
+       }else check(!c.getSnapshot().pendingOperation&&writes.length===1,'checked terminal receipt replayed');
+       check(c.getSnapshot().month==='2026-12'&&c.getSnapshot().selected==='2026-12-01');
+       check(['PENDING_CONFLICT','PENDING_REJECTED'].includes(status)||!c.getSnapshot().pendingOperation);
+     }finally{c.dispose();}
+   }
+ }],
+ ['RC13','November 11 pending recovery allows read-only day/month inspection without replacing its original operation',async()=>{
+   const f=nativeFixture();f.state.time='2026-11-27T12:00:00Z';
+   f.once('before',call=>call.name==='UserPeriodRecord'&&call.method==='create');
+   await rejects(()=>f.change('add',{date:'2026-11-11'}));
+   const receipt=structuredClone(f.tables.UserCalendarAction[0]),calls=[];
+   const c=createCalendarController((action,body)=>{calls.push({action,...body});return f.cal({action,...body});});
+   try{
+     await c.load('2026-11');check(c.getSnapshot().outcome==='unknown'&&c.getSnapshot().value.recovery.date==='2026-11-11'&&!c.getSnapshot().value.starts.length,'missing original November 11 fixture');
+     c.chooseDay('2026-11-15');check(c.getSnapshot().selected==='2026-11-15','November 11 recovery blocks read-only date inspection');
+     const pending=c.getSnapshot().pendingOperation;check(Object.isFrozen(pending)&&pending.action_id===receipt.action_id&&pending.date==='2026-11-11'&&pending.revision===receipt.base_revision);
+     await c.load('2026-12');c.chooseDay('2026-12-01');await c.retry();
+     check(c.getSnapshot().month==='2026-12'&&c.getSnapshot().selected==='2026-12-01'&&c.getSnapshot().pendingOperation.action_id===receipt.action_id,'status check changed inspection or intent');
+     for(const action of ['add','edit','delete'])await c.submit(action);
+     check(calls.every(call=>call.action==='read')&&JSON.stringify(f.tables.UserCalendarAction[0])===JSON.stringify(receipt)&&!f.tables.UserPeriodRecord.length,'browsing or check wrote');
+     await c.continueIntent();check(f.tables.UserPeriodRecord.length===1&&f.tables.UserPeriodRecord[0].period_start_date==='2026-11-11'&&!c.getSnapshot().pendingOperation&&c.getSnapshot().outcome==='confirmed');
+     check(calls.filter(call=>call.action!=='read').length===1&&calls.find(call=>call.action!=='read').action_id===receipt.action_id&&c.getSnapshot().month==='2026-12'&&c.getSnapshot().selected==='2026-12-01','continuation replaced original intent or inspection');
+     await c.load('2026-11');c.chooseDay('2026-11-27');await c.submit('add');check(c.getSnapshot().success==='saved'&&f.tables.UserPeriodRecord.length===2);
+   }finally{c.dispose();}
+ }],
  ['RC12','An APPLIED receipt at a conflicting later revision clears continuation without claiming success or repeating a write',async()=>{
    const f=nativeFixture(),calls=[];
    const c=createCalendarController((action,body)=>{calls.push({action,...body});if(action!=='read')throw {code:'NETWORK'};return f.cal({action,...body});});
@@ -85,7 +147,7 @@ export const CALENDAR_RECOVERY_TESTS = [
      await d.load();d.select('2026-09-01');await d.submit('add');
      other.once('before',x=>x.name==='UserPeriodRecord'&&x.method==='create');await rejects(()=>other.change('add',{date:'2026-10-01'}));
      await d.retry();check(writeCalls===1&&other.tables.UserCalendarAction.length===1&&d.getSnapshot().error==='CALENDAR_ACTION_CONFLICT'&&d.getSnapshot().outcome==='unknown'&&!d.getSnapshot().canContinue,'competing pending intent caused another write or unlocked uncertainty');
-     d.chooseDay('2026-10-02');await d.submit('add');check(writeCalls===1&&d.getSnapshot().selected==='2026-09-01','failed status check allowed a replacement intent');
+     d.chooseDay('2026-10-02');await d.submit('add');check(writeCalls===1&&d.getSnapshot().selected==='2026-10-02'&&d.getSnapshot().pendingOperation.date==='2026-09-01','inspection after failed check replaced the original intent');
    }finally{d.dispose();}
  }],
  ['RC09','Explicit reconciliation shares the 20s budget, ignores old account check and never writes after failed/budget-exhausted status',async()=>{

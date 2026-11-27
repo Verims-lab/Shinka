@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-089
+**Current BuildMarker:** Buildmarker-090
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
@@ -12,6 +12,10 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 090 — Calendar spacing and concise recovery
+
+Calendar alone collapses the unused 44px ProfileLogoSlot flow footprint; its actual logo-corner control stays unchanged. Measured logo/title gap changes about 92 to 48px. Day details describe inspected-day facts, or explicitly unverified data in RECOVERY_REQUIRED. One localized notice separately names the original operation date. Days remain usable during checks; month reads have their own loading guard. New mutation controls stay unavailable until safe resolution; read-only Check and write-capable original Continue remain separate. [090](reports/SHINKA_CALENDAR_RECOVERY_090.md)
 
 ## 089 — Calendar details and honest markers
 

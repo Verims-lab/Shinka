@@ -1,6 +1,11 @@
 import { APPROVED_COPY } from '../uiuxTables';
 
 const en = {
+  recoveryTitle: 'Previous calendar change', recoveryNotice: 'The previous change is not yet confirmed. You can browse your calendar; new changes are paused.',
+  recoveryStillPending: 'The previous change is still pending. You can browse your calendar; new changes are paused.',
+  recoveryChecking: 'Checking the previous change. You can browse your calendar.',
+  recoveryCheckFailed: 'We could not check the previous change. You can browse your calendar; new changes are paused.',
+  unverifiedDay: 'The record information for this date is not yet verified',
   selectPrompt: 'Select a day to see its details', dateActions: 'Date actions', legend: 'Calendar indicators',
   recordedStart: 'Period start recorded', changeDate: 'Change date', deleteRecord: 'Delete record', markStart: 'Save as period start',
   saveMove: 'Save date change', moveFrom: 'Start to change', moveHint: 'Select the new start date on the calendar',
@@ -36,6 +41,11 @@ const en = {
   deleteError: APPROVED_COPY.calendar[12], deleted: APPROVED_COPY.calendar[13], empty: APPROVED_COPY.calendar[14],
 };
 const tr = {
+  recoveryTitle: 'Önceki takvim işlemi', recoveryNotice: 'Önceki işlem henüz doğrulanmadı. Takvimi inceleyebilirsin; yeni kayıt işlemleri bekliyor.',
+  recoveryStillPending: 'Önceki işlem hâlâ bekliyor. Takvimi inceleyebilirsin; yeni kayıt işlemleri bekliyor.',
+  recoveryChecking: 'Önceki işlem kontrol ediliyor. Takvimi inceleyebilirsin.',
+  recoveryCheckFailed: 'Önceki işlemin durumu alınamadı. Takvimi inceleyebilirsin; yeni kayıt işlemleri bekliyor.',
+  unverifiedDay: 'Bu günün kayıt bilgisi henüz doğrulanamadı',
   selectPrompt: 'Durumunu görmek için takvimden bir gün seç', dateActions: 'Tarih işlemleri', legend: 'Takvim işaretleri',
   recordedStart: 'Regl başlangıcı kaydedilmiş', changeDate: 'Tarihi değiştir', deleteRecord: 'Kaydı sil', markStart: 'Regl başlangıcı olarak kaydet',
   saveMove: 'Değişikliği kaydet', moveFrom: 'Değiştirilecek başlangıç', moveHint: 'Yeni başlangıç tarihini takvimden seç',

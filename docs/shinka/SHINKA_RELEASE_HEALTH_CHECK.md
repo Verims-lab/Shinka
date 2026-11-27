@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-089
+**Current BuildMarker:** Buildmarker-090
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-088.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-089.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 090 — Mandatory browsable-recovery coverage
+
+HC-089.0 retains 188 cases: 0 added / 5 updated / 0 removed (H05-009, H08-007, H12-027, H13-012, H13-015). RC13–RC15/CU12 bring canonical tests to 828. Require November 11 PENDING without a saved start, inspection during unknown/check/write, immutable original intent, receipt states, no automatic/duplicate/replacement writes, original continuation, refresh/tab/late response and privacy boundaries. checkCalendarRecovery adds 20 actual-App TR/EN mobile/simulated Android-iOS insets/tablet/desktop comparisons per engine. Existing 8 flow, 2 continuity, 40 Calendar combinations and quality gates remain. Hosted/physical acceptance is external. [090](reports/SHINKA_CALENDAR_RECOVERY_090.md)
 
 ## 089 — Calendar selected-day/recovery coverage
 

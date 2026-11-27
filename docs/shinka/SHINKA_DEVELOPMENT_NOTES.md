@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-089
+**Current BuildMarker:** Buildmarker-090
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 090 — Reproduced selection lock
+
+The owner video and failing pre-fix RC13 confirm the frontend lock: 089 disabled the calendar and rejected selection during unknown outcomes, while recovery overwrote selection. PENDING reads are intentionally not mutations and cannot complete a receipt. The UI is now independently browsable. The video does not establish the private live receipt/failure stage; no live receipt was inspected, modified or replayed. Actual execution and remaining blockers follow in the report. [090](reports/SHINKA_CALENDAR_RECOVERY_090.md)
 
 ## 089 — Direct Calendar and bounded warning fix
 

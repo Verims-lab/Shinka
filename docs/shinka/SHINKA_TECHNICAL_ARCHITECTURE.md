@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_TECHNICAL_ARCHITECTURE.md
 **Status:** ACTIVE — foundation architecture
-**Current BuildMarker:** Buildmarker-089
+**Current BuildMarker:** Buildmarker-090
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SRC-04 Teknik Analiz v1.1, SRC-05 DB v1.2
 **Purpose:** Define responsibilities and boundaries on Base44.
@@ -12,6 +12,10 @@
 **External Verification Required:** Every item marked UNVERIFIED_PLATFORM_CAPABILITY.
 
 
+
+## 090 — Independent inspection and operation lifetimes
+
+Private retry data and immutable pendingOperation are separate from selected/month. Read generations supersede stale month reads; account generation invalidates all old IO. Browsing does not cancel original operation identity. Check responses never replace a newer inspected month. Original-month confirmation refreshes the inspected month by read, without local data projection or repeat mutation. Transport deadlines and native/schema/service implementations are unchanged. CLI-only native fixtures model November 11 with no hosted IO. [090](reports/SHINKA_CALENDAR_RECOVERY_090.md)
 
 ## 089 — Calendar presentation and recovery boundary
 

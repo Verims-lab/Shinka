@@ -16,6 +16,24 @@ const day=(host,date)=>host.querySelector(`[data-calendar-date="${date}"]`);
 const choose=async(host,date)=>{day(host,date).click();await pause();};
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CALENDAR_UI_TESTS = [
+ ['CU12','November 11 recovery has one notice, truthful inspected-day status and usable read-only controls during status checks in TR/EN',async()=>probe(async(root,host)=>{
+   for(const language of ['tr','en']){
+     const f=nativeFixture();f.state.time='2026-11-27T12:00:00Z';f.once('before',x=>x.name==='UserPeriodRecord'&&x.method==='create');try{await f.change('add',{date:'2026-11-11'});}catch{/* intentional isolated pending receipt */}
+     check(f.tables.UserCalendarAction[0].status==='PENDING'&&!f.tables.UserPeriodRecord.length);
+     let hold=false,held=false,release=()=>{},writes=0;const request=async(action,body)=>{if(action!=='read')writes++;const value=await f.cal({action,...body});if(hold&&action==='read'){hold=false;await new Promise(resolve=>{release=()=>resolve(undefined);held=true;});}return value;};
+     try{
+       root.render(createElement(Calendar,{key:language,language,request}));await until(()=>host.querySelector('[data-calendar-root]')?.getAttribute('lang')===language&&day(host,'2026-11-11'));
+       check(!day(host,'2026-11-11').disabled&&host.querySelectorAll('[data-calendar-recovery]').length===1&&!host.querySelector('[data-calendar-selection]'));
+       await choose(host,'2026-11-11');check(day(host,'2026-11-11').dataset.start==='false'&&host.querySelector('[data-calendar-day-status]').textContent===(language==='tr'?'Bu tarihte kayıtlı bir regl başlangıcı yok':'No period start is recorded on this date'));
+       hold=true;host.querySelector('[data-calendar-check]').click();await until(()=>host.querySelector('[data-calendar-check]')?.disabled);
+       await choose(host,'2026-11-15');check(host.querySelector('[data-calendar-selection]').dataset.selectedDate==='2026-11-15'&&host.querySelector('[data-calendar-recovery] time').dateTime==='2026-11-11'&&!host.querySelector('[data-calendar-add],[data-calendar-move],[data-calendar-delete]'));
+       await until(()=>held);release();await until(()=>host.querySelector('[data-calendar-continue]')&&!host.querySelector('[data-calendar-check]').disabled);check(writes===0);
+       root.render(createElement(Calendar,{key:language,language,request,active:false}));await pause();root.render(createElement(Calendar,{key:language,language,request,active:true}));await pause();
+       check(host.querySelector('[data-calendar-selection]').dataset.selectedDate==='2026-11-15'&&host.querySelectorAll('[data-calendar-recovery]').length===1&&writes===0);
+       host.querySelector('[data-calendar-continue]').click();await until(()=>!host.querySelector('[data-calendar-recovery]'));check(writes===1&&f.tables.UserPeriodRecord.length===1&&f.tables.UserPeriodRecord[0].period_start_date==='2026-11-11'&&host.querySelector('[data-calendar-selection]').dataset.selectedDate==='2026-11-15');
+     }finally{release();}
+   }
+ })],
  ['CU11','Selected-day actions, accurate intervals, move/month draft and delete confirmation never confuse selection with a saved start',async()=>probe(async(root,host)=>{
    const f=nativeFixture();await f.change('add',{date:'2026-10-01'});let writes=0;
    root.render(createElement(Calendar,{language:'en',request:(action,body)=>{if(action!=='read')writes++;return f.cal({action,...body});}}));
@@ -64,10 +82,11 @@ export const CALENDAR_UI_TESTS = [
      try{
        root.render(createElement(Calendar,{key:language,language,request}));await until(()=>host.querySelector('[data-calendar-root]')?.getAttribute('lang')===language&&day(host,'2026-10-01'));check(!host.querySelector('[data-calendar-feedback]'));
        await choose(host,'2026-10-01');check(!f.tables.UserPeriodRecord.length&&day(host,'2026-10-01').dataset.start==='false');host.querySelector('[data-calendar-add]').click();await until(()=>calls.length===1);await pause();
-       const pending=host.querySelector('[data-calendar-feedback=pending]');check(pending?.getAttribute('role')==='status'&&!pending.closest('[aria-busy=true]')&&host.querySelector('[data-calendar-selection] [role=group]').getAttribute('aria-busy')==='true');
-       release();await until(()=>host.querySelector('[data-calendar-error=NETWORK]'));check(f.tables.UserPeriodRecord.length===1&&day(host,'2026-10-01').disabled&&!host.querySelector('[data-calendar-add]'));
+       const pending=host.querySelector('[data-calendar-feedback=pending]');check(pending?.getAttribute('role')==='status'&&!pending.closest('[aria-busy=true]')&&host.querySelectorAll('[data-calendar-recovery]').length===1&&!host.querySelector('[data-calendar-add],[data-calendar-move],[data-calendar-delete]'));
+       await choose(host,'2026-10-05');check(host.querySelector('[data-calendar-selection]').dataset.selectedDate==='2026-10-05'&&host.querySelector('[data-calendar-recovery] time').dateTime==='2026-10-01','in-flight add replaced inspection or intent');
+       release();await until(()=>host.querySelector('[data-calendar-error=NETWORK]'));check(f.tables.UserPeriodRecord.length===1&&!day(host,'2026-10-01').disabled&&!host.querySelector('[data-calendar-add]')&&host.querySelector('[data-calendar-recovery] time').dateTime==='2026-10-01');
        button(host,language==='tr'?'Durumu kontrol et':'Check status').click();await until(()=>host.textContent.includes(language==='tr'?'Regl başlangıcı kaydedildi':'Period start saved'));
-       check(calls.length===1&&f.tables.UserCalendarAction[0].action_id===calls[0].action_id&&day(host,'2026-10-01').dataset.start==='true'&&!host.querySelector('[data-calendar-error],[data-calendar-feedback]')&&!button(host,'Check status')&&!button(host,'Durumu kontrol et'));
+       check(calls.length===1&&f.tables.UserCalendarAction[0].action_id===calls[0].action_id&&day(host,'2026-10-01').dataset.start==='true'&&host.querySelector('[data-calendar-selection]').dataset.selectedDate==='2026-10-05'&&!host.querySelector('[data-calendar-error],[data-calendar-feedback]')&&!button(host,'Check status')&&!button(host,'Durumu kontrol et'));
      }finally{release();}
    }
  })],
@@ -82,6 +101,7 @@ export const CALENDAR_UI_TESTS = [
    const f=nativeFixture(),view=await f.cal();f.once('before',c=>c.name==='UserPeriodRecord'&&c.method==='create');try{await f.cal({action:'add',date:'2026-09-01',action_id:crypto.randomUUID(),revision:view.revision});}catch{/* isolated interruption */}
    const id=f.tables.UserCalendarAction[0].action_id;root.render(createElement(Calendar,{language:'en',request:(action,body)=>calendarRequest(action,body,{functions:{invoke:async(_name,payload)=>({data:await f.cal(payload)})}})}));await until(()=>host.querySelector('[data-calendar-error=CALENDAR_PENDING_REVIEW]'));
    button(host,'Check status').click();await until(()=>button(host,'Continue the same change'));check(!f.tables.UserPeriodRecord.length);button(host,'Continue the same change').click();await until(()=>host.textContent.includes('Period start saved'));
+   await until(()=>host.querySelector('button[aria-label="Previous month"]')?.disabled===false);host.querySelector('button[aria-label="Previous month"]').click();await until(()=>day(host,'2026-09-01'));
    check(f.tables.UserPeriodRecord.length===1&&f.tables.UserCalendarAction.length===1&&f.tables.UserCalendarAction[0].action_id===id&&f.tables.UserCalendarAction[0].status==='APPLIED'&&day(host,'2026-09-01').getAttribute('aria-label').includes('Recorded period start'));
  })],
  ['CU05','Unsupported estimates preserve real dates and central TR/EN information without stale predictions',async()=>probe(async(root,host)=>{

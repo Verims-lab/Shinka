@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-089
+**Current BuildMarker:** Buildmarker-090
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 090 — Browsable reconciliation regression
+
+Keep original intent private and its published view immutable. Selection never clears it or grants write authority. Preserve owner/consent/session invalidation and receipt readback. RC13–RC15/CU12 bring canonical tests to 828. checkCalendarRecovery joins default/Calendar gates with 20 matched spacing/protected-geometry cases. Preserve existing Calendar/nav/mobile and quality/performance assertions, unsupported-capability disclosure and failed attempts. [090](reports/SHINKA_CALENDAR_RECOVERY_090.md)
 
 ## 089 — Calendar safety and regression
 

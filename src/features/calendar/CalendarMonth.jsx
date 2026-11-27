@@ -13,7 +13,7 @@ export function moveMonth(month, delta) {
 export function formatCalendarDate(date, language, options = { day: 'numeric', month: 'long', year: 'numeric' }) {
   return new Intl.DateTimeFormat(language === 'tr' ? 'tr-TR' : 'en-GB', { ...options, timeZone: 'UTC' }).format(new Date(`${date}T12:00:00Z`));
 }
-export default function CalendarMonth({ value, selected, onSelect, onMonth, disabled, language, editing = null }) {
+export default function CalendarMonth({ value, selected, onSelect, onMonth, disabled, language, editing = null, monthDisabled = disabled }) {
   const root = useRef(null), copy = key => calendarCopy(key, language);
   const first = new Date(`${value.month}-01T12:00:00Z`);
   const offset = (first.getUTCDay() + 6) % 7;
@@ -34,9 +34,9 @@ export default function CalendarMonth({ value, selected, onSelect, onMonth, disa
   };
   return <section aria-label={copy('title')} className="space-y-4">
     <div data-calendar-month-header className="flex items-center justify-between gap-1">
-      <ShinkaButton variant="ghost" aria-label={copy('previous')} onClick={() => onMonth(moveMonth(value.month, -1))} disabled={disabled || value.month <= '0001-02'}><ChevronLeft aria-hidden="true"/></ShinkaButton>
+      <ShinkaButton variant="ghost" aria-label={copy('previous')} onClick={() => onMonth(moveMonth(value.month, -1))} disabled={monthDisabled || value.month <= '0001-02'}><ChevronLeft aria-hidden="true"/></ShinkaButton>
       <h2 className="shinka-calendar-month-title font-heading text-shinka-h3 text-center" aria-live="polite">{formatCalendarDate(`${value.month}-01`, language, { month: 'long', year: 'numeric' })}</h2>
-      <ShinkaButton variant="ghost" aria-label={copy('next')} onClick={() => onMonth(moveMonth(value.month, 1))} disabled={disabled || value.month >= '9999-11'}><ChevronRight aria-hidden="true"/></ShinkaButton>
+      <ShinkaButton variant="ghost" aria-label={copy('next')} onClick={() => onMonth(moveMonth(value.month, 1))} disabled={monthDisabled || value.month >= '9999-11'}><ChevronRight aria-hidden="true"/></ShinkaButton>
     </div>
     <div className="shinka-calendar-grid" ref={root} role="grid" aria-label={copy('title')} onKeyDown={keyboard}>
       <div role="row" className="grid grid-cols-7">

@@ -96,15 +96,19 @@ export async function checkCalendarContinuity(page, origin) {
     assert.equal(await page.locator('[data-calendar-date="2026-09-01"]:visible').count(),1);
     const writes=()=>page.evaluate(()=>window.__authFixture.calls.filter(c=>c.name==='calendar'&&c.action!=='read').length);
     assert.equal(await writes(),0);
-    await page.evaluate(()=>{window.__authFixture.holdOperation('calendar');window.__calendarLab.fault('lostResponse');});
+    await page.evaluate(()=>{window.__authFixture.holdOperation('calendar.edit');window.__calendarLab.fault('lostResponse');});
     await page.locator('[data-calendar-save]').click();await page.locator('[data-calendar-feedback="pending"]').waitFor();
-    assert.equal(await page.locator('[data-calendar-selection] [role=group]').getAttribute('aria-busy'),'true');
+    assert.equal(await page.locator('[data-calendar-recovery]').count(),1);assert.equal(await page.locator('[data-calendar-save],[data-calendar-move],[data-calendar-delete]').count(),0);
     assert.equal(await page.evaluate(()=>window.__calendarLab.rows.user_period_record.length),1);
     await page.locator('nav a:visible').nth(2).click();await page.locator('[data-pattern-root]:visible').waitFor();
     await page.locator('nav a:visible').nth(1).click();await page.locator('[data-calendar-feedback="pending"]:visible').waitFor();assert.equal(await writes(),1);
-    await page.evaluate(()=>window.__authFixture.releaseOperation('calendar'));
+    // Read-only tab-return refresh is now permitted during the write. Let that
+    // ABSENT read finish before releasing the intentionally lost edit response.
+    await page.locator('[data-calendar-root] [data-refresh-control][aria-busy=false]').waitFor({state:'attached'});
+    await page.evaluate(()=>window.__authFixture.releaseOperation('calendar.edit'));
     await page.locator('[data-calendar-error]').waitFor();
-    assert.equal(await page.locator('[data-calendar-feedback]').count(),0);assert.equal(await page.locator('[data-calendar-date][data-draft]').getAttribute('data-calendar-date'),'2026-09-01');
+    assert.equal(await page.locator('[data-calendar-feedback]').count(),0);assert.equal(await page.locator('[data-calendar-date][data-draft]').count(),0);
+    assert.equal(await page.locator('[data-calendar-selection]').getAttribute('data-selected-date'),'2026-09-01');assert.equal(await page.locator('[data-calendar-recovery] time').getAttribute('datetime'),'2026-09-01');
     assert.equal(await page.evaluate(()=>window.__calendarLab.rows.user_period_record.length),1);
     assert.equal(await page.getByText(language==='tr'?'Regl başlangıcı kaydedildi':'Period start saved',{exact:true}).count(),0);
     await page.evaluate(()=>window.__calendarLab.fault(null));
