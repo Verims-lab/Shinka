@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-088
-**Last Updated:** 2026-11-26
+**Current BuildMarker:** Buildmarker-089
+**Last Updated:** 2026-11-27
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
 **Scope:** Account, Onboarding, Home, Calendar, Pattern, You, Health Consent, Daily Content, Notifications, Data Protection.
@@ -12,6 +12,10 @@
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 
+
+## 089 — Calendar record and interval semantics
+
+The existing backend exposes starts only for the requested month: these are actual record IDs/dates. recordedDays expands saved starts using the configured/default 1–10-day display duration; it does not record observed bleeding on each day. predictedDays contains PREDICTED/MENSTRUAL phase days after excluding recorded intervals; it is not a predicted-start list. The UI never invents an interval start or changes these contracts. Server validation still checks complete history, both neighbours/minimum 15, owner today, consent, ACTIVE/lifecycle, revision, original action ID and readback. Normal inspection clears on changing month because projections are month-scoped; explicit unsaved moves retain their original ID/target across month/year/tab navigation in memory. No persisted draft/health field is added. [089](reports/SHINKA_CALENDAR_SIMPLIFICATION_089.md)
 
 ## 087 — Profile entry position only
 

@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_UI_UX_STANDARDS.md
 **Status:** ACTIVE — reconciled with UI/UX Tasarım v1.1
-**Current BuildMarker:** Buildmarker-088
-**Last Updated:** 2026-11-26
+**Current BuildMarker:** Buildmarker-089
+**Last Updated:** 2026-11-27
 **Authoritative Source References:** SRC-03 Shinka_UI_UX_Tasarim_v1.1_Tutarli.docx (one logical source, Part 1–4)
 **Purpose:** Binding design system and UX contract for all Shinka surfaces.
 **Scope:** Tokens, primitives, navigation, screens, states, accessibility, localization.
@@ -12,6 +12,10 @@
 **Supporting artifact:** Shinka_UI_UX_v1.1_Machine_Readable_Tables_Companion.docx — machine-readable mirror of SRC-03's 11 tables + visual-reference notes; mirrored verbatim in `src/foundation/uiuxTables.js` (design, icons, approved EN copy for onboarding/You, Home, Calendar, Pattern, You/account, QA checklist). Not a new source.
 **Open Decisions:** OD-005, OD-011 (OD-010 resolved)
 
+
+## 089 — Calendar details and honest markers
+
+Remove the global Edit dates control/form. Place the localized selected date/status/actions below the unchanged calendar grid. Saved start: “Regl başlangıcı kaydedilmiş”, “Tarihi değiştir”, “Kaydı sil”; eligible date: “Regl başlangıcı olarak kaydet”. An explicit move has in-place source/target guidance and Save/Cancel; normal selection is never a write or a saved marker. Keep a filled start dot, derived recorded-period tint, dashed estimated-period tint, today underline/bold and a separate selection ring. The legend has only recorded start and predicted period; explain other states contextually. Do not call any predicted day a predicted start. Respect consent, future/15-day checks, true unconfirmed-write controls, 44px keyboard targets and modal focus. Enlarged month/weekday text may wrap. The narrow dark grid extends the existing reading color behind its glyphs; shared image/palette/profile/nav remain unchanged. [089](reports/SHINKA_CALENDAR_SIMPLIFICATION_089.md)
 
 ## 088 — Home suggestion as an editorial note
 

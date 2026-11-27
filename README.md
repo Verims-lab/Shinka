@@ -42,6 +42,10 @@ Buildmarker-065 introduced a single shared PNG across user-facing routes. [065 s
 
 [064 Test Tools retirement](docs/shinka/reports/SHINKA_ADMIN_RESET_RETIREMENT_064.md): admin reset is removed from UI and backend commands. Existing receipts remain readable/fenced; the two authorized live removals are still blocked by active legacy receipts. No schema push is required.
 
+## Calendar selected-day actions — 089 / HC-088.0
+
+Tap a date to inspect its status and available actions below the grid. Recorded starts offer Change date/Delete record; eligible dates offer Save as period start. There is no global Edit dates button or separate date form. Selection, derived intervals, predictions and saved starts remain distinct. Check status stays read-only; explicit continuation preserves the original intent and receipt safeguards. Run `FOUNDATION_CALENDAR_ONLY=1 npm run test:foundation` in Chromium/WebKit for the local synthetic SDK/native-handler flow and screen matrix. [089 scope, warning investigation and execution](docs/shinka/reports/SHINKA_CALENDAR_SIMPLIFICATION_089.md)
+
 ## Suggestion editorial note — 088 / HC-087.0
 
 Today's Suggestion keeps its soft outer card and uses a smaller heading, readable italic body and a subtle plum left rule. Your Shinka, background, profile 087, navigation 083 and paired content remain unchanged. No Done checkbox, space reservation or completion state is added. `FOUNDATION_HOME_ONLY=1 npm run test:foundation` runs the 80-case Home matrix and existing daily scenarios in each browser. [088 scope and execution](docs/shinka/reports/SHINKA_SUGGESTION_NOTE_088.md)

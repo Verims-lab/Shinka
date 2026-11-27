@@ -2,14 +2,18 @@
 
 **Document:** SHINKA_RELEASE_HEALTH_CHECK.md
 **Status:** ACTIVE
-**Current BuildMarker:** Buildmarker-088
-**Last Updated:** 2026-11-26
+**Current BuildMarker:** Buildmarker-089
+**Last Updated:** 2026-11-27
 **Authoritative Source References:** This governance set; SRC-04 §15
 **Purpose:** Define the executable regression framework and gate.
 **Core Audit 042:** original Base44 NOT_RUN/FAIL retained; final execution is recorded separately in reports/SHINKA_CORE_AUDIT_042.md.
-**Scope:** Health catalog HC-087.0. Repository, synthetic and external evidence have separate results.
+**Scope:** Health catalog HC-088.0. Repository, synthetic and external evidence have separate results.
 
 
+
+## 089 — Calendar selected-day/recovery coverage
+
+HC-088.0 retains 188 cases: 0 added / 5 updated / 0 removed (H05-009, H08-007, H12-027, H13-012, H13-015). Canonical tests add RC11/RC12 (824 total). Update CU01–CU11, FX02, CA15/CA21 and MI01/MI02 plus Calendar/mobile App gates for the replacement controls without weakening data, receipt, consent or focus assertions. Require TR/EN light/dark 320/360/390/430 and landscape, normal/doubled text, direct statuses, truthful two-key legend, today/future/recorded/derived/predicted states, add/same-ID move/confirmed delete, consent/blocked/unsupported estimates, pending/unknown/APPLIED/ABSENT/CONFLICT, repeated read-only checks and explicit same-intent continuation, tab/month/year/scroll, Back/Escape/focus, no duplicate writes and protected 083/087/artwork. Source hashes protect backend/schema/service, Home 088 and all non-Calendar product code. Real hosted/physical acceptance remains external. [089 execution](reports/SHINKA_CALENDAR_SIMPLIFICATION_089.md)
 
 ## 088 — Suggestion-note regression
 

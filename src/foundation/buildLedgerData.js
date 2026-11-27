@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "full_health_status": "NOT_RUN",
-    "package_type": "TARGETED_FIX",
-    "notes": "H13-019 adds Apple and Google callback replays, legal and onboarding isolation, same-request continuation and lost native removal acknowledgement. H05-009 recognizes 084 under the existing content policy. No new schema or recovery policy. Hosted provider, platform erasure and affected account evidence require separate verification.",
-    "health_catalog_version": "HC-083.0",
-    "build_marker": "Buildmarker-084",
-    "package_name": "Account deletion reauthentication recovery",
-    "short_summary": "Keep deletion-restricted provider returns on Account & Privacy, verify the existing request with its native owner, and offer explicit continuation with read-only recovery after native removal.",
-    "created_at": "2026-11-26T07:06:13.8695597Z"
-  },
-  {
     "build_marker": "Buildmarker-085",
     "package_name": "Admin-only isolated onboarding simulation",
     "package_type": "FEATURE",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Differentiate only Today's Suggestion with the existing smaller heading token, readable italic body and a subtle plum left rule. Preserve its outer card, Your Shinka, profile 087, navigation 083, art and immutable paired content.",
     "full_health_status": "NOT_RUN",
     "notes": "H05-009, H07-013 and H13-012 update; retain 188 cases and 084–088. Both-engine 80-case actual-App Home gate uses verified fixture themes, bilingual standard/longest-source copy and doubled text; baseline freezes Your Shinka, greeting/profile/nav/art. Keep complete text/contrast, natural height and no completion UI/reserved space/state. Run existing daily/Core/083 and quality/dependency/performance gates. Actual execution and unchanged failing budgets, if any, are retained in reports/SHINKA_SUGGESTION_NOTE_088.md. No shared component/engine/font/schema/dependency or production operation change. Physical/hosted acceptance is external; no main write, PR or Base44 publication."
+  },
+  {
+    "build_marker": "Buildmarker-089",
+    "package_name": "Calendar selected-day actions and verified recovery",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-11-27T06:58:18.395Z",
+    "health_catalog_version": "HC-088.0",
+    "short_summary": "Replace Calendar global editing with selected-day status and explicit add/move/delete. Distinguish recorded starts, derived/predicted intervals, today and selection. Preserve backend guards, confirmed readback, original-intent recovery, profile 087, navigation 083 and Home 088.",
+    "full_health_status": "NOT_RUN",
+    "notes": "188 cases retained, 5 updated; active 085–089. RC11/RC12 add permanent rejected-ABSENT/conflicting-receipt coverage; RC08 retains uncertainty after failed checks. Adapt existing CU/FX/mobile/Calendar matrices to direct date actions, consent, no future saves, same-ID move and confirmed deletion without duplicate writes. Backend/schema/service and all other product screens are protected. Exact results, failed attempts, unchanged byte budgets and hosted/device limits are in reports/SHINKA_CALENDAR_SIMPLIFICATION_089.md. No new health field, backend operation, storage, main write, PR, Base44 publication or production data action."
   }
 ];

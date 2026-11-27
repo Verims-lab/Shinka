@@ -188,7 +188,7 @@ export const CALENDAR_TESTS = [
    await control.load('2026-10'); const before=JSON.stringify(f.rows);
    control.select('2026-10-01'); const id=control.getSnapshot().editing.id;
    control.deletePrompt(true); control.deletePrompt(false); check(!writes && JSON.stringify(f.rows)===before);
-   control.select('2026-10-02'); check(control.getSnapshot().editing.id===id);
+   control.beginMove();control.select('2026-10-02'); check(control.getSnapshot().editing.id===id);
    f.fault('beforeCommit'); await control.submit('edit');
    check(control.getSnapshot().selected==='2026-10-02' && control.getSnapshot().value.starts[0].date==='2026-10-01');
    f.fault(null); await control.retry(); await control.continueIntent(); check(f.rows.user_period_record[0].id===id && f.rows.user_period_record[0].period_start_date==='2026-10-02');
@@ -259,7 +259,7 @@ export const CALENDAR_TESTS = [
      if(action==='read')return result;
      waiting=true;return new Promise(resolve=>{release=()=>resolve(result);});
    });
-   await c.load();c.select('2026-10-01');const id=c.getSnapshot().editing.id;
+   await c.load();c.select('2026-10-01');c.beginMove();const id=c.getSnapshot().editing.id;
    await c.load('2026-09');check(c.getSnapshot().editing.id===id);c.select('2026-09-30');
    const saving=c.submit('edit');while(!waiting)await new Promise(resolve=>setTimeout(resolve,1));
    c.invalidate();release();await saving;check(c.getSnapshot().value===null&&!c.getSnapshot().success);c.dispose();

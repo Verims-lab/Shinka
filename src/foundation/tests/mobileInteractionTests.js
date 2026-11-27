@@ -18,7 +18,7 @@ export const MOBILE_INTERACTION_TESTS = [
     const request = async action => { check(action === 'read', 'refresh wrote'); calls++; return pending ? pending.promise : view(); };
     const c = createCalendarController(request);
     try {
-      await c.load(); c.select('2026-10-01'); c.select('2026-10-02');
+      await c.load(); c.select('2026-10-01'); c.beginMove(); c.select('2026-10-02');
       pending = deferred(); const a = c.refresh(), b = c.refresh();
       check(a === b && calls === 2 && c.getSnapshot().value.starts[0].date === '2026-10-01', 'coalesce/content');
       pending.reject(fail('NETWORK')); await a;
@@ -37,7 +37,7 @@ export const MOBILE_INTERACTION_TESTS = [
       return pending.promise;
     });
     try {
-      await c.load(); c.select('2026-10-01'); c.select('2026-10-02');
+      await c.load(); c.select('2026-10-01'); c.beginMove(); c.select('2026-10-02');
       await c.submit('edit'); check(c.getSnapshot().outcome === 'rejected' && c.getSnapshot().selected === '2026-10-02' && c.getSnapshot().value.starts[0].date === '2026-10-01', 'rejection draft');
       c.select('2026-10-03'); response = 'unknown'; await c.submit('edit');
       const intent = mutations[1]; await c.refresh(); c.select('2026-10-04'); await c.submit('edit');

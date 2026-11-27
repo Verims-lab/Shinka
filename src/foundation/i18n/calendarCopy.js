@@ -1,6 +1,13 @@
 import { APPROVED_COPY } from '../uiuxTables';
 
 const en = {
+  selectPrompt: 'Select a day to see its details', dateActions: 'Date actions', legend: 'Calendar indicators',
+  recordedStart: 'Period start recorded', changeDate: 'Change date', deleteRecord: 'Delete record', markStart: 'Save as period start',
+  saveMove: 'Save date change', moveFrom: 'Start to change', moveHint: 'Select the new start date on the calendar',
+  notSaved: 'New start date selected; not saved yet', unrecorded: 'No period start is recorded on this date',
+  recordedInterval: 'In the period interval shown from a recorded start', predictedInterval: 'In an estimated period interval',
+  predictionNote: 'This is an estimate, not a recorded period start', predictedFuture: 'This is an estimate. Future dates cannot be recorded as period starts',
+  futureInfo: 'Future dates cannot be recorded as period starts', pendingDate: 'The result of the change for this date is not yet confirmed',
   editDates: 'Edit dates', save: 'Save', cancelDraft: 'Cancel', today: 'Today',
   editHint: 'Choose a start date. Tap a recorded start to remove it, then another day to move it.',
   draftPolicy: 'Unsaved selection stays across tabs; closing or reloading the app clears it.',
@@ -9,9 +16,9 @@ const en = {
 
   checkStatus: 'Check status', checking: 'Checking the change', deleteStatusTitle: 'Deletion status',
   deleteUnknown: 'The deletion is not yet confirmed. Check its status to continue the same change',
-  unconfirmed: 'We couldn’t confirm the change. It may have been saved. Refresh and review your dates before retrying',
+  unconfirmed: 'The change is not yet confirmed. It may have been saved; check its status',
   pendingReview: 'A previous change is not yet confirmed. Check and try again',
-  title: 'Calendar', previous: 'Previous month', next: 'Next month', period: 'Period', predicted: 'Predicted', selected: 'Selected',
+  title: 'Calendar', previous: 'Previous month', next: 'Next month', period: 'Period', predicted: 'Predicted period', selected: 'Selected',
   loading: 'Loading your calendar', saving: 'Saving your changes', retry: 'Retry', reload: 'Refresh calendar',
   draft: 'Selected date; not saved yet',
   loadError: 'We couldn’t load your calendar. Please try again',
@@ -29,6 +36,13 @@ const en = {
   deleteError: APPROVED_COPY.calendar[12], deleted: APPROVED_COPY.calendar[13], empty: APPROVED_COPY.calendar[14],
 };
 const tr = {
+  selectPrompt: 'Durumunu görmek için takvimden bir gün seç', dateActions: 'Tarih işlemleri', legend: 'Takvim işaretleri',
+  recordedStart: 'Regl başlangıcı kaydedilmiş', changeDate: 'Tarihi değiştir', deleteRecord: 'Kaydı sil', markStart: 'Regl başlangıcı olarak kaydet',
+  saveMove: 'Değişikliği kaydet', moveFrom: 'Değiştirilecek başlangıç', moveHint: 'Yeni başlangıç tarihini takvimden seç',
+  notSaved: 'Yeni başlangıç seçildi; henüz kaydedilmedi', unrecorded: 'Bu tarihte kayıtlı bir regl başlangıcı yok',
+  recordedInterval: 'Kaydedilmiş başlangıca göre gösterilen regl aralığında', predictedInterval: 'Tahmini regl aralığında',
+  predictionNote: 'Bu bir tahmindir; kayıtlı bir regl başlangıcı değildir', predictedFuture: 'Bu bir tahmindir. Gelecek tarihler regl başlangıcı olarak kaydedilemez',
+  futureInfo: 'Gelecek tarihler regl başlangıcı olarak kaydedilemez', pendingDate: 'Bu tarihle ilgili işlemin sonucu henüz doğrulanmadı',
   editDates: 'Tarihleri düzenle', save: 'Kaydet', cancelDraft: 'Vazgeç', today: 'Bugün',
   editHint: 'Bir başlangıç seç. Kayıtlı tarihe dokunarak silmeyi, ardından başka güne dokunarak taşımayı seç.',
   draftPolicy: 'Kaydedilmemiş seçim sekmelerde korunur; uygulamayı kapatmak veya yenilemek seçimi temizler.',
@@ -37,9 +51,9 @@ const tr = {
 
   checkStatus: 'Durumu kontrol et', checking: 'Değişiklik kontrol ediliyor', deleteStatusTitle: 'Silme durumu',
   deleteUnknown: 'Silme henüz doğrulanamadı. Aynı işleme devam etmek için durumunu kontrol et',
-  unconfirmed: 'Değişiklik doğrulanamadı; kaydedilmiş olabilir. Tekrar denemeden önce yenile ve tarihlerini kontrol et',
+  unconfirmed: 'Değişiklik henüz doğrulanamadı. Kaydedilmiş olabilir; durumunu kontrol et',
   pendingReview: 'Önceki değişiklik henüz doğrulanamadı. Kontrol edip tekrar dene',
-  title: 'Takvim', previous: 'Önceki ay', next: 'Sonraki ay', period: 'Regl', predicted: 'Tahmini', selected: 'Seçili',
+  title: 'Takvim', previous: 'Önceki ay', next: 'Sonraki ay', period: 'Regl', predicted: 'Tahmini regl', selected: 'Seçili',
   loading: 'Takvimin yükleniyor', saving: 'Değişikliklerin kaydediliyor', retry: 'Tekrar dene', reload: 'Takvimi yenile',
   draft: 'Seçili tarih henüz kaydedilmedi',
   loadError: 'Takvimin yüklenemedi. Lütfen tekrar dene',

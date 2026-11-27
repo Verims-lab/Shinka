@@ -2,8 +2,8 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-088
-**Last Updated:** 2026-11-26
+**Current BuildMarker:** Buildmarker-089
+**Last Updated:** 2026-11-27
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
 **Scope:** Whole Shinka project (greenfield). Does not replace the uploaded source files.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 089 — Calendar selected-day interaction
+
+The 27 November 2026 owner request supersedes 062's global Edit dates button and implicit delete/move drafts. Selecting a day only inspects it below the grid. A saved start offers Change date/Delete record; an eligible empty past/today date offers Save as period start. Move is explicit and saved once against the original native ID; deletion retains confirmation. Future dates remain inspectable but cannot be saved. No duration/end/batch model or new health field. Retain source image/logo, profile 087, navigation 083, Home 088, all other screens and backend guards. [089](reports/SHINKA_CALENDAR_SIMPLIFICATION_089.md)
 
 ## 088 — Today's Suggestion editorial note
 

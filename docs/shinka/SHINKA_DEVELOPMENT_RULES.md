@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-088
-**Last Updated:** 2026-11-26
+**Current BuildMarker:** Buildmarker-089
+**Last Updated:** 2026-11-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 089 — Calendar simplification delivery
+
+Clean AydanTest fast-forwarded from 3e24b00 to main 0895cba (088 merge, identical files) before editing. Record Buildmarker-089 / HC-088.0 once, retaining 085–089. Require both-engine Calendar UI/native protocol, canonical regressions, mobile/protected nav/artwork, source hashes and dependency/type/lint/build/repo/performance checks. Keep actual failures and source/device evidence separate. Only AydanTest may be delivered; no main write, force-push, PR, Base44 publication or production data action. [089](reports/SHINKA_CALENDAR_SIMPLIFICATION_089.md)
 
 ## 088 — Focused Home note delivery
 
