@@ -3,6 +3,7 @@ import { checkTermsAcceptance } from './checkTermsAcceptance.mjs';
 import { checkReopenApp } from './checkReopenApp.mjs';
 import { checkReopenNavigation } from './checkReopenNavigation.mjs';
 import { checkCalendarCorrections } from './checkCalendarCorrections.mjs';
+import { checkCalendarRecovery } from './checkCalendarRecovery.mjs';
 import { verifyCalendarEntitySdk } from './verifyCalendarEntitySdk.mjs';
 import { checkOnboardingCorrections } from './checkOnboardingCorrections.mjs';
 import { verifyGeoNamesQuotaEntries } from './verifyGeoNamesQuotaEntries.mjs';
@@ -115,8 +116,11 @@ try {
     console.log(JSON.stringify({termsAcceptance:await checkTermsAcceptance(browser,origin,process.env.FOUNDATION_TERMS_DIR),pageErrors}));
   } else if (process.env.FOUNDATION_AUTH_FIRST_ONLY === '1') {
     console.log(JSON.stringify({authFirstOnboarding:await checkAuthFirstOnboarding(browser,origin),pageErrors}));
+  } else if (process.env.FOUNDATION_CALENDAR_RECOVERY_ONLY === '1') {
+    console.log(JSON.stringify({calendarRecovery:await checkCalendarRecovery(browser,origin,process.env.FOUNDATION_CALENDAR_RECOVERY_DIR),pageErrors}));
+    if(pageErrors.length)process.exitCode=1;
   } else if (process.env.FOUNDATION_CALENDAR_ONLY === '1') {
-    console.log(JSON.stringify({calendarFlow:await checkCalendarFlow(page,origin),calendarContinuity:await checkCalendarContinuity(page,origin),calendarCorrections:await checkCalendarCorrections(browser,origin,process.env.FOUNDATION_CALENDAR_DIR),pageErrors}));
+    console.log(JSON.stringify({calendarFlow:await checkCalendarFlow(page,origin),calendarContinuity:await checkCalendarContinuity(page,origin),calendarCorrections:await checkCalendarCorrections(browser,origin,process.env.FOUNDATION_CALENDAR_DIR),calendarRecovery:await checkCalendarRecovery(browser,origin,process.env.FOUNDATION_CALENDAR_RECOVERY_DIR),pageErrors}));
     if(pageErrors.length)process.exitCode=1;
   } else if (process.env.FOUNDATION_CALENDAR_CORRECTIONS_ONLY === '1') {
     console.log(JSON.stringify({calendarCorrections:await checkCalendarCorrections(browser,origin,process.env.FOUNDATION_CALENDAR_DIR)}));
@@ -245,6 +249,7 @@ try {
   const calendarFlow = await checkCalendarFlow(page, origin, process.env.FOUNDATION_CALENDAR_DIR);
   const calendarContinuity = await checkCalendarContinuity(page,origin);
   const calendarCorrections = await checkCalendarCorrections(browser,origin,process.env.FOUNDATION_CALENDAR_CORRECTIONS_DIR);
+  console.log(JSON.stringify({calendarRecovery:await checkCalendarRecovery(browser,origin,process.env.FOUNDATION_CALENDAR_RECOVERY_DIR)}));
   const adminTestFlow = await checkAdminTestTools(page, origin, process.env.FOUNDATION_TEST_TOOLS_DIR);
   const inAppHealth=await checkInAppHealth(page,origin);
   const healthTiming=await checkHealthTiming(browser,origin);

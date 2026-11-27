@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_BUSINESS_FLOW.md
 **Status:** ACTIVE — contract summary with scoped implementation
-**Current BuildMarker:** Buildmarker-089
+**Current BuildMarker:** Buildmarker-090
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SRC-01 İş Analizi v2.5 (primary), SRC-02 Use Case v1.4
 **Purpose:** Translate binding business behavior into implementation contracts.
@@ -12,6 +12,10 @@
 **Open Decisions:** OD-002 resolved by explicit user approval, 2026-10-20 (OD-003 repository auth policy implemented; live provider proof remains external)
 
 
+
+## 090 — Inspection never replaces a pending write
+
+A recovery date is not selection or a recorded start. Actual starts require confirmed month record evidence; RECOVERY_REQUIRED does not establish absence. Preserve original ID/revision/payload, owner/consent/readback safeguards across date/month/tab changes and refresh. Unknown plus ABSENT is not rollback; PENDING is not APPLIED. Only positive matching evidence retires uncertainty. Persistent pending/conflicting native state remains a real blocker; explicit continuation rereads before using the same intent. [090](reports/SHINKA_CALENDAR_RECOVERY_090.md)
 
 ## 089 — Calendar record and interval semantics
 

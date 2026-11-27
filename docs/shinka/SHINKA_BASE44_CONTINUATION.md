@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_BASE44_CONTINUATION.md
 **Status:** ACTIVE — 051 cleanup accepted; final daily schema observed; scoped 058 acceptance ledger
-**Current BuildMarker:** Buildmarker-089
+**Current BuildMarker:** Buildmarker-090
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** User's Base44 architecture replacement instruction and explicit “Hayır, hiçbir SQL kurulumu veya veri aktarımı yapılmadı” reply; canonical product sources and OD-012; official Base44 references below.
 **Purpose:** Current implementation, accepted failure behavior, evidence and deployment handoff.
 **Scope:** Test delivery; 051 authorizes targeted hosted observation and reviewed historical maintenance on the named existing app. No agent main merge/publish, new external service or paid resource.
 
 
+
+## 090 — Separate safe backend follow-up
+
+No native operation, service, schema or data-model change. AydanTest delivery is not publication. If the device still reports pending state, an authorized operator needs the deployed build, read-only original-action receipt status, safe stage/request ID and matching revision/result evidence. Do not infer APPLIED from a date, reset/delete receipts or retry under a new ID. No hosted Full Health, live mutation, main modification or publication is authorized. [090](reports/SHINKA_CALENDAR_RECOVERY_090.md)
 
 ## 089 — Calendar frontend package
 

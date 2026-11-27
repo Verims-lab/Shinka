@@ -6,6 +6,9 @@ export function calendarSelection(state) {
   const { value, selected, moving, editing } = state;
   if (!value || !isCalendarDate(selected)) return null;
   const inMonth = selected.slice(0, 7) === value.month;
+  // A different month's projection cannot establish this date's record status.
+  // An explicit move may still retain its unsaved target across month changes.
+  if (!inMonth && !moving) return null;
   const start = inMonth ? value.starts.find(row => row.date === selected) : null;
   const recorded = inMonth && value.recordedDays.includes(selected);
   const predicted = inMonth && value.predictedDays.includes(selected);

@@ -77,6 +77,13 @@ const healthRuns=[];
 async function loadCalendarLab() {
   if (!calendarLab && params.has('nativeCalendar')) calendarLab = import('@/foundation/tests/nativeFixture').then(async({nativeFixture})=>{
     const f=nativeFixture();await f.change('add',{date:'2026-10-01'});globalThis.__nativeCalendarLab=f;
+    if(params.has('calendarRecovery090')){
+      f.state.time='2026-11-27T12:00:00Z';
+      f.once('before',call=>call.name==='UserPeriodRecord'&&call.method==='create');
+      const revision=(await f.cal()).revision;
+      let interrupted=false;try{await f.cal({action:'add',date:'2026-11-11',revision,action_id:'calendar-recovery-november-11'});}catch{interrupted=true;}
+      if(!interrupted||!f.tables.UserCalendarAction.some(r=>r.status==='PENDING'&&r.desired_date==='2026-11-11')||f.tables.UserPeriodRecord.some(r=>r.period_start_date==='2026-11-11'))throw new Error('NOVEMBER_11_FIXTURE_NOT_PENDING');
+    }
     return {request:(action,body)=>f.cal({...body,action})};
   });
   if (!calendarLab) calendarLab = import('@/foundation/tests/calendarFixture').then(async ({ calendarFixture }) => {
@@ -138,7 +145,8 @@ export const base44 = {
   functions: { invoke: async (name, body) => {
     const actor = session;
     calls.push({ name, action: body.action }); // Action names only; no user payload.
-    if(operationGates.has(name))await operationGates.get(name).promise;
+    const operationGate=operationGates.get(name+'.'+body.action)||operationGates.get(name);
+    if(operationGate)await operationGate.promise;
     if(operationFailures.delete(`${name}.${body.action}`)||operationFailures.delete(name))throw new Error('SYNTHETIC_NETWORK_FAILURE');
     if (name === 'applicationSession') {
       if (sessionUnavailable) throw new Error('SYNTHETIC_SESSION_UNAVAILABLE');

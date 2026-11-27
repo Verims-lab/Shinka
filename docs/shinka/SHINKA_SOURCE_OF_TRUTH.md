@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_SOURCE_OF_TRUTH.md
 **Status:** ACTIVE — governance
-**Current BuildMarker:** Buildmarker-089
+**Current BuildMarker:** Buildmarker-090
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** All 10 registered LOGICAL sources (below)
 **Purpose:** Define which document governs which domain, how split documents are counted, and how conflicts are handled.
@@ -11,6 +11,10 @@
 **External Verification Required:** Live Apple/Google sign-in (EXTERNAL_RELEASE)
 
 
+
+## 090 — Browsable Calendar recovery
+
+The current request supersedes only the 089 unknown-state navigation lock and Calendar top gap. Keep inspected date/month separate from original action/date/revision/receipt. Never infer a saved start from recovery. Permit read-only browsing, but block new writes until positively reconciled; Check is read-only and original continuation explicit. Do not invent backend success or erase pending receipts. Preserve artwork/logo/profile 087, navigation 083, Home and all other screens. [090](reports/SHINKA_CALENDAR_RECOVERY_090.md)
 
 ## 089 — Calendar selected-day interaction
 

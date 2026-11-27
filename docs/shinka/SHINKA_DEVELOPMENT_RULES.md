@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-089
+**Current BuildMarker:** Buildmarker-090
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 090 — Calendar recovery delivery
+
+Clean AydanTest fast-forwarded from 4f7e82f to main 10ffc21 (089 merge, identical files). Record Buildmarker-090 / HC-089.0 once; retain 086–090. Reproduce RC13 against 089 before fixing. Require both-engine native/Calendar/core, matched spacing/art/profile/nav and quality/dependency/repo/history/performance gates. Preserve historical failures including WebKit broad-mobile timeout and gzip limits. Deliver only AydanTest; no main write, force-push, PR, publication or live mutation. [090](reports/SHINKA_CALENDAR_RECOVERY_090.md)
 
 ## 089 — Calendar simplification delivery
 
