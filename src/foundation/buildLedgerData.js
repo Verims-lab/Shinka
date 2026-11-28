@@ -1,16 +1,6 @@
 // Generated active package data; update with scripts/recordBuild.mjs. Older entries remain in Git.
 export default [
   {
-    "build_marker": "Buildmarker-088",
-    "package_name": "Home suggestion editorial note",
-    "package_type": "TARGETED_FIX",
-    "created_at": "2026-11-26T16:29:22.327Z",
-    "health_catalog_version": "HC-087.0",
-    "short_summary": "Differentiate only Today's Suggestion with the existing smaller heading token, readable italic body and a subtle plum left rule. Preserve its outer card, Your Shinka, profile 087, navigation 083, art and immutable paired content.",
-    "full_health_status": "NOT_RUN",
-    "notes": "H05-009, H07-013 and H13-012 update; retain 188 cases and 084–088. Both-engine 80-case actual-App Home gate uses verified fixture themes, bilingual standard/longest-source copy and doubled text; baseline freezes Your Shinka, greeting/profile/nav/art. Keep complete text/contrast, natural height and no completion UI/reserved space/state. Run existing daily/Core/083 and quality/dependency/performance gates. Actual execution and unchanged failing budgets, if any, are retained in reports/SHINKA_SUGGESTION_NOTE_088.md. No shared component/engine/font/schema/dependency or production operation change. Physical/hosted acceptance is external; no main write, PR or Base44 publication."
-  },
-  {
     "build_marker": "Buildmarker-089",
     "package_name": "Calendar selected-day actions and verified recovery",
     "package_type": "TARGETED_FIX",
@@ -49,5 +39,15 @@ export default [
     "short_summary": "Use verified empty Calendar data for an optional first-period invitation and one approved consent checkbox. Preserve explicit local checkbox intent through unchanged reads/date selection; persist only through existing save, with no repeat for GRANTED consent.",
     "full_health_status": "NOT_RUN",
     "notes": "188 cases retained, 4 updated; active 088–092. CU14/CU15/RC16 plus existing mobile Calendar matrix cover empty/no-consent/GRANTED, full history, unchanged/revised/blocked/pending/private reads, withdrawal and event uniqueness. Keep original mutation, native/backend/security/recovery/onboarding contracts and 088/087/083 protected surfaces. Shared Health changes are package/coverage metadata only. Actual results, failed attempts, unchanged performance budgets and hosted/device limits are in reports/SHINKA_CALENDAR_CONSENT_092.md. No automatic grant, skip flag, new model/storage, real receipt operation, main write, PR or Base44 publication."
+  },
+  {
+    "build_marker": "Buildmarker-093",
+    "package_name": "Calendar idempotent receipt recovery and bounded readback throttling",
+    "package_type": "TARGETED_FIX",
+    "created_at": "2026-11-27T20:29:09.838Z",
+    "health_catalog_version": "HC-092.0",
+    "short_summary": "Complete a verified existing period through original receipt-only recovery; retain security, revision, competing-operation and two-pass read guards. Calendar raw GET429 retries honor Retry-After within a bounded request budget; uncertain writes never retry automatically.",
+    "full_health_status": "NOT_RUN",
+    "notes": "188 cases retained, 3 updated; active 089–093. RC17–RC24 cover persisted November 3 record/readback429/PENDING/APPLIED without duplicates, receipt fencing and rival/revision/consent denial, bounded GET-only retry and sanitized diagnostics. Native TS entry tests retain lifecycle and Terms. No schema, UI, live mutation, main write, PR or Base44 publication. Published backend/source parity NOT_VERIFIED because CLI is not logged in. Actual local results, failed attempts, performance and owner rollout prerequisites are recorded separately in reports/SHINKA_CALENDAR_READBACK_093.md."
   }
 ];

@@ -1,3 +1,4 @@
+import { createCalendarReadContext, CALENDAR_BACKEND_VERSION } from './calendarReadContext.js';
 import { productFailureResponse } from './productReadDiagnostics.js';
 import { readUserLifecycle } from './userLifecycle.js';
 import { InternalError, requireAuthenticatedUser } from './internalAuthorization.js';
@@ -77,7 +78,7 @@ export async function calendarOperation(client, body, { now = () => new Date(), 
       calculationError = error.code;
     }
   }
-  stage('CALENDAR_READBACK');
+  stage('CALENDAR_RESPONSE_VERIFY');
   const checkedAction = native && body.action === 'read' && (consent || !state.consent)
     ? await calendarActionStatus(client, owner, body, state) : null;
   if (native) {
@@ -101,17 +102,19 @@ export async function calendarOperation(client, body, { now = () => new Date(), 
   };
 }
 export async function handleCalendarRequest(req, createClient, dependencies = {}) {
-  const started = Date.now(); let stage = 'CALENDAR_READ', operationId = null;
+  const started = Date.now(), reads = dependencies.reads || createCalendarReadContext();
+  let stage = 'CALENDAR_READ';
   try {
     if (req.method !== 'POST') fail('METHOD_NOT_ALLOWED', 405);
     const body = await readBoundedJson(req, 2000, fail);
-    if (typeof body.action_id === 'string' && /^[a-zA-Z0-9_-]{16,80}$/.test(body.action_id)) operationId = body.action_id;
     if (body.action !== 'read') stage = 'CALENDAR_WRITE';
-    return Response.json(await calendarOperation(createClient(req), body, { ...dependencies, stage: name => { stage = name; } }));
+    const value = await calendarOperation(createClient(req, reads), body, { ...dependencies, stage: name => { stage = name; reads.stage(name); } });
+    return Response.json(value, { headers: { 'X-Shinka-Calendar-Version': CALENDAR_BACKEND_VERSION } });
   } catch (error) {
-    const response = productFailureResponse(error, 'CALENDAR_OPERATION_FAILED', 500, stage, started);
+    const response = productFailureResponse(error, 'CALENDAR_OPERATION_FAILED', 500, stage, started, { rateLimited: true, requestId: reads.requestId, retryDelay: reads.retryDelay() });
     const safe = await response.clone().json();
-    console.error('SHINKA_CALENDAR_FAILURE', { operationId, errorCode: safe.error_code, ...safe.diagnostic });
+    console.error('SHINKA_CALENDAR_FAILURE', { sourceVersion: CALENDAR_BACKEND_VERSION, requestId: reads.requestId, errorCode: safe.error_code, calendarStage: stage, diagnostic: safe.diagnostic });
+    response.headers.set('X-Shinka-Calendar-Version', CALENDAR_BACKEND_VERSION);
     return response;
-  }
+  } finally { reads.close(); }
 }

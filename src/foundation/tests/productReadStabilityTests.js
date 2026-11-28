@@ -102,11 +102,11 @@ export const PRODUCT_READ_STABILITY_TESTS = [
  ['CP07','Backend error envelopes retain safe admission HTTP/stage/request ID without leaking raw exception',async()=>{
    for(const {handler,action} of [{handler:handleCalendarRequest,action:'read'},{handler:handlePatternRequest,action:'themes'}]) {
      const response=await handler(new Request('https://synthetic.invalid/function',{method:'POST',body:JSON.stringify({action})}),()=>({auth:{me:async()=>{throw fault(429);}}}));
-     const body=await response.json();check(response.status===503&&body.diagnostic.httpStatus===429&&body.diagnostic.stage==='SESSION_AUTH'&&body.diagnostic.requestId===requestId);
+     const body=await response.json();check(response.status===(handler===handleCalendarRequest?429:503)&&body.diagnostic.httpStatus===429&&body.diagnostic.stage==='SESSION_AUTH'&&body.diagnostic.requestId===requestId);
      check(body.retry_after_ms===500&&!JSON.stringify(body).includes('PRIVATE')&&Object.keys(body.diagnostic).length===5);
      const f=patternFixture();f.state.before=call=>{if(call.name==='UserPrivacyRequest')throw fault(429);};
      const lifecycle=await handler(new Request('https://synthetic.invalid/function',{method:'POST',body:JSON.stringify({action})}),()=>withUserLifecycle(f.client()));
-     const safe=await lifecycle.json();check(lifecycle.status===503&&safe.diagnostic.httpStatus===429&&safe.diagnostic.stage==='LIFECYCLE_PRIVACY_READ'&&safe.retry_after_ms===500,'native lifecycle stage/Retry-After lost');
+     const safe=await lifecycle.json();check(lifecycle.status===(handler===handleCalendarRequest?429:503)&&safe.diagnostic.httpStatus===429&&safe.diagnostic.stage==='LIFECYCLE_PRIVACY_READ'&&safe.retry_after_ms===500,'native lifecycle stage/Retry-After lost');
      check(!JSON.stringify(safe).includes('PRIVATE'));
    }
  }],

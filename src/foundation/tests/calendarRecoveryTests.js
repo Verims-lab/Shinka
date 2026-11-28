@@ -1,3 +1,4 @@
+import { CALENDAR_READBACK_TESTS } from './calendarReadbackTests';
 import { handleCalendarRequest } from '../../../base44/shared/calendarOperation.js';
 import { check, rejects } from './dataModelTests';
 import { nativeFixture } from './nativeFixture';
@@ -7,6 +8,7 @@ import { withTestClock, testEventTurn } from './testClock';
 const controller=f=>createCalendarController((action,body)=>f.cal({action,...body}));
 /** @type {import('./testTypes').FoundationTest[]} */
 export const CALENDAR_RECOVERY_TESTS = [
+ ...CALENDAR_READBACK_TESTS,
  ['RC16','Unsaved consent survives only unchanged admitted empty-calendar reads and is cleared by revised, restricted or private state',async()=>{
    for(const changed of ['revision','paused','pending','privacy']){
      const f=nativeFixture({granted:false}),before=JSON.stringify(f.tables);let mode=null;
@@ -107,7 +109,7 @@ export const CALENDAR_RECOVERY_TESTS = [
    }finally{c.dispose();}
  }],
  ['RC10','Native failures preserve safe period/receipt/readback stage and request ID without raw provider details',async()=>{
-   for(const [name,method,stage] of [['UserCalendarAction','create','CALENDAR_RECEIPT_CREATE'],['UserPeriodRecord','create','CALENDAR_PERIOD_WRITE'],['UserCalendarAction','update','CALENDAR_RECEIPT_FINISH']]) {
+   for(const [name,method,stage] of [['UserCalendarAction','create','CALENDAR_RECEIPT_CREATE'],['UserPeriodRecord','create','CALENDAR_PERIOD_WRITE'],['UserCalendarAction','updateMany','CALENDAR_RECEIPT_FINISH']]) {
      const f=nativeFixture(),view=await f.cal();f.state.before=async c=>{if(c.name===name&&c.method===method)throw {response:{status:503,data:{private_detail:'PRIVATE_SENTINEL'}},message:'PRIVATE_SENTINEL'};};
      const response=await handleCalendarRequest(new Request('https://fixture.invalid',{method:'POST',body:JSON.stringify({action:'add',date:'2026-10-01',action_id:crypto.randomUUID(),revision:view.revision})}),()=>f.client(),{native:true,now:f.now});
      const data=await response.json();check(data.diagnostic.stage===stage&&data.diagnostic.httpStatus===503&&data.diagnostic.durationMs>=0&&/^[a-f0-9-]{36}$/.test(data.diagnostic.requestId));

@@ -2,7 +2,7 @@
 
 **Document:** SHINKA_CODE_STANDARDS.md
 **Status:** ACTIVE — enforceable
-**Current BuildMarker:** Buildmarker-092
+**Current BuildMarker:** Buildmarker-093
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SRC-04 §14, SRC-05 §2
 **Purpose:** Engineering rules every package must satisfy.
@@ -37,6 +37,10 @@
 - **X. Repository data health:** run `npm run health:repo` along with existing required checks. Preserve exactly 20 product entities, one logical/physical mapping, only explicitly allowlisted guarded content-import writers and no duplicate timestamp fields. Synthetic fixtures must remain isolated and must not write live product rows.
 
 
+
+## 093 — Calendar retry boundary
+
+Keep transport retry below authorization wrappers and strictly limited to filter/auth.me GETs rejected with HTTP429. Do not retry create/update/updateMany/delete/deleteMany or the encompassing Calendar action. Keep all confirmation passes independent and revalidate receipt signature/status/result. Use owner/id/original-intent/status predicates and readback, without claiming linearizable CAS. Sanitized substage and entity/method failures must identify readback versus receipt finish. [093 implementation, evidence and rollout](reports/SHINKA_CALENDAR_READBACK_093.md).
 
 ## 092 — Conservative presentation and local draft retention
 

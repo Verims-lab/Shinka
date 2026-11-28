@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_RULES.md
 **Status:** ACTIVE — mandatory
-**Current BuildMarker:** Buildmarker-092
+**Current BuildMarker:** Buildmarker-093
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md
 **Purpose:** Incremental build governance and change control.
 **Scope:** Every development package.
 
 
+
+## 093 — Deployment evidence before incident closure
+
+CLI whoami returned Not logged in; checkout has no linked .app.jsonc. Published backend/source parity is NOT_VERIFIED, not inferred from GitHub ancestry or the user-supplied 429 log. Local synthetic tests may validate implementation but cannot close the November 3 live incident. Owner must synchronize the complete matching Calendar/native/shared graph and verify package version/source plus read-only target evidence before any separately authorized live continuation. No publication or live data operation is included. [093 implementation, evidence and rollout](reports/SHINKA_CALENDAR_READBACK_093.md).
 
 ## 092 — Empty-state and consent delivery
 

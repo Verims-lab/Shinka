@@ -2,13 +2,17 @@
 
 **Document:** SHINKA_DEVELOPMENT_NOTES.md
 **Status:** ACTIVE — 051 row maintenance verified; publication/files/incident follow-up open
-**Current BuildMarker:** Buildmarker-092
+**Current BuildMarker:** Buildmarker-093
 **Last Updated:** 2026-11-27
 **Authoritative Source References:** SHINKA_SOURCE_OF_TRUTH.md; explicit maintenance request
 **Purpose:** Current findings, comparable measurements and handoff.
 **Scope:** Current local Health/deletion correction; retained hosted and maintenance evidence. No routine agent live Health or main merge/publish.
 
 
+
+## 093 — Calendar readback and durable receipt
+
+User supplied CALENDAR_READBACK/RATE_LIMITED HTTP429 and an existing November 3 period with PENDING receipt. Source review found repeated initial receipt lookup, redundant full grant completion for a complete result, a rival-check bypass on the matching-result path and raw429 mapped to outer500. The package fixes those source defects with permanent RC17–RC24 and actual native-entry wiring. Exact deployed query/quota cause and current live record are not independently verified. [093 implementation, evidence and rollout](reports/SHINKA_CALENDAR_READBACK_093.md).
 
 ## 092 — Optional first-period invitation
 
